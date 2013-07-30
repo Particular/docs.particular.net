@@ -1,3 +1,3 @@
-NServiceBus.Documentation
+NServiceBus Documentation
 =========================
  
