@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Scale Out Sample"
 tags: 
-origin: http://www.particular.net/Articles/scale-out-sample
----
+-->
 Sometimes a single worker for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out your existing message processing by adding more workers on different machines.
 
 The sample starts with a sender and a receiver.

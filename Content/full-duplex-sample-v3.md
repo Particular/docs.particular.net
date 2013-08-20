@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Full Duplex Sample using NServiceBus V3"
 tags: 
-origin: http://www.particular.net/Articles/full-duplex-sample-v3
----
+-->
 To see full-duplex, request/response communication, open the Full Duplex sample.
 
 Run the solution. Two console applications should start up. Find the client application by looking for the one with "Client" in its path and click Enter a couple of times in the window. Your screen should look like this:

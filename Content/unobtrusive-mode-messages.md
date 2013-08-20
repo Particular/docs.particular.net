@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Unobtrusive Mode Messages"
 tags: 
-origin: http://www.particular.net/Articles/unobtrusive-mode-messages
----
+-->
 When using NServiceBus you define your message contracts using plain C\# classes or interfaces. For NServiceBus to find those classes when scanning your assemblies you need to mark them with the special IMessage interface, which essentially says, “Hey, this is a message definition, please use it.” This might seem like a small thing but now you’re coupling your message contracts to a NServiceBus assembly since you need to reference the NServiceBus.dll to get access to the interface.
 
 This dependency can cause problems if you have different services that run different versions of NServiceBus. Jonathan Oliver has a [great write up on this very subject](http://blog.jonathanoliver.com/2010/09/nservicebus-distributing-event-schemacontract/)

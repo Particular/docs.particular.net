@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "How to Handle a Message?"
 tags: 
-origin: http://www.particular.net/Articles/how-do-i-handle-a-message
----
+-->
 Write a class that implements IMessageHandler<t> where T is the message type:
 
     public class H1 : IMessageHandler

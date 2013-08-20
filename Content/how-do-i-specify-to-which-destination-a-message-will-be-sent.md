@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "How to Specify to Which Destination a Message Is Sent?"
 tags: 
-origin: http://www.particular.net/Articles/how-do-i-specify-to-which-destination-a-message-will-be-sent
----
+-->
 You configure the destination for message types in <unicastbusconfig>, under <messageendpointmappings>.
 
 Add one of the following:

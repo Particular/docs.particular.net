@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Migrating To NServiceBus 3.0 – Timeouts"
 tags: 
-origin: http://www.particular.net/Articles/migrating-to-nservicebus-3.0-–-timeouts
----
+-->
 This article describes your options when migrating your V2.6 timeouts to the new V3.0 format.
 
 If you are not familiar with the NServiceBus timeouts, in brief, NServiceBus supports durable timeouts that survive process restarts. To do that, you need to store the timeouts on disk.

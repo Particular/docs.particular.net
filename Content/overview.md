@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "NServiceBus Overview"
 tags: 
-origin: http://www.particular.net/Articles/overview
----
+-->
 Designed for collaboration between business-oriented services, NServiceBus is not a replacement for RPC technologies such as WCF.
 
 Successful SOA and DDD projects use a mix of approaches and technologies—not just NServiceBus for communications.

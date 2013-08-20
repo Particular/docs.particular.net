@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Preparing your machine to run NServiceBus"
 tags: 
-origin: http://www.particular.net/Articles/preparing-your-machine-to-run-nservicebus
----
+-->
 <style type="text/css">div#uls ul{
     margin-bottom: -15px;
   }

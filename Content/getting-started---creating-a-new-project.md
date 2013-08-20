@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Getting Started - Creating a New Project"
 tags: 
-origin: http://www.particular.net/Articles/getting-started---creating-a-new-project
----
+-->
 To get started with NServiceBus, create a new project:
 
 1.  Choose "NServiceBus System" for the type of project.

@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Encryption Sample"
 tags: 
-origin: http://www.particular.net/Articles/encryption-sample
----
+-->
 To see how to encrypt message data, open the Encryption sample.
 
 1.  Run the solution.

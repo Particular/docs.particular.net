@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Building NServiceBus from Source Files"
 tags: 
-origin: http://www.particular.net/Articles/building-nservicebus-from-source-files
----
+-->
 Getting the source
 ==================
 

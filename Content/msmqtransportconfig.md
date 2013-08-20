@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "MsmqTransportConfig"
 tags: 
-origin: http://www.particular.net/Articles/msmqtransportconfig
----
+-->
 The configuration section defines properties of the MSMQ transport. See background on [MSMQ](msmq-information).
 
 Example of MsmqTransportConfig:

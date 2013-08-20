@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Profiles For NServiceBus Host"
 tags: 
-origin: http://www.particular.net/Articles/profiles-for-nservicebus-host
----
+-->
 Moving a system
 <span style="font-size: 14px; line-height: 24px;">reliably
 </span><span style="font-size: 14px; line-height: 24px;">from development through test to production is a core capability for any development organization.</span>

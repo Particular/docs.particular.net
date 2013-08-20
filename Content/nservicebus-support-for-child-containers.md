@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "NServiceBus Support for Child Containers"
 tags: 
-origin: http://www.particular.net/Articles/nservicebus-support-for-child-containers
----
+-->
 Child containers are essentially a snapshot of the main container where transient instances are treated as as singletons within the scope of the child container. This is useful when you want to scope instances for the duration of a web request or the handling of a message in NServiceBus. While this was possible before, child containers bring one more important feature to the table.
 
 **NOTE**: Child containers are not supported by spring.net, so if you plan to take advantage of it, use one of the other containers supported by NServiceBus.

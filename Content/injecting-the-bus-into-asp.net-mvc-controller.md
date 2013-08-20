@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Injecting the Bus into ASP.NET MVC Controller"
 tags: 
-origin: http://www.particular.net/Articles/injecting-the-bus-into-asp.net-mvc-controller
----
+-->
 In the AsyncPagesMvc3 sample, open Global.asax.cs and look at the ApplicationStart method. <span style="background-color:Lime;">you'll see the following code</span>:
 
 To inject the Bus, these classes were added to the project:

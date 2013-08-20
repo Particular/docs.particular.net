@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "How Pub/Sub Works"
 tags: 
-origin: http://www.particular.net/Articles/how-pub-sub-works
----
+-->
 Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on.
 
 If you haven't seen the [publish/subscribe sample](getting-started-publish-subscribe-communication) yet take a minute to walk through or start by [creating a new project using NServiceBus](getting-started---creating-a-new-project).

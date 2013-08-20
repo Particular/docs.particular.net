@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "DTCPIng WARNING: The CID Values for Both Test Machines Are the Same"
 tags: 
-origin: http://www.particular.net/Articles/dtcping-warning-the-cid-values-for-both-test-machines-are-the-same
----
+-->
 This message might be received when the machine name is longer than 14 characters.
 
 For DTCPing and MSDTC to work, the machine name should be shorter than

@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Pipeline Management Using Message Mutators"
 tags: 
-origin: http://www.particular.net/Articles/pipeline-management-using-message-mutators
----
+-->
 The message pipeline in NServiceBus V2.X consisted of message modules. They served their purpose but didn’t quite give full control over the message pipeline for more advanced things, and there was no way to hook into the pipeline at the sending/client side of the message conversation.
 
 The [DataBus feature](attachments-databus-sample) of NServiceBus V3.0 uses message mutators to change the content of a message before and after sending it on the wire and act as fine-grained hooks into the pipeline. See how to use them.

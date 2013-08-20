@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Unobtrusive Sample"
 tags: 
-origin: http://www.particular.net/Articles/unobtrusive-sample
----
+-->
 To demonstrate NServiceBus operating in unobtrusive mode, open the unobtrusive sample.
 
 Run the solution. Two console applications should start up. Find the client application by looking for the one with "Client" in its path and follow the onscreen instructions to send messages to the server.

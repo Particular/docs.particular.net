@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Publish/Subscribe Sample"
 tags: 
-origin: http://www.particular.net/Articles/publish-subscribe-sample
----
+-->
 ![pubsub solution](https://particular.blob.core.windows.net/media/Default/images/pub_sub_solution.png)Open the solution in Visual Studio. You should see the picture on the left.
 
 Before running the sample, look over the solution structure, the projects, and the classes. The projects "MyPublisher", "Subscriber1", and "Subscriber2" are their own processes, even though they look like regular class libraries.

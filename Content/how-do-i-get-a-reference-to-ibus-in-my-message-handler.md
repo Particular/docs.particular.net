@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "How to Get a Reference to IBus in My Message Handler?"
 tags: 
-origin: http://www.particular.net/Articles/how-do-i-get-a-reference-to-ibus-in-my-message-handler
----
+-->
 Use setter injection:
 
     public class H1 : IMessageHandler

@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "test"
 tags: 
-origin: http://www.particular.net/Articles/test
----
+-->
 test
 
 ~~~~ {.brush:csharp;collapse:true;} using System; using NServiceBus;

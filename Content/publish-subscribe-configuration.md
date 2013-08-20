@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Publish/Subscribe Configuration"
 tags: 
-origin: http://www.particular.net/Articles/publish-subscribe-configuration
----
+-->
 ![Pub/Sub configuration](https://particular.blob.core.windows.net/media/Default/images/basic_pubsub.png)
 
 The part of the <add> entry stating Messages="Messages" means that the assembly "Messages.dll" contains the message schema. Specific types can be configured using their qualified name: "namespace.type, assembly".

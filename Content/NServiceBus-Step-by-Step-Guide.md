@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "NServiceBus Step by Step Guide"
 tags: 
-origin: http://www.particular.net/Articles/NServiceBus-Step-by-Step-Guide
----
+-->
 In this tutorial we are going to create a very simple ordering system that will send messages from a client to a server.
 
 #### Creating the Client

@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "The Gateway And Multi-Site Distribution"
 tags: 
-origin: http://www.particular.net/Articles/the-gateway-and-multi-site-distribution
----
+-->
 The number of multi-site deployments of enterprise .NET systems are increasing due to the challenges of high availability and the requirement for faster response times for users, as the servers and data they access is closer. 
 
 RPC technologies quickly run into trouble in these environments as they make machines in the same site and those in remote sites look the same.

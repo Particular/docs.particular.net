@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "How to Expose an NServiceBus Endpoint as a Web/WCF Service?"
 tags: 
-origin: http://www.particular.net/Articles/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service
----
+-->
 Inherited from NServiceBus.Webservice<tcommand, terrorcode>, as shown below. TCommand is the message type of the request and needs to implement IMessage. TErrorCode must be an enumerated type, and should represent the result of processing the command.
 
     [WebService(Namespace = "http://tempuri.org/")]

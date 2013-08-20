@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "How to Define a Message?"
 tags: 
-origin: http://www.particular.net/Articles/how-do-i-define-a-message
----
+-->
     public class MyMessage : IMessage { }
 
 OR

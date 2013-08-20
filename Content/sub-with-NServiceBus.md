@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "How to Publish/Subscribe to a Message"
 tags: 
-origin: http://www.particular.net/Articles/sub-with-NServiceBus
----
+-->
 How to publish a message?
 -------------------------
 

@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Getting Started - Fault Tolerance"
 tags: 
-origin: http://www.particular.net/Articles/getting-started---fault-tolerance
----
+-->
 Durable messaging
 -----------------
 

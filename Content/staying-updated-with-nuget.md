@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Staying Updated with NuGet"
 tags: 
-origin: http://www.particular.net/Articles/staying-updated-with-nuget
----
+-->
 <span style="font-size: 14px;">NuGet is an open source project that simplifies integration of third parties into your Visual Studio projects during development. To learn more or to download it, go to the [NuGet web site](http://nuget.org/).</span>
 
 NServiceBus and NuGet

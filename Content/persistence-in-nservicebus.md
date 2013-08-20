@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Persistence In NServiceBus"
 tags: 
-origin: http://www.particular.net/Articles/persistence-in-nservicebus
----
+-->
 Various features of NServiceBus require persistence. Among them are timeouts, sagas, and subscription storage.
 
 Four persistence technologies are in use in NServiceBus:

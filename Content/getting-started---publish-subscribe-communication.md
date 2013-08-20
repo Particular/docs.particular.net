@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Getting Started - Publish/Subscribe Communication"
 tags: 
-origin: http://www.particular.net/Articles/getting-started---publish-subscribe-communication
----
+-->
 Now that we've gone through the basics of NServiceBus communication and configuration, let's move on to publish/subscribe.
 
 ![Full Solution Builder](https://particular.blob.core.windows.net/media/Default/images/GettingStarted11.png)

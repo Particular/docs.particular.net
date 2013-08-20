@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Performance"
 tags: 
-origin: http://www.particular.net/Articles/performance
----
+-->
 NServiceBus:
 
 -   Efficiently processes a single message

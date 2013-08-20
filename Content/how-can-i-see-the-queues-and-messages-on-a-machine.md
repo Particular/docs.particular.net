@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "How to See the Queues and Messages on a Machine?"
 tags: 
-origin: http://www.particular.net/Articles/how-can-i-see-the-queues-and-messages-on-a-machine
----
+-->
 You can see all the queues on the local machine using Server Explorer in Visual Studio:
 
 <center>

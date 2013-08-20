@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "NServiceBus Videos"
 tags: 
-origin: http://www.particular.net/Articles/nservicebus-videos
----
+-->
 New and shiny things in NServiceBus V3
 --------------------------------------
 

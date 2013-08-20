@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "DefiningMessagesAs and Exception When Starting Endpoint"
 tags: 
-origin: http://www.particular.net/Articles/definingmessagesas-and-exception-when-starting-endpoint
----
+-->
 When defining an endpoint with the following declaration (in bold):
 
     class EndpointConfig : IConfigureThisEndpoint, AsA_Publisher, IWantCustomInitialization

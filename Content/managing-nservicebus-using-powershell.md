@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Managing NServiceBus Using PowerShell"
 tags: 
-origin: http://www.particular.net/Articles/managing-nservicebus-using-powershell
----
+-->
 NServiceBus provides a set of PowerShell commandlets to make it easy to manage and run the softwre. The initial focus is to provide support when preparing machines for use with NServiceBus. Additional features are in the pipeline.
 
  **NOTE**: Before installing NServiceBus, ensure PowerShell 2.0+ is present on the target machine.

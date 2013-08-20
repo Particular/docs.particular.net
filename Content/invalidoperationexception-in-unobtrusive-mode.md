@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "InvalidOperationException in Unobtrusive Mode"
 tags: 
-origin: http://www.particular.net/Articles/invalidoperationexception-in-unobtrusive-mode
----
+-->
 To avoid an InvalidOperationException, .DefiningMessagesAs (or any one of the DefiningXXXAs) should come in the Fluent configuration before
 .UnicastBus().
 

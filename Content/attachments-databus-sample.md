@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Attachments / DataBus Sample"
 tags: 
-origin: http://www.particular.net/Articles/attachments-databus-sample
----
+-->
 Large chunks of data such as images or video files can be transported using NServiceBus V3 data bus.
 
 You only have to <span style="background-color:Lime;">put an attribute over your large property</span> and NServiceBus takes care of the rest. This is particularly important when running in cloud environments where limits on message size are usually much lower than on-premise.

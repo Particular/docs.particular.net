@@ -1,9 +1,7 @@
----
-layout:
+<!--
 title: "Potential Issues Updating NSB Studio On Visual Studio 11 Beta"
 tags: 
-origin: http://www.particular.net/Articles/potential-issues-updating-nsb-studio-on-visual-studio-11-beta
----
+-->
 **NOTE** : The following notes don't apply if you are downloading NServiceBus Studio from the Visual Studio 2010 Online Gallery using the Extension Manager or if you don't have Visual Studio 11 Beta installed.
 
 This format allows you to install it by simply double clicking on the file, which launches the VSIXInstaller.exe application included as part of Visual Studio.
