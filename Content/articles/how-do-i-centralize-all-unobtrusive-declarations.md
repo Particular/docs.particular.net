@@ -2,6 +2,7 @@
 title: "How to Centralize All Unobtrusive Declarations?"
 tags: 
 -->
+
 When working with NServiceBus in unobtrusive mode you may feel that you are repeating the conventions over and over again on all the endpoints.
 
 

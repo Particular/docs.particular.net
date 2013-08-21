@@ -2,6 +2,7 @@
 title: "DefiningMessagesAs and Exception When Starting Endpoint"
 tags: 
 -->
+
 When defining an endpoint with the following declaration (in bold):
 
     class EndpointConfig : IConfigureThisEndpoint, AsA_Publisher, IWantCustomInitialization

@@ -2,6 +2,7 @@
 title: "Second-Level Retries"
 tags: 
 -->
+
 When an exception occurs, you should [let the NServiceBus infrastructure handle it](articles/how-do-i-handle-exceptions). It retries the message a configurable number of times, and if still doesn't work, sends it to the error queue.
 
 Second Level Retries (SLR) introduces another level. When using SLR, the message that causes the exception is, as before, instantly retried, but instead of being sent to the error queue, it is sent to a retries queue.

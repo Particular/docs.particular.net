@@ -2,6 +2,7 @@
 title: "How to Get a Reference to IBus in My Message Handler?"
 tags: 
 -->
+
 Use setter injection:
 
     public class H1 : IMessageHandler

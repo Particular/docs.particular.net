@@ -2,6 +2,7 @@
 title: "The Gateway And Multi-Site Distribution"
 tags: 
 -->
+
 The number of multi-site deployments of enterprise .NET systems are increasing due to the challenges of high availability and the requirement for faster response times for users, as the servers and data they access is closer. 
 
 RPC technologies quickly run into trouble in these environments as they make machines in the same site and those in remote sites look the same.
@@ -66,7 +67,7 @@ To send a message to a remote site, use the SendToSites API call, as shown:
 <script src="https://gist.github.com/johnsimons/6026128.js?file=GatewayConfig.xml"></script> NServiceBus automatically sets the required headers that enable you to send messages back over the gateway using the familiar Bus.Reply.
 **NOTE** : All cross-site interactions are perfomed internally to a service, so publish and subscribe are not supported across gateways.
 
-Since the gateway is located in the NServiceBus core you can enable it by flipping a switch. If you run the NServiceBus host, nable it by specifying the MultiSite profile [more on profiles](more-on-profiles) ). If you self host NServiceBus, you can turn on the gateway by adding a call to Configure.RunGateway() in your configuration.
+Since the gateway is located in the NServiceBus core you can enable it by flipping a switch. If you run the NServiceBus host, nable it by specifying the MultiSite profile [more on profiles](more-on-profiles.md) ). If you self host NServiceBus, you can turn on the gateway by adding a call to Configure.RunGateway() in your configuration.
 
 Securing the gateway with SSL
 -----------------------------

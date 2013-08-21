@@ -2,6 +2,7 @@
 title: "Publish/Subscribe Sample"
 tags: 
 -->
+
 ![pubsub solution](https://particular.blob.core.windows.net/media/Default/images/pub_sub_solution.png)Open the solution in Visual Studio. You should see the picture on the left.
 
 Before running the sample, look over the solution structure, the projects, and the classes. The projects "MyPublisher", "Subscriber1", and "Subscriber2" are their own processes, even though they look like regular class libraries.
@@ -74,5 +75,5 @@ Next steps
 
 Scale out your publishers and subscribers.
 
-See the other NServiceBus pieces that handle this for you in [how pub/sub works](how-pub-sub-works).
+See the other NServiceBus pieces that handle this for you in [how pub/sub works](how-pub-sub-works.md).
 

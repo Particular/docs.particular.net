@@ -2,7 +2,8 @@
 title: "MsmqTransportConfig"
 tags: 
 -->
-The configuration section defines properties of the MSMQ transport. See background on [MSMQ](msmq-information).
+
+The configuration section defines properties of the MSMQ transport. See background on [MSMQ](msmq-information.md).
 
 Example of MsmqTransportConfig:
 
@@ -24,7 +25,7 @@ The ErrorQueue defines the name of the queue to which messages are transferred i
 If no error queue is defined, NServiceBus fails to start with the exception: "Could not find backup configuration section
 'MsmqTransportConfig' in order to locate the error queue."
 
-Read more about [messages whose processing fails](how-do-i-handle-exceptions).
+Read more about [messages whose processing fails](how-do-i-handle-exceptions.md).
 
 NumberOfWorkerThreads
 ---------------------

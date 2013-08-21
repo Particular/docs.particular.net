@@ -2,6 +2,7 @@
 title: "Architectural Principles"
 tags: 
 -->
+
 Autonomy and loose coupling at design time and at run time are not things that any technology can give you.
 
 Service-oriented architecture (SOA) and event-driven architecture together provide the basis for identifying where to use NServiceBus.

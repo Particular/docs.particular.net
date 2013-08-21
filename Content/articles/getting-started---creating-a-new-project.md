@@ -2,6 +2,7 @@
 title: "Getting Started - Creating a New Project"
 tags: 
 -->
+
 To get started with NServiceBus, create a new project:
 
 1.  Choose "NServiceBus System" for the type of project.
@@ -222,7 +223,7 @@ If you are in a regular ASP.NET web project, you see a different image, but just
 Next steps
 ----------
 
-The production-time benefits of NServiceBus (let's face it, interprocess communication isn't that exciting and has been done many times before): see how NServiceBus handles [Fault Tolerance](getting-started---fault-tolerance).
+The production-time benefits of NServiceBus (let's face it, interprocess communication isn't that exciting and has been done many times before): see how NServiceBus handles [Fault Tolerance](getting-started---fault-tolerance.md).
 
 
 

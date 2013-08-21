@@ -2,6 +2,7 @@
 title: "NServiceBus and WebSphere/Sonic"
 tags: 
 -->
+
 WebSphere and Sonic are enterprise-grade middleware, robust, performant. No argument there.
 
 But to the average .NET developer, exposed .NET API is horribly complex, looks more like Java, and does not take advantage of the strong typing provided by generics or lambdas. The developer-friendly NServiceBus API can be used on top of WebSphere and Sonic by swapping out the pluggable MSMQ transport implementation, giving you the best of both worlds. Here is an [NServiceBus adapter for WebSphere](http://code.google.com/p/nservicebuswmq/) .
@@ -27,7 +28,7 @@ Next steps
 
 Learn more about these features of NServiceBus:
 
--   [NServiceBus Host](the-nservicebus-host)
--   [Unit Testing](unit-testing)
+-   [NServiceBus Host](the-nservicebus-host.md)
+-   [Unit Testing](unit-testing.md)
 
 

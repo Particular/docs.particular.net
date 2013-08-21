@@ -2,6 +2,7 @@
 title: "Messages as Interfaces"
 tags: 
 -->
+
 Message schema flexibility is at the core of NServiceBus. Beyond just standard XSD and class serialization, NServiceBus allows you to use interfaces as well.
 
 The versioning advantages of NServiceBus message types allow for easily extending endpoints without breaking clients or subscribers.

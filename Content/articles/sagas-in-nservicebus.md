@@ -2,6 +2,7 @@
 title: "Sagas in NServiceBus"
 tags: 
 -->
+
 Long-running business processes exist in many systems. Whether the steps are automated, manual, or a combination, effective handling of these processes is critical. NServiceBus employs event-driven architectural principles to bake fault-tolerance and scalability into these processes.The saga is a pattern that addresses the challenges uncovered by the relational database community years ago, packaged in NServiceBus for ease of use.
 
 One of the common mistakes developers make when designing distributed systems is based on the assumptions that time is constant. If something runs quickly on their machine, they're liable to assume it will run with a similar performance characteristic when in production. Network invocations (like web service calls) are misleading this way. When invoked on the developer's local machine, they perform well. In production, across firewalls and datacenters, they don't perform nearly as well.
@@ -112,7 +113,7 @@ Uniqueness
 For NServiceBus to ensure uniqueness across your saga instances, it's highly recommended that you adorn your correlation properties with the
 [Unique] attribute. This tells NServiceBus that there can be only one instance for each property value. This also increases performance for property lockups in most cases. While there are plans for it, NServiceBus doesn't currently support mapping one message to more than one instance of the same saga.
 
-Read more about the[Unique property and concurrency](nservicebus-sagas-and-concurrency).
+Read more about the[Unique property and concurrency](nservicebus-sagas-and-concurrency.md).
 
 Notifying callers of status
 ---------------------------
@@ -194,7 +195,7 @@ Ending a long-running process
 -----------------------------
 
 After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done simply by calling the MarkAsComplete() method. The infrastructure contacts the Timeout Manager
-(if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages relating to that saga arrive after it has completed, they are discarded. If you want a copy of these messages to be maintained, that can be handled by the [generic audit functionality in NServiceBus](auditing-with-nservicebus).
+(if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages relating to that saga arrive after it has completed, they are discarded. If you want a copy of these messages to be maintained, that can be handled by the [generic audit functionality in NServiceBus](auditing-with-nservicebus.md).
 
 Complex saga finding logic
 --------------------------
@@ -216,7 +217,7 @@ You can have as many of these classes as you want for a given saga or message ty
 Sagas in self-hosted endpoints
 ------------------------------
 
-When [hosting NServiceBus in your own endpoint](hosting-nservicebus-in-your-own-process), make sure to include
+When [hosting NServiceBus in your own endpoint](hosting-nservicebus-in-your-own-process.md), make sure to include
 .Sagas().RavenSagaPersister(), as follows:
 
 

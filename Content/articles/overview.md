@@ -2,6 +2,7 @@
 title: "NServiceBus Overview"
 tags: 
 -->
+
 Designed for collaboration between business-oriented services, NServiceBus is not a replacement for RPC technologies such as WCF.
 
 Successful SOA and DDD projects use a mix of approaches and technologies—not just NServiceBus for communications.
@@ -55,10 +56,10 @@ Next steps
 
 -   [Download NServiceBus](/downloads)
 -   [Learn more about publish/subscribe
-    messaging](getting-started---publish-subscribe-communication)
+    messaging](getting-started---publish-subscribe-communication.md)
 -   Look at the differences between NServiceBus and
-    [WCF](nservicebus-and-wcf),
-    [BizTalk](nservicebus-and-biztalk), and [WebSphere or
-    Sonic](nservicebus-and-websphere-sonic)
+    [WCF](nservicebus-and-wcf.md),
+    [BizTalk](nservicebus-and-biztalk.md), and [WebSphere or
+    Sonic](nservicebus-and-websphere-sonic.md)
 
 

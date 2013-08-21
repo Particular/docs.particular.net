@@ -2,6 +2,7 @@
 title: "NServiceBus Installers"
 tags: 
 -->
+
 NServiceBus V3.0 introduces the concept of installers to make sure that both infrastructure and endpoint specific artifacts are installed and configured automatically for you if needed.
 
 The installers come in two flavors, infrastructure installers and regular installers. 

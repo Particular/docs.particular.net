@@ -2,6 +2,7 @@
 title: "Using the In-Memory Bus"
 tags: 
 -->
+
 Until now, NServiceBus provided an asynchronous method of communication between parts of the system using the Send, Reply, and Publish API. Asynchronous forms of communication are great for ensuring reliable and durable communication between pieces of the system. Now NServiceBus 4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.
 
 
@@ -75,7 +76,7 @@ Or
     }
 
 
-Read how to tell NServiceBus to[use the POCOs as events](unobtrusive-mode-messages).
+Read how to tell NServiceBus to[use the POCOs as events](unobtrusive-mode-messages.md).
 
 
 ### How to raise an in-memory event?
@@ -134,7 +135,7 @@ The NServiceBus style of eventing in general {dir="ltr"}
 --------------------------------------------
 
 
-NServiceBus uses IoC heavily. When the endpoints start, NServiceBus scans the assemblies in the directory. It finds event, command and message types, either using the marker interfaces or unobtrusive conventions. It also scans the assemblies to identify the types that implement the handlers for event types that implement IHandleMessages<t> and registers them in the container. Read more about [NServiceBus and its use of containers](containers).
+NServiceBus uses IoC heavily. When the endpoints start, NServiceBus scans the assemblies in the directory. It finds event, command and message types, either using the marker interfaces or unobtrusive conventions. It also scans the assemblies to identify the types that implement the handlers for event types that implement IHandleMessages<t> and registers them in the container. Read more about [NServiceBus and its use of containers](containers.md).
 
 When an event is raised, the bus invokes the Handle method on all the registered handlers for that event. For subscribers, this offers a consistent way of subscribing to the event, regardless of how these events are published (in-memory or durable). This style of eventing has two significant advantages:
 

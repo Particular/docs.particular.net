@@ -2,6 +2,7 @@
 title: "Using NServiceBus with ASP.NET MVC"
 tags: 
 -->
+
 To see how to use NServiceBus in an ASP.NET MVC 3 application, open up the AsyncPagesMvc3 sample.
 
 Run the solution. A new browser window/tab opens, as well as a console application.
@@ -64,11 +65,11 @@ The .ForMvc extension method injects IBus into the controllers by implementing t
 
 The NServiceBus builder registers and instantiates IControllerActivator so that when the controllers are requested, the NServiceBus builder has the opportunity to inject the IBus implementation into their IBus public property.
 
-Read [how the IBus is injected into the controllers](injecting-the-bus-into-asp.net-mvc-controller), and also
+Read [how the IBus is injected into the controllers](injecting-the-bus-into-asp.net-mvc-controller.md), and also
 [David Boike's article: Injecting NServiceBus into ASP.NET MVC
 3](http://www.make-awesome.com/2011/02/injecting-nservicebus-into-asp-net-mvc-3/).
 
-The rest of the code is typical for hosting NServiceBus in your own process. You can read more about [the other lines](hosting-nservicebus-in-your-own-process).
+The rest of the code is typical for hosting NServiceBus in your own process. You can read more about [the other lines](hosting-nservicebus-in-your-own-process.md).
 
 Sending a message
 -----------------
@@ -107,7 +108,7 @@ Open the class definition for the command type in the messages project:
         public int Id { get; set; }
     }
 
-As you can see, this class is very simple; the only special thing is the IMessage interface that it implements. This interface comes from NServiceBus and indicates that instances of this class can be sent and received by the bus. The IMessage interface itself is an empty marker interface. Read about [defining messages](how-do-i-define-a-message). Beginning with NServiceBus V3, it is possible to send messages without implementing NServiceBus marker interfaces. See [Unobtrusive message](unobtrusive-mode-messages) and the [accompanying sample](unobtrusive-sample).
+As you can see, this class is very simple; the only special thing is the IMessage interface that it implements. This interface comes from NServiceBus and indicates that instances of this class can be sent and received by the bus. The IMessage interface itself is an empty marker interface. Read about [defining messages](how-do-i-define-a-message.md). Beginning with NServiceBus V3, it is possible to send messages without implementing NServiceBus marker interfaces. See [Unobtrusive message](unobtrusive-mode-messages.md) and the [accompanying sample](unobtrusive-sample.md).
 
 ### Synchronous message sending: SendAndBlockController controller
 
@@ -131,7 +132,7 @@ Open the web.config file in AsyncPagesMvc3 and scroll down to the following code
 
 
 See the two configuration sections:
-[MsmqTransportConfig](msmqtransportconfig)and UnicastBusConfig.
+[MsmqTransportConfig](msmqtransportconfig.md)and UnicastBusConfig.
 
 The UnicastBusConfig section describes which messages are sent to which queue. In the configuration above, we see that all messages belonging to the Messages assembly are sent to a queue named Server.
 
@@ -169,5 +170,5 @@ Next steps
 ----------
 
 If you are not familiar with Unobtrusive messaging mode, read the
-[documentation](unobtrusive-mode-messages)or see the [working sample](unobtrusive-sample).
+[documentation](unobtrusive-mode-messages.md)or see the [working sample](unobtrusive-sample.md).
 

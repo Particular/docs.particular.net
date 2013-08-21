@@ -2,6 +2,7 @@
 title: "Convention over Configuration"
 tags: 
 -->
+
 One of the key goals of NServiceBus V3.0 and upward is to remove much of the need for configuration and thereby improve the out-of-the-box experience. To achieve this, NServiceBus introduces the concept of an endpoint name that will be used to control naming conventions.
 
 The endpoint name is the name of a individual endpoint and must be unique across your solution. The only exception to this rule is when you are scaling out using the master node concept where the same logical endpoint resides on many physical servers. More on that in a upcoming post.

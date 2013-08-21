@@ -2,6 +2,7 @@
 title: "Attachments / DataBus Sample"
 tags: 
 -->
+
 Large chunks of data such as images or video files can be transported using NServiceBus V3 data bus.
 
 You only have to <span style="background-color:Lime;">put an attribute over your large property</span> and NServiceBus takes care of the rest. This is particularly important when running in cloud environments where limits on message size are usually much lower than on-premise.
@@ -153,5 +154,5 @@ Following is the receiving message handler:
 Next steps
 ----------
 
-If you are not familiar with [Unobtrusive messaging](unobtrusive-mode-messages) mode, read the documentation or see the [working sample](unobtrusive-sample).
+If you are not familiar with [Unobtrusive messaging](unobtrusive-mode-messages.md) mode, read the documentation or see the [working sample](unobtrusive-sample.md).
 

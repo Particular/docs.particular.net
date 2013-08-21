@@ -2,6 +2,7 @@
 title: "Preparing your machine to run NServiceBus"
 tags: 
 -->
+
 <style type="text/css">div#uls ul{
     margin-bottom: -15px;
   }
@@ -84,7 +85,7 @@ The Windows operating system requires that elevated privileges to install and co
 
 For more information on poweshell command line changes in NServiceBus version 4, see [release notes](/blog/nservicebus-v4.0-release-notes#powershell).
 
-RavenDB installation is checked by examining port 8080 and port 8081 on the installation local machine. If RavenDB is installed on any other port it needs to be configured and upgraded manually. For more information on configuring RavenDB see [Installing RavenDB for NServiceBus](using-ravendb-in-nservicebus-installing) and [Connecting to RavenDB from NServiceBus](using-ravendb-in-nservicebus-connecting)
+RavenDB installation is checked by examining port 8080 and port 8081 on the installation local machine. If RavenDB is installed on any other port it needs to be configured and upgraded manually. For more information on configuring RavenDB see [Installing RavenDB for NServiceBus](using-ravendb-in-nservicebus-installing.md) and [Connecting to RavenDB from NServiceBus](using-ravendb-in-nservicebus-connecting.md)
 
 
 

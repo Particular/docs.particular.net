@@ -2,13 +2,14 @@
 title: "Publish/Subscribe Configuration"
 tags: 
 -->
+
 ![Pub/Sub configuration](https://particular.blob.core.windows.net/media/Default/images/basic_pubsub.png)
 
 The part of the <add> entry stating Messages="Messages" means that the assembly "Messages.dll" contains the message schema. Specific types can be configured using their qualified name: "namespace.type, assembly".
 
 The part stating Endpoint="messagebus" tells the subscriber's bus object that the publisher accepts subscription requests on that queue. The queue name "messagebus" is short for "the queue named 'messagebus' on the local machine". To indicate a queue on a remote machine, use a format similar to email:MessageBus@RemoteServer.
 
-[Click here](how-do-i-specify-to-which-destination-a-message-will-be-sent) for more configuration options related to mapping messages to endpoints.
+[Click here](how-do-i-specify-to-which-destination-a-message-will-be-sent.md) for more configuration options related to mapping messages to endpoints.
 
 However, the input queue of each process does need to be on the same machine as the process.
 
@@ -45,7 +46,7 @@ To indicate that a given process is a publisher, reference the NServiceBus assem
 
 On top of the three NServiceBus assemblies referenced, reference
 'log4net', which is the open-source library that is used for logging.
-[Logging is configured in NServiceBus](logging-in-nservicebus) slightly differently than the standard log4net model.
+[Logging is configured in NServiceBus](logging-in-nservicebus.md) slightly differently than the standard log4net model.
 
 ![Setting up a publisher](https://particular.blob.core.windows.net/media/Default/images/nservicebus_publisher.png)
 
@@ -54,7 +55,7 @@ Ignore the interface ISpecifyMessageHandlerOrdering for now.
 Subscription Storage
 --------------------
 
-NServiceBus internally sets up the storage where subscription information is placed. By default, NServiceBus stores this information in RavenDB but there are also built-in storage options on top of MSMQ and relational databases and in memory. You don't need to specify this yourself either in code or config. See [how profiles work in NServiceBus](profiles-for-nservicebus-host) for more information.
+NServiceBus internally sets up the storage where subscription information is placed. By default, NServiceBus stores this information in RavenDB but there are also built-in storage options on top of MSMQ and relational databases and in memory. You don't need to specify this yourself either in code or config. See [how profiles work in NServiceBus](profiles-for-nservicebus-host.md) for more information.
 
 By default, the subscriptions are stored in a Raven database with the same name as your endpoint. Subscriptions for each message type are stored as a document in the "Subscriptions" collection.
 
@@ -85,10 +86,10 @@ To publish a message, you need a reference to the bus object in your code. In th
 <script src="https://gist.github.com/johnsimons/6026128.js?file=HandlerThatPublishedEvent.cs"></script> The 'Bus' property is automatically filled by the infrastructure. This is known as 'Dependency Injection'. All development done with NServiceBus makes use of [these patterns](http://en.wikipedia.org/wiki/Dependency_injection) . The technology used as the dependency injection container by NServiceBus is pluggable, with five options available out of the box, Autofac is the default.
 
 In the 'Run' method, you see the creation of the event message. This can be as simple as instantiating the relevant class or using the bus object to instantiate messages defined as interfaces. Read more information on
-[whether to use interfaces or classes to represent messages](messages-as-interfaces) .
+[whether to use interfaces or classes to represent messages](messages-as-interfaces.md) .
 
 Once the event message object has been created, the call to Bus.Publish(eventMessage); tells the bus object to have the given message sent to all subscribers who expressed interest in that type of message. As we saw in the walkthrough, if a subscriber is unavailable, their messages aren't lost—they're stored until the subscriber comes back online. See the 'store and forward messaging' section of the
-[architectural principles](architectural-principles) of NServiceBus for more information.
+[architectural principles](architectural-principles.md) of NServiceBus for more information.
 
 Security and authorizations
 ---------------------------
@@ -107,7 +108,7 @@ In NServiceBus V3.0 and onwards subscriptions for types with the same Major vers
 Best practices
 --------------
 
-When you tell NServiceBus that your messages are event,s the framework helps you enforce best messaging practices by only allowing you to Bus.Publish|Subscribe|UnSubscribe events. Other calls result in a exception. More on [best practices](introducing-ievent-and-icommand) .
+When you tell NServiceBus that your messages are event,s the framework helps you enforce best messaging practices by only allowing you to Bus.Publish|Subscribe|UnSubscribe events. Other calls result in a exception. More on [best practices](introducing-ievent-and-icommand.md) .
 
 As you can see, there is a lot going on under the hood. NServiceBus gives you full control over every part of the message exchange while abstracting the underlying technologies. Try modifying the sample a bit, adding your own message handlers, and debugging through the various pieces to get a better feel for what's going on.
 

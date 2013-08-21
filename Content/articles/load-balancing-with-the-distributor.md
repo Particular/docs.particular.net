@@ -2,6 +2,7 @@
 title: "Load Balancing with the Distributor"
 tags: 
 -->
+
 The NServiceBus Distributor is similar in behavior to standard load balancers. It is the key to transparently scaling out message processing over many machines. 
 
 As a standard NServiceBus process, the distributor maintains all the fault-tolerant and performance characteristics of NServiceBus but is designed never to overwhelm any of the worker nodes configured to receive work from it.
@@ -30,21 +31,21 @@ Worker nodes send messages to the distributor, telling it when they're ready for
 
 All pending work stays in the distributor's queue (rather than building up in each of the workers' queues), giving visibility of how long messages are actually waiting. This is important for complying with time-based service level agreements (SLAs).
 
-For more information on monitoring, see [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints) .
+For more information on monitoring, see [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints.md) .
 
 Where is it?
 ------------
 
 Unlike NServiceBus V2.6, there is no specific Distributor process. Any NServiceBus endpoint can be configured to work as a Distributor.
 
-To see the Distributor in action, see the [ScaleOut sample](scale-out-sample) .
+To see the Distributor in action, see the [ScaleOut sample](scale-out-sample.md) .
 
 Distributor configuration
 -------------------------
 
 ### When hosting in NServiceBus.Host.exe
 
-If you are running with [NServiceBus.Host.exe](the-nservicebus-host) , the following profiles start your endpoint with the Distributor functionality:
+If you are running with [NServiceBus.Host.exe](the-nservicebus-host.md) , the following profiles start your endpoint with the Distributor functionality:
 
 To start your endpoint as a distributor, run it from the command line, as follows:
 
@@ -62,7 +63,7 @@ You can use the NServiceBus.Master to start a Distributor on your endpoint with 
 
 ### When self-hosting
 
-When you [self host](hosting-nservicebus-in-your-own-process) your endpoint, configure AsMasterNode() and then use this configuration:
+When you [self host](hosting-nservicebus-in-your-own-process.md) your endpoint, configure AsMasterNode() and then use this configuration:
 
 -   RunDistributor(): Starts your endpoint as a Distributor, waits for
     Workers to enlist, and then distributes loads to those enlisted
@@ -91,7 +92,7 @@ If you are hosting your endpoint with NServiceBus.Host.exe, to run as a worker, 
 Configure the name of the master node server as shown in this app.config example. Note the MasterNodeConfig section:
 
 
-<script src="https://gist.github.com/johnsimons/6026128.js?file=ConfigureDistributor.xml"></script> Read about the DistributorControlAddress and the DistributorDataAddress in the [Routing with the Distributor](load-balancing-with-the-distributor) section.
+<script src="https://gist.github.com/johnsimons/6026128.js?file=ConfigureDistributor.xml"></script> Read about the DistributorControlAddress and the DistributorDataAddress in the [Routing with the Distributor](load-balancing-with-the-distributor.md) section.
 
 ### When self-hosting
 
@@ -121,7 +122,7 @@ When using the distributor in a full publish/subscribe deployment, yousee is a d
 3](https://particular.blob.core.windows.net/media/Default/images/nservicebus_pubsub_3.png)
 
 Keep in mind that the distributor is designed for load balancing within a single site, so do not use it between sites. In the image above, all publishers and subscribers are within a single physical site. For information on using NServiceBus across multiple physical sites, see
-[the gateway](the-gateway-and-multi-site-distribution) .
+[the gateway](the-gateway-and-multi-site-distribution.md) .
 
 High availability
 -----------------
@@ -133,10 +134,10 @@ Since the distributor does not do CPU or memory intensive work, you can often pu
 Licensing and distribution
 --------------------------
 
-Basic [licensing](licensing-and-distribution) restricts the number of worker nodes to two.
+Basic [licensing](licensing-and-distribution.md) restricts the number of worker nodes to two.
 
 Next steps
 ----------
 
-Build a scalable solution using Master node and the workers solution that are in the [ScaleOut sample](scale-out-sample) .
+Build a scalable solution using Master node and the workers solution that are in the [ScaleOut sample](scale-out-sample.md) .
 

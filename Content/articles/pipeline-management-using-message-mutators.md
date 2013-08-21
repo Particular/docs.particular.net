@@ -2,9 +2,10 @@
 title: "Pipeline Management Using Message Mutators"
 tags: 
 -->
+
 The message pipeline in NServiceBus V2.X consisted of message modules. They served their purpose but didn’t quite give full control over the message pipeline for more advanced things, and there was no way to hook into the pipeline at the sending/client side of the message conversation.
 
-The [DataBus feature](attachments-databus-sample) of NServiceBus V3.0 uses message mutators to change the content of a message before and after sending it on the wire and act as fine-grained hooks into the pipeline. See how to use them.
+The [DataBus feature](attachments-databus-sample.md) of NServiceBus V3.0 uses message mutators to change the content of a message before and after sending it on the wire and act as fine-grained hooks into the pipeline. See how to use them.
 
 Two flavors of mutators
 -----------------------
@@ -24,7 +25,7 @@ NServiceBus enables two types of message mutators:
 
      You can use reactions to individual messages to perform actions
     such as validation of outgoing/incoming messages. The [Message
-    Mutators Sample](nservicebus-message-mutators-sample) puts it into
+    Mutators Sample](nservicebus-message-mutators-sample.md) puts it into
     action.
 
      NServiceBus uses this type of mutator internally to do things like
@@ -38,7 +39,7 @@ NServiceBus enables two types of message mutators:
     interface. This type of mutator works on the entire transport
     message and is useful for compression, header manipulation, etc. See
     a[full explanation of the
-    syntax](nservicebus-message-mutators-sample).
+    syntax](nservicebus-message-mutators-sample.md).
 
      Remember that message mutators are NOT automatically registered in
     the container, so to invoke them, register them in the container

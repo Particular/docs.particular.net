@@ -3,6 +3,7 @@ title: "How to Discard Old Messages?"
 tags: 
 -->
 
+
     TimeToBeReceived(“00:01:00”)] // one minute
     [Recoverable]
     public class MyMessage { }

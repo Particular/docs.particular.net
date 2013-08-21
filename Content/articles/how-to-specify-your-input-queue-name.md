@@ -2,6 +2,7 @@
 title: "How To Specify Your Input Queue Name?"
 tags: 
 -->
+
 NService Bus allows endpoint technologies other than MSMQ, so how should you specify the input endpoint name?
 
 There are many ways:
@@ -33,7 +34,7 @@ There are many ways:
 
 While there are many ways to name your input endpoint name, it's possible to define your own convention using: Configure.DefineEndpointName(()=\>{….})
 
-**NOTE**: Both [EndpointName] attribute and INameThisEndpoint interface only work if they use our [NServiceBus host](the-nservicebus-host). When self hosting, those settings are not picked up!
+**NOTE**: Both [EndpointName] attribute and INameThisEndpoint interface only work if they use our [NServiceBus host](the-nservicebus-host.md). When self hosting, those settings are not picked up!
 
 Upgrading from NServiceBus 2.6
 ------------------------------
@@ -44,5 +45,5 @@ In closing
 ----------
 
 Naming your endpoint will be a very important thing going forward and the framework will try to push you in that direction by not making it to easy for you to override it. This will help us further improve our
-“[convention over configuration](convention-over-configuration)” support, making it even easier for you to build, deploy, and run NServiceBus in the future.
+“[convention over configuration](convention-over-configuration.md)” support, making it even easier for you to build, deploy, and run NServiceBus in the future.
 

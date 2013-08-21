@@ -2,6 +2,7 @@
 title: "Monitoring NServiceBus Endpoints"
 tags: 
 -->
+
 Monitoring in NServiceBus is easier than in regular three-tier systems due to the use of queuing and message-based communication.
 
 When a system is broken down into multiple processes, each with its own queue, you can quickly identify which process is the bottleneck by examining how many messages (on average) are in each queue. The only issue is that without knowing the rate of messages coming into each queue, and the rate at which messages are being processed from each queue, you can't know how long messages are waiting in each queue, which is the primary indicator of a bottleneck.
@@ -41,8 +42,8 @@ Best practices
 
 If the monitored system is designed according to the NServiceBus best practice of having each process (and by corollary each queue) handle only a single message type, you can then know how long each type of messages is waiting in the system. This enables you to provide the business with information on a use-case by use-case basis. The business can, in turn, specify SLA requirements per use case, which can then be monitored.
 
-Based on this information, each process can be scaled independently using [the distributor](load-balancing-with-the-distributor) to make sure it stays within required service levels. This is Business Service Management (BSM) at its finest.
+Based on this information, each process can be scaled independently using [the distributor](load-balancing-with-the-distributor.md) to make sure it stays within required service levels. This is Business Service Management (BSM) at its finest.
 
 Read about NServiceBus support for
-[auditing](auditing-with-nservicebus).
+[auditing](auditing-with-nservicebus.md).
 

@@ -2,7 +2,8 @@
 title: "Versioning Sample"
 tags: 
 -->
-This sample is based on the [Pub/Sub sample](how-pub-sub-works). If you have not yet gone through it, please start there.
+
+This sample is based on the [Pub/Sub sample](how-pub-sub-works.md). If you have not yet gone through it, please start there.
 
 ![Versioning sample](https://particular.blob.core.windows.net/media/Default/images/Versioning.png "Versioning sample")
 

@@ -2,6 +2,7 @@
 title: "Migrating To NServiceBus 3.0 – Timeouts"
 tags: 
 -->
+
 This article describes your options when migrating your V2.6 timeouts to the new V3.0 format.
 
 If you are not familiar with the NServiceBus timeouts, in brief, NServiceBus supports durable timeouts that survive process restarts. To do that, you need to store the timeouts on disk.
@@ -39,8 +40,8 @@ With that out of the way, use the tool to migrate:
 
 1.  Upgrade your endpoint to V3.0.X.
 2.  Create the [dedicated input queue for the V3.0
-    TM](convention-over-configuration) by running the
-    [installers](nservicebus-installers) .
+    TM](convention-over-configuration.md) by running the
+    [installers](nservicebus-installers.md) .
 3.  If you haven’t upgraded to
     [V](http://particular.cloudapp.net/downloads)
     [2.6.0.1511](http://particular.cloudapp.net/downloads) , shut down

@@ -2,6 +2,7 @@
 title: "How to Handle Exceptions"
 tags: 
 -->
+
 Don't.
 
 NServiceBus has exception catching and handling logic of its own which surrounds all calls to user code. When an exception bubbles through to the NServiceBus infrastructure, it rolls back the transaction on a transactional endpoint, causing the message to be returned to the queue, and any messages that the user code tried to send or publish to be undone as well.
@@ -14,5 +15,5 @@ Once the administrator corrects the problem, they can use the ReturnToSourceQueu
 
 The tool itself is in the tools folder in the NServiceBus [download binaries](downloads).
 
-For more information on this process, [click here](transactions-message-processing).
+For more information on this process, [click here](transactions-message-processing.md).
 

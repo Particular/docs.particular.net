@@ -2,6 +2,7 @@
 title: "How to Define a Message?"
 tags: 
 -->
+
     public class MyMessage : IMessage { }
 
 OR

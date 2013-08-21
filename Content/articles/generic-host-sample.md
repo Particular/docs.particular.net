@@ -2,6 +2,7 @@
 title: "Generic Host Sample"
 tags: 
 -->
+
 This sample demonstrates the various kinds of logging you can use with the NServiceBus Host process. Each project shows a different approach and there are no relationships between them.
 
 Even though NServiceBus uses Log4Net as its logging infrastructure, the default configuration model is different from Log4Net. This default logging configuration model is shown in the LoggingWithConfigurableThreshold project.
@@ -17,7 +18,7 @@ This code instructs NServiceBus to only output logs at a level of WARN or higher
 
 ![Logging with configurable threshold](https://particular.blob.core.windows.net/media/Default/images/LoggingWithConfigurableTreshold.png "Logging with configurable threshold")
 
-The rest of the logging configuration is already in NServiceBus and you can control it using profiles. Read background on [what profiles are and how to use them](profiles-for-nservicebus-host).
+The rest of the logging configuration is already in NServiceBus and you can control it using profiles. Read background on [what profiles are and how to use them](profiles-for-nservicebus-host.md).
 
 Now see <span style="background-color:Lime;">how to return</span> to a regular Log4Net configuration.
 
@@ -82,7 +83,7 @@ When you open up EndpointConfig.cs in the Logging project, this is what you see:
 
 Look at the signature of the MyProductionLogging class, which implements IConfigureLoggingForProfile<myproductionprofile>. This means that when the profile MyProductionProfile is specified, NServiceBus invokes this class to configure the logging for the process. In the Configure method, it is likely that you would call NServiceBus.SetLoggingLibrary.Log4Net but pass in some other value.
 
-Read about using [SetLoggingLibrary](logging-in-nservicebus).
+Read about using [SetLoggingLibrary](logging-in-nservicebus.md).
 
 Now open the properties of the Logging project, and click the Debug tab:
 
@@ -94,7 +95,7 @@ Next steps
 ----------
 
 If you have not yet done so, read about
-[profiles](profiles-for-nservicebus-host).
+[profiles](profiles-for-nservicebus-host.md).
 
-Read more information on [logging](logging-in-nservicebus).
+Read more information on [logging](logging-in-nservicebus.md).
 

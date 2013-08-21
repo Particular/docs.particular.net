@@ -2,6 +2,7 @@
 title: "Unobtrusive Sample"
 tags: 
 -->
+
 To demonstrate NServiceBus operating in unobtrusive mode, open the unobtrusive sample.
 
 Run the solution. Two console applications should start up. Find the client application by looking for the one with "Client" in its path and follow the onscreen instructions to send messages to the server.
@@ -26,9 +27,9 @@ The following code snippet shows how to determine which types are message defini
 
 The code tells NServiceBus to treat all types with a namespace that ends with "Messages" the same as for messages that explicitly implement IMessage.
 
-You can also specify conventions for the new [ICommand and IEvent feature](introducing-ievent-and-icommand).
+You can also specify conventions for the new [ICommand and IEvent feature](introducing-ievent-and-icommand.md).
 
-NServiceBus supports property level encryption by using a special WireEncryptedString property. The code snippet shows the unobtrusive way to tell NServiceBus which properties to encrypt. It also shows the unobtrusive way to tell NServiceBus which properties to deliver on a separate channel from the message itself using the [Data Bus](attachments-databus-sample) feature, and which messages are express and/or have a defined time to be received.
+NServiceBus supports property level encryption by using a special WireEncryptedString property. The code snippet shows the unobtrusive way to tell NServiceBus which properties to encrypt. It also shows the unobtrusive way to tell NServiceBus which properties to deliver on a separate channel from the message itself using the [Data Bus](attachments-databus-sample.md) feature, and which messages are express and/or have a defined time to be received.
 
 Look at the code. There are a number of projects in the solution:
 
@@ -158,12 +159,12 @@ The message.EncryptedString is encrypted by the NServiceBus framework since it w
 The above code instructs NServiceBus to encrypt any property that starts with the string Encrypted and resides in any class in the namespaces that ends with Command or Events, or in namespaces that are equal to Messages.
 
 The encryption algorithm is declared in App.config of both client and server with the RijndaelEncryptionServiceConfig section name. See the
-[Encryption sample](encryption-sample).
+[Encryption sample](encryption-sample.md).
 
 Publish/Subscribe messaging pattern code
 ----------------------------------------
 
-For a complete sample, see the [Pub/Sub documentation](how-pub-sub-works).
+For a complete sample, see the [Pub/Sub documentation](how-pub-sub-works.md).
 
 ### Client side m<span style="font-size: 14px;">essage declaration</span>
 
@@ -200,5 +201,5 @@ When using naming convention to mark your commands events and messages, you can 
 Next steps
 ----------
 
-Read about [Message Mutators](nservicebus-message-mutators-sample).
+Read about [Message Mutators](nservicebus-message-mutators-sample.md).
 

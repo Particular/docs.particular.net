@@ -2,6 +2,7 @@
 title: "Getting Started - Publish/Subscribe Communication"
 tags: 
 -->
+
 Now that we've gone through the basics of NServiceBus communication and configuration, let's move on to publish/subscribe.
 
 ![Full Solution Builder](https://particular.blob.core.windows.net/media/Default/images/GettingStarted11.png)
@@ -17,7 +18,7 @@ There are only a few steps needed to introduce pub/sub and make your solution lo
 3.  Create a new NServiceBus Host endpoint called "Billing" and deploy
     the OrderAcceptedProcessor component from the Billing service to
     that endpoint. See [a
-    refresher](getting-started---creating-a-new-project) on how to do
+    refresher](getting-started---creating-a-new-project.md) on how to do
     this. At this point, your solution structure should look the same as
     the picture on the right.
 4.  Add code to the SubmitOrderProcessor in Sales to publish the event:
@@ -68,7 +69,7 @@ Next step
 
 <span style="background-color:Yellow;">Join the 1500 other developers in our community.</span>
 
-View some [videos](nservicebus-videos)we made for you.
+View some [videos](nservicebus-videos.md)we made for you.
 
 We'd also love to hear your thoughts about NServiceBus: what you like, what you think should be improved... anything.
 

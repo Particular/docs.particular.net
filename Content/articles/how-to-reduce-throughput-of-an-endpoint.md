@@ -2,6 +2,7 @@
 title: "How to Reduce Throughput of an Endpoint?"
 tags: 
 -->
+
 There are two ways to decrease receiving throughput of an endpoint:
 
 -   Edit the TransportConfig section in the endpoint config file:

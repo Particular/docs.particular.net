@@ -2,6 +2,7 @@
 title: "Unit of Work Implementation For RavenDB"
 tags: 
 -->
+
 When using a framework like NServiceBus you usually need to create your own unit of work to avoid repeating code in your message handlers. Following is one approach on how to implement the NServiceBus Unit of Work for RavenDB.
 
 Sharing the session
@@ -10,7 +11,7 @@ Sharing the session
 Share the session between the message handler(s) and the actual unit of work implementation. Do not use thread static, which has issues mentioned by [Andreas Öhlund](http://andreasohlund.net/) in a [blog post](http://andreasohlund.net/2010/03/25/thread-static-caching-in-nservicebus/)
 .
 
-Instead, beginning with NServiceBus V3, use the new [support for child containers](nservicebus-support-for-child-containers) . This means that all dependencies configured as a single call effectively become static within the context of one transport message.
+Instead, beginning with NServiceBus V3, use the new [support for child containers](nservicebus-support-for-child-containers.md) . This means that all dependencies configured as a single call effectively become static within the context of one transport message.
 
 To resolve a RavenDB document session from the container, add the following configuration (StructureMap is used but any of the other containers except Spring and Unity would work):
 

@@ -2,6 +2,7 @@
 title: "How to Specify the Order in which Handlers Are Invoked?"
 tags: 
 -->
+
 If you are writing your own host:
 
     NServiceBus.Configure.With()

@@ -2,6 +2,7 @@
 title: "Profiles For NServiceBus Host"
 tags: 
 -->
+
 Moving a system
 <span style="font-size: 14px; line-height: 24px;">reliably
 </span><span style="font-size: 14px; line-height: 24px;">from development through test to production is a core capability for any development organization.</span>
@@ -10,7 +11,7 @@ Manual configuration and code changes make this process error-prone and make ver
 
 The NServiceBus Host provides facilities of profiles designed specifically to ease this process and provide structure when versioning the configuration of a system.
 <span style="font-size: 14px; line-height: 24px;">Read about the
-</span>[host](the-nservicebus-host)<span style="font-size: 14px; line-height: 24px;">.</span>
+</span>[host](the-nservicebus-host.md)<span style="font-size: 14px; line-height: 24px;">.</span>
 
 Configuration difficulties
 --------------------------
@@ -158,7 +159,7 @@ If you want different logging behaviors than these, see the next section.
 Customized logging
 ==================
 
-To specify logging for a given profile, write a class that implements IConfigureLoggingForProfile<t> where T is the profile type. The implementation of this interface is similar to that described for IWantCustomLogging in the [host page](the-nservicebus-host).
+To specify logging for a given profile, write a class that implements IConfigureLoggingForProfile<t> where T is the profile type. The implementation of this interface is similar to that described for IWantCustomLogging in the [host page](the-nservicebus-host.md).
 
 
     class YourProfileLoggingHandler : IConfigureLoggingForProfile
@@ -175,7 +176,7 @@ Here, the host passes you the instance of the class that implements IConfigureTh
 
 **IMPORTANT**: While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
 
-See the [logging documentation](logging-in-nservicebus) for more information.
+See the [logging documentation](logging-in-nservicebus.md) for more information.
 
 Behavior requiring initialization to be complete
 ------------------------------------------------

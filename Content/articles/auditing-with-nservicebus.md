@@ -2,6 +2,7 @@
 title: "Auditing With NServiceBus"
 tags: 
 -->
+
 The scalability inherent in parallel message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Just tell NServiceBus where to send those messages.
 
 Configuring auditing
@@ -40,5 +41,5 @@ Custom headers are attached to each message, which you can examine using a third
 Next steps
 ----------
 
-Learn more about how [logging works in NServiceBus](logging-in-nservicebus).
+Learn more about how [logging works in NServiceBus](logging-in-nservicebus.md).
 

@@ -2,21 +2,22 @@
 title: "Persistence In NServiceBus"
 tags: 
 -->
+
 Various features of NServiceBus require persistence. Among them are timeouts, sagas, and subscription storage.
 
 Four persistence technologies are in use in NServiceBus:
 
 -   RavenDB
--   [NHibernate](persistence-in-nservicebus)
+-   [NHibernate](persistence-in-nservicebus.md)
 -   In Memory
 -   MSMQ
 
-Read about [installing Raven DB](using-ravendb-in-nservicebus-installing) and [how to connect to it](using-ravendb-in-nservicebus-connecting).
+Read about [installing Raven DB](using-ravendb-in-nservicebus-installing.md) and [how to connect to it](using-ravendb-in-nservicebus-connecting.md).
 
 Using NHibernate for persistence
 --------------------------------
 
-Starting with NServiceBus V3.0, [support for NHibernate persistence is now located in a separate assembly](relational-persistence-using-nhibernate).
+Starting with NServiceBus V3.0, [support for NHibernate persistence is now located in a separate assembly](relational-persistence-using-nhibernate.md).
 
 What's available?
 -----------------
@@ -58,7 +59,7 @@ If self hosting, you can configure the persistence technology for each feature. 
     }
 
 When you use NServiceBus.Host.exe out of the box, you can utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, you can override the configured defaults. Read more about
-[profiles](profiles-for-nservicebus-host), [here too](more-on-profiles).
+[profiles](profiles-for-nservicebus-host.md), [here too](more-on-profiles.md).
 
 The following table summarizes the different persistence technologies being used by the built-in profiles. **NOTE**: Before configuring persistence technology, to avoid overriding your configurations, the profiles check if other types of storage are used.
 
@@ -91,7 +92,7 @@ The AsAServer role activates the timeout manager. This role does not explicitly 
 
 Similarly to the AsAServer role, the various profiles activate the different NServiceBus features, without explicitly configuring the persisting technology.
 
-Read more about the [different profiles](more-on-profiles).
+Read more about the [different profiles](more-on-profiles.md).
 
 
 

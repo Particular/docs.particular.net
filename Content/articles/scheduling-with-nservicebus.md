@@ -2,6 +2,7 @@
 title: "Scheduling with NServiceBus"
 tags: 
 -->
+
 With NServiceBus scheduling capability you can schedule a task or an action/lambda, to be executed repeatedly in a given interval.
 
 Use cases
@@ -10,7 +11,7 @@ Use cases
 You could use the scheduler to repeatedly poll some folder on your HDD for a file, schedule a reoccurring re-index of a database in a multi-tenant environment, and so on.
 
 Do not put any business logic in your tasks; instead, use
-[sagas](sagas-in-nservicebus) .
+[sagas](sagas-in-nservicebus.md) .
 
 Example usage
 -------------
@@ -73,5 +74,5 @@ Assumptions
 When not to use it
 ------------------
 
-You can look at a scheduled task as a simple never-ending saga. As soon as your task starts to get some logic (if-/switch-statements) you should consider moving to a [saga](sagas-in-nservicebus) .
+You can look at a scheduled task as a simple never-ending saga. As soon as your task starts to get some logic (if-/switch-statements) you should consider moving to a [saga](sagas-in-nservicebus.md) .
 

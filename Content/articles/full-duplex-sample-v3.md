@@ -2,6 +2,7 @@
 title: "Full Duplex Sample using NServiceBus V3"
 tags: 
 -->
+
 To see full-duplex, request/response communication, open the Full Duplex sample.
 
 Run the solution. Two console applications should start up. Find the client application by looking for the one with "Client" in its path and click Enter a couple of times in the window. Your screen should look like this:
@@ -38,7 +39,7 @@ In the EndpointConfig.cs file in the MyClient project is code instructing the NS
 
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Client {}
 
-For more information about the host process, see the ["Built-in Configurations" section](the-nservicebus-host).
+For more information about the host process, see the ["Built-in Configurations" section](the-nservicebus-host.md).
 
 Open the ClientEndpoint.cs file in the MyClient project and find a class that implements IWantToRunAtStartup. NServiceBus invokes the Run method for implementers of this interface when the endpoint starts up. Look at the Run method:
 
@@ -84,7 +85,7 @@ The bus is mapped from message types to an endpoint address. In this case, all t
 
 The NServiceBus framework or the user determine the MyServer endpoint name (similar to the MyClient endpoint name). This sample does not explicitly change the endpoint name, so the NServiceBus framework does it using standard convention.
 
-Read [how to change the endpoint name](how-to-specify-your-input-queue-name).
+Read [how to change the endpoint name](how-to-specify-your-input-queue-name.md).
 
 This sample also shows how to use an audit queue. In this case, the ForwardReceivedMessagesTo attributes instruct NServiceBus to forward all successfully received messages (on the client endpoint) to the audit endpoint.
 
@@ -107,7 +108,7 @@ The Handle method of this class contains this:
     Bus.Reply(response); //You can try experimenting with sending multiple
         replies
 
-Here, the bus creates an instance of the DataResponseMessage class rather than just <span style="background-color:Lime;">newing </span>up the class. This technique is useful primarily when using interfaces for messages (rather than classes) as interfaces can't be instantiated directly. [Read more](how-do-i-define-a-message).
+Here, the bus creates an instance of the DataResponseMessage class rather than just <span style="background-color:Lime;">newing </span>up the class. This technique is useful primarily when using interfaces for messages (rather than classes) as interfaces can't be instantiated directly. [Read more](how-do-i-define-a-message.md).
 
 Next, the Test header that was set on the request is copied to the response, and a couple of additional headers are set on the response message. Finally, the bus replies with the response message, sending it to the InputQueue specified in the MsmqTransportConfig section, in the app.config of the MyClient endpoint.
 
@@ -136,5 +137,5 @@ To unit-test the server, open the Tests.cs file in the MyServer.Tests project. Y
 
 In the references of the MyServer.Tests project, see the NServiceBus.Testing reference in addition to the other NServiceBus assemblies. NServiceBus.Testing provides an additional API to simplify testing NServiceBus code.
 
-To walkthrough the unit testing code, read the [unit testing documentation](unit-testing).
+To walkthrough the unit testing code, read the [unit testing documentation](unit-testing.md).
 

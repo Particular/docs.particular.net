@@ -2,6 +2,7 @@
 title: "MSMQ Information"
 tags: 
 -->
+
 MSMQ is the default transport used by NServiceBus.
 
 History

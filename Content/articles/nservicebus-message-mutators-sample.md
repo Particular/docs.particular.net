@@ -2,6 +2,7 @@
 title: "NServiceBus Message Mutators Sample"
 tags: 
 -->
+
 In NServiceBus V2.6 it was tricky to change messages as they were sent to and from endpoints. From NServiceBus V3 you can change messages by plugging custom logic in to a couple of simple interfaces.
 
 You can encrypt all or part of a message. The encryption message mutator is part of the NServiceBus library, and can be used at any time.
@@ -182,7 +183,7 @@ To hook the sample message mutators into NServiceBus messaging flow:
 
 Implementing IWantCustomInitialization signals NServiceBus to call the Init method during the NServiceBus initialization phase.
 
-The Init method configures, using NServiceBus builder ([dependency injection mechanism](containers)) to use ValidationMessageMutator and TransportMessageCompressionMutators. The NServiceBus framework uses them in its messaging flow.
+The Init method configures, using NServiceBus builder ([dependency injection mechanism](containers.md)) to use ValidationMessageMutator and TransportMessageCompressionMutators. The NServiceBus framework uses them in its messaging flow.
 
 Since the HookMyMessageMutators class is defined in the MessageMutators class library assembly, it means that you can drop it in the Client and the Server executable folder, and mutation will happen automatically.
 
@@ -239,5 +240,5 @@ This article was based on an article written by [Adam Fyles](http://adamfyles.bl
 Where to next?
 --------------
 
-It might be a good idea now to cover the [unobtrusive mode](unobtrusive-sample) subject.
+It might be a good idea now to cover the [unobtrusive mode](unobtrusive-sample.md) subject.
 

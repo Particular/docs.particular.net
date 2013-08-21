@@ -2,6 +2,7 @@
 title: "The NServiceBus Host"
 tags: 
 -->
+
 To avoid re-writing the same configuration code, or to host your endpoints in a Windows Service, use NServiceBus.Host.exe, which can also run as a console.
 
 The NServiceBus host streamlines service development and deployment, allows you to change technologies without code, and is administrator-friendly whensetting permissions and accounts.
@@ -55,7 +56,7 @@ To tell NServiceBus which assemblies to use, set the container by implementing I
 Logging
 -------
 
-To change the host's logging infrastructure, implement the IWantCustomLogging interface. In the Init method, configure your custom setup. To make NServiceBus use your logger, use the NServiceBus.SetLoggingLibrary.Log4Net API, described in the [logging documentation](logging-in-nservicebus) and shown below:
+To change the host's logging infrastructure, implement the IWantCustomLogging interface. In the Init method, configure your custom setup. To make NServiceBus use your logger, use the NServiceBus.SetLoggingLibrary.Log4Net API, described in the [logging documentation](logging-in-nservicebus.md) and shown below:
 
 
     class MyEndpointConfig : IConfigureThisEndpoint, IWantCustomLogging
@@ -68,7 +69,7 @@ To change the host's logging infrastructure, implement the IWantCustomLogging in
     }
 
 
-You may want to specify different logging levels (DEBUG, WARN, etc.) and possibly different targets (CONSOLE, FILE, etc.). The host provides a mechanism for changing these permutations with no code or config changes, via [profiles](profiles-for-nservicebus-host).
+You may want to specify different logging levels (DEBUG, WARN, etc.) and possibly different targets (CONSOLE, FILE, etc.). The host provides a mechanism for changing these permutations with no code or config changes, via [profiles](profiles-for-nservicebus-host.md).
 
 Custom initialization and startup
 ---------------------------------
@@ -89,7 +90,7 @@ Containers and dependency injection
 -----------------------------------
 
 By default, the host makes use of Autofac internally as its container
-(dependency injection framework). To use a different container, implement the IWantCustomInitialization interface on the class that implements IConfigureThisEndpoint and [provide NServiceBus with an adapter object for your container](containers). Here is an example of setting Castle Windsor as the container of choice:
+(dependency injection framework). To use a different container, implement the IWantCustomInitialization interface on the class that implements IConfigureThisEndpoint and [provide NServiceBus with an adapter object for your container](containers.md). Here is an example of setting Castle Windsor as the container of choice:
 
 
     class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization

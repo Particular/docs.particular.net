@@ -2,6 +2,7 @@
 title: "Hosting NServiceBus in Your Own Process"
 tags: 
 -->
+
 Lighter-weight than BizTalk and more powerful than WCF, NServiceBus comes with its own host process and allows you to host it in your own process.
 
 Requiring as few as three assemblies to be referenced, the Fluent configuration API can get you up and running with transactional one-way messaging in a snap.
@@ -45,10 +46,10 @@ Most of the methods are extensions for the
 [NServiceBus.Configure](https://github.com/NServiceBus/NServiceBus/blob/master/src/config/NServiceBus.Config/Configure.cs) class provided by the specific components packaged in the NServiceBus.Core assembly. You can similarly configure your own components by writing your own extension methods.
 
 -   Log4Net() tells NServiceBus what to
-    [log](logging-in-nservicebus)with.
+    [log](logging-in-nservicebus.md)with.
 -   DefaultBuilder() tells NServiceBus to use the default(Autofac)
     dependency injection framework. Other [dependency injection
-    frameworks](containers) are available as well.
+    frameworks](containers.md) are available as well.
 -   XmlSerializer() tells NServiceBus to serialize messages as XML.
     Additional option is to specify BinarySerializer(), which does
     binary serialization of messages.

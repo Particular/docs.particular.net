@@ -2,7 +2,8 @@
 title: "Introduction to the Gateway"
 tags: 
 -->
-This article, together with [the Gateway & Multi-Site Distribution with NServiceBus](the-gateway-and-multi-site-distribution) article, provide a high level overview of the NServiceBus gateway, where to use it, and—more importantly—where not to use it. The main purpose of the gateway is to allow you to do the same durable fire-and-forget messaging that you are accustomed to with NServiceBus across physically separated sites, where "sites " are locations where you run IT infrastructure and not web sites.
+
+This article, together with [the Gateway & Multi-Site Distribution with NServiceBus](the-gateway-and-multi-site-distribution.md) article, provide a high level overview of the NServiceBus gateway, where to use it, and—more importantly—where not to use it. The main purpose of the gateway is to allow you to do the same durable fire-and-forget messaging that you are accustomed to with NServiceBus across physically separated sites, where "sites " are locations where you run IT infrastructure and not web sites.
 
 The gateway only comes into play where you can’t use the regular queued transports for communication i.e. when setting up a VPN-connection is not an option. The reason for not using a VPN could be security concerns, bandwidth limitation, latency problems, high availability constraints, etc.
 
@@ -79,7 +80,7 @@ Next steps
 -   Examine the working sample in the NServiceBus/Samples/Gateway folder
 -   Read the other article about the gateway: [the Gateway & Multi-Site
     Distribution with
-    NServiceBus](the-gateway-and-multi-site-distribution)
+    NServiceBus](the-gateway-and-multi-site-distribution.md)
 
 Key messages
 ------------

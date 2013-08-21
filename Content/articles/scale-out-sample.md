@@ -2,6 +2,7 @@
 title: "Scale Out Sample"
 tags: 
 -->
+
 Sometimes a single worker for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out your existing message processing by adding more workers on different machines.
 
 The sample starts with a sender and a receiver.
@@ -38,7 +39,7 @@ Scaling out
 Assuming business is booming, orders are flowing in, and PlaceOrder commands are stacking up in the Orders.Handler endpoint, you need to scale out.
 
 You can scale out by having the same Orders.Handler project function as a distributor and another copy of the Orders.Handler function as a worker. Starting the Orders.Handler with the Master profile, among other things, turns on the Distributor at this endpoint. Starting the Orders.Handler with the Worker profile makes it enlist with the Distributor and function as a worker. Being a
-[distributor](load-balancing-with-the-distributor) means that Workers can send an "I'm ready" message to the control endpoint of the Distributor, and the Distributor forwards messages to them in a round robin manner. Steps to scale out
+[distributor](load-balancing-with-the-distributor.md) means that Workers can send an "I'm ready" message to the control endpoint of the Distributor, and the Distributor forwards messages to them in a round robin manner. Steps to scale out
 
 Following are the steps required to scale out message handlers by deploying more workers on additional machines.
 
@@ -60,7 +61,7 @@ Profiles:
     configure NServiceBus to use RavenDB for storing the subscriptions.
     As stated earlier, this store is shared among all Orders.Handler
     endpoints (all workers). Read about [publish
-    subscribe](how-pub-sub-works).
+    subscribe](how-pub-sub-works.md).
 
 If running from Visual Studio, when configuring the NServiceBus.Production profile, NServiceBus creates the queues for you. If running from the command line, use NServiceBus.Integration to create the queues.
 
@@ -109,8 +110,8 @@ By specifying the NServiceBus.Integration and NServiceBus.Worker profiles along 
 
 NServiceBus.Host.Exe uses the NServiceBus.Worker profile to enlist the worker endpoint at the Distributor.
 
-Read about [profiles,](profiles-for-nservicebus-host)and
-[here](more-on-profiles) too.
+Read about [profiles,](profiles-for-nservicebus-host.md)and
+[here](more-on-profiles.md) too.
 
 ### 3. Setting up the Sender
 
@@ -149,5 +150,5 @@ The error messages appear when there is no valid license for the worker and it w
 Next steps
 ----------
 
-Read about [the distributor](load-balancing-with-the-distributor).
+Read about [the distributor](load-balancing-with-the-distributor.md).
 

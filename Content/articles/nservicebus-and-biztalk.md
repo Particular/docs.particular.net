@@ -2,6 +2,7 @@
 title: "NServiceBus and BizTalk"
 tags: 
 -->
+
 BizTalk is a good centralized message broker with many adapters for third party applications, but service buses are inherently distributed, not centralized. Logical centralization leads to spaghetti code.
 
 Mixing logical orchestration and routing with business logic, data access, and web services calls is not a good idea and leads to slow, unmaintainable code.
@@ -24,7 +25,7 @@ Next steps
 
 Sometimes you need a hammer, sometimes you need a screwdriver, and sometimes you need both. While a Swiss army knife may appear to do both, it is a poor choice for any but the most trivial undertakings.
 
-To learn more about dividing up your architecture into high-level business services, see the [presentation Udi gave on SOA](architectural-principles).
+To learn more about dividing up your architecture into high-level business services, see the [presentation Udi gave on SOA](architectural-principles.md).
 
 [This download from Microsoft](http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=b57b7625-7316-4f56-b88e-1fb685efae5b) describes the details of getting NServiceBus and BizTalk to work together, including a whitepaper, code samples, and videos to get you up and running in no time.
 

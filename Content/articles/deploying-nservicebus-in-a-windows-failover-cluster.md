@@ -2,6 +2,7 @@
 title: "Deploying NServiceBus in a Windows Failover Cluster"
 tags: 
 -->
+
 NServiceBus is designed for scalability and reliability, but to take advantage of these features, you need to deploy it in a Windows Failover Cluster. Unfortunately, information on how to do this effectively is, as yet, incomplete and scattered. This article describes the process for deploying NServiceBus in a failover cluster. This article does not cover the generic setup of a failover cluster. There are other, better resources for that, such as [Creating a Cluster in Windows Server
 2008](http://blogs.msdn.com/b/clustering/archive/2008/01/18/7151154.aspx). The focus here is the setup related to NServiceBus.
 
@@ -88,7 +89,7 @@ Installing the clustered services
 
 Before you can cluster the NServiceBus.Host.exe processes, you need to install them as services on all clustered nodes.
 
-Copy the Distributor binary as many times as you have logical queues, and then configure each one as described in the [NServiceBus Distributor](load-balancing-with-the-distributor) page. To keep everything straight, it’s important to decide on a naming convention and stick with it.
+Copy the Distributor binary as many times as you have logical queues, and then configure each one as described in the [NServiceBus Distributor](load-balancing-with-the-distributor.md) page. To keep everything straight, it’s important to decide on a naming convention and stick with it.
 
 The following are suggested queue naming conventions:
 
@@ -113,7 +114,7 @@ Install each distributor from the command line:
 
 It’s easier to set the service name, display name, and description to be the same. It helps when trying to start and stop things from a NET START/STOP command and when viewing them in the multiple graphical tools. Starting each one with Distributor puts them all together alphabetically in the Services MMC snap-in.
 
-Don’t forget the “NServiceBus.Production” at the end, which sets the profile for the NServiceBus generic host, as described in the [Generic Host page](the-nservicebus-host).
+Don’t forget the “NServiceBus.Production” at the end, which sets the profile for the NServiceBus generic host, as described in the [Generic Host page](the-nservicebus-host.md).
 
 Do not try starting the services. If you do, they will run in the scope of the local server node, and will attempt to create their queues there.
 

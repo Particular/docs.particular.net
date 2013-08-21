@@ -2,6 +2,7 @@
 title: "Containers"
 tags: 
 -->
+
 NServiceBus is a container-agnostic framework. While autofac is merged into its core, it is easily replaced by any other container.
 
 With five other container technologies available out of the box, including Castle, Ninject, Spring, StructureMap, and Unity, you don't have to change to something new.

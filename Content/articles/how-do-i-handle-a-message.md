@@ -2,6 +2,7 @@
 title: "How to Handle a Message?"
 tags: 
 -->
+
 Write a class that implements IMessageHandler<t> where T is the message type:
 
     public class H1 : IMessageHandler

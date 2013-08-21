@@ -2,6 +2,7 @@
 title: "Installing RavenDB for NServiceBus"
 tags: 
 -->
+
 NServiceBus V3.0 uses RavenDB for persistence by default. The NServiceBus license permits the use of RavenDB for the storage needs of your endpoint. This only includes NServiceBus-related data such as sagas and subscriptions. If you store application-specific data in RavenDB you need to purchase a separate license.
 
 To use the default storage, ensure you have a RavenDB server running to which your endpoint can connect. There are two ways to set it up:
@@ -49,5 +50,5 @@ For more information regarding RavenDB compatibility, please refer to the [Raven
 Next steps
 ----------
 
-You can continue reading about [connecting to RavenDB in NService bus](using-ravendb-in-nservicebus-connecting) or about [unit of work implementation for RavenDB](unit-of-work-implementation-for-ravendb).
+You can continue reading about [connecting to RavenDB in NService bus](using-ravendb-in-nservicebus-connecting.md) or about [unit of work implementation for RavenDB](unit-of-work-implementation-for-ravendb.md).
 

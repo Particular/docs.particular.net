@@ -2,6 +2,7 @@
 title: "Unobtrusive Mode Messages"
 tags: 
 -->
+
 When using NServiceBus you define your message contracts using plain C\# classes or interfaces. For NServiceBus to find those classes when scanning your assemblies you need to mark them with the special IMessage interface, which essentially says, “Hey, this is a message definition, please use it.” This might seem like a small thing but now you’re coupling your message contracts to a NServiceBus assembly since you need to reference the NServiceBus.dll to get access to the interface.
 
 This dependency can cause problems if you have different services that run different versions of NServiceBus. Jonathan Oliver has a [great write up on this very subject](http://blog.jonathanoliver.com/2010/09/nservicebus-distributing-event-schemacontract/)
@@ -31,7 +32,7 @@ Unobtrusive mode
 
 This new feature in NServiceBus V3 allows you to pass in your own conventions to determine which types are message definitions, instead of using the IMessage,ICommand or IEvent interfaces. The following snippet shows how to define those conventions:
 
-<script src="https://gist.github.com/Particular/6034099.js"></script> This code tells NServiceBus to treat all types with a namespace that ends with “Messages” as messages. You can also specify conventions for the [ICommand and IEvent feature](introducing-ievent-and-icommand) .
+<script src="https://gist.github.com/Particular/6034099.js"></script> This code tells NServiceBus to treat all types with a namespace that ends with “Messages” as messages. You can also specify conventions for the [ICommand and IEvent feature](introducing-ievent-and-icommand.md) .
 
 NServiceBus supports property level encryption with a special WireEncryptedString property. The example above shows the unobtrusive way to tell NServiceBus which properties you want encrypted. These properties need to be of type String.
 

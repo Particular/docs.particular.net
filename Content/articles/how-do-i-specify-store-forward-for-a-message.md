@@ -2,6 +2,7 @@
 title: "How to Specify Store and Forward for a Message?"
 tags: 
 -->
+
 This is the default mode in V2.0 and V2.5, but not in V1.9:
 
     [Recoverable]

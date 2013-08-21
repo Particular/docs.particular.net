@@ -2,6 +2,7 @@
 title: "RunMeFirst.bat Throws An Exception"
 tags: 
 -->
+
 RunMeFirst.bat runs NServiceBusHost.exe with the /installInfrastructure command line.
 
 This, in return, installs the required "infrastructure" components needed to run NServiceBus endpoints.

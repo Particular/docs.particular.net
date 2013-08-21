@@ -2,6 +2,7 @@
 title: "Connecting to RavenDB from NServiceBus"
 tags: 
 -->
+
 Beginning with NServiceBus V3.0, RavenDB is one of the available mechanisms for NServiceBus to persist its timeout, saga and subscription information.
 
 To tell NServiceBus to use RavenDB for persistence is as easy as calling Configure.RavenPersistence(). This is the default configuration and it uses these conventions:
@@ -39,7 +40,7 @@ Which database is used?
 After connecting to a RavenDB server, decide which actual database to use. Unless NServiceBus finds a default database specified in the connection string, NServiceBus uses the endpoint name as the database name. So if your endpoint is named “MyServer”, the database name is
 “MyServer”. Each endpoint has a separate database unless you explicitly override it using the connection string. RavenDB automatically creates the database if it doesn’t already exist.
 
-Read a detailed explanation of the [endpoint name concept](convention-over-configuration) and a [FAQ entry](how-to-specify-your-input-queue-name).
+Read a detailed explanation of the [endpoint name concept](convention-over-configuration.md) and a [FAQ entry](how-to-specify-your-input-queue-name.md).
 
 Can I use the IDocumentStore used by NServiceBus for my own data?
 -----------------------------------------------------------------
@@ -54,5 +55,5 @@ Open a web browser and type the URL of the RavenDB server. This opens the RavenD
 Next steps
 ----------
 
-You can continue reading about [installing RavenDB in NService bus](using-ravendb-in-nservicebus-installing), or about [unit of work implementation for RavenDB](unit-of-work-implementation-for-ravendb).
+You can continue reading about [installing RavenDB in NService bus](using-ravendb-in-nservicebus-installing.md), or about [unit of work implementation for RavenDB](unit-of-work-implementation-for-ravendb.md).
 

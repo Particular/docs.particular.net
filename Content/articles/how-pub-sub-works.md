@@ -2,9 +2,10 @@
 title: "How Pub/Sub Works"
 tags: 
 -->
+
 Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on.
 
-If you haven't seen the [publish/subscribe sample](getting-started-publish-subscribe-communication) yet take a minute to walk through or start by [creating a new project using NServiceBus](getting-started---creating-a-new-project).
+If you haven't seen the [publish/subscribe sample](getting-started-publish-subscribe-communication) yet take a minute to walk through or start by [creating a new project using NServiceBus](getting-started---creating-a-new-project.md).
 
 The main thing to understand is this: subscribers let the publisher know they're interested, and the publisher stores their addresses so that it knows where to send which message.
 
@@ -60,10 +61,10 @@ Next steps
 ----------
 
 -   Learn about the [API and configuration involved in
-    pub/sub](publish-subscribe-configuration).
+    pub/sub](publish-subscribe-configuration.md).
 -   See how to [configure the distributor and learn more about its
-    internals](load-balancing-with-the-distributor).
+    internals](load-balancing-with-the-distributor.md).
 -   Find out how to use the [generic NServiceBus Host
-    process](the-nservicebus-host).
+    process](the-nservicebus-host.md).
 
 
