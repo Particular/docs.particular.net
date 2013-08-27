@@ -3,7 +3,7 @@ title: "Architectural Principles"
 tags: 
 -->
 
-Test3
+Test4
 
 Autonomy and loose coupling at design time and at run time are not things that any technology can give you.
 
