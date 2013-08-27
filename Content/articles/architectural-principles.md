@@ -3,6 +3,8 @@ title: "Architectural Principles"
 tags: 
 -->
 
+Test
+
 Autonomy and loose coupling at design time and at run time are not things that any technology can give you.
 
 Service-oriented architecture (SOA) and event-driven architecture together provide the basis for identifying where to use NServiceBus.
@@ -13,7 +15,10 @@ Strategic Domain-Driven Design helps bridge the business/IT divide and drives th
 How NServiceBus aligns with SOA
 -------------------------------
 
-<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="http://player.vimeo.com/video/5022174" webkitallowfullscreen width="400"></iframe>In this presentation, Udi Dahan explains the disadvantages of classical web services thinking that places services at a layer below the user interface and above the business logic. Instead, he describes an approach that cuts across all layers of an application, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
+
+<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="http://player.vimeo.com/video/5022174" webkitallowfullscreen width="400"></iframe>
+
+In this presentation, Udi Dahan explains the disadvantages of classical web services thinking that places services at a layer below the user interface and above the business logic. Instead, he describes an approach that cuts across all layers of an application, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
 
 
 
