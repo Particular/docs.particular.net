@@ -9,7 +9,7 @@ Since it is a spike no promises are made about if this will still exists in the 
 Before you start ensure you have
 
  *  Created a [GitHub account](https://github.com/signup/free)
- *  Signed Particular [Contributor License Agreement](http://www.particular.net/contributors-license-agreement-consent).
+ *  Signed the Particular [Contributor License Agreement](http://www.particular.net/contributors-license-agreement-consent).
 
 There are two approaches to contributing
 
