@@ -67,8 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logging\Log4Net\Log4NetHelper.cs" />
-    <Compile Include="Logging\Log4Net\Log4NetSamples.cs" />
+    <Compile Include="Logging\Log4NetSamples.cs" />
     <Compile Include="Testing\TestConstructorInjection.cs" />
     <Compile Include="Testing\TestHandler.cs" />
     <Compile Include="Testing\TestHeaderManipulation.cs" />
