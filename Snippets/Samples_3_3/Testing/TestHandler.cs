@@ -5,6 +5,7 @@ using NUnit.Framework;
 namespace Samples_3_3
 {
 
+    [TestFixture]
     public class TestHandler
     {
         [Test]

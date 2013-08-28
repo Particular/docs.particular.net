@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Samples_4_0
 {
-
+    [TestFixture]
     public class TestHandler
     {
         // start code TestHandler
