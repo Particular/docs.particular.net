@@ -42,7 +42,7 @@ The pages are currently rendered using [MarkdownDeep](http://www.toptensoftware.
 
 There are some slight difference between MarkdownDeep and the GitHub flavoured Markdown. So when changes are accepted you should double check how the rendered version looks.
 
-For editing markdown on you desktop using MarkdownDeep try the following
+For editing markdown on your desktop using MarkdownDeep try the following
 
 ### [MarkdownPad](http://markdownpad.com/)
 
@@ -56,7 +56,10 @@ Ensure you enable *MarkdownDeep Extra* by going to
 
     Settings > markdown extra > toggle the switch to red
 
-More info on Markdown see [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+More info on Markdown see
+ 
+ * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+ * [Github Flavored Markdown](https://help.github.com/articles/github-flavored-markdown)
 
 # Additional Resources
 
