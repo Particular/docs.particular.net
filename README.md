@@ -52,7 +52,7 @@ Ensure you enable *MarkdownDeep Extras* by going to
 
 ### [MarkPad](http://code52.org/DownmarkerWPF/) 
 
-Ensure you enable *MarkdownDeep Extra* by going to 
+Ensure you enable *MarkdownDeep Extras* by going to 
 
     Settings > markdown extra > toggle the switch to red
 
