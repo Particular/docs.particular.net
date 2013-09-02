@@ -4,7 +4,7 @@ using NServiceBus.Saga;
 using NServiceBus.Testing;
 using NUnit.Framework;
 
-namespace Samples_4_0
+namespace Snippets_3_3
 {
     [TestFixture]
     class TestSaga
