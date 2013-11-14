@@ -8,7 +8,14 @@ summary: "<p>If a message cannot be received by the target process in the given 
 
 If a message cannot be received by the target process in the given time frame, including all time in queues and in transit, the message is discarded.
 
-<script src="https://gist.github.com/Particular/6108294.js"></script>
+
+```C#
+[TimeToBeReceived("00:01:00")] // Discard after one minute
+[Recoverable]
+public class MyMessage { }
+```
+
+
 
 <div id="rate_article_container">
 <div id="rate_article">

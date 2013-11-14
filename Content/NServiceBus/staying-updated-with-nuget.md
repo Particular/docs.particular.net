@@ -20,7 +20,7 @@ Getting the latest stable NServiceBus release using NuGet
 
 After installing NuGet you have a few ways to get NServiceBus using NuGet. Right click your project references and choose "Manage NuGet Packages". The following window opens:
 
-![Manage NuGet Packages Window](https://particular.blob.core.windows.net/media/Default/images/ManageNuGetPackagesWindow.png "Manage NuGet Packages Window")
+![Manage NuGet Packages Window](ManageNuGetPackagesWindow.png "Manage NuGet Packages Window")
 
 Search for NServiceBus, and select "Install". Alternatively you can get to the NuGet package manager via “Library Package Manage” and selecting
 “Manage NuGet Packages for Solution… “.
@@ -60,12 +60,11 @@ The NServiceBus latest build can be downloaded from [NServiceBus builds server](
  'Tools'-\>'Library Package Manager'-\>'Package Manager Settings', under
 'Package Manager' choose 'Package Sources'. Type a name and type the URL in the source text box, and click 'Add'. This is how the package sources look:
 
-
-![](https://particular.blob.core.windows.net/media/Default/images/PointingNugetToNServiceBusBuildsServer.png)
+ ![](PointingNugetToNServiceBusBuildsServer.png)
 
 To install NServiceBus continuous integration builds (latest), in the NuGet console windows (from Visual Studio Tools-\>Library Package Manager-\>Package Manager Console), choose the builds.nservicebus.com package source, as follows:
 
-![](https://particular.blob.core.windows.net/media/Default/images/ChoosingNServiceBusNugetPackagesAsSource.png)
+![](ChoosingNServiceBusNugetPackagesAsSource.png)
 
 To install the latest NServiceBus build, at the Package Manager Console, type this:
 

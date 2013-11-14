@@ -22,7 +22,7 @@ To resolve a RavenDB document session from the container, add the following conf
 ```C#
 var store = new DocumentStore {Url = "http://localhost:8080", DefaultDatabase = "MyDatabase"};
 store.Initialize();
-
+ 
 ObjectFactory.Configure(c =>
     {
         c.For<IDocumentStore>()
@@ -34,7 +34,7 @@ ObjectFactory.Configure(c =>
         c.For<IManageUnitsOfWork>()
             .Use<RavenUnitOfWork>();
     });
-
+ 
 Configure.With()
             .StructureMapBuilder(ObjectFactory.Container);
 ```
@@ -51,16 +51,16 @@ In RavenDB, to persist your data to the database, you need to explicitly call ID
 public class RavenUnitOfWork : IManageUnitsOfWork
 {
     private readonly IDocumentSession session;
-
+ 
     public RavenUnitOfWork(IDocumentSession session)
     {
         this.session = session;
     }
-
+ 
     public void Begin()
     {
     }
-
+ 
     public void End(Exception ex)
     {
         if (ex == null)
@@ -93,12 +93,12 @@ Rescue comes from the child containers together with the fact that the main cont
 public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 {
     readonly IDocumentSession session;
-
+ 
     public PlaceOrderHandler(IDocumentSession session)
     {
         this.session = session;
     }
-
+ 
     public void Handle(PlaceOrder message)
     {
         session.Store(new Order

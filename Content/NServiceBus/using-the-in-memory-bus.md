@@ -22,11 +22,44 @@ In .NET 4.0, to define an event, use the event keyword in the signature of your 
 
 
 1.  Define an event
-    <script src="https://gist.github.com/Particular/6082331.js?file=DotNetEvent.cs"></script>
+    
+```C#
+public event EventHandler<ClientBecamePreferredEventArgs> RaiseClientBecamePreferredEvent;
+```
+
+
 2.  Define the event arguments:
-    <script src="https://gist.github.com/Particular/6082331.js?file=DotNetEventArgs.cs"></script>
+    
+```C#
+public class ClientBecamePreferredArgs : EventArgs
+{
+  public string Message {get;set;}
+}
+
+```
+
+
 3.  Raise the event:
-    <script src="https://gist.github.com/Particular/6082331.js?file=RaiseDotNetEvent.cs"></script>
+    
+```C#
+public void DoSomething()
+{
+  // Write some code that does something useful here
+  // then raise the event.
+  OnRaiseClientBecamePreferredEvent(new ClientBecamePreferredEventArgs("Did something"));
+}
+
+protected virtual void OnRaiseClientBecamePreferredEvent(ClientBecamePrefferedEventArgs e)
+{
+  EventHandler<ClientBecamePreferredEventArgs> handler = RaiseClientBecamePrefferedEvent;
+  if (handler != null)
+  {
+    handler(this, e);
+  }
+}
+```
+
+
 
 In-memory events
 ----------------
@@ -39,7 +72,22 @@ In-memory events are like regular .NET events in that all observing objects that
 For example:
 
 
-<script src="https://gist.github.com/Particular/6082331.js?file=NsbEvent.cs"></script>
+
+```C#
+// Event defined using the IEvent marker interface
+public class ClientBecamePreferred : IEvent
+{
+  // message details go here.
+}
+
+// POCO Event
+public class ClientBecamePreferred
+{
+  // message details go here.
+}
+```
+
+
 
 Read how to tell NServiceBus to [use the POCOs as events](unobtrusive-mode-messages.md) .
 
@@ -50,14 +98,42 @@ Read how to tell NServiceBus to [use the POCOs as events](unobtrusive-mode-messa
 In-memory events are raised using a property of an IBus object call: Bus.InMemory.Raise<t>:
 
 
-<script src="https://gist.github.com/Particular/6082331.js?file=InMemoryEvent.cs"></script>
+
+```C#
+class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
+{
+  public IBus Bus { get; set; }
+  public void Handle(OrderAccepted message)
+  {
+    // Call the domain object's action, which will in turn do the
+    //below to raise the event
+    Bus.InMemory.Raise<ClientBecamePreferred>(m =>
+    {
+      m.ClientId = message.ClientId;
+    });
+  }
+}
+```
+
+
 ### How to subscribe to in-memory events?
 
 
 To subscribe to these events, implement a class that implements IHandleMessages<t>. The handlers are invoked when the event is raised:
 
 
-<script src="https://gist.github.com/Particular/6082331.js?file=SubscribingToInMemoryEvent.cs"></script>
+
+```C#
+private class CustomerBecamePreferredHandler: IHandleMessages<ClientBecamePreferred>
+{
+  void Handle(ClientBecamePreferred message)
+  {
+    // Do what needs to be done when a client becomes preferred.
+  }
+}
+```
+
+
 ### How is an in-memory event different from Bus.Publish<t>?
 
 

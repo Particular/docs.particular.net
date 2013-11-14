@@ -13,7 +13,7 @@ In the [previous section](getting-started---fault-tolerance.md) we learnt about 
 
 Now that we've gone through the basics of NServiceBus communication and configuration, let's move on to publish/subscribe.
 
-![Full Solution Builder](https://particular.blob.core.windows.net/media/Default/images/GettingStarted11.png)
+![Full Solution Builder](GettingStarted11.png)
 
 There are only a few steps needed to introduce pub/sub and make your solution look like the one appearing above.
 
@@ -31,11 +31,31 @@ There are only a few steps needed to introduce pub/sub and make your solution lo
     the picture on the right.
 4.  Add code to the SubmitOrderProcessor in Sales to publish the event:
 
-<script src="https://gist.github.com/Particular-gist/6424560.js?file=001_pubsub.cs"></script> Your solution should compile, so run it using F5.
+
+```C#
+using System;
+using Amazon.Contract.Sales;
+using NServiceBus;
+using Amazon.InternalMessages.Sales;
+
+namespace Amazon.OrderProcessing.Sales
+{
+    public partial class SubmitOrderProcessor
+    {
+        partial void HandleImplementation(SubmitOrder message)
+        {
+            Console.WriteLine("Sales received " + message.GetType().Name);
+            Bus.Publish<OrderAccepted>();
+        }
+    }
+}
+```
+
+ Your solution should compile, so run it using F5.
 
 Lay out the various consoles and web-UI so that you can see them all, then click "About" a couple of times to watch how it runs:
 
-![Running Pub/Sub](https://particular.blob.core.windows.net/media/Default/images/GettingStarted12.png)
+![Running Pub/Sub](GettingStarted12.png)
 
 And there you are: publish/subscribe messaging is working!
 
@@ -47,7 +67,7 @@ Once you're done, run it, and see that everything works.
 
 Return to Visual Studio, right click your endpoints, and select "Show Diagram". You should see visualizations of the message flows like this:
 
-![Endpoint message flow](https://particular.blob.core.windows.net/media/Default/images/GettingStarted13.jpg)
+![Endpoint message flow](GettingStarted13.jpg)
 
 As you see, it's very easy to get started with NServiceBus. You're all set now and can build your own distributed systems with NServiceBus.
 

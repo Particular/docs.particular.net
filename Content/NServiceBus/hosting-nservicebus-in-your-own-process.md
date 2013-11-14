@@ -13,7 +13,7 @@ Requiring as few as three assemblies to be referencaed, the Fluent configuration
 Assembly references
 -------------------
 
-![Assembly references](https://particular.blob.core.windows.net/media/Default/images/webapp_references.png)
+![Assembly references](webapp_references.png)
 
 To host NServiceBus in your own process, the assemblies shown on the left need to be referenced:
 
@@ -35,7 +35,19 @@ In the ApplicationStart method of your Global.asax file in a web application, or
 For NServiceBus v3.x:
 
 
-<script src="https://gist.github.com/Particular-gist/c5715062eeff909e7003.js?file=004_hosting_base_v3.cs"></script>
+
+```C#
+NServiceBus.Configure.With()
+    .DefaultBuilder()
+    .Log4Net()
+    .XmlSerializer()
+    .MsmqTransport()
+    .UnicastBus()
+    .CreateBus()
+    .Start();
+```
+
+
 
 
 Here are some usage samples:
@@ -43,13 +55,66 @@ Here are some usage samples:
 NServiceBus v3.x in ASP.Net MVC:
 
 
-<script src="https://gist.github.com/Particular-gist/c5715062eeff909e7003.js?file=001_hosting_mvc_v3.cs"></script>
+
+```C#
+        protected void Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
+
+            RegisterGlobalFilters(GlobalFilters.Filters);
+            RegisterRoutes(RouteTable.Routes);
+           
+            // NServiceBus configuration
+            Configure.With()
+                .DefaultBuilder()
+                .ForMvc()
+                .JsonSerializer()
+                .Log4Net()
+                .MsmqTransport()
+                    .IsTransactional(false)
+                    .PurgeOnStartup(true)
+                .UnicastBus()
+                    .ImpersonateSender(false)
+                .CreateBus()
+                .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+        }
+```
+
+
 
 
 NServiceBus v3.x in ASP.Net Web:
 
 
-<script src="https://gist.github.com/Particular-gist/c5715062eeff909e7003.js?file=002_hosting_web_v3.cs"></script>
+
+```C#
+    public class Global : HttpApplication
+    {
+        public static IBus Bus { get; private set; }
+
+        protected void Application_Start(object sender, EventArgs e)
+        {
+            Bus = Configure.With()
+                .Log4Net()
+                .DefaultBuilder()
+                .XmlSerializer()
+                .MsmqTransport()
+                    .IsTransactional(false)
+                    .PurgeOnStartup(false)
+                .UnicastBus()
+                    .ImpersonateSender(false)
+                .CreateBus()
+                .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+        }
+
+        protected void Application_End(object sender, EventArgs e)
+        {
+
+        }
+    }
+```
+
+
 
 Configuration Code
 ------------------
@@ -98,7 +163,18 @@ Include these configuration sections:
 For NServiceBus v3.x:
 
 
-<script src="https://gist.github.com/Particular-gist/c5715062eeff909e7003.js?file=006_hosting_config_v3.xml"></script> If an exception is thrown during the processing of a message, NServiceBus automatically retries the message (as it might have failed due to something transient like a database deadlock). MaxRetries specifies the maximum number of times this is done before the message is moved to the ErrorQueue.
+
+```XML
+<section name="MsmqTransportConfig" type="NServiceBus.Config.MsmqTransportConfig, NServiceBus.Core"/>
+<section name="MessageForwardingInCaseOfFaultConfig" type="NServiceBus.Config.MessageForwardingInCaseOfFaultConfig, NServiceBus.Core" />
+
+<!-- Specify the configuration data, as follows: -->
+
+<MsmqTransportConfig NumberOfWorkerThreads="1" MaxRetries="5"  />
+<MessageForwardingInCaseOfFaultConfig ErrorQueue="error"/>
+```
+
+ If an exception is thrown during the processing of a message, NServiceBus automatically retries the message (as it might have failed due to something transient like a database deadlock). MaxRetries specifies the maximum number of times this is done before the message is moved to the ErrorQueue.
 
 Routing configuration
 ---------------------
@@ -109,7 +185,20 @@ While you can tell NServiceBus to which address to send a message using the API:
 
 
 
-<script src="https://gist.github.com/Particular-gist/c5715062eeff909e7003.js?file=007_hosting_config_routing.xml"></script> This tells NServiceBus that all messages in the MessageDLL assembly should be routed to the queue called DestinationQueue on the machine TargetMachine. You can send messages from that assembly, like this: Bus.Send(messageFromMessageDLL);
+
+```XML
+<section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
+
+<!-- And then specify the configuration data like this: -->
+
+<UnicastBusConfig>
+<MessageEndpointMappings>
+    <add Messages="MessageDLL" Endpoint="DestinationQueue@TargetMachine"/>
+</MessageEndpointMappings>
+</UnicastBusConfig>  
+```
+
+ This tells NServiceBus that all messages in the MessageDLL assembly should be routed to the queue called DestinationQueue on the machine TargetMachine. You can send messages from that assembly, like this: Bus.Send(messageFromMessageDLL);
 
 
 

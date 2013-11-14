@@ -28,23 +28,23 @@ Distributed Transaction Coordinator
 In Windows, there is an OS-level service called the DTC that manages transactions needing to span multiple resources, like queues and databases. This service isn't always configured correctly and may require troubleshooting. Download a tool called
 [DTCPing](http://www.microsoft.com/en-us/download/details.aspx?id=2868) to help you discover if one machine can access a remote machine over the DTC. The tool looks like this.
 
-![this is what you the initial DTCPing window to look like.](https://particular.blob.core.windows.net/media/Default/images/DTCPing.png "this is what you the initial DTCPing window to look like.")
+![this is what you the initial DTCPing window to look like.](DTCPing.png "this is what you the initial DTCPing window to look like.")
 
 If you get an error referring to the RPC Endpoint Mapper, at the command prompt, run "dcomcnfg". You should see the Component Services screen below.
 
-![this is the component services and dtc configuration](https://particular.blob.core.windows.net/media/Default/images/dtc_dcomcnfg_1.png "this is the component services and dtc configuration")
+![this is the component services and dtc configuration](dtc_dcomcnfg_1.png "this is the component services and dtc configuration")
 
 Open some ports by right clicking "My Computer" and going to the
 "Default Protocols" tab. From there, select "Connection-oriented TCP/IP" and click the "Properties" button. In the "Properties for COM Internet Services" dialog, check that the Port Ranges includes "5000-6000", as shown:
 
-![](https://particular.blob.core.windows.net/media/Default/images/dtc_dcomcnfg_2.png)
+![](dtc_dcomcnfg_2.png)
 
 If the list of Port Ranges is empty, click the "Add..." button and enter
 "5000-6000" in the dialog box. Your screen should look like the image above. You can probably make do with less than 1000 open ports, but it depends on the number of machines to connect to each other over the DTC.
 
 After clicking OK and returning to the Component Services screen, navigate to the "Local DTC" node under the Distributed Transaction Coordinator folder, right click, and select "Properties". In the dialog that opens, select the Security tab, as shown:
 
-![dtc security settings](https://particular.blob.core.windows.net/media/Default/images/dtc_dcomcnfg_3.png "dtc security settings")
+![dtc security settings](dtc_dcomcnfg_3.png "dtc security settings")
 
 Ensure that the properties you see are the same as those above and restart the computer.
 
@@ -113,7 +113,7 @@ There is nothing necessarily wrong with the message itself. It might contain val
 ReturnToSourceQueue.exe
 -----------------------
 
-![Return to source queue tool](https://particular.blob.core.windows.net/media/Default/images/ReturnToSourceQueue.png "Return to source queue tool")
+![Return to source queue tool](ReturnToSourceQueue.png "Return to source queue tool")
 
 You can find this tool in the "Tools" directory in your NServiceBus download.
 

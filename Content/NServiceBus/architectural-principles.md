@@ -39,7 +39,7 @@ Since the amount of time it can take to communicate with another machine across 
 
 
 
-![Store and Forward Messaging](https://particular.blob.core.windows.net/media/Default/images/store_and_forward.png)
+![Store and Forward Messaging](store_and_forward.png)
 
 In this model, when the client process calls an API to send a message to the server process, the API returns control to the calling thread before the message is sent. At that point, the transfer of the message across the network becomes the responsibility of the messaging technology. There may be various kinds of communications interference, the server machine may simply be down, or a firewall may be slowing down the transfer. Also, even though the message may have reached the target machine, the target process may currently be down.
 
@@ -50,7 +50,7 @@ While all of this is going on, the client process is oblivious. Critical resourc
 ### Request/response and one-way messaging
 
 The common pattern of Request/Response, which is more accurately described as Synchronous Remote Procedure Call, is handled differently when using one way messaging. Instead of letting the stack of the calling thread manage the state of the communications interaction, it is done explicitly. From a network perspective, request/response is just two one-way interactions, as shown in the next figure.![Full duplex
-'Request/Response' messaging](https://particular.blob.core.windows.net/media/Default/images/full_duplex_messaging.png)
+'Request/Response' messaging](full_duplex_messaging.png)
 
 This communication is especially critical for servers as clients behind problematic network connections now have little effect on the server's stability. If a client crashes between the time that it sent the request until the server sends a response, the server will not have resources tied up waiting minutes and minutes until the connection times out.
 
@@ -70,7 +70,7 @@ In this style, the sender of the message often does not know the specifics of th
 
 #### Subscriptions
 
-!['Subscription process](https://particular.blob.core.windows.net/media/Default/images/subscribe.png)
+!['Subscription process](subscribe.png)
 
 Subscribers need to know which endpoint is responsible for a given message. This information is usually made available as part of the contract, specifying to which endpoint a subscriber should send its request. As a part of the subscription message, a subscriber passes its
 "return address", the endpoint at which it wants to receive messages.
@@ -85,7 +85,7 @@ Another option that can be used is for multiple physical subscribers to make the
 
 #### Publishing
 
-![Publishing process](https://particular.blob.core.windows.net/media/Default/images/publish.png)
+![Publishing process](publish.png)
 
 Publishing a message involves having the message arrive at all endpoints that previously subscribed to that type of message.
 
@@ -105,7 +105,7 @@ In regular client-server development, the server provides the client with all CR
 A solution that avoids this problem separates commands and queries at the system level, even above that of client and server. In this solution there are two "services" that span both client and server: one in charge of commands (create, update, delete), and the other in charge of queries
 (read). These services communicate only via messages; one cannot access the database of the other, as shown in the following diagram:
 
-![Command Query Separation](https://particular.blob.core.windows.net/media/Default/images/CQS.png)
+![Command Query Separation](CQS.png)
 
 The command service publishes messages about changes to data, to which the query service subscribes. When the query service receives such notifications, it saves the data in its own data store which may well have a different schema (optimized for queries like a star schema). The query service may also keep all data in memory if the data is small enough.
 

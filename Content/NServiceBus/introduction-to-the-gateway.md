@@ -34,7 +34,7 @@ Internally in HQ, other business services may need more frequent updates, so mod
 
 The gateway doesn’t support pub/sub (more on that later) but this isn’t a problem since request/response is perfectly fine within a BS, remembering that those sites are physically different but the communication is within the same logical BS. So when you use the gateway, the guideline is to model the messages going explicitly across sites. If you extend the sample to include a sales service responsible for reporting the sales statistics so that the pricing service can set appropriate prices, you get the following picture:
 
-![Gateway Store and Headquarters example](https://particular.blob.core.windows.net/media/Default/images/store_to_headquarters_pricing_and_sales.png "Logical view")
+![Gateway Store and Headquarters example](store_to_headquarters_pricing_and_sales.png "Logical view")
 
 The prices are pushed daily to the stores and sales reports are pushed daily to the HQ. Any pub/sub goes on within the same physical site. This is the reason that the NServiceBus gateway doesn’t support pub/sub across sites since it shouldn’t be needed in a well designed system.
 
@@ -51,12 +51,25 @@ Beginning with NServiceBus V3, the gateway is included in the core assembly, mea
 To turn on the gateway, call Configure.RunGateway(). To send messages, use the new IBus interface called SendToSites method, as shown:
 
 <p>
-<script src="https://gist.github.com/Particular-gist/6327350.js?file=001_Introduction_to_the_Gateway.cs"></script>
+
+```C#
+/// <summary>
+/// Sends the messages to all sites with matching 
+/// site keys registered with the gateway.
+/// The gateway is assumed to be located at the master node. 
+/// </summary>
+/// <param name="siteKeys"></param>
+/// <param name="messages"></param>
+/// <returns></returns>
+ICallback SendToSites(IEnumerable<string> siteKeys, params object[] messages);
+```
+
+
 </p> This allows you to pass in a list of sites to where you want to send your messages. You can configure each site with a different transport mechanism. Currently the supported channels are HTTP/HTTPS but you can easily extend the gateway with your own implementation.
 
 On the receiving side is another gateway listening on the input channel and forwarding the incoming message to the target endpoint. The image below shows the physical parts involved:
 
-![](https://particular.blob.core.windows.net/media/Default/images/documentation/GatewayHeadquarterToSiteA.png "Physical view")
+![](GatewayHeadquarterToSiteA.png "Physical view")
 
 A gateway runs inside each host process. The gateway gets its input from a regular MSMQ queue and forwards the message over the desired channel
 (HTTP in this case) to the receiving gateway. The receiving side de-duplicates the message (ensures it is not a duplicated message, i.e., a message that was already sent) and forwards it to the main input queue of its local endpoint. The gateway has the following features:

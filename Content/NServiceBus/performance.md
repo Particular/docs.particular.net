@@ -48,7 +48,7 @@ The chart below compares the NServiceBus XML serializer and the WCF DataContract
 
 Times are measured for 100 operations, so NServiceBus can serialize a single message in 0.7-0.8 ms, and deserialize it in roughly 1ms. Larger messages take longer.
 
-![XML serialization performance comparison](https://particular.blob.core.windows.net/media/Default/images/XML%20serialization%20performance%20comparison.jpg)
+![XML serialization performance comparison](XML_serialization_performance_comparison.jpg)
 
 
 

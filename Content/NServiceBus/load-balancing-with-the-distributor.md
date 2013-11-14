@@ -84,7 +84,18 @@ When you [self host](hosting-nservicebus-in-your-own-process.md) your endpoint, 
 
 Following is an example of a Distributor with a Worker on its endpoint:
 
-<script src="https://gist.github.com/Particular/6060019.js?file=RunDistributor.cs"></script> To run the Distributor without a worker on its endpoint, replace
+
+```C#
+Configure.With()
+         .DefaultBuilder()
+         .AsMasterNode()
+         .RunDistributor()
+         // Other settings go here
+         .CreateBus()
+         .Start();
+```
+
+ To run the Distributor without a worker on its endpoint, replace
 .RunDistributor() with with .RunDistributorWithNoWorkerOnItsEndpoint().
 
 Worker Configuration
@@ -102,7 +113,20 @@ If you are hosting your endpoint with NServiceBus.Host.exe, to run as a worker, 
 Configure the name of the master node server as shown in this app.config example. Note the MasterNodeConfig section:
 
 
-<script src="https://gist.github.com/Particular/6060019.js?file=ConfigureDistributor.xml"></script> Read about the DistributorControlAddress and the DistributorDataAddress in the [Routing with the Distributor](load-balancing-with-the-distributor.md) section.
+
+```XML
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <!-- Other sections go here -->
+    <section name="MasterNodeConfig" type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Core" />
+  </configSections>
+  <!-- Other config options go here -->
+  <MasterNodeConfig Node="MachineWhereDistributorRuns"/>
+</configuration>
+```
+
+ Read about the DistributorControlAddress and the DistributorDataAddress in the [Routing with the Distributor](load-balancing-with-the-distributor.md) section.
 
 ### When self-hosting
 
@@ -110,7 +134,17 @@ When self hosting, call the EnlistWithDistributor() configuration extension meth
 
 Following is an example of configuration of a Worker node:
 
-<script src="https://gist.github.com/Particular/6060019.js?file=EnlistWithDistributor.cs"></script> Similar to self hosting, ensure the app.config of the worker contains the MasterNodeConfig section to point to the host name where the master node (and a distributor) are running.
+
+```C#
+Configure.With()
+         .DefaultBuilder()
+         .EnlistWithDistributor()
+         // Other settings go here
+         .CreateBus()
+         .Start();
+```
+
+ Similar to self hosting, ensure the app.config of the worker contains the MasterNodeConfig section to point to the host name where the master node (and a distributor) are running.
 
 Routing with the Distributor
 ----------------------------
@@ -119,7 +153,16 @@ The distributor uses two queues for its runtime operation. The DataInputQueue is
 
 To use values other than the NServiceBus defaults you can override them, as shown in the UnicastBusConfig section below:
 
-<script src="https://gist.github.com/Particular/6060019.js?file=OverrideDistributorQueues.xml"></script> If those settings do not exist, the control queue is assumed as the endpoint name of the worker, concatenated with the " distributor.control@HostWhereDistributorIsRunning" string.
+
+```XML
+<UnicastBusConfig DistributorControlAddress="distributorControlBus@Cluster1" DistributorDataAddress="distributorDataBus@Cluster1">
+  <MessageEndpointMappings>
+    <!-- regular entries -->
+  </MessageEndpointMappings>
+</UnicastBusConfig>
+```
+
+ If those settings do not exist, the control queue is assumed as the endpoint name of the worker, concatenated with the " distributor.control@HostWhereDistributorIsRunning" string.
 
 Similar to standard NServiceBus routing, you do not want high priority messages to get stuck behind lower priority messages, so just as you have separate NServiceBus processes for different message types, you also set up different distributor instances (with separate queues) for different message types.
 
@@ -128,8 +171,7 @@ In this case, name the queues just like the messages; for example, SubmitPurchas
 
 When using the distributor in a full publish/subscribe deployment, yousee is a distributor within each subscriber balancing the load of events being published, as follows:
 
-![logical pub/sub and physical distribution
-3](https://particular.blob.core.windows.net/media/Default/images/nservicebus_pubsub_3.png)
+![logical pub/sub and physical distribution 3](nservicebus_pubsub_3.png)
 
 Keep in mind that the distributor is designed for load balancing within a single site, so do not use it between sites. In the image above, all publishers and subscribers are within a single physical site. For information on using NServiceBus across multiple physical sites, see
 [the gateway](the-gateway-and-multi-site-distribution.md) .

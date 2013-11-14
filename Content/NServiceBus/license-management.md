@@ -44,11 +44,31 @@ As a developer you can specify the license in app.config:
 -   Use the key **NServiceBus/LicensePath** to specify the path where
     NServiceBus looks for your license. For example:
 
-<script src="https://gist.github.com/Particular/6091729.js?file=LicensePath.xml"></script>
+
+```XML
+<appSettings>
+  <add key="NServiceBus/LicensePath" value="C:\NServiceBus\License\License.xml" />
+</appSettings>
+```
+
+
 -   Use the key **NServiceBus/License** to transfer the actual
     HTML-encoded contents of your license. For example:
 
-<script src="https://gist.github.com/Particular/6091729.js?file=licenseContent.xml"></script>
+
+```XML
+<appSettings>
+  <add key="NServiceBus/License" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;
+license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;2013-11-30T00:00:00.0000000
+&quot; type=&quot;Standard&quot; LicenseType=&quot;Standard&quot; LicenseVersion=&quot;4.0
+&quot; MaxMessageThroughputPerSecond=&quot;Max&quot; WorkerThreads=&quot;Max
+&quot; AllowedNumberOfWorkerNodes=&quot;Max&quot;&gt;
+. . .
+&lt;/license&gt;" />  
+</appSettings>
+```
+
+
 
 
 <a id="fluent_api" name="fluent_api">Using the Fluent API</a>
@@ -59,11 +79,39 @@ As a developer you can specify the license to use in your configuration code:
 -   Configure.LicensePath(licensePath) uses the license at the specified
     path. For example,
 
-<script src="https://gist.github.com/Particular/6091729.js?file=ConfigureLicense.cs"></script>
+
+```C#
+class ConfigureLicense : IWantCustomInitialization
+{
+  public void Init()
+  {
+    NServiceBus.Configure.Instance
+      .LicensePath(@"C:\NServiceBus\License\license.xml");
+  }
+}
+```
+
+
 -   Configure.License(licenseText) uses the transferred license. For
     example, you could add the license file as an embedded resource in
     your assembly and provide its contents as shown below:
 
-<script src="https://gist.github.com/Particular/6091729.js?file=ConfigureLicenseUsingContent.cs"></script>
+
+```C#
+class ConfigureLicense : IWantCustomInitialization
+{
+   public void Init()
+   {
+     var licenseStream = Assembly.GetExecutingAssembly()
+       .GetManifestResourceStream("FullyQualifiedNamespace.license.xml");
+     using (StreamReader sr = new StreamReader(licenseStream))
+     {
+       NServiceBus.Configure.Instance.License(sr.ReadToEnd());
+     }
+   }
+}
+```
+
+
 
 

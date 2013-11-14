@@ -55,9 +55,23 @@ For example, 'EndpointConfig.cs' is used to configure the project endpoints, and
 
 To change the configuration to 'Client', open the 'EndpointConfig.cs' file that was just created for you and replace this line:
 
-<script src="https://gist.github.com/Particular/6083117.js?file=AsA_Server.cs"></script> with
 
-<script src="https://gist.github.com/Particular/6083117.js?file=AsA_Client.cs"></script> You will add more code to the 'Client' project later on but now we are going to concentrate on the area that will handle our order requests.
+```C#
+public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
+{
+}
+```
+
+ with
+
+
+```C#
+public class EndpointConfig : IConfigureThisEndpoint, AsA_Client
+{
+}
+```
+
+ You will add more code to the 'Client' project later on but now we are going to concentrate on the area that will handle our order requests.
 
 ### <a id="Message" name="Message"> </a> Creating the Messages Project
 
@@ -85,7 +99,19 @@ Implement the PlaceOrder command in 'PlaceOrder.cs'.
 
 Replace the content of 'PlaceOrder.cs' with the following code:
 
-<script src="https://gist.github.com/Particular/6083117.js?file=PlaceOrderCommand.cs"></script>
+
+```C#
+namespace Messages
+{
+  using NServiceBus;
+  public class PlaceOrder : ICommand
+  {
+    public string Product { get; set; }
+  }
+}
+```
+
+
 ### <a id="Server" name="Server"> </a> Creating the Server Project
 
 You are now ready to create the orders processing server, add a new project and name is 'Ordering.Server'.
@@ -109,12 +135,62 @@ Right click References in the 'Ordering.Server' Project -\> Add Reference -\> Or
 
 Replace the content of 'PlaceOrderHandler.cs' with the following code:
 
-<script src="https://gist.github.com/Particular/6083117.js?file=CommandHandler.cs"></script>
+
+```C#
+namespace Server
+{
+    using System;
+    using Messages;
+    using NServiceBus;
+    public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
+    {
+        public void Handle(PlaceOrder message)
+        {
+            Console.WriteLine(@"Order for Product:{0} placed", message.Product);
+        }
+    }
+}
+```
+
+
 ### <a id="Sending" name="Sending"> </a> Sending the order
 
 We nearly done, all it is left to do is to go back to the 'Client' project add a reference to the 'Ordering.Messages' project and copy and paste the following code into the 'Class1.cs' (if you want you can rename the file to 'SendOrder.cs') file:
 
-<script src="https://gist.github.com/Particular-gist/6964764.js?file=ClientBootstrap.cs"></script> NOTE: The code above is version 4.x, the 3.x interface
+
+```C#
+namespace Ordering.Client
+{
+    using System;
+    using Messages;
+    using NServiceBus;
+
+    public class SendOrder : IWantToRunWhenBusStartsAndStops
+    {
+        public IBus Bus { get; set; }
+
+        public void Start()
+        {
+            Console.WriteLine("Press 'Enter' to send a message.To exit, Ctrl + C");
+
+            while (Console.ReadLine() != null)
+            {
+                var id = Guid.NewGuid();
+
+                Bus.Send("Ordering.Server", new PlaceOrder() { Product = "New shoes", Id = Guid.NewGuid()});
+
+                Console.WriteLine("==========================================================================");
+                Console.WriteLine("Send a new PlaceOrder message with id: {0}", id.ToString("N"));
+            }
+        }
+        public void Stop()
+        {
+        }
+    }
+}
+```
+
+ NOTE: The code above is version 4.x, the 3.x interface
 'IWantToRunAtStartup' has been replaced with
 'IWantToRunWhenBusStartsAndStops'
 

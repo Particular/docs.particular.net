@@ -20,15 +20,15 @@ The sample covers only the sending of the asynchronous message as the send and b
 
  **NOTE**: In SendAndBlock, the web page renders synchronously. From the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is messaging asynchronously.
 
-![AsyncPages Asp.Net Mvc3 sample running](https://particular.blob.core.windows.net/media/Default/images/AsyncPagesMvc3SelectingBlockingMethod.png "AsyncPages Asp.Net Mvc3 sample running")
+![AsyncPages Asp.Net Mvc3 sample running](AsyncPagesMvc3SelectingBlockingMethod.png "AsyncPages Asp.Net Mvc3 sample running")
 
 Choosing SendAsync results in the following page:
 
-![AsyncPages Asp.Net Mvc3 sample running](https://particular.blob.core.windows.net/media/Default/images/AsyncPagesMvc3Running.png "AsyncPages Asp.Net Mvc3 sample running")
+![AsyncPages Asp.Net Mvc3 sample running](AsyncPagesMvc3Running.png "AsyncPages Asp.Net Mvc3 sample running")
 
 Changing the number in the text box from even to odd changes the result.
 
-![AsyncPages sample](https://particular.blob.core.windows.net/media/Default/images/asyncpages.png "AsyncPages sample")
+![AsyncPages sample](asyncpages.png "AsyncPages sample")
 
 Now, look at the code. This sample has three projects:
 

@@ -24,7 +24,19 @@ Any process that involves multiple network calls (or messages sent and received)
 
 Using NServiceBus, you can explicitly define the data used for this state by implementing the interface IContainSagaData. All public get/set properties are persisted by default:
 
-<script src="https://gist.github.com/Particular/6059775.js?file=MySagaData.cs"></script> By default, NServiceBus stores your sagas in RavenDB. The schema-less nature of document databases makes them a perfect fit for saga storage where each saga instance is persisted as a single document. There is also support for relational databases using
+
+```C#
+public class MySagaData : IContainSagaData
+{
+    // the following properties are mandatory
+    public Guid Id { get; set; }
+    public string Originator { get; set; }
+    public string OriginalMessageId { get; set; }
+    // all other properties you want persisted
+}
+```
+
+ By default, NServiceBus stores your sagas in RavenDB. The schema-less nature of document databases makes them a perfect fit for saga storage where each saga instance is persisted as a single document. There is also support for relational databases using
 [NHibernate](http://nhforge.org/) . NHibernate support is located in the NServiceBus.NHibernate assembly. You can, as always, swap out these technologies, by implementing the IPersistSagas interface.
 
 Adding behavior
@@ -34,17 +46,77 @@ The important part of a long-running process is its behavior. With NServiceBus, 
 
 Just like regular message handlers, the behavior of a saga is implemented via the IHandleMessages<m> interface for the message types to be handled. Here is a saga that processes messages of type Message1 and Message2:
 
-<script src="https://gist.github.com/Particular/6059775.js?file=MySaga.cs"></script> Starting and correlating sagas
+
+```C#
+public class MySaga : Saga<MySagaData>,
+                      IHandleMessages<Message1>,
+                      IHandleMessages<Message2>;
+{
+  public void Handle(Message1 message)
+  {
+    // code to handle Message1
+  }
+  
+  public void Handle(Message2 message)
+  {
+    // code to handle Message2
+  }
+}
+```
+
+ Starting and correlating sagas
 ------------------------------
 
 Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sometimes it's simply the arrival of a given message type. In our previous example, let's say that a new saga should be started every time a message of type Message1 arrives, like this:
 
-<script src="https://gist.github.com/Particular/6059775.js?file=MySaga2.cs"></script>
+
+```C#
+public class MySaga2 : Saga<MySagaData>,
+                      IAmStartedByMessages<Message1>,
+                      IHandleMessages<Message2>;
+{
+  public void Handle(Message1 message)
+  {
+    // code to handle Message1
+  }
+  
+  public void Handle(Message2 message)
+  {
+    // code to handle Message2
+  }
+}
+```
+
+
 **NOTE** : IHandleMessages<message1> is replaced with IAmStartedByMessages<message1>. This interface tells NServiceBus that the saga not only handles Message1, but that when that type of message arrives, a new instance of this saga should be created to handle it.
 
 How to correlate a Message2 message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. You only need to store this in the saga data, and tell NServiceBus about the connection. Here's how:
 
-<script src="https://gist.github.com/Particular/6059775.js?file=MySaga3.cs"></script> Underneath the covers, when Message2 arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type MySagaData that has a property SomeID whose value is the same as the SomeID property of the message.
+
+```C#
+public class MySaga3 : Saga<MySagaData>,
+                      IAmStartedByMessages<Message1>,
+                      IHandleMessages<Message2>
+{
+  public override void ConfigureHowToFindSaga()
+  {
+    ConfigureMapping<Message2>(s => s.SomeID, m => m.SomeID);
+  }
+  
+  public void Handle(Message1 message)
+  {
+    this.Data.SomeID = message.SomeID;
+    // rest of the code to handle Message1
+  }
+  
+  public void Handle(Message2 message)
+  {
+    // code to handle Message2
+  }
+}
+```
+
+ Underneath the covers, when Message2 arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type MySagaData that has a property SomeID whose value is the same as the SomeID property of the message.
 
 Uniqueness
 ----------
@@ -63,14 +135,76 @@ If you tried to use Bus.Reply() or Bus.Return() to communicate with the caller, 
 
 To communicate status in our ongoing example:
 
-<script src="https://gist.github.com/Particular/6059775.js?file=MySaga4.cs"></script> This is one of the methods on the saga base class that would be very difficult to implement yourself without tying your applicative saga code to low-level parts of the NServiceBus infrastructure.
+
+```C#
+public class MySaga4 : Saga<MySagaData>,
+                      IAmStartedByMessages<Message1>,
+                      IHandleMessages<Message2>
+{
+  public override void ConfigureHowToFindSaga()
+  {
+    ConfigureMapping<Message2>(s => s.SomeID, m => m.SomeID);
+  }
+  
+  public void Handle(Message1 message)
+  {
+    this.Data.SomeID = message.SomeID;
+    // rest of the code to handle Message1
+  }
+  
+  public void Handle(Message2 message)
+  {
+    // code to handle Message2
+    ReplyToOriginator(new AlmostDoneMessage { SomeID = message.SomeID });
+  }
+}
+```
+
+ This is one of the methods on the saga base class that would be very difficult to implement yourself without tying your applicative saga code to low-level parts of the NServiceBus infrastructure.
 
 Timeouts
 --------
 
 When working in a message-driven environment, you cannot make assumptions about when the next message will arrive. While the connectionless nature of messaging prevents our system from bleeding expensive resources while waiting, there is usually an upper limit on how long—from a business perspective—to wait. At that point, some business-specific action should be taken, as shown:
 
-<script src="https://gist.github.com/Particular/6059775.js?file=MySaga5.cs"></script> The RequestTimeout<t> method on the base class tells NServiceBus to send a message to what is called a Timeout Manager(TM) which durably keeps time for us. In NServiceBus, each endpoint hosts a TM by default, so there is no configuration needed to get this up and running.
+
+```C#
+public class MySaga5 : Saga<MySagaData>,
+                      IAmStartedByMessages<Message1>,
+                      IHandleMessages<Message2>,
+                      IHandleTimeouts<MyCustomTimeout>
+{
+  public override void ConfigureHowToFindSaga()
+  {
+    ConfigureMapping<Message2>(s => s.SomeID, m => m.SomeID);
+  }
+  
+  public void Handle(Message1 message)
+  {
+    this.Data.SomeID = message.SomeID;
+    RequestTimeout<MyCustomTimeout>(TimeSpan.FromHours(1));
+    // rest of the code to handle Message1
+  }
+  
+  public void Timeout(MyCustomTimeout state)
+  {
+    // some business action like:
+    if (!Data.Message2Arrived)
+    {
+      ReplyToOriginator(new TiredOfWaitingForMessage2());
+    }
+  }
+  
+  public void Handle(Message2 message)
+  {
+    // code to handle Message2
+    Data.Message2Arrived = true;
+    ReplyToOriginator(new AlmostDoneMessage { SomeID = message.SomeID });
+  }
+}
+```
+
+ The RequestTimeout<t> method on the base class tells NServiceBus to send a message to what is called a Timeout Manager(TM) which durably keeps time for us. In NServiceBus, each endpoint hosts a TM by default, so there is no configuration needed to get this up and running.
 
 When the time is up, the Timeout Manager sends a message back to the saga causing its Timeout method to be called with the same state message originally passed.
 
@@ -87,14 +221,38 @@ Complex saga finding logic
 
 Sometimes a saga handles certain message types without a single simple property that can be mapped to a specific saga instance. In those cases, you'll want finer-grained control of how to find a saga instance, as follows:
 
-<script src="https://gist.github.com/Particular/6059775.js?file=MySagaFinder.cs"></script> You can have as many of these classes as you want for a given saga or message type. If a saga can't be found, return null, and if the saga specifies that it is to be started for that message type, NServiceBus will know that a new saga instance is to be created.
+
+```C#
+public class MySagaFinder : IFindSagas<MySagaData>.Using<Message2>
+{
+  public MySagaData FindBy(Message2 message)
+  {
+    //your custom finding logic here
+  }
+}
+```
+
+ You can have as many of these classes as you want for a given saga or message type. If a saga can't be found, return null, and if the saga specifies that it is to be started for that message type, NServiceBus will know that a new saga instance is to be created.
 
 Sagas in self-hosted endpoints
 ------------------------------
 
 When [hosting NServiceBus in your own endpoint](hosting-nservicebus-in-your-own-process.md) , make sure to include .Sagas().RavenSagaPersister(), as follows:
 
-<script src="https://gist.github.com/Particular/6059775.js?file=EndpointConfig.cs.cs"></script> Sagas and automatic subscriptions
+
+```C#
+NServiceBus.Configure.With()
+                    .DefaultBuilder()
+                    .XmlSerializer()
+                    .MsmqTransport()
+                    .UnicastBus()
+                    .Sagas()
+                    .RavenSagaPersister()
+                    .CreateBus()
+                    .Start();  
+```
+
+ Sagas and automatic subscriptions
 ---------------------------------
 
 In NServiceBus V3.0 and onwards the autosubscription feature applies to sagas as well as your regular message handlers. This is a change compared to earlier versions of NServiceBus.

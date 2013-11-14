@@ -13,6 +13,23 @@ The
 
 Just define your implementation in an assembly referenced by all the endpoints:
 
-<script src="https://gist.github.com/Particular/6092089.js"></script>
+
+```C#
+public class UnobtrusiveConventions : IWantToRunBeforeConfiguration
+{
+    public void Init()
+    {
+        Configure.Instance
+            .DefiningCommandsAs(t => t.Namespace != null
+                && t.Namespace.StartsWith("MyCompany") 
+                && t.Namespace.EndsWith("Commands"))
+            .DefiningEventsAs(t => t.Namespace != null
+                && t.Namespace.StartsWith("MyCompany") 
+                && t.Namespace.EndsWith("Events"));
+    }
+}
+```
+
+
 
 

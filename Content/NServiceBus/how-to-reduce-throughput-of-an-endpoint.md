@@ -12,9 +12,27 @@ There are two ways to decrease receiving throughput of an endpoint:
 
 -   Edit the TransportConfig section in the endpoint config file:
 
-    <script src="https://gist.github.com/Particular/6059959.js?file=TransportConfig.xml"></script>
+    
+```XML
+<TransportConfig MaximumConcurrencyLevel="5" MaxRetries="2" MaximumMessageThroughputPerSecond="10"/>
+```
+
+
 -   Program the API:​
 
-    <script src="https://gist.github.com/Particular/6059959.js?file=ChangeThroughtput.cs"></script>
+    
+```C#
+public class ChangeThroughtput : IWantToRunWhenConfigurationIsComplete
+{
+    public UnicastBus Bus { get; set; }
+
+    public void Run()
+    {
+            Bus.Transport.ChangeMaximumThroughputPerSecond(10);
+    }
+}
+```
+
+
 
 

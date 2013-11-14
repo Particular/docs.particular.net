@@ -26,7 +26,7 @@ public interface IManageUnitsOfWork
     /// Called before all message handlers and modules.
     /// </summary>
     void Begin();
-
+ 
     /// <summary>
     /// Called after all message handlers and modules, if an error has occurred the exception will be passed.
     /// </summary>

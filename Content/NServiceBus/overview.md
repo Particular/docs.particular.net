@@ -15,7 +15,7 @@ This article discusses the similarities and differences between NServiceBus and 
 Closer to WCF than to BizTalk
 -----------------------------
 
-![BizTalk](https://particular.blob.core.windows.net/media/Default/images/BizTalk.jpg)
+![BizTalk](BizTalk.jpg)
 
 When people hear the term "service bus", they picture a central box through which all communication goes, like BizTalk. That's actually a description of the broker architectural style, not the bus architectural style. A bus isn't necessarily a physical entity. In this respect, NServiceBus is more similar to WCF than it is to BizTalk.
 
@@ -23,7 +23,7 @@ There is no physical WCF one can point to in the network topology. WCF is part o
 
 Just like you can write your own host process and activate WCF explicitly within it, you can do the same thing with NServiceBus. The bus in NServiceBus is something virtual—a collection of framework objects running in the various applicative processes. You can think of it as a peer-to-peer mesh that runs alongside your code, as illustrated in the following diagram:
 
-![deployment topology](https://particular.blob.core.windows.net/media/Default/images/deployment%20topology.jpg)
+![deployment topology](deployment_topology.jpg)
 
 What's the difference?
 ----------------------

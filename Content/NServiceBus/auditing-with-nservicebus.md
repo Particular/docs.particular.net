@@ -13,7 +13,18 @@ Configuring auditing
 
 To turn on auditing, add the attribute "ForwardReceivedMessagesTo" to the UnicastBusConfig section of an endpoint's configuration file, as shown:
 
-<script src="https://gist.github.com/Particular/6059919.js?file=UnicastBusConfig.xml"></script> This configuration causes all messages arriving at the given endpoint to be forwarded to the queue called "AuditQueue" on the machine called
+
+```XML
+<UnicastBusConfig 
+      ForwardReceivedMessagesTo="The address to which messages received will be forwarded."
+      TimeToBeReceivedOnForwardedMessages="The time to be received set on forwarded messages, specified as a timespan see http://msdn.microsoft.com/en-us/library/vstudio/se73z7b9.aspx">
+  <MessageEndpointMappings>
+    <!-- rest of your configuration here -->
+  </MessageEndpointMappings>
+</UnicastBusConfig>
+```
+
+ This configuration causes all messages arriving at the given endpoint to be forwarded to the queue called "AuditQueue" on the machine called
 "AdminMachine". You can specify any queue on any machine, though only one is supported. Of course, you can forward on from those machines as well.
 
 What you choose to do with those messages is now up to you: save them in a database, do custom logging, etc. The important thing is that you now have a centralized record of everything that is happening in your system while maintaining all the benefits of keep things distributed.

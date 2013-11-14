@@ -10,11 +10,11 @@ Stale endpoint naming issues may occur when you shut down and restart the server
 
 It is possible to turn off this server name change feature, using a tool installed on your server instance called EC2ConfigService Settings:
 
-![EC2 Config Settings](https://particular.blob.core.windows.net/media/Default/images/EC2ConfigSettings.png)
+![EC2 Config Settings](EC2ConfigSettings.png)
 
 In this tool, uncheck “Set Computer Name” in the General tab and click OK:
 
-![](https://particular.blob.core.windows.net/media/Default/images/EC2ServiceProperties.png)
+![](EC2ServiceProperties.png)
 
 Read more information on [troubleshooting this issue](http://christer.dk/post/NServiceBus-on-Amazon-EC2-voodoo.aspx).
 

@@ -27,11 +27,11 @@ To see how to send and receive attachments in NServiceBus, open the
     without utilizing the NServiceBus attachments mechanism. An
     exception is thrown at the "Sender" application as shown below:
 
-![Databus sample Running](https://particular.blob.core.windows.net/media/Default/images/DatabusRunning.png "Databus sample Running")
+![Databus sample Running](DatabusRunning.png "Databus sample Running")
 
 Let's look at the code.
 
-![Databus solution explorer view](https://particular.blob.core.windows.net/media/Default/images/DatabusSolutionExplorer.png "Databus solution explorer view")
+![Databus solution explorer view](DatabusSolutionExplorer.png "Databus solution explorer view")
 
 Code walk-through
 -----------------
@@ -50,9 +50,27 @@ This sample contains three projects:
 
 Let's look at the Receiver.Messages project, at the two defined messages. We start with the large one that is not utilizing the DataBus mechanism. The message is a simple byte array command:
 
-<script src="https://gist.github.com/Particular/6143649.js?file=DataBusPayload.cs"></script> The other message utilizes the DataBus mechanism:
 
-<script src="https://gist.github.com/Particular/6143649.js?file=PayloadWithTtr.cs"></script> DataBusProperty<byte[]> is an NServiceBus data type that instructs NServiceBus to treat the LargeBlob property as an attachment. It is not transported in the NServiceBus normal flow.
+```C#
+public class AnotherMessageWithLargePayload : ICommand
+{
+    public byte[]LargeBlob { get; set; }
+}
+```
+
+ The other message utilizes the DataBus mechanism:
+
+
+```C#
+[TimeToBeReceived("00:01:00")]
+public class MessageWithLargePayload : ICommand
+{
+    public string SomeProperty { get; set; }
+    public DataBusProperty<byte[]> LargeBlob { get; set; }
+}
+```
+
+ DataBusProperty<byte[]> is an NServiceBus data type that instructs NServiceBus to treat the LargeBlob property as an attachment. It is not transported in the NServiceBus normal flow.
 
 When sending a message using the NServiceBus Message attachments mechanism, the message's payload resides in the folder. In addition, a
 'signaling' message is sent to the Receiving endpoint.
@@ -61,24 +79,80 @@ The TimeToBeReceived attribute instructs the NServiceBus framework that it is al
 
 Following is an example of the signaling message that is sent to the receiving endpoint:
 
-<script src="https://gist.github.com/Particular/6143649.js?file=Messages.xml"></script>
+
+```XML
+<?xml version="1.0"?>
+<Messages xmlns:xsi="<a data-cke-saved-href="http://www.w3.org/2001/XMLSchema-instance" href="http://www.w3.org/2001/XMLSchema-instance" target="_blank">http://www.w3.org/2001/XMLSchema-instance</a>" 
+        xmlns:xsd="<a data-cke-saved-href="http://www.w3.org/2001/XMLSchema" href="http://www.w3.org/2001/XMLSchema" target="_blank">http://www.w3.org/2001/XMLSchema</a>" 
+        xmlns="http://tempuri.net/Receiver.Messages">
+  <MessageWithLargePayload>
+    <SomeProperty>This message contains a large blob that will be sent on the data bus</SomeProperty>
+    <LargeBlob>
+        <Key>2012-01-02_10\f83e3641-4588-4cb2-8c4f-4077342ed32e</Key>
+        <HasValue>true</HasValue>
+    </LargeBlob>
+  </MessageWithLargePayload>
+</Messages>
+```
+
+
 ### Sender project
 
 The Sender project shows how to configure NServiceBus to handle attachments, starting with the Sender project app.config:
 
-<script src="https://gist.github.com/Particular/6143649.js?file=MessageMapping.xml"></script> The sender instructs NServiceBus to send messages with Namespace equal to Receiver.Messages to the Receiver endpoint.
+
+```XML
+<MessageEndpointMappings>
+    <add Messages="Receiver.Messages" Endpoint="Receiver" />
+</MessageEndpointMappings>
+```
+
+ The sender instructs NServiceBus to send messages with Namespace equal to Receiver.Messages to the Receiver endpoint.
 
 Open EndpointConfig in the Sender project:
 
-<script src="https://gist.github.com/Particular/6143649.js?file=SenderEndpointConfig.cs"></script> This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment. The message payload is stored in the file system, in the Storage folder.
+
+```C#
+public class EndpointConfig : IConfigureThisEndpoint, AsA_Client, IWantCustomInitialization
+{
+    public static string BasePath = "..\\..\\..\\storage";
+    public void Init()
+    {
+    	Configure.With()
+	  .AutofacBuilder()
+          .FileShareDataBus(BasePath)
+          .UnicastBus();
+    }
+}
+
+```
+
+ This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment. The message payload is stored in the file system, in the Storage folder.
 
 <p> The following sender project code sends the MessageWithLargePayload message, utilizing the NServiceBus attachment mechanism:
 
-<script src="https://gist.github.com/Particular/6143649.js?file=DataBusSend.cs"></script>
+
+```C#
+bus.Send<MessageWithLargePayload>(m =>
+{
+    m.SomeProperty = "This message contains a large blob that will be sent on the data bus";
+    m.LargeBlob = new DataBusProperty<byte[]>(new byte[1024 * 1024 * 5]);//5MB
+});
+```
+
+
 </p>
 <p> The following Sender project code sends the AnotherMessageWithLargePayload message without utilizing the NServiceBus attachment mechanism:
 
-<script src="https://gist.github.com/Particular/6143649.js?file=DataBusSend2.cs"></script>
+
+```C#
+bus.Send<AnotherMessageWithLargePayload>(m =>
+{
+    m.LargeBlob = new byte[1024 * 1024 * 5];//5MB
+});
+```
+
+
 </p> In both cases, a 5MB message is sent, but in the MessageWithLargePayload it goes through, while AnotherMessageWithLargePayload fails.
 
 Go to the Receiver project to see the receiving application.
@@ -87,9 +161,36 @@ Go to the Receiver project to see the receiving application.
 
 The endpoint configuration code of Receiver is identical to that of the Sender. Open EndpointConfig in the Sender project:
 
-<script src="https://gist.github.com/Particular/6143649.js?file=DataBusReceiverEndpointConfig.cs"></script> Following is the receiving message handler:
 
-<script src="https://gist.github.com/Particular/6143649.js?file=MessageHandler.cs"></script> Next steps
+```C#
+public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization
+{
+    public static string BasePath = "..\\..\\..\\storage";
+    public void Init()
+    {
+    	Configure.With()
+    	  .NinjectBuilder()
+	  .FileShareDataBus(BasePath)
+	  .UnicastBus();
+    }
+}
+
+```
+
+ Following is the receiving message handler:
+
+
+```C#
+public class MessageWithLargePayloadHandler : IHandleMessages<MessageWithLargePayload>
+{
+    public void Handle(MessageWithLargePayload message)
+    {
+        Console.WriteLine("Message received, size of blob property: " + message.LargeBlob.Value.Length + " Bytes");
+    }
+}
+```
+
+ Next steps
 ----------
 
 If you are not familiar with [Unobtrusive messaging](unobtrusive-mode-messages.md) mode, read the documentation or see the [working sample](unobtrusive-sample.md) .

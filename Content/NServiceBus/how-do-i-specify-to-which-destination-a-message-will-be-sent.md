@@ -10,7 +10,23 @@ You configure the destination for message types in <unicastbusconfig>, under <me
 
 Add one of the following:
 
-<script src="https://gist.github.com/Particular/6106874.js?file=MessageMappings.xml"></script> For more information, see the [PubSub sample](https://github.com/NServiceBus/NServiceBus/tree/master/Samples/PubSub) config file.
+
+```XML
+ <UnicastBusConfig >
+    <MessageEndpointMappings>
+      <!--To register all message types defined in an assembly -->
+      <add Assembly="assembly" Endpoint="queue@machinename" />
+      
+      <!-- To register all message types defined in an assembly with a specific namespace (it does not include sub namespaces): -->
+      <add Assembly="assembly" Namespace="namespace" Endpoint="queue@machinename" />
+      
+      <!-- To register a specific type in an assembly: -->
+      <add Assembly="assembly" Type="type fullname (http://msdn.microsoft.com/en-us/library/system.type.fullname.aspx)" Endpoint="queue@machinename" />
+    </MessageEndpointMappings>
+  </UnicastBusConfig>
+```
+
+ For more information, see the [PubSub sample](https://github.com/NServiceBus/NServiceBus/tree/master/Samples/PubSub) config file.
 
 Destinations can be QueueName@ServerName, or just QueueName if the destination is the local machine.
 

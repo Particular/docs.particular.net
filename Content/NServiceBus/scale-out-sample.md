@@ -18,7 +18,7 @@ While running the sample for the first time, if you get a "queue not found" exce
 
 Find the sender application by looking for the one with "Orders.Sender" in its path. Click Enter in the window. Your screen should look like this:
 
-![Scale Out sample Running](https://particular.blob.core.windows.net/media/Default/images/scaleoutMasterandSenderRunning.png "Scale Out sample Running")
+![Scale Out sample Running](scaleoutMasterandSenderRunning.png "Scale Out sample Running")
 
 NOTE: Either the distributor or one of the workers could process the messages from the Orders.Sender endpoint
 
@@ -96,7 +96,27 @@ To scale out, you need another worker to handle PlaceOrder messages. Orders.Hand
     In Orders.Handler.dll.config add the MasterNodeConfig section and
     add the Distributor address in the UnicastBusConfig as shown:
 
-    <script src="https://gist.github.com/Particular/6117545.js?file=WorkerNodeConfig.xml"></script>
+    
+```XML
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <section name="MessageForwardingInCaseOfFaultConfig" type="NServiceBus.Config.MessageForwardingInCaseOfFaultConfig, NServiceBus.Core" />
+    <section name="MasterNodeConfig" type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Core" />
+    <section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
+  </configSections>
+
+  <MessageForwardingInCaseOfFaultConfig ErrorQueue="error"/>
+  <MasterNodeConfig Node="localhost"/>
+
+  <UnicastBusConfig
+    DistributorControlAddress="orders.handler.distributor.control@localhost"
+    DistributorDataAddress="orders.handler@localhost">
+  </UnicastBusConfig>
+</configuration>
+```
+
+
     </p>
     The Node in the MasterNodeConfig points to the host name where the
     MasterNode is running. If running the Worker from the same machine
@@ -130,9 +150,18 @@ Read about [profiles,](profiles-for-nservicebus-host.md) and
 
 Nothing has to be done to the Sender; NServiceBus does all the distribution work, leaving the sender agnostic to the fact that it is sending messages to a bunch of workers. As far as the sender is concerned, it sends the message to a single endpoint. It is configured to send a PlaceOrder command to the Orders.Handler endpoint. If the Distributor runs on a different machine than the Sender, then use the queue@machine notation.
 
-<script src="https://gist.github.com/Particular/6117545.js?file=MessageMapping.xml"></script> Once Orders.Handler is set up as a distributor and the Orders.Handler starts as a worker on another machine, the following diagram demonstrates the flow of messages and the queues that exist on both machines:
 
-![Scale out diagram with one worker on another machine](https://particular.blob.core.windows.net/media/Default/images/scaleoutDiagramOneWorker.png "Scale out diagram with one worker on another machine")
+```XML
+ <UnicastBusConfig>
+    <MessageEndpointMappings>
+      <add Messages="Orders.Messages" Endpoint="Orders.Handler" />
+    </MessageEndpointMappings>
+  </UnicastBusConfig>
+```
+
+ Once Orders.Handler is set up as a distributor and the Orders.Handler starts as a worker on another machine, the following diagram demonstrates the flow of messages and the queues that exist on both machines:
+
+![Scale out diagram with one worker on another machine](scaleoutDiagramOneWorker.png "Scale out diagram with one worker on another machine")
 
 What is going on here?
 ----------------------
@@ -151,7 +180,7 @@ Worker at work
 
 The following snapshot shows the Worker console window at work (the worker is running from a different machine than the Distributor).
 
-![The Worker console window while running on another machine than the distributor](https://particular.blob.core.windows.net/media/Default/images/scaleoutworkeronremotemachine.png "The Worker console window while running on another machine than the distributor")
+![The Worker console window while running on another machine than the distributor](scaleoutworkeronremotemachine.png "The Worker console window while running on another machine than the distributor")
 
 You can see from the Worker console window (above) that the worker receives the Process Order (order2) and replies with 'OK', processes the order, and publishes an Order Placed event.
 

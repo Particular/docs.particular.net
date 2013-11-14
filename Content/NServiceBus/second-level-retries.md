@@ -22,7 +22,16 @@ App.config
 
 To configure SLR, enable its configuration section:
 
-<script src="https://gist.github.com/Particular-gist/6208379.js?file=SlrConfig.xml"></script>
+
+```XML
+<configSections>
+  <section name="SecondLevelRetriesConfig" type="NServiceBus.Config.SecondLevelRetriesConfig, NServiceBus.Core"/>
+</configSections>
+
+<SecondLevelRetriesConfig Enabled="true" TimeIncrease ="00:00:10" NumberOfRetries="3" />
+```
+
+
   ----------------- --------------------------------------------------------------------------------
   Enabled           Turns the feature on and off. Default: true.
   TimeIncrease      A time span after which the time between retries increases. Default: 00:00:10.
@@ -35,11 +44,47 @@ Fluent configuration API
 <p> To disable the SLR feature, add this to your configuration (in Version
 4.0):
 
-<script src="https://gist.github.com/Particular-gist/6208379.js?file=DisableSlrV4.cs"></script>
+
+```C#
+namespace MyServerNoSLR
+{
+  using NServiceBus;
+  using NServiceBus.Features;
+
+  public class DisableSecondLevelRetries : INeedInitialization
+  {
+    public void Init()
+    {
+        // Using code we disable the second level retries.  
+        Configure.Features.Disable<SecondLevelRetries>();  
+    }
+  }
+}
+```
+
+
 </p>
 <p> In Version 3.0:
 
-<script src="https://gist.github.com/Particular-gist/6208379.js?file=DisableSlrV3.cs"></script>
+
+```C#
+namespace MyServerNoSLR
+{
+  using NServiceBus;
+  using NServiceBus.Config;
+
+  public class DisableSLR : INeedInitialization
+  {
+      public void Init()
+      {
+          // Using code we disable the second level retries.            
+          Configure.Instance.DisableSecondLevelRetries();
+      }
+  }
+}
+```
+
+
 </p> Code
 ----
 
@@ -62,6 +107,5 @@ When you run the sample, you should start them using Ctrl+F5 (start without debu
 
 Both endpoints execute the same code.
 
-![](https://particular.blob.core.windows.net/media/Default/images/slr1.png)
-![](https://particular.blob.core.windows.net/media/Default/images/slr2.png)
+![](slr1.png) ![](slr2.png)
 

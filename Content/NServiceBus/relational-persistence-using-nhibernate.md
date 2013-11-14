@@ -41,14 +41,40 @@ To store subscriptions using NHibernate, use this configuration:
 
 
 
-<script src="https://gist.github.com/Particular-gist/6341414.js?file=001RelationalPersistenceUsingNHibernate_338.cs"></script>
+
+```C#
+public class EndpointConfig : IConfigureThisEndpoint, AsA_Server,IWantCustomInitialization
+{
+    public void Init()
+    {
+        Configure.With()
+            .DefaultBuilder()
+            .DBSubcriptionStorage();
+    }
+}
+```
+
+
 </p> NServiceBus then picks up the connection setting from your app.config. Here is an example (using SqlLite):
 
 <p>
 
 
 
-<script src="https://gist.github.com/Particular-gist/6341414.js?file=002RelationalPersistenceUsingNHibernate_338.xml"></script>
+
+```XML
+<DBSubscriptionStorageConfig UpdateSchema="true">
+    <NHibernateProperties>
+      <add Key="connection.provider" Value="NHibernate.Connection.DriverConnectionProvider"/>
+      <add Key="connection.driver_class" Value="NHibernate.Driver.SQLite20Driver"/>
+      <add Key="connection.connection_string" Value="Data
+          Source=.\DBFileNameFromAppConfig.sqlite;Version=3;New=True;"/>
+      <add Key="dialect" Value="NHibernate.Dialect.SQLiteDialect"/>
+    </NHibernateProperties>
+  </DBSubscriptionStorageConfig>
+```
+
+
 </p> Read about the [available properties](http://nhforge.org/doc/nh/en/index.html#configuration-xmlconfig)
 .
 
@@ -61,14 +87,40 @@ To store sagas using NHibernate, use this configuration:
 
 
 
-<script src="https://gist.github.com/Particular-gist/6341414.js?file=003RelationalPersistenceUsingNHibernate_saga_338.cs"></script>
+
+```C#
+public class EndpointConfig : IConfigureThisEndpoint, AsA_Server,IWantCustomInitialization
+{
+    public void Init()
+    {
+        Configure.With()
+            .DefaultBuilder()
+            .NHibernateSagaPersister();
+    }
+}
+```
+
+
 </p> Example configuration:
 
 <p>
 
 
 
-<script src="https://gist.github.com/Particular-gist/6341414.js?file=004RelationalPersistenceUsingNHibernate_saga_338.xml"></script>
+
+```XML
+<NHibernateSagaPersisterConfig UpdateSchema="true">
+    <NHibernateProperties>
+      <add Key="connection.provider" Value="NHibernate.Connection.DriverConnectionProvider"/>
+      <add Key="connection.driver_class" Value="NHibernate.Driver.SQLite20Driver"/>
+      <add Key="connection.connection_string" 
+            Value="Data Source=.\DBFileNameFromAppConfig.sqlite;Version=3;New=True;"/>
+      <add Key="dialect" Value="NHibernate.Dialect.SQLiteDialect"/>
+    </NHibernateProperties>
+  </NHibernateSagaPersisterConfig>
+```
+
+
 </p> Timeouts
 --------
 
@@ -78,11 +130,37 @@ For the timeout manager to store timeouts using NHibernate, use this configurati
 
 
 
-<script src="https://gist.github.com/Particular-gist/6341414.js?file=005RelationalPersistenceUsingNHibernate_to_338.cs"></script>
+
+```C#
+public class EndpointConfig : IConfigureThisEndpoint, AsA_Server,IWantCustomInitialization
+{
+    public void Init()
+    {
+        Configure.With()
+            .DefaultBuilder()
+            .UseNHibernateTimeoutPersister();
+    }
+}
+```
 
 
 
-<script src="https://gist.github.com/Particular-gist/6341414.js?file=006RelationalPersistenceUsingNHibernate_to_338.xml"></script>
+
+
+
+```XML
+<TimeoutPersisterConfig UpdateSchema="true">
+    <NHibernateProperties>
+      <add Key="connection.provider" Value="NHibernate.Connection.DriverConnectionProvider"/>
+      <add Key="connection.driver_class" Value="NHibernate.Driver.Sql2008ClientDriver"/>
+      <add Key="connection.connection_string" 
+        Value="Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True"/>
+      <add Key="dialect" Value="NHibernate.Dialect.MsSql2008Dialect"/>
+    </NHibernateProperties>
+  </TimeoutPersisterConfig>
+```
+
+
 </p>
 
 

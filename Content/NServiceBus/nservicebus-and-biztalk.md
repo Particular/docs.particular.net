@@ -19,7 +19,7 @@ In many cases you need to integrate your code with existing systems and legacy a
 
 In these cases, between your high-level business services you can use NServicebus, and within the relevant services, behind the service boundary, you can use BizTalk to perform the integration with your existing systems and legacy applications. Here's how it looks:
 
-![How NServiceBus and BizTalk fit together in an architecture](https://particular.blob.core.windows.net/media/Default/images/NServiceBus_biztalk.png "How NServiceBus and BizTalk fit together in an architecture")
+![How NServiceBus and BizTalk fit together in an architecture](NServiceBus_biztalk.png "How NServiceBus and BizTalk fit together in an architecture")
 
 As you can see, the use of BizTalk behind a service boundary is something of an implementation/integration detail. By keeping the scope of the problem domain small, using BizTalk for a small orchestration to synchronize customer information between Oracle PeopleSoft and SalesForce won't run into either performance or maintainability problems.
 

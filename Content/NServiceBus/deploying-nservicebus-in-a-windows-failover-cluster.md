@@ -76,7 +76,7 @@ Set up a MSMQ Cluster Group. Cluster group is a group of resources that have a u
 -   In Windows 2012, you would create a “cluster role”
 
 For more information, see
-[http://technet.microsoft.com/<wbr></wbr>en-us/library/cc753575(v=ws.<wbr></wbr>10).aspx](http://technet.microsoft.com/en-us/library/cc753575(v=ws.10).aspx)
+[http://technet.microsoft.com/<wbr>en-us/library/cc753575(v=ws.<wbr>10).aspx](http://technet.microsoft.com/en-us/library/cc753575(v=ws.10).aspx)
 
 For NServiceBus endpoint destination, we address the queues by the MSMQ cluster group's name, where we will later add all the rest of our clustered resources. In non-cluster terms, we typically add the machine name to address the queue, i.e. queue@MachineName. In cluster terms we address it by queue@MSMQ Network name.
 
@@ -103,7 +103,7 @@ More about MSMQ Network Name
 
 The “cluster name” is a Network Name created for the cluster as part of the core Cluster Group – a group created by default for each cluster. The core cluster group is different than the MSMQ cluster group and it has a Different network name. One of the most common confusions while using MSMQ on a cluster is using the Cluster Name in the client instead of the MSMQ Network Name.
 
-![](https://particular.blob.core.windows.net/media/Default/images/documentation/FailoverClusterMgmt.png "(Picture taken from http://blogs.technet.com/b/askcore/archive/2009/02/18/how-to-configure-multiple-instances-of-distributed-transaction-coordinator-dtc-on-a-windows-server-failover-cluster-2008.aspx")
+![](FailoverClusterMgmt.png "(Picture taken from http://blogs.technet.com/b/askcore/archive/2009/02/18/how-to-configure-multiple-instances-of-distributed-transaction-coordinator-dtc-on-a-windows-server-failover-cluster-2008.aspx")
 
 In this picture:
 
@@ -116,7 +116,7 @@ In this picture:
     to right click “Name: MSMQ-1” and select “Properties”. You will see
     something like (Note – this was taken from another resource):
 
-![](https://particular.blob.core.windows.net/media/Default/images/documentation/ClusterProperties.png "Cluster Properties")
+![](ClusterProperties.png "Cluster Properties")
 
 NOTE: Under “DNS Name” you will find the MSMQ DNS Name, which may or may not be “MSMQ-1”.
 
@@ -137,7 +137,19 @@ Using this naming convention, all of your applications’ queues are grouped tog
 
 Install each distributor from the command line:
 
-<script src="https://gist.github.com/Particular/6160816.js?file=InstallingDistributor.cs"></script> It’s easier to set the service name, display name, and description to be the same. It helps when trying to start and stop things from a NET START/STOP command and when viewing them in the multiple graphical tools. Starting each one with Distributor puts them all together alphabetically in the Services MMC snap-in.
+
+```C#
+NServiceBus.Host.exe
+/install
+/serviceName:Distributor.ProjectName.QueueName
+/displayName:Distributor.ProjectName.QueueName
+/description:Distributor.ProjectName.QueueName
+/userName:DOMAIN\us
+/password:thepassword
+NServiceBus.Production NServiceBus.Distributor
+```
+
+ It’s easier to set the service name, display name, and description to be the same. It helps when trying to start and stop things from a NET START/STOP command and when viewing them in the multiple graphical tools. Starting each one with Distributor puts them all together alphabetically in the Services MMC snap-in.
 
 Don’t forget the “NServiceBus.Production” at the end, which sets the profile for the NServiceBus generic host, as described in the [Generic Host page](the-nservicebus-host.md) and the "NServiceBus.Distributor" which sets up the host in distributor mode.
 
@@ -183,7 +195,30 @@ With your distributors running in the cluster and your worker processes coming o
 
 While in development, your endpoint configurations probably don’t have any @ symbols in them, in production you have to change all of them to point to the Data Bus queue on the cluster, i.e., for application MyApp and logical queue MyQueue, your worker config looks like this:
 
-<script src="https://gist.github.com/Particular/6160816.js?file=workerConfig.xml"></script> Conclusion
+
+```XML
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <!-- Other sections go here -->
+    <section name="MasterNodeConfig" type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Core" />
+    <section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
+  </configSections>
+  <!-- Other config options go here -->
+  <MasterNodeConfig Node="MachineWhereDistributorRuns"/>
+
+  <UnicastBusConfig DistributorControlAddress="distributorControlBus@MsmqNetworkName" 
+                    DistributorDataAddress="distributorDataBus@MsmqNetworkName">
+    <MessageEndpointMappings>
+      <!-- regular entries -->
+    </MessageEndpointMappings>
+  </UnicastBusConfig>
+
+</configuration>
+
+```
+
+ Conclusion
 ----------
 
 This article shows how to set up a Windows Failover Cluster and two worker node servers to run a scalable, maintainable, and reliable NServiceBus application infrastructure.

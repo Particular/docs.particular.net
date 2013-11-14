@@ -22,7 +22,7 @@ Another option is to open the NuGet Package Manager Console and type:
 
 To run and debug your endpoint, change the Debug settings of the Visual Studio project by right-clicking it, selecting Properties, and then the Debug tab, as shown:
 
-![Debug settings](https://particular.blob.core.windows.net/media/Default/images/reference_host.png)
+![Debug settings](reference_host.png)
 
 Make sure that 'Start external program' is selected under Start Action and choose the file 'NServiceBus.Host.exe' in the /bin/debug directory of your project. The settings are stored per user. To set them up for all your developers, follow the instructions in this video.
 
@@ -57,7 +57,17 @@ Shortcut the scanning process by telling the host which type to use by including
 <span style="font-family:courier new,courier,monospace;">IConfigureThisEndpoint</span>
 , like this:
 
-<script src="https://gist.github.com/Particular-gist/6496240.js?file=001_the_host.xml"></script> File scanning
+
+```XML
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <add key="EndpointConfigurationType" value="YourNamespace.YourTypeName, YourAssembly"/>
+  </appSettings>
+</configuration>
+```
+
+ File scanning
 -------------
 
 By default, NServiceBus scans files to find types implementing its interfaces so that it can configure them automatically. This is separate from the host's file scanning behavior and happens in the '
@@ -68,7 +78,14 @@ To tell NServiceBus which assemblies to use, set the container by implementing
 <span style="font-family:courier new,courier,monospace;">IWantCustomInitialization
 </span> as described in the Container section below. In the Init method you can use the appropriate method overload:
 
-<script src="https://gist.github.com/Particular-gist/6496240.js?file=002_the_host.cs"></script>
+
+```C#
+Configure.With(string probeDirectory)
+Configure.With(params Assembly[] assemblies)
+Configure.With(IEnumerable<Type> typesToScan)  
+```
+
+
 **NOTE** : The NServiceBus assemblies are always included in scanning since NServiceBus needs them to function properly.
 
 Logging
@@ -79,7 +96,19 @@ To change the host's logging infrastructure, implement the
 </span> interface. In the Init method, configure your custom setup. To make NServiceBus use your logger, use the
 <span style="font-family:courier new,courier,monospace;">NServiceBus.SetLoggingLibrary.Log4Net()</span> API, described in the [logging documentation](logging-in-nservicebus.md) and shown below:
 
-<script src="https://gist.github.com/Particular-gist/6496240.js?file=003_the_host.cs"></script> You may want to specify different logging levels (DEBUG, WARN, etc.) and possibly different targets (CONSOLE, FILE, etc.). The host provides a mechanism for changing these permutations with no code or config changes, via [profiles](profiles-for-nservicebus-host.md) .
+
+```C#
+    class MyEndpointConfig : IConfigureThisEndpoint, IWantCustomLogging
+    {
+        public void Init()
+        {
+            // setup your logging infrastructure then call
+            NServiceBus.SetLoggingLibrary.Log4Net(null, yourLogger);
+        }
+    }
+```
+
+ You may want to specify different logging levels (DEBUG, WARN, etc.) and possibly different targets (CONSOLE, FILE, etc.). The host provides a mechanism for changing these permutations with no code or config changes, via [profiles](profiles-for-nservicebus-host.md) .
 
 Custom initialization and startup
 ---------------------------------
@@ -96,7 +125,12 @@ From files scanned above, the host looks for classes that implement
 </span>on the endpoint configuration class (the same class that implements
 <span style="font-family:courier new,courier,monospace;">IConfigureThisEndpoint</span>). You must start the configuration expression 'With'
 
-<script src="https://gist.github.com/Particular-gist/6496240.js?file=004_the_host.cs"></script> NOTE: Do not perform any startup behaviors in the Init method.
+
+```C#
+Configure.With()
+```
+
+ NOTE: Do not perform any startup behaviors in the Init method.
 
 Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the
 <span style="font-family:courier new,courier,monospace;">IWantToRunWhenBusStartsAndStops
@@ -121,8 +155,37 @@ By default, the host makes use of Autofac internally as its container
 <span style="font-family:courier new,courier,monospace;">IConfigureThisEndpoint
 </span>and [provide NServiceBus with an adapter object for your container](containers.md) . Here is an example of setting Castle Windsor as the container of choice:
 
-<script src="https://gist.github.com/Particular-gist/6496240.js?file=005_the_host.cs"></script>
-<script src="https://gist.github.com/Particular-gist/6496240.js?file=006_the_host.cs"></script> If you omit the serialization configuration, XML is used by default. The rest of the code specifying transport, subscription storage, and other technologies isn't here, because of the
+
+```C#
+    // NSeviceBus v3.x
+    class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization
+    {
+        public void Init()
+        {
+            NServiceBus.Configure.With()
+            .CastleWindsorBuilder()
+            .XmlSerializer(); // or BinarySerializer()
+        }
+    }
+```
+
+
+
+```C#
+    // NSeviceBus v4.x 
+ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization
+    {        
+	    public void Init()
+	    {
+	        Configure.Serialization.Xml();// or BinarySerializer()
+
+	        Configure.With()
+	            .CastleWindsorBuilder();
+	    }
+    }
+```
+
+ If you omit the serialization configuration, XML is used by default. The rest of the code specifying transport, subscription storage, and other technologies isn't here, because of the
 <span style="font-family:courier new,courier,monospace;">AsAServer
 </span>built-in configuration described next.
 
@@ -161,9 +224,34 @@ To install your process as a Windows Service, you need to pass /install on the c
 
 To override this and specify additional details for installation:
 
-<script src="https://gist.github.com/Particular-gist/6496240.js?file=007_the_host.bat"></script> You can get to this list by running the following at the command line:
 
-<script src="https://gist.github.com/Particular-gist/6496240.js?file=008_the_host.bat"></script> To set the actual name of the Windows Services in the registry, specify/serviceName:YourServiceName. This is different from what you see in the Windows Service Manager.
+```Batchfile
+USAGE:
+NServiceBus.Host.exe [/install [/serviceName]
+[/displayName]
+[/description]
+[/endpointConfigurationType]
+[/endpointName]
+[/installInfrastructure]
+[/scannedAssemblies]
+[/dependsOn]
+[/sideBySide]
+[/startManually]
+[/username]
+[/password]]
+[/uninstall [/serviceName]
+[/sidebyside]
+[/instance:Instance Name ] 
+```
+
+ You can get to this list by running the following at the command line:
+
+
+```Batchfile
+> NServiceBus.Host.exe /?
+```
+
+ To set the actual name of the Windows Services in the registry, specify/serviceName:YourServiceName. This is different from what you see in the Windows Service Manager.
 
 To set the name of the Windows Service as you see it in the Windows Service Manager, specify /displayName:YourService.
 
@@ -184,12 +272,35 @@ To specify under which account you want your service to run, pass in the usernam
 Following is an example of the
 <span style="font-family:courier new,courier,monospace;">/install</span> command line:
 
-<script src="https://gist.github.com/Particular-gist/6496240.js?file=009_the_host.bat"></script>
+
+```Batchfile
+NServiceBus.Host.exe /install /serviceName:"MyPublisher" 
+/displayName:"My Publisher Service"
+/description:"Service for publishing event messages"
+/endpointConfigurationType:"YourNameSpace.YourEndpointConfigType, YourAssembly"
+/username:"corp\serviceuser"
+/password:"p@ssw0rd!" NServiceBus.Production
+```
+
+
 <p> To uninstall, call
 
-<script src="https://gist.github.com/Particular-gist/6496240.js?file=011_the_host.bat"></script> If you specify a service name or instance name when installing your service, you need to pass them in to the uninstall command as well:
+
+```Batchfile
+NServiceBus.Host.exe /uninstall
+```
+
+ If you specify a service name or instance name when installing your service, you need to pass them in to the uninstall command as well:
 
 </p>
-<script src="https://gist.github.com/Particular-gist/6496240.js?file=010_the_host.bat"></script> To invoke the infrastructure installers, run the host with the
+
+```Batchfile
+> NServiceBus.Host.exe [/uninstall  [/serviceName] [/instance]]
+
+-- For example: 
+> NServiceBus.Host.exe /uninstall /serviceName:YourServiceName /instance:YourInstanceName
+```
+
+ To invoke the infrastructure installers, run the host with the
 /installInfrastructure switch. [Learn about installers.](articles/nservicebus-installers)
 

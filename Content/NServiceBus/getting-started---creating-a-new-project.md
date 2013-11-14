@@ -80,7 +80,19 @@ Now, right click Commands, select Add, and name it SubmitOrder. Several things h
 
 To open the class file, double click the SubmitOrder command:
 
-<script src="https://gist.github.com/Particular-gist/6424006.js?file=001_Studio_v1.cs"></script>
+
+```C#
+using System;
+
+namespace Amazon.InternalMessages.Sales
+{
+    public class SubmitOrder
+    {
+    }
+}
+```
+
+
 
 You can add all sorts of properties to your message: strings, integers, arrays, dictionaries, etc. Just make sure to provide both get and set.
 
@@ -105,19 +117,76 @@ If you try to build your solution at this point, you will get an error telling y
     the SubmitOrderSender but you'll notice that it is a partial class:
 
 
-<script src="https://gist.github.com/Particular-gist/6424006.js?file=002_Studio_v1.cs"></script>
+
+```C#
+using System;
+using NServiceBus;
+using Amazon.InternalMessages.Sales;
+
+namespace Amazon.ECommerce.Components.Sales
+{
+    public partial class SubmitOrderSender
+    {
+    }
+}
+```
+
+
 
 Navigate to the rest of the definition by selecting its name and clicking F12. You should see this:
 
 
-<script src="https://gist.github.com/Particular-gist/6424006.js?file=003_Studio_v1.cs"></script>
+
+```C#
+using System;
+using NServiceBus;
+using NServiceBus.Config;
+using Amazon.InternalMessages.Sales;
+
+namespace Amazon.ECommerce.Components.Sales
+{
+    public partial class SubmitOrderSender : ISubmitOrderSender, Amazon.ECommerce.Infrastructure.INServiceBusComponent
+    {
+        public void Send(SubmitOrder message)
+        {
+            Bus.Send(message);
+        }
+        public IBus Bus { get; set; }
+    }
+    public interface ISubmitOrderSender
+    {
+        void Send(SubmitOrder message);
+    }
+}
+```
+
+
 
 This component comes with an interface you can inject into your own MVC controllers, and implements the INServiceBusComponent interface so that NServiceBus knows to register it into the container for you automatically. The first empty partial class is for you to add any additional behavior; for example, logic that transforms your model objects into messages.
 
 Now double click the SubmitOrderProcessor:
 
 
-<script src="https://gist.github.com/Particular-gist/6424006.js?file=004_Studio_v1.cs"></script>
+
+```C#
+using System;
+using NServiceBus;
+using Amazon.InternalMessages.Sales;
+
+namespace Amazon.OrderProcessing.Sales
+{
+    public partial class SubmitOrderProcessor
+    {
+        partial void HandleImplementation(SubmitOrder message)
+        {
+            //    Implement your handler logic here.
+            Console.WriteLine("Sales received " + message.GetType().Name);
+        }
+    }
+}
+```
+
+
 
 Once again, there isn't much here, so add your logic. You can also click F12 on the class to see its counterpart, but there isn't much to see there either; just a class that implements IHandleMessages<submitorder> and has a reference to IBus that you can use to send out other messages, publish events, or reply with.
 
@@ -135,7 +204,36 @@ The last thing to do is make the ECommerce website send a message.
 Find the HomeController in the Controllers folder in the Amazon.ECommerce project, add a property of the ISubmitOrderSender type, and invoke its Send method, like this:
 
 
-<script src="https://gist.github.com/Particular-gist/6424006.js?file=005_Studio_v1.cs"></script>
+
+```C#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using Amazon.ECommerce.Components.Sales;
+using Amazon.InternalMessages.Sales;
+
+namespace Amazon.ECommerce.Controllers
+{
+    public class HomeController : Controller
+    {
+        public ISubmitOrderSender SubmitOrderSender { get; set; }
+        public ActionResult Index()
+        {
+            ViewBag.Message = "Welcome to ASP.NET MVC!";
+            return View();
+        }
+        public ActionResult About()
+        {
+            SubmitOrderSender.Send(new SubmitOrder());
+            return View();
+        }
+    }
+}
+```
+
+
 
 Continue with "Run the code", below.
 
@@ -143,7 +241,12 @@ Continue with "Run the code", below.
 
 For regular ASP.NET, open Default.aspx and drag a button from the toolbox onto the page (make sure the page is in "Design" view). Double click the button you just dragged, which opens the code-behind button-click handling method. In that method, type this:
 
-<script src="https://gist.github.com/Particular-gist/6424006.js?file=006_Studio_v1.cs"></script>
+
+```C#
+Global.Bus.Send(new SubmitOrder());
+```
+
+
 ### Run the code
 
 Click F5. You should see something like the image below: a new tab in your browser and a console application. If you click "About" in the UI a couple of times, you can see the console application getting a message each time.

@@ -15,7 +15,7 @@ Same for plain MSMQ
 
 Whether you're looking at the MSMQ bindings for WCF or programming directly against MSMQ, in both cases you have to handle pub/sub and the transaction and exception management needed for full fault tolerance. You also have to handle long-running processes with MSMQ. Here's what one CIO remarked:
 
-![Karell Ste-Marie, CIO of BrainBank Inc](https://particular.blob.core.windows.net/media/Default/images/karell_Ste_Marie.jpg "Karell Ste-Marie, CIO of BrainBank Inc")
+![Karell Ste-Marie, CIO of BrainBank Inc](karell_Ste_Marie.jpg "Karell Ste-Marie, CIO of BrainBank Inc")
 
 
 "I have to say this: NServiceBus is an incredible product, I only wish there was a bit more documentation on it – we see it being used in so many places in our own software (not just queued processing, which is what we are trying to quickly patch right now) and is taking us in new directions. We were working on a WCF approach for 45 days until we threw it away and replaced it all with NServiceBus and got it working @ 99.99% in 7 business days.

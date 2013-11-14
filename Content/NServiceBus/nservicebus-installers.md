@@ -134,5 +134,16 @@ When using the NServiceBus host, installers are invoked as shown:
 
 When self hosting NServiceBus, invoke the installers manually, using this:
 
-<script src="https://gist.github.com/Particular/6107912.js?file=CustomInstall.cs"></script> NOTE: The use of /installInfrastructure flag with the NServiceBus.Host has been deprecated in version 4.0. To install needed infrastructure, use the [PowerShell commandlets](managing-nservicebus-using-powershell.md) instead.
+
+```C#
+Bus = NServiceBus.Configure.With()
+  .DefaultBuilder()
+  .UseTransport<Msmq>()
+      .PurgeOnStartup(false)
+  .UnicastBus()
+  .CreateBus()
+  .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+```
+
+ NOTE: The use of /installInfrastructure flag with the NServiceBus.Host has been deprecated in version 4.0. To install needed infrastructure, use the [PowerShell commandlets](managing-nservicebus-using-powershell.md) instead.
 

@@ -10,13 +10,13 @@ To see how to use NServiceBus in a WebForms application, open the AsyncPages sam
 
 Enter the number "1" into the text box in the browser, and click "Go". You should see the result "None" appear, as shown:
 
-![AsyncPages sample running](https://particular.blob.core.windows.net/media/Default/images/asyncpages_running.png "AsyncPages sample running")
+![AsyncPages sample running](asyncpages_running.png "AsyncPages sample running")
 
 Changing the number in the text box from even to odd numbers changes the result.
 
 The web page renders synchronously; from the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is doing asynchronous messaging.
 
-![AsyncPages sample](https://particular.blob.core.windows.net/media/Default/images/asyncpages.png "AsyncPages sample")
+![AsyncPages sample](asyncpages.png "AsyncPages sample")
 
 This sample has three projects: Messages, Server, and WebApplication1. WebApplication1 is a web application that sends messages (found in the Messages project) to the Server project, which is hosted as a console application.
 

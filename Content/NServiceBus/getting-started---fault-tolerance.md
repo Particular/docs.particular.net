@@ -25,7 +25,7 @@ In [the previous section](getting-started---creating-a-new-project.md) you've se
 4.  Now, leaving the web application running, go back to Visual Studio
     and open Server Explorer. You should see this:
 
-![Server Explorer](https://particular.blob.core.windows.net/media/Default/images/GettingStarted8.jpg)
+![Server Explorer](GettingStarted8.jpg)
 
 All the messages sent to the OrderProcessing endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties—specifically BodyStream, where the data is.
 
@@ -38,8 +38,7 @@ Consider scenarios where the processing of a message fails. This could be due to
 
 If the problem is something more protracted, like a third party web service going down or a database being unavailable, it makes sense to try again some time later. This is called the " [second level retries](second-level-retries.md) " functionality of NServiceBus. Configure its behavior by selecting the OrderProcessing endpoint in Solution Builder and opening its properties (F4). 
 
- ![Endpoint properties](https://particular.blob.core.windows.net/media/Default/images/GettingStarted8.5.jpg)
-
+ ![Endpoint properties](GettingStarted8.5.jpg) 
 
 You will get to the Error Queue and other General properties later. For now, focus on the SecondLevelRetriesConfig section.
 
@@ -55,11 +54,30 @@ You will get to the Error Queue and other General properties later. For now, foc
 So, make the processing of messages in OrderProcessing fail. Throw an exception in the SubmitOrderProcessor code like this:
 
 <p>
-<script src="https://gist.github.com/Particular-gist/6327014.js?file=001FaultTolerance.cs"></script>
+
+```C#
+using System;
+using NServiceBus;
+using Amazon.InternalMessages.Sales;
+
+namespace Amazon.OrderProcessing.Sales
+{
+    public partial class SubmitOrderProcessor
+    {
+        partial void HandleImplementation(SubmitOrder message)
+        {
+            Console.WriteLine("Sales received " + message.GetType().Name);
+            
+            throw new Exception("Uh oh - a bug.");
+        }
+    }
+}
+```
+
+
 </p> Run your solution again, but this time use Ctrl-F5 so that Visual Studio does not break each time the exception is thrown, sending a message from the ECommerce app by clicking About. You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
 
-![Retries](https://particular.blob.core.windows.net/media/Default/images/GettingStarted9.png)
-
+![Retries](GettingStarted9.png) 
 
 While the endpoint can now continue processing other incoming messages
 (which will also fail in this case as the exception is thrown for all cases), the failed message has been diverted and is being held in one of the NServiceBus internal databases.
@@ -77,7 +95,7 @@ Since administrators must monitor these error queues, it is recommended that all
 
 
 
- ![System level queue configuration](https://particular.blob.core.windows.net/media/Default/images/GettingStarted10.png)
+ ![System level queue configuration](GettingStarted10.png)
 
 **NOTE** : If you specify an error queue for a specific endpoint, it won't change when you change the top level error queue. Changing the
 

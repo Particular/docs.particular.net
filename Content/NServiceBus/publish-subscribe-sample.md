@@ -7,7 +7,7 @@ summary: "<p> Open the solution in Visual Studio. You should see the picture on 
 "
 -->
 
-![pubsub solution](https://particular.blob.core.windows.net/media/Default/images/pub_sub_solution.png) Open the solution in Visual Studio. You should see the picture on the left.
+![pubsub solution](pub_sub_solution.png) Open the solution in Visual Studio. You should see the picture on the left.
 
 Before running the
 [sample](https://github.com/NServiceBus/NServiceBus/tree/master/Samples/PubSub), look over the solution structure, the projects, and the classes. The projects "MyPublisher", "Subscriber1", and "Subscriber2" are their own processes, even though they look like regular class libraries.
@@ -31,7 +31,7 @@ Run the code and see the three console applications open.
 
 Identify the "MyPublisher" process by its window title, as shown:
 
-![pubsub sample running](https://particular.blob.core.windows.net/media/Default/images/pubsub_nservicebus_running.png "pubsub sample running")
+![pubsub sample running](pubsub_nservicebus_running.png "pubsub sample running")
 
 Spread out the various console windows so that you can see all three fully.
 
@@ -46,7 +46,7 @@ Pick one of the subscriber processes (say, Subscriber1) and close it. Now go bac
 
 
 
- ![rerun subscriber](https://particular.blob.core.windows.net/media/Default/images/pubsub_nservicebus_rerun_subscriber.png "rerun subscriber")
+ ![rerun subscriber](pubsub_nservicebus_rerun_subscriber.png "rerun subscriber")
 
 See how the subscriber processes all the messages that were sent by the
 "MyPublisher" process while it was down. This is how you can be sure that even when processes or machines restart, NServiceBus ensures that your messages don't get lost.

@@ -17,7 +17,7 @@ Standard container usage
 
 When hosting NServiceBus in your own process, you will see the following:
 
-![SpringBuilder configuration](https://particular.blob.core.windows.net/media/Default/images/SpringBuilder%20configuration.jpg)
+![SpringBuilder configuration](SpringBuilder_configuration.jpg)
 
 When using the <span style="background-color:Yellow;">generic host</span>, AutofacObjectBuilder is configured by default.
 
@@ -26,7 +26,7 @@ Other containers available
 
 In the binary distribution of NServiceBus, you can find adapters to the other containers available under /binaries/containers. There is a directory for each one: autofac, castle, ninject, spring, structuremap, and unity. Each directory contains an assembly for the adapter that connects it to NServiceBus. This assembly is called NServiceBus.ObjectBuilder.SpecificContainerName.dll. If you want to use one of these containers, add a reference to the relevant adapter assembly for the specific container.
 
-![Container references](https://particular.blob.core.windows.net/media/Default/images/Container%20references.jpg)
+![Container references](Container_references.jpg)
 
 Using a different container
 ---------------------------
@@ -39,7 +39,7 @@ While it is unlikely that a single team will want to use multiple containers wit
 
 After all the necessary references have been added, an additional extension method becomes available on the NServiceBus.Configure class, as shown:
 
-![Configure the Castle Windsor container](https://particular.blob.core.windows.net/media/Default/images/Configure%20the%20Castle%20Windsor%20container.jpg)
+![Configure the Castle Windsor container](Configure_the_Castle_Windsor_container.jpg)
 
 Using a different container with the host
 -----------------------------------------

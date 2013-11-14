@@ -8,7 +8,7 @@ summary: "<p>This sample is based on the <a href="how-pub-sub-works.md">Pub/Sub 
 
 This sample is based on the [Pub/Sub sample](how-pub-sub-works.md). If you have not yet gone through it, please start there.
 
-![Versioning sample](https://particular.blob.core.windows.net/media/Default/images/Versioning.png "Versioning sample")
+![Versioning sample](Versioning.png "Versioning sample")
 
 In this sample, there are two message projects: V1.Messages and V2.Messages:
 
@@ -51,7 +51,7 @@ The only difference is that each subscriber maps the version of the schema on wh
 
 Look at V2Publisher, which is very similar to the publisher from the PubSub sample. The only thing that V2Publisher is doing is publishing a message from the version 2 schema. However, the sample is run, V1Subscriber receives these messages as well:
 
-![Versioning sample running](https://particular.blob.core.windows.net/media/Default/images/Versioning_running.png "Versioning sample running")
+![Versioning sample running](Versioning_running.png "Versioning sample running")
 
 **NOTE**: When each subscriber processes the event, each sees it as the schema version it is compiled against. In this manner, publishers can be extended from one version to the next without breaking existing subscribers, allowing new subscribers to be created to handle the additional information in the new version of the events.
 

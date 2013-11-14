@@ -41,14 +41,60 @@ The following table summarizes what is available and how to configure each featu
 
 If self hosting, you can configure the persistence technology for each feature. For example, to store subscriptions in memory and timeouts in RavenDB, use this code:
 
-<script src="https://gist.github.com/Particular-gist/6450972.js?file=001_persistance_v3.cs"></script>
+
+```C#
+        static void Main()
+        {
+            Configure.With()
+            .Log4Net()
+            .DefaultBuilder()
+            .XmlSerializer()
+            .MsmqTransport()
+            .IsTransactional(true)
+            .PurgeOnStartup(false)
+            .InMemorySubscriptionStorage()
+            .UnicastBus()
+            .ImpersonateSender(false)
+            .LoadMessageHandlers()
+            .UseRavenTimeoutPersister()
+            .CreateBus()
+            .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+        }
+
+```
+
+
 <p>
 
 
 and for NServiceBus v4.x
 
 
-<script src="https://gist.github.com/Particular-gist/6450972.js?file=002_persistance_v4.cs"></script>
+
+```C#
+        static void Main()
+        {
+            Configure.Serialization.Xml();
+
+            Configure.Transactions.Enable();
+
+            Configure.With()
+            .Log4Net()
+            .DefaultBuilder()
+            .UseTransport<Msmq>()
+            .PurgeOnStartup(false)
+            .InMemorySubscriptionStorage()
+            .UnicastBus()
+            .RunHandlersUnderIncomingPrincipal(false)
+            .LoadMessageHandlers()
+            .UseRavenTimeoutPersister()
+            .CreateBus()
+            .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+        }
+
+```
+
+
 </p> When you use NServiceBus.Host.exe out of the box, you can utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, you can override the configured defaults. Read more about
 [profiles](profiles-for-nservicebus-host.md) , [here too](more-on-profiles.md)
 .

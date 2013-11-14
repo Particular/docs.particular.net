@@ -20,18 +20,56 @@ Example usage
 -------------
 
 
-<script src="https://gist.github.com/Particular/6100577.js?file=scheduler.cs"></script>
+
+```C#
+// To send a message every 5 minutes
+Schedule.Every(TimeSpan.FromMinutes(5)).Action(() => 
+{ 
+  Bus.Send<CallLegacySystem>(); 
+});
+
+// Name a schedule task and invoke it every 5 minutes
+Schedule.Every(TimeSpan.FromMinutes(5)).Action("Task name", () => {});
+```
+
+
 
 The difference between these examples is that in the latter a name is given for the task. The name is used for logging.
 
 To schedule tasks when your hosts starts, implement the IWantToRunWhenTheBusStarts interface in version 3.0 and implement the IWantToRunWhenBusStartsAndStops in version 4.0.
 
-<script src="https://gist.github.com/Particular/6100577.js?file=SchedulerStartup.cs"></script> Implementation
+
+```C#
+public class ScheduleStartUpTasks : IWantToRunWhenBusStartsAndStops
+{
+  public void Start()
+  {
+    Schedule.Every(TimeSpan.FromMinutes(5)).Action(() =>
+    Console.WriteLine("Another 5 minutes have elapsed."));
+    Schedule.Every(TimeSpan.FromMinutes(3)).Action(
+      "MyTaskName",() =>
+      { 
+        Console.WriteLine("This will be logged under MyTaskName’.");
+      });
+  }
+  
+  public void Stop()
+  {
+  }
+}
+```
+
+ Implementation
 --------------
 
 The scheduler holds a list of tasks created with the scheduler using:
 
-<script src="https://gist.github.com/Particular/6100577.js?file=scheduleTask.cs"></script> When the task is created it is given an unique identifier. The identifier for the task is sent in a message to the Timeout Manager. When it times out and the Timeout Manager returns the message containing the identifier to the endpoint with the scheduled task, the endpoint uses that identifier to fetch and invoke the task from its internal list of tasks.
+
+```C#
+Schedule.Every(TimeSpan.FromMinutes(5)).Action(() => { < task to be executed > })
+```
+
+ When the task is created it is given an unique identifier. The identifier for the task is sent in a message to the Timeout Manager. When it times out and the Timeout Manager returns the message containing the identifier to the endpoint with the scheduled task, the endpoint uses that identifier to fetch and invoke the task from its internal list of tasks.
 
 Assumptions
 -----------
