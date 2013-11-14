@@ -8,7 +8,7 @@ Various features of NServiceBus require persistence. Among them are timeouts, sa
 Four persistence technologies are in use in NServiceBus:
 
 -   RavenDB
--   NHibernate
+-   [NHibernate](persistence-in-nservicebus.md)
 -   In Memory
 -   MSMQ
 
