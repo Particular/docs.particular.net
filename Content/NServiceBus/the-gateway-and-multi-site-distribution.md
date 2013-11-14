@@ -1,6 +1,9 @@
 <!--
 title: "The Gateway And Multi-Site Distribution"
-tags: 
+tags: ""
+summary: "<p>The number of multi-site deployments of enterprise .NET systems are increasing due to the challenges of high availability and the requirement for faster response times for users, as the servers and data they access is closer. </p>
+<p>RPC technologies quickly run into trouble in these environments as they make machines in the same site and those in remote sites look the same.</p>
+"
 -->
 
 The number of multi-site deployments of enterprise .NET systems are increasing due to the challenges of high availability and the requirement for faster response times for users, as the servers and data they access is closer. 
@@ -15,6 +18,7 @@ Disaster recovery and physical sites
 In some cases, physical sites are replicas of one other. This is a common configuration for the purposes of disaster recovery and is largely influenced by technology, cost, and performance.
 
 ![Disaster Recovery](https://particular.blob.core.windows.net/media/Default/images/disaster_recovery.png)
+
 
 NServiceBus provides no special facilities for disaster recovery other than to enable developers to plug in their own specific technologies. This can take the form of database replication of subscription information, configuring MSMQ to store its message data on a SAN, etc. The difference in price and performance of the various options is quite large and is not covered here.
 
@@ -62,32 +66,9 @@ When you configure the client endpoint, make sure that the UnicastBusConfig's Me
 
 To send a message to a remote site, use the SendToSites API call, as shown:
 
+<script src="https://gist.github.com/Particular/6060027.js?file=SendToSites.cs"></script> Did you notice the list of strings as the first parameter? This is the list of remote sites where you want the message(s) sent. While you can put the URLs of the site directly in the call, we recommend that you put these settings in app.config so your admins can change them should the need arise. To do this, add this config section:
 
-```C#
-Bus.SendToSites(new[] {"SiteA","SiteB"}, new MyCrossSiteMessage());
-```
-
- Did you notice the list of strings as the first parameter? This is the list of remote sites where you want the message(s) sent. While you can put the URLs of the site directly in the call, we recommend that you put these settings in app.config so your admins can change them should the need arise. To do this, add this config section:
-
-
-```XML
-<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-  <configSections>
-    <!-- Other sections go here -->
-    <section name="GatewayConfig" type="NServiceBus.Config.GatewayConfig, NServiceBus.Core" />
-  </configSections>
-  <!-- Other config options go here -->
-  <GatewayConfig>
-    <Sites>
-      <Site Key="SiteA" Address="http://SiteA.mycorp.com/" ChannelType="Http"/>
-      <Site Key="SiteB" Address="https://SiteB.mycorp.com/" ChannelType="Http"/>
-    </Sites>
-  </GatewayConfig>
-</configuration>
-```
-
- NServiceBus automatically sets the required headers that enable you to send messages back over the gateway using the familiar Bus.Reply.
+<script src="https://gist.github.com/Particular/6060027.js?file=GatewayConfig.xml"></script> NServiceBus automatically sets the required headers that enable you to send messages back over the gateway using the familiar Bus.Reply.
 **NOTE** : All cross-site interactions are perfomed internally to a service, so publish and subscribe are not supported across gateways.
 
 Since the gateway is located in the NServiceBus core you can enable it by flipping a switch. If you run the NServiceBus host, nable it by specifying the MultiSite profile [more on profiles](more-on-profiles.md) ). If you self host NServiceBus, you can turn on the gateway by adding a call to Configure.RunGateway() in your configuration.
@@ -109,17 +90,7 @@ Incoming channels
 
 When you enable the gateway, it automatically sets up an HTTP channel to listen to http://localhost/{name of your endpoint}. To change this URL or add more than one incoming channel, configure app.config, as shown:
 
-
-```XML
-<GatewayConfig>
-  <Channels>
-    <Channel Address="https://Headquarter.mycorp.com/" ChannelType="Http" Default="true"/>
-    <Channel Address="http://Headquarter.myotherdomain.com/" ChannelType="Http"/>
-  </Channels>
-</GatewayConfig>
-```
-
- The "Default" on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels. Currently, HTTP/HTTPS is the only supported channel but there are plans for Azure, FTP, and Amazon SQS to help you bridge both onsite and cloud sites.
+<script src="https://gist.github.com/Particular/6060027.js?file=GatewayConfig2.xml"></script> The "Default" on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels. Currently, HTTP/HTTPS is the only supported channel but there are plans for Azure, FTP, and Amazon SQS to help you bridge both onsite and cloud sites.
 
 Follow the steps for [configuring SSL](http://msdn.microsoft.com/en-us/library/ms733768.aspx) and make sure to configure the gateway to listen on the appropriate port, as well as to contact the remote gateway on the same port.
 

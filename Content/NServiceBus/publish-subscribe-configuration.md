@@ -1,6 +1,9 @@
 <!--
 title: "Publish/Subscribe Configuration"
-tags: 
+tags: ""
+summary: "<p></p>
+<p>The part of the <add> entry stating Messages=&quot;Messages&quot; means that the assembly &quot;Messages.dll&quot; contains the message schema. Specific types can be configured using their qualified name: &quot;namespace.type, assembly&quot;.</p>
+"
 -->
 
 ![Pub/Sub configuration](https://particular.blob.core.windows.net/media/Default/images/basic_pubsub.png)
@@ -61,96 +64,17 @@ By default, the subscriptions are stored in a Raven database with the same name 
 
 To configure MSMQ as your subscription storage:
 
+<script src="https://gist.github.com/Particular/6060043.js?file=ConfigureMsmqSubscriptionStorage.cs"></script> You don't need any configuration changes for this to work, NServiceBus automatically uses a queue called "{Name of your endpoint}.Subscriptions". However if you want specify the queue used to store the subscriptions yourself, add the following config section and subsequent config entry:
 
-```C#
-public class ConfigureMsmqSubscriptionStorage : INeedInitialization
-{
-    public void Init()
-    {
-        Configure.Instance.MsmqSubscriptionStorage();
-    }
-}
-```
-
- You don't need any configuration changes for this to work, NServiceBus automatically uses a queue called "{Name of your endpoint}.Subscriptions". However if you want specify the queue used to store the subscriptions yourself, add the following config section and subsequent config entry:
-
-
-```XML
-<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-  <configSections>
-    <!-- Other sections go here -->
-    <section name="MsmqSubscriptionStorageConfig" type="NServiceBus.Config.MsmqSubscriptionStorageConfig, NServiceBus.Core" />
-  </configSections>
-  <!-- Other config options go here -->
-  <MsmqSubscriptionStorageConfig Queue="YourQueue" />
-</configuration>
-```
-
- For multiple machines to share the same subscription storage, do not use the MSMQ option outlined above; instead, use any of the database-backed stores described on this page.
+<script src="https://gist.github.com/Particular/6060043.js?file=MsmqSubscriptionStorageConfig.xml"></script> For multiple machines to share the same subscription storage, do not use the MSMQ option outlined above; instead, use any of the database-backed stores described on this page.
 
 To configure a relational database as your subscription storage, just reference the NServiceBus.NHibernate.dll and add:
 
+<script src="https://gist.github.com/Particular/6060043.js?file=ConfigureNHibernateSubscriptionStorage.cs"></script> This option requires the following to be present in your config, for V3:
 
-```C#
-public class ConfigureNHibernateSubscriptionStorage : INeedInitialization
-{
-    public void Init()
-    {
-        //Usage for V3
-        Configure.Instance.DBSubcriptionStorage(); 
-        
-        //Usage for V4
-        Configure.Instance.UseNHibernateSubscriptionPersister();
-    }
-}
-```
+<script src="https://gist.github.com/johnsimons/6026128.js?file=DBSubscriptionStorageConfig.xml"></script> And for V4:
 
- This option requires the following to be present in your config, for V3:
-
-
-```XML
-<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-  <configSections>
-    <!-- Other sections go here -->
-    <section name="DBSubscriptionStorageConfig" type="NServiceBus.Config.DBSubscriptionStorageConfig, NServiceBus.NHibernate" />
-  </configSections>
-  <!-- Other config options go here -->
-  <DBSubscriptionStorageConfig>
-    <NHibernateProperties>
-      <add Key="connection.provider" Value="NHibernate.Connection.DriverConnectionProvider"/>
-      <add Key="connection.driver_class" Value="NHibernate.Driver.SqlClientDriver"/>
-      <add Key="connection.connection_string" Value="Server=YOUR_DB_SERVER;initial catalog=NServiceBus;Integrated Security=SSPI"/>
-      <add Key="dialect" Value="NHibernate.Dialect.MsSql2008Dialect"/>
-    </NHibernateProperties>
-  </DBSubscriptionStorageConfig>
-</configuration>
-```
-
- And for V4:
-
-
-```XML
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <appSettings>
-    <!-- dialect is defaulted to MsSql2008Dialect, if needed change accordingly -->
-    <add key="NServiceBus/Persistence/NHibernate/dialect" value="NHibernate.Dialect.{your dialect}"/>
-
-    <!-- other optional settings examples -->
-    <add key="NServiceBus/Persistence/NHibernate/connection.provider" value="NHibernate.Connection.DriverConnectionProvider"/>
-    <add key="NServiceBus/Persistence/NHibernate/connection.driver_class" value="NHibernate.Driver.Sql2008ClientDriver"/>
-    <!-- For more setting see http://www.nhforge.org/doc/nh/en/#configuration-hibernatejdbc and http://www.nhforge.org/doc/nh/en/#configuration-optional -->
-  </appSettings>
-  
-  <connectionStrings>
-    <add name="NServiceBus/Persistence/NHibernate/Subscription" connectionString="Data Source=YOUR_DB_SERVER;Initial Catalog=subscription;Integrated Security=True" />
-  </connectionStrings>
-</configuration>
-```
-
- If you don't want all this information in your config, you can specify it in code through the overload of the DBSubscriptionStorage method, which accepts a dictionary of the NHibernate properties above.
+<script src="https://gist.github.com/Particular/6060043.js?file=NHibernateSubscriptionConfig.xml"></script> If you don't want all this information in your config, you can specify it in code through the overload of the DBSubscriptionStorage method, which accepts a dictionary of the NHibernate properties above.
 
 The additional 'autoUpdateSchema' parameter, if set to 'true', tells NServiceBus to create the necessary tables in the configured database to store the subscription information. This table is called 'Subscriptions' and has two columns, 'SubscriberEndpoint' and 'MessageType'; both of them varchars.
 
@@ -162,23 +86,7 @@ How to publish?
 
 To publish a message, you need a reference to the bus object in your code. In the pub/sub sample, this code is in the ServerEndpoint class in the Server project, as shown:
 
-
-```C#
-public class HandlerThatPublishedEvent : IHandleMessages<MyMessage>
-{
-    public IBus Bus { get; set; }
-
-    public void Handle(MyMessage message)
-    {
-        Bus.Publish<MyEvent>(e =>
-            {
-                e.SomeProperty = "xyz";
-            });
-    }
-}
-```
-
- The 'Bus' property is automatically filled by the infrastructure. This is known as 'Dependency Injection'. All development done with NServiceBus makes use of [these patterns](http://en.wikipedia.org/wiki/Dependency_injection) . The technology used as the dependency injection container by NServiceBus is pluggable, with five options available out of the box, Autofac is the default.
+<script src="https://gist.github.com/Particular/6060043.js?file=HandlerThatPublishedEvent.cs"></script> The 'Bus' property is automatically filled by the infrastructure. This is known as 'Dependency Injection'. All development done with NServiceBus makes use of [these patterns](http://en.wikipedia.org/wiki/Dependency_injection) . The technology used as the dependency injection container by NServiceBus is pluggable, with five options available out of the box, Autofac is the default.
 
 In the 'Run' method, you see the creation of the event message. This can be as simple as instantiating the relevant class or using the bus object to instantiate messages defined as interfaces. Read more information on
 [whether to use interfaces or classes to represent messages](messages-as-interfaces.md) .

@@ -1,9 +1,38 @@
 <!--
 title: "Injecting the Bus into ASP.NET MVC Controller"
-tags: 
+tags: ""
+summary: "<p>In the AsyncPagesMvc3 sample, open Global.asax.cs and look at the ApplicationStart method.</p>
+<pre><code>    protected void Application_Start()
+    {
+        AreaRegistration.RegisterAllAreas();
+</code></pre>
+
+"
 -->
 
-In the AsyncPagesMvc3 sample, open Global.asax.cs and look at the ApplicationStart method. <span style="background-color:Lime;">you'll see the following code</span>:
+In the AsyncPagesMvc3 sample, open Global.asax.cs and look at the ApplicationStart method.
+
+        protected void Application_Start()
+        {
+            AreaRegistration.RegisterAllAreas();
+
+            RegisterGlobalFilters(GlobalFilters.Filters);
+            RegisterRoutes(RouteTable.Routes);
+
+            // NServiceBus configuration
+            Configure.WithWeb()
+                .DefaultBuilder()
+                .ForMvc()
+                .JsonSerializer()
+                .Log4Net()
+                .MsmqTransport()
+                    .IsTransactional(false)
+                    .PurgeOnStartup(true)
+                .UnicastBus()
+                    .ImpersonateSender(false)
+                .CreateBus()
+                .Start(() => Configure.Instance.ForInstallationOn().Install());
+        }
 
 To inject the Bus, these classes were added to the project:
 

@@ -1,13 +1,21 @@
 <!--
-title: "Getting Started - Publish/Subscribe Communication"
-tags: 
+title: "Getting Started - Publish/Subscribe Communication Using ServiceMatrix v1.0"
+tags: ""
+summary: "<p>NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x</p>
+"
 -->
+
+NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x
+
+
+
+In the [previous section](getting-started---fault-tolerance.md) we learnt about fault tolerance.
 
 Now that we've gone through the basics of NServiceBus communication and configuration, let's move on to publish/subscribe.
 
 ![Full Solution Builder](https://particular.blob.core.windows.net/media/Default/images/GettingStarted11.png)
 
-There are only a few steps needed to introduce pub/sub and make your solution look like the one appearing on the right.
+There are only a few steps needed to introduce pub/sub and make your solution look like the one appearing above.
 
 1.  Right click your SubmitOrderProcessor component and select "Publish
     Event...". Type "OrderAccepted" for the name of the event and press
@@ -23,21 +31,7 @@ There are only a few steps needed to introduce pub/sub and make your solution lo
     the picture on the right.
 4.  Add code to the SubmitOrderProcessor in Sales to publish the event:
 
-~~~~ {.brush:csharp;wrap-lines:false;highlight: .[2,13];} using System; using Amazon.Contract.Sales; using NServiceBus; using Amazon.InternalMessages.Sales;
-
-namespace Amazon.OrderProcessing.Sales
-{
-   public partial class SubmitOrderProcessor
-   {
-        partial void HandleImplementation(SubmitOrder message)
-        {
-            Console.WriteLine("Sales received "+ message.GetType().Name);
-            Bus.Publish();
-        }
-   }
-}
-
-Your solution should compile, so run it using F5.
+<script src="https://gist.github.com/Particular-gist/6424560.js?file=001_pubsub.cs"></script> Your solution should compile, so run it using F5.
 
 Lay out the various consoles and web-UI so that you can see them all, then click "About" a couple of times to watch how it runs:
 
@@ -47,7 +41,7 @@ And there you are: publish/subscribe messaging is working!
 
 Try doing another one yourself: have Billing publish an OrderBilled event, and have yet another service (call it "Shipping") subscribe to it. Create another endpoint to host Shipping or deploy the component to OrderProcessing or Billing. Have Shipping subscribe to the OrderAccepted event and deploy the corresponding component to the same endpoint.
 
-**IMPORTANT:**Don't forget to add the call to Bus.Publish in Billing's OrderAcceptedProcessor.
+**IMPORTANT:** Don't forget to add the call to Bus.Publish in Billing's OrderAcceptedProcessor.
 
 Once you're done, run it, and see that everything works.
 
@@ -69,7 +63,7 @@ Next step
 
 <span style="background-color:Yellow;">Join the 1500 other developers in our community.</span>
 
-View some [videos](nservicebus-videos.md)we made for you.
+View some [videos](http://particular.net/Videos-and-Presentations) we made for you.
 
 We'd also love to hear your thoughts about NServiceBus: what you like, what you think should be improved... anything.
 

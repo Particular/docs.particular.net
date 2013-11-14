@@ -1,11 +1,21 @@
 <!--
 title: "Load Balancing with the Distributor"
-tags: 
+tags: ""
+summary: "<p>The NServiceBus Distributor is similar in behavior to standard load balancers. It is the key to transparently scaling out message processing over many machines.</p>
+<p>As a standard NServiceBus process, the distributor maintains all the fault-tolerant and performance characteristics of NServiceBus but is designed never to overwhelm any of the worker nodes configured to receive work from it.</p>
+"
 -->
 
-The NServiceBus Distributor is similar in behavior to standard load balancers. It is the key to transparently scaling out message processing over many machines. 
+The NServiceBus Distributor is similar in behavior to standard load balancers. It is the key to transparently scaling out message processing over many machines.
 
 As a standard NServiceBus process, the distributor maintains all the fault-tolerant and performance characteristics of NServiceBus but is designed never to overwhelm any of the worker nodes configured to receive work from it.
+
+When to use it?
+---------------
+
+Scaling out (with or without a distributor) is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](monitoring-nservicebus-endpoints.md) on the endpoint and when you have the need, add in the distributor. Scaling out using the distributor when needed is made easy by not having to change code, just starting the same endpoint in distributor and worker profiles and this article explains how.
+
+The distributor is applicable only when using Msmq as the transport for exchanging messages. NServiceBus uses MSMQ as the default transport. The distributor is not required when using other brokered transports like SqlServer, RabbitMQ, ActiveMQ, since they share the same queue, even if there are multiple instances of the endpoints running. NServiceBus will ensure that only one of these instances of that endpoint will process that message in this case.
 
 Why use it?
 -----------
@@ -74,18 +84,7 @@ When you [self host](hosting-nservicebus-in-your-own-process.md) your endpoint, 
 
 Following is an example of a Distributor with a Worker on its endpoint:
 
-
-```C#
-Configure.With()
-         .DefaultBuilder()
-         .AsMasterNode()
-         .RunDistributor()
-         // Other settings go here
-         .CreateBus()
-         .Start();
-```
-
- To run the Distributor without a worker on its endpoint, replace
+<script src="https://gist.github.com/Particular/6060019.js?file=RunDistributor.cs"></script> To run the Distributor without a worker on its endpoint, replace
 .RunDistributor() with with .RunDistributorWithNoWorkerOnItsEndpoint().
 
 Worker Configuration
@@ -103,20 +102,7 @@ If you are hosting your endpoint with NServiceBus.Host.exe, to run as a worker, 
 Configure the name of the master node server as shown in this app.config example. Note the MasterNodeConfig section:
 
 
-
-```XML
-<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-  <configSections>
-    <!-- Other sections go here -->
-    <section name="MasterNodeConfig" type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Core" />
-  </configSections>
-  <!-- Other config options go here -->
-  <MasterNodeConfig Node="MachineWhereDistributorRuns"/>
-</configuration>
-```
-
- Read about the DistributorControlAddress and the DistributorDataAddress in the [Routing with the Distributor](load-balancing-with-the-distributor.md) section.
+<script src="https://gist.github.com/Particular/6060019.js?file=ConfigureDistributor.xml"></script> Read about the DistributorControlAddress and the DistributorDataAddress in the [Routing with the Distributor](load-balancing-with-the-distributor.md) section.
 
 ### When self-hosting
 
@@ -124,17 +110,7 @@ When self hosting, call the EnlistWithDistributor() configuration extension meth
 
 Following is an example of configuration of a Worker node:
 
-
-```C#
-Configure.With()
-         .DefaultBuilder()
-         .EnlistWithDistributor()
-         // Other settings go here
-         .CreateBus()
-         .Start();
-```
-
- Similar to self hosting, ensure the app.config of the worker contains the MasterNodeConfig section to point to the host name where the master node (and a distributor) are running.
+<script src="https://gist.github.com/Particular/6060019.js?file=EnlistWithDistributor.cs"></script> Similar to self hosting, ensure the app.config of the worker contains the MasterNodeConfig section to point to the host name where the master node (and a distributor) are running.
 
 Routing with the Distributor
 ----------------------------
@@ -143,16 +119,7 @@ The distributor uses two queues for its runtime operation. The DataInputQueue is
 
 To use values other than the NServiceBus defaults you can override them, as shown in the UnicastBusConfig section below:
 
-
-```XML
-<UnicastBusConfig DistributorControlAddress="distributorControlBus@Cluster1" DistributorDataAddress="distributorDataBus@Cluster1">
-  <MessageEndpointMappings>
-    <!-- regular entries -->
-  </MessageEndpointMappings>
-</UnicastBusConfig>
-```
-
- If those settings do not exist, the control queue is assumed as the endpoint name of the worker, concatenated with the " distributor.control@HostWhereDistributorIsRunning" string.
+<script src="https://gist.github.com/Particular/6060019.js?file=OverrideDistributorQueues.xml"></script> If those settings do not exist, the control queue is assumed as the endpoint name of the worker, concatenated with the " distributor.control@HostWhereDistributorIsRunning" string.
 
 Similar to standard NServiceBus routing, you do not want high priority messages to get stuck behind lower priority messages, so just as you have separate NServiceBus processes for different message types, you also set up different distributor instances (with separate queues) for different message types.
 

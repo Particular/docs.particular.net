@@ -1,6 +1,8 @@
 <!--
 title: "How to Centralize All Unobtrusive Declarations?"
-tags: 
+tags: ""
+summary: "<p>When working with NServiceBus in unobtrusive mode you may feel that you are repeating the conventions over and over again on all the endpoints.</p>
+"
 -->
 
 When working with NServiceBus in unobtrusive mode you may feel that you are repeating the conventions over and over again on all the endpoints.
@@ -11,17 +13,6 @@ The
 
 Just define your implementation in an assembly referenced by all the endpoints:
 
-    public class UnobtrusiveConventions : IWantToRunBeforeConfiguration
-    {
-        public void Init()
-        {
-            Configure.Instance
-                .DefiningCommandsAs(t => t.Namespace != null
-                    && t.Namespace.StartsWith("MyCompany") 
-                    && t.Namespace.EndsWith("Commands"))
-                .DefiningEventsAs(t => t.Namespace != null
-                    && t.Namespace.StartsWith("MyCompany") 
-                    && t.Namespace.EndsWith("Events"));
-        }
-    }
+<script src="https://gist.github.com/Particular/6092089.js"></script>
+
 

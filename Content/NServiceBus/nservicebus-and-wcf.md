@@ -1,6 +1,9 @@
 <!--
 title: "NServiceBus And WCF"
-tags: 
+tags: ""
+summary: "<p>The main thing missing from WCF is publish/subscribe, but why should you have to build it yourself? With NServiceBus, you get it out of the box.</p>
+<p>The next important thing is fault-tolerance. Exceptions cause WCF proxies to break, requiring you to &quot;refresh&quot; them in code but the call data is liable to be lost. NServiceBus provides full system rollback. Not only does your database remain consistent, but your messages return to their queues and no valuable data is lost.</p>
+"
 -->
 
 The main thing missing from WCF is publish/subscribe, but why should you have to build it yourself? With NServiceBus, you get it out of the box.

@@ -1,6 +1,9 @@
 <!--
 title: "Running NServiceBus on Windows"
-tags: 
+tags: ""
+summary: "<p>NServiceBus relies on a few key pieces of infrastructure in order to run properly. This page gives you an overview of the requirements for running NSerivceBus on the windows platform.</p>
+<h2>Queuing system</h2>
+"
 -->
 
 NServiceBus relies on a few key pieces of infrastructure in order to run properly. This page gives you an overview of the requirements for running NSerivceBus on the windows platform.

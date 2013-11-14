@@ -1,6 +1,10 @@
 <!--
 title: "No Endpoint Configuration Found in Scanned Assemblies Exception"
-tags: 
+tags: ""
+summary: "<p>As the exception states, NServiceBus was not able to find the endpoint configuration, i.e., an implementation of IConfigureThisEndoint.</p>
+<p>The exception might be thrown by
+<a href="the-nservicebus-host.md">NServiceBus.Host.Exe</a>, the NServiceBus generic host.</p>
+"
 -->
 
 As the exception states, NServiceBus was not able to find the endpoint configuration, i.e., an implementation of IConfigureThisEndoint.

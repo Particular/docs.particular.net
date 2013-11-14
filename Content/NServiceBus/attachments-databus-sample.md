@@ -1,13 +1,18 @@
 <!--
 title: "Attachments / DataBus Sample"
-tags: 
+tags: ""
+summary: "<p>Large chunks of data such as images or video files can be transported using NServiceBus V3 data bus.</p>
+<p>You only have to put an attribute over your large property and NServiceBus takes care of the rest. This is particularly important when running in cloud environments where limits on message size are usually much lower than on-premise.</p>
+"
 -->
 
 Large chunks of data such as images or video files can be transported using NServiceBus V3 data bus.
 
-You only have to <span style="background-color:Lime;">put an attribute over your large property</span> and NServiceBus takes care of the rest. This is particularly important when running in cloud environments where limits on message size are usually much lower than on-premise.
+You only have to put an attribute over your large property and NServiceBus takes care of the rest. This is particularly important when running in cloud environments where limits on message size are usually much lower than on-premise.
 
-To see how to send and receive attachments in NServiceBus, open the Databus sample:
+To see how to send and receive attachments in NServiceBus, open the
+[Databus sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/DataBus)
+:
 
 1.  Run the solution. Two console applications start.
 2.  Find the Sender application by looking for the one with "Sender" in
@@ -20,8 +25,7 @@ To see how to send and receive attachments in NServiceBus, open the Databus samp
 
      A message larger than the allowed 4MB is sent, but this time
     without utilizing the NServiceBus attachments mechanism. An
-    exception is thrown at the "Sender" application. You should see
-    this:
+    exception is thrown at the "Sender" application as shown below:
 
 ![Databus sample Running](https://particular.blob.core.windows.net/media/Default/images/DatabusRunning.png "Databus sample Running")
 
@@ -46,86 +50,36 @@ This sample contains three projects:
 
 Let's look at the Receiver.Messages project, at the two defined messages. We start with the large one that is not utilizing the DataBus mechanism. The message is a simple byte array command:
 
-    public class AnotherMessageWithLargePayload : ICommand
-    {
-        public byte[]LargeBlob { get; set; }
-    }
+<script src="https://gist.github.com/Particular/6143649.js?file=DataBusPayload.cs"></script> The other message utilizes the DataBus mechanism:
 
-The other message utilizes the DataBus mechanism:
-
-    [TimeToBeReceived("00:01:00")]
-    public class MessageWithLargePayload : ICommand
-    {
-        public string SomeProperty { get; set; }
-        public DataBusProperty LargeBlob { get; set; }
-    }
-
-Following is an NServiceBus data type that instructs NServiceBus to treat the LargeBlob property as an attachment. It is not transported in the NServiceBus normal flow:
-
-    DataBusProperty
-
-Examine the following attribute:
-
-    [TimeToBeReceived("00:01:00")] 
+<script src="https://gist.github.com/Particular/6143649.js?file=PayloadWithTtr.cs"></script> DataBusProperty<byte[]> is an NServiceBus data type that instructs NServiceBus to treat the LargeBlob property as an attachment. It is not transported in the NServiceBus normal flow.
 
 When sending a message using the NServiceBus Message attachments mechanism, the message's payload resides in the folder. In addition, a
 'signaling' message is sent to the Receiving endpoint.
 
-The TimeToBeReceived attribute instructs the NServiceBus framework that it is allowed to clean the MSMQ message after one minute if it was not received by the receiver.
-
-The message payload remains in the Storage folder after the MSMQ message is cleaned by the NServiceBus framework.
+The TimeToBeReceived attribute instructs the NServiceBus framework that it is allowed to clean the MSMQ message after one minute if it was not received by the receiver. The message payload remains in the Storage folder after the MSMQ message is cleaned by the NServiceBus framework.
 
 Following is an example of the signaling message that is sent to the receiving endpoint:
 
-
-    http://www.w3.org/2001/XMLSchema-instance" 
-            xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-            xmlns="http://tempuri.net/Receiver.Messages">
-
-        This message contains a large blob that will be sent on the data bus
-
-            2012-01-02_10\f83e3641-4588-4cb2-8c4f-4077342ed32e
-            true
-
-
-
+<script src="https://gist.github.com/Particular/6143649.js?file=Messages.xml"></script>
 ### Sender project
 
 The Sender project shows how to configure NServiceBus to handle attachments, starting with the Sender project app.config:
 
-
-
-
-The sender instructs NServiceBus to send messages with Namespace equal to Receiver.Messages to the Receiver endpoint.
+<script src="https://gist.github.com/Particular/6143649.js?file=MessageMapping.xml"></script> The sender instructs NServiceBus to send messages with Namespace equal to Receiver.Messages to the Receiver endpoint.
 
 Open EndpointConfig in the Sender project:
 
-    public static string BasePath = "..\\..\\..\\storage";
-    public void Init()
-    {
-        Configure.Instance
-            .FileShareDataBus(BasePath)
-            .UnicastBus();
-    }
+<script src="https://gist.github.com/Particular/6143649.js?file=SenderEndpointConfig.cs"></script> This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment. The message payload is stored in the file system, in the Storage folder.
 
-This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment. The message payload is stored in the file system, in the Storage folder.
+<p> The following sender project code sends the MessageWithLargePayload message, utilizing the NServiceBus attachment mechanism:
 
-The following sender project code sends the MessageWithLargePayload message, utilizing the NServiceBus attachment mechanism:
+<script src="https://gist.github.com/Particular/6143649.js?file=DataBusSend.cs"></script>
+</p>
+<p> The following Sender project code sends the AnotherMessageWithLargePayload message without utilizing the NServiceBus attachment mechanism:
 
-    bus.Send(m =>
-    {
-        m.SomeProperty = "This message contains a large blob that will be sent on the data bus";
-        m.LargeBlob = new DataBusProperty(new byte[1024 * 1024 * 5]);//5MB
-    });
-
-The following Sender project code sends the AnotherMessageWithLargePayload message without utilizing the NServiceBus attachment mechanism:
-
-    bus.Send(m =>
-    {
-        m.LargeBlob = new byte[1024 * 1024 * 5];//5MB
-    });
-
-In both cases, a 5MB message is sent, but in the MessageWithLargePayload it goes through, while AnotherMessageWithLargePayload fails.
+<script src="https://gist.github.com/Particular/6143649.js?file=DataBusSend2.cs"></script>
+</p> In both cases, a 5MB message is sent, but in the MessageWithLargePayload it goes through, while AnotherMessageWithLargePayload fails.
 
 Go to the Receiver project to see the receiving application.
 
@@ -133,26 +87,10 @@ Go to the Receiver project to see the receiving application.
 
 The endpoint configuration code of Receiver is identical to that of the Sender. Open EndpointConfig in the Sender project:
 
-    public static string BasePath = "..\\..\\..\\storage";
-    public void Init()
-    {
-        Configure.Instance
-            .FileShareDataBus(BasePath)
-            .UnicastBus();
-    }
+<script src="https://gist.github.com/Particular/6143649.js?file=DataBusReceiverEndpointConfig.cs"></script> Following is the receiving message handler:
 
-Following is the receiving message handler:
-
-    public class MessageWithLargePayloadHandler : IHandleMessages
-    {
-        public void Handle(MessageWithLargePayload message)
-        {
-            Console.WriteLine("Message received, size of blob property: " + message.LargeBlob.Value.Length + " Bytes");
-        }
-    }
-
-Next steps
+<script src="https://gist.github.com/Particular/6143649.js?file=MessageHandler.cs"></script> Next steps
 ----------
 
-If you are not familiar with [Unobtrusive messaging](unobtrusive-mode-messages.md) mode, read the documentation or see the [working sample](unobtrusive-sample.md).
+If you are not familiar with [Unobtrusive messaging](unobtrusive-mode-messages.md) mode, read the documentation or see the [working sample](unobtrusive-sample.md) .
 

@@ -1,6 +1,9 @@
 <!--
 title: "Connecting to RavenDB from NServiceBus"
-tags: 
+tags: ""
+summary: "<p>Beginning with NServiceBus V3.0, RavenDB is one of the available mechanisms for NServiceBus to persist its timeout, saga and subscription information.</p>
+<p>To tell NServiceBus to use RavenDB for persistence is as easy as calling Configure.RavenPersistence(). This is the default configuration and it uses these conventions:</p>
+"
 -->
 
 Beginning with NServiceBus V3.0, RavenDB is one of the available mechanisms for NServiceBus to persist its timeout, saga and subscription information.
@@ -40,12 +43,17 @@ Which database is used?
 After connecting to a RavenDB server, decide which actual database to use. Unless NServiceBus finds a default database specified in the connection string, NServiceBus uses the endpoint name as the database name. So if your endpoint is named “MyServer”, the database name is
 “MyServer”. Each endpoint has a separate database unless you explicitly override it using the connection string. RavenDB automatically creates the database if it doesn’t already exist.
 
-Read a detailed explanation of the [endpoint name concept](convention-over-configuration.md) and a [FAQ entry](how-to-specify-your-input-queue-name.md).
+Read a detailed explanation of the [endpoint name concept](convention-over-configuration) and a [FAQ entry](how-to-specify-your-input-queue-name.md).
 
 Can I use the IDocumentStore used by NServiceBus for my own data?
 -----------------------------------------------------------------
 
 No, the RavenDB client is merged and internalized into the NServiceBus assemblies, so to use Raven for your own purposes, reference the Raven client and set up your own document store.
+
+NOTE: in NServiceBus 4.x RavenDB is not ilmerged anymore. It is embedded instead, using
+[https://github.com/Fody/Costura\#readme](https://github.com/Fody/Costura#readme).
+
+The embedding enables client updates (but may require binding redirects). It also allows passing your own DocumentStore, thereby providing full configuration flexibility.
 
 How do I look at the data?
 --------------------------

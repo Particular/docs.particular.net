@@ -1,22 +1,105 @@
 <!--
 title: "Managing NServiceBus Using PowerShell"
-tags: 
+tags: ""
+summary: "<p>NServiceBus provides a set of PowerShell commandlets to make it easy to manage and run the software. The initial focus is to provide support when preparing machines for use with NServiceBus. Additional features are in the pipeline.</p>
+<p><strong>NOTE</strong> : Before installing NServiceBus, ensure PowerShell 2.0+ is present on the target machine.</p>
+"
 -->
 
-NServiceBus provides a set of PowerShell commandlets to make it easy to manage and run the softwre. The initial focus is to provide support when preparing machines for use with NServiceBus. Additional features are in the pipeline.
+NServiceBus provides a set of PowerShell commandlets to make it easy to manage and run the software. The initial focus is to provide support when preparing machines for use with NServiceBus. Additional features are in the pipeline.
 
- **NOTE**: Before installing NServiceBus, ensure PowerShell 2.0+ is present on the target machine.
+**NOTE** : Before installing NServiceBus, ensure PowerShell 2.0+ is present on the target machine.
+
+Installing the NServiceBus commandlets in V4.0
+----------------------------------------------
+
+These cmdlets are built into the NServiceBus.Powershell.dll, so
+[download NServiceBus](http://particular.net/downloads) and load them into PowerShell using the Import-Module cmdlet:
+
+    PM> Import-Module .\NServiceBus.Powershell.dll
+    If you use the NuGet package, the commandlets are available automatically in the NuGet console. 
+    If you installed NServiceBus using the MSI you can add the import module statement 
+    to your 
+    PowerShell profile.
+
+
+For a detailed description of all our commandlets, use the get-help command:
+
+
+    PM> get-help about_NServiceBus
+
+
+
+NServiceBus PowerShell cmdlets have been renamed so that they do not clash with existing version 3.0 cmdlets:
+
+
+<span style="font-weight: 600;">Install-NServiceBusMSMQ</span>
+
+Installs MSMQ on the machine.
+
+<span style="font-weight: 600;">Test-NServiceBusMSMQInstallation</span>
+
+Validates if MSMQ is correctly installed on the machine.
+
+<span style="font-weight: 600;">Install-NServiceBusDTC</span>
+
+Installs DTC on the machine.
+
+<span style="font-weight: 600;">Test-NServiceBusDTCInstallation</span>
+
+Validates if DTC is installed and running on the machine.
+
+<span style="font-weight: 600;">Install-NServiceBusRavenDB</span>
+
+Installs RavenDB on the machine.
+
+<span style="font-weight: 600;">Test-NServiceBusRavenDBInstallation</span>
+
+Ensures RavenDB is installed on the machine. Port 8080 is used to check to see if RavenDB is already installed on the machine. If RavenDB is installed on a different port, the test might display false.
+
+<span style="font-weight: 600;">Install-NServiceBusPerformanceCounters</span>
+
+Installs NServiceBus performance counters on the machine.
+
+<span style="font-weight: 600;">Test-NServiceBusPerformanceCountersInstallation</span>
+
+Validates that NServiceBus performance counters are correctly installed on the machine.
+
+<span style="font-weight: 600;">Install-NServiceBusLicense</span>
+
+Installs a NServiceBus license file in HKLM. All endpoints can use this machine wide setting without having to specify the license file either in the bin folder or in the app.config file.
+
+<span style="font-weight: 600;">Set-NServiceBusLocalMachineSettings</span>
+
+Allows specifying the default error and audit queues. Sets up the error and audit queue in the registry in HKLM as a machine wide setting. Each endpoint on the machine no longer need to specify these settings in the app.config file
+
+<span style="font-weight: 600;">Get-NServiceBusLocalMachineSettings</span>
+
+Shows the default error and audit queues.
+
+<span style="font-weight: 600;">Get-NServiceBusVersion</span>
+
+Displays the NServiceBus installed version.
+
+<span style="font-weight: 600;">Get-NServiceBusMSMQMessage</span>
+
+Displays all messages in a queue.
+
+<span style="font-weight: 600;">NOTE:</span> NServiceBus.Host no longer supports /installinfrastructure. Use PowerShell cmdlets instead.
+
 
 Installing the NServiceBus commandlets in V3.0
 ----------------------------------------------
 
-These cmdlets are built into the NServiceBus.Core.dll, so [download NServiceBus](http://particular.net/downloads) and load them into PowerShell using the Import-Module cmdlet:
+Load the cmdlets into PowerShell using the Import-Module cmdlet:
 
 
     PM> Import-Module .\NServiceBus.Core.dll
 
 
-**NOTE**: The core depends on NServiceBus.dll and log4net.dll so make sure that both are in the same directory. If you use the NuGet package, the commandlets are available automatically in the NuGet console. If you installed NServiceBus using the MSI you can add the import module statement to your [PowerShell profile.](http://www.howtogeek.com/50236/customizing-your-powershell-profile/)
+<span style="font-weight: 600;">NOTE</span> : The core depends on NServiceBus.dll and log4net.dll so make sure that both are in the same directory.
+
+If you use the NuGet package, the commandlets are available automatically in the NuGet console. If you installed NServiceBus using the MSI you can add the import module statement to your [PowerShell profile.](http://www.howtogeek.com/50236/customizing-your-powershell-profile/)
 
 For a detailed description of all our commandlets, use the get-help command:
 
@@ -53,74 +136,29 @@ Gets the current version of NServiceBus (Semver).
 
 Installs a NServiceBus license file into the registry.
 
-Updates to PowerShell commandlets in V4.0
------------------------------------------
+<a id="fixit">But it doesn't work</a>
+-------------------------------------
 
-NServiceBus PowerShell commandlets have moved to NServiceBus.PowerShell.dll. To import the DLL, run:
+If you are getting the following error:
 
+**<font color="#ff0000">Import-Module : Could not load file or assembly
+'file:///C:\\Program Files (x86)\\Particular Software\\NServiceBus\\v4.0\\NServiceBus\\Binaries\\NServiceBus.PowerShell.dll' or one of its dependencies. This assembly is built by a runtime newer than the currently loaded runtime and cannot be loaded. </font>**
 
-    PM> Import-Module .\NServiceBus.PowerShell.dll
+You need to configure Powershell to load .Net 4.0 modules. This can be done by adding a config file called Powershell.exe.config and Powershellise.exe.config with the following contents to the C:\\Windows\\System32\\WindowsPowerShell\\v1.0 folder:
 
-NServiceBus PowerShell cmdlets have been renamed so that they do not clash with existing cmdlets:
+<?xml version="1.0" ?>
 
-<span style="font-weight: 600;">Install-NServiceBusLicense</span>
+ <configuration>
 
-Installs a NServiceBus license file.
+ <startup uselegacyv2runtimeactivationpolicy="true">
 
-**Get-NServiceBusMSMQMessage**
+ <supportedruntime version="v4.0.30319"></supportedruntime>
 
-Displays all messages in a queue.
+ <supportedruntime version="v2.0.50727"></supportedruntime>
 
-**Get-NServiceBusVersion**
+ </startup>
 
-Displays the NServiceBus installed version.
+ </configuration>
 
-**Install-NServiceBusDTC**
-
-Installs DTC on the machine.
-
-**Install-NServiceBusRavenDB**
-
-Installs RavenDB on the machine.
-
-**Install-NServiceBusPerformanceCounters**
-
-Installs NServiceBus performance counters on the machine.
-
-**Install-NServiceBusMSMQ**
-
-Installs MSMQ on the machine.
-
-**Test-NServiceBusDTCInstallation**
-
-Validates if DTC is installed and running on the machine.
-
-**Test-NServiceBusRavenDBInstallation**
-
-Ensures RavenDB is on the machine.
-
-**Test-NServiceBusPerformanceCountersInstallation**
-
-Validates that NServiceBus performance counters are correctly installed on the machine.
-
-**Test-NServiceBusMSMQInstallation**
-
-Validates MSMQ is correctly installed on the machine.
-
-**Add-NServiceBusMessageForwardingInCaseOfFaultConfig**
-
-Adds the required configuration section to the config file.
-
-**Get-NServiceBusLocalMachineSettings**
-
-Shows the default error and audit queues.
-
-**Set-NServiceBusLocalMachineSettings**
-
-Allows specifying the default error and audit queues.
-
- **NOTE:** NServiceBus.Host no longer supports /installinfrastructure. Use PowerShell cmdlets instead.
-
-
-
+For more details on this, read [Cornelius' blog post](http://www.cjvandyk.com/blog/lists/posts/post.aspx?id=287) .
 

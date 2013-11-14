@@ -1,12 +1,15 @@
 <!--
 title: "Using the In-Memory Bus"
-tags: 
+tags: ""
+summary: "<p>Until now, NServiceBus provided an asynchronous method of communication between parts of the system using the Send, Reply, and Publish API. Asynchronous forms of communication are great for ensuring reliable and durable communication between pieces of the system. Now NServiceBus 4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.</p>
+"
 -->
 
 Until now, NServiceBus provided an asynchronous method of communication between parts of the system using the Send, Reply, and Publish API. Asynchronous forms of communication are great for ensuring reliable and durable communication between pieces of the system. Now NServiceBus 4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.
 
 
-This is the same concept as for the [domain events pattern](http://www.udidahan.com/2009/06/14/domain-events-salvation/%20).
+This is the same concept as for the [domain events pattern](http://www.udidahan.com/2009/06/14/domain-events-salvation/%20)
+.
 
 
 Events in general
@@ -19,38 +22,11 @@ In .NET 4.0, to define an event, use the event keyword in the signature of your 
 
 
 1.  Define an event
-
-    ~~~~ {.brush:csharp;}
-    public event EventHandler RaiseClientBecamePreferredEvent;
-    ~~~~
-
+    <script src="https://gist.github.com/Particular/6082331.js?file=DotNetEvent.cs"></script>
 2.  Define the event arguments:
-
-    ~~~~ {.brush:csharp;}
-    public class ClientBecamePreferredArgs : EventArgs
-    {
-    public string Message {get;set;}
-    }
-    ~~~~
-
+    <script src="https://gist.github.com/Particular/6082331.js?file=DotNetEventArgs.cs"></script>
 3.  Raise the event:
-
-    ~~~~ {.brush:csharp;}
-    public void DoSomething()
-    {
-    // Write some code that does something useful here
-    // then raise the event.
-    OnRaiseClientBecamePreferredEvent(new ClientBecamePreferredEventArgs("Did something"));
-    }
-    protected virtual void OnRaiseClientBecamePreferredEvent(ClientBecamePrefferedEventArgs e)
-    {
-    EventHandler handler = RaiseClientBecamePrefferedEvent;
-    if (handler != null)
-    {
-    handler(this, e);
-    }
-    }
-    ~~~~
+    <script src="https://gist.github.com/Particular/6082331.js?file=RaiseDotNetEvent.cs"></script>
 
 In-memory events
 ----------------
@@ -63,20 +39,9 @@ In-memory events are like regular .NET events in that all observing objects that
 For example:
 
 
-    public class ClientBecamePreferred : IEvent
-    {
-    // message details go here.
-    }
+<script src="https://gist.github.com/Particular/6082331.js?file=NsbEvent.cs"></script>
 
-Or
-
-    public class ClientBecamePreferred
-    {
-    // message details go here.
-    }
-
-
-Read how to tell NServiceBus to[use the POCOs as events](unobtrusive-mode-messages.md).
+Read how to tell NServiceBus to [use the POCOs as events](unobtrusive-mode-messages.md) .
 
 
 ### How to raise an in-memory event?
@@ -85,34 +50,14 @@ Read how to tell NServiceBus to[use the POCOs as events](unobtrusive-mode-messag
 In-memory events are raised using a property of an IBus object call: Bus.InMemory.Raise<t>:
 
 
-    class OrderAcceptedHandler : IHandleMessages
-    {
-    public IBus Bus { get; set; }
-    public void Handle(OrderAccepted message)
-    {
-    // Call the domain object's action, which will in turn do the
-    //below to raise the event
-    Bus.InMemory.Raise(m =>
-    {
-    m.ClientId = message.ClientId;
-    });
-    }
-    }
-
+<script src="https://gist.github.com/Particular/6082331.js?file=InMemoryEvent.cs"></script>
 ### How to subscribe to in-memory events?
 
 
 To subscribe to these events, implement a class that implements IHandleMessages<t>. The handlers are invoked when the event is raised:
 
 
-    private class CustomerBecamePreferredHandler: IHandleMessages
-    {
-    void Handle(ClientBecamePreferred message)
-    {
-    // Do what needs to be done when a client becomes preferred.
-    }
-    }
-
+<script src="https://gist.github.com/Particular/6082331.js?file=SubscribingToInMemoryEvent.cs"></script>
 ### How is an in-memory event different from Bus.Publish<t>?
 
 
@@ -135,7 +80,7 @@ The NServiceBus style of eventing in general {dir="ltr"}
 --------------------------------------------
 
 
-NServiceBus uses IoC heavily. When the endpoints start, NServiceBus scans the assemblies in the directory. It finds event, command and message types, either using the marker interfaces or unobtrusive conventions. It also scans the assemblies to identify the types that implement the handlers for event types that implement IHandleMessages<t> and registers them in the container. Read more about [NServiceBus and its use of containers](containers.md).
+NServiceBus uses IoC heavily. When the endpoints start, NServiceBus scans the assemblies in the directory. It finds event, command and message types, either using the marker interfaces or unobtrusive conventions. It also scans the assemblies to identify the types that implement the handlers for event types that implement IHandleMessages<t> and registers them in the container. Read more about [NServiceBus and its use of containers](containers.md) .
 
 When an event is raised, the bus invokes the Handle method on all the registered handlers for that event. For subscribers, this offers a consistent way of subscribing to the event, regardless of how these events are published (in-memory or durable). This style of eventing has two significant advantages:
 

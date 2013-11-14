@@ -1,29 +1,26 @@
 <!--
 title: "NServiceBus Installers"
-tags: 
+tags: ""
+summary: "<p>NServiceBus has the concept of installers to make sure that endpoint specific specific artifacts e.g., queues, folders, or databases are installed and configured automatically for you if needed at install time.</p>
+<p>To create your own installer is as easy as implementing the
+<a href="https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Installation/INeedToInstallSomething.cs">INeedToInstallSomething<t></a> interface. The generic parameter gives you a way to restrict your installer to a specific platform. Currently this is either Windows or Azure.</p>
+"
 -->
 
-NServiceBus V3.0 introduces the concept of installers to make sure that both infrastructure and endpoint specific artifacts are installed and configured automatically for you if needed.
-
-The installers come in two flavors, infrastructure installers and regular installers. 
-
-Infrastructure installers are used for things that are not specific to a given endpoint e.g., RavenDB or MSMQ. 
-
-Regular installers focus on setting up things that the current endpoint depends upon, e.g., queues, folders, or databases. 
-
-Infrastructure installers are always invoked before regular installers. Although the installers are mainly used internally, you could use them for your own purposes as well, for example to ensure folders are created, database scripts invoked, etc.
+NServiceBus has the concept of installers to make sure that endpoint specific specific artifacts e.g., queues, folders, or databases are installed and configured automatically for you if needed at install time.
 
 To create your own installer is as easy as implementing the
-[INeedToInstallInfrastructure<t>](https://github.com/NServiceBus/NServiceBus/blob/master/src/installation/NServiceBus.Installation/INeedToInstallInfrastructure.cs) interface. The generic parameter gives you a way to restrict your installer to a specific platform. Currently this is either Windows or Azure. 
+[INeedToInstallSomething<t>](https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Installation/INeedToInstallSomething.cs) interface. The generic parameter gives you a way to restrict your installer to a specific platform. Currently this is either Windows or Azure.
 
-If you don’t care about the runtime environment, use the
-[INeedToInstallInfrastructure](https://github.com/NServiceBus/NServiceBus/blob/master/src/installation/NServiceBus.Installation/INeedToInstallInfrastructure.cs) interface instead. To create a regular installer, implement the
-[INeedToInstallSomething<t>](https://github.com/NServiceBus/NServiceBus/blob/master/src/installation/NServiceBus.Installation/INeedToInstallSomething.cs) interface again using the T to restrict it to a specific environment.
+If you don’t care about the runtime environment, just use the
+[INeedToInstallSomething](https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Installation/INeedToInstallSomething.cs) interface instead.
 
 NServiceBus scans the assemblies in the runtime directory for installers so you don’t need any code to register them.
 
+**Version 3.0 Only:** Version 3.0 included an interface called INeedToInstallInfrastructure<t> interface. It was primarily used for things that are not specific to a given endpoint e.g., RavenDB or MSMQ. This interface has been obsoleted in version 4.0 and will be removed in
+5.0, since the introduction of [PowerShell commandlets](managing-nservicebus-using-powershell.md) to aid the installation of infrastructure.
+
 When are they invoked?
-----------------------
 
 When using the NServiceBus host, installers are invoked as shown:
 
@@ -43,7 +40,7 @@ When using the NServiceBus host, installers are invoked as shown:
 
 </th>
 <th style="margin: 0px; padding: 0px; border: 0px; font-size: medium; vertical-align: baseline; outline: none; text-align: center;">
-**Infrastructure**
+**Infrastructure (v3.0 Only)**
 
 </th>
 <th style="margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; outline: none; text-align: center;">
@@ -137,12 +134,5 @@ When using the NServiceBus host, installers are invoked as shown:
 
 When self hosting NServiceBus, invoke the installers manually, using this:
 
-
-    Configure.Instance.ForInstallationOn().Install()
-
-
-Read a [full example](http://github.com/NServiceBus/NServiceBus/blob/master/Samples/AsyncPages/WebApplication1/Global.asax.cs)
-.
-
-There is another way to run the infrastructure installers. If you invoke the host with the /installInfrastructure flag, the host runs the infrastructure installers for you without requiring you to configure anything. This can be useful when you set up a new server or a developer machine, since it verifies and installs the required infrastructure for NServiceBus to run. The RunMeFirst.bat file included in the download does just that.
+<script src="https://gist.github.com/Particular/6107912.js?file=CustomInstall.cs"></script> NOTE: The use of /installInfrastructure flag with the NServiceBus.Host has been deprecated in version 4.0. To install needed infrastructure, use the [PowerShell commandlets](managing-nservicebus-using-powershell.md) instead.
 

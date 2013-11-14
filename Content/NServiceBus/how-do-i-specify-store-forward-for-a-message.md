@@ -1,22 +1,15 @@
 <!--
 title: "How to Specify Store and Forward for a Message?"
-tags: 
+tags: ""
+summary: "<h1>How to specify not writing a message to disk?</h1>
+<p>This will make the message vulnerable to server crashes or restarts.</p>
+"
 -->
 
-This is the default mode in V2.0 and V2.5, but not in V1.9:
-
-    [Recoverable]
-    public class MyMessage : IMessage { }
-
-OR
-
-    [Recoverable]
-    public interface IMyMessage : IMessage { }
-
 How to specify not writing a message to disk?
----------------------------------------------
+=============================================
 
-This is the default mode in V1.9, but not in V2.0 and later:
+This will make the message vulnerable to server crashes or restarts.
 
     [Express]
     public class MyMessage : IMessage { }

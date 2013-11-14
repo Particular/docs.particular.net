@@ -1,60 +1,37 @@
 <!--
 title: "Scheduling with NServiceBus"
-tags: 
+tags: ""
+summary: "<p>With the NServiceBus scheduling capability you can schedule a task or an action/lambda, to be executed repeatedly in a given interval.</p>
+<h2>Use cases</h2>
+"
 -->
 
-With NServiceBus scheduling capability you can schedule a task or an action/lambda, to be executed repeatedly in a given interval.
+With the NServiceBus scheduling capability you can schedule a task or an action/lambda, to be executed repeatedly in a given interval.
 
 Use cases
 ---------
 
 You could use the scheduler to repeatedly poll some folder on your HDD for a file, schedule a reoccurring re-index of a database in a multi-tenant environment, and so on.
 
-Do not put any business logic in your tasks; instead, use
+Do not add any business logic in your tasks; instead, use
 [sagas](sagas-in-nservicebus.md) .
 
 Example usage
 -------------
 
 
-    Schedule.Every(TimeSpan.FromMinutes(5)).Action(() => 
-    { 
-    Bus.Send(); 
-    });
-
-
-
-    Schedule.Every(TimeSpan.FromMinutes(5)).Action("Task name", () => {});
-
+<script src="https://gist.github.com/Particular/6100577.js?file=scheduler.cs"></script>
 
 The difference between these examples is that in the latter a name is given for the task. The name is used for logging.
 
-To schedule tasks when your hosts starts, implement the IWantToRunWhenTheBusStarts interface.
+To schedule tasks when your hosts starts, implement the IWantToRunWhenTheBusStarts interface in version 3.0 and implement the IWantToRunWhenBusStartsAndStops in version 4.0.
 
-
-    public class ScheduleStartUpTasks : IWantToRunWhenTheBusStarts
-    {
-    public void Run()
-    {
-    Schedule.Every(TimeSpan.FromMinutes(5)).Action(() =>
-    Console.WriteLine("Another 5 minutes have elapsed."));
-    Schedule.Every(TimeSpan.FromMinutes(3)).Action(
-    "MyTaskName",() =>
-    { 
-    Console.WriteLine("This will be logged under MyTaskName’.");
-    });
-    }
-    }
-
-
-Implementation
+<script src="https://gist.github.com/Particular/6100577.js?file=SchedulerStartup.cs"></script> Implementation
 --------------
 
-The scheduler holds a list of tasks created with the scheduler using
+The scheduler holds a list of tasks created with the scheduler using:
 
-    Schedule.Every(TimeSpan.FromMinutes(5)).Action(() => { < task to be executed > }).
-
-When the task is created it is given an unique identifier. The identifier for the task is sent in a message to the Timeout Manager. When it times out and the Timeout Manager returns the message containing the identifier to the endpoint with the scheduled task, the endpoint uses that identifier to fetch and invoke the task from its internal list of tasks.
+<script src="https://gist.github.com/Particular/6100577.js?file=scheduleTask.cs"></script> When the task is created it is given an unique identifier. The identifier for the task is sent in a message to the Timeout Manager. When it times out and the Timeout Manager returns the message containing the identifier to the endpoint with the scheduled task, the endpoint uses that identifier to fetch and invoke the task from its internal list of tasks.
 
 Assumptions
 -----------

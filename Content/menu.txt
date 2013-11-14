@@ -5,6 +5,7 @@ persistence-in-nservicebus
 	relational-persistence-using-nhibernate
 	unit-of-work-in-nservicebus
 	unit-of-work-implementation-for-ravendb
+	relational-persistence-using-nhibernate---nservicebus-4.x
 scaling-out
 	performance
 	the-gateway-and-multi-site-distribution
@@ -15,7 +16,6 @@ getting-started
 	overview
 	getting-started---creating-a-new-project
 	getting-started---publish-subscribe-communication
-	nservicebus-videos
 	getting-started---fault-tolerance
 	architectural-principles
 	transactions-message-processing
@@ -24,6 +24,10 @@ getting-started
 	nservicebus-and-websphere-sonic
 	nservicebus-and-biztalk
 	NServiceBus-Step-by-Step-Guide
+	NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first
+	nservicebus-step-by-step-publish-subscribe-communication-code-first
+
+	test
 day-to-day
 	containers
 	nservicebus-support-for-child-containers
@@ -37,7 +41,6 @@ day-to-day
 	scheduling-with-nservicebus
 	second-level-retries
 	nservicebus-installers
-	convention-over-configuration
 	managing-nservicebus-using-powershell
 hosting
 	the-nservicebus-host
@@ -60,7 +63,6 @@ customization
 	pipeline-management-using-message-mutators
 versioning
 	migrating-to-nservicebus-3.0-–-timeouts
-	potential-issues-updating-nsb-studio-on-visual-studio-11-beta
 faq
 	msmqtransportconfig
 	how-do-i-define-a-message
@@ -84,7 +86,6 @@ faq
 	messagequeueexception-insufficient-resources-to-perform-operation
 	how-to-specify-your-input-queue-name
 	in-a-distributor-scenario-what-happens-to-the-message-if-a-worker-goes-down
-	runmefirst.bat-throws-an-exception
 	no-endpoint-configuration-found-in-scanned-assemblies-exception
 	dtcping-warning-the-cid-values-for-both-test-machines-are-the-same
 	why-you-can-t-use-nlb-with-msmq
@@ -92,14 +93,15 @@ faq
 	licensing-and-distribution
 	how-to-debug-ravendb-through-fiddler-using-nservicebus
 	how-do-i-centralize-all-unobtrusive-declarations
-	definingmessagesas-and-exception-when-starting-endpoint
-	runmefirst.bat-hangs
+	definingmessagesas-and-definingeventsas-when-starting-endpoint
 	how-to-reduce-throughput-of-an-endpoint
 	does-nservicebus-support-both-native-and-non-native-connectivity
 	invalidoperationexception-in-unobtrusive-mode
 	license-management
 	preparing-your-machine-to-run-nservicebus
 	running-nservicebus-on-windows
+	licensing-servicematrix-v2.0
+	how-to-install-your-license-file-serviceinsight
 samples
 	full-duplex-sample-v3
 	publish-subscribe-sample

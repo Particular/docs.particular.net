@@ -1,6 +1,11 @@
 <!--
 title: "How to Define a Message?"
-tags: 
+tags: ""
+summary: "<pre><code>public class MyMessage : IMessage { }
+</code></pre>
+
+<p>OR</p>
+"
 -->
 
     public class MyMessage : IMessage { }

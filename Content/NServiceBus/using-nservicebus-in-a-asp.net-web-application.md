@@ -1,6 +1,9 @@
 <!--
 title: "Using NServiceBus in a ASP.NET Web Application"
-tags: 
+tags: ""
+summary: "<p>To see how to use NServiceBus in a WebForms application, open the AsyncPages sample and run the solution. A new browser window/tab opens, as well as a console application.</p>
+<p>Enter the number &quot;1&quot; into the text box in the browser, and click &quot;Go&quot;. You should see the result &quot;None&quot; appear, as shown:</p>
+"
 -->
 
 To see how to use NServiceBus in a WebForms application, open the AsyncPages sample and run the solution. A new browser window/tab opens, as well as a console application.

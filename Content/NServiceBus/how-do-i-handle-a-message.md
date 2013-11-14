@@ -1,6 +1,16 @@
 <!--
 title: "How to Handle a Message?"
-tags: 
+tags: ""
+summary: "<p>Write a class that implements IMessageHandler<t> where T is the message type:</p>
+<pre><code>public class H1 : IMessageHandler
+{
+     public void Handle(MyMessage message)
+     {
+     }
+}
+</code></pre>
+
+"
 -->
 
 Write a class that implements IMessageHandler<t> where T is the message type:

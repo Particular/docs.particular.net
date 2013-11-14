@@ -1,6 +1,9 @@
 <!--
 title: "Introduction to the Gateway"
-tags: 
+tags: ""
+summary: "<p>This article, together with <a href="the-gateway-and-multi-site-distribution.md">the Gateway &amp; Multi-Site Distribution with NServiceBus</a> article, provide a high level overview of the NServiceBus gateway, where to use it, and—more importantly—where not to use it. The main purpose of the gateway is to allow you to do the same durable fire-and-forget messaging that you are accustomed to with NServiceBus across physically separated sites, where &quot;sites &quot; are locations where you run IT infrastructure and not web sites.</p>
+<p>The gateway only comes into play where you can’t use the regular queued transports for communication i.e. when setting up a VPN-connection is not an option. The reason for not using a VPN could be security concerns, bandwidth limitation, latency problems, high availability constraints, etc.</p>
+"
 -->
 
 This article, together with [the Gateway & Multi-Site Distribution with NServiceBus](the-gateway-and-multi-site-distribution.md) article, provide a high level overview of the NServiceBus gateway, where to use it, and—more importantly—where not to use it. The main purpose of the gateway is to allow you to do the same durable fire-and-forget messaging that you are accustomed to with NServiceBus across physically separated sites, where "sites " are locations where you run IT infrastructure and not web sites.
@@ -25,13 +28,13 @@ Looking at this scenario from a logical point of view, you see that all the pric
     to the different stores on a daily basis
 -   Store – Stores the prices locally for read-only purposes
 
-Prices are usually set for a least a day at a time so it’s good enough for the HQ to push them to the sites once per day. Model this as DailyPriceUpdatesmessage containing the list of price updates for the coming business day. Given this design, you only need to get one message across to each site per day, which lowers the requirement for the infrastructure.
+Prices are usually set for at least a day at a time so it’s good enough for the HQ to push them to the sites once per day. Model this as DailyPriceUpdatesmessage containing the list of price updates for the coming business day. Given this design, you only need to get one message across to each site per day, which lowers the requirement for the infrastructure.
 
 Internally in HQ, other business services may need more frequent updates, so model this with another logically different message, PriceUpdatedForProduct, which allows you to use the pub/sub pattern while communicating with other BS.
 
 The gateway doesn’t support pub/sub (more on that later) but this isn’t a problem since request/response is perfectly fine within a BS, remembering that those sites are physically different but the communication is within the same logical BS. So when you use the gateway, the guideline is to model the messages going explicitly across sites. If you extend the sample to include a sales service responsible for reporting the sales statistics so that the pricing service can set appropriate prices, you get the following picture:
 
-![Gateway Store and Headquarters example](https://particular.blob.core.windows.net/media/Default/images/store_to_headquarters_pricing_and_sales.png)
+![Gateway Store and Headquarters example](https://particular.blob.core.windows.net/media/Default/images/store_to_headquarters_pricing_and_sales.png "Logical view")
 
 The prices are pushed daily to the stores and sales reports are pushed daily to the HQ. Any pub/sub goes on within the same physical site. This is the reason that the NServiceBus gateway doesn’t support pub/sub across sites since it shouldn’t be needed in a well designed system.
 
@@ -47,21 +50,13 @@ Beginning with NServiceBus V3, the gateway is included in the core assembly, mea
 
 To turn on the gateway, call Configure.RunGateway(). To send messages, use the new IBus interface called SendToSites method, as shown:
 
-    /// 
-    /// Sends the messages to all sites with matching 
-    /// site keys registered with the gateway.
-    /// The gateway is assumed to be located at the master node. 
-    /// 
-    /// 
-    /// 
-    /// 
-    ICallback SendToSites(IEnumerable siteKeys, params object[] messages);
-
-This allows you to pass in a list of sites to where you want to send your messages. You can configure each site with a different transport mechanism. Currently the supported channels are HTTP/HTTPS but you can easily extend the gateway with your own implementation.
+<p>
+<script src="https://gist.github.com/Particular-gist/6327350.js?file=001_Introduction_to_the_Gateway.cs"></script>
+</p> This allows you to pass in a list of sites to where you want to send your messages. You can configure each site with a different transport mechanism. Currently the supported channels are HTTP/HTTPS but you can easily extend the gateway with your own implementation.
 
 On the receiving side is another gateway listening on the input channel and forwarding the incoming message to the target endpoint. The image below shows the physical parts involved:
 
-[![](http://images.nservicebus.com/GatewayHeadquarterToSiteA.png "Physical view")](https://particular.blob.core.windows.net/media/Default/images/New-and-shiny-things-in-NServiceBus-3.0-e1322740232426.png)
+![](https://particular.blob.core.windows.net/media/Default/images/documentation/GatewayHeadquarterToSiteA.png "Physical view")
 
 A gateway runs inside each host process. The gateway gets its input from a regular MSMQ queue and forwards the message over the desired channel
 (HTTP in this case) to the receiving gateway. The receiving side de-duplicates the message (ensures it is not a duplicated message, i.e., a message that was already sent) and forwards it to the main input queue of its local endpoint. The gateway has the following features:

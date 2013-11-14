@@ -1,6 +1,9 @@
 <!--
 title: "Transactions and Message Processing"
-tags: 
+tags: ""
+summary: "<p>As a part of the NServiceBus &quot;Fault-Tolerant by Default&quot; design, the infrastructure manages transactions automatically so you don't have to remember the configuration of all threading and state management elements.</p>
+<h2>Clients and servers</h2>
+"
 -->
 
 As a part of the NServiceBus "Fault-Tolerant by Default" design, the infrastructure manages transactions automatically so you don't have to remember the configuration of all threading and state management elements.

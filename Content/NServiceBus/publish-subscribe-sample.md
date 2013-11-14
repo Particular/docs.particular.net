@@ -1,11 +1,16 @@
 <!--
 title: "Publish/Subscribe Sample"
-tags: 
+tags: ""
+summary: "<p> Open the solution in Visual Studio. You should see the picture on the left.</p>
+<p>Before running the
+<a href="https://github.com/NServiceBus/NServiceBus/tree/master/Samples/PubSub">sample</a>, look over the solution structure, the projects, and the classes. The projects &quot;MyPublisher&quot;, &quot;Subscriber1&quot;, and &quot;Subscriber2&quot; are their own processes, even though they look like regular class libraries.</p>
+"
 -->
 
-![pubsub solution](https://particular.blob.core.windows.net/media/Default/images/pub_sub_solution.png)Open the solution in Visual Studio. You should see the picture on the left.
+![pubsub solution](https://particular.blob.core.windows.net/media/Default/images/pub_sub_solution.png) Open the solution in Visual Studio. You should see the picture on the left.
 
-Before running the sample, look over the solution structure, the projects, and the classes. The projects "MyPublisher", "Subscriber1", and "Subscriber2" are their own processes, even though they look like regular class libraries.
+Before running the
+[sample](https://github.com/NServiceBus/NServiceBus/tree/master/Samples/PubSub), look over the solution structure, the projects, and the classes. The projects "MyPublisher", "Subscriber1", and "Subscriber2" are their own processes, even though they look like regular class libraries.
 
 The "Messages" project contains the definition of the messages that are sent between the processes. Open the "Messages.cs" class to see the
 "EventMessage" class and the "IEvent" interface.
@@ -48,32 +53,31 @@ See how the subscriber processes all the messages that were sent by the
 
 Examine some more failure scenarios.
 
-Durable subscriptions
----------------------
+Durable subscriptions by default
+--------------------------------
 
-Restart the "MyPublisher" process and bring it up as described above. Click Enter several times in the publisher's console window.
+Restart just the "MyPublisher" process while the subscribers are running. Click Enter several times in the publisher's console window.
 
-See that the subscribers are no longer receiving these events. You might not have expected this. It is reasonable to assume that a publisher
-"remembers" its subscribers even if it restarts. That would require that the publisher stores which events each subscriber wants to receive on some durable medium.
+See that the subscribers are still receiving these events. That is because the publisher stores the list of subscribers that were interested in the events into a durable storage. From Version 3 onwards, the default durable subscription storage is RavenDB.
 
-Luckily, NServiceBus has two durable subscription storage options in addition to the default in-memory storage: one makes use of MSMQ, the other makes use of a database. The MSMQ option is suitable for integration environments where you want to test various kinds of fault scenarios but do not require scalability. To scale out a publisher over multiple machines, the MSMQ subscription storage does not work correctly; for that, you need the DB subscription storage.
+NServiceBus also has two other durable subscription storage options in addition to RavenDB: MSMQ, and SqlServer using NHibernate subscription storage. The MSMQ option is suitable for integration environments where you want to test various kinds of fault scenarios but do not require scalability. To scale out a publisher over multiple machines, the MSMQ subscription storage does not work correctly; for that, you need the DB subscription storage like RavenDB or SqlServer.
 
-To switch from the in-memory storage to storage suitable for integration and production, use "profiles", which are preconfigured combinations of infrastructure technologies suitable for various scenarios. Change the publisher's profile to integration.
+**Contrast with In-Memory Subscription:**
 
-In Visual Studio, stop debugging, double click the "Properties" node located immediately under the "MyPublisher" process, and click the
-"Debug" tab. In the "Start Options" section, in the "Command line arguments" textbox, type "NServiceBus.Integration", as shown:
+To switch from the durable storage suitable for production to in-memory storage suited for development, use
+"[profiles](profiles-for-nservicebus-host.md)", which are preconfigured combinations of infrastructure technologies suitable for various scenarios. Change the publisher's profile to NServiceBus.Lite. In Visual Studio, stop debugging, double click the "Properties" node located immediately under the "MyPublisher" process, and click the "Debug" tab. In the "Start Options" section, in the "Command line arguments" textbox, type "NServiceBus.Lite" instead of "NServiceBus.Integration" as shown:
 
 <center>
-![Set the Integration profile](http://images.nservicebus.com/Integration_Profile.png "Set the Integration profile")
+![Switch to NServiceBus.Lite profile](http://images.nservicebus.com/Integration_Profile.png "Switch to NServiceBus.Lite profile instead of NServiceBus.Integration")
 
-</center> Run it again and click Enter several times in the publisher's console, checking that the events show up in the subscribers.
+</center> NOTE: The default profile when no profiles are specified is NServiceBus.Production, the profile suited for production deployment.
 
-Restart the publisher. Now when you click Enter in the publisher's console, you should see that the subscribers still receive the events.
+Restart the publisher and subscribers. Now when you click Enter in the publisher's console, you will see that the subscribers receive the events, but if you restart just the publisher while the subscribers are running, the subscribers no longer are receiving events. It is for this reason that NServiceBus is safe by default, starting in NServiceBus.Production profile if no profiles are specified, setting up durable subscriptions.
 
 Next steps
 ----------
 
 Scale out your publishers and subscribers.
 
-See the other NServiceBus pieces that handle this for you in [how pub/sub works](how-pub-sub-works.md).
+See the other NServiceBus pieces that handle this for you in [how pub/sub works](how-pub-sub-works.md) .
 

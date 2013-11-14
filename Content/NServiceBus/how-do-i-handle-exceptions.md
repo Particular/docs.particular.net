@@ -1,6 +1,9 @@
 <!--
 title: "How to Handle Exceptions"
-tags: 
+tags: ""
+summary: "<p>Don't.</p>
+<p>NServiceBus has exception catching and handling logic of its own which surrounds all calls to user code. When an exception bubbles through to the NServiceBus infrastructure, it rolls back the transaction on a transactional endpoint, causing the message to be returned to the queue, and any messages that the user code tried to send or publish to be undone as well.</p>
+"
 -->
 
 Don't.

@@ -1,15 +1,16 @@
 <!--
 title: "How Pub/Sub Works"
-tags: 
+tags: ""
+summary: "<p>Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on.</p>
+<p>If you haven't seen the <a href="publish-subscribe-sample.md">publish/subscribe sample</a> yet take a minute to walk through or start by <a href="getting-started---creating-a-new-project.md">creating a new project using NServiceBus</a> .</p>
+"
 -->
 
 Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on.
 
-If you haven't seen the [publish/subscribe sample](getting-started-publish-subscribe-communication) yet take a minute to walk through or start by [creating a new project using NServiceBus](getting-started---creating-a-new-project.md).
+If you haven't seen the [publish/subscribe sample](publish-subscribe-sample.md) yet take a minute to walk through or start by [creating a new project using NServiceBus](getting-started---creating-a-new-project.md) .
 
-The main thing to understand is this: subscribers let the publisher know they're interested, and the publisher stores their addresses so that it knows where to send which message.
-
-It's fairly straight-forward, once you know how it all works.
+The main thing to understand is this: subscribers let the publisher know they're interested, and the publisher stores their addresses so that it knows where to send which message. It's fairly straight-forward, once you know how it all works.
 
 Before we get started...
 ------------------------
@@ -45,7 +46,7 @@ All the distributor does at this point is forward the message it receives to ano
 
 You can think of the distributor as something like a load balancer—it distributes the messages coming to it to a number of other machines. This kind of physical one-to-many communication is needed for scaling out the number of machines running for a given subscriber, but doesn't actually entail any pub/sub. Each subscriber gets its own distributor and each of them decides independently to which machine it passes its messages.
 
-See [<span style="background-color:Yellow;">more information on the distributor</span>](http://support.nservicebus.com/customer/portal/articles/DistributorV3.aspx).
+See [<span>more information on the distributor</span>](load-balancing-with-the-distributor.md) .
 
 The same for any publisher node
 -------------------------------
@@ -61,10 +62,10 @@ Next steps
 ----------
 
 -   Learn about the [API and configuration involved in
-    pub/sub](publish-subscribe-configuration.md).
+    pub/sub](publish-subscribe-configuration.md) .
 -   See how to [configure the distributor and learn more about its
-    internals](load-balancing-with-the-distributor.md).
+    internals](load-balancing-with-the-distributor.md) .
 -   Find out how to use the [generic NServiceBus Host
-    process](the-nservicebus-host.md).
+    process](the-nservicebus-host.md) .
 
 

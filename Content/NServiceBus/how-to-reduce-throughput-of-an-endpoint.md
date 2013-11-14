@@ -1,29 +1,20 @@
 <!--
 title: "How to Reduce Throughput of an Endpoint?"
-tags: 
+tags: ""
+summary: "<p>There are two ways to decrease receiving throughput of an endpoint:</p>
+<ul>
+<li>Edit the TransportConfig section in the endpoint config file:</li>
+</ul>
+"
 -->
 
 There are two ways to decrease receiving throughput of an endpoint:
 
 -   Edit the TransportConfig section in the endpoint config file:
 
-    ~~~~ {.brush:csharp;}
-    ​
-    ~~~~
-
+    <script src="https://gist.github.com/Particular/6059959.js?file=TransportConfig.xml"></script>
 -   Program the API:​
 
-    ~~~~ {.brush:csharp;}
-    public class ChangeThroughtput : IWantToRunWhenConfigurationIsComplete
-    {
-        public UnicastBus Bus { get; set; }
-
-        public void Run()
-        {
-                Bus.Transport.ChangeMaximumThroughputPerSecond(10);
-        }
-    }
-    ~~~~
-
+    <script src="https://gist.github.com/Particular/6059959.js?file=ChangeThroughtput.cs"></script>
 
 

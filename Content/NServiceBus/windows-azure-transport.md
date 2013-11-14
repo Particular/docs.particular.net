@@ -1,6 +1,23 @@
 <!--
 title: "Windows Azure Transport"
-tags: 
+tags: ""
+summary: "<p>The Windows Azure transport for NServiceBus enables the use of Windows Azure Queues and Windows Azure Service Bus as the underlying transports used by NServiceBus. It can be used in multiple scenarios:</p>
+<ul>
+<li>
+<span style="font-size: 14px; line-height: 24px;"><strong>Cloud hosting
+scenario:</strong> An NServiceBus endpoint is hosted as a cloud service and
+communicates, through the use of the Windows Azure transport for
+NServiceBus, with another endpoint located in another cloud
+service</span>
+</li>
+<li>
+<strong><span style="font-size: 14px; line-height: 24px;">Hybrid
+</span>scenario</strong>: An NServicebus is hosted on-premise and uses
+Windows Azure transport for NServiceBus to communicate with another
+NServiceBus endpoint hosted on a Cloud Service and/or on-premise
+</li>
+</ul>
+"
 -->
 
 The Windows Azure transport for NServiceBus enables the use of Windows Azure Queues and Windows Azure Service Bus as the underlying transports used by NServiceBus. It can be used in multiple scenarios:

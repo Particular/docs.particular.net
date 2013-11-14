@@ -1,13 +1,17 @@
 <!--
 title: "NServiceBus Message Mutators Sample"
-tags: 
+tags: ""
+summary: "<p>In NServiceBus V2.6 it was tricky to change messages as they were sent to and from endpoints. From NServiceBus V3 you can change messages by plugging custom logic in to a couple of simple interfaces.</p>
+<p>You can encrypt all or part of a message. The encryption message mutator is part of the NServiceBus library, and can be used at any time.</p>
+"
 -->
 
 In NServiceBus V2.6 it was tricky to change messages as they were sent to and from endpoints. From NServiceBus V3 you can change messages by plugging custom logic in to a couple of simple interfaces.
 
 You can encrypt all or part of a message. The encryption message mutator is part of the NServiceBus library, and can be used at any time.
 
-To see MessageMutators in action, open the MessageMutator sample.
+To see MessageMutators in action, open the [MessageMutator sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/MessageMutators)
+.
 
 1.  Run the solution.
 
@@ -57,42 +61,7 @@ Both interfaces are implemented in the MessageMutators project.
 
 Examine the implementation of ValidationMessageMutator:
 
-    public class ValidationMessageMutator : IMessageMutator
-    {
-    private static readonly ILog Logger = LogManager.GetLogger("ValidationMessageMutator");
-    public object MutateOutgoing(object message)
-    {
-    ValidateDataAnnotations(message);
-    return message;
-    }
-    public object MutateIncoming(object message)
-    {
-    ValidateDataAnnotations(message);
-    return message;
-    }        
-    private static void ValidateDataAnnotations(Object message)
-    {
-    var context = new ValidationContext(message, null, null);
-    var results = new List();
-    var isValid = Validator.TryValidateObject(message, context, results, true);
-    if (isValid)
-    {
-    Logger.Info("Validation succeeded for message: " + message.ToString());
-    return;
-    }
-    var errorMessage = new StringBuilder();
-    errorMessage.Append(
-    string.
-    Format("Validation failed for message {0}, with the following error/s: " + 
-    Environment.NewLine, message.ToString()));
-    foreach (var validationResult in results)
-    errorMessage.Append(validationResult.ErrorMessage + Environment.NewLine);
-    Logger.Error(errorMessage.ToString());
-    throw new Exception(errorMessage.ToString());
-    }
-    }
-
-ValidationMessageMutator implements the two interface methods: outgoing and incoming. As can be seen in the code, both incoming and outgoing mutaturs have the exact same code in them. The mutation is symmetrical.
+<script src="https://gist.github.com/Particular/6144218.js?file=ValidationMessageMutator.cs"></script> ValidationMessageMutator implements the two interface methods: outgoing and incoming. As can be seen in the code, both incoming and outgoing mutaturs have the exact same code in them. The mutation is symmetrical.
 
 Both call a private static method called ValidateDataAnnotations.
 
@@ -106,42 +75,7 @@ Browse the code. It shows a standard way to test data annotations. In this sampl
 
 Examine the other message mutator, the TransportMessageCompressionMutator:
 
-    public class TransportMessageCompressionMutator : IMutateTransportMessages
-    {
-    private static readonly ILog Logger = 
-    LogManager.GetLogger("TransportMessageCompressionMutator");
-    public void MutateOutgoing(object[] messages, TransportMessage transportMessage)
-    {
-    Logger.Info("transportMessage.Body size before compression: " 
-    + transportMessage.Body.Length);            
-    var mStream = new MemoryStream(transportMessage.Body);
-    var outStream = new MemoryStream();
-    using (var tinyStream = new GZipStream(outStream, CompressionMode.Compress))
-    {
-    mStream.CopyTo(tinyStream);
-    }
-    // copy the compressed buffer only after the GZipStream is disposed, 
-    // otherwise, not all the compressed message will be copied.
-    transportMessage.Body = outStream.ToArray();
-    transportMessage.Headers["IWasCompressed"] = "true";
-    Logger.Info("transportMessage.Body size after compression: " 
-    + transportMessage.Body.Length);
-    }
-    public void MutateIncoming(TransportMessage transportMessage)
-    {
-    if (!transportMessage.Headers.ContainsKey("IWasCompressed")) 
-    return;
-    using (var bigStream = 
-    new GZipStream(new MemoryStream(transportMessage.Body), CompressionMode.Decompress))
-    {
-    var bigStreamOut = new MemoryStream();
-    bigStream.CopyTo(bigStreamOut);
-    transportMessage.Body = bigStreamOut.ToArray();
-    }
-    }
-    }
-
-The TransportMessageCompressionMutator is a transport message mutator, meaning that NServiceBus allows you to mutate the outgoing or/and incoming transport message.
+<script src="https://gist.github.com/Particular/6144218.js?file=TransportMessageCompressionMutator.cs"></script> The TransportMessageCompressionMutator is a transport message mutator, meaning that NServiceBus allows you to mutate the outgoing or/and incoming transport message.
 
 In the TransportMessageCompressionMutator class, both the incoming and outgoing methods are implemented.
 
@@ -170,20 +104,9 @@ Configuring NServiceBus to use the message mutators
 
 To hook the sample message mutators into NServiceBus messaging flow:
 
-    public class HookMyMessageMutators : IWantCustomInitialization
-    {
-    public void Init()
-    {
-    Configure.Instance.Configurer.ConfigureComponent(
-    DependencyLifecycle.InstancePerCall);
-    Configure.Instance.Configurer.ConfigureComponent(
-    DependencyLifecycle.InstancePerCall);
-    }
-    }
+<script src="https://gist.github.com/Particular/6144218.js?file=MutatorInit.cs"></script> Implementing IWantCustomInitialization signals NServiceBus to call the Init method during the NServiceBus initialization phase.
 
-Implementing IWantCustomInitialization signals NServiceBus to call the Init method during the NServiceBus initialization phase.
-
-The Init method configures, using NServiceBus builder ([dependency injection mechanism](containers.md)) to use ValidationMessageMutator and TransportMessageCompressionMutators. The NServiceBus framework uses them in its messaging flow.
+The Init method configures, using NServiceBus builder ( [dependency injection mechanism](containers.md) ) to use ValidationMessageMutator and TransportMessageCompressionMutators. The NServiceBus framework uses them in its messaging flow.
 
 Since the HookMyMessageMutators class is defined in the MessageMutators class library assembly, it means that you can drop it in the Client and the Server executable folder, and mutation will happen automatically.
 
@@ -196,46 +119,17 @@ Since registration is done automatically by the framework, the server and client
 
 This is how the client sends a valid message:
 
-    Bus.Send(m =>
-    {
-    m.ProductId = "XJ128";
-    m.ProductName= "Milk";
-    m.ListPrice = 4;
-    m.SellEndDate = new DateTime(2012, 1, 3);
-    // 7MB. MSMQ should throw an exception, but it will not since the buffer will be compressed 
-    // before it reaches MSMQ.
-    m.Image = new byte[1024 * 1024 * 7];
-    });
-
-Since the message buffer field is empty, GZipStreamer in the outgoing transport message mutator easily compresses it to a size under the MSMQ limit of 4MB and the message will get to the server.
+<script src="https://gist.github.com/Particular/6144218.js?file=ClientSend1.cs"></script> Since the message buffer field is empty, GZipStreamer in the outgoing transport message mutator easily compresses it to a size under the MSMQ limit of 4MB and the message will get to the server.
 
 See how the client sends an invalid message that will never reach the server since an exception will be thrown at the outgoing message mutator:
 
-    Bus.Send(m =>
-    {
-    m.ProductId = "XJ128";
-    m.ProductName = "Milk Milk Milk Milk Milk";
-    m.ListPrice = 15;
-    m.SellEndDate = new DateTime(2011, 1, 3);
-    // 7MB. MSMQ should throw an exception, but it will not since the buffer will be compressed 
-    // before it reaches MSMQ.
-    m.Image = new byte[1024 * 1024 * 7];
-    });
-
-The message is invalid for several reasons: the product name is over the
+<script src="https://gist.github.com/Particular/6144218.js?file=ClientSend2.cs"></script> The message is invalid for several reasons: the product name is over the
 20 character limit, the list price is too high, and the sell end date is not in the valid range. The thrown exception logs those invalid values. The server code is simple and straightforward:
 
-    public class Handler : IHandleMessages
-    {
-    public void Handle(CreateProductCommand createProductCommand)
-    {
-    Console.WriteLine("Received a CreateProductCommand message: " + createProductCommand);
-    }
-    }
+<script src="https://gist.github.com/Particular/6144218.js?file=ClientMessageHandler.cs"></script> The server handler code does not need to change on account of the message mutation.
 
-The server handler code does not need to change on account of the message mutation.
-
-This article was based on an article written by [Adam Fyles](http://adamfyles.blogspot.com/). See the [original blog post](http://adamfyles.blogspot.com/2011/02/nservicebus-30-message-mutators.html).
+This article was based on an article written by [Adam Fyles](http://adamfyles.blogspot.com/) . See the [original blog post](http://adamfyles.blogspot.com/2011/02/nservicebus-30-message-mutators.html)
+.
 
 Where to next?
 --------------

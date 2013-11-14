@@ -1,6 +1,9 @@
 <!--
 title: "Versioning Sample"
-tags: 
+tags: ""
+summary: "<p>This sample is based on the <a href="how-pub-sub-works.md">Pub/Sub sample</a>. If you have not yet gone through it, please start there.</p>
+<p></p>
+"
 -->
 
 This sample is based on the [Pub/Sub sample](how-pub-sub-works.md). If you have not yet gone through it, please start there.

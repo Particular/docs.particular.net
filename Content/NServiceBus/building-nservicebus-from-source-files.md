@@ -1,6 +1,9 @@
 <!--
 title: "Building NServiceBus from Source Files"
-tags: 
+tags: ""
+summary: "<h1>Getting the source</h1>
+<h2>Cloning the git repository</h2>
+"
 -->
 
 Getting the source

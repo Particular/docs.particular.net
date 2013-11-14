@@ -1,6 +1,9 @@
 <!--
 title: "Using NServiceBus with ASP.NET MVC"
-tags: 
+tags: ""
+summary: "<p>To see how to use NServiceBus in an ASP.NET MVC 3 application, open up the AsyncPagesMvc3 sample.</p>
+<p>Run the solution. A new browser window/tab opens, as well as a console application.</p>
+"
 -->
 
 To see how to use NServiceBus in an ASP.NET MVC 3 application, open up the AsyncPagesMvc3 sample.

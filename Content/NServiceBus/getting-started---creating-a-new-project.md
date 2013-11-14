@@ -1,14 +1,18 @@
 <!--
-title: "Getting Started - Creating a New Project"
-tags: 
+title: "Getting Started - Creating a New Project with ServiceMatrix v1.0 (Studio)"
+tags: ""
+summary: "<p>NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x</p>
+<h1><span style="font-size: 14px;">To get started with NServiceBus, create a new project:</span></h1>
+"
 -->
 
-To get started with NServiceBus, create a new project:
+NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x
+
+<span style="font-size: 14px;">To get started with NServiceBus, create a new project:</span>
+============================================================================================
 
 1.  Choose "NServiceBus System" for the type of project.
 2.  Enter "Amazon" (or any other name) for the name of your solution.
-
-![projects in solution](http://particular.blob.core.windows.net/media/Default/images/GettingStarted1.jpg)
 
 ![create new project](http://particular.blob.core.windows.net/media/Default/images/FileNewProject.jpg)
 ------------------------------------------------------------------------------------------------------
@@ -17,6 +21,8 @@ As the project creation develops, you'll see that a number of projects are creat
 .nuget folder and the .slnbldr file under Solution Items as they are part of the infrastructure. More important are the Contract and InternalMessages projects as they are the places where all message types are put; defined events to the Contract project and commands to the InternalMessages project.
 
 Later you will see how messages from different services are partitioned within these projects.
+
+![projects in solution](http://particular.blob.core.windows.net/media/Default/images/GettingStarted1.jpg)
 
 Look at the design environment in Solution Builder. If you do not see a docked window in Visual Studio called Solution Builder, open it via the View menu (alt+V).
 
@@ -74,14 +80,7 @@ Now, right click Commands, select Add, and name it SubmitOrder. Several things h
 
 To open the class file, double click the SubmitOrder command:
 
-    using System;
-    namespace Amazon.InternalMessages.Sales
-    {
-    public class SubmitOrder
-    {
-    }
-    }
-
+<script src="https://gist.github.com/Particular-gist/6424006.js?file=001_Studio_v1.cs"></script>
 
 You can add all sorts of properties to your message: strings, integers, arrays, dictionaries, etc. Just make sure to provide both get and set.
 
@@ -106,57 +105,19 @@ If you try to build your solution at this point, you will get an error telling y
     the SubmitOrderSender but you'll notice that it is a partial class:
 
 
-~~~~ {.brush:csharp; style="margin-left: 40px;"} using System; using NServiceBus; using Amazon.InternalMessages.Sales; namespace Amazon.ECommerce.Components.Sales
-{ public partial class SubmitOrderSender
-{
-}
-}
-
+<script src="https://gist.github.com/Particular-gist/6424006.js?file=002_Studio_v1.cs"></script>
 
 Navigate to the rest of the definition by selecting its name and clicking F12. You should see this:
 
 
-    using System;
-    using NServiceBus;
-    using NServiceBus.Config;
-    using Amazon.InternalMessages.Sales;
-    namespace Amazon.ECommerce.Components.Sales
-    {
-    public partial class SubmitOrderSender: ISubmitOrderSender, Amazon.ECommerce.Infrastructure.INServiceBusComponent
-    {
-    public void Send(SubmitOrder message)
-    {
-    Bus.Send(message);    
-    }
-    public IBus Bus { get; set; }
-    }
-    public interface ISubmitOrderSender
-    {
-    void Send(SubmitOrder message);
-    }
-    }
-
+<script src="https://gist.github.com/Particular-gist/6424006.js?file=003_Studio_v1.cs"></script>
 
 This component comes with an interface you can inject into your own MVC controllers, and implements the INServiceBusComponent interface so that NServiceBus knows to register it into the container for you automatically. The first empty partial class is for you to add any additional behavior; for example, logic that transforms your model objects into messages.
 
 Now double click the SubmitOrderProcessor:
 
 
-    using System;
-    using NServiceBus;
-    using Amazon.InternalMessages.Sales;
-    namespace Amazon.OrderProcessing.Sales
-    {
-    public partial class SubmitOrderProcessor
-    {
-    partial void HandleImplementation(SubmitOrder message)
-    {
-    //    Implement your handler logic here.
-    Console.WriteLine("Sales received " + message.GetType().Name);      
-    }
-    }
-    }
-
+<script src="https://gist.github.com/Particular-gist/6424006.js?file=004_Studio_v1.cs"></script>
 
 Once again, there isn't much here, so add your logic. You can also click F12 on the class to see its counterpart, but there isn't much to see there either; just a class that implements IHandleMessages<submitorder> and has a reference to IBus that you can use to send out other messages, publish events, or reply with.
 
@@ -169,36 +130,12 @@ The last thing to do is make the ECommerce website send a message.
 
 ### ASP MVC
 
-**IMPORTANT**: If you created the ASP MVC application, take the following action; otherwise skip to the "Regular ASP.NET" section.
+**IMPORTANT** : If you created the ASP MVC application, take the following action; otherwise skip to the "Regular ASP.NET" section.
 
 Find the HomeController in the Controllers folder in the Amazon.ECommerce project, add a property of the ISubmitOrderSender type, and invoke its Send method, like this:
 
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Web;
-    using System.Web.Mvc;
-    using Amazon.ECommerce.Components.Sales;
-    using Amazon.InternalMessages.Sales;
-    namespace Amazon.ECommerce.Controllers
-    {
-    public class HomeController : Controller
-    {
-    public ISubmitOrderSender SubmitOrderSender { get; set; }
-    public ActionResult Index()
-    {
-    ViewBag.Message = "Welcome to ASP.NET MVC!";
-    return View();
-    }
-    public ActionResult About()
-    {
-    SubmitOrderSender.Send(new SubmitOrder());
-    return View();
-    }
-    }
-    }
-
+<script src="https://gist.github.com/Particular-gist/6424006.js?file=005_Studio_v1.cs"></script>
 
 Continue with "Run the code", below.
 
@@ -206,15 +143,15 @@ Continue with "Run the code", below.
 
 For regular ASP.NET, open Default.aspx and drag a button from the toolbox onto the page (make sure the page is in "Design" view). Double click the button you just dragged, which opens the code-behind button-click handling method. In that method, type this:
 
-    Global.Bus.Send(new SubmitOrder());
-
+<script src="https://gist.github.com/Particular-gist/6424006.js?file=006_Studio_v1.cs"></script>
 ### Run the code
 
 Click F5. You should see something like the image below: a new tab in your browser and a console application. If you click "About" in the UI a couple of times, you can see the console application getting a message each time.
 
 If you are in a regular ASP.NET web project, you see a different image, but just click the button on the form.
 
-![web to console messaging](http://particular.blob.core.windows.net/media/Default/images/GettingStarted7.jpg)​
+![web to console messaging](http://particular.blob.core.windows.net/media/Default/images/GettingStarted7.jpg)
+​
 
 **Congratulations - you've just built your first NServiceBus application.** **Wasn't that easy?**
 
@@ -223,7 +160,7 @@ If you are in a regular ASP.NET web project, you see a different image, but just
 Next steps
 ----------
 
-The production-time benefits of NServiceBus (let's face it, interprocess communication isn't that exciting and has been done many times before): see how NServiceBus handles [Fault Tolerance](getting-started---fault-tolerance.md).
+The production-time benefits of NServiceBus (let's face it, interprocess communication isn't that exciting and has been done many times before): see how NServiceBus handles [Fault Tolerance](getting-started---fault-tolerance.md) .
 
 
 

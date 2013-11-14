@@ -1,6 +1,9 @@
 <!--
 title: "NServiceBus Sagas And Concurrency"
-tags: 
+tags: ""
+summary: "<p>If your endpoint runs with more than one worker thread, it is possible that multiple messages will hit the same saga instance simultaneously. To give you ACID semantics in this situation, NServiceBus uses the underlying storage to produce consistent behavior, only allowing one of the threads to commit. NServiceBus handles most of this automatically but you should be aware of a few things.</p>
+<p>Concurrent access to saga instances is divided into two scenarios;</p>
+"
 -->
 
 If your endpoint runs with more than one worker thread, it is possible that multiple messages will hit the same saga instance simultaneously. To give you ACID semantics in this situation, NServiceBus uses the underlying storage to produce consistent behavior, only allowing one of the threads to commit. NServiceBus handles most of this automatically but you should be aware of a few things.
@@ -40,7 +43,7 @@ NServiceBus V4.0 [makes this even easier for](https://github.com/NServiceBus/NSe
 
 Another option is to use a [transaction isolation level](http://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel.aspx) of serializable but that causes [excessive locking](http://msdn.microsoft.com/en-us/library/ms173763.aspx)so the performance degradation is considerable. **NOTE**: “Serializable” is the default isolation level for TransactionScopes.
 
-In [NServiceBus V4.0 the default isolation level will be
+In [NServiceBus V4.0 the default isolation level is
 “ReadCommitted”](https://github.com/NServiceBus/NServiceBus/issues/656), which is a more sensible default.
 
 Next steps

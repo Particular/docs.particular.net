@@ -1,6 +1,10 @@
 <!--
 title: "More On Profiles"
-tags: 
+tags: ""
+summary: "<p>The NServiceBus Host profiles allow you to alter the behavior of your endpoint without recompiling your code. The profiles enable tailoring endpoints for different environments and controlling things like scaling out (running the distributor) and enabling HTTP access (gateway).</p>
+<p><span style="font-size: 14px; line-height: 24px;">Profiles are only available if you use the </span><a href="the-nservicebus-host.md">NServiceBus host</a><span style="font-size: 14px; line-height: 24px;">
+(NServiceBus.Host.exe or the 32-bit only version of it) so this is not applicable if you self host NServiceBus in a website, WCF service, smart client, etc.</span></p>
+"
 -->
 
 The NServiceBus Host profiles allow you to alter the behavior of your endpoint without recompiling your code. The profiles enable tailoring endpoints for different environments and controlling things like scaling out (running the distributor) and enabling HTTP access (gateway).

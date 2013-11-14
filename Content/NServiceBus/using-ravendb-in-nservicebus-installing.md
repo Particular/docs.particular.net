@@ -1,9 +1,12 @@
 <!--
 title: "Installing RavenDB for NServiceBus"
-tags: 
+tags: ""
+summary: "<p>Starting from version 3.0, NServiceBus uses RavenDB for persistence by default. The NServiceBus license permits the use of RavenDB for the storage needs of your endpoint. This only includes NServiceBus-related data such as sagas and subscriptions. If you store application-specific data in RavenDB you need to purchase a separate license.</p>
+<p>To use the default storage, ensure you have a RavenDB server running to which your endpoint can connect. There are two ways to set it up:</p>
+"
 -->
 
-NServiceBus V3.0 uses RavenDB for persistence by default. The NServiceBus license permits the use of RavenDB for the storage needs of your endpoint. This only includes NServiceBus-related data such as sagas and subscriptions. If you store application-specific data in RavenDB you need to purchase a separate license.
+Starting from version 3.0, NServiceBus uses RavenDB for persistence by default. The NServiceBus license permits the use of RavenDB for the storage needs of your endpoint. This only includes NServiceBus-related data such as sagas and subscriptions. If you store application-specific data in RavenDB you need to purchase a separate license.
 
 To use the default storage, ensure you have a RavenDB server running to which your endpoint can connect. There are two ways to set it up:
 
@@ -15,7 +18,7 @@ To use the default storage, ensure you have a RavenDB server running to which yo
 NServiceBus auto-installation of RavenDB
 ----------------------------------------
 
-RavenDB is included with the NServiceBus binaries (not ilmerged) and an infrastructure installer ensures that Raven is installed on the local machine when the installers are invoked. The install is only performed if the following is true:
+**Version 3.0:** RavenDB is included with the NServiceBus binaries (not ilmerged) and an infrastructure installer ensures that Raven is installed on the local machine when the installers are invoked. The install is only performed if the following is true:
 
 -   RavenDB persistence is configured for the endpoint
 -   A custom connection string is not specified by the user
@@ -25,6 +28,8 @@ RavenDB is included with the NServiceBus binaries (not ilmerged) and an infrastr
 -   The install uses the explicit /installInfrastructure
 
 \*When a master node is defined, NServiceBus understands that all data will be stored on the that server instead. This means that the RavenDB server runs on that remote machine and not the local machine where you run the install.
+
+**Version 4.0:**The /installinfrastructure has been deprecated in 4.0 on NServiceBus.Host. Use the [powershell commandlets](articles/managing-nservicebus-using-powershell) to install RavenDB on the needed servers. When the endpoints starts up, if the host is configured for RavenDB persistence and if the configured RavenDB persistence could not be contacted, then warnings will be logged.
 
 For instructions on how to administrate and operate a RavenDB server, refer to the [documentation for RavenDB](http://ravendb.net/docs/server/administration).
 
