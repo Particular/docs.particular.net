@@ -12,7 +12,7 @@ The service layer in an NServiceBus application is made from message handlers. E
 
 <p>
 
-```
+```txt
 public class TestHandler
 {
     [Test]
@@ -54,11 +54,12 @@ public class TestHandler
 
 ```
 
+
 </p> This test says that when a message of the type YourRequestMessage is processed by YourMessageHandler, it responds with a message of the type YourResponseMessage. Also, if the request message's String property value is "hello" than that is also the value of the String property of the response message.
 
 <p>
 
-```
+```txt
 [Test]
 public void Run()
 {
@@ -116,6 +117,7 @@ public class MySagaData : IContainSagaData
 
 ```
 
+
 </p> Testing header manipulation
 ---------------------------
 
@@ -123,7 +125,7 @@ It is the responsibility of the message handlers in the service layer is to use 
 
 <p>
 
-```
+```txt
 [Test]
 public void Run()
 {
@@ -157,6 +159,7 @@ class ResponseMessage : IMessage
 }
 ```
 
+
 </p> This test asserts that the value of the outgoing header has been set.
 
 Injecting additional dependencies into the service layer
@@ -166,7 +169,7 @@ Many of the message handling classes in the service layer make use of other obje
 
 <p>
 
-```
+```txt
 [Test]
 public void RunWithConstructorDependency()
 {
@@ -215,6 +218,7 @@ class WithPropertyDependencyHandler : IHandleMessages<MyMessage>
 
 
 ```
+
 
 </p>
 

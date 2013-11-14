@@ -15,7 +15,7 @@ One of the benefits of working with the NServiceBus API is greatly simplified un
 Here's an example of the kind of service layer tests that NServiceBus enables:
 
 
-```
+```txt
 public class TestHandler
 {
     [Test]
@@ -56,6 +56,7 @@ public class TestHandler
 }
 
 ```
+
  Another benefit when working with NServiceBus is its generic host. Similar to application servers on the Java platform, the NServiceBus Host provides standardized installation and manageability as well as a lightweight sandbox where all infrastructure components automatically switch to in-memory mode for greatest productivity when you want to focus on business logic.
 
 Download

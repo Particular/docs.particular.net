@@ -16,7 +16,7 @@ Instead, beginning with NServiceBus V3, use the new [support for child container
 To resolve a RavenDB document session from the container, add the following configuration (StructureMap is used but any of the other containers except Spring and Unity would work):
 
 
-```
+```C#
 var store = new DocumentStore {Url = "http://localhost:8080", DefaultDatabase = "MyDatabase"};
 store.Initialize();
 
@@ -35,6 +35,7 @@ ObjectFactory.Configure(c =>
 Configure.With()
             .StructureMapBuilder(ObjectFactory.Container);
 ```
+
  The above code tells the container to create a new IDocumentSession using the specified lambda. The fact that all message processing is done using a child container means that all message handlers processing the message get the same session instance.
 
 Implementing the unit of work
@@ -43,7 +44,7 @@ Implementing the unit of work
 In RavenDB, to persist your data to the database, you need to explicitly call IDocumentSession.SaveChanges(). To avoid making this call in all the handlers, add a unit of work implementation. This saves typing and prevents you from forgetting to make the call:
 
 
-```
+```C#
 public class RavenUnitOfWork : IManageUnitsOfWork
 {
     private readonly IDocumentSession session;
@@ -67,15 +68,17 @@ public class RavenUnitOfWork : IManageUnitsOfWork
 }
 ```
 
+
 **NOTE** : There is a dependency on the IDocumentSession. Given that the UoW is resolved from the same child container as the handlers, you will get the same session instance. RavenDB doesn’t need any special setup so you only need to call SaveChanges if End() is called and no exception occurs.
 
 To make NServiceBus use the UoW, configure it in the container so that NServiceBus finds and uses it:
 
 
-```
+```C#
 c.For<IManageUnitsOfWork>()
     .Use<RavenUnitOfWork>();
 ```
+
  Disposing of the session
 ------------------------
 
@@ -83,7 +86,7 @@ Rescue comes from the child containers together with the fact that the main cont
 [IDocumentSession](https://github.com/ravendb/ravendb/blob/master/Raven.Client.Lightweight/IDocumentSession.cs) does just this! So it is possible to create clean message handlers that interact with Raven:
 
 
-```
+```C#
 public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 {
     readonly IDocumentSession session;
@@ -102,6 +105,7 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
     }
 }
 ```
+
  Working code, please!
 ---------------------
 

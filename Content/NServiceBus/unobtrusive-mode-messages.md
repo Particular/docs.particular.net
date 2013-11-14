@@ -33,7 +33,7 @@ Unobtrusive mode
 This new feature in NServiceBus V3 allows you to pass in your own conventions to determine which types are message definitions, instead of using the IMessage,ICommand or IEvent interfaces. The following snippet shows how to define those conventions:
 
 
-```
+```txt
 Configure.With().UseTransport<Msmq>() //Configure.With().MsmqTransport() in V 3
     .DefaultBuilder()
     .FileShareDataBus(@"\\MyDataBusShare\")
@@ -47,6 +47,7 @@ Configure.With().UseTransport<Msmq>() //Configure.With().MsmqTransport() in V 3
  ? TimeSpan.FromSeconds(30)
  : TimeSpan.MaxValue);
 ```
+
  This code tells NServiceBus to treat all types with a namespace that ends with “Messages” as messages. You can also specify conventions for the [ICommand and IEvent feature](introducing-ievent-and-icommand.md) .
 
 NServiceBus supports property level encryption with a special WireEncryptedString property. The example above shows the unobtrusive way to tell NServiceBus which properties you want encrypted. These properties need to be of type String.

@@ -1,10 +1,10 @@
 persistence-in-nservicebus
-	unit-of-work-in-nservicebus
-	unit-of-work-implementation-for-ravendb
 	persistence-in-nservicebus
 	using-ravendb-in-nservicebus-installing
 	using-ravendb-in-nservicebus-connecting
 	relational-persistence-using-nhibernate
+	unit-of-work-in-nservicebus
+	unit-of-work-implementation-for-ravendb
 scaling-out
 	performance
 	the-gateway-and-multi-site-distribution

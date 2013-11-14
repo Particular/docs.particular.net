@@ -75,7 +75,7 @@ When you [self host](hosting-nservicebus-in-your-own-process.md) your endpoint, 
 Following is an example of a Distributor with a Worker on its endpoint:
 
 
-```
+```C#
 Configure.With()
          .DefaultBuilder()
          .AsMasterNode()
@@ -84,6 +84,7 @@ Configure.With()
          .CreateBus()
          .Start();
 ```
+
  To run the Distributor without a worker on its endpoint, replace
 .RunDistributor() with with .RunDistributorWithNoWorkerOnItsEndpoint().
 
@@ -103,7 +104,7 @@ Configure the name of the master node server as shown in this app.config example
 
 
 
-```
+```XML
 <?xml version="1.0" encoding="utf-8" ?>
 <configuration>
   <configSections>
@@ -114,6 +115,7 @@ Configure the name of the master node server as shown in this app.config example
   <MasterNodeConfig Node="MachineWhereDistributorRuns"/>
 </configuration>
 ```
+
  Read about the DistributorControlAddress and the DistributorDataAddress in the [Routing with the Distributor](load-balancing-with-the-distributor.md) section.
 
 ### When self-hosting
@@ -123,7 +125,7 @@ When self hosting, call the EnlistWithDistributor() configuration extension meth
 Following is an example of configuration of a Worker node:
 
 
-```
+```C#
 Configure.With()
          .DefaultBuilder()
          .EnlistWithDistributor()
@@ -131,6 +133,7 @@ Configure.With()
          .CreateBus()
          .Start();
 ```
+
  Similar to self hosting, ensure the app.config of the worker contains the MasterNodeConfig section to point to the host name where the master node (and a distributor) are running.
 
 Routing with the Distributor
@@ -141,13 +144,14 @@ The distributor uses two queues for its runtime operation. The DataInputQueue is
 To use values other than the NServiceBus defaults you can override them, as shown in the UnicastBusConfig section below:
 
 
-```
+```XML
 <UnicastBusConfig DistributorControlAddress="distributorControlBus@Cluster1" DistributorDataAddress="distributorDataBus@Cluster1">
   <MessageEndpointMappings>
     <!-- regular entries -->
   </MessageEndpointMappings>
 </UnicastBusConfig>
 ```
+
  If those settings do not exist, the control queue is assumed as the endpoint name of the worker, concatenated with the " distributor.control@HostWhereDistributorIsRunning" string.
 
 Similar to standard NServiceBus routing, you do not want high priority messages to get stuck behind lower priority messages, so just as you have separate NServiceBus processes for different message types, you also set up different distributor instances (with separate queues) for different message types.

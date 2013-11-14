@@ -11,7 +11,7 @@ In NServiceBus V2.6 the only hook into the message pipeline was the message modu
 NServiceBus V3.0 introduces a new way to do this, using the IManageUnitsOfWork interface:
 
 
-```
+```C#
 /// <summary>
 /// Interface used by NServiceBus to manage units of work as a part of the
 /// message processing pipeline.
@@ -29,6 +29,7 @@ public interface IManageUnitsOfWork
     void End(Exception ex = null);
 }
 ```
+
  The semantics are that Begin() is called when the transport messages enters the pipeline. Remember that a transport message can consist of multiple application messages. This allows you to do any setup that is required. 
 
 The End() method is called when the processing is complete. If there is an exception, it is passed into the method. 
