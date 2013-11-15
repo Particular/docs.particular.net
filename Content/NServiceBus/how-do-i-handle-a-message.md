@@ -1,7 +1,7 @@
 <!--
 title: "How to Handle a Message?"
 tags: ""
-summary: "Write a class that implements IMessageHandler<t> where T is the message type:"
+summary: ""
 -->
 
 Write a class that implements IMessageHandler<t> where T is the message type:
