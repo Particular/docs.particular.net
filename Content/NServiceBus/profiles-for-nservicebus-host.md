@@ -1,7 +1,7 @@
 <!--
 title: "Profiles For NServiceBus Host"
 tags: ""
-summary: "Moving a system<span style="font-size: 14px; line-height: 24px;">reliably </span><span style="font-size: 14px; line-height: 24px;">from development through test to production is a core capability for any development organization.</span>"
+summary: "Moving a system<span style=\"font-size: 14px; line-height: 24px;\">reliably </span><span style=\"font-size: 14px; line-height: 24px;\">from development through test to production is a core capability for any development organization.</span>"
 -->
 
 Moving a system

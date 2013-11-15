@@ -1,7 +1,7 @@
 <!--
 title: "Performance"
 tags: ""
-summary: "<span style="font-size: 14px; line-height: 24px;">NServiceBus:</span>"
+summary: "<span style=\"font-size: 14px; line-height: 24px;\">NServiceBus:</span>"
 -->
 
 <span style="font-size: 14px; line-height: 24px;">NServiceBus:</span>
