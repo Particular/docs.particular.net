@@ -1,9 +1,7 @@
 <!--
 title: "MSMQ Information"
 tags: ""
-summary: "<p>MSMQ is the default transport used by NServiceBus.</p>
-<h2>History</h2>
-"
+summary: "MSMQ is the default transport used by NServiceBus."
 -->
 
 MSMQ is the default transport used by NServiceBus.

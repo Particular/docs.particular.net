@@ -1,10 +1,7 @@
 <!--
 title: "Unit of Work in NServiceBus"
 tags: ""
-summary: "<p>When using a framework like NServiceBus you usually need to create your own units of work to avoid having to repeat code in your message handlers. For example, committing NHibernate transactions, or calling SaveChanges on the RavenDB session.</p>
-<p>In NServiceBus V2.6 the only hook into the message pipeline was the message modules (see <a href="http://blog.jonathanoliver.com/2010/04/extending-nservicebus-thread-specific-message-modules/">Jonathan Oliver's post</a>
-). This had some quirks since the HandleEndMessage method of the message module is invoked regardless of the outcome, making it hard to decide whether to perform a commit or rollback.</p>
-"
+summary: "When using a framework like NServiceBus you usually need to create your own units of work to avoid having to repeat code in your message handlers. For example, committing NHibernate transactions, or calling SaveChanges on the RavenDB session."
 -->
 
 When using a framework like NServiceBus you usually need to create your own units of work to avoid having to repeat code in your message handlers. For example, committing NHibernate transactions, or calling SaveChanges on the RavenDB session.

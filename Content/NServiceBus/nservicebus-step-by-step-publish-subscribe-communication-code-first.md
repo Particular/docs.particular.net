@@ -1,16 +1,7 @@
 <!--
 title: "NServiceBus Step by Step Guide - Publish Subscribe Communication - code first"
 tags: ""
-summary: "<p>In the previous section: <a href="NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md">NServiceBus Step by Step Guide - Fault Tolerance - code first</a> we learnt about fault tolerance.</p>
-<ol>
-<li><a href="#CreatingEvent">Creating an event message</a></li>
-<li><a href="#Publishing">Publishing the event</a></li>
-<li><a href="#Subscriber">Creating the Subscriber project</a></li>
-<li><a href="#Handeling">Handling the event</a></li>
-<li><a href="#Running">Running the solution</a></li>
-<li><a href="#Next">Next Steps</a></li>
-</ol>
-"
+summary: "In the previous section: [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md) we learnt about fault tolerance."
 -->
 
 In the previous section: [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md) we learnt about fault tolerance.

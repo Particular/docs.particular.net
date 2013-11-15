@@ -1,12 +1,7 @@
 <!--
 title: "NServiceBus 32-bit (x86) Host Process"
 tags: ""
-summary: "<p>NServiceBus is an “Any CPU” framework. It doesn't have 32-bit or 64-bit specific code. This makes it very easy to transition between 32- and
-64-bit operating systems. Unfortunately, not all assemblies can be compiled using the default Any CPU architecture. In many, if not most cases, this is related to legacy systems that have 32-bit specific code for platform interoperability with native C libraries, etc.</p>
-<p>With the default NServiceBus.Host, your application always loads in
-64-bit (x64) mode if you are running it on a 64-bit OS, or in 32-bit
-(x86) mode for a 32-bit OS. Again, this is typically not a problem. </p>
-"
+summary: "NServiceBus is an “Any CPU” framework. It doesn't have 32-bit or 64-bit specific code. This makes it very easy to transition between 32- and64-bit operating systems. Unfortunately, not all assemblies can be compiled using the default Any CPU architecture. In many, if not most cases, this is related to legacy systems that have 32-bit specific code for platform interoperability with native C libraries, etc."
 -->
 
 NServiceBus is an “Any CPU” framework. It doesn't have 32-bit or 64-bit specific code. This makes it very easy to transition between 32- and
@@ -24,11 +19,11 @@ The second one allows users running a 64-bit OS to run a 32-bit NServiceBus proc
 
 Links to the NuGet packages:
 
--   <span style="background-color:Lime;">[NServiceBus.Host (32-bit and
-    64-bit)](http://nuget.org/packages/NServiceBus.Host)</span>
+-   [NServiceBus.Host (32-bit and
+    64-bit)](http://nuget.org/packages/NServiceBus.Host)
 
--   <span style="background-color:Lime;">[NServiceBus.Host32 (32-bit
-    only)](http://nuget.org/packages/NServiceBus.Host32)</span>
+-   [NServiceBus.Host32 (32-bit
+    only)](http://nuget.org/packages/NServiceBus.Host32)
 
 
 

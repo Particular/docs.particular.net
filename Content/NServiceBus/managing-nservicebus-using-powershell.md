@@ -1,9 +1,7 @@
 <!--
 title: "Managing NServiceBus Using PowerShell"
 tags: ""
-summary: "<p>NServiceBus provides a set of PowerShell commandlets to make it easy to manage and run the software. The initial focus is to provide support when preparing machines for use with NServiceBus. Additional features are in the pipeline.</p>
-<p><strong>NOTE</strong> : Before installing NServiceBus, ensure PowerShell 2.0+ is present on the target machine.</p>
-"
+summary: "NServiceBus provides a set of PowerShell commandlets to make it easy to manage and run the software. The initial focus is to provide support when preparing machines for use with NServiceBus. Additional features are in the pipeline."
 -->
 
 NServiceBus provides a set of PowerShell commandlets to make it easy to manage and run the software. The initial focus is to provide support when preparing machines for use with NServiceBus. Additional features are in the pipeline.

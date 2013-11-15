@@ -1,12 +1,7 @@
 <!--
 title: "Encryption Sample"
 tags: ""
-summary: "<p>To see how to encrypt message data, open the <a href="https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/Encryption">Encryption sample</a>
-.</p>
-<ol>
-<li>Run the solution.</li>
-</ol>
-"
+summary: "To see how to encrypt message data, open the [Encryption sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/Encryption)."
 -->
 
 To see how to encrypt message data, open the [Encryption sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/Encryption)

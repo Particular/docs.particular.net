@@ -1,20 +1,7 @@
 <!--
 title: "Relational Persistence Using NHibernate"
 tags: ""
-summary: "<p>If you require that your data persist in a relational database, NServiceBus provides a separate assembly with added support for NHibernate-based storage:</p>
-<ul>
-<li>
-If you downloaded NServiceBus from this site (rather than via NuGet)
-you have to add a reference to NServiceBus.NHibernate.dll (found in
-the binaries folder). You also need to download and reference
-version 3.3.0.4000 of NHibernate.
-</li>
-<li>
-If you used NuGet, you only need to install NServiceBus.NHibernate,
-like this:
-</li>
-</ul>
-"
+summary: "If you require that your data persist in a relational database, NServiceBus provides a separate assembly with added support for NHibernate-based storage:"
 -->
 
 If you require that your data persist in a relational database, NServiceBus provides a separate assembly with added support for NHibernate-based storage:

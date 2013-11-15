@@ -1,17 +1,7 @@
 <!--
 title: "How to Handle Responses on the Client Side"
 tags: ""
-summary: "<p>To handle responses on the client, the client (or the sending process) must have its own queue. When messages arrive in this queue, they are handled just like on the server—by a message handler:</p>
-<pre><code>public class H1 : IHandleMessages
-{
-     public void Handle(MyMessage message)
-     {
-          // do something in the client process
-     }
-}
-</code></pre>
-
-"
+summary: "To handle responses on the client, the client (or the sending process) must have its own queue. When messages arrive in this queue, they are handled just like on the server—by a message handler:"
 -->
 
 To handle responses on the client, the client (or the sending process) must have its own queue. When messages arrive in this queue, they are handled just like on the server—by a message handler:

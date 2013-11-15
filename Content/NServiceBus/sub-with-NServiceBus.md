@@ -1,8 +1,7 @@
 <!--
 title: "How to Publish/Subscribe to a Message"
 tags: ""
-summary: "<h2>How to publish a message?</h2>
-"
+summary: "How to publish a message?-------------------------"
 -->
 
 How to publish a message?

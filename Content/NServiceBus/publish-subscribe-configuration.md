@@ -1,9 +1,7 @@
 <!--
 title: "Publish/Subscribe Configuration"
 tags: ""
-summary: "<p></p>
-<p>The part of the <add> entry stating Messages=&quot;Messages&quot; means that the assembly &quot;Messages.dll&quot; contains the message schema. Specific types can be configured using their qualified name: &quot;namespace.type, assembly&quot;.</p>
-"
+summary: "![Pub/Sub configuration](basic_pubsub.png)"
 -->
 
 ![Pub/Sub configuration](basic_pubsub.png)

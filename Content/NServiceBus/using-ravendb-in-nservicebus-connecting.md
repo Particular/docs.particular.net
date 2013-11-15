@@ -1,9 +1,7 @@
 <!--
 title: "Connecting to RavenDB from NServiceBus"
 tags: ""
-summary: "<p>Beginning with NServiceBus V3.0, RavenDB is one of the available mechanisms for NServiceBus to persist its timeout, saga and subscription information.</p>
-<p>To tell NServiceBus to use RavenDB for persistence is as easy as calling Configure.RavenPersistence(). This is the default configuration and it uses these conventions:</p>
-"
+summary: "Beginning with NServiceBus V3.0, RavenDB is one of the available mechanisms for NServiceBus to persist its timeout, saga and subscription information."
 -->
 
 Beginning with NServiceBus V3.0, RavenDB is one of the available mechanisms for NServiceBus to persist its timeout, saga and subscription information.

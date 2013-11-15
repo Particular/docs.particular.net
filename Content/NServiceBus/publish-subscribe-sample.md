@@ -1,10 +1,7 @@
 <!--
 title: "Publish/Subscribe Sample"
 tags: ""
-summary: "<p> Open the solution in Visual Studio. You should see the picture on the left.</p>
-<p>Before running the
-<a href="https://github.com/NServiceBus/NServiceBus/tree/master/Samples/PubSub">sample</a>, look over the solution structure, the projects, and the classes. The projects &quot;MyPublisher&quot;, &quot;Subscriber1&quot;, and &quot;Subscriber2&quot; are their own processes, even though they look like regular class libraries.</p>
-"
+summary: "![pubsub solution](pub_sub_solution.png) Open the solution in Visual Studio. You should see the picture on the left."
 -->
 
 ![pubsub solution](pub_sub_solution.png) Open the solution in Visual Studio. You should see the picture on the left.

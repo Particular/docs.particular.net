@@ -1,9 +1,7 @@
 <!--
 title: "Getting Started - Fault Tolerance using ServiceMatrix v1.0"
 tags: ""
-summary: "<p>NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x</p>
-<h2>Durable messaging</h2>
-"
+summary: "NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x"
 -->
 
 NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x

@@ -1,8 +1,7 @@
 <!--
 title: "How To Debug RavenDB Through Fiddler Using NServiceBus"
 tags: ""
-summary: "<p>To set up an NServiceBus endpoint to make all calls to RavenDB through Fiddler, configure the proxy for your endpoint by adding the following code to app.config:</p>
-"
+summary: "To set up an NServiceBus endpoint to make all calls to RavenDB through Fiddler, configure the proxy for your endpoint by adding the following code to app.config:"
 -->
 
 To set up an NServiceBus endpoint to make all calls to RavenDB through Fiddler, configure the proxy for your endpoint by adding the following code to app.config:

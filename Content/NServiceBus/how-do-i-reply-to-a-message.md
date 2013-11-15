@@ -1,13 +1,7 @@
 <!--
 title: "How to Reply to a Message? "
 tags: ""
-summary: "<p>The simplest way to reply to a message is using the Reply method on IBus, like this:</p>
-<pre><code>public class H1 : IMessageHandler
-{
-     public IBus Bus { get; set; }
-</code></pre>
-
-"
+summary: "The simplest way to reply to a message is using the Reply method on IBus, like this:"
 -->
 
 The simplest way to reply to a message is using the Reply method on IBus, like this:

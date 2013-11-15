@@ -1,9 +1,7 @@
 <!--
 title: "NServiceBus Step by Step Guide - Fault Tolerance - code first"
 tags: ""
-summary: "<h2>Durable messaging</h2>
-<p>In <a href="NServiceBus-Step-by-Step-Guide.md">the previous section</a> you've seen how a send to send a messages, see how messaging can get past all sorts of failure scenarios:</p>
-"
+summary: "Durable messaging-----------------"
 -->
 
 Durable messaging

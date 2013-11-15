@@ -1,11 +1,7 @@
 <!--
 title: "How to Send a Message?"
 tags: ""
-summary: "<pre><code>us.Send(messageObject);
-</code></pre>
-
-<p>OR instantiate and send all at once:</p>
-"
+summary: "    us.Send(messageObject);"
 -->
 
     us.Send(messageObject);

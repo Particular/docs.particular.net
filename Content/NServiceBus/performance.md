@@ -1,14 +1,7 @@
 <!--
 title: "Performance"
 tags: ""
-summary: "<p><span style="font-size: 14px; line-height: 24px;">NServiceBus:</span></p>
-<ul>
-<li>Efficiently processes a single message</li>
-<li>Processes high volumes concurrently</li>
-<li>Scales out to servers of varying sizes</li>
-<li>Scales down to low-spec devices</li>
-</ul>
-"
+summary: "<span style="font-size: 14px; line-height: 24px;">NServiceBus:</span>"
 -->
 
 <span style="font-size: 14px; line-height: 24px;">NServiceBus:</span>

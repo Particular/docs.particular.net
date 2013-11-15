@@ -1,9 +1,7 @@
 <!--
 title: "test"
 tags: ""
-summary: "<p>test</p>
-<p>~~~~ {.brush:csharp;collapse:true;} using System; using NServiceBus;</p>
-"
+summary: "test"
 -->
 
 test

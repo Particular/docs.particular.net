@@ -1,16 +1,7 @@
 <!--
 title: "NServiceBus Step by Step Guide - code first"
 tags: ""
-summary: "<p>In this tutorial we are going to create a very simple ordering system that will send messages from a client to a server. The ordering system includes three projects: Client, Server, and Messages, to complete this tasks we will execute the following steps:</p>
-<ol>
-<li><a href="#Creating%20the%20Client%20project">Creating the Client project</a></li>
-<li><a href="#Message">Creating the Messages project</a></li>
-<li><a href="#Server">Creating the Server project</a></li>
-<li><a href="#Sending">Sending the order</a></li>
-<li><a href="#Running">Running the solution</a></li>
-<li><a href="#Next%20Steps">Next Steps</a></li>
-</ol>
-"
+summary: "In this tutorial we are going to create a very simple ordering system that will send messages from a client to a server. The ordering system includes three projects: Client, Server, and Messages, to complete this tasks we will execute the following steps:"
 -->
 
 In this tutorial we are going to create a very simple ordering system that will send messages from a client to a server. The ordering system includes three projects: Client, Server, and Messages, to complete this tasks we will execute the following steps:

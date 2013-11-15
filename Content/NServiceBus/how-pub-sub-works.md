@@ -1,9 +1,7 @@
 <!--
 title: "How Pub/Sub Works"
 tags: ""
-summary: "<p>Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on.</p>
-<p>If you haven't seen the <a href="publish-subscribe-sample.md">publish/subscribe sample</a> yet take a minute to walk through or start by <a href="getting-started---creating-a-new-project.md">creating a new project using NServiceBus</a> .</p>
-"
+summary: "Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on."
 -->
 
 Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on.

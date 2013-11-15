@@ -1,13 +1,7 @@
 <!--
 title: "How to Get a Reference to IBus in My Message Handler?"
 tags: ""
-summary: "<p>Use setter injection:</p>
-<pre><code>public class H1 : IMessageHandler
-{
-     public IBus Bus { get; set; }
-</code></pre>
-
-"
+summary: "Use setter injection:"
 -->
 
 Use setter injection:

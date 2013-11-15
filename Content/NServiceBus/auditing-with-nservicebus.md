@@ -1,9 +1,7 @@
 <!--
 title: "Auditing With NServiceBus"
 tags: ""
-summary: "<p>The scalability inherent in parallel message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Just tell NServiceBus where to send those messages.</p>
-<h2>Configuring auditing</h2>
-"
+summary: "The scalability inherent in parallel message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Just tell NServiceBus where to send those messages."
 -->
 
 The scalability inherent in parallel message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Just tell NServiceBus where to send those messages.

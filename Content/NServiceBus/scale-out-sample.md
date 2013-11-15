@@ -1,9 +1,7 @@
 <!--
 title: "Scale Out Sample"
 tags: ""
-summary: "<p>Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out your existing message processing by adding more workers on different machines.</p>
-<p>Scaling out workers does not require code changes. It requires a few configuration changes in the app.config file, to make your worker point to the distributor and simply use the NServiceBus.Worker profile at the command line when the endpoint starts up.</p>
-"
+summary: "Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out your existing message processing by adding more workers on different machines."
 -->
 
 Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out your existing message processing by adding more workers on different machines.

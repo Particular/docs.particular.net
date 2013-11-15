@@ -1,10 +1,7 @@
 <!--
 title: "NServiceBus Installers"
 tags: ""
-summary: "<p>NServiceBus has the concept of installers to make sure that endpoint specific specific artifacts e.g., queues, folders, or databases are installed and configured automatically for you if needed at install time.</p>
-<p>To create your own installer is as easy as implementing the
-<a href="https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Installation/INeedToInstallSomething.cs">INeedToInstallSomething<t></a> interface. The generic parameter gives you a way to restrict your installer to a specific platform. Currently this is either Windows or Azure.</p>
-"
+summary: "NServiceBus has the concept of installers to make sure that endpoint specific specific artifacts e.g., queues, folders, or databases are installed and configured automatically for you if needed at install time."
 -->
 
 NServiceBus has the concept of installers to make sure that endpoint specific specific artifacts e.g., queues, folders, or databases are installed and configured automatically for you if needed at install time.

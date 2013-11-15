@@ -1,8 +1,7 @@
 <!--
 title: "Using the In-Memory Bus"
 tags: ""
-summary: "<p>Until now, NServiceBus provided an asynchronous method of communication between parts of the system using the Send, Reply, and Publish API. Asynchronous forms of communication are great for ensuring reliable and durable communication between pieces of the system. Now NServiceBus 4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.</p>
-"
+summary: "Until now, NServiceBus provided an asynchronous method of communication between parts of the system using the Send, Reply, and Publish API. Asynchronous forms of communication are great for ensuring reliable and durable communication between pieces of the system. Now NServiceBus 4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern."
 -->
 
 Until now, NServiceBus provided an asynchronous method of communication between parts of the system using the Send, Reply, and Publish API. Asynchronous forms of communication are great for ensuring reliable and durable communication between pieces of the system. Now NServiceBus 4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.

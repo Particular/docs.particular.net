@@ -1,8 +1,7 @@
 <!--
 title: "Getting Started - Publish/Subscribe Communication Using ServiceMatrix v1.0"
 tags: ""
-summary: "<p>NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x</p>
-"
+summary: "NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x"
 -->
 
 NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x
@@ -81,7 +80,7 @@ The tooling will improve over time, allowing it to become a more integral part o
 Next step
 ---------
 
-<span style="background-color:Yellow;">Join the 1500 other developers in our community.</span>
+Join the 1500 other developers in our community.
 
 View some [videos](http://particular.net/Videos-and-Presentations) we made for you.
 

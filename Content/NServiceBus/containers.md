@@ -1,9 +1,7 @@
 <!--
 title: "Containers"
 tags: ""
-summary: "<p>NServiceBus is a container-agnostic framework. While autofac is merged into its core, it is easily replaced by any other container.</p>
-<p>With five other container technologies available out of the box, including Castle, Ninject, Spring, StructureMap, and Unity, you don't have to change to something new.</p>
-"
+summary: "NServiceBus is a container-agnostic framework. While autofac is merged into its core, it is easily replaced by any other container."
 -->
 
 NServiceBus is a container-agnostic framework. While autofac is merged into its core, it is easily replaced by any other container.
@@ -19,7 +17,7 @@ When hosting NServiceBus in your own process, you will see the following:
 
 ![SpringBuilder configuration](SpringBuilder_configuration.jpg)
 
-When using the <span style="background-color:Yellow;">generic host</span>, AutofacObjectBuilder is configured by default.
+When using the generic host, AutofacObjectBuilder is configured by default.
 
 Other containers available
 --------------------------

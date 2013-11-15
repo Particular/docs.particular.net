@@ -1,9 +1,7 @@
 <!--
 title: "How To Specify Your Input Queue Name?"
 tags: ""
-summary: "<p>NService Bus allows endpoint technologies other than MSMQ, so how should you specify the input endpoint name?</p>
-<p>When using NServiceBus.host, the namespace of the class implementing IConfigureThisEndpoint will be used as the endpoint name as the default convention. In the following example, the endpoint name when running NServiceBus host becomes “MyServer”. This is the recommended way to name a endpoint. Also this emphasizes convention over configuration approach.</p>
-"
+summary: "NService Bus allows endpoint technologies other than MSMQ, so how should you specify the input endpoint name?"
 -->
 
 NService Bus allows endpoint technologies other than MSMQ, so how should you specify the input endpoint name?

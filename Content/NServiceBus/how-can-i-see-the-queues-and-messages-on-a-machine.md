@@ -1,10 +1,7 @@
 <!--
 title: "How to See the Queues and Messages on a Machine?"
 tags: ""
-summary: "<p>You can see all the queues on the local machine using Server Explorer in Visual Studio:</p>
-<p><center>
-</p>
-"
+summary: "You can see all the queues on the local machine using Server Explorer in Visual Studio:"
 -->
 
 You can see all the queues on the local machine using Server Explorer in Visual Studio:

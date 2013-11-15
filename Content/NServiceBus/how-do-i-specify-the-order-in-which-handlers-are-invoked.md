@@ -1,15 +1,7 @@
 <!--
 title: "How to Specify the Order in which Handlers Are Invoked?"
 tags: ""
-summary: "<p>If you are writing your own host:</p>
-<pre><code>NServiceBus.Configure.With()
-     ...
-     .UnicastBus()
-          .LoadMessageHandlers(First.Then().AndThen().AndThen())
-     ...
-</code></pre>
-
-"
+summary: "If you are writing your own host:"
 -->
 
 If you are writing your own host:

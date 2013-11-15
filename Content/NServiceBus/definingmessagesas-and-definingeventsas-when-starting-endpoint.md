@@ -1,20 +1,7 @@
 <!--
 title: "DefiningMessagesAs and DefiningEventsAs When Starting Endpoint"
 tags: ""
-summary: "<p><span style="font-size: 14px; line-height: 24px;">When defining an endpoint with the following declaration (in bold):</span></p>
-<pre><code>class EndpointConfig : IConfigureThisEndpoint, AsA_Publisher, IWantCustomInitialization
-{
-public void Init()
-{
-Configure.With()
-.DefaultBuilder()
-.DefiningEventsAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.StartsWith(&quot;MyMessages&quot;))
-.DefiningMessagesAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.EndsWith(&quot;Messages&quot;));
-}
-}
-</code></pre>
-
-"
+summary: "<span style="font-size: 14px; line-height: 24px;">When defining an endpoint with the following declaration (in bold):</span>"
 -->
 
 <span style="font-size: 14px; line-height: 24px;">When defining an endpoint with the following declaration (in bold):</span>

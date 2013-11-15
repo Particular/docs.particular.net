@@ -1,11 +1,7 @@
 <!--
 title: "Unobtrusive Sample"
 tags: ""
-summary: "<p>To demonstrate NServiceBus operating in unobtrusive mode, open the
-<a href="https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/Unobtrusive">unobtrusive sample</a>
-.</p>
-<p>Run the solution. Two console applications should start up. Find the client application by looking for the one with &quot;Client&quot; in its path and follow the onscreen instructions to send messages to the server.</p>
-"
+summary: "To demonstrate NServiceBus operating in unobtrusive mode, open the[unobtrusive sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/Unobtrusive)."
 -->
 
 To demonstrate NServiceBus operating in unobtrusive mode, open the

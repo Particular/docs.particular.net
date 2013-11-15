@@ -1,9 +1,7 @@
 <!--
 title: "How to install your license file - ServiceInsight"
 tags: ""
-summary: "<p>To install your License:</p>
-<p>​1. Go to Help &gt; Register</p>
-"
+summary: "To install your License:"
 -->
 
 To install your License:

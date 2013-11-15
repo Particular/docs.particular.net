@@ -1,9 +1,7 @@
 <!--
 title: "Scheduling with NServiceBus"
 tags: ""
-summary: "<p>With the NServiceBus scheduling capability you can schedule a task or an action/lambda, to be executed repeatedly in a given interval.</p>
-<h2>Use cases</h2>
-"
+summary: "With the NServiceBus scheduling capability you can schedule a task or an action/lambda, to be executed repeatedly in a given interval."
 -->
 
 With the NServiceBus scheduling capability you can schedule a task or an action/lambda, to be executed repeatedly in a given interval.

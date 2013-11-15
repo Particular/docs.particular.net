@@ -1,9 +1,7 @@
 <!--
 title: "NServiceBus Support for Child Containers"
 tags: ""
-summary: "<p>Child containers are essentially a snapshot of the main container where transient instances are treated as as singletons within the scope of the child container. This is useful when you want to scope instances for the duration of a web request or the handling of a message in NServiceBus. While this was possible before, child containers bring one more important feature to the table.</p>
-<p><strong>NOTE</strong>: Child containers are not supported by spring.net, so if you plan to take advantage of it, use one of the other containers supported by NServiceBus.</p>
-"
+summary: "Child containers are essentially a snapshot of the main container where transient instances are treated as as singletons within the scope of the child container. This is useful when you want to scope instances for the duration of a web request or the handling of a message in NServiceBus. While this was possible before, child containers bring one more important feature to the table."
 -->
 
 Child containers are essentially a snapshot of the main container where transient instances are treated as as singletons within the scope of the child container. This is useful when you want to scope instances for the duration of a web request or the handling of a message in NServiceBus. While this was possible before, child containers bring one more important feature to the table.
@@ -54,7 +52,7 @@ When the message is processed, the session is disposed and all resources such as
 
 Child containers are a powerful feature that can simplify your code and should definitely be in your toolbox.
 
-If you configure your components using the NServiceBus configure API, it's possible to<span style="background-color:Lime;"> configure instance lifecyle to be per unit</span> of work, using this:
+If you configure your components using the NServiceBus configure API, it's possible to configure instance lifecyle to be per unit of work, using this:
 
 
         Configure.Instance.Configurer.ConfigureComponent(DependencyLifecycle

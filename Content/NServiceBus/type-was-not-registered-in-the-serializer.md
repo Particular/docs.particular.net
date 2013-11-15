@@ -1,9 +1,7 @@
 <!--
 title: "Type Was Not Registered in the Serializer"
 tags: ""
-summary: "<p>If you run into this exception when using NServiceBus in an ASP.NET application after upgrading the code of your app, it is usually due to files that are locked.</p>
-<h2>Exception details</h2>
-"
+summary: "If you run into this exception when using NServiceBus in an ASP.NET application after upgrading the code of your app, it is usually due to files that are locked."
 -->
 
 If you run into this exception when using NServiceBus in an ASP.NET application after upgrading the code of your app, it is usually due to files that are locked.

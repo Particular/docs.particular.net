@@ -1,9 +1,7 @@
 <!--
 title: "How to Specify to Which Destination a Message Is Sent?"
 tags: ""
-summary: "<p>You configure the destination for message types in <unicastbusconfig>, under <messageendpointmappings>.</p>
-<p>Add one of the following:</p>
-"
+summary: "You configure the destination for message types in <unicastbusconfig>, under <messageendpointmappings>."
 -->
 
 You configure the destination for message types in <unicastbusconfig>, under <messageendpointmappings>.

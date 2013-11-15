@@ -1,10 +1,7 @@
 <!--
 title: "DTCPIng WARNING: The CID Values for Both Test Machines Are the Same"
 tags: ""
-summary: "<p>This message might be received when the machine name is longer than 14 characters.</p>
-<p>For DTCPing and MSDTC to work, the machine name should be shorter than
-15 characters.</p>
-"
+summary: "This message might be received when the machine name is longer than 14 characters."
 -->
 
 This message might be received when the machine name is longer than 14 characters.

@@ -1,8 +1,7 @@
 <!--
 title: "How to Instantiate a Message?"
 tags: ""
-summary: "<p><div class="brush:csharp;"> If the message is a class</p>
-"
+summary: "<div class="brush:csharp;"> If the message is a class"
 -->
 
 <div class="brush:csharp;"> If the message is a class

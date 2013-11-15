@@ -1,9 +1,7 @@
 <!--
 title: "How to Specify Store and Forward for a Message?"
 tags: ""
-summary: "<h1>How to specify not writing a message to disk?</h1>
-<p>This will make the message vulnerable to server crashes or restarts.</p>
-"
+summary: "How to specify not writing a message to disk?============================================="
 -->
 
 How to specify not writing a message to disk?

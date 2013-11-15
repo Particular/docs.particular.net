@@ -1,9 +1,7 @@
 <!--
 title: "Licensing ServiceMatrix v2.0"
 tags: ""
-summary: "<h1><span id="docs-internal-guid-15b24b86-6cfb-e5ee-2575-e54bfd58440c">Licensing </span> ​ <span>ServiceMatrix v2.0</span> {dir=&quot;ltr&quot;}</h1>
-<p><span id="docs-internal-guid-15b24b86-6ce7-ca2d-733b-5ef13bfdff0d">ServiceMatrix installs in trial mode, which expires after 30 days. Ten days before the trial license expires, you will see a dialog box informing you that your trial is about to expire.</span></p>
-"
+summary: "<span id="docs-internal-guid-15b24b86-6cfb-e5ee-2575-e54bfd58440c">Licensing </span> ​ <span>ServiceMatrix v2.0</span> {dir="ltr"}======================================================================================================================"
 -->
 
 <span id="docs-internal-guid-15b24b86-6cfb-e5ee-2575-e54bfd58440c">Licensing </span> ​ <span>ServiceMatrix v2.0</span> {dir="ltr"}

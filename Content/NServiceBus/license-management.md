@@ -1,9 +1,7 @@
 <!--
 title: "How to install your license file"
 tags: ""
-summary: "<p>There are several ways to make sure that your NServiceBus endpoints pick up and use your license. The following options are available:
-<a href="#registry">Registry</a> , <a href="#subfolder_in_BIN">subfolder in your BIN directory</a> , <a href="#app.config">app.config</a> , or <a href="#fluent_api">fluent API</a> .</p>
-"
+summary: "There are several ways to make sure that your NServiceBus endpoints pick up and use your license. The following options are available:[Registry](#registry) , [subfolder in your BIN directory](#subfolder_in_BIN) , [app.config](#app.config) , or [fluent API](#fluent_api) ."
 -->
 
 There are several ways to make sure that your NServiceBus endpoints pick up and use your license. The following options are available:

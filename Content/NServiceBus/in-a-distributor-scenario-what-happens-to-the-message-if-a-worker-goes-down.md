@@ -1,10 +1,7 @@
 <!--
 title: "In a Distributor Scenario, What Happens to the Message if a Worker Goes Down?"
 tags: ""
-summary: "<p>The master forwards the message to the worker and relies on the store and forward messaging provided by MSMQ to make sure that it gets there. The message is processed when the worker returns to working order.</p>
-<p>The master keeps the messages in its queue until an available worker checks in for a unit of work (each thread in each worker is a separate
-&quot;check in&quot;). So, in essence, the workers pull messages from the master.</p>
-"
+summary: "The master forwards the message to the worker and relies on the store and forward messaging provided by MSMQ to make sure that it gets there. The message is processed when the worker returns to working order."
 -->
 
 The master forwards the message to the worker and relies on the store and forward messaging provided by MSMQ to make sure that it gets there. The message is processed when the worker returns to working order.

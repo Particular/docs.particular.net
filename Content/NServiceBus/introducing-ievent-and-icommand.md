@@ -1,9 +1,7 @@
 <!--
 title: "IEvent and ICommand"
 tags: ""
-summary: "<p>A feature of NServiceBus V3 is the introduction of two new message interfaces, IEvent and ICommand, which capture more of the intent of the messages that you define. This helps NServiceBus enforce messaging best practices.</p>
-<p>Messages implementing ICommand:</p>
-"
+summary: "A feature of NServiceBus V3 is the introduction of two new message interfaces, IEvent and ICommand, which capture more of the intent of the messages that you define. This helps NServiceBus enforce messaging best practices."
 -->
 
 A feature of NServiceBus V3 is the introduction of two new message interfaces, IEvent and ICommand, which capture more of the intent of the messages that you define. This helps NServiceBus enforce messaging best practices.

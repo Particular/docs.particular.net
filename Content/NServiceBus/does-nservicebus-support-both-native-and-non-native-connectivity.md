@@ -1,9 +1,7 @@
 <!--
 title: "Does NServiceBus Support Both Native And Non-Native Connectivity?"
 tags: ""
-summary: "<p>NServiceBus supports native communication between the endpoint and the users' code.</p>
-<p>That is, the connectivity between the consumer/service code (user code) and NServiceBus is via the NServiceBus public API.</p>
-"
+summary: "NServiceBus supports native communication between the endpoint and the users' code."
 -->
 
 NServiceBus supports native communication between the endpoint and the users' code.

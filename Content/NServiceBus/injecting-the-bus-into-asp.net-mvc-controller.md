@@ -1,13 +1,7 @@
 <!--
 title: "Injecting the Bus into ASP.NET MVC Controller"
 tags: ""
-summary: "<p>In the AsyncPagesMvc3 sample, open Global.asax.cs and look at the ApplicationStart method.</p>
-<pre><code>    protected void Application_Start()
-    {
-        AreaRegistration.RegisterAllAreas();
-</code></pre>
-
-"
+summary: "In the AsyncPagesMvc3 sample, open Global.asax.cs and look at the ApplicationStart method."
 -->
 
 In the AsyncPagesMvc3 sample, open Global.asax.cs and look at the ApplicationStart method.

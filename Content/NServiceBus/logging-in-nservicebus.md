@@ -1,9 +1,7 @@
 <!--
 title: "Logging in NServiceBus"
 tags: ""
-summary: "<p>Like many other open-source frameworks on the .NET platform, NServiceBus uses of Log4Net for its logging capabilities. Familiar to developers and administrators alike, Log4Net has been proven in production for years of production.</p>
-<p>NServiceBus extends the Log4Net APIs with a simplified model that prevents administrators from accidentally changing behavior you set at design time.</p>
-"
+summary: "Like many other open-source frameworks on the .NET platform, NServiceBus uses of Log4Net for its logging capabilities. Familiar to developers and administrators alike, Log4Net has been proven in production for years of production."
 -->
 
 Like many other open-source frameworks on the .NET platform, NServiceBus uses of Log4Net for its logging capabilities. Familiar to developers and administrators alike, Log4Net has been proven in production for years of production.
