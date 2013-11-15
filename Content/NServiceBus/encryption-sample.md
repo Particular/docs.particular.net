@@ -1,7 +1,7 @@
 <!--
 title: "Encryption Sample"
 tags: ""
-summary: "To see how to encrypt message data, open the [Encryption sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/Encryption)."
+summary: ""
 -->
 
 To see how to encrypt message data, open the [Encryption sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/Encryption)

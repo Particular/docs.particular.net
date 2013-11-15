@@ -1,7 +1,7 @@
 <!--
 title: "Publish/Subscribe Configuration"
 tags: ""
-summary: "![Pub/Sub configuration](basic_pubsub.png)"
+summary: ""
 -->
 
 ![Pub/Sub configuration](basic_pubsub.png)

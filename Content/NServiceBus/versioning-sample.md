@@ -1,7 +1,7 @@
 <!--
 title: "Versioning Sample"
 tags: ""
-summary: "This sample is based on the [Pub/Sub sample](how-pub-sub-works.md). If you have not yet gone through it, please start there."
+summary: ""
 -->
 
 This sample is based on the [Pub/Sub sample](how-pub-sub-works.md). If you have not yet gone through it, please start there.

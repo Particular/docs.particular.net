@@ -1,7 +1,7 @@
 <!--
 title: "MsmqTransportConfig"
 tags: ""
-summary: "The configuration section defines properties of the MSMQ transport. See background on [MSMQ](msmq-information.md) ."
+summary: ""
 -->
 
 The configuration section defines properties of the MSMQ transport. See background on [MSMQ](msmq-information.md) .
