@@ -36,11 +36,11 @@ Code walk-through
 
 This sample contains three projects:
 
--   Receiver.Messages – A class library containing the sample messages.
+-   Receiver.Messages - A class library containing the sample messages.
     Only one of the message types utilizes the NServiceBus DataBus.
--   Sender – A class library, hosted by NServiceBus host. It is
+-   Sender - A class library, hosted by NServiceBus host. It is
     responsible for sending the large messages.
--   Receiver – A class library, hosted by NServiceBus host. It is
+-   Receiver - A class library, hosted by NServiceBus host. It is
     responsible for receiving the large messages being sent from the
     server.
 

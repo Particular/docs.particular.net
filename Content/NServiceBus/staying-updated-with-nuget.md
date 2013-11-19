@@ -75,7 +75,7 @@ Or, if you already installed NServiceBus core libraries:
 
     PM> Update-Package NServiceBus -IncludePrerelease
 
-**NOTE** : NServiceBus continuous integration packages are marked as a prerelease so you need to install using the [–IncludePrerelease switch](http://nuget.codeplex.com/wikipage?title=Pre-Release%20Packages)
+**NOTE** : NServiceBus continuous integration packages are marked as a prerelease so you need to install using the [-IncludePrerelease switch](http://nuget.codeplex.com/wikipage?title=Pre-Release%20Packages)
 .
 
 

@@ -52,8 +52,8 @@ Set up a clustered DTC access point:
 
 Configure DTC for NServiceBus:
 
-1.  On each server, in Administrative Tools – Component Services, expand
-    Component Services – Computers – My Computer – Distributed
+1.  On each server, in Administrative Tools - Component Services, expand
+    Component Services - Computers - My Computer - Distributed
     Transaction Coordinator.
 2.  For the Local DTC, if the clustered DTC is on the current node, you
     will see a Clustered DTCs folder with your clustered DTC name inside
@@ -88,7 +88,7 @@ This should give you a clustered MSMQ instance. Click the instance under Service
 
 View the MSMQ MMC snap-in by right clicking the MSMQ cluster in the left pane and selecting Manage MSMQ, which opens the Computer Management tool geared toward the clustered instance.
 
-Go to MSMQ by expanding Services and Applications – Message Queuing.
+Go to MSMQ by expanding Services and Applications - Message Queuing.
 
 Keep in mind that this only seems to work if you're viewing Failover Cluster Management from the server where the MSMQ Network Name currently resides. If you are on Server A and you try to manage MSMQ on a MSMQ Network residing on Server B, you won't see Message Queuing in the Computer Management window.
 
@@ -97,7 +97,7 @@ Try swapping the MSMQ Network Name back and forth between nodes a few times. It'
 More about MSMQ Network Name
 ----------------------------
 
-The "cluster name" is a Network Name created for the cluster as part of the core Cluster Group – a group created by default for each cluster. The core cluster group is different than the MSMQ cluster group and it has a Different network name. One of the most common confusions while using MSMQ on a cluster is using the Cluster Name in the client instead of the MSMQ Network Name.
+The "cluster name" is a Network Name created for the cluster as part of the core Cluster Group - a group created by default for each cluster. The core cluster group is different than the MSMQ cluster group and it has a Different network name. One of the most common confusions while using MSMQ on a cluster is using the Cluster Name in the client instead of the MSMQ Network Name.
 
 ![](FailoverClusterMgmt.png "(Picture taken from http://blogs.technet.com/b/askcore/archive/2009/02/18/how-to-configure-multiple-instances-of-distributed-transaction-coordinator-dtc-on-a-windows-server-failover-cluster-2008.aspx")
 
@@ -107,10 +107,10 @@ In this picture:
     corner of the picture)
 -   The MSMQ cluster group's name is MSMQ-1
 -   The MSMQ network name is named MSMQ-1 (this is the first resource in
-    the group – under "Name: MSMQ-1"). We don't actually see the MSMQ
-    Network Name (DNS Name) in this picture – to see it you would have
+    the group - under "Name: MSMQ-1"). We don't actually see the MSMQ
+    Network Name (DNS Name) in this picture - to see it you would have
     to right click "Name: MSMQ-1" and select "Properties". You will see
-    something like (Note – this was taken from another resource):
+    something like (Note - this was taken from another resource):
 
 ![](ClusterProperties.png "Cluster Properties")
 
@@ -153,7 +153,7 @@ Do not try starting the services. If you do, they will run in the scope of the l
 
 Now, add each distributor to the cluster:
 
-1.  Right-click your MSMQ cluster group, and select Add a Resource – \#4
+1.  Right-click your MSMQ cluster group, and select Add a Resource - \#4
     Generic Service.
 2.  Select your distributor service from the list. The services are
     listed in random order but typing "Distributor" will get you to the

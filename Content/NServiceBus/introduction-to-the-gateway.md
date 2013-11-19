@@ -22,9 +22,9 @@ Logically different sites serve different business purposes, i.e., one site diff
 
 Looking at this scenario from a logical point of view, you see that all the pricing communication goes on within the same business service (BS). The different physical sites have different logical behavior. This is a sure sign that the gateway might come in handy. Dig deeper and look at the actual responsibilities of each site:
 
--   Headquarters – Maintains the prices and pushes any price change out
+-   Headquarters - Maintains the prices and pushes any price change out
     to the different stores on a daily basis
--   Store – Stores the prices locally for read-only purposes
+-   Store - Stores the prices locally for read-only purposes
 
 Prices are usually set for at least a day at a time so it's good enough for the HQ to push them to the sites once per day. Model this as DailyPriceUpdatesmessage containing the list of price updates for the coming business day. Given this design, you only need to get one message across to each site per day, which lowers the requirement for the infrastructure.
 
