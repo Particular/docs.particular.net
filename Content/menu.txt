@@ -1,4 +1,4 @@
-persistence-in-nservicebus
+Persistence In Nservicebus
 	persistence-in-nservicebus
 	using-ravendb-in-nservicebus-installing
 	using-ravendb-in-nservicebus-connecting
@@ -6,13 +6,13 @@ persistence-in-nservicebus
 	unit-of-work-in-nservicebus
 	unit-of-work-implementation-for-ravendb
 	relational-persistence-using-nhibernate---nservicebus-4.x
-scaling-out
+Scaling Out
 	performance
 	the-gateway-and-multi-site-distribution
 	load-balancing-with-the-distributor
 	introduction-to-the-gateway
 	deploying-nservicebus-in-a-windows-failover-cluster
-getting-started
+Getting Started
 	overview
 	getting-started---creating-a-new-project
 	getting-started---publish-subscribe-communication
@@ -26,7 +26,7 @@ getting-started
 	NServiceBus-Step-by-Step-Guide
 	NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first
 	nservicebus-step-by-step-publish-subscribe-communication-code-first
-day-to-day
+Day To Day
 	containers
 	nservicebus-support-for-child-containers
 	logging-in-nservicebus
@@ -40,28 +40,28 @@ day-to-day
 	second-level-retries
 	nservicebus-installers
 	managing-nservicebus-using-powershell
-hosting
+Hosting
 	the-nservicebus-host
 	hosting-nservicebus-in-your-own-process
 	profiles-for-nservicebus-host
 	more-on-profiles
 	nservicebus-32-bit-x86-host-process
-management-and-monitoring
+Management And Monitoring
 	monitoring-nservicebus-endpoints
 	msmq-information
 	auditing-with-nservicebus
-publish-subscribe
+Publish Subscribe
 	how-pub-sub-works
 	publish-subscribe-configuration
-long-running-processes
+Long Running Processes
 	sagas-in-nservicebus
 	nservicebus-sagas-and-concurrency
-customization
+Customization
 	customizing-nservicebus-configuration
 	pipeline-management-using-message-mutators
-versioning
+Versioning
 	migrating-to-nservicebus-3.0-–-timeouts
-faq
+Faq
 	msmqtransportconfig
 	how-do-i-define-a-message
 	using-the-in-memory-bus
@@ -100,7 +100,7 @@ faq
 	running-nservicebus-on-windows
 	licensing-servicematrix-v2.0
 	how-to-install-your-license-file-serviceinsight
-samples
+Samples
 	full-duplex-sample-v3
 	publish-subscribe-sample
 	unobtrusive-sample
