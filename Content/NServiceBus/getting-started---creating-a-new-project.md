@@ -44,7 +44,7 @@ Right click Endpoints, select Host, and then NServiceBus ASP NET MVC Endpoint, a
 
 Call it ECommerce (or any another name) and the Visual Studio project will be created for you.
 
-You will examine the details of the generated code later so you understand how things work behind the scenes. However, notice the Components folder that has been created under the ECommerce endpoint—this is where the components will be deployed.
+You will examine the details of the generated code later so you understand how things work behind the scenes. However, notice the Components folder that has been created under the ECommerce endpoint this is where the components will be deployed.
 
 Create another endpoint called OrderProcessing as an NServiceBus Host.
 

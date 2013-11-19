@@ -163,7 +163,7 @@ public class MySaga4 : Saga<MySagaData>,
 Timeouts
 --------
 
-When working in a message-driven environment, you cannot make assumptions about when the next message will arrive. While the connectionless nature of messaging prevents our system from bleeding expensive resources while waiting, there is usually an upper limit on how long—from a business perspective—to wait. At that point, some business-specific action should be taken, as shown:
+When working in a message-driven environment, you cannot make assumptions about when the next message will arrive. While the connectionless nature of messaging prevents our system from bleeding expensive resources while waiting, there is usually an upper limit on how long from a business perspective to wait. At that point, some business-specific action should be taken, as shown:
 
 
 ```C#

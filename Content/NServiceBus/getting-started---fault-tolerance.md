@@ -25,7 +25,7 @@ In [the previous section](getting-started---creating-a-new-project.md) you've se
 
 ![Server Explorer](GettingStarted8.jpg)
 
-All the messages sent to the OrderProcessing endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties—specifically BodyStream, where the data is.
+All the messages sent to the OrderProcessing endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties specifically BodyStream, where the data is.
 
 Now bring the OrderProcessing endpoint back online by right clicking the project, Debug, Start new instance. It processes all those messages, and if you go back to the queue shown above and right click Refresh, it is empty.
 
@@ -90,7 +90,7 @@ Retries, errors, and auditing
 
 If a message fails continuously (due to a bug in the system, for example), it ultimately moves to the error queue that is configured for the endpoint after all the various retries have been performed.
 
-Since administrators must monitor these error queues, it is recommended that all endpoints use the same error queue. You can set the error queue for all endpoints via the properties of your top level design element—in this case, Amazon. Press F4 to see the properties window. 
+Since administrators must monitor these error queues, it is recommended that all endpoints use the same error queue. You can set the error queue for all endpoints via the properties of your top level design element in this case, Amazon. Press F4 to see the properties window. 
 
 
 

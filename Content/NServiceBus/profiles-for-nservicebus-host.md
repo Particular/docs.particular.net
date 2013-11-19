@@ -220,7 +220,7 @@ class MyProfileHandler : IHandleProfile<MyProfile>, IWantToRunWhenConfigurationI
     }
 ```
 
- This approach is particularly useful when you want your profile to hook into an event on the object you used the container to build, allowing your profile to perform activities at specific points in the lifecycle of the application—not just at startup.
+ This approach is particularly useful when you want your profile to hook into an event on the object you used the container to build, allowing your profile to perform activities at specific points in the lifecycle of the application not just at startup.
 
 
 

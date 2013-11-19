@@ -30,7 +30,7 @@ To skip migration and run the TimeoutManagers side by side:
 Why to migrate?
 ---------------
 
-The fact that timeouts are durable means that they could—and usually are—set to a time very far off in the future. For example, if you have insurance with long cycles you can have your renewal saga set to wake up in X years. In this situation you don’t want to run both timeout managers in parallel for that long a time. This is when you would consider doing a migration instead.
+The fact that timeouts are durable means that they could and usually are set to a time very far off in the future. For example, if you have insurance with long cycles you can have your renewal saga set to wake up in X years. In this situation you don’t want to run both timeout managers in parallel for that long a time. This is when you would consider doing a migration instead.
 
 To do this we provide a tool in the ZIP download
 (/Tools/Migration/TimeoutMigrator.exe) or in the NServiceBus.Tools NuGet package. This tool extracts your V2.6 timeouts and sends them to be managed by the new V3.0 TM.

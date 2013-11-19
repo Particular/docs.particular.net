@@ -184,7 +184,7 @@ public class HandlerThatPublishedEvent : IHandleMessages<MyMessage>
 In the 'Run' method, you see the creation of the event message. This can be as simple as instantiating the relevant class or using the bus object to instantiate messages defined as interfaces. Read more information on
 [whether to use interfaces or classes to represent messages](messages-as-interfaces.md) .
 
-Once the event message object has been created, the call to Bus.Publish(eventMessage); tells the bus object to have the given message sent to all subscribers who expressed interest in that type of message. As we saw in the walkthrough, if a subscriber is unavailable, their messages aren't lost—they're stored until the subscriber comes back online. See the 'store and forward messaging' section of the
+Once the event message object has been created, the call to Bus.Publish(eventMessage); tells the bus object to have the given message sent to all subscribers who expressed interest in that type of message. As we saw in the walkthrough, if a subscriber is unavailable, their messages aren't lost they're stored until the subscriber comes back online. See the 'store and forward messaging' section of the
 [architectural principles](architectural-principles.md) of NServiceBus for more information.
 
 Security and authorizations

@@ -33,7 +33,7 @@ In the Pub/Sub sample you can see how a different container is used by looking a
 
 This sample showns that different processes can use different containers.
 
-While it is unlikely that a single team will want to use multiple containers within a given solution, if multiple teams are working together—each with its own preferred container—NServiceBus does not require that all processes use the same container. This is also useful when using NServiceBus to integrate with legacy code that may have been built using an older or different container, or even when talking to an application that was designed without a container.
+While it is unlikely that a single team will want to use multiple containers within a given solution, if multiple teams are working together each with its own preferred container NServiceBus does not require that all processes use the same container. This is also useful when using NServiceBus to integrate with legacy code that may have been built using an older or different container, or even when talking to an application that was designed without a container.
 
 After all the necessary references have been added, an additional extension method becomes available on the NServiceBus.Configure class, as shown:
 

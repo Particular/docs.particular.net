@@ -16,7 +16,7 @@ summary: ""
 Benchmarks don't lie; liars do benchmark
 ----------------------------------------
 
-Many parameters can affect the measured performance. The most obvious is hardware—the number of servers and CPU cores, the size of memory and storage, the storage speed, the amount of redundancy, and so on. Less obvious is what the system actually does—some message processing is trivial, while other messages may result in aggregated historical reports and sifting through terabytes of information.
+Many parameters can affect the measured performance. The most obvious is hardware the number of servers and CPU cores, the size of memory and storage, the storage speed, the amount of redundancy, and so on. Less obvious is what the system actually does some message processing is trivial, while other messages may result in aggregated historical reports and sifting through terabytes of information.
 
 Most benchmarks can be viewed as nothing more than anecdotes.
 

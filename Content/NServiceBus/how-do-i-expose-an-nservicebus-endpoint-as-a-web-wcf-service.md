@@ -20,7 +20,7 @@ Queries and other return values
 
 To allow clients to perform queries, it is best not to use NServiceBus. Messaging is designed for non-blocking operations, and queries are (for the most part) operations for which the user wishes to wait.
 
-If there is some other operation that isn't strictly a query that returns a value—for example some type of calculation—consider invoking the operation locally where possible by referencing the DLL on the client.
+If there is some other operation that isn't strictly a query that returns a value for example some type of calculation consider invoking the operation locally where possible by referencing the DLL on the client.
 
 Calling Web/WCF services
 ------------------------

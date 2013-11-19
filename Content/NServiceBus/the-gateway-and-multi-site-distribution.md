@@ -30,7 +30,7 @@ While each branch of a bank or retail store has significance in each domain, whe
 
 The logical services that make up the business solution can have components installed at multiple physical sites. Some of the components may be the same; others may be different. Multiple logical services in the same site often collaborate closely with each other, and possibly less closely than with their own components at other sites.
 
-For example, you expect the Sales service in a store to talk to the pricing service in the same store for every transaction. On the other hand, the pricing service at the headquarters most likely pushes updated prices daily—at most—to the stores. Similarly, you expect an end-of-day push of transactions from the sales service at each store to the headquarters.
+For example, you expect the Sales service in a store to talk to the pricing service in the same store for every transaction. On the other hand, the pricing service at the headquarters most likely pushes updated prices daily at most to the stores. Similarly, you expect an end-of-day push of transactions from the sales service at each store to the headquarters.
 
 ![Store to headquarters pricing and sales interaction](store_to_headquarters_pricing_and_sales.png)
 

@@ -6,7 +6,7 @@ summary: "Designed for collaboration between business-oriented services, NServic
 
 Designed for collaboration between business-oriented services, NServiceBus is not a replacement for RPC technologies such as WCF.
 
-Successful SOA and DDD projects use a mix of approaches and technologies—not just NServiceBus for communications.
+Successful SOA and DDD projects use a mix of approaches and technologies not just NServiceBus for communications.
 
 This article discusses the similarities and differences between NServiceBus and its Microsoft counterparts.
 
@@ -19,7 +19,7 @@ When people hear the term "service bus", they picture a central box through whic
 
 There is no physical WCF one can point to in the network topology. WCF is part of the infrastructure that is run in-process with a given application's code. NServiceBus is the same.
 
-Just like you can write your own host process and activate WCF explicitly within it, you can do the same thing with NServiceBus. The bus in NServiceBus is something virtual—a collection of framework objects running in the various applicative processes. You can think of it as a peer-to-peer mesh that runs alongside your code, as illustrated in the following diagram:
+Just like you can write your own host process and activate WCF explicitly within it, you can do the same thing with NServiceBus. The bus in NServiceBus is something virtual a collection of framework objects running in the various applicative processes. You can think of it as a peer-to-peer mesh that runs alongside your code, as illustrated in the following diagram:
 
 ![deployment topology](deployment_topology.jpg)
 

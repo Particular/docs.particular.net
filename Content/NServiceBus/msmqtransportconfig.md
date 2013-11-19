@@ -33,7 +33,7 @@ Beginning with NServiceBus V3, use the configuration section to declare an error
 
  The ErrorQueue in MsmqTransportConfig is for compatibility with earlier versions.
 
-The ErrorQueue defines the name of the queue to which messages are transferred if they cannot be processed successfully. This may be a queue on the local machine—or on a remote machine, in which case the value should be based on the template "queueName@remoteMachineName" where "queueName" is the name of the error queue (often "error") and
+The ErrorQueue defines the name of the queue to which messages are transferred if they cannot be processed successfully. This may be a queue on the local machine or on a remote machine, in which case the value should be based on the template "queueName@remoteMachineName" where "queueName" is the name of the error queue (often "error") and
 "remoteMachineName" is the name of the remote machine on which the error queue resides.
 
 If no error queue is defined, NServiceBus fails to start with the exception: "Could not find backup configuration section

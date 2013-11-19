@@ -44,7 +44,7 @@ Durable Messaging Demo
 
     [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_fault/001_fault.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_fault/001_fault.png)
 
-All the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties—specifically BodyStream, where the data is.
+All the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties specifically BodyStream, where the data is.
 
 Now bring the 'Server' endpoint back online by right clicking the project, Debug, Start new instance.
 
