@@ -1,8 +1,8 @@
-<!--
+---
 title: "Relational Persistence Using NHibernate"
 tags: ""
 summary: "If you require that your data persist in a relational database, NServiceBus provides a separate assembly with added support for NHibernate-based storage:"
--->
+---
 
 If you require that your data persist in a relational database, NServiceBus provides a separate assembly with added support for NHibernate-based storage:
 

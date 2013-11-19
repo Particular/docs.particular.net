@@ -1,8 +1,8 @@
-<!--
+---
 title: "Architectural Principles"
 tags: ""
 summary: "Autonomy and loose coupling at design time and at run time are not things that any technology can give you."
--->
+---
 
 Autonomy and loose coupling at design time and at run time are not things that any technology can give you.
 

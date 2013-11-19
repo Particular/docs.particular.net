@@ -1,8 +1,8 @@
-<!--
+---
 title: "How To Specify Your Input Queue Name?"
 tags: ""
 summary: "NService Bus allows endpoint technologies other than MSMQ, so how should you specify the input endpoint name?"
--->
+---
 
 NService Bus allows endpoint technologies other than MSMQ, so how should you specify the input endpoint name?
 

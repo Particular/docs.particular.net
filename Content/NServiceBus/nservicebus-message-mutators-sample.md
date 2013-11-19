@@ -1,8 +1,8 @@
-<!--
+---
 title: "NServiceBus Message Mutators Sample"
 tags: ""
 summary: "In NServiceBus V2.6 it was tricky to change messages as they were sent to and from endpoints. From NServiceBus V3 you can change messages by plugging custom logic in to a couple of simple interfaces."
--->
+---
 
 In NServiceBus V2.6 it was tricky to change messages as they were sent to and from endpoints. From NServiceBus V3 you can change messages by plugging custom logic in to a couple of simple interfaces.
 

@@ -1,8 +1,8 @@
-<!--
+---
 title: "NServiceBus Step by Step Guide - Fault Tolerance - code first"
 tags: ""
 summary: "Durable messaging-----------------"
--->
+---
 
 Durable messaging
 -----------------

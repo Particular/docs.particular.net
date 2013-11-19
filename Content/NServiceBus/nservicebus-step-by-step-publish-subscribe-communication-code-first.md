@@ -1,8 +1,8 @@
-<!--
+---
 title: "NServiceBus Step by Step Guide - Publish Subscribe Communication - code first"
 tags: ""
 summary: ""
--->
+---
 
 In the previous section: [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md) we learnt about fault tolerance.
 

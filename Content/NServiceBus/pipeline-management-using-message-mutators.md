@@ -1,8 +1,8 @@
-<!--
+---
 title: "Pipeline Management Using Message Mutators"
 tags: ""
 summary: "The message pipeline in NServiceBus V2.X consisted of message modules. They served their purpose but didn't quite give full control over the message pipeline for more advanced things, and there was no way to hook into the pipeline at the sending/client side of the message conversation."
--->
+---
 
 The message pipeline in NServiceBus V2.X consisted of message modules. They served their purpose but didn't quite give full control over the message pipeline for more advanced things, and there was no way to hook into the pipeline at the sending/client side of the message conversation.
 

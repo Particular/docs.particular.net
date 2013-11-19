@@ -1,8 +1,8 @@
-<!--
+---
 title: "Load Balancing with the Distributor"
 tags: ""
 summary: "The NServiceBus Distributor is similar in behavior to standard load balancers. It is the key to transparently scaling out message processing over many machines."
--->
+---
 
 The NServiceBus Distributor is similar in behavior to standard load balancers. It is the key to transparently scaling out message processing over many machines.
 

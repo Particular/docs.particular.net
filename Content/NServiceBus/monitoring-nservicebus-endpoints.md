@@ -1,8 +1,8 @@
-<!--
+---
 title: "Monitoring NServiceBus Endpoints"
 tags: ""
 summary: "Monitoring in NServiceBus is easier than in regular three-tier systems due to the use of queuing and message-based communication."
--->
+---
 
 Monitoring in NServiceBus is easier than in regular three-tier systems due to the use of queuing and message-based communication.
 

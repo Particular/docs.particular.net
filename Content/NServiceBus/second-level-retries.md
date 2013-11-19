@@ -1,8 +1,8 @@
-<!--
+---
 title: "Second-Level Retries"
 tags: ""
 summary: ""
--->
+---
 
 When an exception occurs, you should [let the NServiceBus infrastructure handle it](articles/how-do-i-handle-exceptions) . It retries the message a configurable number of times, and if still doesn't work, sends it to the error queue.
 

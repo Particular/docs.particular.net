@@ -1,8 +1,8 @@
-<!--
+---
 title: "DTCPIng WARNING: The CID Values for Both Test Machines Are the Same"
 tags: ""
 summary: "This message might be received when the machine name is longer than 14 characters."
--->
+---
 
 This message might be received when the machine name is longer than 14 characters.
 

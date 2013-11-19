@@ -1,8 +1,8 @@
-<!--
+---
 title: "Hosting NServiceBus in Your Own Process v3.x"
 tags: ""
 summary: "Lighter-weight than BizTalk and more powerful than WCF, NServiceBus comes with its own host process and allows you to host it in your own process."
--->
+---
 
 Lighter-weight than BizTalk and more powerful than WCF, NServiceBus comes with its own host process and allows you to host it in your own process.
 

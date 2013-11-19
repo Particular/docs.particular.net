@@ -1,8 +1,8 @@
-<!--
+---
 title: "How to Define a Message?"
 tags: ""
 summary: "    public class MyMessage : IMessage { }"
--->
+---
 
     public class MyMessage : IMessage { }
 

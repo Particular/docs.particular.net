@@ -1,8 +1,8 @@
-<!--
+---
 title: "Getting Started - Creating a New Project with ServiceMatrix v1.0 (Studio)"
 tags: ""
 summary: "NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x"
--->
+---
 
 NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x
 

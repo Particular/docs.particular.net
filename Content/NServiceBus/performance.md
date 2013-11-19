@@ -1,8 +1,8 @@
-<!--
+---
 title: "Performance"
 tags: ""
 summary: ""
--->
+---
 
 <span style="font-size: 14px; line-height: 24px;">NServiceBus:</span>
 

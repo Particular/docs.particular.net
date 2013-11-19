@@ -1,8 +1,8 @@
-<!--
+---
 title: "NServiceBus Installers"
 tags: ""
 summary: "NServiceBus has the concept of installers to make sure that endpoint specific specific artifacts e.g., queues, folders, or databases are installed and configured automatically for you if needed at install time."
--->
+---
 
 NServiceBus has the concept of installers to make sure that endpoint specific specific artifacts e.g., queues, folders, or databases are installed and configured automatically for you if needed at install time.
 

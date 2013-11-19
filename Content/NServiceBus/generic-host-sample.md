@@ -1,8 +1,8 @@
-<!--
+---
 title: "Generic Host Sample using Log4Net"
 tags: ""
 summary: ""
--->
+---
 
 This
 [sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/GenericHost) demonstrates the various kinds of logging you can use with the NServiceBus Host process. Each project shows a different approach and there are no relationships between them.

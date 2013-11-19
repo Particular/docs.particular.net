@@ -1,8 +1,8 @@
-<!--
+---
 title: "How to Get a Reference to IBus in My Message Handler?"
 tags: ""
 summary: "Use setter injection:"
--->
+---
 
 Use setter injection:
 

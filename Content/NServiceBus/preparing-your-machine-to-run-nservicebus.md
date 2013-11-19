@@ -1,8 +1,8 @@
-<!--
+---
 title: "Preparing your machine to run NServiceBus"
 tags: ""
 summary: ""
--->
+---
 
 <style type="text/css">div#uls ul{
     margin-bottom: -15px;

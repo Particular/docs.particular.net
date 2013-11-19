@@ -1,8 +1,8 @@
-<!--
+---
 title: "Does NServiceBus Support Both Native And Non-Native Connectivity?"
 tags: ""
 summary: "NServiceBus supports native communication between the endpoint and the users' code."
--->
+---
 
 NServiceBus supports native communication between the endpoint and the users' code.
 

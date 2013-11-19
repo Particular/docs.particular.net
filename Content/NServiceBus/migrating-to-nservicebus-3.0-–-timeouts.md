@@ -1,8 +1,8 @@
-<!--
+---
 title: "Migrating To NServiceBus 3.0 – Timeouts"
 tags: ""
 summary: "This article describes your options when migrating your V2.6 timeouts to the new V3.0 format."
--->
+---
 
 This article describes your options when migrating your V2.6 timeouts to the new V3.0 format.
 

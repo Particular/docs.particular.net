@@ -1,8 +1,8 @@
-<!--
+---
 title: "Publish/Subscribe Sample"
 tags: ""
 summary: ""
--->
+---
 
 ![pubsub solution](pub_sub_solution.png) Open the solution in Visual Studio. You should see the picture on the left.
 

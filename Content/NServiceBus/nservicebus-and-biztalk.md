@@ -1,8 +1,8 @@
-<!--
+---
 title: "NServiceBus and BizTalk"
 tags: ""
 summary: "BizTalk is a good centralized message broker with many adapters for third party applications, but service buses are inherently distributed, not centralized. Logical centralization leads to spaghetti code."
--->
+---
 
 BizTalk is a good centralized message broker with many adapters for third party applications, but service buses are inherently distributed, not centralized. Logical centralization leads to spaghetti code.
 

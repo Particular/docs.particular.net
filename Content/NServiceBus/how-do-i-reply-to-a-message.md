@@ -1,8 +1,8 @@
-<!--
+---
 title: "How to Reply to a Message? "
 tags: ""
 summary: "The simplest way to reply to a message is using the Reply method on IBus, like this:"
--->
+---
 
 The simplest way to reply to a message is using the Reply method on IBus, like this:
 

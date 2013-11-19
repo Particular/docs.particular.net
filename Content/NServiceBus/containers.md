@@ -1,8 +1,8 @@
-<!--
+---
 title: "Containers"
 tags: ""
 summary: "NServiceBus is a container-agnostic framework. While autofac is merged into its core, it is easily replaced by any other container."
--->
+---
 
 NServiceBus is a container-agnostic framework. While autofac is merged into its core, it is easily replaced by any other container.
 

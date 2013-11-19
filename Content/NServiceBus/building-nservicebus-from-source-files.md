@@ -1,8 +1,8 @@
-<!--
+---
 title: "Building NServiceBus from Source Files"
 tags: ""
 summary: "Getting the source=================="
--->
+---
 
 Getting the source
 ==================

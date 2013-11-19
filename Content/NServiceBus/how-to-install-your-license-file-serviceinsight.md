@@ -1,8 +1,8 @@
-<!--
+---
 title: "How to install your license file - ServiceInsight"
 tags: ""
 summary: "To install your License:"
--->
+---
 
 To install your License:
 

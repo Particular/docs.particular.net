@@ -1,8 +1,8 @@
-<!--
+---
 title: "NServiceBus Overview"
 tags: ""
 summary: "Designed for collaboration between business-oriented services, NServiceBus is not a replacement for RPC technologies such as WCF."
--->
+---
 
 Designed for collaboration between business-oriented services, NServiceBus is not a replacement for RPC technologies such as WCF.
 

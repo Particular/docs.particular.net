@@ -1,8 +1,8 @@
-<!--
+---
 title: "How to Specify to Which Destination a Message Is Sent?"
 tags: ""
 summary: ""
--->
+---
 
 You configure the destination for message types in <unicastbusconfig>, under <messageendpointmappings>.
 

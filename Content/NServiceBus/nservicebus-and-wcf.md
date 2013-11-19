@@ -1,8 +1,8 @@
-<!--
+---
 title: "NServiceBus And WCF"
 tags: ""
 summary: "The main thing missing from WCF is publish/subscribe, but why should you have to build it yourself? With NServiceBus, you get it out of the box."
--->
+---
 
 The main thing missing from WCF is publish/subscribe, but why should you have to build it yourself? With NServiceBus, you get it out of the box.
 

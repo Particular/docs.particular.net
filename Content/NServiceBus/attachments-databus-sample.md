@@ -1,8 +1,8 @@
-<!--
+---
 title: "Attachments / DataBus Sample"
 tags: ""
 summary: "Large chunks of data such as images or video files can be transported using NServiceBus V3 data bus."
--->
+---
 
 Large chunks of data such as images or video files can be transported using NServiceBus V3 data bus.
 

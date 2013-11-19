@@ -1,8 +1,8 @@
-<!--
+---
 title: "How Pub/Sub Works"
 tags: ""
 summary: "Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on."
--->
+---
 
 Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on.
 

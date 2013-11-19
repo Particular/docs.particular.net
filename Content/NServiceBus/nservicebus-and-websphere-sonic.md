@@ -1,8 +1,8 @@
-<!--
+---
 title: "NServiceBus and WebSphere/Sonic"
 tags: ""
 summary: "WebSphere and Sonic are enterprise-grade middleware, robust, performant. No argument there."
--->
+---
 
 WebSphere and Sonic are enterprise-grade middleware, robust, performant. No argument there.
 

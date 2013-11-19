@@ -1,8 +1,8 @@
-<!--
+---
 title: "Unit of Work in NServiceBus"
 tags: ""
 summary: "When using a framework like NServiceBus you usually need to create your own units of work to avoid having to repeat code in your message handlers. For example, committing NHibernate transactions, or calling SaveChanges on the RavenDB session."
--->
+---
 
 When using a framework like NServiceBus you usually need to create your own units of work to avoid having to repeat code in your message handlers. For example, committing NHibernate transactions, or calling SaveChanges on the RavenDB session.
 

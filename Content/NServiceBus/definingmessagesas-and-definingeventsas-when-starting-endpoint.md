@@ -1,8 +1,8 @@
-<!--
+---
 title: "DefiningMessagesAs and DefiningEventsAs When Starting Endpoint"
 tags: ""
 summary: ""
--->
+---
 
 <span style="font-size: 14px; line-height: 24px;">When defining an endpoint with the following declaration (in bold):</span>
 

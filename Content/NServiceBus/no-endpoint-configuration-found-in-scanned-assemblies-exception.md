@@ -1,8 +1,8 @@
-<!--
+---
 title: "No Endpoint Configuration Found in Scanned Assemblies Exception"
 tags: ""
 summary: "As the exception states, NServiceBus was not able to find the endpoint configuration, i.e., an implementation of IConfigureThisEndoint."
--->
+---
 
 As the exception states, NServiceBus was not able to find the endpoint configuration, i.e., an implementation of IConfigureThisEndoint.
 

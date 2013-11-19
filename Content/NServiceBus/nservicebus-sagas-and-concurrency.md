@@ -1,8 +1,8 @@
-<!--
+---
 title: "NServiceBus Sagas And Concurrency"
 tags: ""
 summary: "If your endpoint runs with more than one worker thread, it is possible that multiple messages will hit the same saga instance simultaneously. To give you ACID semantics in this situation, NServiceBus uses the underlying storage to produce consistent behavior, only allowing one of the threads to commit. NServiceBus handles most of this automatically but you should be aware of a few things."
--->
+---
 
 If your endpoint runs with more than one worker thread, it is possible that multiple messages will hit the same saga instance simultaneously. To give you ACID semantics in this situation, NServiceBus uses the underlying storage to produce consistent behavior, only allowing one of the threads to commit. NServiceBus handles most of this automatically but you should be aware of a few things.
 

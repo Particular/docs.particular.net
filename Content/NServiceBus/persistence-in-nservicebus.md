@@ -1,8 +1,8 @@
-<!--
+---
 title: "Persistence In NServiceBus"
 tags: ""
 summary: "Various features of NServiceBus require persistence. Among them are timeouts, sagas, and subscription storage."
--->
+---
 
 Various features of NServiceBus require persistence. Among them are timeouts, sagas, and subscription storage.
 

@@ -1,8 +1,8 @@
-<!--
+---
 title: "MSMQ Information"
 tags: ""
 summary: "MSMQ is the default transport used by NServiceBus."
--->
+---
 
 MSMQ is the default transport used by NServiceBus.
 

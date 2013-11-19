@@ -1,8 +1,8 @@
-<!--
+---
 title: "How to Send a Message?"
 tags: ""
 summary: "    us.Send(messageObject);"
--->
+---
 
     us.Send(messageObject);
 

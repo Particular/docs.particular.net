@@ -1,8 +1,8 @@
-<!--
+---
 title: "Injecting the Bus into ASP.NET MVC Controller"
 tags: ""
 summary: "In the AsyncPagesMvc3 sample, open Global.asax.cs and look at the ApplicationStart method."
--->
+---
 
 In the AsyncPagesMvc3 sample, open Global.asax.cs and look at the ApplicationStart method.
 

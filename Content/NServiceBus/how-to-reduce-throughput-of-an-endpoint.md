@@ -1,8 +1,8 @@
-<!--
+---
 title: "How to Reduce Throughput of an Endpoint?"
 tags: ""
 summary: "There are two ways to decrease receiving throughput of an endpoint:"
--->
+---
 
 There are two ways to decrease receiving throughput of an endpoint:
 

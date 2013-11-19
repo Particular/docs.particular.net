@@ -1,8 +1,8 @@
-<!--
+---
 title: "Unobtrusive Sample"
 tags: ""
 summary: ""
--->
+---
 
 To demonstrate NServiceBus operating in unobtrusive mode, open the
 [unobtrusive sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/Unobtrusive)
