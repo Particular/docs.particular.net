@@ -70,7 +70,8 @@ This is called the " [second level retries](second-level-retries.md) " or SLR fu
 SLR is enabled by default, the default policy will defer the message
 10\*N (where N is number of retries) seconds 3 times (60 sec total), resulting in a wait of 10s, then 20s, and then 30s; after which the message moves to the configured ErrorQueue.
 
-<p> So, let's make the processing of messages in the 'Server' endpoint fail.
+
+So, let's make the processing of messages in the 'Server' endpoint fail.
 
 Throw an exception in the SubmitOrderProcessor code like this:
 
@@ -95,7 +96,8 @@ namespace Ordering.Server
 ```
 
 
-</p> Run your solution again, but this time use Ctrl-F5 so that Visual Studio does not break each time the exception is thrown, sending a message from the 'Client' console.
+
+Run your solution again, but this time use Ctrl-F5 so that Visual Studio does not break each time the exception is thrown, sending a message from the 'Client' console.
 
 You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
 

@@ -90,7 +90,7 @@ To scale out, you need another worker to handle PlaceOrder messages. Orders.Hand
     folder on the same machine if you are just testing the sample). This
     instance of Orders.Handler is the additional Worker.
 
-3.  <p>
+3.  
     In Orders.Handler.dll.config add the MasterNodeConfig section and
     add the Distributor address in the UnicastBusConfig as shown:
 
@@ -115,7 +115,7 @@ To scale out, you need another worker to handle PlaceOrder messages. Orders.Hand
 ```
 
 
-    </p>
+
     The Node in the MasterNodeConfig points to the host name where the
     MasterNode is running. If running the Worker from the same machine
     as the Distributor, Node should equal "localhost".

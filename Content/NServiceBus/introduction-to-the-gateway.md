@@ -48,7 +48,7 @@ Beginning with NServiceBus V3, the gateway is included in the core assembly, mea
 
 To turn on the gateway, call Configure.RunGateway(). To send messages, use the new IBus interface called SendToSites method, as shown:
 
-<p>
+
 
 ```C#
 /// <summary>
@@ -63,7 +63,8 @@ ICallback SendToSites(IEnumerable<string> siteKeys, params object[] messages);
 ```
 
 
-</p> This allows you to pass in a list of sites to where you want to send your messages. You can configure each site with a different transport mechanism. Currently the supported channels are HTTP/HTTPS but you can easily extend the gateway with your own implementation.
+
+This allows you to pass in a list of sites to where you want to send your messages. You can configure each site with a different transport mechanism. Currently the supported channels are HTTP/HTTPS but you can easily extend the gateway with your own implementation.
 
 On the receiving side is another gateway listening on the input channel and forwarding the incoming message to the target endpoint. The image below shows the physical parts involved:
 

@@ -118,7 +118,8 @@ From files scanned above, the host looks for classes that implement
 </span>and calls their
 <span style="font-family:courier new,courier,monospace;">Init()</span> method. The best practice is to have one initialization class per independent component to initialize. You can have as many classes as you like, although you should avoid any assumptions about the order of their invocation.
 
-<p> To change core settings such as assembly scanning, container, and serialization format, implement
+
+To change core settings such as assembly scanning, container, and serialization format, implement
 <span style="font-family:courier new,courier,monospace;">IWantCustomInitialization
 </span>on the endpoint configuration class (the same class that implements
 <span style="font-family:courier new,courier,monospace;">IConfigureThisEndpoint</span>). You must start the configuration expression 'With'
@@ -143,7 +144,8 @@ Defer all startup behavior until all initialization has been completed. At this 
 </span>in v3.x) should kick off things such as web crawling, data mining, and batch processes.</span>
 <a id="container" style="font-size: 14px; line-height: 24px;"> </a>
 
-</p> Containers and dependency injection
+
+Containers and dependency injection
 -----------------------------------
 
 By default, the host makes use of Autofac internally as its container
@@ -281,7 +283,8 @@ NServiceBus.Host.exe /install /serviceName:"MyPublisher"
 ```
 
 
-<p> To uninstall, call
+
+To uninstall, call
 
 
 ```Batchfile
@@ -290,7 +293,7 @@ NServiceBus.Host.exe /uninstall
 
  If you specify a service name or instance name when installing your service, you need to pass them in to the uninstall command as well:
 
-</p>
+
 
 ```Batchfile
 > NServiceBus.Host.exe [/uninstall  [/serviceName] [/instance]]

@@ -28,7 +28,8 @@ Creating an event message
 
 There are only a few steps needed to introduce pub/sub and make your solution look like the one appearing above.
 
-<p> Right click your Messages Project and add a class file, and create a OrderCreated event:
+
+Right click your Messages Project and add a class file, and create a OrderCreated event:
 
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/002_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/002_pubsub.png)
@@ -52,13 +53,14 @@ namespace Ordering.Messages
 ```
 
 
-</p>
+
 <a id="Publishing" name="Publishing"> </a>
 
 Publishing an event
 -------------------
 
-<p> In order to publish the 'OrderCreated' event we will modify the
+
+In order to publish the 'OrderCreated' event we will modify the
 'PlaceOrderHandler', add a
 <span style="font-family:courier new,courier,monospace;">Bus.Publish<placeorderhandler>()</span> as shown below
 
@@ -126,7 +128,7 @@ namespace Ordering.Server
 
 To learn more about profiles go check out: [Profiles For NServiceBus Host](profiles-for-nservicebus-host.md)
 
-</p>
+
 <a id="Subscriber" name="Subscriber"> </a>
 
 Creating the Subscriber project
@@ -166,7 +168,7 @@ In our new Subscriber project
     interface
 -   Add an IBus auto property and implement the handler as shown below
 
-<p>
+
 
 
 
@@ -195,8 +197,9 @@ namespace Ordering.Subscriber
 
 For the Host will auto subscribe to the event we need to add the message publisher
 
-</p>
-<p> In the Odering.Subscriber project we will add MessageEndpointMappings in the app.config file as shown below:
+
+
+In the Odering.Subscriber project we will add MessageEndpointMappings in the app.config file as shown below:
 
 
 
@@ -216,7 +219,7 @@ namespace Ordering.Server
 ```
 
 
-</p>
+
 <a id="Running" name="Running"> </a>
 
 Running the solution

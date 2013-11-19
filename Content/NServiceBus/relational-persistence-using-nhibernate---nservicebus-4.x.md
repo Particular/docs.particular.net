@@ -22,7 +22,8 @@ This automatically sets up all the dependencies and is the recommended way of us
 Subscriptions, Sagas, Timeouts and Gateway persistance
 ------------------------------------------------------
 
-<p> To use Subscriptions, Sagas, Timeouts and Gateway persistance using NHibernate, use this configuration:
+
+To use Subscriptions, Sagas, Timeouts and Gateway persistance using NHibernate, use this configuration:
 
 
 
@@ -41,9 +42,11 @@ class InititalizeSubscriptionStorage : IWantCustomInitialization
 ```
 
 
-</p> NServiceBus then picks up the connection setting from your app.config. Here is an example
 
-<p> NOTE: When using SQL 2012 you need to change the dialect to MsSql2012Dialect.
+NServiceBus then picks up the connection setting from your app.config. Here is an example
+
+
+NOTE: When using SQL 2012 you need to change the dialect to MsSql2012Dialect.
 
 NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhforge.org/doc/nh/en/index.html#configuration-xmlconfig)
 
@@ -66,6 +69,6 @@ NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NH
 ```
 
 
-</p>
+
 
 

@@ -51,7 +51,7 @@ You will get to the Error Queue and other General properties later. For now, foc
 
 So, make the processing of messages in OrderProcessing fail. Throw an exception in the SubmitOrderProcessor code like this:
 
-<p>
+
 
 ```C#
 using System;
@@ -73,7 +73,8 @@ namespace Amazon.OrderProcessing.Sales
 ```
 
 
-</p> Run your solution again, but this time use Ctrl-F5 so that Visual Studio does not break each time the exception is thrown, sending a message from the ECommerce app by clicking About. You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
+
+Run your solution again, but this time use Ctrl-F5 so that Visual Studio does not break each time the exception is thrown, sending a message from the ECommerce app by clicking About. You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
 
 ![Retries](GettingStarted9.png) 
 

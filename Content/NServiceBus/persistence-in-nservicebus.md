@@ -62,7 +62,7 @@ If self hosting, you can configure the persistence technology for each feature. 
 ```
 
 
-<p>
+
 
 
 and for NServiceBus v4.x
@@ -93,7 +93,8 @@ and for NServiceBus v4.x
 ```
 
 
-</p> When you use NServiceBus.Host.exe out of the box, you can utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, you can override the configured defaults. Read more about
+
+When you use NServiceBus.Host.exe out of the box, you can utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, you can override the configured defaults. Read more about
 [profiles](profiles-for-nservicebus-host.md) , [here too](more-on-profiles.md)
 .
 

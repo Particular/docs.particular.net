@@ -39,7 +39,8 @@ To configure SLR, enable its configuration section:
 Fluent configuration API
 ------------------------
 
-<p> To disable the SLR feature, add this to your configuration (in Version
+
+To disable the SLR feature, add this to your configuration (in Version
 4.0):
 
 
@@ -61,8 +62,9 @@ namespace MyServerNoSLR
 ```
 
 
-</p>
-<p> In Version 3.0:
+
+
+In Version 3.0:
 
 
 ```C#
@@ -83,7 +85,8 @@ namespace MyServerNoSLR
 ```
 
 
-</p> Code
+
+Code
 ----
 
 To change the time between retries or the number of retries you have a couple of different options in code.

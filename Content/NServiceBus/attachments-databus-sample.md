@@ -127,7 +127,8 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Client, IWantCustomIni
 
  This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment. The message payload is stored in the file system, in the Storage folder.
 
-<p> The following sender project code sends the MessageWithLargePayload message, utilizing the NServiceBus attachment mechanism:
+
+The following sender project code sends the MessageWithLargePayload message, utilizing the NServiceBus attachment mechanism:
 
 
 ```C#
@@ -139,8 +140,9 @@ bus.Send<MessageWithLargePayload>(m =>
 ```
 
 
-</p>
-<p> The following Sender project code sends the AnotherMessageWithLargePayload message without utilizing the NServiceBus attachment mechanism:
+
+
+The following Sender project code sends the AnotherMessageWithLargePayload message without utilizing the NServiceBus attachment mechanism:
 
 
 ```C#
@@ -151,7 +153,8 @@ bus.Send<AnotherMessageWithLargePayload>(m =>
 ```
 
 
-</p> In both cases, a 5MB message is sent, but in the MessageWithLargePayload it goes through, while AnotherMessageWithLargePayload fails.
+
+In both cases, a 5MB message is sent, but in the MessageWithLargePayload it goes through, while AnotherMessageWithLargePayload fails.
 
 Go to the Receiver project to see the receiving application.
 

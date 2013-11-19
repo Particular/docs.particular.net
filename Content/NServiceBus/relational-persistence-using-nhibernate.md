@@ -24,7 +24,7 @@ Subscriptions
 
 To store subscriptions using NHibernate, use this configuration:
 
-<p>
+
 
 
 
@@ -42,9 +42,10 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server,IWantCustomInit
 ```
 
 
-</p> NServiceBus then picks up the connection setting from your app.config. Here is an example (using SqlLite):
 
-<p>
+NServiceBus then picks up the connection setting from your app.config. Here is an example (using SqlLite):
+
+
 
 
 
@@ -62,7 +63,8 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server,IWantCustomInit
 ```
 
 
-</p> Read about the [available properties](http://nhforge.org/doc/nh/en/index.html#configuration-xmlconfig)
+
+Read about the [available properties](http://nhforge.org/doc/nh/en/index.html#configuration-xmlconfig)
 .
 
 Sagas
@@ -70,7 +72,7 @@ Sagas
 
 To store sagas using NHibernate, use this configuration:
 
-<p>
+
 
 
 
@@ -88,9 +90,10 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server,IWantCustomInit
 ```
 
 
-</p> Example configuration:
 
-<p>
+Example configuration:
+
+
 
 
 
@@ -108,12 +111,13 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server,IWantCustomInit
 ```
 
 
-</p> Timeouts
+
+Timeouts
 --------
 
 For the timeout manager to store timeouts using NHibernate, use this configuration (SqlServer2008 in this case). This is valid from V3.2.3 onwards.
 
-<p>
+
 
 
 
@@ -148,6 +152,6 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server,IWantCustomInit
 ```
 
 
-</p>
+
 
 
