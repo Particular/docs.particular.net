@@ -26,8 +26,6 @@ getting-started
 	NServiceBus-Step-by-Step-Guide
 	NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first
 	nservicebus-step-by-step-publish-subscribe-communication-code-first
-
-	test
 day-to-day
 	containers
 	nservicebus-support-for-child-containers
