@@ -11,7 +11,7 @@ summary: ""
 
 <span>![](001.png)</span>
 
-<span id="docs-internal-guid-15b24b86-6ce7-ca2d-733b-5ef13bfdff0d">You can click "Continue on Trial" to continue using ServiceMatrix or provide a license file by clicking the ‘Browse’ button.</span>
+<span id="docs-internal-guid-15b24b86-6ce7-ca2d-733b-5ef13bfdff0d">You can click "Continue on Trial" to continue using ServiceMatrix or provide a license file by clicking the ‘Browse' button.</span>
 
 
 
@@ -22,5 +22,5 @@ summary: ""
 
 <span id="docs-internal-guid-15b24b86-6ce7-ca2d-733b-5ef13bfdff0d">Otherwise, you won't be able to create new solutions using ServiceMatrix, and if you open an existing solution, the Solution Builder will be disabled.</span>
 
-<span id="docs-internal-guid-15b24b86-6ce7-ca2d-733b-5ef13bfdff0d">To provide a license for ServiceMatrix, click the ‘Browse’ button in one of the dialog boxes when they pop up.</span>
+<span id="docs-internal-guid-15b24b86-6ce7-ca2d-733b-5ef13bfdff0d">To provide a license for ServiceMatrix, click the ‘Browse' button in one of the dialog boxes when they pop up.</span>
 

@@ -16,11 +16,11 @@ Instance lifetime is usually not tracked by the container (Windsor is an excepti
 This is very handy when it comes to managing things like the NHibernate session. See a more in-depth [description of child containers](http://codebetter.com/jeremymiller/2010/02/10/nested-containers-in-structuremap-2-6-1/).
 
 NServiceBus creates a child container for each transport message that is received, remembering that transport messages can contain multiple
-“user defined messages”. This means that all transient instances created during message processing are scoped as singletons within the child container. This allows you to easily share, for example, the NHibernate session between repositories, without messing around with thread static caching.
+"user defined messages". This means that all transient instances created during message processing are scoped as singletons within the child container. This allows you to easily share, for example, the NHibernate session between repositories, without messing around with thread static caching.
 
 When the message finishes processing, the child container and all transient instances are disposed. So if you need deterministic disposal, implement IDisposable.
 
-Beginning with NServiceBus V3, you can get a “session per transport message” by configuring the session as transient. This example uses StructureMap:
+Beginning with NServiceBus V3, you can get a "session per transport message" by configuring the session as transient. This example uses StructureMap:
 
     var container = new Container(x =>
     {

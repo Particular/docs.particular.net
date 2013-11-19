@@ -70,7 +70,7 @@ public class RavenUnitOfWork : IManageUnitsOfWork
 ```
 
 
-**NOTE** : There is a dependency on the IDocumentSession. Given that the UoW is resolved from the same child container as the handlers, you will get the same session instance. RavenDB doesn’t need any special setup so you only need to call SaveChanges if End() is called and no exception occurs.
+**NOTE** : There is a dependency on the IDocumentSession. Given that the UoW is resolved from the same child container as the handlers, you will get the same session instance. RavenDB doesn't need any special setup so you only need to call SaveChanges if End() is called and no exception occurs.
 
 To make NServiceBus use the UoW, configure it in the container so that NServiceBus finds and uses it:
 

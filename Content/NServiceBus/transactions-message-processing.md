@@ -48,7 +48,7 @@ Ensure that the properties you see are the same as those above and restart the c
 
 If DTCPing isn't working, check that the needed ports are open in the firewall. Consider removing the DTC exceptions in the firewall and add them again to make sure.
 
-If DTCPing gives you a message about finding the name but not reaching it, do a simple ping by running “ping computername” in the command prompt. If the machine cannot be reached by ping, it could be that you have a DNS problem that may require your network administrator's help.
+If DTCPing gives you a message about finding the name but not reaching it, do a simple ping by running "ping computername" in the command prompt. If the machine cannot be reached by ping, it could be that you have a DNS problem that may require your network administrator's help.
 
 Make sure you perform all the steps not just on the servers that connect to the database, but also on the database servers as well.
 

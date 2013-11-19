@@ -9,10 +9,10 @@ NServiceBus has the concept of installers to make sure that endpoint specific sp
 To create your own installer is as easy as implementing the
 [INeedToInstallSomething<t>](https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Installation/INeedToInstallSomething.cs) interface. The generic parameter gives you a way to restrict your installer to a specific platform. Currently this is either Windows or Azure.
 
-If you don’t care about the runtime environment, just use the
+If you don't care about the runtime environment, just use the
 [INeedToInstallSomething](https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Installation/INeedToInstallSomething.cs) interface instead.
 
-NServiceBus scans the assemblies in the runtime directory for installers so you don’t need any code to register them.
+NServiceBus scans the assemblies in the runtime directory for installers so you don't need any code to register them.
 
 **Version 3.0 Only:** Version 3.0 included an interface called INeedToInstallInfrastructure<t> interface. It was primarily used for things that are not specific to a given endpoint e.g., RavenDB or MSMQ. This interface has been obsoleted in version 4.0 and will be removed in
 5.0, since the introduction of [PowerShell commandlets](managing-nservicebus-using-powershell.md) to aid the installation of infrastructure.

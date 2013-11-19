@@ -225,7 +225,7 @@ namespace Ordering.Server
 Running the solution
 --------------------
 
-Now it’s time to run the solution and see it all working together we will run the Client, Server and the Subscriber projects:
+Now it's time to run the solution and see it all working together we will run the Client, Server and the Subscriber projects:
 
 Right click on the 'Ordering' solution and select 'Set StartUp Projects...'
 

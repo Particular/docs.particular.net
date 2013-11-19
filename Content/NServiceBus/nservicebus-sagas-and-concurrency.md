@@ -33,16 +33,16 @@ Concurrent access to existing saga instances
 
 This works predictably due to reliance on the underlying database providing optimistic concurrency support. When more than one thread tries to update the same saga instance, the database detects it and only allows one of them to commit. If this happens the retries will occur and the race condition be solved.
 
-When you use the RavenDB saga persister, you don’t have to do anything since the NServiceBus framework (on RavenDB) turns on [optimistic concurrency](http://ravendb.net/kb/16/using-optimistic-concurrency-in-real-world-scenarios).
+When you use the RavenDB saga persister, you don't have to do anything since the NServiceBus framework (on RavenDB) turns on [optimistic concurrency](http://ravendb.net/kb/16/using-optimistic-concurrency-in-real-world-scenarios).
 
-When running using the NHibernate saga persister, the NServiceBus framework requires you to add a [“Version” property to your saga data](http://ayende.com/blog/3946/nhibernate-mapping-concurrency) so that NHibernate can work its magic.
+When running using the NHibernate saga persister, the NServiceBus framework requires you to add a ["Version" property to your saga data](http://ayende.com/blog/3946/nhibernate-mapping-concurrency) so that NHibernate can work its magic.
 
 NServiceBus V4.0 [makes this even easier for](https://github.com/NServiceBus/NServiceBus/issues/649) you by enabling the optimistic-all option if no Version property is found.
 
-Another option is to use a [transaction isolation level](http://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel.aspx) of serializable but that causes [excessive locking](http://msdn.microsoft.com/en-us/library/ms173763.aspx)so the performance degradation is considerable. **NOTE**: “Serializable” is the default isolation level for TransactionScopes.
+Another option is to use a [transaction isolation level](http://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel.aspx) of serializable but that causes [excessive locking](http://msdn.microsoft.com/en-us/library/ms173763.aspx)so the performance degradation is considerable. **NOTE**: "Serializable" is the default isolation level for TransactionScopes.
 
 In [NServiceBus V4.0 the default isolation level is
-“ReadCommitted”](https://github.com/NServiceBus/NServiceBus/issues/656), which is a more sensible default.
+"ReadCommitted"](https://github.com/NServiceBus/NServiceBus/issues/656), which is a more sensible default.
 
 Next steps
 ----------

@@ -187,7 +187,7 @@ namespace Ordering.Client
 
 ### <a id="Running" name="Running"> </a> Running the solution
 
-You’ve completed coding the example and now it’s time to run the solution. 
+You've completed coding the example and now it's time to run the solution. 
 
 To see the complete system, run both the Client and the Server projects together:
 
@@ -222,7 +222,7 @@ Congratulations - you've just built your first NServiceBus application.
 Wasn't that easy?
 -----------------
 
-\* If you see some warnings on the consoles, these warnings are just NServiceBus telling you that it couldn’t find the queues it needs, so it went ahead and created them for you.
+\* If you see some warnings on the consoles, these warnings are just NServiceBus telling you that it couldn't find the queues it needs, so it went ahead and created them for you.
 
 ### <a id="Next Steps" name="Next Steps"> </a> Next Steps
 

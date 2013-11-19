@@ -23,19 +23,19 @@ To skip migration and run the TimeoutManagers side by side:
     the input queue identical.)
 4.  Decommission your V2.6 TM when all timeouts expire. (The storage
     queue will be empty when this happens.) The default name of the
-    storage queue is “Timeout.Storage” but check your configuration to
+    storage queue is "Timeout.Storage" but check your configuration to
     be sure. **NOTE** : This is NOT the same queue as the input queue
     that you would have configured in your endpoint mappings.
 
 Why to migrate?
 ---------------
 
-The fact that timeouts are durable means that they could and usually are set to a time very far off in the future. For example, if you have insurance with long cycles you can have your renewal saga set to wake up in X years. In this situation you don’t want to run both timeout managers in parallel for that long a time. This is when you would consider doing a migration instead.
+The fact that timeouts are durable means that they could and usually are set to a time very far off in the future. For example, if you have insurance with long cycles you can have your renewal saga set to wake up in X years. In this situation you don't want to run both timeout managers in parallel for that long a time. This is when you would consider doing a migration instead.
 
 To do this we provide a tool in the ZIP download
 (/Tools/Migration/TimeoutMigrator.exe) or in the NServiceBus.Tools NuGet package. This tool extracts your V2.6 timeouts and sends them to be managed by the new V3.0 TM.
 
-For those of you who require zero downtime deployments, V2.6.0.1504 doesn’t support hot migrations. This means that to migrate your timeouts with your system still running, you need to upgrade to NServiceBus V2.6.0.1511.
+For those of you who require zero downtime deployments, V2.6.0.1504 doesn't support hot migrations. This means that to migrate your timeouts with your system still running, you need to upgrade to NServiceBus V2.6.0.1511.
 
 With that out of the way, use the tool to migrate:
 
@@ -43,7 +43,7 @@ With that out of the way, use the tool to migrate:
 2.  Create the [dedicated input queue for the V3.0
     TM](convention-over-configuration) by running the
     [installers](nservicebus-installers.md) .
-3.  If you haven’t upgraded to
+3.  If you haven't upgraded to
     [V](http://particular.cloudapp.net/downloads)
     [2.6.0.1511](http://particular.cloudapp.net/downloads) , shut down
     the V2.6 TM.

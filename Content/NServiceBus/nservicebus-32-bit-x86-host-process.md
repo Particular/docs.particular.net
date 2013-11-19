@@ -4,7 +4,7 @@ tags: ""
 summary: "NServiceBus is an \"Any CPU\" framework. It doesn't have 32-bit or 64-bit specific code. This makes it very easy to transition between 32- and64-bit operating systems. Unfortunately, not all assemblies can be compiled using the default Any CPU architecture. In many, if not most cases, this is related to legacy systems that have 32-bit specific code for platform interoperability with native C libraries, etc."
 -->
 
-NServiceBus is an “Any CPU” framework. It doesn't have 32-bit or 64-bit specific code. This makes it very easy to transition between 32- and
+NServiceBus is an "Any CPU" framework. It doesn't have 32-bit or 64-bit specific code. This makes it very easy to transition between 32- and
 64-bit operating systems. Unfortunately, not all assemblies can be compiled using the default Any CPU architecture. In many, if not most cases, this is related to legacy systems that have 32-bit specific code for platform interoperability with native C libraries, etc.
 
 With the default NServiceBus.Host, your application always loads in

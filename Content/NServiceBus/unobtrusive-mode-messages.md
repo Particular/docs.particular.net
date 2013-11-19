@@ -1,15 +1,15 @@
 <!--
 title: "Unobtrusive Mode Messages"
 tags: ""
-summary: "When using NServiceBus you define your message contracts using plain C# classes or interfaces. For NServiceBus to find those classes when scanning your assemblies you need to mark them with the special IMessage interface, which essentially says, \"Hey, this is a message definition, please use it.\" This might seem like a small thing but now you’re coupling your message contracts to a NServiceBus assembly since you need to reference the NServiceBus.dll to get access to the interface."
+summary: "When using NServiceBus you define your message contracts using plain C# classes or interfaces. For NServiceBus to find those classes when scanning your assemblies you need to mark them with the special IMessage interface, which essentially says, \"Hey, this is a message definition, please use it.\" This might seem like a small thing but now you're coupling your message contracts to a NServiceBus assembly since you need to reference the NServiceBus.dll to get access to the interface."
 -->
 
-When using NServiceBus you define your message contracts using plain C\# classes or interfaces. For NServiceBus to find those classes when scanning your assemblies you need to mark them with the special IMessage interface, which essentially says, “Hey, this is a message definition, please use it.” This might seem like a small thing but now you’re coupling your message contracts to a NServiceBus assembly since you need to reference the NServiceBus.dll to get access to the interface.
+When using NServiceBus you define your message contracts using plain C\# classes or interfaces. For NServiceBus to find those classes when scanning your assemblies you need to mark them with the special IMessage interface, which essentially says, "Hey, this is a message definition, please use it." This might seem like a small thing but now you're coupling your message contracts to a NServiceBus assembly since you need to reference the NServiceBus.dll to get access to the interface.
 
 This dependency can cause problems if you have different services that run different versions of NServiceBus. Jonathan Oliver has a [great write up on this very subject](http://blog.jonathanoliver.com/2010/09/nservicebus-distributing-event-schemacontract/)
 .
 
-This is not a big deal for commands because they are always used with in the boundary of a single service and it’s fair to require a service to use the same version of NServiceBus. But when it comes to events, this becomes more of a problem since it requires your services to all use the same version of NServiceBus, thereby forcing them to upgrade NServiceBus all at once.
+This is not a big deal for commands because they are always used with in the boundary of a single service and it's fair to require a service to use the same version of NServiceBus. But when it comes to events, this becomes more of a problem since it requires your services to all use the same version of NServiceBus, thereby forcing them to upgrade NServiceBus all at once.
 
 The solution
 ------------
@@ -24,7 +24,7 @@ There are a couple of ways you can solve this. NServiceBus V3 has a few changes 
     every release/build. This means that as long as you do a NuGet
     update with the -safe flag your service contracts will stay
     compatible.
--   Support for running in “Unobtrusive” mode means you do not need to
+-   Support for running in "Unobtrusive" mode means you do not need to
     reference any NServiceBus assemblies from your own message
     assemblies, thereby removing the problem altogether.
 
@@ -49,7 +49,7 @@ Configure.With().UseTransport<Msmq>() //Configure.With().MsmqTransport() in V 3
  : TimeSpan.MaxValue);
 ```
 
- This code tells NServiceBus to treat all types with a namespace that ends with “Messages” as messages. You can also specify conventions for the [ICommand and IEvent feature](introducing-ievent-and-icommand.md) .
+ This code tells NServiceBus to treat all types with a namespace that ends with "Messages" as messages. You can also specify conventions for the [ICommand and IEvent feature](introducing-ievent-and-icommand.md) .
 
 NServiceBus supports property level encryption with a special WireEncryptedString property. The example above shows the unobtrusive way to tell NServiceBus which properties you want encrypted. These properties need to be of type String.
 

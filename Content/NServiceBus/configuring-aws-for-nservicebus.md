@@ -10,7 +10,7 @@ It is possible to turn off this server name change feature, using a tool install
 
 ![EC2 Config Settings](EC2ConfigSettings.png)
 
-In this tool, uncheck “Set Computer Name” in the General tab and click OK:
+In this tool, uncheck "Set Computer Name" in the General tab and click OK:
 
 ![](EC2ServiceProperties.png)
 

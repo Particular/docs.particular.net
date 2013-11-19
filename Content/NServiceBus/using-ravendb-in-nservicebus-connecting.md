@@ -12,7 +12,7 @@ To tell NServiceBus to use RavenDB for persistence is as easy as calling Configu
     running at http://localhost:8080, the default URL for RavenDB.
 -   If a master node is configured, the URL is:
     http://{masternode}/:8080.
--   If a connection string named “NServiceBus.Persistence” is found, the
+-   If a connection string named "NServiceBus.Persistence" is found, the
     value of the connectionString attribute is used.
 
 This gives you full control over which RavenDB server your endpoint uses.
@@ -24,11 +24,11 @@ Overriding the defaults
 
 In some situations the default behavior might not be right for you:
 
--   You want to use your own connection string. If you’re using RavenDB
+-   You want to use your own connection string. If you're using RavenDB
     for your own data as well you might want to share the connection
     string. Use the Configure.RavenPersistence(string connectionString)
     signature to tell NServiceBus to connect to the server specified in
-    that string. The default connection string for RavenDB is “RavenDB”.
+    that string. The default connection string for RavenDB is "RavenDB".
 -   You want to specify a explicit database name. To control the
     database name in code instead of via the configuration, use the
     Configure.RavenPersistence(string connectionString, string
@@ -38,8 +38,8 @@ In some situations the default behavior might not be right for you:
 Which database is used?
 -----------------------
 
-After connecting to a RavenDB server, decide which actual database to use. Unless NServiceBus finds a default database specified in the connection string, NServiceBus uses the endpoint name as the database name. So if your endpoint is named “MyServer”, the database name is
-“MyServer”. Each endpoint has a separate database unless you explicitly override it using the connection string. RavenDB automatically creates the database if it doesn’t already exist.
+After connecting to a RavenDB server, decide which actual database to use. Unless NServiceBus finds a default database specified in the connection string, NServiceBus uses the endpoint name as the database name. So if your endpoint is named "MyServer", the database name is
+"MyServer". Each endpoint has a separate database unless you explicitly override it using the connection string. RavenDB automatically creates the database if it doesn't already exist.
 
 Read a detailed explanation of the [endpoint name concept](convention-over-configuration) and a [FAQ entry](how-to-specify-your-input-queue-name.md).
 

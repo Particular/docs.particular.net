@@ -86,7 +86,7 @@ Feature-related profiles that come out of the box :
 
 -   MultiSite turns on the gateway
 
--   Master makes the endpoint a “master node endpoint”.
+-   Master makes the endpoint a "master node endpoint".
     <span style="font-size: 14px; line-height: 24px;">This means that it
     runs the gateway for multisite interaction, the timeout manager, and
     the Distributor.
