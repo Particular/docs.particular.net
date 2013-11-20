@@ -13,7 +13,7 @@ Before you start ensure you have
 
 There are two approaches to contributing
 
-### The GitHub web UI 
+### The GitHub web UI  
 
 For simple changes the GitHub web UI should suffice.
 
