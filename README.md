@@ -38,23 +38,26 @@ For more information see [Collaborating on GitHub](https://help.github.com/categ
 
 ## Markdown
 
-The pages are currently rendered using [MarkdownDeep](http://www.toptensoftware.com/markdowndeep/) with *Markdown Extra Enhancements* enabled. 
+The site is rendered using GitHub Flavoured Markdown
 
-There are some slight difference between MarkdownDeep and the GitHub flavoured Markdown. So when changes are accepted you should double check how the rendered version looks.
-
-For editing markdown on your desktop using MarkdownDeep try the following
+For editing markdown on your desktop using Git try the following
 
 ### [MarkdownPad](http://markdownpad.com/)
 
-Ensure you enable *MarkdownDeep Extras* by going to 
+Ensure you enable *GitHub Flavoured Markdown* by going to 
 
-    Tools > Options > Markdown > Markdown Processor > Markdown (Extra)  
+    Tools > Options > Markdown > Markdown Processor > GitHub Flavoured Markdown
+
+Or click in the bottom left no the `M` icon to "hot-switch"
+  
 
 ### [MarkPad](http://code52.org/DownmarkerWPF/) 
 
 Ensure you enable *MarkdownDeep Extras* by going to 
 
     Settings > markdown extra > toggle the switch to red
+
+Note that MarkdownDeep is not exactly the same as *GitHub Flavoured Markdown* but it is fairly close.
 
 More info on Markdown see
  
