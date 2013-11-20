@@ -17,7 +17,7 @@ There are two approaches to contributing
 
 For simple changes the GitHub web UI should suffice.
 
- * Find the page you want to edit on http://particulardocs.cloudapp.net/
+ * Find the page you want to edit on http://docs.particular.net/
  * Click the `Improve this doc` this will take you to the GitHub copy of the markdown for this page.
  * Click `Edit`. This will automatically fork the project so you can edit the file.
  * Make the changes you require. Ensure you verify your changes in the `Preview` tab
