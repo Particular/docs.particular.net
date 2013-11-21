@@ -1,7 +1,10 @@
 ---
-title: "How to Discard Old Messages?"
-tags: ""
-summary: "If a message cannot be received by the target process in the given time frame, including all time in queues and in transit, the message is discarded."
+title: How to Discard Old Messages?
+summary: Automatically discard messages if they have not been processed within a given period of time.
+originalUrl: http://www.particular.net/articles/how-do-i-discard-old-messages
+tags:
+- Message Expiration
+- TimeToBeReceived
 ---
 
 

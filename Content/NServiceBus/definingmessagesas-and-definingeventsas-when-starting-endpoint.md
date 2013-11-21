@@ -1,7 +1,8 @@
 ---
-title: "DefiningMessagesAs and DefiningEventsAs When Starting Endpoint"
-tags: ""
-summary: ""
+title: DefiningMessagesAs and DefiningEventsAs When Starting Endpoint
+summary: To fixan  exception when starting an endpoint with DefiningMessagesAs, include your default namespace.
+originalUrl: http://www.particular.net/articles/definingmessagesas-and-definingeventsas-when-starting-endpoint
+tags: []
 ---
 
 <span style="font-size: 14px; line-height: 24px;">When defining an endpoint with the following declaration (in bold):</span>

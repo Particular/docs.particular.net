@@ -1,7 +1,8 @@
 ---
-title: "How to Define a Message?"
-tags: ""
-summary: "    public class MyMessage : IMessage { }"
+title: How to Define a Message?
+summary: Use interfaces to define messages instead of classes so you get multiple inheritance.
+originalUrl: http://www.particular.net/articles/how-do-i-define-a-message
+tags: []
 ---
 
     public class MyMessage : IMessage { }

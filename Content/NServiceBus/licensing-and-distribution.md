@@ -1,7 +1,8 @@
 ---
-title: "Licensing And Distributor"
-tags: ""
-summary: "Basic licenses (default, express, Basic-2, 4, etc.) allow you to run your distribution with two worker nodes."
+title: Licensing And Distributor
+summary: Basic licenses are limited to two worker nodes.
+originalUrl: http://www.particular.net/articles/licensing-and-distribution
+tags: []
 ---
 
 Basic licenses (default, express, Basic-2, 4, etc.) allow you to run your distribution with two worker nodes.

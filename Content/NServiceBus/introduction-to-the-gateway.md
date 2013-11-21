@@ -1,7 +1,8 @@
 ---
-title: "Introduction to the Gateway"
-tags: ""
-summary: ""
+title: Introduction to the Gateway
+summary: NServiceBus enables durable fire-and-forget messaging across physically separated IT infrastructure.
+originalUrl: http://www.particular.net/articles/introduction-to-the-gateway
+tags: []
 ---
 
 This article, together with [the Gateway & Multi-Site Distribution with NServiceBus](the-gateway-and-multi-site-distribution.md) article, provide a high level overview of the NServiceBus gateway, where to use it, and more importantly where not to use it. The main purpose of the gateway is to allow you to do the same durable fire-and-forget messaging that you are accustomed to with NServiceBus across physically separated sites, where "sites " are locations where you run IT infrastructure and not web sites.

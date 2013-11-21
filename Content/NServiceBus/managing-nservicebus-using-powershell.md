@@ -1,7 +1,11 @@
 ---
-title: "Managing NServiceBus Using PowerShell"
-tags: ""
-summary: "NServiceBus provides a set of PowerShell commandlets to make it easy to manage and run the software. The initial focus is to provide support when preparing machines for use with NServiceBus. Additional features are in the pipeline."
+title: Managing NServiceBus Using PowerShell
+summary: 'Install the infrastructure for NServiceBus on servers using PowerShell commandlets. '
+originalUrl: http://www.particular.net/articles/managing-nservicebus-using-powershell
+tags:
+- Powershell
+- Commandlets
+- installation
 ---
 
 NServiceBus provides a set of PowerShell commandlets to make it easy to manage and run the software. The initial focus is to provide support when preparing machines for use with NServiceBus. Additional features are in the pipeline.

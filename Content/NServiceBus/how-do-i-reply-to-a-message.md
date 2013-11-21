@@ -1,7 +1,8 @@
 ---
-title: "How to Reply to a Message? "
-tags: ""
-summary: "The simplest way to reply to a message is using the Reply method on IBus, like this:"
+title: 'How to Reply to a Message? '
+summary: Use the Reply method on IBus.
+originalUrl: http://www.particular.net/articles/how-do-i-reply-to-a-message
+tags: []
 ---
 
 The simplest way to reply to a message is using the Reply method on IBus, like this:

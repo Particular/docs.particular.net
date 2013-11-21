@@ -1,7 +1,8 @@
 ---
-title: "Versioning Sample"
-tags: ""
-summary: ""
+title: Versioning Sample
+summary: Continuation of the pub/sub sample.
+originalUrl: http://www.particular.net/articles/versioning-sample
+tags: []
 ---
 
 This sample is based on the [Pub/Sub sample](how-pub-sub-works.md). If you have not yet gone through it, please start there.

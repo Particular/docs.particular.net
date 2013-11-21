@@ -1,7 +1,10 @@
 ---
-title: "How Pub/Sub Works"
-tags: ""
-summary: "Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on."
+title: How Pub/Sub Works
+summary: Subscribers tell the publisher they&#39;re interested. Publishers store addresses for sending messages.
+originalUrl: http://www.particular.net/articles/how-pub-sub-works
+tags:
+- Publish Subscribe
+- Messaging Patterns
 ---
 
 Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on.

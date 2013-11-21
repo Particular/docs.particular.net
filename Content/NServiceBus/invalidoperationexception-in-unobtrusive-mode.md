@@ -1,7 +1,8 @@
 ---
-title: "InvalidOperationException in Unobtrusive Mode"
-tags: ""
-summary: "To avoid an InvalidOperationException, .DefiningMessagesAs (or any one of the DefiningXXXAs) should come in the Fluent configuration before.UnicastBus(). "
+title: InvalidOperationException in Unobtrusive Mode
+summary: Avoid an InvalidOperationException in Unobtrusive Mode.
+originalUrl: http://www.particular.net/articles/invalidoperationexception-in-unobtrusive-mode
+tags: []
 ---
 
 To avoid an InvalidOperationException, .DefiningMessagesAs (or any one of the DefiningXXXAs) should come in the Fluent configuration before

@@ -1,7 +1,15 @@
 ---
-title: "Running NServiceBus on Windows"
-tags: ""
-summary: "NServiceBus relies on a few key pieces of infrastructure in order to run properly. This page gives you an overview of the requirements for running NSerivceBus on the windows platform."
+title: Running NServiceBus on Windows
+summary: Overview of the requirements for running on windows (including MSMQ, DTC, Storage and powershell)
+originalUrl: http://www.particular.net/articles/running-nservicebus-on-windows
+tags:
+- MSMQ
+- DTC
+- Performance Counters
+- Powershell
+- Storage
+- NHibernate
+- Windows
 ---
 
 NServiceBus relies on a few key pieces of infrastructure in order to run properly. This page gives you an overview of the requirements for running NSerivceBus on the windows platform.

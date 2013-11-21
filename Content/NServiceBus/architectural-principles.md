@@ -1,7 +1,8 @@
 ---
-title: "Architectural Principles"
-tags: ""
-summary: "Autonomy and loose coupling at design time and at run time are not things that any technology can give you."
+title: Architectural Principles
+summary: NServiceBus helps you write code that is robust in production environments, preventing data loss under failure conditions.
+originalUrl: http://www.particular.net/articles/architectural-principles
+tags: []
 ---
 
 Autonomy and loose coupling at design time and at run time are not things that any technology can give you.

@@ -1,7 +1,11 @@
 ---
-title: "Attachments / DataBus Sample"
-tags: ""
-summary: "Large chunks of data such as images or video files can be transported using NServiceBus V3 data bus."
+title: Attachments / DataBus Sample
+summary: 'Send images or video by putting an attribute over your large property. NServiceBus takes care of the rest. '
+originalUrl: http://www.particular.net/articles/attachments-databus-sample
+tags:
+- DataBus
+- MSMQ Limit
+- Large messages
 ---
 
 Large chunks of data such as images or video files can be transported using NServiceBus V3 data bus.

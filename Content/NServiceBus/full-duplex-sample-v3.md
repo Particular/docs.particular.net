@@ -1,7 +1,11 @@
 ---
-title: "Full Duplex Sample using NServiceBus V3"
-tags: ""
-summary: ""
+title: Full Duplex Sample using NServiceBus V3
+summary: An example of full-duplex, request/response communication.
+originalUrl: http://www.particular.net/articles/full-duplex-sample-v3
+tags:
+- Request Response
+- Messaging Patterns
+- Full Duplex
 ---
 
 To see full-duplex, request/response communication, open the [Full Duplex sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/FullDuplex)

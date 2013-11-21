@@ -1,7 +1,8 @@
 ---
-title: "MsmqTransportConfig"
-tags: ""
-summary: ""
+title: MsmqTransportConfig
+summary: 'Properties of the MSMQ transport: ErrorQueue, NumberOfWorkerThreads, and MaxRetries.'
+originalUrl: http://www.particular.net/articles/msmqtransportconfig
+tags: []
 ---
 
 The configuration section defines properties of the MSMQ transport. See background on [MSMQ](msmq-information.md) .

@@ -1,7 +1,8 @@
 ---
-title: "How to Specify Store and Forward for a Message?"
-tags: ""
-summary: "How to specify not writing a message to disk?============================================="
+title: How to Specify Store and Forward for a Message?
+summary: Store and Forward is not always the preferred method.
+originalUrl: http://www.particular.net/articles/how-do-i-specify-store-forward-for-a-message
+tags: []
 ---
 
 How to specify not writing a message to disk?

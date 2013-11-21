@@ -1,7 +1,8 @@
 ---
-title: "How to See the Queues and Messages on a Machine?"
-tags: ""
-summary: "You can see all the queues on the local machine using Server Explorer in Visual Studio:"
+title: How to See the Queues and Messages on a Machine?
+summary: See queues on local machine using Server Explorer in Visual Studio, The most interesting property is BodyStream.
+originalUrl: http://www.particular.net/articles/how-can-i-see-the-queues-and-messages-on-a-machine
+tags: []
 ---
 
 You can see all the queues on the local machine using Server Explorer in Visual Studio:

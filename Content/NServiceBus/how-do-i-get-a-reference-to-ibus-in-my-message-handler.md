@@ -1,7 +1,8 @@
 ---
-title: "How to Get a Reference to IBus in My Message Handler?"
-tags: ""
-summary: "Use setter injection:"
+title: How to Get a Reference to IBus in My Message Handler?
+summary: Use setter injection or constructor injection.
+originalUrl: http://www.particular.net/articles/how-do-i-get-a-reference-to-ibus-in-my-message-handler
+tags: []
 ---
 
 Use setter injection:

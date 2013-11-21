@@ -1,7 +1,14 @@
 ---
-title: "Unobtrusive Sample"
-tags: ""
-summary: ""
+title: Unobtrusive Sample
+summary: Demonstrates NServiceBus operating in unobtrusive mode.
+originalUrl: http://www.particular.net/articles/unobtrusive-sample
+tags:
+- Unobtrusive
+- POCO
+- Messages
+- Commands
+- Events
+- Conventions
 ---
 
 To demonstrate NServiceBus operating in unobtrusive mode, open the

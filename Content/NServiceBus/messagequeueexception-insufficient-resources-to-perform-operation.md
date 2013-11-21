@@ -1,7 +1,8 @@
 ---
-title: "MessageQueueException: Insufficient resources to perform operation"
-tags: ""
-summary: "This exception may occur if you try to send messages to a machine that has been offline for a while, or the system is suffering from a larger than expected load spike:"
+title: 'MessageQueueException: Insufficient resources to perform operation'
+summary: Exception due to sending messages to an offline or loaded machine.
+originalUrl: http://www.particular.net/articles/messagequeueexception-insufficient-resources-to-perform-operation
+tags: []
 ---
 
 This exception may occur if you try to send messages to a machine that has been offline for a while, or the system is suffering from a larger than expected load spike:

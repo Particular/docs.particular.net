@@ -134,7 +134,7 @@
           "NServiceBus/how-do-i-get-technical-information-about-a-message",
           "NServiceBus/how-do-i-reply-to-a-message",
           "NServiceBus/how-do-i-handle-responses-on-the-client-side",
-          "NServiceBus/sub-with-NServiceBus",
+          "NServiceBus/how-to-pub-sub-with-NServiceBus",
           "NServiceBus/how-do-i-handle-exceptions",
           "NServiceBus/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service",
           "NServiceBus/type-was-not-registered-in-the-serializer",

@@ -1,7 +1,8 @@
 ---
-title: "MSMQ Information"
-tags: ""
-summary: "MSMQ is the default transport used by NServiceBus."
+title: MSMQ Information
+summary: MSMQ is the primary durable communications technology for Microsoft but does not dynamically detect network interfaces.
+originalUrl: http://www.particular.net/articles/msmq-information
+tags: []
 ---
 
 MSMQ is the default transport used by NServiceBus.

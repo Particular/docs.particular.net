@@ -1,7 +1,10 @@
 ---
-title: "NServiceBus Step by Step Guide - Publish Subscribe Communication - code first"
-tags: ""
-summary: ""
+title: NServiceBus Step by Step Guide - Publish Subscribe Communication - code first
+summary: See how NServiceBus messaging can get past all sorts of failure scenarios.
+originalUrl: http://www.particular.net/articles/nservicebus-step-by-step-publish-subscribe-communication-code-first
+tags:
+- pub sub
+- publish subscribe
 ---
 
 In the previous section: [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md) we learnt about fault tolerance.

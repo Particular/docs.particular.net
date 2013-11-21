@@ -1,7 +1,8 @@
 ---
-title: "More On Profiles"
-tags: ""
-summary: "The NServiceBus Host profiles allow you to alter the behavior of your endpoint without recompiling your code. The profiles enable tailoring endpoints for different environments and controlling things like scaling out (running the distributor) and enabling HTTP access (gateway)."
+title: More On Profiles
+summary: 'Two types of profiles in NServiceBus: environment and feature.'
+originalUrl: http://www.particular.net/articles/more-on-profiles
+tags: []
 ---
 
 The NServiceBus Host profiles allow you to alter the behavior of your endpoint without recompiling your code. The profiles enable tailoring endpoints for different environments and controlling things like scaling out (running the distributor) and enabling HTTP access (gateway).

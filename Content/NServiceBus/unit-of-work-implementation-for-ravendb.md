@@ -1,7 +1,8 @@
 ---
-title: "Unit of Work Implementation For RavenDB"
-tags: ""
-summary: "When using a framework like NServiceBus you usually need to create your own unit of work to avoid repeating code in your message handlers. Following is one approach on how to implement the NServiceBus Unit of Work for RavenDB."
+title: Unit of Work Implementation For RavenDB
+summary: Avoid repeating code in your message handlers by implementing the NServiceBus Unit of Work for RavenDB.
+originalUrl: http://www.particular.net/articles/unit-of-work-implementation-for-ravendb
+tags: []
 ---
 
 When using a framework like NServiceBus you usually need to create your own unit of work to avoid repeating code in your message handlers. Following is one approach on how to implement the NServiceBus Unit of Work for RavenDB.

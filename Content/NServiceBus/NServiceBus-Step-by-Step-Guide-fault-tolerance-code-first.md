@@ -1,7 +1,8 @@
 ---
-title: "NServiceBus Step by Step Guide - Fault Tolerance - code first"
-tags: ""
-summary: "Durable messaging-----------------"
+title: NServiceBus Step by Step Guide - Fault Tolerance - code first
+summary: See how NServiceBus messaging can get past all sorts of failure scenarios.
+originalUrl: http://www.particular.net/articles/NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first
+tags: []
 ---
 
 Durable messaging

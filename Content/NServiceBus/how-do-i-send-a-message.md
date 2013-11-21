@@ -1,7 +1,8 @@
 ---
-title: "How to Send a Message?"
-tags: ""
-summary: "    us.Send(messageObject);"
+title: How to Send a Message?
+summary: Send a message, or instantiate and send all at once.
+originalUrl: http://www.particular.net/articles/how-do-i-send-a-message
+tags: []
 ---
 
     us.Send(messageObject);

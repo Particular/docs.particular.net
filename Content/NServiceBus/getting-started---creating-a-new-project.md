@@ -1,7 +1,13 @@
 ---
-title: "Getting Started - Creating a New Project with ServiceMatrix v1.0 (Studio)"
-tags: ""
-summary: "NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x"
+title: Getting Started - Creating a New Project with ServiceMatrix v1.0 (Studio)
+summary: >+
+  A step-by-step guide to creating NServiceBus projects using ServiceMatrix, the Visual Studio add-in for NServiceBus
+
+originalUrl: http://www.particular.net/articles/getting-started---creating-a-new-project
+tags:
+- ServiceMatrix
+- Visual Studio 2010
+- Visual Studio
 ---
 
 NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x

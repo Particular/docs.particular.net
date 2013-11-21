@@ -1,7 +1,12 @@
 ---
-title: "Publish/Subscribe Sample"
-tags: ""
-summary: ""
+title: Publish/Subscribe Sample
+summary: Publish/subscribe, fault-tolerant messaging, and durable subscriptions.
+originalUrl: http://www.particular.net/articles/publish-subscribe-sample
+tags:
+- Publish Subscribe
+- Messaging Patterns
+- Durability
+- Fault Tolerance
 ---
 
 ![pubsub solution](pub_sub_solution.png) Open the solution in Visual Studio. You should see the picture on the left.

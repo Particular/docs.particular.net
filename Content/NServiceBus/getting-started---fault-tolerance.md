@@ -1,7 +1,8 @@
 ---
-title: "Getting Started - Fault Tolerance using ServiceMatrix v1.0"
-tags: ""
-summary: "NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x"
+title: Getting Started - Fault Tolerance using ServiceMatrix v1.0
+summary: See how NServiceBus messaging can get past all sorts of failure scenarios.
+originalUrl: http://www.particular.net/articles/getting-started---fault-tolerance
+tags: []
 ---
 
 NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x

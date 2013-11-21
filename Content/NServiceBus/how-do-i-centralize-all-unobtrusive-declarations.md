@@ -1,7 +1,10 @@
 ---
-title: "How to Centralize All Unobtrusive Declarations?"
-tags: ""
-summary: "When working with NServiceBus in unobtrusive mode you may feel that you are repeating the conventions over and over again on all the endpoints."
+title: How to Centralize All Unobtrusive Declarations?
+summary: Don&#39;t repeat yourself when writing unobtrusive declarations; use WantToRunBeforeConfiguration.
+originalUrl: http://www.particular.net/articles/how-do-i-centralize-all-unobtrusive-declarations
+tags:
+- Unobtrusive
+- DRY
 ---
 
 When working with NServiceBus in unobtrusive mode you may feel that you are repeating the conventions over and over again on all the endpoints.

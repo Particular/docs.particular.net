@@ -1,7 +1,8 @@
 ---
-title: "Using NServiceBus in a ASP.NET Web Application"
-tags: ""
-summary: "To see how to use NServiceBus in a WebForms application, open the AsyncPages sample and run the solution. A new browser window/tab opens, as well as a console application."
+title: Using NServiceBus in a ASP.NET Web Application
+summary: See how to use NServiceBus in a WebForms application.
+originalUrl: http://www.particular.net/articles/using-nservicebus-in-a-asp.net-web-application
+tags: []
 ---
 
 To see how to use NServiceBus in a WebForms application, open the AsyncPages sample and run the solution. A new browser window/tab opens, as well as a console application.

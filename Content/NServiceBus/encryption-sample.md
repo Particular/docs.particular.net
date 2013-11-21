@@ -1,7 +1,9 @@
 ---
-title: "Encryption Sample"
-tags: ""
-summary: ""
+title: Encryption Sample
+summary: How to encrypt message data.
+originalUrl: http://www.particular.net/articles/encryption-sample
+tags:
+- Encryption
 ---
 
 To see how to encrypt message data, open the [Encryption sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/Encryption)

@@ -1,7 +1,8 @@
 ---
-title: "NServiceBus 32-bit (x86) Host Process"
-tags: ""
-summary: "NServiceBus is an \"Any CPU\" framework. It doesn't have 32-bit or 64-bit specific code. This makes it very easy to transition between 32- and64-bit operating systems. Unfortunately, not all assemblies can be compiled using the default Any CPU architecture. In many, if not most cases, this is related to legacy systems that have 32-bit specific code for platform interoperability with native C libraries, etc."
+title: NServiceBus 32-bit (x86) Host Process
+summary: 'If 32-bit code must be invoked and loaded, use NServiceBus.Host32.exe instead. '
+originalUrl: http://www.particular.net/articles/nservicebus-32-bit-x86-host-process
+tags: []
 ---
 
 NServiceBus is an "Any CPU" framework. It doesn't have 32-bit or 64-bit specific code. This makes it very easy to transition between 32- and

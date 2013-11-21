@@ -1,7 +1,8 @@
 ---
-title: "Configuring AWS For NServiceBus"
-tags: ""
-summary: "Stale endpoint naming issues may occur when you shut down and restart the server instance down from the AWS console. It happens as AWS is changing the host name."
+title: Configuring AWS For NServiceBus
+summary: Endpoint naming issues that occur when you restart the server from the AWS console can be prevented using a special tool.
+originalUrl: http://www.particular.net/articles/configuring-aws-for-nservicebus
+tags: []
 ---
 
 Stale endpoint naming issues may occur when you shut down and restart the server instance down from the AWS console. It happens as AWS is changing the host name.

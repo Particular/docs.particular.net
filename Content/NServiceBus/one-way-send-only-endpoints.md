@@ -1,7 +1,9 @@
 ---
-title: "One Way/Send Only Endpoints"
-tags: ""
-summary: ""
+title: One Way/Send Only Endpoints
+summary: "Use â€œSend only modeâ€\x9D for endpoints whose only purpose is sending messages, "
+originalUrl: http://www.particular.net/articles/one-way-send-only-endpoints
+tags:
+- SendOnly
 ---
 
 The equivalent to the [one way bus in Rhino Service Bus](http://ayende.com/blog/140289/setting-up-a-rhino-service-bus-application-part-iindash-one-way-bus) is what NServiceBus calls "Send only mode". You would use this for endpoints whose only purpose is sending messages, such as websites. This is the code for starting an endpoint in send only mode.

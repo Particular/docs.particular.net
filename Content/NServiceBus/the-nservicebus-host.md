@@ -1,7 +1,8 @@
 ---
-title: "The NServiceBus Host"
-tags: ""
-summary: "To avoid re-writing the same configuration code, or to host your endpoints in a Windows Service, use NServiceBus.Host.exe, which can also run as a console."
+title: The NServiceBus Host
+summary: Avoid writing repeat config code, host your endpoints in a Windows Service, and change technologies without code.
+originalUrl: http://www.particular.net/articles/the-nservicebus-host
+tags: []
 ---
 
 To avoid re-writing the same configuration code, or to host your endpoints in a Windows Service, use NServiceBus.Host.exe, which can also run as a console.

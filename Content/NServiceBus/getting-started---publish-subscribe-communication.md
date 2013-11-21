@@ -1,7 +1,9 @@
 ---
-title: "Getting Started - Publish/Subscribe Communication Using ServiceMatrix v1.0"
-tags: ""
-summary: "NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x"
+title: Getting Started - Publish/Subscribe Communication Using ServiceMatrix v1.0
+summary: Define an event, add a subscriber, deploy a component, and add code to publisher and subscriber.
+originalUrl: http://www.particular.net/articles/getting-started---publish-subscribe-communication
+tags:
+- Publish Subscribe
 ---
 
 NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x

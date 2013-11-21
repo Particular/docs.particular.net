@@ -1,7 +1,8 @@
 ---
-title: "NServiceBus Step by Step Guide - code first"
-tags: ""
-summary: "In this tutorial we are going to create a very simple ordering system that will send messages from a client to a server. The ordering system includes three projects: Client, Server, and Messages, to complete this tasks we will execute the following steps:"
+title: NServiceBus Step by Step Guide - code first
+summary: Get started with NServiceBus, step by step, code-first.
+originalUrl: http://www.particular.net/articles/NServiceBus-Step-by-Step-Guide
+tags: []
 ---
 
 In this tutorial we are going to create a very simple ordering system that will send messages from a client to a server. The ordering system includes three projects: Client, Server, and Messages, to complete this tasks we will execute the following steps:

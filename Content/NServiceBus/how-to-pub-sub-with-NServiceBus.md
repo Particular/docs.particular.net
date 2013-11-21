@@ -1,7 +1,8 @@
 ---
-title: "How to Publish/Subscribe to a Message"
-tags: ""
-summary: "How to publish a message?-------------------------"
+title: How to Publish/Subscribe to a Message
+summary: Publish and subscribe to messages using NServiceBus, automatically and manually.
+originalUrl: http://www.particular.net/articles/how-to-pub/sub-with-NServiceBus
+tags: []
 ---
 
 How to publish a message?

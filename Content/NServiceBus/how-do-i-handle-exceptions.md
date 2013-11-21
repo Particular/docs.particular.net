@@ -1,7 +1,11 @@
 ---
-title: "How to Handle Exceptions"
-tags: ""
-summary: "Don't."
+title: How to Handle Exceptions
+summary: Don&#39;t try to handle exceptions in your message handlers. Let NServiceBus do it for you.
+originalUrl: http://www.particular.net/articles/how-do-i-handle-exceptions
+tags:
+- Exceptions
+- Error Handling
+- Automatic Retries
 ---
 
 Don't.

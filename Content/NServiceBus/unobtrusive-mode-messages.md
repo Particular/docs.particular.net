@@ -1,7 +1,8 @@
 ---
-title: "Unobtrusive Mode Messages"
-tags: ""
-summary: "When using NServiceBus you define your message contracts using plain C# classes or interfaces. For NServiceBus to find those classes when scanning your assemblies you need to mark them with the special IMessage interface, which essentially says, \"Hey, this is a message definition, please use it.\" This might seem like a small thing but now you're coupling your message contracts to a NServiceBus assembly since you need to reference the NServiceBus.dll to get access to the interface."
+title: Unobtrusive Mode Messages
+summary: You do not need to reference any NServiceBus assemblies from your own message assemblies.
+originalUrl: http://www.particular.net/articles/unobtrusive-mode-messages
+tags: []
 ---
 
 When using NServiceBus you define your message contracts using plain C\# classes or interfaces. For NServiceBus to find those classes when scanning your assemblies you need to mark them with the special IMessage interface, which essentially says, "Hey, this is a message definition, please use it." This might seem like a small thing but now you're coupling your message contracts to a NServiceBus assembly since you need to reference the NServiceBus.dll to get access to the interface.

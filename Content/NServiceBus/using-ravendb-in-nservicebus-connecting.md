@@ -1,7 +1,10 @@
 ---
-title: "Connecting to RavenDB from NServiceBus"
-tags: ""
-summary: "Beginning with NServiceBus V3.0, RavenDB is one of the available mechanisms for NServiceBus to persist its timeout, saga and subscription information."
+title: Connecting to RavenDB from NServiceBus
+summary: For persistence, tell NServiceBus to use RavenDB, or override the defaults.
+originalUrl: http://www.particular.net/articles/using-ravendb-in-nservicebus-connecting
+tags:
+- RavenDB
+- persistence
 ---
 
 Beginning with NServiceBus V3.0, RavenDB is one of the available mechanisms for NServiceBus to persist its timeout, saga and subscription information.

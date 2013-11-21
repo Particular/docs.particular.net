@@ -1,7 +1,10 @@
 ---
-title: "Customizing NServiceBus Configuration"
-tags: ""
-summary: "NServiceBus uses the process config file as its default source of configuration. The pluggability and extensibility of NServiceBus allow you to change many of its behaviors, including where it gets its configuration. This can be done across all of NServiceBus or you can choose which part of NServiceBus should get its configuration from some other source."
+title: Customizing NServiceBus Configuration
+summary: NServiceBus uses the process config file as its default source of configuration.
+originalUrl: http://www.particular.net/articles/customizing-nservicebus-configuration
+tags:
+- Configuration
+- app.config
 ---
 
 NServiceBus uses the process config file as its default source of configuration. The pluggability and extensibility of NServiceBus allow you to change many of its behaviors, including where it gets its configuration. This can be done across all of NServiceBus or you can choose which part of NServiceBus should get its configuration from some other source.

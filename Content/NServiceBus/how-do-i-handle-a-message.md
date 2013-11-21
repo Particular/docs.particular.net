@@ -1,7 +1,8 @@
 ---
-title: "How to Handle a Message?"
-tags: ""
-summary: ""
+title: How to Handle a Message?
+summary: Write a class to handle messages in NServiceBus.
+originalUrl: http://www.particular.net/articles/how-do-i-handle-a-message
+tags: []
 ---
 
 Write a class that implements IMessageHandler<t> where T is the message type:

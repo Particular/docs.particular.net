@@ -1,7 +1,13 @@
 ---
-title: "Preparing your machine to run NServiceBus"
-tags: ""
-summary: ""
+title: Preparing your machine to run NServiceBus
+summary: Details the infrastructure components required by NServicebus, and how to install them using Visual Studio&#39;s Package Manager Console
+originalUrl: http://www.particular.net/articles/preparing-your-machine-to-run-nservicebus
+tags:
+- Package Manager Console
+- infrastructure components
+- prerequisites
+- installation
+- nuget
 ---
 
 <style type="text/css">div#uls ul{

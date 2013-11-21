@@ -1,7 +1,8 @@
 ---
-title: "Publish/Subscribe Configuration"
-tags: ""
-summary: ""
+title: Publish/Subscribe Configuration
+summary: 
+originalUrl: http://www.particular.net/articles/publish-subscribe-configuration
+tags: []
 ---
 
 ![Pub/Sub configuration](basic_pubsub.png)
