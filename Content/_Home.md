@@ -104,7 +104,7 @@ Lorem ipsum dolor sit amet, test link adipiscing elit. Nullam dignissim convalli
 
 <a name="versioning"></a>
 ## Versioning ##
-- [Migrating to NServiceBus 3.0 Timeouts](/nservicebus/migrating-to-nservicebus-3.0-–-timeouts)
+- [Migrating to NServiceBus 3.0 Timeouts](/nservicebus/migrating-to-nservicebus-3.0---timeouts)
 
 <a name="faq"></a>
 ## FAQ ##

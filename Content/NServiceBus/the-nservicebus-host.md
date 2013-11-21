@@ -211,7 +211,7 @@ While NServiceBus allows you to pick and choose which technologies to use and ho
     <span style="font-family:courier new,courier,monospace;">AsAServer
     </span>and indicates to the infrastructure to set up storage for
     subscription requests, described in the [profiles
-    page](articles/profiles-for-nservicebus-host) .
+    page](profiles-for-nservicebus-host.md) .
     <a id="installation"> </a>
 
 
@@ -220,7 +220,7 @@ Installation
 
 To install your process as a Windows Service, you need to pass /install on the command line to the host. By default, the name of the service is the name of your endpoint and the endpoint name is the namespace of your endpoint config class. To enable side-by-side operations, use the
 /sideBySide switch to add the semver version to the service name. Passing /install also causes the host to invoke the
-[installers](articles/nservicebus-installers) .
+[installers](nservicebus-installers.md) .
 
 To override this and specify additional details for installation:
 
@@ -303,5 +303,5 @@ NServiceBus.Host.exe /uninstall
 ```
 
  To invoke the infrastructure installers, run the host with the
-/installInfrastructure switch. [Learn about installers.](articles/nservicebus-installers)
+/installInfrastructure switch. [Learn about installers.](nservicebus-installers.md)
 

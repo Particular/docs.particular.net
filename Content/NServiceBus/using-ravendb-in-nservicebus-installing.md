@@ -27,7 +27,7 @@ NServiceBus auto-installation of RavenDB
 
 \*When a master node is defined, NServiceBus understands that all data will be stored on the that server instead. This means that the RavenDB server runs on that remote machine and not the local machine where you run the install.
 
-**Version 4.0:**The /installinfrastructure has been deprecated in 4.0 on NServiceBus.Host. Use the [powershell commandlets](articles/managing-nservicebus-using-powershell) to install RavenDB on the needed servers. When the endpoints starts up, if the host is configured for RavenDB persistence and if the configured RavenDB persistence could not be contacted, then warnings will be logged.
+**Version 4.0:**The /installinfrastructure has been deprecated in 4.0 on NServiceBus.Host. Use the [powershell commandlets](managing-nservicebus-using-powershell.md) to install RavenDB on the needed servers. When the endpoints starts up, if the host is configured for RavenDB persistence and if the configured RavenDB persistence could not be contacted, then warnings will be logged.
 
 For instructions on how to administrate and operate a RavenDB server, refer to the [documentation for RavenDB](http://ravendb.net/docs/server/administration).
 

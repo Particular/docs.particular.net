@@ -147,5 +147,5 @@ The 'Threshold' value attribute of the 'Logging' element can be any of the stand
 **NOTE** : If you set this value in code, the configuration value is ignored.
 
 The production profile only logs to a file, unless you are running within Visual Studio. See
-[Profiles](articles/profiles-for-nservicebus-host) for more detail.
+[Profiles](profiles-for-nservicebus-host.md) for more detail.
 

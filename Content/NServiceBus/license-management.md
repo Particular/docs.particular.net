@@ -19,14 +19,14 @@ NServiceBus V3.3 supports storing the license in a registry key. This allows you
 -   The LicenseInstaller.exe tool that comes with the NServiceBus
     install.
 -   The
-    [Install-License](articles/managing-nservicebus-using-powershell)
+    [Install-License](managing-nservicebus-using-powershell.md)
     PowerShell commandlet.
 -   If your trial license has expired and you are running in debug mode,
     the endpoint shows you a dialog that enables you to install the
     license.
 
 **Version 4.0** : Starting from NServiceBus V4.0, the license file will be stored under HKLM\\Software\\NServiceBus\\{Major.Minor}\\License when installed using the
-[Install-NServiceBusLicense](articles/managing-nservicebus-using-powershell) PowerShell commandlet and the LicenseInstaller.exe tool that comes with the NServiceBus install. In order to install the license file under HKCU
+[Install-NServiceBusLicense](managing-nservicebus-using-powershell.md) PowerShell commandlet and the LicenseInstaller.exe tool that comes with the NServiceBus install. In order to install the license file under HKCU
 (same location in version 3.3), please use the -c option on the LicenseInstaller.exe
 
 <a id="subfolder_in_BIN" name="subfolder_in_BIN">Using a subfolder in your BIN directory</a>
