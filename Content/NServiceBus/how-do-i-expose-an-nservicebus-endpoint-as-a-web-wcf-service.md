@@ -1,6 +1,6 @@
 ---
 title: How to Expose an NServiceBus Endpoint as a Web/WCF Service?
-summary: 
+summary: How to Expose an NServiceBus Endpoint as a Web/WCF Service?
 originalUrl: http://www.particular.net/articles/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service
 tags: []
 ---

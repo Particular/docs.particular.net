@@ -1,6 +1,6 @@
 ---
 title: Licensing ServiceMatrix v2.0
-summary: 
+summary: Licensing ServiceMatrix v2.0
 originalUrl: http://www.particular.net/articles/licensing-servicematrix-v2.0
 tags: []
 ---
