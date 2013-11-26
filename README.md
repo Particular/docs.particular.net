@@ -1,10 +1,4 @@
-## Disclaimer
-
-This is a spike at storing documentation inside a git repository.
-
-Since it is a spike no promises are made about if this will still exists in the future. 
-
-## How to contribute
+# How to contribute
 
 Before you start ensure you have
 
@@ -13,7 +7,7 @@ Before you start ensure you have
 
 There are two approaches to contributing
 
-### The GitHub web UI  
+## The GitHub web UI  
 
 For simple changes the GitHub web UI should suffice.
 
@@ -24,7 +18,7 @@ For simple changes the GitHub web UI should suffice.
  * Add a description of your changes
  * Click `Propose File Changes`
 
-### By forking and submitting a pull request
+## By forking and submitting a pull request
 
 For more complex changes you should fork and then submit a pull request. This is useful if you are proposing multiple file changes
 
@@ -36,22 +30,84 @@ For more complex changes you should fork and then submit a pull request. This is
 
 For more information see [Collaborating on GitHub](https://help.github.com/categories/63/articles) especially [using GitHub pull requests](https://help.github.com/articles/using-pull-requests) 
 
-## Markdown
+# Conventions
 
-The site is rendered using GitHub Flavoured Markdown
+## Headers
+
+Each document has a header. It is enclosed by `---` and is defined in a [YAML](http://en.wikipedia.org/wiki/YAML) document.
+
+The GitHub  UI will [correctly render YAML](https://github.com/blog/1647-viewing-yaml-metadata-in-your-documents)
+
+For example:
+
+```
+---
+title: Auditing With NServiceBus
+summary: 'Provides built-in message auditing for every endpoint.'
+tags:
+- Auditing
+- Forwarding Messages
+---
+```
+
+### Title
+
+Required. Used for the web page title tag `<head><title>`, displaying in the page content and displayed in search results.
+
+### Summary
+
+Required. Used for the meta description tag (`<meta name="description"`) and displaying on the search results
+
+### Tags
+
+Optional. Used to flag the article as being part of a group of articles.
+
+Tags are rendered in the articles content with the full list of tags being rendered at [http://docs.particular.net/tags](http://docs.particular.net/tags). Untagged articles will be rendered here [http://docs.particular.net/Tags/untagged](http://docs.particular.net/Tags/untagged)
+
+Tags are interpreted in two pays 
+
+1. For inclusion of urls
+   * Tag will be lower cased
+   * Spaces will be replaced with dashes (`-`) 
+2. For display purposes 
+   * Tag will be lower cased
+   * Dashes (`-`) will be replaced with dashes spaces 
+
+### Redirects
+
+Url redirects are not currently implemented but will be included as part of the header.
+
+## Menu
+
+The menu is a json text document stored at [Content/menu.txt](Content/menu.txt)
+
+## Urls
+
+The directory structure where a `.md` exists is used to derive the URL for that document. 
+
+So a file existing at `Content\NServiceBus\Logging\NLog.md` will have a resultant url of `http://docs.particular.net/NServiceBus/Logging/Nlog`
+
+### Index Pages
+
+One exception to this rule is when a page is named `Index.md`. In this case the `Index.md` is omitted on the resultant url and only the directory structure used.
+
+So a file existing at `Content\NServiceBus\Logging\Index.md` will have a resultant url of `http://docs.particular.net/NServiceBus/Logging`
+
+# Markdown
+
+The site is rendered using [GitHub Flavoured Markdown](https://help.github.com/articles/github-flavored-markdown)
 
 For editing markdown on your desktop using Git try the following
 
-### [MarkdownPad](http://markdownpad.com/)
+## [MarkdownPad](http://markdownpad.com/)
 
 Ensure you enable *GitHub Flavoured Markdown* by going to 
 
     Tools > Options > Markdown > Markdown Processor > GitHub Flavoured Markdown
 
-Or click in the bottom left no the `M` icon to "hot-switch"
-  
+Or click in the bottom left no the `M` icon to "hot-switch"  
 
-### [MarkPad](http://code52.org/DownmarkerWPF/) 
+## [MarkPad](http://code52.org/DownmarkerWPF/) 
 
 Ensure you enable *MarkdownDeep Extras* by going to 
 
@@ -62,10 +118,11 @@ Note that MarkdownDeep is not exactly the same as *GitHub Flavoured Markdown* bu
 More info on Markdown see
  
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
- * [Github Flavored Markdown](https://help.github.com/articles/github-flavored-markdown)
+ 
 
 # Additional Resources
 
 * [General GitHub documentation](http://help.github.com/)
 * [GitHub pull request documentation](http://help.github.com/send-pull-requests/)
-
+* [Forking a Repo](https://help.github.com/articles/fork-a-repo)
+* [Using Pull Requests](https://help.github.com/articles/using-pull-requests)
