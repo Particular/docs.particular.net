@@ -19,10 +19,10 @@ These cmdlets are built into the NServiceBus.Powershell.dll, so
 [download NServiceBus](http://particular.net/downloads) and load them into PowerShell using the Import-Module cmdlet:
 
     PM> Import-Module .\NServiceBus.Powershell.dll
-    If you use the NuGet package, the commandlets are available automatically in the NuGet console. 
-    If you installed NServiceBus using the MSI you can add the import module statement 
-    to your 
-    PowerShell profile.
+
+If you use the NuGet package, the commandlets are available automatically in the NuGet console. 
+If you installed NServiceBus using the MSI you can add the import module statement 
+to your PowerShell profile.
 
 
 For a detailed description of all our commandlets, use the get-help command:
@@ -146,21 +146,5 @@ If you are getting the following error:
 **<font color="#ff0000">Import-Module : Could not load file or assembly
 'file:///C:\\Program Files (x86)\\Particular Software\\NServiceBus\\v4.0\\NServiceBus\\Binaries\\NServiceBus.PowerShell.dll' or one of its dependencies. This assembly is built by a runtime newer than the currently loaded runtime and cannot be loaded. </font>**
 
-You need to configure Powershell to load .Net 4.0 modules. This can be done by adding a config file called Powershell.exe.config and Powershellise.exe.config with the following contents to the C:\\Windows\\System32\\WindowsPowerShell\\v1.0 folder:
-
-<?xml version="1.0" ?>
-
- <configuration>
-
- <startup uselegacyv2runtimeactivationpolicy="true">
-
- <supportedruntime version="v4.0.30319"></supportedruntime>
-
- <supportedruntime version="v2.0.50727"></supportedruntime>
-
- </startup>
-
- </configuration>
-
-For more details on this, read [Cornelius' blog post](http://www.cjvandyk.com/blog/lists/posts/post.aspx?id=287) .
+Although it is possible to change the existing version of Powershell.exe.config to load .NET 4.0 framework, the preferred approach is to install PowerShell 3 than to change the config files. Forcing PowerShell 2 to use .NET 4 can break PS Snapins from other vendors. PowerShell 3 provides a command line option to switch versions of PS and .NET if needed.
 
