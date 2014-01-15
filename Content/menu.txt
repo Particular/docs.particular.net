@@ -150,7 +150,6 @@
           "NServiceBus/how-do-i-centralize-all-unobtrusive-declarations",
           "NServiceBus/definingmessagesas-and-definingeventsas-when-starting-endpoint",
           "NServiceBus/how-to-reduce-throughput-of-an-endpoint",
-          "NServiceBus/does-nservicebus-support-both-native-and-non-native-connectivity",
           "NServiceBus/invalidoperationexception-in-unobtrusive-mode",
           "NServiceBus/license-management",
           "NServiceBus/preparing-your-machine-to-run-nservicebus",

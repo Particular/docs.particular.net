@@ -15,23 +15,22 @@ In this tutorial we are going to create a very simple ordering system that will 
 6.  [Next Steps](#Next%20Steps)
 
 The complete solution code can be found
-[here](https://github.com/sfarmar/Samples/tree/master/Ordering)
+[here](https://github.com/sfarmar/Samples/tree/master/001_OrderingSendOnly)
 
 ### <a id="Client" name="Client"> </a> Creating the Client project
 
 Let's start by creating a 'Client' project that will send order requests to a NServiceBus endpoint.
 
-Open Visual Studio as administrator, create a new Project name it
-'Ordering.Client', and name the solution 'Ordering'.
+Open Visual Studio as administrator, create a new 'Class Librery' Project name it 'Ordering.Client', and name the solution 'Ordering'.
 
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/001%20new%20solution.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/001%20new%20solution.png)
 
+[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Package%20manager%20console.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Package%20manager%20console.png)
+
 We now need to add references the NServiceBus assemblies and the quickest and quickest way to do that is to use NuGet Package Manager Console.
 
 Open the NuGet Package Manager Console: Tools -\> Library Package Manager -\> Package Manager Console.
-
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Package%20manager%20console.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Package%20manager%20console.png)
 
 Type the following command at the Package Manager Console:
 
@@ -49,8 +48,17 @@ To change the configuration to 'Client', open the 'EndpointConfig.cs' file that 
 
 
 ```C#
-public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
+namespace Ordering.Client
 {
+    using NServiceBus;
+
+    /*
+                This class configures this endpoint as a Server. More information about how to configure the NServiceBus host
+                can be found here: http://particular.net/articles/the-nservicebus-host
+        */
+        public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
+    {
+    }
 }
 ```
 
@@ -58,8 +66,17 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
 
 
 ```C#
-public class EndpointConfig : IConfigureThisEndpoint, AsA_Client
+namespace Ordering.Client
 {
+    using NServiceBus;
+
+    /*
+                This class configures this endpoint as a Server. More information about how to configure the NServiceBus host
+                can be found here: http://particular.net/articles/the-nservicebus-host
+        */
+        public class EndpointConfig : IConfigureThisEndpoint, AsA_Client
+    {
+    }
 }
 ```
 
@@ -93,20 +110,24 @@ Replace the content of 'PlaceOrder.cs' with the following code:
 
 
 ```C#
-namespace Messages
+namespace Ordering.Messages
 {
-  using NServiceBus;
-  public class PlaceOrder : ICommand
-  {
-    public string Product { get; set; }
-  }
+    using System;
+    using NServiceBus;
+
+    public class PlaceOrder : ICommand
+    {
+        public Guid Id { get; set; }
+
+        public string Product { get; set; }
+    }
 }
 ```
 
 
 ### <a id="Server" name="Server"> </a> Creating the Server Project
 
-You are now ready to create the orders processing server, add a new project and name is 'Ordering.Server'.
+You are now ready to create the orders processing server, add a new class library project and name is 'Ordering.Server'.
 
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Creat%20Server.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Creat%20Server.png)
@@ -129,16 +150,19 @@ Replace the content of 'PlaceOrderHandler.cs' with the following code:
 
 
 ```C#
-namespace Server
+namespace Ordering.Server
 {
     using System;
     using Messages;
     using NServiceBus;
+
     public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
     {
+        public IBus Bus { get; set; }
+
         public void Handle(PlaceOrder message)
         {
-            Console.WriteLine(@"Order for Product:{0} placed", message.Product);
+            Console.WriteLine(@"Order for Product:{0} placed with id: {1}", message.Product, message.Id);
         }
     }
 }
@@ -169,7 +193,7 @@ namespace Ordering.Client
             {
                 var id = Guid.NewGuid();
 
-                Bus.Send("Ordering.Server", new PlaceOrder() { Product = "New shoes", Id = Guid.NewGuid()});
+                Bus.Send("Ordering.Server", new PlaceOrder() { Product = "New shoes", Id = id});
 
                 Console.WriteLine("==========================================================================");
                 Console.WriteLine("Send a new PlaceOrder message with id: {0}", id.ToString("N"));

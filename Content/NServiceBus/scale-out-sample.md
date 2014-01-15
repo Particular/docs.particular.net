@@ -187,7 +187,7 @@ The following snapshot shows the Worker console window at work (the worker is ru
 
 You can see from the Worker console window (above) that the worker receives the Process Order (order2) and replies with 'OK', processes the order, and publishes an Order Placed event.
 
-The error messages appear when there is no valid license for the worker and it works on a different node from the distributor. This message is logged for every received message from the remote worker. In this case, a [valid NServiceBus License](licensing) should be obtained.
+The error messages appear when there is no valid license for the worker and it works on a different node from the distributor. This message is logged for every received message from the remote worker. In this case, a [valid NServiceBus License](http://particular.net/licensing) should be obtained.
 
 Next steps
 ----------

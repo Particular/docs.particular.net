@@ -5,14 +5,22 @@ originalUrl: http://www.particular.net/articles/how-do-i-instantiate-a-message
 tags: []
 ---
 
-<div class="brush:csharp;"> If the message is a class
+If the message is a class:
 
 
-    var msg = new MyMessage();
+```C#
+var msg = new MyMessage();
+```
 
-OR if your message is an interface:
+ OR
 
-    var msg = Bus.CreateInstance();
+If your message is an interface:
+
+
+```C#
+var msg = Bus.CreateInstance<IMyMessage>();
+```
+
 
 
 

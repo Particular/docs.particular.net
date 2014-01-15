@@ -15,14 +15,33 @@ NServiceBus provides a set of PowerShell commandlets to make it easy to manage a
 Installing the NServiceBus commandlets in V4.0
 ----------------------------------------------
 
-These cmdlets are built into the NServiceBus.Powershell.dll, so
-[download NServiceBus](http://particular.net/downloads) and load them into PowerShell using the Import-Module cmdlet:
+These cmdlets are built into the NServiceBus.Powershell.dll.
 
-    PM> Import-Module .\NServiceBus.Powershell.dll
+You can use the SDK installer (it will install everything you need to run your development environment).
 
-If you use the NuGet package, the commandlets are available automatically in the NuGet console. 
-If you installed NServiceBus using the MSI you can add the import module statement 
-to your PowerShell profile.
+You can use Nuget:
+
+Create a new class librery project, go to \`Package Manager Console\`
+
+Type Install-Package NServiceBus.PowerShell
+
+After it is complete you will have the NServiceBus.Powershell.dll in your packages folder in you solution directory
+
+to use it promptly inside visual studio, you can do
+
+\`
+
+    PM>Import-Module .\packages\NServiceBus.PowerShell.<4.x.x your version>\lib\net40\NServiceBus.PowerShell.dll
+
+and then use the cmslts you want.
+
+Or you can follow the instructions to load them into PowerShell using the Import-Module cmdlet:
+
+    PS> Import-Module .\NServiceBus.Powershell.dll
+
+Or you can follow the instructions to load them into your [PowerShell profile.](http://www.howtogeek.com/50236/customizing-your-powershell-profile/)
+
+If you use the NuGet package, the commandlets are available automatically in the NuGet console. If you installed NServiceBus using the MSI you can add the import module statement to your
 
 
 For a detailed description of all our commandlets, use the get-help command:
@@ -146,5 +165,6 @@ If you are getting the following error:
 **<font color="#ff0000">Import-Module : Could not load file or assembly
 'file:///C:\\Program Files (x86)\\Particular Software\\NServiceBus\\v4.0\\NServiceBus\\Binaries\\NServiceBus.PowerShell.dll' or one of its dependencies. This assembly is built by a runtime newer than the currently loaded runtime and cannot be loaded. </font>**
 
-Although it is possible to change the existing version of Powershell.exe.config to load .NET 4.0 framework, the preferred approach is to install PowerShell 3 than to change the config files. Forcing PowerShell 2 to use .NET 4 can break PS Snapins from other vendors. PowerShell 3 provides a command line option to switch versions of PS and .NET if needed.
+Although it is possible to change the existing version of Powershell.exe.config to load .NET 4.0 framework, the preferred approach is to install PowerShell 3 than to change the config files. Forcing PowerShell 2 to use .NET 4 can break PS Snapins from other vendors. PowerShell 3 provides a command line option to switch versions of PS and
+.NET if needed.
 

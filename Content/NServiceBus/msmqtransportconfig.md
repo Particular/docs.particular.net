@@ -1,11 +1,14 @@
 ---
-title: MsmqTransportConfig
-summary: 'Properties of the MSMQ transport: ErrorQueue, NumberOfWorkerThreads, and MaxRetries.'
+title: Transport Configuration
+summary: 'Explains the available Transport Configuration options. Properties of the MSMQ transport: ErrorQueue, NumberOfWorkerThreads, and MaxRetries.'
 originalUrl: http://www.particular.net/articles/msmqtransportconfig
 tags: []
 ---
 
-The configuration section defines properties of the MSMQ transport. See background on [MSMQ](msmq-information.md) .
+NServiceBus V3
+--------------
+
+The configuration section defines properties of the MSMQ transport. Read background on [MSMQ](msmq-information.md).
 
 Example of MsmqTransportConfig:
 
@@ -14,8 +17,8 @@ Example of MsmqTransportConfig:
 <MessageForwardingInCaseOfFaultConfig ErrorQueue="error"/>
 ```
 
- ErrorQueue
-----------
+
+### ErrorQueue
 
 Beginning with NServiceBus V3, use the configuration section to declare an error queue:
 
@@ -40,22 +43,20 @@ The ErrorQueue defines the name of the queue to which messages are transferred i
 If no error queue is defined, NServiceBus fails to start with the exception: "Could not find backup configuration section
 'MsmqTransportConfig' in order to locate the error queue."
 
-Read more about [messages whose processing fails](how-do-i-handle-exceptions.md) .
+Read more about [messages whose processing fails](how-do-i-handle-exceptions.md).
 
-NumberOfWorkerThreads
----------------------
+### NumberOfWorkerThreads
 
 This property dictates the number of threads that receive messages from the input queue. This property has no impact on the number of threads that can use the bus to send or publish messages.
 
-MaxRetries
-----------
+### MaxRetries
 
 This property is related to the ErrorQueue property, defining the number of times to retry a message whose processing fails before it is moved to the error queue.
 
 Default value: 5.
 
-Changes to MsmqTransportConfig in V4.0
---------------------------------------
+NServiceBus V4: Changes to MsmqTransportConfig
+----------------------------------------------
 
 The MsmqTransportConfig configuration section became obsolete in V4.0. Use the TransportConfig section instead:
 
@@ -75,9 +76,9 @@ The MsmqTransportConfig configuration section became obsolete in V4.0. Use the T
 ```
 
 
-**MaximumConcurrencyLevel** - This is the same as the NumberOfWorkerThreads property in MsmqTransportConfig.
+**MaximumConcurrencyLevel** - The same as the NumberOfWorkerThreads property in MsmqTransportConfig.
 
-**MaximumMessageThroughputPerSecond -** This sets a limit on how quickly messages can be processed between all threads. Use a value of 0 to have no throughput limit. 
+**MaximumMessageThroughputPerSecond -** Sets a limit on how quickly messages can be processed between all threads. Use a value of 0 to have no throughput limit. 
 
 
 

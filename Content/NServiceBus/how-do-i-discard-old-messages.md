@@ -8,7 +8,11 @@ tags:
 ---
 
 
-If a message cannot be received by the target process in the given time frame, including all time in queues and in transit, the message is discarded.
+If a message cannot be received by the target process in the given time frame, including all time in queues and in transit, you may want to discard the message.
+
+To discard a message when a specific time interval has elapsed:
+
+​
 
 
 ```C#

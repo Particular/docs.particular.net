@@ -7,62 +7,60 @@ tags:
 - Forwarding Messages
 ---
 
-The scalability inherent in parallel message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Just tell NServiceBus where to send those messages.
+The distributed nature of parallel message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Just tell NServiceBus that you want auditing and it will capture a copy of every received message.
 
 Configuring auditing
 --------------------
 
-To turn on auditing, add the attribute "ForwardReceivedMessagesTo" to the UnicastBusConfig section of an endpoint's configuration file, as shown:
+To turn on auditing in V3 and earlier versions, add the attribute
+"ForwardReceivedMessagesTo" to the UnicastBusConfig section of an endpoint's configuration file. In V4 there are a couple of ways to turn on auditing. You can do so in the endpoint configuration but it now has its very own configuration element, as shown:
 
 
 ```XML
+<!--In version 3.X use the ForwardReceivedMessageTo Attribute-->
 <UnicastBusConfig 
-      ForwardReceivedMessagesTo="The address to which messages received will be forwarded."
-      TimeToBeReceivedOnForwardedMessages="The time to be received set on forwarded messages, specified as a timespan see http://msdn.microsoft.com/en-us/library/vstudio/se73z7b9.aspx">
+      ForwardReceivedMessagesTo="auditqueue@adminmachine">
   <MessageEndpointMappings>
     <!-- rest of your configuration here -->
   </MessageEndpointMappings>
 </UnicastBusConfig>
 ```
 
- This configuration causes all messages arriving at the given endpoint to be forwarded to the queue called "AuditQueue" on the machine called
-"AdminMachine". You can specify any queue on any machine, though only one is supported. Of course, you can forward on from those machines as well.
+ V4 also supports setting up the error queue and the audit queue at the machine level in the registry. Use the
+[Set-NServiceBusLocalMachineSettings](managing-nservicebus-using-powershell.md) PowerShell commandlet to set these values at a machine level. When set at machine level, the setting is not required in the endpoint configuration file for messages to be forwarded to the audit queue.
+
+NServiceBus then forwards all messages arriving at the given endpoint to the queue called "AuditQueue" on the machine called "AdminMachine". You can specify any queue on any machine, although only one is supported.
 
 What you choose to do with those messages is now up to you: save them in a database, do custom logging, etc. The important thing is that you now have a centralized record of everything that is happening in your system while maintaining all the benefits of keep things distributed.
 
-Version 4.0 supports setting up the error queue and the audit queue at a machine level. And these are stored in HKLM in the registry. Use the
-<span style="font-weight: 600;">[Set-NServiceBusLocalMachineSettings](managing-nservicebus-using-powershell.md)
-</span>powershell commandlet to set these values at a machine level. When set at a machine level, the attribute "ForwardReceivedMessagesTo" in the UnicastBusConfig is not required for messages to be forwarded to the audit queue.
+Turning off auditing
+--------------------
 
-**To turn auditing off:**
+If the auditing settings are in app.config, remove them or comment them out.
 
-If the auditing attributes are set in the app.config, then delete the attributes.
+If the machine level auditing is turned on, clear the value for the string value AuditQueue under HKEYLOCALMACHINE\\SOFTWARE\\ParticularSoftware\\ServiceBus.
 
-If the machine level auditing is turned on, clear out the value for the string value AuditQueue under:
-
-HKEYLOCALMACHINE\\SOFTWARE\\ParticularSoftware\\ServiceBus
-
-If running 64 bit, in addition to the above, also clear out the value for AuditQueue under:
-
-
-HKEYLOCALMACHINE\\SOFTWARE\\Wow6432Node\\ParticularSoftware\\ServiceBus
+If running 64 bit, in addition to the above, also clear the value for AuditQueue under HKEYLOCALMACHINE\\SOFTWARE\\Wow6432Node\\ParticularSoftware\\ServiceBus.
 
 Message headers
 ---------------
 
-Custom headers are attached to each message, which you can examine using a third-party tool for MSMQ.
+Custom headers are attached to each message. You can examine them in the audit queue using a third-party tool for MSMQ.
 
   Key                                Description
-  ---------------------------------- ---------------------------------------------
+  ---------------------------------- ------------------------------------------------
   NServiceBus.Version                Version of NServiceBus
   NServiceBus.TimeSent               When was the message sent
   NServiceBus.EnclosedMessageTypes   Massage type(s) within the envelope
   NServiceBus.ProcessingStarted      Time when processing of the message started
   NServiceBus.ProcessingEnded        Time when the processing finished
   NServiceBus.OriginatingAddress     From where did the envelope originate
+  NServiceBus.ProcessingEndpoint     The endpoint that processed the message
+  NServiceBus.ProcessingMachine      The machine on which the message was processed
+  NServiceBus.OriginatingAddress     The queue that the message originated from
 
 Next steps
 ----------
 
-Learn more about how [logging works in NServiceBus](logging-in-nservicebus.md) .
+Learn more about how [logging works in NServiceBus](logging-in-nservicebus.md).
 
