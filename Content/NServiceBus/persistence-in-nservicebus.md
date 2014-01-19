@@ -30,7 +30,7 @@ What's available?
 -----------------
 
 The following table summarizes what is available and how to configure each feature.
-| -------------------- | ---------- | --------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+|:-------------------- |:---------- |:--------- |:------------------------------------------------------------------------------------------------------ |:------------------------------------- |
 |                      | InMemory   | RavenDB   | [NHibernate](http://nservicebus.desk.com/customer/portal/articles/859337-persistence-in-nservicebus)   | MSMQ                                  |
 | Timeout              | √          | √         | √                                                                                                      | Not supported beginning with V3.3,0   |
 | Subscription         | √          | √         | √                                                                                                      | √                                     |
