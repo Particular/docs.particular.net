@@ -7,6 +7,11 @@ tags:
 - Error Handling
 - Exception
 - Automatic retries
+createdDate: 2013-05-21T19:15:13Z
+modifiedDate: 2013-08-12T05:23:20Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 When an exception occurs, you should [let the NServiceBus infrastructure handle it](how-do-i-handle-exceptions.md) . It retries the message a configurable number of times, and if still doesn't work, sends it to the error queue.

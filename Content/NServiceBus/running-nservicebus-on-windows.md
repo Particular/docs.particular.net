@@ -10,6 +10,11 @@ tags:
 - Storage
 - NHibernate
 - Windows
+createdDate: 2013-06-05T07:46:25Z
+modifiedDate: 2013-07-29T14:05:09Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 NServiceBus relies on a few key pieces of infrastructure in order to run properly. This page gives you an overview of the requirements for running NSerivceBus on the windows platform.

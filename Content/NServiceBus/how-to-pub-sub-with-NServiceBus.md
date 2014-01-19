@@ -3,6 +3,11 @@ title: How to Publish/Subscribe to a Message
 summary: Publish and subscribe to messages using NServiceBus, automatically and manually.
 originalUrl: http://www.particular.net/articles/how-to-pub/sub-with-NServiceBus
 tags: []
+createdDate: 2013-05-22T08:14:16Z
+modifiedDate: 2013-07-23T04:36:31Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 How to publish a message?

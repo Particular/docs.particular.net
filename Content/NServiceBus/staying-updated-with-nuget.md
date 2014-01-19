@@ -3,6 +3,11 @@ title: Staying Updated with NuGet
 summary: 'NuGet is an open source project that simplifies integration of third parties into Visual Studio projects during development. '
 originalUrl: http://www.particular.net/articles/staying-updated-with-nuget
 tags: []
+createdDate: 2013-05-21T18:45:14Z
+modifiedDate: 2013-07-18T06:23:35Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 <span style="font-size: 14px;">NuGet is an open source project that simplifies integration of third parties into your Visual Studio projects during development. To learn more or to download it, go to the [NuGet web site](http://nuget.org/).</span>

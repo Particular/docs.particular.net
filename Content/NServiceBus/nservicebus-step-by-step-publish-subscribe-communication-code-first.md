@@ -5,6 +5,11 @@ originalUrl: http://www.particular.net/articles/nservicebus-step-by-step-publish
 tags:
 - pub sub
 - publish subscribe
+createdDate: 2013-10-24T15:50:35Z
+modifiedDate: 2014-01-17T19:33:34Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 In the previous section: [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md) we learnt about fault tolerance.
@@ -17,9 +22,9 @@ In the previous section: [NServiceBus Step by Step Guide - Fault Tolerance - cod
 6.  [Next Steps](#Next)
 
 The complete solution code can be found
-[here](https://github.com/sfarmar/Samples/tree/master/003_OrderingPubSub)
+[here](https://github.com/Particular/docs.particular.net/tree/master/Samples/003_OrderingPubSub)
 
-Now that we've gone through the basics of NServiceBus communication, configuration and fault tolerance, let's move on to publish/subscribe. 
+Now that we've gone through the basics of NServiceBus communication, configuration and fault tolerance, let's move on to publish/subscribe.
 
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/001_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/001_pubsub.png)
@@ -32,13 +37,12 @@ Creating an event message
 There are only a few steps needed to introduce pub/sub and make your solution look like the one appearing above.
 
 
-Right click your Messages Project and add a class file, and create a OrderCreated event: 
+Right click your Messages Project and add a class file, and create a OrderCreated event:
 
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/002_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/002_pubsub.png)
 
-
-The message class will implement the IEvent marker interface 
+The message class will implement the IEvent marker interface
 
 
 
@@ -66,7 +70,7 @@ Publishing an event
 
 In order to publish the 'OrderCreated' event we will modify the
 'PlaceOrderHandler', add a
-<span style="font-family:courier new,courier,monospace;">Bus.Publish<placeorderhandler>()</span> as shown below 
+<span style="font-family:courier new,courier,monospace;">Bus.Publish<placeorderhandler>()</span> as shown below
 
 
 
@@ -98,7 +102,7 @@ namespace Ordering.Server
 
 
 
-As the 'Ordering.Server' endpoint is now a publisher, we need to change the endpointConfig.cs file to implement the AsAPublisher marker interface that will configure the endpoint with a Publisher profile 
+As the 'Ordering.Server' endpoint is now a publisher, we need to change the endpointConfig.cs file to implement the AsAPublisher marker interface that will configure the endpoint with a Publisher profile
 
 
 
@@ -128,19 +132,17 @@ To learn more about profiles go check out: [Profiles For NServiceBus Host](profi
 Creating the Subscriber project
 -------------------------------
 
-Now we can go ahead and create a subscriber endpoint that will subscribe and handle the 'OrderCreated' event. 
+Now we can go ahead and create a subscriber endpoint that will subscribe and handle the 'OrderCreated' event.
 
 Right click the Ordering solution and select 'Add' \> 'New Project...'
 
 
-
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/003_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/003_pubsub.png)
 
-Create a class library project and name the project Subscriber. 
+Create a class library project and name the project Subscriber.
 
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/004_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/004_pubsub.png)
-
 
 We will use nuget to install the an NServiceBus.Host, in the package manager window and type
 
@@ -150,11 +152,10 @@ We will use nuget to install the an NServiceBus.Host, in the package manager win
 
 
 
-Click reload all 
+Click reload all
 
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/005_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/005_pubsub.png)
-
 
 <a id="Handeling" name="Handeling"> </a>
 
@@ -202,7 +203,7 @@ For the Host will auto subscribe to the event we need to add the message publish
 
 
 
-In the Odering.Subscriber project we will add MessageEndpointMappings in the app.config file as shown below: 
+In the Odering.Subscriber project we will add MessageEndpointMappings in the app.config file as shown below:
 
 
 
@@ -221,15 +222,15 @@ In the Odering.Subscriber project we will add MessageEndpointMappings in the app
 Running the solution
 --------------------
 
-Now it's time to run the solution and see it all working together we will run the Client, Server and the Subscriber projects: 
+Now it's time to run the solution and see it all working together we will run the Client, Server and the Subscriber projects:
 
-Right click on the 'Ordering' solution and select 'Set StartUp Projects...' 
+Right click on the 'Ordering' solution and select 'Set StartUp Projects...'
 
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/006_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/006_pubsub.png)
 
 in that screen select 'Multiple startup projects' and set the
-'Ordering.Client', 'Ordering.Server' and 'Ordering.Subscriber' action to be 'Start'. 
+'Ordering.Client', 'Ordering.Server' and 'Ordering.Subscriber' action to be 'Start'.
 
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/007_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/007_pubsub.png)
@@ -238,13 +239,13 @@ Finally click 'F5' to run the solution.
 
 Three console application windows should start up
 
-Notice the Subscriber is subscribing the Ordering.Messages.OrderPlaced 
+Notice the Subscriber is subscribing the Ordering.Messages.OrderPlaced
 
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/008_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/008_pubsub.png)
 
 Hit enter (while the Client console is in focus) and you should see
-'Order for Product: New shoes placed' in one of them. 
+'Order for Product: New shoes placed' in one of them.
 
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/009_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/009_pubsub.png)

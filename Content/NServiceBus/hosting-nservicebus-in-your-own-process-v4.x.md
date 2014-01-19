@@ -1,10 +1,10 @@
 ---
-title: Hosting NServiceBus in Your Own Process v3.x
+title: Hosting NServiceBus in Your Own Process v4.x
 summary: Fluent configuration API to get transnational one-way messaging, referencing only three assemblies.
-originalUrl: http://www.particular.net/articles/hosting-nservicebus-in-your-own-process
+originalUrl: http://www.particular.net/articles/hosting-nservicebus-in-your-own-process-v4.x
 tags: []
-createdDate: 2013-05-20T08:44:32Z
-modifiedDate: 2013-11-14T17:43:28Z
+createdDate: 2013-09-09T16:54:49Z
+modifiedDate: 2014-01-19T15:13:33Z
 authors: []
 reviewers: []
 contributors: []
@@ -28,7 +28,7 @@ To host NServiceBus in your own process, the assemblies shown on the left need t
 -   NServiceBus.Core.dll contains all the runtime elements needed for
     execution.
 
-The [AsyncPages sample](https://github.com/Particular/NServiceBus/tree/3.3.8/Samples) demonstrates this configuration for v3.x.
+The [Video store sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/VideoStore.Msmq) for v4.x.
 
 
 NServiceBus initialization
@@ -36,19 +36,23 @@ NServiceBus initialization
 
 In the ApplicationStart method of your Global.asax file in a web application, or in the Main method of your Program file for console or Windows Forms applications, include the following initialization code:
 
-For NServiceBus v3.x:
+For NServiceBus v4.x:
 
 
 
 ```C#
-NServiceBus.Configure.With()
-    .DefaultBuilder()
+Configure.Serialization.Xml();
+Configure.Transactions.Enable();
+
+Configure.With()
     .Log4Net()
-    .XmlSerializer()
-    .MsmqTransport()
+    .DefaultBuilder()
+    .UseTransport<Msmq>()
+    .PurgeOnStartup(false)
     .UnicastBus()
     .CreateBus()
-    .Start();
+    .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+
 ```
 
 
@@ -56,64 +60,39 @@ NServiceBus.Configure.With()
 
 Here are some usage samples:
 
-NServiceBus v3.x in ASP.Net MVC:
+NServiceBus v4.x in ASP.Net MVC:
 
 
 
 ```C#
+public class MvcApplication : System.Web.HttpApplication
+    {
+        private static IBus bus;
+
         protected void Application_Start()
         {
+            Configure.ScaleOut(s => s.UseSingleBrokerQueue());
+
+            bus = Configure.With()
+                     .DefaultBuilder()
+                     .Log4Net(new DebugAppender {Threshold = Level.Warn})
+                     .UseTransport<Msmq>()
+                     .PurgeOnStartup(true)
+                     .UnicastBus()
+                     .RunHandlersUnderIncomingPrincipal(false)
+                     .RijndaelEncryptionService()
+                     .CreateBus()
+                     .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>()
+                                           .Install());
+
             AreaRegistration.RegisterAllAreas();
-
-            RegisterGlobalFilters(GlobalFilters.Filters);
-            RegisterRoutes(RouteTable.Routes);
-           
-            // NServiceBus configuration
-            Configure.With()
-                .DefaultBuilder()
-                .ForMvc()
-                .JsonSerializer()
-                .Log4Net()
-                .MsmqTransport()
-                    .IsTransactional(false)
-                    .PurgeOnStartup(true)
-                .UnicastBus()
-                    .ImpersonateSender(false)
-                .CreateBus()
-                .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
-        }
-```
-
-
-
-
-NServiceBus v3.x in ASP.Net Web:
-
-
-
-```C#
-    public class Global : HttpApplication
-    {
-        public static IBus Bus { get; private set; }
-
-        protected void Application_Start(object sender, EventArgs e)
-        {
-            Bus = Configure.With()
-                .Log4Net()
-                .DefaultBuilder()
-                .XmlSerializer()
-                .MsmqTransport()
-                    .IsTransactional(false)
-                    .PurgeOnStartup(false)
-                .UnicastBus()
-                    .ImpersonateSender(false)
-                .CreateBus()
-                .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
 
-        protected void Application_End(object sender, EventArgs e)
+        public static IBus Bus
         {
-
+            get { return bus; }
         }
     }
 ```
@@ -124,7 +103,7 @@ Configuration Code
 ------------------
 
 Most of the methods are extensions for the
-[NServiceBus.Configure](https://github.com/NServiceBus/NServiceBus/blob/master/src/config/NServiceBus.Config/Configure.cs) class provided by the specific components packaged in the NServiceBus.Core assembly. You can similarly configure your own components by writing your own extension methods.
+[NServiceBus.Configure](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config) class provided by the specific components packaged in the NServiceBus.Core assembly. You can similarly configure your own components by writing your own extension methods.
 
 -   Log4Net() tells NServiceBus what to [log](logging-in-nservicebus.md)
     with.
@@ -141,18 +120,24 @@ Most of the methods are extensions for the
 -   Start() tells the bus object created by CreateBus() to start its
     threads for listening and processing messages.
 
-For NServiceBus v3.x:
+For NServiceBus v4.x:
 
--   XmlSerializer() tells NServiceBus to serialize messages as XML.
-    Additional option is to specify BinarySerializer(), which does
-    binary serialization of messages.
--   MsmqTransport() tells NServiceBus to use MSMQ as its transactional
-    messaging transport. NServiceBus also supports Azure queues (see
-    sample
-    [here](http://github.com/NServiceBus/NServiceBus/tree/master/Samples/Azure)
-    ) and FTP (see sample
-    [here](http://github.com/NServiceBus/NServiceBus/tree/master/Samples/FtpSample)
-    ) as transport mechanisms.
+-   <span class="n" style="color: rgb(51, 51, 51); font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; line-height: 16px; white-space: pre;">Configure</span>
+    <span class="p" style="color: rgb(0, 0, 0); font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; line-height: 16px; white-space: pre;">.</span>
+    <span class="n" style="color: rgb(51, 51, 51); font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; line-height: 16px; white-space: pre;">Serialization</span>
+    tells NServiceBus to serialize messages as XML. Additional option is
+    to specify BinarySerializer(), which does binary serialization of
+    messages.
+-   <span style="color: rgb(51, 51, 51); font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; line-height: 16px; white-space: pre;">UseTransport<msmq></span>
+    () tells NServiceBus to use MSMQ as its transactional messaging
+    transport. NServiceBus also supports Azure queues, FTP, SqlServer
+    (see sample
+    [here](https://github.com/Particular/NServiceBus.SqlServer.Samples)
+    ), ActiveMQ (see sample
+    [here](https://github.com/Particular/NServiceBus.ActiveMQ.Samples)
+    ), RabbitMQ (see sample
+    [here](https://github.com/Particular/NServiceBus.RabbitMQ.Samples) )
+    as transport mechanisms.
 
 In addition to the above initialization code, NServiceBus requires certain configuration data to be available. By default, it retrieves this information from the application config file, though this can be changed with the CustomConfigurationSource() method.
 
@@ -164,17 +149,17 @@ To use the initialization code above, provide configuration for the MsmqTranspor
 
 Include these configuration sections:
 
-For NServiceBus v3.x:
+For NServiceBus v4.x:
 
 
 
 ```XML
-<section name="MsmqTransportConfig" type="NServiceBus.Config.MsmqTransportConfig, NServiceBus.Core"/>
-<section name="MessageForwardingInCaseOfFaultConfig" type="NServiceBus.Config.MessageForwardingInCaseOfFaultConfig, NServiceBus.Core" />
+<section name="MessageForwardingInCaseOfFaultConfig" 
+type="NServiceBus.Config.MessageForwardingInCaseOfFaultConfig, NServiceBus.Core"/>
+<section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
 
 <!-- Specify the configuration data, as follows: -->
 
-<MsmqTransportConfig NumberOfWorkerThreads="1" MaxRetries="5"  />
 <MessageForwardingInCaseOfFaultConfig ErrorQueue="error"/>
 ```
 

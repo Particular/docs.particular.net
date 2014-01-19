@@ -3,6 +3,11 @@ title: NServiceBus Step by Step Guide - Fault Tolerance - code first
 summary: See how NServiceBus messaging can get past all sorts of failure scenarios.
 originalUrl: http://www.particular.net/articles/NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first
 tags: []
+createdDate: 2013-10-13T13:57:11Z
+modifiedDate: 2014-01-17T19:34:27Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 Durable messaging
@@ -16,7 +21,7 @@ In [the previous section](NServiceBus-Step-by-Step-Guide.md) you've seen how a s
 4.  [Next Steps](#Next)
 
 The complete solution code can be found
-[here](https://github.com/sfarmar/Samples/tree/master/002_OrderingFaultTolerance)
+[here](https://github.com/Particular/docs.particular.net/tree/master/Samples/002_OrderingFaultTolerance)
 
 <a id="Demo" name="Demo"> </a>
 
@@ -66,7 +71,7 @@ Consider scenarios where the processing of a message fails. This could be due to
 
 If the problem is something more protracted, like a third party web service going down or a database being unavailable, it makes sense to try again sometime later.
 
-This is called the "[second level retries](second-level-retries.md)" or SLR functionality of NServiceBus.
+This is called the " [second level retries](second-level-retries.md) " or SLR functionality of NServiceBus.
 
 SLR is enabled by default, the default policy will defer the message
 10\*N (where N is number of retries) seconds 3 times (60 sec total), resulting in a wait of 10s, then 20s, and then 30s; after which the message moves to the configured ErrorQueue.

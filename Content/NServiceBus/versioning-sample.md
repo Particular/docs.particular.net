@@ -3,6 +3,11 @@ title: Versioning Sample
 summary: Continuation of the pub/sub sample.
 originalUrl: http://www.particular.net/articles/versioning-sample
 tags: []
+createdDate: 2013-05-22T11:24:34Z
+modifiedDate: 2013-07-29T14:09:58Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 This sample is based on the [Pub/Sub sample](how-pub-sub-works.md). If you have not yet gone through it, please start there.

@@ -5,9 +5,14 @@ originalUrl: http://www.particular.net/articles/nservicebus-message-mutators-sam
 tags:
 - Mutator
 - Changing message content
+createdDate: 2013-05-22T11:34:18Z
+modifiedDate: 2013-11-25T06:29:28Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
-In NServiceBus V2.6 it was tricky to change messages as they were sent to and from endpoints. From NServiceBus V3 you can change messages by plugging custom logic in to a couple of simple interfaces.
+In NServiceBus V2.6 it was tricky to change messages as they were sent to and from endpoints. From NServiceBus V3 you can intercept and change messages by plugging custom logic into a couple of simple interfaces.
 
 You can encrypt all or part of a message. The encryption message mutator is part of the NServiceBus library, and can be used at any time.
 
@@ -265,8 +270,7 @@ public class Handler : IHandleMessages<CreateProductCommand>
 
  The server handler code does not need to change on account of the message mutation.
 
-This article was based on an article written by [Adam Fyles](http://adamfyles.blogspot.com/) . See the [original blog post](http://adamfyles.blogspot.com/2011/02/nservicebus-30-message-mutators.html)
-.
+This article was based on an article written by [Adam Fyles](http://adamfyles.blogspot.com/). See the [original blog post](http://adamfyles.blogspot.com/2011/02/nservicebus-30-message-mutators.html).
 
 Where to next?
 --------------
