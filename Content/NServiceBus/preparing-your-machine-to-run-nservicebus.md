@@ -1,13 +1,8 @@
 ---
 title: Preparing your machine to run NServiceBus
-summary: Details the infrastructure components required by NServicebus, and how to install them using Visual Studio&#39;s Package Manager Console
+summary: 
 originalUrl: http://www.particular.net/articles/preparing-your-machine-to-run-nservicebus
-tags:
-- Package Manager Console
-- infrastructure components
-- prerequisites
-- installation
-- nuget
+tags: []
 createdDate: 2013-06-05T07:20:23Z
 modifiedDate: 2013-11-25T06:22:24Z
 authors: []
@@ -115,12 +110,10 @@ When installing NServicebus, the installation process verifies that these compon
 
 
 
-The Windows operating system requires that elevated privileges to install and configure some of these infrastructure components. Elevated privileges require that you run these command from a process created with [administrator rights](http://windows.microsoft.com/en-us/windows7/how-do-i-run-an-application-once-with-a-full-administrator-access-token)
-.
+The Windows operating system requires elevated privileges to install and configure some of these infrastructure components. Elevated privileges require that you run these command from a process created with
+[administrator rights](http://windows.microsoft.com/en-us/windows7/how-do-i-run-an-application-once-with-a-full-administrator-access-token).
 
-For more information on poweshell command line changes in NServiceBus version 4, see [release notes](/blog/nservicebus-v4.0-release-notes#powershell) .
+For more information on poweshell command line changes in NServiceBus version 4, see [release notes](/blog/nservicebus-v4.0-release-notes#powershell).
 
-RavenDB installation is checked by examining port 8080 and port 8081 on the installation local machine. If RavenDB is installed on any other port it needs to be configured and upgraded manually. For more information on configuring RavenDB see [Installing RavenDB for NServiceBus](using-ravendb-in-nservicebus-installing.md) and [Connecting to RavenDB from NServiceBus](using-ravendb-in-nservicebus-connecting.md)
-
-
+RavenDB installation is checked by examining port 8080 and port 8081 on the local machine. If RavenDB is installed on any other port it needs to be configured and upgraded manually. For more information on configuring RavenDB see [Installing RavenDB for NServiceBus](using-ravendb-in-nservicebus-installing) and [Connecting to RavenDB from NServiceBus](using-ravendb-in-nservicebus-connecting).
 

@@ -1,14 +1,8 @@
 ---
 title: Unobtrusive Sample
-summary: Demonstrates NServiceBus operating in unobtrusive mode.
+summary: 
 originalUrl: http://www.particular.net/articles/unobtrusive-sample
-tags:
-- Unobtrusive
-- POCO
-- Messages
-- Commands
-- Events
-- Conventions
+tags: []
 createdDate: 2013-05-21T12:21:26Z
 modifiedDate: 2013-11-20T06:19:05Z
 authors: []
@@ -38,16 +32,19 @@ Configure.With()
   .DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"))
   .DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"))
   .DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"))
-  .DefiningTimeToBeReceivedAs(t => t.Name.EndsWith("Expires") 
-  ? TimeSpan.FromSeconds(30) 
-  : TimeSpan.MaxValue);
+  .DefiningTimeToBeReceivedAs(t => 
+  {
+    return t.Name.EndsWith("Expires")
+      ? TimeSpan.FromSeconds(30) 
+      : TimeSpan.MaxValue
+  } );
 ```
 
- The code tells NServiceBus to treat all types with a namespace that ends with "Messages" the same as for messages that explicitly implement IMessage.
+ The code tells NServiceBus to treat all types with a namespace that ends with "Messages" the same as for messages that explicitly implement IMessage. 
 
-You can also specify conventions for the new [ICommand and IEvent feature](introducing-ievent-and-icommand.md) .
+You can also specify conventions for the new [ICommand and IEvent feature](introducing-ievent-and-icommand) .
 
-NServiceBus supports property level encryption by using a special WireEncryptedString property. The code snippet shows the unobtrusive way to tell NServiceBus which properties to encrypt. It also shows the unobtrusive way to tell NServiceBus which properties to deliver on a separate channel from the message itself using the [Data Bus](attachments-databus-sample.md) feature, and which messages are express and/or have a defined time to be received.
+NServiceBus supports property level encryption by using a special WireEncryptedString property. The code snippet shows the unobtrusive way to tell NServiceBus which properties to encrypt. It also shows the unobtrusive way to tell NServiceBus which properties to deliver on a separate channel from the message itself using the [Data Bus](attachments-databus-sample) feature, and which messages are express and/or have a defined time to be received.
 
 Look at the code. There are a number of projects in the solution:
 
@@ -79,7 +76,7 @@ This sample contains three messaging patterns:
 Send/Reply messaging pattern code
 ---------------------------------
 
-Read the [Full Duplex](full-duplex-sample-v3.md) sample.
+Read the [Full Duplex](full-duplex-sample-v3) sample.
 
 ### Client side message declaration
 
@@ -162,7 +159,8 @@ Bus.Send<MyCommand>(m =>
 {
   m.CommandId = commandId;
   m.EncryptedString = "Some sensitive information";
-}).Register<CommandStatus>(outcome=> Console.WriteLine("Server returned status: " + outcome));
+})
+.Register<CommandStatus>(outcome=> Console.WriteLine("Server returned status: " + outcome));
 ```
 
  The client sends a message and registers a method to handle the returned status.
@@ -176,10 +174,12 @@ The server side handles the Handle method. It simply returns an OK status:
 public class MyCommandHandler : IHandleMessages<MyCommand>
 {
   readonly IBus bus;
+  
   public MyCommandHandler(IBus bus)
   {
     this.bus = bus;
   }
+  
   public void Handle(MyCommand message)
   {
     Console.WriteLine("Command received, id:" + message.CommandId);
@@ -202,12 +202,15 @@ Configure.With()
   .DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"))
   .DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"))
   .DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"))
-  .DefiningTimeToBeReceivedAs(t => t.Name.EndsWith("Expires") 
-  ? TimeSpan.FromSeconds(30) 
-  : TimeSpan.MaxValue);
+  .DefiningTimeToBeReceivedAs(t => 
+  {
+    return t.Name.EndsWith("Expires")
+      ? TimeSpan.FromSeconds(30) 
+      : TimeSpan.MaxValue
+  } );
 ```
 
- The above code instructs NServiceBus to encrypt any property that starts with the string Encrypted and resides in any class in the namespaces that ends with Command or Events, or in namespaces that are equal to Messages.
+ The above code instructs NServiceBus to encrypt any property that starts with the string Encrypted and resides in any class in the namespaces that ends with Command or Events, or in namespaces that are equal to Messages. 
 
 The encryption algorithm is declared in App.config of both client and server with the RijndaelEncryptionServiceConfig section name. See the
 [Encryption sample](encryption-sample.md) .
@@ -215,7 +218,7 @@ The encryption algorithm is declared in App.config of both client and server wit
 Publish/Subscribe messaging pattern code
 ----------------------------------------
 
-For a complete sample, see the [Pub/Sub documentation](how-pub-sub-works.md) .
+For a complete sample, see the [Pub/Sub documentation](how-pub-sub-works) .
 
 ### Client side m <span style="font-size: 14px;">essage declaration</span>
 
@@ -266,5 +269,5 @@ Bus.Publish<IMyEvent>(m =>
 Next steps
 ----------
 
-Read about [Message Mutators](nservicebus-message-mutators-sample.md) .
+Read about [Message Mutators](nservicebus-message-mutators-sample) .
 

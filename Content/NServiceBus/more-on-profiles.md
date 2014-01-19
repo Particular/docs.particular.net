@@ -1,6 +1,6 @@
 ---
 title: More On Profiles
-summary: 'Two types of profiles in NServiceBus: environment and feature.'
+summary: 
 originalUrl: http://www.particular.net/articles/more-on-profiles
 tags: []
 createdDate: 2013-05-20T09:02:18Z
@@ -12,7 +12,7 @@ contributors: []
 
 The NServiceBus Host profiles allow you to alter the behavior of your endpoint without recompiling your code. The profiles enable tailoring endpoints for different environments and controlling things like scaling out (running the distributor) and enabling HTTP access (gateway).
 
- <span style="font-size: 14px; line-height: 24px;">Profiles are only available if you use the </span>[NServiceBus host](the-nservicebus-host.md)<span style="font-size: 14px; line-height: 24px;">
+ <span style="font-size: 14px; line-height: 24px;">Profiles are only available if you use the </span>[NServiceBus host](the-nservicebus-host)<span style="font-size: 14px; line-height: 24px;">
 (NServiceBus.Host.exe or the 32-bit only version of it) so this is not applicable if you self host NServiceBus in a website, WCF service, smart client, etc.</span>
 
 Profiles are divided into two main categories, depending on what they control:
@@ -37,7 +37,7 @@ Environment-related profiles
 
 NServiceBus comes with three built-in profiles whose main goal is to adjust the behavior of the host, depending on the environment where the endpoint is running.
 
-You can, of course, [create your own profiles](profiles-for-nservicebus-host.md).
+You can, of course, [create your own profiles](profiles-for-nservicebus-host).
 
 The environmental-related profiles:
 

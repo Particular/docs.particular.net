@@ -1,6 +1,6 @@
 ---
-title: NServiceBus and BizTalk
-summary: NServiceBus guides you away from dangerous anti-patterns while providing messaging patterns and integration.
+title: NServiceBus and BizTalk test
+summary: 
 originalUrl: http://www.particular.net/articles/nservicebus-and-biztalk
 tags: []
 createdDate: 2013-05-21T18:37:31Z
@@ -32,7 +32,7 @@ Next steps
 
 Sometimes you need a hammer, sometimes you need a screwdriver, and sometimes you need both. While a Swiss army knife may appear to do both, it is a poor choice for any but the most trivial undertakings.
 
-To learn more about dividing up your architecture into high-level business services, see the [presentation Udi gave on SOA](architectural-principles.md).
+To learn more about dividing up your architecture into high-level business services, see the [presentation Udi gave on SOA](architectural-principles) .
 
 [This download from Microsoft](http://www.microsoft.com/downloads/details.aspx?displaylang=en&FamilyID=b57b7625-7316-4f56-b88e-1fb685efae5b) describes the details of getting NServiceBus and BizTalk to work together, including a whitepaper, code samples, and videos to get you up and running in no time.
 

@@ -1,15 +1,23 @@
 ---
 title: Encryption Sample
-summary: How to encrypt message data.
+summary: 
 originalUrl: http://www.particular.net/articles/encryption-sample
-tags:
-- Encryption
+tags: []
 createdDate: 2013-05-22T09:43:02Z
 modifiedDate: 2013-12-22T19:16:55Z
 authors: []
 reviewers: []
 contributors: []
 ---
+
+Preparing the Sample
+--------------------
+
+To run the sample, first download and install the latest version of NServiceBus from the
+[Particular.net](http://www.particular.net/downloads) site. The Publish/Subscribe sample must be downloaded with the source code for NServiceBus. The latest version with samples can be downloaded as a[zip file from the repository](https://github.com/Particular/NServiceBus/archive/4.2.0.zip). After you download the zip file you must unblock it before you unzip it. Do this by right mouse clicking on the .zip file and selecting the Unblock button as shown
+[here](http://liveparticularwebstr.blob.core.windows.net/media/Default/images/Unblock-simple.PNG).
+
+For this sample, we need only unzip the Encryption directory within the Samples folder.
 
 To see how to encrypt message data, open the [Encryption sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/Encryption)
 .
@@ -48,7 +56,7 @@ public class MessageWithSecretData : IMessage
 
 How does the encryption happen? Open the Client.cs file in the Client project and see one piece at a time:
 
-The [configuration of the endpoint as a client](the-nservicebus-host.md) :
+The [configuration of the endpoint as a client](the-nservicebus-host) :
 
 
 ```C#
@@ -71,7 +79,7 @@ public class SecurityConfig : IWantCustomInitialization
  A class implements the NServiceBus interface IWantCustomInitialization. This interface allows implementors to hook into the NServiceBus initialization pipeline and specify additional configuration before the endpoint starts. This case accesses the current instance of the NServiceBus configuration via "NServiceBus.Configure.Instance" and then specifies RijndaelEncryptionService. Read background information on the
 [Rijndael algorithm](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) .
 
-The rest of the file shows that you can set the contents of the encrypted property just like any other property, and then use the bus to send the message. Read about [sending messages](how-do-i-send-a-message.md) and
+The rest of the file shows that you can set the contents of the encrypted property just like any other property, and then use the bus to send the message. Read about [sending messages](how-do-i-send-a-message) and
 [here](http://support.nservicebus.com/customer/portal/articles/862387-how-do-i-specify-to-which-destination-a-message-will-be-sent-) too.
 
 Look at the app.config file in the client project. There is an additional configuration section for the Rijndael encryption service:
@@ -93,7 +101,7 @@ Look at the app.config file in the client project. There is an additional config
 Now stop the server process and click 'Enter' one more time in the client process.
 
 Go to the server queue (called "MyServerInputQueue") and examine the message in it. Read how to do this in the
-[FAQ](how-can-i-see-the-queues-and-messages-on-a-machine.md) . Your message should look like this:
+[FAQ](how-can-i-see-the-queues-and-messages-on-a-machine) . Your message should look like this:
 
 
 ```XML
@@ -115,5 +123,5 @@ Go to the server queue (called "MyServerInputQueue") and examine the message in 
  The data in the property is encrypted, but the rest of the message is clear text. This keeps the performance impact of encryption as low as possible.
 
 Finally, keep in mind that the security is only as strong as the keys; if the key is exposed, then an attacker can decipher the information. As such, you may not want to have your encryption keys stored on the client
-(if deployed remotely) or even on a web server in the DMZ. Also, you may want to change the keys used by all processes simultaneously, by overriding the source of configuration for [the RijndaelEncryptionService](customizing-nservicebus-configuration.md) .
+(if deployed remotely) or even on a web server in the DMZ. Also, you may want to change the keys used by all processes simultaneously, by overriding the source of configuration for [the RijndaelEncryptionService](customizing-nservicebus-configuration) .
 

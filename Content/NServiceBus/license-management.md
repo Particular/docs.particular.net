@@ -1,10 +1,8 @@
 ---
 title: How to install your license file
-summary: 'Make sure your NServiceBus endpoints use your license: Fluent API, app.config, subfolder in your BIN directory, or registry.'
+summary: 
 originalUrl: http://www.particular.net/articles/license-management
-tags:
-- NServiceBus
-- license
+tags: []
 createdDate: 2013-05-24T19:11:26Z
 modifiedDate: 2013-11-25T06:20:05Z
 authors: []
@@ -13,7 +11,7 @@ contributors: []
 ---
 
 There are several ways to make sure that your NServiceBus endpoints pick up and use your license. The following options are available:
-[Registry](#registry) , [subfolder in your BIN directory](#subfolder_in_BIN) , [app.config](#app.config) , or [fluent API](#fluent_api) .
+[Registry](#registry), [subfolder in your BIN directory](#subfolder_in_BIN), [app.config](#app.config) or [fluent API](#fluent_api) .
 
 
 <a id="registry" name="registry">Using the registry</a>
@@ -27,14 +25,14 @@ NServiceBus V3.3 supports storing the license in a registry key. This allows you
 -   The LicenseInstaller.exe tool that comes with the NServiceBus
     install.
 -   The
-    [Install-License](managing-nservicebus-using-powershell.md)
+    [Install-License](managing-nservicebus-using-powershell)
     PowerShell commandlet.
 -   If your trial license has expired and you are running in debug mode,
     the endpoint shows you a dialog that enables you to install the
     license.
 
 **Version 4.0** : Starting from NServiceBus V4.0, the license file will be stored under HKLM\\Software\\NServiceBus\\{Major.Minor}\\License when installed using the
-[Install-NServiceBusLicense](managing-nservicebus-using-powershell.md) PowerShell commandlet and the LicenseInstaller.exe tool that comes with the NServiceBus install. In order to install the license file under HKCU
+[Install-NServiceBusLicense](managing-nservicebus-using-powershell) PowerShell commandlet and the LicenseInstaller.exe tool that comes with the NServiceBus install. In order to install the license file under HKCU
 (same location in version 3.3), please use the -c option on the LicenseInstaller.exe
 
 <a id="subfolder_in_BIN" name="subfolder_in_BIN">Using a subfolder in your BIN directory</a>
