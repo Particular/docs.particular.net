@@ -3,6 +3,11 @@ title: NServiceBus And WCF
 summary: "Publish/subscribe,  fault-tolerance, long-running processes, interoperabilityâ€”what more could you want?"
 originalUrl: http://www.particular.net/articles/nservicebus-and-wcf
 tags: []
+createdDate: 2013-05-21T18:31:22Z
+modifiedDate: 2013-07-29T14:04:33Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 The main thing missing from WCF is publish/subscribe, but why should you have to build it yourself? With NServiceBus, you get it out of the box.

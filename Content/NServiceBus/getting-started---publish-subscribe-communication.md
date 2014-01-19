@@ -4,6 +4,11 @@ summary: Define an event, add a subscriber, deploy a component, and add code to 
 originalUrl: http://www.particular.net/articles/getting-started---publish-subscribe-communication
 tags:
 - Publish Subscribe
+createdDate: 2013-05-19T15:27:08Z
+modifiedDate: 2013-09-04T11:01:43Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x

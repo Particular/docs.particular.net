@@ -3,6 +3,11 @@ title: Logging in NServiceBus
 summary: NServiceBus extends Log4Net APIs with a simple model to prevent admins from changing behavior you set at design time.
 originalUrl: http://www.particular.net/articles/logging-in-nservicebus
 tags: []
+createdDate: 2013-05-20T07:56:28Z
+modifiedDate: 2013-07-29T14:04:12Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 Like many other open-source frameworks on the .NET platform, NServiceBus uses of Log4Net for its logging capabilities. Familiar to developers and administrators alike, Log4Net has been proven in production for years of production.

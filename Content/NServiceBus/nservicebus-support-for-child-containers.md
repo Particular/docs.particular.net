@@ -3,6 +3,11 @@ title: NServiceBus Support for Child Containers
 summary: 'Child containers are a snapshot of the main container; transient instances are treated as as singletons in the child container. '
 originalUrl: http://www.particular.net/articles/nservicebus-support-for-child-containers
 tags: []
+createdDate: 2013-05-20T07:43:07Z
+modifiedDate: 2013-07-29T14:04:23Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 Child containers are essentially a snapshot of the main container where transient instances are treated as as singletons within the scope of the child container. This is useful when you want to scope instances for the duration of a web request or the handling of a message in NServiceBus. While this was possible before, child containers bring one more important feature to the table.

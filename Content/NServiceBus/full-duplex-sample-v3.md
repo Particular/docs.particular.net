@@ -6,6 +6,11 @@ tags:
 - Request Response
 - Messaging Patterns
 - Full Duplex
+createdDate: 2013-05-21T11:46:43Z
+modifiedDate: 2013-08-03T00:09:52Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 To see full-duplex, request/response communication, open the [Full Duplex sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/FullDuplex)

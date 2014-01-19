@@ -3,6 +3,11 @@ title: How to Handle a Message?
 summary: Write a class to handle messages in NServiceBus.
 originalUrl: http://www.particular.net/articles/how-do-i-handle-a-message
 tags: []
+createdDate: 2013-05-22T05:12:13Z
+modifiedDate: 2013-12-10T07:04:22Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 To handle a message, write a class that implements IMessageHandler<t> where T is the message type:

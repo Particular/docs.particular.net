@@ -5,6 +5,11 @@ originalUrl: http://www.particular.net/articles/using-ravendb-in-nservicebus-con
 tags:
 - RavenDB
 - persistence
+createdDate: 2013-05-20T10:32:52Z
+modifiedDate: 2013-09-05T14:07:34Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 Beginning with NServiceBus V3.0, RavenDB is one of the available mechanisms for NServiceBus to persist its timeout, saga and subscription information.

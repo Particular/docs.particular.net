@@ -3,6 +3,11 @@ title: NServiceBus and BizTalk
 summary: NServiceBus guides you away from dangerous anti-patterns while providing messaging patterns and integration.
 originalUrl: http://www.particular.net/articles/nservicebus-and-biztalk
 tags: []
+createdDate: 2013-05-21T18:37:31Z
+modifiedDate: 2013-08-10T11:22:35Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 BizTalk is a good centralized message broker with many adapters for third party applications, but service buses are inherently distributed, not centralized. Logical centralization leads to spaghetti code.

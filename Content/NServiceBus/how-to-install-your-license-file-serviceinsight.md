@@ -5,6 +5,11 @@ originalUrl: http://www.particular.net/articles/how-to-install-your-license-file
 tags:
 - ServiceInsight
 - license
+createdDate: 2013-10-25T11:59:24Z
+modifiedDate: 2013-10-30T14:14:38Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 To install your License:

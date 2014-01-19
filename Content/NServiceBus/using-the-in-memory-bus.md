@@ -3,6 +3,11 @@ title: Using the In-Memory Bus
 summary: The in-memory bus is applicable when events need to be handled synchronously and durability is not a concern.
 originalUrl: http://www.particular.net/articles/using-the-in-memory-bus
 tags: []
+createdDate: 2013-05-21T07:08:50Z
+modifiedDate: 2013-11-25T13:53:27Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 Prior to V4.0, NServiceBus provided an asynchronous method of communication between parts of the system using Send, Reply, and Publish API. Asynchronous forms of communication are great for ensuring reliable and durable communication between parts of the system. NServiceBus V4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.

@@ -8,6 +8,11 @@ tags:
 - ServiceMatrix
 - Visual Studio 2010
 - Visual Studio
+createdDate: 2013-05-19T12:59:21Z
+modifiedDate: 2013-09-04T15:17:18Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x

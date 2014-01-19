@@ -5,6 +5,11 @@ originalUrl: http://www.particular.net/articles/generic-host-sample
 tags:
 - Logging
 - Log4Net
+createdDate: 2013-05-22T11:16:09Z
+modifiedDate: 2013-08-02T21:13:47Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 This

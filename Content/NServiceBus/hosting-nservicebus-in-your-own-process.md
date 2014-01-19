@@ -3,6 +3,11 @@ title: Hosting NServiceBus in Your Own Process v3.x
 summary: Fluent configuration API to get transnational one-way messaging, referencing only three assemblies.
 originalUrl: http://www.particular.net/articles/hosting-nservicebus-in-your-own-process
 tags: []
+createdDate: 2013-05-20T08:44:32Z
+modifiedDate: 2013-11-14T17:43:28Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 Lighter-weight than BizTalk and more powerful than WCF, NServiceBus comes with its own host process and allows you to host it in your own process.

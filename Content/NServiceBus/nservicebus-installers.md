@@ -5,6 +5,11 @@ originalUrl: http://www.particular.net/articles/nservicebus-installers
 tags:
 - Installer
 - Setup
+createdDate: 2013-05-22T04:33:59Z
+modifiedDate: 2013-08-15T17:10:04Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 NServiceBus has the concept of installers to make sure that endpoint specific specific artifacts e.g., queues, folders, or databases are installed and configured automatically for you if needed at install time.

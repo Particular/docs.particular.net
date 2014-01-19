@@ -5,6 +5,11 @@ originalUrl: http://www.particular.net/articles/load-balancing-with-the-distribu
 tags:
 - Scaling out
 - Distributor
+createdDate: 2013-05-20T12:04:24Z
+modifiedDate: 2013-08-09T20:14:37Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 The NServiceBus Distributor is similar in behavior to standard load balancers. It is the key to transparently scaling out message processing over many machines.

@@ -3,6 +3,11 @@ title: No Endpoint Configuration Found in Scanned Assemblies Exception
 summary: NServiceBus was not able to find the endpoint configuration, i.e., an implementation of IConfigureThisEndoint. List of causes.
 originalUrl: http://www.particular.net/articles/no-endpoint-configuration-found-in-scanned-assemblies-exception
 tags: []
+createdDate: 2013-05-22T08:32:31Z
+modifiedDate: 2014-01-18T09:49:59Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 As the exception states, NServiceBus was not able to find the endpoint configuration, i.e., an implementation of IConfigureThisEndoint.
@@ -13,8 +18,7 @@ The exception might be thrown by
 Following are possible causes for this exception:
 
 -   There is no implementation of IConfigureThisEndpoint.
--   The class implementing IConfigureThisEndpoint is not public or
-    internal.
+-   The class implementing IConfigureThisEndpoint is not public.
 -   You have more than one implementation of IConfigureThisEndpoint.
 -   NServiceBus.Host.Exe is scanning the folder (and subfolders) from
     where it is running, and finds more than one assembly implementing

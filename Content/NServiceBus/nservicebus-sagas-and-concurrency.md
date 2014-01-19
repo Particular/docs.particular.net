@@ -3,6 +3,11 @@ title: NServiceBus Sagas And Concurrency
 summary: NServiceBus gives you ACID semantics, using underlying storage so only one worker thread hitting a saga instance can commit.
 originalUrl: http://www.particular.net/articles/nservicebus-sagas-and-concurrency
 tags: []
+createdDate: 2013-05-21T05:31:40Z
+modifiedDate: 2013-07-23T04:44:06Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 If your endpoint runs with more than one worker thread, it is possible that multiple messages will hit the same saga instance simultaneously. To give you ACID semantics in this situation, NServiceBus uses the underlying storage to produce consistent behavior, only allowing one of the threads to commit. NServiceBus handles most of this automatically but you should be aware of a few things.

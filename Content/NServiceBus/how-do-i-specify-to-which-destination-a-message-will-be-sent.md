@@ -6,6 +6,11 @@ tags:
 - Message Mapping
 - Message destination
 - Send
+createdDate: 2013-05-22T05:09:13Z
+modifiedDate: 2013-11-25T05:43:02Z
+authors: []
+reviewers: []
+contributors: []
 ---
 
 You configure the destination for message types in <unicastbusconfig>, under <messageendpointmappings>.
@@ -14,18 +19,18 @@ Add one of the following:
 
 
 ```XML
- <UnicastBusConfig >
-    <MessageEndpointMappings>
-      <!--To register all message types defined in an assembly -->
-      <add Assembly="assembly" Endpoint="queue@machinename" />
+<UnicastBusConfig >
+  <MessageEndpointMappings>
+    <!--To register all message types defined in an assembly -->
+    <add Assembly="assembly" Endpoint="queue@machinename" />
       
-      <!-- To register all message types defined in an assembly with a specific namespace (it does not include sub namespaces): -->
-      <add Assembly="assembly" Namespace="namespace" Endpoint="queue@machinename" />
+    <!-- To register all message types defined in an assembly with a specific namespace (it does not include sub namespaces): -->
+    <add Assembly="assembly" Namespace="namespace" Endpoint="queue@machinename" />
       
-      <!-- To register a specific type in an assembly: -->
-      <add Assembly="assembly" Type="type fullname (http://msdn.microsoft.com/en-us/library/system.type.fullname.aspx)" Endpoint="queue@machinename" />
-    </MessageEndpointMappings>
-  </UnicastBusConfig>
+    <!-- To register a specific type in an assembly: -->
+    <add Assembly="assembly" Type="type fullname (http://msdn.microsoft.com/en-us/library/system.type.fullname.aspx)" Endpoint="queue@machinename" />
+  </MessageEndpointMappings>
+</UnicastBusConfig>
 ```
 
  For more information, see the [PubSub sample](https://github.com/NServiceBus/NServiceBus/tree/master/Samples/PubSub) config file.
@@ -34,5 +39,10 @@ Destinations can be QueueName@ServerName, or just QueueName if the destination i
 
 You can also call the following, even though it is not recommended for application-level code:
 
-    Bus.Send(string destination, params IMessage[] msgs);
+
+```C#
+Bus.Send( string destination, params IMessage[] msgs );
+```
+
+ Even if it is possble to specify a message destination in code it is highly suggested to specify message destinations at application-configuration level to maintain a high level of flexibility.
 
