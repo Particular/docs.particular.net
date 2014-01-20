@@ -23,9 +23,9 @@ Let's start by creating a 'Client' project that will send order requests to a NS
 
 Open Visual Studio as administrator, create a new 'Class Library' Project name it 'Ordering.Client', and name the solution 'Ordering'.
 
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/001%20new%20solution.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/001%20new%20solution.png)
+![](001_new_solution.png)
 
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Package%20manager%20console.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Package%20manager%20console.png)
+![](Package_manager_console.png)
 
 We now need to add references the NServiceBus assemblies and the quickest and quickest way to do that is to use NuGet Package Manager Console.
 
@@ -206,24 +206,23 @@ To see the complete system, run both the Client and the Server projects together
 To run the 'Client' and 'Server' projects together so you can see it all working, right click on the 'Ordering' solution and select 'Set StartUp Projects...'
 
 
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/002%20strartup.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/002%20strartup.png)
+![](002_strartup.png)
 
 in that screen select 'Multiple startup projects' and set the
 'Ordering.Client' and 'Ordering.Server' action to be 'Start'.
 
 
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/003%20strartup.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/003%20strartup.png)
+![](003_strartup.png)
 
 Finally click 'F5' to run the solution.
 
 Two console application windows should start up
 
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/run_1.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/run_1.png)
+![](run_1.png)
 
-Hit enter (while the Client console is in focus) and you should see
-'Order for Product: New shoes placed' in one of them.
+Hit enter (while the Client console is in focus) and you should see 'Order for Product: New shoes placed' in one of them.
 
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/run_2.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/run_2.png)
+![](run_2.png)
 
 Congratulations - you've just built your first NServiceBus application.
 -----------------------------------------------------------------------
@@ -235,13 +234,9 @@ Wasn't that easy?
 
 ### <a id="Next Steps" name="Next Steps"> </a> Next Steps
 
--   Go to [NServiceBus Step by Step Guide - Fault Tolerance - code
-    first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md)
--   Read about [NServiceBus and SOA Architectural
-    Principles](architectural-principles.md)
+-   Go to [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md)
+-   Read about [NServiceBus and SOA Architectural Principles](architectural-principles.md)
 -   Try our [Hands on Labs](http://particular.net/HandsOnLabs)
--   Check out our [Videos and
-    Presentations](http://particular.net/Videos-and-Presentations)
--   See the
-    [Documentation](http://particular.net/documentation/NServiceBus)
+-   Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
+-   See the [Documentation](http://particular.net/documentation/NServiceBus)
 -   Join our [community](http://particular.net/DiscussionGroup)

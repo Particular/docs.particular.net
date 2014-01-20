@@ -22,7 +22,7 @@ The complete solution code can be found
 Now that we've gone through the basics of NServiceBus communication, configuration and fault tolerance, let's move on to publish/subscribe.
 
 
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/001_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/001_pubsub.png)
+![](001_pubsub.png)
 
 <a id="CreatingEvent" name="CreatingEvent"> </a>
 
@@ -35,7 +35,7 @@ There are only a few steps needed to introduce pub/sub and make your solution lo
 Right click your Messages Project and add a class file, and create a OrderCreated event:
 
 
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/002_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/002_pubsub.png)
+![](002_pubsub.png)
 
 The message class will implement the IEvent marker interface
 
@@ -132,25 +132,20 @@ Now we can go ahead and create a subscriber endpoint that will subscribe and han
 Right click the Ordering solution and select 'Add' \> 'New Project...'
 
 
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/003_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/003_pubsub.png)
+![](003_pubsub.png)
 
 Create a class library project and name the project Subscriber.
 
 
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/004_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/004_pubsub.png)
+![](004_pubsub.png)
 
 We will use nuget to install the an NServiceBus.Host, in the package manager window and type
 
-<div class="nuget-badge">
-`Install-Package NServiceBus.Host -ProjectName Subscriber`{style="background-color: rgb(32, 32, 32); border: 4px solid rgb(192, 192, 192); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; box-shadow: rgb(110, 110, 110) 2px 2px 3px; color: rgb(226, 226, 226); display: block; font-size: 1.2em; font-family: 'andale mono', 'lucida console', monospace; line-height: 1.2em; overflow: auto; padding: 1px;"}
-
-
-
+    PM> Install-Package NServiceBus.Host -ProjectName Subscriber
 
 Click reload all
 
-
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/005_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/005_pubsub.png)
+![](005_pubsub.png)
 
 <a id="Handeling" name="Handeling"> </a>
 
@@ -161,14 +156,8 @@ In our new Subscriber project
 
 -   Add a new class file, name it 'OrderCreatedHandler'
 -   Add a reference to the 'messages' project
--   Implement the
-    <span style="font-family:courier new,courier,monospace;">IHandle<ordercreated></span>
-    interface
+-   Implement the `IHandle<OrderCreated>` interface
 -   Add an IBus auto property and implement the handler as shown below
-
-
-
-
 
 
 ```C#
@@ -221,14 +210,11 @@ Now it's time to run the solution and see it all working together we will run th
 
 Right click on the 'Ordering' solution and select 'Set StartUp Projects...'
 
+![](006_pubsub.png)
 
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/006_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/006_pubsub.png)
+in that screen select 'Multiple startup projects' and set the 'Ordering.Client', 'Ordering.Server' and 'Ordering.Subscriber' action to be 'Start'.
 
-in that screen select 'Multiple startup projects' and set the
-'Ordering.Client', 'Ordering.Server' and 'Ordering.Subscriber' action to be 'Start'.
-
-
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/007_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/007_pubsub.png)
+![](007_pubsub.png)
 
 Finally click 'F5' to run the solution.
 
@@ -236,14 +222,12 @@ Three console application windows should start up
 
 Notice the Subscriber is subscribing the Ordering.Messages.OrderPlaced
 
-
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/008_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/008_pubsub.png)
+![](008_pubsub.png)
 
 Hit enter (while the Client console is in focus) and you should see
 'Order for Product: New shoes placed' in one of them.
 
-
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/009_pubsub.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_pubsub/009_pubsub.png)
+![](009_pubsub.png)
 
 And there you are: publish/subscribe messaging is working!
 
@@ -254,13 +238,10 @@ As you see, it's very easy to get started with NServiceBus. You're all set now a
 Next step
 ---------
 
--   Read about [NServiceBus and SOA Architectural
-    Principles](architectural-principles.md)
+-   Read about [NServiceBus and SOA Architectural Principles](architectural-principles.md)
 -   Try our [Hands on Labs](http://particular.net/HandsOnLabs)
--   Check out our [Videos and
-    Presentations](http://particular.net/Videos-and-Presentations)
--   See the
-    [Documentation](http://particular.net/documentation/NServiceBus)
+-   Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
+-   See the [Documentation](http://particular.net/documentation/NServiceBus)
 -   Join our [community](http://particular.net/DiscussionGroup)
 
 

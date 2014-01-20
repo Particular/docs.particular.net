@@ -15,14 +15,9 @@ To see MessageMutators in action, open the [MessageMutator sample](https://githu
 .
 
 1.  Run the solution.
-
-     Two console applications start up.
-2.  Find the client application by looking for the one with "Client" in
-    its path and pressing 's' and 'Enter' in the window. Then press 'e'
-    followed by 'Enter'.
-
-     Your screen should look something like this (the exception message
-    is expected):
+    Two console applications start up.
+2.  Find the client application by looking for the one with "Client" in its path and pressing 's' and 'Enter' in the window. Then press 'e' followed by 'Enter'.
+    Your screen should look something like this (the exception message is expected):
 
 ![Message Mutator sample Running](MessageMutatorsRunning.png "Message Mutator sample Running")
 
@@ -45,11 +40,8 @@ Similar interfaces exist for IMessageMutator, i.e., IMutateTransportMessages, wh
 
 This sample implements two mutators:
 
--   ValidationMessageMutator: This message mutator validates all
-    DataAnnotations attributes that exist in the message.
-
--   TransportMessageCompressionMutator: This transport mutator
-    compresses the whole transport message.
+-   ValidationMessageMutator: This message mutator validates all DataAnnotations attributes that exist in the message.
+-   TransportMessageCompressionMutator: This transport mutator compresses the whole transport message.
 
 Let's look at the MessageMutators Assembly.
 
@@ -107,7 +99,7 @@ public class ValidationMessageMutator : IMessageMutator
 }
 ```
 
- ValidationMessageMutator implements the two interface methods: outgoing and incoming. As can be seen in the code, both incoming and outgoing mutaturs have the exact same code in them. The mutation is symmetrical.
+ValidationMessageMutator implements the two interface methods: outgoing and incoming. As can be seen in the code, both incoming and outgoing mutaturs have the exact same code in them. The mutation is symmetrical.
 
 Both call a private static method called ValidateDataAnnotations.
 
@@ -159,7 +151,7 @@ public class TransportMessageCompressionMutator : IMutateTransportMessages
 }
 ```
 
- The TransportMessageCompressionMutator is a transport message mutator, meaning that NServiceBus allows you to mutate the outgoing or/and incoming transport message.
+The TransportMessageCompressionMutator is a transport message mutator, meaning that NServiceBus allows you to mutate the outgoing or/and incoming transport message.
 
 In the TransportMessageCompressionMutator class, both the incoming and outgoing methods are implemented.
 
@@ -202,7 +194,7 @@ public class HookMyMessageMutators : IWantCustomInitialization
 }
 ```
 
- Implementing IWantCustomInitialization signals NServiceBus to call the Init method during the NServiceBus initialization phase.
+Implementing IWantCustomInitialization signals NServiceBus to call the Init method during the NServiceBus initialization phase.
 
 The Init method configures, using NServiceBus builder ( [dependency injection mechanism](containers.md) ) to use ValidationMessageMutator and TransportMessageCompressionMutators. The NServiceBus framework uses them in its messaging flow.
 
@@ -231,7 +223,7 @@ Bus.Send<CreateProductCommand>(m =>
 });
 ```
 
- Since the message buffer field is empty, GZipStreamer in the outgoing transport message mutator easily compresses it to a size under the MSMQ limit of 4MB and the message will get to the server.
+Since the message buffer field is empty, GZipStreamer in the outgoing transport message mutator easily compresses it to a size under the MSMQ limit of 4MB and the message will get to the server.
 
 See how the client sends an invalid message that will never reach the server since an exception will be thrown at the outgoing message mutator:
 

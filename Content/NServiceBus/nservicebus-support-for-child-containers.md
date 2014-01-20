@@ -56,8 +56,7 @@ Child containers are a powerful feature that can simplify your code and should d
 If you configure your components using the NServiceBus configure API, it's possible to configure instance lifecyle to be per unit of work, using this:
 
 
-        Configure.Instance.Configurer.ConfigureComponent(DependencyLifecycle
-    .InstancePerUnitOfWork);
+    Configure.Instance.Configurer.ConfigureComponent(DependencyLifecycle.InstancePerUnitOfWork);
 
 
 

@@ -49,19 +49,14 @@ Adoption and climbing the learning curve
 
 While it does take some getting used to, code written using NServiceBus is quite a bit simpler and shorter than before, not to mention much easier to unit test. An architect in the financial services domain had this to say:
 
-"It took a few weeks to grok the concepts involved in messaging but our devs needed only a week to implement a pub/sub solution which is testament to how straightforward NServiceBus makes the coding. We have just started our NServiceBus journey but already are excited about what it has to offer."
-
+> It took a few weeks to grok the concepts involved in messaging but our devs needed only a week to implement a pub/sub solution which is testament to how straightforward NServiceBus makes the coding. We have just started our NServiceBus journey but already are excited about what it has to offer.
  -- Charlie Barker
 
 Next steps
 ----------
 
 -   [Download NServiceBus](/downloads)
--   [Learn more about publish/subscribe
-    messaging](getting-started---publish-subscribe-communication.md)
--   Look at the differences between NServiceBus and
-    [WCF](nservicebus-and-wcf.md),
-    [BizTalk](nservicebus-and-biztalk.md), and [WebSphere or
-    Sonic](nservicebus-and-websphere-sonic.md)
+-   [Learn more about publish/subscribe messaging](getting-started---publish-subscribe-communication.md)
+-   Look at the differences between NServiceBus and [WCF](nservicebus-and-wcf.md), [BizTalk](nservicebus-and-biztalk.md), and [WebSphere or Sonic](nservicebus-and-websphere-sonic.md)
 
 

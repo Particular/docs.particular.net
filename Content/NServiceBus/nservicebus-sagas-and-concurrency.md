@@ -9,17 +9,15 @@ If your endpoint runs with more than one worker thread, it is possible that mult
 
 Concurrent access to saga instances is divided into two scenarios;
 
--   When there is no existing saga instance and multiple threads try to
-    create a new instance of what should be the same saga instance.
--   Where a saga instance already exists in storage and multiple threads
-    try to update that same instance.
+-   When there is no existing saga instance and multiple threads try to create a new instance of what should be the same saga instance.
+-   Where a saga instance already exists in storage and multiple threads try to update that same instance.
 
 Let's look at both scenarios in detail and see your options.
 
 Concurrent access to non-existing saga instances
 ------------------------------------------------
 
-Sagas are started by the message types you handle as IAmStartedByMessages of T. If more than one are processed concurrently and are mapped to the same saga instance there is a risk that more than one thread tries to create a new saga instance.
+Sagas are started by the message types you handle as `IAmStartedByMessages<T>`. If more than one are processed concurrently and are mapped to the same saga instance there is a risk that more than one thread tries to create a new saga instance.
 
 In this case only one thread is allowed to commit. The others roll back and the built-in retries in NServiceBus kick in. On the next retry, the saga instance is found, the race condition is solved, and that saga instance is updated instead. Of course this can result in concurrency problems but they are solved, as mentioned below.
 
