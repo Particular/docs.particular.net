@@ -12,9 +12,10 @@ contributors: []
 
 This exception may occur if you try to send messages to a machine that has been offline for a while, or the system is suffering from a larger than expected load spike:
 
-
-System.Messaging.MessageQueueException (0x80004005): Insufficient resources to perform operation. at System.Messaging.MessageQueue.SendInternal(Object obj, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
-
+```
+System.Messaging.MessageQueueException (0x80004005): Insufficient resources to perform operation. 
+at System.Messaging.MessageQueue.SendInternal(Object obj, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
+```
 
 The cause of this exception is that the MSMQ has run out of space for holding on to messages. This could be due to messages sent that could not be delivered, or messages received that have not been processed.
 

@@ -34,9 +34,7 @@ After it is complete you will have the NServiceBus.Powershell.dll in your packag
 
 to use it promptly inside visual studio, you can do
 
-\`
-
-    PM>Import-Module .\packages\NServiceBus.PowerShell.<4.x.x your version>\lib\net40\NServiceBus.PowerShell.dll
+    PM> Import-Module .\packages\NServiceBus.PowerShell.<4.x.x your version>\lib\net40\NServiceBus.PowerShell.dll
 
 and then use the cmslts you want.
 
@@ -48,66 +46,63 @@ Or you can follow the instructions to load them into your [PowerShell profile.](
 
 If you use the NuGet package, the commandlets are available automatically in the NuGet console. If you installed NServiceBus using the MSI you can add the import module statement to your
 
-
 For a detailed description of all our commandlets, use the get-help command:
 
-
     PM> get-help about_NServiceBus
-
 
 
 NServiceBus PowerShell cmdlets have been renamed so that they do not clash with existing version 3.0 cmdlets:
 
 
-<span style="font-weight: 600;">Install-NServiceBusMSMQ</span>
+### Install-NServiceBusMSMQ
 
 Installs MSMQ on the machine.
 
-<span style="font-weight: 600;">Test-NServiceBusMSMQInstallation</span>
+### Test-NServiceBusMSMQInstallation
 
 Validates if MSMQ is correctly installed on the machine.
 
-<span style="font-weight: 600;">Install-NServiceBusDTC</span>
+### Install-NServiceBusDTC
 
 Installs DTC on the machine.
 
-<span style="font-weight: 600;">Test-NServiceBusDTCInstallation</span>
+### Test-NServiceBusDTCInstallation
 
 Validates if DTC is installed and running on the machine.
 
-<span style="font-weight: 600;">Install-NServiceBusRavenDB</span>
+### Install-NServiceBusRavenDB
 
 Installs RavenDB on the machine.
 
-<span style="font-weight: 600;">Test-NServiceBusRavenDBInstallation</span>
+### Test-NServiceBusRavenDBInstallation
 
 Ensures RavenDB is installed on the machine. Port 8080 is used to check to see if RavenDB is already installed on the machine. If RavenDB is installed on a different port, the test might display false.
 
-<span style="font-weight: 600;">Install-NServiceBusPerformanceCounters</span>
+### Install-NServiceBusPerformanceCounters
 
 Installs NServiceBus performance counters on the machine.
 
-<span style="font-weight: 600;">Test-NServiceBusPerformanceCountersInstallation</span>
+### Test-NServiceBusPerformanceCountersInstallation
 
 Validates that NServiceBus performance counters are correctly installed on the machine.
 
-<span style="font-weight: 600;">Install-NServiceBusLicense</span>
+### Install-NServiceBusLicense
 
 Installs a NServiceBus license file in HKLM. All endpoints can use this machine wide setting without having to specify the license file either in the bin folder or in the app.config file.
 
-<span style="font-weight: 600;">Set-NServiceBusLocalMachineSettings</span>
+### Set-NServiceBusLocalMachineSettings
 
 Allows specifying the default error and audit queues. Sets up the error and audit queue in the registry in HKLM as a machine wide setting. Each endpoint on the machine no longer need to specify these settings in the app.config file
 
-<span style="font-weight: 600;">Get-NServiceBusLocalMachineSettings</span>
+### Get-NServiceBusLocalMachineSettings
 
 Shows the default error and audit queues.
 
-<span style="font-weight: 600;">Get-NServiceBusVersion</span>
+### Get-NServiceBusVersion
 
 Displays the NServiceBus installed version.
 
-<span style="font-weight: 600;">Get-NServiceBusMSMQMessage</span>
+###  Get-NServiceBusMSMQMessage</span>
 
 Displays all messages in a queue.
 
@@ -167,8 +162,10 @@ Installs a NServiceBus license file into the registry.
 
 If you are getting the following error:
 
-**<font color="#ff0000">Import-Module : Could not load file or assembly
-'file:///C:\\Program Files (x86)\\Particular Software\\NServiceBus\\v4.0\\NServiceBus\\Binaries\\NServiceBus.PowerShell.dll' or one of its dependencies. This assembly is built by a runtime newer than the currently loaded runtime and cannot be loaded. </font>**
+```
+Import-Module : Could not load file or assembly
+'file:///C:\\Program Files (x86)\\Particular Software\\NServiceBus\\v4.0\\NServiceBus\\Binaries\\NServiceBus.PowerShell.dll' or one of its dependencies. This assembly is built by a runtime newer than the currently loaded runtime and cannot be loaded. 
+```
 
 Although it is possible to change the existing version of Powershell.exe.config to load .NET 4.0 framework, the preferred approach is to install PowerShell 3 than to change the config files. Forcing PowerShell 2 to use .NET 4 can break PS Snapins from other vendors. PowerShell 3 provides a command line option to switch versions of PS and
 .NET if needed.

@@ -47,21 +47,21 @@ Worker nodes send messages to the distributor, telling it when they're ready for
 
 All pending work stays in the distributor's queue (rather than building up in each of the workers' queues), giving visibility of how long messages are actually waiting. This is important for complying with time-based service level agreements (SLAs).
 
-For more information on monitoring, see [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints.md) .
+For more information on monitoring, see [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints.md).
 
 Where is it?
 ------------
 
 Unlike NServiceBus V2.6, there is no specific Distributor process. Any NServiceBus endpoint can be configured to work as a Distributor.
 
-To see the Distributor in action, see the [ScaleOut sample](scale-out-sample.md) .
+To see the Distributor in action, see the [ScaleOut sample](scale-out-sample.md).
 
 Distributor configuration
 -------------------------
 
 ### When hosting in NServiceBus.Host.exe
 
-If you are running with [NServiceBus.Host.exe](the-nservicebus-host.md) , the following profiles start your endpoint with the Distributor functionality:
+If you are running with [NServiceBus.Host.exe](the-nservicebus-host.md), the following profiles start your endpoint with the Distributor functionality:
 
 To start your endpoint as a distributor, run it from the command line, as follows:
 
@@ -81,12 +81,8 @@ You can use the NServiceBus.Master to start a Distributor on your endpoint with 
 
 When you [self host](hosting-nservicebus-in-your-own-process.md) your endpoint, configure AsMasterNode() and then use this configuration:
 
--   RunDistributor(): Starts your endpoint as a Distributor, waits for
-    Workers to enlist, and then distributes loads to those enlisted
-    workers. It also starts a local worker (working from the same
-    machine as the Distributor).
--   RunDistributorWithNoWorkerOnItsEndpoint(): Starts your endpoint as a
-    Distributor, waiting for Workers to enlist, and then load balances.
+-   RunDistributor(): Starts your endpoint as a Distributor, waits for Workers to enlist, and then distributes loads to those enlisted workers. It also starts a local worker (working from the same machine as the Distributor).
+-   RunDistributorWithNoWorkerOnItsEndpoint(): Starts your endpoint as a Distributor, waiting for Workers to enlist, and then load balances.
 
 Following is an example of a Distributor with a Worker on its endpoint:
 
@@ -113,12 +109,9 @@ Any NServiceBus endpoint can run as a Worker node. To activate it, create a hand
 
 If you are hosting your endpoint with NServiceBus.Host.exe, to run as a worker, use this command line:
 
-
     > NServiceBus.Host.exe NServiceBus.Production NServiceBus.Worker
 
 Configure the name of the master node server as shown in this app.config example. Note the MasterNodeConfig section:
-
-
 
 ```XML
 <?xml version="1.0" encoding="utf-8" ?>
@@ -132,7 +125,7 @@ Configure the name of the master node server as shown in this app.config example
 </configuration>
 ```
 
- Read about the DistributorControlAddress and the DistributorDataAddress in the [Routing with the Distributor](load-balancing-with-the-distributor.md) section.
+Read about the DistributorControlAddress and the DistributorDataAddress in the [Routing with the Distributor](load-balancing-with-the-distributor.md) section.
 
 ### When self-hosting
 
@@ -159,7 +152,6 @@ The distributor uses two queues for its runtime operation. The DataInputQueue is
 
 To use values other than the NServiceBus defaults you can override them, as shown in the UnicastBusConfig section below:
 
-
 ```XML
 <UnicastBusConfig DistributorControlAddress="distributorControlBus@Cluster1" DistributorDataAddress="distributorDataBus@Cluster1">
   <MessageEndpointMappings>
@@ -168,14 +160,14 @@ To use values other than the NServiceBus defaults you can override them, as show
 </UnicastBusConfig>
 ```
 
- If those settings do not exist, the control queue is assumed as the endpoint name of the worker, concatenated with the " distributor.control@HostWhereDistributorIsRunning" string.
+If those settings do not exist, the control queue is assumed as the endpoint name of the worker, concatenated with the " distributor.control@HostWhereDistributorIsRunning" string.
 
 Similar to standard NServiceBus routing, you do not want high priority messages to get stuck behind lower priority messages, so just as you have separate NServiceBus processes for different message types, you also set up different distributor instances (with separate queues) for different message types.
 
 In this case, name the queues just like the messages; for example, SubmitPurchaseOrder.StrategicCustomers.Sales. This is the name of the distributor's data queue and the input queues of each of the workers. The distributor's control queue is best named with a prefix of
 'control', as follows: Control.SubmitPurchaseOrder.StrategicCustomers.Sales.
 
-When using the distributor in a full publish/subscribe deployment, yousee is a distributor within each subscriber balancing the load of events being published, as follows:
+When using the distributor in a full publish/subscribe deployment, you see is a distributor within each subscriber balancing the load of events being published, as follows:
 
 ![logical pub/sub and physical distribution 3](nservicebus_pubsub_3.png)
 

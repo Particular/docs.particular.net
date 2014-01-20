@@ -22,16 +22,9 @@ To skip migration and run the TimeoutManagers side by side:
 
 1.  Upgrade your endpoint to V3.0.X. Download it from the
     [downloads](/downloads) page.
-2.  Configure the endpoint to use the built-in TM in V3.0. New timeouts
-    will be sent to this TM from your endpoint.
-3.  Keep the V2.6 TM running. Existing timeouts that expire will be sent
-    to your new V3.0.X endpoint. (Make sure that you keep the name of
-    the input queue identical.)
-4.  Decommission your V2.6 TM when all timeouts expire. (The storage
-    queue will be empty when this happens.) The default name of the
-    storage queue is "Timeout.Storage" but check your configuration to
-    be sure. **NOTE** : This is NOT the same queue as the input queue
-    that you would have configured in your endpoint mappings.
+2.  Configure the endpoint to use the built-in TM in V3.0. New timeouts will be sent to this TM from your endpoint.
+3.  Keep the V2.6 TM running. Existing timeouts that expire will be sent to your new V3.0.X endpoint. (Make sure that you keep the name of the input queue identical.)
+4.  Decommission your V2.6 TM when all timeouts expire. (The storage queue will be empty when this happens.) The default name of the storage queue is "Timeout.Storage" but check your configuration to be sure. **NOTE** : This is NOT the same queue as the input queue that you would have configured in your endpoint mappings.
 
 Why to migrate?
 ---------------
@@ -46,9 +39,7 @@ For those of you who require zero downtime deployments, V2.6.0.1504 doesn't supp
 With that out of the way, use the tool to migrate:
 
 1.  Upgrade your endpoint to V3.0.X.
-2.  Create the [dedicated input queue for the V3.0
-    TM](convention-over-configuration) by running the
-    [installers](nservicebus-installers.md) .
+2.  Create the [dedicated input queue for the V3.0 TM](convention-over-configuration) by running the [installers](nservicebus-installers.md) .
 3.  If you haven't upgraded to
     [V](http://particular.cloudapp.net/downloads)
     [2.6.0.1511](http://particular.cloudapp.net/downloads) , shut down

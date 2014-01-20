@@ -30,17 +30,18 @@ What's available?
 -----------------
 
 The following table summarizes what is available and how to configure each feature.
-|:-------------------- |:---------- |:--------- |:------------------------------------------------------------------------------------------------------ |:------------------------------------- |
-|                      | InMemory   | RavenDB   | [NHibernate](http://nservicebus.desk.com/customer/portal/articles/859337-persistence-in-nservicebus)   | MSMQ                                  |
-| Timeout              | √          | √         | √                                                                                                      | Not supported beginning with V3.3,0   |
-| Subscription         | √          | √         | √                                                                                                      | √                                     |
-| Saga                 | √          | √         | √                                                                                                      |                                       |
-| Gateway              | √          | √         | √                                                                                                      |                                       |
-| Distributor          |            |           | √                                                                                                      | √                                     |
-| Second Level Retry   |            |           |                                                                                                        | √                                     |
-| Fault Management     | √          |           |                                                                                                        | √                                     |
-| Notifications        |            |           |                                                                                                        | √                                     |
-| -------------------- | ---------- | --------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------- |
+
+| Type                 | InMemory   | RavenDB   | [NHibernate]  | MSMQ                                  |
+|--------------------  |:---------- |:--------- |:--------------|:------------------------------------- |
+| Timeout              | √          | √         | √             | Not supported beginning with V3.3,0   |
+| Subscription         | √          | √         | √             | √                                     |
+| Saga                 | √          | √         | √             | x                                     |
+| Gateway              | √          | √         | √             | x                                     |
+| Distributor          | x          | x         | √             | √                                     |
+| Second Level Retry   | x          | x         | x             | √                                     |
+| Fault Management     | √          | x         | x             | √                                     |
+| Notifications        | x          | x         | x             | √                                     |
+
 
 If self hosting, you can configure the persistence technology for each feature. For example, to store subscriptions in memory and timeouts in RavenDB, use this code:
 

@@ -22,8 +22,7 @@ Start to log with NServiceBus:
     NServiceBus.Configure.With().Log4Net();
 
 
-<span style="font-family: Lato, Regular;">This makes use of ConsoleAppender, which sets the logging threshold to Debug. All logging statements performed by NServiceBus or the application at a level at or above Debug (i.e., Warn, Error, and Fatal) are sent to the console for output.</span>
-
+This makes use of ConsoleAppender, which sets the logging threshold to Debug. All logging statements performed by NServiceBus or the application at a level at or above Debug (i.e., Warn, Error, and Fatal) are sent to the console for output.
 
 Calling Log4Net from your code is very straightforward. Often you'll set up a single static read-only reference to a logger in your classes, and then use it in all your methods, like this:
 
