@@ -119,7 +119,7 @@ Open the app.config file of the MyClient project, and look at the UnicastBusConf
 </UnicastBusConfig>
 ```
 
-The bus is mapped from message types to an endpoint address. In this case, all the classes that implement the IMessage interface from the MyMessages assembly are mapped to the endpoint called MyServer. This means that when the client code calls Bus.Send<requestdatamessage>, the bus knows that that message needs to be sent to the MyServer endpoint.
+The bus is mapped from message types to an endpoint address. In this case, all the classes that implement the `IMessage` interface from the `MyMessages `assembly are mapped to the endpoint called MyServer. This means that when the client code calls `Bus.Send<RequestDataMessage>`, the bus knows that that message needs to be sent to the MyServer endpoint.
 
 The NServiceBus framework or the user determine the MyServer endpoint name (similar to the MyClient endpoint name). This sample does not explicitly change the endpoint name, so the NServiceBus framework does it using standard convention.
 
@@ -127,7 +127,7 @@ Read [how to change the endpoint name](how-to-specify-your-input-queue-name.md) 
 
 This sample also shows how to use an audit queue. In this case, the ForwardReceivedMessagesTo attributes instruct NServiceBus to forward all successfully received messages (on the client endpoint) to the audit endpoint.
 
-When a RequestDataMessage arrives in the server queue, the bus dispatches it to the message handler found in the RequestDataMessageHandler.cs file in the MyServer project. The bus knows which classes to call, based on the interface they implement.
+When a RequestDataMessage arrives in the server queue, the bus dispatches it to the message handler found in the `RequestDataMessageHandler.cs` file in the MyServer project. The bus knows which classes to call, based on the interface they implement.
 
 
 ```C#

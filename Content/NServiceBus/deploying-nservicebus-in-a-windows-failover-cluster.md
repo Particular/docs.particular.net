@@ -18,20 +18,9 @@ A simple setup for scalability and reliability includes at least two servers in 
 -   A Distributor process for each logical message queue.
 -   A `TimeoutManager`, if you require one to support Sagas.
 -   Commander application(s):
-    -   A Commander application contains one or more classes that
-        implement IWantToRunAtStartup and coordinate tasks among the
-        other handlers, doing very little work itself but sending
-        messages to start other processes based on timers or other
-        stimuli.
-    -   It is important to set up these applications during the Start
-        method and tear them down during the Stop method, as the Start
-        method is called when the service starts, and the Stop method is
-        called when the service stops (and is transferred to the other
-        cluster node).
-    -   The Commander application can also have message handlers of its
-        own, usually to subscribe to events published from other
-        endpoints in the service as a kind of feedback loop to control
-        overall processing flow.
+    -   A Commander application contains one or more classes that implement IWantToRunAtStartup and coordinate tasks among the other handlers, doing very little work itself but sending messages to start other processes based on timers or other stimuli.
+    -   It is important to set up these applications during the Start method and tear them down during the Stop method, as the Start method is called when the service starts, and the Stop method is called when the service stops (and is transferred to the other cluster node).
+    -   The Commander application can also have message handlers of its own, usually to subscribe to events published from other endpoints in the service as a kind of feedback loop to control overall processing flow.
 
 
 The two other servers are worker nodes, and contain only endpoints with simple message handlers. The endpoints request work from the clustered distributors, do the work, and then ask for more.
@@ -51,22 +40,15 @@ Set up a clustered DTC access point:
 
 Configure DTC for NServiceBus:
 
-1.  On each server, in Administrative Tools - Component Services, expand
-    Component Services - Computers - My Computer - Distributed
-    Transaction Coordinator.
-2.  For the Local DTC, if the clustered DTC is on the current node, you
-    will see a Clustered DTCs folder with your clustered DTC name inside
-    it.
-3.  For both instances (so three times counting each node and the
-    clustered instance), right-click, select Properties, and switch to
-    the Security tab.
+1.  On each server, in Administrative Tools - Component Services, expand Component Services - Computers - My Computer - Distributed Transaction Coordinator.
+2.  For the Local DTC, if the clustered DTC is on the current node, you will see a Clustered DTCs folder with your clustered DTC name inside it.
+3.  For both instances (so three times counting each node and the clustered instance), right-click, select Properties, and switch to the Security tab.
 4.  At the very least, check "Network DTC Access" and "Allow Outbound."
 5.  Optionally, check "Allow Remote Clients" and "Allow Inbound."
 
 Set up a MSMQ Cluster Group. Cluster group is a group of resources that have a unique DNS name and can be addressed externally like a computer.
 
--   In order to create a cluster group up in Windows 2003, you would
-    create a "cluster group" in the admin
+-   In order to create a cluster group up in Windows 2003, you would create a "cluster group" in the admin
 -   In Windows 2008, you would create a "cluster service or application"
 -   In Windows 2012, you would create a "cluster role"
 
@@ -77,11 +59,9 @@ For NServiceBus endpoint destination, we address the queues by the MSMQ cluster 
 
 In Failover Cluster Management, from the server with Quorum:
 
-1.  Right click Services and Applications and select Configure a Service
-    or Application.
+1.  Right click Services and Applications and select Configure a Service or Application.
 2.  Skip the intro, and select Message Queuing.
-3.  Finish the wizard, configuring the MSMQ Network Name, IP address,
-    and storage.
+3.  Finish the wizard, configuring the MSMQ Network Name, IP address, and storage.
 
 This should give you a clustered MSMQ instance. Click the instance under Services and Applications to see the summary, which contains the Server Name, Storage, and MSMQ instance. Right click the MSMQ instance, select Properties, and the Dependencies tab. Make sure that it contains dependencies for the MSMQ Network Name AND IP Address AND Storage.
 
@@ -102,14 +82,9 @@ The "cluster name" is a Network Name created for the cluster as part of the core
 
 In this picture:
 
--   The Cluster Name is W2K8-FC (you can see that in the upper left
-    corner of the picture)
+-   The Cluster Name is W2K8-FC (you can see that in the upper left corner of the picture)
 -   The MSMQ cluster group's name is MSMQ-1
--   The MSMQ network name is named MSMQ-1 (this is the first resource in
-    the group - under "Name: MSMQ-1"). We don't actually see the MSMQ
-    Network Name (DNS Name) in this picture - to see it you would have
-    to right click "Name: MSMQ-1" and select "Properties". You will see
-    something like (Note - this was taken from another resource):
+-   The MSMQ network name is named MSMQ-1 (this is the first resource in the group - under "Name: MSMQ-1"). We don't actually see the MSMQ Network Name (DNS Name) in this picture - to see it you would have to right click "Name: MSMQ-1" and select "Properties". You will see something like (Note - this was taken from another resource):
 
 ![](ClusterProperties.png "Cluster Properties")
 
@@ -152,27 +127,12 @@ Do not try starting the services. If you do, they will run in the scope of the l
 
 Now, add each distributor to the cluster:
 
-1.  Right-click your MSMQ cluster group, and select Add a Resource - \#4
-    Generic Service.
-2.  Select your distributor service from the list. The services are
-    listed in random order but typing "Distributor" will get you to the
-    right spot if you named your services as directed above.
-3.  Finish the wizard. The service should be added to the cluster group,
-    but not activated. Don't activate it yet!
+1.  Right-click your MSMQ cluster group, and select Add a Resource - \#4 Generic Service.
+2.  Select your distributor service from the list. The services are listed in random order but typing "Distributor" will get you to the right spot if you named your services as directed above.
+3.  Finish the wizard. The service should be added to the cluster group, but not activated. Don't activate it yet!
 4.  Right click the distributor resource and select Properties.
-5.  Now this is where it gets weird. You will eventually check "Use
-    Network Name for computer name" and add a dependency, but do not do
-    both at the same time! If you do it will complain that it can't
-    figure out what the network name is supposed to be because it can't
-    find it in the dependency chain, which you told it, but it hasn't
-    been saved yet. To get around it, switch to the Dependencies tab and
-    add a dependency for the MSMQ instance. From there, it finds
-    everything else by looking up the tree. Click Apply to save the
-    dependency.
-6.  Switch back to the General tab and check the "Use Network Name for
-    computer name" checkbox. This tells the application that
-    Environment.MachineName should return the cluster name, not the
-    cluster node's computer name. Click Apply.
+5.  Now this is where it gets weird. You will eventually check "Use Network Name for computer name" and add a dependency, but do not do both at the same time! If you do it will complain that it can't figure out what the network name is supposed to be because it can't find it in the dependency chain, which you told it, but it hasn't been saved yet. To get around it, switch to the Dependencies tab and add a dependency for the MSMQ instance. From there, it finds everything else by looking up the tree. Click Apply to save the dependency.
+6.  Switch back to the General tab and check the "Use Network Name for computer name" checkbox. This tells the application that Environment.MachineName should return the cluster name, not the cluster node's computer name. Click Apply.
 7.  Repeat for your other distributors.
 
 With your distributors installed, you can repeat the same procedure for any Commander applications, if you have them. You may want to skip the Commander application for now, however. It's sometimes easier to get everything else installed first as a stable system that reacts to events but has no stimulus, and then add the Commander application which will get the whole system in motion.
@@ -218,18 +178,10 @@ While in development, your endpoint configurations probably don't have any @ sym
 
 This article shows how to set up a Windows Failover Cluster and two worker node servers to run a scalable, maintainable, and reliable NServiceBus application infrastructure.
 
--   Scaling up can be achieved by adjusting the number of threads on
-    each worker process.
--   Scaling out can be achieved by starting up another server to run
-    another worker process connected to the clustered distributor.
--   For maintenance, the worker processes on either worker server can be
-    stopped for server maintenance or application updates, while worker
-    processes on the other server continue to process messages. All
-    clustered resources can be failed over to one node without
-    disrupting the system, allowing message processing to continue while
-    the other clustered node is available for updates.
--   Reliability is achieved by never requiring that any one component be
-    completely shut down.
+-   Scaling up can be achieved by adjusting the number of threads on each worker process.
+-   Scaling out can be achieved by starting up another server to run another worker process connected to the clustered distributor.
+-   For maintenance, the worker processes on either worker server can be stopped for server maintenance or application updates, while worker processes on the other server continue to process messages. All clustered resources can be failed over to one node without disrupting the system, allowing message processing to continue while the other clustered node is available for updates.
+-   Reliability is achieved by never requiring that any one component be completely shut down.
 
 (This article has some minor updates to the originally written and published article by [David Boike](http://www.make-awesome.com/2010/10/deploying-nservicebus-in-a-windows-failover-cluster/).)
 

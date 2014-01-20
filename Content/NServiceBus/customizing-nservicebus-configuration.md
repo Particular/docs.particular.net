@@ -31,8 +31,9 @@ class InitRijndaelEncryptionServiceConfig : IProvideConfiguration<RijndaelEncryp
 If you don't want your process to have its configuration specified in the config file, you can write a class that implements IConfigurationSource and in it retrieve the configuration from any location you like: a database, a web service, anything. Here's how:
 
 
+### Initialize the bus to use the custom configuration source
+
 ```C#
-// Initialize the bus to use the custom configuration source
 public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization
 {
     public void Init()
@@ -43,8 +44,10 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomIni
             .RijndaelEncryptionService();
     }
 }
+```
 
-// Define your custom configuration source to provide the configuration values instead of app.config
+### Define your custom configuration source to provide the configuration values instead of app.config
+```
 public class MyCustomConfigurationSource : IConfigurationSource
 {
     public T GetConfiguration<T>() where T : class, new()
@@ -58,7 +61,7 @@ public class MyCustomConfigurationSource : IConfigurationSource
 }
 ```
 
- The initialization code instructs NServiceBus to use a CustomConfigurationSource, passing in an instance of a new object: MyCustomConfigurationSource. Its GetConfiguration method provides data for RijndaelEncryptionServiceConfig directly in code, while allowing all other configuration sections to be retrieved from the config file.
+The initialization code instructs NServiceBus to use a CustomConfigurationSource, passing in an instance of a new object: MyCustomConfigurationSource. Its GetConfiguration method provides data for RijndaelEncryptionServiceConfig directly in code, while allowing all other configuration sections to be retrieved from the config file.
 
 **IMPORTANT** : Add a reference to `System.Configuration` to use the `ConfigurationManager` object.
 

@@ -48,7 +48,7 @@ When using the generic host that comes with NServiceBus, changing the container 
 Plugging in your own container
 ------------------------------
 
-To use a container other than the ones that come with NServiceBus, implement the IContainer interface in the NServiceBus.ObjectBuilder.Common namespace from the NServiceBus.Core dll.
+To use a container other than the ones that come with NServiceBus, implement the `IContainer` interface in the `NServiceBus.ObjectBuilder.Common` namespace from the `NServiceBus.Core.dll`.
 
 
 ```C#

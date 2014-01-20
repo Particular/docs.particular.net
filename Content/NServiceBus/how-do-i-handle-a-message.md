@@ -5,7 +5,7 @@ originalUrl: http://www.particular.net/articles/how-do-i-handle-a-message
 tags: []
 ---
 
-To handle a message, write a class that implements IMessageHandler<t> where T is the message type:
+To handle a message, write a class that implements `IMessageHandler<T>` where T is the message type:
 
 ```C#
 public class H1 : IMessageHandler<MyMessage>
@@ -19,11 +19,8 @@ public class H1 : IMessageHandler<MyMessage>
 
 To handle messages of all types:
 
-1.  Set up the unobtrusive message configuration to designate which
-    classes are messages. This example uses a namespace match.
-2.  Create a handler of type Object. This handler will be executed for
-    all messages that are delivered to the queue for this endpoint.
-
+1.  Set up the unobtrusive message configuration to designate which classes are messages. This example uses a namespace match.
+2.  Create a handler of type Object. This handler will be executed for all messages that are delivered to the queue for this endpoint.
 
 ```C#
 //Since this class is setup to handle type Object, every message arriving in the queue will trigger it.

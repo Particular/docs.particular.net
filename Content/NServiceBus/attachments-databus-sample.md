@@ -17,30 +17,25 @@ To see how to send and receive attachments in NServiceBus, open the
 
 1.  Run the solution. Two console applications start.
 2.  Find the Sender application by looking for the one with "Sender" in its path and pressing Enter in the window to send a message.
-
      You have just sent a message that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
 3.  Click 'e' and Enter.
-
      A message larger than the allowed 4MB is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown at the "Sender" application as shown below:
 
 ![Databus sample Running](DatabusRunning.png "Databus sample Running")
 
-Let's look at the code.
-
-![Databus solution explorer view](DatabusSolutionExplorer.png "Databus solution explorer view")
 
 Code walk-through
 -----------------
 
 This sample contains three projects:
 
--   Receiver.Messages - A class library containing the sample messages.
-    Only one of the message types utilizes the NServiceBus DataBus.
--   Sender - A class library, hosted by NServiceBus host. It is
-    responsible for sending the large messages.
--   Receiver - A class library, hosted by NServiceBus host. It is
-    responsible for receiving the large messages being sent from the
-    server.
+-   Receiver.Messages - A class library containing the sample messages. Only one of the message types utilizes the NServiceBus DataBus.
+-   Sender - A class library, hosted by NServiceBus host. It is responsible for sending the large messages.
+-   Receiver - A class library, hosted by NServiceBus host. It is responsible for receiving the large messages being sent from the server.
+
+Let's look at the code.
+
+![Databus solution explorer view](DatabusSolutionExplorer.png "Databus solution explorer view")
 
 ### Receiver.Messages project
 

@@ -7,8 +7,7 @@ tags:
 - Log4Net
 ---
 
-This
-[sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/GenericHost) demonstrates the various kinds of logging you can use with the NServiceBus Host process. Each project shows a different approach and there are no relationships between them.
+This [sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/GenericHost) demonstrates the various kinds of logging you can use with the NServiceBus Host process. Each project shows a different approach and there are no relationships between them.
 
 Even though NServiceBus uses Log4Net as its logging infrastructure, the default configuration model is different from Log4Net. This default logging configuration model is shown in the LoggingWithConfigurableThreshold project.
 
@@ -85,8 +84,7 @@ The reason that this technique isn't used by default is that NServiceBus tries t
 Logging
 -------
 
-While you may want to change the logging of a process without having to recompile it, the most common scenario is switching between a few well-defined configurations, known as
-[profiles](http://support.nservicebus.com/customer/portal/articles/859283-profiles-for-nservicebus-host) in NServiceBus.
+While you may want to change the logging of a process without having to recompile it, the most common scenario is switching between a few well-defined configurations, known as [profiles](profiles-for-nservicebus-host) in NServiceBus.
 
 When you open up EndpointConfig.cs in the Logging project, this is what you see:
 

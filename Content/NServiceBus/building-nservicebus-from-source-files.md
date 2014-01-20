@@ -21,9 +21,9 @@ Downloading a zip
 -----------------
 
 GitHub supports downloading a zip file of the source. The convention is
-<span style="font-size: 14px; line-height: 24px;">https://github.com/NServiceBus/NServiceBus/archive/{branchOrTagName}.zip. So for example</span>
+https://github.com/NServiceBus/NServiceBus/archive/{branchOrTagName}.zip. So for example
 
--   <span style="font-size: 14px; line-height: 24px;">The current develop branch
+-   The current develop branch
     </span>[https://github.com/NServiceBus/NServiceBus/archive/develop.zip](https://github.com/NServiceBus/NServiceBus/archive/develop.zip)
 -   The current master branch is
     [https://github.com/NServiceBus/NServiceBus/archive/master.zip](https://github.com/NServiceBus/NServiceBus/archive/master.zip)

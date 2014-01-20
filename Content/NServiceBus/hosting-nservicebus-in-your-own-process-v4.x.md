@@ -16,12 +16,9 @@ Assembly references
 
 To host NServiceBus in your own process, the assemblies shown on the left need to be referenced:
 
--   Log4Net is the industry-standard logging library used by
-    NServiceBus.
--   NServiceBus.dll contains the main interfaces developers should be
-    programming against.
--   NServiceBus.Core.dll contains all the runtime elements needed for
-    execution.
+-   Log4Net is the industry-standard logging library used by NServiceBus.
+-   NServiceBus.dll contains the main interfaces developers should be programming against.
+-   NServiceBus.Core.dll contains all the runtime elements needed for execution.
 
 The [Video store sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/VideoStore.Msmq) for v4.x.
 
@@ -100,39 +97,16 @@ Configuration Code
 Most of the methods are extensions for the
 [NServiceBus.Configure](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config) class provided by the specific components packaged in the NServiceBus.Core assembly. You can similarly configure your own components by writing your own extension methods.
 
--   Log4Net() tells NServiceBus what to [log](logging-in-nservicebus.md)
-    with.
--   DefaultBuilder() tells NServiceBus to use the default(Autofac)
-    dependency injection framework. Other [dependency injection
-    frameworks](containers.md) are available as well.
--   UnicastBus() tells NServiceBus to use unicast messaging. This is
-    currently the only option available out of the box.
-    LoadMessageHandlers() readies the bus for invoking message handlers
-    when a message arrives.
--   CreateBus() takes all the previous options and wires up a bus object
-    for you to use. You can store the reference returned from this call
-    for sending messages.
--   Start() tells the bus object created by CreateBus() to start its
-    threads for listening and processing messages.
+-   Log4Net() tells NServiceBus what to [log](logging-in-nservicebus.md) with.
+-   DefaultBuilder() tells NServiceBus to use the default(Autofac) dependency injection framework. Other [dependency injection frameworks](containers.md) are available as well.
+-   UnicastBus() tells NServiceBus to use unicast messaging. This is currently the only option available out of the box. LoadMessageHandlers() readies the bus for invoking message handlers when a message arrives.
+-   CreateBus() takes all the previous options and wires up a bus object for you to use. You can store the reference returned from this call for sending messages.
+-   Start() tells the bus object created by CreateBus() to start its threads for listening and processing messages.
 
 For NServiceBus v4.x:
 
--   <span class="n" style="color: rgb(51, 51, 51); font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; line-height: 16px; white-space: pre;">Configure</span>
-    <span class="p" style="color: rgb(0, 0, 0); font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; line-height: 16px; white-space: pre;">.</span>
-    <span class="n" style="color: rgb(51, 51, 51); font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; line-height: 16px; white-space: pre;">Serialization</span>
-    tells NServiceBus to serialize messages as XML. Additional option is
-    to specify BinarySerializer(), which does binary serialization of
-    messages.
--   <span style="color: rgb(51, 51, 51); font-family: Consolas, 'Liberation Mono', Courier, monospace; font-size: 12px; line-height: 16px; white-space: pre;">UseTransport<msmq></span>
-    () tells NServiceBus to use MSMQ as its transactional messaging
-    transport. NServiceBus also supports Azure queues, FTP, SqlServer
-    (see sample
-    [here](https://github.com/Particular/NServiceBus.SqlServer.Samples)
-    ), ActiveMQ (see sample
-    [here](https://github.com/Particular/NServiceBus.ActiveMQ.Samples)
-    ), RabbitMQ (see sample
-    [here](https://github.com/Particular/NServiceBus.RabbitMQ.Samples) )
-    as transport mechanisms.
+-   `Configure.Serialization` tells NServiceBus to serialize messages as XML. Additional option is to specify BinarySerializer(), which does binary serialization of messages.
+-   `UseTransport<msmq>()` tells NServiceBus to use MSMQ as its transactional messaging transport. NServiceBus also supports Azure queues, FTP, SqlServer (see sample [here](https://github.com/Particular/NServiceBus.SqlServer.Samples)), ActiveMQ (see sample [here](https://github.com/Particular/NServiceBus.ActiveMQ.Samples)), RabbitMQ (see sample [here](https://github.com/Particular/NServiceBus.RabbitMQ.Samples) ) as transport mechanisms.
 
 In addition to the above initialization code, NServiceBus requires certain configuration data to be available. By default, it retrieves this information from the application config file, though this can be changed with the CustomConfigurationSource() method.
 
@@ -163,12 +137,7 @@ type="NServiceBus.Config.MessageForwardingInCaseOfFaultConfig, NServiceBus.Core"
 Routing configuration
 ---------------------
 
-While you can tell NServiceBus to which address to send a message using the API: Bus.Send(toDestination, message); NServiceBus enables you to keep your code decoupled from where endpoints are deployed on the network through the use of routing configuration. I
-<span style="font-size: 14px; line-height: 24px;">nclude this configuration section:</span>
-
-
-
-
+While you can tell NServiceBus to which address to send a message using the API: `Bus.Send(toDestination, message);` NServiceBus enables you to keep your code decoupled from where endpoints are deployed on the network through the use of routing configuration. Include this configuration section:
 
 ```XML
 <section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
@@ -182,7 +151,7 @@ While you can tell NServiceBus to which address to send a message using the API:
 </UnicastBusConfig>  
 ```
 
- This tells NServiceBus that all messages in the MessageDLL assembly should be routed to the queue called DestinationQueue on the machine TargetMachine. You can send messages from that assembly, like this: Bus.Send(messageFromMessageDLL);
+ This tells NServiceBus that all messages in the MessageDLL assembly should be routed to the queue called DestinationQueue on the machine TargetMachine. You can send messages from that assembly, like this: `Bus.Send(messageFromMessageDLL);`
 
 
 

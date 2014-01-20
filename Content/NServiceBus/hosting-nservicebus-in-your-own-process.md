@@ -7,7 +7,7 @@ tags: []
 
 Lighter-weight than BizTalk and more powerful than WCF, NServiceBus comes with its own host process and allows you to host it in your own process.
 
-Requiring as few as three assemblies to be referencaed, the Fluent configuration API can get you up and running with transactional one-way messaging in a snap.
+Requiring as few as three assemblies to be referenced, the Fluent configuration API can get you up and running with transactional one-way messaging in a snap.
 
 Assembly references
 -------------------
@@ -113,8 +113,7 @@ Most of the methods are extensions for the
 For NServiceBus v3.x:
 
 -   XmlSerializer() tells NServiceBus to serialize messages as XML. Additional option is to specify BinarySerializer(), which does binary serialization of messages.
--   MsmqTransport() tells NServiceBus to use MSMQ as its transactional messaging transport. NServiceBus also supports Azure queues (see
-    sample [here](http://github.com/NServiceBus/NServiceBus/tree/master/Samples/Azure)) and FTP (see sample [here](http://github.com/NServiceBus/NServiceBus/tree/master/Samples/FtpSample)) as transport mechanisms.
+-   MsmqTransport() tells NServiceBus to use MSMQ as its transactional messaging transport. NServiceBus also supports Azure queues (see sample [here](http://github.com/NServiceBus/NServiceBus/tree/master/Samples/Azure)) and FTP (see sample [here](http://github.com/NServiceBus/NServiceBus/tree/master/Samples/FtpSample)) as transport mechanisms.
 
 In addition to the above initialization code, NServiceBus requires certain configuration data to be available. By default, it retrieves this information from the application config file, though this can be changed with the CustomConfigurationSource() method.
 

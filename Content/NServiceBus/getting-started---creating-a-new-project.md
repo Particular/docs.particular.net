@@ -18,18 +18,18 @@ To get started with NServiceBus, create a new project:
 1.  Choose "NServiceBus System" for the type of project.
 2.  Enter "Amazon" (or any other name) for the name of your solution.
 
-![create new project](http://particular.blob.core.windows.net/media/Default/images/FileNewProject.jpg)
+![create new project](FileNewProject.jpg)
 ------------------------------------------------------------------------------------------------------
 
 As the project creation develops, you'll see that a number of projects are created in your solution, as shown on the right. You can ignore the .nuget folder and the .slnbldr file under Solution Items as they are part of the infrastructure. More important are the Contract and InternalMessages projects as they are the places where all message types are put; defined events to the Contract project and commands to the InternalMessages project.
 
 Later you will see how messages from different services are partitioned within these projects.
 
-![projects in solution](http://particular.blob.core.windows.net/media/Default/images/GettingStarted1.jpg)
+![projects in solution](GettingStarted1.jpg)
 
 Look at the design environment in Solution Builder. If you do not see a docked window in Visual Studio called Solution Builder, open it via the View menu (alt+V).
 
-![solution builder](http://particular.blob.core.windows.net/media/Default/images/GettingStarted2.jpg)
+![solution builder](GettingStarted2.jpg)
 
 You should see three folders in Solution Builder called Infrastructure, Endpoints, and Services.
 
@@ -45,7 +45,7 @@ Right click Endpoints, select Host, and then NServiceBus ASP NET MVC Endpoint, a
 
 **IMPORTANT:** If you haven't installed ASP MVC on your machine, choose a Web Endpoint instead.
 
-![Create an MVC front end](http://particular.blob.core.windows.net/media/Default/images/GettingStarted3.jpg)
+![Create an MVC front end](GettingStarted3.jpg)
 
 Call it ECommerce (or any another name) and the Visual Studio project will be created for you.
 
@@ -60,17 +60,17 @@ Creating services
 
 Right click the Services folder in the Solution Builder and select Add as shown:
 
-![creating services](http://particular.blob.core.windows.net/media/Default/images/GettingStarted4.jpg)
+![creating services](GettingStarted4.jpg)
 
 Name the service "Sales" and you should see the image to the right.
 
-![service structure](http://particular.blob.core.windows.net/media/Default/images/GettingStarted5.jpg)
+![service structure](GettingStarted5.jpg)
 
 There is currently much to see, but no code has been generated at this point. It is only when you have components allocated to endpoints that code is generated.
 
 Now, right click Commands, select Add, and name it SubmitOrder. Several things happen:
 
-![after adding a command](http://particular.blob.core.windows.net/media/Default/images/GettingStarted6.jpg)
+![after adding a command](GettingStarted6.jpg)
 
  * A command is created under the Commands folder, as expected.
  * Two components are created in Sales: a Processor component and a Sender component named after the command you created.
@@ -102,14 +102,10 @@ Right click the SubmitOrderSender component, choose "Deploy to...", and select t
 
 If you try to build your solution at this point, you will get an error telling you that Sales.SubmitOrderProcessor should be allocated to an endpoint. This is because the code for the SubmitOrderProcessor component is not yet generated as you haven't indicated in which project it should be put. So, allocate the component to its endpoint:
 
-1.  Starting at the endpoint, right-click the Components folder of the
-    OrderProcessing endpoint, choose "Add component...".
-2.  Tick the box beside the Sales.SubmitOrderProcessor component, and
-    click OK.
+1.  Starting at the endpoint, right-click the Components folder of the OrderProcessing endpoint, choose "Add component...".
+2.  Tick the box beside the Sales.SubmitOrderProcessor component, and click OK.
 3.  Build the solution and see what happens.
-4.  Double click the components (under the services folder, not the
-    endpoints folder), to open their code. There is not much to see in
-    the SubmitOrderSender but you'll notice that it is a partial class:
+4.  Double click the components (under the services folder, not the endpoints folder), to open their code. There is not much to see in the SubmitOrderSender but you'll notice that it is a partial class:
 
 
 ```C#
