@@ -47,7 +47,7 @@ For example, the act of publishing prices from the headquarters has logical sign
 Cross-site data transfer
 ------------------------
 
-Depending on your network technology, you can set up a virtual private network (VPN) between your sites. This provides Windows networking visibility of queues in the target site from the sending site. You can use standard NServiceBus APIs to direct messages to their relevant targets, in the form of Bus.Send(toDestination, msg);.
+Depending on your network technology, you can set up a virtual private network (VPN) between your sites. This provides Windows networking visibility of queues in the target site from the sending site. You can use standard NServiceBus APIs to direct messages to their relevant targets, in the form of `Bus.Send(toDestination, msg);`.
 
 This model is recommended as it provides all the benefits of durable messaging between unreliably connecting machines; at several sites, the same as within a single site. You can read a great deal of information on [setting up and managing a Windows VPN](http://technet.microsoft.com/en-us/network/bb545442.aspx) .
 
@@ -60,16 +60,16 @@ The sending process in site A sends a message to the gateway's input queue. The 
 Configuration and code
 ----------------------
 
-When you configure the client endpoint, make sure that the UnicastBusConfig's MessageEndpointMappings element has an entry indicating that the relevant message types go to the gateway's input queue.
+When you configure the client endpoint, make sure that the UnicastBusConfig's `MessageEndpointMappings` element has an entry indicating that the relevant message types go to the gateway's input queue.
 
-To send a message to a remote site, use the SendToSites API call, as shown:
+To send a message to a remote site, use the `SendToSites` API call, as shown:
 
 
 ```C#
 Bus.SendToSites(new[] {"SiteA","SiteB"}, new MyCrossSiteMessage());
 ```
 
- Did you notice the list of strings as the first parameter? This is the list of remote sites where you want the message(s) sent. While you can put the URLs of the site directly in the call, we recommend that you put these settings in app.config so your admins can change them should the need arise. To do this, add this config section:
+ Did you notice the list of strings as the first parameter? This is the list of remote sites where you want the message(s) sent. While you can put the URLs of the site directly in the call, we recommend that you put these settings in `app.config` so your admins can change them should the need arise. To do this, add this config section:
 
 
 ```XML
@@ -89,10 +89,10 @@ Bus.SendToSites(new[] {"SiteA","SiteB"}, new MyCrossSiteMessage());
 </configuration>
 ```
 
- NServiceBus automatically sets the required headers that enable you to send messages back over the gateway using the familiar Bus.Reply.
-**NOTE** : All cross-site interactions are perfomed internally to a service, so publish and subscribe are not supported across gateways.
+NServiceBus automatically sets the required headers that enable you to send messages back over the gateway using the familiar `Bus.Reply`.
+**NOTE** : All cross-site interactions are performed internally to a service, so publish and subscribe are not supported across gateways.
 
-Since the gateway is located in the NServiceBus core you can enable it by flipping a switch. If you run the NServiceBus host, nable it by specifying the MultiSite profile [more on profiles](more-on-profiles.md) ). If you self host NServiceBus, you can turn on the gateway by adding a call to Configure.RunGateway() in your configuration.
+Since the gateway is located in the NServiceBus core you can enable it by flipping a switch. If you run the NServiceBus host, enable it by specifying the `MultiSite` profile [more on profiles](more-on-profiles.md) ). If you self host NServiceBus, you can turn on the gateway by adding a call to `Configure.RunGateway()` in your configuration.
 
 Securing the gateway with SSL
 -----------------------------
@@ -104,12 +104,12 @@ Follow the steps for [configuring SSL](http://msdn.microsoft.com/en-us/library/m
 Automatic de-duplication
 ------------------------
 
-Going across alternate channels like HTTP means that you lose the MSMQ safety guarantee of exactly one message. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid burdening you with de-duplication, the NServiceBus gateway supports this out of the box. You just need to store the message IDs of all received messages so it can detect potential duplicates. By default, NServiceBus uses RavenDB to store the IDs but InMemory and SqlServer storages are supported as well. To use storage other than RavenDB, add Configure.RunGatewayWithInMemoryPersistence() or Configure.RunGateway(typeof(SqlPersistence)) to your configuration.
+Going across alternate channels like HTTP means that you lose the MSMQ safety guarantee of exactly one message. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid burdening you with de-duplication, the NServiceBus gateway supports this out of the box. You just need to store the message IDs of all received messages so it can detect potential duplicates. By default, NServiceBus uses RavenDB to store the IDs but InMemory and SqlServer storages are supported as well. To use storage other than RavenDB, add `Configure.RunGatewayWithInMemoryPersistence()` or `Configure.RunGateway(typeof(SqlPersistence))` to your configuration.
 
 Incoming channels
 -----------------
 
-When you enable the gateway, it automatically sets up an HTTP channel to listen to http://localhost/{name of your endpoint}. To change this URL or add more than one incoming channel, configure app.config, as shown:
+When you enable the gateway, it automatically sets up an HTTP channel to listen to `http://localhost/{name of your endpoint}`. To change this URL or add more than one incoming channel, configure `app.config`, as shown:
 
 
 ```XML
@@ -121,7 +121,7 @@ When you enable the gateway, it automatically sets up an HTTP channel to listen 
 </GatewayConfig>
 ```
 
- The "Default" on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels. Currently, HTTP/HTTPS is the only supported channel but there are plans for Azure, FTP, and Amazon SQS to help you bridge both onsite and cloud sites.
+The "Default" on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels. Currently, HTTP/HTTPS is the only supported channel but there are plans for Azure, FTP, and Amazon SQS to help you bridge both onsite and cloud sites.
 
 Follow the steps for [configuring SSL](http://msdn.microsoft.com/en-us/library/ms733768.aspx) and make sure to configure the gateway to listen on the appropriate port, as well as to contact the remote gateway on the same port.
 
@@ -129,4 +129,3 @@ The gateway in action
 ---------------------
 
 If you want to take the gateway for a spin, look at the Gateway sample in the Samples\\Gateway folder under the NServiceBus package.
-

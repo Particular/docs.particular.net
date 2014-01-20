@@ -25,7 +25,6 @@ App.config
 
 To configure SLR, enable its configuration section:
 
-
 ```XML
 <configSections>
   <section name="SecondLevelRetriesConfig" type="NServiceBus.Config.SecondLevelRetriesConfig, NServiceBus.Core"/>
@@ -34,20 +33,15 @@ To configure SLR, enable its configuration section:
 <SecondLevelRetriesConfig Enabled="true" TimeIncrease ="00:00:10" NumberOfRetries="3" />
 ```
 
-
-  ----------------- --------------------------------------------------------------------------------
-  Enabled           Turns the feature on and off. Default: true.
-  TimeIncrease      A time span after which the time between retries increases. Default: 00:00:10.
-  NumberOfRetries   Number of times SLR kicks in. Default: 3.
-  ----------------- --------------------------------------------------------------------------------
+ *  Enabled:Turns the feature on and off. Default: true.
+ *  TimeIncrease: A time span after which the time between retries increases. Default: 00:00:10.
+ *  NumberOfRetries: Number of times SLR kicks in. Default: 3.
 
 Fluent configuration API
 ------------------------
 
-
 To disable the SLR feature, add this to your configuration (in Version
 4.0):
-
 
 ```C#
 namespace MyServerNoSLR
@@ -66,11 +60,7 @@ namespace MyServerNoSLR
 }
 ```
 
-
-
-
 In Version 3.0:
-
 
 ```C#
 namespace MyServerNoSLR
@@ -89,20 +79,18 @@ namespace MyServerNoSLR
 }
 ```
 
-
-
 Code
 ----
 
 To change the time between retries or the number of retries you have a couple of different options in code.
 
-In version 3.0, the class SecondLevelRetries exposed a static function called RetryPolicy and gives you the TransportMessage as an argument. .
+In version 3.0, the class `SecondLevelRetries` exposed a static function called `RetryPolicy` and gives you the `TransportMessage` as an argument. .
 
-SecondLevelRetries expects a TimeSpan from the policy, and if greater than TimeSpan.Zero, it defers the message using that time span.
+`SecondLevelRetries` expects a `TimeSpan` from the policy, and if greater than `TimeSpan.Zero`, it defers the message using that time span.
 
-The default policy is implemented in the class DefaultRetryPolicy, exposing NumberOfRetries and TimeIncrease as statics so you can easily modify the values.
+The default policy is implemented in the class `DefaultRetryPolicy`, exposing `NumberOfRetries` and `TimeIncrease` as statics so you can easily modify the values.
 
-In version 4.0, the type SecondLevelRetries (used in the NServiceBus.Management.Retries namespace to configure the retry and the timeout policy) has been moved to the NServiceBus.Features namespace. While version 3.3.x had a separate policy for managing second level retries and timeouts, this has been merged into the new RetryPolicy in NServiceBus 4.0 and it is capable of achieving both functions.
+In version 4.0, the type `SecondLevelRetries` (used in the `NServiceBus.Management.Retries` namespace to configure the retry and the timeout policy) has been moved to the `NServiceBus.Features` namespace. While version 3.3.x had a separate policy for managing second level retries and timeouts, this has been merged into the new `RetryPolicy` in NServiceBus 4.0 and it is capable of achieving both functions.
 
 Working sample
 --------------

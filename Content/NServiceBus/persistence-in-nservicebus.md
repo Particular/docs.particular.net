@@ -42,62 +42,55 @@ If self hosting, you can configure the persistence technology for each feature. 
 
 
 ```C#
-        static void Main()
-        {
-            Configure.With()
-            .Log4Net()
-            .DefaultBuilder()
-            .XmlSerializer()
-            .MsmqTransport()
-            .IsTransactional(true)
-            .PurgeOnStartup(false)
-            .InMemorySubscriptionStorage()
-            .UnicastBus()
-            .ImpersonateSender(false)
-            .LoadMessageHandlers()
-            .UseRavenTimeoutPersister()
-            .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
-        }
+static void Main()
+{
+    Configure.With()
+    .Log4Net()
+    .DefaultBuilder()
+    .XmlSerializer()
+    .MsmqTransport()
+    .IsTransactional(true)
+    .PurgeOnStartup(false)
+    .InMemorySubscriptionStorage()
+    .UnicastBus()
+    .ImpersonateSender(false)
+    .LoadMessageHandlers()
+    .UseRavenTimeoutPersister()
+    .CreateBus()
+    .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+}
 
 ```
 
-
-
-
-
 and for NServiceBus v4.x
 
-
-
 ```C#
-        static void Main()
-        {
-            Configure.Serialization.Xml();
+static void Main()
+{
+    Configure.Serialization.Xml();
 
-            Configure.Transactions.Enable();
+    Configure.Transactions.Enable();
 
-            Configure.With()
-            .Log4Net()
-            .DefaultBuilder()
-            .UseTransport<Msmq>()
-            .PurgeOnStartup(false)
-            .InMemorySubscriptionStorage()
-            .UnicastBus()
-            .RunHandlersUnderIncomingPrincipal(false)
-            .LoadMessageHandlers()
-            .UseRavenTimeoutPersister()
-            .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
-        }
+    Configure.With()
+    .Log4Net()
+    .DefaultBuilder()
+    .UseTransport<Msmq>()
+    .PurgeOnStartup(false)
+    .InMemorySubscriptionStorage()
+    .UnicastBus()
+    .RunHandlersUnderIncomingPrincipal(false)
+    .LoadMessageHandlers()
+    .UseRavenTimeoutPersister()
+    .CreateBus()
+    .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+}
 
 ```
 
 
 
 When you use NServiceBus.Host.exe out of the box, you can utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, you can override the configured defaults. Read more about
-[profiles](profiles-for-nservicebus-host.md) , [here too](more-on-profiles.md)
-.
+[profiles](profiles-for-nservicebus-host.md) , [here too](more-on-profiles.md).
 
 The following table summarizes the different persistence technologies being used by the built-in profiles. **NOTE** : Before configuring persistence technology, to avoid overriding your configurations, the profiles check if other types of storage are used.
 
@@ -115,9 +108,9 @@ The following table summarizes the different persistence technologies being used
 Default persisting technology
 -----------------------------
 
-The AsAServer role activates the timeout manager. This role does not explicitly determine which persisting technology to use. Hence, the default persisting technology for timeout manager (RavenDB) is used.
+The `AsAServer` role activates the timeout manager. This role does not explicitly determine which persisting technology to use. Hence, the default persisting technology for timeout manager (RavenDB) is used.
 
-Similarly to the AsAServer role, the various profiles activate the different NServiceBus features, without explicitly configuring the persisting technology.
+Similarly to the `AsAServer` role, the various profiles activate the different NServiceBus features, without explicitly configuring the persisting technology.
 
 Read more about the [different profiles](more-on-profiles.md) .
 

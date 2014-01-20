@@ -21,7 +21,7 @@ Long-running means stateful
 
 Any process that involves multiple network calls (or messages sent and received) has an interim state. That state may be kept in memory, persisted to disk, or stored in a distributed cache; it may be as simple as 'Response 1 received, pending response 2', but the state exists.
 
-Using NServiceBus, you can explicitly define the data used for this state by implementing the interface IContainSagaData. All public get/set properties are persisted by default:
+Using NServiceBus, you can explicitly define the data used for this state by implementing the interface `IContainSagaData`. All public get/set properties are persisted by default:
 
 
 ```C#
@@ -35,15 +35,15 @@ public class MySagaData : IContainSagaData
 }
 ```
 
- By default, NServiceBus stores your sagas in RavenDB. The schema-less nature of document databases makes them a perfect fit for saga storage where each saga instance is persisted as a single document. There is also support for relational databases using
+By default, NServiceBus stores your sagas in RavenDB. The schema-less nature of document databases makes them a perfect fit for saga storage where each saga instance is persisted as a single document. There is also support for relational databases using
 [NHibernate](http://nhforge.org/) . NHibernate support is located in the NServiceBus.NHibernate assembly. You can, as always, swap out these technologies, by implementing the IPersistSagas interface.
 
 Adding behavior
 ---------------
 
-The important part of a long-running process is its behavior. With NServiceBus, you specify behavior by writing a class that implements ISaga<t> where T is the saga data. There is also a base class for sagas that contains many features required for implementing long-running processes. All the examples below make use of this base class.
+The important part of a long-running process is its behavior. With NServiceBus, you specify behavior by writing a class that implements `ISaga<T>` where `T` is the saga data. There is also a base class for sagas that contains many features required for implementing long-running processes. All the examples below make use of this base class.
 
-Just like regular message handlers, the behavior of a saga is implemented via the IHandleMessages<m> interface for the message types to be handled. Here is a saga that processes messages of type Message1 and Message2:
+Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled. Here is a saga that processes messages of type `Message1` and `Message2`:
 
 
 ```C#
@@ -66,7 +66,7 @@ public class MySaga : Saga<MySagaData>,
  Starting and correlating sagas
 ------------------------------
 
-Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sometimes it's simply the arrival of a given message type. In our previous example, let's say that a new saga should be started every time a message of type Message1 arrives, like this:
+Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sometimes it's simply the arrival of a given message type. In our previous example, let's say that a new saga should be started every time a message of type `Message1` arrives, like this:
 
 
 ```C#
@@ -87,9 +87,9 @@ public class MySaga2 : Saga<MySagaData>,
 ```
 
 
-**NOTE** : IHandleMessages<message1> is replaced with IAmStartedByMessages<message1>. This interface tells NServiceBus that the saga not only handles Message1, but that when that type of message arrives, a new instance of this saga should be created to handle it.
+**NOTE** : `IHandleMessages<Message1>` is replaced with `IAmStartedByMessages<Message1>`. This interface tells NServiceBus that the saga not only handles Message1, but that when that type of message arrives, a new instance of this saga should be created to handle it.
 
-How to correlate a Message2 message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. You only need to store this in the saga data, and tell NServiceBus about the connection. Here's how:
+How to correlate a `Message2` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. You only need to store this in the saga data, and tell NServiceBus about the connection. Here's how:
 
 
 ```C#
@@ -115,13 +115,13 @@ public class MySaga3 : Saga<MySagaData>,
 }
 ```
 
- Underneath the covers, when Message2 arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type MySagaData that has a property SomeID whose value is the same as the SomeID property of the message.
+Underneath the covers, when `Message2` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `MySagaData` that has a property `SomeID` whose value is the same as the `SomeID` property of the message.
 
 Uniqueness
 ----------
 
 For NServiceBus to ensure uniqueness across your saga instances, it's highly recommended that you adorn your correlation properties with the
-[Unique] attribute. This tells NServiceBus that there can be only one instance for each property value. This also increases performance for property lockups in most cases. While there are plans for it, NServiceBus doesn't currently support mapping one message to more than one instance of the same saga.
+`[Unique]` attribute. This tells NServiceBus that there can be only one instance for each property value. This also increases performance for property lockups in most cases. While there are plans for it, NServiceBus doesn't currently support mapping one message to more than one instance of the same saga.
 
 Read more about the [Unique property and concurrency](nservicebus-sagas-and-concurrency.md) .
 
@@ -130,7 +130,7 @@ Notifying callers of status
 
 While you always have the option of publishing a message at any time in a saga, sometimes you want to notify the original caller who caused the saga to be started of some interm state that isn't relevant to other subscribers.
 
-If you tried to use Bus.Reply() or Bus.Return() to communicate with the caller, that would only achieve the desired result in the case where the current message came from that client, and not in the case where any other partner sent a message arriving at that saga. For this reason, you can see that the saga data contains the original client's return address. It also contains the message ID of the original request so that the client can correlate status messages on its end.
+If you tried to use `Bus.Reply()` or `Bus.Return()` to communicate with the caller, that would only achieve the desired result in the case where the current message came from that client, and not in the case where any other partner sent a message arriving at that saga. For this reason, you can see that the saga data contains the original client's return address. It also contains the message ID of the original request so that the client can correlate status messages on its end.
 
 To communicate status in our ongoing example:
 
@@ -203,7 +203,7 @@ public class MySaga5 : Saga<MySagaData>,
 }
 ```
 
- The RequestTimeout<t> method on the base class tells NServiceBus to send a message to what is called a Timeout Manager(TM) which durably keeps time for us. In NServiceBus, each endpoint hosts a TM by default, so there is no configuration needed to get this up and running.
+The `RequestTimeout<T>` method on the base class tells NServiceBus to send a message to what is called a Timeout Manager(TM) which durably keeps time for us. In NServiceBus, each endpoint hosts a TM by default, so there is no configuration needed to get this up and running.
 
 When the time is up, the Timeout Manager sends a message back to the saga causing its Timeout method to be called with the same state message originally passed.
 
@@ -212,7 +212,7 @@ When the time is up, the Timeout Manager sends a message back to the saga causin
 Ending a long-running process
 -----------------------------
 
-After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done simply by calling the MarkAsComplete() method. The infrastructure contacts the Timeout Manager
+After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done simply by calling the `MarkAsComplete()` method. The infrastructure contacts the Timeout Manager
 (if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages relating to that saga arrive after it has completed, they are discarded. If you want a copy of these messages to be maintained, that can be handled by the [generic audit functionality in NServiceBus](auditing-with-nservicebus.md) .
 
 Complex saga finding logic
@@ -236,7 +236,7 @@ public class MySagaFinder : IFindSagas<MySagaData>.Using<Message2>
 Sagas in self-hosted endpoints
 ------------------------------
 
-When [hosting NServiceBus in your own endpoint](hosting-nservicebus-in-your-own-process.md) , make sure to include .Sagas().RavenSagaPersister(), as follows:
+When [hosting NServiceBus in your own endpoint](hosting-nservicebus-in-your-own-process.md) , make sure to include `.Sagas().RavenSagaPersister()`, as follows:
 
 
 ```C#

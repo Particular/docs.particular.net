@@ -14,38 +14,19 @@ Two flavors of mutators
 
 NServiceBus enables two types of message mutators:
 
--   Applicative Message Mutators
+### Applicative Message Mutators
 
-    Message mutators change/react to individual messages being sent or
-    received. The
-    [IMessageMutator](https://github.com/NServiceBus/NServiceBus/blob/master/src/messagemutator/NServiceBus.MessageMutator/IMessageMutator.cs)
-    interface lets you implement hooks for the sending and receiving
-    sides. If you only need one, use the finely grained
-    [IMutateOutgoingMessages](https://github.com/NServiceBus/NServiceBus/blob/master/src/messagemutator/NServiceBus.MessageMutator/IMessageMutator.cs)
-    or
-    [IMutateIncomingMessages](https://github.com/NServiceBus/NServiceBus/blob/master/src/messagemutator/NServiceBus.MessageMutator/IMessageMutator.cs).
+Message mutators change/react to individual messages being sent or received. The [IMessageMutator](https://github.com/NServiceBus/NServiceBus/blob/master/src/messagemutator/NServiceBus.MessageMutator/IMessageMutator.cs) interface lets you implement hooks for the sending and receiving sides. If you only need one, use the finely grained [IMutateOutgoingMessages](https://github.com/NServiceBus/NServiceBus/blob/master/src/messagemutator/NServiceBus.MessageMutator/IMessageMutator.cs) or [IMutateIncomingMessages](https://github.com/NServiceBus/NServiceBus/blob/master/src/messagemutator/NServiceBus.MessageMutator/IMessageMutator.cs).
 
-     You can use reactions to individual messages to perform actions
-    such as validation of outgoing/incoming messages. The [Message
-    Mutators Sample](nservicebus-message-mutators-sample.md) puts it into
-    action.
+You can use reactions to individual messages to perform actions such as validation of outgoing/incoming messages. The [Message Mutators Sample](nservicebus-message-mutators-sample.md) puts it into action.
 
-     NServiceBus uses this type of mutator internally to do things like
-    property encryption and serialization/deserialization of properties
-    to and from the DataBus.
+NServiceBus uses this type of mutator internally to do things like property encryption and serialization/deserialization of properties to and from the DataBus.
 
--   Transport Messages Mutators
+### Transport Messages Mutators
 
-    Create transport message mutators by implementing the
-    [IMutateTransportMessages](https://github.com/NServiceBus/NServiceBus/blob/master/src/messagemutator/NServiceBus.MessageMutator/IMutateTransportMessages.cs)
-    interface. This type of mutator works on the entire transport
-    message and is useful for compression, header manipulation, etc. See
-    a[full explanation of the
-    syntax](nservicebus-message-mutators-sample.md).
+Create transport message mutators by implementing the [IMutateTransportMessages](https://github.com/NServiceBus/NServiceBus/blob/master/src/messagemutator/NServiceBus.MessageMutator/IMutateTransportMessages.cs) interface. This type of mutator works on the entire transport message and is useful for compression, header manipulation, etc. See a[full explanation of the syntax](nservicebus-message-mutators-sample.md).
 
-     Remember that message mutators are NOT automatically registered in
-    the container, so to invoke them, register them in the container
-    yourself.
+Remember that message mutators are NOT automatically registered in the container, so to invoke them, register them in the container yourself.
 
 When should I use a message mutator?
 ------------------------------------
@@ -59,5 +40,5 @@ What happens if a mutator throws an exception?
 
 If a server side (incoming) mutator throws an exception, the message aborts, rolls back to the queue, and is retried.
 
-If a client side (outgoing) message mutator throws an exception, the exception bubbles up to the method calling bus.Send or bus.Publish.
+If a client side (outgoing) message mutator throws an exception, the exception bubbles up to the method calling `bus.Send` or `bus.Publish`.
 
