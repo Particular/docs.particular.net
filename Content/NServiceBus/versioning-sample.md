@@ -33,17 +33,23 @@ The version 2 message schema inherits from the version 1 schema as shown below, 
 There are two subscribers as before, but now one subscriber is subscribed to the version 1 message schema, V1Subscriber; and the other subscriber is subscribed to the version 2 message schema, V2Subscriber.
 
 **NOTE**: Both of the subscribers have an EndpointConfig file that inherits IConfigureThisEndpoint, AsAServer. Subscribers have a message handler for the messages from their respective versions. Yet there is a slight difference in their config files; V1Subscriber has the following in its UnicastBusConfig:
-
-
-
-
-
+```
+<UnicastBusConfig>
+  <MessageEndpointMappings>
+    <add Messages="V1.Messages" Endpoint="V2PublisherInputQueue" />
+  </MessageEndpointMappings>
+</UnicastBusConfig>
+```
 
 While V2Subscriber has this in its UnicastBusConfig:
 
-
-
-
+```
+<UnicastBusConfig>
+  <MessageEndpointMappings>
+    <add Messages="V2.Messages" Endpoint="V2PublisherInputQueue" />
+  </MessageEndpointMappings>
+</UnicastBusConfig>
+```
 
 
 The only difference is that each subscriber maps the version of the schema on which it is dependent.

@@ -21,14 +21,14 @@ In the OO world, nouns identify objects. In the event-driven world, the word "wh
 In .NET 4.0, to define an event, use the event keyword in the signature of your event field, and specify the type of delegate for the event and its arguments. For example:
 
 
-1.  Define an event:
+### Define an event:
     
 ```C#
 public event EventHandler<ClientBecamePreferredEventArgs> RaiseClientBecamePreferredEvent;
 ```
 
 
-2.  Define the event arguments:
+### Define the event arguments:
     
 ```C#
 public class ClientBecamePreferredArgs : EventArgs
@@ -38,8 +38,7 @@ public class ClientBecamePreferredArgs : EventArgs
 
 ```
 
-
-3.  Raise the event:
+### Raise the event:
     
 ```C#
 public void DoSomething()
@@ -59,8 +58,6 @@ protected virtual void OnRaiseClientBecamePreferredEvent(ClientBecamePrefferedEv
 }
 ```
 
-
-
 In-memory events
 ----------------
 
@@ -72,22 +69,21 @@ In-memory events are like regular .NET events in that all observing objects that
 For example:
 
 
-
+### Event defined using the IEvent marker interface
 ```C#
-// Event defined using the IEvent marker interface
 public class ClientBecamePreferred : IEvent
-{
-  // message details go here.
-}
-
-// POCO Event
-public class ClientBecamePreferred
 {
   // message details go here.
 }
 ```
 
-
+### POCO Event
+```
+public class ClientBecamePreferred
+{
+  // message details go here.
+}
+```
 
 Read how to tell NServiceBus to [use the POCOs as events](unobtrusive-mode-messages.md).
 
@@ -95,7 +91,7 @@ Read how to tell NServiceBus to [use the POCOs as events](unobtrusive-mode-messa
 ### How to raise an in-memory event?
 
 
-In-memory events are raised using a property of an IBus object call: Bus.InMemory.Raise<t>:
+In-memory events are raised using a property of an `IBus` object call:` Bus.InMemory.Raise<T>`:
 
 
 
@@ -119,9 +115,7 @@ class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
 ### How to subscribe to in-memory events?
 
 
-To subscribe to these events, implement a class that implements IHandleMessages<t>. The handlers are invoked when the event is raised:
-
-
+To subscribe to these events, implement a class that implements `IHandleMessages<T>`. The handlers are invoked when the event is raised:
 
 ```C#
 private class CustomerBecamePreferredHandler: IHandleMessages<ClientBecamePreferred>
@@ -134,7 +128,7 @@ private class CustomerBecamePreferredHandler: IHandleMessages<ClientBecamePrefer
 ```
 
 
-### How is an in-memory event different from Bus.Publish<t>?
+### How is an in-memory event different from `Bus.Publish<T>`?
 
 
 When an event is published via Bus.Publish, a message is delivered asynchronously to all of the subscribers via the queue/transport of your choice, taking into account all the messaging constraints such as the receiving party could be down. Subscribers of this event can be in different machines or different endpoints on the same machine.
@@ -146,15 +140,11 @@ On the other hand, in-memory events are raised in-process and are not distribute
 
 Examples:
 
--   Where reliable and durable integration is needed; for example, when
-    integrating with third-party web services.
--   Sending an email, because the email should be sent only when the
-    transaction succeeds in its entirety. To send emails directly, use
-    Bus.Send in the handler instead of SMTP code.
+-   Where reliable and durable integration is needed; for example, when integrating with third-party web services.
+-   Sending an email, because the email should be sent only when the transaction succeeds in its entirety. To send emails directly, use `Bus.Send` in the handler instead of SMTP code.
 
-NServiceBus eventing style {dir="ltr"}
+NServiceBus eventing style 
 --------------------------
-
 
 NServiceBus uses IoC heavily. When the endpoints start, NServiceBus scans the assemblies in the directory. It finds event, command, and message types, either the marker interfaces or unobtrusive conventions. It also scans the assemblies to identify the types that implement the handlers for event types that implement IHandleMessages<t>, and registers them in the container. Read more about [NServiceBus and its use of containers](containers.md).
 
@@ -165,22 +155,7 @@ When an event is raised, the bus invokes the Handle method on all the registered
 This style of eventing has two significant advantages:
 
 
--   When new business requirements are introduced, the requirements can
-    be implemented in the same service-oriented style of architecture,
-    for extensibility. New handlers can be introduced to implement the
-    requirements along with the existing handlers. And by simply
-    restarting the endpoint, the bus becomes aware of the new handlers.
-    When the event is raised, the new handlers are invoked. This reduces
-    the testing effort by implementing in such a way as to **not** touch
-    existing working code to implement new functionality.
--   An easier way to scale out, when necessary. For example, to start
-    with, the handlers can be deployed to the one endpoint to keep
-    deployment small and the events raised using Bus.InMemory.Raise<t>.
-    When the need to scale arises, each of these handlers can then be
-    distributed to different endpoints across the same or different
-    machines as needed. You can then change the Bus.InMemory.Raise<t> to
-    a Bus.Publish<t> and add the necessary message mapping configuration
-    in app.config for the message handlers in other endpoints to receive
-    these events.
+-   When new business requirements are introduced, the requirements can be implemented in the same service-oriented style of architecture, for extensibility. New handlers can be introduced to implement the requirements along with the existing handlers. And by simply restarting the endpoint, the bus becomes aware of the new handlers. When the event is raised, the new handlers are invoked. This reduces the testing effort by implementing in such a way as to **not** touch existing working code to implement new functionality.
+-   An easier way to scale out, when necessary. For example, to start with, the handlers can be deployed to the one endpoint to keep deployment small and the events raised using `Bus.InMemory.Raise<T>`. When the need to scale arises, each of these handlers can then be distributed to different endpoints across the same or different machines as needed. You can then change the `Bus.InMemory.Raise<T>` to a `Bus.Publish<T>` and add the necessary message mapping configuration in app.config for the message handlers in other endpoints to receive these events.
 
 
