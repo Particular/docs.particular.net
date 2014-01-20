@@ -7,11 +7,6 @@ tags:
 - Messaging Patterns
 - Durability
 - Fault Tolerance
-createdDate: 2013-05-21T12:02:44Z
-modifiedDate: 2014-01-17T17:11:27Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 ![pubsub solution](http://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/pubsubsample/pubsubsolutionview.PNG)

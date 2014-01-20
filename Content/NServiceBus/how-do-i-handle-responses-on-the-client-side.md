@@ -3,11 +3,6 @@ title: How to Handle Responses on the Client Side
 summary: The client (or sending process) has its own queue. When messages arrive in the queue, they are handled by a message handler.
 originalUrl: http://www.particular.net/articles/how-do-i-handle-responses-on-the-client-side
 tags: []
-createdDate: 2013-05-22T08:07:11Z
-modifiedDate: 2014-01-18T09:52:35Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 To handle responses on the client, the client (or the sending process) must have its own queue and cannot be configured as a SendOnly endpoint. When messages arrive in this queue, they are handled just like on the server by a message handler:

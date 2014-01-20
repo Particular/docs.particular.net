@@ -5,11 +5,6 @@ originalUrl: http://www.particular.net/articles/nservicebus-message-mutators-sam
 tags:
 - Mutator
 - Changing message content
-createdDate: 2013-05-22T11:34:18Z
-modifiedDate: 2013-11-25T06:29:28Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 In NServiceBus V2.6 it was tricky to change messages as they were sent to and from endpoints. From NServiceBus V3 you can intercept and change messages by plugging custom logic into a couple of simple interfaces.

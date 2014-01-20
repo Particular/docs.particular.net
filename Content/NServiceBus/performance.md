@@ -3,11 +3,6 @@ title: Performance
 summary: NServiceBus provides the ultimate balance of speed and safety.
 originalUrl: http://www.particular.net/articles/performance
 tags: []
-createdDate: 2013-05-19T09:55:10Z
-modifiedDate: 2013-08-14T06:49:26Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 <span style="font-size: 14px; line-height: 24px;">NServiceBus:</span>

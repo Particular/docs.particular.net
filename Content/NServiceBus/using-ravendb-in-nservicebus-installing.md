@@ -5,11 +5,6 @@ originalUrl: http://www.particular.net/articles/using-ravendb-in-nservicebus-ins
 tags:
 - Persistence
 - RavenDB
-createdDate: 2013-05-20T09:44:34Z
-modifiedDate: 2013-07-26T21:29:22Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 Starting from version 3.0, NServiceBus uses RavenDB for persistence by default. The NServiceBus license permits the use of RavenDB for the storage needs of your endpoint. This only includes NServiceBus-related data such as sagas and subscriptions. If you store application-specific data in RavenDB you need to purchase a separate license.

@@ -3,11 +3,6 @@ title: Containers
 summary: NServiceBus automatically registers components, user-implemented handlers, and sagas.
 originalUrl: http://www.particular.net/articles/containers
 tags: []
-createdDate: 2013-05-20T07:32:36Z
-modifiedDate: 2013-11-20T14:23:25Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 NServiceBus is a container-agnostic framework. While autofac is merged into its core, it is easily replaced by any other container.

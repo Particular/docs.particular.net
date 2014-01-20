@@ -5,11 +5,6 @@ originalUrl: http://www.particular.net/articles/how-do-i-discard-old-messages
 tags:
 - Message Expiration
 - TimeToBeReceived
-createdDate: 2013-05-21T11:35:06Z
-modifiedDate: 2013-11-20T17:58:29Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 

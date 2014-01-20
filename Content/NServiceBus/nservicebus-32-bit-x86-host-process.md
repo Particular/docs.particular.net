@@ -3,11 +3,6 @@ title: NServiceBus 32-bit (x86) Host Process
 summary: 'If 32-bit code must be invoked and loaded, use NServiceBus.Host32.exe instead. '
 originalUrl: http://www.particular.net/articles/nservicebus-32-bit-x86-host-process
 tags: []
-createdDate: 2013-05-20T09:30:15Z
-modifiedDate: 2013-09-05T14:47:26Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 NServiceBus is an "Any CPU" framework. It doesn't have 32-bit or 64-bit specific code. This makes it very easy to transition between 32- and

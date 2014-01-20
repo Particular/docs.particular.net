@@ -6,11 +6,6 @@ tags:
 - Powershell
 - Commandlets
 - installation
-createdDate: 2013-05-22T04:43:53Z
-modifiedDate: 2014-01-08T05:12:04Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 NServiceBus provides a set of PowerShell commandlets to make it easy to manage and run the software. The initial focus is to provide support when preparing machines for use with NServiceBus. Additional features are in the pipeline.

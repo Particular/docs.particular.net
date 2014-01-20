@@ -4,11 +4,6 @@ summary: Schedule a task or an action/lambda, to be executed repeatedly at a giv
 originalUrl: http://www.particular.net/articles/scheduling-with-nservicebus
 tags:
 - Scheduler
-createdDate: 2013-05-21T19:11:11Z
-modifiedDate: 2013-07-28T23:43:01Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 With the NServiceBus scheduling capability you can schedule a task or an action/lambda, to be executed repeatedly in a given interval.

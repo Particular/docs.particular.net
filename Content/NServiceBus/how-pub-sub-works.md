@@ -5,11 +5,6 @@ originalUrl: http://www.particular.net/articles/how-pub-sub-works
 tags:
 - Publish Subscribe
 - Messaging Patterns
-createdDate: 2013-05-20T12:38:10Z
-modifiedDate: 2013-07-25T17:52:01Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on.

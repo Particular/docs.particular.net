@@ -3,11 +3,6 @@ title: How to Define a Message?
 summary: Use interfaces to define messages instead of classes so you get multiple inheritance.
 originalUrl: http://www.particular.net/articles/how-do-i-define-a-message
 tags: []
-createdDate: 2013-05-21T07:07:43Z
-modifiedDate: 2013-11-20T15:11:48Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 There are two ways to define a message:

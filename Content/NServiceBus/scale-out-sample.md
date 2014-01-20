@@ -7,11 +7,6 @@ tags:
 - Scaling
 - Scaleout
 - Scalability
-createdDate: 2013-05-21T12:38:51Z
-modifiedDate: 2013-11-21T03:54:15Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out your existing message processing by adding more workers on different machines.

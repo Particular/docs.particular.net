@@ -5,11 +5,6 @@ originalUrl: http://www.particular.net/articles/how-do-i-centralize-all-unobtrus
 tags:
 - Unobtrusive
 - DRY
-createdDate: 2013-05-22T08:44:46Z
-modifiedDate: 2013-07-26T20:47:51Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 When working with NServiceBus in unobtrusive mode you may feel that you are repeating the conventions over and over again on all the endpoints.

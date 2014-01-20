@@ -3,11 +3,6 @@ title: DefiningMessagesAs and DefiningEventsAs When Starting Endpoint
 summary: To fix an exception when starting an endpoint with DefiningMessagesAs, include your default namespace.
 originalUrl: http://www.particular.net/articles/definingmessagesas-and-definingeventsas-when-starting-endpoint
 tags: []
-createdDate: 2013-05-22T08:57:01Z
-modifiedDate: 2013-11-25T06:15:27Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 When defining an endpoint with the following declaration:

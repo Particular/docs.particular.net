@@ -3,11 +3,6 @@ title: InvalidOperationException in Unobtrusive Mode
 summary: Avoid an InvalidOperationException in Unobtrusive Mode.
 originalUrl: http://www.particular.net/articles/invalidoperationexception-in-unobtrusive-mode
 tags: []
-createdDate: 2013-05-22T09:04:23Z
-modifiedDate: 2014-01-18T09:41:55Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 To avoid an InvalidOperationException, "DefiningMessagesAs" (or any one of the DefiningXXXAs) should come in the Fluent configuration before

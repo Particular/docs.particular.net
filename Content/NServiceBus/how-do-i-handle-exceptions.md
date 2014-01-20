@@ -6,11 +6,6 @@ tags:
 - Exceptions
 - Error Handling
 - Automatic Retries
-createdDate: 2013-05-22T08:19:18Z
-modifiedDate: 2013-11-18T14:10:43Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 Don't.

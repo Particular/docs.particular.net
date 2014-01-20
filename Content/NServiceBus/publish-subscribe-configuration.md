@@ -3,11 +3,6 @@ title: Publish/Subscribe Configuration
 summary: Publish/Subscribe Configuration
 originalUrl: http://www.particular.net/articles/publish-subscribe-configuration
 tags: []
-createdDate: 2013-05-20T13:08:26Z
-modifiedDate: 2013-07-23T05:24:00Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 ![Pub/Sub configuration](basic_pubsub.png)

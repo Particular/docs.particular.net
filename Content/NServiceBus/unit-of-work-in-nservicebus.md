@@ -3,11 +3,6 @@ title: Unit of Work in NServiceBus
 summary: From NServiceBus V3.0, use the IManageUnitsOfWork interface.
 originalUrl: http://www.particular.net/articles/unit-of-work-in-nservicebus
 tags: []
-createdDate: 2013-05-20T12:26:52Z
-modifiedDate: 2013-07-23T05:14:07Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 When using a framework like NServiceBus you usually need to create your own units of work to avoid having to repeat code in your message handlers. For example, committing NHibernate transactions, or calling SaveChanges on the RavenDB session.

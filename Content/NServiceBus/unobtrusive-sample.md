@@ -9,11 +9,6 @@ tags:
 - Commands
 - Events
 - Conventions
-createdDate: 2013-05-21T12:21:26Z
-modifiedDate: 2013-11-20T06:19:05Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 To demonstrate NServiceBus operating in unobtrusive mode, open the

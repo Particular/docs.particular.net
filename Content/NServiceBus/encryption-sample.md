@@ -4,11 +4,6 @@ summary: How to encrypt message data.
 originalUrl: http://www.particular.net/articles/encryption-sample
 tags:
 - Encryption
-createdDate: 2013-05-22T09:43:02Z
-modifiedDate: 2013-12-22T19:16:55Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 To see how to encrypt message data, open the [Encryption sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/Encryption)

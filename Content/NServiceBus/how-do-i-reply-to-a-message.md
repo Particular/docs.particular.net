@@ -3,11 +3,6 @@ title: 'How to Reply to a Message? '
 summary: Answer a message using the Reply method on IBus.
 originalUrl: http://www.particular.net/articles/how-do-i-reply-to-a-message
 tags: []
-createdDate: 2013-05-22T08:05:31Z
-modifiedDate: 2013-12-05T05:49:28Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 The simplest way to reply to a message is using the Reply method on `IBus`, like this:

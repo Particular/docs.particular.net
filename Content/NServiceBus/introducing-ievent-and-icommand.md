@@ -3,11 +3,6 @@ title: IEvent and ICommand
 summary: 'Message interfaces IEvent and ICommand capture the intent of the messages. '
 originalUrl: http://www.particular.net/articles/introducing-ievent-and-icommand
 tags: []
-createdDate: 2013-05-20T08:08:40Z
-modifiedDate: 2013-11-25T14:03:41Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 A feature of NServiceBus V3.X and V4.X are two message interfaces, IEvent and ICommand, which capture more of the intent of the messages that you define. This helps NServiceBus enforce messaging best practices.

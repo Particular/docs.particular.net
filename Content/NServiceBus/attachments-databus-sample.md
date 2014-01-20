@@ -6,11 +6,6 @@ tags:
 - DataBus
 - MSMQ Limit
 - Large messages
-createdDate: 2013-05-22T11:44:51Z
-modifiedDate: 2013-08-02T23:03:48Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 Large chunks of data such as images or video files can be transported using NServiceBus V3 data bus.

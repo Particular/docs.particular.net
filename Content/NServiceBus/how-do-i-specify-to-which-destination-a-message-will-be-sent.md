@@ -6,11 +6,6 @@ tags:
 - Message Mapping
 - Message destination
 - Send
-createdDate: 2013-05-22T05:09:13Z
-modifiedDate: 2013-11-25T05:43:02Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 You configure the destination for message types in <unicastbusconfig>, under <messageendpointmappings>.

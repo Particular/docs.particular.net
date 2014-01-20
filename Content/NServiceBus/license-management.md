@@ -5,11 +5,6 @@ originalUrl: http://www.particular.net/articles/license-management
 tags:
 - NServiceBus
 - license
-createdDate: 2013-05-24T19:11:26Z
-modifiedDate: 2013-11-25T06:20:05Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 There are several ways to make sure that your NServiceBus endpoints pick up and use your license. The following options are available:

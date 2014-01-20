@@ -3,11 +3,6 @@ title: The Gateway And Multi-Site Distribution
 summary: Explanation of how NServiceBus handles multi-site communication.
 originalUrl: http://www.particular.net/articles/the-gateway-and-multi-site-distribution
 tags: []
-createdDate: 2013-05-20T11:59:55Z
-modifiedDate: 2013-07-23T05:19:35Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 The number of multi-site deployments of enterprise .NET systems are increasing due to the challenges of high availability and the requirement for faster response times for users, as the servers and data they access is closer. 

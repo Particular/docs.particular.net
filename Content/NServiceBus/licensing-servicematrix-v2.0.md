@@ -3,11 +3,6 @@ title: Licensing ServiceMatrix v2.0
 summary: Licensing ServiceMatrix v2.0
 originalUrl: http://www.particular.net/articles/licensing-servicematrix-v2.0
 tags: []
-createdDate: 2013-08-11T10:48:04Z
-modifiedDate: 2013-10-30T14:15:37Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 Licensing ServiceMatrix v2.0

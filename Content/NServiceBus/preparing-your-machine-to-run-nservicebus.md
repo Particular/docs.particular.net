@@ -8,11 +8,6 @@ tags:
 - prerequisites
 - installation
 - nuget
-createdDate: 2013-06-05T07:20:23Z
-modifiedDate: 2013-11-25T06:22:24Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 <style type="text/css">div#uls ul{

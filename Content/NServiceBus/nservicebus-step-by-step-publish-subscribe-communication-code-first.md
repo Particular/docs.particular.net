@@ -5,11 +5,6 @@ originalUrl: http://www.particular.net/articles/nservicebus-step-by-step-publish
 tags:
 - pub sub
 - publish subscribe
-createdDate: 2013-10-24T15:50:35Z
-modifiedDate: 2014-01-17T19:33:34Z
-authors: []
-reviewers: []
-contributors: []
 ---
 
 In the previous section: [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md) we learnt about fault tolerance.
