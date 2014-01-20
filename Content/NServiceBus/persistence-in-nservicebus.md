@@ -101,17 +101,16 @@ When you use NServiceBus.Host.exe out of the box, you can utilize one of the ava
 
 The following table summarizes the different persistence technologies being used by the built-in profiles. **NOTE** : Before configuring persistence technology, to avoid overriding your configurations, the profiles check if other types of storage are used.
 
-|			-		  |	InMemory  |RavenDB			        |NHibernate	  |MSMQ                           |
-|:--------------------|:----------|:------------------------|:------------|:------------------------------|                                         
-|  Timeout            |  Lite     |  Integration/Production |      -      | Keeps a queue for management  |
-|  Subscription       |  Lite     |  Integration/Production |      -      |   -                           |
-|  Saga               |  Lite     |  Integration/Production |      -      |   -				     		  |
-|  Gateway            |  Lite     |  MultiSite              |      -      |   -  						  |
-|  Distributor        |    -      |       -                 |      -      | Distributor					  |
-|  Second Level Retry |    -      |       -                 |      -      |  Uses Timeout queue			  |
-|  Fault Management   |  Lite     |       -                 |      -      |  Integration/Production		  |
-|  Notifications      |    -      |       -                 |      -      |  Lite/Integration/Production  |
-|---------------------|-----------|-------------------------|-------------|-------------------------------|
+|-                                |InMemory |RavenDB			   |NHibernate   |MSMQ                         |
+|:--------------------------------|:--------|:---------------------|:------------|:----------------------------|                                         
+|  Timeout                        |Lite     |Integration/Production|-            |Keeps a queue for management |
+|  Subscription                   |Lite     |Integration/Production|-            |-                            |
+|  Saga                           |Lite     |Integration/Production|-            |-    				           |
+|  Gateway                        |Lite     |MultiSite             |-            |-     					   |
+|  Distributor                    |- 	    |-                     |-            |Distributor				   |
+|  Second Level Retry             |-        |-                     |-            |Uses Timeout queue		   |
+|  Fault Management               |Lite     |-                     |-            |Integration/Production	   |
+|  Notifications                  |-        |-                     |-            |Lite/Integration/Production  |
 
 Default persisting technology
 -----------------------------
