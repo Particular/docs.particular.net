@@ -31,7 +31,7 @@ What's available?
 
 The following table summarizes what is available and how to configure each feature.
 
-| Type                 | InMemory   | RavenDB   | [NHibernate]  | MSMQ                                  |
+| Type                 | InMemory   | RavenDB   | NHibernate    | MSMQ                                  |
 |--------------------  |:---------- |:--------- |:--------------|:------------------------------------- |
 | Timeout              | √          | √         | √             | Not supported beginning with V3.3,0   |
 | Subscription         | √          | √         | √             | √                                     |
