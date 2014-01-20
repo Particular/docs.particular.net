@@ -43,26 +43,30 @@ Turning off auditing
 
 If the auditing settings are in app.config, remove them or comment them out.
 
-If the machine level auditing is turned on, clear the value for the string value AuditQueue under HKEYLOCALMACHINE\\SOFTWARE\\ParticularSoftware\\ServiceBus.
+If the machine level auditing is turned on, clear the value for the string value AuditQueue under
 
-If running 64 bit, in addition to the above, also clear the value for AuditQueue under HKEYLOCALMACHINE\\SOFTWARE\\Wow6432Node\\ParticularSoftware\\ServiceBus.
+    HKEYLOCALMACHINE\\SOFTWARE\\ParticularSoftware\\ServiceBus
+
+If running 64 bit, in addition to the above, also clear the value for AuditQueue under 
+
+    HKEYLOCALMACHINE\\SOFTWARE\\Wow6432Node\\ParticularSoftware\\ServiceBus
 
 Message headers
 ---------------
 
 Custom headers are attached to each message. You can examine them in the audit queue using a third-party tool for MSMQ.
 
-  Key                                Description
-  ---------------------------------- ------------------------------------------------
-  NServiceBus.Version                Version of NServiceBus
-  NServiceBus.TimeSent               When was the message sent
-  NServiceBus.EnclosedMessageTypes   Massage type(s) within the envelope
-  NServiceBus.ProcessingStarted      Time when processing of the message started
-  NServiceBus.ProcessingEnded        Time when the processing finished
-  NServiceBus.OriginatingAddress     From where did the envelope originate
-  NServiceBus.ProcessingEndpoint     The endpoint that processed the message
-  NServiceBus.ProcessingMachine      The machine on which the message was processed
-  NServiceBus.OriginatingAddress     The queue that the message originated from
+| Key                               | Description
+|-----------------------------------|------------------------------------------------
+| NServiceBus.Version               | Version of NServiceBus 
+| NServiceBus.TimeSent             | When was the message sent
+| NServiceBus.EnclosedMessageTypes | Massage type(s) within the envelope
+| NServiceBus.ProcessingStarted     | Time when processing of the message started
+| NServiceBus.ProcessingEnded       | Time when the processing finished
+| NServiceBus.OriginatingAddress    | From where did the envelope originate
+| NServiceBus.ProcessingEndpoint    | The endpoint that processed the message
+| NServiceBus.ProcessingMachine     | The machine on which the message was processed
+| NServiceBus.OriginatingAddress    | The queue that the message originated from
 
 Next steps
 ----------

@@ -20,7 +20,9 @@ Strategic Domain-Driven Design helps bridge the business/IT divide and drives th
 How NServiceBus aligns with SOA
 -------------------------------
 
-<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="http://player.vimeo.com/video/5022174" webkitallowfullscreen width="400"></iframe>In this presentation, Udi Dahan explains the disadvantages of classical web services thinking that places services at a layer below the user interface and above the business logic. Instead, he describes an approach that cuts across all layers of an application, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
+<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="http://player.vimeo.com/video/5022174" webkitallowfullscreen width="400"></iframe>
+
+In this presentation, Udi Dahan explains the disadvantages of classical web services thinking that places services at a layer below the user interface and above the business logic. Instead, he describes an approach that cuts across all layers of an application, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
 
 
 
@@ -53,8 +55,7 @@ While all of this is going on, the client process is oblivious. Critical resourc
 
 ### Request/response and one-way messaging
 
-The common pattern of Request/Response, which is more accurately described as Synchronous Remote Procedure Call, is handled differently when using one way messaging. Instead of letting the stack of the calling thread manage the state of the communications interaction, it is done explicitly. From a network perspective, request/response is just two one-way interactions, as shown in the next figure.![Full duplex
-'Request/Response' messaging](full_duplex_messaging.png)
+The common pattern of Request/Response, which is more accurately described as Synchronous Remote Procedure Call, is handled differently when using one way messaging. Instead of letting the stack of the calling thread manage the state of the communications interaction, it is done explicitly. From a network perspective, request/response is just two one-way interactions, as shown in the next figure.![Full duplex 'Request/Response' messaging](full_duplex_messaging.png)
 
 This communication is especially critical for servers as clients behind problematic network connections now have little effect on the server's stability. If a client crashes between the time that it sent the request until the server sends a response, the server will not have resources tied up waiting minutes and minutes until the connection times out.
 
@@ -106,8 +107,7 @@ Many systems provide users with the ability to search, filter, and sort data. Wh
 
 In regular client-server development, the server provides the client with all CRUD (create, read, update, and delete) capabilities. However, when users look at data they do not often require it to be up-to-date to the second (given that they often look at the same screen for several seconds to minutes at a time). As such, retrieving data from the same table as that being used for highly consistent transaction processing creates contention, resulting in poor performance for all CRUD actions under higher load.
 
-A solution that avoids this problem separates commands and queries at the system level, even above that of client and server. In this solution there are two "services" that span both client and server: one in charge of commands (create, update, delete), and the other in charge of queries
-(read). These services communicate only via messages; one cannot access the database of the other, as shown in the following diagram:
+A solution that avoids this problem separates commands and queries at the system level, even above that of client and server. In this solution there are two "services" that span both client and server: one in charge of commands (create, update, delete), and the other in charge of queries (read). These services communicate only via messages; one cannot access the database of the other, as shown in the following diagram:
 
 ![Command Query Separation](CQS.png)
 

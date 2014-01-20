@@ -31,8 +31,6 @@ Durable Messaging Demo
 1.  Run the 'Ordering' solution again and hit Enter on the 'Client'
     console a couple of times to make sure the messages are being
     processed.
-
-
     [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/run_2.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/run_2.png)
 2.  Then, kill the 'Server' console (endpoint) but leave the 'Client'
     console (endpoint) running.
@@ -46,8 +44,6 @@ Durable Messaging Demo
 4.  Now, leaving the 'Client' console running, go back to Visual Studio
     and open Server Explorer and locate 'Message Queues' and the
     Server's queue. You should see this:
-
-
     [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_fault/001_fault.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_fault/001_fault.png)
 
 All the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties specifically BodyStream, where the data is.
@@ -58,8 +54,6 @@ Now bring the 'Server' endpoint back online by right clicking the project, Debug
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_fault/002_fault.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_fault/002_fault.png)
 
 As you can see the 'Server' processes all those messages, and if you go back to the queue shown above and right click Refresh, it is empty.
-
-
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_fault/003_fault.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding_fault/003_fault.png)
 
 <a id="Fault" name="Fault"> </a>
@@ -141,8 +135,7 @@ Next steps
 ----------
 
 -   See how to use NServiceBus for [Publish/Subscribe
-    communication](nservicebus-step-by-step-publish-subscribe-communication-code-first.md)
-    .
+    communication](nservicebus-step-by-step-publish-subscribe-communication-code-first.md).
 -   Read about [NServiceBus and SOA Architectural
     Principles](architectural-principles.md)
 -   Try our [Hands on Labs](http://particular.net/HandsOnLabs)
@@ -151,5 +144,3 @@ Next steps
 -   See the
     [Documentation](http://particular.net/documentation/NServiceBus)
 -   Join our [community](http://particular.net/DiscussionGroup)
-
-

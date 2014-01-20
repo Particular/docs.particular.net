@@ -26,8 +26,7 @@ The complete solution code can be found
 
 Let's start by creating a 'Client' project that will send order requests to a NServiceBus endpoint.
 
-Open Visual Studio as administrator, create a new 'Class Librery' Project name it 'Ordering.Client', and name the solution 'Ordering'.
-
+Open Visual Studio as administrator, create a new 'Class Library' Project name it 'Ordering.Client', and name the solution 'Ordering'.
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/001%20new%20solution.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/001%20new%20solution.png)
 
@@ -39,9 +38,7 @@ Open the NuGet Package Manager Console: Tools -\> Library Package Manager -\> Pa
 
 Type the following command at the Package Manager Console:
 
-<div class="nuget-badge">
-`PM> Install-Package NServiceBus.Host`{style="background-color: rgb(32, 32, 32); border: 4px solid rgb(192, 192, 192); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; box-shadow: rgb(110, 110, 110) 2px 2px 3px; color: rgb(226, 226, 226); display: block; font-size: 1.2em; font-family: 'andale mono', 'lucida console', monospace; line-height: 1.2em; overflow: auto; padding: 1px;"}
-
+    PM> Install-Package NServiceBus.Host
 
 NOTE: When prompted to reload the project, click reload
 
@@ -101,9 +98,7 @@ Install the 'NServiceBusInterfaces' NuGet package for this new project:
 
 At the Package Manager Console, type:
 
-<div class="nuget-badge">
-`PM> Install-Package NServiceBus.Interfaces -ProjectName Ordering.Messages`{style="background-color: rgb(32, 32, 32); border: 4px solid rgb(192, 192, 192); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; box-shadow: rgb(110, 110, 110) 2px 2px 3px; color: rgb(226, 226, 226); display: block; font-size: 1.2em; font-family: 'andale mono', 'lucida console', monospace; line-height: 1.2em; overflow: auto; padding: 1px;"}
-
+    PM> Install-Package NServiceBus.Interfaces -ProjectName Ordering.Messages
 
 Add a command with a property to hold a product name:
 
@@ -112,7 +107,6 @@ Delete 'Class1.cs' and add a class and name it 'PlaceOrder.cs' (or if you want y
 Implement the PlaceOrder command in 'PlaceOrder.cs'.
 
 Replace the content of 'PlaceOrder.cs' with the following code:
-
 
 ```C#
 namespace Ordering.Messages
@@ -129,7 +123,6 @@ namespace Ordering.Messages
 }
 ```
 
-
 ### <a id="Server" name="Server"> </a> Creating the Server Project
 
 You are now ready to create the orders processing server, add a new class library project and name is 'Ordering.Server'.
@@ -141,9 +134,7 @@ Install the 'NServiceBusHost' NuGet package for this new project:
 
 At the Package Manager Console, type:
 
-<div class="nuget-badge">
-`PM> Install-Package NServiceBus.Host -ProjectName Ordering.Server`{style="background-color: rgb(32, 32, 32); border: 4px solid rgb(192, 192, 192); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; box-shadow: rgb(110, 110, 110) 2px 2px 3px; color: rgb(226, 226, 226); display: block; font-size: 1.2em; font-family: 'andale mono', 'lucida console', monospace; line-height: 1.2em; overflow: auto; padding: 1px;"}
-
+    PM> Install-Package NServiceBus.Host -ProjectName Ordering.Server
 
 NOTE: When prompted to reload the project, click reload
 
@@ -152,7 +143,6 @@ For the server side to understand and interpret the message content, add a refer
 Right click References in the 'Ordering.Server' Project -\> Add Reference -\> Ordering.Messages.
 
 Replace the content of 'PlaceOrderHandler.cs' with the following code:
-
 
 ```C#
 namespace Ordering.Server
@@ -177,7 +167,6 @@ namespace Ordering.Server
 ### <a id="Sending" name="Sending"> </a> Sending the order
 
 We nearly done, all it is left to do is to go back to the 'Client' project add a reference to the 'Ordering.Messages' project and copy and paste the following code into the 'Class1.cs' (if you want you can rename the file to 'SendOrder.cs') file:
-
 
 ```C#
 namespace Ordering.Client
@@ -211,9 +200,7 @@ namespace Ordering.Client
 }
 ```
 
- NOTE: The code above is version 4.x, the 3.x interface
-'IWantToRunAtStartup' has been replaced with
-'IWantToRunWhenBusStartsAndStops'
+ NOTE: The code above is version 4.x, the 3.x interface 'IWantToRunAtStartup' has been replaced with 'IWantToRunWhenBusStartsAndStops'
 
 ### <a id="Running" name="Running"> </a> Running the solution
 
@@ -235,9 +222,6 @@ in that screen select 'Multiple startup projects' and set the
 Finally click 'F5' to run the solution.
 
 Two console application windows should start up
-
-
-
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/run_1.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/run_1.png)
 
@@ -266,6 +250,3 @@ Wasn't that easy?
 -   See the
     [Documentation](http://particular.net/documentation/NServiceBus)
 -   Join our [community](http://particular.net/DiscussionGroup)
-
-
-
