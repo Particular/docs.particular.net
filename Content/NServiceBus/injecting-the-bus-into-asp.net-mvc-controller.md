@@ -12,37 +12,35 @@ contributors: []
 
 In the AsyncPagesMvc3 sample, open Global.asax.cs and look at the ApplicationStart method.
 
-        protected void Application_Start()
-        {
-            AreaRegistration.RegisterAllAreas();
+    protected void Application_Start()
+    {
+        AreaRegistration.RegisterAllAreas();
 
-            RegisterGlobalFilters(GlobalFilters.Filters);
-            RegisterRoutes(RouteTable.Routes);
+        RegisterGlobalFilters(GlobalFilters.Filters);
+        RegisterRoutes(RouteTable.Routes);
 
-            // NServiceBus configuration
-            Configure.WithWeb()
-                .DefaultBuilder()
-                .ForMvc()
-                .JsonSerializer()
-                .Log4Net()
-                .MsmqTransport()
-                    .IsTransactional(false)
-                    .PurgeOnStartup(true)
-                .UnicastBus()
-                    .ImpersonateSender(false)
-                .CreateBus()
-                .Start(() => Configure.Instance.ForInstallationOn().Install());
-        }
+        // NServiceBus configuration
+        Configure.WithWeb()
+            .DefaultBuilder()
+            .ForMvc()
+            .JsonSerializer()
+            .Log4Net()
+            .MsmqTransport()
+                .IsTransactional(false)
+                .PurgeOnStartup(true)
+            .UnicastBus()
+                .ImpersonateSender(false)
+            .CreateBus()
+            .Start(() => Configure.Instance.ForInstallationOn().Install());
+    }
 
 To inject the Bus, these classes were added to the project:
 
--   NServiceBusDependencyResolverAdapter: Implements IDependencyResolver
-    for handling controllers and creating the controller activator
+-   NServiceBusDependencyResolverAdapter: Implements `IDependencyResolver` for handling controllers and creating the controller activator
 -   NServiceBusControllerActivator: Creates controllers
--   ForMvc: Extends NServiceBus Configure. Responsible for registering
-    the previous two classes
+-   ForMvc: Extends NServiceBus Configure. Responsible for registering the previous two classes
 
-The ASP.NET MVC 3 framework allows you to get involved in service creation. Ensure that when controllers are created, their IBus property is injected with NServiceBus IBus.
+The ASP.NET MVC 3 framework allows you to get involved in service creation. Ensure that when controllers are created, their `IBus` property is injected with NServiceBus `IBus`.
 
 NServiceBusDependencyResolverAdapter implements IDependencyResolver, as follows:
 

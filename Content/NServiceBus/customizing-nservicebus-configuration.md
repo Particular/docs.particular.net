@@ -17,8 +17,7 @@ NServiceBus uses the process config file as its default source of configuration.
 Overriding App.Config section
 -----------------------------
 
-The preferred method of overriding a specific section is to use the
-[IProvideConfiguration<t>](https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Config/ConfigurationSource/IConfigurationSource.cs#L23) model. For example, rather than providing the RijndaelEncryptionServiceConfig in app.config, you could provide it in code:
+The preferred method of overriding a specific section is to use the [IProvideConfiguration<t>](https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Config/ConfigurationSource/IConfigurationSource.cs#L23) model. For example, rather than providing the RijndaelEncryptionServiceConfig in app.config, you could provide it in code:
 
 
 ```C#
@@ -66,7 +65,6 @@ public class MyCustomConfigurationSource : IConfigurationSource
 
  The initialization code instructs NServiceBus to use a CustomConfigurationSource, passing in an instance of a new object: MyCustomConfigurationSource. Its GetConfiguration method provides data for RijndaelEncryptionServiceConfig directly in code, while allowing all other configuration sections to be retrieved from the config file.
 
-**IMPORTANT** : Add a reference to System.Configuration to use the ConfigurationManager object.
+**IMPORTANT** : Add a reference to `System.Configuration` to use the `ConfigurationManager` object.
 
-To do this when using the NServiceBus host, implement IWantCustomInitialization but this time on the class [implementing IConfigureThisEndpoint](the-nservicebus-host.md) .
-
+To do this when using the NServiceBus host, implement `IWantCustomInitialization` but this time on the class [implementing IConfigureThisEndpoint](the-nservicebus-host.md).

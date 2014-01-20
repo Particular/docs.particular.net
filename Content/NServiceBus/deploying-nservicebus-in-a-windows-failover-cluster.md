@@ -13,9 +13,7 @@ reviewers: []
 contributors: []
 ---
 
-NServiceBus is designed for scalability and reliability, but to take advantage of these features, you need to deploy it in a Windows Failover Cluster. Unfortunately, information on how to do this effectively is, as yet, incomplete and scattered. This article describes the process for deploying NServiceBus in a failover cluster. This article does not cover the generic setup of a failover cluster. There are other, better resources for that, such as [Creating a Cluster in Windows Server
-2008](http://blogs.msdn.com/b/clustering/archive/2008/01/18/7151154.aspx)
-. The focus here is the setup related to NServiceBus.
+NServiceBus is designed for scalability and reliability, but to take advantage of these features, you need to deploy it in a Windows Failover Cluster. Unfortunately, information on how to do this effectively is, as yet, incomplete and scattered. This article describes the process for deploying NServiceBus in a failover cluster. This article does not cover the generic setup of a failover cluster. There are other, better resources for that, such as [Creating a Cluster in Windows Server 2008](http://blogs.msdn.com/b/clustering/archive/2008/01/18/7151154.aspx). The focus here is the setup related to NServiceBus.
 
 Planning your infrastructure
 ----------------------------
@@ -23,7 +21,7 @@ Planning your infrastructure
 A simple setup for scalability and reliability includes at least two servers in a failover cluster, and two additional servers for worker endpoints. The failover cluster servers run the following:
 
 -   A Distributor process for each logical message queue.
--   A TimeoutManager, if you require one to support Sagas.
+-   A `TimeoutManager`, if you require one to support Sagas.
 -   Commander application(s):
     -   A Commander application contains one or more classes that
         implement IWantToRunAtStartup and coordinate tasks among the
@@ -51,12 +49,9 @@ While technically it shouldn't matter from which clustered server you set up, ge
 
 Set up a clustered DTC access point:
 
-1.  Right click Services and Applications and select Configure a Service
-    or Application.
-2.  Go past the intro screen, select Distributed Transaction Coordinator
-    (DTC) and click Next.
-3.  Follow the wizard, assigning a DNS name for the clustered DTC (e.g.,
-    ClusterNameDTC), IP address, and storage.
+1.  Right click Services and Applications and select Configure a Service or Application.
+2.  Go past the intro screen, select Distributed Transaction Coordinator (DTC) and click Next.
+3.  Follow the wizard, assigning a DNS name for the clustered DTC (e.g., ClusterNameDTC), IP address, and storage.
 4.  When finished, you should get a service with the DTC icon.
 
 Configure DTC for NServiceBus:

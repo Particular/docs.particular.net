@@ -12,7 +12,6 @@ contributors: []
 
 To handle a message, write a class that implements IMessageHandler<t> where T is the message type:
 
-
 ```C#
 public class H1 : IMessageHandler<MyMessage>
 {
@@ -23,8 +22,7 @@ public class H1 : IMessageHandler<MyMessage>
 }
 ```
 
-
-<span style="font-size: 14px;">To handle messages of all types:</span>
+To handle messages of all types:
 
 1.  Set up the unobtrusive message configuration to designate which
     classes are messages. This example uses a namespace match.
@@ -48,6 +46,4 @@ public class GenericMessageHandler : IHandleMessages<Object>
 
  If you are using the Request-Response or Full Duplex pattern, your handler will probably do the work it needs to do, such as updating a database or calling a web service, then creating and sending a response message. See [How to Reply to a Message](how-do-i-reply-to-a-message.md).
 
-If you are handling a message in a publish and subscribe scenario, see
-[How to Publish/Subscribe to a Message](how-to-pub/sub-with-NServiceBus.md).
-
+If you are handling a message in a publish and subscribe scenario, see [How to Publish/Subscribe to a Message](how-to-pub/sub-with-NServiceBus.md).

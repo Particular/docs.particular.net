@@ -47,8 +47,7 @@ To have NServiceBus automatically pick up your License.xml file, place it in a s
 
 As a developer you can specify the license in app.config:
 
--   Use the key **NServiceBus/LicensePath** to specify the path where
-    NServiceBus looks for your license. For example:
+-   Use the key **NServiceBus/LicensePath** to specify the path where NServiceBus looks for your license. For example:
 
 
 ```XML
@@ -58,8 +57,7 @@ As a developer you can specify the license in app.config:
 ```
 
 
--   Use the key **NServiceBus/License** to transfer the actual
-    HTML-encoded contents of your license. For example:
+-   Use the key **NServiceBus/License** to transfer the actual HTML-encoded contents of your license. For example:
 
 
 ```XML
@@ -82,9 +80,7 @@ license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;201
 
 As a developer you can specify the license to use in your configuration code:
 
--   Configure.LicensePath(licensePath) uses the license at the specified
-    path. For example,
-
+-   Configure.LicensePath(licensePath) uses the license at the specified path. For example,
 
 ```C#
 class ConfigureLicense : IWantCustomInitialization
@@ -97,11 +93,7 @@ class ConfigureLicense : IWantCustomInitialization
 }
 ```
 
-
--   Configure.License(licenseText) uses the transferred license. For
-    example, you could add the license file as an embedded resource in
-    your assembly and provide its contents as shown below:
-
+-   Configure.License(licenseText) uses the transferred license. For example, you could add the license file as an embedded resource in your assembly and provide its contents as shown below:
 
 ```C#
 class ConfigureLicense : IWantCustomInitialization

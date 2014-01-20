@@ -33,16 +33,15 @@ Add one of the following:
 </UnicastBusConfig>
 ```
 
- For more information, see the [PubSub sample](https://github.com/NServiceBus/NServiceBus/tree/master/Samples/PubSub) config file.
+For more information, see the [PubSub sample](https://github.com/NServiceBus/NServiceBus/tree/master/Samples/PubSub) config file.
 
 Destinations can be QueueName@ServerName, or just QueueName if the destination is the local machine.
 
 You can also call the following, even though it is not recommended for application-level code:
 
-
 ```C#
 Bus.Send( string destination, params IMessage[] msgs );
 ```
 
- Even if it is possble to specify a message destination in code it is highly suggested to specify message destinations at application-configuration level to maintain a high level of flexibility.
+Even if it is possible to specify a message destination in code it is highly suggested to specify message destinations at application-configuration level to maintain a high level of flexibility.
 

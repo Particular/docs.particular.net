@@ -13,8 +13,6 @@ contributors: []
 
 NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x
 
-
-
 In the [previous section](getting-started---fault-tolerance.md) we learnt about fault tolerance.
 
 Now that we've gone through the basics of NServiceBus communication and configuration, let's move on to publish/subscribe.
@@ -23,20 +21,10 @@ Now that we've gone through the basics of NServiceBus communication and configur
 
 There are only a few steps needed to introduce pub/sub and make your solution look like the one appearing above.
 
-1.  Right click your SubmitOrderProcessor component and select "Publish
-    Event...". Type "OrderAccepted" for the name of the event and press
-    Enter.
-2.  Right click the OrderAccepted event you just created and select "Add
-    Subscriber...". Type "Billing" for the name of the new service and
-    press Enter.
-3.  Create a new NServiceBus Host endpoint called "Billing" and deploy
-    the OrderAcceptedProcessor component from the Billing service to
-    that endpoint. See [a
-    refresher](getting-started---creating-a-new-project.md) on how to do
-    this. At this point, your solution structure should look the same as
-    the picture on the right.
+1.  Right click your SubmitOrderProcessor component and select "Publish Event...". Type "OrderAccepted" for the name of the event and press Enter.
+2.  Right click the OrderAccepted event you just created and select "Add Subscriber...". Type "Billing" for the name of the new service and press Enter.
+3.  Create a new NServiceBus Host endpoint called "Billing" and deploy the OrderAcceptedProcessor component from the Billing service to that endpoint. See [a refresher](getting-started---creating-a-new-project.md) on how to do this. At this point, your solution structure should look the same as the picture on the right.
 4.  Add code to the SubmitOrderProcessor in Sales to publish the event:
-
 
 ```C#
 using System;
@@ -57,7 +45,7 @@ namespace Amazon.OrderProcessing.Sales
 }
 ```
 
- Your solution should compile, so run it using F5.
+Your solution should compile, so run it using F5.
 
 Lay out the various consoles and web-UI so that you can see them all, then click "About" a couple of times to watch how it runs:
 

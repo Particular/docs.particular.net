@@ -31,7 +31,7 @@ Open the app.config file. See the Logging configuration section at the top as we
 <Logging Threshold="WARN" />
 ```
 
- This code instructs NServiceBus to only output logs at a level of WARN or higher. Now look at the EndpointConfig.cs file which makes two calls to the log: at the level of DEBUG, and at the level of WARN. When you run the project (right click, Debug, Start new instance), you only see the entry saying "This should appear", as shown:
+This code instructs NServiceBus to only output logs at a level of WARN or higher. Now look at the EndpointConfig.cs file which makes two calls to the log: at the level of DEBUG, and at the level of WARN. When you run the project (right click, Debug, Start new instance), you only see the entry saying "This should appear", as shown:
 
 ![Logging with configurable threshold](LoggingWithConfigurableTreshold.png "Logging with configurable threshold")
 
@@ -83,7 +83,7 @@ Open the app.config file and see the regular Log4Net configuration:
 </log4net>
 ```
 
- This instructs Log4Net to output to the console using a pattern including data like the date and time, the number of the thread, and more; output calls at a level of DEBUG or higher.
+This instructs Log4Net to output to the console using a pattern including data like the date and time, the number of the thread, and more; output calls at a level of DEBUG or higher.
 
 The reason that this technique isn't used by default is that NServiceBus tries to prevent administrators from being able to accidentally change things they shouldn't touch; for example, the pattern. NServiceBus takes things that should be managed by developers and provides an API for them. This is shown in the next example.
 
@@ -117,7 +117,7 @@ namespace Logging
 }
 ```
 
- Look at the signature of the MyProductionLogging class, which implements IConfigureLoggingForProfile<myproductionprofile>. This means that when the profile MyProductionProfile is specified, NServiceBus invokes this class to configure the logging for the process. In the Configure method, it is likely that you would call NServiceBus.SetLoggingLibrary.Log4Net but pass in some other value.
+Look at the signature of the MyProductionLogging class, which implements IConfigureLoggingForProfile<myproductionprofile>. This means that when the profile MyProductionProfile is specified, NServiceBus invokes this class to configure the logging for the process. In the Configure method, it is likely that you would call NServiceBus.SetLoggingLibrary.Log4Net but pass in some other value.
 
 Read about using [SetLoggingLibrary](logging-in-nservicebus.md) .
 
@@ -130,8 +130,7 @@ See the command line arguments for "Logging.MyProductionProfile", which specify 
 Next steps
 ----------
 
-If you have not yet done so, read about
-[profiles](profiles-for-nservicebus-host.md) .
+If you have not yet done so, read about [profiles](profiles-for-nservicebus-host.md) .
 
 Read more information on [logging](logging-in-nservicebus.md) .
 

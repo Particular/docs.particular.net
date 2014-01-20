@@ -36,6 +36,5 @@ If you need to invoke a Web/WCF service as a part of your message handling logic
 If you don't require a response from the Web/WCF service, have the first endpoint publish an event to which the second endpoint subscribes to
 ([more FAQ info](how-do-i-publish-a-message)) and have the second endpoint call the Web/WCF service.
 
-If you do need a response from the Web/WCF service, turn the first endpoint into a [saga](sagas-in-nservicebus.md) that sends (not publishes) a message to the second endpoint, which calls the Web/WCF service and
-[replies](how-do-i-reply-to-a-message.md) with a response that is handled by the saga in the first endpoint.
+If you do need a response from the Web/WCF service, turn the first endpoint into a [saga](sagas-in-nservicebus.md) that sends (not publishes) a message to the second endpoint, which calls the Web/WCF service and [replies](how-do-i-reply-to-a-message.md) with a response that is handled by the saga in the first endpoint.
 

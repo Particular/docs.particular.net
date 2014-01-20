@@ -17,22 +17,8 @@ If a message cannot be received by the target process in the given time frame, i
 
 To discard a message when a specific time interval has elapsed:
 
-​
-
-
 ```C#
 [TimeToBeReceived("00:01:00")] // Discard after one minute
 [Recoverable]
 public class MyMessage { }
 ```
-
-
-
-<div id="rate_article_container">
-<div id="rate_article">
-
-
-
-
-
-

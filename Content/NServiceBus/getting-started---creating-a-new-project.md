@@ -17,7 +17,7 @@ contributors: []
 
 NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x
 
-<span style="font-size: 14px;">To get started with NServiceBus, create a new project:</span>
+To get started with NServiceBus, create a new project:
 ============================================================================================
 
 1.  Choose "NServiceBus System" for the type of project.
@@ -26,8 +26,7 @@ NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServi
 ![create new project](http://particular.blob.core.windows.net/media/Default/images/FileNewProject.jpg)
 ------------------------------------------------------------------------------------------------------
 
-As the project creation develops, you'll see that a number of projects are created in your solution, as shown on the right. You can ignore the
-.nuget folder and the .slnbldr file under Solution Items as they are part of the infrastructure. More important are the Contract and InternalMessages projects as they are the places where all message types are put; defined events to the Contract project and commands to the InternalMessages project.
+As the project creation develops, you'll see that a number of projects are created in your solution, as shown on the right. You can ignore the .nuget folder and the .slnbldr file under Solution Items as they are part of the infrastructure. More important are the Contract and InternalMessages projects as they are the places where all message types are put; defined events to the Contract project and commands to the InternalMessages project.
 
 Later you will see how messages from different services are partitioned within these projects.
 
@@ -61,8 +60,6 @@ Create another endpoint called OrderProcessing as an NServiceBus Host.
 
 Let's see some services.
 
-
-
 Creating services
 -----------------
 
@@ -80,12 +77,9 @@ Now, right click Commands, select Add, and name it SubmitOrder. Several things h
 
 ![after adding a command](http://particular.blob.core.windows.net/media/Default/images/GettingStarted6.jpg)
 
--   A command is created under the Commands folder, as expected.
--   Two components are created in Sales: a Processor component and a
-    Sender component named after the command you created.
--   A link to the command is under the Subscribes / Process folder of
-    the Processor component and another link is under the Publishes /
-    Sends folder of the Sender component.
+ * A command is created under the Commands folder, as expected.
+ * Two components are created in Sales: a Processor component and a Sender component named after the command you created.
+ * A link to the command is under the Subscribes / Process folder of the Processor component and another link is under the Publishes / Sends folder of the Sender component.
 
 To open the class file, double click the SubmitOrder command:
 
@@ -102,12 +96,9 @@ namespace Amazon.InternalMessages.Sales
 ```
 
 
-
 You can add all sorts of properties to your message: strings, integers, arrays, dictionaries, etc. Just make sure to provide both get and set.
 
 Double-clicking the components won't open any code just yet as their code is only created when they are deployed to an endpoint. So, go ahead.
-
-
 
 Deploying Components
 --------------------
@@ -126,7 +117,6 @@ If you try to build your solution at this point, you will get an error telling y
     the SubmitOrderSender but you'll notice that it is a partial class:
 
 
-
 ```C#
 using System;
 using NServiceBus;
@@ -140,11 +130,7 @@ namespace Amazon.ECommerce.Components.Sales
 }
 ```
 
-
-
 Navigate to the rest of the definition by selecting its name and clicking F12. You should see this:
-
-
 
 ```C#
 using System;
@@ -197,7 +183,7 @@ namespace Amazon.OrderProcessing.Sales
 
 
 
-Once again, there isn't much here, so add your logic. You can also click F12 on the class to see its counterpart, but there isn't much to see there either; just a class that implements IHandleMessages<submitorder> and has a reference to IBus that you can use to send out other messages, publish events, or reply with.
+Once again, there isn't much here, so add your logic. You can also click F12 on the class to see its counterpart, but there isn't much to see there either; just a class that implements `IHandleMessages<SubmitOrder>` and has a reference to IBus that you can use to send out other messages, publish events, or reply with.
 
 
 
@@ -273,8 +259,3 @@ Next steps
 ----------
 
 The production-time benefits of NServiceBus (let's face it, interprocess communication isn't that exciting and has been done many times before): see how NServiceBus handles [Fault Tolerance](getting-started---fault-tolerance.md) .
-
-
-
-
-

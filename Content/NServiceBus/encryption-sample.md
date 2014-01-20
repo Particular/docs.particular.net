@@ -15,13 +15,10 @@ To see how to encrypt message data, open the [Encryption sample](https://github.
 .
 
 1.  Run the solution.
-
      You should see two console applications start up.
-2.  Find the client application by looking for the one with "Client" in
-    its path and press 'Enter' a couple of times in the window.
+2.  Find the client application by looking for the one with "Client" in its path and press 'Enter' a couple of times in the window.
 
-     The server application outputs "I know your secret - it's 'betcha
-    can't guess my secret'."
+     The server application outputs "I know your secret - it's 'betcha can't guess my secret'."
 
 Your screen should look like this:
 
@@ -79,7 +76,8 @@ Look at the app.config file in the client project. There is an additional config
 
 ```XML
 <configSections>
-	<section name="RijndaelEncryptionServiceConfig" type="NServiceBus.Config.RijndaelEncryptionServiceConfig, NServiceBus.Core"/>
+	<section name="RijndaelEncryptionServiceConfig" 
+             type="NServiceBus.Config.RijndaelEncryptionServiceConfig, NServiceBus.Core"/>
 </configSections>
 
 <RijndaelEncryptionServiceConfig Key="gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"/>
@@ -112,8 +110,7 @@ Go to the server queue (called "MyServerInputQueue") and examine the message in 
 </Messages>
 ```
 
- The data in the property is encrypted, but the rest of the message is clear text. This keeps the performance impact of encryption as low as possible.
+The data in the property is encrypted, but the rest of the message is clear text. This keeps the performance impact of encryption as low as possible.
 
-Finally, keep in mind that the security is only as strong as the keys; if the key is exposed, then an attacker can decipher the information. As such, you may not want to have your encryption keys stored on the client
-(if deployed remotely) or even on a web server in the DMZ. Also, you may want to change the keys used by all processes simultaneously, by overriding the source of configuration for [the RijndaelEncryptionService](customizing-nservicebus-configuration.md) .
+Finally, keep in mind that the security is only as strong as the keys; if the key is exposed, then an attacker can decipher the information. As such, you may not want to have your encryption keys stored on the client (if deployed remotely) or even on a web server in the DMZ. Also, you may want to change the keys used by all processes simultaneously, by overriding the source of configuration for [the RijndaelEncryptionService](customizing-nservicebus-configuration.md) .
 
