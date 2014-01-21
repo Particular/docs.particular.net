@@ -65,11 +65,7 @@ public interface IContainer : IDisposable
     void Release(object instance); //Added in V4
 }
 ```
-
-
-<span style="font-size: 14px; line-height: 24px;">To tell NServiceBus to use your container, create an extension method to the NServiceBus.Configure class and pass an instance of your object, as follows:</span>
-
-
+To tell NServiceBus to use your container, create an extension method to the NServiceBus.Configure class and pass an instance of your object, as follows:
 
 ```C#
 namespace NServiceBus

@@ -12,7 +12,7 @@ ServiceMatrix installs in trial mode, which expires after 30 days. Ten days befo
 
 ![](001.png)
 
-You can click "Continue on Trial" to continue using ServiceMatrix or provide a license file by clicking the 'Browse' button.</span>
+You can click "Continue on Trial" to continue using ServiceMatrix or provide a license file by clicking the 'Browse' button.
 
 ![](002.png)
 

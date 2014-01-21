@@ -63,7 +63,7 @@ To provide behavior around a profile, implement the `NServiceBus.IHandleProfile<
 For example, an email component
 
 -   Does nothing with the Lite profile
--   Writes emails to disk with the Integration profile</span>
+-   Writes emails to disk with the Integration profile
 -   Uses an SMTP server with the Production profile
 
 Set it up as follows:

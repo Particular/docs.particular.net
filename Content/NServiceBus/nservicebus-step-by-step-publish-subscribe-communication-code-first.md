@@ -63,11 +63,8 @@ Publishing an event
 -------------------
 
 
-In order to publish the 'OrderCreated' event we will modify the
-'PlaceOrderHandler', add a
-<span style="font-family:courier new,courier,monospace;">Bus.Publish<placeorderhandler>()</span> as shown below
-
-
+In order to publish the `OrderCreated` event we will modify the
+`PlaceOrderHandler`, add a `Bus.Publish<OrderPlaced>()` as shown below
 
 ```C#
 namespace Ordering.Server

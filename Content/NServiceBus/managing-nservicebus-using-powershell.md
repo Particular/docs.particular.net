@@ -96,11 +96,11 @@ Shows the default error and audit queues.
 
 Displays the NServiceBus installed version.
 
-###  Get-NServiceBusMSMQMessage</span>
+###  Get-NServiceBusMSMQMessage
 
 Displays all messages in a queue.
 
-<span style="font-weight: 600;">NOTE:</span> NServiceBus.Host no longer supports /installinfrastructure. Use PowerShell cmdlets instead.
+NOTE: `NServiceBus.Host` no longer supports `/installinfrastructure`. Use PowerShell cmdlets instead.
 
 
 Installing the NServiceBus commandlets in V3.0

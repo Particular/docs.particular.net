@@ -40,7 +40,7 @@ Set up a clustered DTC access point:
 
 Configure DTC for NServiceBus:
 
-1.  On each server, in Administrative Tools - Component Services, expand Component Services - Computers - My Computer - Distributed Transaction Coordinator.
+1.  On each server, in `Administrative Tools - Component Services`, expand `Component Services - Computers - My Computer - Distributed Transaction Coordinator`.
 2.  For the Local DTC, if the clustered DTC is on the current node, you will see a Clustered DTCs folder with your clustered DTC name inside it.
 3.  For both instances (so three times counting each node and the clustered instance), right-click, select Properties, and switch to the Security tab.
 4.  At the very least, check "Network DTC Access" and "Allow Outbound."
@@ -52,10 +52,9 @@ Set up a MSMQ Cluster Group. Cluster group is a group of resources that have a u
 -   In Windows 2008, you would create a "cluster service or application"
 -   In Windows 2012, you would create a "cluster role"
 
-For more information, see
-[http://technet.microsoft.com/<wbr>en-us/library/cc753575.aspx](http://technet.microsoft.com/en-us/library/cc753575.aspx)
+For more information, see [http://technet.microsoft.com/en-us/library/cc753575.aspx](http://technet.microsoft.com/en-us/library/cc753575.aspx)
 
-For NServiceBus endpoint destination, we address the queues by the MSMQ cluster group's name, where we will later add all the rest of our clustered resources. In non-cluster terms, we typically add the machine name to address the queue, i.e. queue@MachineName. In cluster terms we address it by queue@MSMQ Network name.
+For NServiceBus endpoint destination, we address the queues by the MSMQ cluster group's name, where we will later add all the rest of our clustered resources. In non-cluster terms, we typically add the machine name to address the queue, i.e. `queue@MachineName`. In cluster terms we address it by queue@MSMQ Network name.
 
 In Failover Cluster Management, from the server with Quorum:
 
@@ -121,7 +120,7 @@ NServiceBus.Production NServiceBus.Distributor
 
  It's easier to set the service name, display name, and description to be the same. It helps when trying to start and stop things from a NET START/STOP command and when viewing them in the multiple graphical tools. Starting each one with Distributor puts them all together alphabetically in the Services MMC snap-in.
 
-Don't forget the "NServiceBus.Production" at the end, which sets the profile for the NServiceBus generic host, as described in the [Generic Host page](the-nservicebus-host.md) and the "NServiceBus.Distributor" which sets up the host in distributor mode.
+Don't forget the `NServiceBus.Production` at the end, which sets the profile for the NServiceBus generic host, as described in the [Generic Host page](the-nservicebus-host.md) and the `NServiceBus.Distributor` which sets up the host in distributor mode.
 
 Do not try starting the services. If you do, they will run in the scope of the local server node, and will attempt to create their queues there.
 
@@ -144,7 +143,7 @@ Again, try swapping the cluster back and forth, to make sure it can move freely 
 
 Set up your worker processes on both worker servers (not the cluster nodes!) as services, as you did for the distributors. But instead of using NServiceBus.Distributor, use NServiceBus.Worker profile instead.
 
-Configure the workers' UnicastBusConfig sections to point to the distributor's data and control queues as described on the Distributor Page under "[Routing with the Distributor](load-balancing-with-the-distributor.md)".
+Configure the workers' `UnicastBusConfig` sections to point to the distributor's data and control queues as described on the Distributor Page under [Routing with the Distributor](load-balancing-with-the-distributor.md).
 
 With your distributors running in the cluster and your worker processes coming online, you should see the Storage queues for each process start to fill up. The more worker threads you have configured, the more messages you can expect to see in each Storage queue.
 

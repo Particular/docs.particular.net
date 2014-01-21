@@ -15,10 +15,7 @@ In [the previous section](NServiceBus-Step-by-Step-Guide.md) you've seen how a s
 3.  [Retries, errors, and auditing](#AuditAndError)
 4.  [Next Steps](#Next)
 
-The complete solution code can be found
-[here](https://github.com/Particular/docs.particular.net/tree/master/Samples/002_OrderingFaultTolerance)
-
-<a id="Demo" name="Demo"> </a>
+The complete solution code can be found [here](https://github.com/Particular/docs.particular.net/tree/master/Samples/002_OrderingFaultTolerance)
 
 Durable Messaging Demo
 ----------------------
@@ -35,9 +32,9 @@ Now bring the 'Server' endpoint back online by right clicking the project, Debug
 ![](002_fault.png)
 
 As you can see the 'Server' processes all those messages, and if you go back to the queue shown above and right click Refresh, it is empty.
+
 ![]003_fault.png)
 
-<a id="Fault" name="Fault"> </a>
 
 Fault tolerance and Second Level Retries (SLR)
 ----------------------------------------------
@@ -54,9 +51,7 @@ SLR is enabled by default, the default policy will defer the message
 
 So, let's make the processing of messages in the 'Server' endpoint fail.
 
-Throw an exception in the SubmitOrderProcessor code like this:
-
-
+Throw an exception in the `SubmitOrderProcessor` code like this:
 
 ```C#
 namespace Ordering.Server
@@ -78,9 +73,6 @@ namespace Ordering.Server
     }
 }
 ```
-
-
-
 Run your solution again, but this time use Ctrl-F5 so that Visual Studio does not break each time the exception is thrown, sending a message from the 'Client' console.
 
 You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
@@ -94,8 +86,6 @@ If you leave the endpoint running a while longer, you'll see that it tries proce
 
 **NOTE** When a message cannot be deserialized, it bypasses all retry and moves directly to the error queue.
 
-<a id="AuditAndError" name="AuditAndError"> </a>
-
 Retries, errors, and auditing
 -----------------------------
 
@@ -106,8 +96,6 @@ Since administrators must monitor these error queues, it is recommended that all
 Read more about [how to configure retries](second-level-retries.md) .
 
 Make sure you remove the code which throws an exception before going on.
-
-<a id="Next" name="Next"> </a>
 
 Next steps
 ----------
