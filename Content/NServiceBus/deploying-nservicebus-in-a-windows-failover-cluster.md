@@ -19,7 +19,7 @@ A simple setup for scalability and reliability includes at least two servers in 
 -   A `TimeoutManager`, if you require one to support Sagas.
 -   Commander application(s):
     -   A Commander application contains one or more classes that implement IWantToRunAtStartup and coordinate tasks among the other handlers, doing very little work itself but sending messages to start other processes based on timers or other stimuli.
-    -   It is important to set up these applications during the Start method and tear them down during the Stop method, as the Start method is called when the service starts, and the Stop method is called when the service stops (and is transferred to the other cluster node).
+    -   It is important to set up these applications during the Start method and tear them down during the `Stop` method, as the `Start` method is called when the service starts, and the Stop method is called when the service stops (and is transferred to the other cluster node).
     -   The Commander application can also have message handlers of its own, usually to subscribe to events published from other endpoints in the service as a kind of feedback loop to control overall processing flow.
 
 

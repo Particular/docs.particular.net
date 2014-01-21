@@ -9,9 +9,9 @@ tags:
 
 NServiceBus has the concept of installers to make sure that endpoint specific specific artefacts e.g., queues, folders, or databases are installed and configured automatically for you if needed at install time.
 
-To create your own installer is as easy as implementing the [INeedToInstallSomething<t>](https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Installation/INeedToInstallSomething.cs) interface. The generic parameter gives you a way to restrict your installer to a specific platform. Currently this is either Windows or Azure.
+To create your own installer is as easy as implementing the [`INeedToInstallSomething<T>`](https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Installation/INeedToInstallSomething.cs) interface. The generic parameter gives you a way to restrict your installer to a specific platform. Currently this is either Windows or Azure.
 
-If you don't care about the runtime environment, just use the [INeedToInstallSomething](https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Installation/INeedToInstallSomething.cs) interface instead.
+If you don't care about the runtime environment, just use the [`INeedToInstallSomething`](https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Installation/INeedToInstallSomething.cs) interface instead.
 
 NServiceBus scans the assemblies in the runtime directory for installers so you don't need any code to register them.
 

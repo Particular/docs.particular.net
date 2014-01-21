@@ -212,8 +212,7 @@ When the time is up, the Timeout Manager sends a message back to the saga causin
 Ending a long-running process
 -----------------------------
 
-After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done simply by calling the `MarkAsComplete()` method. The infrastructure contacts the Timeout Manager
-(if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages relating to that saga arrive after it has completed, they are discarded. If you want a copy of these messages to be maintained, that can be handled by the [generic audit functionality in NServiceBus](auditing-with-nservicebus.md) .
+After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done simply by calling the `MarkAsComplete()` method. The infrastructure contacts the Timeout Manager (if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages relating to that saga arrive after it has completed, they are discarded. If you want a copy of these messages to be maintained, that can be handled by the [generic audit functionality in NServiceBus](auditing-with-nservicebus.md) .
 
 Complex saga finding logic
 --------------------------
@@ -231,7 +230,7 @@ public class MySagaFinder : IFindSagas<MySagaData>.Using<Message2>
 }
 ```
 
- You can have as many of these classes as you want for a given saga or message type. If a saga can't be found, return null, and if the saga specifies that it is to be started for that message type, NServiceBus will know that a new saga instance is to be created.
+You can have as many of these classes as you want for a given saga or message type. If a saga can't be found, return null, and if the saga specifies that it is to be started for that message type, NServiceBus will know that a new saga instance is to be created.
 
 Sagas in self-hosted endpoints
 ------------------------------

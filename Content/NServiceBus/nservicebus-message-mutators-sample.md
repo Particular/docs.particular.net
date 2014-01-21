@@ -101,7 +101,7 @@ public class ValidationMessageMutator : IMessageMutator
 
 ValidationMessageMutator implements the two interface methods: outgoing and incoming. As can be seen in the code, both incoming and outgoing mutaturs have the exact same code in them. The mutation is symmetrical.
 
-Both call a private static method called ValidateDataAnnotations.
+Both call a private static method called `ValidateDataAnnotations`.
 
 This means that both the outgoing message and incoming message will be validated. The mutator is working on all incoming/outgoing message types.
 
@@ -111,7 +111,7 @@ Browse the code. It shows a standard way to test data annotations. In this sampl
 
 ### TransportMessageCompressionMutator
 
-Examine the other message mutator, the TransportMessageCompressionMutator:
+Examine the other message mutator, the `TransportMessageCompressionMutator`:
 
 
 ```C#
@@ -151,21 +151,19 @@ public class TransportMessageCompressionMutator : IMutateTransportMessages
 }
 ```
 
-The TransportMessageCompressionMutator is a transport message mutator, meaning that NServiceBus allows you to mutate the outgoing or/and incoming transport message.
+The `TransportMessageCompressionMutator` is a transport message mutator, meaning that NServiceBus allows you to mutate the outgoing or/and incoming transport message.
 
 In the TransportMessageCompressionMutator class, both the incoming and outgoing methods are implemented.
 
-In this sample, the outgoing method (compression) is executed by the client (sender) AppDomain, while the incoming method (Decompress) is executed by the Server (receiver) AppDomain.
+In this sample, the outgoing method (compression) is executed by the client (sender) AppDomain, while the incoming method (Decompress) is executed by the Server (receiver) `AppDomain`.
 
 This mutator is acting on all transport messages, regardless of what message types the transport message carries.
 
-The compression code is straightforward and utilizes the .NET framework
-[GZipStream](http://msdn.microsoft.com/en-us/library/system.io.compression.gzipstream.aspx) class to do the compression.
+The compression code is straightforward and utilizes the .NET framework [GZipStream](http://msdn.microsoft.com/en-us/library/system.io.compression.gzipstream.aspx) class to do the compression.
 
 After the compression is done, the compressed array is placed back in the transport message Body property.
 
-This sample signals to the receiving end that this transport message was mutated (compressed) by placing a "true" string in the header key
-"IWasCompressed".
+This sample signals to the receiving end that this transport message was mutated (compressed) by placing a "true" string in the header key `IWasCompressed`.
 
 Decompression is done in the incoming method if the key "IWasCompressed" exists.
 
@@ -194,11 +192,11 @@ public class HookMyMessageMutators : IWantCustomInitialization
 }
 ```
 
-Implementing IWantCustomInitialization signals NServiceBus to call the Init method during the NServiceBus initialization phase.
+Implementing `IWantCustomInitialization` signals NServiceBus to call the Init method during the NServiceBus initialization phase.
 
-The Init method configures, using NServiceBus builder ( [dependency injection mechanism](containers.md) ) to use ValidationMessageMutator and TransportMessageCompressionMutators. The NServiceBus framework uses them in its messaging flow.
+The `Init` method configures, using NServiceBus builder ([dependency injection mechanism](containers.md)) to use `ValidationMessageMutator` and `TransportMessageCompressionMutators`. The NServiceBus framework uses them in its messaging flow.
 
-Since the HookMyMessageMutators class is defined in the MessageMutators class library assembly, it means that you can drop it in the Client and the Server executable folder, and mutation will happen automatically.
+Since the `HookMyMessageMutators` class is defined in the MessageMutators class library assembly, it means that you can drop it in the Client and the Server executable folder, and mutation will happen automatically.
 
 Simply dropping the MessageMutators assembly in the executable folder means that that the client and server are agnostic to the fact that message mutation is being executed and to its nature. The message mutation can be replaced, updated, and removed without the client and server knowing about it.
 
@@ -208,7 +206,6 @@ Client and server code
 Since registration is done automatically by the framework, the server and client code are NServiceBus standard for sending and handling a message. There is nothing special here.
 
 This is how the client sends a valid message:
-
 
 ```C#
 Bus.Send<CreateProductCommand>(m =>
@@ -223,7 +220,7 @@ Bus.Send<CreateProductCommand>(m =>
 });
 ```
 
-Since the message buffer field is empty, GZipStreamer in the outgoing transport message mutator easily compresses it to a size under the MSMQ limit of 4MB and the message will get to the server.
+Since the message buffer field is empty, `GZipStreamer` in the outgoing transport message mutator easily compresses it to a size under the MSMQ limit of 4MB and the message will get to the server.
 
 See how the client sends an invalid message that will never reach the server since an exception will be thrown at the outgoing message mutator:
 
@@ -241,9 +238,7 @@ Bus.Send<CreateProductCommand>(m =>
 });
 ```
 
- The message is invalid for several reasons: the product name is over the
-20 character limit, the list price is too high, and the sell end date is not in the valid range. The thrown exception logs those invalid values. The server code is simple and straightforward:
-
+The message is invalid for several reasons: the product name is over the 20 character limit, the list price is too high, and the sell end date is not in the valid range. The thrown exception logs those invalid values. The server code is simple and straightforward:
 
 ```C#
 public class Handler : IHandleMessages<CreateProductCommand>
@@ -255,7 +250,7 @@ public class Handler : IHandleMessages<CreateProductCommand>
 }
 ```
 
- The server handler code does not need to change on account of the message mutation.
+The server handler code does not need to change on account of the message mutation.
 
 This article was based on an article written by [Adam Fyles](http://adamfyles.blogspot.com/). See the [original blog post](http://adamfyles.blogspot.com/2011/02/nservicebus-30-message-mutators.html).
 

@@ -103,7 +103,7 @@ Identify the `MyPublisher` process:
 
 ![pubsub sample running](pubsubsampleconsoles.PNG)
 
-If you are using the default installation location, the title may be too long to distinguish the publisher from the subscribers. You can locate the publisher because it will prompt you to hit 'Enter' as highlighted. Alternatively, you can change the title of the publisher window by adding the line `Console.Title="MyPublisher"` immediately in the Start method of the `ServerEndpoint.cs` file, as shown.
+If you are using the default installation location, the title may be too long to distinguish the publisher from the subscribers. You can locate the publisher because it will prompt you to hit 'Enter' as highlighted. Alternatively, you can change the title of the publisher window by adding the line `Console.Title="MyPublisher"` immediately in the `Start` method of the `ServerEndpoint.cs` file, as shown.
 
 Spread out the various console windows so that you can see all three fully.
 
@@ -117,8 +117,7 @@ Fault-tolerant messaging
 
 Shut down `Subscriber1` by closing its console window. Return to the `MyPublisher` process and publish a few more messages by clicking Enter several more times. Notice how the publishing process does not change and there are no errors even though one of the subscribers is no longer running.
 
-In Visual Studio, right click the project of the closed subscriber, and restart it by right clicking the "Subscriber 1" project and selecting
-['Debug' and then 'Start new instance'](http://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/pubsubsample/pubsubsample-restartpub1.PNG). Note how `Subscriber1` immediately receives the messages that were published while it was not running. The publisher safely places the message into the transport in this case MSMQ without knowledge of the running status of any subscriber. MSMQ safely places the message in the inbound queue of the subscriber where it awaits handling, so you can be sure that even when processes or machines restart, NServiceBus protects your messages so they won't get lost.
+In Visual Studio, right click the project of the closed subscriber, and restart it by right clicking the "Subscriber 1" project and selecting ['Debug' and then 'Start new instance'](http://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/pubsubsample/pubsubsample-restartpub1.PNG). Note how `Subscriber1` immediately receives the messages that were published while it was not running. The publisher safely places the message into the transport in this case MSMQ without knowledge of the running status of any subscriber. MSMQ safely places the message in the inbound queue of the subscriber where it awaits handling, so you can be sure that even when processes or machines restart, NServiceBus protects your messages so they won't get lost.
 
 Durable subscriptions by default
 --------------------------------
@@ -161,5 +160,4 @@ Next steps
 
 Scale out your publishers and subscribers. 
 
-See the other NServiceBus pieces that handle this for you in [how pub/sub works](how-pub-sub-works.md) .
-
+See the other NServiceBus pieces that handle this for you in [how pub/sub works](how-pub-sub-works.md).

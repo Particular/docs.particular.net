@@ -51,11 +51,11 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Client, IWantCustomLog
 ```
 
 
-**NOTE** : This class implements the NServiceBus interface IWantCustomLogging. It instructs NServiceBus to stop using its standard logging configuration.
+**NOTE** : This class implements the NServiceBus interface `IWantCustomLogging`. It instructs NServiceBus to stop using its standard logging configuration.
 
-The Init method contains the call to SetLoggingLibrary, which tells NServiceBus to use Log4Net but to use the XmlConfigurator from Log4Net. In short, this returns NServiceBus to the standard Log4Net model.
+The `Init` method contains the call to `SetLoggingLibrary`, which tells NServiceBus to use Log4Net but to use the `XmlConfigurator` from Log4Net. In short, this returns NServiceBus to the standard Log4Net model.
 
-Open the app.config file and see the regular Log4Net configuration:
+Open the `app.config` file and see the regular Log4Net configuration:
 
 
 ```XML
@@ -110,7 +110,7 @@ namespace Logging
 }
 ```
 
-Look at the signature of the MyProductionLogging class, which implements IConfigureLoggingForProfile<myproductionprofile>. This means that when the profile MyProductionProfile is specified, NServiceBus invokes this class to configure the logging for the process. In the Configure method, it is likely that you would call NServiceBus.SetLoggingLibrary.Log4Net but pass in some other value.
+Look at the signature of the `MyProductionLogging` class, which implements `IConfigureLoggingForProfile<myproductionprofile>`. This means that when the profile `MyProductionProfile` is specified, NServiceBus invokes this class to configure the logging for the process. In the Configure method, it is likely that you would call NServiceBus.SetLoggingLibrary.Log4Net but pass in some other value.
 
 Read about using [SetLoggingLibrary](logging-in-nservicebus.md) .
 
@@ -118,7 +118,7 @@ Now open the properties of the Logging project, and click the Debug tab:
 
 ![Logging project properties](logging2.png "Logging project properties")
 
-See the command line arguments for "Logging.MyProductionProfile", which specify which profile the host should use, via the command line.
+See the command line arguments for `Logging.MyProductionProfile`, which specify which profile the host should use, via the command line.
 
 Next steps
 ----------

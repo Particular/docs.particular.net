@@ -26,11 +26,9 @@ The [Video store sample](https://github.com/Particular/NServiceBus.Msmq.Samples/
 NServiceBus initialization
 --------------------------
 
-In the ApplicationStart method of your Global.asax file in a web application, or in the Main method of your Program file for console or Windows Forms applications, include the following initialization code:
+In the `ApplicationStart` method of your `Global.asax` file in a web application, or in the `Main` method of your `Program` file for console or Windows Forms applications, include the following initialization code:
 
 For NServiceBus v4.x:
-
-
 
 ```C#
 Configure.Serialization.Xml();
@@ -47,14 +45,9 @@ Configure.With()
 
 ```
 
-
-
-
 Here are some usage samples:
 
 NServiceBus v4.x in ASP.Net MVC:
-
-
 
 ```C#
 public class MvcApplication : System.Web.HttpApplication
@@ -89,19 +82,17 @@ public class MvcApplication : System.Web.HttpApplication
     }
 ```
 
-
-
 Configuration Code
 ------------------
 
 Most of the methods are extensions for the
 [NServiceBus.Configure](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config) class provided by the specific components packaged in the NServiceBus.Core assembly. You can similarly configure your own components by writing your own extension methods.
 
--   Log4Net() tells NServiceBus what to [log](logging-in-nservicebus.md) with.
--   DefaultBuilder() tells NServiceBus to use the default(Autofac) dependency injection framework. Other [dependency injection frameworks](containers.md) are available as well.
--   UnicastBus() tells NServiceBus to use unicast messaging. This is currently the only option available out of the box. LoadMessageHandlers() readies the bus for invoking message handlers when a message arrives.
--   CreateBus() takes all the previous options and wires up a bus object for you to use. You can store the reference returned from this call for sending messages.
--   Start() tells the bus object created by CreateBus() to start its threads for listening and processing messages.
+-   `Log4Net()` tells NServiceBus what to [log](logging-in-nservicebus.md) with.
+-   `DefaultBuilder()` tells NServiceBus to use the default(Autofac) dependency injection framework. Other [dependency injection frameworks](containers.md) are available as well.
+-   `UnicastBus()` tells NServiceBus to use unicast messaging. This is currently the only option available out of the box. LoadMessageHandlers() readies the bus for invoking message handlers when a message arrives.
+-   `CreateBus()` takes all the previous options and wires up a bus object for you to use. You can store the reference returned from this call for sending messages.
+-   `Start()` tells the bus object created by `CreateBus()` to start its threads for listening and processing messages.
 
 For NServiceBus v4.x:
 
@@ -119,8 +110,6 @@ To use the initialization code above, provide configuration for the MsmqTranspor
 Include these configuration sections:
 
 For NServiceBus v4.x:
-
-
 
 ```XML
 <section name="MessageForwardingInCaseOfFaultConfig" 
