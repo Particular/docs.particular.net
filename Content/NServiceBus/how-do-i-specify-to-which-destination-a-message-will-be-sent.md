@@ -8,10 +8,9 @@ tags:
 - Send
 ---
 
-You configure the destination for message types in <unicastbusconfig>, under <messageendpointmappings>.
+You configure the destination for message types in `<unicastbusconfig>`, under `<messageendpointmappings>`.
 
 Add one of the following:
-
 
 ```XML
 <UnicastBusConfig >
@@ -30,7 +29,7 @@ Add one of the following:
 
 For more information, see the [PubSub sample](https://github.com/NServiceBus/NServiceBus/tree/master/Samples/PubSub) config file.
 
-Destinations can be QueueName@ServerName, or just QueueName if the destination is the local machine.
+Destinations can be `QueueName@ServerName`, or just `QueueName` if the destination is the local machine.
 
 You can also call the following, even though it is not recommended for application-level code:
 

@@ -34,34 +34,11 @@ Useful links
 ------------
 
 -   [MSMQ Forums](http://social.msdn.microsoft.com/Forums/en-US/msmq)
-
--   [MSMQ on Windows Server
-    2003](http://technet.microsoft.com/en-gb/library/cc757108%28WS.10%29.aspx)
-
--   [MSMQ on Windows Server
-    2008](http://technet.microsoft.com/en-gb/library/cc753070%28WS.10%29.aspx)
-
--   [List of MSMQ articles](http://blogs.msdn.com/b/johnbreakwell/)
-    (very helpful)
-
--   [Changing the MSMQ Storage
-    location](http://blogs.msdn.com/b/johnbreakwell/archive/2009/02/09/changing-the-msmq-storage-location.aspx)
-    (A better option is virtualization, which ensures that messages are
-    safe.)
-
--   [Technet content for troubleshooting MSMQ on Windows 2008 and
-    Vista](http://blogs.msdn.com/b/johnbreakwell/archive/2008/05/07/technet-content-for-troubleshooting-msmq-on-windows-2008-and-vista.aspx)
-
--   [Publicly available tools for troubleshooting MSMQ
-    problems](http://blogs.msdn.com/b/johnbreakwell/archive/2007/12/13/what-publically-available-tools-are-available-for-troubleshooting-msmq-problems.aspx)
-
--   [MSMQ service might not send or receive messages after you restart a
-    computer that is running Windows 7, Windows Server 2008 R2, Windows
-    Vista, or Windows Server
-    2008](http://support.microsoft.com/kb/2554746)
-
--   [Troubleshooting MSDTC issues with the DTCPing
-    tool](http://blogs.msdn.com/b/distributedservices/archive/2008/11/12/troubleshooting-msdtc-issues-with-the-dtcping-tool.aspx)
-
-
-
+-   [MSMQ on Windows Server 2003](http://technet.microsoft.com/en-gb/library/cc757108%28WS.10%29.aspx)
+-   [MSMQ on Windows Server 2008](http://technet.microsoft.com/en-gb/library/cc753070%28WS.10%29.aspx)
+-   [List of MSMQ articles](http://blogs.msdn.com/b/johnbreakwell/)(very helpful)
+-   [Changing the MSMQ Storage location](http://blogs.msdn.com/b/johnbreakwell/archive/2009/02/09/changing-the-msmq-storage-location.aspx) (A better option is virtualization, which ensures that messages are safe.)
+-   [Technet content for troubleshooting MSMQ on Windows 2008 and Vista](http://blogs.msdn.com/b/johnbreakwell/archive/2008/05/07/technet-content-for-troubleshooting-msmq-on-windows-2008-and-vista.aspx)
+-   [Publicly available tools for troubleshooting MSMQ problems](http://blogs.msdn.com/b/johnbreakwell/archive/2007/12/13/what-publically-available-tools-are-available-for-troubleshooting-msmq-problems.aspx)
+-   [MSMQ service might not send or receive messages after you restart a computer that is running Windows 7, Windows Server 2008 R2, Windows Vista, or Windows Server 2008](http://support.microsoft.com/kb/2554746)
+-   [Troubleshooting MSDTC issues with the DTCPing tool](http://blogs.msdn.com/b/distributedservices/archive/2008/11/12/troubleshooting-msdtc-issues-with-the-dtcping-tool.aspx)

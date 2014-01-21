@@ -5,7 +5,7 @@ originalUrl: http://www.particular.net/articles/performance
 tags: []
 ---
 
-<span style="font-size: 14px; line-height: 24px;">NServiceBus:</span>
+NServiceBus:
 
 -   Efficiently processes a single message
 -   Processes high volumes concurrently
@@ -36,9 +36,9 @@ The most [detailed breakdown of NServiceBus performance](http://www.udidahan.com
 XML serialization
 -----------------
 
-One area of interest when evaluating a technology is how fast it can handle XML. NServiceBus has its own custom XML serializer that is capable of handling classes, interfaces, and dictionaries, and does not use the WCF DataContractSerializer. The standard .net binary serializer does binary serialization.
+One area of interest when evaluating a technology is how fast it can handle XML. NServiceBus has its own custom XML serializer that is capable of handling classes, interfaces, and dictionaries, and does not use the WCF `DataContractSerializer`. The standard .net binary serializer does binary serialization.
 
-The chart below compares the NServiceBus XML serializer and the WCF DataContractSerializer when processing small messages with five levels of nesting. You can see that the NServiceBus performance is superior; at times, even 40% faster.
+The chart below compares the NServiceBus XML serializer and the WCF `DataContractSerializer` when processing small messages with five levels of nesting. You can see that the NServiceBus performance is superior; at times, even 40% faster.
 
 Times are measured for 100 operations, so NServiceBus can serialize a single message in 0.7-0.8 ms, and deserialize it in roughly 1ms. Larger messages take longer.
 

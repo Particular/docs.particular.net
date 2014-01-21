@@ -16,7 +16,7 @@ To set up an NServiceBus endpoint to make all calls to RavenDB through Fiddler c
 </system.net>
 ```
 
- With this proxy setup, change the RavenDB connection string, to go through Fiddler, by setting the following special host name:
+With this proxy setup, change the RavenDB connection string, to go through Fiddler, by setting the following special host name:
 
 
 ```XML

@@ -5,7 +5,7 @@ originalUrl: http://www.particular.net/articles/messagequeueexception-insufficie
 tags: []
 ---
 
-This exception may occur if you try to send messages to a machine that has been offline for a while, or the system is suffering from a larger than expected load spike:
+This exception may occur if you try to send messages to a machine that has been off-line for a while, or the system is suffering from a larger than expected load spike:
 
 ```
 System.Messaging.MessageQueueException (0x80004005): Insufficient resources to perform operation. 

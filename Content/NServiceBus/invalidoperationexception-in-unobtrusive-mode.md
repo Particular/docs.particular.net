@@ -5,8 +5,7 @@ originalUrl: http://www.particular.net/articles/invalidoperationexception-in-uno
 tags: []
 ---
 
-To avoid an InvalidOperationException, "DefiningMessagesAs" (or any one of the DefiningXXXAs) should come in the Fluent configuration before
-.UnicastBus().
+To avoid an `InvalidOperationException`, `DefiningMessagesAs` (or any one of the `DefiningXXXAs`) should come in the Fluent configuration before `.UnicastBus()`.
 
 You can read more about the [Unobtrusive mode](unobtrusive-mode-messages.md) or see the [Unobtrusive Sample](unobtrusive-sample.md) .
 

@@ -16,11 +16,11 @@ At that point, NServiceBus retries to handle that message a configurable number 
 
 Administrators should monitor that error queue so that they can see when problems occur. The message in the error queue contains the source queue and machine so that the administrator can see what's wrong with that node and possibly correct the problem (like bringing up a database that went down).
 
-Once the administrator corrects the problem, they can use the ReturnToSourceQueue.exe tool to send the relevant message back to its original queue so that it can be processed again; this time, successfully.
+Once the administrator corrects the problem, they can use the `ReturnToSourceQueue.exe` tool to send the relevant message back to its original queue so that it can be processed again; this time, successfully.
 
-The ReturnToSourceQueue tool is specific to MSMQ.
+The `ReturnToSourceQueue` tool is specific to MSMQ.
 
-The tool itself is in the tools folder in the NServiceBus [download binaries](downloads).
+The tool itself is in the tools folder in the NServiceBus [download binaries](http://www.particular.net/downloads).
 
-For more information on this process, [click here](transactions-message-processing.md).
+For more information on this process, [Transactions Message Processing](transactions-message-processing.md).
 

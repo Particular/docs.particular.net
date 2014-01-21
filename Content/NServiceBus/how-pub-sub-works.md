@@ -59,7 +59,7 @@ Next steps
 ----------
 
 -   Learn about the [API and configuration involved in pub/sub](publish-subscribe-configuration.md) .
--   See how to [configure the distributor and learn more about its internals](load-balancing-with-the-distributor.md) .
+-   See how to [configure the distributor and learn more about its internals](load-balancing-with-the-distributor.md).
 -   Find out how to use the [generic NServiceBus Host process](the-nservicebus-host.md) .
 
 

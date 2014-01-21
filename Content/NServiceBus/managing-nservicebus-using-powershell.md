@@ -21,17 +21,17 @@ You can use the SDK installer (it will install everything you need to run your d
 
 You can use Nuget:
 
-Create a new class librery project, go to \`Package Manager Console\`
+Create a new class library project, go to `Package Manager Console`
 
-Type Install-Package NServiceBus.PowerShell
+Type `Install-Package NServiceBus.PowerShell`
 
-After it is complete you will have the NServiceBus.Powershell.dll in your packages folder in you solution directory
+After it is complete you will have the `NServiceBus.Powershell.dll` in your packages folder in you solution directory
 
 to use it promptly inside visual studio, you can do
 
     PM> Import-Module .\packages\NServiceBus.PowerShell.<4.x.x your version>\lib\net40\NServiceBus.PowerShell.dll
 
-and then use the cmslts you want.
+and then use the cmdlet you want.
 
 Or you can follow the instructions to load them into PowerShell using the Import-Module cmdlet:
 
@@ -44,7 +44,6 @@ If you use the NuGet package, the commandlets are available automatically in the
 For a detailed description of all our commandlets, use the get-help command:
 
     PM> get-help about_NServiceBus
-
 
 NServiceBus PowerShell cmdlets have been renamed so that they do not clash with existing version 3.0 cmdlets:
 
@@ -109,19 +108,15 @@ Installing the NServiceBus commandlets in V3.0
 
 Load the cmdlets into PowerShell using the Import-Module cmdlet:
 
-
     PM> Import-Module .\NServiceBus.Core.dll
 
-
-<span style="font-weight: 600;">NOTE</span> : The core depends on NServiceBus.dll and log4net.dll so make sure that both are in the same directory.
+**NOTE**: The core depends on `NServiceBus.dll` and `log4net.dll` so make sure that both are in the same directory.
 
 If you use the NuGet package, the commandlets are available automatically in the NuGet console. If you installed NServiceBus using the MSI you can add the import module statement to your [PowerShell profile.](http://www.howtogeek.com/50236/customizing-your-powershell-profile/)
 
 For a detailed description of all our commandlets, use the get-help command:
 
-
     PM> get-help about_NServiceBus
-
 
 Infrastructure commandlets
 --------------------------
@@ -130,19 +125,19 @@ Following are the available infrastructure cmdlets:
 
 ### Install-Dtc
 
-Sets up the MSDTC for use with NServiceBus. Use -WhatIf to verify current status without doing any modifications.
+Sets up the MSDTC for use with NServiceBus. Use `-WhatIf` to verify current status without doing any modifications.
 
 ### Install-Msmq
 
-Sets up MSMQ for use with NServiceBus. Use -WhatIf to verify current status without doing any modifications. If a reinstall of MSMQ is needed, rerun the command with the -Force switch.
+Sets up MSMQ for use with NServiceBus. Use `-WhatIf` to verify current status without doing any modifications. If a reinstall of MSMQ is needed, rerun the command with the -Force switch.
 
 ### Install-RavenDB
 
-Sets up RavenDB for use with NServiceBus. Use -WhatIf to verify current status without doing any modifications.
+Sets up RavenDB for use with NServiceBus. Use `-WhatIf` to verify current status without doing any modifications.
 
 ### Install-PerformanceCounters
 
-Installs the NServiceBus performance counters. Use -WhatIf to verify current status without doing any modifications.
+Installs the NServiceBus performance counters. Use `-WhatIf` to verify current status without doing any modifications.
 
 ### Get-NServiceBusVersion
 
@@ -162,6 +157,5 @@ Import-Module : Could not load file or assembly
 'file:///C:\\Program Files (x86)\\Particular Software\\NServiceBus\\v4.0\\NServiceBus\\Binaries\\NServiceBus.PowerShell.dll' or one of its dependencies. This assembly is built by a runtime newer than the currently loaded runtime and cannot be loaded. 
 ```
 
-Although it is possible to change the existing version of Powershell.exe.config to load .NET 4.0 framework, the preferred approach is to install PowerShell 3 than to change the config files. Forcing PowerShell 2 to use .NET 4 can break PS Snapins from other vendors. PowerShell 3 provides a command line option to switch versions of PS and
-.NET if needed.
+Although it is possible to change the existing version of `Powershell.exe.config` to load .NET 4.0 framework, the preferred approach is to install PowerShell 3 than to change the config files. Forcing PowerShell 2 to use .NET 4 can break PS Snapins from other vendors. PowerShell 3 provides a command line option to switch versions of PS and .NET if needed.
 

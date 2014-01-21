@@ -37,8 +37,7 @@ In short, the scale-out benefits of MSMQ V4 by itself are quite limited.
 How does it work?
 -----------------
 
-Worker nodes send messages to the distributor, telling it when they're ready for work. These messages arrive at the distributor via a separate
-'control' queue. The distributor stores this information. When applicative messages arrive at the distributor, it uses previously stored information to find a free worker node, and sends the message to it. If no worker nodes are free, the distributor waits before repeating the previous step.
+Worker nodes send messages to the distributor, telling it when they're ready for work. These messages arrive at the distributor via a separate 'control' queue. The distributor stores this information. When applicative messages arrive at the distributor, it uses previously stored information to find a free worker node, and sends the message to it. If no worker nodes are free, the distributor waits before repeating the previous step.
 
 All pending work stays in the distributor's queue (rather than building up in each of the workers' queues), giving visibility of how long messages are actually waiting. This is important for complying with time-based service level agreements (SLAs).
 
@@ -60,27 +59,22 @@ If you are running with [NServiceBus.Host.exe](the-nservicebus-host.md), the fol
 
 To start your endpoint as a distributor, run it from the command line, as follows:
 
-
     > NServiceBus.Host.exe NServiceBus.Production NServiceBus.Distributor
-
 
 The NServiceBus.Distributor profile instructs the NServiceBus framework to start a distributor on this endpoint, waiting for workers to enlist to it. Unlike the NServiceBus.Master profile, the NServiceBus.Distributor profile does not execute a Worker on its node.
 
 You can use the NServiceBus.Master to start a Distributor on your endpoint with a Worker on its endpoint. When specifying the NServiceBus.Master profile, the gateway also runs on endpoint.
 
-
     > NServiceBus.Host.exe NServiceBus.Production NServiceBus.Master
-
 
 ### When self-hosting
 
-When you [self host](hosting-nservicebus-in-your-own-process.md) your endpoint, configure AsMasterNode() and then use this configuration:
+When you [self host](hosting-nservicebus-in-your-own-process.md) your endpoint, configure `AsMasterNode()` and then use this configuration:
 
--   RunDistributor(): Starts your endpoint as a Distributor, waits for Workers to enlist, and then distributes loads to those enlisted workers. It also starts a local worker (working from the same machine as the Distributor).
--   RunDistributorWithNoWorkerOnItsEndpoint(): Starts your endpoint as a Distributor, waiting for Workers to enlist, and then load balances.
+-   `RunDistributor()`: Starts your endpoint as a Distributor, waits for Workers to enlist, and then distributes loads to those enlisted workers. It also starts a local worker (working from the same machine as the Distributor).
+-   `RunDistributorWithNoWorkerOnItsEndpoint()`: Starts your endpoint as a Distributor, waiting for Workers to enlist, and then load balances.
 
 Following is an example of a Distributor with a Worker on its endpoint:
-
 
 ```C#
 Configure.With()
@@ -92,8 +86,7 @@ Configure.With()
          .Start();
 ```
 
- To run the Distributor without a worker on its endpoint, replace
-.RunDistributor() with with .RunDistributorWithNoWorkerOnItsEndpoint().
+ To run the Distributor without a worker on its endpoint, replace `.RunDistributor()` with with `.RunDistributorWithNoWorkerOnItsEndpoint()`.
 
 Worker Configuration
 --------------------
@@ -106,7 +99,7 @@ If you are hosting your endpoint with NServiceBus.Host.exe, to run as a worker, 
 
     > NServiceBus.Host.exe NServiceBus.Production NServiceBus.Worker
 
-Configure the name of the master node server as shown in this app.config example. Note the MasterNodeConfig section:
+Configure the name of the master node server as shown in this app.config example. Note the `MasterNodeConfig` section:
 
 ```XML
 <?xml version="1.0" encoding="utf-8" ?>
@@ -120,11 +113,11 @@ Configure the name of the master node server as shown in this app.config example
 </configuration>
 ```
 
-Read about the DistributorControlAddress and the DistributorDataAddress in the [Routing with the Distributor](load-balancing-with-the-distributor.md) section.
+Read about the `DistributorControlAddress` and the `DistributorDataAddress` in the [Routing with the Distributor](load-balancing-with-the-distributor.md) section.
 
 ### When self-hosting
 
-When self hosting, call the EnlistWithDistributor() configuration extension method. The Enlist command takes the endpoint name of the worker and sends "I am ready message" to the control queue of the distributor. See more in the Routing section below.
+When self hosting, call the `EnlistWithDistributor()` configuration extension method. The Enlist command takes the endpoint name of the worker and sends "I am ready message" to the control queue of the distributor. See more in the Routing section below.
 
 Following is an example of configuration of a Worker node:
 
@@ -145,7 +138,7 @@ Routing with the Distributor
 
 The distributor uses two queues for its runtime operation. The DataInputQueue is the queue where the client processes send their applicative messages. The ControlInputQueue is the queue where the worker nodes send their control messages.
 
-To use values other than the NServiceBus defaults you can override them, as shown in the UnicastBusConfig section below:
+To use values other than the NServiceBus defaults you can override them, as shown in the `UnicastBusConfig` section below:
 
 ```XML
 <UnicastBusConfig DistributorControlAddress="distributorControlBus@Cluster1" DistributorDataAddress="distributorDataBus@Cluster1">
@@ -155,19 +148,18 @@ To use values other than the NServiceBus defaults you can override them, as show
 </UnicastBusConfig>
 ```
 
-If those settings do not exist, the control queue is assumed as the endpoint name of the worker, concatenated with the " distributor.control@HostWhereDistributorIsRunning" string.
+If those settings do not exist, the control queue is assumed as the endpoint name of the worker, concatenated with the ` distributor.control@HostWhereDistributorIsRunning` string.
 
 Similar to standard NServiceBus routing, you do not want high priority messages to get stuck behind lower priority messages, so just as you have separate NServiceBus processes for different message types, you also set up different distributor instances (with separate queues) for different message types.
 
-In this case, name the queues just like the messages; for example, SubmitPurchaseOrder.StrategicCustomers.Sales. This is the name of the distributor's data queue and the input queues of each of the workers. The distributor's control queue is best named with a prefix of
-'control', as follows: Control.SubmitPurchaseOrder.StrategicCustomers.Sales.
+In this case, name the queues just like the messages; for example, `SubmitPurchaseOrder.StrategicCustomers.Sales`. This is the name of the distributor's data queue and the input queues of each of the workers. The distributor's control queue is best named with a prefix of
+'control', as follows: `Control.SubmitPurchaseOrder.StrategicCustomers.Sales`.
 
 When using the distributor in a full publish/subscribe deployment, you see is a distributor within each subscriber balancing the load of events being published, as follows:
 
 ![logical pub/sub and physical distribution 3](nservicebus_pubsub_3.png)
 
-Keep in mind that the distributor is designed for load balancing within a single site, so do not use it between sites. In the image above, all publishers and subscribers are within a single physical site. For information on using NServiceBus across multiple physical sites, see
-[the gateway](the-gateway-and-multi-site-distribution.md) .
+Keep in mind that the distributor is designed for load balancing within a single site, so do not use it between sites. In the image above, all publishers and subscribers are within a single physical site. For information on using NServiceBus across multiple physical sites, see [the gateway](the-gateway-and-multi-site-distribution.md).
 
 High availability
 -----------------

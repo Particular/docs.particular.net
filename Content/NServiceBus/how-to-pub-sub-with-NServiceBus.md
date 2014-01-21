@@ -34,7 +34,7 @@ Bus.Subscribe<MyMessage>();
 Bus.Unsubscribe<MyMessage>();
 ```
 
- To subscribe to a message, you must have a UnicastBusConfig entry, as follows:
+ To subscribe to a message, you must have a `UnicastBusConfig` entry, as follows:
 
 
 ```XML
@@ -52,7 +52,7 @@ Bus.Unsubscribe<MyMessage>();
 </UnicastBusConfig>
 ```
 
- When subscribing to a message, you will probably have a [message handler](how-do-i-handle-a-message.md) for it. If you do, and have the UnicastBusConfig section mentioned above, you do not have to write Bus.Subscribe, as NServiceBus invokes it automatically for you.
+When subscribing to a message, you will probably have a [message handler](how-do-i-handle-a-message.md) for it. If you do, and have the `UnicastBusConfig` section mentioned above, you do not have to write `Bus.Subscribe`, as NServiceBus invokes it automatically for you.
 
-You can also choose to **not** have the infrastructure automatically subscribe by calling .DoNotAutoSubscribe() after .UnicastBus() in the Fluent configuration API.
+You can also choose to **not** have the infrastructure automatically subscribe by calling `.DoNotAutoSubscribe()` after `.UnicastBus()` in the Fluent configuration API.
 

@@ -5,7 +5,7 @@ originalUrl: http://www.particular.net/articles/injecting-the-bus-into-asp.net-m
 tags: []
 ---
 
-In the AsyncPagesMvc3 sample, open Global.asax.cs and look at the ApplicationStart method.
+In the `AsyncPagesMvc3` sample, open `Global.asax.cs` and look at the `ApplicationStart` method.
 
     protected void Application_Start()
     {
@@ -31,13 +31,13 @@ In the AsyncPagesMvc3 sample, open Global.asax.cs and look at the ApplicationSta
 
 To inject the Bus, these classes were added to the project:
 
--   NServiceBusDependencyResolverAdapter: Implements `IDependencyResolver` for handling controllers and creating the controller activator
--   NServiceBusControllerActivator: Creates controllers
--   ForMvc: Extends NServiceBus Configure. Responsible for registering the previous two classes
+-   `NServiceBusDependencyResolverAdapter`: Implements `IDependencyResolver` for handling controllers and creating the controller activator
+-   `NServiceBusControllerActivator`: Creates controllers
+-   `ForMvc`: Extends NServiceBus Configure. Responsible for registering the previous two classes
 
 The ASP.NET MVC 3 framework allows you to get involved in service creation. Ensure that when controllers are created, their `IBus` property is injected with NServiceBus `IBus`.
 
-NServiceBusDependencyResolverAdapter implements IDependencyResolver, as follows:
+`NServiceBusDependencyResolverAdapter` implements `IDependencyResolver`, as follows:
 
     public class NServiceBusDependencyResolverAdapter : IDependencyResolver
     {
@@ -60,9 +60,9 @@ NServiceBusDependencyResolverAdapter implements IDependencyResolver, as follows:
         }
     }
 
-IDependencyResolver has two methods to implement: getting a single or multiple service.
+`IDependencyResolver` has two methods to implement: getting a single or multiple service.
 
-Generate the required serviceType using the NServiceBus IBuilder interface. NServiceBus builder is configured in Global.asax.cs, in ApplicationStart(), as follows:
+Generate the required serviceType using the NServiceBus `IBuilder` interface. NServiceBus builder is configured in `Global.asax.cs`, in `ApplicationStart()`, as follows:
 
     Configure.With()
         .DefaultBuilder()
@@ -71,10 +71,9 @@ Generate the required serviceType using the NServiceBus IBuilder interface. NSer
 
 Currently, the default builder is used. For NServiceBus V3, the builder is Autofac.
 
-The ASP.NET MVC 3 framework invokes the IDependencyResolver implementation (NServiceBusDependencyResolverAdapter) class to get an instance of the objects it requires. Among them are the controllers as well as the class that implements IControllerActivator.
+The ASP.NET MVC 3 framework invokes the `IDependencyResolver` implementation  (`NServiceBusDependencyResolverAdapter`) class to get an instance of the objects it requires. Among them are the controllers as well as the class that implements `IControllerActivator`.
 
-This implementation returns null for all requests (leaving the MVC framework to take care of them) except for the sample controllers and theIControllerActivator implementation (NServiceBusControllerActivator). IDependencyResolver implementation
-(NServiceBusDependencyResolverAdapter) is registered in ASP.NET MVC 3 in the ForMvc extension method, as follows:
+This implementation returns null for all requests (leaving the MVC framework to take care of them) except for the sample controllers and the `IControllerActivator` implementation (`NServiceBusControllerActivator`). `IDependencyResolver` implementation (`NServiceBusDependencyResolverAdapter`) is registered in ASP.NET MVC 3 in the `ForMvc` extension method, as follows:
 
     DependencyResolver.SetResolver(new NServiceBusDependencyResolverAdapter(configure.Builder));
 
@@ -88,9 +87,9 @@ To control the creation of the controllers, hence injecting the IBus property, i
         }
     }
 
-DependencyResolver.Current points to the implementation of IDependencyResolver (NServiceBusDependencyResolverAdapter), which in return instantiates all requested controllers with their public properties, including IBus.
+`DependencyResolver.Current` points to the implementation of `IDependencyResolver `(`NServiceBusDependencyResolverAdapter`), which in return instantiates all requested controllers with their public properties, including `IBus`.
 
-The NServiceBus builder creates all controllers and IControllerActivator implementation (NServiceBusControllerActivator class) by registering them all in NServiceBus Builder, using this code:
+The NServiceBus builder creates all controllers and `IControllerActivator` implementation (`NServiceBusControllerActivator` class) by registering them all in NServiceBus Builder, using this code:
 
     public static Configure ForMvc(this Configure configure)
     {

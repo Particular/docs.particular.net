@@ -16,8 +16,7 @@ One of the benefits of working with the NServiceBus API is greatly simplified un
 
 Here's an example of the kind of service layer tests that NServiceBus enables:
 
-
-```txt
+```
 public class TestHandler
 {
     [Test]
