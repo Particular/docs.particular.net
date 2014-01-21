@@ -55,7 +55,7 @@ While it does take some getting used to, code written using NServiceBus is quite
 Next steps
 ----------
 
--   [Download NServiceBus](/downloads)
+-   [Download NServiceBus](http://particular.net/downloads)
 -   [Learn more about publish/subscribe messaging](getting-started---publish-subscribe-communication.md)
 -   Look at the differences between NServiceBus and [WCF](nservicebus-and-wcf.md), [BizTalk](nservicebus-and-biztalk.md), and [WebSphere or Sonic](nservicebus-and-websphere-sonic.md)
 

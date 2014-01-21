@@ -113,7 +113,7 @@
         "Name": "versioning",
         "Title": "Versioning",
         "Articles": [
-          "NServiceBus/migrating-to-nservicebus-3.0-–-timeouts"
+          "NServiceBus/migrating-to-nservicebus-3.0-timeouts"
         ]
       },
       {

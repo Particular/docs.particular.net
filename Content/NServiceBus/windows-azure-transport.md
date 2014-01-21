@@ -34,14 +34,14 @@ Download Samples
 In order to run these samples, you will need to update the configuration connection strings and queue names settings in the relevant configuration file (as described below).
 
 The Windows Azure transport for NServiceBus ships with NServiceBus. You can download the latest (and previous) release of NServiceBus from the
-[downloads page](/downloads).
+[downloads page](http://particular.net/downloads).
 
 Prerequisites
 -------------
 
 The Windows Azure transport for NServiceBus and its samples require the following:
 
--   [NServiceBus V4.0 or later](/downloads)
+-   [NServiceBus V4.0 or later](http://particular.net/downloads)
     -   Note that Windows Azure transport for NServiceBus is supported by NServiceBus V3 and later. It is, however, recommended that you use it with NServiceBus V4, and the samples require NServiceBus V4.
 
 -   [Microsoft Windows Azure SDK version
