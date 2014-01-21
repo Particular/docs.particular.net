@@ -15,7 +15,7 @@ In this tutorial we are going to create a very simple ordering system that will 
 6.  [Next Steps](#Next%20Steps)
 
 The complete solution code can be found
-[here](https://github.com/Particular/docs.particular.net/tree/master/Samples/001_OrderingSendOnly)
+[here](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Documentation/001_OrderingSendOnly)
 
 ### <a id="Client" name="Client"> </a> Creating the Client project
 
