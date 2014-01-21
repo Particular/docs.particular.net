@@ -15,7 +15,7 @@ In [the previous section](NServiceBus-Step-by-Step-Guide.md) you've seen how a s
 3.  [Retries, errors, and auditing](#AuditAndError)
 4.  [Next Steps](#Next)
 
-The complete solution code can be found [here](https://github.com/Particular/docs.particular.net/tree/master/Samples/002_OrderingFaultTolerance)
+The complete solution code can be found [here](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Documentation/002_OrderingFaultTolerance)
 
 Durable Messaging Demo
 ----------------------
