@@ -17,7 +17,7 @@ In the previous section: [NServiceBus Step by Step Guide - Fault Tolerance - cod
 6.  [Next Steps](#Next)
 
 The complete solution code can be found
-[here](https://github.com/Particular/docs.particular.net/tree/master/Samples/003_OrderingPubSub)
+[here](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Documentation/003_OrderingPubSub)
 
 Now that we've gone through the basics of NServiceBus communication, configuration and fault tolerance, let's move on to publish/subscribe.
 
