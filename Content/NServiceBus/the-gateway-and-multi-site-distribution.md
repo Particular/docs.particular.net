@@ -69,7 +69,7 @@ To send a message to a remote site, use the `SendToSites` API call, as shown:
 Bus.SendToSites(new[] {"SiteA","SiteB"}, new MyCrossSiteMessage());
 ```
 
- Did you notice the list of strings as the first parameter? This is the list of remote sites where you want the message(s) sent. While you can put the URLs of the site directly in the call, we recommend that you put these settings in `app.config` so your admins can change them should the need arise. To do this, add this config section:
+ Did you notice the list of strings as the first parameter? This is the list of remote sites where you want the message(s) sent. While you can put the URLs of the site directly in the call, we recommend that you put these settings in `app.config` so your administrators can change them should the need arise. To do this, add this config section:
 
 
 ```XML
@@ -128,4 +128,4 @@ Follow the steps for [configuring SSL](http://msdn.microsoft.com/en-us/library/m
 The gateway in action
 ---------------------
 
-If you want to take the gateway for a spin, look at the Gateway sample in the Samples\\Gateway folder under the NServiceBus package.
+If you want to take the gateway for a spin, look at the Gateway sample in the `Samples\\Gateway` folder under the NServiceBus package.

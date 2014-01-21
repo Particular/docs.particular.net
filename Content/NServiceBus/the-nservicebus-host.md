@@ -50,7 +50,7 @@ Configuration
 
 How does the host know which configuration file to use? NServiceBus.Host.exe scans the runtime directory loading all DLLs into memory. It searches the types defined in those assemblies for a class that implements the `IConfigureThisEndpoint` interface. The name of the assembly holding that type is used to create `assembly.dll.config` and that is the file used for configuration.
 
-Shortcut the scanning process by telling the host which type to use by including a file called 'NServiceBus.Host.exe.config' in which you specify the type implementing `IConfigureThisEndpoint`, like this:
+Shortcut the scanning process by telling the host which type to use by including a file called `NServiceBus.Host.exe.config` in which you specify the type implementing `IConfigureThisEndpoint`, like this:
 
 ```XML
 <?xml version="1.0" encoding="utf-8" ?>
@@ -82,14 +82,14 @@ Logging
 To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure your custom setup. To make NServiceBus use your logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](logging-in-nservicebus.md) and shown below:
 
 ```C#
-    class MyEndpointConfig : IConfigureThisEndpoint, IWantCustomLogging
+class MyEndpointConfig : IConfigureThisEndpoint, IWantCustomLogging
+{
+    public void Init()
     {
-        public void Init()
-        {
-            // setup your logging infrastructure then call
-            NServiceBus.SetLoggingLibrary.Log4Net(null, yourLogger);
-        }
+        // setup your logging infrastructure then call
+        NServiceBus.SetLoggingLibrary.Log4Net(null, yourLogger);
     }
+}
 ```
 
 You may want to specify different logging levels (`DEBUG`, `WARN`, etc.) and possibly different targets `(CONSOLE`, `FILE`, etc.). The host provides a mechanism for changing these permutations with no code or config changes, via [profiles](profiles-for-nservicebus-host.md) .
@@ -110,7 +110,7 @@ To change core settings such as assembly scanning, container, and serialization 
 Configure.With()
 ```
 
- NOTE: Do not perform any startup behaviors in the Init method.
+**NOTE:** Do not perform any startup behaviors in the `Init` method.
 
 Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing
 `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in v3.x) should kick off things such as web crawling, data mining, and batch processes.
@@ -191,14 +191,13 @@ NServiceBus.Host.exe [/install [/serviceName]
 [/instance:Instance Name ] 
 ```
 
- You can get to this list by running the following at the command line:
-
+You can get to this list by running the following at the command line:
 
 ```Batchfile
 > NServiceBus.Host.exe /?
 ```
 
- To set the actual name of the Windows Services in the registry, specify/serviceName:YourServiceName. This is different from what you see in the Windows Service Manager.
+To set the actual name of the Windows Services in the registry, specify `/serviceName:YourServiceName`. This is different from what you see in the Windows Service Manager.
 
 To set the name of the Windows Service as you see it in the Windows Service Manager, specify `/displayName:YourService`.
 
@@ -238,7 +237,6 @@ If you specify a service name or instance name when installing your service, you
 For example:
   
     > NServiceBus.Host.exe /uninstall /serviceName:YourServiceName /instance:YourInstanceName
-
 
  To invoke the infrastructure installers, run the host with the
 `/installInfrastructure` switch. [Learn about installers.](nservicebus-installers.md)

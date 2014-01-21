@@ -10,7 +10,7 @@ If you run into this exception when using NServiceBus in an ASP.NET application 
 Exception details
 -----------------
 
-Server Error in '/' Application. Type XYZ was not registered in the serializer. Check that it appears in the list of configured assemblies/types to scan. Description: An unhandled exception occurred during the execution of the current web request. Review the stack trace for more information about the error and where it originated in the code.
+> Server Error in '/' Application. Type XYZ was not registered in the serializer. Check that it appears in the list of configured assemblies/types to scan. Description: An unhandled exception occurred during the execution of the current web request. Review the stack trace for more information about the error and where it originated in the code.
 
 Solution
 --------
