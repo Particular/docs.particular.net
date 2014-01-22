@@ -154,5 +154,5 @@ The error messages appear when there is no valid license for the worker and it w
 Next steps
 ----------
 
-Read about [the distributor](load-balancing-with-the-distributor.md) .
+Read about [the distributor](load-balancing-with-the-distributor.md).
 

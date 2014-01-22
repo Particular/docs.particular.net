@@ -121,7 +121,7 @@ When you enable the gateway, it automatically sets up an HTTP channel to listen 
 </GatewayConfig>
 ```
 
-The "Default" on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels. Currently, HTTP/HTTPS is the only supported channel but there are plans for Azure, FTP, and Amazon SQS to help you bridge both onsite and cloud sites.
+The "Default" on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels. Currently, HTTP/HTTPS is the only supported channel but there are plans for Azure, FTP, and Amazon SQS to help you bridge both on-site and cloud sites.
 
 Follow the steps for [configuring SSL](http://msdn.microsoft.com/en-us/library/ms733768.aspx) and make sure to configure the gateway to listen on the appropriate port, as well as to contact the remote gateway on the same port.
 

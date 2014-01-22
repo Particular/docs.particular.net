@@ -76,7 +76,7 @@ There are additional NServiceBus NuGet packages, to make your integration with N
 -  **NServiceBus.Unity**: Use this package if you are using Unity application block for dependency injection.
 -  **NServiceBus.Autofac**: Use this package if you are using Autofac IoC container.
 -  **NServiceBus.StructureMap**: Use this package if you are using StructureMap dependency injection tool.
--  **NServiceBus.Autofac**: The newest Autofac Container for NServiceBus.
+-  **NServiceBus.Autofac**: The Autofac Container for NServiceBus.
 -  **NServiceBus.StructureMap**: The StructureMap (version 262) Container for the NServiceBus.
 -  **NServiceBus.Testing**: Adds NServiceBus testing assembly to your project, allowing you to write [unit tests using NServiceBus](unit-testing.md) capabilities.
 -  **NServiceBus.Host32**: [Hosting assembly for 32 bit machine only.](nservicebus-32-bit-x86-host-process.md)

@@ -30,7 +30,7 @@ To configure SLR, enable its configuration section:
   <section name="SecondLevelRetriesConfig" type="NServiceBus.Config.SecondLevelRetriesConfig, NServiceBus.Core"/>
 </configSections>
 
-<SecondLevelRetriesConfig Enabled="true" TimeIncrease ="00:00:10" NumberOfRetries="3" />
+<SecondLevelRetriesConfig Enabled="true" TimeIncrease="00:00:10" NumberOfRetries="3" />
 ```
 
  *  Enabled:Turns the feature on and off. Default: true.
@@ -40,42 +40,36 @@ To configure SLR, enable its configuration section:
 Fluent configuration API
 ------------------------
 
-To disable the SLR feature, add this to your configuration (in Version
-4.0):
+To disable the SLR feature, add this to your configuration 
+
+###In Version 4.0:
 
 ```C#
-namespace MyServerNoSLR
-{
-  using NServiceBus;
-  using NServiceBus.Features;
+using NServiceBus;
+using NServiceBus.Features;
 
-  public class DisableSecondLevelRetries : INeedInitialization
-  {
-    public void Init()
-    {
-        // Using code we disable the second level retries.  
-        Configure.Features.Disable<SecondLevelRetries>();  
-    }
-  }
+public class DisableSecondLevelRetries : INeedInitialization
+{
+	public void Init()
+	{
+	    Configure.Features.Disable<SecondLevelRetries>();  
+	}
 }
+
 ```
 
-In Version 3.0:
+###In Version 3.0:
 
 ```C#
-namespace MyServerNoSLR
-{
-  using NServiceBus;
-  using NServiceBus.Config;
+using NServiceBus;
+using NServiceBus.Config;
 
-  public class DisableSLR : INeedInitialization
-  {
-      public void Init()
-      {
-          // Using code we disable the second level retries.            
-          Configure.Instance.DisableSecondLevelRetries();
-      }
-  }
+public class DisableSecondLevelRetries : INeedInitialization
+{
+	public void Init()
+	{         
+	  Configure.Instance.DisableSecondLevelRetries();
+	}
 }
 ```
 
@@ -101,5 +95,7 @@ When you run the sample, you should start them using Ctrl+F5 (start without debu
 
 Both endpoints execute the same code.
 
-![](slr1.png) ![](slr2.png)
+![](slr1.png) 
+
+![](slr2.png)
 
