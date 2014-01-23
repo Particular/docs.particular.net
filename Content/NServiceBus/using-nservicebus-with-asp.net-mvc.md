@@ -127,7 +127,7 @@ Open the `web.config` file in `AsyncPagesMvc3` and scroll down to the following 
 </UnicastBusConfig>
 ```
 
-See the two configuration sections: [MsmqTransportConfig](msmqtransportconfig.md)and `UnicastBusConfig`.
+See the two configuration sections: [MsmqTransportConfig](msmqtransportconfig.md) and `UnicastBusConfig`.
 
 The `UnicastBusConfig` section describes which messages are sent to which queue. In the configuration above, we see that all messages belonging to the Messages assembly are sent to a queue named Server.
 
