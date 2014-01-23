@@ -17,14 +17,14 @@ NServiceBus relies on a few key pieces of infrastructure in order to run properl
 Queuing system
 --------------
 
-NServiceBus works on top of existing queuing systems to provide the reliable communications that has become the trademark of NServiceBus. By default we use Msmq which is the queuing system that comes with every installation of Windows. NServiceBus will configure MSMQ automatically for you but if you need to do it manually just make sure not to enable the Active Directory integration since that causes the addressing used be NServiceBus to not function properly. 
+NServiceBus works on top of existing queuing systems to provide the reliable communications that has become the trademark of NServiceBus. By default we use MSMQ which is the queuing system that comes with every installation of Windows. NServiceBus will configure MSMQ automatically for you but if you need to do it manually just make sure not to enable the Active Directory integration since that causes the addressing used be NServiceBus to not function properly. 
 
 More on MSMQ [here](msmq-information.md).
 
 Distributed Transaction Coordinator
 -----------------------------------
 
-In order to support guaranteed once delivery of messages NServiceBus makes use of the Distributed Transaction Coordinator(DTC) to syncronise transaction between the queuing system and your database. For this to work correctly the MSDTC needs to be started and configured correctly. 
+In order to support guaranteed once delivery of messages NServiceBus makes use of the Distributed Transaction Coordinator(DTC) to synchronise transaction between the queuing system and your database. For this to work correctly the MSDTC needs to be started and configured correctly. 
 
 You can read more on transactions
 [here](transactions-message-processing.md)

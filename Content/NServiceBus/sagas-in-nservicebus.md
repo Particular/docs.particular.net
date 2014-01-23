@@ -9,8 +9,7 @@ Long-running business processes exist in many systems. Whether the steps are aut
 
 One of the common mistakes developers make when designing distributed systems is based on the assumptions that time is constant. If something runs quickly on their machine, they're liable to assume it will run with a similar performance characteristic when in production. Network invocations (like web service calls) are misleading this way. When invoked on the developer's local machine, they perform well. In production, across firewalls and datacenters, they don't perform nearly as well.
 
-While a single web service invocation need not be considered
-"long-running", once there are two or more calls within a given use case, you should take issues of consistency into account. The first call may be successful but the second call can time out. Sagas allow coding for these cases in a simple and robust fashion.
+While a single web service invocation need not be considered "long-running", once there are two or more calls within a given use case, you should take issues of consistency into account. The first call may be successful but the second call can time out. Sagas allow coding for these cases in a simple and robust fashion.
 
 Design processes with more than one remote call use sagas.
 
@@ -212,7 +211,7 @@ When the time is up, the Timeout Manager sends a message back to the saga causin
 Ending a long-running process
 -----------------------------
 
-After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done simply by calling the `MarkAsComplete()` method. The infrastructure contacts the Timeout Manager (if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages relating to that saga arrive after it has completed, they are discarded. If you want a copy of these messages to be maintained, that can be handled by the [generic audit functionality in NServiceBus](auditing-with-nservicebus.md) .
+After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done simply by calling the `MarkAsComplete()` method. The infrastructure contacts the Timeout Manager (if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages relating to that saga arrive after it has completed, they are discarded. If you want a copy of these messages to be maintained, that can be handled by the [generic audit functionality in NServiceBus](auditing-with-nservicebus.md).
 
 Complex saga finding logic
 --------------------------
@@ -235,7 +234,7 @@ You can have as many of these classes as you want for a given saga or message ty
 Sagas in self-hosted endpoints
 ------------------------------
 
-When [hosting NServiceBus in your own endpoint](hosting-nservicebus-in-your-own-process.md) , make sure to include `.Sagas().RavenSagaPersister()`, as follows:
+When [hosting NServiceBus in your own endpoint](hosting-nservicebus-in-your-own-process.md), make sure to include `.Sagas().RavenSagaPersister()`, as follows:
 
 
 ```C#

@@ -42,8 +42,9 @@ NOTE: When using SQL 2012 you need to change the dialect to `MsSql2012Dialect`.
 
 NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhforge.org/doc/nh/en/index.html#configuration-xmlconfig)
 
+#### `app.config` for using NHibernate is further simplified in 4.x
+
 ```XML
-<!-- app.config for using NHibernate is further simplified in 4.x -->
 <connectionStrings>
     <add name="NServiceBus/Persistence" connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True"/>
 </connectionStrings>    

@@ -117,14 +117,20 @@ Fault-tolerant messaging
 
 Shut down `Subscriber1` by closing its console window. Return to the `MyPublisher` process and publish a few more messages by clicking Enter several more times. Notice how the publishing process does not change and there are no errors even though one of the subscribers is no longer running.
 
-In Visual Studio, right click the project of the closed subscriber, and restart it by right clicking the "Subscriber 1" project and selecting ['Debug' and then 'Start new instance'](http://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/pubsubsample/pubsubsample-restartpub1.PNG). Note how `Subscriber1` immediately receives the messages that were published while it was not running. The publisher safely places the message into the transport in this case MSMQ without knowledge of the running status of any subscriber. MSMQ safely places the message in the inbound queue of the subscriber where it awaits handling, so you can be sure that even when processes or machines restart, NServiceBus protects your messages so they won't get lost.
+In Visual Studio, right click the project of the closed subscriber, and restart it by right clicking the "Subscriber 1" project and selecting 'Debug' and then 'Start new instance. 
+
+!['Debug' and then 'Start new instance'](pubsubsample-restartpub1.PNG)
+
+Note how `Subscriber1` immediately receives the messages that were published while it was not running. The publisher safely places the message into the transport in this case MSMQ without knowledge of the running status of any subscriber. MSMQ safely places the message in the inbound queue of the subscriber where it awaits handling, so you can be sure that even when processes or machines restart, NServiceBus protects your messages so they won't get lost.
 
 Durable subscriptions by default
 --------------------------------
 
 With both subscribers still running, close and restart the `MyPublisher` process. After it restarts, click Enter several times in the publisher's console window.
 
-Even though the subscribers only send their subscription messages to the publisher at startup, note that the publisher is still sending the subscribers the appropriate events. This is because the publisher stores the list of subscribers that were interested in the events into durable storage. From V3 onwards, the default durable subscription storage is RavenDB. To see the subscriptions as stored in RavenDB for this example you can view them in the [RavenDB management website](http://localhost:8080/raven/studio.html#/documents?database=MyPublisher) on your local system.
+Even though the subscribers only send their subscription messages to the publisher at startup, note that the publisher is still sending the subscribers the appropriate events. This is because the publisher stores the list of subscribers that were interested in the events into durable storage. From V3 onwards, the default durable subscription storage is RavenDB. To see the subscriptions as stored in RavenDB for this example you can view them in the RavenDB management website on your local system.
+
+    http://localhost:8080/raven/studio.html#/documents?database=MyPublisher
 
 NServiceBus has two other durable subscription storage options in addition to RavenDB: MSMQ, and SqlServer using NHibernate subscription storage. The MSMQ option is suitable for integration environments where you do not require scalability. If needed, a publisher can be scaled out on multiple machines but all the instances must share a common subscription storage. The DB subscription storage options RavenDB or SqlServer work well in this scenario.
 
