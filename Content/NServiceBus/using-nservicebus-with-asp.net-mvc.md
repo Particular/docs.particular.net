@@ -164,5 +164,5 @@ Notice the `IBus` property of the class. This is how it gets a reference to the 
 Next steps
 ----------
 
-If you are not familiar with Unobtrusive messaging mode, read the [documentation](unobtrusive-mode-messages.md)or see the [working sample](unobtrusive-sample.md).
+If you are not familiar with Unobtrusive messaging mode, read the [documentation](unobtrusive-mode-messages.md) or see the [working sample](unobtrusive-sample.md).
 
