@@ -32,7 +32,7 @@ For those of you who require zero downtime deployments, V2.6.0.1504 doesn't supp
 With that out of the way, use the tool to migrate:
 
 1.  Upgrade your endpoint to V3.0.X.
-2.  Create the [dedicated input queue for the V3.0 TM](convention-over-configuration) by running the [installers](nservicebus-installers.md) .
+2.  Create the dedicated input queue for the V3.0 TM by running the [installers](nservicebus-installers.md) .
 3.  If you haven't upgraded to
     [V](http://particular.cloudapp.net/downloads)
     [2.6.0.1511](http://particular.cloudapp.net/downloads) , shut down
