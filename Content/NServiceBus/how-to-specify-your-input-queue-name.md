@@ -15,7 +15,6 @@ When using NServiceBus.host, the namespace of the class implementing `IConfigure
 ```C#
 namespace MyServer
 {
-    using NServiceBus;
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
     {
     }
@@ -29,7 +28,6 @@ Other ways to override the default endpoint name:
 ```C#
 namespace MyServer
 {
-    using NServiceBus;
     
     [EndpointName("MyEndpointName")]
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Server

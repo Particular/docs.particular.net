@@ -41,10 +41,6 @@ You will get to the Error Queue and other General properties later. For now, foc
 So, make the processing of messages in OrderProcessing fail. Throw an exception in the SubmitOrderProcessor code like this:
 
 ```C#
-using System;
-using NServiceBus;
-using Amazon.InternalMessages.Sales;
-
 namespace Amazon.OrderProcessing.Sales
 {
     public partial class SubmitOrderProcessor

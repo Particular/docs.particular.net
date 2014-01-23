@@ -109,10 +109,6 @@ If you try to build your solution at this point, you will get an error telling y
 
 
 ```C#
-using System;
-using NServiceBus;
-using Amazon.InternalMessages.Sales;
-
 namespace Amazon.ECommerce.Components.Sales
 {
     public partial class SubmitOrderSender
@@ -124,11 +120,6 @@ namespace Amazon.ECommerce.Components.Sales
 Navigate to the rest of the definition by selecting its name and clicking F12. You should see this:
 
 ```C#
-using System;
-using NServiceBus;
-using NServiceBus.Config;
-using Amazon.InternalMessages.Sales;
-
 namespace Amazon.ECommerce.Components.Sales
 {
     public partial class SubmitOrderSender : ISubmitOrderSender, Amazon.ECommerce.Infrastructure.INServiceBusComponent
@@ -146,19 +137,11 @@ namespace Amazon.ECommerce.Components.Sales
 }
 ```
 
-
-
 This component comes with an interface you can inject into your own MVC controllers, and implements the INServiceBusComponent interface so that NServiceBus knows to register it into the container for you automatically. The first empty partial class is for you to add any additional behavior; for example, logic that transforms your model objects into messages.
 
 Now double click the SubmitOrderProcessor:
 
-
-
 ```C#
-using System;
-using NServiceBus;
-using Amazon.InternalMessages.Sales;
-
 namespace Amazon.OrderProcessing.Sales
 {
     public partial class SubmitOrderProcessor
@@ -172,11 +155,7 @@ namespace Amazon.OrderProcessing.Sales
 }
 ```
 
-
-
 Once again, there isn't much here, so add your logic. You can also click F12 on the class to see its counterpart, but there isn't much to see there either; just a class that implements `IHandleMessages<SubmitOrder>` and has a reference to IBus that you can use to send out other messages, publish events, or reply with.
-
-
 
 Almost there
 ------------
@@ -189,17 +168,7 @@ The last thing to do is make the ECommerce website send a message.
 
 Find the HomeController in the Controllers folder in the Amazon.ECommerce project, add a property of the ISubmitOrderSender type, and invoke its Send method, like this:
 
-
-
 ```C#
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Amazon.ECommerce.Components.Sales;
-using Amazon.InternalMessages.Sales;
-
 namespace Amazon.ECommerce.Controllers
 {
     public class HomeController : Controller

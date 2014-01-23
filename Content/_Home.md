@@ -148,7 +148,6 @@ Ensure service level agreements are maintained across all systems and processes.
 - [How Do I Centralize All Unobtrusive Declarations](/nservicebus/how-do-i-centralize-all-unobtrusive-declarations)
 - [DefiningMessagesas and DefiningEventsas When Starting Endpoint](/nservicebus/definingmessagesas-and-definingeventsas-when-starting-endpoint)
 - [How to Reduce Throughput of an Endpoint](/nservicebus/how-to-reduce-throughput-of-an-endpoint)
-- [Does NServiceBus Support Both Native and Non Native Connectivity](/nservicebus/does-nservicebus-support-both-native-and-non-native-connectivity)
 - [InvalidOperationException in Unobtrusive Mode](/nservicebus/invalidoperationexception-in-unobtrusive-mode)
 - [License Management](/nservicebus/license-management)
 - [Preparing Your Machine to Run NServiceBus](/nservicebus/preparing-your-machine-to-run-nservicebus)

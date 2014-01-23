@@ -56,10 +56,6 @@ Throw an exception in the `SubmitOrderProcessor` code like this:
 ```C#
 namespace Ordering.Server
 {
-    using System;
-    using Messages;
-    using NServiceBus;
-
     public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
     {
         public IBus Bus { get; set; }

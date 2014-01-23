@@ -156,14 +156,9 @@ In our new Subscriber project
 -   Implement the `IHandle<OrderCreated>` interface
 -   Add an IBus auto property and implement the handler as shown below
 
-
 ```C#
 namespace Ordering.Subscriber
 {
-    using System;
-    using Messages;
-    using NServiceBus;
-
     public class OrderCreatedHandler : IHandleMessages<OrderPlaced>
     {
         public IBus Bus { get; set; }
@@ -177,16 +172,9 @@ namespace Ordering.Subscriber
 
 ```
 
-
-
-
 For the Host will auto subscribe to the event we need to add the message publisher
 
-
-
 In the Odering.Subscriber project we will add MessageEndpointMappings in the app.config file as shown below:
-
-
 
 ```XML
   <UnicastBusConfig>
@@ -195,8 +183,6 @@ In the Odering.Subscriber project we will add MessageEndpointMappings in the app
     </MessageEndpointMappings>
   </UnicastBusConfig>
 ```
-
-
 
 <a id="Running" name="Running"> </a>
 

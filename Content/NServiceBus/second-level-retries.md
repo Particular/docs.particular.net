@@ -45,9 +45,6 @@ To disable the SLR feature, add this to your configuration
 ###In Version 4.0:
 
 ```C#
-using NServiceBus;
-using NServiceBus.Features;
-
 public class DisableSecondLevelRetries : INeedInitialization
 {
 	public void Init()
@@ -61,9 +58,6 @@ public class DisableSecondLevelRetries : INeedInitialization
 ###In Version 3.0:
 
 ```C#
-using NServiceBus;
-using NServiceBus.Config;
-
 public class DisableSecondLevelRetries : INeedInitialization
 {
 	public void Init()
