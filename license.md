@@ -1,4 +1,4 @@
-Copyright © 2013 Particular Software Limited.
+Copyright © Particular Software Limited.
 <http://particular.net/>
 
 Licensed under the Apache License, Version 2.0 (the "License");
