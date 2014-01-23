@@ -132,7 +132,6 @@ Ensure service level agreements are maintained across all systems and processes.
 - [How Do I Get Technical Information about a Message](/nservicebus/how-do-i-get-technical-information-about-a-message)
 - [How Do I Reply to a Message](/nservicebus/how-do-i-get-technical-information-about-a-message)
 - [How Do I Handle Responses on the Client Side](/nservicebus/how-do-i-handle-responses-on-the-client-side)
-- [Sub with NServiceBus](/nservicebus/sub-with-NServiceBus)
 - [How Do I Handle Exceptions](/nservicebus/how-do-i-handle-exceptions)
 - [How Do I Expose an NServiceBus Endpoint as a Web WCF Service](/nservicebus/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service)
 - [Type Was Not Registered in the Serializer](/nservicebus/type-was-not-registered-in-the-serializer)
