@@ -113,7 +113,7 @@ Ensure service level agreements are maintained across all systems and processes.
 
 <a name="versioning"></a>
 ## Versioning ##
-- [Migrating to NServiceBus 3.0 Timeouts](/nservicebus/migrating-to-nservicebus-3.0---timeouts)
+- [Migrating to NServiceBus 3.0 Timeouts](/nservicebus/migrating-to-nservicebus-3.0-timeouts)
 
 <a name="faq"></a>
 ## FAQ ##

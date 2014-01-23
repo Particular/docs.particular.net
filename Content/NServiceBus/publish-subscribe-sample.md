@@ -49,7 +49,7 @@ class EndpointConfig :  IConfigureThisEndpoint, AsA_Publisher,IWantCustomInitial
 ### Creating and publishing messages
 
 As the name implies, the "MyPublisher" project is a publisher of event messages. It uses the bus framework to send alternatively three different types of messages every time you click Enter in its console window. The first message is constructed using the provided factory function `Bus.CreateInstance(<messagetype>)`, which creates a message that implements a specified interface or a specific type. This is in keeping with the suggested practice of [using interfaces for events](messages-as-interfaces.md) . The other messages are created simply using the 'new' keyword. The created message is populated and
-[published](how-to-pub/sub-with-NServiceBus.md) using `Bus.Publish`.
+[published](how-to-pub-sub-with-NServiceBus) using `Bus.Publish`.
 
 ```C#
  IMyEvent eventMessage;
