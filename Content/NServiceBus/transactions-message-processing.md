@@ -52,8 +52,6 @@ Make sure you perform all the steps not just on the servers that connect to the 
 
 Finally, check the TCP ports in use on the servers, making sure that each has a different port configured as the communication is bi-directional. At this point, you should be able to run transactional NServiceBus endpoints.
 
-Content in this section is derived from [Mikael Henriksson's](http://blog.mhenrixon.se/conquering-nservicebus-part-5-troubleshooting-dtc/) blog.
-
 Message processing loop
 -----------------------
 
