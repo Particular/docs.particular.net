@@ -4,7 +4,7 @@ Built natively in .NET over seven years of production and used by more than 50,0
 Beyond Web Services
 See a whole new level of loose-coupling with publish/subscribe communication - like .net events but asynchronously invoked across the network. 
 **Beyond Brokers**
-Centralized or Distributed, N-Tier or Peer-to-Peer, In-process or across the network - get it all. It's your architecture – just how you like it.
+Centralized or Distributed, N-Tier or Peer-to-Peer, In-process or across the network - get it all. It's your architecture - just how you like it.
 **Beyond Queues**
 MSMQ, RabbitMQ, ActiveMQ, WebSphereMQ, Azure, and more - optimally configured out of the box so that you can focus on your business logic.
 
