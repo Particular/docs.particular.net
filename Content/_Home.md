@@ -1,22 +1,9 @@
 ## Overview: ##
 
-Built natively in .NET over seven years of production and used by more than 50,000 developers.
-Beyond Web Services
-See a whole new level of loose-coupling with publish/subscribe communication - like .net events but asynchronously invoked across the network. 
-**Beyond Brokers**
-Centralized or Distributed, N-Tier or Peer-to-Peer, In-process or across the network - get it all. It's your architecture - just how you like it.
-**Beyond Queues**
-MSMQ, RabbitMQ, ActiveMQ, WebSphereMQ, Azure, and more - optimally configured out of the box so that you can focus on your business logic.
 
-Everything you need in one integrated platform.
-**NServiceBus**
-Decouple your services while maintaining transactional consistency, reliability, and scalability.
-**ServiceInsight**	
-Visualize complete business processes across multiple messages and endpoints.
-**ServiceMatrix**
-Graphically model your services and contracts, composing them into enterprise processes. 
-**ServicePulse**	
-Ensure service level agreements are maintained across all systems and processes.
+# NServiceBus#
+<a name="nsb-toc"></a>
+## Table of Content ##
 
 - [Getting Started](#getting-started)
 - [Persistence in NServiceBus](#persistence-in-nservicebus)
