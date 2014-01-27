@@ -1,5 +1,9 @@
-
 ![NServiceNus](logo-nsb.png)
+
+
+<a name="nsb-start-here"></a>
+## Where do I start ? ##
+
 
 - **[Getting Started](#getting-started)**: Overview, introduction and step-by-step guides.
 - **[Hands-On-Labs](http://particular.net/HandsOnLabs):** Try NServiceBus running in a full-featured virtual lab. Simple, fast, no complex setup or installation required.
