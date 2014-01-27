@@ -1,13 +1,13 @@
 ---
-title:Getting Started with NServiceBus using ServiceMatrix 2.0 - send and receive
-summary: Getting Started with ServiceMatrix 2.0 and a send and receive example.
-originalUrl: http://www.particular.net/articles/getting-started-with-servicematrix
+title: Getting Started with NServiceBus using ServiceMatrix 2.0 - send and receive
+summary: 'Getting Started with ServiceMatrix 2.0 and a send and receive example.'
 tags:
 - ServiceMatrix
 - Send and Receive
 - Visual Studio
-
-
+authors: []
+reviewers: []
+contributors: []
 ---
 
 ServiceMatrix is a Visual Studio integrated development environment for developing NServiceBus distributed System.
