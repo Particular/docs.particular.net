@@ -1,9 +1,13 @@
-## Overview: ##
+
+|![NServiceNus](logo-nsb.png)|The most popular Service Bus for .NET|
+|:------------- |:-------------|
+| **[Getting Started](#getting-started)**     | Overview, introduction and step-by-step guides |
+| **[Hands-On-Labs](http://particular.net/HandsOnLabs)**      | Try NServiceBus running in a full-featured virtual lab. Simple, fast, no complex setup |
+|**["Learning NServiceBus" Book](http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book)**|Get the first 3 chapters of David Boike's "Learning NServiceBus" for free when [downloading NServiceBus](http://particular.net/downloads)|
 
 
-# NServiceBus#
 <a name="nsb-toc"></a>
-## Table of Content ##
+## Table of Contents ##
 
 - [Getting Started](#getting-started)
 - [Persistence in NServiceBus](#persistence-in-nservicebus)
