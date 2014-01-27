@@ -1,8 +1,3 @@
-| ![NServiceNus](logo-nsb.png)| ![NServiceNus](logo-sm.png)|![NServiceNus](logo-si.png) | ![NServiceNus](logo-sp.png)|
-|:-------------:|:-------------:|:-----:|:-----:|
-| **The Reliable Service Platform** | **Modeling & Design** | **Advanced Debugging** | **Production Monitoring**|
-
-
 
 ![NServiceNus](logo-nsb.png)
 
@@ -11,10 +6,10 @@
 ## Where do I start ? ##
 
 
-- **[Getting Started](#getting-started)**: Overview, introduction and step-by-step guides.
+- **[Getting Started](#getting-started)**: Overview, introduction and step-by-step guides
 - **[Hands-On-Labs](http://particular.net/HandsOnLabs):** Try NServiceBus running in a full-featured virtual lab. Simple, fast, no complex setup or installation required.
-- **[Download "Learning NServiceBus" book](http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book)**: Get the first 3 chapters of David Boike's "Learning NServiceBus" for free when [downloading NServiceBus](http://particular.net/downloads).
-
+- **["Learning NServiceBus" book](http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book)**: Get the first 3 chapters of David Boike's "Learning NServiceBus" for free when you **[download NServiceBus](http://particular.net/downloads)**
+- **[NServiceBus Documentation](/nservicebus)**
 
 
 <a name="nsb-toc"></a>
