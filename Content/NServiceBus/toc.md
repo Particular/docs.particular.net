@@ -1,3 +1,10 @@
+---
+title: NServiceBus - Table of Contents
+summary: NServiceBus Documentation Table of Contents
+tags:
+- Table of Contents
+---
+
 ![NServiceNus](../logo-nsb.png)
 
 <a name="nsb-toc"></a>
