@@ -13,9 +13,9 @@
 <br/><br/>
 
 
-![ServiceMatrix for Visual Studio 2012](logo-sm.png)
+![ServiceMatrix for Visual Studio 2012](logo-sm.png)**Beta**
 <a name="sm-start-here"></a>
-**Beta**
+
 
 - **[Getting Started with ServiceMatrix for Visual Studio 2012](/servicematrix/getting-started)**: TBD
 - **[Video Introduction](http://particular.net/ServiceMatrix)**: Short video introduction to ServiceMatrix
@@ -28,9 +28,9 @@
 <br/><br/>
 
 
-![ServiceInsight](logo-si.png)
+![ServiceInsight](logo-si.png)**Beta**
 <a name="si-start-here"></a>
-**Beta**
+
 
 - **[Getting Started](/serviceinsight/getting-started)**: TBD
 - **[Video Introduction](http://particular.net/ServiceInsight)**: Short video introduction to ServiceInsight
@@ -43,9 +43,9 @@
 <br/><br/>
 
 
-![ServicePulse](logo-sp.png)
+![ServicePulse](logo-sp.png)**Beta**
 <a name="sp-start-here"></a>
-**Beta**
+
 
 - **[Getting Started](/servicepulse/getting-started)**: TBD
 - **[Video Introduction](http://particular.net/ServicePulse)**: Short video introduction to ServicePulse
@@ -58,9 +58,9 @@
 <br/><br/>
 
 
-![ServiceControl](logo-sc.png)
+![ServiceControl](logo-sc.png)**Beta**
 <a name="sc-start-here"></a>
-**Beta**
+
 
 - **[Download ServiceControl](http://particular.net/downloads)**
 - **[ServiceControl Documentation](/servicecontrol/toc)**
