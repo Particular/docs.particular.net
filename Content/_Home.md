@@ -17,10 +17,10 @@
 <a name="sm-start-here"></a>
 
 
-- **[Getting Started with ServiceMatrix for Visual Studio 2012](/servicematrix/getting-started)**: TBD
+- **[Getting Started with ServiceMatrix for Visual Studio 2012](/servicematrix/getting-started)**: TODO Joe
 - **[Video Introduction](http://particular.net/ServiceMatrix)**: Short video introduction to ServiceMatrix
 - **[Download ServiceMatrix](http://particular.net/downloads)**
-- **[ServiceMatrix Documentation](/servicematrix/toc)**
+- **[ServiceMatrix Documentation](/servicematrix/toc)** TODO: Danny
 - **[Release Notes](https://github.com/Particular/ServiceMatrix/releases)**
 
 
@@ -32,10 +32,10 @@
 <a name="si-start-here"></a>
 
 
-- **[Getting Started](/serviceinsight/getting-started)**: TBD
+- **[Getting Started](/serviceinsight/getting-started)**: TODO: Hadi
 - **[Video Introduction](http://particular.net/ServiceInsight)**: Short video introduction to ServiceInsight
 - **[Download ServiceInsight](http://particular.net/downloads)**
-- **[ServiceInsight Documentation](/serviceinsight/toc)**
+- **[ServiceInsight Documentation](/serviceinsight/toc)** TODO: Danny
 - **[Release Notes](https://github.com/Particular/ServiceInsight/releases)**
 
 
@@ -47,10 +47,10 @@
 <a name="sp-start-here"></a>
 
 
-- **[Getting Started](/servicepulse/getting-started)**: TBD
+- **[Getting Started](/servicepulse/getting-started)**: TODO: ?
 - **[Video Introduction](http://particular.net/ServicePulse)**: Short video introduction to ServicePulse
 - **[Download ServicePulse](http://particular.net/downloads)**
-- **[ServicePulse Documentation](/servicepulse/toc)**
+- **[ServicePulse Documentation](/servicepulse/toc)** TODO:Danny
 - **[Release Notes](https://github.com/Particular/ServicePulse/releases)**
 
 
@@ -63,7 +63,7 @@
 
 
 - **[Download ServiceControl](http://particular.net/downloads)**
-- **[ServiceControl Documentation](/servicecontrol/toc)**
+- **[ServiceControl Documentation](/servicecontrol/toc)** TODO: Danny
 - **[Release Notes](https://github.com/Particular/ServiceControl/releases)**
 
 
