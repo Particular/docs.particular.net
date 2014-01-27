@@ -5,7 +5,7 @@ tags:
 - ServiceMatrix
 - Send and Receive
 - Visual Studio
-authors: []
+authors: [Sean Farmer, Joe Ratzloff]
 reviewers: []
 contributors: []
 ---
@@ -62,7 +62,7 @@ Two important folders are the 'Contract' and 'InternalMessages' projects as they
 
 Later you will see how messages from different services are partitioned in these projects. 
 
-Take a look at the design environment. The  [Solution Builder](http://raw2.github.com/Particular/docs.particular.net/Drafts/Content/NServiceBus/servicematrix/images/servicematrix-solutionbuilder.png "Solution Builder") on the left provides a hierarchy of the logical elements of the solution. If you  don't see a docked window in Visual Studio called Solution Builder,  open it via the View menu.
+Take a look at the design environment. The <a href="http://raw2.github.com/Particular/docs.particular.net/Drafts/Content/NServiceBus/servicematrix/images/servicematrix-solutionbuilder.png" target = "_blank">Solution Builder</a> on the left provides a hierarchy of the logical elements of the solution. If you  don't see a docked window in Visual Studio called Solution Builder,  open it via the View menu.
 
 You should see folders in Solution Builder called 'Infrastructure', 'Libraries', 'Endpoints', and 'Services'.
 
@@ -76,7 +76,7 @@ as a Console Application).
 
 -   Services are logical containers for code that provide the structure for publish/subscribe events and command-processing.Services are made of Components which will be shown later.
 
-The [NServiceBus Canvas](http://raw2.github.com/Particular/docs.particular.net/Drafts/Content/NServiceBus/servicematrix/images/servicematrix-canvas.png "NServiceBus Canvas") is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise our solution will be created and illustrated here.
+The <a href="http://raw2.github.com/Particular/docs.particular.net/Drafts/Content/NServiceBus/servicematrix/images/servicematrix-canvas.png" target= "_blank">NServiceBus Canvas </a> is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise our solution will be created and illustrated here.
 
 This dashed areas within the canvas and the buttons at the top are used to start building our solution.   **NOTE**: Alternatively, they can also be created using the Solution Builder tree view.  However since this is a visual tool, we will demonstrate using the canvas.  As items are added to the canvas they will appear in the Solution Builder as well as in the Solution Explorer project.
 
