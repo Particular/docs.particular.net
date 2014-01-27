@@ -6,7 +6,7 @@
 - **[Getting Started](/nservicebus/toc#getting-started)**: Overview, introduction and step-by-step guides
 - **[Hands-On-Labs](http://particular.net/HandsOnLabs):** Try NServiceBus running in a full-featured virtual lab. Simple, fast, no complex setup or installation required.
 - **["Learning NServiceBus" book](http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book)**: Get the first 3 chapters of David Boike's "Learning NServiceBus" for free when you **[download NServiceBus](http://particular.net/downloads)**
-- **[NServiceBus Documentation](/nservicebus/toc)**
+- **[NServiceBus Documentation](/nservicebus)**
 - **[Release Notes](https://github.com/Particular/NServiceBus/releases)**
 
 
@@ -20,7 +20,7 @@
 - **[Getting Started with ServiceMatrix for Visual Studio 2012](/servicematrix/getting-started)**: TODO Joe
 - **[Video Introduction](http://particular.net/ServiceMatrix)**: Short video introduction to ServiceMatrix
 - **[Download ServiceMatrix](http://particular.net/downloads)**
-- **[ServiceMatrix Documentation](/servicematrix/toc)** TODO: Danny
+- **[ServiceMatrix Documentation](/servicematrix)** TODO: Danny
 - **[Release Notes](https://github.com/Particular/ServiceMatrix/releases)**
 
 
@@ -35,7 +35,7 @@
 - **[Getting Started](/serviceinsight/getting-started)**: TODO: Hadi
 - **[Video Introduction](http://particular.net/ServiceInsight)**: Short video introduction to ServiceInsight
 - **[Download ServiceInsight](http://particular.net/downloads)**
-- **[ServiceInsight Documentation](/serviceinsight/toc)** TODO: Danny
+- **[ServiceInsight Documentation](/serviceinsight)** TODO: Danny
 - **[Release Notes](https://github.com/Particular/ServiceInsight/releases)**
 
 
@@ -50,7 +50,7 @@
 - **[Getting Started](/servicepulse/getting-started)**: TODO: ?
 - **[Video Introduction](http://particular.net/ServicePulse)**: Short video introduction to ServicePulse
 - **[Download ServicePulse](http://particular.net/downloads)**
-- **[ServicePulse Documentation](/servicepulse/toc)** TODO:Danny
+- **[ServicePulse Documentation](/servicepulse)** TODO:Danny
 - **[Release Notes](https://github.com/Particular/ServicePulse/releases)**
 
 
@@ -63,7 +63,7 @@
 
 
 - **[Download ServiceControl](http://particular.net/downloads)**
-- **[ServiceControl Documentation](/servicecontrol/toc)** TODO: Danny
+- **[ServiceControl Documentation](/servicecontrol)** TODO: Danny
 - **[Release Notes](https://github.com/Particular/ServiceControl/releases)**
 
 
