@@ -1,8 +1,6 @@
 ---
 title: NServiceBus Documentation
 summary: NServiceBus Documentation Table of Contents
-originalUrl: 
-tags: []
 ---
 
 ![NServiceNus](../logo-nsb.png)

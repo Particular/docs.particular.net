@@ -1,8 +1,6 @@
 ---
 title: ServiceMatrix Documentation
 summary: ServiceMatrix Documentation Table of Contents
-originalUrl:
-tags:[]
 ---
 
 ![ServiceMatrix](../logo-sm.png)
