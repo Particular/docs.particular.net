@@ -1,6 +1,7 @@
 ---
 title: ServicePulse Documentation
 summary: ServicePulse Documentation Table of Contents
+tags:[]
 ---
 
 ![ServicePulse](../logo-sp.png)

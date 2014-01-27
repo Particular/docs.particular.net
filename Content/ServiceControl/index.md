@@ -1,6 +1,7 @@
 ---
 title: ServiceControl Documentation
 summary: ServiceControl Documentation Table of Contents
+tags:[]
 ---
 
 ![ServiceControl](../logo-sc.png)
