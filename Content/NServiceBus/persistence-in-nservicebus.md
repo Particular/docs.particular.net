@@ -98,9 +98,6 @@ The following table summarizes the different persistence technologies being used
 |  Saga                           |Lite     |Integration/Production|-            |-    				           |
 |  Gateway                        |Lite     |MultiSite             |-            |-     					   |
 |  Distributor                    |- 	    |-                     |-            |Distributor				   |
-|  Second Level Retry             |-        |-                     |-            |Uses Timeout queue		   |
-|  Fault Management               |Lite     |-                     |-            |Integration/Production	   |
-|  Notifications                  |-        |-                     |-            |Lite/Integration/Production  |
 
 Default persisting technology
 -----------------------------
