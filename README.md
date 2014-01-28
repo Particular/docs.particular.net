@@ -97,9 +97,10 @@ So a file existing at `Content\NServiceBus\Logging\Index.md` will have a resulta
 
 The site is rendered using [GitHub Flavoured Markdown](https://help.github.com/articles/github-flavored-markdown)
 
+## Editors
 For editing markdown on your desktop using Git try the following
 
-## [MarkdownPad](http://markdownpad.com/)
+### [MarkdownPad](http://markdownpad.com/)
 
 Ensure you enable *GitHub Flavoured Markdown* by going to 
 
@@ -107,7 +108,7 @@ Ensure you enable *GitHub Flavoured Markdown* by going to
 
 Or click in the bottom left no the `M` icon to "hot-switch"  
 
-## [MarkPad](http://code52.org/DownmarkerWPF/) 
+### [MarkPad](http://code52.org/DownmarkerWPF/) 
 
 Ensure you enable *MarkdownDeep Extras* by going to 
 
@@ -115,10 +116,30 @@ Ensure you enable *MarkdownDeep Extras* by going to
 
 Note that MarkdownDeep is not exactly the same as *GitHub Flavoured Markdown* but it is fairly close.
 
-More info on Markdown see
+## Anchors
+
+On addition to standard markdown is the auto creating anchors for headings
+
+So if you have a heading like this 
+
+    ## My Heading
+
+it will be converted to 
+
+    <h2>
+      <a name="my-heading"/>
+      My Heading
+    </h2>
+
+Which means elsewhere in the page you can link to it with  
+
+    [Goto My Heading](#My-Heading)
+
+## More info
  
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
  
+
 
 # Additional Resources
 
