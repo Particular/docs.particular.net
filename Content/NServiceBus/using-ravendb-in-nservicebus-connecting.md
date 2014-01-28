@@ -39,8 +39,7 @@ Can I use the `IDocumentStore` used by NServiceBus for my own data?
 
 No, the RavenDB client is merged and internalized into the NServiceBus assemblies, so to use Raven for your own purposes, reference the Raven client and set up your own document store.
 
-NOTE: in NServiceBus 4.x RavenDB is not ilmerged any more. It is embedded instead, using
-[https://github.com/Fody/Costura\#readme](https://github.com/Fody/Costura#readme).
+NOTE: in NServiceBus 4.x RavenDB is not ilmerged any more. It is embedded instead, using [https://github.com/Fody/Costura\#readme](https://github.com/Fody/Costura#readme).
 
 The embedding enables client updates (but may require binding redirects). It also allows passing your own `DocumentStore`, thereby providing full configuration flexibility.
 
