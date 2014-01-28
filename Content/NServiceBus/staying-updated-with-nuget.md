@@ -21,8 +21,7 @@ After installing NuGet you have a few ways to get NServiceBus using NuGet. Right
 
 ![Manage NuGet Packages Window](ManageNuGetPackagesWindow.png)
 
-Search for NServiceBus, and select "Install". Alternatively you can get to the NuGet package manager via "Library Package Manage" and selecting
-"Manage NuGet Packages for Solution… ".
+Search for NServiceBus, and select "Install". Alternatively you can get to the NuGet package manager via "Library Package Manage" and selecting "Manage NuGet Packages for Solution".
 
 To install NServiceBus core libraries, open the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) and type this:
 
