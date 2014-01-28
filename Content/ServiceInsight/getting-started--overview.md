@@ -3,11 +3,6 @@ title: ServiceInsight Overview
 summary: A short overview on ServiceInsight.
 originalUrl: http://www.particular.net/articles/overview
 tags: []
-createdDate: 2014-01-22T20:00:00Z
-modifiedDate: 2014-01-22T20:00:00Z
-authors: ['Hadi Eskandari']
-reviewers: []
-contributors: []
 ---
 
 If you have ever had to go though the pain of debugging though a distributed application, you know that it is not exactly a trivial task, so we at ParticularSoftware created ServiceInsight to help you with that job. This application provides help on various aspects of debugging and visualizing your NServiceBus based solution. Let' see some of its benefits here.
