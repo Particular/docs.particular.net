@@ -1,3 +1,9 @@
+
+<br/><br/>
+
+![Particular Software Service Platform](logo-particular-platform.png) **Particular Software Service Platform**
+
+
 <br/><br/>
 
 ![NServiceNus](logo-nsb.png)
