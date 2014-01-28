@@ -43,5 +43,6 @@ used the default install location)
 
    * Start the ServiceControl service by running: ```"net start Particular.ServiceControl"```
    * Ensure Particular.ServiceControl windows service has started and is functioning properly (try to access the main HTTP API URI exposed by ServiceControl, e.g. do an HTTP GET on [http://localhost:33333/api](http://localhost:33333/api)
+* Note: When deploying using a packaging technology, like windows azure cloud services projects, make sure that the ServiceControl plugins become part of the package before executing the deployement, this can be done by for example referencing the assemblies in a worker role project and setting copy local to true.
 
 **Inform [ServicePulse Beta team](mailto:pulsebeta@nservicebus.com) of any issues**
