@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "Name": "NServiceBus",
     "Topics": [
@@ -182,7 +182,15 @@
   },
   {
     "Name": "ServiceInsight",
-    "Topics": []
+    "Topics": [
+      {
+        "Name": "getting-started",
+        "Title": "Getting Started",
+        "Articles": [
+          "ServiceInsight/getting-started--overview"
+        ]
+      },
+    ]
   },
   {
     "Name": "ServiceMatrix",
