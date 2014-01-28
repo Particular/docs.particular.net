@@ -1,7 +1,7 @@
 ---
 title: ServiceInsight Overview
 summary: A short overview on ServiceInsight.
-originalUrl: http://www.particular.net/articles/overview
+originalUrl: 
 tags: []
 ---
 
