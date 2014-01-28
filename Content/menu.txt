@@ -195,5 +195,13 @@
   {
     "Name": "ServiceMatrix",
     "Topics": []
+  },
+  {
+    "Name": "ServicePulse",
+    "Topics": []
+  },
+  {
+    "Name": "ServiceControl",
+    "Topics": []
   }
 ]
