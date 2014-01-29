@@ -9,7 +9,7 @@
 <a name="nsb-start-here"></a>
 
 - **[Getting Started with NServiceBus](/nservicebus/#getting-started)**
-- **[NServuiceBus Hands-On-Labs: full-featured virtual lab](http://particular.net/HandsOnLabs)**
+- **[NServiceBus Hands-On-Labs](http://particular.net/HandsOnLabs)**
 - **[Download NServiceBus](http://particular.net/downloads)**
 - **[NServiceBus Documentation](/nservicebus)**
 - **[Release Notes](https://github.com/Particular/NServiceBus/releases)**
