@@ -12,7 +12,7 @@ Visualizing your distributed system
 -----------------------------------
 If you want to see your message payloads, you don't need to use other platform specific tools to see the messages in your queues, ServiceInsight provides formatted view of the messages for XML and JSON and binary messages. Another ServiceInsight feature is that it gives you a visual overview of the messages in your system. You can use various diagrams to see the message flow in your distributed system, see who originated a command or raised an event and what messages were created as a result of that and by which endpoints.
 
-![Flow Diagram](001_mainwindow.png)
+![Flow Diagram](004_flowdiagram.png)
 
 Error handling and retries
 --------------------------
