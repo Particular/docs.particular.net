@@ -39,7 +39,7 @@
 <a name="si-start-here"></a>
 
 
-- **[Getting started with ServiceInsight](/serviceinsight/getting-started--overview.md)**: 
+- **[Getting started with ServiceInsight](/serviceinsight/getting-started--overview)**: 
 - **[Video Introduction](http://particular.net/ServiceInsight)**
 - **[Download ServiceInsight](http://particular.net/downloads)**
 - **[ServiceInsight Documentation](/serviceinsight)** 
@@ -54,7 +54,7 @@
 <a name="sp-start-here"></a>
 
 
-- **[Getting Started](/servicepulse/getting-started)** 
+- **[Getting Started with ServicePulse](/servicepulse)** 
 - **[Video Introduction](http://particular.net/ServicePulse)**
 - **[Download ServicePulse](http://particular.net/downloads)**
 - **[ServicePulse Documentation](/servicepulse)** 
