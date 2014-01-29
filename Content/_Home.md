@@ -39,7 +39,7 @@
 <a name="si-start-here"></a>
 
 
-- **[Getting started with ServiceInsight](/serviceinsight/getting-started--overview)**: 
+- **[Getting started with ServiceInsight](/serviceinsight/getting-started--overview)**
 - **[Video Introduction](http://particular.net/ServiceInsight)**
 - **[Download ServiceInsight](http://particular.net/downloads)**
 - **[ServiceInsight Documentation](/serviceinsight)** 
