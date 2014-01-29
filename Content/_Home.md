@@ -21,9 +21,16 @@
 - **[Download NServiceBus](http://particular.net/downloads)**
 - **[NServiceBus Documentation](/nservicebus)**
 - **[Release Notes](https://github.com/Particular/NServiceBus/releases)**
-- **["Learning NServiceBus" book](http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book)**
-   - Get the first 3 chapters of David Boike's "Learning NServiceBus" for free when you [download NServiceBus](http://particular.net/downloads) 
 
+
+<br/><br/>
+#### Additional Resources
+<br/>
+
+|![Learning NServiceNus Book](learning-nservicebus-book.jpg)| Get the first 3 chapters of David Boike's ["Learning NServiceBus" book](http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book) for free when you [download NServiceBus](http://particular.net/downloads)  |
+|:--:|:--|
+|![ADSD Course](http://particular.net/Media/Default/Online%20training/particular-courses.png)| **[Advanced Distributed Systems Design course recording](http://particular.net/adsd)**: Five full days of training with Udi Dahan (recorded in New York, 2013)|
+|![Pluralsight Introduction to NServiceBus](http://particular.net/Media/Default/Online%20training/pluralsight-courses.png)| **[Pluralsight Introduction to NServiceBus](http://pluralsight.com/training/Courses/TableOfContents/nservicebus)**: Six hours with Andreas Ohlund, Engineering Director of Particular Software and lead developer of NServiceBus|
 
 <br/><br/>
 
