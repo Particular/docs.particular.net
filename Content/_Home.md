@@ -1,4 +1,3 @@
-
 <br/><br/>
 
 ![Particular Software Service Platform](logo-particular-platform.png) **Particular Software Service Platform**
@@ -19,14 +18,14 @@
 <br/><br/>
 
 
-![ServiceMatrix for Visual Studio 2012](logo-sm.png)**Beta**
+![ServiceMatrix for Visual Studio 2012](logo-sm.png) **(Beta)**
 <a name="sm-start-here"></a>
 
 
-- **[Getting Started with ServiceMatrix for Visual Studio 2012](/servicematrix/getting-started)**: TODO Joe
+- **[Getting Started with ServiceMatrix for Visual Studio 2012](/servicematrix/getting-started)**
 - **[Video Introduction](http://particular.net/ServiceMatrix)**: Short video introduction to ServiceMatrix
 - **[Download ServiceMatrix](http://particular.net/downloads)**
-- **[ServiceMatrix Documentation](/servicematrix)** TODO: Danny
+- **[ServiceMatrix Documentation](/servicematrix)**
 - **[Release Notes](https://github.com/Particular/ServiceMatrix/releases)**
 
 
@@ -34,14 +33,14 @@
 <br/><br/>
 
 
-![ServiceInsight](logo-si.png)**Beta**
+![ServiceInsight](logo-si.png) **(Beta)**
 <a name="si-start-here"></a>
 
 
-- **[Getting Started](/serviceinsight/getting-started)**: TODO: Hadi
+- **[Overview of ServiceInsight](/serviceinsight/getting-started--overview.md)**: 
 - **[Video Introduction](http://particular.net/ServiceInsight)**: Short video introduction to ServiceInsight
 - **[Download ServiceInsight](http://particular.net/downloads)**
-- **[ServiceInsight Documentation](/serviceinsight)** TODO: Danny
+- **[ServiceInsight Documentation](/serviceinsight)** 
 - **[Release Notes](https://github.com/Particular/ServiceInsight/releases)**
 
 
@@ -49,14 +48,14 @@
 <br/><br/>
 
 
-![ServicePulse](logo-sp.png)**Beta**
+![ServicePulse](logo-sp.png) **(Beta)**
 <a name="sp-start-here"></a>
 
 
-- **[Getting Started](/servicepulse/getting-started)**: TODO: ?
+- **[Getting Started](/servicepulse/getting-started)**: 
 - **[Video Introduction](http://particular.net/ServicePulse)**: Short video introduction to ServicePulse
 - **[Download ServicePulse](http://particular.net/downloads)**
-- **[ServicePulse Documentation](/servicepulse)** TODO:Danny
+- **[ServicePulse Documentation](/servicepulse)** 
 - **[Release Notes](https://github.com/Particular/ServicePulse/releases)**
 
 
@@ -64,12 +63,12 @@
 <br/><br/>
 
 
-![ServiceControl](logo-sc.png)**Beta**
+![ServiceControl](logo-sc.png) **(Beta)**
 <a name="sc-start-here"></a>
 
 
 - **[Download ServiceControl](http://particular.net/downloads)**
-- **[ServiceControl Documentation](/servicecontrol)** TODO: Danny
+- **[ServiceControl Documentation](/servicecontrol)** 
 - **[Release Notes](https://github.com/Particular/ServiceControl/releases)**
 
 
