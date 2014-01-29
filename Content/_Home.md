@@ -8,11 +8,13 @@
 ![NServiceNus](logo-nsb.png)
 <a name="nsb-start-here"></a>
 
-- **[Getting Started](/nservicebus/#getting-started)**: Overview, introduction and step-by-step guides
-- **[Hands-On-Labs](http://particular.net/HandsOnLabs):** Try NServiceBus running in a full-featured virtual lab. Simple, fast, no complex setup or installation required.
-- **["Learning NServiceBus" book](http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book)**: Get the first 3 chapters of David Boike's "Learning NServiceBus" for free when you **[download NServiceBus](http://particular.net/downloads)**
+- **[Getting Started with NServiceBus](/nservicebus/#getting-started)**
+- **[NServuiceBus Hands-On-Labs: full-featured virtual lab](http://particular.net/HandsOnLabs)**
+- **[Download NServiceBus](http://particular.net/downloads)**
 - **[NServiceBus Documentation](/nservicebus)**
 - **[Release Notes](https://github.com/Particular/NServiceBus/releases)**
+- **["Learning NServiceBus" book](http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book)**
+   - Get the first 3 chapters of David Boike's "Learning NServiceBus" for free when you **[download 
 
 
 <br/><br/>
@@ -23,7 +25,7 @@
 
 
 - **[Getting Started with ServiceMatrix for Visual Studio 2012](/servicematrix/getting-started)**
-- **[Video Introduction](http://particular.net/ServiceMatrix)**: Short video introduction to ServiceMatrix
+- **[Video Introduction](http://particular.net/ServiceMatrix)**
 - **[Download ServiceMatrix](http://particular.net/downloads)**
 - **[ServiceMatrix Documentation](/servicematrix)**
 - **[Release Notes](https://github.com/Particular/ServiceMatrix/releases)**
@@ -37,8 +39,8 @@
 <a name="si-start-here"></a>
 
 
-- **[Overview of ServiceInsight](/serviceinsight/getting-started--overview.md)**: 
-- **[Video Introduction](http://particular.net/ServiceInsight)**: Short video introduction to ServiceInsight
+- **[Getting started with ServiceInsight](/serviceinsight/getting-started--overview.md)**: 
+- **[Video Introduction](http://particular.net/ServiceInsight)**
 - **[Download ServiceInsight](http://particular.net/downloads)**
 - **[ServiceInsight Documentation](/serviceinsight)** 
 - **[Release Notes](https://github.com/Particular/ServiceInsight/releases)**
@@ -52,8 +54,8 @@
 <a name="sp-start-here"></a>
 
 
-- **[Getting Started](/servicepulse/getting-started)**: 
-- **[Video Introduction](http://particular.net/ServicePulse)**: Short video introduction to ServicePulse
+- **[Getting Started](/servicepulse/getting-started)** 
+- **[Video Introduction](http://particular.net/ServicePulse)**
 - **[Download ServicePulse](http://particular.net/downloads)**
 - **[ServicePulse Documentation](/servicepulse)** 
 - **[Release Notes](https://github.com/Particular/ServicePulse/releases)**
