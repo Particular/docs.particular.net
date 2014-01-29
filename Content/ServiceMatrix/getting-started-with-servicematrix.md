@@ -5,7 +5,7 @@ tags:
 - ServiceMatrix
 - Send and Receive
 - Visual Studio
-authors: [Sean Farmer, Joe Ratzloff]
+authors: [Sean Farmar, Joe Ratzloff]
 reviewers: []
 contributors: []
 ---
@@ -22,61 +22,48 @@ This step-by-step guide will walk you through the creation of a send-and-receive
 6.  [Sending a Message](#Sending%20a%20Message)
 7.  [Running the Application](#Running%20the%20Application)
 
-The complete solution code can be found
-[here.](https://github.com/sfarmar/Samples/tree/master/ServiceMatrixIntro)
-
 The example demonstrates the integration of an online sales web store with a backend system using the request - response pattern and NServiceBus.
 
 <a id="Installing ServiceMatrix" name="Installing ServiceMatrix"> </a> Installing ServiceMatrix v2.0 for Visual Studio 2012 
 ---
 System requirements:
-
--   Visual Studio 2010 or Visual Studio 2012
-
+-   Visual Studio 2012
 -   ASP.NET MVC 4 ([http://www.asp.net/downloads](http://www.asp.net/downloads))
 
 To install ServiceMatrix:
-
 1.  Download the latest version from [http://particular.net/downloads](http://particular.net/downloads)
-
 2.  Run the installer.
 
-**NOTE** : If you have both Visual Studio 2010 and Visual Studio 2012 installed on your machine, you can install ServiceMatrix for one Visual Studio version. This document guides the use of ServiceMatrix v2.0 for Visual Studio 2012.
+**NOTE** : If you have both Visual Studio 2010 and Visual Studio 2012 installed on your machine, you can install ServiceMatrix for one Visual Studio version. This document reviews the use of ServiceMatrix v2.0 for Visual Studio 2012.
 
 <a id="Creating a new project" name="Creating a new project"> </a> Creating a new project
 ---
 
-To get started with ServiceMatrix, create a new project:
+To get started with ServiceMatrix, create a new project.
+### Create NServiceBus Project ###
+In Visual Studio select `File\New\Project` and Select 'NServiceBus System' under the Visual C\# project type. Target the .NET Framework 4.5 for this project. ![NewProject](images/servicematrix-reqresp-newproject.png)
+In the Solution name, type 'OnlineSales' (or any other name) for the name of your application.
+### Review The Solution ###
+You'll see that a solution folder has been created for your solution, as shown. 
+![New Solution](images/servicematrix-reqresp-freshsolution.png)
 
-1. In Visual Studio select 'File\> New\> Project' and Select 'NServiceBus System' under the Visual C\# project type. Target the .NET Framework 4.5 for this project. ![NewProject](http://raw2.github.com/Particular/docs.particular.net/Drafts/Content/NServiceBus/servicematrix/images/servicematrix-reqresp-newproject.png)
-2. In the Solution name, type 'OnlineSales' (or any other name) for the name of your application.  
-You'll see that a solution folder has been created for your solution, as shown. ![New Solution](http://raw2.github.com/Particular/docs.particular.net/Drafts/Content/NServiceBus/servicematrix/images/servicematrix-reqresp-freshsolution.png)
+A number of projects have been created for you, as shown in the Solution Explorer pane. The `Solution Items` folder is part of the ServiceMatrix infrastructure.
 
-A number of projects have been created for you, as shown in the Solution Explorer pane.
-The '.nuget' (we use Nuget for our dependencies and the '.nuget' folder is there to support enabling Package Restore and 'Solution Items' folders are part of the ServiceMatrix infrastructure
-
-Two important folders are the 'Contract' and 'InternalMessages' projects as they are where all message types are placed:
-
--   All defined events will be put in the 'Contract' project.
--   All commands will be put in the 'InternalMessages' project. 
+Two important folders are the `Contract` and `InternalMessages` projects as they are where all message types are placed:
+-   All defined events will be put in the `Contract` project.
+-   All commands will be put in the `InternalMessages` project. 
 
 Later you will see how messages from different services are partitioned in these projects. 
 
-Take a look at the design environment. The <a href="http://raw2.github.com/Particular/docs.particular.net/Drafts/Content/NServiceBus/servicematrix/images/servicematrix-solutionbuilder.png" target = "_blank">Solution Builder</a> on the left provides a hierarchy of the logical elements of the solution. If you  don't see a docked window in Visual Studio called Solution Builder,  open it via the View menu.
+Take a look at the design environment. The <a href="images/servicematrix-solutionbuilder.png">Solution Builder</a> on the left provides a hierarchy of the logical elements of the solution. If you  don't see a docked window in Visual Studio called Solution Builder,  open it via the View menu.
 
 You should see folders in Solution Builder called 'Infrastructure', 'Libraries', 'Endpoints', and 'Services'.
-
 -   Infrastructure is where cross-cutting concerns like authentication and auditing are handled.
-
 -   Libraries are units of code that can be reused, including logging and data access.
+-   Endpoints are where code is deployed as executable processes. They can be web applications (both Web Forms and MVC) or <a href="/NServiceBus/the-nservicebus-host">NServiceBus Hosts </a>.
+-   Services are logical containers for code that provide the structure for publish/subscribe events and command-processing.  Services are comprised of Components which will be shown later.
 
--   Endpoints are where code is deployed as executable processes. They can be web applications (both Web Forms and MVC) or NServiceBus
-Hosts (a special kind of Windows Service that allows you to debug it
-as a Console Application).
-
--   Services are logical containers for code that provide the structure for publish/subscribe events and command-processing.Services are made of Components which will be shown later.
-
-The <a href="http://raw2.github.com/Particular/docs.particular.net/Drafts/Content/NServiceBus/servicematrix/images/servicematrix-canvas.png" target= "_blank">NServiceBus Canvas </a> is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise our solution will be created and illustrated here.
+The <a href="images/servicematrix-canvas.png">NServiceBus Canvas </a> is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise our solution will be created and illustrated here.
 
 This dashed areas within the canvas and the buttons at the top are used to start building our solution.   **NOTE**: Alternatively, they can also be created using the Solution Builder tree view.  However since this is a visual tool, we will demonstrate using the canvas.  As items are added to the canvas they will appear in the Solution Builder as well as in the Solution Explorer project.
 
@@ -88,15 +75,20 @@ To build the solution we will define and endpoint for the website and another en
 
 <a id="Creating the Endpoints" name="Creating Endpoints"></a> Creating Endpoints
 ----
-First we will create the endpoints for selling and processing. 
+First we will create the endpoints for selling and processing.
+###New Endpoint ### 
+To create and endpoint on the canvas either select the dashed 'New Endpoint' area on the canvas or the button at the top of the canvas.<br>
+![New Endpoint Popup](images/servicematrix-newendpoint.png)
+Name the endpoint `ECommerce` and choose ASP.NET MVC as the endpoint host.  **NOTE: ** MVC Endpoints require that ASP.NET MVC be installed on the local machine. If you haven't installed ASP MVC on your machine, choose a Web Forms host for the endpoint instead.  Both work equally well. 
+###Review The Endpoint###
+We will examine the generated code in detail later to understand    how things work behind the scenes.  For now, notice how Service Matrix has created the ECommerce Endpoint on the canvas, in the Solution Builder and in the Visual Studio Project.  In the solution builder notice that this endpoint has a folder to contain components.  Components contain the code for specific services.  They can only send commands to other components in the same service.  However, they can subscribe to events that are published by components in *any* service. Soon our Sales components will be deployed to our endpoints.
+####Create `OrderProcessing` Endpoint
+Create another endpoint called `OrderProcessing`.  This time select 'NServiceBus Host' as the host.  
 
-1. To create and endpoint on the canvas either select the dashed 'New Endpoint' area on the canvas or the button at the top of the canvas.<br>
-![New Endpoint Popup](http://github.com/Particular/docs.particular.net/raw/Drafts/Content/NServiceBus/servicematrix/images/servicematrix-newendpoint.png)
-2. Name the endpoint 'ECommerce' and choose ASP.NET MVC as the endpoint host.  **NOTE: ** MVC Endpoints require that ASP.NET MVC be installed on the local machine. If you haven't installed ASP MVC on your machine, choose a Web Forms host for the endpoint instead.  Both work equally well. 
-3. We will examine the generated code in detail later to understand    how things work behind the scenes.  For now, notice how Service Matrix has created the ECommerce Endpoint on the canvas, in the Solution Builder and in the Visual Studio Project.  In the solution builder notice that this endpoint has a folder to contain components.  Components contain the code for specific services.  They can only send commands to other components in the same service.  However, they can subscribe to events that are published by components in *any* service. Soon our Sales components will be deployed to our endpoints.
-4. Create another endpoint called 'OrderProcessing'.  This time select 'NServiceBus Host' as the host.  
+At this point your Solution should have both endpoint on the NServiceBus canvas.
 
-At this point your Solution should have both endpoint on the NServiceBus canvas [as shown](http://github.com/Particular/docs.particular.net/raw/Drafts/Content/NServiceBus/servicematrix/images/servicematrix-canvaswithendpoints.png "Endpoints On NServiceBus Canvas"). Notice how you can control the zoom with your mouse scroll wheel and drag the boxes around.   You will have to rearrange the canvas as more things are added to it.  
+![](images/servicematrix-canvaswithendpoints.png) 
+Notice how you can control the zoom with your mouse scroll wheel and drag the boxes around.   You will have to rearrange the canvas as more things are added to it.  
 
 <a id="Creating Services" name="Creating Services"></a> Creating Services 
 ----
