@@ -195,5 +195,21 @@
   {
     "Name": "ServiceMatrix",
     "Topics": []
+  },
+  {
+    "Name": "ServiceControl",
+    "Topics": [
+      {
+        "Name": "getting-started",
+        "Title": "Getting Started",
+        "Articles": [
+          "ServiceControl/multi-transport-support"
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "ServicePulse",
+    "Topics": []
   }
 ]
