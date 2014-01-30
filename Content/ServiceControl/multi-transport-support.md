@@ -17,11 +17,13 @@ tags:
    * [Windows Azure ServiceBus](https://www.nuget.org/packages/NServiceBus.Azure/) Stop the ServiceControl service (from an admin cmd line, run `net stop Particular.ServiceControl`)
 used the default install location)
 * Open ServiceControl.dll.config in notepad and locate:    
-   `
-   <connectionStrings>
-       <add name="NServiceBus/Transport" connectionString="type connection string here" />
-   </connectionStrings>
-   `
+
+```   
+<connectionStrings>
+  <add name="NServiceBus/Transport" connectionString="type connection string here" />
+</connectionStrings>
+```
+   
 * Update the "type connection string here" text above with the correct connection string for your transport
 * To use the new transport locate:    
    `<add key="ServiceControl/TransportType" value="Fully qualified type name of your transport here" />`
