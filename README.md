@@ -73,16 +73,6 @@ Tags are interpreted in two pays
    * Tag will be lower cased
    * Dashes (`-`) will be replaced with dashes spaces 
 
-### Credits to Authors / Reviewers
-
-Author or reviewer credit can be added as content (not headers) to the article itself, using H5 headings.
-for example:
-```
-##### by Erny Hemingway, Johnny Steinbeck and Billy Faulkner
-```
-
-
-
 ### Redirects
 
 Url redirects are not currently implemented but will be included as part of the header.
@@ -148,8 +138,6 @@ Which means elsewhere in the page you can link to it with
 ## More info
  
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
- 
-
 
 # Additional Resources
 
