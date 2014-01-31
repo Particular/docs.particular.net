@@ -126,7 +126,9 @@ To deploy our sender use the drop down menu of the `SubmitOrderSender` component
 
 **NOTE:** You cannot build the solution with components that aren't deployed.  If you try to build at this point you will get an error indicating that the `Sales.SubmitOrderProcessor` must be allocated to an endpoint. 
 Deploy the `SubmitOrderProcessor` to the `OrderProcessing` endpoint by choosing the drop down menu.  At this point, with a little re-organizing, the canvas should nicely illustrate the `ECommerce` and `OrderProcessing` endpoints using the `Sales` service components to send and process the `SubmitOrder` command.
+
 ![Canvas with Service Deployed to Endpoints](images/servicematrix-canvaswiredup.png)
+
 Now build the solution and see how everything turns out.
 Look at the `SubmitOrderProcessor` code by selecting its drop down and choosing 'Open Code'.  As you can see below, there isn't much here.  A partial class has been created where you would need to add your order processing logic.  You can view the partial class counterpart by clicking F12 while highlighting the class name.  There isn't much to see there either; just a class that implements `IHandleMessages<submitorder>` and has a reference to `IBus` that you can use from within your partial class to send out other messages, publish events, or to reply to commands.
     
