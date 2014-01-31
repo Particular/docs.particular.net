@@ -93,6 +93,18 @@ One exception to this rule is when a page is named `Index.md`. In this case the 
 
 So a file existing at `Content\NServiceBus\Logging\Index.md` will have a resultant url of `http://docs.particular.net/NServiceBus/Logging`
 
+### Linking
+
+Links to other documentation pages should be relative contain the `.md` extension. 
+
+The `.md` allows links to work inside the GitHub web UI. The `.md` will be trimmed when they are finally rendered
+
+Given the case of editing a page located at `\Content\NServiceBus\Page1.md`.
+
+To link to the file `\Content\NServiceBus\Page2.md` you would use `[Page 2 Text](Page2.md)`
+
+To link to the file `\Content\ServiceControl\Page3.md` you would use `[Page 3 Text](../ServiceControl/Page3.md)`
+
 # Markdown
 
 The site is rendered using [GitHub Flavoured Markdown](https://help.github.com/articles/github-flavored-markdown)
