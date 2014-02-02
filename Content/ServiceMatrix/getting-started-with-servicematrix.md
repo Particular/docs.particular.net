@@ -12,8 +12,8 @@ ServiceMatrix is a Visual Studio integrated development environment for developi
 
 This step-by-step guide will walk you through the creation of a send-and-receive NServiceBus distributed application using ServiceMatrix v2.0 for Visual Studio 2012, using the following steps:
 
-1.  [Installing ServiceMatrix](#Installing-ServiceMatrix-for-Visual-Studio-2-12)
-2.  [Creating a new project](#Creating-A-New-Project)
+1.  [Installing ServiceMatrix](#installing-servicematrix-for-visual-studio-2012)
+2.  [Creating a new project](#creating-a-new-project)
 3.  [Creating Endpoints](#Creating%20Endpoints)
 4.  [Creating Services](#Creating%20Services)
 5.  [Deploying Components](#Deploying%20Components)
@@ -29,8 +29,8 @@ System requirements:
 -   ASP.NET MVC 4 ([http://www.asp.net/downloads](http://www.asp.net/downloads))
 
 To install ServiceMatrix:
-1.  Download the latest version from [http://particular.net/downloads](http://particular.net/downloads)
-2.  Run the installer.
+1. Download the latest version from [http://particular.net/downloads](http://particular.net/downloads)
+2. Run the installer.
 
 **NOTE** : If you have both Visual Studio 2010 and Visual Studio 2012 installed on your machine, you can install ServiceMatrix for one Visual Studio version. This document reviews the use of ServiceMatrix v2.0 for Visual Studio 2012.
 
