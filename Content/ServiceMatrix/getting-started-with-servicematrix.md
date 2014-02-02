@@ -12,8 +12,8 @@ ServiceMatrix is a Visual Studio integrated development environment for developi
 
 This step-by-step guide will walk you through the creation of a send-and-receive NServiceBus distributed application using ServiceMatrix v2.0 for Visual Studio 2012, using the following steps:
 
-1.  [Installing ServiceMatrix](#Installing%20ServiceMatrix)
-2.  [Creating a new project](#Creating%20a%20new%20project)
+1.  [Installing ServiceMatrix](#Installing-ServiceMatrix-for-Visual-Studio-2-12)
+2.  [Creating a new project](#Creating-A-New-Project)
 3.  [Creating Endpoints](#Creating%20Endpoints)
 4.  [Creating Services](#Creating%20Services)
 5.  [Deploying Components](#Deploying%20Components)
@@ -22,8 +22,8 @@ This step-by-step guide will walk you through the creation of a send-and-receive
 
 The example demonstrates the integration of an online sales web store with a backend system using the request - response pattern and NServiceBus.
 
-<a id="Installing ServiceMatrix" name="Installing ServiceMatrix"> </a> Installing ServiceMatrix v2.0 for Visual Studio 2012 
----
+##Installing ServiceMatrix for Visual Studio 2012
+
 System requirements:
 -   Visual Studio 2012
 -   ASP.NET MVC 4 ([http://www.asp.net/downloads](http://www.asp.net/downloads))
@@ -34,8 +34,7 @@ To install ServiceMatrix:
 
 **NOTE** : If you have both Visual Studio 2010 and Visual Studio 2012 installed on your machine, you can install ServiceMatrix for one Visual Studio version. This document reviews the use of ServiceMatrix v2.0 for Visual Studio 2012.
 
-<a id="Creating a new project" name="Creating a new project"> </a> Creating a new project
----
+## Creating A New Project
 
 To get started with ServiceMatrix, create a new project.
 ### Create NServiceBus Project
@@ -57,15 +56,15 @@ Two important folders are the `Contract` and `InternalMessages` projects as they
 
 Later you will see how messages from different services are partitioned in these projects. 
 
-Take a look at the design environment. The <a href="images/servicematrix-solutionbuilder.png">Solution Builder</a> on the left provides a hierarchy of the logical elements of the solution. If you  don't see a docked window in Visual Studio called Solution Builder,  open it via the View menu.
+Take a look at the design environment. The [Solution Builder](images/servicematrix-solutionbuilder.png "Solution Builder") on the left provides a hierarchy of the logical elements of the solution. If you  don't see a docked window in Visual Studio called Solution Builder,  open it via the View menu.
 
 You should see folders in Solution Builder called 'Infrastructure', 'Libraries', 'Endpoints', and 'Services'.
 -   Infrastructure is where cross-cutting concerns like authentication and auditing are handled.
 -   Libraries are units of code that can be reused, including logging and data access.
--   Endpoints are where code is deployed as executable processes. They can be web applications (both Web Forms and MVC) or <a href="/NServiceBus/the-nservicebus-host">NServiceBus Hosts </a>.
--   Services are logical containers for code that provide the structure for publish/subscribe events and command-processing.  Services are comprised of Components which will be shown later.
+-   Endpoints are where code is deployed as executable processes. They can be web applications (both Web Forms and MVC) or [NServiceBus Hosts](../NServiceBus/the-nservicebus-host.md).
+Services are logical containers for code that provide the structure for publish/subscribe events and command-processing.  Services are comprised of Components which will be shown later.
 
-The <a href="images/servicematrix-canvas.png">NServiceBus Canvas </a> is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise our solution will be created and illustrated here.
+The [NServiceBus Canvas](images/servicematrix-canvas.png "NServiceBus Canvas") is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise our solution will be created and illustrated here.
 
 This dashed areas within the canvas and the buttons at the top are used to start building our solution.   **NOTE**: Alternatively, they can also be created using the Solution Builder tree view.  However since this is a visual tool, we will demonstrate using the canvas.  As items are added to the canvas they will appear in the Solution Builder as well as in the Solution Explorer project.
 
