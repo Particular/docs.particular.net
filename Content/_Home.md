@@ -1,18 +1,45 @@
 
-
 <br/><br/>
 
 # WORK IN PROGRESS
 
 <br/><br/>
 
+
+
+<table>
+<tbody>
+<tr>
+<td style="text-align:left" width="20%"><img src="logo-nsb.png" alt="NServiceNus"></td>
+<td style="text-align:left"><strong>The most popular Service Bus for .NET</strong></td>
+</tr>
+<tr>
+<td style="text-align:left" width="20%"><img src="logo-sm.png" alt="ServiceMatrix"></td>
+<td style="text-align:left"><strong>Modeling &amp; Design</strong></td>
+</tr>
+<tr>
+<td style="text-align:left" width="20%"><img src="logo-si.png" alt="ServiceInsight"></td>
+<td style="text-align:left"><strong>Advanced Debugging</strong></td>
+</tr>
+<tr>
+<td style="text-align:left" width="20%"><img src="logo-sp.png" alt="ServicePulse"></td>
+<td style="text-align:left"><strong>Production Monitoring</strong></td>
+</tr>
+<tr>
+<td style="text-align:left" width="20%"><img src="logo-sc.png" alt="ServiceControl"></td>
+<td style="text-align:left"><strong>REST API Integration</strong></td>
+</tr>
+</tbody>
+</table>
+
+<!--
 |![NServiceNus](logo-nsb.png)| **The most popular Service Bus for .NET** |
 |:--|:--|
 |![ServiceMatrix](logo-sm.png)| **Modeling & Design** |
 |![ServiceInsight](logo-si.png)| **Advanced Debugging** |
 |![ServicePulse](logo-sp.png)| **Production Monitoring** |
 |![ServiceControl](logo-sc.png)| **REST API Integration** |
-
+-->
 
  
 
