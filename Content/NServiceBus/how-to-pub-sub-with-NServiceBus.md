@@ -10,7 +10,12 @@ How to publish a message?
 
 
 ```C#
-Bus.Publish(messageObject);
+var message = new MyMessage
+              { 
+                 Prop1 = v1; 
+                 Prop2 = v2; 
+              };
+Bus.Publish(message);
 ```
 
  OR instantiate and publish all at once:
