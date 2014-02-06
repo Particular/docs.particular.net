@@ -8,13 +8,15 @@ tags:
 - Second Level Retry
 - SLR
 - Error Queue
-
 ---
 
+In [the previous section](getting-started-with-servicematrix.md) we used ServiceMatrix to created a web application that communicates with a backend processing system using NServiceBus.  In this section we will continue on with our OnlineSales example and see how using NServiceBus and durable messaging can get past all sorts of failure scenarios.
+
+1. [Durable Messaging](#durable-messaging)
+2. [Fault Tolerance](#fault-tolerance)
+3. [Retries, Errors, and Auditing](#retries,-errors,-and-auditing)
+
 ##Durable Messaging
-
-In [the previous section](getting-started-with-servicematrix.md) we used ServiceMatrix to created a web application that communicates with a backend processing system using NServiceBus.  In this section we will continue on and see how using NServiceBus and durable messaging can get past all sorts of failure scenarios.
-
 Creating a website that can communicate with a backend platform is nothing new and can easily be done in a variety of ways.  For example, it is commonly done using web services or direct connections to a database.   
 
 To demonstrate the durability and fault tolerance we will use our Online Sales example from the last section.  We will run the solution but shut down the back end system as we place orders.  Let's see what happens!
@@ -104,7 +106,7 @@ If you leave the endpoint running a while longer, you'll see that it tries proce
 
 **NOTE** : When a message cannot be deserialized, it bypasses all retry behaviors and moves directly to the error queue.
 
-## Retries, errors, and auditing
+## Retries, Errors, and Auditing
 
 If a message fails continuously (due to a bug in the system, for example), it ultimately moves to the error queue that is configured for the endpoint after all the various retries have been performed.
 
@@ -122,15 +124,11 @@ The audit and error queues can be on a remote machine by simply appending the `@
 
 ## Monitoring the Errors and Audits
 Traditionally administrators used a variety of techniques and monitoring tools to keep tabs on the endpoints and the error queues.   This has been made much easier with the Service
-The monitoring and managing of NServiceBus queues has been made much easier with the introduction of  [ServicePulse](http://particular.net/ServicePulse-1 "ServicePulse") and [ServiceInsight](http://particular.net/ServiceInsight "ServiceInsight").  ServicePulse provides the ability to monitor the uptime and SLA of your endpoints.  ServiceInsight is designed to provide visibility into the processes and the relationship among them. Both products are currently in Beta.
-
-
-
+The monitoring and managing of NServiceBus queues has been made much easier with the introduction of  [ServicePulse](http://particular.net/ServicePulse-1 "ServicePulse") and [ServiceInsight](http://particular.net/ServiceInsight "ServiceInsight").  ServicePulse provides the ability to monitor the uptime and SLA of your endpoints.  ServiceInsight is designed to provide visibility into the processes and the relationship among them. 
 
 Make sure you remove the code which throws an exception before going on.
 
 ## Next steps
-
 
 See how to use NServiceBus for [Publish/Subscribe](getting-started-with-nservicebus-using-servicematrix-2.0---publish-subscribe.md)
 .
