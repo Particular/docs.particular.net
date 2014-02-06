@@ -14,7 +14,7 @@ In [the previous section](getting-started-with-servicematrix.md) we used Service
 
 1. [Durable Messaging](#durable-messaging)
 2. [Fault Tolerance](#fault-tolerance)
-3. [Retries, Errors, and Auditing](#retries,-errors,-and-auditing)
+3. [Retries, Errors, and Auditing](#retries-errors-and-auditing)
 
 ##Durable Messaging
 Creating a website that can communicate with a backend platform is nothing new and can easily be done in a variety of ways.  For example, it is commonly done using web services or direct connections to a database.   
