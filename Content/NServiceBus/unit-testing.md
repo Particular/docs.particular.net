@@ -54,7 +54,7 @@ public class TestHandler
 
 ```
 
-This test says that when a message of the type `YourRequestMessage` is processed by `YourMessageHandler`, it responds with a message of the type `YourResponseMessage`. Also, if the request message's String property value is "hello" than that is also the value of the String property of the response message.
+This test says that when a message of the type `RequestMessage` is processed by `MyHandler`, it responds with a message of the type `ResponseMessage`. Also, if the request message's String property value is "hello" than that is also the value of the String property of the response message.
 
 ```
 [Test]
