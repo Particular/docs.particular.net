@@ -57,6 +57,15 @@ Bus.Unsubscribe<MyMessage>();
 </UnicastBusConfig>
 ```
 
+And a`UnicastBusConfig` config section.  
+
+```XML
+
+<configuration>
+  <configSections>
+    <section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core" />
+```
+
 When subscribing to a message, you will probably have a [message handler](how-do-i-handle-a-message.md) for it. If you do, and have the `UnicastBusConfig` section mentioned above, you do not have to write `Bus.Subscribe`, as NServiceBus invokes it automatically for you.
 
 You can also choose to **not** have the infrastructure automatically subscribe by calling `.DoNotAutoSubscribe()` after `.UnicastBus()` in the Fluent configuration API.
