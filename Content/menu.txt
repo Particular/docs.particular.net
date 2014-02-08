@@ -190,6 +190,13 @@
           "ServiceInsight/getting-started--overview"
         ]
       },
+      {
+        "Name": "integration",
+        "Title": "Integration",
+        "Articles" : [
+          "ServiceInsight/application-invocation"
+        ]
+      }
     ]
   },
   {
