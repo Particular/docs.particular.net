@@ -196,6 +196,13 @@
         "Articles" : [
           "ServiceInsight/application-invocation"
         ]
+      },
+      {
+        "Name": "faq",
+        "Title": "FAQ",
+        "Articles": [
+          "ServiceInsight/how-logging-works"
+        ]
       }
     ]
   },
