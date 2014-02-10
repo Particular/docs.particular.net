@@ -20,17 +20,12 @@ In this article we will expand our Online Sales system and introduce the publish
 7. [Additional Exercises](#additional-exercises)
 
 # Introduction to Publish/Subscribe
-Before we move on, please confirm that the `OnlineSales` solution we created previously is still working correctly.
-
-Picking up where we left off, your `OnlineSales` solution ServiceMatrix Canvas should look like this:
+Before we move on, please confirm that the `OnlineSales` solution we created previously is still working correctly.  Picking up where we left off, your `OnlineSales` solution ServiceMatrix Canvas should look like this:
 
 ![OnlineSales Canvas](images/servicematrix-canvaswiredup.png)
 
 ## Expanding our OnlineSales Example
-So far the [Online Sales](getting-started-with-servicematrix.md "Getting Started with ServiceMatrix") example implements the request response messaging pattern to facilitate communication between the website and our order processing system.
-
-We've all purchased items online and know that in reality many different things will need to happen when an order is accepted for processing. Arguably the most important business step should be billing the customer! In our example, let's consider how we add a billing capability to charge the customer for the order.
-
+So far the [Online Sales](getting-started-with-servicematrix.md "Getting Started with ServiceMatrix") example implements the request response messaging pattern to facilitate communication between the website and our order processing system. We've all purchased items online and know that in reality many different things will need to happen when an order is accepted for processing. Arguably the most important business step should be billing the customer! In our example, let's consider how we add a billing capability to charge the customer for the order.
 ## Create the OrderAccepted Event
 In our example the `SubmitOrderProcessor` component handles the `SubmitOrder` messages.  Using the drop-down menu of the `SubmitOrderProcessor` select 'Publish Event' as shown.
 
@@ -42,9 +37,7 @@ To create a subscriber for this new event, select the dropdown of the `OrderAcce
 
 ![New Event Subscriber](images/servicematrix-orderacceptedevent.png)
 
-In the 'Add Event Subscriber' window use the 'Add new Service' text box to add a [new service called Billing](images/servicematrix-addeventsubscriber.png "New Billing Service").
-You should notice that a an `OrderAcceptedProcessor` has been created in a new Billing Service. The dashed container indicates that the component has yet to be deployed.  
-Also notice that the lines representing the `OrderAccepted` event messages are dashed.  This is because they are events.  The `SubmitOrder' messages are commands and are illustrated with a solid line. 
+In the 'Add Event Subscriber' window use the 'Add new Service' text box to add a [new service called Billing](images/servicematrix-addeventsubscriber.png "New Billing Service").  You should notice that a an `OrderAcceptedProcessor` has been created in a new Billing Service. The dashed container indicates that the component has yet to be deployed.  Also notice that the lines representing the `OrderAccepted` event messages are dashed.  This is because they are events.  The `SubmitOrder' messages are commands and are illustrated with a solid line. 
 
 ![Undeployed Billing Service](images/servicematrix-undeployedbilling.png). 
 
@@ -61,11 +54,11 @@ At this point with a little re-arranging your ServiceMatrix canvas should look l
 
 The `SubmitOrderProcessor` is raising the `OrderAccepted` event which is subscribed to by the `OrderAcceptedProcessor` of the `Billing` service.
 
-The ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilder.png "SolutionBuilder") also reflects the new endpoint, service, component and event we added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
+As you would expect, the ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilder.png "SolutionBuilder") reflects the new endpoint, service, component and event we added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
 ## Review the Code
 ServiceMatrix takes care of the initial code generation for the publishing and processing of the event and both the publishing and subscribing end. 
 ### Event Publisher Code 
-Our new event is published by the `SubmitOrderProcessor` component.   You can review the code by clicking the drop-down menu of the `SubmitOrderProcessor` and selecting 'Open Code' item.  You should see the following code. 
+Our new event is published by the `SubmitOrderProcessor` component.   You can review the code by clicking the drop-down menu of the `SubmitOrderProcessor` and selecting 'Open Code' item.  You should see the following code: 
 ```C#
 namespace OnlineSales.Sales
 {
@@ -93,7 +86,7 @@ partial void ConfigureOrderAccepted(SubmitOrder incomingMessage, OnlineSales.Con
 
 ```
 #### Review the Generated Code 
-Let's briefly take a look at how this works.  Press F12 on the `SubmitOrderProcessor` class name and navigate to the code generated portion of the partial class as shown below.  NOTE: Do not edit this generated portion as it is at risk of being re-generated by the ServiceMatrix platform.
+Let's briefly take a look at the generated code and how this customization works.  Press F12 on the `SubmitOrderProcessor` class name and navigate to the code generated portion of the partial class as shown below.  NOTE: Do not edit this generated portion as it is at risk of being re-generated by the ServiceMatrix platform.
 
 ```C#
 namespace OnlineSales.Sales
@@ -171,9 +164,11 @@ Select an endpoint in the SolutionBuilder then press the 'ServiceMatrix View' ic
 
 This view provides a convenient look into the properties and components of the endpoint. 
 #Next Steps
-Learn more about the advantages of the bus architectural style and entire NServiceBus platform at [Particular.net](http://docs.particular.net "Particular Docs")  
+To understand the licensing model for ServiceMatrix, please continue on to [this article](licensing-servicematrix-v2.0.md "Licensing ServiceMatrix 2.0"). 
+
+Learn more about the advantages of the bus architectural style and try the entire NServiceBus platform at [Particular.net](http://docs.particular.net "Particular Docs")  
  
 Get some training!
 - Purchase the *Advanced Distributed Systems Design* [training video](http://particular.net/adsd "ADSD Training Video"). Presented by Udi Dahan and recorded in New York in 2013. 
-- Attend an online *Introduction to NServiceBus* course by [Pluralsight.](http://pluralsight.com/training/Courses/TableOfContents/nservicebus "Pluralsight")
+- Attend the online course *Introduction to NServiceBus* by [Pluralsight.](http://pluralsight.com/training/Courses/TableOfContents/nservicebus "Pluralsight")
 
