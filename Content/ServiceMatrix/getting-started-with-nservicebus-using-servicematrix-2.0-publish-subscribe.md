@@ -56,7 +56,7 @@ Also notice that the lines representing the `OrderAccepted` event messages are d
 ## Deploy the OrderAcceptedProcessor
 At this point the OrderAcceptedProcessor is not deployed.  To deploy the service use the drop down menu and chose 'Deploy Component' as shown here:
 
-![Deploy OrderAcceptedProcessor](images\servicematrix-orderaccepted-deploy.png)
+![Deploy OrderAcceptedProcessor](images/servicematrix-orderaccepted-deploy.png)
 
 In the resulting '[Deploy To Endpoint](images/servicematrix-deploytonewendpoint.png "Deploy to Endpoint")' window chose the 'New Endpoint' option and [create an endpoint](images/servicematrix-newbillingendpoint.png "Add Billing Endpoint") called `Billing`.
 
@@ -64,15 +64,15 @@ At this point with a little re-arranging your ServiceMatrix canvas should look l
 
 ![Pub Sub Wired Up](images/servicematrix-pubsubcanvaswired.png)
 
-The `SubmitOrderProcessor` is raising the `OrderAccepted` event which is subscribed to by the `OrderAcceptedProcessor' of the `Billing` service.
+The `SubmitOrderProcessor` is raising the `OrderAccepted` event which is subscribed to by the `OrderAcceptedProcessor` of the `Billing` service.
 
-Also notice that the ServiceMatrix [Solution Builder](images\servicematrix-pubsubsolutionbuilder.png "SolutionBuilder") also reflects the new endpoint, service, component and event we added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
+Also notice that the ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilder.png "SolutionBuilder") also reflects the new endpoint, service, component and event we added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
 
 ## Review the Code
 ServiceMatrix takes care of the initial code generation for the publishing and processing of the event and both the publishing and subscribing end. 
 
 ### Event Publisher Code 
-Our new event originates with the `SubmitOrderProcessor` component.   As we did our previous article you can review the code by clicking the dropdown of the `SubmitOrderProcessor` and selecting 'Open Code' item.  You should see the following code. 
+Our new event originates with the `SubmitOrderProcessor` component.   You can review the code by clicking the drop-down menu of the `SubmitOrderProcessor` and selecting 'Open Code' item.  You should see the following code. 
 ```C#
 namespace OnlineSales.Sales
 {
@@ -95,14 +95,14 @@ This should look familiar as it was created in our first article as part of hand
 
 But what about our new `OrderAccepted` event?  In a similar way ServiceMatrix allows the `ConfigureOrderAccepted` partial method  to customize our new `OrderAccepted` event.
 
-To take advantage of this capability you need to add the following partial method to the partial class. In my case, I have modified the `SubmitOrder` message and the `OrderAccepted` event to have a public property and map them to each other.   
+To take advantage of this capability you need to add the following partial method to the partial class. In my case, I have modified the `SubmitOrder` message and the `OrderAccepted` event to have a public property and mapped them to each other.   
 ```C#
 partial void ConfigureOrderAccepted(SubmitOrder incomingMessage, OnlineSales.Contracts.Sales.OrderAccepted message)
         { 
         
             //This is our chance to mutate or change the OrderAccepted Message. Notice that we are given access to the SubmitOrder message as well so we can transfer content. 
 
-           // message.billingname = incomingMessage.CustomerName;
+            message.BillingName = incomingMessage.CustomerName;
         }
 
 ```
@@ -134,45 +134,38 @@ namespace OnlineSales.Sales
 
 ```
 Notice how this generated `Handle` method does the following: 
+
 1. Invokes the `HandleImplementation` partial method passing in the received `SubmitOrder` message.
 2. Creates a new `OrderAccepted` event. 
 3. Invokes the `ConfigureOrderAccepted` partial method passing in both the `SubmitOrder` and `OrderAccepted`.
 4. Finally publishes the `OrderAccepted` event on the bus.
 
 ### Subscriber Code
-In the `OrderAcceptedProcessor` dropdown menu select `Open Code` and you should see the following. 
+In the `OrderAcceptedProcessor` drop-down menu select `Open Code` and you should see the following. 
 
 ```C#
 namespace OnlineSales.Billing
 {
     public partial class OrderAcceptedProcessor
     {
-		
-        // TODO: OrderAcceptedProcessor: Configure published events' properties implementing the partial Configure[EventName] method.
-
-        partial void HandleImplementation(OrderAccepted message)
+		partial void HandleImplementation(OrderAccepted message)
         {
-            // TODO: OrderAcceptedProcessor: Add code to handle the OrderAccepted message.
-            Console.WriteLine("Billing received " + message.GetType().Name);
+                Console.WriteLine("Billing received " + message.GetType().Name);
         }
-
     }
 }
 
 ```
 Nothing new here!  Notice that this generated `OrderAcceptedProcessor` code is the exactly the same as was generated for the  `SubmitOrderProcessor`.
-
 #Build and Run the Solution
-This time when you run the solution, in addition to the [sales web site](images/servicematrix-demowebsite.png "Demo Website") and [`OrderProcessing` endpoint console](images/servicematrix-reqresp-orderprocessor.png "Order Processing"), you should see another console window for `Billing`.
+Go ahead and run the solution.  This time, in addition to the [sales web site](images/servicematrix-demowebsite.png "Demo Website") and [`OrderProcessing` endpoint console](images/servicematrix-reqresp-orderprocessor.png "Order Processing"), you should see another console window for `Billing`.
 
-Send a few test messages from the website.  You should see them handled by the `OrderProcessing` host as we did before.  You should almost immediately see that the `Billing` endpoint has received our new `OrderAccepted` event as shown below:
+Send a few test messages from the website.  You should see them handled by the `OrderProcessing` console as we did before.  You should almost immediately see that the `Billing` endpoint has received our new `OrderAccepted` event as shown below:
 
 ![Billing Console](images/servicematrix-billingconsole.png)  
-
  
 ##You Did It!##
-
-You have created a complete working solution for communicating via publish/subscribe messaging.  
+Congratulations!  You have created a complete working solution for communicating via publish/subscribe messaging.  
 
 As you see, it's very easy to get started with NServiceBus and ServiceMatrix.  
 
@@ -188,9 +181,10 @@ The Solution Builder of ServiceMatrix provides various views into the solution w
 Select an endpoint in the SoltionBuilder then press the 'ServiceMatrix View' icon.  A new 'ServiceMatrix Details' window will be displayed as shown here:
 ![Endpoint View in SolutionBuilder](images/servicematrix-endpointsview.png)
 
-
 #Next Steps
-
-Explore the other samples and resources available on the [Particular.net](http://www.particular.net) web site. 
-
+Learn more about the advantages of the bus architectural style and entire NServiceBus platform at [Particular.net](http://docs.particular.net "Particular Docs")  
+ 
+Get some training!
+- Purchase the *Advanced Distributed Systems Design* [training video](http://particular.net/adsd "ADSD Training Video"). Presented by Udi Dahan and recorded in New York in 2013. 
+- Attend an online *Introduction to NServiceBus* course by [Pluralsight.](http://pluralsight.com/training/Courses/TableOfContents/nservicebus "Pluralsight")
 
