@@ -74,14 +74,16 @@ namespace OnlineSales.Sales
 ```
 This should look familiar as it was created in our first article as part of handling the `SubmitOrder` message.  Recall that this partial `SubmitOrderProcessor` class and the partial `HandleImplementation` method give us a chance to customize the message handler.  
 
-But what about our new `OrderAccepted` event?  In a similar way ServiceMatrix allows to implement a `ConfigureOrderAccepted` partial method  to customize our new `OrderAccepted` event. To take advantage of this capability you need to add the following partial method to the partial class. In my case, I have modified the `SubmitOrder` message and the `OrderAccepted` event to have a public property and mapped them to each other.   
+But what about our new `OrderAccepted` event?  In a similar way ServiceMatrix allows you to implement a `ConfigureOrderAccepted` partial method  to customize our new `OrderAccepted` event. To take advantage of this capability you need to add the following partial method to the partial class. In my case, I have modified the `SubmitOrder` message and the `OrderAccepted` event to have a public property and mapped them to each other.  
+
 ```C#
 partial void ConfigureOrderAccepted(SubmitOrder incomingMessage, OnlineSales.Contracts.Sales.OrderAccepted message)
         { 
         
             //This is our chance to mutate or change the OrderAccepted Message. Notice that we are given access to the SubmitOrder message as well so we can transfer content. 
-
-            message.BillingName = incomingMessage.CustomerName;
+			
+			//NOTE: For this line to work, you will need to modify the SubmitOrder message to have a CustomerName and our OrderAccepted event to have a Billing name property. 
+        	// message.BillingName = incomingMessage.CustomerName;
         }
 
 ```
@@ -152,7 +154,7 @@ As you see, it's very easy to get started with NServiceBus and ServiceMatrix.
 
 ##Additional Exercises
 
-###Add A Shipping Service
+###Add a Shipping Service
 Try expanding the solution on your own.  Add a `Shipping` capability.  You can add another event to publish when billing is complete.  Call it `OrderBilled`.  Add a subscriber in a new `Shipping` service deployed to a `Shipping` endpoint also hosted in the NServiceBus host. 
 
 ### Explore the ServiceMatrix Solution Views
