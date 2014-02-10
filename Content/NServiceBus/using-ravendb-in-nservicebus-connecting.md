@@ -34,7 +34,7 @@ After connecting to a RavenDB server, decide which actual database to use. Unles
 
 See also [How to specify your input queue name](how-to-specify-your-input-queue-name.md).
 
-Can I use the `IDocumentStore` used by NServiceBus for my own data?
+Can I use the IDocumentStore used by NServiceBus for my own data?
 -----------------------------------------------------------------
 
 No, the RavenDB client is merged and internalized into the NServiceBus assemblies, so to use Raven for your own purposes, reference the Raven client and set up your own document store.
