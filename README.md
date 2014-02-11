@@ -147,6 +147,11 @@ Which means elsewhere in the page you can link to it with
 
     [Goto My Heading](#My-Heading)
 
+## Some useful characters
+
+ * Ticks are done with `&#10004;` &#10004;
+ * Crossed are done with `&#10006;` &#10006;
+
 ## More info
  
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
