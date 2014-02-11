@@ -9,15 +9,19 @@ tags:
 
 To install your License:
 
-1. Go to Help \> Register
+### Go to Help \> Register
 
 ![](001.png)
 
-2. When the dialog box opens, browse and find your license file, select it and click Open. The dialog box will then close.
+### Find the File
+
+When the dialog box opens, browse and find your license file, select it and click Open. The dialog box will then close.
 
 ![](002.png)
 
-4. Go to Help \> Register and make sure that the license registration has finished.
+### Verify
+
+Go to Help \> Register and make sure that the license registration has finished.
 
 ![](003.png)
 
