@@ -111,7 +111,7 @@ To learn more about profiles go check out: [Profiles For NServiceBus Host](profi
 Creating the Subscriber project
 -------------------------------
 
-Now we can go ahead and create a subscriber endpoint that will subscribe and handle the 'OrderCreated' event.
+Now we can go ahead and create a subscriber endpoint that will subscribe and handle the 'OrderPlaced' event.
 
 Right click the Ordering solution and select 'Add' \> 'New Project...'
 
@@ -138,15 +138,15 @@ Handling the event
 
 In our new Subscriber project
 
--   Add a new class file, name it `OrderCreatedHandler`
--   Add a reference to the `messages` project
--   Implement the `IHandle<OrderCreated>` interface
+-   Add a new class file, name it `OrderPlacedHandler`
+-   Add a reference to the `Messages` project
+-   Implement the `IHandleMessages<OrderPlaced>` interface
 -   Add an IBus auto property and implement the handler as shown below
 
 ```C#
 namespace Ordering.Subscriber
 {
-    public class OrderCreatedHandler : IHandleMessages<OrderPlaced>
+    public class OrderPlacedHandler : IHandleMessages<OrderPlaced>
     {
         public IBus Bus { get; set; }
 
