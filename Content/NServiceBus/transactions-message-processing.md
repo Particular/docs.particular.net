@@ -27,7 +27,7 @@ In Windows, there is an OS-level service called the DTC that manages transaction
 
 ![this is what you the initial DTCPing window to look like.](DTCPing.png "this is what you the initial DTCPing window to look like.")
 
-If you get an error referring to the RPC Endpoint Mapper, at the command prompt, run "dcomcnfg". You should see the Component Services screen below.
+If you get an error referring to the RPC Endpoint Mapper, at the command prompt, run `dcomcnfg`. You should see the Component Services screen below.
 
 ![this is the component services and dtc configuration](dtc_dcomcnfg_1.png "this is the component services and dtc configuration")
 
