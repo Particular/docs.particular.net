@@ -3,8 +3,6 @@ title: NServiceBus Documentation
 summary: NServiceBus Documentation Table of Contents
 ---
 
-![NServiceNus](../logo-nsb.png)
-
 <a name="nsb-toc"></a>
 ## Table of Contents ##
 
