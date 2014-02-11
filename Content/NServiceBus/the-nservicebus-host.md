@@ -23,27 +23,7 @@ To run and debug your endpoint, change the Debug settings of the Visual Studio p
 
 ![Debug settings](reference_host.png)
 
-Make sure that 'Start external program' is selected under Start Action and choose the file 'NServiceBus.Host.exe' in the `/bin/debug` directory of your project. The settings are stored per user. To set them up for all your developers, follow the instructions in this video.
-
-<div id="ytplayer">
-
-<script>
-  // Load the IFrame Player API code asynchronously.
-  var tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/player_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-  // Replace the 'ytplayer' element with an <iframe> and
-  // YouTube player after the API code downloads.
-  var player;
-  function onYouTubePlayerAPIReady() {
-    player = new YT.Player('ytplayer', {
-      height: '480',
-      width: '640',
-      videoId: '4qHdwni4AjQ'
-    });
-  }
-</script> Let's see how it hooks into the configuration.
+Make sure that 'Start external program' is selected under Start Action and choose the file 'NServiceBus.Host.exe' in the `/bin/debug` directory of your project. 
 
 Configuration
 -------------
