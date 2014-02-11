@@ -9,9 +9,21 @@ tags:
 
 NServiceBus has the concept of installers to make sure that endpoint specific specific artefacts e.g., queues, folders, or databases are installed and configured automatically for you if needed at install time.
 
-To create your own installer is as easy as implementing the [`INeedToInstallSomething<T>`](https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Installation/INeedToInstallSomething.cs) interface. The generic parameter gives you a way to restrict your installer to a specific platform. Currently this is either Windows or Azure.
+To create your own installer is as easy as implementing the `INeedToInstallSomething<T>` interface. 
 
-If you don't care about the runtime environment, just use the [`INeedToInstallSomething`](https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Installation/INeedToInstallSomething.cs) interface instead.
+    public interface INeedToInstallSomething<T> : INeedToInstallSomething where T : IEnvironment
+    {
+        void Install(string identity);
+    }
+
+The generic parameter gives you a way to restrict your installer to a specific platform. Currently this is either Windows or Azure.
+
+If you don't care about the runtime environment, just use the `INeedToInstallSomething` interface instead.
+
+    public interface INeedToInstallSomething
+    {
+        void Install(string identity);
+    }
 
 NServiceBus scans the assemblies in the runtime directory for installers so you don't need any code to register them.
 
@@ -22,13 +34,13 @@ When are they invoked?
 When using the NServiceBus host, installers are invoked as shown:
 
 | Command Line Parameters          | Infrastructure (v3.0 Only) Installers | Regular Installers
-|----------------------------------|:----------------------------:|:---: 
-| /install NServiceBus.Production  | √                            | √
-| NServiceBus.Production           | ×                            | ×
-| /install NServiceBus.Integration | √                            | √
-|  NServiceBus.Integration         | ×                            | √
-| /install NServiceBus.Lite        | √                            | √
-| NServiceBus.Lite                 | ×                            | √
+|----------------------------------|:-------------------------------------:|:------------------: 
+| /install NServiceBus.Production  | &#10004;                              | &#10004;
+| NServiceBus.Production           | &#10006;                              | &#10006;
+| /install NServiceBus.Integration | &#10004;                              | &#10004;
+|  NServiceBus.Integration         | &#10006;                              | &#10004;
+| /install NServiceBus.Lite        | &#10004;                              | &#10004;
+| NServiceBus.Lite                 | &#10006;                              | &#10004;
 
 The installers are controlled by both the `/install` command line option to the host and the current profile in use. You can, of course, implement your own profile if you have other requirements.
 
