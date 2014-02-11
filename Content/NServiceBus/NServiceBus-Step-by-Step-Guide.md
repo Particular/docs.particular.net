@@ -14,8 +14,7 @@ In this tutorial we are going to create a very simple ordering system that will 
 5.  [Running the solution](#Running)
 6.  [Next Steps](#Next%20Steps)
 
-The complete solution code can be found
-[here](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Documentation/001_OrderingSendOnly)
+The complete solution code can be found [here](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Documentation/001_OrderingSendOnly)
 
 ### <a id="Client" name="Client"> </a> Creating the Client project
 
@@ -47,13 +46,7 @@ To change the configuration to 'Client', open the 'EndpointConfig.cs' file that 
 ```C#
 namespace Ordering.Client
 {
-    using NServiceBus;
-
-    /*
-                This class configures this endpoint as a Server. More information about how to configure the NServiceBus host
-                can be found here: http://particular.net/articles/the-nservicebus-host
-        */
-        public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
     {
     }
 }
@@ -65,13 +58,7 @@ namespace Ordering.Client
 ```C#
 namespace Ordering.Client
 {
-    using NServiceBus;
-
-    /*
-                This class configures this endpoint as a Server. More information about how to configure the NServiceBus host
-                can be found here: http://particular.net/articles/the-nservicebus-host
-        */
-        public class EndpointConfig : IConfigureThisEndpoint, AsA_Client
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Client
     {
     }
 }
@@ -81,8 +68,7 @@ namespace Ordering.Client
 
 ### <a id="Message" name="Message"> </a> Creating the Messages Project
 
-First lets add a new Class Library project and call it
-'Ordering.Messages'.
+First lets add a new Class Library project and call it 'Ordering.Messages'.
 
 
 [![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Creat%20Messages.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Creat%20Messages.png)
@@ -106,8 +92,6 @@ Replace the content of 'PlaceOrder.cs' with the following code:
 ```C#
 namespace Ordering.Messages
 {
-    using System;
-    using NServiceBus;
 
     public class PlaceOrder : ICommand
     {
@@ -142,10 +126,6 @@ Replace the content of 'PlaceOrderHandler.cs' with the following code:
 ```C#
 namespace Ordering.Server
 {
-    using System;
-    using Messages;
-    using NServiceBus;
-
     public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
     {
         public IBus Bus { get; set; }
@@ -166,10 +146,6 @@ We nearly done, all it is left to do is to go back to the 'Client' project add a
 ```C#
 namespace Ordering.Client
 {
-    using System;
-    using Messages;
-    using NServiceBus;
-
     public class SendOrder : IWantToRunWhenBusStartsAndStops
     {
         public IBus Bus { get; set; }
@@ -208,8 +184,7 @@ To run the 'Client' and 'Server' projects together so you can see it all working
 
 ![](002_strartup.png)
 
-in that screen select 'Multiple startup projects' and set the
-'Ordering.Client' and 'Ordering.Server' action to be 'Start'.
+in that screen select 'Multiple startup projects' and set the 'Ordering.Client' and 'Ordering.Server' action to be 'Start'.
 
 
 ![](003_strartup.png)
@@ -230,7 +205,7 @@ Congratulations - you've just built your first NServiceBus application.
 Wasn't that easy?
 -----------------
 
-\* If you see some warnings on the consoles, these warnings are just NServiceBus telling you that it couldn't find the queues it needs, so it went ahead and created them for you.
+If you see some warnings on the consoles, these warnings are just NServiceBus telling you that it couldn't find the queues it needs, so it went ahead and created them for you.
 
 ### <a id="Next Steps" name="Next Steps"> </a> Next Steps
 
