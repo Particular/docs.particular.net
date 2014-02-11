@@ -21,7 +21,7 @@ class EndpointConfig : IConfigureThisEndpoint, AsA_Publisher, IWantCustomInitial
 }
 ```
 
- a FATAL NServiceBus.Hosting.GenericHost exception is thrown: `Exception when starting endpoint.`.
+A FATAL NServiceBus.Hosting.GenericHost exception is thrown: `Exception when starting endpoint.`.
 
 The reason is that NServiceBus itself uses namespaces that end with
 "Messages". To fix the error include your default namespace; for example:
@@ -35,7 +35,8 @@ class EndpointConfig : IConfigureThisEndpoint, AsA_Publisher, IWantCustomInitial
         Configure.With()
             .DefaultBuilder()
             .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("MyMessages"))
-            .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.BeginsWith("MyCompany") && t.Namespace.EndsWith("Messages"));
+            .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.BeginsWith("MyCompany") && 
+                                     t.Namespace.EndsWith("Messages"));
     }
 }
 ```

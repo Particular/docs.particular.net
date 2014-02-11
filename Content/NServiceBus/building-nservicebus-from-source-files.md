@@ -14,8 +14,8 @@ Cloning the git repository
 If you want all the source for all versions of NServiceBus you should
 "Clone the repository". The recommended approaches are
 
--   Using [GitHub for Windows](http://windows.github.com/)
--   Using the [Git command line](http://git-scm.com/book/en/Git-Basics-Getting-a-Git-Repository)
+- Using [GitHub for Windows](http://windows.github.com/)
+- Using the [Git command line](http://git-scm.com/book/en/Git-Basics-Getting-a-Git-Repository)
 
 Downloading a zip
 -----------------
@@ -23,11 +23,9 @@ Downloading a zip
 GitHub supports downloading a zip file of the source. The convention is
 https://github.com/NServiceBus/NServiceBus/archive/{branchOrTagName}.zip. So for example
 
--   The current develop branch [https://github.com/NServiceBus/NServiceBus/archive/develop.zip](https://github.com/NServiceBus/NServiceBus/archive/develop.zip)
--   The current master branch is
-    [https://github.com/NServiceBus/NServiceBus/archive/master.zip](https://github.com/NServiceBus/NServiceBus/archive/master.zip)
--   The 3.3.8 tag is
-    [https://github.com/NServiceBus/NServiceBus/archive/3.3.8.zip](https://github.com/NServiceBus/NServiceBus/archive/3.3.8.zip)
+- The current develop branch [https://github.com/NServiceBus/NServiceBus/archive/develop.zip](https://github.com/NServiceBus/NServiceBus/archive/develop.zip)
+- The current master branch is [https://github.com/NServiceBus/NServiceBus/archive/master.zip](https://github.com/NServiceBus/NServiceBus/archive/master.zip)
+- The 3.3.8 tag is [https://github.com/NServiceBus/NServiceBus/archive/3.3.8.zip](https://github.com/NServiceBus/NServiceBus/archive/3.3.8.zip)
 
 Building NServiceBus 4
 ======================
@@ -38,7 +36,7 @@ Building NServiceBus 3
 ======================
 
 To build NServiceBus 3 from its source files, download the source files from
-[github](https://github.com/NServiceBus/NServiceBus/zipball/develop) to get the latest unstable build, or retrieve the latest stable build source code from the [downloads page](http://nservicebus.com/downloads.aspx).
+[github](https://github.com/NServiceBus/NServiceBus/zipball/develop) to get the latest unstable build, or retrieve the latest stable build source code from the [downloads page](http://particular.net/downloads).
 
 Build NServiceBus options
 -------------------------
@@ -51,7 +49,7 @@ Logical entry points
 
 Default.ps1 has five major logical entry points or main tasks:
 
- * Default: No need to call explicitly. It calls ReleaseNServiceBus task
+ * Default: No need to call explicitly. It calls `ReleaseNServiceBus` task
  * ReleaseNServiceBus:
     1.  Compiles all the source code in order.
     2.  Runs the unit tests.

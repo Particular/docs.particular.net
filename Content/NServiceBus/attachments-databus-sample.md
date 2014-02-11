@@ -12,14 +12,11 @@ Large chunks of data such as images or video files can be transported using NSer
 
 You only have to put an attribute over your large property and NServiceBus takes care of the rest. This is particularly important when running in cloud environments where limits on message size are usually much lower than on-premise.
 
-To see how to send and receive attachments in NServiceBus, open the
-[Databus sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/DataBus):
+To see how to send and receive attachments in NServiceBus, open the [Databus sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/DataBus):
 
 1.  Run the solution. Two console applications start.
-2.  Find the Sender application by looking for the one with "Sender" in its path and pressing Enter in the window to send a message.
-     You have just sent a message that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
-3.  Click 'e' and Enter.
-     A message larger than the allowed 4MB is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown at the "Sender" application as shown below:
+2.  Find the Sender application by looking for the one with "Sender" in its path and pressing Enter in the window to send a message.      You have just sent a message that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
+3.  Click 'e' and Enter.      A message larger than the allowed 4MB is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown at the "Sender" application as shown below:
 
 ![Databus sample Running](DatabusRunning.png "Databus sample Running")
 
@@ -187,5 +184,4 @@ public class MessageWithLargePayloadHandler : IHandleMessages<MessageWithLargePa
  Next steps
 ----------
 
-If you are not familiar with [Unobtrusive messaging](unobtrusive-mode-messages.md) mode, read the documentation or see the [working sample](unobtrusive-sample.md) .
-
+If you are not familiar with [Unobtrusive messaging](unobtrusive-mode-messages.md) mode, read the documentation or see the [working sample](unobtrusive-sample.md).

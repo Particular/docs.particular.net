@@ -50,7 +50,9 @@ While all of this is going on, the client process is oblivious. Critical resourc
 
 ### Request/response and one-way messaging
 
-The common pattern of Request/Response, which is more accurately described as Synchronous Remote Procedure Call, is handled differently when using one way messaging. Instead of letting the stack of the calling thread manage the state of the communications interaction, it is done explicitly. From a network perspective, request/response is just two one-way interactions, as shown in the next figure.![Full duplex 'Request/Response' messaging](full_duplex_messaging.png)
+The common pattern of Request/Response, which is more accurately described as Synchronous Remote Procedure Call, is handled differently when using one way messaging. Instead of letting the stack of the calling thread manage the state of the communications interaction, it is done explicitly. From a network perspective, request/response is just two one-way interactions, as shown in the next figure.
+
+![Full duplex 'Request/Response' messaging](full_duplex_messaging.png)
 
 This communication is especially critical for servers as clients behind problematic network connections now have little effect on the server's stability. If a client crashes between the time that it sent the request until the server sends a response, the server will not have resources tied up waiting minutes and minutes until the connection times out.
 
