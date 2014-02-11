@@ -71,7 +71,7 @@ namespace Ordering.Client
 First lets add a new Class Library project and call it 'Ordering.Messages'.
 
 
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Creat%20Messages.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Creat%20Messages.png)
+[![](Creat_Messages.png)](Creat_Messages.png)
 
 The Messages project is the container of message definitions. This project will be shared between the client and server so both sides agree on the typed message descriptions.
 
