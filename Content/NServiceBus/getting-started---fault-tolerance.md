@@ -13,24 +13,28 @@ Durable messaging
 In [the previous section](getting-started---creating-a-new-project.md) you've seen how a web application can send messages to a console application, see how messaging can get past all sorts of failure scenarios:
 
 1.  Run the solution again to make sure the messages are being processed.
-2.  Then, kill the OrderProcessing endpoint but leave the web application running.
+2.  Then, kill the `OrderProcessing` endpoint but leave the web application running.
 3.  Click the "About" link a couple more times to see that the web application isn't blocked even when the other process it's trying to communicate with is down. This makes it easier to upgrade the backend even while the front-end is still running, resulting in a more highly-available system.
 4.  Now, leaving the web application running, go back to Visual Studio and open Server Explorer. You should see this:
 
 ![Server Explorer](GettingStarted8.jpg)
 
-All the messages sent to the OrderProcessing endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties specifically BodyStream, where the data is.
+All the messages sent to the `OrderProcessing` endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties specifically BodyStream, where the data is.
 
-Now bring the OrderProcessing endpoint back online by right clicking the project, Debug, Start new instance. It processes all those messages, and if you go back to the queue shown above and right click Refresh, it is empty.
+Now bring the `OrderProcessing` endpoint back online
+
+    Right click the project > Debug > Start new instance.
+    
+It processes all those messages, and if you go back to the queue shown above and right click `Refresh`, it is empty.
 
 Fault tolerance
 ---------------
 
 Consider scenarios where the processing of a message fails. This could be due to something transient like a deadlock in the database, in which case some quick retries overcome this problem, making the message processing ultimately succeed. NServiceBus automatically retries immediately when an exception is thrown during message processing, up to five times by default (which is configurable).
 
-If the problem is something more protracted, like a third party web service going down or a database being unavailable, it makes sense to try again some time later. This is called the " [second level retries](second-level-retries.md) " functionality of NServiceBus. Configure its behavior by selecting the OrderProcessing endpoint in Solution Builder and opening its properties (F4). 
+If the problem is something more protracted, like a third party web service going down or a database being unavailable, it makes sense to try again some time later. This is called the [second level retries](second-level-retries.md) functionality of NServiceBus. Configure its behavior by selecting the OrderProcessing endpoint in Solution Builder and opening its properties (F4). 
 
- ![Endpoint properties](GettingStarted8.5.jpg) 
+![Endpoint properties](GettingStarted8.5.jpg) 
 
 You will get to the Error Queue and other General properties later. For now, focus on the SecondLevelRetriesConfig section.
 
@@ -57,7 +61,7 @@ namespace Amazon.OrderProcessing.Sales
 
 
 
-Run your solution again, but this time use Ctrl-F5 so that Visual Studio does not break each time the exception is thrown, sending a message from the ECommerce app by clicking About. You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
+Run your solution again, but this time use `Ctrl-F5` so that Visual Studio does not break each time the exception is thrown, sending a message from the ECommerce app by clicking About. You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
 
 ![Retries](GettingStarted9.png) 
 
@@ -76,7 +80,7 @@ Since administrators must monitor these error queues, it is recommended that all
 
 
 
- ![System level queue configuration](GettingStarted10.png)
+![System level queue configuration](GettingStarted10.png)
 
 **NOTE** : If you specify an error queue for a specific endpoint, it won't change when you change the top level error queue. Changing the top-level error queue only sets the value for endpoints for whom you haven't modified the error queue.
 
@@ -85,10 +89,4 @@ The second value, ForwardReceivedMessagesTo, defines the queue to which all mess
 In production, set both of these queues to be on a central machine by setting a value like "error@machine" or "error@IP-Address". Read about [how to configure retries](second-level-retries.md) .
 
 Make sure you remove the code which throws an exception before going on.
-
-Next steps
-----------
-
-See how to use NServiceBus for
-[Publish/Subscribe](getting-started---publish-subscribe-communication.md) .
 
