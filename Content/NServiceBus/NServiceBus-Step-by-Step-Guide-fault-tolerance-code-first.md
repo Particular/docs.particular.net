@@ -20,10 +20,15 @@ The complete solution code can be found [here](https://github.com/Particular/NSe
 Durable Messaging Demo
 ----------------------
 
-1.  Run the 'Ordering' solution again and hit Enter on the 'Client' console a couple of times to make sure the messages are being processed. ![](run_2.png)
-2.  Then, kill the 'Server' console (endpoint) but leave the 'Client' console (endpoint) running.
-3.  Hit Enter on the 'Client' console a couple of times to see that the 'Client' application isn't blocked even when the other process it's trying to communicate with is down. This makes it easier to upgrade the backend even while the front-end is still running, resulting in a more highly-available system.
-4.  Now, leaving the 'Client' console running, go back to Visual Studio and open Server Explorer and locate 'Message Queues' and the Server's queue. You should see this: ![](001_fault.png)
+*  Run the 'Ordering' solution again and hit Enter on the 'Client' console a couple of times to make sure the messages are being processed. 
+   
+![](run_2.png)
+
+* Then, kill the 'Server' console (endpoint) but leave the 'Client' console (endpoint) running.
+* Hit Enter on the 'Client' console a couple of times to see that the 'Client' application isn't blocked even when the other process it's trying to communicate with is down. This makes it easier to upgrade the backend even while the front-end is still running, resulting in a more highly-available system.
+*  Now, leaving the 'Client' console running, go back to Visual Studio and open Server Explorer and locate 'Message Queues' and the Server's queue. You should see this: 
+  
+![](001_fault.png)
 
 All the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties specifically BodyStream, where the data is.
 
@@ -46,7 +51,7 @@ If the problem is something more protracted, like a third party web service goin
 This is called the " [second level retries](second-level-retries.md) " or SLR functionality of NServiceBus.
 
 SLR is enabled by default, the default policy will defer the message
-10\*N (where N is number of retries) seconds 3 times (60 sec total), resulting in a wait of 10s, then 20s, and then 30s; after which the message moves to the configured ErrorQueue.
+`10*N` (where N is number of retries) seconds 3 times (60 sec total), resulting in a wait of 10s, then 20s, and then 30s; after which the message moves to the configured ErrorQueue.
 
 
 So, let's make the processing of messages in the 'Server' endpoint fail.
@@ -69,14 +74,14 @@ namespace Ordering.Server
     }
 }
 ```
-Run your solution again, but this time use Ctrl-F5 so that Visual Studio does not break each time the exception is thrown, sending a message from the 'Client' console.
+
+Run your solution again, but this time use `Ctrl-F5` so that Visual Studio does not break each time the exception is thrown, sending a message from the 'Client' console.
 
 You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
 
 ![](004_fault.png)
 
-While the endpoint can now continue processing other incoming messages
-(which will also fail in this case as the exception is thrown for all cases), the failed message has been diverted and is being held in one of the NServiceBus internal databases.
+While the endpoint can now continue processing other incoming messages (which will also fail in this case as the exception is thrown for all cases), the failed message has been diverted and is being held in one of the NServiceBus internal databases.
 
 If you leave the endpoint running a while longer, you'll see that it tries processing the message again. After three retries, the retries stop and the message ends up in the error queue (in the default configuration this should be after roughly one minute).
 
@@ -92,13 +97,3 @@ Since administrators must monitor these error queues, it is recommended that all
 Read more about [how to configure retries](second-level-retries.md) .
 
 Make sure you remove the code which throws an exception before going on.
-
-Next steps
-----------
-
--   See how to use NServiceBus for [Publish/Subscribe communication](nservicebus-step-by-step-publish-subscribe-communication-code-first.md).
--   Read about [NServiceBus and SOA Architectural Principles](architectural-principles.md)
--   Try our [Hands on Labs](http://particular.net/HandsOnLabs)
--   Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
--   See the [Documentation](http://particular.net/documentation/NServiceBus)
--   Join our [community](http://particular.net/DiscussionGroup)
