@@ -43,7 +43,7 @@ Creating endpoints
 
 Right click Endpoints, select Host, and then NServiceBus ASP NET MVC Endpoint, as shown.
 
-**IMPORTANT:** If you haven't installed ASP MVC on your machine, choose a Web Endpoint instead.
+**Important:** If you haven't installed ASP MVC on your machine, choose a Web Endpoint instead.
 
 ![Create an MVC front end](GettingStarted3.jpg)
 
@@ -80,8 +80,6 @@ To open the class file, double click the SubmitOrder command:
 
 
 ```C#
-using System;
-
 namespace Amazon.InternalMessages.Sales
 {
     public class SubmitOrder
@@ -189,7 +187,6 @@ namespace Amazon.ECommerce.Controllers
 ```
 
 
-
 Continue with "Run the code", below.
 
 ### Regular ASP.NET
@@ -209,11 +206,10 @@ Click F5. You should see something like the image below: a new tab in your brows
 If you are in a regular ASP.NET web project, you see a different image, but just click the button on the form.
 
 ![web to console messaging](http://particular.blob.core.windows.net/media/Default/images/GettingStarted7.jpg)
-​
 
 **Congratulations - you've just built your first NServiceBus application.** **Wasn't that easy?**
 
-**NOTE** : You don't have to worry about the warnings; this is just NServiceBus telling you that it couldn't find the queues it needs, so it went ahead and created them for you.
+**Note** : You don't have to worry about the warnings; this is just NServiceBus telling you that it couldn't find the queues it needs, so it went ahead and created them for you.
 
 Next steps
 ----------
