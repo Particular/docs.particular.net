@@ -156,7 +156,7 @@
     text-indent: -12px;
   }
   .columnc li:before{
-    content: "• ";
+    content: "â€¢ ";
     color: rgb(0,114,156);
   }
 </style>
@@ -211,7 +211,7 @@
     <a href="http://pluralsight.com/training/Courses/TableOfContents/nservicebus">
       <img src="/images/home/videosSmall.png" />
       <h3>Pluralsight Introduction to NServiceBus &rarr;</h3>
-      <p>6hrs with Andreas Öhlund, Lead developer of NServiceBus</p>
+      <p>6hrs with Andreas ï¿½hlund, Lead developer of NServiceBus</p>
     </a>
     <div style="clear: both"></div>
     <a href="http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book">
