@@ -10,7 +10,7 @@ tags:
 
 ### Configuring ServiceControl to use non-MSMQ Transports:
 
-1. Download this NuGet for the relevant transport including any dependencies and put the dlls in the ServiceControl bin folder: ("C:\Program Files (x86)\Particular Software\ServiceControl")
+* Download this NuGet for the relevant transport including any dependencies and put the dlls in the ServiceControl bin folder: ("C:\Program Files (x86)\Particular Software\ServiceControl")
    * [RabbitMQ](https://www.nuget.org/packages/NServiceBus.RabbitMQ/)
    * [SQL Server](https://www.nuget.org/packages/NServiceBus.SqlServer/)
    * [Windows Azure Storage Queues](https://www.nuget.org/packages/NServiceBus.Azure/)
