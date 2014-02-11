@@ -32,20 +32,18 @@ Creating an event message
 There are only a few steps needed to introduce pub/sub and make your solution look like the one appearing above.
 
 
-Right click your Messages Project and add a class file, and create a OrderCreated event:
+Right click your Messages Project and add a class file, and create a `OrderCreated` event:
 
 
 ![](002_pubsub.png)
 
-The message class will implement the IEvent marker interface
+The message class will implement the `IEvent` marker interface
 
 
 
 ```C#
 namespace Ordering.Messages
 {
-    using System;
-    using NServiceBus;
 
     public class OrderPlaceed : IEvent
     {
@@ -69,9 +67,6 @@ In order to publish the `OrderCreated` event we will modify the
 ```C#
 namespace Ordering.Server
 {
-    using System;
-    using Messages;
-    using NServiceBus;
 
     public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
     {
@@ -101,19 +96,11 @@ As the 'Ordering.Server' endpoint is now a publisher, we need to change the endp
 ```C#
 namespace Ordering.Server
 {
-    using NServiceBus;
-
-    /*
-		This class configures this endpoint as a Server. More information about how to configure the NServiceBus host
-		can be found here: http://particular.net/articles/the-nservicebus-host
-	*/
-	public class EndpointConfig : IConfigureThisEndpoint, AsA_Publisher
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Publisher
     {
     }
 }
 ```
-
-
 
 
 To learn more about profiles go check out: [Profiles For NServiceBus Host](profiles-for-nservicebus-host.md)
@@ -151,8 +138,8 @@ Handling the event
 
 In our new Subscriber project
 
--   Add a new class file, name it 'OrderCreatedHandler'
--   Add a reference to the 'messages' project
+-   Add a new class file, name it `OrderCreatedHandler`
+-   Add a reference to the `messages` project
 -   Implement the `IHandle<OrderCreated>` interface
 -   Add an IBus auto property and implement the handler as shown below
 
@@ -177,11 +164,11 @@ For the Host will auto subscribe to the event we need to add the message publish
 In the Odering.Subscriber project we will add MessageEndpointMappings in the app.config file as shown below:
 
 ```XML
-  <UnicastBusConfig>
-    <MessageEndpointMappings>
-      <add Messages="Ordering.Messages" Type="Ordering.Messages.OrderPlaced" Endpoint="Ordering.Server" />
-    </MessageEndpointMappings>
-  </UnicastBusConfig>
+<UnicastBusConfig>
+  <MessageEndpointMappings>
+    <add Messages="Ordering.Messages" Type="Ordering.Messages.OrderPlaced" Endpoint="Ordering.Server" />
+  </MessageEndpointMappings>
+</UnicastBusConfig>
 ```
 
 <a id="Running" name="Running"> </a>
@@ -215,16 +202,3 @@ Hit enter (while the Client console is in focus) and you should see
 And there you are: publish/subscribe messaging is working!
 
 As you see, it's very easy to get started with NServiceBus. You're all set now and can build your own distributed systems with NServiceBus.
-
-<a id="Next" name="Next"> </a>
-
-Next step
----------
-
--   Read about [NServiceBus and SOA Architectural Principles](architectural-principles.md)
--   Try our [Hands on Labs](http://particular.net/HandsOnLabs)
--   Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
--   See the [Documentation](http://particular.net/documentation/NServiceBus)
--   Join our [community](http://particular.net/DiscussionGroup)
-
-
