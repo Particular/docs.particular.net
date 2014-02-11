@@ -1,115 +1,331 @@
-<table>
-<tbody>
-<tr>
-<td style="text-align:left" width="20%"><img src="logo-nsb.png" alt="NServiceNus"></td>
-<td style="text-align:left"><strong>The most popular Service Bus for .NET</strong></td>
-</tr>
-<tr>
-<td style="text-align:left" width="20%"><img src="logo-sm.png" alt="ServiceMatrix"></td>
-<td style="text-align:left"><strong>Modeling &amp; Design</strong></td>
-</tr>
-<tr>
-<td style="text-align:left" width="20%"><img src="logo-si.png" alt="ServiceInsight"></td>
-<td style="text-align:left"><strong>Advanced Debugging</strong></td>
-</tr>
-<tr>
-<td style="text-align:left" width="20%"><img src="logo-sp.png" alt="ServicePulse"></td>
-<td style="text-align:left"><strong>Production Monitoring</strong></td>
-</tr>
-<tr>
-<td style="text-align:left" width="20%"><img src="logo-sc.png" alt="ServiceControl"></td>
-<td style="text-align:left"><strong>REST API Integration</strong></td>
-</tr>
-</tbody>
-</table>
+<style>
+  .block.black a, .block.middle a, .column a {
+    color: inherit;
+    /*text-decoration: none;*/
+  }
+  .block{
+    width: 100%;
+    background-color: rgb(233,240,242);
+    padding: 21px;
+    margin-bottom: 2px;
+    font-family: 'Lato';
+  }
 
-<!--
-|![NServiceNus](logo-nsb.png)| **The most popular Service Bus for .NET** |
-|:--|:--|
-|![ServiceMatrix](logo-sm.png)| **Modeling & Design** |
-|![ServiceInsight](logo-si.png)| **Advanced Debugging** |
-|![ServicePulse](logo-sp.png)| **Production Monitoring** |
-|![ServiceControl](logo-sc.png)| **REST API Integration** |
--->
+  .block.top img, .column img {
+    float: left;
+  }
+  .block.black img{
+    float: inherit;
+  }
+  .block.top .button{
+    float: right;
+    width: 225px;
+    font-size: 15px;
+  }
+  .block.middle .ic{
+    width: 20%;
+    float: left;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    line-height: 50px;
+    color: rgb(0,114,156);
+  }      
+  .block.black{
+    margin-top: -2px;
+    margin-bottom: 0px;
+    width: 100%;
+    clear: both;
+    background-color: rgb(26,26,26);
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    line-height: 30px;
+  }
+  span.whit{
+    color: white;
+  }
+  span.blue{
+    color: rgb(0,163,196);
+  }
+  span.gray{
+    color: rgb(128,128,128);
+  }
+  .block.black span img{
+    padding-left: 30px;
+    padding-right: 5px;
+    margin-top: -3px;
+  }
+  .column span.blue{
+    color: rgb(0,163,196);
+    padding-right: 30px;
+  }
+  .column .black{
+    font-size: 14px;
+  }
+  .column .black span img{
+    padding-left: 0px;
+    padding-right: 5px;
+  }
+  .block .left2 {
+    width: 60%;
+    float: left;
+    border-right: 2px solid rgb(218,222,222);
+  }
+  .block .right1 {
+    width: 40%;
+    float: left;
+    padding-left: 20px;
+  }
+  .block .right1 h3{
+    padding-top: 7px;
+  }
+  .block h2{
+    clear: both;
+    font-size: 20px !important;
+    font-family: 'Dosis', Semibold;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+  }
+  .block h3{
+    font-weight: bold;
+    font-size: 17px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    color: rgb(0,114,156);
+  }
+  .block h4{
+    font-size: 16px !important;
+    font-family: 'Dosis', bold;
+    font-weight: bold;
+    margin-top: 0px;
+  }
+  .block h5{        
+    color: rgb(0,114,156);
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 28px;
+    padding-top: 5px;
+  }
+  .block p{
+    font-size: 14px;
+    color: rgb(77,77,77);
+  }
+  .block .right1 img, .block .left2 img {
+    float: left;
+    margin: 0px 13px 23px 0px;
+  }
+  .column{
+    width: 32%;
+    margin-right: 2%;
+    float: left;        
+  }
+  .column.header{
+    margin-top: 64px;        
+  }
+  .column.header img {
+    height: 46px;
+  }
+  .column.last{
+    margin-right: 0px;
+  }
+  .columnc{
+    overflow: hidden;
+    clear: both;
+  }
+  .columnc .column{
+    padding-bottom: 1000px;
+    margin-bottom: -1000px;
+  }
+  
+  .columnc ul {
+    list-style: none;
+    margin-left: 0px;
+    padding-left: 0px;
+  }
+  .columnc li {
+    color: rgb(0,114,156) !important;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 7px;
+    padding-left: 12px;
+    text-indent: -12px;
+  }
+  .columnc li:before{
+    content: "• ";
+    color: rgb(0,114,156);
+  }
+</style>
+    
+<div class="block top">
+  <a href="http://particular.net/NServiceBus"><img src="/images/home/NSB.png" /></a>
+  <div class="small button">
+    <a class="blue" href="/nservicebus">Documentation topics</a>
+  </div>
+  <div style="clear: both"></div>
 
- 
-
-
-<br/><br/>
-
-![NServiceNus](logo-nsb.png)
-<a name="nsb-start-here"></a>
-
-- **[Getting Started with NServiceBus](/nservicebus/#getting-started)**
-- **[NServiceBus Hands-On-Labs](http://particular.net/HandsOnLabs)**
-- **[Download NServiceBus](http://particular.net/downloads)**
-- **[NServiceBus Documentation](/nservicebus)**
-- **[Release Notes](https://github.com/Particular/NServiceBus/releases)**
-
-
-<br/><br/>
-#### Additional Resources
-<br/>
-
-|![Learning NServiceNus Book](learning-nservicebus-book.jpg)| Get the first 3 chapters of David Boike's ["Learning NServiceBus" book](http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book) for free when you [download NServiceBus](http://particular.net/downloads)  |
-|:--:|:--|
-|![ADSD Course](http://particular.net/Media/Default/Online%20training/particular-courses.png)| **[Advanced Distributed Systems Design course recording](http://particular.net/adsd)**: Five full days of training with Udi Dahan (recorded in New York, 2013)|
-|![Pluralsight Introduction to NServiceBus](http://particular.net/Media/Default/Online%20training/pluralsight-courses.png)| **[Pluralsight Introduction to NServiceBus](http://pluralsight.com/training/Courses/TableOfContents/nservicebus)**: Six hours with Andreas Ohlund, Engineering Director of Particular Software and lead developer of NServiceBus|
-
-<br/><br/>
-
-
-![ServiceMatrix for Visual Studio 2012](logo-sm.png) **(Beta)**
-<a name="sm-start-here"></a>
-
-
-- **[Getting Started with ServiceMatrix for Visual Studio 2012](/servicematrix/getting-started)**
-- **[Video Introduction](http://particular.net/ServiceMatrix)**
-- **[Download ServiceMatrix](http://particular.net/downloads)**
-- **[ServiceMatrix Documentation](/servicematrix)**
-- **[Release Notes](https://github.com/Particular/ServiceMatrix/releases)**
-
-
-
-<br/><br/>
-
-
-![ServiceInsight](logo-si.png) **(Beta)**
-<a name="si-start-here"></a>
-
-
-- **[Getting started with ServiceInsight](/serviceinsight/getting-started--overview)**
-- **[Video Introduction](http://particular.net/ServiceInsight)**
-- **[Download ServiceInsight](http://particular.net/downloads)**
-- **[ServiceInsight Documentation](/serviceinsight)** 
-- **[Release Notes](https://github.com/Particular/ServiceInsight/releases)**
-
-
-
-<br/><br/>
-
-
-![ServicePulse](logo-sp.png) **(Beta)**
-<a name="sp-start-here"></a>
-
-
-- **[Getting Started with ServicePulse](/servicepulse)** 
-- **[Video Introduction](http://particular.net/ServicePulse)**
-- **[Download ServicePulse](http://particular.net/downloads)**
-- **[ServicePulse Documentation](/servicepulse)** 
-- **[Release Notes](https://github.com/Particular/ServicePulse/releases)**
-
-
-
-<br/><br/>
-
-
-![ServiceControl](logo-sc.png) **(Beta)**
-<a name="sc-start-here"></a>
-
-
-- **[Download ServiceControl](http://particular.net/downloads)**
-- **[ServiceControl Documentation](/servicecontrol)** 
-- **[Release Notes](https://github.com/Particular/ServiceControl/releases)**
-
-
+</div>
+<div class="block middle">
+  <div class="ic">              
+    <a href="/nservicebus/#getting-started">
+      <img src="/images/home/gettingStarted.png" /><br/>
+      Getting Started &rarr;
+    </a>
+  </div>
+  <div class="ic">              
+    <a href="http://particular.net/Videos-and-Presentations">
+      <img src="/images/home/IntroVideos.png" /><br/>
+      Intro Videos &rarr;
+    </a>
+  </div>
+  <div class="ic">              
+    <a href="http://particular.net/HandsOnLabs">
+      <img src="/images/home/HOL.png" /><br/>
+      Hands-On Labs &rarr;
+    </a>
+  </div>
+  <div class="ic">              
+    <a href="/nservicebus/api">
+      <img src="/images/home/API.png" /><br/>
+      API &rarr;
+    </a>
+  </div>
+  <div class="ic">              
+    <a href="/nservicebus/samples">
+      <img src="/images/home/Samples.png" /><br/>
+      Samples &rarr;
+    </a>
+  </div>
+  <div style="clear: both"></div>
+</div>
+<div class="block black">
+  <span class="gray">Latest release: </span><span class="whit">4.3.3 </span><span class="blue"><a href="https://github.com/Particular/NServiceBus/releases"><img src="/images/home/releaseNotes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/images/home/download.png" /> Downloads</a></span>
+</div>
+<div class="block middle">            
+  <div class="left2">              
+    <h2>External training resources </h2>
+    <a href="http://pluralsight.com/training/Courses/TableOfContents/nservicebus">
+      <img src="/images/home/videosSmall.png" />
+      <h3>Pluralsight Introduction to NServiceBus &rarr;</h3>
+      <p>6hrs with Andreas Öhlund, Lead developer of NServiceBus</p>
+    </a>
+    <div style="clear: both"></div>
+    <a href="http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book">
+      <img src="/images/home/book.png" />
+      <h3>Learn NServiceBus &rarr;</h3>
+      <p>Book by David Boike. Register and get the first 3 chapters free</p>
+    </a>
+    <div style="clear: both"></div>              
+  </div>
+  <div class="right1">
+    <h2>Community help</h2>
+    <a href="http://stackoverflow.com/questions/tagged/nservicebus">
+      <img src="/images/home/stackoverflowBig.png" />
+      <h3>StackOverflow &rarr;</h3>
+    </a>              
+    <div style="clear: both"></div>
+    <a href="https://groups.google.com/forum/#!forum/particularsoftware">
+      <img src="/images/home/discussion.png" />
+      <h3>Discussion group &rarr;</h3>
+    </a>
+    <div style="clear: both"></div>              
+  </div>
+  <div style="clear: both"></div>
+</div>
+<div class="column header">
+  <div class="block top">
+    <img src="/images/home/SM.png" />
+    <div style="clear: both"></div>
+  </div>
+</div>
+<div class="column header">
+  <div class="block top">
+    <img src="/images/home/SI.png" />
+    <div style="clear: both"></div>
+  </div>
+</div>
+<div class="column header last">
+  <div class="block top">
+    <img src="/images/home/SP.png" />
+    <div style="clear: both"></div>
+  </div>
+</div>
+<div class="columnc">            
+  <div class="column block">
+    <p>Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur pursus sit.</p>
+    <ul>
+      <li><a href="#">Topic 1 right here extra long line so it flows to the next line</a></li>
+      <li><a href="#">Topic 2</a></li>
+      <li><a href="#">Topic 3</a></li>
+      <li><a href="#">Topic 4</a></li>
+      <li><a href="#">Topic 5</a></li>
+      <li><a href="#">Topic 6</a></li>
+    </ul>
+    <div style="clear: both"></div>
+  </div>
+  <div class="column block">
+    <p>Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur pursus sit.</p>
+    <ul>
+      <li><a href="#">Topic 1 right here extra long line so it flows to the next line</a></li>
+      <li><a href="#">Topic 2</a></li>
+      <li><a href="#">Topic 3</a></li>
+    </ul>
+    <div style="clear: both"></div>
+  </div>
+  <div class="column last block">
+    <p>Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur pursus sit.</p>
+    <ul>
+      <li><a href="#">Topic 1 right here extra long line so it flows to the next line</a></li>
+      <li><a href="#">Topic 2</a></li>
+      <li><a href="#">Topic 3</a></li>
+      <li><a href="#">Topic 4</a></li>
+      <li><a href="#">Topic 5</a></li>
+      <li><a href="#">Topic 6</a></li>
+    </ul>
+    <div style="clear: both"></div>
+  </div>
+</div>
+<div class="column">
+  <div class="block">
+    <h4>Community help</h4>
+    <a href="http://stackoverflow.com/questions/tagged/ServiceMatrix">
+      <img src="/images/home/stackoverflowSmall.png" />
+      <h5>StackOverflow &rarr;</h5>
+    </a>
+  </div>
+  <div class="block black">
+    <span class="gray">Latest ServiceMatrix release: </span><span class="whit">Beta 2 </span><br/>
+    <span class="blue"><a href="https://github.com/Particular/ServiceMatrix/releases"><img src="/images/home/releaseNotes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/images/home/download.png" /> Downloads</a></span>
+  </div>
+</div>
+<div class="column">
+  <div class="block">
+    <h4>Community help</h4>
+    <a href="http://stackoverflow.com/questions/tagged/ServiceInsight">
+      <img src="/images/home/stackoverflowSmall.png" />
+      <h5>StackOverflow &rarr;</h5>
+    </a>
+  </div>
+  <div class="block black">
+    <span class="gray">Latest ServiceInsight release: </span><span class="whit">Beta 5 </span><br/>
+    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/images/home/releaseNotes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/images/home/download.png" /> Downloads</a></span>
+  </div>
+</div>
+<div class="column last">
+  <div class="block">
+    <h4>Community help</h4>
+    <a href="http://stackoverflow.com/questions/tagged/ServicePulse">
+      <img src="/images/home/stackoverflowSmall.png" />
+      <h5>StackOverflow &rarr;</h5>
+    </a>
+  </div>
+  <div class="block black">
+    <span class="gray">Latest ServicePulse release: </span><span class="whit">Beta 6 </span><br/>
+    <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><img src="/images/home/releaseNotes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/images/home/download.png" /> Downloads</a></span>
+  </div>
+</div>
+<div style="clear: both; padding-top: 35px"></div>
