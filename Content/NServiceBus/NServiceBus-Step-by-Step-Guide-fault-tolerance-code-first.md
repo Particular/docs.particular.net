@@ -38,7 +38,7 @@ Now bring the 'Server' endpoint back online by right clicking the project, Debug
 
 As you can see the 'Server' processes all those messages, and if you go back to the queue shown above and right click Refresh, it is empty.
 
-![]003_fault.png)
+![](003_fault.png)
 
 
 Fault tolerance and Second Level Retries (SLR)
