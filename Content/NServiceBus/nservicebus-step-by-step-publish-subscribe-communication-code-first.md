@@ -32,7 +32,7 @@ Creating an event message
 There are only a few steps needed to introduce pub/sub and make your solution look like the one appearing above.
 
 
-Right click your Messages Project and add a class file, and create a `OrderCreated` event:
+Right click your Messages Project and add a class file, and create a `OrderPlaced` event:
 
 
 ![](002_pubsub.png)
@@ -61,7 +61,7 @@ Publishing an event
 -------------------
 
 
-In order to publish the `OrderCreated` event we will modify the
+In order to publish the `OrderPlaced` event we will modify the
 `PlaceOrderHandler`, add a `Bus.Publish<OrderPlaced>()` as shown below
 
 ```C#
