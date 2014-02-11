@@ -107,7 +107,7 @@ namespace Ordering.Messages
 You are now ready to create the orders processing server, add a new class library project and name is 'Ordering.Server'.
 
 
-[![](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Creat%20Server.png)](https://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/GettingStartedCoding/Creat%20Server.png)
+[![](Creat_Server.png)](Creat_Server.png)
 
 Install the 'NServiceBusHost' NuGet package for this new project:
 
@@ -207,11 +207,3 @@ Wasn't that easy?
 
 If you see some warnings on the consoles, these warnings are just NServiceBus telling you that it couldn't find the queues it needs, so it went ahead and created them for you.
 
-### <a id="Next Steps" name="Next Steps"> </a> Next Steps
-
--   Go to [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md)
--   Read about [NServiceBus and SOA Architectural Principles](architectural-principles.md)
--   Try our [Hands on Labs](http://particular.net/HandsOnLabs)
--   Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
--   See the [Documentation](http://particular.net/documentation/NServiceBus)
--   Join our [community](http://particular.net/DiscussionGroup)
