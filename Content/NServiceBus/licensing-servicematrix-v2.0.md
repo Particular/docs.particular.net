@@ -5,9 +5,6 @@ originalUrl: http://www.particular.net/articles/licensing-servicematrix-v2.0
 tags: []
 ---
 
-Licensing ServiceMatrix v2.0
-======================================================================================================================
-
 ServiceMatrix installs in trial mode, which expires after 30 days. Ten days before the trial license expires, you will see a dialog box informing you that your trial is about to expire.
 
 ![](001.png)
