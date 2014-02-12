@@ -10,7 +10,7 @@ At startup NServicebus will attempt to recreate the urlacls so that the process 
 
 ```
 WARN  NServiceBus.Installation.GatewayHttpListenerInstaller 
-Failed to grant to grant user 'Retina\Simon' HttpListener permissions. Processing will continue. 
+Failed to grant to grant user 'Machine\UserName' HttpListener permissions. Processing will continue. 
 Try running the following command from an admin console:
 netsh http add urlacl url=http://localhost:25894/MyEndpoint/ user="Machine\MyEndpointServiceAccount"
 
