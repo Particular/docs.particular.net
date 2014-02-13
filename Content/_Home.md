@@ -1,5 +1,6 @@
 <style>
- .small.button{
+	
+  .small.button{
 	line-height: 45px;
 	font-size: 16px;
 	padding-left: 15px;
@@ -24,7 +25,7 @@
   }
   .block.black a, .block.middle a, .productcolumn a {
     color: inherit;
-    white-space:nowrap;
+	white-space: nowrap;
   }
   .block{
     width: 100%;
@@ -47,6 +48,7 @@
   }
   .block.middle .ic{
     width: 20%;
+	min-width: 140px;
     float: left;
     text-align: center;
     font-size: 18px;
@@ -71,7 +73,7 @@
   span.blue{
     color: rgb(0,163,196);
     padding-right: 30px;
-    display: inline-block;
+	display: inline-block;
   }
   .block.black span img{
     padding-left: 0px;
@@ -85,9 +87,9 @@
     width: 60%;
     float: left;
     border-right: 2px solid rgb(218,222,222);
+	min-width: 460px;
   }
   .block .right1 {
-    width: 40%;
     float: left;
     padding-left: 20px;
   }
@@ -136,7 +138,7 @@
     float: left;        
   }
   .productcolumn.header{
-    margin-top: 64px;        
+    margin-top: 35px;        
   }
   .productcolumn.last{
     margin-right: 0px;
@@ -167,10 +169,11 @@
     content: "• ";
     color: rgb(0,114,156);
   }
+
 </style>
     
 <div class="block top">
-  <a href="http://particular.net/NServiceBus"><img src="/images/home/NSB.png" /></a>
+  <a href="http://particular.net/NServiceBus"><img src="/images/home/NSB.png" style="max-width: 43%" /></a>
   <div class="small button">
     <a class="blue" href="/nservicebus">Documentation topics</a>
   </div>
