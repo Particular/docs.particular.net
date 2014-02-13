@@ -14,7 +14,9 @@ tags:
    * [RabbitMQ](https://www.nuget.org/packages/NServiceBus.RabbitMQ/)
    * [SQL Server](https://www.nuget.org/packages/NServiceBus.SqlServer/)
    * [Windows Azure Storage Queues](https://www.nuget.org/packages/NServiceBus.Azure/)
-   * [Windows Azure ServiceBus](https://www.nuget.org/packages/NServiceBus.Azure/) Stop the ServiceControl service (from an admin cmd line, run `net stop Particular.ServiceControl`)
+   * [Windows Azure ServiceBus](https://www.nuget.org/packages/NServiceBus.Azure/) 
+    
+* Stop the ServiceControl service (from an admin cmd line, run `net stop Particular.ServiceControl`)
 used the default install location)
 * Open ServiceControl.dll.config in notepad and locate:    
 
