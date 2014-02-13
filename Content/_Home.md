@@ -71,6 +71,7 @@
   span.blue{
     color: rgb(0,163,196);
     padding-right: 30px;
+    display: inline-block;
   }
   .block.black span img{
     padding-left: 0px;
