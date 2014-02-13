@@ -4,7 +4,7 @@
     "Topics": [
       {
         "Name": "persistence-in-nservicebus",
-        "Title": "Persistence In Nservicebus",
+        "Title": "Persistence In NServicebus",
         "Articles": [
           "NServiceBus/persistence-in-nservicebus",
           "NServiceBus/using-ravendb-in-nservicebus-installing",
