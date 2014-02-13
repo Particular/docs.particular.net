@@ -1,4 +1,27 @@
 <style>
+ .small.button{
+	line-height: 45px;
+	font-size: 16px;
+	padding-left: 15px;
+	font-family: 'Lato',Bold;
+	display: inline-block;
+  }
+  .small.button a{
+	display: block;
+	color: white;		
+	line-height: 45px;
+	width: 215px;
+	background-color: #00a3c4;
+	border-bottom: 5px solid #0071a0;
+	clear: both;
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	font-weight: 700;	
+  }
+  .small.button a:hover{
+	background-color: #03AFF8;
+  }
   .block.black a, .block.middle a, .productcolumn a {
     color: inherit;
   }
