@@ -24,6 +24,7 @@
   }
   .block.black a, .block.middle a, .productcolumn a {
     color: inherit;
+    white-space:nowrap;
   }
   .block{
     width: 100%;
