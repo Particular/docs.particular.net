@@ -219,14 +219,14 @@
     <a href="http://pluralsight.com/training/Courses/TableOfContents/nservicebus">
       <img src="/images/home/videosSmall.png" />
       <h3>Pluralsight Introduction to NServiceBus &rarr;</h3>
-      <p>6hrs with Andreas Öhlund, Lead developer of NServiceBus</p>
     </a>
+    <p>6hrs with Andreas Öhlund, Lead developer of NServiceBus</p>
     <div style="clear: both"></div>
     <a href="http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book">
       <img src="/images/home/book.png" />
       <h3>Learn NServiceBus &rarr;</h3>
-      <p>Book by David Boike. Register and get the first 3 chapters free</p>
     </a>
+    <p>Book by David Boike. Register and get the first 3 chapters free</p>
     <div style="clear: both"></div>              
   </div>
   <div class="right1">
