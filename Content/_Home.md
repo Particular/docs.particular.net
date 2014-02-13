@@ -136,9 +136,6 @@
   .productcolumn.header{
     margin-top: 64px;        
   }
-  .productcolumn.header img {
-    height: 46px;
-  }
   .productcolumn.last{
     margin-right: 0px;
   }
