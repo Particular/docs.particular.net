@@ -175,13 +175,13 @@
     </a>
   </div>
   <div class="ic">              
-    <a href="/nservicebus/api">
+    <a href="/nservicebus/">
       <img src="/images/home/API.png" /><br/>
       API &rarr;
     </a>
   </div>
   <div class="ic">              
-    <a href="/nservicebus/samples">
+    <a href="/nservicebus/">
       <img src="/images/home/Samples.png" /><br/>
       Samples &rarr;
     </a>
@@ -224,54 +224,43 @@
 </div>
 <div class="productcolumn header">
   <div class="block top">
-    <img src="/images/home/SM.png" />
+    <a href="http://particular.net/ServiceMatrix">
+      <img src="/images/home/SM.png" />
+    </a>
     <div style="clear: both"></div>
   </div>
 </div>
 <div class="productcolumn header">
   <div class="block top">
-    <img src="/images/home/SI.png" />
+    <a href="http://particular.net/ServiceInsight">
+      <img src="/images/home/SI.png" />
+    </a>
     <div style="clear: both"></div>
   </div>
 </div>
 <div class="productcolumn header last">
   <div class="block top">
-    <img src="/images/home/SP.png" />
+    <a href="http://particular.net/ServicePulse">
+      <img src="/images/home/SP.png" />
+    </a>
     <div style="clear: both"></div>
   </div>
 </div>
 <div class="productcolumnc">            
   <div class="productcolumn block">
-    <p>Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur pursus sit.</p>
-    <ul>
-      <li><a href="#">Topic 1 right here extra long line so it flows to the next line</a></li>
-      <li><a href="#">Topic 2</a></li>
-      <li><a href="#">Topic 3</a></li>
-      <li><a href="#">Topic 4</a></li>
-      <li><a href="#">Topic 5</a></li>
-      <li><a href="#">Topic 6</a></li>
-    </ul>
-    <div style="clear: both"></div>
+    <p>Get the logical view of your system from top-to-bottom knowing that your design is always in sync with your code.</p>
+    <a href="/ServiceMatrix"><h3>Topics &rarr;</h3></a>
+   <div style="clear: both"></div>
   </div>
   <div class="productcolumn block">
-    <p>Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur pursus sit.</p>
-    <ul>
-      <li><a href="#">Topic 1 right here extra long line so it flows to the next line</a></li>
-      <li><a href="#">Topic 2</a></li>
-      <li><a href="#">Topic 3</a></li>
-    </ul>
+    <p>ServiceInsight gives you visibility across queues, processes, and
+machines showing messages whose processing has failed (and for what reason) as well as their relation to other messages.</p>
+    <a href="/ServiceInsight"><h3>Topics &rarr;</h3></a>
     <div style="clear: both"></div>
   </div>
   <div class="productcolumn last block">
-    <p>Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur pursus sit.</p>
-    <ul>
-      <li><a href="#">Topic 1 right here extra long line so it flows to the next line</a></li>
-      <li><a href="#">Topic 2</a></li>
-      <li><a href="#">Topic 3</a></li>
-      <li><a href="#">Topic 4</a></li>
-      <li><a href="#">Topic 5</a></li>
-      <li><a href="#">Topic 6</a></li>
-    </ul>
+    <p>Keep track of your system's endpoints health, monitor for any processing errors, send failed messages for reprocessing and make sure your specific environment's needs are met - All in one consolidated dashboard.</p>
+    <a href="/ServicePulse"><h3>Topics &rarr;</h3></a>
     <div style="clear: both"></div>
   </div>
 </div>
