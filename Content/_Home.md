@@ -1,7 +1,6 @@
 <style>
-  .block.black a, .block.middle a, .column a {
+  .block.black a, .block.middle a, .productcolumn a {
     color: inherit;
-    /*text-decoration: none;*/
   }
   .block{
     width: 100%;
@@ -11,7 +10,7 @@
     font-family: 'Lato';
   }
 
-  .block.top img, .column img {
+  .block.top img, .productcolumn img {
     float: left;
   }
   .block.black img{
@@ -45,30 +44,17 @@
     padding-bottom: 13px;
     line-height: 30px;
   }
-  span.whit{
-    color: white;
-  }
   span.blue{
-    color: rgb(0,163,196);
-  }
-  span.gray{
-    color: rgb(128,128,128);
-  }
-  .block.black span img{
-    padding-left: 30px;
-    padding-right: 5px;
-    margin-top: -3px;
-  }
-  .column span.blue{
     color: rgb(0,163,196);
     padding-right: 30px;
   }
-  .column .black{
-    font-size: 14px;
-  }
-  .column .black span img{
+  .block.black span img{
     padding-left: 0px;
     padding-right: 5px;
+    margin-top: -3px;
+  }
+  .productcolumn .black{
+    font-size: 14px;
   }
   .block .left2 {
     width: 60%;
@@ -119,35 +105,35 @@
     float: left;
     margin: 0px 13px 23px 0px;
   }
-  .column{
+  .productcolumn{
     width: 32%;
     margin-right: 2%;
     float: left;        
   }
-  .column.header{
+  .productcolumn.header{
     margin-top: 64px;        
   }
-  .column.header img {
+  .productcolumn.header img {
     height: 46px;
   }
-  .column.last{
+  .productcolumn.last{
     margin-right: 0px;
   }
-  .columnc{
+  .productcolumnc{
     overflow: hidden;
     clear: both;
   }
-  .columnc .column{
+  .productcolumnc .productcolumn{
     padding-bottom: 1000px;
     margin-bottom: -1000px;
   }
   
-  .columnc ul {
+  .productcolumnc ul {
     list-style: none;
     margin-left: 0px;
     padding-left: 0px;
   }
-  .columnc li {
+  .productcolumnc li {
     color: rgb(0,114,156) !important;
     font-size: 14px;
     font-weight: bold;
@@ -155,7 +141,7 @@
     padding-left: 12px;
     text-indent: -12px;
   }
-  .columnc li:before{
+  .productcolumnc li:before{
     content: "• ";
     color: rgb(0,114,156);
   }
@@ -203,7 +189,7 @@
   <div style="clear: both"></div>
 </div>
 <div class="block black">
-  <span class="gray">Latest release: </span><span class="whit">4.3.3 </span><span class="blue"><a href="https://github.com/Particular/NServiceBus/releases"><img src="/images/home/releaseNotes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/images/home/download.png" /> Downloads</a></span>
+  <span class="blue"><a href="https://github.com/Particular/NServiceBus/releases"><img src="/images/home/releaseNotes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/images/home/download.png" /> Downloads</a></span>
 </div>
 <div class="block middle">            
   <div class="left2">              
@@ -211,7 +197,7 @@
     <a href="http://pluralsight.com/training/Courses/TableOfContents/nservicebus">
       <img src="/images/home/videosSmall.png" />
       <h3>Pluralsight Introduction to NServiceBus &rarr;</h3>
-      <p>6hrs with Andreas �hlund, Lead developer of NServiceBus</p>
+      <p>6hrs with Andreas Öhlund, Lead developer of NServiceBus</p>
     </a>
     <div style="clear: both"></div>
     <a href="http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book">
@@ -236,26 +222,26 @@
   </div>
   <div style="clear: both"></div>
 </div>
-<div class="column header">
+<div class="productcolumn header">
   <div class="block top">
     <img src="/images/home/SM.png" />
     <div style="clear: both"></div>
   </div>
 </div>
-<div class="column header">
+<div class="productcolumn header">
   <div class="block top">
     <img src="/images/home/SI.png" />
     <div style="clear: both"></div>
   </div>
 </div>
-<div class="column header last">
+<div class="productcolumn header last">
   <div class="block top">
     <img src="/images/home/SP.png" />
     <div style="clear: both"></div>
   </div>
 </div>
-<div class="columnc">            
-  <div class="column block">
+<div class="productcolumnc">            
+  <div class="productcolumn block">
     <p>Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur pursus sit.</p>
     <ul>
       <li><a href="#">Topic 1 right here extra long line so it flows to the next line</a></li>
@@ -267,7 +253,7 @@
     </ul>
     <div style="clear: both"></div>
   </div>
-  <div class="column block">
+  <div class="productcolumn block">
     <p>Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur pursus sit.</p>
     <ul>
       <li><a href="#">Topic 1 right here extra long line so it flows to the next line</a></li>
@@ -276,7 +262,7 @@
     </ul>
     <div style="clear: both"></div>
   </div>
-  <div class="column last block">
+  <div class="productcolumn last block">
     <p>Donec ullamcorper nulla non metus auctor fringilla. Cras mattis consectetur pursus sit.</p>
     <ul>
       <li><a href="#">Topic 1 right here extra long line so it flows to the next line</a></li>
@@ -289,7 +275,7 @@
     <div style="clear: both"></div>
   </div>
 </div>
-<div class="column">
+<div class="productcolumn">
   <div class="block">
     <h4>Community help</h4>
     <a href="http://stackoverflow.com/questions/tagged/ServiceMatrix">
@@ -298,11 +284,10 @@
     </a>
   </div>
   <div class="block black">
-    <span class="gray">Latest ServiceMatrix release: </span><span class="whit">Beta 2 </span><br/>
     <span class="blue"><a href="https://github.com/Particular/ServiceMatrix/releases"><img src="/images/home/releaseNotes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/images/home/download.png" /> Downloads</a></span>
   </div>
 </div>
-<div class="column">
+<div class="productcolumn">
   <div class="block">
     <h4>Community help</h4>
     <a href="http://stackoverflow.com/questions/tagged/ServiceInsight">
@@ -311,11 +296,10 @@
     </a>
   </div>
   <div class="block black">
-    <span class="gray">Latest ServiceInsight release: </span><span class="whit">Beta 5 </span><br/>
     <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/images/home/releaseNotes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/images/home/download.png" /> Downloads</a></span>
   </div>
 </div>
-<div class="column last">
+<div class="productcolumn last">
   <div class="block">
     <h4>Community help</h4>
     <a href="http://stackoverflow.com/questions/tagged/ServicePulse">
@@ -324,7 +308,6 @@
     </a>
   </div>
   <div class="block black">
-    <span class="gray">Latest ServicePulse release: </span><span class="whit">Beta 6 </span><br/>
     <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><img src="/images/home/releaseNotes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/images/home/download.png" /> Downloads</a></span>
   </div>
 </div>
