@@ -61,6 +61,5 @@ Latest version of NServiceBus supports various transport protocols. Be it MSMQ, 
 Next steps
 ----------
 
--   [Download ServiceInsight](/downloads)
 -   [Installation and Troubleshooting](getting-started--installation-and-troubleshooting.md)
 
