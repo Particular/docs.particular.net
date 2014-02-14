@@ -178,34 +178,33 @@
     <a class="blue" href="/nservicebus">Documentation topics</a>
   </div>
   <div style="clear: both"></div>
-
 </div>
 <div class="block middle">
-  <div class="ic">              
+  <div class="ic">
     <a href="/nservicebus/#getting-started">
       <img src="/images/home/gettingStarted.png" /><br/>
       Getting Started &rarr;
     </a>
   </div>
-  <div class="ic">              
+  <div class="ic">
     <a href="http://particular.net/Videos-and-Presentations">
       <img src="/images/home/IntroVideos.png" /><br/>
       Intro Videos &rarr;
     </a>
   </div>
-  <div class="ic">              
+  <div class="ic">
     <a href="http://particular.net/HandsOnLabs">
       <img src="/images/home/HOL.png" /><br/>
       Hands-On Labs &rarr;
     </a>
   </div>
-  <div class="ic">              
+  <div class="ic">
     <a href="/nservicebus/">
       <img src="/images/home/API.png" /><br/>
       API &rarr;
     </a>
   </div>
-  <div class="ic">              
+  <div class="ic">
     <a href="/nservicebus/">
       <img src="/images/home/Samples.png" /><br/>
       Samples &rarr;
@@ -216,8 +215,8 @@
 <div class="block black">
   <span class="blue"><a href="https://github.com/Particular/NServiceBus/releases"><img src="/images/home/releaseNotes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/images/home/download.png" /> Downloads</a></span>
 </div>
-<div class="block middle">            
-  <div class="left2">              
+<div class="block middle">
+  <div class="left2">
     <h2>External training resources </h2>
     <a href="http://pluralsight.com/training/Courses/TableOfContents/nservicebus">
       <img src="/images/home/videosSmall.png" />
@@ -230,20 +229,20 @@
       <h3>Learn NServiceBus &rarr;</h3>
     </a>
     <p>Book by David Boike. Register and get the first 3 chapters free</p>
-    <div style="clear: both"></div>              
+    <div style="clear: both"></div>
   </div>
   <div class="right1">
     <h2>Community help</h2>
     <a href="http://stackoverflow.com/questions/tagged/nservicebus">
       <img src="/images/home/stackoverflowBig.png" />
       <h3>StackOverflow &rarr;</h3>
-    </a>              
+    </a>
     <div style="clear: both"></div>
     <a href="https://groups.google.com/forum/#!forum/particularsoftware">
       <img src="/images/home/discussion.png" />
       <h3>Discussion group &rarr;</h3>
     </a>
-    <div style="clear: both"></div>              
+    <div style="clear: both"></div>
   </div>
   <div style="clear: both"></div>
 </div>
@@ -271,7 +270,7 @@
     <div style="clear: both"></div>
   </div>
 </div>
-<div class="productcolumnc">            
+<div class="productcolumnc">
   <div class="productcolumn block">
     <p>Get the logical view of your system from top-to-bottom knowing that your design is always in sync with your code.</p>
     <a href="/ServiceMatrix"><h3>Topics &rarr;</h3></a>
