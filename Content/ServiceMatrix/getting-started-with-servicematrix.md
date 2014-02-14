@@ -1,5 +1,5 @@
 ---
-title: Getting Started with NServiceBus using ServiceMatrix 2.0 - send and receive
+title: Send and Receive using NServiceBus  
 summary: 'Getting Started with ServiceMatrix 2.0 and a send and receive example.'
 tags:
 - ServiceMatrix

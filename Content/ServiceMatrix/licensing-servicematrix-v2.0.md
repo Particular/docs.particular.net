@@ -1,5 +1,5 @@
 ---
-title: Licensing ServiceMatrix v2.0
+title: Licensing ServiceMatrix
 summary: Licensing ServiceMatrix v2.0
 originalUrl: 
 tags: 
