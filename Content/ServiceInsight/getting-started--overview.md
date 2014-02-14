@@ -56,10 +56,3 @@ The auto refresh feature would automatically refresh the view of your distribute
 Supporting all transports
 -----------------------------
 Latest version of NServiceBus supports various transport protocols. Be it MSMQ, ActiveMQ, RabbitMQ or even non queue based transports like SQL Server, now all you need is ServiceInsight at your tool belt to see what's going on in your distributed system.  
-
-
-Next steps
-----------
-
--   [Installation and Troubleshooting](getting-started--installation-and-troubleshooting.md)
-
