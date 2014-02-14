@@ -53,8 +53,6 @@
     text-align: center;
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 30px;
-    margin-top: 30px;
     line-height: 50px;
     color: rgb(0,114,156);
   }      
