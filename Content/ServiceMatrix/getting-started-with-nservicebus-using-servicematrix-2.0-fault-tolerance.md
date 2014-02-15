@@ -130,6 +130,6 @@ Make sure you remove the code which throws an exception before going on.
 
 ## Next steps
 
-See how to use NServiceBus for [Publish/Subscribe](getting-started-with-nservicebus-using-servicematrix-2.0---publish-subscribe.md)
+See how to use NServiceBus for [Publish/Subscribe](getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe)
 .
 
