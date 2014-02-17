@@ -40,6 +40,6 @@ tags:
 
 | Sample | Transport | Description | Link |
 |:----|:----|:----|:----|
-| Online Shopping Sample | MSMQ | Sample ServiceMatrix application illustrating an online shopping messaging process | [Link](https://github.com/Particular/ServiceMatrix.Samplesq) |
+| Online Shopping Sample | MSMQ | Sample ServiceMatrix application illustrating an online shopping messaging process | [Link](https://github.com/Particular/ServiceMatrix.Samples) |
 
 <br/><br/>
