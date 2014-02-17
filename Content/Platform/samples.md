@@ -31,8 +31,14 @@ tags:[]
 <br/><br/>
 
 
+<<<<<<< HEAD
 | Sample | Transport | Description | 
 |:----|:----|:----|
 | Online Shopping Sample | MSMQ | [Sample ServiceMatrix application illustrating an online shopping messaging process](https://github.com/Particular/ServiceMatrix.Samplesq) &rarr;|
+=======
+| Sample | Transport | Description | Link |
+|:----|:----|:----|:----|
+| Online Shopping Sample | MSMQ | Sample ServiceMatrix application illustrating an online shopping messaging process | [Link](https://github.com/Particular/ServiceMatrix.Samples) |
+>>>>>>> 52f9e7d69bac4577e80a1492bcc53c5d4e6ac23a
 
 <br/><br/>
