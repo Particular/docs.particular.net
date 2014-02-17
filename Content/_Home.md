@@ -169,7 +169,6 @@
   }
 
 </style>
-    
 <div class="block top">
   <a href="http://particular.net/NServiceBus"><img src="/images/home/NSB.png" style="max-width: 43%" /></a>
   <div class="small button">
