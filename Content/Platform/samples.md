@@ -2,12 +2,8 @@
 title: Samples
 summary: 'Particular Platform Samples'
 tags:
-- VideoStore
 - Error Handling
 - Full Duplex
-- Windows Azure
-- RabbitMQ
-- SQL Server
 - ServiceMatrix
 - Scalability
 - Gateway
@@ -15,9 +11,9 @@ tags:
 - NHibernate
 ---
 
+<br/><br/>
 ![NServiceBus](/images/home/NSB.png)
-
-
+<br/>
 
 | Sample | Transport | Description | Link |
 |:----|:----|:----|:----|
@@ -37,9 +33,12 @@ tags:
 | VideoStore | MSMQ | NHibernate Persistence for storing Pub/sub subscriptions | [Link](https://github.com/Particular/NServiceBus.NHibernate.Samples) |
 
 
+<br/><br/>
 ![ServiceMatrix](/images/home/SM.png)
-
+<br/>
 
 | Sample | Transport | Description | Link |
 |:----|:----|:----|:----|
 | Online Shopping Sample | MSMQ | Sample ServiceMatrix application illustrating an online shopping messaging process | [Link](https://github.com/Particular/ServiceMatrix.Samplesq) |
+
+<br/><br/>
