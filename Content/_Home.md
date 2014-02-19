@@ -171,7 +171,7 @@
 </style>
     
 <div class="block top">
-  <a href="http://particular.net/NServiceBus"><img src="/images/home/NSB.png" style="max-width: 43%" /></a>
+  <a href="/NServiceBus"><img src="/images/home/NSB.png" style="max-width: 43%" /></a>
   <div class="small button">
     <a class="blue" href="/nservicebus">Documentation topics</a>
   </div>
@@ -246,7 +246,7 @@
 </div>
 <div class="productcolumn header">
   <div class="block top">
-    <a href="http://particular.net/ServiceMatrix">
+    <a href="/ServiceMatrix">
       <img src="/images/home/SM.png" />
     </a>
     <div style="clear: both"></div>
@@ -254,7 +254,7 @@
 </div>
 <div class="productcolumn header">
   <div class="block top">
-    <a href="http://particular.net/ServiceInsight">
+    <a href="/ServiceInsight">
       <img src="/images/home/SI.png" />
     </a>
     <div style="clear: both"></div>
@@ -262,7 +262,7 @@
 </div>
 <div class="productcolumn header last">
   <div class="block top">
-    <a href="http://particular.net/ServicePulse">
+    <a href="/ServicePulse">
       <img src="/images/home/SP.png" />
     </a>
     <div style="clear: both"></div>
