@@ -205,7 +205,7 @@
     </a>
   </div>
   <div class="ic">              
-    <a href="/nservicebus/" class="img rarr">
+    <a href="/platform/samples/" class="img rarr">
       <img src="/images/home/Samples.png" /><img src="/images/home/SamplesHover.png" class="hover"/><br/>
       Samples &rarr;
     </a>
