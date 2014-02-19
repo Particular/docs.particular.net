@@ -1,4 +1,7 @@
 <style>
+  a.img img.hover{display:none;}
+  a.img:hover img{display:none;}
+  a.img:hover img.hover{display:inline;}
 	
   .small.button{
 	line-height: 45px;
@@ -167,7 +170,6 @@
     content: "• ";
     color: rgb(0,114,156);
   }
-
 </style>
     
 <div class="block top">
@@ -178,33 +180,33 @@
   <div style="clear: both"></div>
 </div>
 <div class="block middle">
-  <div class="ic">
-    <a href="/nservicebus/#getting-started">
-      <img src="/images/home/gettingStarted.png" /><br/>
+  <div class="ic">              
+    <a href="/nservicebus/#getting-started" class="img">
+      <img src="/images/home/gettingStarted.png" /><img src="/images/home/gettingStartedHover.png" class="hover"/><br/>
       Getting Started &rarr;
     </a>
   </div>
-  <div class="ic">
-    <a href="http://particular.net/Videos-and-Presentations">
-      <img src="/images/home/IntroVideos.png" /><br/>
+  <div class="ic">              
+    <a href="http://particular.net/Videos-and-Presentations" class="img">
+      <img src="/images/home/IntroVideos.png" /><img src="/images/home/IntroVideosHover.png" class="hover"/><br/>
       Intro Videos &rarr;
     </a>
   </div>
-  <div class="ic">
-    <a href="http://particular.net/HandsOnLabs">
-      <img src="/images/home/HOL.png" /><br/>
+  <div class="ic">              
+    <a href="http://particular.net/HandsOnLabs" class="img">
+      <img src="/images/home/HOL.png" /><img src="/images/home/holHover.png" class="hover"/><br/>
       Hands-On Labs &rarr;
     </a>
   </div>
-  <div class="ic">
-    <a href="/nservicebus/">
-      <img src="/images/home/API.png" /><br/>
+  <div class="ic">              
+    <a href="/nservicebus/" class="img rarr">
+      <img src="/images/home/API.png" /><img src="/images/home/apiHover.png" class="hover"/><br/>
       API &rarr;
     </a>
   </div>
-  <div class="ic">
-    <a href="/nservicebus/">
-      <img src="/images/home/Samples.png" /><br/>
+  <div class="ic">              
+    <a href="/nservicebus/" class="img rarr">
+      <img src="/images/home/Samples.png" /><img src="/images/home/SamplesHover.png" class="hover"/><br/>
       Samples &rarr;
     </a>
   </div>
@@ -213,34 +215,38 @@
 <div class="block black">
   <span class="blue"><a href="https://github.com/Particular/NServiceBus/releases"><img src="/images/home/releaseNotes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/images/home/download.png" /> Downloads</a></span>
 </div>
-<div class="block middle">
-  <div class="left2">
+<div class="block middle">            
+  <div class="left2">              
     <h2>External training resources </h2>
-    <a href="http://pluralsight.com/training/Courses/TableOfContents/nservicebus">
+    <a href="http://pluralsight.com/training/Courses/TableOfContents/nservicebus" class="img">
       <img src="/images/home/videosSmall.png" />
+      <img src="/images/home/videosSmallHover.png" class="hover"/>
       <h3>Pluralsight Introduction to NServiceBus &rarr;</h3>
     </a>
-    <p>6hrs with Andreas Öhlund, Lead developer of NServiceBus</p>
+    <p>6hrs with Andreas Öhlund, Lead developer of NServiceBus</p>    
     <div style="clear: both"></div>
-    <a href="http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book">
+    <a href="http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book" class="img">
       <img src="/images/home/book.png" />
+      <img src="/images/home/bookHover.png" class="hover"/>
       <h3>Learn NServiceBus &rarr;</h3>
     </a>
     <p>Book by David Boike. Register and get the first 3 chapters free</p>
-    <div style="clear: both"></div>
+    <div style="clear: both"></div>              
   </div>
   <div class="right1">
     <h2>Community help</h2>
-    <a href="http://stackoverflow.com/questions/tagged/nservicebus">
+    <a href="http://stackoverflow.com/questions/tagged/nservicebus" class="img">
       <img src="/images/home/stackoverflowBig.png" />
+      <img src="/images/home/stackoverflowBigHover.png" class="hover"/>
       <h3>StackOverflow &rarr;</h3>
-    </a>
+    </a>              
     <div style="clear: both"></div>
-    <a href="https://groups.google.com/forum/#!forum/particularsoftware">
+    <a href="https://groups.google.com/forum/#!forum/particularsoftware" class="img">
       <img src="/images/home/discussion.png" />
+      <img src="/images/home/discussionHover.png" class="hover"/>
       <h3>Discussion group &rarr;</h3>
     </a>
-    <div style="clear: both"></div>
+    <div style="clear: both"></div>              
   </div>
   <div style="clear: both"></div>
 </div>
@@ -268,7 +274,7 @@
     <div style="clear: both"></div>
   </div>
 </div>
-<div class="productcolumnc">
+<div class="productcolumnc">            
   <div class="productcolumn block">
     <p>Get the logical view of your system from top-to-bottom knowing that your design is always in sync with your code.</p>
     <a href="/ServiceMatrix"><h3>Topics &rarr;</h3></a>
@@ -289,8 +295,9 @@ machines showing messages whose processing has failed (and for what reason) as w
 <div class="productcolumn">
   <div class="block">
     <h4>Community help</h4>
-    <a href="http://stackoverflow.com/questions/tagged/ServiceMatrix">
+    <a href="http://stackoverflow.com/questions/tagged/ServiceMatrix" class="img">
       <img src="/images/home/stackoverflowSmall.png" />
+      <img src="/images/home/stackoverflowSmallHover.png" class="hover" />
       <h5>StackOverflow &rarr;</h5>
     </a>
   </div>
@@ -301,8 +308,9 @@ machines showing messages whose processing has failed (and for what reason) as w
 <div class="productcolumn">
   <div class="block">
     <h4>Community help</h4>
-    <a href="http://stackoverflow.com/questions/tagged/ServiceInsight">
+    <a href="http://stackoverflow.com/questions/tagged/ServiceInsight" class="img">
       <img src="/images/home/stackoverflowSmall.png" />
+      <img src="/images/home/stackoverflowSmallHover.png" class="hover" />
       <h5>StackOverflow &rarr;</h5>
     </a>
   </div>
@@ -313,8 +321,9 @@ machines showing messages whose processing has failed (and for what reason) as w
 <div class="productcolumn last">
   <div class="block">
     <h4>Community help</h4>
-    <a href="http://stackoverflow.com/questions/tagged/ServicePulse">
+    <a href="http://stackoverflow.com/questions/tagged/ServicePulse" class="img">
       <img src="/images/home/stackoverflowSmall.png" />
+      <img src="/images/home/stackoverflowSmallHover.png" class="hover" />
       <h5>StackOverflow &rarr;</h5>
     </a>
   </div>
