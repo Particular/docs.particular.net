@@ -21,6 +21,25 @@
         ]
       },
       {
+        "Name": "publish-subscribe",
+        "Title": "Publish Subscribe",
+        "Articles": [
+          "NServiceBus/how-pub-sub-works",
+          "NServiceBus/publish-subscribe-configuration"
+        ]
+      },
+      {
+        "Name": "scaling-out",
+        "Title": "Scaling Out",
+        "Articles": [
+          "NServiceBus/performance",
+          "NServiceBus/the-gateway-and-multi-site-distribution",
+          "NServiceBus/load-balancing-with-the-distributor",
+          "NServiceBus/introduction-to-the-gateway",
+          "NServiceBus/deploying-nservicebus-in-a-windows-failover-cluster"
+        ]
+      },
+      {
         "Name": "persistence-in-nservicebus",
         "Title": "Persistence In NServiceBus",
         "Articles": [
@@ -42,6 +61,14 @@
           "NServiceBus/load-balancing-with-the-distributor",
           "NServiceBus/introduction-to-the-gateway",
           "NServiceBus/deploying-nservicebus-in-a-windows-failover-cluster"
+        ]
+      },
+      {
+        "Name": "long-running-processes",
+        "Title": "Long Running Processes",
+        "Articles": [
+          "NServiceBus/sagas-in-nservicebus",
+          "NServiceBus/nservicebus-sagas-and-concurrency"
         ]
       },
       {
@@ -82,22 +109,6 @@
           "NServiceBus/monitoring-nservicebus-endpoints",
           "NServiceBus/msmq-information",
           "NServiceBus/auditing-with-nservicebus"
-        ]
-      },
-      {
-        "Name": "publish-subscribe",
-        "Title": "Publish Subscribe",
-        "Articles": [
-          "NServiceBus/how-pub-sub-works",
-          "NServiceBus/publish-subscribe-configuration"
-        ]
-      },
-      {
-        "Name": "long-running-processes",
-        "Title": "Long Running Processes",
-        "Articles": [
-          "NServiceBus/sagas-in-nservicebus",
-          "NServiceBus/nservicebus-sagas-and-concurrency"
         ]
       },
       {
