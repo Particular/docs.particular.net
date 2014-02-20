@@ -10,8 +10,6 @@
           "NServiceBus/NServiceBus-Step-by-Step-Guide",
           "NServiceBus/NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first",
           "NServiceBus/nservicebus-step-by-step-publish-subscribe-communication-code-first",
-          "NServiceBus/getting-started---publish-subscribe-communication",
-          "NServiceBus/getting-started---fault-tolerance",
           "NServiceBus/architectural-principles",
           "NServiceBus/transactions-message-processing",
           "NServiceBus/building-nservicebus-from-source-files",
