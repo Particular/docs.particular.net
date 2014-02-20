@@ -27,7 +27,8 @@ To configure SLR, enable its configuration section:
 
 ```XML
 <configSections>
-  <section name="SecondLevelRetriesConfig" type="NServiceBus.Config.SecondLevelRetriesConfig, NServiceBus.Core"/>
+  <section name="SecondLevelRetriesConfig" 
+           type="NServiceBus.Config.SecondLevelRetriesConfig, NServiceBus.Core"/>
 </configSections>
 
 <SecondLevelRetriesConfig Enabled="true" TimeIncrease="00:00:10" NumberOfRetries="3" />
