@@ -179,25 +179,25 @@
   <div style="clear: both"></div>
 </div>
 <div class="block middle">
-  <div class="ic">              
+  <div class="ic">
     <a href="/nservicebus/#getting-started" class="img">
       <img src="/images/home/gettingStarted.png" /><img src="/images/home/gettingStartedHover.png" class="hover"/><br/>
       Getting Started &rarr;
     </a>
   </div>
-  <div class="ic">              
+  <div class="ic">
     <a href="http://particular.net/Videos-and-Presentations" class="img">
       <img src="/images/home/IntroVideos.png" /><img src="/images/home/IntroVideosHover.png" class="hover"/><br/>
       Intro Videos &rarr;
     </a>
   </div>
-  <div class="ic">              
+  <div class="ic">
     <a href="http://particular.net/HandsOnLabs" class="img">
       <img src="/images/home/HOL.png" /><img src="/images/home/holHover.png" class="hover"/><br/>
       Hands-On Labs &rarr;
     </a>
   </div>
-  <div class="ic">              
+  <div class="ic">
     <a href="/platform/samples/" class="img rarr">
       <img src="/images/home/Samples.png" /><img src="/images/home/SamplesHover.png" class="hover"/><br/>
       Samples &rarr;
@@ -239,7 +239,7 @@
       <img src="/images/home/discussionHover.png" class="hover"/>
       <h3>Discussion group &rarr;</h3>
     </a>
-    <div style="clear: both"></div>              
+    <div style="clear: both"></div>
   </div>
   <div style="clear: both"></div>
 </div>
