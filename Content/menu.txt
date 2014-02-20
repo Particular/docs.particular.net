@@ -3,6 +3,24 @@
     "Name": "NServiceBus",
     "Topics": [
       {
+        "Name": "getting-started",
+        "Title": "Getting Started",
+        "Articles": [
+          "NServiceBus/overview",
+          "NServiceBus/NServiceBus-Step-by-Step-Guide",
+          "NServiceBus/NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first",
+          "NServiceBus/nservicebus-step-by-step-publish-subscribe-communication-code-first",
+          "NServiceBus/getting-started---publish-subscribe-communication",
+          "NServiceBus/getting-started---fault-tolerance",
+          "NServiceBus/architectural-principles",
+          "NServiceBus/transactions-message-processing",
+          "NServiceBus/building-nservicebus-from-source-files",
+          "NServiceBus/nservicebus-and-wcf",
+          "NServiceBus/nservicebus-and-websphere-sonic",
+          "NServiceBus/nservicebus-and-biztalk"
+        ]
+      },
+      {
         "Name": "persistence-in-nservicebus",
         "Title": "Persistence In NServiceBus",
         "Articles": [
@@ -24,25 +42,6 @@
           "NServiceBus/load-balancing-with-the-distributor",
           "NServiceBus/introduction-to-the-gateway",
           "NServiceBus/deploying-nservicebus-in-a-windows-failover-cluster"
-        ]
-      },
-      {
-        "Name": "getting-started",
-        "Title": "Getting Started",
-        "Articles": [
-          "NServiceBus/overview",
-          "NServiceBus/getting-started---creating-a-new-project",
-          "NServiceBus/getting-started---publish-subscribe-communication",
-          "NServiceBus/getting-started---fault-tolerance",
-          "NServiceBus/architectural-principles",
-          "NServiceBus/transactions-message-processing",
-          "NServiceBus/building-nservicebus-from-source-files",
-          "NServiceBus/nservicebus-and-wcf",
-          "NServiceBus/nservicebus-and-websphere-sonic",
-          "NServiceBus/nservicebus-and-biztalk",
-          "NServiceBus/NServiceBus-Step-by-Step-Guide",
-          "NServiceBus/NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first",
-          "NServiceBus/nservicebus-step-by-step-publish-subscribe-communication-code-first"
         ]
       },
       {
