@@ -217,7 +217,7 @@
       <img src="/images/home/videosSmallHover.png" class="hover"/>
       <h3>Pluralsight Introduction to NServiceBus &rarr;</h3>
     </a>
-    <br>6hrs with Andreas Öhlund, Lead developer of NServiceBus    
+    <p>6hrs with Andreas Öhlund, Lead developer of NServiceBus</p>
     <div style="clear: both"></div>
     <a href="http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book" class="img">
       <img src="/images/home/book.png" />
