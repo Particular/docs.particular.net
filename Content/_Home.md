@@ -51,7 +51,7 @@
   }
   .block.middle .ic{
     width: 20%;
-	min-width: 300px;
+    min-width: 300px;
     float: left;
     text-align: center;
     font-size: 18px;
@@ -74,7 +74,7 @@
   span.blue{
     color: rgb(0,163,196);
     padding-right: 30px;
-	display: inline-block;
+    display: inline-block;
   }
   .block.black span img{
     padding-left: 0px;
@@ -88,7 +88,7 @@
     width: 60%;
     float: left;
     border-right: 2px solid rgb(218,222,222);
-	min-width: 460px;
+    min-width: 460px;
   }
   .block .right1 {
     float: left;
@@ -171,7 +171,7 @@
     color: rgb(0,114,156);
   }
 </style>
-    
+
 <div class="block top">
   <a href="/NServiceBus"><img src="/images/home/NSB.png" style="max-width: 43%" /></a>
   <div class="small button">
@@ -209,15 +209,15 @@
 <div class="block black">
   <span class="blue"><a href="https://github.com/Particular/NServiceBus/releases"><img src="/images/home/releaseNotes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/images/home/download.png" /> Downloads</a></span>
 </div>
-<div class="block middle">            
-  <div class="left2">              
+<div class="block middle">
+<div class="left2">
     <h2>External training resources </h2>
     <a href="http://pluralsight.com/training/Courses/TableOfContents/nservicebus" class="img">
       <img src="/images/home/videosSmall.png" />
       <img src="/images/home/videosSmallHover.png" class="hover"/>
       <h3>Pluralsight Introduction to NServiceBus &rarr;</h3>
     </a>
-    <p>6hrs with Andreas Öhlund, Lead developer of NServiceBus</p>    
+    <br>6hrs with Andreas Öhlund, Lead developer of NServiceBus    
     <div style="clear: both"></div>
     <a href="http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book" class="img">
       <img src="/images/home/book.png" />
@@ -225,7 +225,7 @@
       <h3>Learn NServiceBus &rarr;</h3>
     </a>
     <p>Book by David Boike. Register and get the first 3 chapters free</p>
-    <div style="clear: both"></div>              
+    <div style="clear: both"></div>
   </div>
   <div class="right1">
     <h2>Community help</h2>
@@ -233,7 +233,7 @@
       <img src="/images/home/stackoverflowBig.png" />
       <img src="/images/home/stackoverflowBigHover.png" class="hover"/>
       <h3>StackOverflow &rarr;</h3>
-    </a>              
+    </a>
     <div style="clear: both"></div>
     <a href="https://groups.google.com/forum/#!forum/particularsoftware" class="img">
       <img src="/images/home/discussion.png" />
