@@ -267,7 +267,7 @@
     <div style="clear: both"></div>
   </div>
 </div>
-<div class="productcolumnc">            
+<div class="productcolumnc">
   <div class="productcolumn block">
     <p>Get the logical view of your system from top-to-bottom knowing that your design is always in sync with your code.</p>
     <a href="/ServiceMatrix"><h3>Topics &rarr;</h3></a>
