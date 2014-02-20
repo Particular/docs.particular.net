@@ -50,8 +50,7 @@
     font-size: 15px;
   }
   .block.middle .ic{
-    width: 20%;
-    min-width: 300px;
+    min-width: 25%;
     float: left;
     text-align: center;
     font-size: 18px;
