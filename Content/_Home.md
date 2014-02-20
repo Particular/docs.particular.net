@@ -51,7 +51,7 @@
   }
   .block.middle .ic{
     width: 20%;
-	min-width: 140px;
+	min-width: 300px;
     float: left;
     text-align: center;
     font-size: 18px;
@@ -196,12 +196,6 @@
     <a href="http://particular.net/HandsOnLabs" class="img">
       <img src="/images/home/HOL.png" /><img src="/images/home/holHover.png" class="hover"/><br/>
       Hands-On Labs &rarr;
-    </a>
-  </div>
-  <div class="ic">              
-    <a href="/nservicebus/" class="img rarr">
-      <img src="/images/home/API.png" /><img src="/images/home/apiHover.png" class="hover"/><br/>
-      API &rarr;
     </a>
   </div>
   <div class="ic">              
