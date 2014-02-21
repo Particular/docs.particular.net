@@ -9,7 +9,7 @@ tags:
 ### Troubleshooting: 
 
 1. **ServicePulse is unable to connect to ServiceControl**
-	* See [ServiceControl release notes](https://github.com/Particular/ServiceControl/releases/tag/1.0.0-Beta6) Troubleshooting section for guidance on detecting ServiceControl HTTP API accessibility
+	* See [ServiceControl release notes](https://github.com/Particular/ServiceControl/releases/) Troubleshooting section for guidance on detecting ServiceControl HTTP API accessibility
 	* Verify that ServicePulse is trying to access the correct ServiceControl URI (based on ServicControl instance URI defined in ServicePulse installation settings)
 	* Check that ServicePulse is not blocked from accessing the ServiceControl URI by firewall settings
 * **ServicePulse reports that 0 endpoints are active, although Endpoint plugins were deployed**

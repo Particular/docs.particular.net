@@ -16,7 +16,7 @@ tags:
 * Custom Checks (defined and developed per application needs);
 * And more (see [An Introduction to ServicePulse for NServiceBus](http://particular.net/blog/an-introduction-to-servicepulse-for-nservicebus) for additional upcoming monitoring features;
 
-![ServicePulse dashboard](https://f.cloud.github.com/assets/3889023/1492057/de6d7692-47ba-11e3-8d41-60cdc4bf062e.png)
+![ServicePulse dashboard](../images/ServicePulse/dashboard.png)
 
 **Prerequisites for ServicePulse monitoring of endpoints:**
 
