@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "Name": "NServiceBus",
     "Topics": [
@@ -238,11 +238,36 @@
         "Articles": [
           "ServiceControl/multi-transport-support"
         ]
+      },
+      {
+        "Name": "troubleshooting",
+        "Title": "Troubleshooting",
+        "Articles": [
+          "ServiceControl/troubleshooting"
+        ]
       }
     ]
   },
   {
     "Name": "ServicePulse",
-    "Topics": []
+    "Topics": [{
+        "Name": "configuration",
+        "Title": "Configuration",
+        "Articles": [
+          "ServicePulse/how-to-configure-endpoints-for-monitoring"
+        ]
+      },{
+        "Name": "extensibility",
+        "Title": "Extensibility",
+        "Articles": [
+          "ServicePulse/how-to-develop-custom-checks"
+        ]
+      }{
+        "Name": "troubleshooting",
+        "Title": "Troubleshooting",
+        "Articles": [
+          "ServicePulse/troubleshooting"
+        ]
+      }]
   }
 ]
