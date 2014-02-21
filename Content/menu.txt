@@ -3,6 +3,41 @@
     "Name": "NServiceBus",
     "Topics": [
       {
+        "Name": "getting-started",
+        "Title": "Getting Started",
+        "Articles": [
+          "NServiceBus/overview",
+          "NServiceBus/NServiceBus-Step-by-Step-Guide",
+          "NServiceBus/NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first",
+          "NServiceBus/nservicebus-step-by-step-publish-subscribe-communication-code-first",
+          "NServiceBus/architectural-principles",
+          "NServiceBus/transactions-message-processing",
+          "NServiceBus/building-nservicebus-from-source-files",
+          "NServiceBus/nservicebus-and-wcf",
+          "NServiceBus/nservicebus-and-websphere-sonic",
+          "NServiceBus/nservicebus-and-biztalk"
+        ]
+      },
+      {
+        "Name": "publish-subscribe",
+        "Title": "Publish Subscribe",
+        "Articles": [
+          "NServiceBus/how-pub-sub-works",
+          "NServiceBus/publish-subscribe-configuration"
+        ]
+      },
+      {
+        "Name": "scaling-out",
+        "Title": "Scaling Out",
+        "Articles": [
+          "NServiceBus/performance",
+          "NServiceBus/the-gateway-and-multi-site-distribution",
+          "NServiceBus/load-balancing-with-the-distributor",
+          "NServiceBus/introduction-to-the-gateway",
+          "NServiceBus/deploying-nservicebus-in-a-windows-failover-cluster"
+        ]
+      },
+      {
         "Name": "persistence-in-nservicebus",
         "Title": "Persistence In NServiceBus",
         "Articles": [
@@ -27,22 +62,11 @@
         ]
       },
       {
-        "Name": "getting-started",
-        "Title": "Getting Started",
+        "Name": "long-running-processes",
+        "Title": "Long Running Processes",
         "Articles": [
-          "NServiceBus/overview",
-          "NServiceBus/getting-started---creating-a-new-project",
-          "NServiceBus/getting-started---publish-subscribe-communication",
-          "NServiceBus/getting-started---fault-tolerance",
-          "NServiceBus/architectural-principles",
-          "NServiceBus/transactions-message-processing",
-          "NServiceBus/building-nservicebus-from-source-files",
-          "NServiceBus/nservicebus-and-wcf",
-          "NServiceBus/nservicebus-and-websphere-sonic",
-          "NServiceBus/nservicebus-and-biztalk",
-          "NServiceBus/NServiceBus-Step-by-Step-Guide",
-          "NServiceBus/NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first",
-          "NServiceBus/nservicebus-step-by-step-publish-subscribe-communication-code-first"
+          "NServiceBus/sagas-in-nservicebus",
+          "NServiceBus/nservicebus-sagas-and-concurrency"
         ]
       },
       {
@@ -83,22 +107,6 @@
           "NServiceBus/monitoring-nservicebus-endpoints",
           "NServiceBus/msmq-information",
           "NServiceBus/auditing-with-nservicebus"
-        ]
-      },
-      {
-        "Name": "publish-subscribe",
-        "Title": "Publish Subscribe",
-        "Articles": [
-          "NServiceBus/how-pub-sub-works",
-          "NServiceBus/publish-subscribe-configuration"
-        ]
-      },
-      {
-        "Name": "long-running-processes",
-        "Title": "Long Running Processes",
-        "Articles": [
-          "NServiceBus/sagas-in-nservicebus",
-          "NServiceBus/nservicebus-sagas-and-concurrency"
         ]
       },
       {

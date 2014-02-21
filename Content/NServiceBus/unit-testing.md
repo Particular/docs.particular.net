@@ -212,10 +212,4 @@ class WithPropertyDependencyHandler : IHandleMessages<MyMessage>
 
 Many message handlers are dependent on the bus. That dependency is filled automatically by the testing infrastructure and does not need to be tested.
 
-Other service layer testing functionality
------------------------------------------
 
-For every method on the bus there is a corresponding test method that sets up an expectation for that call.
-
--   See [all methods available to unit test handlers](http://github.com/NServiceBus/NServiceBus/blob/master/src/testing/Handler.cs)
--   See [all methods available to unit test sagas](http://github.com/NServiceBus/NServiceBus/blob/master/src/testing/Saga.cs)

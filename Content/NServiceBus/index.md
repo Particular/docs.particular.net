@@ -23,7 +23,6 @@ summary: NServiceBus Documentation Table of Contents
 <a name="getting-started"></a>
 ## Getting Started ##
 - [Overview](Overview)
-- [Getting Started Creating a New Project](getting-started---creating-a-new-project)
 - [NServiceBus Step by Step Guide](NServiceBus-Step-by-Step-Guide)
 - [NServiceBus Step by Step Guide Fault Tolerance Code First](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first)
 - [NServiceBus Step by Step Publish Subscribe Communication Code First](nservicebus-step-by-step-publish-subscribe-communication-code-first)
