@@ -120,14 +120,6 @@ Ensure you enable *GitHub Flavoured Markdown* by going to
 
 Or click in the bottom left no the `M` icon to "hot-switch"  
 
-### [MarkPad](http://code52.org/DownmarkerWPF/) 
-
-Ensure you enable *MarkdownDeep Extras* by going to 
-
-    Settings > markdown extra > toggle the switch to red
-
-Note that MarkdownDeep is not exactly the same as *GitHub Flavoured Markdown* but it is fairly close.
-
 ## Anchors
 
 On addition to standard markdown is the auto creating anchors for headings
