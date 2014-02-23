@@ -37,7 +37,7 @@ tags:
 
 #### Updating the urlacl configurations 
 
-* Add  URLACL rule using command line 
+* Add  URLACL rule using the following command line (with the appropriate adjustments to your hostname and port number):  
 
 ```
 Netsh http add urlacl  url=http://*:33333/  user=everyone  listen=yes
