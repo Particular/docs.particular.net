@@ -262,7 +262,8 @@
         "Articles": [
           "ServicePulse/how-to-develop-custom-checks"
         ]
-      }{
+      },
+      {
         "Name": "troubleshooting",
         "Title": "Troubleshooting",
         "Articles": [
