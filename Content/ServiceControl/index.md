@@ -8,4 +8,5 @@ summary: ServiceControl Documentation Table of Contents
 ## Configuring ServiceControl ##
 
 - [Configuring ServiceControl to use non-MSMQ Transports](multi-transport-support)
+- [Setting custom hostname for ServiceControl & ServicePulse](setting-custom-hostname)
 - [Troubleshooting](troubleshooting)
