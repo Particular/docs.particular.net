@@ -16,10 +16,10 @@ This article provides information on how to troubleshoot ServiceMatrix.
 
 #Issues Uninstalling ServiceMatrix
 Older versions of ServiceMatrix must be uninstalled prior to the installation of a new version.  The following are issues that can occur when uninstalling:
-##Unable To Uninstall using `Control Panel\Programs\Programs and Features`
+###Unable To Uninstall using `Control Panel\Programs\Programs and Features`
 If you are unable to uninstall the old version using the traditional method through control panel you can uninstall it from inside Visual Studio.  Locate the Extension in Visual Studio through the `Tools\Extensions and Updates` [Menu](images/servicematrix-vstudio-toolsmenu.png "Extensions Menu") options.  You'll see the extension listed as shown here:
 ![Uninstalling and Extension](images/servicematrix-vstudio-extensions-uninstall.png)
-##After Uninstalling, the ServiceMatrix still shows as installed
+###After Uninstalling, the ServiceMatrix still shows as installed
 If you completed the uninstall and your system still shows ServiceMatrix as installed, try the following actions.  If one does not work, proceed to the next.
 - Try uninstalling again through the `Programs and Features' list.  The last attempt may not have completed successfully.  
 - Restart your machine.  This can clear residual issues.
