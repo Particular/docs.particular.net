@@ -11,7 +11,7 @@ tags:
    * By default it is located in ```[Program Files]\Particular Software\ServiceControl\ServiceControl.dll.config```  
 * Under the ```<appSettings>``` section, add the ```ServiceControl/Hostname``` and ```ServiceControl/Port``` settings 
 
-#### Exampeles:
+#### Examples:
    
 * The following example configures ServiceControl to listen on localhost + machinename + IP address on port 80:
 
