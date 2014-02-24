@@ -15,7 +15,10 @@ You can see that we're logging all the HTTP communications with ServiceControl, 
 
 The logging options, such as Log Level and source of the log, is currently not configurable from the ServiceInsight directly. So if need more details to be logged, or need log entries of some other ServiceInsight components, such as licensing, application startup, etc. you can still do this easily.
 
-ServiceInsight uses [Log4net library](http://logging.apache.org/log4net/) under the hood and upon startup will look for a file named "log4net.config" to be there in the same folder as the application executable file. This is a regular [log4net configuration](http://logging.apache.org/log4net/release/manual/configuration.html) file and you can create one yourself or edit the one that comes with the application (but it is commented out for the most part).
+Advanced logging 
+----------------
+
+Under the hood, ServiceInsight uses [Log4net library](http://logging.apache.org/log4net/) and upon startup will look for a file named "log4net.config" to be there in the same folder as the application executable file. This is a regular [log4net configuration](http://logging.apache.org/log4net/release/manual/configuration.html) file and you can create one yourself or edit the one that comes with the application (but it is commented out for the most part).
 
 A configuration file that would log everything (with log level = 'ALL') to a file named "Particular.ServiceInsight.txt" in "Logs" folder would look something like this:
 
@@ -39,3 +42,4 @@ A configuration file that would log everything (with log level = 'ALL') to a fil
 </log4net>
 ```
 
+NOTE: the use of Log4net library is subject to change in future versions. Its usage is described here for advanced logging and debugging scenarios and should not be relied on for any other purposes.
