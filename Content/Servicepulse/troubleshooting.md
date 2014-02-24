@@ -6,8 +6,6 @@ tags:
 - Troubleshooting
 ---
 
-### Troubleshooting: 
-
 1. **ServicePulse is unable to connect to ServiceControl**
 	* See [ServiceControl release notes](https://github.com/Particular/ServiceControl/releases/) Troubleshooting section for guidance on detecting ServiceControl HTTP API accessibility
 	* Verify that ServicePulse is trying to access the correct ServiceControl URI (based on ServicControl instance URI defined in ServicePulse installation settings)

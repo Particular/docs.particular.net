@@ -6,8 +6,6 @@ tags:
 - Troubleshooting
 ---
 
-
-
 ### Port 33333 is already in use by another service
 
 1. This is most probably due to a previous install of ServiceControl beta (previously known as "Management API").
