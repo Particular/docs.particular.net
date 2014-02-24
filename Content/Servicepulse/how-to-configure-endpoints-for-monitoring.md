@@ -1,13 +1,11 @@
 ---
-title: HOWTO Configure endpoints for monitoring by ServicePulse
+title: How to Configure endpoints for monitoring by ServicePulse
 summary: Steps to configure endpoints to be monitored by ServicePulse
 tags:
 - ServicePulse
 - HowTo
 - Endpoint Configuration
 ---
-
-#### HOWTO: Configure endpoints for monitoring by ServicePulse
 
 **ServicePulse monitors NServiceBus endpoints for:**
 
