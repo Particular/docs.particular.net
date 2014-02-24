@@ -269,18 +269,17 @@
 </div>
 <div class="productcolumnc">
   <div class="productcolumn block">
-    <p>Get the logical view of your system from top-to-bottom knowing that your design is always in sync with your code.</p>
+    <p><b>Jump-start system design and development</b></p>
     <a href="/ServiceMatrix"><h3>Topics &rarr;</h3></a>
    <div style="clear: both"></div>
   </div>
   <div class="productcolumn block">
-    <p>ServiceInsight gives you visibility across queues, processes, and
-machines showing messages whose processing has failed (and for what reason) as well as their relation to other messages.</p>
+    <p><b>Essential insights for distributed solutions</b></p>
     <a href="/ServiceInsight"><h3>Topics &rarr;</h3></a>
     <div style="clear: both"></div>
   </div>
   <div class="productcolumn last block">
-    <p>Keep track of your system's endpoints health, monitor for any processing errors, send failed messages for reprocessing and make sure your specific environment's needs are met - All in one consolidated dashboard.</p>
+    <p><b>Integrated monitoring of your distributed system</b></p>
     <a href="/ServicePulse"><h3>Topics &rarr;</h3></a>
     <div style="clear: both"></div>
   </div>
