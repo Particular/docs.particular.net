@@ -270,9 +270,11 @@
 <div class="productcolumnc">
   <div class="productcolumn block">
     <p><h4>Jump-start system design and development</h4></p>
-    <a href="/ServiceMatrix/getting-started-with-servicematrix"><h5>Getting Started &rarr;</h5></a>
-    <a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe"><h5>Publish/Subscribe &rarr;</h5></a>
-    <a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance"><h5>Fault Tolerance &rarr;</h5></a>
+    <ul>
+      <li><a href="/ServiceMatrix/getting-started-with-servicematrix">Getting Started &rarr;</a></li>
+      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe">Publish/Subscribe &rarr;</a></li>
+      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance">Fault Tolerance &rarr;</a></li>
+    </ul>
     <a href="/ServiceMatrix"><h3>Learn more &rarr;</h3></a>
    <div style="clear: both"></div>
   </div>
