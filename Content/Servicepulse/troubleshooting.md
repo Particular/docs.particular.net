@@ -6,18 +6,16 @@ tags:
 - Troubleshooting
 ---
 
-### Troubleshooting: 
-
 1. **ServicePulse is unable to connect to ServiceControl**
 	* See [ServiceControl release notes](https://github.com/Particular/ServiceControl/releases/) Troubleshooting section for guidance on detecting ServiceControl HTTP API accessibility
 	* Verify that ServicePulse is trying to access the correct ServiceControl URI (based on ServicControl instance URI defined in ServicePulse installation settings)
 	* Check that ServicePulse is not blocked from accessing the ServiceControl URI by firewall settings
-* **ServicePulse reports that 0 endpoints are active, although Endpoint plugins were deployed**
+1. **ServicePulse reports that 0 endpoints are active, although Endpoint plugins were deployed**
 	* Make sure you follow the guidance in the section "Deploying Endpoint Plugin in each Endpoint" above
 	* Restart the endpoint after copying the Endpoint Plugin files into the endpoint's Bin directory
 	* Make sure that the endpoint references NServiceBus 4.0.0 or later
 	* Make sure auditing is turned on for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl
-* **ASP.Net applications heartbeat failure**
+1. **ASP.Net applications heartbeat failure**
 
 	**Scenario**
 	
@@ -34,6 +32,6 @@ tags:
 	There are two ways to avoid the issue:
 	
 	1. Configuring IIS to avoid recycling (see possible method [here](http://blogs.msdn.com/b/lucascan/archive/2011/09/30/using-a-windows-azure-startup-script-to-prevent-your-site-from-being-shutdown.aspx));
-	*  Use a periodic warm-up HTTP GET to make sure the website is not brought down due to inactivity (the frequency needs to be less than 20 mins, which is the default IIS recycle-on-idle time);
+	1. Use a periodic warm-up HTTP GET to make sure the website is not brought down due to inactivity (the frequency needs to be less than 20 mins, which is the default IIS recycle-on-idle time);
 
 	The suggested approach is the second one. It also has the side benefit of avoiding the "first user after idle time" wake-up response time hit.
