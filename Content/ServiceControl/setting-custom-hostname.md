@@ -27,6 +27,9 @@ tags:
 <add key="ServiceControl/Port" value="8080" />
 ```
 
+**NOTE:** Both the ```ServiceControl/Hostname``` and the ```ServiceControl/Port``` must be set, even if the value of one remains unchanged.
+
+
 ### Update URLACL settings
 
 * After modifying the config file, update the urlacl configurations, accordingly 
