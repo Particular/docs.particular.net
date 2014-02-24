@@ -270,7 +270,10 @@
 <div class="productcolumnc">
   <div class="productcolumn block">
     <p><h4>Jump-start system design and development</h4></p>
-    <a href="/ServiceMatrix"><h3>Topics &rarr;</h3></a>
+    <a href="/ServiceMatrix/getting-started-with-servicematrix"><h3>Getting Started &rarr;</h3></a>
+    <a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe"><h3>Publish/Subscribe &rarr;</h3></a>
+    <a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance"><h3>Fault Tolerance &rarr;</h3></a>
+    <a href="/ServiceMatrix"><h3>Learn more &rarr;</h3></a>
    <div style="clear: both"></div>
   </div>
   <div class="productcolumn block">
