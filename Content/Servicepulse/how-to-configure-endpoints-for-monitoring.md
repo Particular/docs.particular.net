@@ -28,11 +28,11 @@ tags:
 **Deploying Endpoint Plugins in each Endpoint**
 
 1. The Endpoint Plugin consists of two Nuget Packages:
-   * ```ServiceControl.Plugin.Heartbeat.dll```
-   * ```ServiceControl.Plugin.CustomChecks.dll```
+   * `ServiceControl.Plugin.Heartbeat.dll`
+   * `ServiceControl.Plugin.CustomChecks.dll`
 * Get the Endpoint Heartbeat and CustomChecks Plugins using the NuGet console: 
-      * ```install-package ServiceControl.Plugin.Heartbeat -pre```
-      * ```install-package ServiceControl.Plugin.CustomChecks -pre```
+      * `install-package ServiceControl.Plugin.Heartbeat -pre`
+      * `install-package ServiceControl.Plugin.CustomChecks -pre`
 * For manual deployment, copy the Endpoint Plugin dll files to each endpoint bin directory (and restart the endpoint to load the plugin);
 * By default, the Endpoint Plugin sends a heartbeat indication to ServiceControl every 30 seconds;
    * If a heartbeat indication is not recevied within 30 seconds, ServicePulse raises an event that indicates the issue;
