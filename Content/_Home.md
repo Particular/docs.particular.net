@@ -269,17 +269,17 @@
 </div>
 <div class="productcolumnc">
   <div class="productcolumn block">
-    <p><b>Jump-start system design and development</b></p>
+    <p><h4>Jump-start system design and development</h4></p>
     <a href="/ServiceMatrix"><h3>Topics &rarr;</h3></a>
    <div style="clear: both"></div>
   </div>
   <div class="productcolumn block">
-    <p><b>Essential insights for distributed solutions</b></p>
+    <p><h4>Essential insights for distributed solutions</h4></p>
     <a href="/ServiceInsight"><h3>Topics &rarr;</h3></a>
     <div style="clear: both"></div>
   </div>
   <div class="productcolumn last block">
-    <p><b>Integrated monitoring of your distributed system</b></p>
+    <p><h4>Integrated monitoring of your distributed system</h4></p>
     <a href="/ServicePulse"><h3>Topics &rarr;</h3></a>
     <div style="clear: both"></div>
   </div>
