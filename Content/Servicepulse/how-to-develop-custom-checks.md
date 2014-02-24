@@ -1,13 +1,11 @@
 ---
-title: HOWTO Develop Custom Checks for ServicePulse
+title: How to develop Custom Checks for ServicePulse
 summary: Introduction to ServicePulse cusomt checks development
 tags:
 - ServicePulse
 - HowTo
 - Custom Checks
 ---
-
-#### HOWTO: Develop Custom Checks for ServicePulse
 
 ServicePulse comes with a builtin check that can be installed in each endpoint to enable communication with the ServicePulse monitoring service.
 
