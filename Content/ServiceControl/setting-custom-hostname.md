@@ -3,7 +3,7 @@ title: Setting custom hostname for ServiceControl
 summary: How to configure ServiceControl to be exposed through a custom hostname and IP port
 tags:
 - ServiceControl
-- ServiceInsight
+- ServicePulse
 - Configuration
 ---
 
