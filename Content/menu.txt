@@ -51,17 +51,6 @@
         ]
       },
       {
-        "Name": "scaling-out",
-        "Title": "Scaling Out",
-        "Articles": [
-          "NServiceBus/performance",
-          "NServiceBus/the-gateway-and-multi-site-distribution",
-          "NServiceBus/load-balancing-with-the-distributor",
-          "NServiceBus/introduction-to-the-gateway",
-          "NServiceBus/deploying-nservicebus-in-a-windows-failover-cluster"
-        ]
-      },
-      {
         "Name": "long-running-processes",
         "Title": "Long Running Processes",
         "Articles": [
