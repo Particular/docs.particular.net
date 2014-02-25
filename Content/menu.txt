@@ -222,16 +222,11 @@
     "Name": "ServiceControl",
     "Topics": [
       {
-        "Name": "getting-started",
-        "Title": "Getting Started",
+        "Name": "configuration",
+        "Title": "Configuration",
         "Articles": [
-          "ServiceControl/multi-transport-support"
-        ]
-      },
-      {
-        "Name": "troubleshooting",
-        "Title": "Troubleshooting",
-        "Articles": [
+          "ServiceControl/multi-transport-support",
+          "ServiceControl/setting-custom-hostname",
           "ServiceControl/troubleshooting"
         ]
       }
