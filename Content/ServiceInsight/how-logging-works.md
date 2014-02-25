@@ -7,9 +7,9 @@ tags:
 
 When launching ServiceInsight, you can see the Log Window. This window is like the Output window of your IDE and you can see some of the most important logs in the system without parsing log files and going through the usual hassles.
 
-To keep the number of logs minimal and relavant, the Log Window relates mostly to HTTP operations and calls to [ServiceControl](http://docs.particular.net/Search?q=ServiceControl), as due to nature of the HTTP operations (timeouts, network issues, etc.) they can cause the most confusion. 
+To keep the number of logs minimal and relevant, the Log Window relates mostly to HTTP operations and calls to [ServiceControl](http://docs.particular.net/Search?q=ServiceControl), as due to nature of the HTTP operations (timeouts, network issues, etc.) they can cause the most confusion. 
 
-You can see that we're logging all the HTTP communications with ServiceControl; the request being sent, the parameters, and the request/response headers are all logged. Also if a request to ServiceControl fails, you can see it in red in the Logs window.
+You can see that all the HTTP communications with ServiceControl are logged; the request being sent, the parameters, and the request/response headers. Also if a request to ServiceControl fails, you can see it in red in the Logs window.
 
 ![Log Window](008_logwindow.png)
 
@@ -18,7 +18,7 @@ The logging options such as Log Level and source of the log are currently not di
 Advanced logging 
 ----------------
 
-Under the hood, ServiceInsight uses [Log4net library](http://logging.apache.org/log4net/) and upon startup looks for a file named "log4net.config" in the same folder as the application executable file. This is a regular [log4net configuration](http://logging.apache.org/log4net/release/manual/configuration.html) file and you can create one yourself or edit the one that comes with the application (but it is commented out for the most part).
+Under the hood, ServiceInsight uses [Log4net library](http://logging.apache.org/log4net/) and at startup looks for a file named "log4net.config" in the same folder as the application executable file. This is a regular [log4net configuration](http://logging.apache.org/log4net/release/manual/configuration.html) file and you can create one yourself or edit the one that comes with the application (but it is commented out for the most part).
 
 A configuration file that logs everything (with log level = 'ALL') to a file named "Particular.ServiceInsight.txt" in the "Logs" folder would look like this:
 
