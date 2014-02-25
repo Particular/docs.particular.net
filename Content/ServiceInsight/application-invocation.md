@@ -8,7 +8,7 @@ tags:
 
 When we built the NServiceBus suite of tools, we carefully considered the integration between them. Since the tools are conceptually built for different purposes, the people using them must be able to collaborate.
 
-To understand, let's see a scenario. Suppose your support team uses ServicePuls to monitor your distributed system for errors. When they encounter an error message, they might want a developer to investigate it further. They can see why from the exception information provided by ServiceInsight by clicking the "Open in ServiceInsight" link and bringing up the particular message that failed.
+To understand, let's see a scenario. Suppose your support team uses ServicePulse to monitor your distributed system for errors. When they encounter an error message, they might want a developer to investigate it further. They can see why from the exception information provided by ServiceInsight by clicking the "Open in ServiceInsight" link and bringing up the particular message that failed.
 
 ![ServicePulse Error Messages](007_servicepulseerrormessages.png)
 
