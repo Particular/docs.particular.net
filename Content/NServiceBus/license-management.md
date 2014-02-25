@@ -23,10 +23,12 @@ NServiceBus V3.3 supports storing the license in a registry key. This allows you
 **Version 4.0** : Starting from NServiceBus V4.0, the license file will be stored under `HKLM\\Software\\NServiceBus\\{Major.Minor}\\License` when installed using the
 [Install-NServiceBusLicense](managing-nservicebus-using-powershell.md) PowerShell commandlet and the LicenseInstaller.exe tool that comes with the NServiceBus install. In order to install the license file under HKCU (same location in version 3.3), please use the `-c` option on the `LicenseInstaller.exe`
 
+
 Using a subfolder in your BIN directory
 --------------------------------------------------------------------------------------------
 
 To have NServiceBus automatically pick up your License.xml file, place it in a subfolder named /License under your BIN folder.
+
 
 Using the app.config settings
 ------------------------------------------------------
@@ -53,6 +55,7 @@ license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;201
 &lt;/license&gt;" />  
 </appSettings>
 ```
+
 
 Using the Fluent API
 -------------------------------------------------------------
