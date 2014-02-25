@@ -5,7 +5,7 @@ tags:
 - Logging
 ---
 
-When launching ServiceInsight, you can see the Log Window. This window is more like Output window of your IDE and you can see some of the most important logs in the system without going through log file parsing and the usual hassles.
+When launching ServiceInsight, you can see the Log Window. This window is like the Output window of your IDE and you can see some of the most important logs in the system without parsing log files and going through the usual hassles.
 
 To keep the number of logs minimal and relavant, the Log Window relates mostly to HTTP operations and calls to [ServiceControl](http://docs.particular.net/Search?q=ServiceControl), as due to nature of the HTTP operations (timeouts, network issues, etc.) they can cause the most confusion. 
 
