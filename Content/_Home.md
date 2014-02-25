@@ -269,33 +269,33 @@
 </div>
 <div class="productcolumnc">
   <div class="productcolumn block">
-    <p><h4>Generate a fully functional distributed application skeleton in a matter of minutes, dramatically reducing the learning curve, POC effort and time-to-market</h4></p>
+    <p><h4>Generate a fully functional distributed application skeleton in a matter of minutes</h4></p>
     <ul>
-      <li><a href="/ServiceMatrix/getting-started-with-servicematrix">Getting Started &rarr;</a></li>
-      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe">Publish/Subscribe &rarr;</a></li>
-      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance">Fault Tolerance &rarr;</a></li>
+      <li><a href="/ServiceMatrix/getting-started-with-servicematrix">Getting Started</a></li>
+      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe">Publish/Subscribe</a></li>
+      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance">Fault Tolerance</a></li>
     </ul>
     <a href="/ServiceMatrix"><h3>Learn more &rarr;</h3></a>
    <div style="clear: both"></div>
   </div>
   <div class="productcolumn block">
-    <p><h4>Complete under-the-hood view of the your system's behavior, clearly displayed and visualized, immediately available and up-to-date</h4></p>
+    <p><h4>Complete under-the-hood visualization of the your system's behavior</h4></p>
     <ul>
-      <li><a href="/ServiceMatrix/getting-started-with-servicematrix">Getting Started &rarr;</a></li>
-      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe">Publish/Subscribe &rarr;</a></li>
-      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance">Fault Tolerance &rarr;</a></li>
+      <li><a href="/Serviceinsight/getting-started--overview">Getting Started</a></li>
+      <li><a href="/Serviceinsight/application-invocation">Application invocation</a></li>
+      <li><a href="/Serviceinsight/how-logging-works">Logging in ServiceInsight</a></li>
     </ul>
-    <a href="/ServiceMatrix"><h3>Learn more &rarr;</h3></a>
+    <a href="/ServiceInsight"><h3>Learn more &rarr;</h3></a>
     <div style="clear: both"></div>
   </div>
   <div class="productcolumn last block">
-    <p><h4>Real-time monitoring that is custom tailored to fit distributed applications in general, and your application's specific needs in particular</h4></p>
+    <p><h4>Real-time monitoring that is custom tailored to fit your distributed systems</h4></p>
     <ul>
-      <li><a href="/ServiceMatrix/getting-started-with-servicematrix">Getting Started &rarr;</a></li>
-      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe">Publish/Subscribe &rarr;</a></li>
-      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance">Fault Tolerance &rarr;</a></li>
+      <li><a href="/Servicepulse/how-to-configure-endpoints-for-monitoring">Configure endpoints for monitoring</a></li>
+      <li><a href="/Servicepulse/how-to-develop-custom-checks">Develop custom checks</a></li>
+      <li><a href="/ServiceControl/setting-custom-hostname">Customize hostname and port</a></li>
     </ul>
-    <a href="/ServiceMatrix"><h3>Learn more &rarr;</h3></a>
+    <a href="/ServicePulse"><h3>Learn more &rarr;</h3></a>
     <div style="clear: both"></div>
   </div>
 </div>
