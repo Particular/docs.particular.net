@@ -184,20 +184,8 @@
         "Name": "getting-started",
         "Title": "Getting Started",
         "Articles": [
-          "ServiceInsight/getting-started--overview"
-        ]
-      },
-      {
-        "Name": "integration",
-        "Title": "Integration",
-        "Articles" : [
-          "ServiceInsight/application-invocation"
-        ]
-      },
-      {
-        "Name": "faq",
-        "Title": "FAQ",
-        "Articles": [
+          "ServiceInsight/getting-started--overview",
+          "ServiceInsight/application-invocation",
           "ServiceInsight/how-logging-works"
         ]
       }
