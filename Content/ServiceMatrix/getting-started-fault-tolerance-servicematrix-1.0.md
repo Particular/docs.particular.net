@@ -27,15 +27,13 @@ In [the previous section](getting-started-creating-a-new-project-servicematrix-1
 
 All the messages sent to the `OrderProcessing` endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties specifically BodyStream, where the data is.
 
-Now bring the `OrderProcessing` endpoint back online
+Now bring the `OrderProcessing` endpoint back online.
 
-    Right click the project > Debug > Start new instance.
+Right click the project > Debug > Start new instance.
     
 It processes all those messages, and if you go back to the queue shown above and right click `Refresh`, it is empty.
 
 ##Fault tolerance
-
-
 Consider scenarios where the processing of a message fails. This could be due to something transient like a deadlock in the database, in which case some quick retries overcome this problem, making the message processing ultimately succeed. NServiceBus automatically retries immediately when an exception is thrown during message processing, up to five times by default (which is configurable).
 
 If the problem is something more protracted, like a third party web service going down or a database being unavailable, it makes sense to try again some time later. This is called the [second level retries](../NServiceBus/second-level-retries.md) functionality of NServiceBus. Configure its behavior by selecting the OrderProcessing endpoint in Solution Builder and opening its properties (F4). 
@@ -81,6 +79,7 @@ If you leave the endpoint running a while longer, you'll see that it tries proce
 If a message fails continuously (due to a bug in the system, for example), it ultimately moves to the error queue that is configured for the endpoint after all the various retries have been performed.
 
 Since administrators must monitor these error queues, it is recommended that all endpoints use the same error queue. You can set the error queue for all endpoints via the properties of your top level design element in this case, Amazon. Press F4 to see the properties window. 
+
 ![System level queue configuration](images/1.0/GettingStarted10.png)
 
 **NOTE** : If you specify an error queue for a specific endpoint, it won't change when you change the top level error queue. Changing the top-level error queue only sets the value for endpoints for whom you haven't modified the error queue.

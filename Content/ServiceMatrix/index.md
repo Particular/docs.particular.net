@@ -13,7 +13,7 @@ summary: ServiceMatrix Documentation Table of Contents
 - [Licensing ServiceMatrix](licensing-servicematrix-v2.0.md "Licensing ServiceMatrix")
 - [Troubleshooting](installing-servicematrix-2.0.md "Troubleshooting ServiceMatrix")
 
-#####ServiceMatrix for Visual Studio 2013
+####ServiceMatrix for Visual Studio 2013
 Coming Soon!
 
 

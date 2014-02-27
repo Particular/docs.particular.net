@@ -153,8 +153,6 @@ namespace Amazon.OrderProcessing.Sales
 Once again, there isn't much here, so add your logic. You can also click F12 on the class to see its counterpart, but there isn't much to see there either; just a class that implements `IHandleMessages<SubmitOrder>` and has a reference to IBus that you can use to send out other messages, publish events, or reply with.
 
 ##Sending a Message
-------------
-
 The last thing to do is make the ECommerce website send a message.
 
 ### ASP MVC
