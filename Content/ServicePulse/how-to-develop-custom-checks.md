@@ -1,28 +1,30 @@
 ---
-title: How to develop Custom Checks for ServicePulse
-summary: Introduction to ServicePulse cusomt checks development
+title: How to Develop Custom Checks for ServicePulse
+summary: Introduction to ServicePulse custom checks development
 tags:
 - ServicePulse
 - HowTo
 - Custom Checks
 ---
 
-ServicePulse comes with a builtin check that can be installed in each endpoint to enable communication with the ServicePulse monitoring service.
+ServicePulse comes with a built-in check that you can install in each endpoint to enable communication with the ServicePulse monitoring service.
 
-Custom checks can be developed and designed to satisfy all the monitoring needs, keeping in mind that they are intended for monitoring purposes, custom checks can be of 2 main types:
+You can develop and design custom checks to satisfy all monitoring needs. Bearing in mind that custom checks are intended for monitoring purposes, they can be of two main types:
 
-1. Checks that are executed once, and only once at endpoint startup;
-1. Checks that are executed periodically;
+1. Checks that are executed once and only once at endpoint startup.
+1. Checks that are executed periodically.
 
-In order to develop a custom check it is enought to:
+To develop a custom check, this is all you have to do:
 
-1. In Visual Studio, create a new Class Library project;
-1. Add the Endpoint Plugin to the project using the NuGet console:
+1. In Visual Studio, create a new Class Library project.
+1. Add the endpoint plugin to the project using the NuGet console:
 	`install-package ServiceControl.Plugin.CustomChecks -pre`
-1. To create a custom check that executes once, on endpoint startup, create a class that inherits from `CustomCheck` class (see sample code below);
-1. To create a custom check that executes repeatedly, in defined time intervals, create a class that inherits from `PeriodicCheck` class (see sample code below);
-1. Build and deploy the class library dll in the Bin directory of the endpoint you wish to execute these custom checks;
-	* You can deploy many custom checks per endpoint, and deploy the same custom checks in as many endpoints as required;
+1. Create a custom check:
+  * To execute once on endpoint startup, create a class that inherits from `CustomCheck` class (see sample code below).
+  * To execute repeatedly, at defined time intervals, create a class that inherits from the `PeriodicCheck` class (see sample code below).
+1. Build and deploy the class library DLL in the bin directory of the endpoint that will execute these custom checks.
+
+You can deploy many custom checks per endpoint, and deploy the same custom checks in as many endpoints as required;
 
 ##### Sample Custom Check
 
