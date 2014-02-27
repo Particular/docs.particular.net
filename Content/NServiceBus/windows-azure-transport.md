@@ -12,26 +12,24 @@ tags:
 
 The Windows Azure transport for NServiceBus enables the use of Windows Azure Queues and Windows Azure Service Bus as the underlying transports used by NServiceBus. It can be used in multiple scenarios:
 
- * ### Cloud hosting scenario
- An NServiceBus endpoint is hosted as a cloud service and communicates, through the use of the Windows Azure transport for NServiceBus, with another endpoint located in another cloud service
+ * Cloud hosting scenario: An NServiceBus endpoint is hosted as a cloud service and communicates with another endpoint located in another cloud service through the use of the Windows Azure transport for NServiceBus.
 
- * ### Hybrid scenario
- An NServicebus is hosted on-premise and uses Windows Azure transport for NServiceBus to communicate with another NServiceBus endpoint hosted on a Cloud Service and/or on-premise
+ * Hybrid scenario: An NServiceBus is hosted on-premise and uses Windows Azure transport for NServiceBus to communicate with another NServiceBus endpoint hosted on a Cloud Service and/or on-premise.
 
 As part of Windows Azure transport for NServiceBus, you can choose between two options provided by the Windows Azure platform:
 
 -   Windows Azure Queues
 -   Windows Azure Service Bus
 
-Each of these two options has separate features, capabilities and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits your application's needs, review the MSDN article "[Windows Azure Queues and Windows Azure Service Bus Queues - Compared and Contrasted](http://msdn.microsoft.com/en-us/library/windowsazure/hh767287.aspx)".
+Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits your application's needs, review the MSDN article "[Windows Azure Queues and Windows Azure Service Bus Queues - Compared and Contrasted](http://msdn.microsoft.com/en-us/library/windowsazure/hh767287.aspx)".
 
-Download Samples
+Download samples
 ----------------
 
 -   [Windows Azure Queues Publish / Subscribe](http://d214svlj19ktn4.cloudfront.net/NServiceBus/Samples/Azure/AzurePubSub.zip)
 -   [Windows Azure Service Bus Publish / Subscribe](http://d214svlj19ktn4.cloudfront.net/NServiceBus/Samples/Azure/AzureServiceBusPubSub.zip)
 
-In order to run these samples, you will need to update the configuration connection strings and queue names settings in the relevant configuration file (as described below).
+To run these samples, update the configuration connection strings and queue names settings in the relevant configuration file (as described below).
 
 The Windows Azure transport for NServiceBus ships with NServiceBus. You can download the latest (and previous) release of NServiceBus from the
 [downloads page](http://particular.net/downloads).
@@ -47,7 +45,7 @@ The Windows Azure transport for NServiceBus and its samples require the followin
 -   [Microsoft Windows Azure SDK version
     2.0](http://www.windowsazure.com/en-us/downloads/)
 
-Configuring for Cloud Service Hosting
+Configuring for cloud service hosting
 -------------------------------------
 
 For a detailed description of the cloud service configuration in Windows Azure, see "[Set Up a Cloud Service for Windows Azure](http://msdn.microsoft.com/en-us/library/windowsazure/hh124108.aspx#bk_Config)".
@@ -98,7 +96,7 @@ public class EndpointConfiguration : IConfigureThisEndpoint, AsA_Worker
     }
 ```
 
-### Windows Azure ServiceBus 
+### Windows Azure Service Bus 
 
 In the Windows Azure Service Configuration file
 (ServiceConfiguration.cscfg), add the following sections:
@@ -136,7 +134,7 @@ public class EndpointConfiguration : IConfigureThisEndpoint, AsA_Worker, UsingTr
 }
 ```
 
-Configuring for On-Premise Hosting
+Configuring for on-premise hosting
 ----------------------------------
 
 In the configuration file for the application (web.config or app.config), add an "NServiceBus\\Transport" element as follows:
