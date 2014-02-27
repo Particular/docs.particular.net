@@ -14,11 +14,12 @@ This step-by-step guide will walk you through the creation of a send-and-receive
 
 1.  [Installing ServiceMatrix](#installing-servicematrix-for-visual-studio-2012)
 2.  [Creating a new project](#creating-a-new-project)
-3.  [Creating Endpoints](#Creating%20Endpoints)
-4.  [Creating Services](#Creating%20Services)
-5.  [Deploying Components](#Deploying%20Components)
-6.  [Sending a Message](#Sending%20a%20Message)
-7.  [Running the Application](#Running%20the%20Application)
+3.  [Creating Endpoints](#Creating-Endpoints)
+4.  [Creating Services](#Creating-Services)
+5.  [Deploying Components](#Deploying-Components)
+6.  [Sending a Message](#Sending-a-Message)
+7.  [Running the Application](#Running-the-Application)
+8.  [Next Steps](#next-steps)
 
 The example demonstrates the integration of an online sales web store with a backend system using the request - response pattern and NServiceBus.
 

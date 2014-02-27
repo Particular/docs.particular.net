@@ -8,6 +8,7 @@ summary: ServiceMatrix Documentation Table of Contents
 - [Installing Service Matrix](#installing-servicematrix)
 - [Getting Started](#getting-started)
 - [Licensing](#licensing-servicematrix)
+- [Troubleshooting](#troubleshooting)
 
 ##Installing ServiceMatrix
 - [Installing ServiceMatrix](installing-servicematrix-2.0.md "Installing ServiceMatrix")
@@ -19,3 +20,6 @@ summary: ServiceMatrix Documentation Table of Contents
 
 ##Licensing
 - [Licensing ServiceMatrix](licensing-servicematrix-v2.0.md "Licensing ServiceMatrix")
+
+##Troubleshooting
+- [Troubleshooting ServiceMatrix](troubleshooting-servicematrix-2.0.md "Troubleshooting ServiceMatrix")
