@@ -11,12 +11,97 @@ tags:
 ---
 
 
-NServiceBus relies on a few key infrastructure components in order to run properly.
+<style type="text/css">div#uls ul{margin-bottom: -15px;}ul.ulcheck {list-style-image: url("/images/check.png");} ul.ulnotcheck {list-style-image: url("/images/redx.png");}</style>
 
--   DTC
--   MSMQ
--   RavenDB (Note: only port 8080 is being scanned to see if RavenDB is installed.)
--   Performance Counters
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    var installer = getParameterByName("installer");
+
+    if (installer=="nservicebus")
+    {
+        installer="NServiceBus";
+    }
+
+    if (installer=="NServiceBus")
+    {
+        _gaq.push(['_trackEvent', 'Installed', 'NServiceBus Total [nuget]']);
+        _gaq.push(['_trackEvent', 'Installed', 'NServiceBus Total [msi+nuget]']);
+        var version = getParameterByName("version");
+        var method = getParameterByName("method");
+        var logaction = installer+" "+version+" [ "+method+" ]";
+        _gaq.push(['_trackEvent', 'Installed', logaction]);
+    }
+
+</script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+    var lowerHref = window.location.href.toLowerCase()
+    if (lowerHref.indexOf("dtc=true")>-1){
+        $("#li_dtc").addClass("ulcheck");
+        //$("#code_dtc").hide();
+    }
+
+    if (lowerHref.indexOf("dtc=false")>-1) {
+        $("#li_dtc").addClass("ulnotcheck");
+    }
+
+    if (lowerHref.indexOf("msmq=true")>-1){
+        $("#li_msmq").addClass("ulcheck");
+        //$("#code_msmq").hide();
+    }
+
+    if (lowerHref.indexOf("msmq=false")>-1){
+        $("#li_msmq").addClass("ulnotcheck");
+    }
+
+    if (lowerHref.indexOf("raven=true")>-1){
+        $("#li_ravendb").addClass("ulcheck");
+        //$("#code_ravendb").hide();
+    }
+
+    if (lowerHref.indexOf("raven=false")>-1){
+        $("#li_ravendb").addClass("ulnotcheck");
+        $("#ravendbport").show();
+    }
+
+    if (lowerHref.indexOf("perfcounter=true")>-1){
+        $("#li_performance").addClass("ulcheck");
+        //$("#code_performance").hide();
+    }
+
+    if (lowerHref.indexOf("perfcounter=false")>-1){
+        $("#li_performance").addClass("ulnotcheck");
+    }
+});
+
+</script>
+
+NServiceBus relies on a few key infrastructure components in order to run properly.
+<ul id="li_dtc">
+    <li>DTC</li>
+</ul>
+<ul id="li_msmq">
+    <li>MSMQ</li>
+</ul>
+
+<ul id="li_ravendb">
+    <li>RavenDB &nbsp;(Note: only port 8080 is being scanned to see if RavenDB is installed.)</li>
+</ul>
+
+<ul id="li_performance">
+    <li>Performance Counters</li>
+</ul>
 
 When installing NServicebus, the installation process verifies that these components are installed as required. If any of the components is not installed, the installation process will install the missing component.
 

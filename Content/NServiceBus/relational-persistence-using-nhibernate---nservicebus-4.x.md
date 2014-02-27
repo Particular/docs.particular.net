@@ -42,7 +42,7 @@ NOTE: When using SQL 2012 you need to change the dialect to `MsSql2012Dialect`.
 
 NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhforge.org/doc/nh/en/index.html#configuration-xmlconfig)
 
-#### `app.config` for using NHibernate is further simplified in 4.x
+#### app.config for using NHibernate is further simplified in 4.x
 
 ```XML
 <connectionStrings>

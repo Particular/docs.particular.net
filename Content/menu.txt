@@ -51,17 +51,6 @@
         ]
       },
       {
-        "Name": "scaling-out",
-        "Title": "Scaling Out",
-        "Articles": [
-          "NServiceBus/performance",
-          "NServiceBus/the-gateway-and-multi-site-distribution",
-          "NServiceBus/load-balancing-with-the-distributor",
-          "NServiceBus/introduction-to-the-gateway",
-          "NServiceBus/deploying-nservicebus-in-a-windows-failover-cluster"
-        ]
-      },
-      {
         "Name": "long-running-processes",
         "Title": "Long Running Processes",
         "Articles": [
@@ -195,20 +184,8 @@
         "Name": "getting-started",
         "Title": "Getting Started",
         "Articles": [
-          "ServiceInsight/getting-started--overview"
-        ]
-      },
-      {
-        "Name": "integration",
-        "Title": "Integration",
-        "Articles" : [
-          "ServiceInsight/application-invocation"
-        ]
-      },
-      {
-        "Name": "faq",
-        "Title": "FAQ",
-        "Articles": [
+          "ServiceInsight/getting-started--overview",
+          "ServiceInsight/application-invocation",
           "ServiceInsight/how-logging-works"
         ]
       }
@@ -233,16 +210,11 @@
     "Name": "ServiceControl",
     "Topics": [
       {
-        "Name": "getting-started",
-        "Title": "Getting Started",
+        "Name": "configuration",
+        "Title": "Configuration",
         "Articles": [
-          "ServiceControl/multi-transport-support"
-        ]
-      },
-      {
-        "Name": "troubleshooting",
-        "Title": "Troubleshooting",
-        "Articles": [
+          "ServiceControl/multi-transport-support",
+          "ServiceControl/setting-custom-hostname",
           "ServiceControl/troubleshooting"
         ]
       }
@@ -254,20 +226,11 @@
         "Name": "configuration",
         "Title": "Configuration",
         "Articles": [
-          "ServicePulse/how-to-configure-endpoints-for-monitoring"
-        ]
-      },{
-        "Name": "extensibility",
-        "Title": "Extensibility",
-        "Articles": [
-          "ServicePulse/how-to-develop-custom-checks"
-        ]
-      }{
-        "Name": "troubleshooting",
-        "Title": "Troubleshooting",
-        "Articles": [
+          "ServicePulse/how-to-configure-endpoints-for-monitoring",
+          "ServicePulse/how-to-develop-custom-checks",
           "ServicePulse/troubleshooting"
         ]
-      }]
+      }
+    ]
   }
 ]

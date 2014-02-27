@@ -269,19 +269,33 @@
 </div>
 <div class="productcolumnc">
   <div class="productcolumn block">
-    <p>Get the logical view of your system from top-to-bottom knowing that your design is always in sync with your code.</p>
-    <a href="/ServiceMatrix"><h3>Topics &rarr;</h3></a>
+    <p><h4>Generate a fully functional distributed application skeleton in a matter of minutes</h4></p>
+    <ul>
+      <li><a href="/ServiceMatrix/getting-started-with-servicematrix">Getting Started</a></li>
+      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe">Publish/Subscribe</a></li>
+      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance">Fault Tolerance</a></li>
+    </ul>
+    <a href="/ServiceMatrix"><h3>Learn more &rarr;</h3></a>
    <div style="clear: both"></div>
   </div>
   <div class="productcolumn block">
-    <p>ServiceInsight gives you visibility across queues, processes, and
-machines showing messages whose processing has failed (and for what reason) as well as their relation to other messages.</p>
-    <a href="/ServiceInsight"><h3>Topics &rarr;</h3></a>
+    <p><h4>Complete under-the-hood visualization of the your system's behavior</h4></p>
+    <ul>
+      <li><a href="/Serviceinsight/getting-started--overview">Getting Started</a></li>
+      <li><a href="/Serviceinsight/application-invocation">Application invocation</a></li>
+      <li><a href="/Serviceinsight/how-logging-works">Logging in ServiceInsight</a></li>
+    </ul>
+    <a href="/ServiceInsight"><h3>Learn more &rarr;</h3></a>
     <div style="clear: both"></div>
   </div>
   <div class="productcolumn last block">
-    <p>Keep track of your system's endpoints health, monitor for any processing errors, send failed messages for reprocessing and make sure your specific environment's needs are met - All in one consolidated dashboard.</p>
-    <a href="/ServicePulse"><h3>Topics &rarr;</h3></a>
+    <p><h4>Real-time monitoring that is custom tailored to fit your distributed systems</h4></p>
+    <ul>
+      <li><a href="/Servicepulse/how-to-configure-endpoints-for-monitoring">Configure endpoints for monitoring</a></li>
+      <li><a href="/Servicepulse/how-to-develop-custom-checks">Develop custom checks</a></li>
+      <li><a href="/ServiceControl/setting-custom-hostname">Customize hostname and port</a></li>
+    </ul>
+    <a href="/ServicePulse"><h3>Learn more &rarr;</h3></a>
     <div style="clear: both"></div>
   </div>
 </div>
