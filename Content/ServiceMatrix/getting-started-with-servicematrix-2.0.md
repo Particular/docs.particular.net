@@ -5,6 +5,60 @@ tags:
 - ServiceMatrix
 - Send and Receive
 - Visual Studio
+<<<<<<< HEAD:Content/ServiceMatrix/getting-started-with-servicematrix-2.0.md
+
+---
+
+ServiceMatrix is a Visual Studio integrated development environment for developing NServiceBus distributed System.
+
+This step-by-step guide will walk you through the creation of a send-and-receive NServiceBus distributed application using ServiceMatrix v2.0 for Visual Studio 2012, using the following steps:
+
+1.  [Installing ServiceMatrix](#installing-servicematrix-for-visual-studio-2012)
+2.  [Creating a new project](#creating-a-new-project)
+3.  [Creating Endpoints](#Creating-Endpoints)
+4.  [Creating Services](#Creating-Services)
+5.  [Deploying Components](#Deploying-Components)
+6.  [Sending a Message](#Sending-a-Message)
+7.  [Running the Application](#Running-the-Application)
+8.  [Next Steps](#next-steps)
+
+The example demonstrates the integration of an online sales web store with a backend system using the request - response pattern and NServiceBus.
+
+##Installing ServiceMatrix for Visual Studio 2012
+For this example you will need to meet the following system requirements:
+- Visual Studio 2012
+- ASP.NET MVC 4 ([http://www.asp.net/downloads](http://www.asp.net/downloads))
+
+To download and install ServiceMatrix follow the instruction [here](installing-servicematrix-2.0.md "Installing Service Matrix").  This document reviews the use of ServiceMatrix for Visual Studio 2012.
+## Creating A New Project
+
+To get started with ServiceMatrix, create a new project.
+### Create NServiceBus Project
+In Visual Studio select `File\New\Project` and Select 'NServiceBus System' under the Visual C\# project type. Target the .NET Framework 4.5 for this project. 
+
+![NewProject](images/servicematrix-reqresp-newproject.png)
+
+In the Solution name, type 'OnlineSales' (or any other name) for the name of your application.
+### Review The Solution
+You'll see that a solution folder has been created for your solution, as shown. 
+
+![New Solution](images/servicematrix-reqresp-freshsolution.png)
+
+A number of projects have been created for you, as shown in the Solution Explorer pane. The `Solution Items` folder is part of the ServiceMatrix infrastructure.
+
+Two important folders are the `Contract` and `InternalMessages` projects as they are where all message types are placed:
+-   All defined events will be put in the `Contract` project.
+-   All commands will be put in the `InternalMessages` project. 
+
+Later you will see how messages from different services are partitioned in these projects. 
+
+Take a look at the design environment. The [Solution Builder](images/servicematrix-solutionbuilder.png "Solution Builder") on the left provides a hierarchy of the logical elements of the solution. If you  don't see a docked window in Visual Studio called Solution Builder,  open it via the View menu.
+
+You should see folders in Solution Builder called 'Infrastructure', 'Libraries', 'Endpoints', and 'Services'.
+-   Infrastructure is where cross-cutting concerns like authentication and auditing are handled.
+-   Libraries are units of code that can be reused, including logging and data access.
+-   Endpoints are where code is deployed as executable processes. They can be web applications (both Web Forms and MVC) or [NServiceBus Hosts](../NServiceBus/the-nservicebus-host.md).
+=======
 
 ---
 
@@ -62,6 +116,7 @@ You should see folders in Solution Builder called 'Infrastructure', 'Libraries',
 -   Infrastructure is where cross-cutting concerns like authentication and auditing are handled.
 -   Libraries are units of code that can be reused, including logging and data access.
 -   Endpoints are where code is deployed as executable processes. They can be web applications (both Web Forms and MVC) or [NServiceBus Hosts](../NServiceBus/the-nservicebus-host.md).
+>>>>>>> upstream/master:Content/ServiceMatrix/getting-started-with-servicematrix.md
 Services are logical containers for code that provide the structure for publish/subscribe events and command-processing.  Services are comprised of Components which will be shown later.
 
 The [NServiceBus Canvas](images/servicematrix-canvas.png "NServiceBus Canvas") is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise our solution will be created and illustrated here.
