@@ -8,10 +8,14 @@ tags:
 - Fault Tolerance
 ---
 
-NOTE: this article relates to ServiceMatrix v1.0 (NServiceBus Studio) and NServiceBus 3.x
+This article relates to ServiceMatrix v1.0 (formerly NServiceBus Studio), NServiceBus 3.x and Visual Studio 2010.  For the latest version see [this](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "ServiceMatrix 2.0 Fault Tolerance") article.
 
-##Durable messaging
+1. [Durable Messaging](#durable-messaging)
+2. [Fault Tolerance](#fault-tolerance)
+3. [Retries,Errors and Auditing](#retries-errors-and-auditing)
+4. [Next Steps](next-steps)
 
+##Durable Messaging
 In [the previous section](getting-started-creating-a-new-project-servicematrix-1.0.md) you've seen how a web application can send messages to a console application, see how messaging can get past all sorts of failure scenarios:
 
 1.  Run the solution again to make sure the messages are being processed.
@@ -73,9 +77,7 @@ If you leave the endpoint running a while longer, you'll see that it tries proce
 
 **NOTE** : When a message cannot be deserialized, it bypasses all retry behaviors and moves directly to the error queue.
 
-Retries, errors, and auditing
------------------------------
-
+##Retries, Errors, and Auditing
 If a message fails continuously (due to a bug in the system, for example), it ultimately moves to the error queue that is configured for the endpoint after all the various retries have been performed.
 
 Since administrators must monitor these error queues, it is recommended that all endpoints use the same error queue. You can set the error queue for all endpoints via the properties of your top level design element in this case, Amazon. Press F4 to see the properties window. 
@@ -89,3 +91,6 @@ In production, set both of these queues to be on a central machine by setting a 
 
 Make sure you remove the code which throws an exception before going on.
 
+##Next Steps
+
+See how to use NServiceBus for [Publish/Subscribe](getting-started-publish-subscribe-communication-servicematrix-1.0.md).
