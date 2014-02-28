@@ -29,8 +29,9 @@ class InititalizeSubscriptionStorage : IWantCustomInitialization
         NServiceBus.Configure.Instance
                 .UseNHibernateSubscriptionPersister() // subscription storage using NHibernate
                 .UseNHibernateTimeoutPersister() // Timeout Persistance using NHibernate
-                .UseNHibernateSagaPersister() // Saga Persistance using NHibernate
-                .UseNHibernateGatewayPersister(); // Gateway Persistance using NHibernate
+                .UseNHibernateSagaPersister(); // Saga Persistance using NHibernate
+                // In case you are using Gateway and would like to configure the persistence, also do the below:
+                //.UseNHibernateGatewayPersister(); // Gateway Persistance using NHibernate
     }
 }
 ```
