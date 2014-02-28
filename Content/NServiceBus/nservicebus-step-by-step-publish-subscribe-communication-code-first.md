@@ -202,3 +202,12 @@ Hit enter (while the Client console is in focus) and you should see
 And there you are: publish/subscribe messaging is working!
 
 As you see, it's very easy to get started with NServiceBus. You're all set now and can build your own distributed systems with NServiceBus.
+
+### <a id="Next" name="Next"> </a> Next Steps
+
+* Read about [NServiceBus and SOA Architectural Principles](NServiceBus/architectural-principles)
+* Try our [Hands on Labs] (http://particular.net/HandsOnLabs)
+* Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
+* See the [Documentation](http://docs.particular.net)
+* Join our [community](http://particular.net/DiscussionGroup)
+
