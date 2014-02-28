@@ -17,8 +17,7 @@ In [the previous section](NServiceBus-Step-by-Step-Guide.md) you've seen how a s
 
 The complete solution code can be found [here](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Documentation/002_OrderingFaultTolerance)
 
-Durable Messaging Demo
-----------------------
+### <a id="Demo" name="Demo"> </a> Durable Messaging Demo
 
 *  Run the 'Ordering' solution again and hit Enter on the 'Client' console a couple of times to make sure the messages are being processed. 
    
@@ -40,9 +39,7 @@ As you can see the 'Server' processes all those messages, and if you go back to 
 
 ![](003_fault.png)
 
-
-Fault tolerance and Second Level Retries (SLR)
-----------------------------------------------
+###<a id="Fault" name="Fault"> </a> Fault tolerance and Second Level Retries (SLR)
 
 Consider scenarios where the processing of a message fails. This could be due to something transient like a deadlock in the database, in which case some quick retries overcome this problem, making the message processing ultimately succeed. NServiceBus automatically retries immediately when an exception is thrown during message processing, up to five times by default (which is configurable).
 
@@ -87,8 +84,7 @@ If you leave the endpoint running a while longer, you'll see that it tries proce
 
 **NOTE** When a message cannot be deserialized, it bypasses all retry and moves directly to the error queue.
 
-Retries, errors, and auditing
------------------------------
+###<a id="AuditAndError" name="AuditAndError"> </a> Retries, errors, and auditing
 
 If a message fails continuously (due to a bug in the system, for example), it ultimately moves to the error queue that is configured for the endpoint after all the various retries have been performed.
 
