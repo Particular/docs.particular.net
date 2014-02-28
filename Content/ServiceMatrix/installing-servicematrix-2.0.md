@@ -55,6 +55,6 @@ When you start Visual Studio, you can review the ServiceMatrix extension.  To do
 If you have issues installing or uninstalling ServiceMatrix please see the [troubleshooting](troubleshooting-servicematrix-2.0.md "Troubleshooting ServiceMatrix") article. 
 #Next Steps
 ###Getting Started Examples
-At the completion of the installer your default browser will open to the first of a series of ServiceMatrix [Getting Started](getting-started-with-servicematrix.md "Getting Started With ServiceMatrix") documents.  
+At the completion of the installer your default browser will open to the first of a series of ServiceMatrix [Getting Started](getting-started-with-servicematrix-2.0.md "Getting Started With ServiceMatrix") documents.  
 ###Licensing
 ServiceMatrix installs with a trial license. Read more about how the product is licensed [here](licensing-servicematrix-v2.0.md "Licensing NServiceBus").
