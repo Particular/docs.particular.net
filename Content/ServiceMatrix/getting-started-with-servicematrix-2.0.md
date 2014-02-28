@@ -5,8 +5,6 @@ tags:
 - ServiceMatrix
 - Send and Receive
 - Visual Studio
-<<<<<<< HEAD:Content/ServiceMatrix/getting-started-with-servicematrix-2.0.md
-
 ---
 
 ServiceMatrix is a Visual Studio integrated development environment for developing NServiceBus distributed System.
@@ -116,9 +114,8 @@ You should see folders in Solution Builder called 'Infrastructure', 'Libraries',
 -   Infrastructure is where cross-cutting concerns like authentication and auditing are handled.
 -   Libraries are units of code that can be reused, including logging and data access.
 -   Endpoints are where code is deployed as executable processes. They can be web applications (both Web Forms and MVC) or [NServiceBus Hosts](../NServiceBus/the-nservicebus-host.md).
->>>>>>> upstream/master:Content/ServiceMatrix/getting-started-with-servicematrix.md
-Services are logical containers for code that provide the structure for publish/subscribe events and command-processing.  Services are comprised of Components which will be shown later.
 
+Services are logical containers for code that provide the structure for publish/subscribe events and command-processing. 
 The [NServiceBus Canvas](images/servicematrix-canvas.png "NServiceBus Canvas") is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise our solution will be created and illustrated here.
 
 This dashed areas within the canvas and the buttons at the top are used to start building our solution.   **NOTE**: Alternatively, they can also be created using the Solution Builder tree view.  However since this is a visual tool, we will demonstrate using the canvas.  As items are added to the canvas they will appear in the Solution Builder as well as in the Solution Explorer project.
