@@ -205,7 +205,7 @@ As you see, it's very easy to get started with NServiceBus. You're all set now a
 
 ### <a id="Next" name="Next"> </a> Next Steps
 
-* Read about [NServiceBus and SOA Architectural Principles](NServiceBus/architectural-principles)
+* Read about [NServiceBus and SOA Architectural Principles](architectural-principles)
 * Try our [Hands on Labs] (http://particular.net/HandsOnLabs)
 * Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
 * See the [Documentation](http://docs.particular.net)
