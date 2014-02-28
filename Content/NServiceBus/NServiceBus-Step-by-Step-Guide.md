@@ -7,7 +7,7 @@ tags: []
 
 In this tutorial we are going to create a very simple ordering system that will send messages from a client to a server. The ordering system includes three projects: Client, Server, and Messages, to complete this tasks we will execute the following steps:
 
-1.  [Creating the Client project](#Creating%20the%20Client%20project)
+1.  [Creating the Client project](#Client)
 2.  [Creating the Messages project](#Message)
 3.  [Creating the Server project](#Server)
 4.  [Sending the order](#Sending)
