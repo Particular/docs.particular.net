@@ -212,7 +212,7 @@ If you see some warnings on the consoles, these warnings are just NServiceBus te
 
 * Go to [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first)
 * Read about [NServiceBus and SOA Architectural Principles](architectural-principles)
-* Try our [Hands on Labs] (http://particular.net/HandsOnLabs)
+* Try our [Hands on Labs](http://particular.net/HandsOnLabs)
 * Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
 * See the [Documentation](http://docs.particular.net)
 * Join our [community](http://particular.net/DiscussionGroup)
