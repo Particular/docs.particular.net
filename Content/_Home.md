@@ -271,7 +271,7 @@
   <div class="productcolumn block">
     <p><h4>Generate a fully functional distributed application skeleton in a matter of minutes</h4></p>
     <ul>
-      <li><a href="/ServiceMatrix/getting-started-with-servicematrix">Getting Started</a></li>
+      <li><a href="/ServiceMatrix/getting-started-with-servicematrix-2.0">Getting Started</a></li>
       <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe">Publish/Subscribe</a></li>
       <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance">Fault Tolerance</a></li>
     </ul>
