@@ -210,7 +210,7 @@ If you see some warnings on the consoles, these warnings are just NServiceBus te
 
 ### <a id="Next%20Steps" name="Next%20Steps"> </a> Next Steps
 
-* Go to [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus/NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first)
+* Go to [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first)
 * Read about [NServiceBus and SOA Architectural Principles](NServiceBus/architectural-principles)
 * Try our [Hands on Labs] (http://particular.net/HandsOnLabs)
 * Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
