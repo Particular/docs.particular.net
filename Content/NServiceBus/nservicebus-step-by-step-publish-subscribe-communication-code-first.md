@@ -24,10 +24,7 @@ Now that we've gone through the basics of NServiceBus communication, configurati
 
 ![](001_pubsub.png)
 
-<a id="CreatingEvent" name="CreatingEvent"> </a>
-
-Creating an event message
--------------------------
+### <a id="CreatingEvent" name="CreatingEvent"> </a> Creating an event message
 
 There are only a few steps needed to introduce pub/sub and make your solution look like the one appearing above.
 
@@ -55,10 +52,7 @@ namespace Ordering.Messages
 
 
 
-<a id="Publishing" name="Publishing"> </a>
-
-Publishing an event
--------------------
+### <a id="Publishing" name="Publishing"> </a> Publishing an event
 
 
 In order to publish the `OrderPlaced` event we will modify the
@@ -106,10 +100,7 @@ namespace Ordering.Server
 To learn more about profiles go check out: [Profiles For NServiceBus Host](profiles-for-nservicebus-host.md)
 
 
-<a id="Subscriber" name="Subscriber"> </a>
-
-Creating the Subscriber project
--------------------------------
+### <a id="Subscriber" name="Subscriber"> </a> Creating the Subscriber project
 
 Now we can go ahead and create a subscriber endpoint that will subscribe and handle the 'OrderPlaced' event.
 
@@ -131,10 +122,7 @@ Click reload all
 
 ![](005_pubsub.png)
 
-<a id="Handeling" name="Handeling"> </a>
-
-Handling the event
-------------------
+### <a id="Handeling" name="Handeling"> </a> Handling the event
 
 In our new Subscriber project
 
@@ -171,10 +159,7 @@ In the Odering.Subscriber project we will add MessageEndpointMappings in the app
 </UnicastBusConfig>
 ```
 
-<a id="Running" name="Running"> </a>
-
-Running the solution
---------------------
+### <a id="Running" name="Running"> </a> Running the solution
 
 Now it's time to run the solution and see it all working together we will run the Client, Server and the Subscriber projects:
 
