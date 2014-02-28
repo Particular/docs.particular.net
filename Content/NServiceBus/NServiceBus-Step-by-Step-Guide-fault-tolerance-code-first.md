@@ -101,8 +101,8 @@ Make sure you remove the code which throws an exception before going on.
 ### <a id="Next" name="Next"> </a> Next Steps
 
 * Go to [NServiceBus Step by Step Guide - Publish Subscribe Communication - code first](nservicebus-step-by-step-publish-subscribe-communication-code-first)
-* Read about [NServiceBus and SOA Architectural Principles](NServiceBus/architectural-principles)
-* Try our [Hands on Labs] (http://particular.net/HandsOnLabs)
+* Read about [NServiceBus and SOA Architectural Principles](architectural-principles)
+* Try our [Hands on Labs](http://particular.net/HandsOnLabs)
 * Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
 * See the [Documentation](http://docs.particular.net)
 * Join our [community](http://particular.net/DiscussionGroup)
