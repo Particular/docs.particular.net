@@ -198,10 +198,33 @@
 	"Name": "getting-started",
 	"Title": "Getting Started",
 	"Articles": [
-	"ServiceMatrix/getting-started-with-servicematrix",
+	"ServiceMatrix/installing-servicematrix-2.0",
+	"ServiceMatrix/getting-started-with-servicematrix-2.0",
 	"ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance",
-	"ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe",
+	"ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe"
+	]
+    },	 
+    {
+	"Name": "licensing",
+	"Title": "Licensing",
+	"Articles": [
 	"ServiceMatrix/licensing-servicematrix-v2.0"
+	]
+    },
+     {
+	"Name": "troubleshooting",
+	"Title": "Troubleshooting",
+	"Articles": [
+	"ServiceMatrix/troubleshooting-servicematrix-2.0"
+	]
+    },
+    {
+	"Name": "version-1.0",
+	"Title": "Version 1.0",
+	"Articles": [
+	"ServiceMatrix/getting-started-creating-a-new-project-servicematrix-1.0",
+	"ServiceMatrix/getting-started-fault-tolerance-servicematrix-1.0",
+	"ServiceMatrix/getting-started-publish-subscribe-communication-servicematrix-1.0"
 	]
     }
     ]

@@ -10,7 +10,7 @@ tags:
 - Error Queue
 ---
 
-In [the previous section](getting-started-with-servicematrix.md) you used ServiceMatrix to created a web application that communicates with a backend processing system using NServiceBus.  In this section you will continue on with your OnlineSales example and see how using NServiceBus and durable messaging can get past all sorts of failure scenarios.
+In [the previous section](getting-started-with-servicematrix-2.0.md) you used ServiceMatrix to created a web application that communicates with a backend processing system using NServiceBus.  In this section you will continue on with your OnlineSales example and see how using NServiceBus and durable messaging can get past all sorts of failure scenarios.
 
 1. [Durable Messaging](#durable-messaging)
 2. [Fault Tolerance](#fault-tolerance)
@@ -130,5 +130,5 @@ Make sure you remove the code that throws an exception before going on.
 
 ## Next steps
 
-See how to use NServiceBus for [Publish/Subscribe](getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe).
+See how to use NServiceBus for [Publish/Subscribe](getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md).
 
