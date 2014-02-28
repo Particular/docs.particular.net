@@ -97,3 +97,14 @@ Since administrators must monitor these error queues, it is recommended that all
 Read more about [how to configure retries](second-level-retries.md) .
 
 Make sure you remove the code which throws an exception before going on.
+
+### <a id="Next" name="Next"> </a> Next Steps
+
+* Go to [NServiceBus Step by Step Guide - Publish Subscribe Communication - code first](NServiceBus/nservicebus-step-by-step-publish-subscribe-communication-code-first)
+* Read about [NServiceBus and SOA Architectural Principles](NServiceBus/architectural-principles)
+* Try our [Hands on Labs] (http://particular.net/HandsOnLabs)
+* Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
+* See the [Documentation](http://docs.particular.net)
+* Join our [community](http://particular.net/DiscussionGroup)
+
+
