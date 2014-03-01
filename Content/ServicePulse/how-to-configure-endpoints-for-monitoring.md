@@ -20,14 +20,14 @@ tags:
 
 1. An endpoint plugin DLL must be deployed in the binaries directory of each NServiceBus endpoint (required for endpoint availability and custom checks monitoring).
 1. Endpoints must use NServiceBus V4.0.0 or higher (support for earlier releases will be added in a future release).
-1. Auditing must be enabled for all monitored endpoints (see [Auditing With NServiceBus](http://particular.net/articles/auditing-with-nservicebus)).
+1. Auditing must be enabled for all monitored endpoints (see [Auditing With NServiceBus](/NServiceBus/auditing-with-nservicebus)).
 1. All endpoints must forward audited data to a single audit and error queue that is monitored by a ServiceControl instance.
 
 **Deploying Endpoint Plugins in each Endpoint**
 
 1. The endpoint plugin consists of two NuGet packages:
-    * `ServiceControl.Plugin.Heartbeat.dll`
-    * `ServiceControl.Plugin.CustomChecks.dll`
+    * [`ServiceControl.Plugin.Heartbeat`](http://www.nuget.org/packages/ServiceControl.Plugin.Heartbeat/)
+    * [`ServiceControl.Plugin.CustomChecks`](http://www.nuget.org/packages/ServiceControl.Plugin.CustomChecks/)
 1. Get the Endpoint Heartbeat and CustomChecks plugins using the NuGet console: 
      * `install-package ServiceControl.Plugin.Heartbeat -pre`
      * `install-package ServiceControl.Plugin.CustomChecks -pre`
