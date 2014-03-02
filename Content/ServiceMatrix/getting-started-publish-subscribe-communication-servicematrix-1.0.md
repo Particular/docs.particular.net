@@ -8,7 +8,7 @@ tags:
 - Visual Studio
 ---
 
-This article relates to ServiceMatrix v1.0 (formerly NServiceBus Studio), NServiceBus 3.x and Visual Studio 2010.  For the latest version see [this](getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md "ServiceMatrix 2.0 Publish Subscribe") article.
+This article relates to ServiceMatrix v1.0 (formerly NServiceBus Studio), NServiceBus 3.x, and Visual Studio 2010.  For the latest version see [this](getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md "ServiceMatrix 2.0 Publish Subscribe") article.
 
 1. [Review the Solution](#review-the-solution)
 2. [Run the Solution](#run-the-solution)
@@ -24,8 +24,8 @@ Now that we've gone through the basics of NServiceBus communication and configur
 
 There are only a few steps needed to introduce pub/sub and make your solution look like the one appearing above.
 
-1.  Right click your SubmitOrderProcessor component and select "Publish Event...". Type `OrderAccepted` for the name of the event and press Enter.
-2.  Right click the OrderAccepted event you just created and select "Add Subscriber...". Type `Billing` for the name of the new service and press Enter.
+1.  Right click your SubmitOrderProcessor component and select "Publish Event...". Type `OrderAccepted` for the name of the event and click Enter.
+2.  Right click the OrderAccepted event you just created and select "Add Subscriber...". Type `Billing` for the name of the new service and click Enter.
 3.  Create a new NServiceBus Host endpoint called "Billing" and deploy the OrderAcceptedProcessor component from the Billing service to that endpoint. See [a refresher](getting-started-creating-a-new-project-servicematrix-1.0.md) on how to do this. At this point, your solution structure should look the same as the picture on the right.
 4.  Add code to the SubmitOrderProcessor in Sales to publish the event:
 
@@ -45,7 +45,7 @@ namespace Amazon.OrderProcessing.Sales
 
 ##Run the Solution
 Your solution should compile, so run it using F5.
-Lay out the various consoles and web-UI so that you can see them all, then click "About" a couple of times to watch how it runs:
+Lay out the various consoles and web UI so that you can see them all, then click "About" a couple of times to watch how it runs:
 
 ![Running Pub/Sub](images/1.0/GettingStarted12.png)
 
@@ -72,5 +72,5 @@ The tooling will improve over time, allowing it to become a more integral part o
 Learn more about the advantages of the bus architectural style and try the entire NServiceBus platform at [Particular.net](http://docs.particular.net "Particular Docs"). 
  
 Get some training!
-- Purchase the *Advanced Distributed Systems Design* [training video](http://particular.net/adsd "ADSD Training Video"). Presented by Udi Dahan and recorded in New York in 2013. 
+- Purchase the *Advanced Distributed Systems Design* [training video](http://particular.net/adsd "ADSD Training Video"). presented by Udi Dahan and recorded in New York in 2013. 
 - Attend the online course *Introduction to NServiceBus* by [Pluralsight.](http://pluralsight.com/training/Courses/TableOfContents/nservicebus "Pluralsight")
