@@ -49,7 +49,7 @@ Right click Endpoints, select Host, and then NServiceBus ASP NET MVC Endpoint, a
 
 Call it ECommerce (or any another name) and the Visual Studio project will be created for you.
 
-You will examine the details of the generated code later so you understand how things work behind the scenes. However, notice the Components folder that has been created under the ECommerce endpoint this is where the components will be deployed.
+You will examine the details of the generated code later so you understand how things work behind the scenes. However, notice the Components folder that has been created under the ECommerce endpoint; this is where the components will be deployed.
 
 Create another endpoint called OrderProcessing as an NServiceBus Host.
 
@@ -89,7 +89,7 @@ namespace Amazon.InternalMessages.Sales
 
 You can add all sorts of properties to your message: strings, integers, arrays, dictionaries, etc. Just make sure to provide both get and set.
 
-Double-clicking the components won't open any code just yet as their code is only created when they are deployed to an endpoint. So, go ahead.
+Double clicking the components won't open any code just yet as their code is only created when they are deployed to an endpoint. So, go ahead.
 
 ##Deploying Components
 
@@ -97,7 +97,7 @@ Right click the SubmitOrderSender component, choose "Deploy to...", and select t
 
 If you try to build your solution at this point, you will get an error telling you that Sales.SubmitOrderProcessor should be allocated to an endpoint. This is because the code for the SubmitOrderProcessor component is not yet generated as you haven't indicated in which project it should be put. So, allocate the component to its endpoint:
 
-1.  Starting at the endpoint, right-click the Components folder of the OrderProcessing endpoint, choose "Add component...".
+1.  Starting at the endpoint, right click the Components folder of the OrderProcessing endpoint, choose "Add component...".
 2.  Tick the box beside the Sales.SubmitOrderProcessor component, and click OK.
 3.  Build the solution and see what happens.
 4.  Double click the components (under the services folder, not the endpoints folder), to open their code. There is not much to see in the SubmitOrderSender but you'll notice that it is a partial class:
@@ -157,7 +157,7 @@ The last thing to do is make the ECommerce website send a message.
 
 ### ASP MVC
 
-**IMPORTANT** : If you created the ASP MVC application, take the following action; otherwise skip to the "Regular ASP.NET" section.
+**IMPORTANT**: If you created the ASP MVC application, take the following action; otherwise skip to the "Regular ASP.NET" section.
 
 Find the HomeController in the Controllers folder in the Amazon.ECommerce project, add a property of the ISubmitOrderSender type, and invoke its Send method, like this:
 
@@ -204,8 +204,8 @@ If you are in a regular ASP.NET web project, you see a different image, but just
 
 **Congratulations - you've just built your first NServiceBus application.** **Wasn't that easy?**
 
-**Note** : You don't have to worry about the warnings; this is just NServiceBus telling you that it couldn't find the queues it needs, so it went ahead and created them for you.
+**NOTE**: You don't have to worry about the warnings; this is just NServiceBus telling you that it couldn't find the queues it needs, so it went ahead and created them for you.
 
 ##Next steps
 
-The production-time benefits of NServiceBus (let's face it, interprocess communication isn't that exciting and has been done many times before): see how NServiceBus handles [Fault Tolerance](getting-started-fault-tolerance-servicematrix-1.0.md) .
+The production-time benefits of NServiceBus (let's face it, interprocess communication isn't that exciting and has been done many times before): see how NServiceBus handles [Fault Tolerance](getting-started-fault-tolerance-servicematrix-1.0.md).
