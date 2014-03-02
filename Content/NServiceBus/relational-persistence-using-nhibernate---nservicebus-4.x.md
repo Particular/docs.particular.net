@@ -8,7 +8,7 @@ tags: []
 If you require that your data persist in a relational database, NServiceBus provides a separate assembly with added support for NHibernate-based storage:
 
 -   If you downloaded NServiceBus from this site (rather than via NuGet) you have to add a reference to `NServiceBus.NHibernate.dll` (found in the binaries folder). You also need to download and reference version 3.3.0.4000 of NHibernate.
--   If you used NuGet, you only need to install NServiceBus.NHibernate, like this:
+-   If you used NuGet, you only need to install [NServiceBus.NHibernate](https://www.nuget.org/packages/NServiceBus.NHibernate), like this:
 
 ```
 PM> Install-Package NServiceBus.NHibernate
