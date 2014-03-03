@@ -12,7 +12,7 @@ ServiceMatrix is a Visual Studio integrated development environment for developi
 This step-by-step guide will walk you through the creation of a send-and-receive NServiceBus distributed application using ServiceMatrix v2.0 for Visual Studio 2012, using the following steps:
 
 1.  [Installing ServiceMatrix](#installing-servicematrix-for-visual-studio-2012)
-2.  [Creating a new project](#creating-a-new-project)
+2.  [Creating a New Project](#creating-a-new-project)
 3.  [Creating Endpoints](#creating-endpoints)
 4.  [Creating Services](#creating-services)
 5.  [Deploying Components](#deploying-components)
@@ -31,8 +31,7 @@ To download and install ServiceMatrix follow the instructions [here](installing-
 
 **NOTE**: If you have both Visual Studio 2010 and Visual Studio 2012 installed on your machine, you can install ServiceMatrix for one Visual Studio version only. This document reviews the use of ServiceMatrix v2.0 for Visual Studio 2012.
 
-## Creating a new project
-
+## Creating a New Project
 To get started with ServiceMatrix, create a new project.
 ### Create an NServiceBus project
 In Visual Studio select `File\New\Project` and Select 'NServiceBus System' under the Visual C\# project type. Target the .NET Framework 4.5 for this project. 
@@ -65,7 +64,7 @@ The [NServiceBus Canvas](images/servicematrix-canvas.png "NServiceBus Canvas") i
 
 The dashed areas within the canvas and the buttons at the top are used to start building your solution.   **NOTE**: Alternatively, they can also be created using the Solution Builder tree view.  However, since this is a visual tool, this example will demonstrate using the canvas.  As items are added to the canvas they will appear in the Solution Builder as well as in the Solution Explorer project.
 
-##Building the online sales solution
+##Building the Online Sales Solution
 Our online sales example involves a website that collects online orders and a backend order processing system that processes them.  
 
 To build the solution you will define and endpoint for the website and another endpoint for the order processing system.  A new 'Sales' service will define components for submitting and processing orders as well as a command message to represent the order submission.  
@@ -117,14 +116,14 @@ namespace OnlineSales.InternalMessages.Sales
 ```
 The code for the Sales components is not created until they are deployed to an endpoint. So, now you will go ahead and deploy them.
 
-##Deploying components
+##Deploying Components
 
 Remember that in your example you want to send orders from the front end ECommerce website to the back end for processing via the bus.  To make this happen you need to deploy the `Sender` component to the `ECommerce` endpoint and the `Processor` to `OrderProcessing` endpoint.  
 
 By deploying these components to each endpoint, the `Sales` service will afford your systems the capability to easily communicate reliably and durably using a command message containing the data for the submitted order.  
 
 Let's deploy!
-### Deploying sales components
+### Deploying Sales Somponents
 To deploy your sender, use the dropdown menu of the `SubmitOrderSender` component as shown below.   Select 'Deploy Component' and choose to deploy it to the `ECommerce` endpoint using the list provided. 
 
 ![Deploy the Sales Components](images/servicematrix-salesdeploycomponent.png)
