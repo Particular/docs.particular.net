@@ -10,7 +10,7 @@ tags:
 
 Unity does not allow easy replacement of registrations in the container. The workaround is to replace the `UnityObjectBuilder` with your own custom implementation and the change the registration behaviour.
 
-### Use a custom `IContainer`
+### Use a custom IContainer
 
 So where you would normally have 
 
@@ -29,9 +29,9 @@ Instead inject your own custom object builder
             .UnicastBus()
             .CreateBus();
 
-### The custom `IContainer` implementation
+### The custom IContainer implementation
 
-#### Replacing `EncryptionMessageMutator`
+#### Replacing EncryptionMessageMutator
 
 ```
 public class UnityObjectBuilderEx : UnityObjectBuilder, IContainer
@@ -50,7 +50,7 @@ public class UnityObjectBuilderEx : UnityObjectBuilder, IContainer
 ```
 
 
-#### Removing `EncryptionMessageMutator`
+#### Removing EncryptionMessageMutator
 
 ```
 public class UnityObjectBuilderEx : UnityObjectBuilder, IContainer
