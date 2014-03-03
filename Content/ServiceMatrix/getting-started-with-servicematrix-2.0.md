@@ -16,7 +16,7 @@ This step-by-step guide will walk you through the creation of a send-and-receive
 3.  [Creating Endpoints](#creating-endpoints)
 4.  [Creating Services](#creating-services)
 5.  [Deploying Components](#deploying-components)
-6.  [Sending a Message](#sending-a-aessage)
+6.  [Sending a Message](#sending-a-message)
 7.  [Running the Application](#running-the-application)
 8.  [Next Steps](#next-steps)
 
