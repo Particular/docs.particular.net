@@ -33,6 +33,7 @@ function getParameterByName(name) {
 
     if (installer=="NServiceBus")
     {
+        var _gaq=_gaq||[];
         _gaq.push(['_trackEvent', 'Installed', 'NServiceBus Total [nuget]']);
         _gaq.push(['_trackEvent', 'Installed', 'NServiceBus Total [msi+nuget]']);
         var version = getParameterByName("version");
