@@ -42,7 +42,7 @@ The message class will implement the `IEvent` marker interface
 namespace Ordering.Messages
 {
 
-    public class OrderPlaceed : IEvent
+    public class OrderPlaced : IEvent
     {
         public Guid OrderId { get; set; }
     }
