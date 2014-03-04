@@ -42,7 +42,7 @@ The message class will implement the `IEvent` marker interface
 namespace Ordering.Messages
 {
 
-    public class OrderPlaceed : IEvent
+    public class OrderPlaced : IEvent
     {
         public Guid OrderId { get; set; }
     }
@@ -72,7 +72,7 @@ namespace Ordering.Server
 
             // throw new Exception("Uh oh - something went wrong....");
 
-            Console.WriteLine(@"Publishing: OrderPlaceed for Order Id: {0}", message.Id);
+            Console.WriteLine(@"Publishing: OrderPlaced for Order Id: {0}", message.Id);
 
             Bus.Publish<OrderPlaced>(e => {e.OrderId = message.Id;});
         }
@@ -140,7 +140,7 @@ namespace Ordering.Subscriber
 
         public void Handle(OrderPlaced message)
         {
-            Console.WriteLine(@"Handling: OrderPlaceed for Order Id: {0}", message.OrderId);
+            Console.WriteLine(@"Handling: OrderPlaced for Order Id: {0}", message.OrderId);
         }
     }
 }
