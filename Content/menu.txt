@@ -86,7 +86,8 @@
           "NServiceBus/profiles-for-nservicebus-host",
           "NServiceBus/more-on-profiles",
           "NServiceBus/nservicebus-32-bit-x86-host-process",
-          "NServiceBus/hosting-nservicebus-in-your-own-process-v4.x"
+          "NServiceBus/hosting-nservicebus-in-your-own-process-v4.x",
+          "NServiceBus/understanding-transactions-in-windows-azure"
         ]
       },
       {
