@@ -1,7 +1,6 @@
 ---
 title: Full Duplex Sample using NServiceBus V3
 summary: An example of full-duplex, request/response communication.
-originalUrl: http://www.particular.net/articles/full-duplex-sample-v3
 tags:
 - Request Response
 - Messaging Patterns

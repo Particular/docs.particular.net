@@ -1,7 +1,6 @@
 ---
 title: How to disable Store and Forward for a Message?
 summary: Store and Forward is not always the preferred method.
-originalUrl: http://www.particular.net/articles/how-do-i-specify-store-forward-for-a-message
 tags: []
 ---
 

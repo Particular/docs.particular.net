@@ -1,7 +1,6 @@
 ---
 title: How to Reduce Throughput of an Endpoint?
 summary: 'Two ways to decrease throughput of an endpoint: TransportConfig in endpoint config or program the API.'
-originalUrl: http://www.particular.net/articles/how-to-reduce-throughput-of-an-endpoint
 tags: []
 ---
 

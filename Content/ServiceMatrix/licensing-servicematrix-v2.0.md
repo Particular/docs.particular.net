@@ -1,7 +1,6 @@
 ---
 title: Licensing ServiceMatrix
 summary: Licensing ServiceMatrix v2.0
-originalUrl: 
 tags: 
 - ServiceMatrix
 - Licensing

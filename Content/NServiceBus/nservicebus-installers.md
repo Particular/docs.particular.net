@@ -1,7 +1,6 @@
 ---
 title: NServiceBus Installers
 summary: Installers ensure endpoint specific artifacts are installed and configured automatically.
-originalUrl: http://www.particular.net/articles/nservicebus-installers
 tags:
 - Installer
 - Setup

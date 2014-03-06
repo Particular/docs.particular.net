@@ -1,7 +1,6 @@
 ---
 title: Fault Tolerance in NServiceBus
 summary: Getting Starting With NServiceBus - Fault Tolerance and Durability
-originalUrl: http://www.particular.net/articles/getting-started-with-nservicebus-using-servicematrix-2.0---fault-tolerance
 tags:
 - ServiceMatrix
 - Fault Tolerance

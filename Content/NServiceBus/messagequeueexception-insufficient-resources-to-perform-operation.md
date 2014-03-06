@@ -1,7 +1,6 @@
 ---
 title: 'MessageQueueException: Insufficient resources to perform operation'
 summary: Exception due to sending messages to an offline or loaded machine.
-originalUrl: http://www.particular.net/articles/messagequeueexception-insufficient-resources-to-perform-operation
 tags: []
 ---
 

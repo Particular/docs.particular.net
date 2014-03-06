@@ -1,7 +1,6 @@
 ---
 title: NServiceBus and BizTalk
 summary: NServiceBus guides you away from dangerous anti-patterns while providing messaging patterns and integration.
-originalUrl: http://www.particular.net/articles/nservicebus-and-biztalk
 tags: []
 ---
 

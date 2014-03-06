@@ -1,7 +1,6 @@
 ---
 title: Versioning Sample
 summary: Continuation of the pub/sub sample.
-originalUrl: http://www.particular.net/articles/versioning-sample
 tags: []
 ---
 

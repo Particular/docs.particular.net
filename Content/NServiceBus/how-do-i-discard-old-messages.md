@@ -1,7 +1,6 @@
 ---
 title: How to Discard Old Messages?
 summary: Automatically discard messages if they have not been processed within a given period of time.
-originalUrl: http://www.particular.net/articles/how-do-i-discard-old-messages
 tags:
 - Message Expiration
 - TimeToBeReceived

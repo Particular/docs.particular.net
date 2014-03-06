@@ -1,7 +1,6 @@
 ---
 title: Using NServiceBus with ASP.NET MVC
 summary: Integrating NServiceBus in ASP.NET MVC web applications, to be able to send messages from the website.
-originalUrl: http://www.particular.net/articles/using-nservicebus-with-asp.net-mvc
 tags: []
 ---
 

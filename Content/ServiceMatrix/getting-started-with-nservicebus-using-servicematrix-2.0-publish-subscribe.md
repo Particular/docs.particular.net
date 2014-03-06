@@ -1,7 +1,6 @@
 ---
 title: Using Publish & Subscribe with NServiceBus
 summary: Adding Publish/Subscribe to our solution using ServiceMatrix
-originalUrl: http://www.particular.net/articles/getting-started-with-nservicebus-using-servicematrix-2.0---publish-subscribe
 tags:
 - ServiceMatrix
 - Publish Subscribe

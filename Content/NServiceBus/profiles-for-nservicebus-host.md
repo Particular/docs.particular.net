@@ -1,7 +1,6 @@
 ---
 title: Profiles For NServiceBus Host
 summary: 'Profiles ease the configuration process. Three profiles straight from the box: Lite, Integration, and Production.'
-originalUrl: http://www.particular.net/articles/profiles-for-nservicebus-host
 tags: []
 ---
 

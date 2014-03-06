@@ -1,7 +1,6 @@
 ---
 title: The Gateway And Multi-Site Distribution
 summary: Explanation of how NServiceBus handles multi-site communication.
-originalUrl: http://www.particular.net/articles/the-gateway-and-multi-site-distribution
 tags: []
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Logging in NServiceBus
 summary: NServiceBus extends Log4Net APIs with a simple model to prevent admins from changing behavior you set at design time.
-originalUrl: http://www.particular.net/articles/logging-in-nservicebus
 tags: []
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Building NServiceBus from Source Files
 summary: Build NServiceBus from its source files, noting entry points, Build.ps1, and build.bat.
-originalUrl: http://www.particular.net/articles/building-nservicebus-from-source-files
 tags: []
 ---
 

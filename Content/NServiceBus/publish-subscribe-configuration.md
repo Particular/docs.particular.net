@@ -1,7 +1,6 @@
 ---
 title: Publish/Subscribe Configuration
 summary: Publish/Subscribe Configuration
-originalUrl: http://www.particular.net/articles/publish-subscribe-configuration
 tags: []
 ---
 

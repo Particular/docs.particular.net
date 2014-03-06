@@ -1,7 +1,6 @@
 ---
 title: Attachments / DataBus Sample
 summary: 'Send images or video by putting an attribute over your large property. NServiceBus takes care of the rest. '
-originalUrl: http://www.particular.net/articles/attachments-databus-sample
 tags:
 - DataBus
 - MSMQ Limit

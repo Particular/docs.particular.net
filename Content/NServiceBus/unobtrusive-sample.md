@@ -1,7 +1,6 @@
 ---
 title: Unobtrusive Sample
 summary: Demonstrates NServiceBus operating in unobtrusive mode.
-originalUrl: http://www.particular.net/articles/unobtrusive-sample
 tags:
 - Unobtrusive
 - POCO

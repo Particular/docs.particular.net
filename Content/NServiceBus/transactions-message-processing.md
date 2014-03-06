@@ -1,7 +1,6 @@
 ---
 title: Transactions and Message Processing
 summary: Fault-Tolerant by Default infrastructure saves you remembering the configuration of threading and state management elements.
-originalUrl: http://www.particular.net/articles/transactions-message-processing
 tags: []
 ---
 

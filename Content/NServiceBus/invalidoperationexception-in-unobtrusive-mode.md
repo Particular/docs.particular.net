@@ -1,7 +1,6 @@
 ---
 title: InvalidOperationException in Unobtrusive Mode
 summary: Avoid an InvalidOperationException in Unobtrusive Mode.
-originalUrl: http://www.particular.net/articles/invalidoperationexception-in-unobtrusive-mode
 tags: []
 ---
 

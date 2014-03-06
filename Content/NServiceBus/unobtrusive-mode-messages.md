@@ -1,7 +1,6 @@
 ---
 title: Unobtrusive Mode Messages
 summary: You do not need to reference any NServiceBus assemblies from your own message assemblies.
-originalUrl: http://www.particular.net/articles/unobtrusive-mode-messages
 tags: []
 ---
 

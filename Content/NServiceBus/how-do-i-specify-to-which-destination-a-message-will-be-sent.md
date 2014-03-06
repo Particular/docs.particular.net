@@ -1,7 +1,6 @@
 ---
 title: How to Specify to Which Destination a Message Is Sent?
 summary: Configure the destination for message types in &lt;UnicastBusConfig>, under &lt;MessageEndpointMappings>.
-originalUrl: http://www.particular.net/articles/how-do-i-specify-to-which-destination-a-message-will-be-sent
 tags:
 - Message Mapping
 - Message destination

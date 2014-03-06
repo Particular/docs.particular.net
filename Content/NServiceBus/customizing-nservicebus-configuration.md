@@ -1,7 +1,6 @@
 ---
 title: Customizing NServiceBus Configuration
 summary: NServiceBus uses the process config file as its default source of configuration.
-originalUrl: http://www.particular.net/articles/customizing-nservicebus-configuration
 tags:
 - Configuration
 - app.config

@@ -1,7 +1,6 @@
 ---
 title: Messages as Interfaces
 summary: ' NServiceBus allows you to use interfaces as well as standard XSD and class serialization.'
-originalUrl: http://www.particular.net/articles/messages-as-interfaces
 tags: []
 ---
 

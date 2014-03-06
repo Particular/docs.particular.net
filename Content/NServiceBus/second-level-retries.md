@@ -1,7 +1,6 @@
 ---
 title: Second-Level Retries
 summary: With SLR, the message causing the exception is instantly retried via a retries queue instead of an error queue.
-originalUrl: http://www.particular.net/articles/second-level-retries
 tags:
 - SLR
 - Error Handling

@@ -1,7 +1,6 @@
 ---
 title: Auditing With NServiceBus
 summary: 'Tell NServiceBus where to send messages and it provides built-in message auditing for every endpoint. '
-originalUrl: http://www.particular.net/articles/auditing-with-nservicebus
 tags:
 - Auditing
 - Forwarding Messages

@@ -1,7 +1,6 @@
 ---
 title: How To Debug RavenDB Through Fiddler Using NServiceBus
 summary: Set up an NServiceBus endpoint to make all calls to RavenDB through Fiddler by configuring the proxy for your endpoint.
-originalUrl: http://www.particular.net/articles/how-to-debug-ravendb-through-fiddler-using-nservicebus
 tags: []
 ---
 

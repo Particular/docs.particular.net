@@ -1,7 +1,6 @@
 ---
 title: Scale Out Sample
 summary: See how easy it is to use NServiceBus to scale out your existing message processing by adding workers on different machines.
-originalUrl: http://www.particular.net/articles/scale-out-sample
 tags:
 - Distributor
 - Scaling

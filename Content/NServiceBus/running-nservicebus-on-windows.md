@@ -1,7 +1,6 @@
 ---
 title: Running NServiceBus on Windows
 summary: Overview of the requirements for running on windows (including MSMQ, DTC, Storage and powershell)
-originalUrl: http://www.particular.net/articles/running-nservicebus-on-windows
 tags:
 - MSMQ
 - DTC

@@ -1,7 +1,6 @@
 ---
 title: Using NServiceBus in a ASP.NET Web Application
 summary: See how to use NServiceBus in a WebForms application.
-originalUrl: http://www.particular.net/articles/using-nservicebus-in-a-asp.net-web-application
 tags: []
 ---
 

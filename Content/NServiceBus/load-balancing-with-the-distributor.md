@@ -1,7 +1,6 @@
 ---
 title: Load Balancing with the Distributor
 summary: The distributor maintains all the characteristics of NServiceBus but is designed never to overwhelm any of the worker nodes.
-originalUrl: http://www.particular.net/articles/load-balancing-with-the-distributor
 tags:
 - Scaling out
 - Distributor

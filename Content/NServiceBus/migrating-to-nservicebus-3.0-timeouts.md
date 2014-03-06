@@ -1,7 +1,6 @@
 ---
 title: "Migrating To NServiceBus 3.0 – Time-outs"
 summary: NServiceBus V3.0 supports durable time-outs that survive process restarts. Store the time-outs on disk.
-originalUrl: "http://www.particular.net/articles/migrating-to-nservicebus-3.0-–-timeouts"
 tags: []
 ---
 

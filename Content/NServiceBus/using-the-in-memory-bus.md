@@ -1,7 +1,6 @@
 ---
 title: Using the In-Memory Bus
 summary: The in-memory bus is applicable when events need to be handled synchronously and durability is not a concern.
-originalUrl: http://www.particular.net/articles/using-the-in-memory-bus
 tags: []
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Encryption Sample
 summary: How to encrypt message data.
-originalUrl: http://www.particular.net/articles/encryption-sample
 tags:
 - Encryption
 ---

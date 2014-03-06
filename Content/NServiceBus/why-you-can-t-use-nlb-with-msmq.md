@@ -1,7 +1,6 @@
 ---
 title: Why You Can't Use NLB With MSMQ
 summary: How message queuing can function over network load balancing (NLB) in transactional MSMQ.
-originalUrl: http://www.particular.net/articles/why-you-can-t-use-nlb-with-msmq
 tags: []
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Containers
 summary: NServiceBus automatically registers components, user-implemented handlers, and sagas.
-originalUrl: http://www.particular.net/articles/containers
 tags: []
 ---
 

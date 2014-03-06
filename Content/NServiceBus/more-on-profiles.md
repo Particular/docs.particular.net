@@ -1,7 +1,6 @@
 ---
 title: More On Profiles
 summary: 'Two types of profiles in NServiceBus: environment and feature.'
-originalUrl: http://www.particular.net/articles/more-on-profiles
 tags: []
 ---
 

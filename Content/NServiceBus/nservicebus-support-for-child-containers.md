@@ -1,7 +1,6 @@
 ---
 title: NServiceBus Support for Child Containers
 summary: 'Child containers are a snapshot of the main container; transient instances are treated as as singletons in the child container. '
-originalUrl: http://www.particular.net/articles/nservicebus-support-for-child-containers
 tags: []
 ---
 

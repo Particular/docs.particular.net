@@ -1,7 +1,6 @@
 ---
 title: How to Handle Responses on the Client Side
 summary: The client (or sending process) has its own queue. When messages arrive in the queue, they are handled by a message handler.
-originalUrl: http://www.particular.net/articles/how-do-i-handle-responses-on-the-client-side
 tags: []
 ---
 

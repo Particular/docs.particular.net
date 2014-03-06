@@ -1,7 +1,6 @@
 ---
 title: One Way/Send Only Endpoints
 summary: "Use â€œSend only modeâ€\x9D for endpoints whose only purpose is sending messages, "
-originalUrl: http://www.particular.net/articles/one-way-send-only-endpoints
 tags:
 - SendOnly
 ---

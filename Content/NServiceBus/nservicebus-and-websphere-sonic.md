@@ -1,7 +1,6 @@
 ---
 title: NServiceBus and WebSphere/Sonic
 summary: Swap out the pluggable MSMQ transport to get NServiceBus API on top of WebSphere and Sonic.
-originalUrl: http://www.particular.net/articles/nservicebus-and-websphere-sonic
 tags: []
 ---
 

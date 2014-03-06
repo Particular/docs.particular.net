@@ -1,7 +1,6 @@
 ---
 title: How to Instantiate a Message?
 summary: Two options for instantiating a message.
-originalUrl: http://www.particular.net/articles/how-do-i-instantiate-a-message
 tags: []
 ---
 

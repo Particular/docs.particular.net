@@ -1,7 +1,6 @@
 ---
 title: How to install your license file - ServiceInsight
 summary: 'To install your License:'
-originalUrl: http://www.particular.net/articles/how-to-install-your-license-file-serviceinsight
 tags:
 - ServiceInsight
 - license

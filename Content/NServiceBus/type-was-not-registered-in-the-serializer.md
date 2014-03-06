@@ -1,7 +1,6 @@
 ---
 title: Type Not Registered in the Serializer
 summary: Type may not be registered. This may happen after you upgrade your app code. Is usually due to locked files.
-originalUrl: http://www.particular.net/articles/type-was-not-registered-in-the-serializer
 tags: []
 ---
 

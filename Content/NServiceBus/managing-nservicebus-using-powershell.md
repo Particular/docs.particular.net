@@ -1,7 +1,6 @@
 ---
 title: Managing NServiceBus Using PowerShell
 summary: 'Install the infrastructure for NServiceBus on servers using PowerShell commandlets. '
-originalUrl: http://www.particular.net/articles/managing-nservicebus-using-powershell
 tags:
 - Powershell
 - Commandlets

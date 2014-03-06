@@ -1,7 +1,6 @@
 ---
 title: NServiceBus Message Mutators Sample
 summary: 'Change messages by plugging custom logic in to a couple of interfaces, encrypting as required. '
-originalUrl: http://www.particular.net/articles/nservicebus-message-mutators-sample
 tags:
 - Mutator
 - Changing message content

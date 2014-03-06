@@ -1,7 +1,6 @@
 ---
 title: 'How to Reply to a Message? '
 summary: Answer a message using the Reply method on IBus.
-originalUrl: http://www.particular.net/articles/how-do-i-reply-to-a-message
 tags: []
 ---
 

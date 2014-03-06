@@ -1,7 +1,6 @@
 ---
 title: IEvent and ICommand
 summary: 'Message interfaces IEvent and ICommand capture the intent of the messages. '
-originalUrl: http://www.particular.net/articles/introducing-ievent-and-icommand
 tags: []
 ---
 

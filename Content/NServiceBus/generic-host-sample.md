@@ -1,7 +1,6 @@
 ---
 title: Generic Host Sample using Log4Net
 summary: 'This sample demonstrates the various kinds of logging that can be used with the NServiceBus Host process. '
-originalUrl: http://www.particular.net/articles/generic-host-sample
 tags:
 - Logging
 - Log4Net

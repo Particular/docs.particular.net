@@ -1,7 +1,6 @@
 ---
 title: NServiceBus Overview
 summary: NServiceBus compared to WCF and BizTalk.
-originalUrl: http://www.particular.net/articles/overview
 tags: []
 ---
 

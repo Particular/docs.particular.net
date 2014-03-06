@@ -1,7 +1,6 @@
 ---
 title: NServiceBus Step by Step Guide - code first
 summary: Get started with NServiceBus, step by step, code-first.
-originalUrl: http://www.particular.net/articles/NServiceBus-Step-by-Step-Guide
 tags: []
 ---
 

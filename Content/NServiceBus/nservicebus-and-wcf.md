@@ -1,7 +1,6 @@
 ---
 title: NServiceBus And WCF
 summary: "Publish/subscribe,  fault-tolerance, long-running processes, interoperabilityâ€”what more could you want?"
-originalUrl: http://www.particular.net/articles/nservicebus-and-wcf
 tags: []
 ---
 

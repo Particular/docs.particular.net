@@ -1,7 +1,6 @@
 ---
 title: Licensing limitations when using the Distributor
 summary: Basic licenses are limited to two worker nodes.
-originalUrl: http://www.particular.net/articles/licensing-and-distribution
 tags: []
 ---
 

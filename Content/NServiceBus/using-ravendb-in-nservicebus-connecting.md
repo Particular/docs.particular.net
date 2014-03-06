@@ -1,7 +1,6 @@
 ---
 title: Connecting to RavenDB from NServiceBus
 summary: For persistence, tell NServiceBus to use RavenDB, or override the defaults.
-originalUrl: http://www.particular.net/articles/using-ravendb-in-nservicebus-connecting
 tags:
 - RavenDB
 - persistence

@@ -1,7 +1,6 @@
 ---
 title: How to Send a Message?
 summary: Describes how to send a message, or instantiate and send all messages at once.
-originalUrl: http://www.particular.net/articles/how-do-i-send-a-message
 tags: []
 ---
 

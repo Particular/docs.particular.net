@@ -1,7 +1,6 @@
 ---
 title: Transport Configuration
 summary: 'Explains the available Transport Configuration options. Properties of the MSMQ transport: ErrorQueue, NumberOfWorkerThreads, and MaxRetries.'
-originalUrl: http://www.particular.net/articles/msmqtransportconfig
 tags: []
 ---
 

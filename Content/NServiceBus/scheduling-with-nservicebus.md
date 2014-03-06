@@ -1,7 +1,6 @@
 ---
 title: Scheduling with NServiceBus
 summary: Schedule a task or an action/lambda, to be executed repeatedly at a given interval.
-originalUrl: http://www.particular.net/articles/scheduling-with-nservicebus
 tags:
 - Scheduler
 ---

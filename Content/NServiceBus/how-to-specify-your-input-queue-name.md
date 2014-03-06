@@ -1,7 +1,6 @@
 ---
 title: How To Specify Your Input Queue Name?
 summary: There are many ways to specify the input endpoint name.
-originalUrl: http://www.particular.net/articles/how-to-specify-your-input-queue-name
 tags:
 - Endpoint Name
 - Configuration

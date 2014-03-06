@@ -1,7 +1,6 @@
 ---
 title: Unit of Work in NServiceBus
 summary: From NServiceBus V3.0, use the IManageUnitsOfWork interface.
-originalUrl: http://www.particular.net/articles/unit-of-work-in-nservicebus
 tags: []
 ---
 

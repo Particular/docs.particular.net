@@ -1,7 +1,6 @@
 ---
 title: Unit Testing
 summary: Develop your service layers and long-running processes using test-driven development.
-originalUrl: http://www.particular.net/articles/unit-testing
 tags: []
 ---
 

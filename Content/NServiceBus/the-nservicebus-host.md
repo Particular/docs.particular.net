@@ -1,7 +1,6 @@
 ---
 title: The NServiceBus Host
 summary: Avoid writing repeat config code, host your endpoints in a Windows Service, and change technologies without code.
-originalUrl: http://www.particular.net/articles/the-nservicebus-host
 tags: []
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: How Pub/Sub Works
 summary: Subscribers tell the publisher they&#39;re interested. Publishers store addresses for sending messages.
-originalUrl: http://www.particular.net/articles/how-pub-sub-works
 tags:
 - Publish Subscribe
 - Messaging Patterns

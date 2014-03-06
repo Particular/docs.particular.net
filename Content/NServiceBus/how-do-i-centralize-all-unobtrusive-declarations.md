@@ -1,7 +1,6 @@
 ---
 title: How to Centralize All Unobtrusive Declarations?
 summary: Don&#39;t repeat yourself when writing unobtrusive declarations; use WantToRunBeforeConfiguration.
-originalUrl: http://www.particular.net/articles/how-do-i-centralize-all-unobtrusive-declarations
 tags:
 - Unobtrusive
 - DRY

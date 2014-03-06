@@ -1,7 +1,6 @@
 ---
 title: Windows Azure Transport
 summary: Windows Azure transport enables Windows Azure Queues and Windows Azure Service Bus as underlying NServiceBus transports, in cloud-hosting and hybrid scenarios.
-originalUrl: http://www.particular.net/articles/windows-azure-transport
 tags:
 - Cloud
 - Windows Azure
