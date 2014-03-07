@@ -27,5 +27,5 @@ tags:
 
 ### Particular.ServiceControl windows service fails to start
 
-* There are various options that may cause this. To narrow down the possible causes, review the ServiceControl log file located in: `%LOCALAPPDATA%\Particular\ServiceControl\logs`;
+* There are various options that may cause this. To narrow down the possible causes, review the ServiceControl log file located in: `%LOCALAPPDATA%\Particular\ServiceControl\logs` or `%APPDATA%\Particular\ServiceControl\logs`
 * Most common cause is prerequisites installation and configuration issues;
