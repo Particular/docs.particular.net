@@ -1,6 +1,6 @@
 ﻿using NServiceBus.Config;
 using NServiceBus.Unicast;
-// start code ChangeThroughputV3
+// start code ChangeThroughputV4
 public class ChangeThroughput : IWantToRunWhenConfigurationIsComplete
 {
     public UnicastBus Bus { get; set; }
@@ -10,4 +10,4 @@ public class ChangeThroughput : IWantToRunWhenConfigurationIsComplete
         Bus.Transport.ChangeMaximumMessageThroughputPerSecond(10);
     }
 }
-// end code ChangeThroughputV3
+// end code ChangeThroughputV4
