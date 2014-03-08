@@ -13,8 +13,9 @@ Edit the `TransportConfig` section in the endpoint config file:
 <TransportConfig MaximumConcurrencyLevel="5" MaxRetries="2" MaximumMessageThroughputPerSecond="10"/>
 ```
 
- Or program the API:​
+In V4 you can also use the API:​
 
+<!-- import ChangeThroughputV4 -->
 
 ```C#
 public class ChangeThroughtput : IWantToRunWhenConfigurationIsComplete
