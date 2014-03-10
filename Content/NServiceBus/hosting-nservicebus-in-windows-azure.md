@@ -89,25 +89,3 @@ Sample
 ------
 
 Want to see these hosting models in action? Checkout the [Video store samples.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
