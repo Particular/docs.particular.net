@@ -19,46 +19,36 @@ First you need to reference the assembly that contains the azure servicebus tran
 
 Once you've done that you can use the fluent `Configure` API to setup NServiceBus, all you need to do is specify `.UseTransport<AzureServiceBus>()` to override the default transport.
 
-
-```C#
-Configure.With()
+	Configure.With()
          ...
          .UseTransport<AzureServiceBus>()
          ...
          .CreateBus()
-```
 
 Alternatively, when using one of the NServiceBus provided hosting processes, you should supply the `UsingTransport<AzureServiceBus>` on the endpoint configuration. In the windows azure role entrypoint host, for example, it would look like this.
 
-```C#
-public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker, UsingTransport<AzureServiceBus>
-{
-}
-```
+	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker, UsingTransport<AzureServiceBus>
+	{
+	}
 
 Setting the connection string
 ----------------------------
 
 The default way of setting the connection string is using the .net provided connectionstrings configuration section in app.config or web.config, with the name `NServicebus\Transport`
 
-```XML
-<connectionStrings>
-   <add name="NServiceBus/Transport" connectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
-</connectionStrings> 
-```
-
+	<connectionStrings>
+	   <add name="NServiceBus/Transport" connectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
+	</connectionStrings> 
 
 Detailed configuration
 ----------------------
 
 If you need more fine grained control on how the azure servicebus transport behaves, you can override the default settings by adding a configuration section called `AzureServiceBusQueueConfig` to your web.config or app.config. For example:
 
-```XML
-<configSections>
-    <section name="AzureServiceBusQueueConfig" type="NServiceBus.Config.AzureServiceBusQueueConfig, NServiceBus.Azure.Transports.WindowsAzureServiceBus" />   
-</configSections>
-<AzureServiceBusQueueConfig ConnectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
-```
+	<configSections>
+	    <section name="AzureServiceBusQueueConfig" type="NServiceBus.Config.AzureServiceBusQueueConfig, NServiceBus.Azure.Transports.WindowsAzureServiceBus" />   
+	</configSections>
+	<AzureServiceBusQueueConfig ConnectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
 
 Using this configuration setting you can change the following values. (It's important to know that most of these values are applied when a queue or topic is created and cannot be changed afterwards).
 

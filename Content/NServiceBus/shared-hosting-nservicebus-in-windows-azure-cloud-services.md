@@ -41,9 +41,6 @@ In this worker role you need to reference the assembly that contains the windows
 
 To integrate the NServiceBus dynamic host into the worker role entry point, all you need to do is create a new instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override. 
 
-
-```C#
-
         public class WorkerRole : RoleEntryPoint
 	    {
 	        private NServiceBusRoleEntrypoint nsb = new NServiceBusRoleEntrypoint();
@@ -63,16 +60,9 @@ To integrate the NServiceBus dynamic host into the worker role entry point, all 
 	        }
 	    }
 
-```
-
 Next to starting the role entry point, you also need to define how you want your endpoint to behave. In this case we want hosting behavior, so that it will not run an endpoint itself but instead host other endpoints. To do so just specify the `AsA_Host` role. 
 
-
-```C#
-
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Host { }
-
-```
 
 The host entry point does require some configuration, you need to tell it in what storage account to look for endpoints and how often it should do so, furthermore you need to tell windows azure to provision some space on the local disk as well, where the host can put the downloaded and extracted endpoints.
 
@@ -81,8 +71,6 @@ Please add the following configuration settings entries to your `.csdef` file
 * DynamicHostControllerConfig.ConnectionString: The connectionstring to your storage account
 
 And specify a local storage resource with the name endpoints as well.
-
-```XML
 
 	<WorkerRole name="VideoStore.Host" vmsize="Small">
     	<Imports>
@@ -96,8 +84,6 @@ And specify a local storage resource with the name endpoints as well.
     	</LocalResources>
 	</WorkerRole>
 
-
-```
 Other configuration settings are available as well if you need more fine grained control on how the host works:
 
 * DynamicHostControllerConfig.Container: The container where the endpoint packages are stored in the storage account, defaults to `endpoints`

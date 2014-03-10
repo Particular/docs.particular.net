@@ -13,28 +13,20 @@ First you need to reference the assembly that contains the azure storage persist
 
 If self hosting, you can configure the persistence technology using the fluent configuration API and the extension methods found in the `NServiceBus.Azure` assembly
 
-
-```C#
-
-        static void Main()
-        {
-            Configure.With()
-            ...
-				.AzureSubscriptionStorage()
-				.AzureSagaPersister()
-				.UseAzureTimeoutPersister()
-			...
-            .Start();
-        }
-
-```
+    static void Main()
+    {
+        Configure.With()
+        ...
+			.AzureSubscriptionStorage()
+			.AzureSagaPersister()
+			.UseAzureTimeoutPersister()
+		...
+        .Start();
+    }
 
 When hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
 But when hosting in a different NServiceBus provided host, you can enable them by implementing `INeedInitialization`, like this:
-
-
-```C#
 
     public class EnableStorage : INeedInitialization
     {
@@ -47,26 +39,19 @@ But when hosting in a different NServiceBus provided host, you can enable them b
         }
     }
 
-```
-
 Detailed configuration
 ----------------------
 
 You can get more control on the behavior of each persister by specifying one of the respective configuration sections in your app.config and changing one of the available properties.
 
-```XML
-
-	  <configSections>
+	<configSections>
 	    <section name="AzureSubscriptionStorageConfig" type="NServiceBus.Config.AzureSubscriptionStorageConfig, NServiceBus.Azure" />
 	    <section name="AzureSagaPersisterConfig" type="NServiceBus.Config.AzureSagaPersisterConfig, NserviceBus.Azure" />
 	    <section name="AzureTimeoutPersisterConfig" type="NServiceBus.Config.AzureTimeoutPersisterConfig, NserviceBus.Azure" />
-	  </configSections>
-
+	</configSections>
 	<AzureSagaPersisterConfig ConnectionString="UseDevelopmentStorage=true" />
-  	<AzureTimeoutPersisterConfig ConnectionString="UseDevelopmentStorage=true" />
-  	<AzureSubscriptionStorageConfig ConnectionString="UseDevelopmentStorage=true" />
-
-```
+	<AzureTimeoutPersisterConfig ConnectionString="UseDevelopmentStorage=true" />
+	<AzureSubscriptionStorageConfig ConnectionString="UseDevelopmentStorage=true" />
 
 The following settings are available for changing the behavior of subscription persistence through the `AzureSubscriptionStorageConfig` section:
 
