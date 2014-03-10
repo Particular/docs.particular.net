@@ -1,7 +1,6 @@
 ---
 title: Shared Hosting NServiceBus in Windows Azure Cloud Services
 summary: Using Windows Azure Cloudservices to host multiple NServiceBus endpoints on a shared pool of machines.
-originalUrl: http://docs.particular.net/articles/shared-hosting-nservicebus-in-windows-azure-cloud-services
 tags: []
 ---
 

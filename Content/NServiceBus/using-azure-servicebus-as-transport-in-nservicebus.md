@@ -2,7 +2,6 @@
 ---
 title: Using Azure Servicebus as transport in NServiceBus
 summary: NServiceBus can use windows azure servicebus to take advantage of it's peek-lock mechanism in environments where one cannot rely on the DTC
-originalUrl: http://docs.particular.net/articles/using-azure-servicebus-as-transport-in-nservicebus
 tags: []
 ---
 

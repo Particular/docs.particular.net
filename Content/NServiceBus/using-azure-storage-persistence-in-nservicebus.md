@@ -1,7 +1,6 @@
 ---
 title: Using Azure Storage Persistence In NServiceBus
 summary: Using Windows Azure Storage for persistence features of NServiceBus including timeouts, sagas, and subscription storage.
-originalUrl: http://docs.particular.net/articles/using-azure-storage-persistence-in-nservicebus
 tags: []
 ---
 

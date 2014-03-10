@@ -1,7 +1,6 @@
 ---
 title: Using Azure Storage Queues as transport in NServiceBus
 summary: NServiceBus can use windows azure storage queues to take advantage of their peek-lock mechanism in environments where one cannot rely on the DTC
-originalUrl: http://docs.particular.net/articles/using-azure-storage-queues-as-transport-in-nservicebus
 tags: []
 ---
 
