@@ -32,7 +32,7 @@ function getParameterByName(name) {
 
     if (installer=="NServiceBus")
     {
-        ga('send', 'event','page', 'Load', 'Preparing your machine to run NServiceBus');
+        ga('send', 'event','Nuget', 'Load', 'Preparing your machine to run NServiceBus');
 
         ga('send', 'event','Installed', 'NServiceBus Total [nuget]');
 
