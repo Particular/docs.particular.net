@@ -9,29 +9,33 @@ tags:
 - Sample
 ---
 
-The Windows Azure transport for NServiceBus enables the use of Windows Azure Queues and Windows Azure Service Bus as the underlying transports used by NServiceBus. It can be used in multiple scenarios:
+The Windows Azure transports for NServiceBus enables the use of Windows Azure Queues and Windows Azure Service Bus as the underlying transports used by NServiceBus. It can be used in multiple scenarios:
 
- * Cloud hosting scenario: An NServiceBus endpoint is hosted as a cloud service and communicates with another endpoint located in another cloud service through the use of the Windows Azure transport for NServiceBus.
+ * Cloud hosting scenario: An NServiceBus endpoint is hosted as a cloud service and communicates with another endpoint located in another cloud service through the use of one of the Windows Azure transports for NServiceBus.
 
- * Hybrid scenario: An NServiceBus is hosted on-premise and uses Windows Azure transport for NServiceBus to communicate with another NServiceBus endpoint hosted on a Cloud Service and/or on-premise.
+ * Hybrid scenario: An NServiceBus is hosted on-premise and uses one of the Windows Azure transports for NServiceBus to communicate with another NServiceBus endpoint hosted on a Cloud Service and/or on-premise.
 
-As part of Windows Azure transport for NServiceBus, you can choose between two options provided by the Windows Azure platform:
+As part of the Windows Azure support for NServiceBus, you can choose between two options provided by the Windows Azure platform:
 
 -   Windows Azure Queues
 -   Windows Azure Service Bus
 
 Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits your application's needs, review the MSDN article "[Windows Azure Queues and Windows Azure Service Bus Queues - Compared and Contrasted](http://msdn.microsoft.com/en-us/library/windowsazure/hh767287.aspx)".
 
-Download samples
+Samples
 ----------------
 
--   [Windows Azure Queues Publish / Subscribe](http://d214svlj19ktn4.cloudfront.net/NServiceBus/Samples/Azure/AzurePubSub.zip)
--   [Windows Azure Service Bus Publish / Subscribe](http://d214svlj19ktn4.cloudfront.net/NServiceBus/Samples/Azure/AzureServiceBusPubSub.zip)
+Samples for various scenario's are available on Github
 
-To run these samples, update the configuration connection strings and queue names settings in the relevant configuration file (as described below).
+-   [Windows Azure Service Bus transport hosted in cloud services](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureServiceBus.Cloud)
+-   [Windows Azure Service Bus transport hosted in an on-premises host](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureServiceBus.OnPremises)
+-   [Windows Azure Queues transport hosted in cloud services](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud)
+-    [Windows Azure Queues transport hosted in cloud services with multiple endpoints hosted on the same role instances](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud.DynamicHost)
 
-The Windows Azure transport for NServiceBus ships with NServiceBus. You can download the latest (and previous) release of NServiceBus from the
-[downloads page](http://particular.net/downloads).
+To run these samples, update the configuration connection strings and queue names settings in the relevant configuration files (as described below).
+
+The Windows Azure transport for NServiceBus are available from nuget. You can download the latest (and previous) release from the
+[nuget website](http://www.nuget.org/profiles/nservicebus/).
 
 Prerequisites
 -------------
