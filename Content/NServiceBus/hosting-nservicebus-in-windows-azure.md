@@ -11,7 +11,7 @@ Windows Azure offers various ways to host applications, each of these hosting op
 General Consideration
 -----------------
 
-Because the size and service nature of the windows azure platform, you cannot rely on distributed transactions in this environment and therefore you cannot rely on any setup that would require distributed transactions (this includes the msmq transport). For more information on this topic please consult ['understanding transactions in windows azure'](http://docs.particular.net/articles/understanding-transactions-in-windows-azure)
+Because the size and service nature of the windows azure platform, you cannot rely on distributed transactions in this environment and therefore you cannot rely on any setup that would require distributed transactions (this includes the msmq transport). For more information on this topic please consult ['understanding transactions in windows azure'](/nservicebus/understanding-transactions-in-windows-azure)
 
 Windows Azure Virtual Machines
 -----------------
@@ -24,8 +24,8 @@ The main difference, as outlined above, is that you should not rely on any techn
 
 For more information about enabling the azure storage queues or azure servicebus transports, see following documentation:
 
-* [Azure storage queues](http://docs.particular.net/articles/using-azure-storage-queues-as-transport-in-nservicebus)
-* [Azure servicebus](http://docs.particular.net/articles/using-azure-servicebus-as-transport-in-nservicebus)
+* [Azure storage queues](/nservicebus/using-azure-storage-queues-as-transport-in-nservicebus)
+* [Azure servicebus](/nservicebus/using-azure-servicebus-as-transport-in-nservicebus)
 
 For persistence you can rely on any option, including RavenDB, SQL Server installed on a Virtual Machine, Sql Azure or Windows Azure storage services.
 
@@ -45,7 +45,7 @@ The same applies to the persistence infrastructure, you probably want to go for 
 
 To learn more about enabling persistence with windows azure storage, check out:
 
-* [Azure storage persisters](http://docs.particular.net/articles/using-azure-storage-persistence-in-nservicebus)
+* [Azure storage persisters](/nservicebus/using-azure-storage-persistence-in-nservicebus)
 
 
 Cloud Services 
@@ -70,7 +70,7 @@ To integrate these facilities with your endpoint code, we have provided a specif
 
 To learn more about the details of hosting in windows azure cloud services, refer to:
 
-* [Cloud Services](http://docs.particular.net/articles/hosting-nservicebus-in-windows-azure-cloud-services)
+* [Cloud Services](/nservicebus/hosting-nservicebus-in-windows-azure-cloud-services)
 
 
 Cloud Services - Shared hosting
@@ -82,7 +82,7 @@ To support this need to start small, we also provide a shared hosting option, us
 
 If you want to learn more about the shared hosting options, please refer to:
 
-* [Cloud Services - Shared hosting](http://docs.particular.net/articles/shared-hosting-nservicebus-in-windows-azure-cloud-services)
+* [Cloud Services - Shared hosting](/nservicebus/shared-hosting-nservicebus-in-windows-azure-cloud-services)
 
 
 Sample
