@@ -30,7 +30,9 @@ to use it promptly inside visual studio, you can do
 
     PM> Import-Module .\packages\NServiceBus.PowerShell.<4.x.x your version>\lib\net40\NServiceBus.PowerShell.dll
 
-and then use the cmdlet you want. BEWARE: there will less feedback from the script if you run the cmdlet inside Visual Studio. If you get warnings it might be a good idea to run the cmdlet from a real PowerShell Console.
+and then use the cmdlet you want. 
+
+**NOTE** : there will be less feedback from the script if you run the cmdlet inside Visual Studio. If you get warnings it might be a good idea to run the cmdlet from a real PowerShell Console.
 
 Or you can follow the instructions to load them into PowerShell using the Import-Module cmdlet:
 
