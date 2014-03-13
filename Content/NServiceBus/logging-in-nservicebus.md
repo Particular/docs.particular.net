@@ -19,19 +19,19 @@ This makes use of `ConsoleAppender`, which sets the logging threshold to Debug. 
 
 Calling Log4Net from your code is very straightforward. Often you'll set up a single static read-only reference to a logger in your classes, and then use it in all your methods, like this:
 
-    using log4net;
-    namespace YourNamespace
-        {
-        public class YourClass
-        {
-            public void SomeMethod()
-            {
-            //your code
-            Logger.Debug("Something interesting happened.");
-            }
-            private static readonly ILog Logger = LogManager.GetLogger("Name");
-        }
+```
+using log4net;
+  
+public class YourClass
+{
+    public void SomeMethod()
+    {
+        //your code
+        Logger.Debug("Something interesting happened.");
     }
+    static ILog Logger = LogManager.GetLogger("Name");
+}
+```
 
 To make use of the standard Log4Net configuration found in the application configuration file, make the following call before the call to 'NServiceBus.Configure.With()':
 
