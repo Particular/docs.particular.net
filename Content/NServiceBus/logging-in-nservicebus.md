@@ -33,14 +33,14 @@ public class YourClass
 }
 ```
 
-To make use of the standard Log4Net configuration found in the application configuration file, make the following call before the call to 'NServiceBus.Configure.With()':
+To make use of the standard Log4Net configuration found in the application configuration file, make the following call before the call to `NServiceBus.Configure.With()`:
 
     NServiceBus.SetLoggingLibrary.Log4Net(log4net.Config.XmlConfigurator.Configure);
 
 This isn't supported in the Fluent initialization API because NServiceBus frowns on the Log4Net model of mixing developer settings
 (such as the type of appender console, file, etc.) and administrator settings (such as the logging level) in the same place. In its place, NServiceBus suggests more operation-friendly approaches, as described lower down.
 
-Include a Log4Net configuration section in the application configuration file that results in the Debug threshold with the ConsoleAppender, as shown:
+Include a Log4Net configuration section in the application configuration file that results in the Debug threshold with the `ConsoleAppender`, as shown:
 
 ```
 <log4net debug="false">
