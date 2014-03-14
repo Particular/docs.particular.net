@@ -20,5 +20,3 @@ public class TimeoutPersisterReceiverConfigurator : IWantToRunWhenBusStartsAndSt
     }
 }
 ```
-
-Also note that this is using property injection. If your container only supports constructor injection you will need to pass in `TimeoutPersisterReceiver` on the constructor and then configure it in the `Start`.
