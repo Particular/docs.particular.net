@@ -4,7 +4,7 @@ summary: Configure timeout polling interval
 tags: [timeout, polling, interval]
 ---
 
-Since the `TimeoutPersisterReceiver` configure the poling interval on startup you need to change it after the bus has started. To do this implement a `IWantToRunWhenBusStartsAndStops` as follows
+Since the `TimeoutPersisterReceiver` configures the polling interval on startup it needs to be change after the Bus has started. To do this implement a `IWantToRunWhenBusStartsAndStops` as follows
 
 ```C#
 public class TimeoutPersisterReceiverConfigurator : IWantToRunWhenBusStartsAndStops
