@@ -1,7 +1,9 @@
 ---
 title: ServiceInsight Overview
 summary: A short overview on ServiceInsight.
-tags: []
+tags: 
+- ServiceInsight
+
 ---
 
 If you have ever gone though the pain of debugging through a distributed application, you know that it is not exactly a trivial task, so we at Particular Software created ServiceInsight to help you with that job. This application helps with various aspects of debugging and visualizing your NServiceBus based solution. Let's see some of its benefits.
@@ -16,33 +18,33 @@ Visualizing your distributed system
 -----------------------------------
 To see your message payloads in your queues, you don't need other platform-specific tools, because ServiceInsight provides a formatted view of the messages for XML, JSON, and binary messages. Another ServiceInsight feature is that it gives you a visual overview of the messages in your system. You can use various diagrams to see the message flow in your distributed system, see who originated a command or raised an event and what messages were created as a result, by which endpoints.
 
-![Flow Diagram](004_flowdiagram.png)
+![Flow Diagram](images/004_flowdiagram.png)
 
 
 Error handling and retries
 --------------------------
 Error handling is another example of a type of work that is hard to do on a distributed system. Although NServiceBus is designed with this in mind, ServiceInsight builds on top of it and gives you more fine-grained information about the error, exception information, and stack trace. Error messages can be seen clearly in the message flow, to see what type of work flow caused a message to fail. You can also filter the messages in the message list based on their failure status, which is inline with First and Second Level Retries. Once the issue is resolved the ability to retry the message is just a click away. Say goodbye to running scripts or using command prompt tools to retry your messages.
 
-![Message ContextMenu](002_messagemenu.png)
+![Message ContextMenu](images/002_messagemenu.png)
 
 Endpoint interactions
 ---------------------
 ServiceInsight gives you a clear representation of message processing endpoints in your distributed application. The endpoint explorer sets the context for message list display and search operations, meaning you can perform the operation by selecting a specific endpoint or all the available endpoints (by selecting the parent ServiceControl node). The explorer also provides information about the physical location of the endpoint.
 
-![Endpoint Explorer](006_endpointexplorer.png)
+![Endpoint Explorer](images/006_endpointexplorer.png)
 
 
 Message properties
 ------------------
 Even though you might have queue-specific tools for viewing the message payload, some of the NServiceBus messages metadata used by the framework is stored in the message header. ServiceInsight provides easy access to all those properties where you can easily find your information. You can filter and search for a specific property and it looks and behaves like your favorite IDE property grid so you'll feel right at home.
 
-![Message Properties](003_messageproperties.png)
+![Message Properties](images/003_messageproperties.png)
 
 Timing and performance
 ----------------------
 There is a lot of performance-related information in the message header. You can sort all the messages in an endpoint based on the time the messages were sent, critical time, processing time, or delivery time. The sort operation is done on the backend and is not limited to the information displayed on the screen only, but to all the messages passed from an endpoint. This information, combined with Message Type and ID, give you an opportunity to easily locate the messages that have taken too long to process, or if a particular message occasionally takes more time to get delivered.
 
-![Message List And Search Bar](005_messagelist.png)
+![Message List And Search Bar](images/005_messagelist.png)
 
 Search and sort
 ---------------
