@@ -10,7 +10,7 @@ When we built the NServiceBus suite of tools, we carefully considered the integr
 
 To understand, let's see a scenario. Suppose your support team uses ServicePulse to monitor your distributed system for errors. When they encounter an error message, they might want a developer to investigate it further. They can see why from the exception information provided by ServiceInsight by clicking the "Open in ServiceInsight" link and bringing up the particular message that failed.
 
-![ServicePulse Error Messages](007_servicepulseerrormessages.png)
+![ServicePulse Error Messages](images/007_servicepulseerrormessages.png)
 
 Let's see how it works internally and how you can benefit from it, even without installing ServicePulse.
 

@@ -11,7 +11,7 @@ To keep the number of logs minimal and relevant, the Log Window relates mostly t
 
 You can see that all the HTTP communications with ServiceControl are logged; the request being sent, the parameters, and the request/response headers. Also if a request to ServiceControl fails, you can see it in red in the Logs window.
 
-![Log Window](008_logwindow.png)
+![Log Window](images/008_logwindow.png)
 
 The logging options such as Log Level and source of the log are currently not directly configurable from ServiceInsight. However, you can easily log more details, or log entries of other ServiceInsight components such as licensing, application startup, etc.
 
