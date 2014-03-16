@@ -34,7 +34,7 @@ used the default install location)
    * To uninstall the ServiceControl service, from a command line with administrator privileges, run the following command: `NServiceBus.Host.exe -uninstall -serviceName="Particular.ServiceControl"`
    * Re-Install the ServiceControl service by running: 
 
-      `NServiceBus.Host.exe -install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl" -description="Particular Software ServiceControl for NServiceBus (version 1.0.0)"` 
+      `NServiceBus.Host.exe -install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl"` 
    * Start the ServiceControl service by running: `"net start Particular.ServiceControl"`
    * Ensure Particular.ServiceControl windows service has started and is functioning properly (try to access the main HTTP API URI exposed by ServiceControl, e.g. do an HTTP GET on http://localhost:33333/api
 * NOTE: When deploying using a packaging technology, like Windows Azure Cloud Services projects, make sure that the ServiceControl plugins become part of the package before executing the deployement. For example, this can be done by referencing the assemblies in a worker role project and setting "copy local" to true.
