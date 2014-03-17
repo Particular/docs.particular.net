@@ -81,7 +81,7 @@ Installs NServiceBus performance counters on the machine.
 
 Validates that NServiceBus performance counters are correctly installed on the machine.
 
-### Install-NServiceBusLicense
+### Install-NServiceBusLicense (Obsolete as of NServiceBus 4.5)
 
 Installs a NServiceBus license file in HKLM. All endpoints can use this machine wide setting without having to specify the license file either in the bin folder or in the app.config file.
 
@@ -93,11 +93,11 @@ Allows specifying the default error and audit queues. Sets up the error and audi
 
 Shows the default error and audit queues.
 
-### Get-NServiceBusVersion
+### Get-NServiceBusVersion  (Obsolete as of NServiceBus 4.5)
 
 Displays the NServiceBus installed version.
 
-###  Get-NServiceBusMSMQMessage
+###  Get-NServiceBusMSMQMessage  (Obsolete as of NServiceBus 4.5)
 
 Displays all messages in a queue.
 
