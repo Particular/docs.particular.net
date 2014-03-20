@@ -1,7 +1,7 @@
 ---
 title: Samples
 summary: 'Particular Platform Samples'
-tags: []
+tags: [NServiceBus, Samples]
 ---
 <br>
 ![NServiceBus](/images/home/NSB.png)
