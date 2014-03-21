@@ -12,6 +12,9 @@ You configure the destination for message types in `<unicastbusconfig>`, under `
 Add one of the following:
 
 ```XML
+<configSections>
+    <section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
+</configSections>
 <UnicastBusConfig >
   <MessageEndpointMappings>
     <!--To register all message types defined in an assembly -->
