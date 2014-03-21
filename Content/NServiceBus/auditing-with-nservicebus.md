@@ -15,6 +15,9 @@ To turn on auditing in V3 and earlier versions, add the attribute
 `ForwardReceivedMessagesTo` to the `UnicastBusConfig` section of an endpoint's configuration file. In V4 there are a couple of ways to turn on auditing. You can do so in the endpoint configuration but it now has its very own configuration element, as shown:
 
 ```XML
+<configSections>
+    <section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
+</configSections>
 <UnicastBusConfig 
       ForwardReceivedMessagesTo="auditqueue@adminmachine">
   <MessageEndpointMappings>
