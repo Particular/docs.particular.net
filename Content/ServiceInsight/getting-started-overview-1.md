@@ -36,17 +36,19 @@ As you select endpoints the other views within ServiceInsight will respond and s
 ##The Message Window
 Visibility and access to messages details is critical in a distributed NServiceBus system.  The Messages window provides a detailed grid view indicated the status of a message, type, time stamps and service level information.  The list can be filtered based on specific message content.  Searches include all message data, not just the common fields that are displayed.    
 
-This ability to filter and locate is very helpful at design time.  When used in conjunction with ServiceMatrix debugging, ServiceInsight will be launched automatically and will filter the messages to include only your current debug session.
+This ability to filter and locate is very helpful at design time.  When used in conjunction with ServiceMatrix debugging, ServiceInsight will be launched automatically and will filter the messages to include only your current debug session.  Similarly, the ServicePulse monitoring platform provides the ability to open ServiceInsight to a specific message in order to drill in for more detail.
 
-Similarly, the ServicePulse monitoring platform provides the ability to open ServiceInsight to a specific message in order to drill in for more detail.  
+###Timing and performance
+
+There is a lot of performance-related information in the message header. You can sort all the messages in an endpoint based on the time the messages were sent, critical time, processing time, or delivery time. This information, combined with Message Type and ID, give you an opportunity to easily locate the messages that have taken too long to process, or if a particular message occasionally takes more time to get delivered.  
 
 ![Message List View](images/overview-messagedetailwindow.png)
 
 This message view list has a relationship to the other panels in the user interface.  When you select specific messages the related properties window and flow diagram will change to illustrate details of the selected message. 
 ##Endpoint Explorer
-The Endpoint Explorer indicates the connection to the ServiceControl instance providing data to ServiceInsight.  Underneath it the tree-view enumerates the endpoints contained in the system.
+The Endpoint Explorer indicates the connection to the ServiceControl instance providing data to ServiceInsight.  Underneath it the list clearly enumerates the endpoints contained in the system and even which machine they are deployed on.  
 
-![Endpoint Explorer](images/overview-endpointexplorer.png)
+![Endpoint Explorer](images/overview-endpointexplore-machinename.png)
 
 The message list described above is filtered based on your endpoint selection.  If you select a specific endpoint the message list will only list messages handled by that endpoint.   Selecting the root ServiceControl connection and the tree view will expand the list to include all messages.
 
@@ -63,11 +65,15 @@ Each message in NServiceBus contains extensive detail.  As you select messages i
 ![The Message Properties Window](images/overview-messageproperties.png)
 
 ##The Saga View
-Saga can play a critical role in an NServiceBus system.  As coordinators of processes they are started by certain messages and can interact with a variety of additional messages and services.  Once again, ServiceInsight provides a graphical view for sagas that provide an efficient illustration of what is happening.  By clicking on a message in the flow diagram that is handled by a saga, the view is opened.  
+Sagas play a critical role in an NServiceBus system.  As coordinators of processes they are started by certain messages and can interact with a variety of additional messages and services.  Once again, ServiceInsight provides a graphical view for sagas that provide an efficient illustration of what is happening.  By clicking on a message in the flow diagram that is handled by a saga, the view is opened.  
 ![The Saga View](images/overview-sagaview.png)
 
-The saga illustrates not only how the saga was initiated, it illustrates any other messages that were sent or handled.  Detailed message data, time information, and even the details on saga data changes are conveniently visible. 
+The saga illustrates not only how the saga was initiated, it illustrates any other messages that were sent or handled.  Detailed message data, time information, and details on saga data changes are conveniently visible. 
+##Body and Log Views
+Along the bottom of the Flow Diagram you'll notice a few tabs.  In addition to the Saga view reviewed there is a a tab for Body and Logs. 
+###Body View
+If you prefer a raw view of the message data over the message list and properties window, try the Body tab.   It will give you a look directly at the message you have selected.
+![Body Tab ](images/overview-bodyview.png)
 
-
-
+###Log View
 
