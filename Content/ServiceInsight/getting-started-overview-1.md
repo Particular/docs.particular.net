@@ -7,9 +7,9 @@ tags:
 ---
 #Introduction
 
-The [NServiceBus](../NServiceBus/overview.md "NServiceBus Overview") platform delivers all the benefits of a distributed, messaged based, fault tolerant and distributed architecture.  Visualizing and verifying the functionality of such a distributed system can be real challenge.  
+The [NServiceBus](../NServiceBus/overview.md "NServiceBus Overview") platform can provide your system with all the benefits of a distributed, messaged based, fault tolerant and distributed architecture.  Visualizing and verifying the functionality of such a distributed system can be real challenge.  
 
-From design all the way through to production, ServiceInsight lives up to its name by providing powerful insight and information in a concise and user friendly way. 
+From design all the way through to production, ServiceInsight lives up to its name by providing powerful insight and information about the system in a concise and user friendly way. 
 
 Let's review some of the features and benefits...
 
@@ -19,13 +19,13 @@ Let's review some of the features and benefits...
 4.  [Endpoint Explorer](#endpoint-explorer "Endpoint Explorer")
 5.  [Flow Diagram](#flow-diagram "The graphical flow diagram")
 6.  [Message Properties](#message-properties "The Message Properties Window")
-7.  Saga View
-8.  Body and Log Views
-9.  Errors and Retries
-10.  Next Steps
+7.  [Saga View](#saga-view "The Saga View")
+8.  [Body and Log Views](#body-and-log-views "The Body and Log Tabs")
+9.  [Errors and Retries](#errors-and-retries "Visualizing and Dealing with Errors")
+10. [Next Steps](#next-steps "Next Steps")
 
 ##The NServiceBus Platform
-ServiceInsight is just one of the tools created to complement NServiceBus from design all the way through IT operations.  ServiceMatrix will accelerate the design of your system.  The audit and error aggregation power of ServiceControl is leveraged by ServicePulse for operational monitoring and alerting. ServiceInsight provides the detailed view of messages in their system context. From endpoints to sagas, ServiceInsight will show the relationships and data.  
+ServiceInsight is just one of the tools created to complement NServiceBus from design all the way through IT operations.  [ServiceMatrix](../ServiceMatrix/index.md "ServiceMatrix") will accelerate the design of your system.  The audit and error aggregation power of [ServiceControl](../ServiceControl/index.md "ServiceControl") is leveraged by [ServicePulse](../ServicePulse/index.md "ServicePulse") for operational monitoring and alerting. ServiceInsight provides the detailed view of messages in their system context. From endpoints to sagas, ServiceInsight will show the relationships and data.  
 
 #Visualizing the System
 The ServiceInsight user interface provides multiple views of your distributed system.  Using information collected in ServiceControl, ServiceInsight is able enumerate your endpoints and provide detailed message and relationship data.  Platform specific tools are no longer needed thanks to the formatted view of XML, JSON and binary messages.   
