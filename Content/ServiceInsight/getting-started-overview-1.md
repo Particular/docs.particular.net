@@ -70,10 +70,11 @@ Sagas play a critical role in an NServiceBus system.  As coordinators of process
 
 The saga illustrates not only how the saga was initiated, it illustrates any other messages that were sent or handled.  Detailed message data, time information, and details on saga data changes are conveniently visible. 
 ##Body and Log Views
-Along the bottom of the Flow Diagram you'll notice a few tabs.  In addition to the Saga view reviewed there is a a tab for Body and Logs. 
+Along the bottom edge of the Flow Diagram there is a a tab for Body and Logs. 
 ###Body View
-If you prefer a raw view of the message data over the message list and properties window, try the Body tab.   It will give you a look directly at the message you have selected.
+Sometimes its nice just to have a raw view of the message data.  WIth ServiceInsight there is no need to use the MSMQ tools provided by Windows. ServiceInsight provides this view with the Body tab of the flow diagram.   It will give you a look directly at the message you have selected.  You will get both an XML and HEX view of the body.  
 ![Body Tab ](images/overview-bodyview.png)
-
 ###Log View
-
+ServiceInsight leverages the ServiceControl API to retrieve information.  The Log tab of the Flow Diagram window displays details of the interactions as ServiceInsight polls ServiceControl for more data. 
+![Log View Tab](images/overview-logview.png)
+##Errors and Retries
