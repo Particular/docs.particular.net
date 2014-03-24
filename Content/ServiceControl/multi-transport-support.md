@@ -13,9 +13,10 @@ tags:
    * *RabbitMQ*: [NServiceBus.RabbitMQ](https://www.nuget.org/api/v2/package/NServiceBus.RabbitMQ) and [RabbitMQ.Client](https://www.nuget.org/api/v2/package/RabbitMQ.Client)
    * *SQL Server*: [NServiceBus.SqlServer](https://www.nuget.org/api/v2/package/NServiceBus.SqlServer)
    * *Windows Azure Storage Queues*: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/5.1.1) and [WindowsAzure.Storage](https://www.nuget.org/api/v2/package/WindowsAzure.Storage/2.1.0)
-   * [Windows Azure ServiceBus](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/) 
+   * *Windows Azure ServiceBus*: [NServiceBus.Azure.Transports.WindowsAzureServiceBus](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureServiceBus/5.1.1) and [WindowsAzure.ServiceBus](https://www.nuget.org/api/v2/package/WindowsAzure.ServiceBus/2.2.0)
 
 * The NuGet packages you just downloaded are in fact zip files. Rename the nupkg files to have a zip extension, and take the dlls from the `/lib` folder and put them in the ServiceControl bin folder: (`"C:\Program Files (x86)\Particular Software\ServiceControl"`). NOTE: Some nuget packages may have several folders under `/lib` - make sure to take the dlls from only one of them, preferrably the one targetting the latest .NET framework (e.g. `/lib/net40`).
+* Make sure all assemblies copied are unblocked, otherwise the .net runtime will refuse to load them.
 * If there are conflicts between assembly versions used by ServiceControl and the transport, you'll need to add a binding redirect in the ServiceControl.dll.config file. This is the case with Microsoft.WindowsAzure.Storage for example:
 
 ```
