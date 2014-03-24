@@ -9,11 +9,13 @@ tags:
 
 ### Configuring ServiceControl to use non-MSMQ Transports:
 
-* Download this NuGet for the relevant transport including any dependencies and put the dlls in the ServiceControl bin folder: ("C:\Program Files (x86)\Particular Software\ServiceControl")
-   * [RabbitMQ](https://www.nuget.org/packages/NServiceBus.RabbitMQ/)
-   * [SQL Server](https://www.nuget.org/packages/NServiceBus.SqlServer/)
+* First, download the NuGet package for the relevant transport including any dependencies.
+   * *RabbitMQ*: [NServiceBus.RabbitMQ](https://www.nuget.org/api/v2/package/NServiceBus.RabbitMQ) and [RabbitMQ.Client](https://www.nuget.org/api/v2/package/RabbitMQ.Client)
+   * *SQL Server*: [NServiceBus.SqlServer](https://www.nuget.org/api/v2/package/NServiceBus.SqlServer)
    * [Windows Azure Storage Queues](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/)
    * [Windows Azure ServiceBus](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/) 
+
+* The NuGet packages you just downloaded are in fact zip files. Rename the nupkg files to have a zip extension, and take the dlls from the `/lib` folder and put them in the ServiceControl bin folder: (`"C:\Program Files (x86)\Particular Software\ServiceControl"`). NOTE: Some nuget packages may have several folders under `/lib` - make sure to take the dlls from only one of them, preferrably the one targetting the latest .NET framework (e.g. `/lib/net40`).   
     
 * Stop the ServiceControl service (from an admin cmd line, run `net stop Particular.ServiceControl`)
 
