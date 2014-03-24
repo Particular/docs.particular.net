@@ -7,7 +7,7 @@ tags:
 ---
 #Introduction
 
-The [NServiceBus](../NServiceBus/overview.md "NServiceBus Overview") platform can provide your system with all the benefits of a distributed, messaged based, fault tolerant and distributed architecture.  Visualizing and verifying the functionality of such a distributed system can be real challenge.  
+The [NServiceBus](../NServiceBus/overview.md "NServiceBus Overview") platform can provide your system with all the benefits of a distributed, messaged based, fault tolerant, and distributed architecture.  Visualizing and verifying the functionality of such a distributed system can be real challenge.  
 
 From design all the way through to production, ServiceInsight lives up to its name by providing powerful insight and information about the system in a concise and user friendly way. 
 
@@ -92,3 +92,5 @@ In the flow diagram highlights and error in red and provides more details with c
 
 After the retry features of NServiceBus have completed, the message goes to an error queue.  Instead of the return to sender console application, ServiceInsight makes retrying a message extremely easy.   Clicking `Retry Message` will send the message back to the queue it originally came from. 
 
+##Next Steps
+ServiceInsight is the way to visualize your NServiceBus system and get a detailed view of how it works.  Take some time to learn about and explore the other framework tools: [ServiceMatrix](../ServiceMatrix/index.md "ServiceMatrix"), [ServiceControl](../ServiceControl/index.md "ServiceControl") and  [ServicePulse](../ServicePulse/index.md "ServicePulse") 
