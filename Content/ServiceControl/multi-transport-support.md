@@ -12,8 +12,8 @@ tags:
 * Download this NuGet for the relevant transport including any dependencies and put the dlls in the ServiceControl bin folder: ("C:\Program Files (x86)\Particular Software\ServiceControl")
    * [RabbitMQ](https://www.nuget.org/packages/NServiceBus.RabbitMQ/)
    * [SQL Server](https://www.nuget.org/packages/NServiceBus.SqlServer/)
-   * [Windows Azure Storage Queues](https://www.nuget.org/packages/NServiceBus.Azure/)
-   * [Windows Azure ServiceBus](https://www.nuget.org/packages/NServiceBus.Azure/) 
+   * [Windows Azure Storage Queues](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/)
+   * [Windows Azure ServiceBus](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/) 
     
 * Stop the ServiceControl service (from an admin cmd line, run `net stop Particular.ServiceControl`)
 used the default install location)
