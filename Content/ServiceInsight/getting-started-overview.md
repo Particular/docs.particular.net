@@ -19,7 +19,7 @@ Let's review some of the features and benefits...
 4.  [Endpoint Explorer](#endpoint-explorer "Endpoint Explorer")
 5.  [Flow Diagram](#flow-diagram "The graphical flow diagram")
 6.  [Message Properties](#message-properties "The Message Properties Window")
-7.  [Saga View](#saga-view "The Saga View")
+7.  [Saga View](#the-saga-view "The Saga View")
 8.  [Body and Log Views](#body-and-log-views "The Body and Log Tabs")
 9.  [Errors and Retries](#errors-and-retries "Visualizing and Dealing with Errors")
 10. [Next Steps](#next-steps "Next Steps")
@@ -82,7 +82,7 @@ Sometimes it's nice just to have a raw view of the message data.  With ServiceIn
 ServiceInsight leverages the ServiceControl API to retrieve information.  The Log tab of the Flow Diagram window displays details of the interactions as ServiceInsight polls ServiceControl for more data. 
 ![Log View Tab](images/overview-logview.png)
 ##Errors and Retries
-The convenient visibility ServiceInsight provides is especially useful when things go wrong.  NServiceBus will do its part to provide durability and retry.  But when intervention is required, you no longer need to manually collate log files or get access to remote servers to research an error.  The views within ServiceInsight will illustrate messages with errors and bring the detailed error information right to you.
+The convenient visibility ServiceInsight provides is especially useful when things go wrong.  NServiceBus will do its part to provide durability and retry.  In cases where intervention is required, you no longer need to manually collate log files or get access to remote servers to research an error.  The views within ServiceInsight will illustrate messages with errors and bring the detailed error information right to you.
 ###Status in the Message List
 The status of an errant message is illustrate in the message window.
 
