@@ -22,6 +22,7 @@ From design through to production, ServiceInsight provides concise and user-frie
 9.  [Errors and Retries](#errors-and-retries "Visualizing and Dealing with Errors")
 10. [Next Steps](#next-steps "Next Steps")
 
+##The NServiceBus Platform
 The NServiceBus Platform includes these tools:
 * [ServiceMatrix](../ServiceMatrix/index.md "ServiceMatrix") accelerates the design of your system.  
 * The audit and error aggregation power of [ServiceControl](../ServiceControl/index.md "ServiceControl") is leveraged by [ServicePulse](../ServicePulse/index.md "ServicePulse") for operational monitoring and alerting. 
