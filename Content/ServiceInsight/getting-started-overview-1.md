@@ -28,15 +28,17 @@ Let's review some of the features and benefits...
 ServiceInsight is just one of the tools created to complement NServiceBus from design all the way through IT operations.  [ServiceMatrix](../ServiceMatrix/index.md "ServiceMatrix") will accelerate the design of your system.  The audit and error aggregation power of [ServiceControl](../ServiceControl/index.md "ServiceControl") is leveraged by [ServicePulse](../ServicePulse/index.md "ServicePulse") for operational monitoring and alerting. ServiceInsight provides the detailed view of messages in their system context. From endpoints to sagas, ServiceInsight will show the relationships and data.  
 
 #Visualizing the System
-The ServiceInsight user interface provides multiple views of your distributed system.  Using information collected in ServiceControl, ServiceInsight is able enumerate your endpoints and provide detailed message and relationship data.  Platform specific tools are no longer needed thanks to the formatted view of XML, JSON and binary messages.   
+The ServiceInsight user interface provides multiple views of your distributed system.  Using information collected in ServiceControl, ServiceInsight is able enumerate your endpoints and provide detailed message and relationship data.  Platform specific tools are no longer needed thanks to the formatted view of XML, JSON and binary messages.  
 
 A detailed visual overview of the messages collated by conversation is provided in the flow diagram.  Using this view you can see the flow in your system and which endpoints raised specific events and sent or handled messages.  The Saga view provides an singular view into the start of a saga, the timeouts and interactions. 
 
-As you select endpoints the other views within ServiceInsight will respond and show only messages pertaining to that endpoint. 
+As you select endpoints the other views within ServiceInsight will respond and filter the information to show only messages pertaining to that endpoint. 
 ##The Message Window
-Visibility and access to messages details is critical in a distributed NServiceBus system.  The Messages window provides a detailed grid view indicated the status of a message, type, time stamps and service level information.  The list can be filtered based on specific message content.  Searches include all message data, not just the common fields that are displayed.    
+Visibility and access to messages details is critical in a distributed NServiceBus system.  The Messages window provides a detailed grid view indicated the status of a message, type, time stamps and service level information.  The list can be filtered based on specific message content.  These searches can include all message data, not just the common fields that are displayed.    
 
 This ability to filter and locate is very helpful at design time.  When used in conjunction with ServiceMatrix debugging, ServiceInsight will be launched automatically and will filter the messages to include only your current debug session.  Similarly, the ServicePulse monitoring platform provides the ability to open ServiceInsight to a specific message in order to drill in for more detail.
+
+An auto-refresh feature keeps the information in ServiceInsight automatically and efficiently refreshed.  This enables a nearly real time information in all of the views provided. 
 
 ###Timing and performance
 
@@ -78,3 +80,15 @@ Sometimes its nice just to have a raw view of the message data.  WIth ServiceIns
 ServiceInsight leverages the ServiceControl API to retrieve information.  The Log tab of the Flow Diagram window displays details of the interactions as ServiceInsight polls ServiceControl for more data. 
 ![Log View Tab](images/overview-logview.png)
 ##Errors and Retries
+Having the visibility ServiceInsight provides is especially useful when things go wrong.  NServiceBus will do it's part to provide durability and retry.  But when intervention is required, you no longer need to manually collate log files or get access to remote servers to research an error.  Thanks to the aggregated error information of ServiceControl, the views within ServiceInsight will illustrate messages will errors and bring detailed information right to you.
+###Status in the Message List
+The status of an errant message is illustrate in the message window.
+
+![An Error in the Message Window](images/overview-messagewindowerror.png)
+###The Flow Diagram
+In the flow diagram highlights and error in red and provides more details with convenient access to the stack trace.
+
+![Error in the flow diagram](images/overview-flowdiagramwitherror.png)
+
+After the retry features of NServiceBus have completed, the message goes to an error queue.  Instead of the return to sender console application, ServiceInsight makes retrying a message extremely easy.   Clicking `Retry Message` will send the message back to the queue it originally came from. 
+
