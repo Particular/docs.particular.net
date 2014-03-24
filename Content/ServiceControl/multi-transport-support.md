@@ -16,7 +16,7 @@ tags:
    * [Windows Azure ServiceBus](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/) 
     
 * Stop the ServiceControl service (from an admin cmd line, run `net stop Particular.ServiceControl`)
-used the default install location)
+
 * Open ServiceControl.dll.config in notepad and locate:    
 
 ```   
