@@ -36,15 +36,14 @@ As you select endpoints the other views within ServiceInsight will respond and f
 ##The Message Window
 Visibility and access to messages details is critical in a distributed NServiceBus system.  The Messages window provides a detailed grid view indicated the status of a message, type, time stamps and service level information.  The list can be filtered based on specific message content.  These searches can include all message data, not just the common fields that are displayed.    
 
+![Message List View](images/overview-messagedetailwindow.png)
+
 This ability to filter and locate is very helpful at design time.  When used in conjunction with ServiceMatrix debugging, ServiceInsight will be launched automatically and will filter the messages to include only your current debug session.  Similarly, the ServicePulse monitoring platform provides the ability to open ServiceInsight to a specific message in order to drill in for more detail.
 
 An auto-refresh feature keeps the information in ServiceInsight automatically and efficiently refreshed.  This delivers nearly real time information to all of the views provided. 
 
 ###Timing and performance
-
 There is a lot of performance-related information in the message header. You can sort all the messages in an endpoint based on the time the messages were sent, critical time, processing time, or delivery time. This information, combined with Message Type and ID, give you an opportunity to easily locate the messages that have taken too long to process, or if a particular message occasionally takes more time to get delivered.  
-
-![Message List View](images/overview-messagedetailwindow.png)
 
 This message view list has a relationship to the other panels in the user interface.  When you select specific messages the related properties window and flow diagram will change to illustrate details of the selected message. 
 ##Endpoint Explorer
