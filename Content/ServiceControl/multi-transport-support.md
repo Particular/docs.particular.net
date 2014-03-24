@@ -33,6 +33,7 @@ tags:
 * Update the "Fully qualified type name of your transport here" text above with the type for your transport. Eg for RabbitMQ it should be `NServiceBus.RabbitMQ, NServiceBus.Transports.RabbitMQ`
 * Save ServiceControl.dll.config
 * The necessary queues for ServiceControl in the desired transport need to be created. This can be done by uninstalling and re-installing the ServiceControl service.
+   * Navigate to where ServiceControl was installed (default is `"C:\Program Files (x86)\Particular Software\ServiceControl"`)
    * To uninstall the ServiceControl service, from a command line with administrator privileges, run the following command: `NServiceBus.Host.exe -uninstall -serviceName="Particular.ServiceControl"`
    * Re-Install the ServiceControl service by running: 
 
