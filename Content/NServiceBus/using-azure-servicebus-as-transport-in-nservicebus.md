@@ -4,15 +4,15 @@ summary: NServiceBus can use Windows Azure Service Bus to take advantage of its 
 tags: []
 ---
 
-In some environments such as very large cloud networks or hybrid network scenarios, it's not possible or recommended to rely heavily on the DTC, and thus on MSMQ, to ensure transactional behavior and retry in case of failures. A good alternative to MSMQ in this case is to use Windows Azure Servicebus instead.
+In some environments such as very large cloud networks or hybrid network scenarios, it is not possible or recommended to rely heavily on the DTC, and thus on MSMQ, to ensure transactional behavior and retry in case of failures. A good alternative to MSMQ in this case is to use Windows Azure Service Bus instead.
 
 Windows Azure Service Bus is messaging infrastructure that sits between applications, allowing them to exchange messages in a loosely coupled way for improved scale and resiliency. Service Bus Queues offer simple first in, first out guaranteed message delivery and supports a range of standard protocols (REST, AMQP, WS*) and APIs to put/pull messages on/off a queue. Service Bus Topics deliver messages to multiple subscriptions and easily fan out message delivery at scale to downstream systems.
  
 - The main advantage of this service is that it offers a highly reliable and (relatively) low latency remote messaging infrastructure. A single queue message can be up to 256 KB in size, and a queue can contain many messages, up to 5GB in total. Furthermore it is capable of emulating local transactions using its queue peek-lock mechanism and has many built-in features that you (and NServiceBus) can take advantage of, such as message deduplication and deferred messages.
 - The main disadvantage of this service is its dependency on TCP (if you want low latency), which may require you to open some outbound ports on your firewall. Additionally, the price may be steep, depending on your scenario ($1 per million messages).
 
-To enable the transport
------------------------
+Enabling the Transport
+----------------------
 
 First, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a NuGet package reference to the  `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package to your project.
 
@@ -30,7 +30,7 @@ Alternatively, when using one of the NServiceBus provided hosting processes, you
 	{
 	}
 
-Setting the connection string
+Setting the Connection String
 -----------------------------
 
 The default way to set the connection string is using the .net provided connectionStrings configuration section in app.config or web.config, with the name `NServicebus\Transport`:
@@ -39,8 +39,8 @@ The default way to set the connection string is using the .net provided connecti
 	   <add name="NServiceBus/Transport" connectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
 	</connectionStrings> 
 
-Detailed configuration
-----------------------
+Configuring in Detail
+-----------------------
 
 If you need fine grained control on how the Azure Service Bus transport behaves, you can override the default settings by adding a configuration section called `AzureServiceBusQueueConfig` to your web.config or app.config files. For example:
 
