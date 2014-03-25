@@ -41,6 +41,7 @@ For example, the following command line (with the appropriate adjustments to you
 Netsh http add urlacl  url=http://*:33333/  user=everyone  listen=yes
 ```
 
+NOTE: the Above sample illustrates simplified and default non-secure settings. Security and authentication restrictions need to be applied based on specific usage restrictions and policies. 
 
 ### Update ServicePulse configuration to ServiceControl custom hostname
 
