@@ -1,6 +1,6 @@
 ---
 title: How to directly access ServiceControl data via RavenDB studio
-summary: Explains how to condigure ServiceControl to allow the direct access to the Embedded RavenDB instance
+summary: Explains how to configure ServiceControl to allow the direct access to the Embedded RavenDB instance
 tags:
 - ServiceControl
 - Configuration
@@ -10,18 +10,18 @@ ServiceControl stores its data in a RavenDB Embedded instance, by default the Ra
 
 To enable ravenDB direct access there are 2 options:
 
-* Modify the ServiceControl configration file locate din the installation directory adding the following setting:
+* Modify the ServiceControl configration file, located in the installation directory, adding the following setting:
 
 	`<add key="ServiceControl/ExposeRavenDB" value="true" />`
 	
 * Edit the Registry adding the following Key:
  
-	```
+	`
 	[HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceControl]
 	"ExposeRavenDB"="true"
-	```
+	`
 
-After restarting te ServiceControl service the RavenDB studio can be accessed locally at the following endoint:
+After restarting the ServiceControl service the RavenDB studio can be accessed locally at the following endoint:
 
 `http://localhost:33333/storage`
 

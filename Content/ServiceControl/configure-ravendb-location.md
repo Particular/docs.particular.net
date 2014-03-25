@@ -10,7 +10,7 @@ ServiceControl stores its own data in a RavenDB Embedded instance that by defaul
 
 `%SystemDrive\ProgramData\Particular\ServiceControl\localhost-33333`
 
-In lot of scenario is desiderable to use a different location to store monitoring data.
+In many scenarios is desiderable to use a different location to store monitoring data.
 
 ### Set a different location for RavenDB Embedded
 
@@ -20,9 +20,9 @@ In order to configure ServiceControl to store data in a different location right
 * locate the ServiceControl.dll.config configuration file in the ServiceControl installation folder;
 * edit the configuration file to add a new setting:
 
-	```xml
+	`xml
 	<add key="ServiceControl/DbPath" value="X:\your\new\path" />
-	```
+	`
 * start the ServiceControl service;
 
 ### Move an existing installation to a different location
