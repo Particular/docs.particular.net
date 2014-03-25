@@ -29,7 +29,6 @@ The following example configures ServiceControl to listen on http://sc.myspecial
 
 **NOTE:** Both the ```ServiceControl/Hostname``` and the ```ServiceControl/Port``` must be set, even if the value of one remains unchanged.
 
-
 ### Update URLACL settings
 
 1. After modifying the config file, update the URLACL configurations accordingly. 
@@ -37,9 +36,15 @@ The following example configures ServiceControl to listen on http://sc.myspecial
 
 For example, the following command line (with the appropriate adjustments to your hostname and port number) adds the relevant URLACL settting:  
 
-```
-Netsh http add urlacl  url=http://*:33333/  user=everyone  listen=yes
-```
+`Netsh http add urlacl  url=http://*:33333/  user=everyone  listen=yes`
+
+### Configure ServiceControl to use a Virtual Directory
+
+It is also possible to customize ServiceControl to expose the API endpoint under a custom virtual directory at the configured URL. To customize the Virtual Directory a new setting must be added to the ServiceControl configuration file:
+
+`<add key="ServiceControl/VirtualDirectory" value="MyFolder" />`
+
+After restarting the ServiceControl service the API can be invoked issuing a request to the following URL: `http://localhost:33333/MyFolder/API/`
 
 NOTE: the Above sample illustrates simplified and default non-secure settings. Security and authentication restrictions need to be applied based on specific usage restrictions and policies. 
 
