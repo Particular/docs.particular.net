@@ -1,5 +1,5 @@
 ---
-title: Hosting NServiceBus in Windows Azure
+title: Hosting NServiceBus in Windows Azure Cloudservices
 summary: Using Windows Azure Cloudservices to host NServiceBus.
 tags: []
 ---
