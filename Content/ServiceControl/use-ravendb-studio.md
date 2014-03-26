@@ -12,7 +12,9 @@ There are two ways to enable direct access to RavenDB:
 
 * Modify the ServiceControl configuration file, located in the installation directory, by adding the following setting:
 
-    <add key="ServiceControl/ExposeRavenDB" value="true" />
+```
+<add key="ServiceControl/ExposeRavenDB" value="true" />
+```
 	
 * Edit the registry by adding the following key:
  
