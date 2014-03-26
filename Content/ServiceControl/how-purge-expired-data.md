@@ -18,6 +18,6 @@ It is possible to control the above behavior using the following settings:
 To change the ServiceControl behavior. add the above settings to the ServiceControl configuration file, located in the installation directory, e.g.,
 
 ```xml 
-	<add key="ExpirationProcessTimerInSeconds" value="new-integer-value" />
-	<add key="HoursToKeepMessagesBeforeExpiring" value="new-integer-value" />
+<add key="ExpirationProcessTimerInSeconds" value="new-integer-value" />
+<add key="HoursToKeepMessagesBeforeExpiring" value="new-integer-value" />
 ```
