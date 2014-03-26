@@ -20,9 +20,10 @@ To configure ServiceControl to store data in a different location immediately af
 2. Locate the ServiceControl.dll.config configuration file in the ServiceControl installation folder.
 3. Edit the configuration file to add a new setting:
 
-	`xml
-	<add key="ServiceControl/DbPath" value="X:\your\new\path" />
-	`
+```xml
+<add key="ServiceControl/DbPath" value="X:\your\new\path" />
+```
+
 4. Start the ServiceControl service.
 
 ### Moving an Existing Installation to a Different Location
