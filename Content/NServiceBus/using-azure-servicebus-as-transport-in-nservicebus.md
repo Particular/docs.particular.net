@@ -60,8 +60,8 @@ Using this configuration setting you can change the following values. NOTE: Most
 - `EnableBatchedOperations`: Specifies whether batching is enabled. Defaults to true.
 - `BatchSize`: The number of messages that the transport tries to pull at once from the queue. Defaults to 1000. 
 - `MaxDeliveryCount`: Specifies the number of times a message can be delivered before being put on the dead letter queue. Defaults to 6 (so the NServiceBus first and second level retry mechanism gets preference).
-- `MaxSizeInMegabytes`: Specifies the size in MB. Defaults to 1024 (1GB). Allowed values are 1, 2, 3, 4, 5.
-- `RequiresDuplicateDetection`: Specifies whether exactly one delivery is enabled. Defaults to false.
+- `MaxSizeInMegabytes`: Specifies the size in MB. Defaults to 1024 (1GB). Allowed values are 1024, 2048, 3072, 4096 5120.
+- `RequiresDuplicateDetection`: Specifies whether exactly once delivery is enabled. Defaults to false, meaning that the same message can arrive multiple times.
 - `DuplicateDetectionHistoryTimeWindow`:  Specifies the amount of time in milliseconds that the queue should perform duplicate detection. Defaults to 60000 ms (1 minute).
 - `RequiresSession`: Specifies whether sessions are required. Defaults to false (NServiceBus makes no use of this feature).
 - `DefaultMessageTimeToLive`: Specifies the time that a message can stay in the queue without being delivered. Defaults to int64.MaxValue, which is roughly 10.000 days.
