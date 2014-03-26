@@ -239,7 +239,13 @@
         "Articles": [
           "ServiceControl/multi-transport-support",
           "ServiceControl/setting-custom-hostname",
-          "ServiceControl/troubleshooting"
+          "ServiceControl/troubleshooting",
+	  "ServiceControl/configure-ravendb-location",
+	  "ServiceControl/customize-name-and-description",
+	  "ServiceControl/how-purge-expired-data",
+	  "ServiceControl/setting-custom-hostname",
+	  "ServiceControl/setting-custom-log-location",
+	  "ServiceControl/use-ravendb-studio",
         ]
       }
     ]
