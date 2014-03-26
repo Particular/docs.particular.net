@@ -157,3 +157,14 @@ The connection string value should be set according to the selected Windows Azur
 
 **NOTE**: Setting the connection string in the application configuration files (web.config or app.config) is overridden by any settings placed in the service configuration file (ServiceConfiguration.cscfg) if one exists. This allows a cloud hosting scenario to override an on-premise deployment scenario, with minimal changes to the configuration, while allowing easy updates to the deployment configuration through the service configuration files only, with no need to update the applications configuration files.
 
+Learn more
+----------------
+
+More in depth documentation can be found in the following documents:
+
+-   [Hosting NServiceBus in Windows Azure](/nservicebus/hosting-nservicebus-in-windows-azure)
+-   [Hosting NServiceBus in Windows Azure Cloud Services](/nservicebus/hosting-nservicebus-in-windows-azure-cloud-services)
+-   [Using Azure ServiceBus as a transport in NServiceBus](/nservicebus/using-azure-servicebus-as-transport-in-nservicebus)
+-   [Using Azure Storage Queues as a transport in NServiceBus](/nservicebus/using-azure-storage-queues-as-transport-in-nservicebus)
+-   [Using Azure Storage Persistence in NServiceBus](/nservicebus/using-azure-storage-persistence-in-nservicebus)
+
