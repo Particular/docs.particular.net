@@ -1,28 +1,28 @@
 ---
-title: How to directly access ServiceControl data via RavenDB studio
-summary: Explains how to configure ServiceControl to allow the direct access to the Embedded RavenDB instance
+title: How to Directly Access ServiceControl Data via RavenDB Studio
+summary: How to configure ServiceControl to allow direct access to the embedded RavenDB instance.
 tags:
 - ServiceControl
 - Configuration
 - RavenDB
 ---
-ServiceControl stores its data in a RavenDB Embedded instance, by default the RavenDB instance is accessible only by the ServiceControl service, if for any reason, it is required to directly access the RavenDB instance ServiceControl can be configured to expose the RavenDB studio.
+ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If direct access to the RavenDB instance is required, ServiceControl can be configured to expose the RavenDB studio.
 
-To enable ravenDB direct access there are 2 options:
+There are two ways to enable direct access to RavenDB:
 
-* Modify the ServiceControl configration file, located in the installation directory, adding the following setting:
+* Modify the ServiceControl configuration file, located in the installation directory, by adding the following setting:
 
 	`<add key="ServiceControl/ExposeRavenDB" value="true" />`
 	
-* Edit the Registry adding the following Key:
+* Edit the registry by adding the following key:
  
 	`
 	[HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceControl]
 	"ExposeRavenDB"="true"
 	`
 
-After restarting the ServiceControl service the RavenDB studio can be accessed locally at the following endoint:
+After restarting the ServiceControl service, you can access the RavenDB studio locally at the following endpoint:
 
 `http://localhost:33333/storage`
 
-*** note: The RavenDB studio can be accessed from localhost regardless of hostname setting ***
+**NOTE:** The RavenDB studio can be accessed from localhost regardless of the hostname setting.
