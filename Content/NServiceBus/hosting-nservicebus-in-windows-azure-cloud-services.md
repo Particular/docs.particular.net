@@ -1,6 +1,6 @@
 ---
-title: Hosting NServiceBus in Windows Azure Cloudservices
-summary: Using Windows Azure Cloudservices to host NServiceBus.
+title: Hosting NServiceBus in Windows Azure Cloud Services
+summary: Using Windows Azure Cloud Services to host NServiceBus.
 tags: []
 ---
 
@@ -84,7 +84,7 @@ You can then override this setting in your app.config file, by specifying this c
 
 When hosting in a windows azure cloud service, you can override this setting again in the service configuration (.cscfg) file. 
 
-First you need to define the setting in the service definition file (.csdef) and then specify the value for every cloud service deployment you have in your cloudservices project.
+First you need to define the setting in the service definition file (.csdef) and then specify the value for every cloud service deployment you have in your Cloud Services project.
 
 `.csdef`
 
