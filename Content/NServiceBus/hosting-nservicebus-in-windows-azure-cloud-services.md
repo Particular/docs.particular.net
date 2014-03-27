@@ -1,7 +1,9 @@
 ---
 title: Hosting NServiceBus in Windows Azure Cloud Services
 summary: Using Windows Azure Cloud Services to host NServiceBus.
-tags: []
+tags: 
+- Windows Azure
+- Cloud
 ---
 
 The Windows Azure Platform and NServiceBus make a perfect fit. On the one hand the azure platform offers us the scalable and flexible platform that we are looking for in our designs, on the other hand NServiceBus makes development on this highly distributed environment a breeze.
