@@ -41,7 +41,7 @@ Build NServiceBus options
 -------------------------
 
 You can build NServiceBus by either typing .\\build.ps1 in a PowerShell command line or by executing build.bat from the command line. Both files executes default.ps1, which is a PowerShell script file that builds NServiceBus. Default.ps1 is based on the
-[psake](http://github.com/psake/psake) build automation tool.
+[psake](https://github.com/psake/psake) build automation tool.
 
 Logical entry points
 --------------------
