@@ -2,7 +2,7 @@
 title: Getting Started - Creating a New Project with ServiceMatrix v1.0
 summary: A step-by-step guide to creating NServiceBus projects using ServiceMatrix, the Visual Studio add-in for NServiceBus
 tags:
-- ServiceMatrix
+- ServiceMatrix 1.0
 - Visual Studio 2010
 - Visual Studio
 ---
