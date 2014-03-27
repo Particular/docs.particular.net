@@ -43,7 +43,7 @@ If you already downloaded the latest release and just want to an update, use thi
 Downloading NServiceBus latest build
 ------------------------------------
 
-The NServiceBus latest build can be downloaded from [NServiceBus builds server](http://builds.nservicebus.com/guestAuth/app/nuget/v1/FeedService.svc). You can add this package source to your list of available package sources from within Visual Studio:
+The NServiceBus latest build can be downloaded from NServiceBus builds server `http://builds.nservicebus.com/guestAuth/app/nuget/v1/FeedService.svc`. You can add this package source to your list of available package sources from within Visual Studio:
 
 `Tools > Library Package Manager > Package Manager Settings`, under 'Package Manager' choose 'Package Sources'. Type a name and type the URL in the source text box, and click 'Add'. This is how the package sources look:
 
