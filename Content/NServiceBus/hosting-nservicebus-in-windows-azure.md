@@ -1,6 +1,6 @@
 ---
 title: Hosting NServiceBus in Windows Azure
-summary: Using Windows Azure Cloud Services, Websites and virtual machines to host NServiceBus.
+summary: Overview on using Windows Azure Cloud Services, Websites and virtual machines to host NServiceBus, with links to detailed articles
 tags: 
 - Windows Azure
 - Cloud
