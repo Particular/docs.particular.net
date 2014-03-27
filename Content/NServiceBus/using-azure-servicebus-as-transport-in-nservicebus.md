@@ -1,7 +1,9 @@
 ---
 title: Using Azure Service Bus as Transport in NServiceBus
 summary: NServiceBus can use Windows Azure Service Bus to take advantage of its peek-lock mechanism in environments where one cannot rely on the DTC.
-tags: []
+tags: 
+- Windows Azure
+- Cloud
 ---
 
 In some environments such as very large cloud networks or hybrid network scenarios, it is not possible or recommended to rely heavily on the DTC, and thus on MSMQ, to ensure transactional behavior and retry in case of failures. A good alternative to MSMQ in this case is to use Windows Azure Service Bus instead.
