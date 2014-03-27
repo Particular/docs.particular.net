@@ -16,7 +16,7 @@ Let's see how it works internally and how you can benefit from it, even without 
 
 When you click the link in ServicePulse, it opens a link in your browser, like this:
 
-    ```si://localhost:33333/api?search=487b5055-11bb-4a70-a4fd-a2c00125aa43```
+    si://localhost:33333/api?search=487b5055-11bb-4a70-a4fd-a2c00125aa43
 
 This is the URI to which ServiceInsight listens. It launches ServiceInsight to do the following:
 
