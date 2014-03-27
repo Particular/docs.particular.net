@@ -45,62 +45,62 @@ Here are some usage samples:
 NServiceBus v3.x in ASP.Net MVC:
 
 ```C#
-        protected void Application_Start()
-        {
-            AreaRegistration.RegisterAllAreas();
+protected void Application_Start()
+{
+    AreaRegistration.RegisterAllAreas();
 
-            RegisterGlobalFilters(GlobalFilters.Filters);
-            RegisterRoutes(RouteTable.Routes);
-           
-            // NServiceBus configuration
-            Configure.With()
-                .DefaultBuilder()
-                .ForMvc()
-                .JsonSerializer()
-                .Log4Net()
-                .MsmqTransport()
-                    .IsTransactional(false)
-                    .PurgeOnStartup(true)
-                .UnicastBus()
-                    .ImpersonateSender(false)
-                .CreateBus()
-                .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
-        }
+    RegisterGlobalFilters(GlobalFilters.Filters);
+    RegisterRoutes(RouteTable.Routes);
+   
+    // NServiceBus configuration
+    Configure.With()
+        .DefaultBuilder()
+        .ForMvc()
+        .JsonSerializer()
+        .Log4Net()
+        .MsmqTransport()
+            .IsTransactional(false)
+            .PurgeOnStartup(true)
+        .UnicastBus()
+            .ImpersonateSender(false)
+        .CreateBus()
+        .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+}
 ```
 
 NServiceBus v3.x in ASP.Net Web:
 
 ```C#
-    public class Global : HttpApplication
+public class Global : HttpApplication
+{
+    public static IBus Bus { get; private set; }
+
+    protected void Application_Start(object sender, EventArgs e)
     {
-        public static IBus Bus { get; private set; }
-
-        protected void Application_Start(object sender, EventArgs e)
-        {
-            Bus = Configure.With()
-                .Log4Net()
-                .DefaultBuilder()
-                .XmlSerializer()
-                .MsmqTransport()
-                    .IsTransactional(false)
-                    .PurgeOnStartup(false)
-                .UnicastBus()
-                    .ImpersonateSender(false)
-                .CreateBus()
-                .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
-        }
-
-        protected void Application_End(object sender, EventArgs e)
-        {
-
-        }
+        Bus = Configure.With()
+            .Log4Net()
+            .DefaultBuilder()
+            .XmlSerializer()
+            .MsmqTransport()
+                .IsTransactional(false)
+                .PurgeOnStartup(false)
+            .UnicastBus()
+                .ImpersonateSender(false)
+            .CreateBus()
+            .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
     }
+
+    protected void Application_End(object sender, EventArgs e)
+    {
+
+    }
+}
 ```
 
 Configuration Code
 ------------------
 
-Most of the methods are extensions for the [NServiceBus.Configure](https://github.com/NServiceBus/NServiceBus/blob/master/src/config/NServiceBus.Config/Configure.cs) class provided by the specific components packaged in the `NServiceBus.Core` assembly. You can similarly configure your own components by writing your own extension methods.
+Most of the methods are extensions for the `NServiceBus.Configure` class provided by the specific components packaged in the `NServiceBus.Core` assembly. You can similarly configure your own components by writing your own extension methods.
 
 -   `Log4Net()` tells NServiceBus what to [log](logging-in-nservicebus.md) with.
 -   `DefaultBuilder()` tells NServiceBus to use the default(Autofac) dependency injection framework. Other [dependency injection frameworks](containers.md) are available as well.
