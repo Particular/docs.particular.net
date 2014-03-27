@@ -5,6 +5,10 @@ tags:
 - ServiceControl
 - Multi-Transport
 - Configuration
+- RabbitMQ
+- SQL Server
+- Windows Azure
+- Cloud
 ---
 
 ### Configuring ServiceControl to use non-MSMQ Transports:
