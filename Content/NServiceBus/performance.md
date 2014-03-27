@@ -13,7 +13,7 @@ NServiceBus:
 -   Scales out to servers of varying sizes
 -   Scales down to low-spec devices
 
-=\> The ultimate balance of speed and safety.
+**The ultimate balance of speed and safety.**
 
 Benchmarks don't lie; liars do benchmark
 ----------------------------------------
