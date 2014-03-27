@@ -42,7 +42,7 @@ This code tells NServiceBus to treat all types with a namespace that ends with "
 
 NServiceBus supports property level encryption with a special WireEncryptedString property. The example above shows the unobtrusive way to tell NServiceBus which properties you want encrypted. These properties need to be of type String.
 
-The example above also shows the unobtrusive way to tell NServiceBus which properties to deliver on a separate channel from the message itself using the [Data Bus](https://github.com/NServiceBus/NServiceBus/tree/master/Samples/DataBus) feature, and which messages are express or/and have a time to be received.
+The example above also shows the unobtrusive way to tell NServiceBus which properties to deliver on a separate channel from the message itself using the Data Bus feature, and which messages are express or/and have a time to be received.
 
 **NOTE** : When you're self hosting, `.DefiningXXXAs()` has to be before
 `.UnicastBus()`, otherwise you get 
