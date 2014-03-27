@@ -9,8 +9,8 @@ tags:
 
 To set a custom hostname and IP port for ServiceControl:
 
-1. Open the ServiceControl configuration file. By default it is located in ```[Program Files]\Particular Software\ServiceControl\ServiceControl.dll.config```.  
-1. Add the ```ServiceControl/Hostname``` and ```ServiceControl/Port``` settings in the ```<appSettings>``` section. 
+1. Open the ServiceControl configuration file. By default it is located in `[Program Files]\Particular Software\ServiceControl\ServiceControl.dll.config`.  
+1. Add the `ServiceControl/Hostname` and `ServiceControl/Port` settings in the `<appSettings>` section. 
 
 
 The following example configures ServiceControl to listen to localhost + machinename + IP address on port 80:
@@ -20,14 +20,14 @@ The following example configures ServiceControl to listen to localhost + machine
 <add key="ServiceControl/Port" value="80" />
 ```
 
-The following example configures ServiceControl to listen to http://sc.myspecialdomain.com:8080/api:
+The following example configures ServiceControl to listen to `http://sc.myspecialdomain.com:8080/api`:
 
 ```xml
 <add key="ServiceControl/Hostname" value="sc.myspecialdomain.com" />
 <add key="ServiceControl/Port" value="8080" />
 ```
 
-**NOTE:** You must set both the ```ServiceControl/Hostname``` and the ```ServiceControl/Port```, even if the value of one remains unchanged.
+**NOTE:** You must set both the `ServiceControl/Hostname` and the `ServiceControl/Port`, even if the value of one remains unchanged.
 
 ### Updating URLACL Settings
 
@@ -50,8 +50,8 @@ After restarting the ServiceControl service, invoke the API by issuing a request
 
 ### Updating ServicePulse Configuration to ServiceControl Custom Hostname
 
-1. Update the ServicePulse configuration file to access the updated ServiceControl hostname & port number. By default, the ServicePulse configuration file is located in ```[Program Files]\Particular Software\ServicePulse\app\config.js```.
-1. Update the value of the ```service_control_url``` parameter to the specified ServiceControl hostname and IP port number.
+1. Update the ServicePulse configuration file to access the updated ServiceControl hostname & port number. By default, the ServicePulse configuration file is located in `[Program Files]\Particular Software\ServicePulse\app\config.js`.
+1. Update the value of the `service_control_url` parameter to the specified ServiceControl hostname and IP port number.
 1. When next accessing ServicePulse, make sure to refresh the browser cache to allow ServicePulse to access the updated configuration settings. 
 
 
