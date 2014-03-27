@@ -20,7 +20,7 @@ Downloading a zip
 -----------------
 
 GitHub supports downloading a zip file of the source. The convention is
-https://github.com/NServiceBus/NServiceBus/archive/{branchOrTagName}.zip. So for example
+`https://github.com/NServiceBus/NServiceBus/archive/{branchOrTagName}.zip`. So for example
 
 - The current develop branch [https://github.com/NServiceBus/NServiceBus/archive/develop.zip](https://github.com/NServiceBus/NServiceBus/archive/develop.zip)
 - The current master branch is [https://github.com/NServiceBus/NServiceBus/archive/master.zip](https://github.com/NServiceBus/NServiceBus/archive/master.zip)
