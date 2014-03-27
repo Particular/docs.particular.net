@@ -53,7 +53,7 @@ Configuring for cloud service hosting
 
 For a detailed description of the cloud service configuration in Windows Azure, see "[Set Up a Cloud Service for Windows Azure](http://msdn.microsoft.com/en-us/library/windowsazure/hh124108.aspx#bk_Config)".
 
-To configure NServiceBus to connect to a specific Windows Azure storage account (for Windows Azure Queues) or a Windows Azure Service Bus namespace, you must set the [appropriate connection string for each option](http://www.connectionstrings.com/windows-azure).
+To configure NServiceBus to connect to a specific Windows Azure storage account (for Windows Azure Queues) or a Windows Azure Service Bus namespace, you must set the [appropriate connection string for each option](http://www.connectionstrings.com/windows-azure/).
 
 ### Windows Azure Queues
 
