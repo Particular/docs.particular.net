@@ -39,7 +39,7 @@ _NOTE:_ Some nuget packages may have several folders under `/lib` - make sure to
 
       `NServiceBus.Host.exe -install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl"` 
    * Start the ServiceControl service by running: `"net start Particular.ServiceControl"`
-   * Ensure Particular.ServiceControl windows service has started and is functioning properly (try to access the main HTTP API URI exposed by ServiceControl, e.g. do an HTTP GET on http://localhost:33333/api
+   * Ensure Particular.ServiceControl windows service has started and is functioning properly (try to access the main HTTP API URI exposed by ServiceControl, e.g. do an HTTP GET on `http://localhost:33333/api`
 
 #### Troubleshooting
 
