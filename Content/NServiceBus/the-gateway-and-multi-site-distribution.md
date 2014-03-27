@@ -48,7 +48,7 @@ Cross-site data transfer
 
 Depending on your network technology, you can set up a virtual private network (VPN) between your sites. This provides Windows networking visibility of queues in the target site from the sending site. You can use standard NServiceBus APIs to direct messages to their relevant targets, in the form of `Bus.Send(toDestination, msg);`.
 
-This model is recommended as it provides all the benefits of durable messaging between unreliably connecting machines; at several sites, the same as within a single site. You can read a great deal of information on [setting up and managing a Windows VPN](http://technet.microsoft.com/en-us/network/bb545442.aspx) .
+This model is recommended as it provides all the benefits of durable messaging between unreliably connecting machines; at several sites, the same as within a single site. You can read a great deal of information on [setting up and managing a Windows VPN](http://technet.microsoft.com/en-US/network/dd420463) .
 
 In cases where you only have access to HTTP for connection between sites, you can enable the NServiceBus Gateway feature on each site so it transmits messages from a queue in one site to a queue in another site, including the hash of the messages to ensure that the message is transmitted correctly. The following diagram shows how it works:
 
