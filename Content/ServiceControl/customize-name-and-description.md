@@ -16,10 +16,10 @@ You can customize the two values in several ways:
 
 * Edit the ServiceControl configuration file located in the installation directory, adding the following settings:
 
-	```xml
-    	<add key="ServiceControl/Name" value="YourFavoriteName" />
-    	<add key="ServiceControl/Description" value="ServiceControl service description" />
-	```
+```xml
+<add key="ServiceControl/Name" value="YourFavoriteName" />
+<add key="ServiceControl/Description" value="ServiceControl service description" />
+```
 	
 * Change the registry settings in the `HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceControl` node, editing the `Name` and `Description` keys.
 * Change the regstry settings in the `HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ParticularSoftware\ServiceControl` node, editing the `Name` and `Description` keys.
