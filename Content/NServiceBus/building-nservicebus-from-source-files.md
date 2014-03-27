@@ -22,9 +22,9 @@ Downloading a zip
 GitHub supports downloading a zip file of the source. The convention is
 `https://github.com/NServiceBus/NServiceBus/archive/{branchOrTagName}.zip`. So for example
 
-- The current develop branch [https://github.com/Particular/NServiceBus/archive/develop.zip](https://github.com/NServiceBus/NServiceBus/archive/develop.zip)
-- The current master branch is [https://github.com/Particular/NServiceBus/archive/master.zip](https://github.com/NServiceBus/NServiceBus/archive/master.zip)
-- The 3.3.8 tag is [https://github.com/Particular/NServiceBus/archive/3.3.8.zip](https://github.com/NServiceBus/NServiceBus/archive/3.3.8.zip)
+- The current develop branch [https://github.com/Particular/NServiceBus/archive/develop.zip](https://github.com/Particular/NServiceBus/archive/develop.zip)
+- The current master branch is [https://github.com/Particular/NServiceBus/archive/master.zip](https://github.com/Particular/NServiceBus/archive/master.zip)
+- The 3.3.8 tag is [https://github.com/Particular/NServiceBus/archive/3.3.8.zip](https://github.com/Particular/NServiceBus/archive/3.3.8.zip)
 
 Building NServiceBus 4
 ======================
