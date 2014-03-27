@@ -1,7 +1,9 @@
 ---
 title: Using Azure Storage Queues as transport in NServiceBus
 summary: NServiceBus can use windows azure storage queues to take advantage of their peek-lock mechanism in environments where one cannot rely on the DTC
-tags: []
+tags: 
+- Windows Azure
+- Cloud
 ---
 
 In some environments, like very large cloud networks or hybrid network scenarios, it's not possible or recommended to rely heavily on the DTC, and thus on msmq, to ensure transactional behavior and retry in case of failures. A good alternative to using msmq in this case might be to use Windows Azure Storage queues instead.
