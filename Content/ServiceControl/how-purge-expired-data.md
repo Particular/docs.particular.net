@@ -1,23 +1,27 @@
 ---
-title: Setting a automatic expiration for ServiceControl data
-summary: How to configure ServiceControl to automatically purge old data after a user defined expiration period
+title: Setting Automatic Expiration for ServiceControl Data
+summary: How to configure ServiceControl to automatically purge old data after a user-defined expiration period.
 tags:
 - ServiceControl
 - Expiration
 - Configuration
 ---
-ServiceControl is primarly a monitoring tool whose role is to intercept and store all the traffic, in term of messages, that flows into the monitored system; given its nature is expected that the quantity of messages and data stored by ServiceControl increases without limit.
+ServiceControl is a backend data service for ServicePulse production monitoring and ServiceInsight advanced debugging applications. It collects and stores all the traffic, in term of messages, that flows into the monitored system's endpoints (including audited messages, failed messages, status messages such as endpoint heartbeats, custom checks, and saga state). 
+
+As such, ServiceControl serves as a recent data repository, and it is not intended to serve as a long-term archiving solution (for example: some data archiving policies require storing data for long periods measured in years; such requirements are met by dedicated long-term archiving tools).
+
+ServiceControl implements a configurable data purging policy, removing audited messages that are older than a specified timespan. Failed messages (including messages that are manually archived using ServicePulse's Archive feature) are not purged. 
 
 By default ServiceControl purges old data periodically, checking each minute and deleting data older than 30 days.
 
-it is possible to control the above behavior using the following settings:
+It is possible to control the above behavior using the following settings:
 
-* ExpirationProcessTimerInSeconds, the default is once a minute;
-* HoursToKeepMessagesBeforeExpiring, the default is 30 days;
+* ExpirationProcessTimerInSeconds: the default is once a minute.
+* HoursToKeepMessagesBeforeExpiring: the default is 30 days.
 
-In order to change the ServiceControl behavior the above settings must be added to the ServiceControl configuration file, located in the installation directory, e.g.:
+To change the ServiceControl behavior. add the above settings to the ServiceControl configuration file, located in the installation directory; for example,
 
 ```xml 
-	<add key="ExpirationProcessTimerInSeconds" value="new-integer-value" />
-	<add key="HoursToKeepMessagesBeforeExpiring" value="new-integer-value" />
+<add key="ExpirationProcessTimerInSeconds" value="new-integer-value" />
+<add key="HoursToKeepMessagesBeforeExpiring" value="new-integer-value" />
 ```

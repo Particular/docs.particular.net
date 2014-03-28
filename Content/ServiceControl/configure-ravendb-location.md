@@ -1,30 +1,38 @@
 ---
-title: Customize RavenDB Embedded path and drive
-summary: How to configure ServiceControl to save data in a different location other than the deault in order to have more space available for monitored data
+title: Customize RavenDB Embedded Path and Drive
+summary: Increase space for monitored data by configuring ServiceControl to save data in a different location other than the default.
 tags:
 - ServiceControl
 - RavenDB Embedded
 - Configuration
 ---
-ServiceControl stores its own data in a RavenDB Embedded instance that by default is located in:
+ServiceControl stores its own data in a RavenDB embedded instance. By default it is located here:
 
 `%SystemDrive\ProgramData\Particular\ServiceControl\localhost-33333`
 
-In lot of scenario is desiderable to use a different location to store monitoring data.
+NOTE: `localhost-33333` is the default hostname and port number. Specifying a [custom hostname and port number](setting-custom-hostname) will result in ServiceControl generating a new RavenDB embedded instance in a subdirectory corresponding to the new hostname and port number.
 
-### Set a different location for RavenDB Embedded
+You may want to place the embedded RavenDB database in a different location. For example, if the system drive storage capacity is insufficient.
 
-In order to configure ServiceControl to store data in a different location right after the installation it is enought to:
+### Setting a Different Location for RavenDB Embedded Database
 
-* stop the ServiceControl service;
-* locate the ServiceControl.dll.config configuration file in the ServiceControl installation folder;
-* edit the configuration file to add a new setting:
+To configure ServiceControl to store data in a different location immediately after installation:
 
-	```xml
-	<add key="ServiceControl/DbPath" value="X:\your\new\path" />
-	```
-* start the ServiceControl service;
+ * Stop the ServiceControl service.
+ * Locate the ServiceControl.dll.config configuration file in the ServiceControl installation folder.
+ * Edit the configuration file to add a new setting:
 
-### Move an existing installation to a different location
+```xml
+<add key="ServiceControl/DbPath" value="X:\your\new\path" />
+```
 
-There are situations where it is required to move ServiceControl data directory presenving already collected data, the procedure is the same as the one to configure ServiceControl from scratch, the only additional step, befor starting the ServiceControl service, is to move the existing data directory to the new location.
+ * Start the ServiceControl service.
+ 
+This will generate a new instance of the RavenDB embedded instance in the specified path. 
+
+NOTE: The ServiceControl process must have read/write access to the specified path.
+ 
+
+### Moving an Existing Installation to a Different Location
+
+To move the ServiceControl data directory while preserving already collected data, perform the procedure described above with an additional step: before starting the ServiceControl service, move the existing data directory to the new location.

@@ -4,7 +4,7 @@ summary: 'NuGet is an open source project that simplifies integration of third p
 tags: []
 ---
 
-NuGet is an open source project that simplifies integration of third parties into your Visual Studio projects during development. To learn more or to download it, go to the [NuGet web site](http://nuget.org/).
+NuGet is an open source project that simplifies integration of third parties into your Visual Studio projects during development. To learn more or to download it, go to the [NuGet web site](http://www.nuget.org/).
 
 NServiceBus and NuGet
 ---------------------
@@ -43,7 +43,7 @@ If you already downloaded the latest release and just want to an update, use thi
 Downloading NServiceBus latest build
 ------------------------------------
 
-The NServiceBus latest build can be downloaded from [NServiceBus builds server](http://builds.nservicebus.com/guestAuth/app/nuget/v1/FeedService.svc). You can add this package source to your list of available package sources from within Visual Studio:
+The NServiceBus latest build can be downloaded from NServiceBus builds server `http://builds.nservicebus.com/guestAuth/app/nuget/v1/FeedService.svc`. You can add this package source to your list of available package sources from within Visual Studio:
 
 `Tools > Library Package Manager > Package Manager Settings`, under 'Package Manager' choose 'Package Sources'. Type a name and type the URL in the source text box, and click 'Add'. This is how the package sources look:
 

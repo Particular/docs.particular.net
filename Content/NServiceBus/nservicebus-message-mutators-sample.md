@@ -10,7 +10,7 @@ In NServiceBus V2.6 it was tricky to change messages as they were sent to and fr
 
 You can encrypt all or part of a message. The encryption message mutator is part of the NServiceBus library, and can be used at any time.
 
-To see MessageMutators in action, open the [MessageMutator sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/MessageMutators)
+To see MessageMutators in action, open the [MessageMutator sample](https://github.com/Particular/NServiceBus/tree/3.3.8/Samples/MessageMutators)
 .
 
 1.  Run the solution.

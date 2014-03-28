@@ -83,7 +83,7 @@ In version 4.0, the type `SecondLevelRetries` (used in the `NServiceBus.Manageme
 Working sample
 --------------
 
-In the [ErrorHandling sample](https://github.com/NServiceBus/NServiceBus/tree/master/Samples/ErrorHandling) are two endpoints, one with SLR enabled and the other with it disabled.
+In the [ErrorHandling sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/ErrorHandling) are two endpoints, one with SLR enabled and the other with it disabled.
 
 When you run the sample, you should start them using Ctrl+F5 (start without debugging), press the letter "S" in both windows at the same time and watch the different outputs.
 

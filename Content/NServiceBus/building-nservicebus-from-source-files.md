@@ -20,11 +20,11 @@ Downloading a zip
 -----------------
 
 GitHub supports downloading a zip file of the source. The convention is
-https://github.com/NServiceBus/NServiceBus/archive/{branchOrTagName}.zip. So for example
+`https://github.com/NServiceBus/NServiceBus/archive/{branchOrTagName}.zip`. So for example
 
-- The current develop branch [https://github.com/NServiceBus/NServiceBus/archive/develop.zip](https://github.com/NServiceBus/NServiceBus/archive/develop.zip)
-- The current master branch is [https://github.com/NServiceBus/NServiceBus/archive/master.zip](https://github.com/NServiceBus/NServiceBus/archive/master.zip)
-- The 3.3.8 tag is [https://github.com/NServiceBus/NServiceBus/archive/3.3.8.zip](https://github.com/NServiceBus/NServiceBus/archive/3.3.8.zip)
+- The current develop branch [https://github.com/Particular/NServiceBus/archive/develop.zip](https://github.com/Particular/NServiceBus/archive/develop.zip)
+- The current master branch is [https://github.com/Particular/NServiceBus/archive/master.zip](https://github.com/Particular/NServiceBus/archive/master.zip)
+- The 3.3.8 tag is [https://github.com/Particular/NServiceBus/archive/3.3.8.zip](https://github.com/Particular/NServiceBus/archive/3.3.8.zip)
 
 Building NServiceBus 4
 ======================
@@ -35,13 +35,13 @@ Building NServiceBus 3
 ======================
 
 To build NServiceBus 3 from its source files, download the source files from
-[github](https://github.com/NServiceBus/NServiceBus/zipball/develop) to get the latest unstable build, or retrieve the latest stable build source code from the [downloads page](http://particular.net/downloads).
+[github](https://github.com/Particular/NServiceBus/zipball/develop) to get the latest unstable build, or retrieve the latest stable build source code from the [downloads page](http://particular.net/downloads).
 
 Build NServiceBus options
 -------------------------
 
 You can build NServiceBus by either typing .\\build.ps1 in a PowerShell command line or by executing build.bat from the command line. Both files executes default.ps1, which is a PowerShell script file that builds NServiceBus. Default.ps1 is based on the
-[psake](http://github.com/psake/psake) build automation tool.
+[psake](https://github.com/psake/psake) build automation tool.
 
 Logical entry points
 --------------------
