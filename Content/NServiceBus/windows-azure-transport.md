@@ -53,7 +53,7 @@ Configuring for cloud service hosting
 
 For a detailed description of the cloud service configuration in Windows Azure, see "[Set Up a Cloud Service for Windows Azure](http://msdn.microsoft.com/en-us/library/windowsazure/hh124108.aspx#bk_Config)".
 
-To configure NServiceBus to connect to a specific Windows Azure storage account (for Windows Azure Queues) or a Windows Azure Service Bus namespace, you must set the [appropriate connection string for each option](http://www.connectionstrings.com/windows-azure).
+To configure NServiceBus to connect to a specific Windows Azure storage account (for Windows Azure Queues) or a Windows Azure Service Bus namespace, you must set the [appropriate connection string for each option](http://www.connectionstrings.com/windows-azure/).
 
 ### Windows Azure Queues
 
@@ -156,4 +156,15 @@ In the configuration file for the application (web.config or app.config), add an
 The connection string value should be set according to the selected Windows Azure options selected (either a Windows Azure Queues connection string or a Windows Azure Service Bus namspace).
 
 **NOTE**: Setting the connection string in the application configuration files (web.config or app.config) is overridden by any settings placed in the service configuration file (ServiceConfiguration.cscfg) if one exists. This allows a cloud hosting scenario to override an on-premise deployment scenario, with minimal changes to the configuration, while allowing easy updates to the deployment configuration through the service configuration files only, with no need to update the applications configuration files.
+
+Learn more
+----------------
+
+More in depth documentation can be found in the following documents:
+
+-   [Hosting NServiceBus in Windows Azure](/nservicebus/hosting-nservicebus-in-windows-azure)
+-   [Hosting NServiceBus in Windows Azure Cloud Services](/nservicebus/hosting-nservicebus-in-windows-azure-cloud-services)
+-   [Using Azure ServiceBus as a transport in NServiceBus](/nservicebus/using-azure-servicebus-as-transport-in-nservicebus)
+-   [Using Azure Storage Queues as a transport in NServiceBus](/nservicebus/using-azure-storage-queues-as-transport-in-nservicebus)
+-   [Using Azure Storage Persistence in NServiceBus](/nservicebus/using-azure-storage-persistence-in-nservicebus)
 

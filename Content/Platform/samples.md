@@ -30,4 +30,4 @@ tags: [NServiceBus, Samples]
 
 | Sample | Transport | Description | 
 |:----|:----|:----|
-| Online Shopping Sample | MSMQ | [Sample ServiceMatrix application illustrating an online shopping messaging process](https://github.com/Particular/ServiceMatrix.Samplesq) |
+| Online Shopping Sample | MSMQ | [Sample ServiceMatrix application illustrating an online shopping messaging process](https://github.com/Particular/ServiceMatrix.Samples) |

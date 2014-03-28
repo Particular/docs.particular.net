@@ -13,7 +13,7 @@ NServiceBus:
 -   Scales out to servers of varying sizes
 -   Scales down to low-spec devices
 
-=\> The ultimate balance of speed and safety.
+**The ultimate balance of speed and safety.**
 
 Benchmarks don't lie; liars do benchmark
 ----------------------------------------
@@ -21,13 +21,6 @@ Benchmarks don't lie; liars do benchmark
 Many parameters can affect the measured performance. The most obvious is hardware the number of servers and CPU cores, the size of memory and storage, the storage speed, the amount of redundancy, and so on. Less obvious is what the system actually does some message processing is trivial, while other messages may result in aggregated historical reports and sifting through terabytes of information.
 
 Most benchmarks can be viewed as nothing more than anecdotes.
-
-What others are saying
-----------------------
-
-In his presentation, [Dave de Florinier](http://gojko.net/2008/12/02/asynchronous-net-applications-with-nservicebus/) mentions achieving a throughput of 600,000 messages per hour on V1.7 or V1.8 of NServiceBus.
-
-On a discussion group, [Raymond Lewallen](http://tech.groups.yahoo.com/group/nservicebus/message/1791) posted a throughput of 1.8 million messages per hour on V1.9 of NServiceBus.
 
 Detailed statistics
 -------------------

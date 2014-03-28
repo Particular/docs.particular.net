@@ -16,7 +16,7 @@ Specifying transactions in code
 
 If you aren't using the generic host, you can specify whether the current endpoint should process messages transactionally by setting the `.IsTransactional(true)` after `.MsmqTransport()` (in version 3) or `.UseTransport<Msmq>()` (in version 4).
 
-To override the System.Transactions default timeout of 10 minutes, follow the steps described in [this blog post](http://blogs.msdn.com/ajit/archive/2008/06/18/override-the-system-transactions-default-timeout-of-10-minutes-in-the-code.aspx).
+To override the System.Transactions default timeout of 10 minutes, follow the steps described in [this blog post](http://blogs.msdn.com/b/ajit/archive/2008/06/18/override-the-system-transactions-default-timeout-of-10-minutes-in-the-code.aspx).
 
 Distributed Transaction Coordinator
 -----------------------------------

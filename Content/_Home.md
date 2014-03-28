@@ -281,7 +281,7 @@
   <div class="productcolumn block">
     <p><h4>Complete under-the-hood visualization of the your system's behavior</h4></p>
     <ul>
-      <li><a href="/Serviceinsight/getting-started--overview">Getting Started</a></li>
+      <li><a href="/Serviceinsight/getting-started-overview">Getting Started</a></li>
       <li><a href="/Serviceinsight/application-invocation">Application invocation</a></li>
       <li><a href="/Serviceinsight/how-logging-works">Logging in ServiceInsight</a></li>
     </ul>

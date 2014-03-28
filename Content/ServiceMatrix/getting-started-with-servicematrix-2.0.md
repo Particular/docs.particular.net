@@ -27,7 +27,7 @@ For this example you need to meet the following system requirements:
 - Visual Studio 2012
 - ASP.NET MVC 4 ([http://www.asp.net/downloads](http://www.asp.net/downloads))
 
-To download and install ServiceMatrix follow the instructions [here](installing-servicematrix-2.0.md "Installing Service Matrix").  This document reviews the use of ServiceMatrix for Visual Studio 2012.
+To download and install ServiceMatrix follow the instructions [here](installing-servicematrix-2.0.md "Installing ServiceMatrix").  This document reviews the use of ServiceMatrix for Visual Studio 2012.
 
 **NOTE**: If you have both Visual Studio 2010 and Visual Studio 2012 installed on your machine, you can install ServiceMatrix for one Visual Studio version only. This document reviews the use of ServiceMatrix v2.0 for Visual Studio 2012.
 
@@ -78,7 +78,7 @@ To create an endpoint on the canvas either select the dashed 'New Endpoint' area
 
 Name the endpoint `ECommerce` and choose ASP.NET MVC as the endpoint host.  **NOTE: ** MVC Endpoints require that ASP.NET MVC be installed on the local machine. If you haven't installed ASP MVC on your machine, choose a Web Forms host for the endpoint instead.  Both work equally well. 
 ### Review the endpoint
-You will examine the generated code in detail later to understand    how things work behind the scenes.  For now, notice how Service Matrix has created the ECommerce Endpoint on the canvas, in the Solution Builder and in the Visual Studio Project.  In the solution builder notice that this endpoint has a folder to contain components.  Components contain the code for specific services.  They can only send commands to other components in the same service.  However, they can subscribe to events that are published by components in *any* service. Soon your Sales components will be deployed to your endpoints.
+You will examine the generated code in detail later to understand    how things work behind the scenes.  For now, notice how ServiceMatrix has created the ECommerce Endpoint on the canvas, in the Solution Builder and in the Visual Studio Project.  In the solution builder notice that this endpoint has a folder to contain components.  Components contain the code for specific services.  They can only send commands to other components in the same service.  However, they can subscribe to events that are published by components in *any* service. Soon your Sales components will be deployed to your endpoints.
 ### Create OrderProcessing endpoint
 Create another endpoint called `OrderProcessing`.  This time select 'NServiceBus Host' as the host.  
 
