@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting   
-summary: 'Troubleshooting and Service Matrix'
+summary: 'Troubleshooting and ServiceMatrix'
 tags:
 - ServiceMatrix
 - Visual Studio

@@ -30,9 +30,18 @@ As you can see, there's no magic here and you can do this as well. Simply constr
 A list of the supported parameters and a description of their effects:
 
 - Search [String]: Performs a search using the full-text search feature of ServiceInsight. This can be a message identifier, a part of the message payload, or any value in the message header.
+   
+   - Example: ```si://localhost:33333/api?search=SubmitOrder```
+
 
 - EndpointName [String]: The name of the endpoint to select upon startup. When you select an endpoint, the operations and message lists are filtered to the endpoint you have selected.
 
+   - Example: ```si://localhost:33333/api?EndpointName=VideoStore.Sales&search=SubmitOrder```
+
+
 - AutoRefresh [Integer]: Turns on the AutoRefresh option so that the view is refreshed, based on the value provided here (in seconds).
+
+   - Example: ```si://localhost:33333/api?EndpointName=VideoStore.Sales&search=SubmitOrder&Auto&AutoRefresh=5```
+
 
 When you launch ServiceInsight using these parameters, you can see the effects from the user interface (having the endpoint selected, message selected, etc.). If a passed-in argument is not supported, ServiceInsight will notify you once it runs.

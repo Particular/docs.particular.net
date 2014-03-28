@@ -11,7 +11,7 @@ NServiceBus uses the process config file as its default source of configuration.
 Overriding App.Config section
 -----------------------------
 
-The preferred method of overriding a specific section is to use the [`IProvideConfiguration<T>`](https://github.com/NServiceBus/NServiceBus/blob/master/src/NServiceBus.Core/Config/ConfigurationSource/IConfigurationSource.cs#L23) model. For example, rather than providing the RijndaelEncryptionServiceConfig in app.config, you could provide it in code:
+The preferred method of overriding a specific section is to use the `IProvideConfiguration<T>` model. For example, rather than providing the RijndaelEncryptionServiceConfig in app.config, you could provide it in code:
 
 
 ```C#
@@ -24,7 +24,7 @@ class InitRijndaelEncryptionServiceConfig : IProvideConfiguration<RijndaelEncryp
 }
 ```
 
- Code only configuration
+Code only configuration
 -----------------------
 
 If you don't want your process to have its configuration specified in the config file, you can write a class that implements `IConfigurationSource` and in it retrieve the configuration from any location you like: a database, a web service, anything. Here's how:

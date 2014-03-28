@@ -16,8 +16,8 @@ The second one allows users running a 64-bit OS to run a 32-bit NServiceBus proc
 
 Links to the NuGet packages:
 
--   [NServiceBus.Host (32-bit and 64-bit)](http://nuget.org/packages/NServiceBus.Host)
--   [NServiceBus.Host32 (32-bit only)](http://nuget.org/packages/NServiceBus.Host32)
+-   [NServiceBus.Host (32-bit and 64-bit)](http://www.nuget.org/packages/NServiceBus.Host)
+-   [NServiceBus.Host32 (32-bit only)](http://www.nuget.org/packages/NServiceBus.Host32)
 
 
 

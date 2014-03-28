@@ -5,7 +5,7 @@ tags:
 - Encryption
 ---
 
-To see how to encrypt message data, open the [Encryption sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/Encryption)
+To see how to encrypt message data, open the [Encryption sample](https://github.com/Particular/NServiceBus/tree/3.3.8/Samples/Encryption)
 .
 
 1.  Run the solution.
@@ -63,7 +63,7 @@ public class SecurityConfig : IWantCustomInitialization
 [Rijndael algorithm](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) .
 
 The rest of the file shows that you can set the contents of the encrypted property just like any other property, and then use the bus to send the message. Read about [sending messages](how-do-i-send-a-message.md) and
-[here](http://support.nservicebus.com/customer/portal/articles/862387-how-do-i-specify-to-which-destination-a-message-will-be-sent-) too.
+[here](how-do-i-specify-store-forward-for-a-message) too.
 
 Look at the app.config file in the client project. There is an additional configuration section for the Rijndael encryption service:
 

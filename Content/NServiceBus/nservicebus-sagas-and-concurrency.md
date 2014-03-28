@@ -35,15 +35,9 @@ When you use the RavenDB saga persister, you don't have to do anything since the
 
 When running using the NHibernate saga persister, the NServiceBus framework requires you to add a ["Version" property to your saga data](http://ayende.com/blog/3946/nhibernate-mapping-concurrency) so that NHibernate can work its magic.
 
-NServiceBus V4.0 [makes this even easier for](https://github.com/NServiceBus/NServiceBus/issues/649) you by enabling the optimistic-all option if no Version property is found.
+NServiceBus V4.0 makes this even easier by enabling the optimistic-all option if no Version property is found.
 
 Another option is to use a [transaction isolation level](http://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel.aspx) of serializable but that causes [excessive locking](http://msdn.microsoft.com/en-us/library/ms173763.aspx)so the performance degradation is considerable. **NOTE**: "Serializable" is the default isolation level for TransactionScopes.
 
-In [NServiceBus V4.0 the default isolation level is
-"ReadCommitted"](https://github.com/NServiceBus/NServiceBus/issues/656), which is a more sensible default.
-
-Next steps
-----------
-
-You can browse a saga [manufacturing sample](https://github.com/NServiceBus/NServiceBus/tree/master/Samples/Manufacturing) or read more about sagas.
-
+In NServiceBus V4.0 the default isolation level is
+"ReadCommitted", which is a more sensible default.
