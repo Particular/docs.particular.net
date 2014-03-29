@@ -118,7 +118,14 @@ Ensure you enable *GitHub Flavoured Markdown* by going to
 
     Tools > Options > Markdown > Markdown Processor > GitHub Flavoured Markdown
 
-Or click in the bottom left no the `M` icon to "hot-switch"  
+Or click in the bottom left no the `M` icon to "hot-switch"
+
+Don't render YAML Front-Matter by going to  
+
+    Tools > Options > Markdown > Markdown Settings 
+
+And checking `Ignore YAML Front-matter`
+  
 
 ## Anchors
 
@@ -142,7 +149,7 @@ Which means elsewhere in the page you can link to it with
 ## Some useful characters
 
  * Ticks are done with `&#10004;` &#10004;
- * Crossed are done with `&#10006;` &#10006;
+ * Crosses are done with `&#10006;` &#10006;
 
 ## More info
  

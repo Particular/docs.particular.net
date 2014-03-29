@@ -7,7 +7,7 @@ tags:
 - Full Duplex
 ---
 
-To see full-duplex, request/response communication, open the [Full Duplex sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/FullDuplex).
+To see full-duplex, request/response communication, open the [Full Duplex sample](https://github.com/Particular/NServiceBus/tree/3.3.8/Samples/FullDuplex).
 
 Run the solution. Two console applications should start up. Find the client application by looking for the one with "Client" in its path and click Enter a couple of times in the window. Your screen should look like this:
 

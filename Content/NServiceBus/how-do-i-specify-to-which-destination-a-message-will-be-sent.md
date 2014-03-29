@@ -12,6 +12,9 @@ You configure the destination for message types in `<unicastbusconfig>`, under `
 Add one of the following:
 
 ```XML
+<configSections>
+    <section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
+</configSections>
 <UnicastBusConfig >
   <MessageEndpointMappings>
     <!--To register all message types defined in an assembly -->
@@ -26,7 +29,7 @@ Add one of the following:
 </UnicastBusConfig>
 ```
 
-For more information, see the [PubSub sample](https://github.com/NServiceBus/NServiceBus/tree/master/Samples/PubSub) config file.
+For more information, see the [PubSub sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/PubSub) config file.
 
 Destinations can be `QueueName@ServerName`, or just `QueueName` if the destination is the local machine.
 

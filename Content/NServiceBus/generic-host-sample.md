@@ -6,7 +6,7 @@ tags:
 - Log4Net
 ---
 
-This [sample](https://github.com/NServiceBus/NServiceBus/tree/3.3.8/Samples/GenericHost) demonstrates the various kinds of logging you can use with the NServiceBus Host process. Each project shows a different approach and there are no relationships between them.
+This [sample](https://github.com/Particular/NServiceBus/tree/3.3.8/Samples/GenericHost) demonstrates the various kinds of logging you can use with the NServiceBus Host process. Each project shows a different approach and there are no relationships between them.
 
 Even though NServiceBus uses Log4Net as its logging infrastructure, the default configuration model is different from Log4Net. This default logging configuration model is shown in the LoggingWithConfigurableThreshold project.
 

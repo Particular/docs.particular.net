@@ -32,13 +32,17 @@ function getParameterByName(name) {
 
     if (installer=="NServiceBus")
     {
-        var _gaq=_gaq||[];
-        _gaq.push(['_trackEvent', 'Installed', 'NServiceBus Total [nuget]']);
-        _gaq.push(['_trackEvent', 'Installed', 'NServiceBus Total [msi+nuget]']);
+        ga('send', 'event','Nuget', 'Load', 'Preparing your machine to run NServiceBus');
+
+        ga('send', 'event','Installed', 'NServiceBus Total [nuget]');
+
+        ga('send', 'event','Installed', 'NServiceBus Total [msi+nuget]');
+
         var version = getParameterByName("version");
         var method = getParameterByName("method");
         var logaction = installer+" "+version+" [ "+method+" ]";
-        _gaq.push(['_trackEvent', 'Installed', logaction]);
+
+        ga('send', 'event','Installed', logaction);
     }
 
 </script>

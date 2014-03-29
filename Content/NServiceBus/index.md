@@ -17,7 +17,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Customization](#customization)
 - [Versioning](#versioning)
 - [FAQ](#faq)
-- [Samples](#samples)
+- [Samples](/platform/samples/)
 
 
 <a name="getting-started"></a>
@@ -140,19 +140,3 @@ summary: NServiceBus Documentation Table of Contents
 - [Running NServiceBus on Windows](running-nservicebus-on-windows)
 - [Licensing ServiceMatrix V2.0](licensing-servicematrix-v2.0)
 - [How to Install Your License File ServiceInsight](how-to-install-your-license-file-serviceinsight)
-
-<a name="samples"></a>
-## Samples ##
-- [Full Duplex Sample V3](full-duplex-sample-v3)
-- [Publish Subscribe Sample](publish-subscribe-sample)
-- [Unobtrusive Sample](unobtrusive-sample)
-- [Scale out Sample](scale-out-sample)
-- [Using NServiceBus in a Asp.Net Web Application](using-nservicebus-in-a-asp.net-web-application)
-- [Using NServiceBus with Asp.Net MVC](using-nservicebus-with-asp.net-mvc)
-- [Injecting the Bus into Asp.Net MVC Controller](injecting-the-bus-into-asp.net-mvc-controller)
-- [Encryption Sample](encryption-sample)
-- [Generic Host Sample](generic-host-sample)
-- [Versioning Sample](versioning-sample)
-- [NServiceBus Message Mutators Sample](nservicebus-message-mutators-sample)
-- [Attachments DataBus Sample](attachments-databus-sample)
-- [Windows Azure Transport](windows-azure-transport)
