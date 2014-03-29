@@ -11,7 +11,7 @@ summary: ServiceMatrix Documentation Table of Contents
 - [Getting started with ServiceMatrix](getting-started-with-servicematrix-2.0)
 - [Fault Tolerance and Durable Messaging](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance)
 - [Publish and Subscribe Messaging](getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe)
-- [Using with ServiceInsight](servicematrix-serviceinsight.md "Using ServiceMatrix and ServiceInsight Together")
+- [Using ServiceMatrix with ServiceInsight](servicematrix-serviceinsight.md "Using ServiceMatrix and ServiceInsight Together")
 
 ###Licensing
 - [Licensing ServiceMatrix](licensing-servicematrix-v2.0)
