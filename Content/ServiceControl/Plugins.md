@@ -86,13 +86,9 @@ The result of a custom check is either successful or a failure (with a detailed 
 
 ### ServiceControl.Plugin.SagaAudit
 
-The Saga Audit plugin collects Saga runtime activity information. This information enables the display of detailed Saga data, behavior and current status in the ServiceInsight Saga View.
+The Saga Audit plugin collects Saga runtime activity information. This information enables the display of detailed Saga data, behavior and current status in the ServiceInsight Saga View. The plugin sends the relevant saga state information as messages to the ServiceControl queue whenever a Saga state changes. This enables the Saga View to be highly detailed and up-to-date.
 
-The Saga Audit plugin sends the relevant saga state information to the ServiceControl queue whenever a Saga state changes. This enables the Saga View to be up-to-date and extrremely detailed.
-
-However, and depending on the Sagas update frequency, it may also result is a large number of messages, and a higher load on both the sending endpoint and on the receiving ServiceControl instance. 
-
-As a result, prior to deploying the Saga Audit plugin, you should test and verify that the Saga Audit plugin communication overhead does not interfere with your expected endpoint performance.   
+However, and depending on the Sagas update frequency, it may also result is a large number of messages, and a higher load on both the sending endpoint and on the receiving ServiceControl instance. As a result, prior to deploying the Saga Audit plugin, you should test and verify that the Saga Audit plugin communication overhead does not interfere with your expected endpoint performance.   
 
 
 **Related articles**
