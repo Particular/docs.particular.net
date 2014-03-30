@@ -24,6 +24,7 @@ The ServiceControl plugins are available for installation and download from the 
 |Saga Audit|http://www.nuget.org/packages/ServiceControl.Plugin.SagaAudit|
 |Debug Session|http://www.nuget.org/packages/ServiceControl.Plugin.DebugSession|
 
+
 **NOTE:** For NServiceBus version dependency requirements for each plugin, review the "Dependencies" section in the Nuget Gallery page for the specific plugin.  
 
 ## Installation and Deployment
@@ -35,7 +36,8 @@ The ServiceControl plugins are deployed with the endpoints the are are monitorin
    * The plugin specific nuget commands are displayed in the relevant nuget package page in the Nuget Gallery    
 * When in production, add the plugin DLL's to the bin directory of the endpoint, and restart the endpoint process for the changes to take affect and the plugin to be loaded.   
 
-##### Related articles:
+#### Related articles:
+
 - [How to configure endpoints for monitoring by ServicePulse](http://docs.particular.net/ServicePulse/how-to-configure-endpoints-for-monitoring)
 
 ## Connecting the plugins to ServiceControl
@@ -77,7 +79,8 @@ As mentioned above, there are two types of custom checks:
  
 The result of a custom check is either successful or a failure (with a detailed description defined by the developer). This result is sent as a message to the ServiceControl queue.   
 
-##### Related articles
+#### Related articles
+
 - [How to Develop Custom Checks for ServicePulse](http://docs.particular.net/ServicePulse/how-to-develop-custom-checks)
 
 ### ServiceControl.Plugin.SagaAudit
@@ -91,7 +94,8 @@ However, and depending on the Sagas update frequency, it may also result is a la
 As a result, prior to deploying the Saga Audit plugin, you should test and verify that the Saga Audit plugin communication overhead does not interfere with your expected endpoint performance.   
 
 
-##### Related articles
+#### Related articles
+
 * [ServiceInsight Overview - The Saga View](http://docs.particular.net/ServiceInsight/getting-started-overview#the-saga-view)
 
 ### ServiceControl.Plugin.DebugSession
@@ -102,7 +106,7 @@ When deployed, the debug session plugin adds a specified debug session identifie
 
 This allows messages sent by a debugging or test run within Visual Studio to be correlated, filtered and highlighted within ServiceInsight.
 
-##### Related articles
+#### Related articles
 
 * [ServiceMatrix and ServiceInsight Interaction](http://docs.particular.net/ServiceMatrix/servicematrix-serviceinsight)
   
