@@ -2,11 +2,7 @@
 title: ServiceControl Endpoint Plugins
 summary: 'Reviews the Endpoint Plugins used by ServiceControl'
 tags:
-- Plugins
-- Heartbeats
-- Saga Audit
-- Custom Checks
-- Debug Session
+- ServiceControl 
 ---
 
 ## Introduction
