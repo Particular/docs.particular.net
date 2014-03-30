@@ -1,6 +1,6 @@
 ---
 title: ServiceControl Endpoint Plugins
-summary: 'Reviews the Endpoint Plugins used by ServiceControl'
+summary: 'Describes the purpose and internal behavior of the Endpoint Plugins used by ServiceControl'
 tags:
 - ServiceControl 
 ---
