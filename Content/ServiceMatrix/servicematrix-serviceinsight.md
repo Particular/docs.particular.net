@@ -10,7 +10,11 @@ tags:
 ---
 ServiceMatrix helps you accelerate the creation of NServiceBus systems in a visual environment.  ServiceInsight provides the ability to visualize a system and the message interactions.
 
-The capabilities of these two NServiceBus platform applications complement each other and together provide value at design time. When used together, ServiceInsight can give you a real-time view of your ServiceMatrix solution as you debug it. Let's see how it works.
+The capabilities of these two NServiceBus platform applications complement each other and together provide value at design time. When used together, ServiceInsight can give you a real-time view of your ServiceMatrix solution as you debug it.
+
+![ServiceMatrix and ServiceInsight ](images/servicematrix-serviceinsight-graphic1.png)
+
+Let's see how it works.
 
 1. [Setting Up ServiceInsight Integration](#setting-up-serviceinsight-debugging "Service Insight Debugging Setup")
 2. [How Debugging Works](#how-debugging-works "How Debugging Works")
@@ -32,7 +36,9 @@ Turn on the automatic launch of ServiceInsight using the property shown.  By def
 
 #How Debugging Works
 ###Debugging Metadata
-When debugging a ServiceMatrix solution, an assembly is added to your project.  When you look at your project references in the Solution Explorer, you will see that your projects have a reference to the `ServiceControl.Plugin.DebugSession` assembly.  This debug assembly is loaded by NServiceBus and adds a specific debug session ID to the header of each message.  When ServiceInsight is launched, it uses this ID to filter the results to only the messages for your debug session. 
+When debugging a ServiceMatrix solution, an new assembly is added to your project. If you look at your project references in the Solution Explorer, you will see that your projects have a reference to the `ServiceControl.Plugin.DebugSession` assembly.  This assembly is a [ServiceControl Endpoint Plugin](../ServiceControl/Plugins.md "ServiceControl Endpoint Plugins") for debugging. 
+
+This debug assembly is loaded by NServiceBus and adds a specific debug session ID to the header of each message.  When ServiceInsight is launched, it uses this ID to filter the results to only the messages for your debug session. 
 
 #Launching ServiceInsight
 When you launch your ServiceMatrix solution in the Visual Studio debugger, ServiceInsight launches and delivers the debug session ID needed for searching. For more details about invoking ServiceInsight, refer to the article on [ServiceInsight Application Invocation](../ServiceInsight/application-invocation.md "Invoking ServiceInsight").  The image below shows the search window of ServiceInsight populated with the filter that uses the debug session ID.
@@ -40,7 +46,7 @@ When you launch your ServiceMatrix solution in the Visual Studio debugger, Servi
 ![ServiceInsight Message Window](images/servicematrix-serviceinsightmessagewindow.png)
 
 ###Auto-Refresh
-When launched, the ServiceInsight system efficiently polls ServiceControl for message data. Auto-refresh allows ServiceInsight to populate with your debug information and provide near real-time insights to your system. The polling period is configurable and the default is two seconds.   
+When launched, the ServiceInsight system efficiently polls ServiceControl for message data. Auto-refresh allows ServiceInsight to populate with your debug information and provide near real-time insights to your system. The polling period is configurable via the Options menu in ServiceInsight with the default value set to two seconds.   
 
 ##Visualizing your Solution
 As you run ServiceInsight during your debug session, you can see the messages arriving in the message window. Simultaneously, ServiceInsight dynamically illustrates the relationship between the messages in the Flow Diagram, as shown.

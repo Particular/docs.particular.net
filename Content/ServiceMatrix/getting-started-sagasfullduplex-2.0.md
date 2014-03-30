@@ -30,4 +30,11 @@ Using the drop-down on the `OrderAcceptedProcessor` component in the `Billing` s
 
 ![New SubmitPayment Command](images/servicematrix-newbillingcommand.png)
 
-This canvas will illustrate the new `SubmitPayment` command along with an undeployed `SubmitPaymentProcessor`.  As was done previously, use the drop-down of this component to deploy it to a new endpoint [hosted in the NServiceBus](servicematrix-deploytopaymentprocessing.png) host and name it `PaymentProcessing`.
+This canvas will illustrate the new `SubmitPayment` command along with an undeployed `SubmitPaymentProcessor`.  As was done previously, use the drop-down of this component to deploy it to a [new endpoint](servicematrix-deploytopaymentprocessing.png) hosted in the NServiceBus host and name it `PaymentProcessing`.   The relationship between the Billing and PaymentProcessing endpoints should now look like this:
+
+![Billing and PaymentProcessing Endpoints](images/servicematrix-billingandpaymentprocessing.png)
+
+We've created a new `PaymentProcessing` endpoint and a new command message that billing can use to submit payments for processing.  If you view the code in the `SubmitPaymentProcessor` you will see that it simply handles the request and could be modified to invoke a a web service that processes credit cards or other payments. Such a web service would likely return and authorization code that would be needed to be sent back to the requester.  Let's look at how to do that in ServiceMatrix next.  
+
+###Correlating the Payment Response
+ 
