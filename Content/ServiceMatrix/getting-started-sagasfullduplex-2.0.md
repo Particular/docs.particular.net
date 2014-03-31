@@ -59,10 +59,10 @@ After you select  **OK** ServiceMatrix will create the `SubmitPaymentResponse` m
 
 ![Canvas with a Saga](images/servicematrix-sagacanvas.png)
 
-Since the `OrderAcceptedProcessor` is now a Saga, notice the icon has changed slightly. ServiceMatrix has also generated the code needed to support a saga implementation.  The framework will take care of persisting the message data from each message processed by the saga.  The generated code has provided some ways to safely integrate your own custom code.   
+Since the `OrderAcceptedProcessor` is now a saga, notice the icon has changed slightly. ServiceMatrix has also generated the code needed to support a saga implementation.  The framework will take care of persisting the message data from each message processed by the saga.  The generated code has provided some ways to safely integrate your own custom code.   
 
 ##Modifying the Saga Code
-Compile the Visual Studio solution and open the `OrderAcceptedProcessor` code by using the drop-down menu.  The code window will open a `OrderAcceptedProcessor.cs` file which contains a partial class.  Virtual methods can be implemented in this class that allow you to customize the implementation.  These virtual methods are called by the generated code in another partial class.  
+Compile the Visual Studio solution and open the `OrderAcceptedProcessor` code by using its drop-down menu.  The code window will open a `OrderAcceptedProcessor.cs` file which contains a partial class.  Virtual methods can be implemented in this class that allow you to customize the implementation.  These virtual methods are called by the generated code in another partial class.  
 
 ```C#
 namespace OnlineSales.Billing
@@ -77,7 +77,7 @@ namespace OnlineSales.Billing
 	}
 }
 ```
-This class already has one virtual method for the original `OrderAccepted` event from our previous example.  We'll need to supplement this code in a few ways.  We'll demonstrate where to modify the `SubmitPayment` request message before it is sent and also modify the handling of the `SubmitPaymentResponse`.   We'll also need to mark the saga as complete.  
+This class already has one virtual method for the original `OrderAccepted` event from our previous example.  We'll need to supplement this code in a few ways.  We'll demonstrate where to modify the `SubmitPayment` request message before it is sent and also modify the handling of the `SubmitPaymentResponse`.   Finally, we'll also need to mark the saga as complete.  
 
 ##Modify the Payment Request
 When the `Billing` service receives the `OrderAccepted` event the `SubmitPayment` request needs to be sent.  By default, ServiceMatrix will generate code to publish or send any referenced outbound message when it receives an inbound messages.  A partial method is called and can be used to configure the `SubmitPayment` message before it is sent.  To make use of it, modify the partial class for the component by adding the `ConfigureSubmitPayment` partial method as shown below.  
@@ -117,7 +117,7 @@ The saga maintains data between calls but this persistence needs to last only un
         }
 ```
 ##Review the SubmitPaymentProcessor Code
- Use the drop-down on the `SubmitPaymentProcessor` component to bring up the code window. As was the case with the Saga, ServiceMatrix has generated the basic code needed for the `SubmitPaymentProcessor` to handle the `SubmitPaymen`t message and will by default send a `SubmitPaymentResponse`.  Let's look at how to modify the response.  To do it, we must use one of the provided virtual methods just like we did in the saga above.  It will give our code a chance to access and modify the response before it is sent back. Change the implementation to include the virtual method below. 
+ Use the drop-down on the `SubmitPaymentProcessor` component to bring up the code window. As was the case with the Saga, ServiceMatrix has generated the basic code needed for the `SubmitPaymentProcessor` to handle the `SubmitPayment` message and will by default send a `SubmitPaymentResponse`.  Let's look at how to modify the response.  To do it, we must again use one of the provided virtual methods.  This method will give our code a chance to access and modify the response before it is sent back. Change the implementation to include the virtual method below. 
 
 ```C#
 namespace OnlineSales.Billing
@@ -143,11 +143,9 @@ namespace OnlineSales.Billing
 #Running The Solution
 Press `F5` to build and run the solution.  Arrange the consoles for OrderProcessing, Billing and the new PaymentProcessing endpoints so you can see them all simultaneously.  When the ECommerce website launches use it it send a test message.  Notice the interaction between the Billing and PaymentProcessing endpoints.  
 
-###Billing & PaymentProcessing Endpoint Consoles
-
 ![Billing and PaymentProcessing Endpoint Consoles](images/servicematrix-billingandpaymentprocessingconsoles.png)
 
-As before, the `Billing` service has received the `Orderaccepted` event and handled it in the `OrderAcceptedProcessor` component, now running as a saga.  It handles the event and sends the `SubmitPayment`command to the `SubmitPaymentProcessor` component running in the `OrderProcessing` endpoint.  The `SubmitPaymentResponse` reply is sent back to the `OrderAcceptedProcessor` saga.  Once both the `OrderAccepted` even and the `SubmitPaymentResponse` messages have been received the saga is completed.
+The `Billing` service has received the `Orderaccepted` event and handled it in the `OrderAcceptedProcessor` component, now running as a saga.  It handles the event and sends the `SubmitPayment`command to the `SubmitPaymentProcessor` component running in the `OrderProcessing` endpoint.  The `SubmitPaymentResponse` reply is sent back to the `OrderAcceptedProcessor` saga.  Once both the `OrderAccepted` even and the `SubmitPaymentResponse` messages have been received the saga is completed.
 
 ## Using ServiceInsight
 [ServiceInsight](../ServiceInsight/index.md "ServiceInsight") is an additional tool in the NServiceBus framework.  It uses audit and error data to provide a valuable view into a running system.  If you have ServiceInsight installed, it will be launched each time you debug.  When used at debug time, ServiceInsight will list and illustrate the messages related to your current debug session.  Read about [using ServiceInsight and ServiceMatrix](servicematrix-serviceinsight.md) together then run this solution again. Review the messages and the visual representation of the saga shown here: 
