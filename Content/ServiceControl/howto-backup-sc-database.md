@@ -14,16 +14,16 @@ ServiceControlo utilizes, as storage backend RavenDB Embedded, in order to backu
 * copy the ServiceControl data directory, that by default is located in `%SystemDrive%\ProgramData\Particular\ServiceControl\localhost-33333`;
 * Start the ServiceControl service;
 
+**note**: the default database location will change if ports and host names are customized.
+
 ### Restore
 
 * Stop the ServiceControl service;
 * copy the previouly backed-up data into the ServiceControl data directory, that by default is located in `%SystemDrive%\ProgramData\Particular\ServiceControl\localhost-33333`;
 * Start the ServiceControl service;
 
-### Notes
+### Important Notes
 
---------
+The backup method oulined above requires ServiceControl service to be stopped during this time ServiceControl data cllection is paused and no connections can be made from ServicePulse, ServiceInsight or any custom software that depends on the ServiceControl API endpoints.
 
-* The location of the RavenDB embedded folder by default
-* The directory path localhost-33333 will change based on customizing port numbers of host names
-* Comment on the fact that this backup method indeed requires a momentary shutdown of the SC service, but due to the nature of async messaging, no data will be lost
+Due to the nature of messaging, and ServiceControl is no exception, messages directed to ServiceControl will remain in its queues until the service is restarted, as soon as ServiceControl service is restared normal messages processing is restored and al the ppending messages will be processed, without loosing any information.
