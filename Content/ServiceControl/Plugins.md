@@ -41,7 +41,7 @@ The ServiceControl plugins are deployed with the endpoints they are monitoring. 
 
 ## Connecting the Plugins to ServiceControl
 
-Once deployed on an active endpoint, the endpoints send plugin-specific information to ServiceControl, with no need for additional configuration. This is done by sending messages using the defined endpoint transport) to the ServiceControl queue, which is located in the same physical location as the audit and error queues defined for the endpoint.
+Once deployed on an active endpoint, the endpoints send plugin-specific information to ServiceControl, with no need for additional configuration. This is done by sending messages using the defined endpoint transport to the ServiceControl queue, which is located in the same physical location as the audit and error queues defined for the endpoint.
 
 The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl.  
 
