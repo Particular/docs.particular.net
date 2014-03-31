@@ -18,7 +18,7 @@ To develop a custom check, this is all you have to do:
 
 1. In Visual Studio, create a new Class Library project.
 1. Add the endpoint plugin to the project using the NuGet console:
-	`install-package ServiceControl.Plugin.CustomChecks -pre`
+	`install-package ServiceControl.Plugin.CustomChecks`
 1. Create a custom check:
   * To execute once on endpoint startup, create a class that inherits from `CustomCheck` class (see sample code below).
   * To execute repeatedly, at defined time intervals, create a class that inherits from the `PeriodicCheck` class (see sample code below).
