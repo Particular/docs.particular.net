@@ -15,7 +15,7 @@ NServiceBus, out of the box, supports a lot of different transports such as:
 * SqlServer;
 * Azure ServiceBus;
 
-All the transports can be configured in the application configuration file using the NServiceBus/Transport` connection string name; The following is a sample list of connection strings for the above transports:
+All the transports connection string can be configured in the application configuration file using the `NServiceBus/Transport` connection string name; The following is a sample list of connection strings for the above transports:
 
 ```xml
 <connectionStrings>
