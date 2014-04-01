@@ -6,7 +6,7 @@ tags:
 - RavenDB
 - Backup
 ---
-ServiceControlo utilizes, as storage backend RavenDB Embedded, in order to backup ServiceControl data proceed as following.
+ServiceControl relies, as storage backend, on RavenDB Embedded, in order to backup ServiceControl data proceed as following.
 
 ### Backup
 
@@ -26,4 +26,4 @@ ServiceControlo utilizes, as storage backend RavenDB Embedded, in order to backu
 
 The backup method outlined above requires ServiceControl service to be stopped during this time ServiceControl data collection is paused and no connections can be made from ServicePulse, ServiceInsight or any custom software that depends on the ServiceControl API endpoints.
 
-Due to the nature of messaging, and ServiceControl is no exception, messages directed to ServiceControl will remain in its queues until the service is restarted, as soon as ServiceControl service is restared normal messages processing is restored and all the pending messages will be processed, without loosing any information.
+Due to the nature of messaging, messages directed to ServiceControl will remain in its queues until the service is restarted, as soon as ServiceControl service is restared normal messages processing is restored and all the pending messages will be processed, without loosing any information.
