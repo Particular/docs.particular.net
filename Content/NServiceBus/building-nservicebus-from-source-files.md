@@ -13,7 +13,7 @@ Cloning the git repository
 If you want all the source for all versions of NServiceBus you should
 "Clone the repository". The recommended approaches are
 
-- Using [GitHub for Windows](http://windows.github.com/)
+- Using [GitHub for Windows](https://windows.github.com/)
 - Using the [Git command line](http://git-scm.com/book/en/Git-Basics-Getting-a-Git-Repository)
 
 Downloading a zip
