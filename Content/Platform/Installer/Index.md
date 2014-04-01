@@ -7,7 +7,7 @@ tags: [Platform, Installer]
 ## Download
 
 clickonce download link
-https://particulartest.blob.core.windows.net/platforminstaller/PlatformInstaller.application
+`https://particulartest.blob.core.windows.net/platforminstaller/PlatformInstaller.application`
 
 ## Dependencies 
 
