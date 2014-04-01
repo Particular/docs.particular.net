@@ -7,36 +7,49 @@ tags:
 - Transports
 ---
 
-NServiceBus, out of the box, supports a lot of different transports such as:
+NServiceBus supports the following transports out of the box:
 
 * MSMQ;
 * ActiveMQ;
 * RabbitMQ;
-* SqlServer;
-* Azure ServiceBus;
+* SQL Server;
+* Microsoft Azure ServiceBus;
+* Microsoft Azure Storage Queues;
 
-All the transports connection string can be configured in the application configuration file using the `NServiceBus/Transport` connection string name; The following is a sample list of connection strings for the above transports:
+You can configure NServiuceBus endpoints to use a specific transport by:
 
-```xml
-<connectionStrings>
-<!-- MSMQ -->
-<add name="NServiceBus/Transport" connectionString="deadLetter=true;
+* Setting a connection string, named `NServiceBus/Transport`, in the endpoint's configuration file;
+* Installing the relevant transport NuGet package;
+
+###MSMQ
+
+* Nuget transport package: not required, MSMQ is supported out of the box;
+* Connection string sample: `deadLetter=true;
    journal=true;useTransactionalQueues=true;
-   cacheSendConnection=true"/>
-<!-- ActiveMQ -->
-<add name="NServiceBus/Transport" 
-   connectionString="ServerUrl=activemq:tcp://localhost:61616"/>
-<!-- RabbitMQ-->
-<add name="NServiceBus/Transport" 
-   connectionString="host=localhost"/>
-<!-- SqlServer -->
-<add name="NServiceBus/Transport" 
-   connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;
-   Integrated Security=True"
-/>
-<!-- Azure ServiceBus -->
-<add name="NServiceBus/Transport" 
-   connectionString="Endpoint=sb://[namespace].servicebus.windows.net; SharedSecretIssuer=owner;SharedSecretValue=someSecret"
-/>
-</connectionStrings>
-```
+   cacheSendConnection=true`;
+
+###ActiveMQ
+
+* Nuget transport package: []();
+* Connection string sample: `ServerUrl=activemq:tcp://localhost:61616`;
+
+###RabbitMQ
+
+* Nuget transport package: []();
+* Connection string sample: `host=localhost`;
+
+###SQL Server
+
+* Nuget transport package: []();
+* Connection string sample: `Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;
+   Integrated Security=True`;
+
+###Microsoft Azure ServiceBus
+
+* Nuget transport package: []();
+* Connection string sample: `Endpoint=sb://[namespace].servicebus.windows.net; SharedSecretIssuer=owner;SharedSecretValue=someSecret`;
+
+###Microsoft Azure Storage Queues
+
+* Nuget transport package: []();
+* Connection string sample: `DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;`;
