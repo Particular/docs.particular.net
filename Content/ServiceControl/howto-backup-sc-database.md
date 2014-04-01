@@ -12,7 +12,7 @@ ServiceControl relies, as storage backend, on RavenDB Embedded, in order to back
 
 * Stop the ServiceControl service;
 * copy the ServiceControl data directory, that by default is located in `%SystemDrive%\ProgramData\Particular\ServiceControl\localhost-33333`;
-* Start the ServiceControl service;
+* start the ServiceControl service;
 
 **note**: the default database location will change if ports and host names are customized.
 
@@ -20,7 +20,7 @@ ServiceControl relies, as storage backend, on RavenDB Embedded, in order to back
 
 * Stop the ServiceControl service;
 * copy the previouly backed-up data into the ServiceControl data directory, that by default is located in `%SystemDrive%\ProgramData\Particular\ServiceControl\localhost-33333`;
-* Start the ServiceControl service;
+* start the ServiceControl service;
 
 ### Important Notes
 
