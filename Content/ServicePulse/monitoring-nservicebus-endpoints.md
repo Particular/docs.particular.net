@@ -8,9 +8,9 @@ tags:
 - Service Level Agreement
 - Heartbeat
 ---
-Monitoring in NServiceBus is easier than in regular three-tier systems due to the use of queuing and message-based communication. Given the fact that generally messages are an atomic piece of information that drives the system
+Monitoring in NServiceBus is easier than in regular three-tier systems due to the use of queuing and message-based communication. Given the fact that generally messages are an atomic piece of information that drives the system we can say that it is enought to know where a message comes from, what is has changed, as a consequance of the handling process, and finally where it is going.
 
-In this article:
+This article will cover te following topics:
 
 * Monitoring primers;
 * Service Level Agreement;
@@ -29,7 +29,7 @@ When a system is a messaging based system you can quickly identify which process
 
 **Service Level Agreement**
 
-An SLA is, as the name implies, an agreement between the involved parts. When speaking about endpoints and messages an SLA is a mean to express that a given endpoint must consume, handled in NServiceBus terminology, messages within a given amount of time, otherwise the SLA itself is not respected.
+An SLA is, as the name implies, an agreement between the involved parts. When speaking about endpoints and messages an SLA is a mean to express that a given endpoint must consume, handle in NServiceBus terminology, messages within a given amount of time, otherwise the SLA itself is not respected.
 
 **Performance Counters**
 
