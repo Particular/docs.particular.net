@@ -16,7 +16,7 @@ NServiceBus supports the following transports out of the box:
 * Microsoft Azure ServiceBus;
 * Microsoft Azure Storage Queues;
 
-You can configure NServiuceBus endpoints to use a specific transport by:
+You can configure NServiceBus endpoints to use a specific transport by:
 
 * Setting a connection string, named `NServiceBus/Transport`, in the endpoint's configuration file;
 * Installing the relevant transport NuGet package;
