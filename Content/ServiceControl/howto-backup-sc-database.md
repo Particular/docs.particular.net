@@ -6,7 +6,7 @@ tags:
 - RavenDB
 - Backup
 ---
-ServiceControl relies, as storage backend, on RavenDB Embedded, in order to backup ServiceControl data proceed as following.
+ServiceControl uses an embedded instance of RavenDB for data storage. In order to backup this database instance proceed as following.
 
 ### Backup
 
