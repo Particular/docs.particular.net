@@ -24,9 +24,17 @@ You can configure NServiceBus endpoints to use a specific transport by:
 ###MSMQ
 
 * Nuget transport package: not required, MSMQ is supported out of the box;
-* Connection string sample: `deadLetter=true;
-   journal=true;useTransactionalQueues=true;
-   cacheSendConnection=true`;
+* Connection string sample: 
+```xml
+<connectionStrings>
+   <!-- MSMQ -->
+   <add name="NServiceBus/Transport"
+        connectionString="deadLetter=true;
+                          journal=true;
+                          useTransactionalQueues=true;
+                          cacheSendConnection=true"/>
+</connectionStrings>
+```
 
 ###ActiveMQ
 
