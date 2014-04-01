@@ -7,7 +7,7 @@ tags:
 
 ServiceControl is the activity information backend service for ServiceInsight, ServicePulse, and third-party developments. It collects information from monitored NServicBus endpoints, stores this information in a dedicated database, and exposes this information for consumption by various clients via HTTP API.
 
-**Note:** When ServceControl is introduced into an existing environment it is important to understand that the normal behavior of error and audit queues will change due to the introduction of ServiceControl.
+**Note:** When ServceControl is introduced into an existing environment it is important to understand that the normal behavior of error and audit queues will change due to the introduction of ServiceControl itself. If ServiceControl is not in place failed messages will remain in the configured error queue and audit messages in the configured audit queue, as soon as ServiceControl is installed messages, in both queues, will be handled and moved into the ServiceControl database.
 
 Plugins collect information from NServiceBus and can be deployed with each NServiceBus endpoint. 
 These plugins are optional from the perspective of the NServiceBus framework itself (they are not required by the endpoint), but they are required in order to collect the information that enables ServiceControl (and its clients) to provide the relevant functionality for each plugin.
