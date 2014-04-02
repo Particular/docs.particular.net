@@ -1,7 +1,8 @@
 ---
 title: Sagas in NServiceBus
 summary: NServiceBus uses event-driven architecture to include fault-tolerance and scalability in long-term business processes.
-tags: []
+tags:
+- Sagas
 ---
 
 Long-running business processes exist in many systems. Whether the steps are automated, manual, or a combination, effective handling of these processes is critical. NServiceBus employs event-driven architectural principles to bake fault-tolerance and scalability into these processes.The saga is a pattern that addresses the challenges uncovered by the relational database community years ago, packaged in NServiceBus for ease of use.
