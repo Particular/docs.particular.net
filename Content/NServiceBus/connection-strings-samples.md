@@ -37,6 +37,8 @@ You can configure NServiceBus endpoints to use a specific transport by:
 </connectionStrings>
 ```
 
+**NOTE:** The MSMQ connection string is optional
+
 ###ActiveMQ
 
 * Nuget transport package: [NServiceBus.ActiveMQ](https://www.nuget.org/packages/NServiceBus.ActiveMQ/);
