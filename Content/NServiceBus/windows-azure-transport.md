@@ -35,7 +35,7 @@ Samples for various scenario's are available on Github
 To run these samples, update the configuration connection strings and queue names settings in the relevant configuration files (as described below).
 
 The Windows Azure transport for NServiceBus are available from nuget. You can download the latest (and previous) release from the
-[nuget website](http://www.nuget.org/profiles/nservicebus/).
+[nuget website](https://www.nuget.org/profiles/nservicebus/).
 
 Prerequisites
 -------------
