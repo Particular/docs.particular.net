@@ -25,6 +25,7 @@ You can configure NServiceBus endpoints to use a specific transport by:
 
 * Nuget transport package: not required, MSMQ is supported out of the box;
 * Connection string sample: 
+
 ```xml
 <connectionStrings>
    <!-- MSMQ -->
@@ -39,25 +40,70 @@ You can configure NServiceBus endpoints to use a specific transport by:
 ###ActiveMQ
 
 * Nuget transport package: []();
-* Connection string sample: `ServerUrl=activemq:tcp://localhost:61616`;
+* Connection string sample:
+
+```xml
+<connectionStrings>
+   <!-- ActiveMQ -->
+   <add name="NServiceBus/Transport"
+        connectionString="ServerUrl=activemq:tcp://localhost:61616"/>
+</connectionStrings>
+```
 
 ###RabbitMQ
 
 * Nuget transport package: []();
-* Connection string sample: `host=localhost`;
+* Connection string sample:
+
+```xml
+<connectionStrings>
+   <!-- RabbitMQ -->
+   <add name="NServiceBus/Transport"
+        connectionString="host=localhost"/>
+</connectionStrings>
+```
 
 ###SQL Server
 
 * Nuget transport package: []();
-* Connection string sample: `Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;
-   Integrated Security=True`;
+* Connection string sample:
+   
+```xml
+<connectionStrings>
+   <!-- SQL Server -->
+   <add name="NServiceBus/Transport"
+        connectionString="Data Source=.\SQLEXPRESS;
+                                      Initial Catalog=nservicebus;
+                                      Integrated Security=True"/>
+</connectionStrings>
+```
 
 ###Microsoft Azure ServiceBus
 
 * Nuget transport package: []();
-* Connection string sample: `Endpoint=sb://[namespace].servicebus.windows.net; SharedSecretIssuer=owner;SharedSecretValue=someSecret`;
+* Connection string sample:
+
+```xml
+<connectionStrings>
+   <!-- Azure ServiceBus -->
+   <add name="NServiceBus/Transport"
+        connectionString="Endpoint=sb://[namespace].servicebus.windows.net;
+                                      SharedSecretIssuer=owner;
+                                      SharedSecretValue=someSecret"/>
+</connectionStrings>
+```
 
 ###Microsoft Azure Storage Queues
 
 * Nuget transport package: []();
-* Connection string sample: `DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;`;
+* Connection string sample:
+
+```xml
+<connectionStrings>
+   <!-- Azure Storage Queues -->
+   <add name="NServiceBus/Transport"
+        connectionString="DefaultEndpointsProtocol=https;
+                                      AccountName=myAccount;
+                                      AccountKey=myKey;"/>
+</connectionStrings>
+```
