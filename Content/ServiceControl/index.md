@@ -3,7 +3,7 @@ title: ServiceControl Documentation
 summary: ServiceControl Documentation Table of Contents
 ---
 
-<a name="sc-toc"></a>
+## Table of Contents
 
 - [Configuring ServiceControl to use non-MSMQ Transports](multi-transport-support)
 - [Setting custom hostname for ServiceControl & ServicePulse](setting-custom-hostname)
