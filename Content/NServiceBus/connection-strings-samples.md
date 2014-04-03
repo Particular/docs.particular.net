@@ -10,9 +10,9 @@ tags:
 NServiceBus supports the following transports out of the box:
 
 * MSMQ
-* ActiveMQ
-* RabbitMQ
 * SQL Server
+* RabbitMQ
+* ActiveMQ
 * Microsoft Azure Service Bus
 * Microsoft Azure Storage Queues
 
