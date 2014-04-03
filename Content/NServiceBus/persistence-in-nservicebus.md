@@ -18,7 +18,12 @@ Read about [installing Raven DB](using-ravendb-in-nservicebus-installing.md) and
 Using NHibernate for persistence
 --------------------------------
 
-Starting with NServiceBus V3.0, [support for NHibernate persistence is now located in a separate assembly](relational-persistence-using-nhibernate.md) .
+Starting with NServiceBus V3.0, support for NHibernate persistence is located in a separate assembly.  The configuration was then simplified further for V4.0+.
+
+[NHibernate persistence for V3.x](relational-persistence-using-nhibernate.md).
+
+[NHibernate persistence for V4.x](relational-persistence-using-nhibernate---nservicebus-4.x.md).
+
 
 What's available?
 -----------------
