@@ -18,8 +18,8 @@ NServiceBus supports the following transports out of the box:
 
 To configure NServiceBus endpoints to use a specific transport:
 
-* Set a connection string, named `NServiceBus/Transport`, in the endpoint's configuration file.
-* Install the relevant transport NuGet package.
+1. Set a connection string, named `NServiceBus/Transport`, in the endpoint's configuration file.
+1. Install the relevant transport NuGet package.
 
 ###MSMQ
 
