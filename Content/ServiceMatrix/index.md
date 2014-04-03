@@ -3,7 +3,6 @@ title: ServiceMatrix Documentation
 summary: ServiceMatrix Documentation Table of Contents
 ---
 
-<a name="sm-toc"></a>
 ##ServiceMatrix 2.0 for Visual Studio 2012
 
 ###Getting Started
@@ -18,6 +17,7 @@ summary: ServiceMatrix Documentation Table of Contents
 
 ###Troubleshooting
 - [Troubleshooting Installation](installing-servicematrix-2.0)
+
 
 ##ServiceMatrix for Visual Studio 2013
 Coming Soon!
