@@ -1,7 +1,9 @@
 ---
 title: Transport Configuration
 summary: 'Explains the available Transport Configuration options. Properties of the MSMQ transport: ErrorQueue, NumberOfWorkerThreads, and MaxRetries.'
-tags: []
+tags: 
+- Transports
+- MSMQ
 ---
 
 NServiceBus V3
