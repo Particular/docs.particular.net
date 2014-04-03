@@ -82,5 +82,5 @@ Installs the [ServiceControl Chocolatey Package](http://chocolatey.org/packages/
 
 ## ClickOnce Information
 
-* [Troubleshooting ClickOnce Deployments](http://msdn.microsoft.com/en-us/library/b94w1t5.aspx)
+* [Troubleshooting ClickOnce Deployments](http://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
 * [ClickOnce forum](http://social.msdn.microsoft.com/Forums/windows/en-US/home?forum=winformssetup)
