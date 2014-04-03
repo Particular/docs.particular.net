@@ -1,6 +1,6 @@
 ---
-title: NServiceBus Connection Strings samples
-summary: Provides a list of samples connections strings for different transports supported by NServiceBus.
+title: NServiceBus Connection String Samples
+summary: Provides a list of sample connections strings for different transports supported by NServiceBus.
 tags:
 - NServiceBus
 - Connection strings
@@ -9,22 +9,22 @@ tags:
 
 NServiceBus supports the following transports out of the box:
 
-* MSMQ;
-* ActiveMQ;
-* RabbitMQ;
-* SQL Server;
-* Microsoft Azure ServiceBus;
-* Microsoft Azure Storage Queues;
+* MSMQ
+* ActiveMQ
+* RabbitMQ
+* SQL Server
+* Microsoft Azure Service Bus
+* Microsoft Azure Storage Queues
 
-You can configure NServiceBus endpoints to use a specific transport by:
+To configure NServiceBus endpoints to use a specific transport:
 
-* Setting a connection string, named `NServiceBus/Transport`, in the endpoint's configuration file;
-* Installing the relevant transport NuGet package;
+* Set a connection string, named `NServiceBus/Transport`, in the endpoint's configuration file.
+* Install the relevant transport NuGet package.
 
 ###MSMQ
 
-* Nuget transport package: not required, MSMQ is supported out of the box;
-* Connection string sample: 
+* NuGet transport package: not required, MSMQ is supported out of the box
+* Connection string sample:
 
 ```xml
 <connectionStrings>
@@ -37,11 +37,11 @@ You can configure NServiceBus endpoints to use a specific transport by:
 </connectionStrings>
 ```
 
-**NOTE:** The MSMQ connection string is optional
+**NOTE:** The MSMQ connection string is optional.
 
 ###ActiveMQ
 
-* Nuget transport package: [NServiceBus.ActiveMQ](https://www.nuget.org/packages/NServiceBus.ActiveMQ/);
+* NuGet transport package: [NServiceBus.ActiveMQ](https://www.nuget.org/packages/NServiceBus.ActiveMQ/);
 * Connection string sample:
 
 ```xml
@@ -54,7 +54,7 @@ You can configure NServiceBus endpoints to use a specific transport by:
 
 ###RabbitMQ
 
-* Nuget transport package: [NServiceBus.RabbitMQ](https://www.nuget.org/packages/NServiceBus.RabbitMQ/);
+* NuGet transport package: [NServiceBus.RabbitMQ](https://www.nuget.org/packages/NServiceBus.RabbitMQ/);
 * Connection string sample:
 
 ```xml
@@ -67,7 +67,7 @@ You can configure NServiceBus endpoints to use a specific transport by:
 
 ###SQL Server
 
-* Nuget transport package: [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer/);
+* NuGet transport package: [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer/);
 * Connection string sample:
    
 ```xml
@@ -80,9 +80,9 @@ You can configure NServiceBus endpoints to use a specific transport by:
 </connectionStrings>
 ```
 
-###Microsoft Azure ServiceBus
+###Microsoft Azure Service Bus
 
-* Nuget transport package: [NServiceBus.Azure.Transports.WindowsAzureServiceBus](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/);
+* NuGet transport package: [NServiceBus.Azure.Transports.WindowsAzureServiceBus](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/);
 * Connection string sample:
 
 ```xml
@@ -97,7 +97,7 @@ You can configure NServiceBus endpoints to use a specific transport by:
 
 ###Microsoft Azure Storage Queues
 
-* Nuget transport package: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/);
+* NuGet transport package: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/);
 * Connection string sample:
 
 ```xml
