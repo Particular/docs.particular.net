@@ -11,7 +11,7 @@ ServiceControl uses an embedded instance of RavenDB for data storage. In order t
 ### Backup
 
 
-1. Stop the ServiceControl service: `net stop "Particular ServiceControl"`
+* Stop the ServiceControl service: `net stop "Particular ServiceControl"`
 * Copy the ServiceControl data directory, that by default is located in `%SystemDrive%\ProgramData\Particular\ServiceControl\localhost-33333`;
 * Start the ServiceControl service: `net start "Particular ServiceControl"`
 
@@ -19,7 +19,7 @@ ServiceControl uses an embedded instance of RavenDB for data storage. In order t
 
 ### Restore
 
-1. Stop the ServiceControl service: `net stop "Particular ServiceControl"`
+* Stop the ServiceControl service: `net stop "Particular ServiceControl"`
 * Copy the previouly backed-up data into the ServiceControl data directory, that by default is located in `%SystemDrive%\ProgramData\Particular\ServiceControl\localhost-33333`;
 * Start the ServiceControl service: `net start "Particular ServiceControl"`
 
