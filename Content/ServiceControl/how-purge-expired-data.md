@@ -22,6 +22,13 @@ It is possible to control the above behavior using the following settings:
 To change the ServiceControl behavior. add the above settings to the ServiceControl configuration file, located in the installation directory; for example,
 
 ```xml 
-<add key="ExpirationProcessTimerInSeconds" value="new-integer-value" />
-<add key="HoursToKeepMessagesBeforeExpiring" value="new-integer-value" />
+<add key="ServiceControl/ExpirationProcessTimerInSeconds" value="new-integer-value" />
+<add key="ServiceControl/HoursToKeepMessagesBeforeExpiring" value="new-integer-value" />
+```
+
+**Example:** check for expiration every 2 minutes and expire messages older than 10 days.
+
+```xml
+ <add key="ServiceControl/ExpirationProcessTimerInSeconds" value="120" />
+<add key="ServiceControl/HoursToKeepMessagesBeforeExpiring" value="240" />
 ```
