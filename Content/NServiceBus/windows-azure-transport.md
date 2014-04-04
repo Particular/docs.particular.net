@@ -45,7 +45,7 @@ The Windows Azure transport for NServiceBus and its samples require the followin
 -   [NServiceBus V4.0 or later](http://particular.net/downloads)
     -   Note that Windows Azure transport for NServiceBus is supported by NServiceBus V3 and later. It is, however, recommended that you use it with NServiceBus V4, and the samples require NServiceBus V4.
 
--   [Microsoft Windows Azure SDK version 2.0](http://www.windowsazure.com/en-us/downloads/)
+-   [Microsoft Windows Azure SDK version 2.0](http://azure.microsoft.com/en-us/downloads/)
 
 Configuring for cloud service hosting
 -------------------------------------
