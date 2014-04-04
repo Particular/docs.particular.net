@@ -29,6 +29,6 @@ To change the ServiceControl behavior. add the above settings to the ServiceCont
 **Example:** check for expiration every 2 minutes and expire messages older than 10 days.
 
 ```xml
- <add key="ServiceControl/ExpirationProcessTimerInSeconds" value="120" />
+<add key="ServiceControl/ExpirationProcessTimerInSeconds" value="120" />
 <add key="ServiceControl/HoursToKeepMessagesBeforeExpiring" value="240" />
 ```
