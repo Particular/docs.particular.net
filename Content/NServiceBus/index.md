@@ -3,8 +3,7 @@ title: NServiceBus Documentation
 summary: NServiceBus Documentation Table of Contents
 ---
 
-<a name="nsb-toc"></a>
-## Table of Contents ##
+## Table of Contents
 
 - [Getting Started](#getting-started)
 - [Persistence in NServiceBus](#persistence-in-nservicebus)
@@ -20,8 +19,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Samples](/platform/samples/)
 
 
-<a name="getting-started"></a>
-## Getting Started ##
+## Getting Started
 - [Overview](Overview)
 - [NServiceBus Step by Step Guide](NServiceBus-Step-by-Step-Guide)
 - [NServiceBus Step by Step Guide Fault Tolerance Code First](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first)
@@ -35,8 +33,7 @@ summary: NServiceBus Documentation Table of Contents
 - [NServiceBus and WebSphere Sonic](nservicebus-and-websphere-sonic)
 - [NServiceBus and BizTalk](nservicebus-and-biztalk)
 
-<a name="persistence-in-nservicebus"></a>
-## Persistence in NServiceBus ##
+## Persistence in NServiceBus
 - [Persistence in NServiceBus](persistence-in-nservicebus)
 - [Using RavenDB in NServiceBus Installing](using-ravendb-in-nservicebus-installing)
 - [Using RavenDB in NServiceBus Connecting](using-ravendb-in-nservicebus-connecting)
@@ -45,16 +42,14 @@ summary: NServiceBus Documentation Table of Contents
 - [Unit of Work Implementation for RavenDB](unit-of-work-implementation-for-ravendb)
 - [Relational Persistence Using NHibernate NServiceBus 4.X](relational-persistence-using-nhibernate---nservicebus-4.x)
 
-<a name="scaling-out"></a>
-## Scaling Out ##
+## Scaling Out
 - [Performance](performance)
 - [The Gateway and Multi Site Distribution](the-gateway-and-multi-site-distribution)
 - [Load Balancing with the Distributor](load-balancing-with-the-distributor)
 - [Introduction to the Gateway](introduction-to-the-gateway)
 - [Deploying NServiceBus in a Windows Fail-over Cluster](deploying-nservicebus-in-a-windows-failover-cluster)
 
-<a name="day-to-day"></a>
-## Day to Day ##
+## Day to Day
 - [Containers](containers)
 - [NServiceBus Support for Child Containers](nservicebus-support-for-child-containers)
 - [Logging in NServiceBus](logging-in-nservicebus)
@@ -69,41 +64,34 @@ summary: NServiceBus Documentation Table of Contents
 - [NServiceBus Installers](nservicebus-installers)
 - [Managing NServiceBus Using PowerShell](managing-nservicebus-using-powershell)
 
-<a name="hosting"></a>
-## Hosting ##
+## Hosting
 - [The NServiceBus Host](the-nservicebus-host)
 - [Hosting NServiceBus in Your Own Process](hosting-nservicebus-in-your-own-process)
 - [Profiles for NServiceBus Host](profiles-for-nservicebus-host)
 - [More on Profiles](more-on-profiles)
 - [NServiceBus 32 Bit X86 Host Process](nservicebus-32-bit-x86-host-process)
 
-<a name="management-and-monitoring"></a>
-## Management and Monitoring ##
+## Management and Monitoring
 - [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints)
 - [MSMQ Information](msmq-information)
 - [Auditing with NServiceBus](auditing-with-nservicebus)
 
-<a name="publish-subscribe"></a>
-## Publish Subscribe ##
+## Publish Subscribe
 - [How Pub Sub Works](how-pub-sub-works)
 - [Publish Subscribe Configuration](publish-subscribe-configuration)
 
-<a name="long-running-processes"></a>
-## Long Running Processes ##
+## Long Running Processes
 - [Sagas in NServiceBus](sagas-in-nservicebus)
 - [NServiceBus Sagas and Concurrency](nservicebus-sagas-and-concurrency)
 
-<a name="customization"></a>
-## Customization ##
+## Customization
 - [Customizing NServiceBus Configuration](customizing-nservicebus-configuration)
 - [Pipeline Management Using Message Mutators](pipeline-management-using-message-mutators)
 
-<a name="versioning"></a>
-## Versioning ##
+## Versioning
 - [Migrating to NServiceBus 3.0 Timeouts](migrating-to-nservicebus-3.0-timeouts)
 
-<a name="faq"></a>
-## FAQ ##
+## FAQ
 - [MsmqTransportConfig](msmqtransportconfig)
 - [How Do I Define a Message](how-do-i-define-a-message)
 - [Using the in Memory Bus](using-the-in-memory-bus)

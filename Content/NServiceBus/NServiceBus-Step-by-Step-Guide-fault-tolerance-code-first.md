@@ -12,7 +12,6 @@ In [the previous section](NServiceBus-Step-by-Step-Guide.md) you've seen how a s
 1.  [Durable Messaging Demo](#Demo)
 2.  [Fault tolerance and Second Level Retries (SLR)](#Fault)
 3.  [Retries, errors, and auditing](#AuditAndError)
-4.  [Next Steps](#Next)
 
 The complete solution code can be found [here](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Documentation/002_OrderingFaultTolerance)
 
@@ -93,13 +92,5 @@ Read more about [how to configure retries](second-level-retries.md) .
 
 Make sure you remove the code which throws an exception before going on.
 
-### <a id="Next" name="Next"> </a> Next Steps
-
-* Go to [NServiceBus Step by Step Guide - Publish Subscribe Communication - code first](nservicebus-step-by-step-publish-subscribe-communication-code-first)
-* Read about [NServiceBus and SOA Architectural Principles](architectural-principles)
-* Try our [Hands on Labs](http://particular.net/HandsOnLabs)
-* Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
-* See the [Documentation](http://docs.particular.net)
-* Join our [community](http://particular.net/DiscussionGroup)
 
 

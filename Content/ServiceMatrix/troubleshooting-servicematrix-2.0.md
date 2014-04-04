@@ -41,6 +41,6 @@ In case of any errors or exception the ServiceMatrix log file may contain inform
 ```
 
 #Using the Microsoft FixIt tool
-The Microsoft FixIt tool can help troubleshoot general installation issues including registry problems.  You may download it [here](servicematrix-vstudio-extensions-uninstall.png "Microsoft FixIt tool"). 
+The Microsoft FixIt tool can help troubleshoot general installation issues including registry problems.  You may download it [here](http://support.microsoft.com/mats/program_install_and_uninstall/en-us "Microsoft FixIt tool"). 
 
 

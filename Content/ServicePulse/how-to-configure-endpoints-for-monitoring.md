@@ -26,8 +26,8 @@ tags:
 **Deploying Endpoint Plugins in each Endpoint**
 
 1. The endpoint plugin consists of two NuGet packages:
-    * [`ServiceControl.Plugin.Heartbeat`](http://www.nuget.org/packages/ServiceControl.Plugin.Heartbeat/)
-    * [`ServiceControl.Plugin.CustomChecks`](http://www.nuget.org/packages/ServiceControl.Plugin.CustomChecks/)
+    * [`ServiceControl.Plugin.Heartbeat`](https://www.nuget.org/packages/ServiceControl.Plugin.Heartbeat/)
+    * [`ServiceControl.Plugin.CustomChecks`](https://www.nuget.org/packages/ServiceControl.Plugin.CustomChecks/)
 1. Get the Endpoint Heartbeat and CustomChecks plugins using the NuGet console: 
      * `install-package ServiceControl.Plugin.Heartbeat -pre`
      * `install-package ServiceControl.Plugin.CustomChecks -pre`

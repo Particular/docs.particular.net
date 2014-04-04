@@ -17,10 +17,10 @@ The ServiceControl plugins can be downloaded and installed from the NuGet galler
 
 | **Plugin** | **NuGet gallery URL** | 
 |:----- |:----- |
-|Heartbeat|http://www.nuget.org/packages/ServiceControl.Plugin.Heartbeat|
-|Custom Checks|http://www.nuget.org/packages/ServiceControl.Plugin.CustomChecks|
-|Saga Audit|http://www.nuget.org/packages/ServiceControl.Plugin.SagaAudit|
-|Debug Session|http://www.nuget.org/packages/ServiceControl.Plugin.DebugSession|
+|Heartbeat|https://www.nuget.org/packages/ServiceControl.Plugin.Heartbeat|
+|Custom Checks|https://www.nuget.org/packages/ServiceControl.Plugin.CustomChecks|
+|Saga Audit|https://www.nuget.org/packages/ServiceControl.Plugin.SagaAudit|
+|Debug Session|https://www.nuget.org/packages/ServiceControl.Plugin.DebugSession|
 
 
 ## Installing and Deploying

@@ -3,7 +3,7 @@ title: Multi Transport Support
 summary: How to configure ServiceControl to use non-MSMQ Transports
 tags:
 - ServiceControl
-- Multi-Transport
+- Transports
 - Configuration
 - RabbitMQ
 - SQL Server
