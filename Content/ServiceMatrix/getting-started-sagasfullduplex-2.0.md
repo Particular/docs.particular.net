@@ -61,7 +61,7 @@ When you select  **OK**, ServiceMatrix creates the `SubmitPaymentResponse` messa
 Since the `OrderAcceptedProcessor` is now a saga, notice the icon has changed slightly. ServiceMatrix has also generated the code needed to support a saga implementation.  The framework takes care of persisting the message data from each message processed by the saga.  The generated code provides ways to safely integrate your own custom code.   
 
 ##Modifying the Saga Code
-Compile the Visual Studio solution and open the `OrderAcceptedProcessor` code using its drop-down menu.  The code window opens a `OrderAcceptedProcessor.cs` file that contains a partial class.  Partial methods can be implemented in this class that allow you to customize the implementation.  These partial methods are called by the generated code in another partial class.  
+Compile the Visual Studio solution and open the `OrderAcceptedProcessor` code by using its drop-down menu.  The code window will open a `OrderAcceptedProcessor.cs` file which contains a partial class.  Partial methods can be implemented in this class that allow you to customize the implementation.  These partial methods are called by the generated code in another partial class.  
 
 ```C#
 namespace OnlineSales.Billing
