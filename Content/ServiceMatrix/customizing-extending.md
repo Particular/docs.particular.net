@@ -11,22 +11,23 @@ ServiceMatrix accelerates the creation of a distributed NServiceBus solution.  A
 This article explores how to customize the ServiceMatrix solution and add your own code.
 
 1. [Introduction](#introduction)
-2. [Partial Classes and Partial Methods](#partial-classes-and-partial-methods)
-3. [Customizing Messages](#customizing-messages)
-4. 
-
-
+2. [Message Definitions](#message-definitions)
+3. [NServiceBus Components](#customizing-components)
+4. [Partial Classes and Methods](#the-dynamic-partial-class)
+4. [Reviewing Generated Code](#reviewing-the-generated-code)
+5. [Auto Publish](#the-auto-publish-property)
+6. [Customizing Sagas](#customizing-sagas)
+7. [Saga Data](#saga-data)
+8. [Saga Message Handlers](#saga-message-handlers)
+9. [Custom Saga Finding](#custom-saga-finding-logic)
+10. [Summary](#summary)
 
 #Introduction
-ServiceMatrix generates code and automates the creation of classes, projects and configurations that would take much longer if done manually.  The generated code offers a great boost to productivity and is also created in a way that allows your specific design needs to be implemented. This article will review the code and demonstrate how to extend and customize it. 
+ServiceMatrix is a visual design tool that accelerates the design and coding of an NServiceBus system.  It generates code and automates the creation of classes, projects and configurations that would take much longer if done manually.  The generated code is designed in a way that allows for user modification and extension. This article reviews this high level design and demonstrates the extension points.    
 
 To view the code for any of the components, use the drop-down within that component and choose `View Code`.
-
-#Customizing Message Definitions
-NServiceBus messages are plain old CLR classes in C#.  Creating new messages is very easy in ServiceMatrix.  As you send commands or publish events you are prompted only for a name and ServiceMatrix does the rest.  When you build your solution, the messages are generated.  The generated message classes don't contain any properties but you can add them.   
-
-To modify a message class, use the drop-down menu on the message, view the code and add whatever properties you wish.
-
+#Message Definitions
+NServiceBus messages are plain old CLR classes in C#. As you send commands or publish events in ServiceMatrix, you are prompted only for a name. When you build your solution, the messages are generated.  The generated message classes don't contain any properties but you can easily add them. To modify a message class, use the drop-down menu on the message, view the code and add whatever properties you wish.
 ```C#
 namespace OnlineSales.InternalMessages.Commands.Sales
 {
@@ -44,9 +45,9 @@ If you build the solution again, the new message properties will be available in
 Mixing dynamic code and user created code can be challenging.  This is especially true in an environment like ServiceMatrix where as you continue to design your system in the visual environment code is regenerated. This must be done without disturbing the users code that has been added along the way.   
 
 ##Partial Classes and Partial Methods
-To solve this, the design of the generated code uses partial classes.  The dynamic files that are subject to regeneration by ServiceMatrix are created with a partial class definition in one file.  The same partial class is further defined in a separate file that is for user customization. The generated partial class contains code that invokes user code in the the other partial class through the use of partial methods. Let's see how this works.   
+To solve this, the design of the generated code uses partial classes.  The dynamic files that are subject to regeneration by ServiceMatrix are created with a partial class definition in one file.  The same partial class is also defined in a separate file that is for user customization. Generated code in one file invokes virtual methods that are further defined in the user modified partial class. 
 
-The dynamic partial class uses a design that includes the message handlers, optional message publishing code, and partial methods.  This file should not be edited and warns you of this in the comments at the top of the file.  It will be regenerated every time the ServiceMatrix solution is built and will change as the visual design or settings are modified. 
+The dynamic partial class includes the message handlers, optional message publishing code, and partial methods.  This file should not be edited and warns you of this in the comments at the top of the file.  It will be regenerated every time the ServiceMatrix solution is built and will change as the visual design or settings are modified. 
 
 ```C#
 //------------------------------------------------------------------------------
@@ -59,7 +60,7 @@ The dynamic partial class uses a design that includes the message handlers, opti
 //------------------------------------------------------------------------------
 ```
 ##Reviewing The Generated Code 
-The design of the generated message handlers use partial methods to provide opportunities for the modification of messages and the integration of your own code and services.  To see how the design of these supports customization lets look at the code for a component. 
+The design of the generated message handlers use partial methods to provide opportunities for the modification of messages and the integration of your own code and services.  Lets look at the code for a sample component. 
 
 ##NServiceBus Component Code 
 The code below was generated by ServiceMatrix for component that handles a `SubmitOrder` message and publishes a `Orderaccepted` event that looks like this on the canvas. 
@@ -67,7 +68,7 @@ The code below was generated by ServiceMatrix for component that handles a `Subm
 ![SubmitOrderProcessing Component](images/servicematrix-orderprocessing.png)
 
 ###The Dynamic Partial Class
-The dynamic code generator has created a handler for the `SubmitOrder` method.  In the handler a  `HandleImplementation` partial method for the message is invoked. Similarly the `ConfigureOrderAccepted` partial method is invoked and passed the handled `SubmitOrder` message and a newly created `OrderAccepted` event message just before the event is automatically published on the bus.   These methods are stubbed out in this class but implemented separately in the other partial class file.  
+The dynamic code generator has created a handler for the `SubmitOrder` method.  In the handler a  `HandleImplementation` partial method for the message is invoked. Similarly the `ConfigureOrderAccepted` partial method is invoked and passed the `SubmitOrder` message and a newly created `OrderAccepted` event just before the event is automatically published on the bus.   As partial methods, they are stubbed out in one class but implemented separately in the other partial class file.  
 
 ```C#
 namespace OnlineSales.Sales
@@ -126,15 +127,15 @@ partial void ConfigureOrderAccepted(SubmitOrder incomingMessage, Contracts.Sales
 ```
 
 ## The Auto Publish Property
-NServiceBus components can both handle and send or publish messages. ServiceMatrix generates component code based on the designs and settings you implement.   The `Auto Publish Messages` setting of a component controls whether a generated message handler will contain code to automatically create and publish events related to the component.  
+NServiceBus components both handle and send or publish messages. ServiceMatrix generates component code based on the designs and settings you implement.   The `Auto Publish Messages` setting of a component controls whether a generated message handler will include code to automatically create and publish events related to the component.  
 
 ![Component Auto Publish.](images/servicematrix-componentproperties.png)
 
-Auto-Publish is set to 'True' by default.  In the sample above, upon receiving the `SubmitOrder` message, the generated code creates and publishes the `OrderAccepted` event using the Bus.Publish function.   It's worth noting that the `SubmitOrderProcessor` component is designed to publish an event.  If instead it was designed to reply to a sender in a full-duplex pattern, Auto-Publish process would use a **Bus.Reply**.   
+Auto-Publish is set to 'True' by default.  In the sample above, upon receiving the `SubmitOrder` message, the generated code creates and publishes the `OrderAccepted` event using the Bus.Publish function.   It's worth noting that the `SubmitOrderProcessor` component is designed to publish an event.  If instead it was designed to reply to a sender in a full-duplex pattern, the Auto Publish code would use a **Bus.Reply**.   
 
-If you set Auto Publish to false and rebuild the solution the dynamic partial class will be re-generated.  The message handler will no longer contain the auto publish code.  Also missing would be the partial method `ConfigureOrderAccepted` that allows user code to modify message.
+If you set Auto Publish to false and rebuild the solution the dynamic partial class will be re-generated andt he message handler will no longer contain the auto publish code.  Also missing would be the partial method `ConfigureOrderAccepted` that allows user code to modify message.
 
-The custom partial class user code must be modified to create and publish the event using your own code added to the existing partial method `HandleSubmitOrder`.  An example is shown here.
+The custom partial class user code must be modified to create and publish the event using your own code added to the existing partial method `HandleSubmitOrder`. 
 
 ```C#
 public partial class SubmitOrderProcessor
@@ -152,17 +153,17 @@ public partial class SubmitOrderProcessor
 		}
       }
 ```
-As you would expect, the custom code allows for full control of the process.
+The custom code allows for full control of the process.
 
 #Customizing Sagas
-ServiceMatrix supports the design of [NServiceBus sagas](images/sagas-in-nservicebus.md "Sagas in NserviceBus") and generates the necessary code to get you started.  The saga is a specialized version of a ServiceMatrix component.  As we reviewed above, the dynamic code and user modified code are in separate partial class files.  For sagas, the design has been extended to to include defitions for saga data, custom finding logic, and some convenience methods to make saga completion easier.  
+ServiceMatrix supports the design of [NServiceBus sagas](images/sagas-in-nservicebus.md "Sagas in NserviceBus") and generates the necessary code to get you started.  The saga is a specialized stateful version of a ServiceMatrix component.  As we reviewed above, the dynamic code and user modified code are in separate partial class files.  For sagas, the design has been extended to to include defitions for saga data, custom finding logic, and some convenience methods to make saga completion easier.  
 
-The code below is based on a ServiceMatrix designed saga used to manage request response with another endpoint as shown.  This saga handles the `OrderAccepted` event then publishes the `SubmitPayment` request to a payment processing service.  The saga handles and correlates the `SubmitPaymentResponse`.
+The code below is based on a ServiceMatrix designed saga used to correlate request and response with another endpoint as shown.  This saga handles the `OrderAccepted` event then publishes the `SubmitPayment` request to a payment processing service.  The saga handles and correlates the `SubmitPaymentResponse`.
 
 ![Billing Saga](images/servicematrix-billingsagaandpaymntcanvas.png)
 
 ##Designating the Startup Messages
-Depending on the design of your saga, one or more messages will start the saga.  If your saga is handling multiple messages, you will be prompted in ServiceMatrix to indicate which messages will start the saga.  The partial class that contains the component definition will be generated to extent the NServiceBus.Saga base class and will use the marker interfaces to indicate the startup message types and the message types that the saga will handle.  
+Depending on the design of your saga, one or more messages can start a saga.  If the saga is handling multiple messages, you will be prompted in ServiceMatrix to indicate which messages will start the saga.  The partial class that contains the component definition will be generated to extent the NServiceBus.Saga base class and will use the marker interfaces to indicate the start-up message types and the message types that the saga will handle.  
 
 The code below is generated for example saga class above.  Once again, this is dynamic code that will be regenerated so it is not safe to edit it.   
 
@@ -202,10 +203,8 @@ namespace OnlineSales.Billing
     }
 }
 ```
-In a saga, NServiceBus provides access to the saga data through a public `Data` property. 
-
 ##Saga Message Handlers
-The message handling code of the Saga is implemented very much like the [component code above](#nservicebus-componenet-code).  The code will implement a handler in the saga for the messages handled in the ServiceMatrix design.  
+The message handling code of the Saga is implemented very much like the [component code above](#nservicebus-component-code).  The code will implement a handler in the saga for the messages handled in the ServiceMatrix design.  
 
 The [Auto Publish Messages](#the-auto-publish-property) property to `True` for sagas.  Sagas are often used to maintain state and correlate multiple messages arriving at different times before sending or sending an outbound message.  In these scenarios Auto Publish should be set to `False`.
   
@@ -242,7 +241,7 @@ namespace OnlineSales.Billing
     }
 }
 ``` 
-The `AllMessagesReceived` is a convenient partial method.  As part of the dynamically generated handler code, every inbound message is stored in saga data as mentioned earlier. After each message is handled the saga data is checked to see if all the messages have been received.  If so, the virtual method `AllMessagesReceived` is called.  The example uses it to mark the saga as complete.
+The `AllMessagesReceived` is a convenient partial method.  As part of the dynamically generated handler code, every inbound message is stored in saga data. After each message is handled the saga data is checked to see if all the messages have been received.  If so, the virtual method `AllMessagesReceived` is called.  The example uses it to mark the saga as complete.
 
 ##Custom Saga Finding Logic
 When a saga handles a message it must be able to correlate that message to a unique saga.  ServiceMatrix generates default code for this but if your design requires it, it can be modified.  In the [drop-down menu ](images/servicematrix-configuresaga.png)for the saga component is an option for `Configure Saga`. The provided partial class overrides the `ConfigureHowToFindSaga` method.  The comments indicate how it can be modified for any specific situation. 
@@ -260,6 +259,7 @@ amespace OnlineSales.Billing
 }
 
 ```
-
+#Summary
+The visual design environment of ServiceMatrix generates code designed to be extensible.  This article reviewed the partial classes and methods that can be customized.  
 
       
