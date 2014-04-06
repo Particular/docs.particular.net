@@ -14,7 +14,7 @@ Strategic Domain-Driven Design helps bridge the business/IT divide and drives th
 How NServiceBus aligns with SOA
 -------------------------------
 
-<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="http://player.vimeo.com/video/5022174" webkitallowfullscreen width="400"></iframe>
+<iframe src="//fast.wistia.net/embed/iframe/6g70txthct" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="480"></iframe>
 
 In this presentation, Udi Dahan explains the disadvantages of classical web services thinking that places services at a layer below the user interface and above the business logic. Instead, he describes an approach that cuts across all layers of an application, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
 
