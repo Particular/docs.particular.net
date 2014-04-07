@@ -41,7 +41,7 @@ The Messages window is a detailed grid view indicating the message status, type,
 
 You can filter and locate at design time. ServiceMatrix debugging automatically launches ServiceInsight and filters the messages to include only your current debug session.  The ServicePulse monitoring platform also allows you to open ServiceInsight to a specific message so you can drill down for more detail.
 
-Suto-refresh keeps the information in ServiceInsight automatically refreshed, delivering almost real-time information to the views. 
+Auto-refresh keeps the information in ServiceInsight automatically refreshed, delivering almost real-time information to the views. 
 
 ###Timing and Performance
 You can use the performance-related information in the message header to sort the messages in an endpoint based on the time the messages were sent, critical time, processing time, delivery time, Message Type and ID. 
