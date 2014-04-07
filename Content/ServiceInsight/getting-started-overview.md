@@ -41,7 +41,12 @@ The Messages window is a detailed grid view indicating the message status, type,
 
 You can filter and locate at design time. ServiceMatrix debugging automatically launches ServiceInsight and filters the messages to include only your current debug session.  The ServicePulse monitoring platform also allows you to open ServiceInsight to a specific message so you can drill down for more detail.
 
-Auto-refresh keeps the information in ServiceInsight automatically refreshed, delivering almost real-time information to the views. 
+###Refresh and Auto-refresh
+The Refresh and Auto-Refresh toolbar buttons enable you to update the displayed information with the latest updates from the ServiceControl database. 
+
+Auto-refresh keeps the information in ServiceInsight automatically refreshed, delivering near real-time information to the views. 
+
+You can specify the auto-refresh rate in the "View" > "Options" > "Auto-Refresh Timer" setting (default is auto-refresh every 15 seconds; lowest value is 1 second), or you can specify the auto-refresh rate using the ServiceInsight invocation parameter (see [ServiceInsight Invocation](http://docs.particular.net/Serviceinsight/application-invocation)) 
 
 ###Timing and Performance
 You can use the performance-related information in the message header to sort the messages in an endpoint based on the time the messages were sent, critical time, processing time, delivery time, Message Type and ID. 
