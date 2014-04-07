@@ -9,7 +9,7 @@ tags:
 You can change the location on disk where ServiceControl stores its log information, as follows:
 
  * Stop the ServiceControl service.
- * Locate the `ServiceControl.dll.config` configuration file located in the ServiceControl installation folder.
+ * Locate/Create the `ServiceControl.exe.config` configuration file located in the ServiceControl installation folder.
  * Edit the configuration file, adding the following setting:
 
 ```xml
