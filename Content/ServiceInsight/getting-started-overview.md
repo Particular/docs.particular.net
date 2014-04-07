@@ -46,8 +46,19 @@ Auto-refresh keeps the information in ServiceInsight automatically refreshed, de
 ###Timing and Performance
 You can use the performance-related information in the message header to sort the messages in an endpoint based on the time the messages were sent, critical time, processing time, delivery time, Message Type and ID. 
 
+The message timing measurements include the following:
+
+- Critical Time: the end-to-end amount of time that elapsed from when the messages was sent by the sending endpoint, until its processing was completed by the processing endpoint
+- Delivery Time: the amount of time the message spent in transition from the sending to the processing endpoint (including awaiting delivery and processing in the queues)
+- Processing Time: the amount of time it took to actually process the messgae, within the processing endpoint, by the message processing handler method
+
+Using the messages window column headers you can sort the messages in ascending or descending order (the sorting operation appliues on all the relevant messages in the underlying ServiceControl instance, and is not limited to the currently displayed messages).
+
+
 When you select specific messages, the related properties window and flow diagram change to illustrate details of the selected message. 
+
 ##Endpoint Explorer
+
 The Endpoint Explorer indicates the connection to the ServiceControl instance providing data to ServiceInsight.  The list enumerates the endpoints and the machine where they are deployed.  
 
 ![Endpoint Explorer](images/overview-endpointexplore-machinename.png)
