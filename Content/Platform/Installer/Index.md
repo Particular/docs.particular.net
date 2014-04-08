@@ -79,6 +79,7 @@ Installs the [ServiceControl Chocolatey Package](http://chocolatey.org/packages/
 
 [Chocolatey Google Group](https://groups.google.com/forum/#!forum/chocolatey)
 [Chocolatey Wiki](https://github.com/chocolatey/chocolatey/wiki)
+[Proxy Settings for Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Proxy-Settings-for-Chocolatey)
 
 ## ClickOnce Information
 
