@@ -12,7 +12,7 @@ ServiceControl stores its data in a RavenDB embedded instance. By default, the R
 
 There are two ways to enable direct access to RavenDB:
 
-* Modify the ServiceControl configuration file, located in the installation directory, by adding the following setting:
+* Open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file)) add the following setting:
 
 ```
 <add key="ServiceControl/ExposeRavenDB" value="true" />
