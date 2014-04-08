@@ -48,9 +48,9 @@ The equivalent Chocolatey commands are
 
 ### ServiceMatrix
 
-Installs the [ServiceMatrix Chocolatey Package](http://chocolatey.org/packages/ServiceMatrix.install). The equivalent msi can be downloaded from the [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).
+Installs the [ServiceMatrix for VS2012 Chocolatey Package](http://chocolatey.org/packages/ServiceMatrix.VS2012.install). The equivalent VSIX can be downloaded from the [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).
 
-    cinst ServiceMatrix.install
+    cinst ServiceMatrix.VS2012.install
 
 ### ServiceInsight
 
