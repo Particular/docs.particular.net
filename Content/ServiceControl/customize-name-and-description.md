@@ -14,7 +14,7 @@ Retrieve these two properties by issuing an HTTP call to `http://localhost:33333
 
 You can customize the two values in several ways:
 
-* Edit the ServiceControl configuration file located in the installation directory, adding the following settings:
+* Create or open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file)) and add the following settings:
 
 
 ```xml
