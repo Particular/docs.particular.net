@@ -17,14 +17,14 @@ The following example configures ServiceControl to listen to localhost + machine
 
 ```xml 
 <add key="ServiceControl/Hostname" value="*" />
-<add key="ServiceControl/Port" value="80" />
+<add key="ServiceControl/Port" value="33333" />
 ```
 
 The following example configures ServiceControl to listen to `http://sc.myspecialdomain.com:8080/api`:
 
 ```xml
 <add key="ServiceControl/Hostname" value="sc.myspecialdomain.com" />
-<add key="ServiceControl/Port" value="8080" />
+<add key="ServiceControl/Port" value="33333" />
 ```
 
 **NOTE:** You must set both the `ServiceControl/Hostname` and the `ServiceControl/Port`, even if the value of one remains unchanged.
