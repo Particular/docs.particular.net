@@ -24,7 +24,7 @@ _NOTE:_ Some nuget packages may have several folders under `/lib` - make sure to
 
 * Stop the ServiceControl service (from an admin cmd line, run `net stop Particular.ServiceControl`)
 
-* Open `ServiceControl.dll.config` in a text editor and locate the connection strings section. Update it with a connection string suitable for the transport you are installing. For example, the connection strings section for a ServiceControl instance using the RabbitMQ transport would look like this:
+* Open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file))  in a text editor and add or locate the connection strings section. Update it with a connection string suitable for the transport you are installing. For example, the connection strings section for a ServiceControl instance using the RabbitMQ transport would look like this:
 
 ```xml
 <connectionStrings>
@@ -32,7 +32,7 @@ _NOTE:_ Some nuget packages may have several folders under `/lib` - make sure to
 </connectionStrings>
 ```
 
-* Still in `ServiceControl.dll.config`, update the `ServiceControl/TransportType` key to point at the new transport by  specifying its full type. For example, for RabbitMQ this setting would look like this:
+* Still in the ServiceControl configuration file, update the `ServiceControl/TransportType` key to point at the new transport by  specifying its full type. For example, for RabbitMQ this setting would look like this:
 
    `<add key="ServiceControl/TransportType" value="NServiceBus.RabbitMQ, NServiceBus.Transports.RabbitMQ" />`
 
