@@ -1,7 +1,7 @@
 ---
 title: Platform Installer
-summary: 'Platform Installer'
-tags: [Platform, Installer]
+summary: 'Guidance on how to use the Platform Installer and its underlying components'
+tags: [Platform, Installation]
 ---
 
 ## Download
