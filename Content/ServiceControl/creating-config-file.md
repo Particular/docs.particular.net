@@ -19,8 +19,11 @@ To override these default settings, perform the following:
  
  ###Sample configuration file
  
- File name: `servicecontrol.exe.config`
- File Path: `C:\Program Files (x86)\Particular Software\ServiceControl` (default ServiceControl installation folder)
+ **File name:** `servicecontrol.exe.config`
+
+ **File Path:** `C:\Program Files (x86)\Particular Software\ServiceControl` (default ServiceControl installation folder)
+ 
+ **Content:**
  
  ```xml
  <?xml version="1.0" encoding="utf-8" standalone="yes"?>
