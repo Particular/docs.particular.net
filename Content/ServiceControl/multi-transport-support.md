@@ -49,7 +49,7 @@ _NOTE:_ Some nuget packages may have several folders under `/lib` - make sure to
 
 * Make sure all assemblies copied are unblocked, otherwise the .NET runtime will refuse to load them.
 
-* If there are conflicts between assembly versions used by ServiceControl and the transport, you'll need to add a binding redirect in the ServiceControl.dll.config file. This is the case with Microsoft.WindowsAzure.Storage for example:
+* If there are conflicts between assembly versions used by ServiceControl and the transport, you'll need to add a binding redirect in the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file)). This is the case with Microsoft.WindowsAzure.Storage for example:
 
 ```
 <dependentAssembly>
