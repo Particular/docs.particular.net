@@ -19,12 +19,7 @@ It is possible to control the above behavior using the following settings:
 * ExpirationProcessTimerInSeconds: the default is once a minute.
 * HoursToKeepMessagesBeforeExpiring: the default is 30 days.
 
-To change the ServiceControl behavior. add the above settings to the ServiceControl configuration file, located in the installation directory; for example,
-
-```xml 
-<add key="ServiceControl/ExpirationProcessTimerInSeconds" value="new-integer-value" />
-<add key="ServiceControl/HoursToKeepMessagesBeforeExpiring" value="new-integer-value" />
-```
+To change the ServiceControl behavior, add the above settings to the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file)).
 
 **Example:** check for expiration every 2 minutes and expire messages older than 10 days.
 
