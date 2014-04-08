@@ -73,7 +73,6 @@ Installs the [ServiceControl Chocolatey Package](http://chocolatey.org/packages/
 ## MSI Information
 
 * [MSI error messages](http://msdn.microsoft.com/en-us/library/aa376931.aspx)
-* [Chocolatey Wiki](https://github.com/chocolatey/chocolatey/wiki)
 
 ## Chocolatey Information 
 
