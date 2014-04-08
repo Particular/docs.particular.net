@@ -19,7 +19,7 @@ You may want to place the embedded RavenDB database in a different location. For
 To configure ServiceControl to store data in a different location immediately after installation:
 
  * Stop the ServiceControl service.
- * Locate/Create the `ServiceControl.exe.config` configuration file in the ServiceControl installation folder.
+ * Locate/Create the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file))
  * Edit the configuration file to add a new setting:
 
 ```xml
