@@ -79,6 +79,17 @@ Installs the [ServiceControl Chocolatey Package](http://chocolatey.org/packages/
 * [Chocolatey Google Group](https://groups.google.com/forum/#!forum/chocolatey)
 * [Chocolatey Wiki](https://github.com/chocolatey/chocolatey/wiki)
 * [Proxy Settings for Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Proxy-Settings-for-Chocolatey)
+ 
+### Updating Chocolatey
+
+If you have an older version of chocolatey you can use the [chocolatey update command](https://github.com/chocolatey/chocolatey/wiki/CommandsUpdate#chocolatey-update-cup).
+
+    c:\> chocolatey update
+
+If that fails the recommended approach is to re-install Chocolatey using the following command
+
+    c:\>  @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin    
+See [Installing Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Installation) for more info
 
 ## ClickOnce Information
 
