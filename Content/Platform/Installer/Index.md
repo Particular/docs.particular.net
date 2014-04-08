@@ -72,14 +72,14 @@ Installs the [ServiceControl Chocolatey Package](http://chocolatey.org/packages/
 
 ## MSI Information
 
-[MSI error messages](http://msdn.microsoft.com/en-us/library/aa376931.aspx)
-[Chocolatey Wiki](https://github.com/chocolatey/chocolatey/wiki)
+* [MSI error messages](http://msdn.microsoft.com/en-us/library/aa376931.aspx)
+* [Chocolatey Wiki](https://github.com/chocolatey/chocolatey/wiki)
 
 ## Chocolatey Information 
 
-[Chocolatey Google Group](https://groups.google.com/forum/#!forum/chocolatey)
-[Chocolatey Wiki](https://github.com/chocolatey/chocolatey/wiki)
-[Proxy Settings for Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Proxy-Settings-for-Chocolatey)
+* [Chocolatey Google Group](https://groups.google.com/forum/#!forum/chocolatey)
+* [Chocolatey Wiki](https://github.com/chocolatey/chocolatey/wiki)
+* [Proxy Settings for Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Proxy-Settings-for-Chocolatey)
 
 ## ClickOnce Information
 
