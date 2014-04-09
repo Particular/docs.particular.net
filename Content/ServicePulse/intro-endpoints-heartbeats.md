@@ -29,7 +29,7 @@ It is recommended that you configure all your endpoints for monitoring by Servic
 
 In the ServicePulse Configuration page you can specify which endpoints you wish to monitor with ServicePulse by checking (or un-checking) the checkbox next to the endpoint's entry.  
 
-This is configuration setting only. The endpoint itself will be unchanged, and will still be set for monitoring; the change affects only the way in which ServicePulse treats information received from the endpoint. 
+This is a configuration setting only. The endpoint itself will be unchanged, and will still be set for monitoring; the change affects only the way in which ServicePulse treats information received from the endpoint. 
 
 Un-checking an endpoint means that it will be ignored by ServicePulse (for example, alerts and indications will not be displayed for the un-monitored endpoint). 
 
