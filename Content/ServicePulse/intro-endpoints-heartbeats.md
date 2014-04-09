@@ -4,7 +4,7 @@ summary: Describes how ServicePulse monitors endpoints activity and availability
 tags:
 - ServicePulse
 - Introduction
-- Heartbeats
+- Heartbeat
 ---
 
 The Endpoints indicator in the ServicePulse dashboard displays the current status of the monitored NServiceBus endpoints. Specifically, it indicates whether, based on the heartbeats received from each endpoint, the endpoint is active or inactive.
@@ -19,7 +19,7 @@ An NServiceBus endpoint can be set for monitoring by ServicePulse or can remain 
 
 It is recommended that you configure all your endpoints for monitoring by ServicePulse. Once configured, the endpoint will appear in the ServicePulse Configuration page.   
 
-**TODO: config monitoring page**
+![ServicePulse Configuration page](images/sp-configuration-page.jpg)
 
 In the ServicePulse Configuration page you can specify which endpoints you wish to monitor with ServicePulse by checking (or un-checking) the checkbox next to the endpoint's entry.  
 
@@ -46,3 +46,30 @@ For more details on how heartbeats are sent by an endpoint, see [ServiceControl 
 Only monitored endpoints are expected by ServicePulse to send heartbeat messages periodically. Un-monitored endpoints (i.e. endpoints marked in the ServicePulse configuration page as "un-monitored") may be sending heartbeats (depending on their specific configuration and whether the relevant plugins were installed for that endpoint) but these heartbeats messages are ignored by ServiceControl and ServicePulse as long as the endpoint is marked as an un-monitored endpoint in the ServicePulse configuration page.
 
 ![Sets of Endpoints: Monitored (active and inactive) vs. Un-monitored, ](images/endpoints-sets-monitored-active.jpg)     
+
+### Detecting new Endpoints
+
+When an endpoint is configured for auditing (see [Auditing with NServiceBus](/NServiceBus/auditing-with-nservicebus)) but not for monitoring by ServicePulse, its messages are audited by the ServiceControl service and stored in its database.
+
+This allows ServicePulse to detect that endpoint as a new endpoint, and add it to its endpoint list. By default, all detected endpoints are marked for monitoring by ServicePulse, so a ServicePulse will be able to alert when such newly-added endpoints are detected.
+
+![Detected new Endpoints](images/detect-new-endpoints.jpg)
+
+The newly detected endpoint can be either configured for monitoring (see [How to configure endpoints for monitoring by ServicePulse](/ServicePulse/how-to-configure-endpoints-for-monitoring)) or marked as un-monitored endpoints (in the ServicePulse Configuration page).
+
+Configuring the newly added endpoints for monitoring by ServicePulse will lead to the following results:
+
+* Heartbeat messages are sent by the NServiceBus endpoints 
+* The heartbeat messages are received and processed by ServiceControl and ServicePulse 
+* The ServicePulse dashboard indicator is updated with the heartbeat data, the endpoints indicator is updated and appropriate events are displayed
+
+![Recevied heartbeats from new endpoints](images/received-heartbeats-from-new-endpoints.jpg)
+
+* Clicking on the Endpoints indicator in the dashboard (or the "Endpoints Overview" link in the side navigation menu) will display the list of monitored endpoints
+* The list of monitored endpoints is separated into two columns:
+   * Active Endpoints (heartbeats were received as expected) 
+   * Inactive Endpoints (heartbeats were not received) 
+
+![Endpoints Overview](images/endpoints-overview.jpg)
+
+ 
