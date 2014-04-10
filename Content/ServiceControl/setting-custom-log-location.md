@@ -14,5 +14,5 @@ x:\Your_Installed_Path\ServiceControl.exe --restart -d="ServiceControl/LogPath==
 
 <p class="alert alert-info">
 <strong>ServiceControl default installed location</strong><br/>
-By default ServiceControl is installed in C:\Program Files (x86)\Particular Software\ServiceControl for 64bit OS or C:\Program Files\Particular Software\ServiceControl for 32bit OS.
+By default ServiceControl is installed in [Program Files]\Particular Software\ServiceControl.
 </p>
