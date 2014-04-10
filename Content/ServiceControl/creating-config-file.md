@@ -1,26 +1,26 @@
 ---
-title: Customizing ServiceControl configuration
+title: Customizing ServiceControl Configuration
 summary: How ServiceControl manages configuration and how to create and customize the ServiceControl configuration file.
 tags:
 - ServiceControl
 - Configuration
 ---
 
-ServiceControl allows you to create a configuration file that contains settings that override default settings.
+ServiceControl allows you to create a configuration file with settings that override default settings.
 
-When first installing ServiceControl, it will be set to automatically start (as a Windows Service) using its internal default settings (these include, for example, the default `localhost` hostname and `33333` port number, embedded database location etc.).
+When you first install ServiceControl, it is set to automatically start (as a Windows Service) using its internal default settings. Examples: the default `localhost` hostname and `33333` port number, and the embedded database location.
 
-To override these default settings, perform the following:
+To override these default settings:
 
-* Stop the ServiceControl service.
-* Locate/Create a configuration file named `ServiceControl.exe.config` in the ServiceControl installation folder.
-* Edit the configuration file and add the relevant settings to the `<appSettings>` section
-* Start the ServiceControl service.
+1. Stop the ServiceControl service.
+1. Locate/create a configuration file named `ServiceControl.exe.config` in the ServiceControl installation folder.
+1. Edit the configuration file and add the relevant settings to the `<appSettings>` section.
+1. Start the ServiceControl service.
  
 ###Sample configuration file
  
 * File name: `servicecontrol.exe.config`
-* File Path: `C:\Program Files (x86)\Particular Software\ServiceControl` (default ServiceControl installation folder)
+* File path: `C:\Program Files (x86)\Particular Software\ServiceControl` (default ServiceControl installation folder)
  
  
 ```xml
