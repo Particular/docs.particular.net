@@ -22,12 +22,15 @@ This step-by-step guide will walk you through the creation of a send-and-receive
 
 The example demonstrates the integration of an online sales web store with a backend system using the request-response pattern and NServiceBus.
 
-##Installing ServiceMatrix for Visual Studio 2012
+## Installing ServiceMatrix for Visual Studio 2012
+
+This document reviews the use of ServiceMatrix for Visual Studio 2012, assuming ServiceMatrix has already been installed.
+
+ServiceMatrix can be installed using the Particular Platform Installer. To download and install ServiceMatrix separately follow the instructions [here](installing-servicematrix-2.0.md "Installing ServiceMatrix").
+
 For this example you need to meet the following system requirements:
 - Visual Studio 2012
 - ASP.NET MVC 4 ([http://www.asp.net/downloads](http://www.asp.net/downloads))
-
-To download and install ServiceMatrix follow the instructions [here](installing-servicematrix-2.0.md "Installing ServiceMatrix").  This document reviews the use of ServiceMatrix for Visual Studio 2012.
 
 **NOTE**: If you have both Visual Studio 2010 and Visual Studio 2012 installed on your machine, you can install ServiceMatrix for one Visual Studio version only. This document reviews the use of ServiceMatrix v2.0 for Visual Studio 2012.
 
