@@ -4,7 +4,7 @@ summary: Links to the release notes for the Particular Service Platform applicat
 tags:
 - Platform
 ---
-The Particular Service Platform source code, current and previous releases and their release notes are available as public repositories in [GitHub](http://GitHub.com/particular). 
+The Particular Service Platform source code, current and previous releases and their release notes are available as public repositories in [GitHub](https://github.com/particular). 
 
  
 
