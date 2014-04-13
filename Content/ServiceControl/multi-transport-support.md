@@ -38,10 +38,10 @@ _NOTE:_ Some nuget packages may have several folders under `/lib` - make sure to
 
 * The necessary queues for ServiceControl in the desired transport need to be created. This can be done by uninstalling and re-installing the ServiceControl service.
    * Navigate to where ServiceControl was installed (default is `"C:\Program Files (x86)\Particular Software\ServiceControl"`)
-   * To uninstall the ServiceControl service, from a command line with administrator privileges, run the following command: `NServiceBus.Host.exe -uninstall -serviceName="Particular.ServiceControl"`
+   * To uninstall the ServiceControl service, from a command line with administrator privileges, run the following command: `.\ServiceControl.exe -uninstall -serviceName="Particular.ServiceControl"`
    * Re-Install the ServiceControl service by running: 
 
-      `NServiceBus.Host.exe -install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl"` 
+      `.\ServiceControl.exe -install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl"` 
    * Start the ServiceControl service by running: `"net start Particular.ServiceControl"`
    * Ensure Particular.ServiceControl windows service has started and is functioning properly (try to access the main HTTP API URI exposed by ServiceControl, e.g. do an HTTP GET on `http://localhost:33333/api`
 
