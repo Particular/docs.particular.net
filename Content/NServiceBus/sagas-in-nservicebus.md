@@ -263,3 +263,9 @@ A typical scenario is a saga controlling the process of billing a customer throu
 
 The usual way is to correlate on some kind of ID and let the user tell you how to find the correct saga instance using that ID. While this is easily done we decided that this was common enough to warrant native support in NServiceBus for these type of interactions. In V3.0, NServiceBus handles all this for you without getting in your way. If you do IBus.Reply in response to a message coming from a saga, NServiceBus will detect it and automatically set the correct headers so that you can correlate the reply back to the saga instance that issued the request. You can see all this in action in the [Video Store sample.](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/VideoStore.Msmq)
 
+Learn more
+----------
+
+- [Sagas and concurrency](nservicebus-sagas-and-concurrency)
+- [Using Sagas in ServiceMatrix](/ServiceMatrix/getting-started-sagasfullduplex-2.0)
+- [Saga View in ServiceInsight](/ServiceInsight/getting-started-overview#the-saga-view)

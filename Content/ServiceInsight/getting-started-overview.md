@@ -41,13 +41,29 @@ The Messages window is a detailed grid view indicating the message status, type,
 
 You can filter and locate at design time. ServiceMatrix debugging automatically launches ServiceInsight and filters the messages to include only your current debug session.  The ServicePulse monitoring platform also allows you to open ServiceInsight to a specific message so you can drill down for more detail.
 
-Suto-refresh keeps the information in ServiceInsight automatically refreshed, delivering almost real-time information to the views. 
+###Refresh and Auto-refresh
+The Refresh and Auto-Refresh toolbar buttons enable you to update the displayed information with the latest updates from the ServiceControl database. 
+
+Auto-refresh keeps the information in ServiceInsight automatically refreshed, delivering near real-time information to the views. 
+
+You can specify the auto-refresh rate in the "View" > "Options" > "Auto-Refresh Timer" setting (default is auto-refresh every 15 seconds; lowest value is 1 second), or you can specify the auto-refresh rate using the ServiceInsight invocation parameter (see [ServiceInsight Invocation](http://docs.particular.net/Serviceinsight/application-invocation)) 
 
 ###Timing and Performance
 You can use the performance-related information in the message header to sort the messages in an endpoint based on the time the messages were sent, critical time, processing time, delivery time, Message Type and ID. 
 
+The message timing measurements include the following:
+
+- Critical Time: the end-to-end amount of time that elapsed from when the messages was sent by the sending endpoint, until its processing was completed by the processing endpoint
+- Delivery Time: the amount of time the message spent in transition from the sending to the processing endpoint (including awaiting delivery and processing in the queues)
+- Processing Time: the amount of time it took to actually process the messgae, within the processing endpoint, by the message processing handler method
+
+Using the messages window column headers you can sort the messages in ascending or descending order (the sorting operation appliues on all the relevant messages in the underlying ServiceControl instance, and is not limited to the currently displayed messages).
+
+
 When you select specific messages, the related properties window and flow diagram change to illustrate details of the selected message. 
+
 ##Endpoint Explorer
+
 The Endpoint Explorer indicates the connection to the ServiceControl instance providing data to ServiceInsight.  The list enumerates the endpoints and the machine where they are deployed.  
 
 ![Endpoint Explorer](images/overview-endpointexplore-machinename.png)

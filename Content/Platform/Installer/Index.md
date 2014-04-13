@@ -1,7 +1,7 @@
 ---
 title: Platform Installer
-summary: 'Platform Installer'
-tags: [Platform, Installer]
+summary: 'Guidance on how to use the Platform Installer and its underlying components'
+tags: [Platform, Installation]
 ---
 
 ## Download
@@ -48,9 +48,9 @@ The equivalent Chocolatey commands are
 
 ### ServiceMatrix
 
-Installs the [ServiceMatrix Chocolatey Package](http://chocolatey.org/packages/ServiceMatrix.install). The equivalent msi can be downloaded from the [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).
+Installs the [ServiceMatrix for VS2012 Chocolatey Package](http://chocolatey.org/packages/ServiceMatrix.VS2012.install). The equivalent VSIX can be downloaded from the [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).
 
-    cinst ServiceMatrix.install
+    cinst ServiceMatrix.VS2012.install
 
 ### ServiceInsight
 
@@ -72,13 +72,24 @@ Installs the [ServiceControl Chocolatey Package](http://chocolatey.org/packages/
 
 ## MSI Information
 
-[MSI error messages](http://msdn.microsoft.com/en-us/library/aa376931.aspx)
-[Chocolatey Wiki](https://github.com/chocolatey/chocolatey/wiki)
+* [MSI error messages](http://msdn.microsoft.com/en-us/library/aa376931.aspx)
 
 ## Chocolatey Information 
 
-[Chocolatey Google Group](https://groups.google.com/forum/#!forum/chocolatey)
-[Chocolatey Wiki](https://github.com/chocolatey/chocolatey/wiki)
+* [Chocolatey Google Group](https://groups.google.com/forum/#!forum/chocolatey)
+* [Chocolatey Wiki](https://github.com/chocolatey/chocolatey/wiki)
+* [Proxy Settings for Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Proxy-Settings-for-Chocolatey)
+ 
+### Updating Chocolatey
+
+If you have an older version of chocolatey you can use the [chocolatey update command](https://github.com/chocolatey/chocolatey/wiki/CommandsUpdate#chocolatey-update-cup).
+
+    c:\> chocolatey update
+
+If that fails the recommended approach is to re-install Chocolatey using the following command
+
+    c:\>  @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin    
+See [Installing Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Installation) for more info
 
 ## ClickOnce Information
 

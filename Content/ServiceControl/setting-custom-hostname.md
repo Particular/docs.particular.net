@@ -9,7 +9,7 @@ tags:
 
 To set a custom hostname and IP port for ServiceControl:
 
-1. Open the ServiceControl configuration file. By default it is located in `[Program Files]\Particular Software\ServiceControl\ServiceControl.dll.config`.  
+1. Open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file))  
 1. Add the `ServiceControl/Hostname` and `ServiceControl/Port` settings in the `<appSettings>` section. 
 
 
@@ -17,14 +17,14 @@ The following example configures ServiceControl to listen to localhost + machine
 
 ```xml 
 <add key="ServiceControl/Hostname" value="*" />
-<add key="ServiceControl/Port" value="80" />
+<add key="ServiceControl/Port" value="33333" />
 ```
 
 The following example configures ServiceControl to listen to `http://sc.myspecialdomain.com:8080/api`:
 
 ```xml
 <add key="ServiceControl/Hostname" value="sc.myspecialdomain.com" />
-<add key="ServiceControl/Port" value="8080" />
+<add key="ServiceControl/Port" value="33333" />
 ```
 
 **NOTE:** You must set both the `ServiceControl/Hostname` and the `ServiceControl/Port`, even if the value of one remains unchanged.

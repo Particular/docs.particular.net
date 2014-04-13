@@ -148,7 +148,7 @@ Gets the current version of NServiceBus (Semver).
 
 Installs a NServiceBus license file into the registry.
 
-<a id="fixit">But it doesn't work</a>
+Known Issues
 -------------------------------------
 
 If you are getting the following error:

@@ -61,6 +61,10 @@ Note that even if an endpoint is able to send heartbeat messages and it is marke
 If a heartbeat message is not received by ServiceControl from an endpoint, that endpoint is marked as "inactive". 
 An inactive endpoint indicates that there is a failure in the communication path between ServiceControl and the monitored endpoint. For example, such failures may be caused by a failure of the endpoint itself, a communication failure in the transport, or when ServiceControl is unable to receive and process the heartbeat messages sent by the endpoint.
 
+**Related articles**
+
+- [Introduction to Endpoints and Heartbeats in ServicePulse](/ServicePulse/intro-endpoints-heartbeats)
+
 ### ServiceControl.Plugin.CustomChecks
 
 The custom checks plugin allows the developer of an NServiceBus endpoint to define a set of conditions that are checked on endpoint startup or periodically.
