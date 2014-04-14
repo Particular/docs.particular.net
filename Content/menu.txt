@@ -247,7 +247,8 @@
 	  "ServiceControl/how-purge-expired-data",
 	  "ServiceControl/setting-custom-hostname",
 	  "ServiceControl/setting-custom-log-location",
-	  "ServiceControl/use-ravendb-studio"
+	  "ServiceControl/use-ravendb-studio",
+          "ServiceControl/backup-sc-database"
         ]
       }
     ]
