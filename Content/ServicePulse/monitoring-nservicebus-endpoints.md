@@ -8,7 +8,7 @@ tags:
 - Service Level Agreement
 - Heartbeat
 ---
-Monitoring in NServiceBus is easier than in regular three-tier systems due to the use of queuing and message-based communication. Given the fact that generally messages are an atomic piece of information that drives the system we can say that it is enought to know where a message comes from, what it has changed, as a consequance of the handling process, and finally where it is going.
+Monitoring in NServiceBus is easier than in regular three-tier systems due to the use of queuing and message-based communication. Given the fact that generally messages are an atomic piece of information that drives the system we can say that it is enough to know where a message comes from, what it has changed, as a consequence of the handling process, and finally where it is going.
 
 This article will cover the following topics:
 
@@ -21,7 +21,7 @@ This article will cover the following topics:
 
 ##Monitoring Primers
 
-When a system is broken down into multiple processes monitoring becomes a key aspect not only from a system maintenance, DevOps, point of view, but also from the system behavior point of view. Losing control of what the system does and why the system behaves in a certain way can rapidly become a problem hard to manage.
+When a system is broken down into multiple parts monitoring becomes a key aspect not only from a system maintenance, DevOps, point of view, but also from the system behavior point of view. Losing control of what the system does and why the system behaves in a certain way can rapidly become a problem hard to manage.
 
 NServiceBus monitoring tools and practices leverage the intrinsic power that a messaging architecture brings to the table to allow an easy and powerful monitoring process.
 
@@ -29,7 +29,7 @@ When a system is a messaging based system you can quickly identify which process
 
 ##Service Level Agreement
 
-A SLA, as the name implies, is an agreement between the involved parts. When speaking about endpoints and messages a SLA is a mean to express that a given endpoint must consume, handle in NServiceBus terminology, messages within a given amount of time, otherwise the SLA itself is not respected.
+A SLA is an agreement between the involved parts. When speaking about endpoints and messages a SLA is a mean to express that a given endpoint must consume, handle in NServiceBus terminology, messages within a given amount of time, otherwise the SLA itself is not respected.
 
 ##Performance Counters
 
@@ -52,7 +52,7 @@ As a part of the NServiceBus installation, two additional performance counters a
 
 If performance counters role is to monitor the time required by the system to handle messages the role of the auditing infrastructure is to inspect the content of messages that flows into the system.
 
-Each endpoint can be [configured](/NServiceBus/auditing-with-nservicebus), machine-wide or per endpoint, to foward each received message to a dedicated audit queue where a monitoring process, such as ServiceControl, can handle all the messages tracking them in a database to allow further processing and analysis.
+Each endpoint can be [configured](/NServiceBus/auditing-with-nservicebus), machine-wide or per endpoint, to forward each received message to a dedicated audit queue where a monitoring process, such as ServiceControl, can handle all the messages tracking them in a database to allow further processing and analysis.
 
 ###Error queues
 
@@ -66,17 +66,17 @@ Error queues can then be monitored, for example using ServiceControl as for audi
 
 ServiceControl is the heart of the NServiceBus monitoring infrastructure, its role is to collect and store information to be later processed by tools such as ServicePulse.
 
-ServicePulse is the primary frontline front-end to ServiceControl, throught ServicePulse administrators can monitor the overall health of the entire system and can be notified of failed messages that flows into error queues.
+ServicePulse is the front-end to ServiceControl, through ServicePulse administrators can monitor the overall health of the entire system and can be notified of failed messages that flows into error queues.
 
 ###Heartbeat and Checks
 
 In order to allow endpoints to communicate their status to the ServiceControl and ServicePulse monitoring tools the concepts of [Heartbeat and Checks](/ServicePulse/how-to-configure-endpoints-for-monitoring) has been introduced:
 
-* **Hearbeat**: each endpoint can send a heartbeat message to the monitoring infrastructure signaling that it is alive; This can be easily achived by deploying a plugin to the endpoint and restarting it;
+* **Hearbeat**: each endpoint can send a heartbeat message to the monitoring infrastructure signaling that it is alive; This can be easily achieved by deploying a plugin to the endpoint and restarting it;
 * **Checks**: Custom checks can be developed and deployed to the endpoint, always as plugins, to enrich the information that the endpoint sends to the monitoring infrastructure;
 
 ##Best practices
 
 If the monitored system is designed according to the NServiceBus best practice of having each process (and by corollary each queue) handle only a single message type, you can then know how long each type of messages is waiting in the system. This enables you to provide the business with information on a use-case by use-case basis. The business can, in turn, specify SLA requirements per use case, which can then be monitored.
 
-Based on this information, each process can be scaled independently using the distributor to make sure it stays within required service levels. This is Business Service Management (BSM) at its finest.
+Based on this information, each process can be scaled independently using the distributor to make sure it stays within required service levels. This is Business Service Management at its finest.
