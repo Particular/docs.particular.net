@@ -14,3 +14,4 @@ summary: ServiceControl Documentation Table of Contents
 - [Setting a Custom Hostname for ServiceControl](setting-custom-hostname)
 - [Configuring ServiceControl Log Location](setting-custom-log-location)
 - [How to Directly Access ServiceControl Data via RavenDB Studio](use-ravendb-studio)
+- [How to Backup the ServiceControl Database](backup-sc-database)

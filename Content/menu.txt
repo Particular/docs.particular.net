@@ -74,7 +74,8 @@
           "NServiceBus/scheduling-with-nservicebus",
           "NServiceBus/second-level-retries",
           "NServiceBus/nservicebus-installers",
-          "NServiceBus/managing-nservicebus-using-powershell"
+          "NServiceBus/managing-nservicebus-using-powershell",
+          “NServiceBus/connection-strings-samples"
         ]
       },
       {
@@ -247,7 +248,8 @@
 	  "ServiceControl/how-purge-expired-data",
 	  "ServiceControl/setting-custom-hostname",
 	  "ServiceControl/setting-custom-log-location",
-	  "ServiceControl/use-ravendb-studio"
+	  "ServiceControl/use-ravendb-studio",
+          "ServiceControl/backup-sc-database”
         ]
       }
     ]
