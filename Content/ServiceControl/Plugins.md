@@ -52,7 +52,7 @@ The ServiceControl queue (and all other ServiceControl related sub-queues) are c
 
 ### ServiceControl.Plugin.Heartbeat
 
-The heartbeat plugin sends heartbeat messages from the endpoint to the ServiceControl queue. These messages are sent every 30 seconds (non-configurable).
+The heartbeat plugin sends heartbeat messages from the endpoint to the ServiceControl queue. These messages are sent every 10 seconds.
 
 An endpoint that is marked for monitoring (by ServicePulse) will be expected to send a heartbeat message every 30 seconds. As long as a monitored endpoint sends heartbeat messages, it is marked as "active". Marking an endpoint as active means it is able to properly and periodically send messages using the endpoint-defined transport. 
 
