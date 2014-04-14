@@ -1,5 +1,5 @@
 ---
-title: Thank You for installing the Particular Service Platform
+title: Let's get started with the Particular Service Platform!
 summary: Links for quickly starting with the Particular Service Platform applications
 tags: []
 ---
