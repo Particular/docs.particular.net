@@ -14,7 +14,7 @@ tags:
 ### Configuring ServiceControl to use non-MSMQ Transports:
 
 * First, download the NuGet package for the relevant transport including any dependencies.
-   * *RabbitMQ*: [NServiceBus.RabbitMQ](https://www.nuget.org/api/v2/package/NServiceBus.RabbitMQ) and [RabbitMQ.Client](https://www.nuget.org/api/v2/package/RabbitMQ.Client)
+   * *RabbitMQ*: [NServiceBus.RabbitMQ](https://www.nuget.org/api/v2/package/NServiceBus.RabbitMQ) and [RabbitMQ.Client](https://www.nuget.org/api/v2/package/RabbitMQ.Client/3.2.1)
    * *SQL Server*: [NServiceBus.SqlServer](https://www.nuget.org/api/v2/package/NServiceBus.SqlServer)
    * *Windows Azure Storage Queues*: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/5.1.1) and [WindowsAzure.Storage](https://www.nuget.org/api/v2/package/WindowsAzure.Storage/2.1.0)
    * *Windows Azure ServiceBus*: [NServiceBus.Azure.Transports.WindowsAzureServiceBus](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureServiceBus/5.1.1) and [WindowsAzure.ServiceBus](https://www.nuget.org/api/v2/package/WindowsAzure.ServiceBus/2.2.0)
