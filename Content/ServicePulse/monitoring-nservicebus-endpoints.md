@@ -25,7 +25,7 @@ When a system is broken down into multiple processes monitoring becomes a key as
 
 NServiceBus monitoring tools and practices levarage the intrinsic power that a messaging architecture brings to the table to allow an easy and powerfull monitoring process.
 
-When a system is a messaging based system you can quickly identify which process is the bottleneck by examining how many messages are in each queue; you can quickly understand where a message is stuck and why and you can quickly indentify reasons that caused a message to be delivered to a specific endpoint by tracking its route from the beginning to the end.
+When a system is a messaging based system you can quickly identify which process is the bottleneck by examining how many messages are in each queue; you can quickly understand where a message is stuck and why and you can quickly identify reasons that caused a message to be delivered to a specific endpoint by tracking its route from the beginning to the end.
 
 ##Service Level Agreement
 
