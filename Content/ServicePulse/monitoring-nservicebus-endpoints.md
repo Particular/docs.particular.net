@@ -10,7 +10,7 @@ tags:
 ---
 Monitoring in NServiceBus is easier than in regular three-tier systems due to the use of queuing and message-based communication. Given the fact that generally messages are an atomic piece of information that drives the system we can say that it is enought to know where a message comes from, what it has changed, as a consequance of the handling process, and finally where it is going.
 
-This article will cover te following topics:
+This article will cover the following topics:
 
 * Monitoring primers;
 * Service Level Agreement;
