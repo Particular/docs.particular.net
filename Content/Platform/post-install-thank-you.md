@@ -25,3 +25,22 @@ The Particular Service Platform is now ready for your use. Create and maintain y
 | ![](images/NServiceBusLogo.png) <br/> (screenshot) | (short description) | [Getting Started](http://docs.particular.net/NServiceBus/NServiceBus-Step-by-Step-Guide)|
 
 
+<style type="text/css">
+.box-container {
+padding: 20px;
+margin-top: 20px;
+margin-bottom: 20px;
+border: 2px solid #428bca;
+border-radius: 4px;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+background-color: #d9edf7;
+position: relative;
+}
+img.close-box-container {
+position: absolute;
+cursor: pointer;
+top: -16px;
+right: -16px;
+width: 30px;
+}</style>
