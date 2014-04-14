@@ -63,6 +63,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Second Level Retries](second-level-retries)
 - [NServiceBus Installers](nservicebus-installers)
 - [Managing NServiceBus Using PowerShell](managing-nservicebus-using-powershell)
+- [NServiceBus Connection String Samples](connection-strings-samples)
 
 ## Hosting
 - [The NServiceBus Host](the-nservicebus-host)
