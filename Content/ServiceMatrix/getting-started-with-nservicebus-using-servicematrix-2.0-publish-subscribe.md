@@ -26,24 +26,51 @@ Before you move on, please confirm that the `OnlineSales` solution you created p
 ## Expanding the OnlineSales Example
 So far the [Online Sales](getting-started-with-servicematrix.md "Getting Started with ServiceMatrix") example implements the request response messaging pattern to facilitate communication between the website and your order processing system. We've all purchased items online and know that in reality many different things will need to happen when an order is accepted for processing. Arguably the most important business step should be billing the customer! In your example, consider how to add a billing capability to charge the customer for the order.
 ## Create the OrderAccepted Event
-In your example the `SubmitOrderProcessor` component handles the `SubmitOrder` messages.  Using the drop-down menu of `SubmitOrderProcessor`, select 'Publish Event' as shown.
+In your example the `SubmitOrderHandler` component handles the `SubmitOrder` messages.  Using the drop-down menu of `SubmitOrderHandler`, select 'Publish Event' as shown.
 
 ![Publish Event](images/servicematrix-publishevent.png)
 
 Name the new event `OrderAccepted`.
+
+##Adding the Code to Publish the Event
+When you create the `OrderAccepted` event you will be prompted by a dialog informing you of code changes that should be made.
+
+![User Code Changes Required](/images/servicematrix-orderaccepted-usercodechanges.png)
+
+In order to publish this new event, the event message must be initialized an published by the `SubmitOrderProcessor`.  To make this easier, ServiceMatrix has generated the code in a convenient window for review.   Select the option to `Copy to Clipboard and Open File`.   The `SubmitOrderHandler` partial class file will be opened.  Paste the code from the clipboard after the comment as shown below. 
+
+```C#
+namespace OnlineSales.Sales
+{
+    public partial class SubmitOrderHandler
+    {
+        partial void HandleImplementation(SubmitOrder message)
+        {
+            // TODO: SubmitOrderHandler: Add code to handle the SubmitOrder message.
+            Console.WriteLine("Sales received " + message.GetType().Name);
+            
+            var orderAccepted = new OnlineSales.Contracts.Sales.OrderAccepted();
+            Bus.Publish(OrderAccepted);
+        }
+    }
+}
+
+```
+This code will publish the `OrderAccepted` event immediately upon receipt of the `SubmitOrder` message.
+
 ## Adding the Subscriber
 To create a subscriber for this new event, select the dropdown of the `OrderAccepted` event and choose 'Add Subscriber' as shown here:
 
 ![New Event Subscriber](images/servicematrix-orderacceptedevent.png)
 
-In the 'Add Event Subscriber' window use the 'Add new Service' text box to add a [new service called Billing](images/servicematrix-addeventsubscriber.png "New Billing Service").  You should notice that `OrderAcceptedProcessor` has been created in a new Billing Service. The dashed container indicates that the component has yet to be deployed. Also notice that the lines representing the `OrderAccepted` event messages are dashed.  This is because they are events. The `SubmitOrder' messages are commands and are illustrated with a solid line. 
+In the 'Add Event Subscriber' window use the 'Add new Service' text box to add a [new service called Billing](images/servicematrix-addeventsubscriber.png "New Billing Service").  You should notice that `OrderAcceptedHandler` has been created in a new Billing Service. The dashed container indicates that the component has yet to be deployed. Also notice that the lines representing the `OrderAccepted` event messages are dashed.  This is because they are events. The `SubmitOrder' messages are commands and are illustrated with a solid line. 
 
 ![Undeployed Billing Service](images/servicematrix-undeployedbilling.png). 
 
-## Deploy the OrderAcceptedProcessor
-To deploy the `OrderAcceptedProcessor` use the drop down menu and choose 'Deploy Component' as shown here:
+## Deploy the OrderAcceptedHandler
+To deploy the `OrderAcceptedHandler` use the drop down menu and choose 'Deploy Component' as shown here:
 
-![Deploy OrderAcceptedProcessor](images/servicematrix-orderaccepted-deploy.png)
+![Deploy OrderAcceptedHandler](images/servicematrix-orderaccepted-deploy.png)
 
 In the resulting '[Deploy To Endpoint](images/servicematrix-deploytonewendpoint.png "Deploy to Endpoint")' window choose the 'New Endpoint' option and [create an endpoint](images/servicematrix-newbillingendpoint.png "Add Billing Endpoint") called `Billing`.
 
@@ -51,93 +78,32 @@ At this point with a little re-arranging your ServiceMatrix canvas should look l
 
 ![Pub Sub Wired Up](images/servicematrix-pubsubcanvaswired.png)
 
-The `SubmitOrderProcessor` raises the `OrderAccepted` event, to which `OrderAcceptedProcessor` of the `Billing` service is subscribed.
+The `SubmitOrderHandler` raises the `OrderAccepted` event, to which `OrderAcceptedHandler` of the `Billing` service is subscribed.
 
 As you would expect, the ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilder.png "SolutionBuilder") reflects the new endpoint, service, component, and event you added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
 ## Review the Code
 ServiceMatrix generates the initial code for publishing and processing the event and both the publishing and subscribing end. 
 ### Event Publisher Code 
-Your new event is published by the `SubmitOrderProcessor` component. Review the code by clicking the drop-down menu of `SubmitOrderProcessor` and selecting 'Open Code'.  You should see the following code: 
-```C#
-namespace OnlineSales.Sales
-{
-     public partial class SubmitOrderProcessor
-    {
-        partial void HandleImplementation(SubmitOrder message)
-        {
-       		Console.WriteLine("Sales received " + message.GetType().Name);
-        }
-     }
-}
-
-```
-This should look familiar as it was created in the first article as part of handling the `SubmitOrder` message. Recall that this partial `SubmitOrderProcessor` class and the partial `HandleImplementation` method give you a chance to customize the message handler.  
-
-But what about your new `OrderAccepted` event? In a similar way ServiceMatrix allows you to implement a `ConfigureOrderAccepted` partial method  to customize your new `OrderAccepted` event. To take advantage of this capability you need to add the following partial method to the partial class. (In my case, I modified the `SubmitOrder` message and the `OrderAccepted` event to have a public property and mapped them to each other.)
-
-```C#
-partial void ConfigureOrderAccepted(SubmitOrder incomingMessage, OnlineSales.Contracts.Sales.OrderAccepted message)
-        { 
-        
-            //This is your chance to mutate or change the OrderAccepted Message. Notice that you have access to the SubmitOrder message as well so you can transfer content. 
-			
-			//NOTE: For this line to work, you will need to modify the SubmitOrder message to have a CustomerName and the OrderAccepted event to have a Billing name property. 
-        	// message.BillingName = incomingMessage.CustomerName;
-        }
-
-```
-#### Review the Generated Code 
-Take a brief look at the generated code and how this customization works. Press F12 on the `SubmitOrderProcessor` class name and navigate to the code generated portion of the partial class as shown below. NOTE: Do not edit this generated portion as it is at risk of being regenerated by the ServiceMatrix platform.
-
-```C#
-namespace OnlineSales.Sales
-{
-    public partial class SubmitOrderProcessor : IHandleMessages<SubmitOrder>
-    {
-		public void Handle(SubmitOrder message)
-		{
-			this.HandleImplementation(message);
-
-			var OrderAccepted = new OnlineSales.Contracts.Sales.OrderAccepted();
-
-			ConfigureOrderAccepted(message, OrderAccepted);
-			
-			this.Bus.Publish(OrderAccepted);
-		}
-
-		partial void HandleImplementation(SubmitOrder message);
-
-		partial void ConfigureOrderAccepted (SubmitOrder incomingMessage, OnlineSales.Contracts.Sales.OrderAccepted message);
-
-		public IBus Bus { get; set; }
-    }
-}
-
-```
-Notice how this generated `Handle` method does the following: 
-
-1. Invokes the `HandleImplementation` partial method, passing in the received `SubmitOrder` message.
-2. Creates a new `OrderAccepted` event. 
-3. Invokes the `ConfigureOrderAccepted` partial method, passing in both `SubmitOrder` and `OrderAccepted`.
-4. Finally publishes the `OrderAccepted` event using a reference to the bus.
+When we created the `OrderAccepted` event ServiceMatrix generated the code to publish the event and modify the `SubmitOrderHandler` component.  The [section above](#adding-the-code-to-publish-the-event "Event Publishing Code") illustrates the code. 
 
 ### Subscriber Code
-In the `OrderAcceptedProcessor` drop-down menu select `Open Code` and you should see the following. 
+In the `OrderAcceptedHandler` drop-down menu select `View Code` and you should see the following. 
 
 ```C#
 namespace OnlineSales.Billing
 {
-    public partial class OrderAcceptedProcessor
+    public partial class OrderAcceptedHandler
     {
-		partial void HandleImplementation(OrderAccepted message)
+        partial void HandleImplementation(OrderAccepted message)
         {
-                Console.WriteLine("Billing received " + message.GetType().Name);
+            // TODO: OrderAcceptedHandler: Add code to handle the OrderAccepted message.
+            Console.WriteLine("Billing received " + message.GetType().Name);
         }
     }
 }
 
 ```
-Nothing new here!  Notice that this generated `OrderAcceptedProcessor` code is the exactly the same as was generated for the  `SubmitOrderProcessor`.
+There is nothing new here!  Notice that this generated `OrderAcceptedHandler` code is the exactly the same as was generated for the  `SubmitOrderHandler`.
 #Build and Run the Solution
 Go ahead and run the solution. This time, in addition to the [sales web site](images/servicematrix-demowebsite.png "Demo Website") and [`OrderProcessing` endpoint console](images/servicematrix-reqresp-orderprocessor.png "Order Processing"), you should see another console window for `Billing`.
 
@@ -153,8 +119,8 @@ As you see, it's very easy to get started with NServiceBus and ServiceMatrix.
 
 ##Additional Exercises
 
-###Add a Shipping Service
-Try expanding the solution on your own.  Add a `Shipping` capability.  You can add another event to publish when billing is complete. Call it `OrderBilled`. Add a subscriber in a new `Shipping` service deployed to a `Shipping` endpoint also hosted in the NServiceBus host. 
+###Explore the use of Sagas
+Continue on and integrate a payment component into the billing service.  [The next article](getting-started-sagasfullduplex-2.0.md "Sagas in ServiceMatrix Request Response") will continue on with the creation of the OnlineSales solution. 
 
 ### Explore the ServiceMatrix Solution Views
 The Solution Builder of ServiceMatrix provides various views into the solution you have created. Look at the [toolbar](images/servicematrix-solutionbuilder-final.png "Solution Builder Toolbar") and review some of the other buttons. In addition to the Default View represented by the hammer, note the ServiceMatrix View icon. 
