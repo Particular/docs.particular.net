@@ -18,6 +18,7 @@ This step-by-step guide will walk you through the creation of a send-and-receive
 5.  [Deploying Components](#deploying-components)
 6.  [Sending a Message](#sending-a-message)
 7.  [Running the Application](#running-the-application)
+8.  [Using ServiceInsight](#using-serviceinsight)
 8.  [Next Steps](#next-steps)
 
 The example demonstrates the integration of an online sales web store with a backend system using the request-response pattern and NServiceBus.
@@ -49,9 +50,9 @@ You'll see that a solution folder has been created for your solution, as shown.
 
 A number of projects have been created for you, as shown in the Solution Explorer pane. The `Solution Items` folder is part of the ServiceMatrix infrastructure.
 
-Two important folders are the `Contract` and `InternalMessages` projects as they are where all message types are placed:
+Two important folders are the `Contract` and `Internal` projects as they are where all message types are placed:
 -   All defined events will be put in the `Contract` project.
--   All commands will be put in the `InternalMessages` project. 
+-   All commands will be put in the `Internal` project. 
 
 Later you will see how messages from different services are partitioned in these projects. 
 
@@ -60,7 +61,7 @@ Take a look at the design environment. The [Solution Builder](images/servicematr
 You should see folders in Solution Builder called 'Infrastructure', 'Libraries', 'Endpoints', and 'Services'.
 -   Infrastructure is where cross-cutting concerns like authentication and auditing are handled.
 -   Libraries are units of code that can be reused, including logging and data access.
--   Endpoints are where code is deployed as executable processes. They can be web applications (both Web Forms and MVC) or [NServiceBus Hosts](../NServiceBus/the-nservicebus-host.md).
+-   Endpoints are where code is deployed as executable processes. They can be MVC web applications or [NServiceBus Hosts](../NServiceBus/the-nservicebus-host.md).
 -   Services are logical containers for code that provide the structure for publish/subscribe events and command-processing. 
 
 The [NServiceBus Canvas](images/servicematrix-canvas.png "NServiceBus Canvas") is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise your solution will be created and illustrated here.
@@ -112,14 +113,14 @@ Notice that several things have happened. The `Sales` service has two new compon
 
 ![Undeployed Sales Service](images/servicematrix-sales-undeployed.png)
 
-The service now has a `Sender` component named after your command that enables an endpoint to send `SubmitOrder` messages.  Similarly there is a `Processor` component that enables an endpoint to process these messages.
+The service now has a `Sender` component named after your command that enables an endpoint to send `SubmitOrder` messages.  Similarly there is a `Handler` component that enables an endpoint to process these messages.
 
 In addition to illustrating these in the canvas the [Solution Builder](images/servicematrix-solutionbuilder-salesservice.png "Solution Builder With Sales") now shows the `SubmitOrder` command in the commands folder.  It also illustrates the components and the fact they send and process the `SubmitOrder` command accordingly. You will notice there is now code that has been generated in the Visual Studio project as well.
 
 The `SubmitOrder` command is a simple message meant to communicate the order between your endpoints.  To view the generated class file, click the drop-down menu of the `SubmitOrder` command and select View Code [as shown](images/servicematrix-submitorderviewcode.png "View SubmitOrder Code"). This is  very simple C# class.  You can add all sorts of properties to your message to represent the order data: strings,  integers, arrays, dictionaries, etc. Just make sure to provide both a get accessor and a set mutator to each property. 
 
 ```C#
-namespace OnlineSales.InternalMessages.Sales
+namespace OnlineSales.Internal.Commands.Sales
 {
     public class SubmitOrder
     {
@@ -137,32 +138,46 @@ Remember that in your example you want to send orders from the front end ECommer
 By deploying these components to each endpoint, the `Sales` service will afford your systems the capability to easily communicate reliably and durably using a command message containing the data for the submitted order.  
 
 Let's deploy!
-### Deploying Sales Somponents
+### Deploying Sales Components
 To deploy your sender, use the dropdown menu of the `SubmitOrderSender` component as shown below.   Select 'Deploy Component' and choose to deploy it to the `ECommerce` endpoint using the list provided. 
 
 ![Deploy the Sales Components](images/servicematrix-salesdeploycomponent.png)
 
-**NOTE:** You cannot build the solution with components that aren't deployed.  If you try to build at this point you will get an error indicating that the `Sales.SubmitOrderProcessor` must be allocated to an endpoint. 
+**NOTE:** You cannot build the solution with components that aren't deployed.  If you try to build at this point you will get an error indicating that the `Sales.SubmitOrderHandler` must be allocated to an endpoint. 
 
-Deploy the `SubmitOrderProcessor` to the `OrderProcessing` endpoint by choosing the dropdown menu.  At this point, with a little reorganizing, the canvas should nicely illustrate the `ECommerce` and `OrderProcessing` endpoints using the `Sales` service components to send and process the `SubmitOrder` command.
+Deploy the `SubmitOrderHandler` to the `OrderProcessing` endpoint by choosing the dropdown menu.  At this point, with a little reorganizing, the canvas should nicely illustrate the `ECommerce` and `OrderProcessing` endpoints using the `Sales` service components to send and process the `SubmitOrder` command.
 
 ![Canvas with Service Deployed to Endpoints](images/servicematrix-canvaswiredup.png)
 
-Now build the solution and see how everything turns out.  Look at the `SubmitOrderProcessor` code by selecting its dropdown menu and choosing 'Open Code'.  As you can see below, there isn't much there.  A partial class has been created where you can add your order processing logic.  You can view the partial class counterpart by clicking F12 while highlighting the class name.  There isn't much to see there either; just a class that implements `IHandleMessages<submitorder>` and has a reference to `IBus` that you can use from within your partial class to send out other messages, publish events, or to reply to commands.
+Now build the solution and see how everything turns out.  Look at the `SubmitOrderHandler` code by selecting its dropdown menu and choosing 'View Code'.  As you can see below, there isn't much there.  A partial class has been created where you can add your order processing logic. 
+```C#
+namespace OnlineSales.Sales
+{
+    public partial class SubmitOrderHandler
+    {
+        partial void HandleImplementation(SubmitOrder message)
+        {
+            // TODO: SubmitOrderHandler: Add code to handle the SubmitOrder message.
+            Console.WriteLine("Sales received " + message.GetType().Name);
+        }
+    }
+}
+```
+ You can locate ServiceMatrix generated partial class counterpart in the `OnlineSales.OrderProcessing` project and the `Infrastructure\Sales` folder. There isn't much to see there either; just a class that implements `IHandleMessages<submitorder>` and has a reference to `IBus` that you can use from within your partial class to send out other messages, publish events, or to reply to commands.  The partial method `HandleImplementation(message)` is a call to the implementation above.  To learn more about the way to use the generated code in please see this article on [Using ServiceMatrix Generated Code](customizing-extending.md "Using ServiceMatrix Generated Code").  
     
 ```C#
 namespace OnlineSales.Sales
 {
-    public partial class SubmitOrderProcessor
+    public partial class SubmitOrderHandler : IHandleMessages<SubmitOrder>
     {
-		
-        // TODO: SubmitOrderProcessor: Configure published events' properties implementing the partial Configure[EventName] method.
+		public void Handle(SubmitOrder message)
+		{
+			// Handle message on partial class
+			this.HandleImplementation(message);
+		}
 
-        partial void HandleImplementation(SubmitOrder message)
-        {
-            // TODO: SubmitOrderProcessor: Add code to handle the SubmitOrder message.
-            Console.WriteLine("Sales received " + message.GetType().Name);
-        }
+		partial void HandleImplementation(SubmitOrder message);
+        public IBus Bus { get; set; }
     }
 }
 
@@ -172,53 +187,53 @@ namespace OnlineSales.Sales
 The last thing to do is to review how the 'ECommerce' website sends a message.  When ServiceMatrix generated the MVC endpoint it also created a demonstration site already capable of sending the commands created using the tool.
 
 ### Review MVC code
-Find the `TestMessagesController.generated.cs` file in the Controllers folder in the OnlineSales.ECommerce project.  This file is generated as part of the MVC application by ServiceMatrix. Notice the `MvcApplication.Bus.Send` method that sends the command message `SubmitOrder`.
+Find the `TestMessagesController.generated.cs` file in the Controllers folder in the OnlineSales.ECommerce project.  This file is generated as part of the MVC application by ServiceMatrix. Notice the `SubmitOrderSender.Send` method that sends the command message `SubmitOrder`.  This method was generated in a different partial class file located in the `Infrastructure\Sales\SubmitOrderSender.cs` file.  
 
 ```C#
 namespace OnlineSales.ECommerce.Controllers
 {
     public partial class TestMessagesController : Controller
     {
-       public ActionResult Index()
+        // GET: /TestMessages/
+
+        public ActionResult Index()
         {
             return View();
         }
 
-        
-	    [HttpPost]
+        // POST: /TestMessages/SendMessageSubmitOrder
+          
+        public ISubmitOrderSender SubmitOrderSender { get; set; }
+          
+        [HttpPost]
         public ActionResult SendMessageSubmitOrder(SubmitOrder SubmitOrder)
         {
             ConfigureSubmitOrder(SubmitOrder);
-            MvcApplication.Bus.Send(SubmitOrder);
+            SubmitOrderSender.Send(SubmitOrder);
 
             ViewBag.MessageSent = "SubmitOrder";
 
             return View("Index");
         }
-
         partial void ConfigureSubmitOrder(SubmitOrder message);
-      
     }
-} 
+}
 ```  
-Any modifications to this file will be overwritten by subsequent regeneration of the demonstration site.  To accomodate any changes you wish to make, just before the Bus.Send is called the code invokes a partial method called `ConfigureSubmitOrder` that accepts your `SubmitOrder` message as a parameter.  This can be implemented by you inside the `TestMessagesController.cs` file in the same directory.  The following code snippet illustrates how that can be done.  
+This is a demonstration site that provides an initial reference application in MVC.  Any modifications to this file will be overwritten by subsequent regeneration of the demonstration site.  To accomodate any changes you wish to make, just before the Bus.Send is called the code invokes a partial method called `ConfigureSubmitOrder` that accepts your `SubmitOrder` message as a parameter.  This can be implemented by you inside the `SubmitOrderSender.cs` file in the `\Sales` directory of the `OnlinesSales.ECommerce` project.  The following code snippet illustrates how that can be done.  
 
 ```C#
-namespace OnlineSales.ECommerce.Controllers
+namespace OnlineSales.Sales
 {
-    public partial class TestMessagesController
+    public partial class SubmitOrderSender
     {
-        // TODO: OnlineSales.ECommerce: Configure sent/published messages' properties implementing the partial Configure[MessageName] method.");
+        //You can add the partial method to change the submit order message.
         partial void ConfigureSubmitOrder(SubmitOrder message)
         {
-            //This is where you can get access to the message and mutate it, etc.,  as you see fit before it is sent.
-            //You need to add a CustomerName property to the SubmitOrder class for this to work. 
-			message.CustomerName = "Customer Name";
+            message.CustomerName="John Doe";
         }
     }
 }
 ```
-
 ##Running the Application
 Now press F5 or press the 'Play' button in Visual Studio to debug the application. You should see both the eCommerce website launched in your default browser and a console window for the NServiceBus host that is running your OrderProcessing endpoint.  
 
@@ -241,12 +256,18 @@ Since you selected the NServiceBus host for your OrderProcessing endpoint it is 
 
 As you click the Send button in the website, you will see the console indicate that the `OrderProcessing` endpoint has received the messages.
 
+##Using ServiceInsight
+By default, when you run a ServiceMatrix project, [ServiceInsight](../ServiceInsight/index.md "ServiceInsight") is launched.  ServiceInsight is another NServiceBus platform product that provides a detailed runtime view of your solution.  It will illustrate and enumerate the messages, endpoints and data in your solution as you create an debug it.  To understand how to use ServiceInsight to complement ServiceMatrix please see [this article on that topic](servicematrix-serviceinsight.md "Using ServiceInsight and ServiceMatrix").  
+
+
+
 ### Congratulations!
 You've just built your first NServiceBus application. Wasn't that easy?
 
 ## Next steps
-So far you have seen how ServiceMatrix can be used to connect a front end website and a backend processing system using NServiceBus.
+We've mentioned that [ServiceInsight](../ServiceInsight/index.md "ServiceInsight") can be a valuable tool in the design process and where to [learn more about it](servicematrix-serviceinsight.md).  For runtime monitoring of an NServiceBus solution the platform also includes [ServicePulse](../ServicePulse/index.md "ServicePulse for Monitoring").  
 
+In this article you have seen how ServiceMatrix can be used to connect a front end website and a backend processing system using NServiceBus. 
 What's so exciting about that?  After all inter-process communication has been done many times before. 
 
 One answer is ***fault tolerance***.  Next we'll explore the fault tolerance and durability features NServiceBus offers.
