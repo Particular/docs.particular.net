@@ -8,7 +8,7 @@ tags:
 - Service Level Agreement
 - Heartbeat
 ---
-Monitoring in NServiceBus is easier than in regular three-tier systems due to the use of queuing and message-based communication. Given the fact that generally messages are an atomic piece of information that drives the system we can say that it is enough to know where a message comes from, what it has changed, as a consequence of the handling process, and finally where it is going.
+Monitoring in NServiceBus is easier than in regular three-tier systems due to the use of queuing and message-based communication. Given that generally messages are an atomic piece of information that drives the system we can say that it is enough to know where a message comes from, what it has changed, as a consequence of the handling process, and finally where it is going.
 
 This article will cover the following topics:
 
