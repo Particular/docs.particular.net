@@ -19,7 +19,7 @@ This step-by-step guide will walk you through the creation of a send-and-receive
 6.  [Sending a Message](#sending-a-message)
 7.  [Running the Application](#running-the-application)
 8.  [Using ServiceInsight](#using-serviceinsight)
-8.  [Next Steps](#next-steps)
+9.  [Next Steps](#next-steps)
 
 The example demonstrates the integration of an online sales web store with a backend system using the request-response pattern and NServiceBus.
 
