@@ -37,7 +37,9 @@ In V4, add the `AuditConfig` section to the configuration file, as shown:
 <AuditConfig QueueName="auditqueue@adminmachine"/>
 ```
 
- V4 also supports setting up the error queue and the audit queue at the machine level in the registry. Use the [Set-NServiceBusLocalMachineSettings](managing-nservicebus-using-powershell.md) PowerShell commandlet to set these values at a machine level. When set at machine level, the setting is not required in the endpoint configuration file for messages to be forwarded to the audit queue.
+V4 also supports setting up the error queue and the audit queue at the machine level in the registry. Use the [Set-NServiceBusLocalMachineSettings](managing-nservicebus-using-powershell.md) PowerShell commandlet to set these values at a machine level. When set at machine level, the setting is not required in the endpoint configuration file for messages to be forwarded to the audit queue.
+
+N.B. For backwards compatibility, V4 still supports the attribute `ForwardReceivedMessagesTo` on `UnicastBusConfig` section, but you will receive a warning recommending that you upgrade your configuration to use `AuditConfig` section.
 
 NServiceBus then forwards all messages arriving at the given endpoint to the queue called `AuditQueue` on the machine called `AdminMachine`. You can specify any queue on any machine, although only one is supported.
 
