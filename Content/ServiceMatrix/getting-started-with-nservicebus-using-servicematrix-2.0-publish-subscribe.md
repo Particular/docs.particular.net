@@ -35,7 +35,7 @@ Name the new event `OrderAccepted`.
 ##Adding the Code to Publish the Event
 When you create the `OrderAccepted` event you will be prompted by a dialog informing you of code changes that should be made.
 
-![User Code Changes Required](/images/servicematrix-orderaccepted-usercodechanges.png)
+![User Code Changes Required](images/servicematrix-orderaccepted-usercodechanges.png)
 
 In order to publish this new event, the event message must be initialized an published by the `SubmitOrderProcessor`.  To make this easier, ServiceMatrix has generated the code in a convenient window for review.   Select the option to `Copy to Clipboard and Open File`.   The `SubmitOrderHandler` partial class file will be opened.  Paste the code from the clipboard after the comment as shown below. 
 
