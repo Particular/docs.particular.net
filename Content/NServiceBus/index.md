@@ -24,7 +24,6 @@ summary: NServiceBus Documentation Table of Contents
 - [NServiceBus Step by Step Guide](NServiceBus-Step-by-Step-Guide)
 - [NServiceBus Step by Step Guide Fault Tolerance Code First](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first)
 - [NServiceBus Step by Step Publish Subscribe Communication Code First](nservicebus-step-by-step-publish-subscribe-communication-code-first)
-- [Getting Started Publish Subscribe Communication](getting-started---publish-subscribe-communication)
 - [Getting Started Fault Tolerance](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first)
 - [Architectural Principles](architectural-principles)
 - [Transactions Message Processing](transactions-message-processing)
