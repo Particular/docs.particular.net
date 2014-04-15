@@ -30,83 +30,99 @@ As you may recall, in your example the ECommerce website sends the `SubmitOrder`
 ##Adding a Payment Processing Service
 In an e-commerce scenario you might expect the billing process to involve interaction with a payment processing gateway.  This involves submitting payment information and getting a response that includes an authorization code.  In this message-based example, the billing service uses a command message to submit the payment for processing and receives an asynchronous response message.  This type of communication is called the request-response or full-duplex pattern. 
 
-Add a payment processing component to your system. Using the drop-down menu on the `OrderAcceptedProcessor` component in the `Billing` service, add a new command called `SubmitPayment`.
+Add a payment processing component to your system. Using the drop-down menu on the `OrderAcceptedHandler` component in the `Billing` service, add a new command called `SubmitPayment`.
 
 ![New SubmitPayment Command](images/servicematrix-newbillingcommand.png)
 
-This canvas will illustrate the new `SubmitPayment` command along with an undeployed `SubmitPaymentProcessor` component.  As previously, use the drop-down menu lof this component to deploy it to a [new endpoint](servicematrix-deploytopaymentprocessing.png) hosted in the NServiceBus host, and name it `PaymentProcessing`.   The relationship between the `Billing` and `PaymentProcessing` endpoints should look like this:
+##Modifying the OrderAcceptedHandler
+When you add this new command, ServiceMatrix will prompt you with the code necessary to send it from within the `OrderAcceptedHandler`.
+
+![](images/servicematrix-submitpaymentusercode.png)
+
+Copy the code to the clipboard and add it to the `OrderAcceptedHandler` inside the handler of the `OrderAccepted` event as shown.
+```C#
+namespace OnlineSales.Billing
+{
+    public partial class OrderAcceptedHandler
+    {
+        partial void HandleImplementation(OrderAccepted message)
+        {
+            // TODO: OrderAcceptedHandler: Add code to handle the OrderAccepted message.
+            Console.WriteLine("Billing received " + message.GetType().Name);
+
+			Console.Writeline("Configuring the Submit Payment Message");
+			//Paste the send code block here.
+            var submitPayment = new OnlineSales.Internal.Commands.Billing.SubmitPayment();
+            Bus.Send(submitPayment);
+        }
+    }
+}
+```
+
+This canvas will illustrate the new `SubmitPayment` command along with an undeployed `SubmitPaymentHandler` component.  Use the drop-down menu of this component to deploy it to a [new endpoint](servicematrix-deploytopaymentprocessing.png) hosted in the NServiceBus host, and name it `PaymentProcessing`.   The relationship between the `Billing` and `PaymentProcessing` endpoints should look like this:
 
 ![Billing and PaymentProcessing Endpoints](images/servicematrix-billingandpaymentprocessing.png)
 
-You created a new `PaymentProcessing` endpoint and a new command message that billing can use to submit payments for processing.  View the code in the `SubmitPaymentProcessor` to see that it simply handles the `SubmitPayment` request.  
+You created a new `PaymentProcessing` endpoint and a new command message that billing can use to submit payments for processing.  View the code in the `SubmitPaymentHandler` to see that it simply handles the `SubmitPayment` request.  
 This component still needs to be modified to send a response message.  In a real-life scenario, it could invoke a web service that processes credit cards or other payments. This web service would likely return an authorization code that would be need to be packaged in a response message and returned to the requester.  The next step is to create a response.
 
 ##Correlating the Payment Response Using a Saga
-To send a response from the `SubmitPaymentProcessor` component, select `Reply with Message` from the drop-down menu.
+To send a response from the `SubmitPaymentHandler` component, select `Reply with Message` from the drop-down menu.
 
 ![Reply with Message](images/servicematrix-replywithmessage.png)
 
-This reply will automatically be routed to the requester, which in this case is the `OrderAcceptedProcessor` component that sent the message. When you select this option you will be prompted as follows:
+This reply will automatically be routed to the requester, which in this case is the `OrderAcceptedHandler` component that sent the message. When you select this option you will be prompted as follows:
 
 ![Convert to Saga prompt](images/servicematrix-converttosaga.png)
 
 Choose **OK.** 
 
-Why do you need a saga? Your NServiceBus system uses asynchronous messaging to communicate between services.  The `OrderAcceptedProcessor` sent the `SubmitPayment` request but doesn't wait or block for a response.  Once the payment request is processed by the payment processor, the messaging system returns the response message at some point in the future for handling.  However, if you want access to any of the related data from the original `OrderAccepted` event, the `OrderAcceptedProcessor` component must store the information and make it available when handling the response.  The NServiceBus saga is implemented for just this purpose.  It will automatically persist saga data and make it available in your code when a correlating message is handled.  You can read much more about sagas in [this NServiceBus article.](../NServiceBus/sagas-in-nservicebus.md "Sagas in NServiceBus")
+Why do you need a saga? Your NServiceBus system uses asynchronous messaging to communicate between services.  The `OrderAcceptedProcessor` sent the `SubmitPayment` request but doesn't wait or block for a response.  Once the payment request is processed by the payment processor, the messaging system returns the response message at some point in the future for handling.  However, if you want access to any of the related data from the original `OrderAccepted` event, the `OrderAcceptedHandler` component must store the information and make it available when handling the response.  The NServiceBus saga is implemented for just this purpose.  It will automatically persist saga data and make it available in your code when a correlating message is handled.  You can read much more about sagas in [this NServiceBus article.](../NServiceBus/sagas-in-nservicebus.md "Sagas in NServiceBus")
 
-When you select  **OK**, ServiceMatrix creates the `SubmitPaymentResponse` message class.  It changes the `OrderAcceptedProcessor` into a saga and creates a handler for the `SubmitPaymentResponse`.  The related area of the canvas should now look like this: 
+When you select  **OK**, ServiceMatrix creates the `SubmitPaymentResponse` message class.  It changes the `OrderAcceptedHandler` into a saga and creates a handler for the `SubmitPaymentResponse`.  The related area of the canvas should now look like this: 
 
 ![Canvas with a Saga](images/servicematrix-sagacanvas.png)
 
-Since the `OrderAcceptedProcessor` is now a saga, notice the icon has changed slightly. ServiceMatrix has also generated the code needed to support a saga implementation.  The framework takes care of persisting the message data from each message processed by the saga.  The generated code provides ways to safely integrate your own custom code.   
+Since the `OrderAcceptedHandler` is now a saga, notice the icon has changed slightly. ServiceMatrix has also generated the code needed to support a saga implementation.  The framework takes care of persisting the message data from each message processed by the saga.  The generated code provides ways to safely integrate your own custom code.   
+
+NOTE: If you built the solution prior to adding creating the response message, you will be prompted with the user code changes necessary to send the reply from the `SubmitPaymentProcessor`.   Open the code for the `SubmitPaymentProcessor` and paste it into the `SubmitPayment' handler similar to what was done earlier in this example. 
 
 ##Modifying the Saga Code
-Compile the Visual Studio solution and open the `OrderAcceptedProcessor` code by using its drop-down menu.  The code window will open a `OrderAcceptedProcessor.cs` file which contains a partial class.  Partial methods can be implemented in this class that allow you to customize the implementation.  These partial methods are called by the generated code in another partial class.  
+[Earlier in this article](#modifying-the-orderacceptedhandler "Modifying the handler to send a message"), we modified the `OrderAcceptedHandler` code so it would send the `SubmitPayment` command. 
 
+In addition to the original `OrderAccepted` event from the previous example we will need to supplement this code in a few key ways.  We'll show where to add saga data for persistence.  We'll also implement a way of handling of the `SubmitPaymentResponse`and finally mark the saga as complete.  
+
+##Adding Saga Data
+The saga data is made available to each handler during the life of the saga.  Locate an open the `OrderAcceptedHandlerSagaData.cs` file.  It is located in the `OnlineSale.Billing\Billing` project folder.   This partial class is initially empty but can be modified as you wish to contain data to be persisted.  
 ```C#
 namespace OnlineSales.Billing
 {
-    public partial class OrderAcceptedProcessor
+    public partial class OrderAcceptedHandlerSagaData
     {
-		partial void HandleImplementation(OrderAccepted message)
-        {
-            // TODO: OrderAcceptedProcessor: Add code to handle the OrderAccepted message.
-            Console.WriteLine("Billing received " + message.GetType().Name);
-        }
-	}
+		//Put your own custom properties here.  
+		//private string OrderID{get;set;}
+    }
 }
 ```
-This class already has one partial method for the original `OrderAccepted` event from the previous example.  You need to supplement this code in a few ways.  You will see where to modify the `SubmitPayment` request message before it is sent and also modify the handling of the `SubmitPaymentResponse`.   Finally, you will mark the saga as complete.  
+Saga data properties can be accessed or mutated using the `Data` object from any handler.
 
-##Modifying the Payment Request
-When the `Billing` service receives the `OrderAccepted` event the `SubmitPayment` request needs to be sent.  By default, ServiceMatrix generates code to publish or send any referenced outbound message when it receives an inbound messages.  A partial method is called and can be used to configure the `SubmitPayment` message before it is sent.  To make use of it, modify the partial class for the component by adding the `ConfigureSubmitPayment` partial method as shown below.  
- 
-```C#
- partial void ConfigureSubmitPayment(OrderAccepted incomingMessage, InternalMessages.Commands.Billing.SubmitPayment message)
-        {
-            /*This method gives us access to the OrderAccepted event and the SubmitPayment message before it is sent. 
-			Consider adding some properties to transfer.... 
-			message.OrderReferenceNumber = incomingMessage.OrderID
+##Creating the Payment Request
+Rebuild the Visual Studio solution and open the code again by using its drop-down menu and selecting `View Code`.  The code window will open the `OrderAcceptedHandler.cs` file which contains a partial class.  The code we pasted earlier simply creates and sends the `SubmitPayment` command. This would be the appropriate place to capture values from the `OrderAccepted` event and put them into the `SubmitPayment` properties.
 
-			Access the contents of messages previously received and automatically persisted by the saga through the Data property..
-			Data.OrderAccepted.OrderID 
-			*/
-		Console.WriteLine("Configuring the Submit Payment Message");
-
-        }
-```
 ##Adding the Response Handler
-ServiceMatrix has implemented partial methods that you can extend when handling the `SubmitPaymentResponse`.  Modify the partial class to include the new partial method as shown:  
-
+ServiceMatrix has implemented handlers that call partial methods that you can implement for handling the `SubmitPaymentResponse`.  Modify the partial class to include the new partial method as shown:  
 ```C#
-partial void HandleImplementation(InternalMessages.Billing.SubmitPaymentResponse message)
+partial void HandleImplementation(Internal.Messages.Billing.SubmitPaymentResponse message)
 {
-     //Handle the SubmitPaymentResponse
-     Console.WriteLine("Billing received " + message.GetType().Name);
+   //Handle the SubmitPaymentResponse
+	Console.WriteLine("Billing received " + message.GetType().Name);
+
+	//To access and save to saga data use code like this..
+	//Data.AuthCode = message.AuthorizationCode;
 }
 ```
 ##Completing the Saga
-The saga maintains data between calls but this persistence needs to last only until the process is over.  To end a saga and free up its resources it must be marked as complete when the final message is received.  ServiceMatrix generates code that keeps track of each message and provides a convenient partial method that can be used to complete the saga by calling the `MarkAsComplete` method.  Continue modifying the `OrderAcceptedProcessor.cs` class by adding this code:
+The saga maintains data between calls but this persistence needs to last only until the process is over.  To end a saga and free up its resources it must be marked as complete when the final message is received.  ServiceMatrix generates code that keeps track of each message and provides a convenient partial method that can be used to complete the saga by calling the `MarkAsComplete` method.  Continue modifying the `OrderAcceptedHandler.cs` class by adding this code:
 
 ```C#
  partial void AllMessagesReceived()
@@ -116,26 +132,21 @@ The saga maintains data between calls but this persistence needs to last only un
         }
 ```
 ##Reviewing the SubmitPaymentProcessor Code
- Use the drop-down on the `SubmitPaymentProcessor` component to bring up the code window. As was the case with the saga, ServiceMatrix has generated the basic code needed for the `SubmitPaymentProcessor` to handle the `SubmitPayment` message and by default sends a `SubmitPaymentResponse`.  
- To modify the response, use one of the provided partial methods.  This method gives your code a chance to access and modify the response before it is returned. Change the implementation to include the partial method below: 
+ Use the drop-down on the `SubmitPaymentHandler` component to bring up the code window. As was the case with the saga, ServiceMatrix has generated the basic code needed  to handle the `SubmitPayment` message.  ServiceMatrix has also either generated or prompted you to add code for the creation of the `SubmitPaymentResponse` and the `Bus.Reply()` method. 
 
 ```C#
 namespace OnlineSales.Billing
 {
-    public partial class SubmitPaymentProcessor
+    public partial class SubmitPaymentHandler
     {
         partial void HandleImplementation(SubmitPayment message)
         {
-            // TODO: SubmitPaymentProcessor: Add code to handle the SubmitPayment message.
+            // TODO: SubmitPaymentHandler: Add code to handle the SubmitPayment message.
             Console.WriteLine("Billing received " + message.GetType().Name);
-        }
 
-        partial void ConfigureSubmitPaymentResponse(SubmitPayment incomingMessage, InternalMessages.Billing.SubmitPaymentResponse response)
-        {
-            //This method is passed by both the SubmitPayment and the SubmitPaymentResponse. 
-            //Here you could invoke a web service to process the payment and build a response message, based on the outcome.
-
-            System.Console.WriteLine("Sending the Payment Response.");
+            
+			var submitPaymentResponse = new OnlineSales.Internal.Commands.Billing.SubmitPaymentResponse();
+            Bus.Reply(submitPaymentResponse);
         }
     }
 }
@@ -145,7 +156,7 @@ Press `F5` to build and run the solution.  Arrange the consoles for OrderProcess
 
 ![Billing and PaymentProcessing Endpoint Consoles](images/servicematrix-billingandpaymentprocessingconsoles.png)
 
-The `Billing` service receives the `Orderaccepted` event and handles it in the `OrderAcceptedProcessor` component, now running as a saga.  It handles the event and sends the `SubmitPayment`command to the `SubmitPaymentProcessor` component running in the `OrderProcessing` endpoint.  The `SubmitPaymentResponse` reply is sent back to the `OrderAcceptedProcessor` saga.  Once both the `OrderAccepted` event and the `SubmitPaymentResponse` messages have been received, the saga is complete.
+The `Billing` service receives the `Orderaccepted` event and handles it in the `OrderAcceptedHandler` component, now running as a saga.  It handles the event and sends the `SubmitPayment`command to the `SubmitPaymentHandler` component running in the `OrderProcessing` endpoint.  The `SubmitPaymentResponse` reply is sent back to the `OrderAcceptedHandler` saga.  Once both the `OrderAccepted` event and the `SubmitPaymentResponse` messages have been received, the saga is complete.
 
 ## Using ServiceInsight
 [ServiceInsight](../ServiceInsight/index.md "ServiceInsight") is an additional tool in the NServiceBus framework.  It uses audit and error data to provide a valuable view of a running system.  If you have ServiceInsight installed, it launches each time you debug.  When used at debug time, ServiceInsight lists and illustrates the messages related to your current debug session.  
@@ -163,5 +174,6 @@ When clicking on a message involved in the saga, a saga view windows will open. 
 Sagas allow NServiceBus to manage long running processes and to persist data between messages.  ServiceMatrix supports the saga pattern.  It recognizes the need for a saga in the request-response implementation and efficiently generates the code to make it work. 
 
 #Next Steps
-* Code Customization: The code generated by ServiceMatrix is meant to be customized. Review how the messages, endpoints, components, and sagas can be extended in [this article](customizing-extending "Extending and Customizing ServiceMatrix Code"). 
+* Code Customization: The code generated by ServiceMatrix is meant to be customized. Review how the messages, endpoints, components, and sagas can be modified in [this article](customizing-extending "Using the ServiceMatrix Code"). 
+
 * Sagas for Event Correlation: This example reviews saga support in a request response scenario. The next article continues to expand the system and introduces how to use sagas to manage processes across service boundaries by correlating events. 
