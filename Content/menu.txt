@@ -249,7 +249,7 @@
 	  "ServiceControl/setting-custom-hostname",
 	  "ServiceControl/setting-custom-log-location",
 	  "ServiceControl/use-ravendb-studio",
-          "ServiceControl/backup-sc-database”
+          "ServiceControl/backup-sc-database"
         ]
       }
     ]
