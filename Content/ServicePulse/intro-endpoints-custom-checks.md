@@ -63,6 +63,6 @@ Muting a custom check means that the specific custom check failure event is disc
  
 ### Getting Started with Custom Checks
 
-1. [How to Develop Custom Checks for ServicePulse](/ServicePulse/how-to-develop-custom-checks)
+* [How to Develop Custom Checks for ServicePulse](/ServicePulse/how-to-develop-custom-checks)
 * [How to configure endpoints for monitoring by ServicePulse](/ServicePulse/how-to-configure-endpoints-for-monitoring)
 * [ServiceControl Custom Checks Plugin](/ServiceControl/Plugins#servicecontrol-plugin-customchecks)
