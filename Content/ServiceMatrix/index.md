@@ -13,6 +13,9 @@ summary: ServiceMatrix Documentation Table of Contents
 - [Using ServiceMatrix with ServiceInsight](servicematrix-serviceinsight.md "Using ServiceMatrix and ServiceInsight Together")
 - [Sagas in ServiceMatrix](getting-started-sagasfullduplex-2.0.md "Sagas in ServiceMatrix")
 
+###Using ServiceMatrix
+- [Using the ServiceMatrix Code](customizing-extending.md "Using and Understanding ServiceMatrix generated code")
+
 ###Licensing
 - [Licensing ServiceMatrix](licensing-servicematrix-v2.0)
 

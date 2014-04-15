@@ -209,10 +209,11 @@
 	]
     },	 
     {
-	"Name": "licensing",
-	"Title": "Licensing",
+	"Name": "using-servicematrix",
+	"Title": "Using ServiceMatrix",
 	"Articles": [
-	"ServiceMatrix/licensing-servicematrix-v2.0"
+	"ServiceMatrix/licensing-servicematrix-v2.0",
+	"ServiceMatrix/customizing-extending"
 	]
     },
      {
