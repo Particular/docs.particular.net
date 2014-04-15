@@ -85,7 +85,7 @@ When you select  **OK**, ServiceMatrix creates the `SubmitPaymentResponse` messa
 
 Since the `OrderAcceptedHandler` is now a saga, notice the icon has changed slightly. ServiceMatrix has also generated the code needed to support a saga implementation.  The framework takes care of persisting the message data from each message processed by the saga.  The generated code provides ways to safely integrate your own custom code.   
 
-NOTE: If you built the solution prior to adding creating the response message, you will be prompted with the user code changes necessary to send the reply from the `SubmitPaymentProcessor`.   Open the code for the `SubmitPaymentProcessor` and paste it into the `SubmitPayment' handler similar to what was done earlier in this example. 
+NOTE: If you built the solution prior to creating the response message, you will be prompted with the user code changes necessary to send the reply from the `SubmitPaymentProcessor`.   Open the code for the `SubmitPaymentProcessor` and paste it into the `SubmitPayment` handler. 
 
 ##Modifying the Saga Code
 [Earlier in this article](#modifying-the-orderacceptedhandler "Modifying the handler to send a message"), we modified the `OrderAcceptedHandler` code so it would send the `SubmitPayment` command. 
