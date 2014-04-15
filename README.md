@@ -32,7 +32,7 @@ For more information see [Collaborating on GitHub](https://help.github.com/categ
 
 # Conventions
 
-## Headers
+## Page Headers
 
 Each document has a header. It is enclosed by `---` and is defined in a [YAML](http://en.wikipedia.org/wiki/YAML) document.
 
@@ -52,7 +52,7 @@ tags:
 
 ### Title
 
-Required. Used for the web page title tag `<head><title>`, displaying in the page content and displayed in search results.
+Required. Used for the web page title tag `<head><title>`, displaying in the page content as `h1` and displayed in search results.
 
 ### Summary
 
@@ -76,6 +76,14 @@ Tags are interpreted in two pays
 ### Redirects
 
 Url redirects are not currently implemented but will be included as part of the header.
+
+## Headings
+
+The page title is displayed as `h1`, and all subsequent headings in a documentation page should start with `h2`.
+
+## Spacing
+
+Please make sure to have an empty line between paragraphs, and before headings.
 
 ## Menu
 
