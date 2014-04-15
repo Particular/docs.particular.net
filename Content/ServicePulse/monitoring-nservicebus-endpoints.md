@@ -29,7 +29,7 @@ When a system is a messaging based system you can quickly identify which process
 
 ##Service Level Agreement
 
-A SLA is an agreement between the involved parts. When speaking about endpoints and messages a SLA is a mean to express that a given endpoint must consume, handle in NServiceBus terminology, messages within a given amount of time, otherwise the SLA itself is not respected.
+A SLA is an agreement between the involved parts. When speaking about endpoints and messages a SLA is a way to express that a given endpoint must consume, *handle* in NServiceBus terminology, messages within a given amount of time, otherwise the SLA itself is not respected.
 
 ##Performance Counters
 
