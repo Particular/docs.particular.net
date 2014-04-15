@@ -70,6 +70,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Profiles for NServiceBus Host](profiles-for-nservicebus-host)
 - [More on Profiles](more-on-profiles)
 - [NServiceBus 32 Bit X86 Host Process](nservicebus-32-bit-x86-host-process)
+- [Hosting NServiceBus in Windows Azure](hosting-nservicebus-in-windows-azure)
 
 ## Management and Monitoring
 - [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints)
