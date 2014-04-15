@@ -75,7 +75,7 @@
           "NServiceBus/second-level-retries",
           "NServiceBus/nservicebus-installers",
           "NServiceBus/managing-nservicebus-using-powershell",
-          “NServiceBus/connection-strings-samples"
+          "NServiceBus/connection-strings-samples"
         ]
       },
       {
