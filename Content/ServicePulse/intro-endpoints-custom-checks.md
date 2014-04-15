@@ -24,11 +24,11 @@ It is recommended that you identify and periodically check that the endpoint (an
 
 **Examples:**
 
-* In a Store & forward pattern (MSMQ): can an endpoint E1 hosted on machine M1 connect to another machine, M2, on which another endpoints is located ?
+* In a store & forward pattern (MSMQ): can an endpoint hosted on one machine connect to another machine, on which another endpoints is located ?
 * In a Broker pattern: can the endpoint connect to the broker ? (e.g. SQL Server) 
 * If required by the endpoint, can the endpoint connect to the local intranet ?
 * If required by the endpoint, can the endpoint connect to the internet ?  
-* If required by the endpoint, can the endpoint connect with the required security settings credentials and VPN software ?  
+* If required by the endpoint, can the endpoint connect with the required security settings, credentials and VPN software ?  
 
 #### Storage
 
