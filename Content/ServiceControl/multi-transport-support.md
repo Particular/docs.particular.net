@@ -20,7 +20,7 @@ tags:
    * *Windows Azure ServiceBus*: [NServiceBus.Azure.Transports.WindowsAzureServiceBus](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureServiceBus/5.1.1) and [WindowsAzure.ServiceBus](https://www.nuget.org/api/v2/package/WindowsAzure.ServiceBus/2.2.0)
 
 * The NuGet packages you just downloaded are in fact zip files. Rename the nupkg files to have a zip extension, and take the dlls from the `/lib` folder and put them in the ServiceControl bin folder: (`"[Program Files]\Particular Software\ServiceControl"`).
-<p class="alert alert-warning">
+<p>
 <strong>NOTE</strong><br/>
 Some nuget packages may have several folders under `/lib` - make sure to take the dlls from only one of them, preferrably the one targetting the latest .NET framework (e.g. `/lib/net40`).
 </p>
