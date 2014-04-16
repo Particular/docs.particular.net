@@ -4,7 +4,7 @@ summary: There are many ways to specify the input endpoint name.
 tags:
 - Endpoint Name
 - Configuration
-- Convention
+- Conventions
 ---
 
 NServiceBus allows endpoint technologies other than MSMQ, so how should you specify the input endpoint name?
