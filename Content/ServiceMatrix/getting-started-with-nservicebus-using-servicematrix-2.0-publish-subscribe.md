@@ -24,7 +24,7 @@ Before you move on, please confirm that the `OnlineSales` solution you created p
 ![OnlineSales Canvas](images/servicematrix-canvaswiredup.png)
 
 ## Expanding the OnlineSales Example
-So far the [Online Sales](getting-started-with-servicematrix.md "Getting Started with ServiceMatrix") example implements the request response messaging pattern to facilitate communication between the website and your order processing system. We've all purchased items online and know that in reality many different things will need to happen when an order is accepted for processing. Arguably the most important business step should be billing the customer! In your example, consider how to add a billing capability to charge the customer for the order.
+So far the [Online Sales](getting-started-with-servicematrix-2.0 "Getting Started with ServiceMatrix") example implements the request response messaging pattern to facilitate communication between the website and your order processing system. We've all purchased items online and know that in reality many different things will need to happen when an order is accepted for processing. Arguably the most important business step should be billing the customer! In your example, consider how to add a billing capability to charge the customer for the order.
 ## Create the OrderAccepted Event
 In your example the `SubmitOrderHandler` component handles the `SubmitOrder` messages.  Using the drop-down menu of `SubmitOrderHandler`, select 'Publish Event' as shown.
 
