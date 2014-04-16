@@ -6,8 +6,9 @@ tags: [Platform, Installation]
 
 ## Download
 
-clickonce download link
-`https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application`
+- [PlatformInstaller Clickonce download link](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
+
+**NOTE:** The platform Installer is recommended for use in development environments. For testing and production environments it is recommended you use the relevant Chocolatey commands, PowerShell cmdlets and NuGet packages.
 
 ## Dependencies 
 
