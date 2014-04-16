@@ -1,7 +1,8 @@
 ---
 title: Getting Started with the Particular Service Platform
-summary: 'Getting Started with the Platform using a send and receive example.'
+summary: 'Introduction to the Particular ServicePlatform through ServiceMatrix and a simple send and receive example.'
 tags:
+- Platform
 - ServiceMatrix
 - Send and Receive
 - Visual Studio
@@ -28,7 +29,7 @@ ServiceMatrix is a Visual Studio integrated development environment for developi
 
 This document reviews the use of ServiceMatrix for Visual Studio 2012, assuming ServiceMatrix has already been installed.
 
-ServiceMatrix can be installed using the Particular Platform Installer. To download and install ServiceMatrix separately follow the instructions [here](installing-servicematrix-2.0.md "Installing ServiceMatrix").
+ServiceMatrix can be installed using the Particular Platform Installer. To download and install ServiceMatrix separately follow the instructions [here](/ServiceMatrix/installing-servicematrix-2.0.md "Installing ServiceMatrix").
 
 For this example you need to meet the following system requirements:
 - Visual Studio 2012
@@ -156,7 +157,7 @@ namespace OnlineSales.Sales
     }
 }
 ```
- You can locate ServiceMatrix generated partial class counterpart in the `OnlineSales.OrderProcessing` project and the `Infrastructure\Sales` folder. There isn't much to see there either; just a class that implements `IHandleMessages<submitorder>` and has a reference to `IBus` that you can use from within your partial class to send out other messages, publish events, or to reply to commands.  The partial method `HandleImplementation(message)` is a call to the implementation above.  To learn more about the way to use the generated code in please see this article on [Using ServiceMatrix Generated Code](customizing-extending.md "Using ServiceMatrix Generated Code").  
+ You can locate ServiceMatrix generated partial class counterpart in the `OnlineSales.OrderProcessing` project and the `Infrastructure\Sales` folder. There isn't much to see there either; just a class that implements `IHandleMessages<submitorder>` and has a reference to `IBus` that you can use from within your partial class to send out other messages, publish events, or to reply to commands.  The partial method `HandleImplementation(message)` is a call to the implementation above.  To learn more about the way to use the generated code in please see this article on [Using ServiceMatrix Generated Code](/ServiceMatrix/customizing-extending.md "Using ServiceMatrix Generated Code").  
     
 ```C#
 namespace OnlineSales.Sales
@@ -252,7 +253,7 @@ Since you selected the NServiceBus host for your OrderProcessing endpoint it is 
 As you click the Send button in the website, you will see the console indicate that the `OrderProcessing` endpoint has received the messages.
 
 ##Using ServiceInsight
-By default, when you run a ServiceMatrix project, [ServiceInsight](../ServiceInsight/index.md "ServiceInsight") is launched.  ServiceInsight is another Particular Service Platform application that provides a detailed runtime view of your solution.  It will illustrate and enumerate the messages, endpoints and data in your solution as you create an debug it.  To understand how to use ServiceInsight to complement ServiceMatrix please see [this article on that topic](servicematrix-serviceinsight.md "Using ServiceInsight and ServiceMatrix").  
+By default, when you run a ServiceMatrix project, [ServiceInsight](../ServiceInsight/index.md "ServiceInsight") is launched.  ServiceInsight is another Particular Service Platform application that provides a detailed runtime view of your solution.  It will illustrate and enumerate the messages, endpoints and data in your solution as you create an debug it.  To understand how to use ServiceInsight to complement ServiceMatrix please see [this article on that topic](/ServiceMatrix/servicematrix-serviceinsight.md "Using ServiceInsight and ServiceMatrix").  
 
 ![ServiceInsight](images/serviceinsight-screen.jpg)
 
@@ -260,11 +261,11 @@ By default, when you run a ServiceMatrix project, [ServiceInsight](../ServiceIns
 You've just built your first NServiceBus application. Wasn't that easy?
 
 ## Next steps
-We've mentioned that [ServiceInsight](../ServiceInsight/index.md "ServiceInsight") can be a valuable tool in the design process and where to [learn more about it](servicematrix-serviceinsight.md).  For runtime monitoring of an NServiceBus solution the platform also includes [ServicePulse](../ServicePulse/index.md "ServicePulse for Monitoring").  
+We've mentioned that [ServiceInsight](../ServiceInsight/index.md "ServiceInsight") can be a valuable tool in the design process and where to [learn more about it](/ServiceMatrix/servicematrix-serviceinsight.md).  For runtime monitoring of an NServiceBus solution the platform also includes [ServicePulse](../ServicePulse/index.md "ServicePulse for Monitoring").  
 
 In this article you have seen how ServiceMatrix can be used to connect a front end website and a backend processing system using NServiceBus. 
 What's so exciting about that?  After all inter-process communication has been done many times before. 
 
 One answer is ***fault tolerance***.  Next we'll explore the fault tolerance and durability features NServiceBus offers.
 
-Continue on and let's review the fault tolerance in our [next article](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "Getting Started with Fault Tolerance").  
+Continue on and let's review the fault tolerance in our [next article](/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "Getting Started with Fault Tolerance").  
