@@ -21,7 +21,7 @@ When the dialog box opens, browse and find your license file, select it and clic
 
 ### Verifying you license is applied
 
-After loading the license file, ServiceInsight will display a licensing messages in the bottom right corner of the screen:
+After loading the license file, click on "Help" \> "Register" menu item. ServiceInsight will then display a licensing message in the bottom right corner of the screen:
 
 ![license verified](images/license-verified.jpg)
 
