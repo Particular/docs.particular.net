@@ -96,7 +96,7 @@ Most of the methods are extensions for the
 For NServiceBus v4.x:
 
 -   `Configure.Serialization` tells NServiceBus to serialize messages as XML. Additional option is to specify BinarySerializer(), which does binary serialization of messages.
--   `UseTransport<msmq>()` tells NServiceBus to use MSMQ as its transactional messaging transport. NServiceBus also supports Azure queues, FTP, SqlServer (see sample [here](https://github.com/Particular/NServiceBus.SqlServer.Samples)), ActiveMQ (see sample [here](https://github.com/Particular/NServiceBus.ActiveMQ.Samples)), RabbitMQ (see sample [here](https://github.com/Particular/NServiceBus.RabbitMQ.Samples) ) as transport mechanisms.
+-   `UseTransport<msmq>()` tells NServiceBus to use MSMQ as its transactional messaging transport. NServiceBus also supports Azure queues, FTP, SqlServer (see sample [here](https://github.com/Particular/NServiceBus.SqlServer.Samples)) <!--, ActiveMQ (see sample [here](https://github.com/Particular/NServiceBus.ActiveMQ.Samples)) -->, RabbitMQ (see sample [here](https://github.com/Particular/NServiceBus.RabbitMQ.Samples) ) as transport mechanisms.
 
 In addition to the above initialization code, NServiceBus requires certain configuration data to be available. By default, it retrieves this information from the application config file, though this can be changed with the CustomConfigurationSource() method.
 
