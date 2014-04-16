@@ -25,13 +25,13 @@ tags:
 	
 After a period of inactivity, a web application (or web role in Azure) endpoint is failing with the message:
 	
-	*"Endpoint has failed to send expected heartbeat to ServiceControl. It is possible that the endpoint could be down or is unresponsive. If this condition persists, you might want to restart your endpoint"*
+	`Endpoint has failed to send expected heartbeat to ServiceControl. It is possible that the endpoint could be down or is unresponsive. If this condition persists, you might want to restart your endpoint`
 	
 When accessed, the web application is working fine. Shortly after accessing the web application, the Heartbeat message is restored and indicates the endpoint status as active.
 	
 ####Causes and solutions
 	
-The issue is due to the way IIS handles application pools. By default after a certain amount of inactivity the application pools is stopped, or, under certain configurable conditions, the application pool is recycled. In both cases the ServicePulse heartbeat is not sent anymore until a new web request comes in waking up the web application.
+The issue is due to the way IIS handles application pools. By default after a certain period of inactivity the application pools is stopped, or, under certain configurable conditions, the application pool is recycled. In both cases the ServicePulse heartbeat is not sent anymore until a new web request comes in waking up the web application.
 	
 There are two ways to avoid the issue:
 	
