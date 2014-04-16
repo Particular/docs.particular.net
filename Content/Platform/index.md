@@ -8,6 +8,7 @@ summary: Platform level index for articles, guidance and documentation
 - [Getting started with the Particular Service Platform](getting-started-with-particular-service-platform)
 - [Platform Samples](samples)
 - [Releases and Release Notes](release-notes)
+- [Platform Installer](installer)
 
 ### Applications
 
