@@ -113,6 +113,7 @@ The canvas now illustrates the new Sales service with two components.  The `Subm
 ![Undeployed Sales Service](images/servicematrix-sales-undeployed.png)
 
 ##Deploying Components
+
 You cannot build the solution with components that aren't deployed.  If you try to build at this point you will get an error indicating that the `Sales.SubmitOrderHandler` must be allocated to an endpoint.  Deploy the `SubmitOrderHandler` component by using its drop-down menu and the `Deploy Component` option.  When prompted, deploy the component to the `OrderProcessing` endpoint.
 
 ![Deploy Component](images/servicematrix-deploysubmitorder.png)
@@ -226,7 +227,9 @@ namespace OnlineSales.Sales
     }
 }
 ```
+
 ##Running the Application
+
 Now press `F5` or press the 'Play' button in Visual Studio to debug the application. You should see both the eCommerce website launched in your default browser and a console window for the NServiceBus host that is running your OrderProcessing endpoint.  
 
 ### eCommerce website
