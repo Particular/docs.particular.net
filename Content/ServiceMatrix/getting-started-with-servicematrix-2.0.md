@@ -1,6 +1,6 @@
 ---
-title: Getting Started with the Particular Service Platform
-summary: 'Getting Started with the Platform using a send and receive example.'
+title: Getting Started with ServiceMatrix V2.0 - send and receive
+summary: 'Getting Started with the ServiceMatrix V2.0 for Visual Studio 2012 using a send and receive example.'
 tags:
 - ServiceMatrix
 - Send and Receive
