@@ -1,15 +1,13 @@
 ---
-title: Getting Started with ServiceMatrix 2.0 - Send and Receive
-summary: 'Getting Started with ServiceMatrix 2.0 and a send and receive example.'
+title: Getting Started with the Particular Service Platform
+summary: 'Getting Started with the Platform using a send and receive example.'
 tags:
 - ServiceMatrix
 - Send and Receive
 - Visual Studio
 ---
 
-ServiceMatrix is a Visual Studio integrated development environment for developing the NServiceBus distributed system.
-
-This step-by-step guide will walk you through the creation of a send-and-receive NServiceBus distributed application using ServiceMatrix v2.0 for Visual Studio 2012, using the following steps:
+This step-by-step guide to the Particular Service Platform walks you through the creation of a send-and-receive NServiceBus distributed application using ServiceMatrix v2.0 for Visual Studio 2012, using the following steps:
 
 1.  [Installing ServiceMatrix](#installing-servicematrix-for-visual-studio-2012)
 2.  [Creating a New Project](#creating-a-new-project)
@@ -25,6 +23,8 @@ This step-by-step guide will walk you through the creation of a send-and-receive
 The example demonstrates the integration of an online sales web store with a backend system using the request-response pattern and NServiceBus.
 
 ## Installing ServiceMatrix for Visual Studio 2012
+
+ServiceMatrix is a Visual Studio integrated development environment for developing the NServiceBus distributed system.
 
 This document reviews the use of ServiceMatrix for Visual Studio 2012, assuming ServiceMatrix has already been installed.
 
