@@ -8,7 +8,7 @@ tags:
 
 ServicePulse monitors the health and activity of NServiceBus endpoints using heartbeat messages and activity indications. (See [Introduction to Endpoints and Heartbeats in ServicePulse](http://docs.particular.net/ServicePulse/intro-endpoints-heartbeats).)
 
-However, an endpoint and its hosting process may be fully functional (in the sense that it and its hosting process are able to send, receive, and process messages) but required external conditions may not be met, and required services that the endpoint's business logic relies on may malfunction. As a result, the endpoints may not be able function as expected.
+However, an endpoint and its hosting process may be fully functional (in the sense that it and its hosting process are able to send, receive, and process messages) but required external conditions may not be met, and required services that the endpoint's business logic relies on may malfunction. As a result, the endpoints may not be able to function as expected.
 
 These external conditions and services are specific for each solution and/or endpoint. ServicePulse Custom Checks can be programmed to monitor such failures by developing Custom and Periodic Checks: customized logic that verifies that these conditions are met and that all services your endpoint and solution rely on are functioning as expected, and raises alerts whenever they are not.
 
