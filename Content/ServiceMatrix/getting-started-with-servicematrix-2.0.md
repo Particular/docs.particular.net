@@ -1,5 +1,5 @@
 ---
-title: Getting Started with ServiceMatrix 2.0 - Send and Receive
+title: Getting Started with the Particular Service Platform
 summary: 'Getting Started with ServiceMatrix 2.0 and a send and receive example.'
 tags:
 - ServiceMatrix
