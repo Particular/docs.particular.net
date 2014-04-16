@@ -4,7 +4,7 @@ summary: Using ServiceMatrix and extending it with your own code.
 tags:
 - ServiceMatrix
 - Code Generation
-
+- Saga
 ---
 ServiceMatrix accelerates the creation of a distributed NServiceBus solution.  As the canvas and visual elements are used to design the system the Visual Studio solution is updated with generated code and content.   
 
