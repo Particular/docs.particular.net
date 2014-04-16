@@ -14,11 +14,12 @@ This step-by-step guide will walk you through the creation of a send-and-receive
 1.  [Installing ServiceMatrix](#installing-servicematrix-for-visual-studio-2012)
 2.  [Creating a New Project](#creating-a-new-project)
 3.  [Creating Endpoints](#creating-endpoints)
-4.  [Creating Services](#creating-services)
+4.  [Creating a Message](#creating-a-message)
+5.  [Creating Services](#creating-services)
 5.  [Deploying Components](#deploying-components)
-6.  [Sending a Message](#sending-a-message)
-7.  [Running the Application](#running-the-application)
-8.  [Using ServiceInsight](#using-serviceinsight)
+6.  [Handling a Message](#handling-a-message)
+6.  [Running the Application](#running-the-application)
+7.  [Using ServiceInsight](#using-serviceinsight)
 9.  [Next Steps](#next-steps)
 
 The example demonstrates the integration of an online sales web store with a backend system using the request-response pattern and NServiceBus.
@@ -66,10 +67,10 @@ You should see folders in Solution Builder called 'Infrastructure', 'Libraries',
 
 The [NServiceBus Canvas](images/servicematrix-canvas.png "NServiceBus Canvas") is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise your solution will be created and illustrated here.
 
-The dashed areas within the canvas and the buttons at the top are used to start building your solution.   **NOTE**: Alternatively, they can also be created using the Solution Builder tree view.  However, since this is a visual tool, this example will demonstrate using the canvas.  As items are added to the canvas they will appear in the Solution Builder as well as in the Solution Explorer project.
+The dashed areas within the canvas and the buttons at the top are used to start building your solution.  NOTE: Alternatively, they can also be created using the Solution Builder tree view.  However, since this is a visual tool, this example will demonstrate using the canvas.  As items are added to the canvas they will appear in the Solution Builder as well as in the Solution Explorer project.
 
 ##Building the Online Sales Solution
-Our online sales example involves a website that collects online orders and a backend order processing system that processes them.  
+Our online sales example involves a website that collects online orders and a back-end order processing system that processes them.  
 
 To build the solution you will define and endpoint for the website and another endpoint for the order processing system.  A new 'Sales' service will define components for submitting and processing orders as well as a command message to represent the order submission.  
 
@@ -87,7 +88,7 @@ You will examine the generated code in detail later to understand how things wor
 
 In the solution builder notice that this endpoint has a folder to contain components.  Components contain the code for specific services.  They can only send commands to other components in the same service.  However, they can subscribe to events that are published by components in *any* service. Soon your Sales components will be deployed to your endpoints.
 
-### Create OrderProcessing endpoint
+###Create OrderProcessing endpoint
 
 Create another endpoint called `OrderProcessing`.  This time select 'NServiceBus Host' as the host.  
 
@@ -97,27 +98,35 @@ At this point your solution should have both endpoints on the NServiceBus canvas
 
 Notice how you can control the zoom with your mouse scroll wheel and drag the boxes around. This is how you will rearrange the canvas as more things are added to it.
 
+##Creating a Message
+Communication between the website and the back-end `OrderProcessing` endpoint will be done with a command message. To create this message use the drop-down menu of the `ECommerce` endpoint and select `Send Command` as shown.  
+
+![Send Command](images/servicematrix-ecommercesendcommand.png)
+
 ##Creating Services 
-Next you will create a `Sales` Service to facilitate the communication between your website and order processing.
-At the top of the canvas select the `New Service` button and name your new service `Sales` as shown.
+As you create the new command message, you'll also be prompted for the name of a service.  In NServiceBus a service will contain components responsible for facilitating the communication between the website and order processing.  Name the new service `Sales` and the command `SubmitOrder` as shown.
 
-![New Sales Service](images/servicematrix-newsalesservice.png)
-
-The canvas illustrates the new Sales service.  It is shown in a 'Undeployed Components' box.  This is because you have yet to define and deploy any of them for this service.  Similarly, no code has yet been generated in the Visual Studio project.  As you add your commands this will change.
-
-Notice the drop-down list next to the title in the undeployed `Sales` service.  Click [the list](images/servicematrix-sales-newcommand.png "Sales Send Command Menu") and select 'Send Command'.  Name your new command `SubmitOrder` and click `Done`. 
-
-![Submit Order Command](images/servicematrix-salessendcommand.png)   
-
-Notice that several things have happened. The `Sales` service has two new components, as shown below.
+![Sales Service and SubmitOrder Command](images/servicematrix-sales-submitorder.png)
+  
+The canvas now illustrates the new Sales service with two components.  The `SubmitOrderSender` component sends the command and is deployed to the `ECommerce` endpoint.  The `SubmitOrderHandler` component is for receiving the command message and is shown in a 'Undeployed Components' box.  
 
 ![Undeployed Sales Service](images/servicematrix-sales-undeployed.png)
 
-The service now has a `Sender` component named after your command that enables an endpoint to send `SubmitOrder` messages.  Similarly there is a `Handler` component that enables an endpoint to process these messages.
+##Deploying Components
+You cannot build the solution with components that aren't deployed.  If you try to build at this point you will get an error indicating that the `Sales.SubmitOrderHandler` must be allocated to an endpoint.  Deploy the `SubmitOrderHandler` component by using its drop-down menu and the `Deploy Component` option.  When prompted, deploy the component to the `OrderProcessing` endpoint.
+
+![Deploy Component](images/servicematrix-deploysubmitorder.png)
+
+At this point, with a little reorganizing, the canvas should nicely illustrate the `ECommerce` and `OrderProcessing` endpoints using the `Sales` service components to send and process the `SubmitOrder` command.
+
+![Canvas with Service Deployed to Endpoints](images/servicematrix-canvaswiredup.png)
+
+By deploying these components to each endpoint, the `Sales` service will afford your systems the capability to easily communicate reliably and durably using a command message containing the data for the submitted order.  
 
 In addition to illustrating these in the canvas the [Solution Builder](images/servicematrix-solutionbuilder-salesservice.png "Solution Builder With Sales") now shows the `SubmitOrder` command in the commands folder.  It also illustrates the components and the fact they send and process the `SubmitOrder` command accordingly. You will notice there is now code that has been generated in the Visual Studio project as well.
 
-The `SubmitOrder` command is a simple message meant to communicate the order between your endpoints.  To view the generated class file, click the drop-down menu of the `SubmitOrder` command and select View Code [as shown](images/servicematrix-submitorderviewcode.png "View SubmitOrder Code"). This is  very simple C# class.  You can add all sorts of properties to your message to represent the order data: strings,  integers, arrays, dictionaries, etc. Just make sure to provide both a get accessor and a set mutator to each property. 
+##Review the Message
+The `SubmitOrder` command is a simple message meant to communicate the order between your endpoints.  To view the generated class file, click the drop-down menu of the `SubmitOrder` command and select View Code [as shown](images/servicematrix-submitorderviewcode.png "View SubmitOrder Code"). This is  very simple C# class.  You can add all sorts of properties to your message to represent the order data: strings,  integers, arrays, dictionaries, etc. Just make sure to provide both a get accessor and a set mutator for each property. 
 
 ```C#
 namespace OnlineSales.Internal.Commands.Sales
@@ -129,27 +138,10 @@ namespace OnlineSales.Internal.Commands.Sales
     }
 }
 ```
-The code for the Sales components is not created until they are deployed to an endpoint. So, now you will go ahead and deploy them.
 
-##Deploying Components
+##Handling a Message
 
-Remember that in your example you want to send orders from the front end ECommerce website to the back end for processing via the bus.  To make this happen you need to deploy the `Sender` component to the `ECommerce` endpoint and the `Processor` to `OrderProcessing` endpoint.  
-
-By deploying these components to each endpoint, the `Sales` service will afford your systems the capability to easily communicate reliably and durably using a command message containing the data for the submitted order.  
-
-Let's deploy!
-### Deploying Sales Components
-To deploy your sender, use the dropdown menu of the `SubmitOrderSender` component as shown below.   Select 'Deploy Component' and choose to deploy it to the `ECommerce` endpoint using the list provided. 
-
-![Deploy the Sales Components](images/servicematrix-salesdeploycomponent.png)
-
-**NOTE:** You cannot build the solution with components that aren't deployed.  If you try to build at this point you will get an error indicating that the `Sales.SubmitOrderHandler` must be allocated to an endpoint. 
-
-Deploy the `SubmitOrderHandler` to the `OrderProcessing` endpoint by choosing the dropdown menu.  At this point, with a little reorganizing, the canvas should nicely illustrate the `ECommerce` and `OrderProcessing` endpoints using the `Sales` service components to send and process the `SubmitOrder` command.
-
-![Canvas with Service Deployed to Endpoints](images/servicematrix-canvaswiredup.png)
-
-Now build the solution and see how everything turns out.  Look at the `SubmitOrderHandler` code by selecting its dropdown menu and choosing 'View Code'.  As you can see below, there isn't much there.  A partial class has been created where you can add your order processing logic. 
+Now build the solution and see how everything turns out.  Look at the `SubmitOrderHandler` code by selecting its drop-down menu and choosing 'View Code'.  As you can see below, there isn't much there.  A partial class has been created where you can add your order processing logic. 
 ```C#
 namespace OnlineSales.Sales
 {
