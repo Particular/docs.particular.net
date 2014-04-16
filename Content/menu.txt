@@ -234,6 +234,32 @@
     ]
   },
   {
+    "Name": "ServicePulse",
+    "Topics": 
+    [
+      {
+        "Name": "introduction",
+        "Title": "Introduction",
+        "Articles": 
+        [
+          "ServicePulse/intro-endpoints-heartbeats",
+          "ServicePulse/intro-failed-messages",
+          "ServicePulse/intro-endpoints-custom-checks"
+        ]
+      },
+      {
+        "Name": "configuration",
+        "Title": "Configuration",
+        "Articles": 
+        [
+          "ServicePulse/how-to-configure-endpoints-for-monitoring",
+          "ServicePulse/how-to-develop-custom-checks",
+          "ServicePulse/troubleshooting"
+        ]
+      }
+    ]
+  },
+  {
     "Name": "ServiceControl",
     "Topics": [
       {
@@ -250,22 +276,6 @@
 	  "ServiceControl/setting-custom-log-location",
 	  "ServiceControl/use-ravendb-studio",
           "ServiceControl/backup-sc-database"
-        ]
-      }
-    ]
-  },
-  {
-    "Name": "ServicePulse",
-    "Topics": 
-    [
-      {
-        "Name": "configuration",
-        "Title": "Configuration",
-        "Articles": 
-        [
-          "ServicePulse/how-to-configure-endpoints-for-monitoring",
-          "ServicePulse/how-to-develop-custom-checks",
-          "ServicePulse/troubleshooting"
         ]
       }
     ]
