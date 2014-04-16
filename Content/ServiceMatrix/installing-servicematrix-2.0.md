@@ -25,19 +25,19 @@ If you are using Visual Studio 2010, ServiceMatrix 1.0 will be detected and inst
 If you have multiple versions of Visual Studio installed, you will have to choose which you would like to have the installation of ServiceMatrix target.  Only one instance of Visual Studio may have ServiceMatrix installed on a particular system. 
 
 ## Installing ServiceMatrix
-1. Download the latest version of ServiceMatrix from [Particular.net](http://particular.net/downloads).   Save the .exe file in your favorite location.
 
-2. Locate and run the ServiceMatrix installer executable file you downloadeded.  Since ServiceMatrix is an extension to Visual Studio, it's a good idea to close Visual Studio. If you don't you will be prompted later. 
+You can install ServiceMatrix by using the [Platform Installer](/Platform/Installer) or by installing the Visual Studio extension (VSIX) from the [Particular Software website downloads page](http://particular.net/downloads)
 
-3. If you already have ServiceMatrix installed and are upgrading, you will get a [warning](images/servicematrix-installer-existingversion.png "Previous Version Warning") that you must uninstall the previous version. Uninstall using the normal procedure through `Control Panel\Programs\Programs and Features` in Windows.
+### Installing ServiceMatrix from the Platform Installer
 
-4. When installing ServiceMatrix you'll be prompted for [installation options](images/servicematrix-installer-options.png):
-  - You'll have the option of changing the default installation location and must agree to the terms and conditions to proceed. 
-  - Please consider agreeing to have troubleshooting information shared with the team at Particular.net, who are always working hard to improve ServiceMatrix and are eager to receive your valuable feedback on any issues. 
-1. Proceed with the installation by pressing `Install`.
-  If you didn't close Visual Studio, at this point you will be [prompted](images/servicematrix-installer-closevstudio.png "Close Visual Studio") to do so.   
+Please refer to the [Platform Installer](/Platform/Installer) for detailed information.
 
-6. The installer will show you the [progress window](images/servicematrix-installer-progress.png "Installer progress") and finally prompt you to [finish the installation](images/servicematrix-installer-finish.png "Finish Installation").  When you open Visual Studio the extension will have been installed. 
+### Installing the ServiceMatrix Visual Studio extension (VSIX)
+
+1. Download the latest version of ServiceMatrix from [Particular.net](http://particular.net/downloads).   
+2. Save the .vsix file in your favorite location.
+3. Locate and run the ServiceMatrix installer VSIX file you downloadeded.  Since ServiceMatrix is an extension to Visual Studio, it's a good idea to close Visual Studio. If you don't you will be prompted later. 
+4. If you already have ServiceMatrix installed and are upgrading from a Beta version, you will get a [warning](images/servicematrix-installer-existingversion.png "Previous Version Warning") that you must uninstall the previous version. Uninstall using the normal procedure through `Control Panel\Programs\Programs and Features` in Windows.
 
 ## The Visual Studio Extension
 
