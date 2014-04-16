@@ -7,7 +7,7 @@ tags: [Platform, Installation]
 ## Download
 
 clickonce download link
-`https://particulartest.blob.core.windows.net/platforminstaller/PlatformInstaller.application`
+`https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application`
 
 ## Dependencies 
 
@@ -43,7 +43,7 @@ The equivalent Chocolatey commands are
     cinst NServicebus.Dtc.install
     cinst NServicebus.PerfCounters.install
     cinst NServicebus.Msmq.install
-    cinst RavenDB -InstallArguments '/quiet /log {0} /msicl RAVEN_TARGET_ENVIRONMENT=DEVELOPMENT /msicl TARGETDIR=C:\ /msicl INSTALLFOLDER=C:\RavenDB /msicl RAVEN_INSTALLATION_TYPE=SERVICE /msicl REMOVE=IIS /msicl ADDLOCAL=Service'
+    cinst NServiceBus.RavenDB.install
 
 
 ### ServiceMatrix
