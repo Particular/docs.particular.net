@@ -13,6 +13,7 @@ summary: ServiceInsight Documentation Table of Contents
 ### Troubleshooting  
 
 - [Logging in ServiceInsight](how-logging-works)
+- [How to install your license file in ServiceInsight](how-to-install-your-license-file-serviceinsight)
 
 ### Related Articles
 
