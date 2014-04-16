@@ -47,4 +47,3 @@ Some nuget packages may have several folders under `/lib` - make sure to take th
 * Make sure all assemblies copied are unblocked, otherwise the .NET runtime will refuse to load them.
 * When deploying using a packaging technology, like Windows Azure Cloud Services projects, make sure that the ServiceControl plugins become part of the package before executing the deployement. For example, this can be done by referencing the assemblies in a worker role project and setting "copy local" to true.
 
-**Please inform [ServicePulse Beta team](mailto:pulsebeta@nservicebus.com) of any issues**
