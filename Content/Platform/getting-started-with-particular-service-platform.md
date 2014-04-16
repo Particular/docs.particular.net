@@ -23,6 +23,11 @@ This step-by-step guide to the Particular Service Platform walks you through the
 
 The example demonstrates the integration of an online sales web store with a backend system using the request-response pattern and NServiceBus.
 
+**NOTE:** This example requires ServiceMatrix. For a code only introduction to NServiceBus, see:
+
+* [NServiceBus Overview](/NServiceBus/overview) 
+* [NServiceBus Step by Step Guide - code first](/NServiceBus/NServiceBus-Step-by-Step-Guide) 
+
 ## Installing ServiceMatrix for Visual Studio 2012
 
 ServiceMatrix is a Visual Studio integrated development environment for developing the NServiceBus distributed system.
