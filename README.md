@@ -145,6 +145,7 @@ Which means elsewhere in the page you can link to it with
 
     [Goto My Heading](#My-Heading)
 
+<!--
 ## Alerts
 
 Sometimes is necessary to draw attention to items you want to call out in a document.
@@ -159,6 +160,7 @@ Unfortunately markdown does not have a way to add class attributes so you will h
 
 This will produce:
 ![Alerts Example](alerts.jpg)
+-->
 
 ## Some useful characters
 
