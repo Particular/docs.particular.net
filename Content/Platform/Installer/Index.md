@@ -27,7 +27,7 @@ If you do not already have Chocolatey installed you will be prompted to confirm
 
 You will be prompted for which items to install.
 
-![](SelectItems.png)
+![](Installer/SelectItems.png)
 
 ### NServiceBus
 
