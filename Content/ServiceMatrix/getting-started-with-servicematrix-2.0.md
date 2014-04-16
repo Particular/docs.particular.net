@@ -70,7 +70,7 @@ The [NServiceBus Canvas](images/servicematrix-canvas.png "NServiceBus Canvas") i
 The dashed areas within the canvas and the buttons at the top are used to start building your solution.  NOTE: Alternatively, they can also be created using the Solution Builder tree view.  However, since this is a visual tool, this example will demonstrate using the canvas.  As items are added to the canvas they will appear in the Solution Builder as well as in the Solution Explorer project.
 
 ##Building the Online Sales Solution
-Our online sales example involves a website that collects online orders and a backend order processing system that processes them.  
+Our online sales example involves a website that collects online orders and a back-end order processing system that processes them.  
 
 To build the solution you will define and endpoint for the website and another endpoint for the order processing system.  A new 'Sales' service will define components for submitting and processing orders as well as a command message to represent the order submission.  
 
@@ -126,7 +126,7 @@ By deploying these components to each endpoint, the `Sales` service will afford 
 In addition to illustrating these in the canvas the [Solution Builder](images/servicematrix-solutionbuilder-salesservice.png "Solution Builder With Sales") now shows the `SubmitOrder` command in the commands folder.  It also illustrates the components and the fact they send and process the `SubmitOrder` command accordingly. You will notice there is now code that has been generated in the Visual Studio project as well.
 
 ##Review the Message
-The `SubmitOrder` command is a simple message meant to communicate the order between your endpoints.  To view the generated class file, click the drop-down menu of the `SubmitOrder` command and select View Code [as shown](images/servicematrix-submitorderviewcode.png "View SubmitOrder Code"). This is  very simple C# class.  You can add all sorts of properties to your message to represent the order data: strings,  integers, arrays, dictionaries, etc. Just make sure to provide both a get accessor and a set mutator to each property. 
+The `SubmitOrder` command is a simple message meant to communicate the order between your endpoints.  To view the generated class file, click the drop-down menu of the `SubmitOrder` command and select View Code [as shown](images/servicematrix-submitorderviewcode.png "View SubmitOrder Code"). This is  very simple C# class.  You can add all sorts of properties to your message to represent the order data: strings,  integers, arrays, dictionaries, etc. Just make sure to provide both a get accessor and a set mutator for each property. 
 
 ```C#
 namespace OnlineSales.Internal.Commands.Sales
@@ -141,7 +141,7 @@ namespace OnlineSales.Internal.Commands.Sales
 
 ##Handling a Message
 
-Now build the solution and see how everything turns out.  Look at the `SubmitOrderHandler` code by selecting its dropdown menu and choosing 'View Code'.  As you can see below, there isn't much there.  A partial class has been created where you can add your order processing logic. 
+Now build the solution and see how everything turns out.  Look at the `SubmitOrderHandler` code by selecting its drop-down menu and choosing 'View Code'.  As you can see below, there isn't much there.  A partial class has been created where you can add your order processing logic. 
 ```C#
 namespace OnlineSales.Sales
 {
