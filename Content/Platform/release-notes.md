@@ -7,7 +7,7 @@ tags:
 
 ### Platform Installer 
 <!--
-* [Download and Launch the Platform Installer](https://particulartest.blob.core.windows.net/platforminstaller/PlatformInstaller.application)-->
+* [Download and Launch the Platform Installer](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)-->
 * [Release notes](http://docs.particular.net/Platform/Installer)
 
 ### Applications and Tools
