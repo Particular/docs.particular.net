@@ -5,7 +5,7 @@ tags:
 - ServiceMatrix
 - Fault Tolerance
 - Second-Level Retry
-- SLR
+- Second Level Retry 
 - Error Queue
 ---
 
