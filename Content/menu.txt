@@ -154,8 +154,7 @@
           "NServiceBus/license-management",
           "NServiceBus/preparing-your-machine-to-run-nservicebus",
           "NServiceBus/running-nservicebus-on-windows",
-          "NServiceBus/licensing-servicematrix-v2.0",
-          "NServiceBus/how-to-install-your-license-file-serviceinsight"
+          "NServiceBus/licensing-servicematrix-v2.0"
         ]
       },
       {
@@ -175,20 +174,6 @@
           "NServiceBus/nservicebus-message-mutators-sample",
           "NServiceBus/attachments-databus-sample",
           "NServiceBus/windows-azure-transport"
-        ]
-      }
-    ]
-  },
-  {
-    "Name": "ServiceInsight",
-    "Topics": [
-      {
-        "Name": "getting-started",
-        "Title": "Getting Started",
-        "Articles": [
-          "ServiceInsight/getting-started-overview",
-          "ServiceInsight/application-invocation",
-          "ServiceInsight/how-logging-works"
         ]
       }
     ]
@@ -235,6 +220,20 @@
     ]
   },
   {
+    "Name": "ServiceInsight",
+    "Topics": [
+      {
+        "Name": "getting-started",
+        "Title": "Getting Started",
+        "Articles": [
+          "ServiceInsight/getting-started-overview",
+          "ServiceInsight/application-invocation",
+          "ServiceInsight/how-logging-works"
+        ]
+      }
+    ]
+  },
+  {
     "Name": "ServiceControl",
     "Topics": [
       {
@@ -257,10 +256,13 @@
   },
   {
     "Name": "ServicePulse",
-    "Topics": [{
+    "Topics": 
+    [
+      {
         "Name": "configuration",
         "Title": "Configuration",
-        "Articles": [
+        "Articles": 
+        [
           "ServicePulse/how-to-configure-endpoints-for-monitoring",
           "ServicePulse/how-to-develop-custom-checks",
           "ServicePulse/troubleshooting"
