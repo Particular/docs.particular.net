@@ -4,7 +4,7 @@ summary: With SLR, the message causing the exception is instantly retried via a 
 tags:
 - Second Level Retry 
 - Error Handling
-- Exception
+- Exceptions
 - Automatic retries
 ---
 
