@@ -282,8 +282,8 @@
     <p><h4>Complete under-the-hood visualization of the your system's behavior</h4></p>
     <ul>
       <li><a href="/Serviceinsight/getting-started-overview">Getting Started</a></li>
+      <li><a href="/ServiceMatrix/servicematrix-serviceinsight">Interaction with ServiceMatrix</a></li>
       <li><a href="/Serviceinsight/application-invocation">Application invocation</a></li>
-      <li><a href="/Serviceinsight/how-logging-works">Logging in ServiceInsight</a></li>
     </ul>
     <a href="/ServiceInsight"><h3>Learn more &rarr;</h3></a>
     <div style="clear: both"></div>
@@ -291,9 +291,9 @@
   <div class="productcolumn last block">
     <p><h4>Real-time monitoring that is custom tailored to fit your distributed systems</h4></p>
     <ul>
-      <li><a href="/Servicepulse/how-to-configure-endpoints-for-monitoring">Configure endpoints for monitoring</a></li>
-      <li><a href="/Servicepulse/how-to-develop-custom-checks">Develop custom checks</a></li>
-      <li><a href="/ServiceControl/setting-custom-hostname">Customize hostname and port</a></li>
+      <li><a href="/ServicePulse/intro-endpoints-heartbeats">Monitoring Endpoints</a></li>
+      <li><a href="/ServicePulse/intro-failed-messages">Handling Failed Messages</a></li>
+      <li><a href="/ServicePulse/intro-endpoints-custom-checks">Introduction to Custom Checks</a></li>
     </ul>
     <a href="/ServicePulse"><h3>Learn more &rarr;</h3></a>
     <div style="clear: both"></div>
