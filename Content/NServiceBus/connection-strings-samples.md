@@ -12,7 +12,6 @@ NServiceBus supports the following transports out of the box:
 * MSMQ
 * SQL Server
 * RabbitMQ
-* ActiveMQ
 * Microsoft Azure Service Bus
 * Microsoft Azure Storage Queues
 
@@ -39,6 +38,8 @@ To configure NServiceBus endpoints to use a specific transport:
 
 **NOTE:** The MSMQ connection string is optional.
 
+<!--
+
 ###ActiveMQ
 
 * NuGet transport package: [NServiceBus.ActiveMQ](https://www.nuget.org/packages/NServiceBus.ActiveMQ/);
@@ -46,11 +47,12 @@ To configure NServiceBus endpoints to use a specific transport:
 
 ```xml
 <connectionStrings>
-   <!-- ActiveMQ -->
    <add name="NServiceBus/Transport"
         connectionString="ServerUrl=activemq:tcp://localhost:61616"/>
 </connectionStrings>
 ```
+
+-->
 
 ###RabbitMQ
 
