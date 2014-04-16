@@ -35,7 +35,7 @@ For this example you need to meet the following system requirements:
 - Visual Studio 2012
 - ASP.NET MVC 4 ([http://www.asp.net/downloads](http://www.asp.net/downloads))
 
-**NOTE**: If you have both Visual Studio 2010 and Visual Studio 2012 installed on your machine, you can install ServiceMatrix for one Visual Studio version only. This document reviews the use of ServiceMatrix v2.0 for Visual Studio 2012.
+**NOTE:** If you have both Visual Studio 2010 and Visual Studio 2012 installed on your machine, you can install ServiceMatrix for one Visual Studio version only. This document reviews the use of ServiceMatrix v2.0 for Visual Studio 2012.
 
 ## Creating a New Project
 To get started with ServiceMatrix, create a new project.
@@ -68,7 +68,9 @@ You should see folders in Solution Builder called 'Infrastructure', 'Libraries',
 
 The [NServiceBus Canvas](images/servicematrix-canvas.png "NServiceBus Canvas") is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise your solution will be created and illustrated here.
 
-The dashed areas within the canvas and the buttons at the top are used to start building your solution.  NOTE: Alternatively, they can also be created using the Solution Builder tree view.  However, since this is a visual tool, this example will demonstrate using the canvas.  As items are added to the canvas they will appear in the Solution Builder as well as in the Solution Explorer project.
+The dashed areas within the canvas and the buttons at the top are used to start building your solution.  
+
+**NOTE:** Alternatively, they can also be created using the Solution Builder tree view.  However, since this is a visual tool, this example will demonstrate using the canvas.  As items are added to the canvas they will appear in the Solution Builder as well as in the Solution Explorer project.
 
 ##Building the Online Sales Solution
 Our online sales example involves a website that collects online orders and a back-end order processing system that processes them.  
@@ -82,7 +84,9 @@ To create an endpoint on the canvas either select the dashed 'New Endpoint' area
 
 ![New Endpoint Popup](images/servicematrix-newendpoint.png)
 
-Name the endpoint `ECommerce` and choose ASP.NET MVC as the endpoint host.  **NOTE: ** MVC Endpoints require that ASP.NET MVC be installed on the local machine. You can install ASP.NET MVC from [here](http://www.asp.net/downloads) or by using Web Platform Installer.
+Name the endpoint `ECommerce` and choose ASP.NET MVC as the endpoint host.  
+
+**NOTE:** MVC Endpoints require that ASP.NET MVC be installed on the local machine. You can install ASP.NET MVC from [here](http://www.asp.net/downloads) or by using Web Platform Installer.
 
 ### Review the endpoint
 You will examine the generated code in detail later to understand how things work behind the scenes.  For now, notice how ServiceMatrix has created the ECommerce Endpoint on the canvas, in the Solution Builder and in the Visual Studio Project.
