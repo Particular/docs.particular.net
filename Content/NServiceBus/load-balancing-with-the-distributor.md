@@ -15,7 +15,7 @@ When to use it?
 
 Scaling out (with or without a distributor) is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](monitoring-nservicebus-endpoints.md) on the endpoint and when you have the need, add in the distributor. Scaling out using the distributor when needed is made easy by not having to change code, just starting the same endpoint in distributor and worker profiles and this article explains how.
 
-The distributor is applicable only when using Msmq as the transport for exchanging messages. NServiceBus uses MSMQ as the default transport. The distributor is not required when using other brokered transports like SqlServer, RabbitMQ, ActiveMQ, since they share the same queue, even if there are multiple instances of the endpoints running. NServiceBus will ensure that only one of these instances of that endpoint will process that message in this case.
+The distributor is applicable only when using Msmq as the transport for exchanging messages. NServiceBus uses MSMQ as the default transport. The distributor is not required when using other brokered transports like SqlServer and RabbitMQ, since they share the same queue, even if there are multiple instances of the endpoints running. NServiceBus will ensure that only one of these instances of that endpoint will process that message in this case.
 
 Why use it?
 -----------
