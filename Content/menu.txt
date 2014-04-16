@@ -267,7 +267,6 @@
         "Title": "Configuration",
         "Articles": [
           "ServiceControl/multi-transport-support",
-          "ServiceControl/setting-custom-hostname",
           "ServiceControl/troubleshooting",
 	  "ServiceControl/configure-ravendb-location",
 	  "ServiceControl/customize-name-and-description",
