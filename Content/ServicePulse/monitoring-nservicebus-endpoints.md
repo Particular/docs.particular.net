@@ -18,6 +18,7 @@ This article will cover the following topics:
 * Audit and Error queues;
 * ServicePulse;
 * Heartbeat and Checks;
+* Best practices;
 
 ##Monitoring Primers
 
