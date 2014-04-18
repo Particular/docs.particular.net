@@ -7,41 +7,28 @@ tags:
 
 ServiceControl is intended to be a monitoring tool for production environments and, as each production tool, the deployment must be carefully planned and mantained over time.
 
+The primary job of ServiceControl is to monitor error and audit queues reading messages flowing into those queues and storing them in its own database. In a production environment ServiceControl have an impact on the disk space, where its data are stored, and is impacted in its throughput capacity by the overall system load.
 
+### ServiceControl storage
 
+ServiceControl stores its data in a RavenDB Embedded instance, whose storage location on disk can be [customized](/ServiceControl/configure-ravendb-location).
 
- stores its data in a RavenDB Embedded instance, since
+The storage size that ServiceControl requires depends on the production load and is directly related to the amount of messages that flow into the system. Since ServiceControl is intended to be a recent storage to support ServicePulse and ServiceInsight it is setup with a [default expiration policy](/ServiceControl/how-purge-expired-data) that deletes old messages after a predefined amount of time.
 
+The expiration policy can be customized to increase the maount of time data is retained impacting on the storage requirements of ServiceControl.
 
-bjhxbdvzvkzjfvb
+If the requirement is to store the data in long term archiving storage, or in a specialized BI database, it can be easily done:
 
----------------------------
+* *by querying the ServiceControl HTTP API*: This will provide a JSON stream of audited messages (headers, body and context) that can be imported into another database for various purposes;
 
+* *by activating audit.log queuing in ServiceControl* which copies the audited messages to the `audit.log` queue where a custom endpoint can handle incoming messages in order to apply custom logic;
+	* this is turned off by default, as opposed to copying failed messages to `error.log` queue which is on by default
 
+**NOTE**
 
-Additional content for article:
+* The maximum supported size of a RavenDB database is 16TB. 
+* Failed message *never* expires and will be retained undefinetely in the ServiceControl database;
 
-Maximum capacity for Embedded RavenDB database: 16TB
+### ServiceControl throughput
 
-By default, message expiration is turned on
-Refer to details in Message Expiration article
-You can specify a custom drive/path for location of SC DB
-
-Avarage message handling, 800/s
-
-
-ServiceControl is not intended for long-term archiving. By default, it implements an audited message expiration module whose expiration is set for 30 days (configurable).
-
-Note that failed messages do not expire
-
-You can extend or reduce that period based on your storage capabilities and needs, but you need to take account of this fact.
-
-ServiceControl is intended to serve as the backend for ServicePulse (i.e. production monitoring on endpoints, failed messages etc.) and ServiceInsight (advanced visualizations and debugging), so it deals mainly with recent-past information
-
-If you wish to store the data in long term archiving storage, or in a specialized BI database, you can easily do so in several ways:
-
-By querying the ServiceControl HTTP API: This will provide a JSON stream of audited messages (headers, body and context) you can then import into another database for various purposes
-
-By activating audit.log queuing in ServiceControl, which copies the audited messages to the audit.log queue
-
-this is turned off by default, as opposed to copying failed messages fo error.log which is on by default
+ServiceControl is not expected to provide real time data on the other hand what ServiceControl guarantees, thanks to the messaging infrastructure, is that data will be audited and stored in the ServiceControl database. The delay after a message that flew into the system is available in ServiceControl is impacted by the current throughput that depends on the avarage load of the entire system. What we can expect by ServiceControl is to be able to handle, on avarage, 800 messages per second.
