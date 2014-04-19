@@ -266,15 +266,25 @@
         "Name": "configuration",
         "Title": "Configuration",
         "Articles": [
-          "ServiceControl/multi-transport-support",
-          "ServiceControl/troubleshooting",
+          "ServiceControl/multi-transport-support"
 	  "ServiceControl/configure-ravendb-location",
-	  "ServiceControl/customize-name-and-description",
-	  "ServiceControl/how-purge-expired-data",
+	  "ServiceControl/customize-name-and-description"
 	  "ServiceControl/setting-custom-hostname",
-	  "ServiceControl/setting-custom-log-location",
+	  "ServiceControl/setting-custom-log-location"
+        ]
+      },{
+        "Name": "management",
+        "Title": "Management",
+        "Articles": [
+          "ServiceControl/how-purge-expired-data",
 	  "ServiceControl/use-ravendb-studio",
           "ServiceControl/backup-sc-database"
+        ]
+      },{
+        "Name": "troubleshooting",
+        "Title": "Troubleshooting",
+        "Articles": [
+          "ServiceControl/troubleshooting"
         ]
       }
     ]
