@@ -266,9 +266,9 @@
         "Name": "configuration",
         "Title": "Configuration",
         "Articles": [
-          "ServiceControl/multi-transport-support"
+          "ServiceControl/multi-transport-support",
 	  "ServiceControl/configure-ravendb-location",
-	  "ServiceControl/customize-name-and-description"
+	  "ServiceControl/customize-name-and-description",
 	  "ServiceControl/setting-custom-hostname",
 	  "ServiceControl/setting-custom-log-location"
         ]
