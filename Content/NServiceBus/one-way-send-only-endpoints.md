@@ -1,6 +1,6 @@
 ---
 title: One Way/Send Only Endpoints
-summary: "Use â€œSend only modeâ€\x9D for endpoints whose only purpose is sending messages, "
+summary: Use "Send only mode" for endpoints whose only purpose is sending messages
 tags:
 - SendOnly
 ---
