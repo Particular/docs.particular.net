@@ -13,6 +13,5 @@ To discard a message when a specific time interval has elapsed:
 
 ```C#
 [TimeToBeReceived("00:01:00")] // Discard after one minute
-[Recoverable]
 public class MyMessage { }
 ```
