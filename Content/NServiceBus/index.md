@@ -116,7 +116,7 @@ summary: NServiceBus Documentation Table of Contents
 - [In a Distributor Scenario What Happens to the Message If a Worker Goes Down](in-a-distributor-scenario-what-happens-to-the-message-if-a-worker-goes-down)
 - [No Endpoint Configuration Found in Scanned Assemblies Exception](no-endpoint-configuration-found-in-scanned-assemblies-exception)
 - [DtcPing Warning the Cid Values for Both Test Machines Are the Same](dtcping-warning-the-cid-values-for-both-test-machines-are-the-same)
-- [Why You Can T Use NLB with MSMQ](why-you-can-t-use-nlb-with-msmq)
+- [Why You Can't Use NLB with MSMQ](why-you-can-t-use-nlb-with-msmq)
 - [Configuring AWS for NServiceBus](configuring-aws-for-nservicebus)
 - [Licensing and Distribution](licensing-and-distribution)
 - [How to Debug RavenDb Through Fiddler Using NServiceBus](how-to-debug-ravendb-through-fiddler-using-nservicebus)
