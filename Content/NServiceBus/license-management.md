@@ -20,10 +20,12 @@ In order to install your license in the registry, you can do so in one of the fo
 
 - You can simply use the `Regedit.exe` tool and create a `REG_MULTI_SZ` value called `License` under `HKLM\\Software\\ParticularSoftware` and simply paste the contents of the license file you've received from Particular software. 
 - Run the following powershell command from an administrative powershell prompt.
+
 ```
 $content = Get-Content {path to your license file} | Out-String
  
 Set-ItemProperty -Path HKLM:\Software\ParticularSoftware -Name License -Force -Value $content
+
 ```
 
 **NOTE:** As of version 4.5, both the `LicenseInstaller.exe` tool and the `install-NServiceBusLicense` powershell commandlet has been deprecated. 
