@@ -12,7 +12,6 @@ In Version 4.0:
 
 
 ```C#
-Configure.Serialization.Xml();
 var bus = Configure.With()
     .DefaultBuilder()
     .UseTransport<Msmq>()
