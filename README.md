@@ -1,33 +1,33 @@
-# How to contribute
+# How to Contribute
 
 Before you start ensure you have
 
  *  Created a [GitHub account](https://github.com/signup/free)
  *  Signed the Particular [Contributor License Agreement](http://www.particular.net/contributors-license-agreement-consent).
 
-There are two approaches to contributing
+There are two approaches to contributing.
 
-## The GitHub web UI  
+## Via the GitHub Web UI  
 
 For simple changes the GitHub web UI should suffice.
 
- * Find the page you want to edit on http://docs.particular.net/
- * Click the `Improve this doc`. This will automatically fork the project so you can edit the file.
- * Make the changes you require. Ensure you verify your changes in the `Preview` tab
- * Add a description of your changes
- * Click `Propose File Changes`
+ 1. Find the page you want to edit on http://docs.particular.net/.
+ 1. Click the `Improve this doc`. This will automatically fork the project so you can edit the file.
+ 1. Make the changes you require. Ensure you verify your changes in the `Preview` tab.
+ 1. Add a description of your changes.
+ 1. Click `Propose File Changes`.
 
-## By forking and submitting a pull request
+## By Forking and Submitting a Pull Request
 
 For more complex changes you should fork and then submit a pull request. This is useful if you are proposing multiple file changes
 
- * [Fork](http://help.github.com/forking/) on GitHub
- * Clone your fork locally
- * Work on your feature
- * Push the up to GitHub
- * Send a Pull Request on GitHub
+ 1. [Fork](http://help.github.com/forking/) on GitHub.
+ 1. Clone your fork locally.
+ 1. Work on your feature.
+ 1. Push the up to GitHub.
+ 1. Send a Pull Request on GitHub.
 
-For more information see [Collaborating on GitHub](https://help.github.com/categories/63/articles) especially [using GitHub pull requests](https://help.github.com/articles/using-pull-requests) 
+For more information see [Collaborating on GitHub](https://help.github.com/categories/63/articles) especially [using GitHub pull requests](https://help.github.com/articles/using-pull-requests). 
 
 # Conventions
 
@@ -35,7 +35,7 @@ For more information see [Collaborating on GitHub](https://help.github.com/categ
 
 Each document has a header. It is enclosed by `---` and is defined in a [YAML](http://en.wikipedia.org/wiki/YAML) document.
 
-The GitHub  UI will [correctly render YAML](https://github.com/blog/1647-viewing-yaml-metadata-in-your-documents)
+The GitHub  UI will [correctly render YAML](https://github.com/blog/1647-viewing-yaml-metadata-in-your-documents).
 
 For example:
 
@@ -51,11 +51,11 @@ tags:
 
 ### Title
 
-Required. Used for the web page title tag `<head><title>`, displaying in the page content and displayed in search results.
+Required. Used for the web page title tag `<head><title>`, displayed in the page content, and displayed in search results.
 
 ### Summary
 
-Required. Used for the meta description tag (`<meta name="description"`) and displaying on the search results
+Required. Used for the meta description tag (`<meta name="description"`) and displaying on the search results.
 
 ### Tags
 
@@ -63,53 +63,53 @@ Optional. Used to flag the article as being part of a group of articles.
 
 Tags are rendered in the articles content with the full list of tags being rendered at [http://docs.particular.net/tags](http://docs.particular.net/tags). Untagged articles will be rendered here [http://docs.particular.net/Tags/untagged](http://docs.particular.net/Tags/untagged)
 
-Tags are interpreted in two pays 
+Tags are interpreted in two ways. 
 
-1. For inclusion of urls
-   * Tag will be lower cased
-   * Spaces will be replaced with dashes (`-`) 
-2. For display purposes 
-   * Tag will be lower cased
-   * Dashes (`-`) will be replaced with dashes spaces 
+* For inclusion of URLs:
+   * Tag are lower case
+   * Spaces are replaced with dashes (`-`) 
+* For display purposes: 
+   * Tags are lower case
+   * Dashes (`-`) are replaced with dashes spaces 
 
 ### Redirects
 
-Url redirects are not currently implemented but will be included as part of the header.
+URL redirects are not currently implemented but will be included as part of the header.
 
 ## Menu
 
-The menu is a json text document stored at [Content/menu.txt](Content/menu.txt)
+The menu is a JSON text document stored at [Content/menu.txt](Content/menu.txt).
 
-## Urls
+## URLs
 
 The directory structure where a `.md` exists is used to derive the URL for that document. 
 
-So a file existing at `Content\NServiceBus\Logging\NLog.md` will have a resultant url of `http://docs.particular.net/NServiceBus/Logging/Nlog`
+So a file existing at `Content\NServiceBus\Logging\NLog.md` will have a resultant URL of `http://docs.particular.net/NServiceBus/Logging/Nlog`.
 
 ### Index Pages
 
-One exception to this rule is when a page is named `Index.md`. In this case the `Index.md` is omitted on the resultant url and only the directory structure used.
+One exception to this rule is when a page is named `Index.md`. In this case the `Index.md` is omitted in the resultant URL and only the directory structure is used.
 
-So a file existing at `Content\NServiceBus\Logging\Index.md` will have a resultant url of `http://docs.particular.net/NServiceBus/Logging`
+So a file existing at `Content\NServiceBus\Logging\Index.md` will have a resultant URL of `http://docs.particular.net/NServiceBus/Logging`.
 
 ### Linking
 
-Links to other documentation pages should be relative contain the `.md` extension. 
+Links to other documentation pages should be relative and contain the `.md` extension. 
 
-The `.md` allows links to work inside the GitHub web UI. The `.md` will be trimmed when they are finally rendered
+The `.md` allows links to work inside the GitHub web UI. The `.md` will be trimmed when they are finally rendered.
 
-Given the case of editing a page located at `\Content\NServiceBus\Page1.md`.
+Given the case of editing a page located at `\Content\NServiceBus\Page1.md`:
 
-To link to the file `\Content\NServiceBus\Page2.md` you would use `[Page 2 Text](Page2.md)`
+To link to the file `\Content\NServiceBus\Page2.md`, use `[Page 2 Text](Page2.md)`.
 
-To link to the file `\Content\ServiceControl\Page3.md` you would use `[Page 3 Text](../ServiceControl/Page3.md)`
+To link to the file `\Content\ServiceControl\Page3.md`, use `[Page 3 Text](../ServiceControl/Page3.md)`.
 
 # Markdown
 
 The site is rendered using [GitHub Flavoured Markdown](https://help.github.com/articles/github-flavored-markdown)
 
 ## Editors
-For editing markdown on your desktop using Git try the following
+For editing markdown on your desktop using Git try the following.
 
 ### [MarkdownPad](http://markdownpad.com/)
 
@@ -128,20 +128,20 @@ And checking `Ignore YAML Front-matter`
 
 ## Anchors
 
-On addition to standard markdown is the auto creating anchors for headings
+One addition to standard markdown is the auto creation of anchors for headings.
 
-So if you have a heading like this 
+So if you have a heading like this: 
 
     ## My Heading
 
-it will be converted to 
+it will be converted to this:
 
     <h2>
       <a name="my-heading"/>
       My Heading
     </h2>
 
-Which means elsewhere in the page you can link to it with  
+Which means elsewhere in the page you can link to it with this: 
 
     [Goto My Heading](#My-Heading)
 
@@ -162,12 +162,46 @@ This will produce:
 ![Alerts Example](alerts.jpg)
 -->
 
-## Some useful characters
+## Some Useful Characters
 
  * Ticks are done with `&#10004;` &#10004;
  * Crosses are done with `&#10006;` &#10006;
+  
+## Suggested Practices for Consistent Writing
+* Spell out numbers smaller than ten	(not 2,3, etc.).
+* Do not use "please".
+* Do not add	blank lines in code or between sections. (If a blank line is required, that usually means a heading or explanatory text is missing.)
+* Use these:
+ * "click"	(not "click on" or "press")
+ * "open" (not	"open up")
+ * V3, V3.1	(not version 3, v.3, v3)
+ * NOTE:	(Not "Note that")
+ * Present tense (not	future tense)
+ * you, NServiceBus	(not "we") 
+ * to	(not "in order to")
+ * Next steps (not	"Where to go from here?" or "Where to now?")
+ * cannot, you would, is not	(not contractions  such as can't, you'd, isn't)
+ * double click, right click	(not double-click, right-click)
+ * you	(not developers or users)
+ * backend (not	back end)
+* Use these proper nouns:
+ * Particular software	not Particular 
+ * Particular Studio or Particular NServiceBus	not Particular 
+ * Visual Studio	not visual studio
+ * NuGet	not Nuget
+ * RavenDB	not Raven DB
+ * Fluent	not fluent
+ * PowerShell not powershell 
+ * Fiddler	not fiddler
+ * MVC 3	not Mvc3
+ * ASP.NET	not Asp.Net
+ * Log4Net 	not log4net 
+ * Intellisense	not intellisense
+ * ServiceInsight	not ServiceInsight
+ * Windows Azure Service Bus	not windows azure servicebus
+ * First Level Retries	not First-Level-Retries
 
-## More info
+## More Info
  
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
