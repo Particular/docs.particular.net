@@ -96,3 +96,9 @@ See [Installing Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Instal
 
 * [Troubleshooting ClickOnce Deployments](http://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
 * [ClickOnce forum](http://social.msdn.microsoft.com/Forums/windows/en-US/home?forum=winformssetup)
+
+
+
+### FAQ
+
+* If you're having issues with connectivity please see this post on how to set Chocolatey and NuGet up behind a proxy: http://escapologist.wordpress.com/2013/02/27/nuget-and-chocolatey-behind-a-proxy/
