@@ -12,8 +12,13 @@ summary: Platform level index for articles, guidance and documentation
 
 ### Applications
 
-<a href="/NServiceBus"><img src="images/NServiceBusLogo.png" alt="NServiceBus article index"></a><br>
-<a href="/ServiceMatrix"><img src="images/ServiceMatrixLogo.png" alt="ServiceMatrix article index"></a><br>
-<a href="/ServiceInsight"><img src="images/ServiceInsightLogo.png" alt="ServiceInsight article index"></a><br>
-<a href="/ServicePulse"><img src="images/ServicePulseLogo.png" alt="ServicePulse article index"></a><br>
-<a href="/ServiceControl"><img src="images/ServiceControlLogo.png" alt="ServiceControl article index"></a>
+
+[![NServiceBus article index](images/NServiceBusLogo.png)](/NServiceBus)
+
+[![ServiceMatrix article index](images/ServiceMatrixLogo.png)](/ServiceMatrix)
+
+[![ServiceInsight article index](images/ServiceInsightLogo.png)](/ServiceInsight)
+
+[![ServicePulse article index](images/ServicePulseLogo.png)](/ServicePulse)
+
+[![ServiceControl article index](images/ServiceControlLogo.png)](/ServiceControl)
