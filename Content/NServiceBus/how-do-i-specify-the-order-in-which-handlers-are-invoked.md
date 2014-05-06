@@ -1,6 +1,6 @@
 ---
-title: How to Specify the Order in which Handlers Are Invoked?
-summary: Writing your own host? Using generic host? Specifying a single handler?
+title: Handler Ordering
+summary: How to Specify the Order in which Handlers Are Invoked.
 tags: []
 ---
 
