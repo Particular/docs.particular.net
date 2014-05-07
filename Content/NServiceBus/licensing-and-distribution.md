@@ -4,6 +4,12 @@ summary: Basic licenses are limited to two worker nodes.
 tags: []
 ---
 
+**NServiceBus V4.5 and up**
+
+No limitations is enforced by the distributor
+
+**Up to NServiceBus V4.5**
+
 Basic licenses (default, express, Basic-2, 4, etc.) allow you to run your distributor with two worker nodes.
 
 If your [NServiceBus generic host](the-nservicebus-host.md) is running with the NServiceBus.Master profile or if you are self hosting and the bus is initialized with RunDistributor() then only one additional worker can register with the distributor. Read more about the [Distributor and worker nodes](load-balancing-with-the-distributor).
