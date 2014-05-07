@@ -105,7 +105,7 @@ Configure the name of the master node server as shown in this app.config example
 <configuration>
   <configSections>
     <!-- Other sections go here -->
-    <section name="MasterNodeConfig" type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Core" />
+    <section name="MasterNodeConfig" type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Distributor.MSMQ" />
   </configSections>
   <!-- Other config options go here -->
   <MasterNodeConfig Node="MachineWhereDistributorRuns"/>
@@ -167,10 +167,6 @@ If the distributor goes down, even if its worker nodes remain running, they do n
 
 Since the distributor does not do CPU or memory intensive work, you can often put several distributor processes on the same clustered server. Be aware that the network IO may end up being the bottleneck for the distributor, so take into account message sizes and throughput when sizing your infrastructure.
 
-Licensing and distribution
---------------------------
-
-Basic [licensing](licensing-and-distribution.md) restricts the number of worker nodes to two.
 
 Next steps
 ----------
