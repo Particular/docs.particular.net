@@ -14,7 +14,7 @@ In V2.6 the default storage was an MSMQ queue, but V3.0 uses RavenDB, so you mig
 
 To skip migration and run the TimeoutManagers side by side:
 
-1.  Upgrade your endpoint to V3.0.X. Download it from the [downloads](http://www.particular.net/downloads) page.
+1.  Upgrade your endpoint to V3.0.X. 
 2.  Configure the endpoint to use the built-in TM in V3.0. New time-outs will be sent to this TM from your endpoint.
 3.  Keep the V2.6 TM running. Existing time-outs that expire will be sent to your new V3.0.X endpoint. (Make sure that you keep the name of the input queue identical.)
 4.  Decommission your V2.6 TM when all time-outs expire. (The storage queue will be empty when this happens.) The default name of the storage queue is "Timeout.Storage" but check your configuration to be sure. **NOTE** : This is NOT the same queue as the input queue that you would have configured in your endpoint mappings.
@@ -32,9 +32,7 @@ With that out of the way, use the tool to migrate:
 
 1.  Upgrade your endpoint to V3.0.X.
 2.  Create the dedicated input queue for the V3.0 TM by running the [installers](nservicebus-installers.md) .
-3.  If you haven't upgraded to
-    [V](http://particular.cloudapp.net/downloads)
-    [2.6.0.1511](http://particular.cloudapp.net/downloads) , shut down
+3.  If you haven't upgraded to V2.6.0.1511, shut down
     the V2.6 TM.
 4.  Run the TimeoutMigrator.exe. To migrate only time-outs older than a specific time, use the -migrateOlderThan {minutes} switch. This extracts the time-outs and sends them to the new V3.0 TM. The tool asks you for the source and destination queues if not specified on the command line.
 
