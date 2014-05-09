@@ -12,7 +12,7 @@ tags: [Platform, Installation]
 
 ## Dependencies 
 
-* [ClickOnce](https://msdn.microsoft.com/clickonce)
+* ClickOnce
 * [.net 4.5](http://www.microsoft.com/en-au/download/details.aspx?id=40779) (will be installed as part of the ClickOnce deployment)
 * [Chocolatey](http://chocolatey.org/) (version 0.9.8.23 or higher) 
 
