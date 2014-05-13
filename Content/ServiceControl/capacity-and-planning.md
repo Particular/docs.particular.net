@@ -5,7 +5,7 @@ tags:
 - ServiceControl
 ---
 
-ServiceControl is intended to be a monitoring tool for production environments and, as each production tool, the deployment must be carefully planned and mantained over time.
+ServiceControl is intended to be a monitoring tool for production environments and, as each production tool, the deployment must be planned and mantained over time.
 
 The primary job of ServiceControl is to monitor error and audit queues reading messages flowing into those queues and storing them in its own database. In a production environment ServiceControl have an impact on the disk space, where its data are stored, and is impacted in its throughput capacity by the overall system load.
 
