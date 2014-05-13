@@ -13,10 +13,10 @@ Monitoring in NServiceBus is easier than in regular three-tier systems due to th
 This article will cover the following topics:
 
 * Monitoring primers;
+* ServicePulse;
 * Service Level Agreement;
 * Performance Counters;
 * Audit and Error queues;
-* ServicePulse;
 * Heartbeat and Checks;
 * Best practices;
 
@@ -27,6 +27,19 @@ When a system is broken down into multiple parts monitoring becomes a key aspect
 NServiceBus monitoring tools and practices leverage the intrinsic power that a messaging architecture brings to the table to allow an easy and powerful monitoring process.
 
 When a system is a messaging based system you can quickly identify which process is the bottleneck by examining how many messages are in each queue; you can quickly understand where a message is stuck and why and you can quickly identify reasons that caused a message to be delivered to a specific endpoint by tracking its route from the beginning to the end.
+
+##ServicePulse
+
+ServiceControl is the heart of the NServiceBus monitoring infrastructure, its role is to collect and store information to be later processed by tools such as ServicePulse.
+
+ServicePulse is the front-end to ServiceControl, through ServicePulse administrators can monitor the overall health of the entire system and can be notified of failed messages that flows into error queues.
+
+###Heartbeat and Checks
+
+In order to allow endpoints to communicate their status to the ServiceControl and ServicePulse monitoring tools the concepts of [Heartbeat and Checks](/ServicePulse/how-to-configure-endpoints-for-monitoring) has been introduced:
+
+* **Hearbeat**: each endpoint can send a heartbeat message to the monitoring infrastructure signaling that it is alive; This can be easily achieved by deploying a plugin to the endpoint and restarting it;
+* **Checks**: Custom checks can be developed and deployed to the endpoint, always as plugins, to enrich the information that the endpoint sends to the monitoring infrastructure;
 
 ##Service Level Agreement
 
@@ -47,6 +60,8 @@ As a part of the NServiceBus installation, two additional performance counters a
 * **Critical time** monitors the age of the oldest message in the queue. This takes into account the whole chain, from the message being sent from the client machine until successfully processed by the server. Define a SLA for each of your endpoints and use the `CriticalTime` counter to make sure you adhere to it.
 * **Time to SLA breach** acts as a early warning system to tell you the number of seconds left until the SLA for the particular endpoint is breached. This gives you a system-wide counter that can be monitored without putting the SLA into your monitoring software. Just set that alarm to trigger when the counter goes below X, which is the time that your operations team needs to be able to take actions to prevent the SLA from being breached. To define the endpoint SLA, add the `[EndpointSLA]` attribute on your endpoint configuration. If self-hosting, use the `Configure.SetEndpointSLA()` method on the Fluent API instead. All processes running with NServiceBus collect this information and the counters are enabled by default. Since all performance counters in Windows are exposed via Windows Management Instrumentation (WMI), it is very straightforward to pull this information into your existing monitoring infrastructure.
 
+Details on how to install and manage NServiceBus performance counters can be found in the [managing NServiceBus with PowerShell](/nservicebus/managing-nservicebus-using-powershell) article.
+
 ##Audit and Error queues
 
 ###Audit queues
@@ -62,19 +77,6 @@ When a system is based on a messaging infrastructure it automatically benefits o
 It is obvious that a failing message cannot be retried forever without leading to SLA violations or performance penalties to the entire system, for this reason after a configurable amount of retries NServiceBus stops retrying the message and moves it the the configured error queue, that, as audit queues, can be defined machine-wide or per endpoint.
 
 Error queues can then be monitored, for example using ServiceControl as for audit queues, by administrators to be notified when something goes wrong and be able to react accordingly.
-
-##ServicePulse
-
-ServiceControl is the heart of the NServiceBus monitoring infrastructure, its role is to collect and store information to be later processed by tools such as ServicePulse.
-
-ServicePulse is the front-end to ServiceControl, through ServicePulse administrators can monitor the overall health of the entire system and can be notified of failed messages that flows into error queues.
-
-###Heartbeat and Checks
-
-In order to allow endpoints to communicate their status to the ServiceControl and ServicePulse monitoring tools the concepts of [Heartbeat and Checks](/ServicePulse/how-to-configure-endpoints-for-monitoring) has been introduced:
-
-* **Hearbeat**: each endpoint can send a heartbeat message to the monitoring infrastructure signaling that it is alive; This can be easily achieved by deploying a plugin to the endpoint and restarting it;
-* **Checks**: Custom checks can be developed and deployed to the endpoint, always as plugins, to enrich the information that the endpoint sends to the monitoring infrastructure;
 
 ##Best practices
 
