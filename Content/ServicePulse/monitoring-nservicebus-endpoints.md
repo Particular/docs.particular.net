@@ -30,7 +30,7 @@ When a system is a messaging based system you can quickly identify which process
 
 ##ServicePulse
 
-ServiceControl is the heart of the NServiceBus monitoring infrastructure, its role is to collect and store information to be later processed by tools such as ServicePulse.
+ServiceControl is the heart of the NServiceBus monitoring infrastructure, its role is to collect and store information to be later processed by tools such as [ServicePulse](/servicepulse/#introduction).
 
 ServicePulse is the front-end to ServiceControl, through ServicePulse administrators can monitor the overall health of the entire system and can be notified of failed messages that flows into error queues.
 
@@ -38,8 +38,8 @@ ServicePulse is the front-end to ServiceControl, through ServicePulse administra
 
 In order to allow endpoints to communicate their status to the ServiceControl and ServicePulse monitoring tools the concepts of [Heartbeat and Checks](/ServicePulse/how-to-configure-endpoints-for-monitoring) has been introduced:
 
-* **Hearbeat**: each endpoint can send a heartbeat message to the monitoring infrastructure signaling that it is alive; This can be easily achieved by deploying a plugin to the endpoint and restarting it;
-* **Checks**: Custom checks can be developed and deployed to the endpoint, always as plugins, to enrich the information that the endpoint sends to the monitoring infrastructure;
+* **Hearbeat**: each endpoint can send a [heartbeat message](/servicepulse/intro-endpoints-heartbeats) to the monitoring infrastructure signaling that it is alive; This can be easily achieved by deploying a plugin to the endpoint and restarting it;
+* **Checks**: [Custom checks](/servicepulse/intro-endpoints-custom-checks) can be developed and deployed to the endpoint, always as plugins, to enrich the information that the endpoint sends to the monitoring infrastructure;
 
 ##Service Level Agreement
 
