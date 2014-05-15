@@ -33,9 +33,14 @@ tags:
   x:\Your_Installed_Path\ServiceControl.exe --install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl" -d="ServiceControl/TransportType==<.net type>" -d="NServiceBus/Transport==<connectionstring>"
   ```
 
-  For example, for RabbitMQ these settings would look like:
+  Example, for RabbitMQ these settings would look like:
   ```bat
   x:\Your_Installed_Path\ServiceControl.exe --install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl" -d="ServiceControl/TransportType==NServiceBus.RabbitMQ, NServiceBus.Transports.RabbitMQ" -d="NServiceBus/Transport==host=localhost"
+  ```
+  
+  Example, for SqlServer these settings would look like:
+  ```bat
+  x:\Your_Installed_Path\ServiceControl.exe --install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl" -d="ServiceControl/TransportType==NServiceBus.SqlServer, NServiceBus.Transports.SQLServer" -d="NServiceBus/Transport==Data Source=(local);Initial Catalog=NServiceBus;Integrated Security=True"
   ```
   
 * Start the ServiceControl service by running: `"net start Particular.ServiceControl"`
