@@ -1,70 +1,90 @@
 ---
 title: Logging in NServiceBus
-summary: NServiceBus extends Log4Net APIs with a simple model to prevent admins from changing behavior you set at design time.
+summary: Logging in NServiceBus
 tags: 
 - Logging
 ---
 
-Like many other open-source frameworks on the .NET platform, NServiceBus uses of Log4Net for its logging capabilities. Familiar to developers and administrators alike, Log4Net has been proven in production for years of production.
+**NOTE: this is relevant to versions 5 and above. For earlier versions see [Logging in version 4 and below](logging-in-nservicebus4_and_below.md)  **
 
-NServiceBus extends the Log4Net APIs with a simplified model that prevents administrators from accidentally changing behavior you set at design time.
+## Default Logging
 
-Logging basics
---------------
+NServiceBus has some limited, and opinionated, logging built in.
 
-Start to log with NServiceBus:
+The default logging behavior is as follows.
 
-    NServiceBus.Configure.With().Log4Net();
+### Console
 
-This makes use of `ConsoleAppender`, which sets the logging threshold to Debug. All logging statements performed by NServiceBus or the application at a level at or above Debug (i.e., Warn, Error, and Fatal) are sent to the console for output.
+All `Info` (and above) messages will be piped to the current console.
 
-Calling Log4Net from your code is very straightforward. Often you'll set up a single static read-only reference to a logger in your classes, and then use it in all your methods, like this:
+### Trace
 
-```
-using log4net;
-  
-public class YourClass
-{
-    public void SomeMethod()
-    {
-        //your code
-        Logger.Debug("Something interesting happened.");
-    }
-    static ILog Logger = LogManager.GetLogger("Name");
-}
-```
+All `Warn` (and above) messages to a written to `Trace.WriteLine`.
+ 
+### Rolling File 
 
-To make use of the standard Log4Net configuration found in the application configuration file, make the following call before the call to `NServiceBus.Configure.With()`:
+All `Info` (and above) messages will be written to a rolling log file.
 
-    NServiceBus.SetLoggingLibrary.Log4Net(log4net.Config.XmlConfigurator.Configure);
+This file will keep 10MB per file and a maximum of 10 log files.
 
-This isn't supported in the Fluent initialization API because NServiceBus frowns on the Log4Net model of mixing developer settings
-(such as the type of appender console, file, etc.) and administrator settings (such as the logging level) in the same place. In its place, NServiceBus suggests more operation-friendly approaches, as described lower down.
+The default logging directory will be `HttpContext.Current.Server.MapPath("~/App_Data/")` for websites and `AppDomain.CurrentDomain.BaseDirectory` for all other processes.
 
-Include a Log4Net configuration section in the application configuration file that results in the Debug threshold with the `ConsoleAppender`, as shown:
+The default file name will be `nsb_log_yyyy-MM-dd_N.txt` where `N` is a sequence number for when the log file reaches the max size.
+
+## Changing the defaults
+
+### Changing settings via configuration
+
+The main parameter is the logging resolution of how much information is logged. Logging only errors is usually desirable in production scenarios as it gives the best performance. Yet, when a system behaves erratically, having more information logged can give greater insight into what is causing the problems. This is controlled by the application configuration file by including the following entries:
 
 ```
-<log4net debug="false">
-	<appender name="console" type="log4net.Appender.ConsoleAppender">
-		<layout type="log4net.Layout.PatternLayout">
-		<param name="ConversionPattern" value="%d [%t] %-5p %c [%x] <%X{auth}> - %m%n"/>
-		</layout>
-	</appender>
-	<root>
-		<level value="DEBUG"/>
-		<appender-ref ref="console"/>
-	</root>
-</log4net>
+<configSections>
+	<section name="Logging" type="NServiceBus.Config.Logging, NServiceBus.Core" />
+</configSections>
+<Logging Threshold="Debug" />
 ```
 
-For more information about standard Log4Net functionality, see the
-[Log4Net home page](http://logging.apache.org/log4net/index.html).
+The `Threshold` value attribute of the `Logging` element can be any of `Debug`, `Info`, `Warn`, `Error` or `Fatal`.
 
-Logging message contents
-------------------------
+For changes to the configuration to have an effect, the process must be restarted.
+
+### Changing settings via code
+
+With code you can configure both the Level and the logging directory. To do this use the `LogManager` class.
+
+```
+LogManager.ConfigureDefaults(LogLevel.Debug, pathToLoggingDirectory);
+```
+
+Ensure you do this before `Configure.With` is called.
+
+## Custom Logging
+
+For more advanced logging it is recommended that you utilize one of the many mature logging libraries available for .net. 
+
+### NLog
+
+There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) available that allows for simple integration of NServiceBus and [NLog](http://nlog-project.org/).
+
+    Install-Package NServiceBus.Log4Net
+
+Then call 
+
+    NLogConfigurator.Configure();
+
+### Log4Net
+
+There is a [nuget](https://www.nuget.org/packages/NServiceBus.Log4Net/) available that allows for simple integration of NServiceBus and [Log4Net](http://logging.apache.org/log4net/).
+
+    Install-Package NServiceBus.Log4Net
+
+Then call 
+
+    Log4NetConfigurator.Configure();
+
+## Logging message contents
 
 When NServiceBus sends a message, it writes the result of the `ToString()` method of the message class to the log. By default, this writes the name of the message type only. To write the full message contents to the log, override the `ToString()` method of the relevant message class. Here's an example:
-
 
     public class MyMessage : IMessage
     {
@@ -81,62 +101,29 @@ When NServiceBus sends a message, it writes the result of the `ToString()` metho
 	    }
     }
 
+## Logging Profiles
 
-**NOTE** : NServiceBus only makes these calls at a log threshold of DEBUG or lower.
+Logging can be configured via Profiles. However, unlike other profile behaviors, logging needs to be defined before you configure other components, even before the container. For that reason, logging configuration is kept separate from other profile behaviors.
 
-Customized logging
-------------------
+NServiceBus has three built-in profiles for logging `Lite`, `Integration` and `Production`. These profiles a only placeholders for logging customisation. If no customisation is done then the profiles have no impact on the logging defaults listed above.
 
-You can tell NServiceBus to use any of the built-in Log4Net appenders, specifying additional properties of the chosen appender using the following API:
+### Customized logging via a profile
 
-    NServiceBus.Configure.With().Log4Net(a => a.From = "no-reply@YourApp.YourCompany.com");
+To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type. The implementation of this interface is similar to that described for `IWantCustomLogging` in the [host page](the-nservicebus-host.md).
 
-This example shows all logging calls sent using SMTP from the email address `no-reply@YourApp.YourCompany.com`.
-
-If there isn't a built-in appender for the technology you want to use for logging, write a class that inherits from `AppenderSkeleton`, as follows:
-
-    public class YourAppender : log4net.Appender.AppenderSkeleton
+```C#
+class YourProfileLoggingHandler : IConfigureLoggingForProfile<YourProfile>
+{
+    public void Configure(IConfigureThisEndpoint specifier)
     {
-	    public string YourProperty { get; set; }
-	    protected override void Append(LoggingEvent loggingEvent)
-	    {
-	  	  //call your logging technology here
-	    }
+        // setup your logging infrastructure then call
+		Log4NetConfigurator.Configure();
     }
-
-
-Then plug your appender into NServiceBus like this:
-
-    NServiceBus.Configure.With().Log4Net(a => a.YourProperty = "value");
-
-As you can see, there isn't much effort involved in plugging in your own logging technology. That being said, with the number of appenders available out of the box with Log4Net, you should be able to find something to suit your needs. Here's a taste:
-
--   ADO.NET
--   ASP.NET Trace
--   System.Diagnostics.Debug
--   System.Diagnostics.Trace
--   System Event Log
--   Rolling File
--   SMTP
--   UDP
-
-Administrative configuration
-----------------------------
-
-As you saw before, most of the logging configuration done with NServiceBus in code. This prevents administrators from accidentally changing values set by developers. It also provides developers with compile-time checking, intellisense, and the other productivity-enhancing capabilities of Visual Studio.
-
-Yet certain parameters need to be under administrative control. The main parameter is the logging resolution of how much information is logged. Logging only errors is usually desirable in production scenarios as it gives the best performance. Yet, when a system behaves erratically, having more information logged can give greater insight into what is causing the problems. This is controlled by the application configuration file by including the following entries:
-
-```
-<configSections>
-	<section name="Logging" type="NServiceBus.Config.Logging, NServiceBus.Core" />
-</configSections>
-<Logging Threshold="WARN" />
+}
 ```
 
-The 'Threshold' value attribute of the 'Logging' element can be any of the standard Log4Net entries: ALERT, ALL, CRITICAL, DEBUG, EMERGENCY, ERROR, FATAL, FINE, FINER, FINEST, INFO, NOTICE, OFF, SEVERE, TRACE, VERBOSE, and WARN. Make sure you use all caps for these entries.
+Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
 
-**NOTE** : If you set this value in code, the configuration value is ignored.
+**IMPORTANT** : While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
 
-The production profile only logs to a file, unless you are running within Visual Studio. See
-[Profiles](profiles-for-nservicebus-host.md) for more detail.
+See the [profiles for nservicebus host](profiles-for-nservicebus-host.md) for more information.
