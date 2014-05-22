@@ -6,12 +6,13 @@ tags: [Platform, Installation]
 
 ## Download
 
-clickonce download link
-`https://particulartest.blob.core.windows.net/platforminstaller/PlatformInstaller.application`
+- [PlatformInstaller Clickonce download link](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
+
+**NOTE:** The platform Installer is recommended for use in development environments. For testing and production environments it is recommended you use the relevant Chocolatey commands, PowerShell cmdlets and NuGet packages.
 
 ## Dependencies 
 
-* [ClickOnce](https://msdn.microsoft.com/clickonce)
+* ClickOnce
 * [.net 4.5](http://www.microsoft.com/en-au/download/details.aspx?id=40779) (will be installed as part of the ClickOnce deployment)
 * [Chocolatey](http://chocolatey.org/) (version 0.9.8.23 or higher) 
 
@@ -43,7 +44,7 @@ The equivalent Chocolatey commands are
     cinst NServicebus.Dtc.install
     cinst NServicebus.PerfCounters.install
     cinst NServicebus.Msmq.install
-    cinst RavenDB -InstallArguments '/quiet /log {0} /msicl RAVEN_TARGET_ENVIRONMENT=DEVELOPMENT /msicl TARGETDIR=C:\ /msicl INSTALLFOLDER=C:\RavenDB /msicl RAVEN_INSTALLATION_TYPE=SERVICE /msicl REMOVE=IIS /msicl ADDLOCAL=Service'
+    cinst NServiceBus.RavenDB.install
 
 
 ### ServiceMatrix
@@ -95,3 +96,9 @@ See [Installing Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Instal
 
 * [Troubleshooting ClickOnce Deployments](http://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
 * [ClickOnce forum](http://social.msdn.microsoft.com/Forums/windows/en-US/home?forum=winformssetup)
+
+
+
+### FAQ
+
+* If you're having issues with connectivity please see this post on how to set Chocolatey and NuGet up behind a proxy: http://escapologist.wordpress.com/2013/02/27/nuget-and-chocolatey-behind-a-proxy/

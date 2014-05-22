@@ -24,8 +24,7 @@ summary: NServiceBus Documentation Table of Contents
 - [NServiceBus Step by Step Guide](NServiceBus-Step-by-Step-Guide)
 - [NServiceBus Step by Step Guide Fault Tolerance Code First](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first)
 - [NServiceBus Step by Step Publish Subscribe Communication Code First](nservicebus-step-by-step-publish-subscribe-communication-code-first)
-- [Getting Started Publish Subscribe Communication](getting-started---publish-subscribe-communication)
-- [Getting Started Fault Tolerance](getting-started---fault-tolerance)
+- [Getting Started Fault Tolerance](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first)
 - [Architectural Principles](architectural-principles)
 - [Transactions Message Processing](transactions-message-processing)
 - [Building NServiceBus from Source Files](building-nservicebus-from-source-files)
@@ -63,6 +62,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Second Level Retries](second-level-retries)
 - [NServiceBus Installers](nservicebus-installers)
 - [Managing NServiceBus Using PowerShell](managing-nservicebus-using-powershell)
+- [NServiceBus Connection String Samples](connection-strings-samples)
 
 ## Hosting
 - [The NServiceBus Host](the-nservicebus-host)
@@ -70,6 +70,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Profiles for NServiceBus Host](profiles-for-nservicebus-host)
 - [More on Profiles](more-on-profiles)
 - [NServiceBus 32 Bit X86 Host Process](nservicebus-32-bit-x86-host-process)
+- [Hosting NServiceBus in Windows Azure](hosting-nservicebus-in-windows-azure)
 
 ## Management and Monitoring
 - [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints)
@@ -115,7 +116,7 @@ summary: NServiceBus Documentation Table of Contents
 - [In a Distributor Scenario What Happens to the Message If a Worker Goes Down](in-a-distributor-scenario-what-happens-to-the-message-if-a-worker-goes-down)
 - [No Endpoint Configuration Found in Scanned Assemblies Exception](no-endpoint-configuration-found-in-scanned-assemblies-exception)
 - [DtcPing Warning the Cid Values for Both Test Machines Are the Same](dtcping-warning-the-cid-values-for-both-test-machines-are-the-same)
-- [Why You Can T Use NLB with MSMQ](why-you-can-t-use-nlb-with-msmq)
+- [Why You Can't Use NLB with MSMQ](why-you-can-t-use-nlb-with-msmq)
 - [Configuring AWS for NServiceBus](configuring-aws-for-nservicebus)
 - [Licensing and Distribution](licensing-and-distribution)
 - [How to Debug RavenDb Through Fiddler Using NServiceBus](how-to-debug-ravendb-through-fiddler-using-nservicebus)
@@ -127,4 +128,3 @@ summary: NServiceBus Documentation Table of Contents
 - [Preparing Your Machine to Run NServiceBus](preparing-your-machine-to-run-nservicebus)
 - [Running NServiceBus on Windows](running-nservicebus-on-windows)
 - [Licensing ServiceMatrix V2.0](licensing-servicematrix-v2.0)
-- [How to Install Your License File ServiceInsight](how-to-install-your-license-file-serviceinsight)

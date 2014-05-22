@@ -12,7 +12,7 @@ To tell NServiceBus to use RavenDB for persistence is as easy as calling `Config
 
 -   If no master node is configured it assumes that a RavenDB server is running at `http://localhost:8080`, the default URL for RavenDB.
 -   If a master node is configured, the URL is: `http://{masternode}/:8080`.
--   If a connection string named "NServiceBus.Persistence" is found, the value of the `connectionString` attribute is used.
+-   If a connection string named "NServiceBus/Persistence" is found, the value of the `connectionString` attribute is used.
 
 This gives you full control over which RavenDB server your endpoint uses.
 

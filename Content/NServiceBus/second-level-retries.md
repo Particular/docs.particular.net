@@ -2,9 +2,9 @@
 title: Second-Level Retries
 summary: With SLR, the message causing the exception is instantly retried via a retries queue instead of an error queue.
 tags:
-- SLR
+- Second Level Retry 
 - Error Handling
-- Exception
+- Exceptions
 - Automatic retries
 ---
 

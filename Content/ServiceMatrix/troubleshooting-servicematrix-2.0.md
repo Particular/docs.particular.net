@@ -32,6 +32,16 @@ If you completed the uninstall and your system still shows ServiceMatrix as inst
 - Restart your machine.  This can clear residual issues.
 - Try using the Microsoft [FixIt](#using-the-microsoft-fixit-tool) tool described below. 
 
+### Uninstalling ServiceMatrix after installing with the Platform Installer
+
+If you have installed ServiceMatrix using the [Platform Installer](/Platform/Installer), you can uninstall ServiceMatrix by performing the following actions:
+
+* Open a PowerShell command line 
+* Execute the following command: `cuninst ServiceMatrix.Vs2012.install`
+
+Alternatively, you can delete the installation ServiceMatrix installation foldr under the Chocolatey folder (`c:/chocolatey/lib`).
+
+
 ### Manually Remove The Registry Keys
 **Warning**: Only advanced users should edit the registry keys.  If none of the options above work you can try locating and removing the keys from the registry manually. Launch the registry editor by opening the run prompt (press the window button and 'R') and typing [regedit](images/servicematrix-runregedit.png "Running Regedit").  Inside the registry editor, navigate the tree on the left to locate the keys indicated below for your operating system and remove them.
 

@@ -12,7 +12,7 @@ This article relates to ServiceMatrix v1.0 (formerly NServiceBus Studio), NServi
 1. [Durable Messaging](#durable-messaging)
 2. [Fault Tolerance](#fault-tolerance)
 3. [Retries,Errors and Auditing](#retries-errors-and-auditing)
-4. [Next Steps](next-steps)
+4. [Next Steps](#next-steps)
 
 ##Durable Messaging
 In [the previous section](getting-started-creating-a-new-project-servicematrix-1.0.md) you saw how a web application can send messages to a console application. Now, see how messaging can get past all sorts of failure scenarios:

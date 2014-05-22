@@ -2,7 +2,7 @@
 title: Load Balancing with the Distributor
 summary: The distributor maintains all the characteristics of NServiceBus but is designed never to overwhelm any of the worker nodes.
 tags:
-- Scaling out
+- Scalability
 - Distributor
 ---
 
@@ -15,7 +15,7 @@ When to use it?
 
 Scaling out (with or without a distributor) is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](monitoring-nservicebus-endpoints.md) on the endpoint and when you have the need, add in the distributor. Scaling out using the distributor when needed is made easy by not having to change code, just starting the same endpoint in distributor and worker profiles and this article explains how.
 
-The distributor is applicable only when using Msmq as the transport for exchanging messages. NServiceBus uses MSMQ as the default transport. The distributor is not required when using other brokered transports like SqlServer, RabbitMQ, ActiveMQ, since they share the same queue, even if there are multiple instances of the endpoints running. NServiceBus will ensure that only one of these instances of that endpoint will process that message in this case.
+The distributor is applicable only when using Msmq as the transport for exchanging messages. NServiceBus uses MSMQ as the default transport. The distributor is not required when using other brokered transports like SqlServer and RabbitMQ, since they share the same queue, even if there are multiple instances of the endpoints running. NServiceBus will ensure that only one of these instances of that endpoint will process that message in this case.
 
 Why use it?
 -----------
@@ -105,7 +105,7 @@ Configure the name of the master node server as shown in this app.config example
 <configuration>
   <configSections>
     <!-- Other sections go here -->
-    <section name="MasterNodeConfig" type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Core" />
+    <section name="MasterNodeConfig" type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Distributor.MSMQ" />
   </configSections>
   <!-- Other config options go here -->
   <MasterNodeConfig Node="MachineWhereDistributorRuns"/>
@@ -167,10 +167,6 @@ If the distributor goes down, even if its worker nodes remain running, they do n
 
 Since the distributor does not do CPU or memory intensive work, you can often put several distributor processes on the same clustered server. Be aware that the network IO may end up being the bottleneck for the distributor, so take into account message sizes and throughput when sizing your infrastructure.
 
-Licensing and distribution
---------------------------
-
-Basic [licensing](licensing-and-distribution.md) restricts the number of worker nodes to two.
 
 Next steps
 ----------

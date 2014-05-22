@@ -74,7 +74,8 @@
           "NServiceBus/scheduling-with-nservicebus",
           "NServiceBus/second-level-retries",
           "NServiceBus/nservicebus-installers",
-          "NServiceBus/managing-nservicebus-using-powershell"
+          "NServiceBus/managing-nservicebus-using-powershell",
+          "NServiceBus/connection-strings-samples"
         ]
       },
       {
@@ -153,8 +154,7 @@
           "NServiceBus/license-management",
           "NServiceBus/preparing-your-machine-to-run-nservicebus",
           "NServiceBus/running-nservicebus-on-windows",
-          "NServiceBus/licensing-servicematrix-v2.0",
-          "NServiceBus/how-to-install-your-license-file-serviceinsight"
+          "NServiceBus/licensing-servicematrix-v2.0"
         ]
       },
       {
@@ -174,20 +174,6 @@
           "NServiceBus/nservicebus-message-mutators-sample",
           "NServiceBus/attachments-databus-sample",
           "NServiceBus/windows-azure-transport"
-        ]
-      }
-    ]
-  },
-  {
-    "Name": "ServiceInsight",
-    "Topics": [
-      {
-        "Name": "getting-started",
-        "Title": "Getting Started",
-        "Articles": [
-          "ServiceInsight/getting-started-overview",
-          "ServiceInsight/application-invocation",
-          "ServiceInsight/how-logging-works"
         ]
       }
     ]
@@ -234,34 +220,72 @@
     ]
   },
   {
-    "Name": "ServiceControl",
+    "Name": "ServiceInsight",
     "Topics": [
       {
-        "Name": "configuration",
-        "Title": "Configuration",
+        "Name": "getting-started",
+        "Title": "Getting Started",
         "Articles": [
-          "ServiceControl/multi-transport-support",
-          "ServiceControl/setting-custom-hostname",
-          "ServiceControl/troubleshooting",
-	  "ServiceControl/configure-ravendb-location",
-	  "ServiceControl/customize-name-and-description",
-	  "ServiceControl/how-purge-expired-data",
-	  "ServiceControl/setting-custom-hostname",
-	  "ServiceControl/setting-custom-log-location",
-	  "ServiceControl/use-ravendb-studio"
+          "ServiceInsight/getting-started-overview",
+          "ServiceInsight/application-invocation",
+          "ServiceInsight/how-logging-works"
         ]
       }
     ]
   },
   {
     "Name": "ServicePulse",
-    "Topics": [{
+    "Topics": 
+    [
+      {
+        "Name": "introduction",
+        "Title": "Introduction",
+        "Articles": 
+        [
+          "ServicePulse/intro-endpoints-heartbeats",
+          "ServicePulse/intro-failed-messages",
+          "ServicePulse/intro-endpoints-custom-checks"
+        ]
+      },
+      {
         "Name": "configuration",
         "Title": "Configuration",
-        "Articles": [
+        "Articles": 
+        [
           "ServicePulse/how-to-configure-endpoints-for-monitoring",
           "ServicePulse/how-to-develop-custom-checks",
           "ServicePulse/troubleshooting"
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "ServiceControl",
+    "Topics": [
+      {
+        "Name": "configuration",
+        "Title": "Configuration",
+        "Articles": [
+          "ServiceControl/creating-config-file",
+          "ServiceControl/multi-transport-support",
+	  "ServiceControl/configure-ravendb-location",
+	  "ServiceControl/customize-name-and-description",
+	  "ServiceControl/setting-custom-hostname",
+	  "ServiceControl/setting-custom-log-location"
+        ]
+      },{
+        "Name": "management",
+        "Title": "Management",
+        "Articles": [
+          "ServiceControl/how-purge-expired-data",
+	  "ServiceControl/use-ravendb-studio",
+          "ServiceControl/backup-sc-database"
+        ]
+      },{
+        "Name": "troubleshooting",
+        "Title": "Troubleshooting",
+        "Articles": [
+          "ServiceControl/troubleshooting"
         ]
       }
     ]
