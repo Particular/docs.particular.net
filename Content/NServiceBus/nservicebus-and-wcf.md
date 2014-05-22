@@ -38,4 +38,4 @@ You can expose your NServiceBus endpoints as WCF services with as little as one 
 
     public class MyService : NServiceBus.WcfService { }
 
-With NServiceBus, you get access to the features you need from WCF, such as interoperability, without giving up the reliability and scalability of messaging. See how easy publish/subscribe messaging can be with NServiceBus: [download now](http://www.particular.net/downloads).
+With NServiceBus, you get access to the features you need from WCF, such as interoperability, without giving up the reliability and scalability of messaging.
