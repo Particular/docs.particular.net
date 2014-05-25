@@ -18,11 +18,11 @@ If you're ready to learn more, this article reviews how to download and install 
 4.  [Next steps](#next-steps)
 
 ## Prerequisites
-ServiceMatrix version 2.X is a Visual Studio 2012 extension.  It requires that you have Visual Studio 2012 on your system prior to installation.  It is currently not compatible with Visual Studio 2013. 
+ServiceMatrix is a Visual Studio extension.  Version 2.1 and beyond require that you have Visual Studio 2012 or 2013 on your system prior to installation. 
   
-If you are using Visual Studio 2010, ServiceMatrix 1.0 will be detected and installed. Version 1.0 builds solutions through a tree view in the solution builder interface.  New features like the drawing canvas are only available in V2.0 and later and will not be added to older versions. 
+If you are using Visual Studio 2010, ServiceMatrix 1.0 will be detected and installed. Version 1.0 builds solutions through a tree view in the solution builder interface. New features like the drawing canvas are only available in V2.X.  Version 1.0 will no longer be updated with new features.
 
-If you have multiple versions of Visual Studio installed, you will have to choose which you would like to have the installation of ServiceMatrix target.  Only one instance of Visual Studio may have ServiceMatrix installed on a particular system. 
+If you run both Visual Studio 2013 and 2012, you may install the proper version in each version on the same system.  If you have Visual Studio 2010 installed along with Visual Studion 2012 or 2013, you must choose to install ServiceMatrix for one platform or the other.
 
 ## Installing ServiceMatrix
 
@@ -34,9 +34,9 @@ Please refer to the [Platform Installer](/Platform/Installer) for detailed infor
 
 ### Installing the ServiceMatrix Visual Studio extension (VSIX)
 
-1. Download the latest version of ServiceMatrix from [Particular.net](http://particular.net/downloads).   
+1. Download the latest version of ServiceMatrix for your version of Visual Studio from [Particular.net](http://particular.net/downloads). 
 2. Save the .vsix file in your favorite location.
-3. Locate and run the ServiceMatrix installer VSIX file you downloadeded.  Since ServiceMatrix is an extension to Visual Studio, it's a good idea to close Visual Studio. If you don't you will be prompted later. 
+3. Locate and run the ServiceMatrix installer VSIX file you downloaded.  Since ServiceMatrix is an extension to Visual Studio, it's a good idea to close Visual Studio. If you don't you will be prompted later. 
 4. If you already have ServiceMatrix installed and are upgrading from a Beta version, you will get a [warning](images/servicematrix-installer-existingversion.png "Previous Version Warning") that you must uninstall the previous version. Uninstall using the normal procedure through `Control Panel\Programs\Programs and Features` in Windows.
 
 ## The Visual Studio Extension
