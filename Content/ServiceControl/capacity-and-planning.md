@@ -13,7 +13,7 @@ The primary job of ServiceControl is to monitor error and audit queues reading m
 
 ServiceControl stores its data in a RavenDB Embedded instance, whose storage location on disk can be [customized](/ServiceControl/configure-ravendb-location).
 
-The storage size that ServiceControl requires depends on the production load and is directly related to the amount of messages that flow into the system. Since ServiceControl is intended to be a recent storage to support ServicePulse and ServiceInsight it is setup with a [default expiration policy](/ServiceControl/how-purge-expired-data) that deletes old messages after a predefined amount of time.
+The storage size that ServiceControl requires depends on the production load and is directly related to the amount and size of messages that flow into the system. Since ServiceControl is intended to be a recent storage to support ServicePulse and ServiceInsight it is setup with a [default expiration policy](/ServiceControl/how-purge-expired-data) that deletes old messages after a predefined amount of time.
 
 The expiration policy can be customized to increase the amount of time data is retained impacting on the storage requirements of ServiceControl.
 
