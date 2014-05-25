@@ -37,7 +37,7 @@ If you completed the uninstall and your system still shows ServiceMatrix as inst
 If you have installed ServiceMatrix using the [Platform Installer](/Platform/Installer), you can uninstall ServiceMatrix by performing the following actions:
 
 * Open a PowerShell command line 
-* Execute the following command: `cuninst ServiceMatrix.Vs2012.install`
+* Execute the following command: `cuninst ServiceMatrix.Vs2012.install` or `cuninst ServiceMatrix.Vs2013.install` for 2013
 
 Alternatively, you can delete the installation ServiceMatrix installation foldr under the Chocolatey folder (`c:/chocolatey/lib`).
 
@@ -55,7 +55,11 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Particula
 ## Access the ServiceMatrix Log File
 In case of any errors or exception the ServiceMatrix log file may contain information about the cause.  The log file is located in the ServiceMatrix extension installation location.  By default the location is:
 ```
+//Visual Studio 2012
 %localappdata%/Microsoft/VisualStudio/11.0/Extensions/{extensions-unique-id}/[MachineName]-[UserName].logging
+
+//Visual Studio 2013
+%localappdata%/Microsoft/VisualStudio/12.0/Extensions/{extensions-unique-id}/[MachineName]-[UserName].logging
 ```
 
 ## Using the Microsoft FixIt tool

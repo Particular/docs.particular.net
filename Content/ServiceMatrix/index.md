@@ -3,7 +3,7 @@ title: ServiceMatrix Documentation
 summary: ServiceMatrix Documentation Table of Contents
 ---
 
-##ServiceMatrix 2.0 for Visual Studio 2012
+##ServiceMatrix 2.X for Visual Studio 2012 & 2013
 
 ###Getting Started
 - [Installing ServiceMatrix](installing-servicematrix-2.0)
@@ -21,11 +21,6 @@ summary: ServiceMatrix Documentation Table of Contents
 
 ###Troubleshooting
 - [Troubleshooting Installation](installing-servicematrix-2.0)
-
-
-##ServiceMatrix for Visual Studio 2013
-Coming Soon!
-
 
 ##ServiceMatrix 1.0 for Visual Studio 2010
 - [Getting Started with ServiceMatrix](getting-started-creating-a-new-project-servicematrix-1.0)

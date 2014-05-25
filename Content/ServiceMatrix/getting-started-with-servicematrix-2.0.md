@@ -7,7 +7,7 @@ tags:
 - Visual Studio
 ---
 
-This step-by-step guide to the Particular Service Platform walks you through the creation of a send-and-receive NServiceBus distributed application using ServiceMatrix V2.0 for Visual Studio 2012, using the following steps:
+This step-by-step guide to the Particular Service Platform walks you through the creation of a send-and-receive NServiceBus distributed application using ServiceMatrix V2.X for Visual Studio 2012 & 2013, using the following steps:
 
 1.  [Installing ServiceMatrix](#installing-servicematrix-for-visual-studio-2012)
 2.  [Creating a New Project](#creating-a-new-project)
@@ -20,21 +20,21 @@ This step-by-step guide to the Particular Service Platform walks you through the
 7.  [Using ServiceInsight](#using-serviceinsight)
 9.  [Next Steps](#next-steps)
 
-The example demonstrates the integration of an online sales web store with a backend system using the request-response pattern and NServiceBus.
+The example demonstrates the integration of an online sales web store with a back-end system using the request-response pattern and NServiceBus.
 
-## Installing ServiceMatrix for Visual Studio 2012
+## Installing ServiceMatrix for Visual Studio
 
 ServiceMatrix is a Visual Studio integrated development environment for developing the NServiceBus distributed system.
 
-This document reviews the use of ServiceMatrix for Visual Studio 2012, assuming ServiceMatrix has already been installed.
+This document reviews the use of ServiceMatrix for Visual Studio, assuming ServiceMatrix has already been installed.
 
 ServiceMatrix can be installed using the Particular Platform Installer. To download and install ServiceMatrix separately, [follow the instructions](installing-servicematrix-2.0.md "Installing ServiceMatrix").
 
 For this example you need to meet the following system requirements:
-- Visual Studio 2012
+- Visual Studio 2012 or 2013
 - ASP.NET MVC 4 ([http://www.asp.net/downloads](http://www.asp.net/downloads))
 
-**NOTE**: If you have both Visual Studio 2010 and Visual Studio 2012 installed on your machine, you can install ServiceMatrix for one Visual Studio version only. This document reviews the use of ServiceMatrix V2.0 for Visual Studio 2012.
+**NOTE**: If you have both Visual Studio 2010 and Visual Studio 2012/13 installed on your machine, you can install ServiceMatrix for one Visual Studio version only. This document reviews the use of ServiceMatrix V2.0 for Visual Studio 2012 or 2013.
 
 ## Creating a New Project
 To get started with ServiceMatrix, create a new project.
