@@ -242,6 +242,7 @@
         "Title": "Introduction",
         "Articles": 
         [
+          "ServicePulse/monitoring-nservicebus-endpoints",
           "ServicePulse/intro-endpoints-heartbeats",
           "ServicePulse/intro-failed-messages",
           "ServicePulse/intro-endpoints-custom-checks"
