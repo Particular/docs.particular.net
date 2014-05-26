@@ -25,6 +25,11 @@ tags:
 1. Verify that firewall settings do not block access to the ServiceControl port (default: 33333) and that the default URI is accessible and responsive from a browser / HTTP client from the machine on which ServicePulse or ServiceInsight is trying to connect to ServiceControl
 
 
+### Unable to start Particular.ServiceControl as a standard user
+
+1. If the Particular.ServiceControl fails to start and it is set to run with a standard user account (no ellevated or specific privileges) this may be due to missing access rights to storage directory in which the internal database is located (by default, this is the `C:\ProgramData\Particular` directory
+2. To fix this issue, grant the user read/write access to the `C:\ProgramData\Particular` location
+
 ### Particular.ServiceControl windows service fails to start
 
 * There are various reasons that can cause the Particular.ServiceControl windows service fail to start. To narrow down the possible cause, review the ServiceControl logs files located in:
