@@ -28,7 +28,14 @@ tags:
 ### Unable to start Particular.ServiceControl as a standard user
 
 1. If the Particular.ServiceControl fails to start and it is set to run with a standard user account (no elevated or specific privileges) this may be due to missing access rights to storage directory in which the internal database is located (by default, this is the `C:\ProgramData\Particular` directory
-2. To fix this issue, grant the user read/write access to the `C:\ProgramData\Particular` location
+2. To fix this issue:
+   * Grant the user read/write access to the `C:\ProgramData\Particular` location
+   * Grant the user access rights to run the service listening on the selected domain and port number by running the following commands (replacing the default URL and USERS parameters):
+   
+`
+netsh http delete urlacl url=http://localhost:33333/api/
+netsh http add urlacl url=http://localhost:33333/api/ users=<accountname> Listen=yes
+`
 
 ### Particular.ServiceControl windows service fails to start
 
