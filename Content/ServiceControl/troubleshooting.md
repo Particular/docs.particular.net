@@ -27,7 +27,7 @@ tags:
 
 ### Unable to start Particular.ServiceControl as a standard user
 
-1. If the Particular.ServiceControl fails to start and it is set to run with a standard user account (no ellevated or specific privileges) this may be due to missing access rights to storage directory in which the internal database is located (by default, this is the `C:\ProgramData\Particular` directory
+1. If the Particular.ServiceControl fails to start and it is set to run with a standard user account (no elevated or specific privileges) this may be due to missing access rights to storage directory in which the internal database is located (by default, this is the `C:\ProgramData\Particular` directory
 2. To fix this issue, grant the user read/write access to the `C:\ProgramData\Particular` location
 
 ### Particular.ServiceControl windows service fails to start
