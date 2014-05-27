@@ -32,10 +32,10 @@ tags:
    * Grant the user read/write access to the `C:\ProgramData\Particular` location
    * Grant the user access rights to run the service listening on the selected domain and port number by running the following commands (replacing the default URL and USERS parameters):
    
-`
+```
 netsh http delete urlacl url=http://localhost:33333/api/
 netsh http add urlacl url=http://localhost:33333/api/ users=<accountname> Listen=yes
-`
+```
 
 ### Particular.ServiceControl windows service fails to start
 
