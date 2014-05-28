@@ -19,7 +19,7 @@ tags:
 * Make sure that the endpoint references NServiceBus 4.0.0 or later
 * Make sure auditing is turned on for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl
 
-###ASP.Net applications heartbeat failure
+###ASP.NET applications heartbeat failure
 
 ####Scenario
 	
