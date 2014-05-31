@@ -11,13 +11,15 @@ The primary job of ServiceControl is to monitor error and audit queues reading m
 
 ### ServiceControl storage
 
-ServiceControl stores its data in a RavenDB Embedded instance, whose storage location on disk can be [customized](/ServiceControl/configure-ravendb-location).
+ServiceControl stores its data in a RavenDB Embedded instance, whose storage location on disk can be [customized](/ServiceControl/configure-ravendb-location). The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. It is recommended that the database is stored in a high-performance storage device that is connected to the SC machine with a high-throughput connection.
 
-The storage size that ServiceControl requires depends on the production load and is directly related to the amount and size of messages that flow into the system. Since ServiceControl is intended to be a recent storage to support ServicePulse and ServiceInsight it is setup with a [default expiration policy](/ServiceControl/how-purge-expired-data) that deletes old messages after a predefined amount of time.
+The storage size that ServiceControl requires depends on the production load and is directly related to the amount and size of messages that flow into the system.
 
-The expiration policy can be customized to increase the amount of time data is retained impacting on the storage requirements of ServiceControl.
+Since ServiceControl is intended to be a recent-history storage to support ServicePulse and ServiceInsight monitoring and debugging activity (as opposed to being a long-term data archiving system) it is setup with a [default expiration policy](/ServiceControl/how-purge-expired-data) that deletes old messages after a predefined amount of time.
 
-If the requirement is to store the data in long term archiving storage, or in a specialized BI database, it can be easily done:
+The expiration policy can be [customized](/ServiceControl/how-purge-expired-data) to increase the amount of time data is retained impacting on the storage requirements of ServiceControl.
+
+If the requirement is to gain access to raw message data in order to store it in long term archiving storage or in a specialized BI database, it can be easily done:
 
 * *by querying the ServiceControl HTTP API*: This will provide a JSON stream of audited messages (headers, body and context) that can be imported into another database for various purposes;
 
@@ -26,9 +28,9 @@ If the requirement is to store the data in long term archiving storage, or in a 
 
 **NOTE**
 
-* The maximum supported size of a RavenDB database is 16TB. 
-* Failed message *never* expires and will be retained undefinetely in the ServiceControl database;
+* The maximum supported size of a RavenDB database is 16TB.
+* Failed message *never* expires and will be retained indefinitely in the ServiceControl database;
 
 ### ServiceControl throughput
 
-ServiceControl is not expected to provide real time data on the other hand what ServiceControl guarantees, thanks to the messaging infrastructure, is that data will be audited and stored in the ServiceControl database. The delay after a message that flew into the system is available in ServiceControl is impacted by the current throughput that depends on the avarage load of the entire system. What we can expect by ServiceControl is to be able to handle, on avarage, 800 messages per second.
+ServiceControl is not intended to be a real time monitoring system, ServiceControl guarantees that messages will be audited and stored in the its database. The delay after a message that flew into the system is available in ServiceControl is impacted by the current throughput that depends on the avarage load of the entire system; the throughput may also vary depending on the chosen transport.
