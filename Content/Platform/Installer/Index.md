@@ -46,8 +46,14 @@ The equivalent Chocolatey commands are
     cinst NServicebus.Msmq.install
     cinst NServiceBus.RavenDB.install
 
+### ServiceMatrix for Visual Studio 2013
 
-### ServiceMatrix
+Installs the [ServiceMatrix for VS2013 Chocolatey Package](http://chocolatey.org/packages/ServiceMatrix.VS2013.install). The equivalent VSIX can be downloaded from the [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).
+
+    cinst ServiceMatrix.VS2013.install
+
+
+### ServiceMatrix for Visual Studio 2012
 
 Installs the [ServiceMatrix for VS2012 Chocolatey Package](http://chocolatey.org/packages/ServiceMatrix.VS2012.install). The equivalent VSIX can be downloaded from the [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).
 
