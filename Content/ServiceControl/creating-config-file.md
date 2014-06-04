@@ -57,7 +57,7 @@ To override these default settings:
 
   The period that defines whether an endpoint is considered alive or not. Default: `00:00:40` (40 secs)
 
-* `ServiceControl/ForwardAuditMessages` bool (`true`/`false`)
+* `ServiceControl/ForwardAuditMessages` (bool `true`/`false`)
 
   Use this setting to configure whether processed audit messages are forwarded to anothe queue or not. Default `false`
 
@@ -73,7 +73,7 @@ To override these default settings:
 
   The path where the internal RavenDB is located. Default `%SystemDrive\ProgramData\Particular\ServiceControl\`
 
-* `ServiceControl/TransportType` string (.Net type)
+* `ServiceControl/TransportType` (string .Net type)
 
   The transport type to run ServiceControl with. Default `NServiceBus.Msmq, NServiceBus.Core`
 
