@@ -47,11 +47,11 @@ To override these default settings:
 
 * `ServiceControl/Hostname` (string)
 
-  The hostname to bind the embedded http server to, modify if you want to bind to a specific hostname, eg. sc.mydomain.com. Default: localhost
+  The hostname to bind the embedded http server to, modify if you want to bind to a specific hostname, eg. sc.mydomain.com. Default: `localhost`
 
 * `ServiceControl/VirtualDirectory` (string)
 
-  The virtual directory to bind the embedded http server to, modify if you want to bind to a specific virtual directiory. Default: empty
+  The virtual directory to bind the embedded http server to, modify if you want to bind to a specific virtual directiory. Default: `empty`
 
 * `ServiceControl/HeartbeatGracePeriod` (timespan)
 
