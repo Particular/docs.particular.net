@@ -37,39 +37,39 @@ To override these default settings:
 
 ### Configuration Options
 
-* `ServiceControl/LogPath` string
+* `ServiceControl/LogPath` (string)
 
   The path for the ServiceControl logs. Default: `%LOCALAPPDATA%\Particular\ServiceControl\logs`
 
-* `ServiceControl/Port` int
+* `ServiceControl/Port` (int)
 
   The port to bind the embedded http server. Default: `33333`.
 
-* `ServiceControl/Hostname` string
+* `ServiceControl/Hostname` (string)
 
   The hostname to bind the embedded http server to, modify if you want to bind to a specific hostname, eg. sc.mydomain.com. Default: localhost
 
-* `ServiceControl/VirtualDirectory` string
+* `ServiceControl/VirtualDirectory` (string)
 
   The virtual directory to bind the embedded http server to, modify if you want to bind to a specific virtual directiory. Default: empty
 
-* `ServiceControl/HeartbeatGracePeriod` timespan
+* `ServiceControl/HeartbeatGracePeriod` (timespan)
 
   The period that defines whether an endpoint is considered alive or not. Default: `00:00:40` (40 secs)
 
 * `ServiceControl/ForwardAuditMessages` bool (`true`/`false`)
 
-  Use this setting to configure whether processed audit messages are forwarded to anothe queue or not. Default false
+  Use this setting to configure whether processed audit messages are forwarded to anothe queue or not. Default `false`
 
-* `ServiceControl/ExpirationProcessTimerInSeconds` int 
+* `ServiceControl/ExpirationProcessTimerInSeconds` (int) 
 
   The number of seconds to wait between checking for expired messages, Default `60` (1 minute)
 
-* `ServiceControl/HoursToKeepMessagesBeforeExpiring` int
+* `ServiceControl/HoursToKeepMessagesBeforeExpiring` (int)
 
   The number of hours to keep a message for before it is deleted, Default `720` (30 days)
 
-* `ServiceControl/DbPath` string
+* `ServiceControl/DbPath` (string)
 
   The path where the internal RavenDB is located. Default `%SystemDrive\ProgramData\Particular\ServiceControl\`
 
@@ -77,22 +77,22 @@ To override these default settings:
 
   The transport type to run ServiceControl with. Default `NServiceBus.Msmq, NServiceBus.Core`
 
-* `NServiceBus/Transport` string
+* `NServiceBus/Transport` (string)
 
   The connection string for the transport.
 
-* `ServiceBus/AuditQueue` string
+* `ServiceBus/AuditQueue` (string)
 
   The audit queue name. Default `audit`
 
-* `ServiceBus/ErrorQueue` string
+* `ServiceBus/ErrorQueue` (string)
 
   The error queue name. Default `error`
 
-* `ServiceBus/ErrorLogQueue` string
+* `ServiceBus/ErrorLogQueue` (string)
 
   The error queue name to use for forwarding error messages. Default `<ErrorQueue>.log`
 
-* `ServiceBus/AuditLogQueue` string
+* `ServiceBus/AuditLogQueue` (string)
 
   The audit queue name to use for forwarding audit messages. This only works if `ServiceControl/ForwardAuditMessages` is true. Default `<AuditQueue>.log`
