@@ -66,7 +66,7 @@ For more advanced logging it is recommended that you utilize one of the many mat
 
 There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) available that allows for simple integration of NServiceBus and [NLog](http://nlog-project.org/).
 
-    Install-Package NServiceBus.Log4Net
+    Install-Package NServiceBus.NLog
 
 Then call 
 
