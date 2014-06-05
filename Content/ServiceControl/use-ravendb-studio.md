@@ -1,5 +1,5 @@
 ---
-title: How to Directly Access ServiceControl Data via RavenDB Studio
+title: Exposing Data via RavenDB Studio
 summary: How to configure ServiceControl to allow direct access to the embedded RavenDB instance.
 tags:
 - ServiceControl
