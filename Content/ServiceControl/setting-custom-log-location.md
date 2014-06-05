@@ -1,5 +1,5 @@
 ---
-title: Configuring ServiceControl Log Location
+title: Configuring the Log Location
 summary: How to configure ServiceControl to store logs in a different location
 tags:
 - ServiceControl
