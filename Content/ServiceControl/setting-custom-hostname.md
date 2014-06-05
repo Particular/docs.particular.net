@@ -1,5 +1,5 @@
 ---
-title: Setting a Custom Hostname for ServiceControl
+title: Setting a Custom Hostname
 summary: How to configure ServiceControl to be exposed through a custom hostname and IP port
 tags:
 - ServiceControl
