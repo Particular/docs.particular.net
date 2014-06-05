@@ -1,5 +1,5 @@
 ---
-title: How to Backup the ServiceControl Database
+title: Backup the ServiceControl Data
 summary: How to backup the ServiceControl RavenDB Embedded instance
 tags:
 - ServiceControl
