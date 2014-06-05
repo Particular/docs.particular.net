@@ -1,5 +1,5 @@
 ---
-title: Setting Custom Name and Description Properties for ServiceControl API
+title: Name and Description Properties for the API
 summary: How to configure the default values for the Name and Description properties of the ServiceControl API
 tags:
 - ServiceControl
