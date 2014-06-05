@@ -12,7 +12,7 @@ Configuring auditing
 --------------------
 
 To turn on auditing in V3 and earlier versions, add the attribute
-`ForwardReceivedMessagesTo` to the `UnicastBusConfig` section of an endpoint's configuration file. In V4 there are a couple of ways to turn on auditing. You can do so in the endpoint configuration but it now has its very own configuration element, as shown:
+`ForwardReceivedMessagesTo` to the `UnicastBusConfig` section of an endpoint's configuration file, as shown:
 
 ```XML
 <configSections>
@@ -28,7 +28,18 @@ To turn on auditing in V3 and earlier versions, add the attribute
 
 **Note:** In version 3.X use the ForwardReceivedMessageTo Attribute
 
- V4 also supports setting up the error queue and the audit queue at the machine level in the registry. Use the [Set-NServiceBusLocalMachineSettings](managing-nservicebus-using-powershell.md) PowerShell commandlet to set these values at a machine level. When set at machine level, the setting is not required in the endpoint configuration file for messages to be forwarded to the audit queue.
+In V4, add the `AuditConfig` section to the configuration file, as shown:
+
+```XML
+<configSections>
+    <section name="AuditConfig" type="NServiceBus.Config.AuditConfig, NServiceBus.Core"/>
+</configSections>
+<AuditConfig QueueName="auditqueue@adminmachine"/>
+```
+
+V4 also supports setting up the error queue and the audit queue at the machine level in the registry. Use the [Set-NServiceBusLocalMachineSettings](managing-nservicebus-using-powershell.md) PowerShell commandlet to set these values at a machine level. When set at machine level, the setting is not required in the endpoint configuration file for messages to be forwarded to the audit queue.
+
+N.B. For backwards compatibility, V4 still supports the attribute `ForwardReceivedMessagesTo` on `UnicastBusConfig` section, but you will receive a warning recommending that you upgrade your configuration to use `AuditConfig` section.
 
 NServiceBus then forwards all messages arriving at the given endpoint to the queue called `AuditQueue` on the machine called `AdminMachine`. You can specify any queue on any machine, although only one is supported.
 
