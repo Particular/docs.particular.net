@@ -9,7 +9,7 @@ Particular Software ServicePulse is the new operational monitoring tool for dist
 * .NET Framework 4.5 or later
 * Particular Software ServiceControl 1.0.0
 * Monitored NServiceBus endpoints must use NServiceBus 4.0.0 or higher
-   * (support for earlier releases will be added in a future release)
+   * Support for NServiceBus 3.3.x can be obtained by contacting the [Particular Software](http://particular.net/support) support
 
 ### Installation
 
