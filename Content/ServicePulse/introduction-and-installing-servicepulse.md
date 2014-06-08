@@ -1,3 +1,11 @@
+---
+title: Installing ServicePulse
+summary: Describes how ServicePulse is installed - indepdendently or via the PlatformInstaller - and its basic requirements 
+tags:
+- ServicePulse
+- Installation
+---
+
 ### Introduction
 
 Particular Software ServicePulse is the new operational monitoring tool for distributed applications developed using NServiceBus. 
@@ -7,14 +15,16 @@ Particular Software ServicePulse is the new operational monitoring tool for dist
 ### Prerequisites
 
 * .NET Framework 4.5 or later
-* Particular Software ServiceControl 1.0.0
+* Particular Software ServiceControl 
 * Monitored NServiceBus endpoints must use NServiceBus 4.0.0 or higher
-   * Support for NServiceBus 3.3.x can be obtained by contacting the [Particular Software](http://particular.net/support) support
+   * Support for NServiceBus 3.3.x can be obtained by contacting the [Particular Software support](http://particular.net/support) 
 
 ### Installation
 
-1. Download and install [ServiceControl 1.0.0](https://github.com/Particular/ServiceControl/releases/tag/1.0.0)
-* Download and install ServicePulse 1.0.0
+You can install ServicePulse using the [Particular Service Platform Installer](/platform/installer) (recommended) or independently using the following procedure:
+
+1. Download and install [ServiceControl](https://github.com/Particular/ServiceControl/releases)
+* Download and install ServicePulse
 * The following installation parameters are used by the ServicePulse installer:
    * ServicePulse Instance URI: 
       * Default is [http://localhost:9090](http://localhost:9090)
@@ -22,7 +32,7 @@ Particular Software ServicePulse is the new operational monitoring tool for dist
    * ServiceControl instance URI: 
       * Default is [http://localhost:33333/api/](http://localhost:33333/api/)
       * The URI that will be accessed by ServicePulse web app in order to communicate with the ServiceControl instance
-      * Review [ServiceControl 1.0.0 release notes](https://github.com/Particular/ServiceControl/releases/tag/1.0.0) for more details on installing and configuring ServiceControl for use by ServicePulse
+      * Review [ServiceControl release notes](https://github.com/Particular/ServiceControl/releases) for more details on installing and configuring ServiceControl for use by ServicePulse
 * After accepting the license terms and conditions, click "Install" (installer will require elevated privileges)
 * The installation process performs the following actions:
    * Installs the Windows Service "Particular ServicePulse" which hosts the web application
