@@ -7,6 +7,7 @@ summary: ServicePulse Documentation Table of Contents
 
 ### Introduction
 
+- [Installing ServicePulse](introduction-and-installing-servicepulse)
 - [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints)
 - [Monitoring Endpoints in ServicePulse](intro-endpoints-heartbeats)
 - [Monitoring Failed Messages](intro-failed-messages)
