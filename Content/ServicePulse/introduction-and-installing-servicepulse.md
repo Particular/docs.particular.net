@@ -24,8 +24,8 @@ Particular Software ServicePulse is the new operational monitoring tool for dist
 You can install ServicePulse using the [Particular Service Platform Installer](/platform/installer) (recommended) or independently using the following procedure:
 
 1. Download and install [ServiceControl](https://github.com/Particular/ServiceControl/releases)
-* Download and install ServicePulse
-* The following installation parameters are used by the ServicePulse installer:
+2. Download and install ServicePulse
+3. The following installation parameters are used by the ServicePulse installer:
    * ServicePulse Instance URI: 
       * Default is [http://localhost:9090](http://localhost:9090)
       * This is the localhost address and port that will be used for accessing the ServicePulse web application
@@ -33,11 +33,11 @@ You can install ServicePulse using the [Particular Service Platform Installer](/
       * Default is [http://localhost:33333/api/](http://localhost:33333/api/)
       * The URI that will be accessed by ServicePulse web app in order to communicate with the ServiceControl instance
       * Review [ServiceControl release notes](https://github.com/Particular/ServiceControl/releases) for more details on installing and configuring ServiceControl for use by ServicePulse
-* After accepting the license terms and conditions, click "Install" (installer will require elevated privileges)
-* The installation process performs the following actions:
+4. After accepting the license terms and conditions, click "Install" (installer will require elevated privileges)
+5. The installation process performs the following actions:
    * Installs the Windows Service "Particular ServicePulse" which hosts the web application
    * Open the ServicePulse web application using the default browser
-* After installing ServicePulse, see the following sections to configure your existing endpoints to be monitored via ServicePulse. 
+6. After installing ServicePulse, see the following sections to configure your existing endpoints to be monitored via ServicePulse. 
 
 
 ### Troubleshooting: 
