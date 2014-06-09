@@ -5,6 +5,10 @@ summary: ServiceControl Documentation Table of Contents
 
 ## Table of Contents
 
+### Introduction
+
+- [Customizing ServiceControl Configuration](creating-config-file)
+
 ### Configuration
 
 - [Configuring ServiceControl to use non-MSMQ Transports](multi-transport-support)
