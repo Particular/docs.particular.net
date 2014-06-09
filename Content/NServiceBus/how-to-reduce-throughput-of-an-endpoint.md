@@ -10,6 +10,10 @@ Edit the `TransportConfig` section in the endpoint config file:
 
 
 ```XML
+<configSections>
+    <section name="TransportConfig" type="NServiceBus.Config.TransportConfig, NServiceBus.Core"/>
+</configSections>
+
 <TransportConfig MaximumConcurrencyLevel="5" MaxRetries="2" MaximumMessageThroughputPerSecond="10"/>
 ```
 
