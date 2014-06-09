@@ -39,7 +39,7 @@ To override these default settings:
 
 #### Automatic expiration of messages 
 
-ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](how-purge-expired-data).
+ServiceControl consumes messages from the Audit and Error queues and stores these messages temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](how-purge-expired-data).
 
 #### Consuming messages from Audit & Error queues
 
