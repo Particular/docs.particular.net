@@ -41,6 +41,10 @@ To override these default settings:
 
 ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](how-purge-expired-data).
 
+#### Consuming messages from Audit & Error queues
+
+ServiceControl consumes messages from the audit and error queues, and stores these messages locally in its own embedded database.
+You can configure ServiceControl to forward any consumed messages into alternate queues, so that a copy of any message consumed by ServiceControl is available from these alternate queues. To do so, set the `ServiceBus/ErrorLogQueue` and `ServiceBus/AuditLogQueue` settings.
 
 ### Configuration Options
 
