@@ -35,6 +35,13 @@ To override these default settings:
 </configuration>
 ```
 
+### Configuration Considerations
+
+#### Automatic expiration of messages 
+
+ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](how-purge-expired-data).
+
+
 ### Configuration Options
 
 * `ServiceControl/LogPath` (string)
