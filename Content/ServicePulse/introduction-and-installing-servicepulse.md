@@ -39,6 +39,16 @@ You can install ServicePulse using the [Particular Service Platform Installer](/
    * Open the ServicePulse web application using the default browser
 6. After installing ServicePulse, see the following sections to configure your existing endpoints to be monitored via ServicePulse. 
 
+### Configuring ServicePulse
+
+ServicePulse connects to and relies on ServiceControl as its data source.  
+For details on ServiceControl and ServicePulse configuration options, see: 
+
+* [Configuring ServiceControl](/ServiceControl/creating-config-file)
+* [ServiceControl Guidance](/servicecontrol)
+ 
+**NOTE**: ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](how-purge-expired-data).
+
 
 ### Troubleshooting: 
 
