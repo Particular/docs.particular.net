@@ -37,6 +37,10 @@ To override these default settings:
 
 ### Configuration Considerations
 
+#### Using custom domain names and TCP port number
+
+See [Setting a Custom Hostname](setting-custom-hostname) for guidance and details.
+
 #### Embedded database location and size
 
 ServiceControl uses RavenDB as an embedded database. The database location has significant effect both on ServiceControl throughput (number of read/write operations it can perform) and on the storage capacity (the limiting factor being the available storage on the drive on which the embedded database is located. For more information, see '[Customize RavenDB Embedded Path and Drive](configure-ravendb-location)'.
