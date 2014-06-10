@@ -40,9 +40,9 @@ There are several options for doing do, each may be relevant or not applicable b
 
 #### Limit access to ServiceControl through VPN requirements
 
-Use VPN requirements in order to require authorization when accessins the ServiceControl service, expecially when doing so from outside the internal corporate network. 
+Use VPN requirements in order to require authorization when accessins the ServiceControl service, especially when doing so from outside the internal corporate network. 
 
-This requires administration and logistical support, but also has the advantages of allowing you full control of the authentication and authorization mechanisms based on your corporate policies and tools.      
+This requires administration and logistical support, but also has the advantages of allowing full control of the authentication and authorization mechanisms using existing corporate policies and tools.      
 
 #### Restrict exposure to message body
 
@@ -58,11 +58,7 @@ For more information, see:
 
 For a more fine-grained limitation on message body visibility of specific properties, you can encrypt message properties that are sensitive (e.g. credit card numbers). 
 
-An example of how to set encryption per specific message property can be viewed in the [VideoStore sample](/platform/samples/).
-
-For more information, see:
-
-- [Encryption Sample](/nservicebus/encryption-sample)   
+An example of how to set encryption per specific message property can be viewed in the [VideoStore sample](/platform/samples/) and the [Encryption Sample](/nservicebus/encryption-sample).   
 
 ### Accessing the embedded RavenDB database
 
@@ -70,9 +66,9 @@ ServiceControl uses an embedded RavenDB database to store its data. This databas
 
 By default, the database is located on the same machine as the ServiceControl instance is installed. You can select a different location (either local or network path) for placing the database files. 
 
-Access to the location of the database files enabless access to the database contents, so great care should be taken to make sure that the database location is secure from unauthorized access and tampering.
+Access to the location of the database files enables full access to the database contents, so great care should be taken to make sure that the database location is secure from unauthorized access and tampering.
 
-Similarly, when backing the ServiceControl embedded database make sure the database backup is located in a secure location.
+Similarly, when backing the ServiceControl embedded database, make sure the database backup is located in a secure location.
 
 For more information, see:
 
