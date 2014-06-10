@@ -26,7 +26,7 @@ This applies also to accessing ServiceControl from ServicePulse and ServiceInsig
 
 You can allow ServiceControl to be accessed from other machines by [setting a custom host name and port number](setting-custom-hostname). 
 
-The scope of the access extension allowed by this change depends on the specified custom host name and port number, and various network limitations (e.g. proxy, firewall, DNS) on accessing the specified host and port through which ServiceControl can be accessed.
+The scope of the access extension allowed by this change depends on the specified custom host name and port number. Is also depends on various network limitations (e.g. proxy, firewall, DNS settings) that may limit access the specified ServiceControl host and port.
 
 Note that ServicePulse and ServiceInsight users will need to access the ServiceControl HTTP API using the specified custom host name and port number, so making sure the network rules enable this access should to be considered when specifying the custom host name and port number (as well as when applying various limiting network rules and policies).
 
