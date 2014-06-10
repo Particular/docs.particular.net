@@ -40,7 +40,7 @@ There are two ways to avoid the issue:
 
 In some cases configuring IIS to avoid recycling is not possible (for example, when using Windows Azure WebSites or other scenarios in which the IIS is not fully configurable). In these cases, the recommended approach is the second one. It also has the side benefit of avoiding the "first user after idle time" wake-up response-time hit.
 
-#### Duplicate Endpoints appear in ServicePulse after re-deployment
+### Duplicate Endpoints appear in ServicePulse after re-deployment
 
 This occurs most often when an endpoints is re-deployed or updated to a different installation path (a common procesure by various deployment managers like Octopus etc.)
 
