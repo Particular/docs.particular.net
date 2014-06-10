@@ -42,10 +42,11 @@ In some cases configuring IIS to avoid recycling is not possible (for example, w
 
 ### Duplicate Endpoints appear in ServicePulse after re-deployment
 
-This occurs most often when an endpoints is re-deployed or updated to a different installation path (a common procesure by various deployment managers like Octopus etc.)
+This may occur when an endpoint is re-deployed or updated to a different installation path (a common procedure by various deployment managers like Octopus etc.)
 
-The installation path of an endpoint is used as the default mechanism for generating the unique Id of an endpoint. Therefore, chaning the installation path of the endpoint affects the generated Id, and causes the system to identify the endpoint as a new and different endpoint.
-To workaround this issue, you can set the following code in your endpoint to define a consistent Id generation policy:
+The installation path of an endpoint is used by ServiceControl and ServicePulse as the default mechanism for generating the unique Id of an endpoint. Therefore, changing the installation path of the endpoint affects the generated Id, and causes the system to identify the endpoint as a new and different endpoint.
+
+To workaround this issue, add the following code in each monitored endpoint to define a consistent Id generation policy:
 
 ```csharp
     public class HostIdFixer : IWantToRunWhenBusStartsAndStops
