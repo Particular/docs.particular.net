@@ -1,6 +1,6 @@
 ---
 title: Securing access to ServiceControl
-summary: Describes how security is addressed and implemented in ServiceControl version 1.x, and how to limit access to ServiceControl's data (including implications on ServiceControl client like ServiceInsight and ServicePulse) ServicePulse uses custom checks to monitor and detect problem that are unique to the solution or endpoint(s) monitored
+summary: Describes how security is addressed and implemented in ServiceControl version 1.x, and how to limit access to ServiceControl's data (including implications on ServiceControl client like ServiceInsight and ServicePulse)
 tags:
 - ServiceControl
 - Security
