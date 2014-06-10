@@ -18,7 +18,7 @@ Therefore, it is critical to limit access to the ServiceControl instance (includ
 
 ### Post-Installation: Secure and limited access by default  
 
-When installing ServiceControl, the installation is limited to access from the local host only. Any attempt to access the service's HTTP API from outside the machines on which it is installed will result in an access denied.
+When installing ServiceControl, the installation is limited to access from the local host only. Any attempt to access the service's HTTP API from outside the machines on which it is installed will result in an `access denied` message.
 
 This applies also to accessing ServiceControl from ServicePulse and ServiceInsight. Using these default settings, these tools can only access ServiceControl when installed on the same machine as ServiceControl.
 
