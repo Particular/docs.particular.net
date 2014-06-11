@@ -282,7 +282,8 @@
           "ServiceControl/securing-servicecontrol",
           "ServiceControl/how-purge-expired-data",
 	  "ServiceControl/use-ravendb-studio",
-          "ServiceControl/backup-sc-database"
+          "ServiceControl/backup-sc-database",
+	  "ServiceControl/capacity-and-planning"
         ]
       },{
         "Name": "troubleshooting",
