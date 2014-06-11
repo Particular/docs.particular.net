@@ -279,6 +279,7 @@
         "Name": "management",
         "Title": "Management",
         "Articles": [
+          "ServiceControl/securing-servicecontrol",
           "ServiceControl/how-purge-expired-data",
 	  "ServiceControl/use-ravendb-studio",
           "ServiceControl/backup-sc-database"
