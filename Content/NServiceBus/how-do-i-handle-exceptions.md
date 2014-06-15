@@ -15,7 +15,7 @@ At that point, NServiceBus retries to handle that message a configurable number 
 
 Administrators should monitor that error queue so that they can see when problems occur. The message in the error queue contains the source queue and machine so that the administrator can see what's wrong with that node and possibly correct the problem (like bringing up a database that went down).
 
-Monitoring and handling of failed messages with ServicePulse provides access to full exception details (inclusing stacktrace, and throught ServiceInsight it also enables advanced debugging with  ull message context. It also provides a manual "retry" option (i.e. send the message for re-processing). for more details, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages). 
+Monitoring and handling of failed messages with [ServicePulse](/servicepulse)provides access to full exception details (inclusing stacktrace, and throught ServiceInsight it also enables advanced debugging with  ull message context. It also provides a manual "retry" option (i.e. send the message for re-processing). for more details, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages). 
 
 If ServicePulse or ServiceInsight are mnot available in your environment, you can use of the  `ReturnToSourceQueue.exe` tool to send the relevant message back to its original queue so that it can be processed again. The `ReturnToSourceQueue` tool is specific to MSMQ, and can be found in the [NServiceBus GitHub repository](https://github.com/Particular/NServiceBus).
 
