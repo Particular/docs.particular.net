@@ -39,7 +39,8 @@ To override these default settings:
 
 #### Using custom domain names and TCP port number
 
-See [Setting a Custom Hostname](setting-custom-hostname) for guidance and details.
+- See [Setting a Custom Hostname](setting-custom-hostname) for guidance and details.
+- See [Securing ServiceControl](securing-servicecontrol) for a discussion on security implications of custom domain access and access limitation options.
 
 #### Embedded database location and size
 
