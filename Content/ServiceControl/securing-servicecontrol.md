@@ -62,6 +62,7 @@ Similarly, when backing up the ServiceControl embedded database, ensure the data
 
 For more information:
 
+- [Customizing ServiceControl Configuration](creating-config-file)
 - [Customize RavenDB Embedded Path and Drive](configure-ravendb-location)
 - [How to Backup the ServiceControl Database](backup-sc-database)
         
