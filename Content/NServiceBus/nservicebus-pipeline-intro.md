@@ -57,9 +57,13 @@ Once a behavior is created the last step is to register it in the message handli
 
 In the above sample the behavior is appended in the pipeline at the end and will be executed as the last behavior in the incoming chain.
 
+We can also replace existing behaviors using the `Replace` method and passing as the first argument the `id` of the behavior we want to replace:
 
-I vior possono essere rimpiazzati, aggiunti o rimossi, un bejavior implementa IBehavior<TContext> dove TContext determina se il bejavior è outgoing o incoming
+    config.Pipeline.Replace( "id of the behavior to replace", typeof( NewBehaviorType ), "description" )
+    
+There is also the possibility to simply remove an existing behavior from the pipeline.
 
-di default l'aggiunta di un behavior lo piazza in coda a quelli esistenti, per poter determinare dove inserirlo è necessario creare un RegisterBehavior custom che possa definire le dipendenze, e quindi chi deve venire prima chi dopo o entrambi
+The last option we have is to create a custom behavior registration in order to control how the behavior is registered in the pipeline. In order to create a custom registration we need to create a class that inherits from the `RegisterBehavior` base class. The benefits of creating a custom behavior registration are:
 
-al fine di iniettare roba nella pipeline behavior: INeedInitialization
+* Express behavior dependencies in order to be sure that the pipeline at runtime is configured as we expect;
+* Define the position of the behavior in the pipeline, as stated above registering a behavior will append it at the end of the pipeline, using a custom registration we can determine the position of the behavior in the pipeline. 
