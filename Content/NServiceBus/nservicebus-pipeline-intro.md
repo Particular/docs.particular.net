@@ -13,24 +13,53 @@ The default pipeline is composed of several behaviors, each one dedicated to a s
 
 ###Incoming Message Behaviors
 
-* CreateChildContainer, typeof(ChildContainerBehavior), "Creates the child container");
-* ExecuteUnitOfWork, typeof(UnitOfWorkBehavior), "Executes the UoW");* MutateIncomingTransportMessage, typeof(ApplyIncomingTransportMessageMutatorsBehavior), "Executes IMutateIncomingTransportMessages");* DeserializeMessages, typeof(DeserializeLogicalMessagesBehavior), "Deserializes the physical message body into logical messages");* ExecuteLogicalMessages, typeof(ExecuteLogicalMessagesBehavior), "Starts the execution of each logical message");* MutateIncomingMessages, typeof(ApplyIncomingMessageMutatorsBehavior), "Executes IMutateIncomingMessages");* LoadHandlers, typeof(LoadHandlersBehavior), "Executes all IHandleMessages<T>");* InvokeHandlers, typeof(InvokeHandlersBehavior), "Calls the IHandleMessages<T>.Handle(T)");
+* CreateChildContainer behavior: Creates the child container;
+* ExecuteUnitOfWork behavior: Executes the UoW;* MutateIncomingTransportMessage behavior: Executes IMutateIncomingTransportMessages;* DeserializeMessages behavior: Deserializes the physical message body into logical messages;* ExecuteLogicalMessages behavior: Starts the execution of each logical message;* MutateIncomingMessages behavior: Executes IMutateIncomingMessages;* LoadHandlers behavior: Executes all IHandleMessages<T>;* InvokeHandlers behavior: Calls the IHandleMessages<T>.Handle(T);
             
 ###Outgoing Message Behaviors
 
-* EnforceBestPractices, typeof(SendValidatorBehavior), "Enforces messaging best practices");* MutateOutgoingMessages, typeof(MutateOutgoingMessageBehavior), "Executes IMutateOutgoingMessages");* CreatePhysicalMessage, typeof(CreatePhysicalMessageBehavior), "Converts a logical message into a physical message");* SerializeMessage, typeof(SerializeMessagesBehavior), "Serializes the message to be sent out on the wire");* MutateOutgoingTransportMessage, typeof(MutateOutgoingPhysicalMessageBehavior), "Executes IMutateOutgoingTransportMessages");* DispatchMessageToTransport, typeof(DispatchMessageToTransportBehavior), "Dispatches messages to the transport");
+* EnforceBestPractices behavior: Enforces messaging best practices;* MutateOutgoingMessages behavior: Executes IMutateOutgoingMessages;* CreatePhysicalMessage behavior: Converts a logical message into a physical message;* SerializeMessage behavior: Serializes the message to be sent out on the wire;* MutateOutgoingTransportMessage behavior: Executes IMutateOutgoingTransportMessages;* DispatchMessageToTransport behavior: Dispatches messages to the transport;
 
-The following picture summurize the message lifecycle pipeline:
+The following picture summarize the message lifecycle pipeline:
 
-![001_pipeline.jpg](message lifecycle pipeline)
+![Message lifecycle pipeline](001_pipeline.jpg)
 
 ###Anatomy of a Message Behaviors
 
+A message behavior is a class that implements the `IBehavior<TContext>` interface:
+
+    public class SampleBehavior : IBehavior<IncomingContext>
+    {
+    	public void Invoke(IncomingContext context, Action next)
+    	{
+    		next();        }
+    }
+
+In the above sample the `SampleBehavior` class implements the `IBehavior<IncomingContext>` interface where the fact that the context type is `IncomingContext` determines that the above behavior will be applied to an incoming message.
+
+In order to create a behavior that is applied to an outgoing message the `IBehavior<OutgoingContext>` can be implemented.
+
+At runtime the message lifecycle pipeline will invoke the `Invoke` method of each registered behavior passing in as arguments the current message context and an action to invoke the next behavior in the pipeline.
+
+**NOTE**: it is responsibility of each behavior to invoke the next behavior in the pipeline chain.
+
+###Message Behaviors registration
+
+Once a behavior is created the last step is to register it in the message handling pipeline:
+
+    public class RegisterSampleBehavior : INeedInitialization
+    {
+        public void Init( Configure config )
+        {
+	       config.Pipeline.Register( "behavior unique id", typeof( SampleBehavior ), "Description of the sample behavior");
+        }
+    }
+
+In the above sample the behavior is appended in the pipeline at the end and will be executed as the last behavior in the incoming chain.
 
 
-
-I behavior possono essere rimpiazzati, aggiunti o rimossi, un bejavior implementa IBehavior<TContext> dove TContext determina se il bejavior è outgoing o incoming
+I vior possono essere rimpiazzati, aggiunti o rimossi, un bejavior implementa IBehavior<TContext> dove TContext determina se il bejavior è outgoing o incoming
 
 di default l'aggiunta di un behavior lo piazza in coda a quelli esistenti, per poter determinare dove inserirlo è necessario creare un RegisterBehavior custom che possa definire le dipendenze, e quindi chi deve venire prima chi dopo o entrambi
 
-al fine di iniettare roba nella pipeline: INeedInitialization
+al fine di iniettare roba nella pipeline behavior: INeedInitialization
