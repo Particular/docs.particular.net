@@ -55,7 +55,7 @@ Once a behavior is created the last step is to register it in the message handli
         }
     }
 
-In the above sample the behavior is appended in the pipeline at the end and will be executed as the last behavior in the incoming chain.
+In the above sample the behavior is appended in the pipeline at the end and will be executed as the last behavior in the chain.
 
 We can also replace existing behaviors using the `Replace` method and passing as the first argument the `id` of the behavior we want to replace:
 
@@ -67,3 +67,5 @@ The last option we have is to create a custom behavior registration in order to 
 
 * Express behavior dependencies in order to be sure that the pipeline at runtime is configured as we expect;
 * Define the position of the behavior in the pipeline, as stated above registering a behavior will append it at the end of the pipeline, using a custom registration we can determine the position of the behavior in the pipeline. 
+
+**NOTE**: Once a behavior is registered the behavior class lifecycle is managed by the NServiceBus Inversion of Control container thus behaviors can express dependencies, as public properties or constructor arguments, as any other component handled by the Inversion of Control container.
