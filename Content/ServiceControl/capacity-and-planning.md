@@ -35,10 +35,15 @@ For various reasons you may wish to programmatically access the data and message
 
 To access raw message data for storage in a long-term archive or in a specialized BI database:
 
-* *Activate audit.log queuing in ServiceControl*, which copies the audited messages to the `audit.log` queue where a custom endpoint can handle incoming messages to apply custom logic.
-	* This is turned off by default, as opposed to copying failed messages to the `error.log` queue, which is on by default.
+#### Alternate Audit and Error queues
 
-* *Query the ServiceControl HTTP API*: This provides a JSON stream of audited messages (headers, body, and context) that can be imported into another database. 
+You can configure ServiceControl to forward any consumed messages into alternate queues, so that a copy of any message consumed by ServiceControl is available from these alternate queues.
+
+For more details, see [Customizing ServiceControl Configuration](creating-config-file#consuming-messages-from-audit-amp-error-queues).
+
+### Query the ServiceControl HTTP API
+
+This provides a JSON stream of audited and error messages (headers, body, and context) that can be imported into another database. 
  
 **NOTE:** ServiceControl HTTP API is currently available as a technology-preview feature: It is subject to changes and enhancements that may not be fully backwards compatible. A fully supported, backwards-compatible version of the API is under-development and will be released in a future version.
 
