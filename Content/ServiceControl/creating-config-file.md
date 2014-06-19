@@ -91,7 +91,7 @@ You can configure ServiceControl to forward any consumed messages into alternate
 
 * `ServiceControl/DbPath` (string)
 
-  The path where the internal RavenDB is located. Default `%SystemDrive\ProgramData\Particular\ServiceControl\`
+  The path where the internal RavenDB is located. Default `%SystemDrive%\ProgramData\Particular\ServiceControl\`
 
 * `ServiceControl/TransportType` (string .Net type)
 
