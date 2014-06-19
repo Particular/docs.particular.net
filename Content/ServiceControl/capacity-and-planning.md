@@ -41,7 +41,7 @@ You can configure ServiceControl to forward any consumed messages into alternate
 
 For more details, see [Customizing ServiceControl Configuration](creating-config-file#consuming-messages-from-audit-amp-error-queues).
 
-### Query the ServiceControl HTTP API
+#### Query the ServiceControl HTTP API
 
 This provides a JSON stream of audited and error messages (headers, body, and context) that can be imported into another database. 
  
