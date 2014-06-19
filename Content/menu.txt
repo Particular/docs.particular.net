@@ -280,6 +280,7 @@
         "Title": "Management",
         "Articles": [
           "ServiceControl/securing-servicecontrol",
+          "ServiceControl/capacity-and-planning",
           "ServiceControl/how-purge-expired-data",
 	  "ServiceControl/use-ravendb-studio",
           "ServiceControl/backup-sc-database",
