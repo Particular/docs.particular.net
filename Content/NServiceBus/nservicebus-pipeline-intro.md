@@ -14,7 +14,7 @@ The default pipeline is composed of several behaviors, each one dedicated to a s
 ###Incoming Message Behaviors
 
 * CreateChildContainer behavior: Creates the child container;
-* ExecuteUnitOfWork behavior: Executes the UoW;* MutateIncomingTransportMessage behavior: Executes IMutateIncomingTransportMessages;* DeserializeMessages behavior: Deserializes the physical message body into logical messages;* ExecuteLogicalMessages behavior: Starts the execution of each logical message;* MutateIncomingMessages behavior: Executes IMutateIncomingMessages;* LoadHandlers behavior: Executes all IHandleMessages<T>;* InvokeHandlers behavior: Calls the IHandleMessages<T>.Handle(T);
+* ExecuteUnitOfWork behavior: Executes the Unit of Work;* MutateIncomingTransportMessage behavior: Executes IMutateIncomingTransportMessages;* DeserializeMessages behavior: Deserializes the physical message body into logical messages;* ExecuteLogicalMessages behavior: Starts the execution of each logical message;* MutateIncomingMessages behavior: Executes IMutateIncomingMessages;* LoadHandlers behavior: Executes all IHandleMessages<T>;* InvokeHandlers behavior: Calls the IHandleMessages<T>.Handle(T);
             
 ###Outgoing Message Behaviors
 
