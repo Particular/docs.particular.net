@@ -20,6 +20,7 @@ summary: ServiceControl Documentation Table of Contents
 ### Management
 
 - [Securing Access to ServiceControl](securing-servicecontrol)
+- [ServiceControl Capacity Planning](capacity-and-planning)
 - [Setting Automatic Expiration for ServiceControl Data](how-purge-expired-data)
 - [How to Backup the ServiceControl Database](backup-sc-database)
 - [How to Directly Access ServiceControl Data via RavenDB Studio](use-ravendb-studio)
