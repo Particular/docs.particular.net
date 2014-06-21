@@ -68,8 +68,18 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) available t
 
     Install-Package NServiceBus.NLog
 
-Then call 
+Example Usage 
 
+    var config = new LoggingConfiguration();
+
+    var consoleTarget = new ColoredConsoleTarget
+    {
+        Layout = "${level:uppercase=true}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"
+    };
+    config.AddTarget("console", consoleTarget);
+    config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, consoleTarget));
+
+    LogManager.Configuration = config;
     NLogConfigurator.Configure();
 
 ### Log4Net
