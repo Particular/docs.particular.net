@@ -8,10 +8,10 @@ tags:
 ***WORK IN PROGRESS***
 
 You will need to do this in 2 steps: 
-1st step: 2.6 to 3.8 (latest 3.x) 
-2nd step: 3.8 to 4.x (latest 4.x)
+1st step: 2.6 to 3.3.8 (latest 3.x) 
+2nd step: 3.3.8 to 4.x (latest 4.x)
 
-Upgrading 2.6 to 3.8:
+Upgrading 2.6 to 3.3.8:
 here are some links:
 http://www.youtube.com/watch?v=LH0qeienRpg
 http://andreasohlund.net/2012/01/27/convention-over-configuration-in-nservicebus-3-0/
