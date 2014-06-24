@@ -1,5 +1,5 @@
 ---
-title: Attachments / DataBus Sample
+title: Upgrading NServiceBus Guidance
 summary: 'A guide for migrating from one major version to another '
 tags:
 - Migration
