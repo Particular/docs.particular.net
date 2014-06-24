@@ -13,6 +13,7 @@ You will need to do this in 2 steps:
 
 Upgrading 2.6 to 3.3.8:
 here are some links:
+https://github.com/Particular/NServiceBus/releases/tag/3.3.8
 http://www.youtube.com/watch?v=LH0qeienRpg
 http://andreasohlund.net/2012/01/27/convention-over-configuration-in-nservicebus-3-0/
 http://andreasohlund.net/2012/03/08/nservicebus-3-0/
