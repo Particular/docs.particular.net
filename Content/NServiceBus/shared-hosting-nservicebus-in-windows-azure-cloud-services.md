@@ -6,7 +6,7 @@ tags:
 - Cloud
 ---
 
-If real scale is what you're looking for, as in tens, hundreds or even thousands of machines hosting each endpoint, than cloud services is the deployment model you'll need. But very often, you only want this scale when you're eventually successful, not when your just starting out. To support this scenario, we've created the AsA_Host endpoint role for windows azure cloud services.
+If real scale is what you're looking for, as in tens, hundreds or even thousands of machines hosting each endpoint, than cloud services is the deployment model you'll need. But very often, you only want this scale when you're eventually successful, not when your're just starting out. To support this scenario, we've created the AsA_Host endpoint role for windows azure cloud services.
 
 This role allows you to co-locate multiple endpoints on the same set of machines, while preserving the regular worker role programming model so that you can easily put each endpoint on it's own role again when required later.
 
