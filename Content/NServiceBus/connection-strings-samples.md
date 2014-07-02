@@ -67,6 +67,17 @@ To configure NServiceBus endpoints to use a specific transport:
 </connectionStrings>
 ```
 
+* For remote host provide username and password because remote hosts don't accept default guest credentials
+```xml
+<connectionStrings>
+   <!-- RabbitMQ -->
+   <add name="NServiceBus/Transport"
+        connectionString="host=myremoteserver;
+                          username=myusername;
+                          password=mypassowrd"/>
+</connectionStrings>
+```
+
 ###SQL Server
 
 * NuGet transport package: [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer/);
