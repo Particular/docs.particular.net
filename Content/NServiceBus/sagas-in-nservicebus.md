@@ -211,7 +211,17 @@ When the time is up, the Timeout Manager sends a message back to the saga causin
 Ending a long-running process
 -----------------------------
 
-After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done simply by calling the `MarkAsComplete()` method. The infrastructure contacts the Timeout Manager (if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages relating to that saga arrive after it has completed, they are discarded. If you want a copy of these messages to be maintained, that can be handled by the [generic audit functionality in NServiceBus](auditing-with-nservicebus.md).
+After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done simply by calling the `MarkAsComplete()` method. The infrastructure contacts the Timeout Manager (if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages that are handled by the saga(`IHandleMessages<T>`) arrive after the saga has completed, they are discarded. Note that a new saga will be started if a message that is configured to start a saga arrives(`IAmStartedByMessages<T>`).
+
+If compensating actions need to be taken for messages that are handled by the saga which arrive after the saga has been marked as complete, then this can be done by implementing the ISagaNotFound interface.
+
+```c#
+  //IHandleSagaNotFound
+  public void Handle(object message)
+  {
+    // If message is of type T, compensating actions go here -->
+  }
+```
 
 Complex saga finding logic
 --------------------------
