@@ -98,7 +98,7 @@ public class MySaga3 : Saga<MySagaData>,
 {
   public override void ConfigureHowToFindSaga()
   {
-    ConfigureMapping<Message2>(s => s.SomeID, m => m.SomeID);
+    ConfigureMapping<Message2>(m => m.SomeID).ToSaga(s => s.SomeID);
   }
   
   public void Handle(Message1 message)
@@ -141,7 +141,7 @@ public class MySaga4 : Saga<MySagaData>,
 {
   public override void ConfigureHowToFindSaga()
   {
-    ConfigureMapping<Message2>(s => s.SomeID, m => m.SomeID);
+    ConfigureMapping<Message2>(m => m.SomeID).ToSaga(s => s.SomeID);
   }
   
   public void Handle(Message1 message)
@@ -174,7 +174,7 @@ public class MySaga5 : Saga<MySagaData>,
 {
   public override void ConfigureHowToFindSaga()
   {
-    ConfigureMapping<Message2>(s => s.SomeID, m => m.SomeID);
+    ConfigureMapping<Message2>(m => m.SomeID).ToSaga(s => s.SomeID);
   }
   
   public void Handle(Message1 message)
