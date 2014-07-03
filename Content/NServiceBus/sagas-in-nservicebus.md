@@ -114,6 +114,20 @@ public class MySaga3 : Saga<MySagaData>,
 }
 ```
 
+For V3.x Endpoints the configure mapping syntax utilizes the old API:
+
+```C#
+public class MySaga3 : Saga<MySagaData>,
+                      IAmStartedByMessages<Message1>,
+                      IHandleMessages<Message2>
+{
+  public override void ConfigureHowToFindSaga()
+  {
+    ConfigureMapping<Message2>(s => s.SomeID, m => m.SomeID);
+  }
+}
+```
+
 Underneath the covers, when `Message2` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `MySagaData` that has a property `SomeID` whose value is the same as the `SomeID` property of the message.
 
 Uniqueness
@@ -154,6 +168,20 @@ public class MySaga4 : Saga<MySagaData>,
   {
     // code to handle Message2
     ReplyToOriginator(new AlmostDoneMessage { SomeID = message.SomeID });
+  }
+}
+```
+
+For V3.x Endpoints the configure mapping syntax utilizes the old API:
+
+```C#
+public class MySaga4 : Saga<MySagaData>,
+                      IAmStartedByMessages<Message1>,
+                      IHandleMessages<Message2>
+{
+  public override void ConfigureHowToFindSaga()
+  {
+        ConfigureMapping<Message2>(s => s.SomeID, m => m.SomeID);
   }
 }
 ```
@@ -201,6 +229,22 @@ public class MySaga5 : Saga<MySagaData>,
   }
 }
 ```
+
+For V3.x Endpoints the configure mapping syntax utilizes the old API:
+
+```C#
+public class MySaga5 : Saga<MySagaData>,
+                      IAmStartedByMessages<Message1>,
+                      IHandleMessages<Message2>,
+                      IHandleTimeouts<MyCustomTimeout>
+{
+  public override void ConfigureHowToFindSaga()
+  {
+        ConfigureMapping<Message2>(s => s.SomeID, m => m.SomeID);
+  }
+}
+```
+
 
 The `RequestTimeout<T>` method on the base class tells NServiceBus to send a message to what is called a Timeout Manager(TM) which durably keeps time for us. In NServiceBus, each endpoint hosts a TM by default, so there is no configuration needed to get this up and running.
 
