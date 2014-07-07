@@ -36,7 +36,7 @@ Destinations can be `QueueName@ServerName`, or just `QueueName` if the destinati
 You can also call the following, even though it is not recommended for application-level code:
 
 ```C#
-Bus.Send( string destination, params IMessage[] msgs );
+Bus.Send( string destination, object message );
 ```
 
 Even if it is possible to specify a message destination in code it is highly suggested to specify message destinations at application-configuration level to maintain a high level of flexibility.
