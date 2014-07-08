@@ -14,9 +14,9 @@ NServiceBus provides its own hosting service (link to the nuget package) that ca
 
 When using the built in hosting services the endpoint configuration is specified using the EndpointConfig class, automatically created when adding NServiceBus packages via NuGet, and implementing one of the core interfaces that determine the default endpoint behavior:
 
-* *As_AServer*: Indicates this endpoint is a server.  As such will be set up as a transactional endpoint using impersonation, not purging messages on startup.
-* *As_APublisher*: extends "as a server" Indicates this endpoint is a publisher.  This is compatible with NServiceBus.AsA_Server but not NServiceBus.AsA_Client.
-* *As_AClient*: Indicates this endpoint is a client.  As such will be set up as a non-transactional endpoint with no impersonation and purging messages on startup.
+* `*As_AServer*`: Indicates that the endpoint behaves as a server. It will be set up as a transactional endpoint that won't purge messages on startup;
+* `*As_APublisher*`: Indicates that the endpoint is a publisher and extends the server role. A publisher can also publish events, an endpoint configured as a publisher cannot be configured as client at the same time;
+* `*As_AClient*`: Indicates that the endpoint is a client.  A client endpoint will be set up as a non-transactional endpoint that will purge messages on startup.
 
 ```
 public class EndpointConfiguration : IConfigureThisEndpoint, As_AServer
@@ -50,22 +50,33 @@ NServiceBus has also the notion of features, features are a high level concept t
 
 List of built-in features
 
-* Audit: brief description;
-* AutoSubscribe: brief description;
-* BinarySerialization: brief description;
-* BsonSerialization: brief description;
-* Gateway: brief description;
-* JsonSerialization: brief description;
-* MessageDrivenSubscriptions: brief description;
-* Sagas: brief description;
-* SecondLevelRetries: brief description;
-* StorageDrivenPublisher: brief description;
-* TimeoutManager: brief description;
-* XmlSerialization: brief description;
+* `Audit`: The audit feature is responsible for message auditing, every received message will be forwarded to the audit queue when this feature is enabled and configured, by default the feature is enabled but not configured;
+* `AutoSubscribe`: This feature menages endpoint subscriptions in a pub/sub environment, is enabled by default and will subscribe automatically to defined events;
+* `Gateway`: brief description;
+* `MessageDrivenSubscriptions`: brief description;
+* `Sagas`: brief description;
+* `SecondLevelRetries`: brief description;
+* `StorageDrivenPublisher`: brief description;
+* `TimeoutManager`: brief description;
 
-To enable or disable a feature there is a simple and straightforward API:
+Through the feature API it is also possible to configure the serialization format:
 
-Configure.Features.Enable<*FeatureType*>();
+* `BinarySerialization`: brief description;
+* `BsonSerialization`: brief description;
+* `JsonSerialization`: brief description;
+* `XmlSerialization`: brief description;
+
+By default if no configuration is performed the XML serializer is enabled.
+
+**NOTE**: In NServiceBus (v3.x and v4.x) Only one serializer can be enabled in an endpoint at a time.
+
+To enable a feature there is a simple and straightforward API:
+
+    Configure.Features.Enable<*TFeature*>();
+
+To disable a specific feature call the `Disable<*TFeature*>` method:
+
+    Configure.Features.Disable<*TFeature*>();
 
 Where the feature type is one of the feature classes defined in the `NServiceBus.Features` namespace.
 
@@ -97,3 +108,56 @@ Finally we define that the bus will be a unicast bus, the only option currently 
 
 ###Fluent Configuration API
 
+The full available API is the following:
+
+            Configure.With()
+                .DefineEndpointName( "" )
+                .DefineEndpointName( () => "" )
+                .DefineLocalAddressNameFunc( () => "" )
+                .DefaultBuilder()
+                .DefiningCommandsAs( t => true )
+                .DefiningDataBusPropertiesAs( pi => true )
+                .DefiningEncryptedPropertiesAs( pi => true )
+                .DefiningEventsAs( t => true )
+                .DefiningExpressMessagesAs( t => true )
+                .DefiningMessagesAs( t => true )
+                .DefiningTimeToBeReceivedAs( t => TimeSpan.FromSeconds( 2 ) )
+                .DisableGateway()
+                .DisableTimeoutManager()
+                .DoNotCreateQueues()
+                .EnablePerformanceCounters()
+                .FileShareDataBus( "" )
+                .InMemoryFaultManagement()
+                .InMemorySagaPersister()
+                .InMemorySubscriptionStorage()
+                .License( "text" )
+                .LicensePath( "" )
+                .Log4Net()
+                .MessageForwardingInCaseOfFault()
+                .MsmqSubscriptionStorage()
+                .NLog()
+                .PurgeOnStartup( false )
+                .RavenPersistence()
+                .RavenPersistence( "connection string" )
+                .RavenPersistence( () => "connection string" )
+                .RavenPersistence( () => "connection string", "db name" )
+                .RavenPersistenceWithStore( ( IDocumentStore )null )
+                .RavenSagaPersister()
+                .RavenSubscriptionStorage()
+                .RijndaelEncryptionService()
+                .SetEndpointSLA( TimeSpan.FromSeconds( 2 ) )
+                .Synchronization()
+                .UseTransport( new Type(), "connection string (optional)" )
+                .UseTransport<Msmq>( "connection string (optional)" )
+                .UnicastBus()
+                .CreateBus()
+                .Start( () =>
+                {
+                    Configure.Instance.ForInstallationOn<Windows>();
+                } )
+                .Start()
+                .SendOnly();
+                
+How to document that? Shall we document every single method?
+
+I've already discarded all the "obsolete" methods but I suppose that something should be done via he feature configuration and not via the fluent config.
