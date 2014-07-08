@@ -10,7 +10,7 @@ Every NServiceBus endpoint to work properly relies on a configuration that deter
 
 ###NServiceBus Host
 
-NServiceBus provides its own hosting service that can be used to outsource the whole hosting "drama" (find a synonym) without worrying about how to deal with Windows Services.
+NServiceBus provides its own hosting service (link to the nuget package) that can be used to outsource the whole hosting "drama" (find a synonym) without worrying about how to deal with Windows Services.
 
 When using the built in hosting services the endpoint configuration is specified using the EndpointConfig class, automatically created when adding NServiceBus packages via NuGet, and implementing one of the core interfaces that determine the default endpoint behavior:
 
@@ -18,34 +18,82 @@ When using the built in hosting services the endpoint configuration is specified
 * *As_APublisher*: extends "as a server" Indicates this endpoint is a publisher.  This is compatible with NServiceBus.AsA_Server but not NServiceBus.AsA_Client.
 * *As_AClient*: Indicates this endpoint is a client.  As such will be set up as a non-transactional endpoint with no impersonation and purging messages on startup.
 
-Sample class
+```
+public class EndpointConfiguration : IConfigureThisEndpoint, As_AServer
+{
+	}
+```
 
-Explain the meaning of IConfigureThisEndpoint
+**IConfigureThisEndpoint**
+
+The above class represents the main entry point of the NServiceBus endpoint, this is under the hood determined by the fact that the class implements the `IConfigureThisEndpoint` interface that identifies the class responsible to hold the initial endpoint configuration.
+
+At runtime, during the startup phase, NServiceBus scans all the types looking for a class that implements the `IConfigureThisEndpoint` interface.
 
 ###Configuration customization
 
 When NServiceBus endpoints are hosted using the built in NServiceBus host it is possible to customize the default configuration adding to the project a class that implements the IWantCustomInitialization interface, this class will be invoked at runtime by the hosting process and will be provided with a default configuration initialized by the host and ready to be configured as required.
 
-Sample class
+```
+public class CustomConfiguration : IWantCustomInitialization
+{
+	public void Init()	{
+		var currentConfig = Configure.Instance;
+	}}
+```
 
-NOTE: Do not start the bus it will be done by the host
+**NOTE**: Do not start the bus it will be done by the host (expand on this topic a bit)
 
-###features
+###Features
 
 NServiceBus has also the notion of features, features are a high level concept that encapsulate a set of settings related to a certain feature, thus features can be entirely enabled or disabled and when enabled configured.
 
 List of built-in features
 
+* Audit: brief description;
+* AutoSubscribe: brief description;
+* BinarySerialization: brief description;
+* BsonSerialization: brief description;
+* Gateway: brief description;
+* JsonSerialization: brief description;
+* MessageDrivenSubscriptions: brief description;
+* Sagas: brief description;
+* SecondLevelRetries: brief description;
+* StorageDrivenPublisher: brief description;
+* TimeoutManager: brief description;
+* XmlSerialization: brief description;
+
 To enable or disable a feature there is a simple and straightforward API:
 
-Configure.Features.Enable<Sagas>();
+Configure.Features.Enable<*FeatureType*>();
 
-The above sample enables Sagas support in the endpoint where is executed.
+Where the feature type is one of the feature classes defined in the `NServiceBus.Features` namespace.
 
 ###Self-hosting configuration
 
 There are scenarios in which we need to self host the bus without being able to rely on the NServiceBus Host process, a well known sample scenario is a web application, in these cases we are responsible to configure, create and start the bus.
 The configuration entry point point is the Configure class that exposes a fluent configuration API that let us take fine control of all the configuration settings.
 
+```
+public class Program
+{
+    public static void Main()    {
+        var bus = Configure.With()
+	        .DefaultBuilder()
+	        .UsingTransport<Msmq>()
+	        .UnicastBus()
+	        .CreateBus()
+	        .Start();
+	}}
+```
+
+The above sample code, from a console application, is the minimum required to create, initialize and finally start the bus in a self hosting scenario.
+
+The `With()` method is the main configuration entry point that initialize and starts the configuration engine, right after that the call to `DefaultBuilder()` instructs the configuration engine to use the built-in inversion of control container to manage dependencies.
+
+The `UsingTransport<TTransport>()` generic method defines what will be the underlying transport that the bus instance will use, in the above sample we are using Microsoft Message Queue.
+
+Finally we define that the bus will be a unicast bus, the only option currently available, and we create and start the bus.
 
 ###Fluent Configuration API
+
