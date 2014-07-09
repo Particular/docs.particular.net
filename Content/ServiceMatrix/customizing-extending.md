@@ -225,12 +225,9 @@ namespace OnlineSales.Billing
 
             Console.WriteLine("Submitting Order {0} for payment", Data.OrderID);
 
-
             //Pasting the code from the user code pop up here so we send the payment request when the OrderAccepted Event arrives.
             var submitPayment = new OnlineSales.Internal.Commands.Billing.SubmitPayment();
             Bus.Send(submitPayment);
-            
-
         }
 
         partial void HandleImplementation(Internal.Messages.Billing.SubmitPaymentResponse message)
