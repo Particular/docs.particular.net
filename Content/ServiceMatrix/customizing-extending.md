@@ -256,6 +256,7 @@ namespace OnlineSales.Billing
         }
 
     }
+}
 ```
  
 The `AllMessagesReceived` is a convenient partial method.  As part of the dynamically generated handler code, every inbound message is stored in saga data. After each message is handled the saga data is checked to see if all the messages have been received.  If so, the virtual method `AllMessagesReceived` is called.  The example uses it to trigger the publishing of a `BillingCompleted` event and then mark the saga as complete.
