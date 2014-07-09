@@ -7,8 +7,8 @@
     <ProjectGuid>{5FB8D00E-CA45-4BED-B4EB-8A1F9CA27100}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Snippets_3_3</RootNamespace>
-    <AssemblyName>Snippets_3_3</AssemblyName>
+    <RootNamespace>Snippets_3</RootNamespace>
+    <AssemblyName>Snippets_3</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -55,10 +55,6 @@
     <Reference Include="NServiceBus.Testing">
       <HintPath>..\packages\NServiceBus.Testing.3.3.8\lib\net40\NServiceBus.Testing.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.6.3.13283, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -68,26 +64,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChangeThroughput.cs" />
-    <Compile Include="Logging\Log4NetSamples.cs" />
-    <Compile Include="Testing\TestConstructorInjection.cs" />
-    <Compile Include="Testing\TestHandler.cs" />
-    <Compile Include="Testing\TestHeaderManipulation.cs" />
-    <Compile Include="Testing\TestInjectingAdditionalDependencies.cs" />
-    <Compile Include="Testing\TestPropertyInjection.cs" />
-    <Compile Include="Testing\TestSaga.cs" />
-    <Compile Include="UnobtrusiveMessageMode.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{DA640D8B-C497-456B-8114-79862A293FB8}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
