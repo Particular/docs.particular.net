@@ -5,6 +5,8 @@ public class PersistenceSample
     public void AllThePersistence()
     {
 
+        // start code ConfigurePersistenceV4
+
         // Configure to use InMemory 
         Configure.With().InMemorySagaPersister();
         Configure.With().UseInMemoryTimeoutPersister();
@@ -26,6 +28,7 @@ public class PersistenceSample
         Configure.With().UseNHibernateGatewayPersister();
         Configure.With().UseNHibernateGatewayDeduplication();
 
+        // end code ConfigurePersistenceV4
     }
 
 }
