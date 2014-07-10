@@ -19,8 +19,6 @@ Edit the `TransportConfig` section in the endpoint config file:
 
 In V4 you can also use the API:​
 
-<!-- import ChangeThroughputV4 -->
-
 ```C#
 public class ChangeThroughtput : IWantToRunWhenConfigurationIsComplete
 {

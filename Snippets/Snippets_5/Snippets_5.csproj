@@ -33,8 +33,14 @@
     <Reference Include="Common.Logging">
       <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
     </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.3.3.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.3.0.0.0\lib\net45\NLog.dll</HintPath>
@@ -47,6 +53,9 @@
     </Reference>
     <Reference Include="NServiceBus.Log4Net">
       <HintPath>..\packages\NServiceBus.Log4Net.0.2.0-beta0001\Lib\NET45\NServiceBus.Log4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.NHibernate">
+      <HintPath>..\packages\NServiceBus.NHibernate.4.6.0-unstable0130\lib\net45\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NLog">
       <HintPath>..\packages\NServiceBus.NLog.0.2.0-beta0001\Lib\NET45\NServiceBus.NLog.dll</HintPath>
@@ -63,6 +72,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PersistenceSample.cs" />
     <Compile Include="Scheduler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

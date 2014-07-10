@@ -1,36 +1,32 @@
 ﻿using System;
-using System.Diagnostics;
 using NServiceBus;
-using NServiceBus.ObjectBuilder;
 
-public class SchedulerSample
+// start code SchedulerV5
+public class ScheduleMyTasks : IWantToRunWhenBusStartsAndStops
 {
-    public class ScheduleMyTasks : IWantToRunWhenBusStartsAndStops
+    IBus bus;
+    Schedule schedule;
+
+    public ScheduleMyTasks(IBus bus, Schedule schedule)
     {
-        IBus bus;
-        Schedule schedule;
-
-        public ScheduleMyTasks(IBus bus, Schedule schedule)
-        {
-            this.bus = bus;
-            this.schedule = schedule;
-        }
-
-        public void Start()
-        {      
-            // To send a message every 5 minutes
-            schedule.Every(TimeSpan.FromMinutes(5), () => bus.SendLocal(new MyMessage()));
-
-            // Name a schedule task and invoke it every 5 minutes
-            schedule.Every(TimeSpan.FromMinutes(5), "Task name", () => Debug.WriteLine("Task executed"));
-
-        }
-
-        public void Stop()
-        {
-        }
+        this.bus = bus;
+        this.schedule = schedule;
     }
-    public class MyMessage : IMessage
+
+    public void Start()
+    {      
+        // To send a message every 5 minutes
+        schedule.Every(TimeSpan.FromMinutes(5), () => bus.SendLocal(new MyMessage()));
+
+        // Name a schedule task and invoke it every 5 minutes
+        schedule.Every(TimeSpan.FromMinutes(5), "Task name", () => bus.SendLocal(new MyMessage()));
+    }
+
+    public void Stop()
     {
     }
+}
+// end code SchedulerV5
+public class MyMessage : IMessage
+{
 }
