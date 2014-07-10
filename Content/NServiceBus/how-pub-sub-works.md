@@ -43,7 +43,7 @@ All the distributor does at this point is forward the message it receives to ano
 
 You can think of the distributor as something like a load balancer it distributes the messages coming to it to a number of other machines. This kind of physical one-to-many communication is needed for scaling out the number of machines running for a given subscriber, but doesn't actually entail any pub/sub. Each subscriber gets its own distributor and each of them decides independently to which machine it passes its messages.
 
-See [more information on the distributor](load-balancing-with-the-distributor) .
+See [more information on the distributor](load-balancing-with-the-distributor).
 
 The same for any publisher node
 -------------------------------
@@ -57,8 +57,8 @@ What this means is that you can scale out the number of publishing nodes just by
 Next steps
 ----------
 
--   Learn about the [API and configuration involved in pub/sub](publish-subscribe-configuration) .
+-   Learn about the [API and configuration involved in pub/sub](publish-subscribe-configuration).
 -   See how to [configure the distributor and learn more about its internals](load-balancing-with-the-distributor).
--   Find out how to use the [generic NServiceBus Host process](the-nservicebus-host) .
+-   Find out how to use the [generic NServiceBus Host process](the-nservicebus-host).
 
 
