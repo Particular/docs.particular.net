@@ -7,13 +7,16 @@ tags:
 ---
 
 NServiceBus has always had the concept of a pipeline execution order that is executed when a message is received and also when a message is dispatched. NServiceBus v5 makes this pipeline a first level concept and exposes it to the end user.
-This now allows the end users to take full control of the incoming and/or the outgoing built-in default functionality, it also allows to be easily extendable and/or completely replaced.
+This now allows the end users to take full control of the incoming and/or the outgoing built-in default functionality.
 
-The pipeline is focused on the message lifecycle and is composed of `steps` whose role is to manage every single aspect of the message lifecycle during the incoming and outgoing phases.
+In NServiceBus v5, there are two explicit pipelines, one for the ougoing messages and one for the incoming messages. Each pipeline is composed of "Steps". The steps have built-in behavior and this behavior can now be easily replaced. A completely new step containing new behavior can also be added to the pipeline. 
 
-The default pipeline is composed of several steps, each one dedicated to a specific aspect of the message lifecycle, the default steps are the following:
+The steps in the processing pipeline are dynamic in nature. They are added or removed based on what features are enabled. For example, if an endpoint has Sagas, then the Saga feature will be enabled by default, which in turn adds extra steps to the incoming pipeline to facilitate the handling of sagas. 
 
-###Incoming Message Steps
+Because of the dynamic nature of the pipeline, it is hard to visualize what the incoming and outgoing steps are at any given time. To make this easier an instrumentation tool has been added to help visualize the exact steps for an endpoint. 
+
+##Some of the commonly used steps
+###Incoming Message Pipeline
 
 * CreateChildContainer: Creates the child container;
 * ExecuteUnitOfWork: Executes the Unit of Work;
@@ -24,7 +27,7 @@ The default pipeline is composed of several steps, each one dedicated to a speci
 * LoadHandlers: Executes all IHandleMessages<T>;
 * InvokeHandlers: Calls the IHandleMessages<T>.Handle(T);
             
-###Outgoing Message Steps
+###Outgoing Message Pipeline
 
 * EnforceBestPractices: Enforces messaging best practices;
 * MutateOutgoingMessages: Executes IMutateOutgoingMessages;
@@ -33,9 +36,15 @@ The default pipeline is composed of several steps, each one dedicated to a speci
 * MutateOutgoingTransportMessage: Executes IMutateOutgoingTransportMessages;
 * DispatchMessageToTransport: Dispatches messages to the transport;
 
-The following picture summarize the message lifecycle pipeline:
+
+##Diagnostics Tool
+
+The following picture summarize the message lifecycle pipeline for an enpoint as depicted by the instrumentation tool:
 
 ![Message lifecycle pipeline](001_pipeline.jpg)
+
+###How to visualize the pipeline of your endpoint with Diagnostics
+<TODO>
 
 ###Anatomy of a Message Behaviors
 
