@@ -5,20 +5,32 @@ tags:
 - NServiceBus
 ---
 
-NServiceBus v5 introduces a new message handling pipeline whose role is to allow end users to easily extend and replace built-in behaviors.
+NServiceBus has always had the concept of a pipeline execution order that is executed when a message is received and also when a message is dispatched. NServiceBus v5 makes this pipeline a first level concept and exposes it to the end user.
+This now allows the end users to take full control of the incoming and/or the outgoing built-in default functionality, it also allows to be easily extendable and/or completely replaced.
 
-The pipeline is focused on the message lifecycle and is composed of `behaviors` whose role is to manage every single aspect of the message lifecycle during the incoming phase and during the outgoing phase.
+The pipeline is focused on the message lifecycle and is composed of `steps` whose role is to manage every single aspect of the message lifecycle during the incoming and outgoing phases.
 
-The default pipeline is composed of several behaviors, each one dedicated to a specific aspect of the message lifecycle, the default behaviors are the following:
+The default pipeline is composed of several steps, each one dedicated to a specific aspect of the message lifecycle, the default steps are the following:
 
-###Incoming Message Behaviors
+###Incoming Message Steps
 
-* CreateChildContainer behavior: Creates the child container;
-* ExecuteUnitOfWork behavior: Executes the Unit of Work;* MutateIncomingTransportMessage behavior: Executes IMutateIncomingTransportMessages;* DeserializeMessages behavior: Deserializes the physical message body into logical messages;* ExecuteLogicalMessages behavior: Starts the execution of each logical message;* MutateIncomingMessages behavior: Executes IMutateIncomingMessages;* LoadHandlers behavior: Executes all IHandleMessages<T>;* InvokeHandlers behavior: Calls the IHandleMessages<T>.Handle(T);
+* CreateChildContainer: Creates the child container;
+* ExecuteUnitOfWork: Executes the Unit of Work;
+* MutateIncomingTransportMessage: Executes IMutateIncomingTransportMessages;
+* DeserializeMessages: Deserializes the physical message body into logical messages;
+* ExecuteLogicalMessages: Starts the execution of each logical message;
+* MutateIncomingMessages: Executes IMutateIncomingMessages;
+* LoadHandlers: Executes all IHandleMessages<T>;
+* InvokeHandlers: Calls the IHandleMessages<T>.Handle(T);
             
-###Outgoing Message Behaviors
+###Outgoing Message Steps
 
-* EnforceBestPractices behavior: Enforces messaging best practices;* MutateOutgoingMessages behavior: Executes IMutateOutgoingMessages;* CreatePhysicalMessage behavior: Converts a logical message into a physical message;* SerializeMessage behavior: Serializes the message to be sent out on the wire;* MutateOutgoingTransportMessage behavior: Executes IMutateOutgoingTransportMessages;* DispatchMessageToTransport behavior: Dispatches messages to the transport;
+* EnforceBestPractices: Enforces messaging best practices;
+* MutateOutgoingMessages: Executes IMutateOutgoingMessages;
+* CreatePhysicalMessage: Converts a logical message into a physical message;
+* SerializeMessage: Serializes the message to be sent out on the wire;
+* MutateOutgoingTransportMessage: Executes IMutateOutgoingTransportMessages;
+* DispatchMessageToTransport: Dispatches messages to the transport;
 
 The following picture summarize the message lifecycle pipeline:
 
@@ -32,7 +44,8 @@ A message behavior is a class that implements the `IBehavior<TContext>` interfac
     {
     	public void Invoke(IncomingContext context, Action next)
     	{
-    		next();        }
+    		next();
+        }
     }
 
 In the above sample the `SampleBehavior` class implements the `IBehavior<IncomingContext>` interface where the fact that the context type is `IncomingContext` determines that the above behavior will be applied to an incoming message.
@@ -51,21 +64,21 @@ Once a behavior is created the last step is to register it in the message handli
     {
         public void Init( Configure config )
         {
-	       config.Pipeline.Register( "behavior unique id", typeof( SampleBehavior ), "Description of the sample behavior");
+	       config.Pipeline.Register( "step unique id", typeof( SampleBehavior ), "Description of the sample step");
         }
     }
 
 In the above sample the behavior is appended in the pipeline at the end and will be executed as the last behavior in the chain.
 
-We can also replace existing behaviors using the `Replace` method and passing as the first argument the `id` of the behavior we want to replace:
+We can also replace existing behaviors using the `Replace` method and passing as the first argument the `id` of the step we want to replace:
 
-    config.Pipeline.Replace( "id of the behavior to replace", typeof( NewBehaviorType ), "description" )
+    config.Pipeline.Replace( "id of the step to replace", typeof( NewBehaviorType ), "description" )
     
 There is also the possibility to simply remove an existing behavior from the pipeline.
 
-The last option we have is to create a custom behavior registration in order to control how the behavior is registered in the pipeline. In order to create a custom registration we need to create a class that inherits from the `RegisterBehavior` base class. The benefits of creating a custom behavior registration are:
+The last option we have is to create a custom behavior registration in order to control how the behavior is registered in the pipeline. In order to create a custom registration we need to create a class that inherits from the `RegisterStep` base class. The benefits of creating a custom step registration are:
 
-* Express behavior dependencies in order to be sure that the pipeline at runtime is configured as we expect;
-* Define the position of the behavior in the pipeline, as stated above registering a behavior will append it at the end of the pipeline, using a custom registration we can determine the position of the behavior in the pipeline. 
+* Express step dependencies in order to be sure that the pipeline at runtime is configured as we expect;
+* Define the position of the step in the pipeline, as stated above registering a step will append it at the end of the pipeline, using a custom registration we can determine the position of the step in the pipeline. 
 
-**NOTE**: Once a behavior is registered the behavior class lifecycle is managed by the NServiceBus Inversion of Control container thus behaviors can express dependencies, as public properties or constructor arguments, as any other component handled by the Inversion of Control container.
+**NOTE**: Once a step is registered the behavior class lifecycle is managed by the NServiceBus Inversion of Control container thus behaviors can express dependencies, as public properties or constructor arguments, as any other component handled by the Inversion of Control container.
