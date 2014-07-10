@@ -6,6 +6,9 @@ tags:
 - DTC
 ---
 
+**NOTE: This article refers to a beta version of NServiceBus (V5) and is subject to changes and updates.**
+
+
 NServiceBus v5 brings the option of running endpoints with the same reliability we all got accustomed to while running under DTC, but now without it. 
 
 ## Supported Transports
