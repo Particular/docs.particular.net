@@ -86,12 +86,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
+    <Compile Include="CustomRavenConfig.cs" />
     <Compile Include="ForInstallationOnReplacement.cs" />
     <Compile Include="Persistence.cs" />
     <Compile Include="RunCustomActionReplacement.cs" />
     <Compile Include="SagaMapping.cs" />
     <Compile Include="Scheduler.cs" />
     <Compile Include="StartupActionReplacement.cs" />
+    <Compile Include="Transports.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
