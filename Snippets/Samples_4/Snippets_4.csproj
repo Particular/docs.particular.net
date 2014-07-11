@@ -115,7 +115,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandler.cs" />
+    <Compile Include="CustomConfigOverrides.cs" />
     <Compile Include="CustomRavenConfig.cs" />
+    <Compile Include="MessageConventions.cs" />
     <Compile Include="Transports.cs" />
     <Compile Include="RunCustomAction.cs" />
     <Compile Include="ForInstallationOn.cs" />

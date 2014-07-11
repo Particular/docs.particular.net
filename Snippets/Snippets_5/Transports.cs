@@ -17,7 +17,7 @@ public class Transports
         Configure.With().UseTransport<AzureServiceBus>();
 
         // Configure to use SqlServer
-        Configure.With().UseTransport<NServiceBus.SqlServer>();
+        Configure.With().UseTransport<SqlServer>();
 
         // end code ConfigureTransportsV5
     }
