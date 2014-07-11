@@ -1,33 +1,37 @@
 ﻿using System;
 using NServiceBus;
 
-// start code SchedulerV4
-public class ScheduleMyTasks : IWantToRunWhenBusStartsAndStops
+public class Scheduler
 {
-    IBus bus;
-
-    public ScheduleMyTasks(IBus bus)
+// start code SchedulerV4
+    public class ScheduleMyTasks : IWantToRunWhenBusStartsAndStops
     {
-        this.bus = bus;
+        IBus bus;
+
+        public ScheduleMyTasks(IBus bus)
+        {
+            this.bus = bus;
+        }
+
+        public void Start()
+        {
+            // To send a message every 5 minutes
+            Schedule.Every(TimeSpan.FromMinutes(5))
+                .Action(() => bus.SendLocal(new MyMessage()));
+
+            // Name a schedule task and invoke it every 5 minutes
+            Schedule.Every(TimeSpan.FromMinutes(5))
+                .Action("Task name", () => bus.SendLocal(new MyMessage()));
+        }
+
+        public void Stop()
+        {
+        }
     }
 
-    public void Start()
-    {
-        // To send a message every 5 minutes
-        Schedule.Every(TimeSpan.FromMinutes(5))
-            .Action(() => bus.SendLocal(new MyMessage()));
-
-        // Name a schedule task and invoke it every 5 minutes
-        Schedule.Every(TimeSpan.FromMinutes(5))
-            .Action("Task name", () => bus.SendLocal(new MyMessage()));
-    }
-
-    public void Stop()
-    {
-    }
-}
 // end code SchedulerV4
 
-public class MyMessage : IMessage
-{
+    public class MyMessage : IMessage
+    {
+    }
 }

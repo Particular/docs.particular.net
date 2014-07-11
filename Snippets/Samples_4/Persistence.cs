@@ -1,6 +1,7 @@
 ﻿using NServiceBus;
 
-public class PersistenceSample
+
+public class Persistence
 {
     public void AllThePersistence()
     {

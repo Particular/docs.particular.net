@@ -76,7 +76,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PersistenceSample.cs" />
+    <Compile Include="BusExtensionMethodForHandler.cs" />
+    <Compile Include="RunCustomAction.cs" />
+    <Compile Include="ForInstallationOn.cs" />
+    <Compile Include="StartupAction.cs" />
+    <Compile Include="SagaMapping.cs" />
+    <Compile Include="Persistence.cs" />
     <Compile Include="Scheduler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

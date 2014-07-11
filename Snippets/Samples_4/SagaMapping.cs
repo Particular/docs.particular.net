@@ -2,21 +2,21 @@
 using NServiceBus;
 using NServiceBus.Saga;
 
-public class SagaMappingSample
+public class SagaMapping
 {
 
-    // start code ConfigureHowToFindSagaV5
+    // start code ConfigureHowToFindSagaV4
     public class MySaga : Saga<MySagaData>,
         IAmStartedByMessages<Message1>,
         IHandleMessages<Message2>
     {
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
+        public override void ConfigureHowToFindSaga()
         {
-            mapper.ConfigureMapping<Message2>(s => s.SomeID)
-                .ToSaga(m => m.SomeID);
+            ConfigureMapping<Message2>(m => m.SomeID)
+                .ToSaga(s => s.SomeID);
         }
 
-        // end code ConfigureHowToFindSagaV5
+        // end code ConfigureHowToFindSagaV4
         public void Handle(Message1 message)
         {
         }
