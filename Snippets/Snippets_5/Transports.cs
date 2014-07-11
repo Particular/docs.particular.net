@@ -1,26 +1,25 @@
-﻿//using NServiceBus;
+﻿using NServiceBus;
 
 
-//public class Transports
-//{
-//    public void AllTheTransports()
-//    {
+public class Transports
+{
+    public void AllTheTransports()
+    {
+        // start code ConfigureTransportsV5
 
-//        // start code ConfigureTransportsV4
+        // Configure to use MSMQ 
+        Configure.With().UseTransport<Msmq>();
 
-//        // Configure to use MSMQ 
-//        Configure.With().UseTransport<Msmq>();
+        // Configure to use AzureStorageQueue
+        Configure.With().UseTransport<AzureStorageQueue>();
 
-//        // Configure to use AzureStorageQueue
-//        Configure.With().UseTransport<AzureStorageQueue>();
+        // Configure to use AzureServiceBus
+        Configure.With().UseTransport<AzureServiceBus>();
 
-//        // Configure to use AzureServiceBus
-//        Configure.With().UseTransport<AzureServiceBus>();
+        // Configure to use SqlServer
+        Configure.With().UseTransport<NServiceBus.SqlServer>();
 
-//        // Configure to use SqlServer
-//        Configure.With().UseTransport<NServiceBus.SqlServer>();
+        // end code ConfigureTransportsV5
+    }
 
-//        // end code ConfigureTransportsV4
-//    }
-
-//}
+}
