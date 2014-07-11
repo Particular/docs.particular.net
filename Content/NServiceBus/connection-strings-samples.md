@@ -36,10 +36,10 @@ To configure NServiceBus endpoints to use a specific transport:
 </connectionStrings>
 ```
 
-* `deadLetter`: The `deadLetter` configuration parameter enable or disable dead letter queue support, dead letter queues tracks messages that cannot be delivered (more information: http://msdn.microsoft.com/en-us/library/ms706227(v=vs.85).aspx). The default value is `true`;
-* `journal`: Microsoft Message Queue supports the concept of journaling, when the journaling is active a copy of each the sent message is stored in the journal queue (more information: http://msdn.microsoft.com/en-us/library/ms702011(v=vs.85).aspx). The default value is `false`;
-* `useTransactionalQueues`: determines if the generated queue, of the existing ones, must be transactional queues or not. The default value is `true`;
-* `cacheSendConnection`: instructs the underlying to cache the connection to a remote queue and re-use it as needed instead of creating each time a new connection to send messages to an already used. The default value is `false`;
+* `deadLetter`: The `deadLetter` configuration parameter enables or disables dead letter queue support, dead letter queues tracks messages that cannot be delivered (more information: http://msdn.microsoft.com/en-us/library/ms706227(v=vs.85).aspx). The default value is `true`;
+* `journal`: Microsoft Message Queue supports the concept of journaling, when the journaling is active a copy of each sent message is stored in the journal queue (more information: http://msdn.microsoft.com/en-us/library/ms702011(v=vs.85).aspx). The default value is `false`;
+* `useTransactionalQueues`: determines if the generated queue, or the existing ones, must be transactional queues or not. The default value is `true`;
+* `cacheSendConnection`: instructs the underlying infrastructure to cache the connection to a remote queue and re-use it as needed instead of creating each time a new connection to send messages. The default value is `false`;
 
 **NOTE:** The MSMQ connection string is optional.
 
