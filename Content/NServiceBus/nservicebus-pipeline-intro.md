@@ -41,7 +41,7 @@ Because of the dynamic nature of the pipeline, it is hard to visualize what the 
 
 The following picture summarize the message lifecycle pipeline for an enpoint as depicted by the instrumentation tool:
 
-![Message lifecycle pipeline](001_pipeline.jpg)
+![Message lifecycle pipeline](001_pipeline.png)
 
 ###How to visualize the pipeline of your endpoint with Diagnostics
 <TODO>
