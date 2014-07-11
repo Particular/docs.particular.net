@@ -9,9 +9,9 @@ tags:
 ---
 When ServiceControl is installed and configured it starts monitoring `error` and `audit` queues and all messages flowing into these queues are processed by ServiceControl and stored into its internal database.
 
-The consumed messages are available via other Platform tools such as ServicePulse and ServiceInsight that can connect to the ServiceControl API and retrieve information regarding the consumed messages and the processes running in the system.
+The consumed messages are available via other Platform tools such as ServicePulse and ServiceInsight that can connect to the ServiceControl API to retrieve information regarding the consumed messages and the processes running in the system.
 
-Given the above behavior if the system where we are installing ServiceControl already relies on `error` and `audit` queues to work properly we can leverage the ServiceControl logging feature to configure ServiceControl to forward each consumed message to a specific queue in order to preserve the existing functionality.
+Given the above behavior, if the system where we are installing ServiceControl already relies on `error` and `audit` queues to work properly, we can leverage the ServiceControl logging feature to configure ServiceControl to forward each consumed message to a specific queue in order to preserve the existing functionality.
 
 By default ServiceControl, at install time, creates a queue named `error.log`, each time ServiceControl consumes a message from the `error` queue the message is also forwarded to the `error.log` queue.
 
