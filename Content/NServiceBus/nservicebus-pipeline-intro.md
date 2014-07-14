@@ -18,23 +18,100 @@ Because of the dynamic nature of the pipeline, it is hard to visualize what the 
 ##Some of the commonly used steps
 ###Incoming Message Pipeline
 
-* CreateChildContainer: Creates the child container;
-* ExecuteUnitOfWork: Executes the Unit of Work;
-* MutateIncomingTransportMessage: Executes IMutateIncomingTransportMessages;
-* DeserializeMessages: Deserializes the physical message body into logical messages;
-* ExecuteLogicalMessages: Starts the execution of each logical message;
-* MutateIncomingMessages: Executes IMutateIncomingMessages;
-* LoadHandlers: Executes all IHandleMessages<T>;
-* InvokeHandlers: Calls the IHandleMessages<T>.Handle(T);
+* CreateChildContainer
+* ExecuteUnitOfWork
+* MutateIncomingTransportMessage
+* DeserializeMessages
+* ExecuteLogicalMessages
+* MutateIncomingMessages
+* LoadHandlers
+* InvokeHandlers
             
 ###Outgoing Message Pipeline
 
-* EnforceBestPractices: Enforces messaging best practices;
-* MutateOutgoingMessages: Executes IMutateOutgoingMessages;
-* CreatePhysicalMessage: Converts a logical message into a physical message;
-* SerializeMessage: Serializes the message to be sent out on the wire;
-* MutateOutgoingTransportMessage: Executes IMutateOutgoingTransportMessages;
-* DispatchMessageToTransport: Dispatches messages to the transport;
+* EnforceBestPractices
+* MutateOutgoingMessages
+* CreatePhysicalMessage
+* SerializeMessage
+* MutateOutgoingTransportMessage
+* DispatchMessageToTransport
+
+##How do you code behaviors?
+
+A message behavior is a class that implements the `IBehavior<TContext>` interface:
+
+```c#
+public class SampleBehavior : IBehavior<IncomingContext>
+{
+    public void Invoke(IncomingContext context, Action next)
+    {
+    	next();
+    }
+}
+```
+
+In the above code snippet the `SampleBehavior` class implements the `IBehavior<IncomingContext>` interface. This tells the framework to execute this behavior against the incoming pipeline. If you want to create a behavior that needs to be applied to the outgoing pipeline, implement the `IBehavior<OutgoingContext>` instead. 
+
+Sometimes a parent behavior might need to pass in some information relating to a child behavior and vice versa. The context facilitates this passing of data between behaviors in the pipeline steps. The context is simply a dictionary. You can add information to this dictionary in a parent behavior and retrieve this value from a child behavior and vice versa. 
+
+## How does the pipeline execute its steps?
+
+The pipeline is implemented using the [Russian Doll](http://en.wikipedia.org/wiki/Matryoshka_doll) Model. Russian dolls are a series of progressively smaller dolls nested within each other. Similarly, the pipline model is a series of progressively nested steps within each other.  
+
+At runtime, the pipeline will call the `Invoke` method of each registered behavior passing in as arguments the current message context and an action to invoke the next behavior in the pipeline. It is responsibility of each behavior to invoke the next behavior in the pipeline chain.
+
+##How do you register a behavior?
+
+Once a behavior is created the last step is to register it in the message handling pipeline:
+
+```c#
+public class RegisterSampleBehavior : INeedInitialization
+{
+    public void Init(Configure config)
+    {
+        config.Pipeline.Register( "step unique id", typeof( SampleBehavior ), "Description of the sample step");
+    }
+}
+```
+
+In the above sample, this behavior now becomes the innermost step of the pipeline. Sometimes the step you are trying to register might be dependent on other steps.To ensure that your step is executed before or after a dependent step, you need to create a custom registration. 
+
+To do this:
+1. Create a class that implements `RegisterStep`.
+2. Register the step itself in the pipeline.
+
+```c#
+class TriggerWarning : RegisterStep
+{
+    public TriggerWarning()
+        : base("TriggerWarning", typeof(TriggerWarningBehavior), "Logs a warning when a message takes too long to process")
+    {
+    	// Specify where it needs to be invoked in the pipeline
+	InsertBefore(WellKnownStep.InvokeHandlers);
+    }
+}
+
+// Register the new step in the pipeline
+class TriggerWarningRegistration : INeedInitialization
+{
+    public void Init(Configure config)
+    {
+        config.Pipeline.Register<TriggerWarning>();
+    }
+}
+```
+
+## How to replace a well known behavior?
+We can also replace existing behaviors using the `Replace` method and passing as the first argument the `id` of the step we want to replace. For example:
+```c#
+public class ReplaceExistingBehavior : INeedInitialization
+{
+    public void Init(Configure config)
+    {
+        config.Pipeline.Replace( "id of the step to replace", typeof( NewBehaviorType ), "description" )
+    }
+}
+```
 
 
 ##Diagnostics Tool
@@ -45,50 +122,3 @@ The following picture summarize the message lifecycle pipeline for an enpoint as
 
 ###How to visualize the pipeline of your endpoint with Diagnostics
 <TODO>
-
-###Anatomy of a Message Behaviors
-
-A message behavior is a class that implements the `IBehavior<TContext>` interface:
-
-    public class SampleBehavior : IBehavior<IncomingContext>
-    {
-    	public void Invoke(IncomingContext context, Action next)
-    	{
-    		next();
-        }
-    }
-
-In the above sample the `SampleBehavior` class implements the `IBehavior<IncomingContext>` interface where the fact that the context type is `IncomingContext` determines that the above behavior will be applied to an incoming message.
-
-In order to create a behavior that is applied to an outgoing message the `IBehavior<OutgoingContext>` can be implemented.
-
-At runtime the message lifecycle pipeline will invoke the `Invoke` method of each registered behavior passing in as arguments the current message context and an action to invoke the next behavior in the pipeline.
-
-**NOTE**: it is responsibility of each behavior to invoke the next behavior in the pipeline chain.
-
-###Message Behaviors registration
-
-Once a behavior is created the last step is to register it in the message handling pipeline:
-
-    public class RegisterSampleBehavior : INeedInitialization
-    {
-        public void Init( Configure config )
-        {
-	       config.Pipeline.Register( "step unique id", typeof( SampleBehavior ), "Description of the sample step");
-        }
-    }
-
-In the above sample the behavior is appended in the pipeline at the end and will be executed as the last behavior in the chain.
-
-We can also replace existing behaviors using the `Replace` method and passing as the first argument the `id` of the step we want to replace:
-
-    config.Pipeline.Replace( "id of the step to replace", typeof( NewBehaviorType ), "description" )
-    
-There is also the possibility to simply remove an existing behavior from the pipeline.
-
-The last option we have is to create a custom behavior registration in order to control how the behavior is registered in the pipeline. In order to create a custom registration we need to create a class that inherits from the `RegisterStep` base class. The benefits of creating a custom step registration are:
-
-* Express step dependencies in order to be sure that the pipeline at runtime is configured as we expect;
-* Define the position of the step in the pipeline, as stated above registering a step will append it at the end of the pipeline, using a custom registration we can determine the position of the step in the pipeline. 
-
-**NOTE**: Once a step is registered the behavior class lifecycle is managed by the NServiceBus Inversion of Control container thus behaviors can express dependencies, as public properties or constructor arguments, as any other component handled by the Inversion of Control container.
