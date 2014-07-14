@@ -73,7 +73,9 @@ The MsmqTransportConfig configuration section became obsolete in V4.0. Use the T
 
 **MaximumConcurrencyLevel** - The same as the `NumberOfWorkerThreads` property in `MsmqTransportConfig`.
 
-**MaximumMessageThroughputPerSecond -** Sets a limit on how quickly messages can be processed between all threads. Use a value of 0 to have no throughput limit. 
+**MaximumMessageThroughputPerSecond**  - Sets a limit on how quickly messages can be processed between all threads. Use a value of 0 to have no throughput limit. 
+
+**MaxRetries** - Sets the First Level Retries (FLR) value that defines the number of times to retry a message whose processing fails before it is moved to the error queue, or, if configured, before the Second Level Retries (SLR) engine kicks in. The default value is 5.
 
 
 
