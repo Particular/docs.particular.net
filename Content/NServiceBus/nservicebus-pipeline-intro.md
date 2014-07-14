@@ -13,8 +13,6 @@ In NServiceBus v5, there are two explicit pipelines, one for the ougoing message
 
 The steps in the processing pipeline are dynamic in nature. They are added or removed based on what features are enabled. For example, if an endpoint has Sagas, then the Saga feature will be enabled by default, which in turn adds extra steps to the incoming pipeline to facilitate the handling of sagas. 
 
-Because of the dynamic nature of the pipeline, it is hard to visualize what the incoming and outgoing steps are at any given time. To make this easier an instrumentation tool has been added to help visualize the exact steps for an endpoint. 
-
 ##Some of the commonly used steps
 ###Incoming Message Pipeline
 
@@ -116,6 +114,8 @@ public class ReplaceExistingBehavior : INeedInitialization
 
 
 ##Diagnostics Tool
+
+Because of the dynamic nature of the pipeline, it is hard to visualize what the incoming and outgoing steps are at any given time. To make this easier an instrumentation tool has been added to help visualize the exact steps for an endpoint. 
 
 The following picture summarize the message lifecycle pipeline for an enpoint as depicted by the instrumentation tool:
 
