@@ -77,6 +77,7 @@ public class RegisterSampleBehavior : INeedInitialization
 In the above sample, this behavior now becomes the innermost step of the pipeline. Sometimes the step you are trying to register might be dependent on other steps.To ensure that your step is executed before or after a dependent step, you need to create a custom registration. 
 
 To do this:
+
 1. Create a class that implements `RegisterStep`.
 2. Register the step itself in the pipeline.
 
