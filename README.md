@@ -61,7 +61,7 @@ Required. Used for the meta description tag (`<meta name="description"`) and dis
 
 Optional. Used to flag the article as being part of a group of articles.
 
-Tags are rendered in the articles content with the full list of tags being rendered at [http://docs.particular.net/tags](http://docs.particular.net/tags). Untagged articles will be rendered here [http://docs.particular.net/Tags/untagged](http://docs.particular.net/Tags/untagged)
+Tags are rendered in the articles content with the full list of tags being rendered at [http://docs.particular.net/tags](http://docs.particular.net/tags). Untagged articles will be rendered here [http://docs.particular.net/tags/untagged](http://docs.particular.net/tags/untagged)
 
 Tags are interpreted in two ways. 
 
@@ -104,14 +104,13 @@ To link to the file `\Content\NServiceBus\Page2.md`, use `[Page 2 Text](Page2.md
 
 To link to the file `\Content\ServiceControl\Page3.md`, use `[Page 3 Text](../ServiceControl/Page3.md)`.
 
-# Markdown
+## Markdown
 
 The site is rendered using [GitHub Flavoured Markdown](https://help.github.com/articles/github-flavored-markdown)
 
-## Editors
-For editing markdown on your desktop using Git try the following.
-
 ### [MarkdownPad](http://markdownpad.com/)
+
+For editing markdown on your desktop using Git try MarkdownPad.
 
 Ensure you enable *GitHub Flavoured Markdown* by going to 
 
@@ -124,7 +123,6 @@ Don't render YAML Front-Matter by going to
     Tools > Options > Markdown > Markdown Settings 
 
 And checking `Ignore YAML Front-matter`
-  
 
 ## Anchors
 
@@ -162,44 +160,71 @@ This will produce:
 ![Alerts Example](alerts.jpg)
 -->
 
+## Code Snippets
+
+There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. Any code in that directory wrapped in `// start code KEY` and `// end code KEY` can be injected into the documentation markdown using the syntax `<!-- import KEY -->`.
+
+So for example you could have a `.cs` file in that solution containing 
+
+```
+// start code ConfigureWith
+var configure = Configure.With();
+// end code ConfigureWith
+```
+
+And a documentation `.md` file containing
+
+```
+To configure the bus call
+<!-- import ConfigureWith -->
+``` 
+
+And the resulting markdown will be will be 
+
+    To configure the bus call
+    ```
+    var configure = Configure.With();
+    ``` 
+
 ## Some Useful Characters
 
  * Ticks are done with `&#10004;` &#10004;
  * Crosses are done with `&#10006;` &#10006;
   
 ## Suggested Practices for Consistent Writing
-* Spell out numbers smaller than ten	(not 2,3, etc.).
+
+* Spell out numbers smaller than ten (not 2,3, etc.).
 * Do not use "please".
 * Do not add	blank lines in code or between sections. (If a blank line is required, that usually means a heading or explanatory text is missing.)
 * Use these:
- * "click"	(not "click on" or "press")
- * "open" (not	"open up")
+ * "click" (not "click on" or "press")
+ * "open" (not "open up")
  * V3, V3.1	(not version 3, v.3, v3)
  * NOTE:	(Not "Note that")
- * Present tense (not	future tense)
+ * Present tense (not future tense)
  * you, NServiceBus	(not "we") 
- * to	(not "in order to")
+ * to (not "in order to")
  * Next steps (not	"Where to go from here?" or "Where to now?")
- * cannot, you would, is not	(not contractions  such as can't, you'd, isn't)
+ * cannot, you would, is not	 (not contractions such as can't, you'd, isn't)
  * double click, right click	(not double-click, right-click)
- * you	(not developers or users)
+ * you (not developers or users)
  * backend (not	back end)
 * Use these proper nouns:
  * Particular software	not Particular 
- * Particular Studio or Particular NServiceBus	not Particular 
+ * Particular Studio or Particular NServiceBus not Particular 
  * Visual Studio	not visual studio
  * NuGet	not Nuget
- * RavenDB	not Raven DB
- * Fluent	not fluent
+ * RavenDB not Raven DB
+ * Fluent not fluent
  * PowerShell not powershell 
- * Fiddler	not fiddler
+ * Fiddler not fiddler
  * MVC 3	not Mvc3
- * ASP.NET	not Asp.Net
- * Log4Net 	not log4net 
+ * ASP.NET not Asp.Net
+ * Log4Net not log4net 
  * Intellisense	not intellisense
- * ServiceInsight	not ServiceInsight
- * Windows Azure Service Bus	not windows azure servicebus
- * First Level Retries	not First-Level-Retries
+ * ServiceInsight not serviceInsight
+ * Windows Azure Service Bus not windows azure servicebus
+ * First Level Retries not First-Level-Retries
 
 ## More Info
  
