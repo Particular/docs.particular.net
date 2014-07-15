@@ -9,8 +9,8 @@ public class MessageConventions
 
         var configure = Configure.With()
             .DefaultBuilder()
-            .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.EndsWith("Commands"))
-            .DefiningEventsAs(t => t.Namespace != null && t.Namespace.EndsWith("Events"))
+            .DefiningCommandsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"))
+            .DefiningEventsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"))
             .DefiningMessagesAs(t => t.Namespace == "Messages")
             .DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"))
             .DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"))

@@ -110,7 +110,7 @@ The site is rendered using [GitHub Flavoured Markdown](https://help.github.com/a
 
 ### [MarkdownPad](http://markdownpad.com/)
 
-For editing markdown on your desktop using Git try MarkdownPad.
+For editing markdown on your desktop (after cloning locally with Git) try MarkdownPad.
 
 Ensure you enable *GitHub Flavoured Markdown* by going to 
 
