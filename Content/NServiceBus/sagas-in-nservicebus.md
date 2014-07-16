@@ -85,7 +85,6 @@ public class MySaga2 : Saga<MySagaData>,
 }
 ```
 
-
 **NOTE** : `IHandleMessages<Message1>` is replaced with `IAmStartedByMessages<Message1>`. This interface tells NServiceBus that the saga not only handles Message1, but that when that type of message arrives, a new instance of this saga should be created to handle it.
 
 How to correlate a `Message2` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. You only need to store this in the saga data, and tell NServiceBus about the connection. Here's how:
