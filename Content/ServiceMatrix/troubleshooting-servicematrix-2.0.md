@@ -66,7 +66,7 @@ In case of any errors or exception the ServiceMatrix log file may contain inform
 The Microsoft FixIt tool can help troubleshoot general installation issues including registry problems.  You may download it [here](http://support.microsoft.com/mats/program_install_and_uninstall/en-us "Microsoft FixIt tool"). 
 
 
-### Disconnecting a solution from ServiceMatrix
+## Disconnecting a solution from ServiceMatrix
 
 One of the primary goals of ServiceMatrix is to dramatically improve the speed of solution development with NServiceBus, without limiting the developer's options in any way (i.e. no lock-in of developers to ServiceMatrix).
 
