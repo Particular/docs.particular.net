@@ -35,7 +35,7 @@ public class MySagaData : IContainSagaData
 ```
 
 By default, NServiceBus stores your sagas in RavenDB. The schema-less nature of document databases makes them a perfect fit for saga storage where each saga instance is persisted as a single document. There is also support for relational databases using
-[NHibernate](http://nhforge.org/) . NHibernate support is located in the NServiceBus.NHibernate assembly. You can, as always, swap out these technologies, by implementing the IPersistSagas interface.
+[NHibernate](http://sourceforge.net/projects/nhibernate/) . NHibernate support is located in the NServiceBus.NHibernate assembly. You can, as always, swap out these technologies, by implementing the IPersistSagas interface.
 
 Adding behavior
 ---------------
