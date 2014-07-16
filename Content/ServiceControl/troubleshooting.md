@@ -44,13 +44,5 @@ netsh http add urlacl url=http://localhost:33333/api/ users=<accountname> Listen
     * `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs` if the issue relates to ServiceControl normal operations. Logs location may vary depending on the user that has been configured to run the ServiceControl service, the above one is the one where the LocalSystem user outputs logs information;
 * Most common cause is prerequisites installation and configuration issues;
 
-### Disconnecting a solution from ServiceMatrix
-
-One of the primary goals of ServiceMatrix is to dramatically improve the speed of solution development with NServiceBus, without limiting the developer's options in any way (i.e. no lock-in of developers to ServiceMatrix).
-
-To disconnect a solution developed with ServiceMatrix from ServiceMatrix (and continue developing the solution without ServiceMatrix) rename the file ```*.slnbldr``` that is located under the ```Solution Items``` folder in the Solution Explorer.
-
-**NOTE:** Disconnecting a solution from ServiceMatrix may make it impossible to re-connect the ServiceMatrix to the solution (depending on the scope and type of changes performed on the solution after it has been disconnected).
-
  
 
