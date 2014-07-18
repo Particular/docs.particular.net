@@ -20,7 +20,7 @@ With this proxy setup, change the RavenDB connection string, to go through Fiddl
 
 ```XML
 <connectionStrings>
-  <add name="NServiceBus.Persistence" connectionString="url=http://localhost.fiddler:8080"/>
+  <add name="NServiceBus/Persistence" connectionString="url=http://localhost.fiddler:8080"/>
 </connectionStrings>
 ```
 
