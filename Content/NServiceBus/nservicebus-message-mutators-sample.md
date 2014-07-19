@@ -251,7 +251,7 @@ public class Handler : IHandleMessages<CreateProductCommand>
 
 The server handler code does not need to change on account of the message mutation.
 
-This article was based on an article written by [Adam Fyles](http://adamfyles.blogspot.com.au/). See the [original blog post](http://adamfyles.blogspot.com.au/2011/02/nservicebus-30-message-mutators.html).
+This article was based on an article written by [Adam Fyles](http://adamfyles.blogspot.com). See the [original blog post](http://adamfyles.blogspot.com/2011/02/nservicebus-30-message-mutators.html).
 
 Where to next?
 --------------
