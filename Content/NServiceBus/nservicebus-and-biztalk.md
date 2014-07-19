@@ -29,6 +29,3 @@ Sometimes you need a hammer, sometimes you need a screwdriver, and sometimes you
 To learn more about dividing up your architecture into high-level business services, see the [presentation Udi gave on SOA](architectural-principles.md).
 
 [This download from Microsoft](http://download.microsoft.com/download/B/0/6/B0678433-88EA-44D4-8C4C-F4AA5DFC4C58/nServiceBus%20and%20BizTalk%20Server.docx) describes the details of getting NServiceBus and BizTalk to work together, including a whitepaper, code samples, and videos to get you up and running in no time.
-
-If you haven't downloaded NServiceBus yet, [give it a try.](http://www.particular.net/downloads)
-
