@@ -4,6 +4,8 @@ summary: The in-memory bus is applicable when events need to be handled synchron
 tags: []
 ---
 
+**NOTE**: Bus.InMemory feature has been deprecated starting from version 4.6 and will be removed in version 5.0
+
 Prior to V4.0, NServiceBus provided an asynchronous method of communication between parts of the system using `Send`, `Reply`, and `Publish` API. Asynchronous forms of communication are great for ensuring reliable and durable communication between parts of the system. NServiceBus V4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.
 
 
