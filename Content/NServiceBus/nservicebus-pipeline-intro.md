@@ -54,7 +54,7 @@ Sometimes a parent behavior might need to pass in some information relating to a
 
 ## How does the pipeline execute its steps?
 
-The pipeline is implemented using the [Russian Doll](http://en.wikipedia.org/wiki/Matryoshka_doll) Model. Russian dolls are a series of progressively smaller dolls nested within each other. Similarly, the pipline model is a series of progressively nested steps within each other.  
+The pipeline is implemented using the [Russian Doll](http://en.wikipedia.org/wiki/Matryoshka_doll) Model. Russian dolls are a series of progressively smaller dolls nested within each other. Similarly, the pipeline model is a series of progressively nested steps within each other.  
 
 At runtime, the pipeline will call the `Invoke` method of each registered behavior passing in as arguments the current message context and an action to invoke the next behavior in the pipeline. It is responsibility of each behavior to invoke the next behavior in the pipeline chain.
 
@@ -117,7 +117,7 @@ public class ReplaceExistingBehavior : INeedInitialization
 
 Because of the dynamic nature of the pipeline, it is hard to visualize what the incoming and outgoing steps are at any given time. To make this easier an instrumentation tool has been added to help visualize the exact steps for an endpoint. 
 
-The following picture summarize the message lifecycle pipeline for an enpoint as depicted by the instrumentation tool:
+The following picture summarize the message lifecycle pipeline for an endpoint as depicted by the instrumentation tool:
 
 ![Message lifecycle pipeline](001_pipeline.png)
 
