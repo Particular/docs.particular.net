@@ -1,6 +1,6 @@
 ---
 title: Running NServiceBus on Windows
-summary: Overview of the requirements for running on windows (including MSMQ, DTC, Storage and powershell)
+summary: Overview of the requirements for running on windows (including MSMQ, MSDTC, Storage and powershell)
 tags:
 - MSMQ
 - MSDTC
@@ -31,7 +31,7 @@ You can read more on transactions
 Storage
 -------
 
-In order to durably handle things like subscriptions, timeouts, sagas etc. NServiceBus needs a storage mechanism that supports the DTC. The default storage for NServiceBus 3 is RavenDB but relational databases is still supported through [NHibernate](relational-persistence-using-nhibernate.md). NServiceBus will automatically install RavenDB for you if no existing installation can be detected on your machine. 
+In order to durably handle things like subscriptions, timeouts, sagas etc. NServiceBus needs a storage mechanism that supports the MSDTC. The default storage for NServiceBus 3 is RavenDB but relational databases is still supported through [NHibernate](relational-persistence-using-nhibernate.md). NServiceBus will automatically install RavenDB for you if no existing installation can be detected on your machine. 
 
 You can read more on the persistence needs of NServiceBus [here](persistence-in-nservicebus.md).
 
