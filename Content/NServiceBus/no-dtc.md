@@ -90,6 +90,19 @@ class OrderPlacedHandler : IHandleMessages<OrderPlaced>
 }
 ```
 
+## What extra tables does NHibernate create
+To keep track duplicate messages, the NHibernate implementation of Outbox requires the creation of two additional tables in your database, these are called `OutboxRecord` and `OutboxOperation`.
+
+## How long are the deduplication records kept
+The NHibernate implementation by default keeps deduplication records for 7 days and runs the purge every 1 minute.
+These default settings can be changed by specifying new defaults in the config file using [TimeStamp strings](http://msdn.microsoft.com/en-us/library/ee372286.aspx), here is how to do it:
+```xml
+<appSettings>
+  <add key="NServiceBus/Outbox/NHibernate/TimeToKeepDeduplicationData" value="7.00:00:00" />
+  <add key="NServiceBus/Outbox/NHibernate/FrequencyToRunDeduplicationDataCleanup" value="00:01:00" />
+</appSettings>
+```
+
 ## Samples
 1. [Sql Server Transport without MSDTC Sample](https://github.com/Particular/NServiceBus.SqlServer/archive/Samples.zip)
 This sample shows how to configure an Endpoint that uses SQL Server transport and NHibernate as it business data storage and how to access the NHIbernate `ISession` for a `Saga` and a `Handler`.
