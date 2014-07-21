@@ -14,25 +14,30 @@ In NServiceBus v5, there are two explicit pipelines, one for the outgoing messag
 The steps in the processing pipeline are dynamic in nature. They are added or removed based on what features are enabled. For example, if an endpoint has Sagas, then the Saga feature will be enabled by default, which in turn adds extra steps to the incoming pipeline to facilitate the handling of sagas. 
 
 ##Some of the commonly used steps
+
+Following there is the list of the basic pipeline steps, incoming and outgoing, that are configured by default in a NServiceBus endpoint.
+
 ###Incoming Message Pipeline
 
-* CreateChildContainer
-* ExecuteUnitOfWork
-* MutateIncomingTransportMessage
-* DeserializeMessages
-* ExecuteLogicalMessages
-* MutateIncomingMessages
-* LoadHandlers
-* InvokeHandlers
-            
+1. `CreateChildContainer`: NServiceBus heavily relies in IoC to work properly and requires every message to be handled in its own context, to achieve that every message that arrives to an Endpoint will at first create a new child container to generate a new dependency resolution scope; 
+* `ExecuteUnitOfWork`: the ExecuteUnitOfWork behavior is responsible to handle the creation of the Unit of Work, that wrap every message execution, whose role is to guarantee the execution of message in a transaction fashion;
+* `MutateIncomingTransportMessage`: NServiceBus has the concept of message mutators (link to docu) this behavior is responsible to execute each registered `TransportMessage` mutator;
+* `DeserializeMessages`: The DeserializeMessages behavior will deserialize the incoming message from its raw form, the `TransportMessage`, to a well known `class` or `interface` instance using the configured serializer;
+* `ExecuteLogicalMessages`: This behavior is responsible to create a dedicated context for each incoming message and to determine if there is any message, other than built-in control messages, that must be executed;
+* `MutateIncomingMessages`: Once a TransportMessage has been deserialized is is passed through a new set of message mutators, this behavior is responsible to execute each registered message mutator;
+* `LoadHandlers`: The LoadHandlers behavior will load all the handlers registered for the incoming messages and coordinate the execution logic of all the loaded handlers;
+* `InvokeHandlers`: This behavior is responsible to physically invoke each message handler;
+
 ###Outgoing Message Pipeline
 
-* EnforceBestPractices
-* MutateOutgoingMessages
-* CreatePhysicalMessage
-* SerializeMessage
-* MutateOutgoingTransportMessage
-* DispatchMessageToTransport
+1. `EnforceBestPractices`: this behavior is responsible to ensure that best practices are respected, for example, among all, that the user is not trying to `send` an event or to `publish` a command;
+* `MutateOutgoingMessages`: each message, as for incoming messages, is passed to a set of message mutators that have the opportunity to manage and mutate the outgoing message;
+* `CreatePhysicalMessage`: this behavior transform the logical messages that need to be sent to the corresponding `TransportMessage`;
+* `SerializeMessage`: The SerializeMessage behavior takes care of using the configured serialization engine to serialize the outgoing message;
+* `MutateOutgoingTransportMessage`: Before the `TransportMessage` is dispatched to the physical transport all the outgoing message mutators are invoked;
+* `DispatchMessageToTransport`: The last step is to dispatch the `TransportMessage` to the underlying transport;
+
+**NOTE**: the execution order of the built-in pipeline steps cannot be changed
 
 ##How do you code behaviors?
 
@@ -54,7 +59,7 @@ Sometimes a parent behavior might need to pass in some information relating to a
 
 ## How does the pipeline execute its steps?
 
-The pipeline is implemented using the [Russian Doll](http://en.wikipedia.org/wiki/Matryoshka_doll) Model. Russian dolls are a series of progressively smaller dolls nested within each other. Similarly, the pipeline model is a series of progressively nested steps within each other.  
+The pipeline is implemented using the [Russian Doll](http://en.wikipedia.org/wiki/Matryoshka_doll) Model. Russian dolls are a series of progressively smaller dolls nested within each other. Similarly, the pipeline model is a series of progressively nested steps within each other. 
 
 At runtime, the pipeline will call the `Invoke` method of each registered behavior passing in as arguments the current message context and an action to invoke the next behavior in the pipeline. It is responsibility of each behavior to invoke the next behavior in the pipeline chain.
 
