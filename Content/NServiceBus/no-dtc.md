@@ -34,7 +34,7 @@ and also the following configuration in the config file:
 ```
 
 ### Note
-The reason of this double opt-in required configuration at this time for all other transports is because we want users to be aware that unfortunatelly this new feature cannot coexist with existing not enabled endpoints unless they are [idempotent](http://en.wikipedia.org/wiki/Idempotence).
+The reason of this double opt-in required configuration at this time for all other transports is because we want users to be aware that this new feature shoule not be used with existing endpoints that use the DTC, unless those endpoints are [idempotent](http://en.wikipedia.org/wiki/Idempotence).
 
 ## How does it work
 These feature has been implemented using both the [Outbox pattern](http://gistlabs.com/2014/05/the-outbox/) and the [Deduplication pattern](http://en.wikipedia.org/wiki/Data_deduplication#In-line_deduplication).
