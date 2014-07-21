@@ -89,5 +89,8 @@ class OrderPlacedHandler : IHandleMessages<OrderPlaced>
 }
 ```
 
-## Sample
-Click here to download a working sample
+## Samples
+1. [Sql Server Transport without DTC Sample](https://github.com/Particular/NServiceBus.SqlServer/archive/Samples.zip)
+This sample shows how to configure an Endpoint that uses SQL Server transport and NHibernate as it business data storage and how to access the NHIbernate `ISession` for a `Saga` and a `Handler`.
+1. [Outbox Sample](https://github.com/Particular/NServiceBus.NHibernate/archive/Samples.zip)
+This sample shows how to enable Outbox on an endpoint and how to access the NHIbernate `ISession` for a `Saga` and a `Handler`. 
