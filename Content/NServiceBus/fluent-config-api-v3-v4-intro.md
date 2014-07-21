@@ -87,6 +87,8 @@ Where the feature type is one of the feature classes defined in the `NServiceBus
 There are scenarios in which we need to self host the bus without being able to rely on the NServiceBus Host process, a well known sample scenario is a web application, in these cases we are responsible to configure, create and start the bus.
 The configuration entry point point is the Configure class that exposes a fluent configuration API that let us take fine control of all the configuration settings.
 
+####Self hosting in V4
+
 ```
 public class Program
 {
@@ -100,10 +102,27 @@ public class Program
 	}}
 ```
 
-The above sample code, from a console application, is the minimum required to create, initialize and finally start the bus in a self hosting scenario.
+####Self hosting in V3
+
+```
+public class Program
+{
+    public static void Main()    {
+        var bus = Configure.With()
+	        .DefaultBuilder()
+	        .MsmqTransport()
+	        .UnicastBus()
+	        .CreateBus()
+	        .Start();
+	}}
+```
+
+The above samples, from a console application, is the minimum required to create, initialize and finally start the bus in a self hosting scenario.
 
 The `With()` method is the main configuration entry point that initialize and starts the configuration engine, right after that the call to `DefaultBuilder()` instructs the configuration engine to use the built-in inversion of control container to manage dependencies.
 
-The `UsingTransport<TTransport>()` generic method defines what will be the underlying transport that the bus instance will use, in the above sample we are using Microsoft Message Queue.
+V4 supports multiple transports and the `UsingTransport<TTransport>()` generic method defines what will be the underlying transport that the bus instance will use, in the above sample we are using MSMQ.
+
+In V3 the only supported transport was MSMQ thus the only viable option was to use the `MsmqTransport()` method.
 
 Finally we define that the bus will be a unicast bus, the only option currently available, and we create and start the bus.
