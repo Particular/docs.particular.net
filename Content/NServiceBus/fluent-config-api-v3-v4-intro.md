@@ -12,7 +12,7 @@ Every NServiceBus endpoint to work properly relies on a configuration that deter
 
 ###NServiceBus Host
 
-NServiceBus provides its own hosting service (link to the nuget package) that can be used to outsource the whole hosting "drama" (find a synonym) without worrying about how to deal with Windows Services.
+NServiceBus provides its own hosting service (link to the NuGet package) that can be used to outsource the whole hosting "drama" (find a synonym) without worrying about how to deal with Windows Services.
 
 When using the built in hosting services the endpoint configuration is specified using the EndpointConfig class, automatically created when adding NServiceBus packages via NuGet, and implementing one of the core interfaces that determine the default endpoint behavior:
 
@@ -44,11 +44,11 @@ public class CustomConfiguration : IWantCustomInitialization
 	}}
 ```
 
-**NOTE**: Do not start the bus it will be done by the host (expand on this topic a bit)
+**NOTE**: Do not start the bus it will be done by the host *`(comment - expand on this topic a bit)`*
 
-###Features
+###Features (V4 only)
 
-NServiceBus has also the notion of features, features are a high level concept that encapsulate a set of settings related to a certain feature, thus features can be entirely enabled or disabled and when enabled configured.
+NServiceBus in V4 has introduced the concept of features, features are a high level concept that encapsulate a set of settings related to a certain feature, thus features can be entirely enabled or disabled and when enabled configured.
 
 List of built-in features
 
@@ -70,7 +70,7 @@ Through the feature API it is also possible to configure the serialization forma
 
 By default if no configuration is performed the XML serializer is enabled.
 
-**NOTE**: In NServiceBus (v3.x and v4.x) Only one serializer can be enabled in an endpoint at a time.
+**NOTE**: Only one serializer can be enabled in an endpoint at a time.
 
 To enable a feature there is a simple and straightforward API:
 
