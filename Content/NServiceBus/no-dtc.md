@@ -38,7 +38,7 @@ The reason of this double opt-in required configuration at this time for all oth
 
 ## How does it work
 These feature has been implemented using both the [Outbox pattern](http://gistlabs.com/2014/05/the-outbox/) and the [Deduplication pattern](http://en.wikipedia.org/wiki/Data_deduplication#In-line_deduplication).
-As a message is dequeued we check to see if we have previously processed it and if yes we dicard it otherwise we invoke the handlers code and store all outgoing message in a durable storage in the same transaction as the users own database changes. Finally we send out all outgoing messages and update the deduplication storage.
+As a message is dequeued we check to see if we have previously processed it. If so, we then deliver any messages in the outbox for that message but do not invoke message-processing logic again. If the message wasn't previously processed, then we invoke the regular handler logic, storing all outgoing message in a durable storage in the same transaction as the users own database changes. Finally we send out all outgoing messages and update the deduplication storage.
 
 Here is a diagram how it all works:
 ![No DTC Diagram](NoDTC.jpg)
