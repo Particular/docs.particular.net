@@ -3,7 +3,7 @@ title: Avoiding DTC
 summary: 'How to avoid using MSDTC in NServiceBus'
 tags:
 - NServiceBus
-- DTC
+- MSDTC
 ---
 
 **NOTE: This article refers to a beta version of NServiceBus (V5) and is subject to changes and updates.**
@@ -49,7 +49,7 @@ Here is a diagram how it all works:
 
 ## SqlServer Transport
 SqlServer transport supports No-DTC without Outbox.
-To enable SqlServer transport to not use DTC you need to ensure that all of the following connection strings are exactly the same (including the casing) in your config file:
+To enable SqlServer transport to not use MSDTC you need to ensure that all of the following connection strings are exactly the same (including the casing) in your config file:
 ```xml
 <connectionStrings>
   <add name="NServiceBus/Persistence" connectionString="MY CONNECTION STRING" />
@@ -91,7 +91,7 @@ class OrderPlacedHandler : IHandleMessages<OrderPlaced>
 ```
 
 ## Samples
-1. [Sql Server Transport without DTC Sample](https://github.com/Particular/NServiceBus.SqlServer/archive/Samples.zip)
+1. [Sql Server Transport without MSDTC Sample](https://github.com/Particular/NServiceBus.SqlServer/archive/Samples.zip)
 This sample shows how to configure an Endpoint that uses SQL Server transport and NHibernate as it business data storage and how to access the NHIbernate `ISession` for a `Saga` and a `Handler`.
 1. [Outbox Sample](https://github.com/Particular/NServiceBus.NHibernate/archive/Samples.zip)
 This sample shows how to enable Outbox on an endpoint and how to access the NHIbernate `ISession` for a `Saga` and a `Handler`. 
