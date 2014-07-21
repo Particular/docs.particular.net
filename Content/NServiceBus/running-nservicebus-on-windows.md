@@ -3,7 +3,7 @@ title: Running NServiceBus on Windows
 summary: Overview of the requirements for running on windows (including MSMQ, DTC, Storage and powershell)
 tags:
 - MSMQ
-- DTC
+- MSDTC
 - Performance Counters
 - Powershell
 - Storage
