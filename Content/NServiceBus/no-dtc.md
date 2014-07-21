@@ -1,6 +1,6 @@
 ---
-title: Avoiding DTC
-summary: 'How to avoid using MSDTC in NServiceBus'
+title: Reliable messaging without MSDTC
+summary: 'How to configure NServiceBus to provide reliable messaging without using MSDTC or when MSDTC is not available'
 tags:
 - NServiceBus
 - MSDTC
