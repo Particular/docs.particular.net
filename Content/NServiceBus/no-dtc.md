@@ -9,7 +9,7 @@ tags:
 **NOTE: This article refers to a beta version of NServiceBus (V5) and is subject to changes and updates.**
 
 
-NServiceBus v5 brings the option of running endpoints with the same reliability we all got accustomed to while running under DTC, but now without it. 
+NServiceBus V5 brings the option of running endpoints with the same reliability we all got accustomed to while running under DTC, but now without it. 
 
 ## Supported Transports
 Out of the box RabbitMQ is the only transport that is enabled automatically by default.
