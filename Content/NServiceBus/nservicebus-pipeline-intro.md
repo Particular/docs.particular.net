@@ -37,7 +37,7 @@ Following there is the list of the basic pipeline steps, incoming and outgoing, 
 * `MutateOutgoingTransportMessage`: Before the `TransportMessage` is dispatched to the physical transport all the outgoing message mutators are invoked;
 * `DispatchMessageToTransport`: The last step is to dispatch the `TransportMessage` to the underlying transport;
 
-**NOTE**: the execution order of the built-in pipeline steps cannot be changed
+The above steps are the required steps to correctly handle incoming and outgoing messages, the built-in steps can be replaced until the new ones guarantee the same conceptual behavior; it is also important to note that the execution order of the built-in pipeline steps cannot be changed.
 
 ##How do you code behaviors?
 
@@ -56,6 +56,8 @@ public class SampleBehavior : IBehavior<IncomingContext>
 In the above code snippet the `SampleBehavior` class implements the `IBehavior<IncomingContext>` interface. This tells the framework to execute this behavior against the incoming pipeline. If you want to create a behavior that needs to be applied to the outgoing pipeline, implement the `IBehavior<OutgoingContext>` instead. 
 
 Sometimes a parent behavior might need to pass in some information relating to a child behavior and vice versa. The context facilitates this passing of data between behaviors in the pipeline steps. The context is simply a dictionary. You can add information to this dictionary in a parent behavior and retrieve this value from a child behavior and vice versa. 
+
+An important fact that the above sample outlines is that each behavior is responsible to call the `next` behavior in the chain and it is also interesting to note that a behavior can perform some actions before calling the next behavior in the chain and some other action after the chain has been executed.
 
 ## How does the pipeline execute its steps?
 
