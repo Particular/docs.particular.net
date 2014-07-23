@@ -7,8 +7,8 @@ public class ForInstallationOnReplacement
         // start code ForInstallationOnReplacementV5
         
         var configure = Configure.With();
-        var bus = configure.CreateBus();
         configure.EnableInstallers();
+        var bus = configure.CreateBus();
         bus.Start();
 
         // end code ForInstallationOnReplacementV5
