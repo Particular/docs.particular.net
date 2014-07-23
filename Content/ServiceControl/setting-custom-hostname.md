@@ -7,27 +7,22 @@ tags:
 - Configuration
 ---
 
-To set a custom hostname and IP port for ServiceControl:
-
-1. Open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file))  
-1. Add the `ServiceControl/Hostname` and `ServiceControl/Port` settings in the `<appSettings>` section. 
-
+### To set a custom hostname and IP port for ServiceControl
 
 The following example configures ServiceControl to listen to localhost + machinename + IP address on port 80:
-
-```xml 
-<add key="ServiceControl/Hostname" value="*" />
-<add key="ServiceControl/Port" value="33333" />
+```bat
+x:\Your_Installed_Path\ServiceControl.exe --restart -d=ServiceControl/Hostname==* -d=ServiceControl/Port==80
 ```
 
 The following example configures ServiceControl to listen to `http://sc.myspecialdomain.com:8080/api`:
-
-```xml
-<add key="ServiceControl/Hostname" value="sc.myspecialdomain.com" />
-<add key="ServiceControl/Port" value="33333" />
+```bat
+x:\Your_Installed_Path\ServiceControl.exe --restart -d="ServiceControl/Hostname==sc.myspecialdomain.com" -d=ServiceControl/Port==8080
 ```
 
-**NOTE:** You must set both the `ServiceControl/Hostname` and the `ServiceControl/Port`, even if the value of one remains unchanged.
+<p class="alert alert-info">
+<strong>ServiceControl default installed location</strong><br/>
+By default ServiceControl is installed in [Program Files]\Particular Software\ServiceControl.
+</p>
 
 ### Updating URLACL Settings
 
@@ -41,14 +36,23 @@ For example, the following command line (with the appropriate adjustments for yo
 ### Configuring ServiceControl to Use a Virtual Directory
 
 You can customize ServiceControl to expose the API endpoint under a custom virtual directory at the configured URL. To customize the Virtual Directory, add a new setting to the ServiceControl configuration file:
+```bat
+x:\Your_Installed_Path\ServiceControl.exe --restart -d="ServiceControl/VirtualDirectory==MyFolder"
+```
 
-`<add key="ServiceControl/VirtualDirectory" value="MyFolder" />`
+<p class="alert alert-info">
+<strong>ServiceControl default installed location</strong><br/>
+By default ServiceControl is installed in [Program Files]\Particular Software\ServiceControl.
+</p>
 
-After restarting the ServiceControl service, invoke the API by issuing a request to the following URL: `http://localhost:33333/MyFolder/API/`
+After ServiceControl service restarts, invoke the API by issuing a request to the following URL: `http://localhost:33333/MyFolder/api/`
 
-**NOTE:** The above sample illustrates simplified and default non-secure settings. Apply security and authentication restrictions based on specific usage restrictions and policies. 
+<p class="alert alert-warning">
+<strong>Note</strong><br/>
+The above sample illustrates simplified and default non-secure settings. Apply security and authentication restrictions based on specific usage restrictions and policies.
+</p>
 
-### Updating ServicePulse Configuration to ServiceControl Custom Hostname
+### Updating ServicePulse configuration to connect to a ServiceControl with a custom hostname
 
 1. Update the ServicePulse configuration file to access the updated ServiceControl hostname & port number. By default, the ServicePulse configuration file is located in `[Program Files]\Particular Software\ServicePulse\app\config.js`.
 1. Update the value of the `service_control_url` parameter to the specified ServiceControl hostname and IP port number.
