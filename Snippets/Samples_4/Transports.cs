@@ -5,7 +5,6 @@ public class Transports
 {
     public void AllTheTransports()
     {
-
         // start code ConfigureTransportsV4
 
         // Configure to use MSMQ 
@@ -18,7 +17,7 @@ public class Transports
         Configure.With().UseTransport<AzureServiceBus>();
 
         // Configure to use SqlServer
-        Configure.With().UseTransport<NServiceBus.SqlServer>();
+        Configure.With().UseTransport<SqlServer>();
 
         // end code ConfigureTransportsV4
     }
