@@ -174,13 +174,13 @@
 <div class="block top">
   <a href="/NServiceBus"><img src="/images/home/NSB.png" style="max-width: 43%" /></a>
   <div class="small button">
-    <a class="blue" href="/nservicebus">Documentation topics</a>
+    <a class="blue" href="/nservicebus/">Documentation topics</a>
   </div>
   <div style="clear: both"></div>
 </div>
 <div class="block middle">
   <div class="ic">
-    <a href="/NServiceBus/NServiceBus-Step-by-Step-Guide" class="img">
+    <a href="/nservicebus/nservicebus-step-by-step-guide" class="img">
       <img src="/images/home/gettingStarted.png" /><img src="/images/home/gettingStartedHover.png" class="hover"/><br/>
       Getting Started &rarr;
     </a>
@@ -245,7 +245,7 @@
 </div>
 <div class="productcolumn header">
   <div class="block top">
-    <a href="/ServiceMatrix">
+    <a href="/servicematrix/">
       <img src="/images/home/SM.png" />
     </a>
     <div style="clear: both"></div>
@@ -253,7 +253,7 @@
 </div>
 <div class="productcolumn header">
   <div class="block top">
-    <a href="/ServiceInsight">
+    <a href="/serviceinsight/">
       <img src="/images/home/SI.png" />
     </a>
     <div style="clear: both"></div>
@@ -261,7 +261,7 @@
 </div>
 <div class="productcolumn header last">
   <div class="block top">
-    <a href="/ServicePulse">
+    <a href="/servicepulse/">
       <img src="/images/home/SP.png" />
     </a>
     <div style="clear: both"></div>
@@ -271,31 +271,31 @@
   <div class="productcolumn block">
     <p><h4>Generate a fully functional distributed application skeleton in a matter of minutes</h4></p>
     <ul>
-      <li><a href="/ServiceMatrix/getting-started-with-servicematrix-2.0">Getting Started</a></li>
-      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe">Publish/Subscribe</a></li>
-      <li><a href="/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance">Fault Tolerance</a></li>
+      <li><a href="/servicematrix/getting-started-with-servicematrix-2.0">Getting Started</a></li>
+      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe">Publish/Subscribe</a></li>
+      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance">Fault Tolerance</a></li>
     </ul>
-    <a href="/ServiceMatrix"><h3>Learn more &rarr;</h3></a>
+    <a href="/servicematrix/"><h3>Learn more &rarr;</h3></a>
    <div style="clear: both"></div>
   </div>
   <div class="productcolumn block">
     <p><h4>Complete under-the-hood visualization of the your system's behavior</h4></p>
     <ul>
-      <li><a href="/Serviceinsight/getting-started-overview">Getting Started</a></li>
-      <li><a href="/ServiceMatrix/servicematrix-serviceinsight">Interaction with ServiceMatrix</a></li>
-      <li><a href="/Serviceinsight/application-invocation">Application invocation</a></li>
+      <li><a href="/serviceinsight/getting-started-overview">Getting Started</a></li>
+      <li><a href="/servicematrix/servicematrix-serviceinsight">Interaction with ServiceMatrix</a></li>
+      <li><a href="/serviceinsight/application-invocation">Application invocation</a></li>
     </ul>
-    <a href="/ServiceInsight"><h3>Learn more &rarr;</h3></a>
+    <a href="/serviceinsight/"><h3>Learn more &rarr;</h3></a>
     <div style="clear: both"></div>
   </div>
   <div class="productcolumn last block">
     <p><h4>Real-time monitoring that is custom tailored to fit your distributed systems</h4></p>
     <ul>
-      <li><a href="/ServicePulse/intro-endpoints-heartbeats">Monitoring Endpoints</a></li>
-      <li><a href="/ServicePulse/intro-failed-messages">Handling Failed Messages</a></li>
-      <li><a href="/ServicePulse/intro-endpoints-custom-checks">Introduction to Custom Checks</a></li>
+      <li><a href="/servicepulse/intro-endpoints-heartbeats">Monitoring Endpoints</a></li>
+      <li><a href="/servicepulse/intro-failed-messages">Handling Failed Messages</a></li>
+      <li><a href="/servicepulse/intro-endpoints-custom-checks">Introduction to Custom Checks</a></li>
     </ul>
-    <a href="/ServicePulse"><h3>Learn more &rarr;</h3></a>
+    <a href="/servicepulse/"><h3>Learn more &rarr;</h3></a>
     <div style="clear: both"></div>
   </div>
 </div>
