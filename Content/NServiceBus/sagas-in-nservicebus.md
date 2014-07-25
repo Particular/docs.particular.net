@@ -48,7 +48,7 @@ Just like regular message handlers, the behavior of a saga is implemented via th
 ```C#
 public class MySaga : Saga<MySagaData>,
                       IHandleMessages<Message1>,
-                      IHandleMessages<Message2>;
+                      IHandleMessages<Message2>
 {
   public void Handle(Message1 message)
   {
@@ -71,7 +71,7 @@ Since a saga manages the state of a long-running process, under which conditions
 ```C#
 public class MySaga2 : Saga<MySagaData>,
                       IAmStartedByMessages<Message1>,
-                      IHandleMessages<Message2>;
+                      IHandleMessages<Message2>
 {
   public void Handle(Message1 message)
   {
