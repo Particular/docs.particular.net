@@ -33,7 +33,7 @@ The root underlying cause of these compatibility issue is that NServiceBus follo
 
 ### Resource merged RavenDB versions 
 
-Version 4 of NServiceBus was shipped with version 2.0.2375 of RavenDB resource merged
+Version 4 of NServiceBus was shipped with version 2.0.2375 of RavenDB resource merged.
 
 ## Externalised RavenDB
 
