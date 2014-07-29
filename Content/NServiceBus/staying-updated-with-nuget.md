@@ -55,7 +55,7 @@ Or, if you already installed NServiceBus core libraries:
 
 **NOTE** : NServiceBus continuous integration packages are marked as a pre-release so you need to install using the [`-IncludePrerelease` switch](http://nuget.codeplex.com/wikipage?title=Pre-Release%20Packages).
 
-Additional NServiceBus V3 NuGet packages
+Additional NServiceBus NuGet packages
 ----------------------------------------
 
 There are additional NServiceBus NuGet packages, to make your integration with NServiceBus even easier. Each package specifies libraries and configures NServiceBus to utilize them.
