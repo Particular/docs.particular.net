@@ -41,18 +41,17 @@ To integrate the NServiceBus generic host into the worker role entry point, all 
         }
     }
 
-Next to starting the role entry point, you also need to define how you want your endpoint to behave. As we're inside worker roles most of the time, the role has been conveniently named `AsA_Worker`. Furthermore you also need to specify the transport that you want to use, using the `UsingTransport<T>` interface.
+Next to starting the role entry point, you also need to define how you want your endpoint to behave. As we're inside worker roles most of the time, the role has been conveniently named `AsA_Worker`. Furthermore you also need to specify the transport that you want to use, using the `UsingTransport<T>` interface, as well the persistence that you want to use, using the `UsingPersistence<T>` interface.
 
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker, UsingTransport<AzureStorageQueue> { }
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker, UsingTransport<AzureStorageQueue>,  UsingPersistence<AzureStorage> { }
 
 This will integrate and configure the default infrastructure for you, being:
 
 * Configuration setting will be read from your app.config file, merged with the settings from the service configuration file.
-* Depending on the specified profile (`Development` or `Production`), logs will be sent to respectively the `ConsoleLogger` or the `TraceLogger`, the latter should have been implemented with azure diagnostic monitor trace listener by the visual studio tooling.
-* Subscriptions are persisted in windows azure storage (in case of the AzureStorageQueue transport, AzureServiceBus has it's own subscription facility)
-* Saga's are enabled by default and persisted in windows azure storage
-* Timeouts are enabled by default and persisted in windows azure storage
-
+* Logs will be sent to the `TraceLogger`, the latter should have been implemented with azure diagnostic monitor trace listener by the visual studio tooling.
+* Subscriptions are persisted in the chosen persistence store (in case of the AzureStorageQueue transport, AzureServiceBus has it's own subscription facility).
+* Saga's are enabled by default and persisted in the chosen persistence store.
+* Timeouts are enabled by default and persisted in the chosen persistence store.
 
 Configuration override convention
 ---------------------------------
@@ -144,20 +143,16 @@ The fluent API is used with the following extension methods to achieve the same 
             .TraceLogger()
 
             .UseTransport<AzureStorageQueue>()
-
-			.AzureSubscriptionStorage()
-			.AzureSagaPersister()
-			.UseAzureTimeoutPersister()
-			...
+            .UsePersistence<AzureStorage>()
+		
+	    ...
 
 a short explanation of each:
 
 * AzureConfigurationSource: Tells nservicebus to override any settings from the app.config file with settings from the service configuration file.
 * TraceLogger: Redirects all logs to the trace logger (which in turn should be configured for diagnostics monitor trace listener.
 * UseTransport<AzureStorageQueue>: Sets azure storage queues as the transport
-* AzureSubscriptionStorage: Configures azure storage for persistence of subscriptions.
-* AzureSagaPersister: Configures azure storage for persistence of saga's.
-* UseAzureTimeoutPersister: Configures azure storage for persistence of timeout state.
+* UsePersistence: Configures azure storage for persistence of enabled features (like subscriptions, saga's & timeouts).
 
 
 Sample
