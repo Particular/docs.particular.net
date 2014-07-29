@@ -13,33 +13,21 @@ How To enable persistence with windows azure storage services
 
 First you need to reference the assembly that contains the azure storage persisters. The recommended way of doing this is by adding a nuget package reference to the  `NServiceBus.Azure` package to your project.
 
-If self hosting, you can configure the persistence technology using the fluent configuration API and the extension methods found in the `NServiceBus.Azure` assembly
+If self hosting, you can configure the persistence technology using the fluent configuration API and the extension method found in the `NServiceBus.Azure` assembly
 
     static void Main()
     {
         Configure.With()
         ...
-			.AzureSubscriptionStorage()
-			.AzureSagaPersister()
-			.UseAzureTimeoutPersister()
-		...
+		.UsePersistence<AzureStorage>()
+	...
         .Start();
     }
 
-When hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
+When hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosting.Azure`, or any other nservicebus provided host, the azure storage persistence can be enabled by specifying the `UsePersistence<AzureStorage>` on the endpoint config.
 
-But when hosting in a different NServiceBus provided host, you can enable them by implementing `INeedInitialization`, like this:
+	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker, UsingTransport<AzureStorageQueue>, UsingPersistence<AzureStorage>{}
 
-    public class EnableStorage : INeedInitialization
-    {
-        public void Init()
-        {
-            Configure.Instance
-                .AzureSubscriptionStorage()
-                .AzureSagaPersister()
-                .UseAzureTimeoutPersister();
-        }
-    }
 
 Detailed configuration
 ----------------------
