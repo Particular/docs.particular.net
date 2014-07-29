@@ -16,19 +16,11 @@ You can install the latest NServiceBus Build or the latest stable version straig
 Getting the latest stable NServiceBus release using NuGet
 ---------------------------------------------------------
 
-After installing NuGet you have a few ways to get NServiceBus using NuGet. Right click your project references and choose "Manage NuGet Packages". The following window opens:
-
-![Manage NuGet Packages Window](ManageNuGetPackagesWindow.png)
-
-Search for NServiceBus, and select "Install". Alternatively you can get to the NuGet package manager via "Library Package Manage" and selecting "Manage NuGet Packages for Solution".
+After installing NuGet you have a few ways to get NServiceBus using NuGet. Right click your project references and choose "Manage NuGet Packages". Search for "NServiceBus", and select "Install". Alternatively you can get to the NuGet package manager via "Library Package Manage" and selecting "Manage NuGet Packages for Solution".
 
 To install NServiceBus core libraries, open the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) and type this:
 
     PM> Install-Package NServiceBus
-
-To get a specific version, type this:
-
-    PM> Install-Package NServiceBus -Version 3.3.0
 
 NServiceBus package comes with all the necessary dependencies to start using NServiceBus immediately. The NServiceBus NuGet package installs NServiceBus core libraries plus all the other libraries required for it to work straight after installation (for example, Log4Net for logging).
 
