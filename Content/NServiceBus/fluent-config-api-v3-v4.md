@@ -43,6 +43,19 @@ NServiceBus heavily relies on Dependency Injection to work properly, in order to
 
 It is also possible to instruct NServiceBus to use our own container to benefit of the dependency resolution event of our own custom types; refer to the [Containers](containers) article for the details on how to change the default container implementation.
 
+####Transport
+
+The way the NServiceBus transport is configured depends on the version of the binaries we are using.
+
+In V3 the transport configuration is done via the `MsmqTransport()` method.
+
+In V4, given the requirement to support multiple transports, the `UseTransport()` method can be called:
+
+* `UseTransport<TTransport>( "connection string (optional)" )`: the generic overload of the UseTransport method can be invoked using as generic parameter a transport class and optionally passing in a transport connection string.
+* `UseTransport( Type transportType, "connection string (optional)" )`: the non generic overload of the `UserTransport()` method accepts a `Type` instance that is the type of transport class and optionally the transport connection string.
+
+The list of the built-in supported transport is available in the [NServiceBus Connection String Samples](connection-strings-samples) article.
+
 ####Unobtrusive Mode
 
 When using NServiceBus we define our message contracts using plain C# classes or interfaces. For NServiceBus to find those classes when scanning our assemblies we need to mark them with the special `IMessage` interface, or the `ICommand` or `IEvent` interfaces that inherit from the `IMessage` one. This requirement creates a strong dependency on the NServiceBus assemblies and can cause versioning issues.
@@ -57,33 +70,49 @@ To completely overcome the problem NServiceBus can run in unobtrusive mode, mean
 
 NServiceBus can also define special behaviors for some message properties:
 
-* `DefiningDataBusPropertiesAs( Func<PropertyInfo, Boolean> predicate )`:
-* `DefiningEncryptedPropertiesAs( Func<PropertyInfo, Boolean> predicate )`:
+* `DefiningEncryptedPropertiesAs( Func<PropertyInfo, Boolean> predicate )`: for each property of each type the given predicate is invoked to determine if the property value should be encrypted before the message is delivered.
+* `DefiningDataBusPropertiesAs( Func<PropertyInfo, Boolean> predicate )`: for each property of each type the given predicate is invoked to determine if the property value should be transported using the Data Bus instead of the defined transport.
+                
+To dive into the unobtrusive mode, data bus and encryption features:
 
-To dive into the unobtrusive mode: [Unobtrusive Mode Messages](unobtrusive-mode-messages)                
+* [Unobtrusive Mode Messages](unobtrusive-mode-messages).
+* [Encryption Sample](encryption-sample).
+* [DataBus / Attachments](attachments-databus-sample).
 
-            .DisableGateway()
-            .DisableTimeoutManager()
+####DataBus
 
-in v4 done via feature                
+To configure the DataBus feature it is enough to call the `FileShareDataBus( string pathToSharedFolder )` passing as argument a path that must be accessible by all the endpoints that needs to share the same messages.
 
-            .DoNotCreateQueues()
+####Encryption
 
-disables the automatic queue creation done at startup                
+To configure the Encryption feature it is mandatory to define the encryption algorithm, the one supported out of the box by NServiceBus is Rijndael and can be configured calling the `RijndaelEncryptionService()` method.
 
-                .EnablePerformanceCounters()
+####Performance Counters
 
-more on [Performance Counters](monitoring-nservicebus-endpoints#nservicebus-performance-counters)
+To enable Performance Counters for a specific endpoint call the `EnablePerformanceCounters()` method. For more information on the NServiceBus performance counters refers to the [Performance Counters](monitoring-nservicebus-endpoints#nservicebus-performance-counters) article.
 
-                .FileShareDataBus( "" )
+####Persistance
 
-Mode on the [DataBus / Attachments](attachments-databus-sample)                
+#####RavenDB Persistance
+
+                .RavenPersistence()
+                .RavenPersistence( "connection string" )
+                .RavenPersistence( () => "connection string" )
+                .RavenPersistence( () => "connection string", "db name" )
+                .RavenPersistenceWithStore( ( IDocumentStore )null )
+                .RavenSagaPersister()
+                .RavenSubscriptionStorage()
+
+#####In Memory Persistance
 
                 .InMemoryFaultManagement()
                 .InMemorySagaPersister()
                 .InMemorySubscriptionStorage()
 
 in memory management useful for dev environments and for clients do are not interested in durability across restarts
+
+                .MsmqSubscriptionStorage()
+
 
                 .License( "text" )
                 .LicensePath( "" )
@@ -97,34 +126,23 @@ More on logging (can't find anything except an article on [log4net](logging-in-n
 
                 .MessageForwardingInCaseOfFault()
 
-done also via [.config file](msmqtransportconfig)
-
-                .MsmqSubscriptionStorage()
-
-                
+done also via [.config file](msmqtransportconfig)                
 
                 .PurgeOnStartup( false )
 
                 
 
-                .RavenPersistence()
-                .RavenPersistence( "connection string" )
-                .RavenPersistence( () => "connection string" )
-                .RavenPersistence( () => "connection string", "db name" )
-                .RavenPersistenceWithStore( ( IDocumentStore )null )
-                .RavenSagaPersister()
-                .RavenSubscriptionStorage()
+
 
                 
 
-                .RijndaelEncryptionService()
+                
 
                 
 
                 .SetEndpointSLA( TimeSpan.FromSeconds( 2 ) )
                 .Synchronization()
-                .UseTransport( new Type(), "connection string (optional)" )
-                .UseTransport<Msmq>( "connection string (optional)" )
+
 
                 
 
@@ -132,6 +150,18 @@ done also via [.config file](msmqtransportconfig)
                 .CreateBus()
 
                 
+
+
+            .DisableGateway()
+            .DisableTimeoutManager()
+
+in v4 done via feature                
+
+            .DoNotCreateQueues()
+
+disables the automatic queue creation done at startup                
+
+
 
                 .Start( () =>
                 {
@@ -145,6 +175,8 @@ done also via [.config file](msmqtransportconfig)
                 
 creates and "start" the send only bus, no need to start it.
                 
+
+
 
 *Mauro's comments*
 
