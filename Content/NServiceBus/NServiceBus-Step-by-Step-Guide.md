@@ -195,6 +195,3 @@ Two console application windows should start up
 Hit enter (while the Client console is in focus) and you should see 'Order for Product: New shoes placed' in one of them.
 
 ![](run_2.png)
-
-Congratulations - you've just built your first NServiceBus application.
------------------------------------------------------------------------
