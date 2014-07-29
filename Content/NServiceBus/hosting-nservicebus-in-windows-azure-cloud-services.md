@@ -60,18 +60,18 @@ Because windows azure cloud services has it's own configuration model, but nserv
 
 NServiceBus makes extensive use of the .net configuration section model, which allows it to apply default settings if you do not specify anything in app.config. So if you don't specify anything, than the following will apply:
 
-	public class AzureProfileConfig : ConfigurationSection
+	public class AzureSubscriptionStorageConfig : ConfigurationSection
     {
-        [ConfigurationProperty("Profiles", IsRequired = false, DefaultValue = "NServiceBus.Development")]
-        public string Profiles
+        [ConfigurationProperty("ConnectionString", IsRequired = false, DefaultValue = "UseDevelopmentStorage=true")]
+        public string ConnectionString
         {
             get
             {
-                return this["Profiles"] as string;
+                return this["ConnectionString"] as string;
             }
             set
             {
-                this["Profiles"] = value;
+                this["ConnectionString"] = value;
             }
         }
     }
@@ -79,9 +79,9 @@ NServiceBus makes extensive use of the .net configuration section model, which a
 You can then override this setting in your app.config file, by specifying this config section like this.
 
 	<configSections>
-	  <section name="AzureProfileConfig" type="NServiceBus.Config.AzureProfileConfig, NServiceBus.Hosting.Azure" />
+	  <section name="AzureSubscriptionStorageConfig" type="NServiceBus.Config.AzureSubscriptionStorageConfig, NServiceBus.Hosting.Azure" />
 	</configSections>
-	<AzureProfileConfig Profiles="NServiceBus.Development" />
+	<AzureSubscriptionStorageConfig ConnectionString="YourConnectionstring" />
 
 When hosting in a windows azure cloud service, you can override this setting again in the service configuration (.cscfg) file. 
 
@@ -91,7 +91,7 @@ First you need to define the setting in the service definition file (.csdef) and
 
 	<WorkerRole name="VideoStore.Sales">
 	   <ConfigurationSettings>
-	      <Setting name="AzureProfileConfig.Profiles"/>
+	      <Setting name="AzureSubscriptionStorageConfig.ConnectionString"/>
 	   </ConfigurationSettings>
 	</WorkerRole>
 
@@ -102,7 +102,7 @@ The name to be used for the property override is always structured like this: `T
 	<Role name="VideoStore.Sales">
 	    <Instances count="2" />
 	    <ConfigurationSettings>
-	         <Setting name="AzureProfileConfig.Profiles" value="NServiceBus.Production"/>
+	         <Setting name="AzureSubscriptionStorageConfig.ConnectionString" value="YourConnectionString"/>
 	    </ConfigurationSettings>
 	</Role>
 
