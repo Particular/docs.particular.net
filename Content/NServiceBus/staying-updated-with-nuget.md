@@ -60,17 +60,6 @@ Additional NServiceBus V3 NuGet packages
 
 There are additional NServiceBus NuGet packages, to make your integration with NServiceBus even easier. Each package specifies libraries and configures NServiceBus to utilize them.
 
--  **NServiceBus.NServiceBus.Host**: The hosting template for the NServiceBus. It installs the [NServiceBus generic host](the-nservicebus-host.md). The NServiceBus host saves time by configuring all NServiceBus capabilities and technologies with no code changes.
--  **NServiceBus.Azure**: Azure for the NServiceBus.
--  **NServiceBus.CastleWindsor**: Use this package if you are using CastleWindsor Container.
--  **NServiceBus.Unity**: Use this package if you are using Unity application block for dependency injection.
--  **NServiceBus.Autofac**: Use this package if you are using Autofac IoC container.
--  **NServiceBus.StructureMap**: Use this package if you are using StructureMap dependency injection tool.
--  **NServiceBus.Autofac**: The Autofac Container for NServiceBus.
--  **NServiceBus.StructureMap**: The StructureMap (version 262) Container for the NServiceBus.
--  **NServiceBus.Testing**: Adds NServiceBus testing assembly to your project, allowing you to write [unit tests using NServiceBus](unit-testing.md) capabilities.
--  **NServiceBus.Host32**: [Hosting assembly for 32 bit machine only.](nservicebus-32-bit-x86-host-process.md)
--  **NServiceBus.Ninject**: The Ninject dependency injection container for the NServiceBus.
--  **NServiceBus.Spring**: The Spring Container for the NServiceBus.
--  **NServiceBus.NHibernate**: Install this package to get the entire configuration for [NServiceBus with NHibernate](relational-persistence-using-nhibernate.md) .
+ * [List of all nugets produced by Particular](http://www.nuget.org/profiles/nservicebus)
+ * [List of all nugets that integrate with NServiceBus](http://www.nuget.org/packages?q=nservicebus)
 
