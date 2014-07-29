@@ -8,34 +8,28 @@ tags:
 
 In the previous section: [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md) we learnt about fault tolerance.
 
-1.  [Creating an event message](#CreatingEvent)
-2.  [Publishing the event](#Publishing)
-3.  [Creating the Subscriber project](#Subscriber)
-4.  [Handling the event](#Handeling)
-5.  [Running the solution](#Running)
-6.  [Next Steps](#Next)
+1.  [Creating an event message](#Creating-an-event-message)
+2.  [Publishing the event](#Publishing-an-event)
+3.  [Creating the Subscriber project](#Creating-the-Subscriber-project)
+4.  [Handling the event](#Handling-the-event)
+5.  [Running the solution](#Running-the-solution)
 
 The complete solution code can be found
 [here](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Documentation/003_OrderingPubSub)
 
 Now that we've gone through the basics of NServiceBus communication, configuration and fault tolerance, let's move on to publish/subscribe.
 
-
 ![](001_pubsub.png)
 
-### <a id="CreatingEvent" name="CreatingEvent"> </a> Creating an event message
+### Creating an event message
 
 There are only a few steps needed to introduce pub/sub and make your solution look like the one appearing above.
 
-
 Right click your Messages Project and add a class file, and create a `OrderPlaced` event:
-
 
 ![](002_pubsub.png)
 
 The message class will implement the `IEvent` marker interface
-
-
 
 ```C#
 namespace Ordering.Messages
@@ -49,10 +43,7 @@ namespace Ordering.Messages
 
 ```
 
-
-
-### <a id="Publishing" name="Publishing"> </a> Publishing an event
-
+### Publishing an event
 
 In order to publish the `OrderPlaced` event we will modify the
 `PlaceOrderHandler`, add a `Bus.Publish<OrderPlaced>()` as shown below
@@ -79,12 +70,7 @@ namespace Ordering.Server
 }
 ```
 
-
-
-
 As the 'Ordering.Server' endpoint is now a publisher, we need to change the endpointConfig.cs file to implement the AsAPublisher marker interface that will configure the endpoint with a Publisher profile
-
-
 
 ```C#
 namespace Ordering.Server
@@ -95,11 +81,9 @@ namespace Ordering.Server
 }
 ```
 
-
 To learn more about profiles go check out: [Profiles For NServiceBus Host](profiles-for-nservicebus-host.md)
 
-
-### <a id="Subscriber" name="Subscriber"> </a> Creating the Subscriber project
+### Creating the Subscriber project
 
 Now we can go ahead and create a subscriber endpoint that will subscribe and handle the 'OrderPlaced' event.
 
@@ -109,7 +93,6 @@ Right click the Ordering solution and select 'Add' \> 'New Project...'
 ![](003_pubsub.png)
 
 Create a class library project and name the project Subscriber.
-
 
 ![](004_pubsub.png)
 
@@ -121,7 +104,7 @@ Click reload all
 
 ![](005_pubsub.png)
 
-### <a id="Handeling" name="Handeling"> </a> Handling the event
+### Handling the event
 
 In our new Subscriber project
 
@@ -158,7 +141,7 @@ In the Odering.Subscriber project we will add MessageEndpointMappings in the app
 </UnicastBusConfig>
 ```
 
-### <a id="Running" name="Running"> </a> Running the solution
+### Running the solution
 
 Now it's time to run the solution and see it all working together we will run the Client, Server and the Subscriber projects:
 
@@ -186,12 +169,3 @@ Hit enter (while the Client console is in focus) and you should see
 And there you are: publish/subscribe messaging is working!
 
 As you see, it's very easy to get started with NServiceBus. You're all set now and can build your own distributed systems with NServiceBus.
-
-### <a id="Next" name="Next"> </a> Next Steps
-
-* Read about [NServiceBus and SOA Architectural Principles](architectural-principles)
-* Try our [Hands on Labs](http://particular.net/HandsOnLabs)
-* Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
-* See the [Documentation](http://docs.particular.net)
-* Join our [community](http://particular.net/DiscussionGroup)
-

@@ -9,13 +9,13 @@ Durable messaging
 
 In [the previous section](NServiceBus-Step-by-Step-Guide.md) you've seen how a send to send a messages, see how messaging can get past all sorts of failure scenarios:
 
-1.  [Durable Messaging Demo](#Demo)
-2.  [Fault tolerance and Second Level Retries (SLR)](#Fault)
-3.  [Retries, errors, and auditing](#AuditAndError)
+1.  [Durable Messaging Demo](#Durable-Messaging-Demo)
+2.  [Fault tolerance](#Fault-tolerance)
+3.  [Retries, errors, and auditing](#Retries-errors-and-auditing)
 
 The complete solution code can be found [here](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Documentation/002_OrderingFaultTolerance)
 
-### <a id="Demo" name="Demo"> </a> Durable Messaging Demo
+### Durable Messaging Demo
 
 *  Run the 'Ordering' solution again and hit Enter on the 'Client' console a couple of times to make sure the messages are being processed. 
    
@@ -37,13 +37,13 @@ As you can see the 'Server' processes all those messages, and if you go back to 
 
 ![](003_fault.png)
 
-###<a id="Fault" name="Fault"> </a> Fault tolerance and Second Level Retries (SLR)
+### Fault tolerance
 
 Consider scenarios where the processing of a message fails. This could be due to something transient like a deadlock in the database, in which case some quick retries overcome this problem, making the message processing ultimately succeed. NServiceBus automatically retries immediately when an exception is thrown during message processing, up to five times by default (which is configurable).
 
 If the problem is something more protracted, like a third party web service going down or a database being unavailable, it makes sense to try again sometime later.
 
-This is called the " [second level retries](second-level-retries.md) " or SLR functionality of NServiceBus.
+This is called the [Second Level Retries](second-level-retries.md) (SLR) functionality of NServiceBus.
 
 SLR is enabled by default, the default policy will defer the message
 `10*N` (where N is number of retries) seconds 3 times (60 sec total), resulting in a wait of 10s, then 20s, and then 30s; after which the message moves to the configured ErrorQueue.
@@ -82,7 +82,7 @@ If you leave the endpoint running a while longer, you'll see that it tries proce
 
 **NOTE** When a message cannot be deserialized, it bypasses all retry and moves directly to the error queue.
 
-###<a id="AuditAndError" name="AuditAndError"> </a> Retries, errors, and auditing
+### Retries, errors, and auditing
 
 If a message fails continuously (due to a bug in the system, for example), it ultimately moves to the error queue that is configured for the endpoint after all the various retries have been performed.
 

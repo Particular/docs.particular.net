@@ -6,16 +6,15 @@ tags: []
 
 In this tutorial we are going to create a very simple ordering system that will send messages from a client to a server. The ordering system includes three projects: Client, Server, and Messages, to complete this tasks we will execute the following steps:
 
-1.  [Creating the Client project](#Client)
-2.  [Creating the Messages project](#Message)
-3.  [Creating the Server project](#Server)
-4.  [Sending the order](#Sending)
-5.  [Running the solution](#Running)
-6.  [Next Steps](#Next%20Steps)
+1.  [Creating the Client project](#Creating-the-Client-project)
+2.  [Creating the Messages project](#Creating-the-Messages-Project)
+3.  [Creating the Server project](#Creating-the-Server-Project)
+4.  [Sending the order](#Sending-the-order)
+5.  [Running the solution](#Running-the-solution)
 
 The complete solution code can be found [here](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Documentation/001_OrderingSendOnly)
 
-### <a id="Client" name="Client"> </a> Creating the Client project
+### Creating the Client project
 
 Let's start by creating a 'Client' project that will send order requests to a NServiceBus endpoint.
 
@@ -53,7 +52,6 @@ namespace Ordering.Client
 
  with
 
-
 ```C#
 namespace Ordering.Client
 {
@@ -65,7 +63,7 @@ namespace Ordering.Client
 
  You will add more code to the 'Client' project later on but now we are going to concentrate on the area that will handle our order requests.
 
-### <a id="Message" name="Message"> </a> Creating the Messages Project
+### Creating the Messages Project
 
 First lets add a new Class Library project and call it 'Ordering.Messages'.
 
@@ -101,7 +99,7 @@ namespace Ordering.Messages
 }
 ```
 
-### <a id="Server" name="Server"> </a> Creating the Server Project
+### Creating the Server Project
 
 You are now ready to create the orders processing server, add a new class library project and name is 'Ordering.Server'.
 
@@ -138,7 +136,7 @@ namespace Ordering.Server
 ```
 
 
-### <a id="Sending" name="Sending"> </a> Sending the order
+### Sending the order
 
 We nearly done, all it is left to do is to go back to the 'Client' project add a reference to the 'Ordering.Messages' project and copy and paste the following code into the 'Class1.cs' (if you want you can rename the file to 'SendOrder.cs') file:
 
@@ -172,7 +170,7 @@ namespace Ordering.Client
 
  NOTE: The code above is version 4.x, the 3.x interface 'IWantToRunAtStartup' has been replaced with 'IWantToRunWhenBusStartsAndStops'
 
-### <a id="Running" name="Running"> </a> Running the solution
+### Running the solution
 
 You've completed coding the example and now it's time to run the solution. 
 
@@ -200,18 +198,3 @@ Hit enter (while the Client console is in focus) and you should see 'Order for P
 
 Congratulations - you've just built your first NServiceBus application.
 -----------------------------------------------------------------------
-
-Wasn't that easy?
------------------
-
-If you see some warnings on the consoles, these warnings are just NServiceBus telling you that it couldn't find the queues it needs, so it went ahead and created them for you.
-
-
-### <a id="Next%20Steps" name="Next%20Steps"> </a> Next Steps
-
-* Go to [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first)
-* Read about [NServiceBus and SOA Architectural Principles](architectural-principles)
-* Try our [Hands on Labs](http://particular.net/HandsOnLabs)
-* Check out our [Videos and Presentations](http://particular.net/Videos-and-Presentations)
-* See the [Documentation](http://docs.particular.net)
-* Join our [community](http://particular.net/DiscussionGroup)
