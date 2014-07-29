@@ -123,7 +123,7 @@ public class Program
 	}}
 ```
 
-More on [Self-hosting in v3](hosting-nservicebus-in-your-own-process-v3.x)
+More on [Self-hosting in v3](hosting-nservicebus-in-your-own-process)
 
 The above samples, from a console application, is the minimum required to create, initialize and finally start the bus in a self hosting scenario.
 
