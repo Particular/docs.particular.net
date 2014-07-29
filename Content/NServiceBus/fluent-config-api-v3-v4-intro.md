@@ -32,6 +32,8 @@ The above class represents the main entry point of the NServiceBus endpoint, thi
 
 At runtime, during the startup phase, NServiceBus scans all the types looking for a class that implements the `IConfigureThisEndpoint` interface.
 
+More about the [NServiceBus.Host](the-nservicebus-host)
+
 ###Configuration customization
 
 When NServiceBus endpoints are hosted using the built in NServiceBus host it is possible to customize the default configuration adding to the project a class that implements the IWantCustomInitialization interface, this class will be invoked at runtime by the hosting process and will be provided with a default configuration initialized by the host and ready to be configured as required.
@@ -45,6 +47,8 @@ public class CustomConfiguration : IWantCustomInitialization
 ```
 
 **NOTE**: Do not start the bus it will be done by the host *`(comment - expand on this topic a bit)`*
+
+More about [configuration customization](customizing-nservicebus-configuration)
 
 ###Features (V4 only)
 
@@ -126,3 +130,5 @@ V4 supports multiple transports and the `UsingTransport<TTransport>()` generic m
 In V3 the only supported transport was MSMQ thus the only viable option was to use the `MsmqTransport()` method.
 
 Finally we define that the bus will be a unicast bus, the only option currently available, and we create and start the bus.
+
+More about [Fluent Configuration API](fluent-config-api-v3-v4)
