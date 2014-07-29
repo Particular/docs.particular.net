@@ -66,7 +66,7 @@ Next to your endpoint, the role definition will also include additional services
 * Configuration system: This system allows you to update configuration settings from the Windows Azure management portal, or through the service management API, and the platform will promote these configuration settings to all instances in your roles without downtime.
 * Diagnostics service: This system allows you to collect diagnostics information from the different role instances (application logs, event logs, performance counters, etc.) and aggregate them in a central storage account.
 
-To integrate these facilities with your endpoint code, we have provided a specific `NServiceBusRoleEntrypoint` that wires our regular host into a role entrypoint. In addition, there are specific NServiceBus `Roles` (not to be confused with Azure roles) such as `AsA_Worker` and `Profiles`, similar to `Development` or `Production` in the `NServiceBus.Hosting.Azure` package.
+To integrate these facilities with your endpoint code, we have provided a specific `NServiceBusRoleEntrypoint` that wires our regular host into a role entrypoint. In addition, there are specific NServiceBus `Roles` (not to be confused with Azure roles) such as `AsA_Worker` in the `NServiceBus.Hosting.Azure` package.
 
 To learn more about the details of hosting in windows azure cloud services, refer to [Cloud Services](/nservicebus/hosting-nservicebus-in-windows-azure-cloud-services).
 
