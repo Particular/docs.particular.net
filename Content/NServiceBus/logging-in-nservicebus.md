@@ -47,7 +47,12 @@ The supported logging levels are
 
 The main parameter is the logging resolution of how much information is logged. Logging only errors is usually desirable in production scenarios as it gives the best performance. Yet, when a system behaves erratically, having more information logged can give greater insight into what is causing the problems. This is controlled by the application configuration file by including the following entries:
 
-<!-- import OverrideLoggingDefaultsInAppConfig -->
+```
+<configSections>
+<section name="Logging" type="NServiceBus.Config.Logging, NServiceBus.Core" />
+</configSections>
+<Logging Threshold="Debug" />
+```
 
 The `Threshold` value attribute of the `Logging` element can be any of `Debug`, `Info`, `Warn`, `Error` or `Fatal`.
 
