@@ -19,6 +19,6 @@ public class NLogConfig
 
         LogManager.Configuration = config;
         NLogConfigurator.Configure();
-        // start code NLogInCode
+        // end code NLogInCode
     }
 }
