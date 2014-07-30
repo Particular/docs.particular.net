@@ -38,6 +38,7 @@ public class Log4NetConfig
 
         BasicConfigurator.Configure(appender, consoleAppender);
         Log4NetConfigurator.Configure();
-        // start code Log4NetInCode
+
+        // end code Log4NetInCode
     }
 }
