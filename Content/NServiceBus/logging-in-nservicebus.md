@@ -31,6 +31,16 @@ The default logging directory will be `HttpContext.Current.Server.MapPath("~/App
 
 The default file name will be `nsb_log_yyyy-MM-dd_N.txt` where `N` is a sequence number for when the log file reaches the max size.
 
+## Logging Levels
+
+The supported logging levels are
+
+ * Debug
+ * Info
+ * Warn
+ * Error
+ * Fatal
+
 ## Changing the defaults
 
 ### Changing settings via configuration
@@ -45,6 +55,8 @@ The main parameter is the logging resolution of how much information is logged. 
 ```
 
 The `Threshold` value attribute of the `Logging` element can be any of `Debug`, `Info`, `Warn`, `Error` or `Fatal`.
+
+The `Threshold` indicates the log levels that will be outputted. So for example a value of `Warn` would mean all `Warn`, `Error` and `Fatal` message would be outputted. 
 
 For changes to the configuration to have an effect, the process must be restarted.
 
