@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <!--start code OverrideLoggingDefaultsInAppConfig-->
+  <configSections>
+    <section name="Logging" type="NServiceBus.Config.Logging, NServiceBus.Core" />
+  </configSections>
+  <Logging Threshold="Debug" />
+  <!--end code OverrideLoggingDefaultsInAppConfig-->
+</configuration>

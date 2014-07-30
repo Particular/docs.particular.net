@@ -172,10 +172,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Logging\OverrideInAppConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
+    <Compile Include="Logging\OverrideViaProfile.cs" />
+    <Compile Include="Logging\MyMessage.cs" />
+    <Compile Include="Logging\Log4NetConfig.cs" />
+    <Compile Include="Logging\NLogConfig.cs" />
+    <Compile Include="Logging\BuiltInConfig.cs" />
     <Compile Include="CustomConfigOverrides.cs" />
     <Compile Include="CustomRavenConfig.cs" />
     <Compile Include="ForInstallationOnReplacement.cs" />

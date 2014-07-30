@@ -47,12 +47,7 @@ The supported logging levels are
 
 The main parameter is the logging resolution of how much information is logged. Logging only errors is usually desirable in production scenarios as it gives the best performance. Yet, when a system behaves erratically, having more information logged can give greater insight into what is causing the problems. This is controlled by the application configuration file by including the following entries:
 
-```
-<configSections>
-	<section name="Logging" type="NServiceBus.Config.Logging, NServiceBus.Core" />
-</configSections>
-<Logging Threshold="Debug" />
-```
+<!-- import OverrideLoggingDefaultsInAppConfig -->
 
 The `Threshold` value attribute of the `Logging` element can be any of `Debug`, `Info`, `Warn`, `Error` or `Fatal`.
 
@@ -64,9 +59,7 @@ For changes to the configuration to have an effect, the process must be restarte
 
 With code you can configure both the Level and the logging directory. To do this use the `LogManager` class.
 
-```
-LogManager.ConfigureDefaults(LogLevel.Debug, pathToLoggingDirectory);
-```
+<!-- import OverrideLoggingDefaultsInCode -->
 
 Ensure you do this before `Configure.With` is called.
 
@@ -80,19 +73,13 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) available t
 
     Install-Package NServiceBus.NLog
 
+Configure NLog using its standard API then call 
+
+    Log4NetConfigurator.Configure();
+
 Example Usage 
 
-    var config = new LoggingConfiguration();
-
-    var consoleTarget = new ColoredConsoleTarget
-    {
-        Layout = "${level:uppercase=true}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"
-    };
-    config.AddTarget("console", consoleTarget);
-    config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, consoleTarget));
-
-    LogManager.Configuration = config;
-    NLogConfigurator.Configure();
+<!-- import NLogInCode -->
 
 ### Log4Net
 
@@ -100,28 +87,20 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.Log4Net/) availabl
 
     Install-Package NServiceBus.Log4Net
 
-Then call 
+
+Configure Log4net using its standard API then call 
 
     Log4NetConfigurator.Configure();
+
+Example Usage 
+
+<!-- import Log4netInCode -->
 
 ## Logging message contents
 
 When NServiceBus sends a message, it writes the result of the `ToString()` method of the message class to the log. By default, this writes the name of the message type only. To write the full message contents to the log, override the `ToString()` method of the relevant message class. Here's an example:
 
-    public class MyMessage : IMessage
-    {
-	    public Guid EventId { get; set; }
-	    public DateTime? Time { get; set; }
-	    public TimeSpan Duration { get; set; }
-
-	    public override string ToString()
-	    {
-		    return string.Format(
-		    "MyMessage: EventId={0}, Time={1}, Duration={2}",
-		    EventId, Time, Duration
-		    );
-	    }
-    }
+<!-- import MessageWithToStringLogged -->
 
 ## Logging Profiles
 
@@ -133,16 +112,7 @@ NServiceBus has three built-in profiles for logging `Lite`, `Integration` and `P
 
 To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type. The implementation of this interface is similar to that described for `IWantCustomLogging` in the [host page](the-nservicebus-host.md).
 
-```C#
-class YourProfileLoggingHandler : IConfigureLoggingForProfile<YourProfile>
-{
-    public void Configure(IConfigureThisEndpoint specifier)
-    {
-        // setup your logging infrastructure then call
-		Log4NetConfigurator.Configure();
-    }
-}
-```
+<!-- import LoggingConfigWithProfile -->
 
 Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
 
