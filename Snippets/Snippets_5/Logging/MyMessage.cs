@@ -18,5 +18,5 @@ namespace MessageLogging
                 );
         }
     }
-    // start code MessageWithToStringLogged
+    // end code MessageWithToStringLogged
 }
