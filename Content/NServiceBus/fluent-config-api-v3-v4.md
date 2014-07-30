@@ -87,104 +87,98 @@ To configure the DataBus feature it is enough to call the `FileShareDataBus( str
 
 To configure the Encryption feature it is mandatory to define the encryption algorithm, the one supported out of the box by NServiceBus is Rijndael and can be configured calling the `RijndaelEncryptionService()` method.
 
+####Logging
+
+Logging in NServiceBus is achieved using Log4Net as logging library to configure the endpoint it is enough to call the `Log4Net()` method. More information on logging can be found in the [Logging in NServiceBus 4 and below](logging-in-nservicebus4_and_below) article.
+
+####Fault management
+
+NServiceBus [manages fault](msmqtransportconfig) for us, to activate the fault manager it is enough to call the `MessageForwardingInCaseOfFault()` method.
+
 ####Performance Counters
 
 To enable Performance Counters for a specific endpoint call the `EnablePerformanceCounters()` method. For more information on the NServiceBus performance counters refers to the [Performance Counters](monitoring-nservicebus-endpoints#nservicebus-performance-counters) article.
 
+####Service Level Agreement
+
+NServiceBus has the concept of [SLA](/servicepulse/monitoring-nservicebus-endpoints#service-level-agreement-sla-). The endpoint SLA can be defined using the `SetEndpointSLA( TimeSpan sla )` method.
+
 ####Persistance
 
-#####RavenDB Persistance
+Some NServiceBus features relies on a persistence storage to work properly, beginning with V3 the default persistence storage is RavenDB.
 
-                .RavenPersistence()
-                .RavenPersistence( "connection string" )
-                .RavenPersistence( () => "connection string" )
-                .RavenPersistence( () => "connection string", "db name" )
-                .RavenPersistenceWithStore( ( IDocumentStore )null )
-                .RavenSagaPersister()
-                .RavenSubscriptionStorage()
+#####RavenDB Persistence
 
-#####In Memory Persistance
+* `RavenPersistence()`: configures the endpoint to use RavenDB and expects to find a connection string, in the endpoint configuration file, named `NServiceBus/Persistence`.
+* `RavenPersistence( String connectionString )`: configures the endpoint to use RavenDB using the supplied RavenDB connection string.
+* `RavenPersistence( Func<String> connectionStringProvider )`: configures the endpoint to use RavenDB and invokes the supplied delegate to get, at runtime, a valid RavenDB connection string.
+* `RavenPersistence( Func<String> connectionStringProvider, string dbName )`: configures the endpoint to use RavenDB, invokes the supplied delegate to get, at runtime, a valid RavenDB connection string and expect as the second parameter the name of the database to use.
+* `RavenPersistenceWithStore( IDocumentStore store )`: configures the endpoint to use RavenDB using the supplied IDocumentStore.
+* `RavenSagaPersister()`: configures Sagas to use RavenDB as storage.
+* `RavenSubscriptionStorage()`: configures the subscriptions manager to use RavenDB as storage.
 
-                .InMemoryFaultManagement()
-                .InMemorySagaPersister()
-                .InMemorySubscriptionStorage()
+A detailed explanation on how to connect to RavenDB can be found in the [Connecting to RavenDB from NServiceBus](using-ravendb-in-nservicebus-connecting) article.
+                
+#####NHibernate
 
-in memory management useful for dev environments and for clients do are not interested in durability across restarts
+-- ?
 
-                .MsmqSubscriptionStorage()
+#####In Memory Persistence
 
+There are scenarios, such as the development environment or lightweight client not interested in durability across restarts, in which an in memory persistence configuration can be used:
 
-                .License( "text" )
-                .LicensePath( "" )
+* `InMemoryFaultManagement()`: configures the fault manager to run in memory.
+* `InMemorySagaPersister()`: configures the saga persistence to run in memory.
+* `InMemorySubscriptionStorage()`: configures the subscription manager to persist subscriptions in memory.
 
-handling licenses (more on [license](license-management))                
+####MSMQ
 
-                .Log4Net()
-                .NLog()
+We have also the option, when using MSMQ as a transport, to use one queue as the subscription storage, this is done invoking the `MsmqSubscriptionStorage()` method.
 
-More on logging (can't find anything except an article on [log4net](logging-in-nservicebus))
+####License
 
-                .MessageForwardingInCaseOfFault()
+There are several ways to assign the license to an endpoint, all detailed in the [How to install your license file](license-management) article. It is also supported to specify license at configuration time:
 
-done also via [.config file](msmqtransportconfig)                
+* `LicensePath( String partToLicenseFile )`: configures the endpoint to use the license file found at the supplied path;
+* `License( String licenseText )`: configures the endpoint to use the supplied license, where the license text is the content of a license file.
 
-                .PurgeOnStartup( false )
+####Queues management
+
+At configuration time it is possible to define some queue behavior:
+
+* `PurgeOnStartup( Boolean purge )`: determines if endpoint queues should be purged at startup or not.
+* `DoNotCreateQueues()`: configures the endpoint to not try to create queues at startup if they are not already created.
+
+####Creating and Starting the Bus
+
+Once the endpoint is configured the last step is to define the type of the bus we need and create it.
+
+* `UnicastBus()`: defines that the bus will be an unicast bus, currently the only supported bus type.
+
+####Creation
+
+* `CreateBus()`: creates a startable bus ready to be started as required.
+* `SendOnly()`: creates and start a send-only bus, suitable for a send-only endpoint that does not receive commands and does not handle events.
+
+####Startup
+
+If the created bus is not a send-only bus it must be started:
+
+* `Start()`: starts the bus.
+* `Start( Action startupAction )`: Starts the bus, invoking at startup time the supplied delegate.
 
                 
 
+---------------------
 
+Don't know what the followings are:
 
-                
-
-                
-
-                
-
-                .SetEndpointSLA( TimeSpan.FromSeconds( 2 ) )
-                .Synchronization()
-
-
-                
-
-                .UnicastBus()
-                .CreateBus()
-
-                
-
-
-            .DisableGateway()
-            .DisableTimeoutManager()
-
-in v4 done via feature                
-
-            .DoNotCreateQueues()
-
-disables the automatic queue creation done at startup                
-
-
-
-                .Start( () =>
-                {
-                    Configure.Instance.ForInstallationOn<Windows>();
-                } )
-                .Start()
-
-                
-
-                .SendOnly();
-                
-creates and "start" the send only bus, no need to start it.
-                
-
-
-
-*Mauro's comments*
-
-How to document that? Shall we document every single method?
-
-I've already discarded all the "obsolete" methods but I suppose that something should be done via the feature configuration and not via the fluent config.
-
-
+    .Synchronization()
     .DefineLocalAddressNameFunc( () => "" )
 
-????
+Should I document also these 2:
+
+     .DisableGateway()
+     .DisableTimeoutManager()
+
+in v4 done via feature?
