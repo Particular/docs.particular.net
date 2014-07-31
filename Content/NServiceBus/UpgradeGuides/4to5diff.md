@@ -1,3 +1,9 @@
+---
+title: API differences between V4 and V5
+summary: API differences between V4 and V5 
+tags:
+---
+
 ####The following public types are missing in the new API.
 
 [ [old](https://github.com/Particular/NServiceBus/blob/4.6.3/src/NServiceBus.Core/Audit/MessageAuditer.cs) | new ] NServiceBus.Audit.MessageAuditer  
