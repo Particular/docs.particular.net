@@ -121,7 +121,10 @@ A detailed explanation on how to connect to RavenDB can be found in the [Connect
                 
 #####NHibernate
 
--- ?
+Starting from NServiceBus V3 NHIbernate persistence is supported via a separate package:
+
+* [Relational Persistence Using NHibernate in NServiceBus V3](relational-persistence-using-nhibernate);
+* [Relational Persistence Using NHibernate in NServiceBus V4](relational-persistence-using-nhibernate---nservicebus-4.x);
 
 #####In Memory Persistence
 
@@ -130,6 +133,8 @@ There are scenarios, such as the development environment or lightweight client n
 * `InMemoryFaultManagement()`: configures the fault manager to run in memory.
 * `InMemorySagaPersister()`: configures the saga persistence to run in memory.
 * `InMemorySubscriptionStorage()`: configures the subscription manager to persist subscriptions in memory.
+
+More details on all the persistence options can be found in the [Persistence in NServiceBus](persistence-in-nservicebus) article.
 
 ####MSMQ
 
