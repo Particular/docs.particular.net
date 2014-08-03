@@ -22,7 +22,7 @@ http://stackoverflow.com/questions/9445915/migration-patch-from-nservicebus-2-6-
 i would look at also including moving to unobtrusive mode in your upgrade for reduced coupling in your code.
 
 Upgrading 3.x to 4.x it should be relatively straight forward. Take a look here: 
-http://particular.net/blog/nservicebus-v4.0-release-notes
+https://github.com/Particular/NServiceBus/releases/tag/4.0.0
 
 Look at: “Compatibility and Upgrades"
 
