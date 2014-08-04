@@ -15,7 +15,7 @@ public class DefineCriticalErrorAction
             });
         });
 
-        // end code DefineCriticalErrorActionV
+        // end code DefineCriticalErrorActionV5
     }
 
 }
