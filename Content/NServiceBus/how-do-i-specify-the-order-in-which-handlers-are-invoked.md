@@ -9,8 +9,9 @@ If you are writing your own host:
     NServiceBus.Configure.With()
          ...
          .UnicastBus()
-              .LoadMessageHandlers(First.Then().AndThen().AndThen())
+              .LoadMessageHandlers(First<H1>.Then<H2>().AndThen<H3>().AndThen<H4>())
          ...
+Where H1-H4 are message handlers.
 
 If you are using the generic host:
 
@@ -18,7 +19,7 @@ If you are using the generic host:
     {
          public void SpecifyOrder(Order order)
          {
-              order.Specify(First.Then().AndThen().AndThen());
+              order.Specify(First<H1>.Then<H2>().AndThen<H3>().AndThen<H4>());
          }
     }
 
