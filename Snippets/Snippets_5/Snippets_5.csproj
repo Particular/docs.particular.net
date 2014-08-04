@@ -181,6 +181,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
+    <Compile Include="DefineCriticalErrorAction.cs" />
     <Compile Include="Logging\OverrideViaProfile.cs" />
     <Compile Include="Logging\MyMessage.cs" />
     <Compile Include="Logging\Log4NetConfig.cs" />
