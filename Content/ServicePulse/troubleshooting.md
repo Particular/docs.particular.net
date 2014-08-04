@@ -82,4 +82,27 @@ To workaround this issue, add the following code in each monitored endpoint to d
 
 ```
 
+### How do I monitor my NSB V3.x endpoints using ServicePulse?
+1. Upgrade your NSB V3 endpoint to the latest service pack for version 3
+2. To turn on monitoring, add the heartbeat plugin to your existing v3 endpoints and restart your endpoint and ServiceControl
+```
+install-package ServiceControl.Plugin.Nsb3.Heartbeat
+```
+
+### How do I enable CustomChecks for my NSB V3.x endpoints?
+1. Upgrade your NSB V3 endpoint to the latest service pack for version 3
+2. Add the CustomChecks plugin to your existing v3 endpoints and restart your endpoint and ServiceControl
+```
+install-package ServiceControl.Plugin.Nsb3.CustomChecks
+```
+
+### After enabling Heartbeat plugins for V3 endpoints, ServicePulse reports that endpoints are inactive
+
+Messages that were forwarded to the audit queue by NSB v3.x version of the endpoints did not have the `HostId` header available which uniquely identifies the endpoint. Adding the heartbeat plugin for V3 endpoints automatically enriches the headers with this `HostId` information using a message mutator. Since the original message that was processed from the audit/error queue did not have this identifier, it is hard to correlate the messages received via the heartbeat that these belong to the same endpoint. Therefore there appears to be a discrepancy in the Endpoints Indicator. 
+
+To workaround this issue in order to monitor V3 endpoints:
+
+- Add the heartbeat plugin to all V3 endpoints, which will add the requisite header with the host information, which ServiceControl can then process.
+- Restart ServiceControl to clear the endpoint counter.
+
 
