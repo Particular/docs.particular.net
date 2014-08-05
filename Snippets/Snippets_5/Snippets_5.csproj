@@ -183,6 +183,7 @@
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
     <Compile Include="DefineCriticalErrorAction.cs" />
+    <Compile Include="DoNotCreateQueues.cs" />
     <Compile Include="EncryptionService.cs" />
     <Compile Include="FileShareDataBus.cs" />
     <Compile Include="Logging\OverrideViaProfile.cs" />
