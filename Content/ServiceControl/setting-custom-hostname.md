@@ -20,7 +20,7 @@ The following example configures ServiceControl to listen to localhost + machine
 <add key="ServiceControl/Port" value="33333" />
 ```
 
-The following example configures ServiceControl to listen to `http://sc.myspecialdomain.com:8080/api`:
+The following example configures ServiceControl to listen to `http://sc.myspecialdomain.com:33333/api`:
 
 ```xml
 <add key="ServiceControl/Hostname" value="sc.myspecialdomain.com" />
