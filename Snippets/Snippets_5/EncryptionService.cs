@@ -42,12 +42,12 @@ public class EncryptionService
     }
     // end code RijndaelEncryptionFromCustomIProvideConfigurationV5
 
-    // start code RijndaelEncryptionFromCustomEncryptionServiceV5
     public void FromCustomIEncryptionService()
     {
+        // start code RijndaelEncryptionFromCustomEncryptionServiceV5
         Configure.With(configBuilder => configBuilder.RegisterEncryptionService(builder => new MyCustomEncryptionService()));
+        // end code RijndaelEncryptionFromCustomEncryptionServiceV5
     }
-    // end code RijndaelEncryptionFromCustomEncryptionServiceV5
 
     public class MyCustomEncryptionService : IEncryptionService
     {

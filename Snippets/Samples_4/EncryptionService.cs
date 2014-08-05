@@ -46,13 +46,13 @@ public class EncryptionService
     }
     // end code RijndaelEncryptionFromCustomIProvideConfigurationV4
 
-    // start code RijndaelEncryptionFromCustomEncryptionServiceV4
     public void FromCustomIEncryptionService()
     {
+        // start code RijndaelEncryptionFromCustomEncryptionServiceV4
         Configure.With()
             .Configurer.ConfigureComponent<IEncryptionService>(() => new MyCustomEncryptionService(), DependencyLifecycle.SingleInstance);
+        // end code RijndaelEncryptionFromCustomEncryptionServiceV4
     }
-    // end code RijndaelEncryptionFromCustomEncryptionServiceV4
 
     public class MyCustomEncryptionService : IEncryptionService
     {
