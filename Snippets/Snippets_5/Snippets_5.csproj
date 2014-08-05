@@ -158,6 +158,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services.Client" />
     <Reference Include="System.Runtime.Serialization" />
@@ -182,6 +183,7 @@
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
     <Compile Include="DefineCriticalErrorAction.cs" />
+    <Compile Include="EncryptionService.cs" />
     <Compile Include="FileShareDataBus.cs" />
     <Compile Include="Logging\OverrideViaProfile.cs" />
     <Compile Include="Logging\MyMessage.cs" />

@@ -119,6 +119,7 @@
     <Compile Include="DefineCriticalErrorAction.cs" />
     <Compile Include="CustomConfigOverrides.cs" />
     <Compile Include="CustomRavenConfig.cs" />
+    <Compile Include="EncryptionService.cs" />
     <Compile Include="PurgeOnStartup.cs" />
     <Compile Include="InterfaceMessageCreation.cs" />
     <Compile Include="MessageConventions.cs" />
