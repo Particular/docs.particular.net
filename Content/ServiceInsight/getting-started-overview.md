@@ -7,11 +7,11 @@ tags:
 ---
 #Introduction
 
-The [NServiceBus](../NServiceBus/overview.md "NServiceBus Overview") platform provides the benefits of a distributed, messaged based, fault tolerant, and distributed architecture by allowing you to visualize and verify the functionality of such a distributed system.  
+The [NServiceBus](../NServiceBus/overview.md "NServiceBus Overview") framework provides the benefits of a distributed, messaged based, fault tolerant, and distributed architecture by allowing you to visualize and verify the functionality of such a distributed system.  
 
 From design through to production, ServiceInsight provides concise and user-friendly insight and information about the system. 
 
-1.  [ServiceInsight and the NServiceBus Platform](#the-nservicebus-platform "The NServiceBus Platform")
+1.  [ServiceInsight and the NServiceBus Framework](#the-nservicebus-framework "The NServiceBus Framework")
 2.  [Visualizing The System](#visualizing-the-system "Visualizing your system in ServiceInsight")
 3.  [The Message Window](#the-message-window "The Message Window")
 4.  [Endpoint Explorer](#endpoint-explorer "Endpoint Explorer")
@@ -22,8 +22,8 @@ From design through to production, ServiceInsight provides concise and user-frie
 9.  [Errors and Retries](#errors-and-retries "Visualizing and Dealing with Errors")
 10. [Next Steps](#next-steps "Next Steps")
 
-##The NServiceBus Platform
-The NServiceBus Platform includes these tools:
+##The NServiceBus Framework
+The NServiceBus Framework is part of the Particular Service Platform which includes these tools:
 * [ServiceMatrix](../ServiceMatrix/index.md "ServiceMatrix") accelerates the design of your system.  
 * The audit and error aggregation power of [ServiceControl](../ServiceControl/index.md "ServiceControl") is leveraged by [ServicePulse](../ServicePulse/index.md "ServicePulse") for operational monitoring and alerting. 
 * ServiceInsight provides a detailed view of messages in their system context, from endpoints to sagas, showing relationships and data.  
@@ -39,7 +39,7 @@ The Messages window is a detailed grid view indicating the message status, type,
 
 ![Message List View](images/overview-messagedetailwindow.png)
 
-You can filter and locate at design time. ServiceMatrix debugging automatically launches ServiceInsight and filters the messages to include only your current debug session.  The ServicePulse monitoring platform also allows you to open ServiceInsight to a specific message so you can drill down for more detail.
+You can filter and locate at design time. ServiceMatrix debugging automatically launches ServiceInsight and filters the messages to include only your current debug session.  The ServicePulse monitoring tool also allows you to open ServiceInsight to a specific message so you can drill down for more detail.
 
 ###Refresh and Auto-refresh
 The Refresh and Auto-Refresh toolbar buttons enable you to update the displayed information with the latest updates from the ServiceControl database. 
