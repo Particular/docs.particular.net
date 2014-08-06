@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandler.cs" />
+    <Compile Include="CustomLicense.cs" />
     <Compile Include="DoNotCreateQueues.cs" />
     <Compile Include="FileShareDataBus.cs" />
     <Compile Include="DefineCriticalErrorAction.cs" />

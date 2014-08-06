@@ -4,7 +4,7 @@ using NServiceBus.Log4Net;
 public class OverrideViaProfile
 {
     // start code LoggingConfigWithProfile
-    public class YourProfileLoggingHandler : IConfigureLoggingForProfile<YourProfile>
+    public class YourProfileLoggingHandler : NServiceBus.Hosting.Profiles.IConfigureLoggingForProfile<YourProfile>
     {
         public void Configure(IConfigureThisEndpoint specifier)
         {
