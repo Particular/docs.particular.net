@@ -80,7 +80,7 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) available t
 
 Configure NLog using its standard API then call 
 
-    Log4NetConfigurator.Configure();
+    NLogConfigurator.Configure();
 
 Example Usage 
 
