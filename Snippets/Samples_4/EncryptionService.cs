@@ -50,7 +50,7 @@ public class EncryptionService
     {
         #region FromCustomIEncryptionServiceV4
         Configure.With()
-            .Configurer.ConfigureComponent<IEncryptionService>(() => new MyCustomEncryptionService(), DependencyLifecycle.SingleInstance);
+            .Configurer.RegisterSingleton<IEncryptionService>(new MyCustomEncryptionService());
         #endregion
     }
 

@@ -56,7 +56,7 @@ public class EncryptionService
     {
         #region FromCustomIEncryptionServiceV5
 
-        Configure.With(configBuilder => configBuilder.RegisterEncryptionService(builder => new MyCustomEncryptionService()));
+        Configure.With(c => c.RegisterEncryptionService(b => new MyCustomEncryptionService()));
 
         #endregion
     }
