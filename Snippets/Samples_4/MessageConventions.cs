@@ -5,7 +5,7 @@ public class MessageConventions
 {
     public void Simple()
     {
-        // start code MessageConventionsV4
+        #region MessageConventionsV4
 
         var configure = Configure.With()
             .DefaultBuilder()
@@ -17,7 +17,7 @@ public class MessageConventions
             .DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"))
             .DefiningTimeToBeReceivedAs(t => t.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
 
-        // end code MessageConventionsV4
+        #endregion
     }
 
 }

@@ -4,14 +4,14 @@ public class StartupActionReplacement
 {
     public void AllThePersistence()
     {
-        // start code StartupActionReplacementV5
+        #region StartupActionReplacementV5
 
         var configure = Configure.With();
         var bus = configure.CreateBus();
         MyCustomAction();
         bus.Start();
 
-        // end code StartupActionReplacementV5
+        #endregion
     }
 
     public void MyCustomAction()

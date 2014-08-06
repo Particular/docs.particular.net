@@ -4,14 +4,14 @@ public class RunCustomAction
 {
     public void Simple()
     {
-        // start code RunCustomActionV4
+        #region RunCustomActionV4
 
         Configure.With().UnicastBus()
             .RunCustomAction(MyCustomAction)
             .CreateBus()
             .Start();
 
-        // end code RunCustomActionV4
+        #endregion
     }
 
     public void MyCustomAction()

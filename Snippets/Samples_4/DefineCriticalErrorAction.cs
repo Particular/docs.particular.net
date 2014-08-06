@@ -4,7 +4,7 @@ public class DefineCriticalErrorAction
 {
     public void Simple()
     {
-        // start code DefineCriticalErrorActionV4
+        #region DefineCriticalErrorActionV4
 
         var configure = Configure.With()
             .DefineCriticalErrorAction((s, exception) =>
@@ -12,7 +12,7 @@ public class DefineCriticalErrorAction
                 // custom exception handling
             });
 
-        // end code DefineCriticalErrorActionV4
+        #endregion
     }
 
 }

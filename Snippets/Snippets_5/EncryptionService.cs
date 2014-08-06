@@ -7,12 +7,15 @@ public class EncryptionService
 {
     public void Simple()
     {
-        // start code RijndaelEncryptionServiceSimpleV5
+        #region RijndaelEncryptionServiceSimpleV5
+
         Configure.With(builder => builder.RijndaelEncryptionService());
-        // end code RijndaelEncryptionServiceSimpleV5
+
+        #endregion
     }
 
-    // start code RijndaelEncryptionServiceFromAppConfigV5
+    #region RijndaelEncryptionServiceFromAppConfigV5
+
     // Add this to the app.config
     /*
 <configSections>
@@ -21,13 +24,16 @@ public class EncryptionService
 </configSections>
 <RijndaelEncryptionServiceConfig Key="gdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"/>
      */
+
     public void FromAppConfig()
     {
         Configure.With(builder => builder.RijndaelEncryptionService());
     }
-    // end code RijndaelEncryptionServiceFromAppConfigV5
 
-    // start code RijndaelEncryptionFromCustomIProvideConfigurationV5
+    #endregion
+
+    #region RijndaelEncryptionFromCustomIProvideConfigurationV5
+
     public void FromCustomIProvideConfiguration()
     {
         Configure.With(builder => builder.RijndaelEncryptionService());
@@ -37,16 +43,22 @@ public class EncryptionService
     {
         public RijndaelEncryptionServiceConfig GetConfiguration()
         {
-            return new RijndaelEncryptionServiceConfig { Key = "gdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6" };
+            return new RijndaelEncryptionServiceConfig
+            {
+                Key = "gdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"
+            };
         }
     }
-    // end code RijndaelEncryptionFromCustomIProvideConfigurationV5
+
+    #endregion
 
     public void FromCustomIEncryptionService()
     {
-        // start code RijndaelEncryptionFromCustomEncryptionServiceV5
+        #region RijndaelEncryptionFromCustomEncryptionServiceV5
+
         Configure.With(configBuilder => configBuilder.RegisterEncryptionService(builder => new MyCustomEncryptionService()));
-        // end code RijndaelEncryptionFromCustomEncryptionServiceV5
+
+        #endregion
     }
 
     public class MyCustomEncryptionService : IEncryptionService

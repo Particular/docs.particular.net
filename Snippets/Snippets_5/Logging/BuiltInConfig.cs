@@ -4,9 +4,12 @@ public class BuiltInConfig
 {
     public void ChangingDefaults()
     {
-        string pathToLoggingDirectory = null;
-        // start code OverrideLoggingDefaultsInCode
+        var pathToLoggingDirectory = "";
+
+        #region OverrideLoggingDefaultsInCode
+
         LogManager.ConfigureDefaults(LogLevel.Debug, pathToLoggingDirectory);
-        // end code OverrideLoggingDefaultsInCode
+
+        #endregion
     }
 }

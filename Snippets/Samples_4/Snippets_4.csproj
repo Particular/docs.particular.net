@@ -115,6 +115,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandler.cs" />
+    <Compile Include="Serialization.cs" />
+    <Compile Include="StaticConfigureEndpoint.cs" />
+    <Compile Include="TransactionConfig.cs" />
     <Compile Include="CustomLicense.cs" />
     <Compile Include="DoNotCreateQueues.cs" />
     <Compile Include="FileShareDataBus.cs" />

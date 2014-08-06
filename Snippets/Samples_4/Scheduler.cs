@@ -3,7 +3,7 @@ using NServiceBus;
 
 public class Scheduler
 {
-// start code SchedulerV4
+    #region SchedulerV4
     public class ScheduleMyTasks : IWantToRunWhenBusStartsAndStops
     {
         IBus bus;
@@ -29,7 +29,7 @@ public class Scheduler
         }
     }
 
-// end code SchedulerV4
+    #endregion SchedulerV4
 
     public class MyMessage : IMessage
     {

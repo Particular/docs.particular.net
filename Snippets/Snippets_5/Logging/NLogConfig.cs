@@ -7,7 +7,8 @@ public class NLogConfig
 {
     public void InCode()
     {
-        // start code NLogInCode
+        #region NLogInCode
+
         var config = new LoggingConfiguration();
 
         var consoleTarget = new ColoredConsoleTarget
@@ -19,6 +20,7 @@ public class NLogConfig
 
         LogManager.Configuration = config;
         NLogConfigurator.Configure();
-        // end code NLogInCode
+
+        #endregion
     }
 }

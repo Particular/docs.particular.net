@@ -5,7 +5,7 @@ public class Transports
 {
     public void AllTheTransports()
     {
-        // start code ConfigureTransportsV5
+        #region ConfigureTransportsV5
 
         // Configure to use MSMQ 
         Configure.With().UseTransport<Msmq>();
@@ -19,7 +19,7 @@ public class Transports
         // Configure to use SqlServer
         Configure.With().UseTransport<SqlServer>();
 
-        // end code ConfigureTransportsV5
+        #endregion
     }
 
 }

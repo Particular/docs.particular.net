@@ -8,13 +8,13 @@ public class EncryptionService
 
     public void Simple()
     {
-        // start code RijndaelEncryptionServiceSimpleV4
+        #region RijndaelEncryptionServiceSimpleV4
         Configure.With()
             .RijndaelEncryptionService();
-        // end code RijndaelEncryptionServiceSimpleV4
+        #endregion
     }
 
-    // start code RijndaelEncryptionServiceFromAppConfigV4
+    #region RijndaelEncryptionServiceFromAppConfigV4
     // Add this to the app.config
     /*
 <configSections>
@@ -28,9 +28,9 @@ public class EncryptionService
         Configure.With()
             .RijndaelEncryptionService();
     }
-    // end code RijndaelEncryptionServiceFromAppConfigV4
+    #endregion
 
-    // start code RijndaelEncryptionFromCustomIProvideConfigurationV4
+    #region RijndaelEncryptionFromCustomIProvideConfigurationV4
     public void FromCustomIProvideConfiguration()
     {
         Configure.With()
@@ -44,14 +44,14 @@ public class EncryptionService
             return new RijndaelEncryptionServiceConfig { Key = "gdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6" };
         }
     }
-    // end code RijndaelEncryptionFromCustomIProvideConfigurationV4
+    #endregion
 
     public void FromCustomIEncryptionService()
     {
-        // start code RijndaelEncryptionFromCustomEncryptionServiceV4
+        #region RijndaelEncryptionFromCustomEncryptionServiceV4
         Configure.With()
             .Configurer.ConfigureComponent<IEncryptionService>(() => new MyCustomEncryptionService(), DependencyLifecycle.SingleInstance);
-        // end code RijndaelEncryptionFromCustomEncryptionServiceV4
+        #endregion
     }
 
     public class MyCustomEncryptionService : IEncryptionService

@@ -5,7 +5,7 @@ public class DefineCriticalErrorAction
 {
     public void Simple()
     {
-        // start code DefineCriticalErrorActionV5
+        #region DefineCriticalErrorActionV5
 
         var configure = Configure.With(builder =>
         {
@@ -15,7 +15,7 @@ public class DefineCriticalErrorAction
             });
         });
 
-        // end code DefineCriticalErrorActionV5
+        #endregion
     }
 
 }

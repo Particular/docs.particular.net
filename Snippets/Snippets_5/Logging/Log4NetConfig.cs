@@ -8,7 +8,7 @@ public class Log4NetConfig
 {
     public void InCode()
     {
-        // start code Log4NetInCode
+        #region Log4NetInCode
 
         var layout = new PatternLayout
         {
@@ -39,6 +39,6 @@ public class Log4NetConfig
         BasicConfigurator.Configure(appender, consoleAppender);
         Log4NetConfigurator.Configure();
 
-        // end code Log4NetInCode
+        #endregion
     }
 }

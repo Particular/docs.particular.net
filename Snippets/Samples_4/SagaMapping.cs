@@ -4,8 +4,7 @@ using NServiceBus.Saga;
 
 public class SagaMapping
 {
-
-    // start code ConfigureHowToFindSagaV4
+    // startcode ConfigureHowToFindSagaV4
     public class MySaga : Saga<MySagaData>,
         IAmStartedByMessages<Message1>,
         IHandleMessages<Message2>
@@ -15,8 +14,7 @@ public class SagaMapping
             ConfigureMapping<Message2>(m => m.SomeID)
                 .ToSaga(s => s.SomeID);
         }
-
-        // end code ConfigureHowToFindSagaV4
+        // endcode 
         public void Handle(Message1 message)
         {
         }

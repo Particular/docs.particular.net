@@ -6,7 +6,7 @@ public class Persistence
     public void AllThePersistence()
     {
 
-        // start code ConfigurePersistenceV4
+        #region ConfigurePersistenceV4
 
         // Configure to use InMemory 
         Configure.With().InMemorySagaPersister();
@@ -32,7 +32,7 @@ public class Persistence
         Configure.With().RunGatewayWithRavenPersistence();
         Configure.With().UseNHibernateGatewayDeduplication();
 
-        // end code ConfigurePersistenceV4
+        #endregion
     }
 
 }

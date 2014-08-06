@@ -6,12 +6,15 @@ public class InterfaceMessageCreation
     public void Simple()
     {
         IBus Bus = null;
-        // start code InterfaceMessageCreationV5
+
+        #region InterfaceMessageCreationV5
+
         Bus.Publish<MyInterfaceMessage>(o =>
         {
             o.OrderNumber = 1234;
         });
-        // end code InterfaceMessageCreationV5
+
+        #endregion
     }
 
     public interface MyInterfaceMessage

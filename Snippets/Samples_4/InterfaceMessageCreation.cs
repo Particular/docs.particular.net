@@ -6,7 +6,9 @@ public class InterfaceMessageCreation
     public void Simple()
     {
         IBus Bus = null;
-        // start code InterfaceMessageCreationV4
+
+        #region InterfaceMessageCreationV4
+
         var message = Bus.CreateInstance<MyInterfaceMessage>(o =>
         {
             o.OrderNumber = 1234;
@@ -17,7 +19,8 @@ public class InterfaceMessageCreation
         {
             o.OrderNumber = 1234;
         });
-        // end code InterfaceMessageCreationV4
+
+        #endregion
     }
 
     public interface MyInterfaceMessage

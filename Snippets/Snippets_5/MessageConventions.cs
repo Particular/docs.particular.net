@@ -5,8 +5,8 @@ public class MessageConventions
 {
     public void Simple()
     {
-        // start code MessageConventionsV5
-        
+        #region MessageConventionsV5
+
         var configure = Configure.With(b => b.Conventions(c =>
         {
             c.DefiningCommandsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"));
@@ -18,7 +18,7 @@ public class MessageConventions
             c.DefiningTimeToBeReceivedAs(t => t.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
         }));
 
-        // end code MessageConventionsV5
+        #endregion
     }
 
 }

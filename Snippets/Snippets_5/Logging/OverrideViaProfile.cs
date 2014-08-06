@@ -3,7 +3,8 @@ using NServiceBus.Log4Net;
 
 public class OverrideViaProfile
 {
-    // start code LoggingConfigWithProfile
+    #region LoggingConfigWithProfile
+
     public class YourProfileLoggingHandler : NServiceBus.Hosting.Profiles.IConfigureLoggingForProfile<YourProfile>
     {
         public void Configure(IConfigureThisEndpoint specifier)
@@ -12,7 +13,8 @@ public class OverrideViaProfile
             Log4NetConfigurator.Configure();
         }
     }
-    // end code LoggingConfigWithProfile
+
+    #endregion
 
     class YourProfile : IProfile
     {

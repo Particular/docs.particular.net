@@ -3,7 +3,7 @@ using NServiceBus;
 
 namespace MessageLogging
 {
-    // start code MessageWithToStringLogged
+    #region MessageWithToStringLogged
     public class Message : IMessage
     {
         public Guid EventId { get; set; }
@@ -18,5 +18,5 @@ namespace MessageLogging
                 );
         }
     }
-    // end code MessageWithToStringLogged
+    #endregion
 }

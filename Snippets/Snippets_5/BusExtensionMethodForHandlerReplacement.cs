@@ -2,7 +2,7 @@ using NServiceBus;
 
 public class BusExtensionMethodForHandlerReplacement
 {
-    // start code BusExtensionMethodForHandlerReplacementV5
+    #region BusExtensionMethodForHandlerReplacementV5
     public class MyHandler : IHandleMessages<MyMessage>
     {
         IBus bus;
@@ -17,7 +17,7 @@ public class BusExtensionMethodForHandlerReplacement
             bus.Reply(new OtherMessage());
         }
     }
-    // end code BusExtensionMethodForHandlerReplacementV5
+    #endregion
     public class MyMessage
     {
     }

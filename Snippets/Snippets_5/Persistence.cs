@@ -7,7 +7,7 @@ public class Persistence
     public void AllThePersistence()
     {
 
-        // start code ConfigurePersistenceV5
+        #region ConfigurePersistenceV5
 
         // Configure to use InMemory for all persistence types
         Configure.With().UsePersistence<InMemory>();
@@ -27,7 +27,7 @@ public class Persistence
         // Configure to use RavenDB for specific persistence types
         Configure.With().UsePersistence<RavenDB>(c => c.For(Storage.Sagas, Storage.Subscriptions));
 
-        // end code ConfigurePersistenceV5
+        #endregion
     }
 
 }
