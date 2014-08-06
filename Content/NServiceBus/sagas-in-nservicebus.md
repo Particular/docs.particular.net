@@ -266,6 +266,8 @@ If compensating actions need to be taken for messages that are handled by the sa
   }
 ```
 
+Note that the message will be considered successfully processed and sent to the audit queue even if no saga was found. If you want the message to end up in the error queue just throw an exception from your IHandleSagaNotFound implementation.
+
 Complex saga finding logic
 --------------------------
 
