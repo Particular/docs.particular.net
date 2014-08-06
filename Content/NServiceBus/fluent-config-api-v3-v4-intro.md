@@ -29,17 +29,17 @@ public class EndpointConfiguration : IConfigureThisEndpoint, As_AServer
 
 **IConfigureThisEndpoint**
 
-The above class represents the main entry point of the NServiceBus endpoint, this is under the hood determined by the fact that the class implements the `IConfigureThisEndpoint` interface that identifies the class responsible to hold the initial endpoint configuration.
+The class in example above represents the main entry point of an NServiceBus endpoint. Under the hood this is determined by the fact that the class implements the `IConfigureThisEndpoint` interface that identifies the class responsible to hold the initial configuration for an endpoint.
 
 At runtime, during the startup phase, NServiceBus scans all the types looking for a class that implements the `IConfigureThisEndpoint` interface.
 
 More about the [NServiceBus.Host](the-nservicebus-host)
 
-###Configuration customization
+###Configuration Customization
 
-When NServiceBus endpoints are hosted using the built in NServiceBus host it is possible to customize the default configuration adding to the project a class that implements the IWantCustomInitialization interface, this class will be invoked at runtime by the hosting process and will be provided with a default configuration initialized by the host and ready to be configured as required.
+When NServiceBus endpoints are hosted using the built in NServiceBus host it is possible to customize default configuration by adding to the project a class that implements the `IWantCustomInitialization` interface. This class will be invoked at runtime by the hosting process and will be provided with a default configuration initialized by the host, ready to be configured as required.
 
-```
+```c#
 public class CustomConfiguration : IWantCustomInitialization
 {
 	public void Init()
@@ -55,29 +55,30 @@ More about [configuration customization](customizing-nservicebus-configuration)
 
 ###Features (V4 only)
 
-NServiceBus in V4 has introduced the concept of features, features are a high level concept that encapsulate a set of settings related to a certain feature, thus features can be entirely enabled or disabled and when enabled configured.
+NServiceBus in V4 has introduced the concept of features. *Feature* is a high level concept that encapsulate a set of settings related to a certain feature. Features can be enabled or disabled. Enabled features can be configured.
 
 List of built-in features
 
-* `Audit`: The audit feature is responsible for message auditing, every received message will be forwarded to the audit queue when this feature is enabled and configured, by default the feature is enabled but not configured;
+* `Audit`: The audit feature is responsible for message auditing. When enabled and configured, every received message will be forwarded to the audit queue. By default the feature is enabled but not configured;
 * `AutoSubscribe`: This feature menages endpoint subscriptions in a pub/sub environment, is enabled by default and will subscribe automatically to defined events;
-* `Gateway`: brief description;
+* `Gateway`: more about [Gateway](introduction-to-the-gateway);
 * `MessageDrivenSubscriptions`: brief description;
-* `Sagas`: brief description;
-* `SecondLevelRetries`: brief description;
+* `Sagas`: more about [Sagas](sagas-in-nservicebus);
+* `SecondLevelRetries`: more about [Second Level Retries](second-level-retries);
 * `StorageDrivenPublisher`: brief description;
 * `TimeoutManager`: brief description;
 
 Through the feature API it is also possible to configure the serialization format:
 
-* `BinarySerialization`: brief description;
-* `BsonSerialization`: brief description;
-* `JsonSerialization`: brief description;
-* `XmlSerialization`: brief description;
+* `BinarySerialization`: binary serializer;
+* `BsonSerialization`: BSON serializer;
+* `JsonSerialization`: JSON serializer;
+* `XmlSerialization`: XML serializer;
 
 By default if no configuration is performed the XML serializer is enabled.
 
 **NOTE**: Only one serializer can be enabled in an endpoint at a time.
+**NOTE**: NServiceBus serializers are only operating on primitive types.
 
 To enable a feature there is a simple and straightforward API:
 
@@ -89,14 +90,16 @@ To disable a specific feature call the `Disable<*TFeature*>` method:
 
 Where the feature type is one of the feature classes defined in the `NServiceBus.Features` namespace.
 
-###Self-hosting configuration
+###Self-hosting Configuration
 
-There are scenarios in which we need to self host the bus without being able to rely on the NServiceBus Host process, a well known sample scenario is a web application, in these cases we are responsible to configure, create and start the bus.
-The configuration entry point point is the Configure class that exposes a fluent configuration API that let us take fine control of all the configuration settings.
+There are scenarios in which we need to self host the bus without relying on the NServiceBus Host process. A well known sample scenario is a web application. When opting into self-hosting, we're responsible to configure, create, and start the bus.
+The configuration entry point is the `Configure` class that exposes a fluent configuration API that allows fine grained control over all configuration settings.
 
-####Self hosting in V4
+####Self-hosting in V4
 
-```
+Below is a sample console application with minimal code to create, initialize, and finally start NServiceBus.
+
+```c#
 public class Program
 {
     public static void Main()
@@ -115,7 +118,7 @@ More on [Self-hosting in v4](hosting-nservicebus-in-your-own-process-v4.x)
 
 ####Self hosting in V3
 
-```
+```c#
 public class Program
 {
     public static void Main()
@@ -132,11 +135,9 @@ public class Program
 
 More on [Self-hosting in v3](hosting-nservicebus-in-your-own-process)
 
-The above samples, from a console application, is the minimum required to create, initialize and finally start the bus in a self hosting scenario.
+The `With()` method is the main configuration entry point that initialize and starts the configuration engine, followed by call to `DefaultBuilder()` which instructs configuration engine to use the built-in inversion of control container to manage dependencies. More on [NServiceBus and IoC containers](containers).
 
-The `With()` method is the main configuration entry point that initialize and starts the configuration engine, right after that the call to `DefaultBuilder()` instructs the configuration engine to use the built-in inversion of control container to manage dependencies.
-
-V4 supports multiple transports and the `UsingTransport<TTransport>()` generic method defines what will be the underlying transport that the bus instance will use, in the above sample we are using MSMQ.
+V4 supports various transports (MSMQ, Azure, RabbitMQ, SQL, etc.) and the `UsingTransport<TTransport>()` generic method defines what will be the underlying transport that the bus instance will use, in the above sample we are using MSMQ.
 
 In V3 the only supported transport was MSMQ thus the only viable option was to use the `MsmqTransport()` method.
 
