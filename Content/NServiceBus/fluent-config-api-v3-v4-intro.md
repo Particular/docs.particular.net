@@ -12,18 +12,19 @@ Every NServiceBus endpoint to work properly relies on a configuration that deter
 
 ###NServiceBus Host
 
-NServiceBus provides its own hosting service (link to the NuGet package) that can be used to outsource the whole hosting "drama" (find a synonym) without worrying about how to deal with Windows Services.
+NServiceBus provides its own [hosting service][1] that can be used to outsource the whole hosting boilerplate code without worrying about how to deal with Windows Services.
 
-When using the built in hosting services the endpoint configuration is specified using the EndpointConfig class, automatically created when adding NServiceBus packages via NuGet, and implementing one of the core interfaces that determine the default endpoint behavior:
+When using the built in hosting service, the endpoint configuration is specified using the `EndpointConfig` class, automatically created when adding NServiceBus packages via NuGet, and implementing one of the core interfaces that determine endpoint behavior:
 
-* `*As_AServer*`: Indicates that the endpoint behaves as a server. It will be set up as a transactional endpoint that won't purge messages on startup;
-* `*As_APublisher*`: Indicates that the endpoint is a publisher and extends the server role. A publisher can also publish events, an endpoint configured as a publisher cannot be configured as client at the same time;
-* `*As_AClient*`: Indicates that the endpoint is a client.  A client endpoint will be set up as a non-transactional endpoint that will purge messages on startup.
+* `As_AServer`: Indicates that the endpoint behaves as a server. It will be set up as a transactional endpoint that won't purge messages on startup;
+* `As_APublisher`: Indicates that the endpoint is a publisher that can publish events, and extends the server role. An endpoint configured as a publisher cannot be configured as client at the same time;
+* `As_AClient`: Indicates that the endpoint is a client.  A client endpoint will be set up as a non-transactional endpoint that will purge messages on startup.
 
-```
+```c#
 public class EndpointConfiguration : IConfigureThisEndpoint, As_AServer
 {
-	}
+	
+}
 ```
 
 **IConfigureThisEndpoint**
@@ -41,9 +42,11 @@ When NServiceBus endpoints are hosted using the built in NServiceBus host it is 
 ```
 public class CustomConfiguration : IWantCustomInitialization
 {
-	public void Init()	{
+	public void Init()
+	{
 		var currentConfig = Configure.Instance;
-	}}
+	}
+}
 ```
 
 **NOTE**: Do not start the bus it will be done by the host *`(comment - expand on this topic a bit)`*
@@ -96,14 +99,16 @@ The configuration entry point point is the Configure class that exposes a fluent
 ```
 public class Program
 {
-    public static void Main()    {
+    public static void Main()
+    {
         var bus = Configure.With()
 	        .DefaultBuilder()
 	        .UsingTransport<Msmq>()
 	        .UnicastBus()
 	        .CreateBus()
 	        .Start();
-	}}
+	}
+}
 ```
 
 More on [Self-hosting in v4](hosting-nservicebus-in-your-own-process-v4.x)
@@ -113,14 +118,16 @@ More on [Self-hosting in v4](hosting-nservicebus-in-your-own-process-v4.x)
 ```
 public class Program
 {
-    public static void Main()    {
+    public static void Main()
+    {
         var bus = Configure.With()
 	        .DefaultBuilder()
 	        .MsmqTransport()
 	        .UnicastBus()
 	        .CreateBus()
 	        .Start();
-	}}
+	}
+}
 ```
 
 More on [Self-hosting in v3](hosting-nservicebus-in-your-own-process)
@@ -136,3 +143,5 @@ In V3 the only supported transport was MSMQ thus the only viable option was to u
 Finally we define that the bus will be a unicast bus, the only option currently available, and we create and start the bus.
 
 More about [Fluent Configuration API](fluent-config-api-v3-v4)
+
+[1]: http://www.nuget.org/packages/NServiceBus.Host/ "NServiceBus Host NuGet package"
