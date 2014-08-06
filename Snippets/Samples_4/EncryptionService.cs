@@ -48,7 +48,7 @@ public class EncryptionService
 
     public void FromCustomIEncryptionService()
     {
-        #region RijndaelEncryptionFromCustomEncryptionServiceV4
+        #region FromCustomIEncryptionServiceV4
         Configure.With()
             .Configurer.ConfigureComponent<IEncryptionService>(() => new MyCustomEncryptionService(), DependencyLifecycle.SingleInstance);
         #endregion

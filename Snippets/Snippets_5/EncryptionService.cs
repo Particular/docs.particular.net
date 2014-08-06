@@ -54,7 +54,7 @@ public class EncryptionService
 
     public void FromCustomIEncryptionService()
     {
-        #region RijndaelEncryptionFromCustomEncryptionServiceV5
+        #region FromCustomIEncryptionServiceV5
 
         Configure.With(configBuilder => configBuilder.RegisterEncryptionService(builder => new MyCustomEncryptionService()));
 
