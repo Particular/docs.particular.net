@@ -82,11 +82,11 @@ By default if no configuration is performed the XML serializer is enabled.
 
 To enable a feature there is a simple and straightforward API:
 
-    Configure.Features.Enable<*TFeature*>();
+    Configure.Features.Enable<TFeature>();
 
-To disable a specific feature call the `Disable<*TFeature*>` method:
+To disable a specific feature call the `Disable<TFeature>` method:
 
-    Configure.Features.Disable<*TFeature*>();
+    Configure.Features.Disable<TFeature>();
 
 Where the feature type is one of the feature classes defined in the `NServiceBus.Features` namespace.
 
