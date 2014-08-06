@@ -28,7 +28,7 @@ If you only want to specify a single handler (with your own host):
     NServiceBus.Configure.With()
          ...
          .UnicastBus()
-              .LoadMessageHandlers>()
+              .LoadMessageHandlers<FirstHandler>()
          ...
 
 If you only want to specify a single handler (with the generic host):
@@ -37,7 +37,7 @@ If you only want to specify a single handler (with the generic host):
     {
          public void SpecifyOrder(Order order)
          {
-              order.Specify>();
+              order.SpecifyFirst<FirstHandler>();
          }
     }
 
