@@ -118,6 +118,7 @@ summary: NServiceBus Documentation Table of Contents
 - [DtcPing Warning the Cid Values for Both Test Machines Are the Same](dtcping-warning-the-cid-values-for-both-test-machines-are-the-same)
 - [Why You Can't Use NLB with MSMQ](why-you-can-t-use-nlb-with-msmq)
 - [Configuring AWS for NServiceBus](configuring-aws-for-nservicebus)
+- [Licensing and throughput limitations](licensing-limitations)
 - [Licensing and Distribution](licensing-and-distribution)
 - [How to Debug RavenDb Through Fiddler Using NServiceBus](how-to-debug-ravendb-through-fiddler-using-nservicebus)
 - [How Do I Centralize All Unobtrusive Declarations](how-do-i-centralize-all-unobtrusive-declarations)
