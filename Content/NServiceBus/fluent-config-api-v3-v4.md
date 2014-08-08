@@ -8,6 +8,8 @@ tags:
 
 **NOTE**: This article refers to NServiceBus V3 and V4
 
+An introduction to the NServiceBus configuration is available in the [Introduction to Fluent Configuration API in V3 and V4](fluent-config-api-v3-v4-intro) article. 
+
 ###Fluent Configuration API
 
 The NServiceBus configuration entry point is the `Configure` class and its static `With()` method, each time we need to access an instance of the current configuration we can do that via the static `Instance` property of the `Configuration` class. 
@@ -31,7 +33,6 @@ The `With()` method has several overloads each one resulting in the creation of 
 By default the endpoint name is deducted by the namespace of the assembly that contains the configuration entry point, we can customize the endpoint name via the Fluent Configuration API using the `DefineEndpointName` method:            
 
 * `DefineEndpointName( string endpointName )`: defines the endpoint name using the supplied string; 
-* `DefineEndpointName( Func<String> endpointNameFunc )`: defines the endpoint name calling the supplied delegate at runtime;
 
 **NOTE**: If we need to customize the endpoint name via code, using the `DefineEndpointName` method, it is important to call it as the first one right after the `With()` configuration entry point.
 
@@ -83,6 +84,10 @@ To dive into the unobtrusive mode, data bus and encryption features:
 
 To configure the DataBus feature it is enough to call the `FileShareDataBus( string pathToSharedFolder )` passing as argument a path that must be accessible by all the endpoints that needs to share the same messages.
 
+#####Azure and the DataBus
+
+Endpoints running on Windows Azure cannot access UNC paths or file shares, in this case the [NServiceBus Azure Transport](http://www.nuget.org/packages/nservicebus.azure) provides its own DataBus implementation that can be configured using the `AzureDataBus()` method.
+
 ####Encryption
 
 To configure the Encryption feature it is mandatory to define the encryption algorithm, the one supported out of the box by NServiceBus is Rijndael and can be configured calling the `RijndaelEncryptionService()` method.
@@ -110,9 +115,10 @@ Some NServiceBus features relies on a persistence storage to work properly, begi
 #####RavenDB Persistence
 
 * `RavenPersistence()`: configures the endpoint to use RavenDB and expects to find a connection string, in the endpoint configuration file, named `NServiceBus/Persistence`.
-* `RavenPersistence( String connectionString )`: configures the endpoint to use RavenDB using the supplied RavenDB connection string.
-* `RavenPersistence( Func<String> connectionStringProvider )`: configures the endpoint to use RavenDB and invokes the supplied delegate to get, at runtime, a valid RavenDB connection string.
-* `RavenPersistence( Func<String> connectionStringProvider, string dbName )`: configures the endpoint to use RavenDB, invokes the supplied delegate to get, at runtime, a valid RavenDB connection string and expect as the second parameter the name of the database to use.
+* `RavenPersistence( 
+*  connectionString )`: configures the endpoint to use RavenDB using the supplied RavenDB connection string.
+* `RavenPersistence( Func<string> connectionStringProvider )`: configures the endpoint to use RavenDB and invokes the supplied delegate to get, at runtime, a valid RavenDB connection string.
+* `RavenPersistence( Func<string> connectionStringProvider, string dbName )`: configures the endpoint to use RavenDB, invokes the supplied delegate to get, at runtime, a valid RavenDB connection string and expect as the second parameter the name of the database to use.
 * `RavenPersistenceWithStore( IDocumentStore store )`: configures the endpoint to use RavenDB using the supplied IDocumentStore.
 * `RavenSagaPersister()`: configures Sagas to use RavenDB as storage.
 * `RavenSubscriptionStorage()`: configures the subscriptions manager to use RavenDB as storage.
@@ -144,8 +150,8 @@ We have also the option, when using MSMQ as a transport, to use one queue as the
 
 There are several ways to assign the license to an endpoint, all detailed in the [How to install your license file](license-management) article. It is also supported to specify license at configuration time:
 
-* `LicensePath( String partToLicenseFile )`: configures the endpoint to use the license file found at the supplied path;
-* `License( String licenseText )`: configures the endpoint to use the supplied license, where the license text is the content of a license file.
+* `LicensePath( string partToLicenseFile )`: configures the endpoint to use the license file found at the supplied path;
+* `License( string licenseText )`: configures the endpoint to use the supplied license, where the license text is the content of a license file.
 
 ####Queues Management
 
