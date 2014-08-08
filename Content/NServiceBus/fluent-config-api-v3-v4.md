@@ -26,7 +26,10 @@ The `With()` method has several overloads each one resulting in the creation of 
 **NOTE**:
 
 * Subsequent calls to the `With` method are idempotent and only one configuration is created;
-* The `With` method, and in general the whole configuration API, is not thread safe; 
+* The `With` method, and in general the whole configuration API, is not thread safe; when configuring the entry point, make sure it's done in a thread safe manner, based on the host used:
+	* For `IIS` configure NServiceBus in the `Application_Start()` method;
+	* For `OWIN` configure NServiceBus in the `Startup()` method;
+	* For self-hosted `WCF` services configure NServiceBus before opening the `ServiceHost`;
 
 ####Endpoint Naming
 
