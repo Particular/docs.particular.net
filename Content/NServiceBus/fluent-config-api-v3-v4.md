@@ -12,7 +12,7 @@ tags:
 
 The NServiceBus configuration entry point is the `Configure` class and its static `With()` method, each time we need to access an instance of the current configuration we can do that via the static `Instance` property of the `Configuration` class. 
 
-####Configuration entry point
+####Entry Point Configuration
 
 The `With()` method has several overloads each one resulting in the creation of a new Configuration instance.
 
@@ -26,7 +26,7 @@ The `With()` method has several overloads each one resulting in the creation of 
 * Subsequent calls to the `With` method are idempotent and only one configuration is created;
 * The `With` method, and in general the whole configuration API, is not thread safe; 
 
-####Endpoint naming
+####Endpoint Naming
 
 By default the endpoint name is deducted by the namespace of the assembly that contains the configuration entry point, we can customize the endpoint name via the Fluent Configuration API using the `DefineEndpointName` method:            
 
@@ -91,7 +91,7 @@ To configure the Encryption feature it is mandatory to define the encryption alg
 
 Logging in NServiceBus is achieved using Log4Net as logging library to configure the endpoint it is enough to call the `Log4Net()` method. More information on logging can be found in the [Logging in NServiceBus 4 and below](logging-in-nservicebus4_and_below) article.
 
-####Fault management
+####Fault Management
 
 NServiceBus [manages fault](msmqtransportconfig) for us, to activate the fault manager it is enough to call the `MessageForwardingInCaseOfFault()` method.
 
@@ -147,7 +147,7 @@ There are several ways to assign the license to an endpoint, all detailed in the
 * `LicensePath( String partToLicenseFile )`: configures the endpoint to use the license file found at the supplied path;
 * `License( String licenseText )`: configures the endpoint to use the supplied license, where the license text is the content of a license file.
 
-####Queues management
+####Queues Management
 
 At configuration time it is possible to define some queue behavior:
 
