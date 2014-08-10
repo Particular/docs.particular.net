@@ -8,10 +8,10 @@ public class TransactionConfig
         #region TransactionConfigV5
 
         //Enable
-        Configure.With(builder => builder.Transactions(transactionSettings => transactionSettings.Enable()));
+        Configure.With(b => b.Transactions(t => t.Enable()));
 
         // Disable
-        Configure.With(builder => builder.Transactions(transactionSettings => transactionSettings.Disable()));
+        Configure.With(b => b.Transactions(t => t.Disable()));
 
         #endregion
     }

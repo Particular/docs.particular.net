@@ -200,6 +200,7 @@
     <Compile Include="ForInstallationOnReplacement.cs" />
     <Compile Include="InterfaceMessageCreation.cs" />
     <Compile Include="MessageConventions.cs" />
+    <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="Persistence.cs" />
     <Compile Include="PurgeOnStartup.cs" />
     <Compile Include="RunCustomActionReplacement.cs" />
