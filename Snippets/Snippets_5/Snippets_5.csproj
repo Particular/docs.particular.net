@@ -185,10 +185,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
+    <Compile Include="ContainerCustom.cs" />
+    <Compile Include="Containers.cs" />
     <Compile Include="CustomLicense.cs" />
     <Compile Include="DefineCriticalErrorAction.cs" />
     <Compile Include="DoNotCreateQueues.cs" />
     <Compile Include="EncryptionService.cs" />
+    <Compile Include="EndpointName.cs" />
     <Compile Include="FileShareDataBus.cs" />
     <Compile Include="Logging\OverrideViaProfile.cs" />
     <Compile Include="Logging\MyMessage.cs" />
@@ -206,6 +209,7 @@
     <Compile Include="RunCustomActionReplacement.cs" />
     <Compile Include="SagaMapping.cs" />
     <Compile Include="Scheduler.cs" />
+    <Compile Include="SendOnly.cs" />
     <Compile Include="Serialization.cs" />
     <Compile Include="StartupActionReplacement.cs" />
     <Compile Include="StaticConfigureEndpoint.cs" />

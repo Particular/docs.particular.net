@@ -26,19 +26,16 @@ GitHub supports downloading a zip file of the source. The convention is
 - The current master branch is [https://github.com/Particular/NServiceBus/archive/master.zip](https://github.com/Particular/NServiceBus/archive/master.zip)
 - The 3.3.8 tag is [https://github.com/Particular/NServiceBus/archive/3.3.8.zip](https://github.com/Particular/NServiceBus/archive/3.3.8.zip)
 
-Building NServiceBus 4
-======================
+## Building NServiceBus 4
 
 See "Building" in the `Readme.md` file at the root of the repository
 
-Building NServiceBus 3
-======================
+## Building NServiceBus 3
 
 To build NServiceBus 3 from its source files, download the source files from
 [github](https://github.com/Particular/NServiceBus/zipball/develop) to get the latest unstable build, or retrieve the latest stable build source code from the [downloads page](http://particular.net/downloads).
 
-Build NServiceBus options
--------------------------
+## Build NServiceBus options
 
 You can build NServiceBus by either typing .\\build.ps1 in a PowerShell command line or by executing build.bat from the command line. Both files executes default.ps1, which is a PowerShell script file that builds NServiceBus. Default.ps1 is based on the
 [psake](https://github.com/psake/psake) build automation tool.
@@ -67,8 +64,7 @@ Default.ps1 has five major logical entry points or main tasks:
     2.  Runs the unit tests.
     3.  Prepares the binaries and core-only binaries.
 
-Entry points for development
-----------------------------
+## Entry points for development
 
 Entry points ease the build activity for development:
 
@@ -91,8 +87,7 @@ Entry points ease the build activity for development:
 -   CompileSamples - Compiles all the sample projects.
 -   CompileSamplesFull - Compiles all the sample projects after compiling the source.
 
-Build.ps1 script
-----------------
+## Build.ps1 script
 
 Build.ps1 is a PowerShell script that is used to execute the default.ps1 NServiceBus build script. Following are examples for executing the Build.ps1 script:
 

@@ -19,7 +19,7 @@ public class Persistence
         Configure.With().UsePersistence<NServiceBus.NHibernate>();
 
         // Configure to use NHibernate for specific persistence types
-        Configure.With().UsePersistence<NHibernateIntegration>(c => c.For(Storage.Sagas, Storage.Subscriptions));
+        Configure.With().UsePersistence<NServiceBus.NHibernate>(c => c.For(Storage.Sagas, Storage.Subscriptions));
 
         // Configure to use RavenDB for all persistence types
         Configure.With().UsePersistence<RavenDB>();

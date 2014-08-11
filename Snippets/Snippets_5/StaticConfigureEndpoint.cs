@@ -8,12 +8,12 @@ public class StaticConfigureEndpoint
         #region StaticConfigureEndpointReplacementV5
 
         // SendOnly
-        Configure.With().SendOnly();
+        Configure.With(b => b.SendOnly());
 
         // AsVolatile
-        var configure = Configure.With(builder =>
+        var configure = Configure.With(b =>
         {
-            builder.Transactions(transactionSettings =>
+            b.Transactions(transactionSettings =>
             {
                 transactionSettings.Disable();
                 transactionSettings.Advanced(advancedSettings =>
@@ -22,17 +22,17 @@ public class StaticConfigureEndpoint
                     advancedSettings.DisableDistributedTransactions();
                 });
             });
-            builder.DisableDurableMessages();
+            b.DisableDurableMessages();
         });
         configure.UsePersistence<InMemory>();
 
 
         // DisableDurableMessages
 
-        Configure.With(builder => builder.DisableDurableMessages());
+        Configure.With(b => b.DisableDurableMessages());
 
         // EnableDurableMessages
-        Configure.With(builder => builder.EnableDurableMessages());
+        Configure.With(b => b.EnableDurableMessages());
 
         #endregion
     }

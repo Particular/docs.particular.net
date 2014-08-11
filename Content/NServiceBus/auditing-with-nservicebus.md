@@ -10,11 +10,11 @@ The distributed nature of parallel message-driven systems makes them more diffic
 
 It is recommended that you specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). By doing so you can take advantage of central auditing within a distributed system. This is also required by the Particular Service Platform  and especially [ServiceControl](/servicecontrol), which consumes messages from these auditing queues. For more information, see [ServicePulse documentation](/servicepulse/).
 
-Configuring auditing
---------------------
+## Configuring auditing
 
-To turn on auditing in V3 and earlier versions, add the attribute
-`ForwardReceivedMessagesTo` to the `UnicastBusConfig` section of an endpoint's configuration file, as shown:
+## Version 3
+
+Add the attribute `ForwardReceivedMessagesTo` to the `UnicastBusConfig` section of an endpoint's configuration file, as shown:
 
 ```XML
 <configSections>
@@ -28,9 +28,11 @@ To turn on auditing in V3 and earlier versions, add the attribute
 </UnicastBusConfig>
 ```
 
-**Note:** In version 3.X use the ForwardReceivedMessageTo Attribute
+**Note:** In version 3.X use the `ForwardReceivedMessageTo` Attribute
 
-In V4, add the `AuditConfig` section to the configuration file, as shown:
+## Version 4
+
+Add the `AuditConfig` section to the configuration file, as shown:
 
 ```XML
 <configSections>

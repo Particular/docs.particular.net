@@ -4,78 +4,43 @@ summary: NServiceBus automatically registers components, user-implemented handle
 tags: []
 ---
 
-NServiceBus is a container-agnostic framework. While autofac is merged into its core, it is easily replaced by any other container.
-
-With five other container technologies available out of the box, including Castle, Ninject, Spring, StructureMap, and Unity, you don't have to change to something new.
-
 NServiceBus automatically registers all its components as well as user-implemented handlers and sagas so that all instancing modes and wiring are done correctly by default and without errors.
 
-Standard container usage
-------------------------
+NServiceBus has a build in container (currently an ILMerged version of Autofac) but it can be replaced by any other container.
 
-When hosting NServiceBus in your own process, you will see the following:
+## Getting other containers
 
-![SpringBuilder configuration](SpringBuilder_configuration.jpg)
+Other containers are available on nuget.
 
-When using the generic host, AutofacObjectBuilder is configured by default.
+http://www.nuget.org/packages/NServiceBus.Autofac/
+http://www.nuget.org/packages/NServiceBus.Ninject/
+http://www.nuget.org/packages/NServiceBus.StructureMap/
+http://www.nuget.org/packages/NServiceBus.Spring/
+http://www.nuget.org/packages/NServiceBus.Unity/
 
-Other containers available
---------------------------
+## Configuring NServiceBus to use other containers
 
-In the binary distribution of NServiceBus, you can find adapters for the other containers available under /binaries/containers. There is a directory for each one: autofac, castle, ninject, spring, structuremap, and unity. Each directory contains an assembly for the adapter that connects it to NServiceBus. This assembly is called `NServiceBus.ObjectBuilder.*SpecificContainerName*.dll`. If you want to use one of these containers, add a reference to the relevant adapter assembly for the specific container.
+### Version 4
 
-![Container references](Container_references.jpg)
+<!-- import CustomConfigOverridesV4 -->
 
-Using a different container
----------------------------
+### Version 5
 
-In the [Publish/Subscribe sample](publish-subscribe-sample.md) you can see how a different container is used by looking at the Subscriber2 project. This project uses the Castle container, adding references to all the Castle assemblies as well as the adapter assembly `NServiceBus.ObjectBuilder.CastleWindsor.dll`.
+<!-- import CustomConfigOverridesV5 -->
 
-This sample showns that different processes can use different containers.
+## Plugging in your own container
 
-While it is unlikely that a single team will want to use multiple containers within a given solution, if multiple teams are working together each with its own preferred container NServiceBus does not require that all processes use the same container. This is also useful when using NServiceBus to integrate with legacy code that may have been built using an older or different container, or even when talking to an application that was designed without a container.
+### Version 4
 
-After all the necessary references have been added, an additional extension method becomes available on the `NServiceBus.Configure` class, as shown:
+ * Create a class that implements `IContainer`
+ * Call `Configure.UsingContainer<T>()` in your configuration
 
-![Configure the Castle Windsor container](Configure_the_Castle_Windsor_container.jpg)
+<!-- import CustomContainersV4 -->
 
-Using a different container with the host
------------------------------------------
+### Version 5
 
-When using the generic host that comes with NServiceBus, changing the container is very similar to the process described above and is illustrated in the "Containers and Dependency Injection" section of the generic host page.
+ * Create a class that implements `IContainer`
+ * Create a class that implements `ContainerDefinition` and returns your `IContainer` implementation. Place this in the `NServiceBus` namespace for convenience to users.  
+ * Call `Configure.With(b => b.UseContainer<MyContainer>());` in your configuration
 
-Plugging in your own container
-------------------------------
-
-To use a container other than the ones that come with NServiceBus, implement the `IContainer` interface in the `NServiceBus.ObjectBuilder.Common` namespace from the `NServiceBus.Core.dll`.
-
-
-```C#
-public interface IContainer : IDisposable
-{
-    object Build(Type typeToBuild);
-    IContainer BuildChildContainer();
-    IEnumerable<object> BuildAll(Type typeToBuild);
-    void Configure(Type component, DependencyLifecycle dependencyLifecycle);
-    void Configure<T>(Func<T> component, DependencyLifecycle dependencyLifecycle); //Added in V4
-    void ConfigureProperty(Type component, string property, object value);
-    void RegisterSingleton(Type lookupType, object instance);
-    bool HasComponent(Type componentType);
-    void Release(object instance); //Added in V4
-}
-```
-To tell NServiceBus to use your container, create an extension method to the NServiceBus.Configure class and pass an instance of your object, as follows:
-
-```C#
-public static class YourExtensionMethodHolder
-{
-    public static Configure NameOfYourContainer(this Configure config)
-    {
-        ConfigureCommon.With(config, new YourClassImplementingIContainer());
-        return config;
-    }
-}
-
-```
-
-It is recommended to put this class in the NServiceBus namespace so that users of this container won't need to add another `using` directive for them to see the option of using your container when Intellisense shows them what's available after `NServiceBus.Configure.With()`.
+<!-- import CustomContainersV5 -->

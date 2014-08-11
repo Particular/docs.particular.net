@@ -7,7 +7,8 @@ public class ForInstallationOn
     {
         #region ForInstallationOnV4
 
-        Configure.With().UnicastBus()
+        Configure.With()
+            .UnicastBus()
             .CreateBus()
             .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 

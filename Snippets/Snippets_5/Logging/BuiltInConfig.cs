@@ -8,7 +8,11 @@ public class BuiltInConfig
 
         #region OverrideLoggingDefaultsInCode
 
-        LogManager.ConfigureDefaults(LogLevel.Debug, pathToLoggingDirectory);
+        LogManager.Use<DefaultFactory>(d =>
+        {
+            d.LoggingDirectory = pathToLoggingDirectory;
+            d.LogLevel = LogLevel.Debug;
+        });
 
         #endregion
     }
