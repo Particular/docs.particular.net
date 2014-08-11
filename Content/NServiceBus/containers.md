@@ -22,11 +22,11 @@ http://www.nuget.org/packages/NServiceBus.Unity/
 
 ### Version 4
 
-<!-- import CustomConfigOverridesV4 -->
+<!-- import ContainersV4 -->
 
 ### Version 5
 
-<!-- import CustomConfigOverridesV5 -->
+<!-- import ContainersV5 -->
 
 ## Plugging in your own container
 
