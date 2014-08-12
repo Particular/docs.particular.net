@@ -8,10 +8,10 @@ public class Serialization
 
         #region ConfigureSerializationV5
 
-        Configure.With(builder => builder.UseSerialization<Binary>());
-        Configure.With(builder => builder.UseSerialization<Bson>());
-        Configure.With(builder => builder.UseSerialization<Json>());
-        Configure.With(builder => builder.UseSerialization<Xml>());
+        Configure.With(b => b.UseSerialization<Binary>());
+        Configure.With(b => b.UseSerialization<Bson>());
+        Configure.With(b => b.UseSerialization<Json>());
+        Configure.With(b => b.UseSerialization<Xml>());
 
         #endregion
     }

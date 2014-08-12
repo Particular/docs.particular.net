@@ -165,8 +165,10 @@
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandler.cs" />
     <Compile Include="ContainerCustom.cs" />
+    <Compile Include="TypeScanning.cs" />
     <Compile Include="Containers.cs" />
     <Compile Include="EndpointName.cs" />
+    <Compile Include="HandlerOrdering.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="CriticalError.cs" />
     <Compile Include="SendOnly.cs" />

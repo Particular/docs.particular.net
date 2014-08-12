@@ -169,6 +169,7 @@
     <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Spatial.5.6.0\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -188,6 +189,7 @@
     <Compile Include="ContainerCustom.cs" />
     <Compile Include="Containers.cs" />
     <Compile Include="CriticalError.cs" />
+    <Compile Include="HandlerOrdering.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DefineCriticalErrorAction.cs" />
     <Compile Include="DoNotCreateQueues.cs" />
@@ -210,12 +212,14 @@
     <Compile Include="RunCustomActionReplacement.cs" />
     <Compile Include="SagaMapping.cs" />
     <Compile Include="Scheduler.cs" />
+    <Compile Include="ScaleOut.cs" />
     <Compile Include="SendOnly.cs" />
     <Compile Include="Serialization.cs" />
     <Compile Include="StartupActionReplacement.cs" />
     <Compile Include="StaticConfigureEndpoint.cs" />
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="Transports.cs" />
+    <Compile Include="TypeScanning.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

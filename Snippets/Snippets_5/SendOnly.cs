@@ -8,7 +8,7 @@ public class SendOnly
         #region SendOnlyV5
 
         var bus = Configure.With(
-            b =>b.SendOnly())
+            b => b.SendOnly())
             .CreateBus();
 
         #endregion
