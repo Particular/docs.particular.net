@@ -4,7 +4,7 @@ public class ForInstallationOnReplacement
 {
     public void Simple()
     {
-        #region ForInstallationOnReplacementV5
+        #region InstallersV5
 
         var configure = Configure.With(builder => builder.EnableInstallers());
         var bus = configure.CreateBus();

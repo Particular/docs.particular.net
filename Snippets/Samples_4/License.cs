@@ -5,7 +5,7 @@ public class CustomLicense
 {
     public void Simple()
     {
-        #region CustomLicenseV4
+        #region LicenseV4
         Configure.With().LicensePath("PathToLicense");
 
         //or

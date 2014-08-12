@@ -1,10 +1,10 @@
 ﻿using NServiceBus;
 
-public class CustomLicense
+public class License
 {
     public void Simple()
     {
-        #region CustomLicenseV5
+        #region LicenseV5
 
         Configure.With(builder => builder.LicensePath("PathToLicense"));
 

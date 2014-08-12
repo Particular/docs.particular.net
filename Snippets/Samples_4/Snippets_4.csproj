@@ -168,11 +168,12 @@
     <Compile Include="Containers.cs" />
     <Compile Include="EndpointName.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
+    <Compile Include="CriticalError.cs" />
     <Compile Include="SendOnly.cs" />
     <Compile Include="Serialization.cs" />
     <Compile Include="StaticConfigureEndpoint.cs" />
     <Compile Include="TransactionConfig.cs" />
-    <Compile Include="CustomLicense.cs" />
+    <Compile Include="License.cs" />
     <Compile Include="DoNotCreateQueues.cs" />
     <Compile Include="FileShareDataBus.cs" />
     <Compile Include="DefineCriticalErrorAction.cs" />
@@ -184,7 +185,7 @@
     <Compile Include="MessageConventions.cs" />
     <Compile Include="Transports.cs" />
     <Compile Include="RunCustomAction.cs" />
-    <Compile Include="ForInstallationOn.cs" />
+    <Compile Include="Installers.cs" />
     <Compile Include="StartupAction.cs" />
     <Compile Include="SagaMapping.cs" />
     <Compile Include="Persistence.cs" />
