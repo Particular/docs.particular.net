@@ -128,4 +128,4 @@ summary: NServiceBus Documentation Table of Contents
 - [License Management](license-management)
 - [Preparing Your Machine to Run NServiceBus](preparing-your-machine-to-run-nservicebus)
 - [Running NServiceBus on Windows](running-nservicebus-on-windows)
-- [Licensing ServiceMatrix V2.0](licensing-servicematrix-v2.0)
+- [Licensing ServiceMatrix V2.0](licensing-servicematrix-v2.0) 
