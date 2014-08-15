@@ -10,7 +10,7 @@ Four persistence technologies are in use in NServiceBus:
 
 -   RavenDB
 -   [NHibernate](persistence-in-nservicebus.md)
--   In Memory
+-   In-Memory
 -   MSMQ
 
 Read about [installing Raven DB](using-ravendb-in-nservicebus-installing.md) and [how to connect to it](using-ravendb-in-nservicebus-connecting.md) .
@@ -30,7 +30,7 @@ What's available?
 
 The following table summarizes what is available and how to configure each feature.
 
-| Type                 | InMemory   | RavenDB   | NHibernate    | MSMQ                                  |
+| Type                 | In-Memory  | RavenDB   | NHibernate    | MSMQ                                  |
 |--------------------  |:---------- |:--------- |:--------------|:------------------------------------- |
 | Timeout              | X          | X         | X             | Not supported beginning with V3.3,0   |
 | Subscription         | X          | X         | X             | X                                     |
@@ -39,7 +39,7 @@ The following table summarizes what is available and how to configure each featu
 | Distributor          | -          | -         | -             | X                                     |
 
 
-If self hosting, you can configure the persistence technology for each feature. For example, to store subscriptions in memory and timeouts in RavenDB, use this code:
+If self hosting, you can configure the persistence technology for each feature. For example, to store subscriptions in-memory and timeouts in RavenDB, use this code:
 
 
 ```C#
@@ -95,7 +95,7 @@ When you use NServiceBus.Host.exe out of the box, you can utilize one of the ava
 
 The following table summarizes the different persistence technologies being used by the built-in profiles. **NOTE** : Before configuring persistence technology, to avoid overriding your configurations, the profiles check if other types of storage are used.
 
-|-                                |InMemory |RavenDB			   |NHibernate   |MSMQ                         |
+|-                                |In-Memory|RavenDB			   |NHibernate   |MSMQ                         |
 |:--------------------------------|:--------|:---------------------|:------------|:----------------------------|                                         
 |  Timeout                        |Lite     |Integration/Production|-            |Keeps a queue for management |
 |  Subscription                   |Lite     |Integration/Production|-            |-                            |
