@@ -180,19 +180,3 @@ If the created bus is not a send-only bus it must be started:
 
 * `Start()`: starts the bus.
 * `Start( Action startupAction )`: Starts the bus, invoking at startup time the supplied delegate.
-
-                
-
----------------------
-
-Don't know what the followings are:
-
-    .Synchronization()
-    .DefineLocalAddressNameFunc( () => "" )
-
-Should I document also these 2:
-
-     .DisableGateway()
-     .DisableTimeoutManager()
-
-in v4 done via feature?
