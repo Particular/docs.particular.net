@@ -78,7 +78,7 @@ URL redirects are not currently implemented but will be included as part of the 
 
 ## Menu
 
-The menu is a JSON text document stored at [Content/menu.txt](Content/menu.txt).
+The menu is a YAML text document stored at [Content/menu.yaml](Content/menu.yaml).
 
 ## URLs
 
