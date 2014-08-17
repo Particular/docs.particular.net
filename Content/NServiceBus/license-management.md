@@ -25,6 +25,7 @@ In order to install your license in the registry, you can do so in one of the fo
 $content = Get-Content {path to your license file} | Out-String
 Set-ItemProperty -Path HKLM:\Software\ParticularSoftware -Name License -Force -Value $content
 ```
+**NOTE:** On a 64 bit operating system this script should not be run through the Powershell(x86) console prompt, doing so will result in the license being imported into the wrong registry key. Please use a 64bit powershell session.  
 
 **NOTE:** As of version 4.5, both the `LicenseInstaller.exe` tool and the `install-NServiceBusLicense` powershell commandlet has been deprecated. 
 
