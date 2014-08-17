@@ -56,7 +56,7 @@ In V3 the transport configuration is done via the `MsmqTransport()` method.
 In V4, given the requirement to support multiple transports, the `UseTransport()` method can be called:
 
 * `UseTransport<TTransport>( "connection string (optional)" )`: the generic overload of the UseTransport method can be invoked using as generic parameter a transport class and optionally passing in a transport connection string.
-* `UseTransport( Type transportType, "connection string (optional)" )`: the non generic overload of the `UserTransport()` method accepts a `Type` instance that is the type of transport class and optionally the transport connection string.
+* `UseTransport( Type transportType, "connection string (optional)" )`: the non generic overload of the `UseTransport()` method accepts a `Type` instance that is the type of transport class and optionally the transport connection string.
 
 The list of the built-in supported transport is available in the [NServiceBus Connection String Samples](connection-strings-samples) article.
 
