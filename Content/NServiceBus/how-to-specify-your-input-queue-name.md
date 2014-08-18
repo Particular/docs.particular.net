@@ -7,47 +7,39 @@ tags:
 - Conventions
 ---
 
-NServiceBus allows endpoint technologies other than MSMQ, so how should you specify the input endpoint name?
+## When using the NServiceBus.Host.exe 
 
-When using NServiceBus.host, the namespace of the class implementing `IConfigureThisEndpoint` will be used as the endpoint name as the default convention. In the following example, the endpoint name when running NServiceBus host becomes `MyServer`. This is the recommended way to name a endpoint. Also this emphasizes convention over configuration approach.
+### Namespace convention
 
-```C#
-namespace MyServer
-{
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
-    {
-    }
-}
-```
+When using NServiceBus.Host, the namespace of the class implementing `IConfigureThisEndpoint` will be used as the endpoint name as the default convention. In the following example, the endpoint name when running NServiceBus host becomes `MyServer`. This is the recommended way to name a endpoint. Also this emphasizes convention over configuration approach.
 
-Other ways to override the default endpoint name:
+<!-- import EndpointNameByNamespaceV5 -->
 
--   You can set the endpoint name using the `[EndpointName]` attribute on your endpoint configuration. NOTE: This will only work when using [NServiceBus host](the-nservicebus-host.md).
+### EndpointName attribute
+
+You can set the endpoint name using the `[EndpointName]` attribute on your endpoint configuration. NOTE: This will only work when using [NServiceBus host](the-nservicebus-host.md).
     
-```C#
-namespace MyServer
-{
+<!-- import EndpointNameByAttributeV5 -->  
+
+### Installation parameter 
+
+If you specify a explicit service name when installing the NServiceBus host, this is used as the endpoint name: `/serviceName:"MyEndpoint"`.
+
+### Command-line parameter 
+
+You can specify a endpoint name when running the NServiceBus host: `/endpointName:"MyEndpoint"`.
+
+## When using the fluent API
+
+Note: these approaches can also be used from NServicebus Host via the use of `IConfigureThisEndpoint`. 
+
+You can define your own convention in the endpoint initialization code using this
+
     
-    [EndpointName("MyEndpointName")]
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
-    {
-    }
-}
-```
+### Version 5
 
--   You can define your own convention in the endpoint initialization code using this:
-    
-```C#
- Configure.With()
-    .DefineEndpointName(() =>
-    {
-        // return the endpoint name, as defined by your custom convention
-    });
-```
+<!-- import EndpointNameFluentV5 -->
 
+### Version 4 
 
--   When using a custom host, if you do not specify the endpoint name explicitly as shown above, then the namespace of the class calling NServiceBus.Configure.With() is used. For websites this is likely to be the namespace of your global.asax.cs.
--   If you specify a explicit service name when installing the NServiceBus host, this is used as the endpoint name: `/serviceName:"MyEndpoint"`.
--   You can specify a endpoint name when running the NServiceBus host: `/endpointName:"MyEndpoint"`.
-
-
+<!-- import EndpointNameFluentV4 -->
