@@ -81,36 +81,10 @@ Using the Fluent API
 
 As a developer you can specify the license to use in your configuration code:
 
--   `Configure.LicensePath(licensePath)` uses the license at the specified path. For example,
+### Version 4
 
-```C#
-class ConfigureLicense : IWantCustomInitialization
-{
-  public void Init()
-  {
-    NServiceBus.Configure.Instance
-      .LicensePath(@"C:\NServiceBus\License\license.xml");
-  }
-}
-```
+<!-- import LicenseV4 -->
 
--   `Configure.License(licenseText)` uses the transferred license. For example, you could add the license file as an embedded resource in your assembly and provide its contents as shown below:
+### Version 5
 
-```C#
-class ConfigureLicense : IWantCustomInitialization
-{
-   public void Init()
-   {
-     var licenseStream = Assembly.GetExecutingAssembly()
-       .GetManifestResourceStream("FullyQualifiedNamespace.license.xml");
-     using (StreamReader sr = new StreamReader(licenseStream))
-     {
-       NServiceBus.Configure.Instance.License(sr.ReadToEnd());
-     }
-   }
-}
-```
-
-
-
-
+<!-- import LicenseV5 --> 

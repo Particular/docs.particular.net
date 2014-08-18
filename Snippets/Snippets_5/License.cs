@@ -7,9 +7,7 @@ public class License
         #region LicenseV5
 
         Configure.With(builder => builder.LicensePath("PathToLicense"));
-
         //or
-
         Configure.With(builder => builder.License("YourCustomLicenseText"));
 
         #endregion

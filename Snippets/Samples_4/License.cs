@@ -7,9 +7,7 @@ public class CustomLicense
     {
         #region LicenseV4
         Configure.With().LicensePath("PathToLicense");
-
         //or
-
         Configure.With().License("YourCustomLicenseText");
         #endregion
     }
