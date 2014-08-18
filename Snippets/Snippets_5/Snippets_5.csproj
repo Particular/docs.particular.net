@@ -188,6 +188,7 @@
     <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
     <Compile Include="ContainerCustom.cs" />
     <Compile Include="Containers.cs" />
+    <Compile Include="Conventions\ExpressMessages.cs" />
     <Compile Include="CriticalError.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="HandlerOrdering.cs" />
@@ -206,7 +207,7 @@
     <Compile Include="CustomRavenConfig.cs" />
     <Compile Include="Installers.cs" />
     <Compile Include="InterfaceMessageCreation.cs" />
-    <Compile Include="MessageConventions.cs" />
+    <Compile Include="Conventions\MessageConventions.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="Persistence.cs" />
     <Compile Include="PurgeOnStartup.cs" />
