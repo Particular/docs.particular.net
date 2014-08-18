@@ -14,11 +14,9 @@ public class CustomRavenConfig
             Url = "http://localhost:8080",
             DefaultDatabase = "MyDatabase",
         })
-        {
             documentStore.Initialize();
-            Configure.With()
-                .UsePersistence<RavenDB>(c => c.SetDefaultDocumentStore(documentStore));
-        }
+        Configure.With(b => b.UsePersistence<RavenDB>())
+            .UsePersistence<RavenDB>(c => c.SetDefaultDocumentStore(documentStore));
 
         #endregion
     }

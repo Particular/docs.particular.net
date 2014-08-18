@@ -11,7 +11,18 @@ If a message cannot be received by the target process in the given time frame, i
 
 To discard a message when a specific time interval has elapsed:
 
-```C#
-[TimeToBeReceived("00:01:00")] // Discard after one minute
-public class MyMessage { }
-```
+## Using an Attribute
+
+<!-- import DiscardingOldMessagesWithAnAttributeV4 -->
+
+## Using the fluent API
+
+### In Version 4
+
+<!-- import DiscardingOldMessagesWithFluentV4 -->
+
+### In Version 4
+
+<!-- import DiscardingOldMessagesWithFluentV5 -->
+
+

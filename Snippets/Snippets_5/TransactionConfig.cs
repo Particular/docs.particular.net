@@ -10,16 +10,16 @@ public class TransactionConfig
         #region TransactionConfigV5
 
         //Enable
-        Configure.With(b => b.Transactions(t => t.Enable()));
+        Configure.With(b => b.Transactions().Enable());
 
         // Disable
-        Configure.With(b => b.Transactions(t => t.Disable()));
+        Configure.With(b => b.Transactions().Disable());
 
         // IsolationLevel
-        Configure.With(b => b.Transactions(t => t.Advanced(a => a.IsolationLevel(IsolationLevel.Chaos))));
+        Configure.With(b => b.Transactions().IsolationLevel(IsolationLevel.Chaos));
 
-        // IsolationLevel
-        Configure.With(b => b.Transactions(t => t.Advanced(a => a.DefaultTimeout(TimeSpan.FromMinutes(5)))));
+        // DefaultTimeout
+        Configure.With(b => b.Transactions().DefaultTimeout(TimeSpan.FromMinutes(5)));
 
         #endregion
     }

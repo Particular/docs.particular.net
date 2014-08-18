@@ -165,6 +165,7 @@
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandler.cs" />
     <Compile Include="ContainerCustom.cs" />
+    <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="TypeScanning.cs" />
     <Compile Include="Containers.cs" />
     <Compile Include="EndpointName.cs" />
