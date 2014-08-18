@@ -59,7 +59,6 @@ Bus.Unsubscribe<MyMessage>();
 And a`UnicastBusConfig` config section.  
 
 ```XML
-
 <configuration>
   <configSections>
     <section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core" />
