@@ -32,14 +32,22 @@ tags:
         * [`ServiceControl.Plugin.Heartbeat`](https://www.nuget.org/packages/ServiceControl.Plugin.Heartbeat/)
         * [`ServiceControl.Plugin.CustomChecks`](https://www.nuget.org/packages/ServiceControl.Plugin.CustomChecks/)
     * NServiceBus V3.0.4 to V3.3.8: 
-        * [`ServiceControl.Plugin.Heartbeat.V3`](https://www.nuget.org/packages/ServiceControl.Plugin.Heartbeat.V3/)
-        * [`ServiceControl.Plugin.CustomChecks.V3`](https://www.nuget.org/packages/ServiceControl.Plugin.CustomChecks.V3/)
+        * [`ServiceControl.Plugin.Nsb3.Heartbeat`](https://www.myget.org/feed/particular-prerelease/package/ServiceControl.Plugin.Nsb3.Heartbeat)
+        * [`ServiceControl.Plugin.Nsb3.CustomChecks`](https://www.myget.org/feed/particular-prerelease/package/ServiceControl.Plugin.Nsb3.CustomChecks)
+
 1. Get the Endpoint Heartbeat and CustomChecks plugins using the NuGet console: 
      * `install-package ServiceControl.Plugin.Heartbeat`
      * `install-package ServiceControl.Plugin.CustomChecks`
-     * or use the appropriate V3 package if your endpoint still targets NServiceBus V3.
+     * or use the appropriate V3 package if your endpoint still targets NServiceBus V3:
+	     * `install-package ServiceControl.Plugin.Nsb3.Heartbeat`
+	     * `install-package ServiceControl.Plugin.Nsb3.CustomChecks`
 1. For manual deployment, copy the endpoint plugin DLL files to each endpoint bin directory (and restart the endpoint to load the plugin).
 1. By default, the endpoint plugin sends a heartbeat indication to ServiceControl every 30 seconds. If a heartbeat indication is not received within 30 seconds, ServicePulse raises an event that indicates the issue.
+
+**NOTE**: NServiceBus V3 Endpoint Plugins are a pre-release version hosted on the Particular MyGet public feed. To install the pre-release packages add the `https://www.myget.org/F/particular-prerelease/` package source to Visual Studio or issue the following command using the Package Manager Console:
+
+    Install-Package DiscoverPackageSources
+    Discover-PackageSources -Url "https://www.myget.org/F/particular-prerelease/"
 
 #### Related articles
 
