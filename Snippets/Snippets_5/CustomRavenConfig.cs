@@ -15,8 +15,12 @@ public class CustomRavenConfig
             DefaultDatabase = "MyDatabase",
         })
             documentStore.Initialize();
-        Configure.With(b => b.UsePersistence<RavenDB>())
-            .UsePersistence<RavenDB>(c => c.SetDefaultDocumentStore(documentStore));
+        Configure.With(b =>
+        {
+            var ravenPersistence = b.UsePersistence<RavenDB>();
+            //todo: 
+            c.SetDefaultDocumentStore(documentStore));
+        })
 
         #endregion
     }

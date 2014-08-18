@@ -13,19 +13,13 @@ public class StaticConfigureEndpoint
         // AsVolatile
         var configure = Configure.With(b =>
         {
-            b.Transactions(transactionSettings =>
-            {
-                transactionSettings.Disable();
-                transactionSettings.Advanced(advancedSettings =>
-                {
-                    advancedSettings.DoNotWrapHandlersExecutionInATransactionScope();
-                    advancedSettings.DisableDistributedTransactions();
-                });
-            });
+            var transactions = b.Transactions();
+            transactions.Disable();
+            transactions.DoNotWrapHandlersExecutionInATransactionScope();
+            transactions.DisableDistributedTransactions();
             b.DisableDurableMessages();
+            b.UsePersistence<InMemory>();
         });
-        configure.UsePersistence<InMemory>();
-
 
         // DisableDurableMessages
 

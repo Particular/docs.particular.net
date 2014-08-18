@@ -233,6 +233,7 @@
     <Compile Include="StartupActionReplacement.cs" />
     <Compile Include="StaticConfigureEndpoint.cs" />
     <Compile Include="SubscriptionSettings.cs" />
+    <Compile Include="SecondLevelRetries.cs" />
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="Transports.cs" />
     <Compile Include="TypeScanning.cs" />
