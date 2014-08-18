@@ -4,14 +4,15 @@ public class HandlerOrdering
 {
     public void Simple()
     {
-        #region HandlerOrderingWithFluentV4
+        #region HandlerOrderingWithFluentV5
 
-        Configure.With(b => b.LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>()));
+        Configure.With(b => 
+            b.LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>()));
 
         #endregion
     }
 
-    #region HandlerOrderingWithFirstV4
+    #region HandlerOrderingWithFirstV5
     public class MySpecifyingFirst : ISpecifyMessageHandlerOrdering
     {
         public void SpecifyOrder(Order order)
@@ -21,7 +22,7 @@ public class HandlerOrdering
     }
     #endregion
 
-    #region HandlerOrderingWithMultipleV4
+    #region HandlerOrderingWithMultipleV5
     public class MySpecifyingOrder : ISpecifyMessageHandlerOrdering
     {
         public void SpecifyOrder(Order order)

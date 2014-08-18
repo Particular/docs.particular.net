@@ -4,40 +4,20 @@ summary: How to Specify the Order in which Handlers Are Invoked.
 tags: []
 ---
 
-If you are writing your own host:
+## With the fluent API
 
-    NServiceBus.Configure.With()
-         ...
-         .UnicastBus()
-              .LoadMessageHandlers(First<H1>.Then<H2>().AndThen<H3>().AndThen<H4>())
-         ...
-Where H1-H4 are message handlers.
+### Version 4
 
-If you are using the generic host:
+<!-- import HandlerOrderingWithFluentV4 -->
 
-    public class EndpointConfig : ISpecifyMessageHandlerOrdering
-    {
-         public void SpecifyOrder(Order order)
-         {
-              order.Specify(First<H1>.Then<H2>().AndThen<H3>().AndThen<H4>());
-         }
-    }
+### Version 5
 
-If you only want to specify a single handler (with your own host):
+<!-- import HandlerOrderingWithFluentV5 -->
 
-    NServiceBus.Configure.With()
-         ...
-         .UnicastBus()
-              .LoadMessageHandlers<FirstHandler>()
-         ...
+## Specifying First with ISpecifyMessageHandlerOrdering
 
-If you only want to specify a single handler (with the generic host):
+<!-- import HandlerOrderingWithFirstV4 -->
 
-    public class EndpointConfig : ISpecifyMessageHandlerOrdering
-    {
-         public void SpecifyOrder(Order order)
-         {
-              order.SpecifyFirst<FirstHandler>();
-         }
-    }
+## Specifying multiple handlers to run first order with with ISpecifyMessageHandlerOrdering
 
+<!-- import HandlerOrderingWithMultipleV4 -->
