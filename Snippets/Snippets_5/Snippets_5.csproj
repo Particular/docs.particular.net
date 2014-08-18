@@ -180,6 +180,15 @@
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Outbox\NHibernate\TimeToKeep.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Outbox\SqlServer\ConnectionStrings.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Outbox\EnablingInConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -209,6 +218,9 @@
     <Compile Include="Installers.cs" />
     <Compile Include="InterfaceMessageCreation.cs" />
     <Compile Include="Conventions\MessageConventions.cs" />
+    <Compile Include="Outbox\OutboxEnableInFluent.cs" />
+    <Compile Include="Outbox\NHibernate\AccessSession.cs" />
+    <Compile Include="Outbox\NHibernate\ShareConfiguration.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="Persistence.cs" />
     <Compile Include="PurgeOnStartup.cs" />
