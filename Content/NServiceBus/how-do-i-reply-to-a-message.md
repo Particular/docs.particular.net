@@ -11,11 +11,11 @@ The simplest way to reply to a message is using the Reply method on `IBus`, like
 public void Handle(RequestDataMessage message)
 {
     //Create a response message
-    var response = Bus.CreateInstance<DataResponseMessage>(m => 
+    var response = new DataResponseMessage
     { 
-        m.DataId = message.DataId;
-        m.String = message.String;
-    });
+        DataId = message.DataId,
+        String = message.String
+    };
     
     Bus.Reply(response); 
     //Try experimenting with sending multiple responses
