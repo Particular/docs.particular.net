@@ -13,11 +13,11 @@ var msg = new MyMessage();
 
  OR
 
-If your message is an interface:
+If your event is an interface:
 
 
 ```C#
-var msg = Bus.CreateInstance<IMyMessage>();
+var msg = Bus.Publish<IMyMessage>();
 ```
 
 
