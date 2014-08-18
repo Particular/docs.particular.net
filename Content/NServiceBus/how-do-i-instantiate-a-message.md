@@ -17,7 +17,7 @@ If your event is an interface:
 
 
 ```C#
-var msg = Bus.Publish<IMyMessage>();
+var msg = Bus.Publish<IMyEvent>();
 ```
 
 
