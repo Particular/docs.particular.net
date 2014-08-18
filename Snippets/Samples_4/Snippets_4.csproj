@@ -167,6 +167,7 @@
     <Compile Include="ContainerCustom.cs" />
     <Compile Include="Conventions\ExpressMessages.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="SubscriptionSettings.cs" />
     <Compile Include="TypeScanning.cs" />
     <Compile Include="Containers.cs" />
     <Compile Include="EndpointName.cs" />

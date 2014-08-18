@@ -66,5 +66,14 @@ And a`UnicastBusConfig` config section.
 
 When subscribing to a message, you will probably have a [message handler](how-do-i-handle-a-message.md) for it. If you do, and have the `UnicastBusConfig` section mentioned above, you do not have to write `Bus.Subscribe`, as NServiceBus invokes it automatically for you.
 
-You can also choose to **not** have the infrastructure automatically subscribe by calling `.DoNotAutoSubscribe()` after `.UnicastBus()` in the Fluent configuration API.
+## Disabling auto-subscription
 
+You can also choose to **not** have the infrastructure automatically subscribe using the fluent API
+
+### Verison 4
+
+<!-- import DisableAutoSubscribeV4 -->
+
+### Version 5  
+
+<!-- import DisableAutoSubscribeV5 -->
