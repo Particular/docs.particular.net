@@ -18,7 +18,7 @@ Specifically the changes made were:
 ### Required Manual configuration
 Even with the changes made in v1.2 there are some manual configuration steps that need to be completed to allow a non-privileged account to function. 
 
-In the case of MSMQ, the ACL defaults for a message queues default is to allow Administrators to have full access.  Switching to a low privileged account means that the rights needs to be modified to give full control to the custom account.
+In the case of MSMQ, the ACL defaults for a queue is to allow Administrators to have full access.  Switching to a low privileged account means that the rights needs to be modified to give full control to the custom account.
 
 At a minimum this would entail modifying the rights to the following queues:
 
@@ -52,7 +52,7 @@ These are
 
 #### Method 1 : Running the service as non-privileged user 
 Open computer management
-Change the service Account to the unprivileged user and password and apply the change
+Change the service Account to the non-privileged user and password and apply the change.
 The user account will then be given the "logon as a service privilege".
 Start the service
 Confirm that the service started 
