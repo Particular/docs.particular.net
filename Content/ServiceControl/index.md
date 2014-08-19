@@ -16,6 +16,7 @@ summary: ServiceControl Documentation Table of Contents
 - [Customize RavenDB Embedded Path and Drive](configure-ravendb-location)
 - [Setting Custom Name and Description Properties for ServiceControl API](customize-name-and-description)
 - [Configuring ServiceControl Log Location](setting-custom-log-location)
+- [Configuring a non-privileged Service Account](configure-non-privileged-service-account)
 
 ### Management
 
