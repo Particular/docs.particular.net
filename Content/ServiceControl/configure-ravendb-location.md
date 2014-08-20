@@ -8,7 +8,7 @@ tags:
 ---
 ServiceControl stores its own data in a RavenDB embedded instance. By default it is located here:
 
-`%SystemDrive\ProgramData\Particular\ServiceControl\localhost-33333`
+`%SystemDrive%\ProgramData\Particular\ServiceControl\localhost-33333`
 
 NOTE: `localhost-33333` is the default hostname and port number. Specifying a [custom hostname and port number](setting-custom-hostname) will result in ServiceControl generating a new RavenDB embedded instance in a subdirectory corresponding to the new hostname and port number.
 
