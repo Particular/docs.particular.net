@@ -170,6 +170,7 @@
     <Compile Include="Conventions\UnobtrusiveConventions.cs" />
     <Compile Include="Conventions\ExpressMessages.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
     <Compile Include="SubscriptionSettings.cs" />
     <Compile Include="TypeScanning.cs" />
     <Compile Include="Containers.cs" />
@@ -198,6 +199,11 @@
     <Compile Include="SagaMapping.cs" />
     <Compile Include="Persistence.cs" />
     <Compile Include="Scheduler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SecondLevelRetries\app.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,8 +1,18 @@
 ﻿using System;
 using NServiceBus;
+using NServiceBus.Features;
 
-public class SecondLevelRetries
+public class SecondLevelRetriesConfig
 {
+    public void Disable()
+    {
+        #region SecondLevelRetriesDisableV5
+
+        Configure.With(b => b.DisableFeature<SecondLevelRetries>());
+
+        #endregion
+    }
+
     public void CustomRetryPolicy()
     {
         #region SecondLevelRetriesCustomRetryPolicyV5

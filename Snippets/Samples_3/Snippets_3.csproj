@@ -68,5 +68,13 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SecondLevelRetries\app.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

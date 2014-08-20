@@ -189,6 +189,9 @@
     <Content Include="Outbox\EnablingInConfig.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="SecondLevelRetries\app.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -233,7 +236,7 @@
     <Compile Include="StartupActionReplacement.cs" />
     <Compile Include="StaticConfigureEndpoint.cs" />
     <Compile Include="SubscriptionSettings.cs" />
-    <Compile Include="SecondLevelRetries.cs" />
+    <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="Transports.cs" />
     <Compile Include="TypeScanning.cs" />

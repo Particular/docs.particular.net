@@ -16,22 +16,13 @@ SLR then picks up the message and defers it, by default first for 10 seconds, th
 
 For example, if there is a call to an web service in your handler, but the service goes down for five seconds just at that time. Without SLR, the message is retried instantly and sent to the error queue. With SLR, the message is instantly retried, deferred for 10 seconds, and then retried again. This way, the Web Service could be up and running, and the message is processed just fine.
 
-Configuration
-=============
+## Configuration
 
-App.config
-----------
+### App.config
 
 To configure SLR, enable its configuration section:
 
-```XML
-<configSections>
-  <section name="SecondLevelRetriesConfig" 
-           type="NServiceBus.Config.SecondLevelRetriesConfig, NServiceBus.Core"/>
-</configSections>
-
-<SecondLevelRetriesConfig Enabled="true" TimeIncrease="00:00:10" NumberOfRetries="3" />
-```
+<!-- import SecondLevelRetiesAppConfigV5 -->
 
  *  Enabled:Turns the feature on and off. Default: true.
  *  TimeIncrease: A time span after which the time between retries increases. Default: 00:00:10.
@@ -42,30 +33,17 @@ Fluent configuration API
 
 To disable the SLR feature, add this to your configuration 
 
-###In Version 4.0:
+### In Version 5:
 
-```C#
-public class DisableSecondLevelRetries : INeedInitialization
-{
-	public void Init()
-	{
-	    Configure.Features.Disable<SecondLevelRetries>();  
-	}
-}
+<!-- import SecondLevelRetriesDisableV5 -->
 
-```
+### In Version 4:
 
-###In Version 3.0:
+<!-- import SecondLevelRetriesDisableV4 -->
 
-```C#
-public class DisableSecondLevelRetries : INeedInitialization
-{
-	public void Init()
-	{         
-	  Configure.Instance.DisableSecondLevelRetries();
-	}
-}
-```
+### In Version 3:
+
+<!-- import SecondLevelRetriesDisableV3 -->
 
 Code
 ----
