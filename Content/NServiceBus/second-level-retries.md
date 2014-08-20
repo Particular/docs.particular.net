@@ -45,18 +45,26 @@ To disable the SLR feature, add this to your configuration
 
 <!-- import SecondLevelRetriesDisableV3 -->
 
-Code
-----
+## Custom Retry Policy
 
-To change the time between retries or the number of retries you have a couple of different options in code.
+You can change the time between retries or the number of retries in code.
 
-In version 3.0, the class `SecondLevelRetries` exposed a static function called `RetryPolicy` and gives you the `TransportMessage` as an argument. .
+Here is a sample method for handling this behavior.
 
-`SecondLevelRetries` expects a `TimeSpan` from the policy, and if greater than `TimeSpan.Zero`, it defers the message using that time span.
+<!-- import SecondLevelRetriesCustomPolicyHandlerV4 -->
 
-The default policy is implemented in the class `DefaultRetryPolicy`, exposing `NumberOfRetries` and `TimeIncrease` as statics so you can easily modify the values.
+To plug this into NServiceBus use the following APIs.
+### In Version 5:
 
-In version 4.0, the type `SecondLevelRetries` (used in the `NServiceBus.Management.Retries` namespace to configure the retry and the timeout policy) has been moved to the `NServiceBus.Features` namespace. While version 3.3.x had a separate policy for managing second level retries and timeouts, this has been merged into the new `RetryPolicy` in NServiceBus 4.0 and it is capable of achieving both functions.
+<!-- import SecondLevelRetriesCustomPolicyV5 -->
+
+### In Version 4:
+
+<!-- import SecondLevelRetriesCustomPolicyV4 -->
+
+### In Version 3:
+
+<!-- import SecondLevelRetriesCustomPolicyV3 -->
 
 Working sample
 --------------
