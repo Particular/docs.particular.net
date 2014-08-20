@@ -106,23 +106,54 @@ To link to the file `\Content\ServiceControl\Page3.md`, use `[Page 3 Text](../Se
 
 ## Markdown
 
-The site is rendered using [GitHub Flavoured Markdown](https://help.github.com/articles/github-flavored-markdown)
+The site is rendered using [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown)
 
 ### [MarkdownPad](http://markdownpad.com/)
 
-For editing markdown on your desktop (after cloning locally with Git) try MarkdownPad.
+For editing markdown on your desktop (after cloning locally with Git) try [MarkdownPad](http://markdownpad.com/).
 
-Ensure you enable *GitHub Flavoured Markdown* by going to 
+#### Markdown flavor
 
-    Tools > Options > Markdown > Markdown Processor > GitHub Flavoured Markdown
+Ensure you enable `GitHub Flavoured Markdown (Offline)` by going to 
+
+    Tools > Options > Markdown > Markdown Processor > GitHub Flavored Markdown (Offline)
 
 Or click in the bottom left no the `M` icon to "hot-switch"
+
+#### Yaml
 
 Don't render YAML Front-Matter by going to  
 
     Tools > Options > Markdown > Markdown Settings 
 
 And checking `Ignore YAML Front-matter`
+
+## Code Snippets
+
+There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. Any code in that directory wrapped in `// start code KEY` and `// end code KEY` can be injected into the documentation markdown using the syntax **&lt;!-- import KEY -->**.
+
+So for example you could have a `.cs` file in that solution containing 
+
+```
+// start code ConfigureWith
+var configure = Configure.With();
+// end code ConfigureWith
+```
+
+And a documentation `.md` file containing
+
+<pre>
+<code >To configure the bus call
+&lt;!-- import ConfigureWith --></code>
+</pre>
+
+And the resulting markdown will be will be 
+
+    To configure the bus call
+    ```
+    var configure = Configure.With();
+    ``` 
+
 
 ## Anchors
 
@@ -160,32 +191,6 @@ This will produce:
 ![Alerts Example](alerts.jpg)
 -->
 
-## Code Snippets
-
-There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. Any code in that directory wrapped in `// start code KEY` and `// end code KEY` can be injected into the documentation markdown using the syntax `<!-- import KEY -->`.
-
-So for example you could have a `.cs` file in that solution containing 
-
-```
-// start code ConfigureWith
-var configure = Configure.With();
-// end code ConfigureWith
-```
-
-And a documentation `.md` file containing
-
-```
-To configure the bus call
-<!-- import ConfigureWith -->
-``` 
-
-And the resulting markdown will be will be 
-
-    To configure the bus call
-    ```
-    var configure = Configure.With();
-    ``` 
-
 ## Some Useful Characters
 
  * Ticks are done with `&#10004;` &#10004;
@@ -195,7 +200,6 @@ And the resulting markdown will be will be
 
 * Spell out numbers smaller than ten (not 2,3, etc.).
 * Do not use "please".
-* Do not add	blank lines in code or between sections. (If a blank line is required, that usually means a heading or explanatory text is missing.)
 * Use these:
  * "click" (not "click on" or "press")
  * "open" (not "open up")
@@ -210,15 +214,13 @@ And the resulting markdown will be will be
  * you (not developers or users)
  * backend (not	back end)
 * Use these proper nouns:
- * Particular software	not Particular 
- * Particular Studio or Particular NServiceBus not Particular 
- * Visual Studio	not visual studio
+ * Particular Software	not Particular 
+ * Visual Studio	 not visual studio
  * NuGet	not Nuget
  * RavenDB not Raven DB
  * Fluent not fluent
  * PowerShell not powershell 
- * Fiddler not fiddler
- * MVC 3	not Mvc3
+ * MVC 3 not Mvc3
  * ASP.NET not Asp.Net
  * Log4Net not log4net 
  * Intellisense	not intellisense
