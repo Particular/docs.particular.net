@@ -8,7 +8,7 @@ public class ShareNHibernateConfiguration : INeedInitialization
     {
         var configuration = BuildMyBusinessDataNHibernateConfiguration();
 
-        builder.UsePersistence<NServiceBus.NHibernate>()
+        builder.UsePersistence<NServiceBus.NHibernate>();
             .UseConfiguration(configuration);
     }
 

@@ -7,12 +7,12 @@ public class ScaleOut
     {
         #region ScaleOutV5
 
-        Configure.With(b => b.ScaleOut(settings =>
+        Configure.With(b =>
         {
-            settings.UseSingleBrokerQueue();
+            b.ScaleOut().UseSingleBrokerQueue();
             //or
-            settings.UseUniqueBrokerQueuePerMachine();
-        }));
+            b.ScaleOut().UseUniqueBrokerQueuePerMachine();
+        });
 
         #endregion
     }

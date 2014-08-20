@@ -7,8 +7,7 @@ public class SecondLevelRetries
     {
         #region SecondLevelRetriesCustomRetryPolicyV5
 
-        Configure.With()
-            .SecondLevelRetries(s => s.CustomRetryPolicy(MyCustomRetryPolicy));
+        Configure.With(b => b.SecondLevelRetries().CustomRetryPolicy(MyCustomRetryPolicy));
 
         #endregion
     }

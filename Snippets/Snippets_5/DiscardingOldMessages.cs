@@ -13,14 +13,15 @@ public class DiscardingOldMessages
     {
         #region DiscardingOldMessagesWithFluentV5
 
-        var configure = Configure.With(b => b.Conventions(c => c.DefiningTimeToBeReceivedAs(type =>
+        var configure = Configure.With(b => b.Conventions()
+            .DefiningTimeToBeReceivedAs(type =>
         {
             if (type == typeof (MyMessage))
             {
                 return TimeSpan.FromHours(1);
             }
             return TimeSpan.MaxValue;
-        })));
+        }));
 
         #endregion
     }

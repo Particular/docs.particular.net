@@ -9,7 +9,7 @@ public class CustomConfigOverrides
         var configure = Configure.With(b =>
         {
             b.AssembliesToScan(AllAssemblies.Except("NotThis.dll"));
-            b.Conventions(c => c.DefiningEventsAs(type => type.Name.EndsWith("Event")));
+            b.Conventions().DefiningEventsAs(type => type.Name.EndsWith("Event"));
             b.EndpointName("MyEndpointName");
             b.EndpointVersion("1.2.3");
         });
