@@ -1,5 +1,5 @@
 ---
-title: Introduction to Failed Messages Monitoring in ServicePulse
+title: Failed Message Monitoring in ServicePulse
 summary: Describes how ServicePulse detects and monitors failed messages, and how you can resend messages for reprocessing, or archive repeatedly failing messages
 tags:
 - ServicePulse
