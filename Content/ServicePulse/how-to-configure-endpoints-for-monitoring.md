@@ -1,5 +1,5 @@
 ---
-title: How to configure endpoints for monitoring by ServicePulse
+title: Configuring endpoint for monitoring by ServicePulse
 summary: Steps to configure endpoints to be monitored by ServicePulse
 tags:
 - ServicePulse
