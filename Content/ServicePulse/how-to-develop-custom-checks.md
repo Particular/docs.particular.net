@@ -1,5 +1,5 @@
 ---
-title: How to Develop Custom Checks for ServicePulse
+title: Developing Custom Checks for ServicePulse
 summary: Introduction to ServicePulse custom checks development
 tags:
 - ServicePulse
