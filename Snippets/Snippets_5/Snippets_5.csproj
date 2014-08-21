@@ -231,6 +231,7 @@
     <Compile Include="SagaMapping.cs" />
     <Compile Include="Scheduler.cs" />
     <Compile Include="ScaleOut.cs" />
+    <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SendOnly.cs" />
     <Compile Include="Serialization.cs" />
     <Compile Include="StartupActionReplacement.cs" />

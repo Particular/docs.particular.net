@@ -24,12 +24,11 @@ To configure SLR, enable its configuration section:
 
 <!-- import SecondLevelRetiesAppConfigV5 -->
 
- *  Enabled:Turns the feature on and off. Default: true.
- *  TimeIncrease: A time span after which the time between retries increases. Default: 00:00:10.
- *  NumberOfRetries: Number of times SLR kicks in. Default: 3.
+ *  `Enabled`: Turns the feature on and off. Default: true.
+ *  `TimeIncrease`: A time span after which the time between retries increases. Default: 10 seconds (`00:00:10`).
+ *  `NumberOfRetries`: Number of times SLR kicks in. Default: 3.
 
-Fluent configuration API
-------------------------
+## Fluent configuration API
 
 To disable the SLR feature, add this to your configuration 
 
@@ -54,20 +53,19 @@ Here is a sample method for handling this behavior.
 <!-- import SecondLevelRetriesCustomPolicyHandlerV4 -->
 
 To plug this into NServiceBus use the following APIs.
-### In Version 5:
+### Version 5:
 
 <!-- import SecondLevelRetriesCustomPolicyV5 -->
 
-### In Version 4:
+### Version 4:
 
 <!-- import SecondLevelRetriesCustomPolicyV4 -->
 
-### In Version 3:
+### Version 3:
 
 <!-- import SecondLevelRetriesCustomPolicyV3 -->
 
-Working sample
---------------
+## Working sample 
 
 In the [ErrorHandling sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/ErrorHandling) are two endpoints, one with SLR enabled and the other with it disabled.
 

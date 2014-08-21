@@ -25,7 +25,7 @@ public class SecondLevelRetriesConfig
     TimeSpan MyCustomRetryPolicy(TransportMessage message)
     {
         // retry max 3 times
-        if (TransportMessageHelpers.GetNumberOfRetries(message) >= 3)
+        if (GetNumberOfRetries(message) >= 3)
         {
             // sending back a TimeSpan.MinValue tells the 
             // SecondLevelRetry not to retry this message
@@ -33,6 +33,20 @@ public class SecondLevelRetriesConfig
         }
 
         return TimeSpan.FromSeconds(5);
+    }
+
+    static int GetNumberOfRetries(TransportMessage message)
+    {
+        string value;
+        if (message.Headers.TryGetValue(Headers.Retries, out value))
+        {
+            int i;
+            if (int.TryParse(value, out i))
+            {
+                return i;
+            }
+        }
+        return 0;
     }
     #endregion
 }

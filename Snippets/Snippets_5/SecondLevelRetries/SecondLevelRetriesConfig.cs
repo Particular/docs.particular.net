@@ -32,9 +32,8 @@ public class SecondLevelRetriesConfig
 
         return TimeSpan.FromSeconds(5);
     }
-    #endregion
 
-    public static int GetNumberOfRetries(TransportMessage message)
+    static int GetNumberOfRetries(TransportMessage message)
     {
         string value;
         if (message.Headers.TryGetValue(Headers.Retries, out value))
@@ -47,4 +46,7 @@ public class SecondLevelRetriesConfig
         }
         return 0;
     }
+
+    #endregion
+
 }
