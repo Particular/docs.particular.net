@@ -1,5 +1,5 @@
 ---
-title: Getting Started with ServiceMatrix V2.0 - send and receive
+title: Send and Receive with ServiceMatrix V2.0 - 
 summary: 'Getting Started with the ServiceMatrix V2.0 for Visual Studio 2012 using a send and receive example.'
 tags:
 - ServiceMatrix
