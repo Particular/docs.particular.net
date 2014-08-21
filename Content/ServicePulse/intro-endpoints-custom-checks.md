@@ -1,5 +1,5 @@
 ---
-title: Introduction to Custom Checks Monitoring in ServicePulse
+title: Custom Check Monitoring in ServicePulse
 summary: Describes how ServicePulse uses custom checks to monitor and detect problem that are unique to the solution or endpoint(s) monitored
 tags:
 - ServicePulse
