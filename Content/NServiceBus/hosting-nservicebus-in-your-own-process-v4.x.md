@@ -1,5 +1,5 @@
 ---
-title: Hosting NServiceBus in Your Own Process v4.x
+title: Hosting NServiceBus v4.x in-process 
 summary: Fluent configuration API to get transnational one-way messaging, referencing only three assemblies.
 tags: []
 ---
