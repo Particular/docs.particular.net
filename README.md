@@ -137,7 +137,7 @@ So for example you could have a `.cs` file in that solution containing
 ```
 // start code ConfigureWith
 var configure = Configure.With();
-// end code ConfigureWith
+// end code
 ```
 
 And a documentation `.md` file containing
