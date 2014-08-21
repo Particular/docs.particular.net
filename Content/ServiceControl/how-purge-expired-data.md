@@ -1,5 +1,5 @@
 ---
-title: Setting Automatic Expiration for ServiceControl Data
+title: Automatic Expiration for ServiceControl Data
 summary: How to configure ServiceControl to automatically purge old data after a user-defined expiration period.
 tags:
 - ServiceControl
