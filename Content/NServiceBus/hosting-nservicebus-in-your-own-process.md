@@ -1,5 +1,5 @@
 ---
-title: Hosting NServiceBus v3.x in Process
+title: Hosting NServiceBus v3.x in-process
 summary: Fluent configuration API to get transnational one-way messaging, referencing only three assemblies.
 tags: []
 ---
