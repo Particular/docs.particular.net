@@ -1,5 +1,5 @@
 ---
-title: Understanding transactions in Windows Azure
+title: Transactions in Windows Azure
 summary: Understanding what kind of transactions are supported in Windows Azure and how we deal with this in NServiceBus.
 tags: 
 - Windows Azure
