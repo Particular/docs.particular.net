@@ -1,5 +1,5 @@
 ---
-title: Getting Started - Fault Tolerance using ServiceMatrix v1.0
+title: Fault Tolerance using ServiceMatrix v1.0
 summary: See how NServiceBus messaging can get past all sorts of failure scenarios.
 tags:
 - ServiceMatrix 1.0
