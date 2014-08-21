@@ -1,5 +1,5 @@
 ---
-title: Getting Started - Publish/Subscribe Communication Using ServiceMatrix v1.0
+title: Publish/Subscribe Communication Using ServiceMatrix v1.0
 summary: Define an event, add a subscriber, deploy a component, and add code to publisher and subscriber.
 tags:
 - Publish Subscribe
