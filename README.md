@@ -130,9 +130,13 @@ And checking `Ignore YAML Front-matter`
 
 ## Code Snippets
 
-There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. Any code in that directory wrapped in `// startcode KEY` and `// endcode` can be injected into the documentation markdown using the syntax **&lt;!-- import KEY -->**.
+### Defining Snippets
 
-So for example you could have a `.cs` file in that solution containing 
+There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. All `.cs`, `.xml` and `.config` files in that directory are parsed for code snippets
+
+#### Using comments
+
+Any code wrapped in a convention based comment will be picked up. The comment needs to start with `startcode` which is followed by the key.
 
 ```
 // startcode ConfigureWith
@@ -140,14 +144,28 @@ var configure = Configure.With();
 // endcode
 ```
 
-And a documentation `.md` file containing
+#### Using regions 
+
+Any code wrapped in a named C# region will pe picked up. The name of the region is used as the key. 
+
+```
+#region ConfigureWith
+var configure = Configure.With();
+#endregion
+```
+ 
+### Using Snippets
+
+The keyed snippets can then be used in any documentation `.md` file by adding the text **&lt;!-- import KEY -->**.
+
+For example 
 
 <pre>
 <code >To configure the bus call
 &lt;!-- import ConfigureWith --></code>
 </pre>
 
-And the resulting markdown will be will be 
+The resulting markdown will be will be 
 
     To configure the bus call
     ```
