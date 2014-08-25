@@ -26,8 +26,6 @@ Just like you can write your own host process and activate WCF explicitly within
 What's the difference?
 ----------------------
 
-[As different as apples and oranges.]
-
 The principles that make NServiceBus robust are decades old. Proven to hold up through countless technological shifts, the queued messaging on which NServiceBus is based is more than just an implementation choice, it's a primary architectural concept. There's no such thing as a blocking call in NServiceBus.
 
 As a general purpose communications technology, WCF does not enforce the queued messaging paradigm. NServiceBus does, and the architectural implications are profound.
