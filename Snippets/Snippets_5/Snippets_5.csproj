@@ -203,6 +203,7 @@
     <Compile Include="Conventions\ExpressMessages.cs" />
     <Compile Include="Conventions\UnobtrusiveConventions.cs" />
     <Compile Include="CriticalError.cs" />
+    <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="License.cs" />

@@ -41,6 +41,6 @@ Other containers are available on nuget.
 
  * Create a class that implements `IContainer`
  * Create a class that implements `ContainerDefinition` and returns your `IContainer` implementation. Place this in the `NServiceBus` namespace for convenience to users.  
- * Call `Configure.With(b => b.UseContainer<MyContainer>());` in your configuration
+ * Register the container in the configuration with `.UseContainer<T>()`
 
 <!-- import CustomContainersV5 -->
