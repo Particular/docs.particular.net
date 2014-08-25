@@ -130,14 +130,14 @@ And checking `Ignore YAML Front-matter`
 
 ## Code Snippets
 
-There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. Any code in that directory wrapped in `// start code KEY` and `// end code KEY` can be injected into the documentation markdown using the syntax **&lt;!-- import KEY -->**.
+There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. Any code in that directory wrapped in `// startcode KEY` and `// endcode` can be injected into the documentation markdown using the syntax **&lt;!-- import KEY -->**.
 
 So for example you could have a `.cs` file in that solution containing 
 
 ```
-// start code ConfigureWith
+// startcode ConfigureWith
 var configure = Configure.With();
-// end code
+// endcode
 ```
 
 And a documentation `.md` file containing
