@@ -10,6 +10,8 @@ public class ForInstallationOnReplacement
 
         configuration.EnableInstallers();
 
+        Bus.Create(configuration);//this will run the installers
+
         #endregion
     }
 
