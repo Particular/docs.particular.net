@@ -3,9 +3,9 @@
 #region UnobtrusiveConventionsV5
 public class UnobtrusiveConventions : INeedInitialization
 {
-    public void Customize(ConfigurationBuilder builder)
+    public void Customize(BusConfiguration configuration)
     {
-        builder.Conventions()
+        configuration.Conventions()
             .DefiningCommandsAs(t => t.Namespace != null
                                      && t.Namespace.StartsWith("MyCompany")
                                      && t.Namespace.EndsWith("Commands"))

@@ -6,21 +6,22 @@ public class Containers
     {
         #region ContainersV5
 
+        var configuration = new BusConfiguration();
+
         // Autofac
-        Configure.With(b => b.UseContainer<NServiceBus.Autofac>());
+        configuration.UseContainer<NServiceBus.Autofac>();
 
         // Ninject
-        Configure.With(b => b.UseContainer<NServiceBus.Ninject>());
+        configuration.UseContainer<NServiceBus.Ninject>();
 
         // Unity
-        //Configure.With()
-        //Configure.With(b => b.UseContainer<NServiceBus.Unity>());
+        //configuration.UseContainer<NServiceBus.Unity>());
 
         // Spring
-        Configure.With(b => b.UseContainer<NServiceBus.Spring>());
+        configuration.UseContainer<NServiceBus.Spring>();
 
         // StructureMap
-        Configure.With(b => b.UseContainer<NServiceBus.StructureMap>());
+        configuration.UseContainer<NServiceBus.StructureMap>();
 
         #endregion
     }

@@ -6,10 +6,9 @@ public class RunCustomActionReplacement
     {
         #region RunCustomActionReplacementV5
 
-        var configure = Configure.With();
+        var bus = Bus.Create(new BusConfiguration());
         MyCustomAction();
-        configure.CreateBus()
-            .Start();
+        bus.Start();
 
         #endregion
     }

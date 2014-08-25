@@ -5,9 +5,10 @@ public class HandlerOrdering
     public void Simple()
     {
         #region HandlerOrderingWithFluentV5
+        
+        var configuration = new BusConfiguration();
 
-        Configure.With(b => 
-            b.LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>()));
+        configuration.LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>());
 
         #endregion
     }

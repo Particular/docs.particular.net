@@ -5,10 +5,12 @@ public class License
     public void Simple()
     {
         #region LicenseV5
+     
+        var configuration = new BusConfiguration();
 
-        Configure.With(builder => builder.LicensePath("PathToLicense"));
+        configuration.LicensePath("PathToLicense");
         //or
-        Configure.With(builder => builder.License("YourCustomLicenseText"));
+        configuration.License("YourCustomLicenseText");
 
         #endregion
     }

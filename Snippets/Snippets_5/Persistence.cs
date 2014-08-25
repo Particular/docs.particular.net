@@ -9,26 +9,28 @@ public class Persistence
 
         #region ConfigurePersistenceV5
 
+        var configuration = new BusConfiguration();
+
         // Configure to use InMemory for all persistence types
-        Configure.With(b => b.UsePersistence<InMemory>());
+        configuration.UsePersistence<InMemoryPersistence>();
 
         // Configure to use InMemory for specific persistence types
-        Configure.With(b => b.UsePersistence<InMemory>()
-            .For(Storage.Sagas, Storage.Subscriptions));
+        configuration.UsePersistence<InMemoryPersistence>()
+            .For(Storage.Sagas, Storage.Subscriptions);
 
         // Configure to use NHibernate for all persistence types
-        Configure.With(b => b.UsePersistence<NServiceBus.NHibernate>());
+        configuration.UsePersistence<NServiceBus.NHibernate>();
 
         // Configure to use NHibernate for specific persistence types
-        Configure.With(b => b.UsePersistence<NServiceBus.NHibernate>()
-            .For(Storage.Sagas, Storage.Subscriptions));
+        configuration.UsePersistence<NServiceBus.NHibernate>()
+            .For(Storage.Sagas, Storage.Subscriptions);
 
         // Configure to use RavenDB for all persistence types
-        Configure.With(b => b.UsePersistence<RavenDB>());
+        configuration.UsePersistence<RavenDB>();
 
         // Configure to use RavenDB for specific persistence types
-        Configure.With(b => b.UsePersistence<RavenDB>()
-            .For(Storage.Sagas, Storage.Subscriptions));
+        configuration.UsePersistence<RavenDB>()
+            .For(Storage.Sagas, Storage.Subscriptions);
 
         #endregion
     }

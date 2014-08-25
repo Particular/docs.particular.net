@@ -7,26 +7,21 @@ public class StaticConfigureEndpoint
     {
         #region StaticConfigureEndpointReplacementV5
 
+        var configuration = new BusConfiguration();
+
         // SendOnly
-        Configure.With(b => b.SendOnly());
+        configuration.SendOnly();
 
         // AsVolatile
-        var configure = Configure.With(b =>
-        {
-            var transactions = b.Transactions();
-            transactions.Disable();
-            transactions.DoNotWrapHandlersExecutionInATransactionScope();
-            transactions.DisableDistributedTransactions();
-            b.DisableDurableMessages();
-            b.UsePersistence<InMemory>();
-        });
+        configuration.Transactions().Disable();
+        configuration.DisableDurableMessages();
+        configuration.UsePersistence<InMemoryPersistence>();
 
         // DisableDurableMessages
-
-        Configure.With(b => b.DisableDurableMessages());
+        configuration.DisableDurableMessages();
 
         // EnableDurableMessages
-        Configure.With(b => b.EnableDurableMessages());
+        configuration.EnableDurableMessages();
 
         #endregion
     }

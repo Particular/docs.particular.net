@@ -9,7 +9,9 @@ public class EncryptionService
     {
         #region RijndaelEncryptionServiceSimpleV5
 
-        Configure.With(builder => builder.RijndaelEncryptionService());
+        var configuration = new BusConfiguration();
+
+        configuration.RijndaelEncryptionService();
 
         #endregion
     }
@@ -27,7 +29,9 @@ public class EncryptionService
 
     public void FromAppConfig()
     {
-        Configure.With(builder => builder.RijndaelEncryptionService());
+        var configuration = new BusConfiguration();
+
+        configuration.RijndaelEncryptionService();
     }
 
     #endregion
@@ -36,7 +40,9 @@ public class EncryptionService
 
     public void FromCustomIProvideConfiguration()
     {
-        Configure.With(builder => builder.RijndaelEncryptionService());
+        var configuration = new BusConfiguration();
+
+        configuration.RijndaelEncryptionService();
     }
 
     public class ConfigureEncryption : IProvideConfiguration<RijndaelEncryptionServiceConfig>
@@ -56,7 +62,9 @@ public class EncryptionService
     {
         #region FromCustomIEncryptionServiceV5
 
-        Configure.With(c => c.RegisterEncryptionService(b => new MyCustomEncryptionService()));
+        var configuration = new BusConfiguration();
+
+        configuration.RegisterEncryptionService(b => new MyCustomEncryptionService());
 
         #endregion
     }

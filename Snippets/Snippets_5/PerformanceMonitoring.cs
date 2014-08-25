@@ -7,9 +7,11 @@ public class PerformanceMonitoring
     {
         #region PerformanceMonitoringV5
 
-        Configure.With(b => b.EnableSLAPerformanceCounter());
+        var configuration = new BusConfiguration();
 
-        Configure.With(b => b.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3)));
+        configuration.EnableSLAPerformanceCounter();
+        //or
+        configuration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
 
         #endregion
     }

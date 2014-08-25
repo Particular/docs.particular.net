@@ -4,11 +4,11 @@ public class FileShareDataBus
 {
     public void Simple()
     {
-        var databusPath = "";
-
         #region FileShareDataBusV5
 
-        var configure = Configure.With(b => b.FileShareDataBus(databusPath));
+        var configuration = new BusConfiguration();
+
+        configuration.FileShareDataBus("path to databus");
 
         #endregion
     }

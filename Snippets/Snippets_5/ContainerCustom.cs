@@ -11,7 +11,9 @@ public class ContainerCustom
 
     public void CustomContainerExtensionUsage()
     {
-        Configure.With(b => b.UseContainer<MyContainer>());
+        var configuration = new BusConfiguration();
+
+        configuration.UseContainer<MyContainer>();
     }
 
     public class MyContainer : ContainerDefinition

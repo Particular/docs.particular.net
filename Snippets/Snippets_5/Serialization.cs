@@ -8,10 +8,12 @@ public class Serialization
 
         #region ConfigureSerializationV5
 
-        Configure.With(b => b.UseSerialization<Binary>());
-        Configure.With(b => b.UseSerialization<Bson>());
-        Configure.With(b => b.UseSerialization<Json>());
-        Configure.With(b => b.UseSerialization<Xml>());
+        var configuration = new BusConfiguration();
+
+        configuration.UseSerialization<BinarySerializer>();
+        configuration.UseSerialization<BsonSerializer>();
+        configuration.UseSerialization<JsonSerializer>();
+        configuration.UseSerialization<XmlSerializer>();
 
         #endregion
     }
