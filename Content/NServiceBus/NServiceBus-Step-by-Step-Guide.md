@@ -22,7 +22,7 @@ Open Visual Studio as administrator, create a new 'Class Library' Project name i
 
 ![](001_new_solution.png)
 
-![](Package_manager_console.png "Package_manager_console width=400")
+![](Package_manager_console.png "Package manager console width=400")
 
 We now need to add references the NServiceBus assemblies and the quickest and quickest way to do that is to use NuGet Package Manager Console.
 
