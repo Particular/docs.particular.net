@@ -26,7 +26,7 @@ Open Visual Studio as administrator, create a new 'Class Library' Project name i
 
 We now need to add references the NServiceBus assemblies and the quickest and quickest way to do that is to use NuGet Package Manager Console.
 
-Open the NuGet Package Manager Console: Tools -\> Library Package Manager -\> Package Manager Console.
+Open the NuGet Package Manager Console: `Tools > Library Package Manager > Package Manager Console`.
 
 Type the following command at the Package Manager Console:
 
