@@ -7,13 +7,13 @@ public class DefineCriticalErrorAction
     {
         #region DefineCriticalErrorActionV5
 
-        var configure = Configure.With(builder =>
-        {
-            builder.DefineCriticalErrorAction((s, exception) =>
+        var configuration = new BusConfiguration();
+
+        configuration.DefineCriticalErrorAction((s, exception) =>
             {
                 // custom exception handling
             });
-        });
+
 
         #endregion
     }

@@ -6,7 +6,11 @@ public class ForInstallationOnReplacement
     {
         #region InstallersV5
 
-        Configure.With(builder => builder.EnableInstallers());
+        var configuration = new BusConfiguration();
+
+        configuration.EnableInstallers();
+
+        Bus.Create(configuration);//this will run the installers
 
         #endregion
     }

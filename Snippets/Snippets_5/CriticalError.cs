@@ -10,13 +10,15 @@ public class CriticalErrorConfig
 
         #region DefineCriticalErrorActionV5
 
+        var configuration = new BusConfiguration();
+
         // Configuring how NServicebus handles critical errors
-        Configure.With(b => b.DefineCriticalErrorAction((message, exception) =>
+        configuration.DefineCriticalErrorAction((message, exception) =>
         {
             var output = string.Format("We got a critical exception: '{0}'\r\n{1}", message, exception);
             Debug.WriteLine(output);
             // Perhaps end the process??
-        }));
+        });
 
         #endregion
     }

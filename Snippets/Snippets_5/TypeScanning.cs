@@ -14,15 +14,15 @@ public class TypeScanning
 
         #region TypeScanningV4
 
-        Configure.With(b => b.AssembliesToScan(listOfAssemblies));
+        var configuration = new BusConfiguration();
+
+        configuration.AssembliesToScan(listOfAssemblies);
 
         // or
-
-        Configure.With(b => b.TypesToScan(listOfTypes));
+        configuration.TypesToScan(listOfTypes);
 
         //or
-
-        Configure.With(b => b.ScanAssembliesInDirectory(directoryToProbe));
+        configuration.ScanAssembliesInDirectory(directoryToProbe);
 
         #endregion
     }

@@ -16,13 +16,12 @@ public class CustomRavenConfig
         })
             documentStore.Initialize();
 
-        Configure.With(b =>
-        {
-            var ravenPersistence = b.UsePersistence<RavenDB>();
-            //todo: 
-            //c.SetDefaultDocumentStore(documentStore));
-        });
 
+        var configuration = new BusConfiguration();
+
+        configuration.UsePersistence<RavenDB>();
+            //todo: 
+            //.SetDefaultDocumentStore(documentStore));
         #endregion
     }
 

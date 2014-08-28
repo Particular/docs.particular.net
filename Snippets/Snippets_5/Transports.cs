@@ -7,17 +7,19 @@ public class Transports
     {
         #region ConfigureTransportsV5
 
+        var configuration = new BusConfiguration();
+
         // Configure to use MSMQ 
-        Configure.With(b => b.UseTransport<Msmq>());
+        configuration.UseTransport<MsmqTransport>();
 
         // Configure to use AzureStorageQueue
-        Configure.With(b => b.UseTransport<AzureStorageQueue>());
+        configuration.UseTransport<AzureStorageQueue>();
 
         // Configure to use AzureServiceBus
-        Configure.With(b => b.UseTransport<AzureServiceBus>());
+        configuration.UseTransport<AzureServiceBus>();
 
         // Configure to use SqlServer
-        Configure.With(b => b.UseTransport<SqlServer>());
+        configuration.UseTransport<SqlServer>();
 
         #endregion
     }

@@ -6,7 +6,9 @@ public class PurgeOnStartup
     {
         #region PurgeOnStartupV5
 
-        Configure.With(builder => builder.PurgeOnStartup(true));
+        var configuration = new BusConfiguration();
+
+        configuration.PurgeOnStartup(true);
 
         #endregion
     }

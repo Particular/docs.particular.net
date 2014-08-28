@@ -113,9 +113,8 @@
     <Reference Include="NServiceBus.Log4Net">
       <HintPath>..\packages\NServiceBus.Log4Net.0.2.0-beta0001\Lib\NET45\NServiceBus.Log4Net.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.NHibernate, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.NHibernate.5.0.0-beta0001\lib\net45\NServiceBus.NHibernate.dll</HintPath>
+    <Reference Include="NServiceBus.NHibernate">
+      <HintPath>..\packages\NServiceBus.NHibernate.5.0.0-beta0003\lib\net45\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NLog">
       <HintPath>..\packages\NServiceBus.NLog.0.2.0-beta0001\Lib\NET45\NServiceBus.NLog.dll</HintPath>
@@ -192,6 +191,7 @@
     <Content Include="SecondLevelRetries\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -203,6 +203,7 @@
     <Compile Include="Conventions\ExpressMessages.cs" />
     <Compile Include="Conventions\UnobtrusiveConventions.cs" />
     <Compile Include="CriticalError.cs" />
+    <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="License.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Installers.cs" />
     <Compile Include="InterfaceMessageCreation.cs" />
     <Compile Include="Conventions\MessageConventions.cs" />
+    <Compile Include="MinimumConfiguration.cs" />
     <Compile Include="Outbox\OutboxEnableInFluent.cs" />
     <Compile Include="Outbox\NHibernate\AccessSession.cs" />
     <Compile Include="Outbox\NHibernate\ShareConfiguration.cs" />
