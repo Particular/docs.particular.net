@@ -16,39 +16,6 @@ tags:
 
 <script type="text/javascript">
 
-function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-        return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
-
-    var installer = getParameterByName("installer");
-
-    if (installer=="nservicebus")
-    {
-        installer="NServiceBus";
-    }
-
-    if (installer=="NServiceBus")
-    {
-        ga('send', 'event','Nuget', 'Load', 'Preparing your machine to run NServiceBus');
-
-        ga('send', 'event','Installed', 'NServiceBus Total [nuget]');
-
-        ga('send', 'event','Installed', 'NServiceBus Total [msi+nuget]');
-
-        var version = getParameterByName("version");
-        var method = getParameterByName("method");
-        var logaction = installer+" "+version+" [ "+method+" ]";
-
-        ga('send', 'event','Installed', logaction);
-    }
-
-</script>
-
-<script type="text/javascript">
-
 $(document).ready(function(){
     var lowerHref = window.location.href.toLowerCase()
     if (lowerHref.indexOf("dtc=true")>-1){
