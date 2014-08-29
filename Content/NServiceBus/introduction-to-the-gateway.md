@@ -8,16 +8,12 @@ This article, together with [the Gateway & Multi-Site Distribution with NService
 
 The gateway only comes into play where you can't use the regular queued transports for communication i.e. when setting up a VPN-connection is not an option. The reason for not using a VPN could be security concerns, bandwidth limitation, latency problems, high availability constraints, etc.
 
-When not to use the gateway
----------------------------
-
+## When not to use the gateway
 The gateway should not be used when the reason for running separate sites is disaster recovery. Under those circumstances all your sites are exact replicas and are not logically different from each other, so you're better off using whatever support your infrastructure provides to keep your sites in sync. Examples are SAN snapshots, SQL server log shipping, and RavenDB replication.
 
 So if your sites are logically similar, use one of the approaches above; if they are logically different, the gateway may come in handy.
 
-What are logically different sites?
------------------------------------
-
+## What are logically different sites?
 Logically different sites serve different business purposes, i.e., one site differs in behavior from other sites. Imagine a chain of retail stores where headquarters keep the prices for the different goods you're selling. Those prices need to be highly available to all your stores. If the link to HQ is down, you can't do business, and that is bad for sales.
 
 Looking at this scenario from a logical point of view, you see that all the pricing communication goes on within the same business service (BS). The different physical sites have different logical behavior. This is a sure sign that the gateway might come in handy. Dig deeper and look at the actual responsibilities of each site:
@@ -39,13 +35,9 @@ Going across sites usually means radically different transport characteristics l
 
 RPC completely hides the fact that you are now going out of your data center and will meet all the fallacies of distributed computing head on.
 
-Using the gateway
------------------
+## Using the gateway
 
-Beginning with NServiceBus V3, the gateway is included in the core assembly, meaning that every endpoint is capable of running a gateway.
-
-To turn on the gateway, call `Configure.RunGateway()`. To send messages, use the new IBus interface called `SendToSites` method, as shown:
-
+In order to send message to other sites you need to call the IBus.SendToSites method shown below.
 
 ```C#
 /// <summary>
@@ -75,15 +67,28 @@ A gateway runs inside each host process. The gateway gets its input from a regul
 -   Included in every endpoint
 -   Easily extensible with other channels
 
-Next steps
-----------
+### Configuring the gateway
 
+#### NServiceBus v5
+
+The gateway is provided by the `NServiceBus.Gateway` NuGet. After installing the package you just need to enable it using:
+
+<!-- import GatewayConfiguration-v5 -->
+
+
+#### NServiceBus v3 and v4
+The gateway is included in the core assembly, meaning that every endpoint is capable of running a gateway.
+
+To turn on the gateway, add the following to your configuration:
+
+<!-- import GatewayConfiguration-v4 -->
+
+
+## Next steps
 -   Examine the working sample in the NServiceBus/Samples/Gateway folder
 -   Read the other article about the gateway: [the Gateway & Multi-Site Distribution with NServiceBus](the-gateway-and-multi-site-distribution.md)
 
-Key messages
-------------
-
+## Key messages
 -   Only use the gateway for logically significant sites.
 -   Use explicit messages for your cross-site communication.
 -   The gateway doesn't support pub/sub.

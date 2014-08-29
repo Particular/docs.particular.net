@@ -107,6 +107,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.5.0.0-beta0003\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.Gateway">
+      <HintPath>..\packages\NServiceBus.Gateway.1.0.0-beta0001\lib\net45\NServiceBus.Gateway.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus.Host">
       <HintPath>..\packages\NServiceBus.Host.5.0.0-beta0003\lib\net45\NServiceBus.Host.exe</HintPath>
     </Reference>
@@ -176,6 +179,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Gateway\Channels.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Gateway\AppConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -205,6 +214,7 @@
     <Compile Include="CriticalError.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="Gateway\GatewayConfig.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DefineCriticalErrorAction.cs" />

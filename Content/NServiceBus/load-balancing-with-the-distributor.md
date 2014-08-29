@@ -72,7 +72,7 @@ To start your endpoint as a distributor, run it from the command line, as follow
 
 The NServiceBus.Distributor profile instructs the NServiceBus framework to start a distributor on this endpoint, waiting for workers to enlist to it. Unlike the NServiceBus.Master profile, the NServiceBus.Distributor profile does not execute a Worker on its node.
 
-You can use the NServiceBus.Master to start a Distributor on your endpoint with a Worker on its endpoint. When specifying the NServiceBus.Master profile, the gateway also runs on endpoint.
+You can use the NServiceBus.Master to start a Distributor on your endpoint with a Worker on its endpoint. When specifying the NServiceBus.Master profile.
 
     > NServiceBus.Host.exe NServiceBus.Production NServiceBus.Master
 
