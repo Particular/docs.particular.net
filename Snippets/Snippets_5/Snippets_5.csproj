@@ -245,6 +245,7 @@
     <Compile Include="ScaleOut.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SendOnly.cs" />
+    <Compile Include="SendOnly\SendOnlyConfig.cs" />
     <Compile Include="Serialization.cs" />
     <Compile Include="StartupActionReplacement.cs" />
     <Compile Include="StaticConfigureEndpoint.cs" />

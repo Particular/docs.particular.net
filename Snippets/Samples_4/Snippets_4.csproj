@@ -178,6 +178,7 @@
     <Compile Include="Gateway\GatewayConfig.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
+    <Compile Include="SendOnly\SendOnlyConfig.cs" />
     <Compile Include="SubscriptionSettings.cs" />
     <Compile Include="TypeScanning.cs" />
     <Compile Include="Containers.cs" />
