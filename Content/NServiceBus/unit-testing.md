@@ -18,6 +18,9 @@ This test says that when a message of the type `RequestMessage` is processed by 
 
 <!-- import TestingSagav4 -->
 
+### Testing interface messages
+To support testing of interface messages v5 introduces a `.WhenHandling<T>()` method where T is the interface type.
+
 ## Testing header manipulation
 
 It is the responsibility of the message handlers in the service layer is to use data from headers found in the request to make decisions, and to set headers on top of the response messages. This is how this kind of functionality can be tested:
