@@ -17,7 +17,9 @@ To skip migration and run the TimeoutManagers side by side:
 1.  Upgrade your endpoint to V3.0.X. 
 2.  Configure the endpoint to use the built-in TM in V3.0. New time-outs will be sent to this TM from your endpoint.
 3.  Keep the V2.6 TM running. Existing time-outs that expire will be sent to your new V3.0.X endpoint. (Make sure that you keep the name of the input queue identical.)
-4.  Decommission your V2.6 TM when all time-outs expire. (The storage queue will be empty when this happens.) The default name of the storage queue is "Timeout.Storage" but check your configuration to be sure. **NOTE** : This is NOT the same queue as the input queue that you would have configured in your endpoint mappings.
+4.  Decommission your V2.6 TM when all time-outs expire. (The storage queue will be empty when this happens.) The default name of the storage queue is "Timeout.Storage" but check your configuration to be sure. 
+
+NOTE: This is NOT the same queue as the input queue that you would have configured in your endpoint mappings.
 
 Why to migrate?
 ---------------
