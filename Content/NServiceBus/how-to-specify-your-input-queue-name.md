@@ -31,7 +31,7 @@ You can specify a endpoint name when running the NServiceBus host: `/endpointNam
 
 ## When using the fluent API
 
-Note: these approaches can also be used from NServicebus Host via the use of `IConfigureThisEndpoint`. 
+NOTE: these approaches can also be used from NServicebus Host via the use of `IConfigureThisEndpoint`. 
 
 You can define your own convention in the endpoint initialization code using this
 

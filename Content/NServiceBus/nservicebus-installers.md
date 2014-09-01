@@ -11,6 +11,7 @@ NServiceBus has the concept of installers to make sure that endpoint specific sp
 To create your own installer is as easy as implementing the `INeedToInstallSomething<T>` interface. 
 
 #### Version 3 and 4 only
+
     public interface INeedToInstallSomething<T> : INeedToInstallSomething where T : IEnvironment
     {
         void Install(string identity);
@@ -50,10 +51,12 @@ The installers are controlled by both the `/install` command line option to the 
 When self hosting NServiceBus, invoke the installers manually, using this:
 
 #### Version 5
+
 <!-- import InstallersV5 -->
 
 #### Version 4
+
 <!-- import InstallersV4 -->
 
- NOTE: The use of `/installInfrastructure` flag with the `NServiceBus.Host` has been deprecated in version 4.0. To install needed infrastructure, use the [PowerShell commandlets](managing-nservicebus-using-powershell.md) instead.
+NOTE: The use of `/installInfrastructure` flag with the `NServiceBus.Host` has been deprecated in version 4.0. To install needed infrastructure, use the [PowerShell commandlets](managing-nservicebus-using-powershell.md) instead.
 

@@ -27,7 +27,7 @@ The following example configures ServiceControl to listen to `http://sc.myspecia
 <add key="ServiceControl/Port" value="33333" />
 ```
 
-**NOTE:** You must set both the `ServiceControl/Hostname` and the `ServiceControl/Port`, even if the value of one remains unchanged.
+NOTE: You must set both the `ServiceControl/Hostname` and the `ServiceControl/Port`, even if the value of one remains unchanged.
 
 ### Updating URLACL Settings
 
@@ -46,7 +46,7 @@ You can customize ServiceControl to expose the API endpoint under a custom virtu
 
 After restarting the ServiceControl service, invoke the API by issuing a request to the following URL: `http://localhost:33333/MyFolder/API/`
 
-**NOTE:** The above sample illustrates simplified and default non-secure settings. Apply security and authentication restrictions based on specific usage restrictions and policies. 
+NOTE: The above sample illustrates simplified and default non-secure settings. Apply security and authentication restrictions based on specific usage restrictions and policies. 
 
 ### Updating ServicePulse Configuration to ServiceControl Custom Hostname
 

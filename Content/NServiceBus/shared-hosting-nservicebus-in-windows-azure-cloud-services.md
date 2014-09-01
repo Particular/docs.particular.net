@@ -24,7 +24,7 @@ Preparing the endpoint
 
 Assuming you have a working endpoint hosted in a worker role. Open your cloud services project, expand `Roles` and click remove on the worker role that you're preparing.
 
-**Note:** Visual studio will remove any configuration setting from the windows azure configuration settings file. If you had configuration overrides in place that effect the way your endpoint behaves, make sure you move those to the app.config file first or apply the alternative override system for shared hosts, see `Configuration concerns` further down this article for more details on this approach.
+NOTE: Visual studio will remove any configuration setting from the windows azure configuration settings file. If you had configuration overrides in place that effect the way your endpoint behaves, make sure you move those to the app.config file first or apply the alternative override system for shared hosts, see `Configuration concerns` further down this article for more details on this approach.
 
 The role entry point also doubles as a host process for our endpoint, one that is aware of the service runtime and role context. This functionality needs to be replaced by another process in order to run the endpoint in a similar context as it would have when it was a separate role. This replacement host process is available on nuget as the `NServiceBus.Hosting.Azure.HostProcess` package, please install it in your worker role project. 
 

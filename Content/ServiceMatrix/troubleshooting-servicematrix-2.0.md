@@ -72,4 +72,4 @@ One of the primary goals of ServiceMatrix is to dramatically improve the speed o
 
 To disconnect a solution developed with ServiceMatrix from ServiceMatrix (and continue developing the solution without ServiceMatrix) rename the file ```*.slnbldr``` that is located under the ```Solution Items``` folder in the Solution Explorer.
 
-**NOTE:** Disconnecting a solution from ServiceMatrix may make it impossible to re-connect the ServiceMatrix to the solution (depending on the scope and type of changes performed on the solution after it has been disconnected).
+NOTE: Disconnecting a solution from ServiceMatrix may make it impossible to re-connect the ServiceMatrix to the solution (depending on the scope and type of changes performed on the solution after it has been disconnected).

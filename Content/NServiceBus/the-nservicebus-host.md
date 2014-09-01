@@ -89,7 +89,7 @@ To change core settings such as assembly scanning, container, and serialization 
 Configure.With()
 ```
 
-**NOTE:** Do not perform any startup behaviors in the `Init` method.
+NOTE: Do not perform any startup behaviors in the `Init` method.
 
 Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing
 `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in v3.x) should kick off things such as web crawling, data mining, and batch processes.

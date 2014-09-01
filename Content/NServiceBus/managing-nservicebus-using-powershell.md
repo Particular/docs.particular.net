@@ -85,7 +85,7 @@ Validates that NServiceBus performance counters are correctly installed on the m
 
 Installs a NServiceBus license file in HKLM. All endpoints can use this machine wide setting without having to specify the license file either in the bin folder or in the app.config file.
 
-**Note:** For instructions on how to install a license for NServiceBus 4.5 and above please refer to [How to install your license file](license-management.md) 
+NOTE: For instructions on how to install a license for NServiceBus 4.5 and above please refer to [How to install your license file](license-management.md) 
 
 ### Set-NServiceBusLocalMachineSettings
 

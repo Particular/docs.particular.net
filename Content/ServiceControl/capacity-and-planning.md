@@ -45,7 +45,7 @@ For more details, see [Customizing ServiceControl Configuration](creating-config
 
 This provides a JSON stream of audited and error messages (headers, body, and context) that can be imported into another database. 
  
-**NOTE:** ServiceControl HTTP API is currently available as a technology-preview feature: It is subject to changes and enhancements that may not be fully backwards compatible. A fully supported, backwards-compatible version of the API is under-development and will be released in a future version.
+NOTE: ServiceControl HTTP API is currently available as a technology-preview feature: It is subject to changes and enhancements that may not be fully backwards compatible. A fully supported, backwards-compatible version of the API is under-development and will be released in a future version.
 
 
 ### Throughput

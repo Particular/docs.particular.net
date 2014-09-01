@@ -84,14 +84,15 @@ To create an endpoint on the canvas either select the dashed 'New Endpoint' area
 ![New Endpoint Popup](images/servicematrix-newendpoint.png)
 
 Name the endpoint `ECommerce` and choose ASP.NET MVC as the endpoint host.  
-**NOTE:** MVC Endpoints require that ASP.NET MVC be installed on the local machine. You can [install ASP.NET MVC from here](http://www.asp.net/downloads) or use the Web Platform Installer.
+
+NOTE: MVC Endpoints require that ASP.NET MVC be installed on the local machine. You can [install ASP.NET MVC from here](http://www.asp.net/downloads) or use the Web Platform Installer.
 
 ### Review the Endpoint
 You will examine the generated code in detail later to understand how things work behind the scenes.  For now, notice how ServiceMatrix has created the ECommerce Endpoint on the canvas, in the Solution Builder and in the Visual Studio Project.
 
 In the Solution Builder, notice that this endpoint has a folder to contain components.  Components contain the code for specific services.  They can only send commands to other components in the same service.  However, they can subscribe to events that are published by components in *any* service. Soon your sales components will be deployed to your endpoints.
 
-###Create OrderProcessing Endpoint
+### Create OrderProcessing Endpoint
 
 Create another endpoint called `OrderProcessing`.  This time select 'NServiceBus Host' as the host.  
 
@@ -101,12 +102,14 @@ At this point your solution should have both endpoints on the NServiceBus canvas
 
 Notice how you can control the zoom with your mouse scroll wheel, and drag the boxes around. This is how you rearrange the canvas when you add more things to it.
 
-##Creating a Message
+## Creating a Message
+
 To facilitate communication between the website and the back-end `OrderProcessing` endpoint, use a command message. Create this message using the drop-down menu of the `ECommerce` endpoint, and select `Send Command` as shown.  
 
 ![Send Command](images/servicematrix-ecommercesendcommand.png)
 
-##Creating Services 
+## Creating Services 
+
 As you create the new command message, you are prompted for the name of a service.  In NServiceBus a service contains components responsible for facilitating the communication between the website and order processing.  Name the new service `Sales` and the command `SubmitOrder` as shown.
 
 ![Sales Service and SubmitOrder Command](images/servicematrix-sales-submitorder.png)
@@ -115,7 +118,7 @@ The canvas now illustrates the new Sales service with two components.  The `Subm
 
 ![Undeployed Sales Service](images/servicematrix-sales-undeployed.png)
 
-##Deploying Components
+## Deploying Components
 
 You cannot build the solution with components that are not deployed.  If you try to build at this point you will get an error indicating that the `Sales.SubmitOrderHandler` must be allocated to an endpoint.  Deploy the `SubmitOrderHandler` component using its drop-down menu and the `Deploy Component` option.  When prompted, deploy the component to the `OrderProcessing` endpoint.
 
@@ -143,9 +146,10 @@ namespace OnlineSales.Internal.Commands.Sales
 }
 ```
 
-##Handling a Message
+## Handling a Message
 
 Now build the solution and see how everything turns out.  Look at the `SubmitOrderHandler` code by selecting its drop-down menu and choosing 'View Code'.  As you can see below, there is not much there.  A partial class has been created where you can add your order processing logic. 
+
 ```C#
 namespace OnlineSales.Sales
 {
@@ -159,6 +163,7 @@ namespace OnlineSales.Sales
     }
 }
 ```
+
 You can locate the ServiceMatrix-generated partial class counterpart in the `OnlineSales.OrderProcessing` project and the `Infrastructure\Sales` folder. There is not much to see; just a class that implements `IHandleMessages<submitorder>` and has a reference to `IBus` that you can use from within your partial class to send out other messages, publish events, or to reply to commands.  The partial method `HandleImplementation(message)` is a call to the implementation above.  To learn more about the way to use the generated code, see [Using ServiceMatrix Generated Code](customizing-extending.md "Using ServiceMatrix Generated Code").  
     
 ```C#
@@ -179,10 +184,12 @@ namespace OnlineSales.Sales
 
 ```
 
-##Sending a Message 
+## Sending a Message 
+
 Lastly, review how the 'ECommerce' website sends a message.  When ServiceMatrix generated the MVC endpoint, it created a demonstration site already capable of sending the commands created using the tool.
 
 ### Review MVC Code
+
 Find the `TestMessagesController.generated.cs` file in the Controllers folder in the OnlineSales.ECommerce project.  ServiceMatrix generates this file as part of the MVC application. Notice the `SubmitOrderSender.Send` method that sends the command message `SubmitOrder`.  This method was generated in a different partial class file located in the `Infrastructure\Sales\SubmitOrderSender.cs` file.  
 
 ```C#
@@ -215,6 +222,7 @@ namespace OnlineSales.ECommerce.Controllers
     }
 }
 ```  
+
 This is a demonstration site that provides an initial reference application in MVC.  Any modifications to this file will be overwritten by subsequent regeneration of the demonstration site.  To accomodate your changes, before the `SubmitOrderSender.Send` is called, the code invokes a partial method called `ConfigureSubmitOrder` that accepts your `SubmitOrder` message as a parameter.  You can implement this in the `SubmitOrderSender.cs` file in the `\Sales` directory of the `OnlinesSales.ECommerce` project, as shown in the following code snippet:  
 
 ```C#
@@ -231,11 +239,12 @@ namespace OnlineSales.Sales
 }
 ```
 
-##Running the Application
+## Running the Application
 
 Now press `F5` or press the 'Play' button in Visual Studio to debug the application. You should see both the eCommerce website launched in your default browser and a console window for the NServiceBus host that is running your OrderProcessing endpoint.  
 
 ### eCommerce Website
+
 The ECommerce website generated by ServiceMatrix should look like the image below.
 
 ![ECommerce Website](images/servicematrix-demowebsite.png)

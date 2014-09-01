@@ -4,7 +4,7 @@ summary: To store data in a relational database, NServiceBus provides a separate
 tags: []
 ---
 
-**Note: this page represents configuration for NServiceBus 3.x.**  [The configuration for NHibernate Persistence has been simplified for V4.x](relational-persistence-using-nhibernate---nservicebus-4.x.md)
+NOTE: this page represents configuration for NServiceBus 3.x.  [The configuration for NHibernate Persistence has been simplified for V4.x](relational-persistence-using-nhibernate---nservicebus-4.x.md)
 
 If you require that your data persist in a relational database, NServiceBus provides a separate assembly with added support for NHibernate-based storage:
 

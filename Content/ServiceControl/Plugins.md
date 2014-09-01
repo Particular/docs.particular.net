@@ -7,7 +7,7 @@ tags:
 
 ServiceControl is the activity information backend service for ServiceInsight, ServicePulse, and third-party developments. It collects information from monitored NServicBus endpoints, stores this information in a dedicated database, and exposes this information for consumption by various clients via HTTP API.
 
-**Note:** When ServiceControl is introduced into an existing environment the standard behavior of error and audit queues will change. When ServiceControl is not monitoring the environment failed messages will remain in the configured error queue and audit messages in the configured audit queue, as soon as ServiceControl is installed and configured messages, in both queues, will be moved into the ServiceControl database.
+NOTE: When ServiceControl is introduced into an existing environment the standard behavior of error and audit queues will change. When ServiceControl is not monitoring the environment failed messages will remain in the configured error queue and audit messages in the configured audit queue, as soon as ServiceControl is installed and configured messages, in both queues, will be moved into the ServiceControl database.
 
 Plugins collect information from NServiceBus and can be deployed with each NServiceBus endpoint. 
 These plugins are optional from the perspective of the NServiceBus framework itself (they are not required by the endpoint), but they are required in order to collect the information that enables ServiceControl (and its clients) to provide the relevant functionality for each plugin.
@@ -34,9 +34,7 @@ The ServiceControl plugins are deployed with the endpoints they are monitoring. 
    * The plugin-specific NuGet commands are displayed in the relevant NuGet package page in the NuGet Gallery.    
 * When in production, add the plugin DLLs to the BIN directory of the endpoint, and restart the endpoint process for the changes to take effect and the plugin to be loaded.   
 
-**NOTE:** For NServiceBus version-dependent requirements for each plugin, review the "Dependencies" section in the NuGet Gallery page for the specific plugin.  
-
-
+NOTE: For NServiceBus version-dependent requirements for each plugin, review the "Dependencies" section in the NuGet Gallery page for the specific plugin.  
 **Related articles**
 
 - [How to configure endpoints for monitoring by ServicePulse](http://docs.particular.net/ServicePulse/how-to-configure-endpoints-for-monitoring)
@@ -47,8 +45,7 @@ Once deployed on an active endpoint, the endpoints send plugin-specific informat
 
 The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl.  
 
-**NOTE:** Audit and error queues must be defined for each endpoint monitored by ServiceControl.
-
+NOTE: Audit and error queues must be defined for each endpoint monitored by ServiceControl.
 
 ## Understanding Plugin Functionality and Behavior
 

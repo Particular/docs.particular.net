@@ -28,7 +28,7 @@ Add the attribute `ForwardReceivedMessagesTo` to the `UnicastBusConfig` section 
 </UnicastBusConfig>
 ```
 
-**Note:** In version 3.X use the `ForwardReceivedMessageTo` Attribute
+NOTE: In version 3.X use the `ForwardReceivedMessageTo` Attribute
 
 ## Version 4
 

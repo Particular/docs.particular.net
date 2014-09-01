@@ -168,7 +168,7 @@ namespace Ordering.Client
 }
 ```
 
- NOTE: The code above is version 4.x, the 3.x interface 'IWantToRunAtStartup' has been replaced with 'IWantToRunWhenBusStartsAndStops'
+NOTE: The code above is version 4.x, the 3.x interface 'IWantToRunAtStartup' has been replaced with 'IWantToRunWhenBusStartsAndStops'
 
 ### Running the solution
 

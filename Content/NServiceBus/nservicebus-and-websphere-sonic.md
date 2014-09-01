@@ -4,7 +4,7 @@ summary: Swap out the pluggable MSMQ transport to get NServiceBus API on top of 
 tags: []
 ---
 
-**NOTE:** 
+NOTE:
 * This article applies to an older version of the NServiceBus WebsphereMQ adapter. 
 * To evaluate the WebsphereMQ transport for NServiceBus, See https://github.com/Particular/NServiceBus.WebSphereMQ. 
 * [Contact Particular Software support](http://particular.net/ContactUs) for licensing and support details.

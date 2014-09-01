@@ -41,7 +41,7 @@ To configure NServiceBus endpoints to use a specific transport:
 * `useTransactionalQueues`: determines if the generated queue, or the existing ones, must be transactional queues or not. The default value is `true`;
 * `cacheSendConnection`: instructs the underlying infrastructure to cache the connection to a remote queue and re-use it as needed instead of creating each time a new connection to send messages. The default value is `true`;
 
-**NOTE:** The MSMQ connection string is optional.
+NOTE: The MSMQ connection string is optional.
 
 <!--
 

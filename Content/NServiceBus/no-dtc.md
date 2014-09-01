@@ -6,7 +6,7 @@ tags:
 - MSDTC
 ---
 
-**NOTE: This article refers to a beta version of NServiceBus (V5) and is subject to changes and updates.**
+NOTE: This article refers to a beta version of NServiceBus (V5) and is subject to changes and updates.
 
 
 NServiceBus Version 5 brings the option of running endpoints with the same reliability we all got accustomed to while running under DTC, but now without it. 
@@ -24,9 +24,7 @@ and also the following configuration in the config file:
 
 <!-- import OutboxEnablingInAppConfig --> 
 
-### Note
-
-It may seem extreme to require double opt-in configuration for all other transports, but this is because we want users to be very aware that this new feature should not be used with existing endpoints that currently use DTC, unless those endpoints are [idempotent](http://en.wikipedia.org/wiki/Idempotence). Otherwise, problems could arise from double-processing messages sent (via an at-least-once guarantee) more than once.
+NOTE: It may seem extreme to require double opt-in configuration for all other transports, but this is because we want users to be very aware that this new feature should not be used with existing endpoints that currently use DTC, unless those endpoints are [idempotent](http://en.wikipedia.org/wiki/Idempotence). Otherwise, problems could arise from double-processing messages sent (via an at-least-once guarantee) more than once.
 
 ## How does it work
 

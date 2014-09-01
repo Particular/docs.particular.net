@@ -59,7 +59,7 @@ But it does this in a very particular way! To ensure an identical set of machine
 
 The advised transports in this environment are `AzureStorageQueues` or `AzureServiceBus`, and the Windows Azure storage persisters for persistance purposes.
 
-**NOTE:** It is possible to put Cloud Services and Virtual Machines in the same virtual network, so a hybrid architecture with some of the above transports and storage options might still be suitable (as long as you don't rely on the DTC).
+NOTE: It is possible to put Cloud Services and Virtual Machines in the same virtual network, so a hybrid architecture with some of the above transports and storage options might still be suitable (as long as you don't rely on the DTC).
 
 Next to your endpoint, the role definition will also include additional services that are deployed to the role instances, of which the most important for your application are these:
 
