@@ -154,7 +154,7 @@ In the configuration file for the application (web.config or app.config), add an
 
 The connection string value should be set according to the selected Windows Azure options selected (either a Windows Azure Queues connection string or a Windows Azure Service Bus namspace).
 
-**NOTE**: Setting the connection string in the application configuration files (web.config or app.config) is overridden by any settings placed in the service configuration file (ServiceConfiguration.cscfg) if one exists. This allows a cloud hosting scenario to override an on-premise deployment scenario, with minimal changes to the configuration, while allowing easy updates to the deployment configuration through the service configuration files only, with no need to update the applications configuration files.
+NOTE: Setting the connection string in the application configuration files (web.config or app.config) is overridden by any settings placed in the service configuration file (ServiceConfiguration.cscfg) if one exists. This allows a cloud hosting scenario to override an on-premise deployment scenario, with minimal changes to the configuration, while allowing easy updates to the deployment configuration through the service configuration files only, with no need to update the applications configuration files.
 
 Learn more
 ----------------

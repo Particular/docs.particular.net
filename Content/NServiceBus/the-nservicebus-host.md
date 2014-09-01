@@ -40,7 +40,7 @@ Shortcut the scanning process by telling the host which type to use by including
 </configuration>
 ```
 
- File scanning
+File scanning
 -------------
 
 By default, NServiceBus scans files to find types implementing its interfaces so that it can configure them automatically. This is separate from the host's file scanning behavior and happens in the '`NServiceBus.Configure.With()` call.
@@ -53,7 +53,7 @@ Configure.With(params Assembly[] assemblies)
 Configure.With(IEnumerable<Type> typesToScan)  
 ```
 
-**NOTE** : The NServiceBus assemblies are always included in scanning since NServiceBus needs them to function properly.
+NOTE: The NServiceBus assemblies are always included in scanning since NServiceBus needs them to function properly.
 
 Logging
 -------

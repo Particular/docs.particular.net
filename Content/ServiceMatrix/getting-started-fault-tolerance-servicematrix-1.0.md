@@ -72,7 +72,7 @@ While the endpoint can now continue processing other incoming messages (which wi
 
 If you leave the endpoint running a while longer, you'll see that it tries processing the message again. After three retries, the retries stop and the message ends up in the error queue (in the default configuration this should be after roughly one minute).
 
-**NOTE**: When a message cannot be deserialized, it bypasses all retry behaviors and moves directly to the error queue.
+NOTE: When a message cannot be deserialized, it bypasses all retry behaviors and moves directly to the error queue.
 
 ##Retries, Errors, and Auditing
 If a message fails continuously (due to a bug in the system, for example), it ultimately moves to the error queue that is configured for the endpoint after all the various retries have been performed.
@@ -81,7 +81,7 @@ Since administrators must monitor these error queues, it is recommended that all
 
 ![System level queue configuration](images/1.0/GettingStarted10.png)
 
-**NOTE**: If you specify an error queue for a specific endpoint, it won't change when you change the top-level error queue. Changing the top-level error queue only sets the value for endpoints for which you haven't modified the error queue.
+NOTE: If you specify an error queue for a specific endpoint, it won't change when you change the top-level error queue. Changing the top-level error queue only sets the value for endpoints for which you haven't modified the error queue.
 
 The second value, `ForwardReceivedMessagesTo`, defines the queue to which all messages will be audited. Any message that is processed by an endpoint is forwarded to this queue. This too can be overridden per endpoint.
 

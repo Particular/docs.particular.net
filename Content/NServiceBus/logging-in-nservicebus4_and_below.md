@@ -82,7 +82,7 @@ When NServiceBus sends a message, it writes the result of the `ToString()` metho
     }
 
 
-**NOTE** : NServiceBus only makes these calls at a log threshold of DEBUG or lower.
+NOTE : NServiceBus only makes these calls at a log threshold of DEBUG or lower.
 
 Customized logging
 ------------------
@@ -136,7 +136,7 @@ Yet certain parameters need to be under administrative control. The main paramet
 
 The 'Threshold' value attribute of the 'Logging' element can be any of the standard Log4Net entries: ALERT, ALL, CRITICAL, DEBUG, EMERGENCY, ERROR, FATAL, FINE, FINER, FINEST, INFO, NOTICE, OFF, SEVERE, TRACE, VERBOSE, and WARN. Make sure you use all caps for these entries.
 
-**NOTE** : If you set this value in code, the configuration value is ignored.
+NOTE: If you set this value in code, the configuration value is ignored.
 
 The production profile only logs to a file, unless you are running within Visual Studio. See
 [Profiles](profiles-for-nservicebus-host.md) for more detail.

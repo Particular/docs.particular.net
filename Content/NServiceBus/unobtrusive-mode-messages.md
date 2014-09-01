@@ -44,8 +44,5 @@ NServiceBus supports property level encryption with a special WireEncryptedStrin
 
 The example above also shows the unobtrusive way to tell NServiceBus which properties to deliver on a separate channel from the message itself using the Data Bus feature, and which messages are express or/and have a time to be received.
 
-**NOTE** : When you're self hosting, `.DefiningXXXAs()` has to be before
-`.UnicastBus()`, otherwise you get 
-
-    System.InvalidOperationException: "No destination specified for message(s): <message type name>"
+NOTE: When you're self hosting, `.DefiningXXXAs()` has to be before `.UnicastBus()`, otherwise you get  `System.InvalidOperationException: "No destination specified for message(s): <message type name>"`
 

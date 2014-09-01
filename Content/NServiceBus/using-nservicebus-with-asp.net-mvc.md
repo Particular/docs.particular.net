@@ -15,7 +15,7 @@ The web sample starts with two available methods of sending a command to the ser
 
 The sample covers only the sending of the asynchronous message as the send and block are similar in NServiceBus.
 
- **NOTE**: In `SendAndBlock`, the web page renders synchronously. From the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is messaging asynchronously.
+NOTE: In `SendAndBlock`, the web page renders synchronously. From the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is messaging asynchronously.
 
 ![AsyncPages Asp.Net Mvc3 sample running](AsyncPagesMvc3SelectingBlockingMethod.png "AsyncPages Asp.Net Mvc3 sample running")
 

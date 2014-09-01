@@ -9,7 +9,7 @@ tags:
 
 NServiceBus provides a set of PowerShell commandlets to make it easy to manage and run the software. The initial focus is to provide support when preparing machines for use with NServiceBus. Additional features are in the pipeline.
 
-**NOTE** : Before installing NServiceBus, ensure PowerShell 2.0+ is present on the target machine.
+NOTE: Before installing NServiceBus, ensure PowerShell 2.0+ is present on the target machine.
 
 Installing the NServiceBus commandlets in V4.0
 ----------------------------------------------
@@ -26,13 +26,13 @@ Type `Install-Package NServiceBus.PowerShell`
 
 After it is complete you will have the `NServiceBus.Powershell.dll` in your packages folder in you solution directory
 
-to use it promptly inside visual studio, you can do
+To use it promptly inside visual studio, you can do
 
     PM> Import-Module .\packages\NServiceBus.PowerShell.<4.x.x your version>\lib\net40\NServiceBus.PowerShell.dll
 
 and then use the cmdlet you want. 
 
-**NOTE** : there will be less feedback from the script if you run the cmdlet inside Visual Studio. If you get warnings it might be a good idea to run the cmdlet from a real PowerShell Console.
+NOTE: there will be less feedback from the script if you run the cmdlet inside Visual Studio. If you get warnings it might be a good idea to run the cmdlet from a real PowerShell Console.
 
 Or you can follow the instructions to load them into PowerShell using the Import-Module cmdlet:
 
@@ -113,7 +113,7 @@ Load the cmdlets into PowerShell using the Import-Module cmdlet:
 
     PM> Import-Module .\NServiceBus.Core.dll
 
-**NOTE**: The core depends on `NServiceBus.dll` and `log4net.dll` so make sure that both are in the same directory.
+NOTE: The core depends on `NServiceBus.dll` and `log4net.dll` so make sure that both are in the same directory.
 
 If you use the NuGet package, the commandlets are available automatically in the NuGet console. If you installed NServiceBus using the MSI you can add the import module statement to your [PowerShell profile.](http://www.howtogeek.com/50236/customizing-your-powershell-profile/)
 

@@ -68,8 +68,7 @@ public class RavenUnitOfWork : IManageUnitsOfWork
 }
 ```
 
-
-**NOTE** : There is a dependency on the `IDocumentSession`. Given that the UoW is resolved from the same child container as the handlers, you will get the same session instance. RavenDB doesn't need any special setup so you only need to call `SaveChanges` if `End()` is called and no exception occurs.
+NOTE: There is a dependency on the `IDocumentSession`. Given that the UoW is resolved from the same child container as the handlers, you will get the same session instance. RavenDB doesn't need any special setup so you only need to call `SaveChanges` if `End()` is called and no exception occurs.
 
 To make NServiceBus use the UoW, configure it in the container so that NServiceBus finds and uses it:
 
@@ -78,7 +77,7 @@ c.For<IManageUnitsOfWork>()
     .Use<RavenUnitOfWork>();
 ```
 
- Disposing of the session
+Disposing of the session
 ------------------------
 
 Rescue comes from the child containers together with the fact that the main container disposes of all single call components created in the child container together with the child container. NServiceBus disposes of the child container when it finishes processing a transport message, which means that any object implementing `IDisposable` is disposed of. Luckily, [IDocumentSession](https://github.com/ravendb/ravendb/blob/master/Raven.Client.Lightweight/IDocumentSession.cs) does just this! So it is possible to create clean message handlers that interact with Raven:
@@ -106,9 +105,11 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 Working code, please!
 ---------------------
 
-A [working sample](https://github.com/andreasohlund/Blog/tree/master/RavenUnitOfWork) is at [Andreas Öhlund's github account](https://github.com/andreasohlund/) . **NOTES** :
+A [working sample](https://github.com/andreasohlund/Blog/tree/master/RavenUnitOfWork) is at [Andreas Öhlund's github account](https://github.com/andreasohlund/) . 
 
--   The solution automatically downloads the required dependencies using NuGet.
--   The sample assumes RavenDB is listening on `http://localhost:8080`.
+**NOTES** :
+
+-The solution automatically downloads the required dependencies using NuGet.
+-The sample assumes RavenDB is listening on `http://localhost:8080`.
 
 

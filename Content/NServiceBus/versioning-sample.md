@@ -31,7 +31,8 @@ The version 2 message schema inherits from the version 1 schema as shown below, 
 
 There are two subscribers as before, but now one subscriber is subscribed to the version 1 message schema, V1Subscriber; and the other subscriber is subscribed to the version 2 message schema, V2Subscriber.
 
-**NOTE**: Both of the subscribers have an EndpointConfig file that inherits IConfigureThisEndpoint, AsAServer. Subscribers have a message handler for the messages from their respective versions. Yet there is a slight difference in their config files; V1Subscriber has the following in its UnicastBusConfig:
+NOTE: Both of the subscribers have an EndpointConfig file that inherits IConfigureThisEndpoint, AsAServer. Subscribers have a message handler for the messages from their respective versions. Yet there is a slight difference in their config files; V1Subscriber has the following in its UnicastBusConfig:
+
 ```
 <UnicastBusConfig>
   <MessageEndpointMappings>
@@ -57,5 +58,5 @@ Look at V2Publisher, which is very similar to the publisher from the PubSub samp
 
 ![Versioning sample running](Versioning_running.png "Versioning sample running")
 
-**NOTE**: When each subscriber processes the event, each sees it as the schema version it is compiled against. In this manner, publishers can be extended from one version to the next without breaking existing subscribers, allowing new subscribers to be created to handle the additional information in the new version of the events.
+NOTE: When each subscriber processes the event, each sees it as the schema version it is compiled against. In this manner, publishers can be extended from one version to the next without breaking existing subscribers, allowing new subscribers to be created to handle the additional information in the new version of the events.
 

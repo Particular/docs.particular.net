@@ -6,7 +6,7 @@ tags:
 - Fluent Configuration
 ---
 
-**NOTE**: This article refers to NServiceBus V3 and V4
+NOTE: This article refers to NServiceBus V3 and V4
 
 Every NServiceBus endpoint that works properly relies on a configuration to determine settings and behaviors other than endpoint core functionalities.
 
@@ -49,7 +49,7 @@ public class CustomConfiguration : IWantCustomInitialization
 }
 ```
 
-**NOTE**: Do not start the bus; the host will do it. *`(comment - expand on this topic a bit)`*
+NOTE: Do not start the bus; the host will do it. *`(comment - expand on this topic a bit)`*
 
 More about [configuration customization](customizing-nservicebus-configuration).
 
@@ -77,8 +77,9 @@ You can also configure the serialization format through the feature API:
 
 By default, if no configuration is performed, the XML serializer is enabled.
 
-**NOTE**: Only one serializer can be enabled in an endpoint at a time.
-**NOTE**: NServiceBus serializers operate only on primitive types.
+NOTE: Only one serializer can be enabled in an endpoint at a time.
+
+NOTE: NServiceBus serializers operate only on primitive types.
 
 To enable a feature, use this simple and straightforward API:
 

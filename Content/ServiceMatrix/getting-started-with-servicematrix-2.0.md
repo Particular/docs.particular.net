@@ -34,17 +34,22 @@ For this example you need to meet the following system requirements:
 - Visual Studio 2012 or 2013
 - ASP.NET MVC 4 ([http://www.asp.net/downloads](http://www.asp.net/downloads))
 
-**NOTE**: If you have both Visual Studio 2010 and Visual Studio 2012/13 installed on your machine, you can install ServiceMatrix for one Visual Studio version only. This document reviews the use of ServiceMatrix V2.0 for Visual Studio 2012 or 2013.
+NOTE: If you have both Visual Studio 2010 and Visual Studio 2012/13 installed on your machine, you can install ServiceMatrix for one Visual Studio version only. This document reviews the use of ServiceMatrix V2.0 for Visual Studio 2012 or 2013.
 
 ## Creating a New Project
+
 To get started with ServiceMatrix, create a new project.
+
 ### Create an NServiceBus project
+
 In Visual Studio, select `File\New\Project` and select 'NServiceBus System' under the Visual C\# project type. Target the .NET Framework 4.5 for this project. 
 
 ![NewProject](images/servicematrix-reqresp-newproject.png)
 
 In the Solution name, type 'OnlineSales' (or any other name) for the name of your application.
+
 ### Review The Solution
+
 You'll see that a solution folder has been created for your solution, as shown. 
 
 ![New Solution](images/servicematrix-reqresp-freshsolution.png)
@@ -71,14 +76,18 @@ To start building your solution, use the dashed areas within the canvas and the 
 
 Alternatively, you can create them using the Solution Builder tree view.  However, since this is a visual tool, this example demonstrates on the canvas.  As you add items to the canvas they will appear in the Solution Builder as well as in the Solution Explorer project.
 
-##Building the Online Sales Solution
+## Building the Online Sales Solution
+
 This online sales example involves a website that collects online orders, and a back-end order processing system that processes them.  
 
 To build the solution you will define and endpoint for the website and another endpoint for the order processing system.  A new 'Sales' service will define components for submitting and processing orders as well as a command message to represent the order submission.  
 
-##Creating Endpoints
+## Creating Endpoints
+
 First you will create the endpoints for selling and processing.
+
 ### New Endpoint
+
 To create an endpoint on the canvas either select the dashed 'New Endpoint' area on the canvas or the button at the top of the canvas.
 
 ![New Endpoint Popup](images/servicematrix-newendpoint.png)
@@ -88,6 +97,7 @@ Name the endpoint `ECommerce` and choose ASP.NET MVC as the endpoint host.
 NOTE: MVC Endpoints require that ASP.NET MVC be installed on the local machine. You can [install ASP.NET MVC from here](http://www.asp.net/downloads) or use the Web Platform Installer.
 
 ### Review the Endpoint
+
 You will examine the generated code in detail later to understand how things work behind the scenes.  For now, notice how ServiceMatrix has created the ECommerce Endpoint on the canvas, in the Solution Builder and in the Visual Studio Project.
 
 In the Solution Builder, notice that this endpoint has a folder to contain components.  Components contain the code for specific services.  They can only send commands to other components in the same service.  However, they can subscribe to events that are published by components in *any* service. Soon your sales components will be deployed to your endpoints.
@@ -132,7 +142,8 @@ By deploying these components to each endpoint, the `Sales` service affords your
 
 In addition to illustrating them in the canvas, the [Solution Builder](images/servicematrix-solutionbuilder-salesservice.png "Solution Builder With Sales") now shows the `SubmitOrder` command in the commands folder.  It also illustrates the components and the fact they send and process the `SubmitOrder` command accordingly. You can also see code that has been generated in the Visual Studio project.
 
-##Review the Message
+## Review the Message
+
 The `SubmitOrder` command is a simple message meant to communicate the order between your endpoints.  To view the generated class file, click the drop-down menu of the `SubmitOrder` command and select View Code [as shown](images/servicematrix-submitorderviewcode.png "View SubmitOrder Code"). This is a very simple C# class.  You can add all sorts of properties to your message to represent the order data: strings, integers, arrays, dictionaries, etc. Just make sure to provide both a get accessor and a set mutator for each property. 
 
 ```C#
@@ -269,9 +280,11 @@ By default, when you run a ServiceMatrix project, [ServiceInsight](../ServiceIns
 ![ServiceInsight](images/serviceinsight-screen.jpg)
 
 ### Congratulations!
+
 You've just built your first NServiceBus application. Wasn't that easy?
 
 ## Next Steps
+
 We mentioned that [ServiceInsight](../ServiceInsight/index.md "ServiceInsight") can be a valuable tool in the design process and where to [learn more about it](servicematrix-serviceinsight.md).  For runtime monitoring of an NServiceBus solution, the platform also includes [ServicePulse](../ServicePulse/index.md "ServicePulse for Monitoring").  
 
 In this article you saw how to use ServiceMatrix to connect a front end website and a backend processing system using NServiceBus. 

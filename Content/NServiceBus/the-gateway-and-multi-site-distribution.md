@@ -65,7 +65,8 @@ To send a message to a remote site, use the `SendToSites` API call, as shown:
 <!-- import GatewayAppConfig -->
 
 NServiceBus automatically sets the required headers that enable you to send messages back over the gateway using the familiar `Bus.Reply`.
-**NOTE** : All cross-site interactions are performed internally to a service, so publish and subscribe are not supported across gateways.
+
+NOTE: All cross-site interactions are performed internally to a service, so publish and subscribe are not supported across gateways.
 
 Read more on how to enable it in our [introduction to the gateway](introduction-to-the-gateway.md)
 
@@ -75,20 +76,21 @@ To provide data encryption for messages transmitted between sites, configure SSL
 
 Follow the steps for [configuring SSL](http://msdn.microsoft.com/en-us/library/ms733768.aspx) and make sure to configure the gateway to listen on the appropriate port, as well as to contact the remote gateway on the same port.
 
-##Automatic de-duplication
+## Automatic de-duplication
 
 Going across alternate channels like HTTP means that you lose the MSMQ safety guarantee of exactly one message. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid burdening you with de-duplication, the NServiceBus gateway supports this out of the box. You just need to store the message IDs of all received messages so it can detect potential duplicates. 
 
 #### Version 5
+
 The gateway will use the storage type you configure. At this stage InMemory, NHibernate and RavenDB is supported. Read more on persitence options and how to configure them [here](persistence-in-nservicebus.md)
 
 #### Version 4
+
 By default, NServiceBus uses RavenDB to store the IDs but InMemory and SqlServer storages are supported as well. To use storage other than RavenDB, add `Configure.RunGatewayWithInMemoryPersistence()` or `Configure.RunGateway(typeof(SqlPersistence))` to your configuration.
 
 ## Incoming channels
 
 When you enable the gateway, it automatically sets up an HTTP channel to listen to `http://localhost/{name of your endpoint}`. To change this URL or add more than one incoming channel, configure `app.config`, as shown:
-
 
 <!-- import GatewayChannels -->
 

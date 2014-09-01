@@ -10,7 +10,7 @@ If you are not familiar with the NServiceBus time-outs, in brief, NServiceBus su
 
 In V2.6 the default storage was an MSMQ queue, but V3.0 uses RavenDB, so you might need to migrate. It may not be necessary because the actual time-out messages sent over the wire are compatible between V2.6 and V3.0.X.
 
-**NOTE** : The reason to use NServiceBus 3.0.X for the time-out to work is that a bug in V3.0.0 made it incompatible. The bug is fixed in 3.0.X. This means you can run the V2.6 and V3.0.X TimeoutManagers (TM) in parallel until there are no more V2.6 timeouts left, and then decommission the V2.6 TM.
+NOTE: The reason to use NServiceBus 3.0.X for the time-out to work is that a bug in V3.0.0 made it incompatible. The bug is fixed in 3.0.X. This means you can run the V2.6 and V3.0.X TimeoutManagers (TM) in parallel until there are no more V2.6 timeouts left, and then decommission the V2.6 TM.
 
 To skip migration and run the TimeoutManagers side by side:
 

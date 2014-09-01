@@ -26,11 +26,12 @@ ServiceMatrix is a visual design tool that accelerates the design and coding of 
 
 ## Viewing The Code
 
-**NOTE**: In ServiceMatrix, to view the code for any of the components, use the drop-down within that component on the design canvas and choose `View Code`. To view related partial class definitions, put your cursor in the class name, right mouse-click and select `Go to Definition` or hit `F12`.
+NOTE: In ServiceMatrix, to view the code for any of the components, use the drop-down within that component on the design canvas and choose `View Code`. To view related partial class definitions, put your cursor in the class name, right mouse-click and select `Go to Definition` or hit `F12`.
 
 # Message Definitions
 
 NServiceBus messages are plain old CLR classes in C#. As you send commands or publish events in ServiceMatrix, you are prompted only for a name. When you build your solution, the messages are generated.  The generated message classes don't contain any properties but you can easily add them. To modify a message class, [view the code](#viewing-the-code) and add whatever properties you wish.
+
 ```C#
 namespace OnlineSales.InternalMessages.Commands.Sales
 {
@@ -42,6 +43,7 @@ namespace OnlineSales.InternalMessages.Commands.Sales
     }
 }
 ``` 
+
 If you build the solution again, the new message properties will be available in the components, handlers and sagas.  Since the message classes are only generated one time by ServiceMatrix, they are safe to edit.
 
 # Customizing Components

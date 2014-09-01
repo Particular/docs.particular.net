@@ -38,7 +38,9 @@ When running using the NHibernate saga persister, the NServiceBus framework requ
 
 NServiceBus V4.0 makes this even easier by enabling the optimistic-all option if no Version property is found.
 
-Another option is to use a [transaction isolation level](http://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel.aspx) of serializable but that causes [excessive locking](http://msdn.microsoft.com/en-us/library/ms173763.aspx)so the performance degradation is considerable. **NOTE**: "Serializable" is the default isolation level for TransactionScopes.
+Another option is to use a [transaction isolation level](http://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel.aspx) of serializable but that causes [excessive locking](http://msdn.microsoft.com/en-us/library/ms173763.aspx)so the performance degradation is considerable.
+
+NOTE: "Serializable" is the default isolation level for TransactionScopes.
 
 In NServiceBus V4.0 the default isolation level is
 "ReadCommitted", which is a more sensible default.

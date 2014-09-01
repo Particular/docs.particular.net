@@ -139,7 +139,7 @@ To switch from the durable storage suitable for production to in-memory storage 
 
 ![Switch to NServiceBus.Lite profile](pubsubsample-changeprofile.PNG)
 
-**NOTE** : The default profile when no profiles are specified is NServiceBus.Production, which is the profile suited for production deployment.
+NOTE: The default profile when no profiles are specified is NServiceBus.Production, which is the profile suited for production deployment.
 
 Restart the publisher and subscribers. Now when you click Enter in the publisher's console, you will see that the subscribers receive the events, but if you restart just the publisher while the subscribers are running, the subscribers no longer receive events. It is for this reason that NServiceBus is safe by default, starting in NServiceBus.Production profile if no profiles are specified, and setting up durable subscriptions.
 

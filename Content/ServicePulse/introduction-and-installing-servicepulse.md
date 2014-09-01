@@ -47,8 +47,7 @@ For details on ServiceControl and ServicePulse configuration options, see:
 * [Configuring ServiceControl](/ServiceControl/creating-config-file)
 * [ServiceControl Guidance](/servicecontrol)
  
-**NOTE**: ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](how-purge-expired-data).
-
+NOTE: ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](how-purge-expired-data).
 
 ### Troubleshooting: 
 

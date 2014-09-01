@@ -204,7 +204,7 @@ If you are in a regular ASP.NET web project, you see a different image, but just
 
 **Congratulations - you've just built your first NServiceBus application.** **Wasn't that easy?**
 
-**NOTE**: You don't have to worry about the warnings; this is just NServiceBus telling you that it couldn't find the queues it needs, so it went ahead and created them for you.
+NOTE: You don't have to worry about the warnings; this is just NServiceBus telling you that it couldn't find the queues it needs, so it went ahead and created them for you.
 
 ##Next steps
 

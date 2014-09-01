@@ -198,7 +198,7 @@ Versioning subscriptions
 
 In NServiceBus V3.0 and onwards subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
 
-**NOTE** : V2.X required a perfect match. This should make it easier to upgrade your publishers without affecting the subscribers.
+NOTE: V2.X required a perfect match. This should make it easier to upgrade your publishers without affecting the subscribers.
 
 Best practices
 --------------

@@ -14,7 +14,7 @@ ServiceControl utilizes an embedded instance of RavenDB for data storage. To bac
 1. Copy the ServiceControl data directory, which by default is located in `%SystemDrive%\ProgramData\Particular\ServiceControl\localhost-33333`.
 1. Start the ServiceControl service `net start "Particular ServiceControl"` or manually via the "Services" management console snap-in.
 
-**NOTE**: The default database location changes if ports and hostname are customized.
+NOTE: The default database location changes if ports and hostname are customized.
 
 ### Restore
 

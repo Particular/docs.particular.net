@@ -93,7 +93,9 @@ static void Main()
 When you use NServiceBus.Host.exe out of the box, you can utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, you can override the configured defaults. Read more about
 [profiles](profiles-for-nservicebus-host.md) , [here too](more-on-profiles.md).
 
-The following table summarizes the different persistence technologies being used by the built-in profiles. **NOTE** : Before configuring persistence technology, to avoid overriding your configurations, the profiles check if other types of storage are used.
+The following table summarizes the different persistence technologies being used by the built-in profiles. 
+
+NOTE: Before configuring persistence technology, to avoid overriding your configurations, the profiles check if other types of storage are used.
 
 |-                                |In-Memory|RavenDB			   |NHibernate   |MSMQ                         |
 |:--------------------------------|:--------|:---------------------|:------------|:----------------------------|                                         

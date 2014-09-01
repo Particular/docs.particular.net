@@ -80,7 +80,7 @@ While the endpoint can now continue processing other incoming messages (which wi
 
 If you leave the endpoint running a while longer, you'll see that it tries processing the message again. After three retries, the retries stop and the message ends up in the error queue (in the default configuration this should be after roughly one minute).
 
-**NOTE** When a message cannot be deserialized, it bypasses all retry and moves directly to the error queue.
+NOTE: When a message cannot be deserialized, it bypasses all retry and moves directly to the error queue.
 
 ### Retries, errors, and auditing
 
