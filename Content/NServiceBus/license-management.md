@@ -1,5 +1,5 @@
 ---
-title: How to install your license file
+title: How to install your NServiceBus license file
 summary: 'Make sure your NServiceBus endpoints use your license: Fluent API, app.config, subfolder in your BIN directory, or registry.'
 tags:
 - NServiceBus
