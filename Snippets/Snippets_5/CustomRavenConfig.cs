@@ -9,19 +9,18 @@ public class CustomRavenConfig
     {
         #region CustomRavenConfigV5
 
-        using (var documentStore = new DocumentStore
+        var documentStore = new DocumentStore
         {
             Url = "http://localhost:8080",
             DefaultDatabase = "MyDatabase",
-        })
-            documentStore.Initialize();
-
+        };
+        
+        documentStore.Initialize();
 
         var configuration = new BusConfiguration();
 
-        configuration.UsePersistence<RavenDB>();
-            //todo: 
-            //.SetDefaultDocumentStore(documentStore));
+        configuration.UsePersistence<RavenDBPersistence>()
+            .SetDefaultDocumentStore(documentStore);
         #endregion
     }
 

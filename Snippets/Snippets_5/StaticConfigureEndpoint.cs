@@ -10,7 +10,7 @@ public class StaticConfigureEndpoint
         var configuration = new BusConfiguration();
 
         // SendOnly
-        configuration.SendOnly();
+        Bus.CreateSendOnly(configuration);
 
         // AsVolatile
         configuration.Transactions().Disable();

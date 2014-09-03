@@ -9,9 +9,7 @@ public class SendOnly
 
         var configuration = new BusConfiguration();
         
-        configuration.SendOnly();
-
-        var bus = Bus.Create(configuration);
+        var bus = Bus.CreateSendOnly(configuration);
 
         #endregion
     }

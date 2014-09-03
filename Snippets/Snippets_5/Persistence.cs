@@ -25,10 +25,10 @@ public class Persistence
             .For(Storage.Sagas, Storage.Subscriptions);
 
         // Configure to use RavenDB for all persistence types
-        configuration.UsePersistence<RavenDB>();
+        configuration.UsePersistence<RavenDBPersistence>();
 
         // Configure to use RavenDB for specific persistence types
-        configuration.UsePersistence<RavenDB>()
+        configuration.UsePersistence<RavenDBPersistence>()
             .For(Storage.Sagas, Storage.Subscriptions);
 
         #endregion
