@@ -28,11 +28,11 @@ Multi-key decryption configured through the Rijndael encryption service section 
 
 and enabled through endpoint configuration
 
-#### Version 4
+#### NServiceBus Version 4
 
 <!-- import RijndaelEncryptionServiceSimpleV4 -->
 
-#### Version 5
+#### NServiceBus Version 5
 
 ```c#
 var configuration = new BusConfiguration();
@@ -43,7 +43,7 @@ configuration.RijndaelEncryptionService();
 
 Alternative to configuration file is encryption with multi-key decryption configured by implementation of ```IProvideConfiguration<RijndaelEncryptionServiceConfig>```. This approach can be used for shared configuration via code and unit testing (to supply various configuration permutations).
 
-#### Version 4 and 5
+#### NServiceBus Version 4 and 5
 
 ```c#
 public class ConfigureEncryption : IProvideConfiguration<RijndaelEncryptionServiceConfig>
