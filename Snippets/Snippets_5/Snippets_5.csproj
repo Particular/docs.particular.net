@@ -117,7 +117,7 @@
       <HintPath>..\packages\NServiceBus.Log4Net.0.2.0-beta0001\Lib\NET45\NServiceBus.Log4Net.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
-      <HintPath>..\packages\NServiceBus.NHibernate.5.0.0-beta0003\lib\net45\NServiceBus.NHibernate.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.NHibernate.5.0.0-beta0002\lib\net45\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NLog">
       <HintPath>..\packages\NServiceBus.NLog.0.2.0-beta0001\Lib\NET45\NServiceBus.NLog.dll</HintPath>
