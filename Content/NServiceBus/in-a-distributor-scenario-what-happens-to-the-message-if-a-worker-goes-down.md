@@ -1,7 +1,8 @@
 ---
 title: In a Distributor Scenario, What Happens to the Message if a Worker Goes Down?
 summary: The solution is virtualization, where worker nodes run in a VM whose image is on a SAN somewhere.
-tags: []
+tags: 
+- Distributor
 ---
 
 The master forwards the message to the worker and relies on the store and forward messaging provided by MSMQ to make sure that it gets there. The message is processed when the worker returns to working order.
