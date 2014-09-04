@@ -1,7 +1,9 @@
 ---
 title: Licensing limitations when using the Distributor
 summary: Basic licenses are limited to two worker nodes.
-tags: []
+tags: 
+- Distributor
+- Licensing
 ---
 
 **NServiceBus V4.5 and up**
