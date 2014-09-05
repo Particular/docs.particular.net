@@ -104,7 +104,27 @@ To link to the file `\Content\NServiceBus\Page2.md`, use `[Page 2 Text](Page2.md
 
 To link to the file `\Content\ServiceControl\Page3.md`, use `[Page 3 Text](../ServiceControl/Page3.md)`.
 
-## Markdown
+## Notes
+
+Any text of the following form
+
+    Note: Some sample note text.
+
+Will be rendered as
+
+![](NoteExample.png)
+
+The text has to immediately follow `NOTE:`.
+
+If multi-line markdown is required inside a note then use the following 
+
+    <p class="alert alert-info">
+      NOTE: 
+       * Point One 
+       * Point Two
+    </p> 
+
+## Markdown 
 
 The site is rendered using [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown)
 
@@ -114,7 +134,7 @@ For editing markdown on your desktop (after cloning locally with Git) try [Markd
 
 #### Markdown flavor
 
-Ensure you enable `GitHub Flavoured Markdown (Offline)` by going to 
+Ensure you enable `GitHub Flavored Markdown (Offline)` by going to 
 
     Tools > Options > Markdown > Markdown Processor > GitHub Flavored Markdown (Offline)
 
@@ -172,7 +192,6 @@ The resulting markdown will be will be
     var configure = Configure.With();
     ``` 
 
-
 ## Anchors
 
 One addition to standard markdown is the auto creation of anchors for headings.
@@ -222,7 +241,6 @@ This will produce:
  * "click" (not "click on" or "press")
  * "open" (not "open up")
  * V3, V3.1	(not version 3, v.3, v3)
- * NOTE:	(Not "Note that")
  * Present tense (not future tense)
  * you, NServiceBus	(not "we") 
  * to (not "in order to")
