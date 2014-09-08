@@ -5,11 +5,11 @@ tags:
 - Encryption
 ---
 
-**NOTE**: This article refers to NServiceBus V4 and V5
+**NOTE**: This article refers to NServiceBus V4 and V5.
 
-When original encryption key is replaced by a new encryption key, messages in-flight that were encrypted with original key will fail decryption, unless original encryption key is added to a list of expired keys. You can configure NServiceBus to use multiple expired keys. Expired keys are used solely for decryption.
+When the original encryption key is replaced by a new encryption key, in-flight messages that were encrypted with the original key will fail decryption unless the original encryption key is added to a list of expired keys. You can configure NServiceBus to use multiple expired keys. Expired keys are used solely for decryption.
 
-Multi-key decryption configured through the Rijndael encryption service section in configuration file:
+You can configure multi-key decryption through the Rijndael encryption service section in the configuration file:
 
 ```xml
 <configuration>
@@ -26,7 +26,7 @@ Multi-key decryption configured through the Rijndael encryption service section 
 </configuration>
 ```
 
-and enabled through endpoint configuration
+Enable the multi-key decryption through endpoint configuration.
 
 #### NServiceBus V4
 
@@ -41,7 +41,7 @@ configuration.RijndaelEncryptionService();
 
 ### Rijndael Encryption From Custom IProvideConfiguration
 
-Alternative to configuration file is encryption with multi-key decryption configured by implementation of ```IProvideConfiguration<RijndaelEncryptionServiceConfig>```. This approach can be used for shared configuration via code and unit testing (to supply various configuration permutations).
+An alternative to using the configuration file is to implement ```IProvideConfiguration<RijndaelEncryptionServiceConfig>```. Use this approach for shared configuration via code and unit testing (to supply various configuration permutations).
 
 #### NServiceBus V4 and V5
 
