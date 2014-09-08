@@ -134,7 +134,7 @@
         - "NServiceBus/preparing-your-machine-to-run-nservicebus"
         - "NServiceBus/running-nservicebus-on-windows"
         - "NServiceBus/licensing-servicematrix-v2.0"
-		- "NServiceBus/encryption-with-multi-key-decryption"
+        - "NServiceBus/encryption-with-multi-key-decryption"
     - 
       Name: "samples"
       Title: "Samples"
