@@ -45,9 +45,9 @@ Which versions of RavenDB are compatible?
 
 NServiceBus V3.X is tested and compatible with all RavenDB versions from 616 through 992 and RavenDB v2. We strongly recommend using 992 since it has better support for transaction recovery. Download v992 here: [RavenDB Server - 992](http://hibernatingrhinos.com/builds/ravendb-stable-v1.0/992).
 
-NServicedBus V4.0 is tested and compatible with RavenDB version 2261 and RavenDB v2.
+NServiceBus V4.0 is tested and compatible with RavenDB version 2261 and RavenDB v2.
 
-NServuceBus V5.0 requires RavenDB v2.5 build 2900 and above.
+NServiceBus V5.0 requires RavenDB v2.5 build 2900 and above.
 
 For more information regarding RavenDB compatibility, please refer to the [RavenDB website](http://ravendb.net/docs/2.0/client-api/backward-compatibility).
 
