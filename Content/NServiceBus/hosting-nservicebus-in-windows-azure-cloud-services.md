@@ -41,9 +41,17 @@ To integrate the NServiceBus generic host into the worker role entry point, all 
         }
     }
 
-Next to starting the role entry point, you also need to define how you want your endpoint to behave. As we're inside worker roles most of the time, the role has been conveniently named `AsA_Worker`. Furthermore you also need to specify the transport that you want to use, using the `UsingTransport<T>` interface, as well the persistence that you want to use, using the `UsingPersistence<T>` interface.
+Next to starting the role entry point, you also need to define how you want your endpoint to behave. As we're inside worker roles most of the time, the role has been conveniently named `AsA_Worker`. Furthermore you also need to specify the transport that you want to use, using the `UseTransport<T>` , as well the persistence that you want to use, using the `UsePersistence<T>` configuration methods.
 
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker, UsingTransport<AzureStorageQueue>,  UsingPersistence<AzureStorage> { }
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker {
+    
+     	public void Customize(BusConfiguration builder)
+        {
+            builder.UseTransport<AzureServiceBus>();
+            builder.UsePersistence<AzureStorage>();
+        }
+    
+    }
 
 This will integrate and configure the default infrastructure for you, being:
 
