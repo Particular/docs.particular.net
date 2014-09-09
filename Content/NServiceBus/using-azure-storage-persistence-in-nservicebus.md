@@ -26,7 +26,14 @@ If self hosting, you can configure the persistence technology using the fluent c
 
 When hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosting.Azure`, or any other nservicebus provided host, the azure storage persistence can be enabled by specifying the `UsePersistence<AzureStorage>` on the endpoint config.
 
-	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker, UsingTransport<AzureStorageQueue>, UsingPersistence<AzureStorage>{}
+	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
+	{
+	    public void Customize(BusConfiguration builder)
+	    {
+	        builder.UseTransport<AzureServiceBus>();
+	        builder.UsePersistence<AzureStorage>();
+	    }
+	}
 
 
 Detailed configuration
