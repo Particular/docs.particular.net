@@ -26,10 +26,14 @@ Then, use the Fluent `Configure` API to set up NServiceBus, by specifying `.UseT
          ...
          .CreateBus()
 
-Alternatively, when using one of the NServiceBus provided hosting processes, you should supply the `UsingTransport<AzureServiceBus>` on the endpoint configuration. In the Windows Azure role entrypoint host, for example, it looks like this:
+Alternatively, when using one of the NServiceBus provided hosting processes, you should call the `UseTransport<AzureServiceBus>` on the endpoint configuration. In the Windows Azure role entrypoint host, for example, it looks like this:
 
-	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker, UsingTransport<AzureServiceBus>
+	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
 	{
+		public void Customize(BusConfiguration builder)
+    		{
+			 builder.UseTransport<AzureServiceBus>();
+	        }
 	}
 
 Setting the Connection String
