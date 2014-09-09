@@ -31,7 +31,7 @@ Alternatively, when using one of the NServiceBus provided hosting processes, you
 	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
 	{
 	   public void Customize(BusConfiguration builder)
-    	   {
+	   {
 		 builder.UseTransport<AzureServiceBus>();
 	   }
 	}
