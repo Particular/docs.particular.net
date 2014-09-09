@@ -87,16 +87,13 @@ Alternatively, you can use the Windows Azure development environment emulator by
 
 In your NServiceBus solution, specify the Endpoint Configuration to use AzureStorageQueue transport:
 
-```
-public class EndpointConfiguration : IConfigureThisEndpoint, AsA_Worker
-      , UsingTransport<AzureStorageQueue>
-    {
-        public EndpointConfiguration()
-        {
-            ...
-        }
-    }
-```
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
+	{
+	    public void Customize(BusConfiguration builder)
+	    {
+	        builder.UseTransport<AzureStorageQueue>();
+	    }
+	}
 
 ### Windows Azure Service Bus 
 
@@ -126,15 +123,13 @@ The "AzureQueueConfig.ConnectionString" for Windows Azure Service Bus namespace 
 
 In your NServiceBus solution, specify the endpoint configuration to use AzureServiceBus transport:
 
-```
-public class EndpointConfiguration : IConfigureThisEndpoint, AsA_Worker, UsingTransport
-{
-    public EndpointConfiguration()
-    {
-        ...
-    }
-}
-```
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
+	{
+	    public void Customize(BusConfiguration builder)
+	    {
+	        builder.UseTransport<AzureServiceBus>();
+	    }
+	}
 
 Configuring for on-premise hosting
 ----------------------------------
