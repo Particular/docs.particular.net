@@ -30,7 +30,6 @@ When hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosti
 	{
 	    public void Customize(BusConfiguration builder)
 	    {
-	        builder.UseTransport<AzureServiceBus>();
 	        builder.UsePersistence<AzureStorage>();
 	    }
 	}
