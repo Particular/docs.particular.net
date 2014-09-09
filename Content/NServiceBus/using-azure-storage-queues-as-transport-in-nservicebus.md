@@ -28,8 +28,12 @@ Once you've done that you can use the fluent `Configure` API to setup NServiceBu
 
 Alternatively, when using one of the NServiceBus provided hosting processes, you should supply the `UsingTransport<AzureStorageQueue>` on the endpoint configuration. In the windows azure role entrypoint host, for example, it would look like this.
 
-	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker, UsingTransport<AzureStorageQueue>
+	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
 	{
+	    public void Customize(BusConfiguration builder)
+	    {
+	        builder.UseTransport<AzureServiceBus>();
+	    }
 	}
 
 Setting the connection string
