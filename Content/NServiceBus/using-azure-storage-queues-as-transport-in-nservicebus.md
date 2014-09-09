@@ -32,7 +32,7 @@ Alternatively, when using one of the NServiceBus provided hosting processes, you
 	{
 	    public void Customize(BusConfiguration builder)
 	    {
-	        builder.UseTransport<AzureServiceBus>();
+	        builder.UseTransport<AzureStorageQueue>();
 	    }
 	}
 
