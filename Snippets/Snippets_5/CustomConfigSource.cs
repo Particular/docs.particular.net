@@ -1,6 +1,4 @@
-﻿using System.Configuration;
-using NServiceBus;
-using NServiceBus.Config;
+﻿using NServiceBus;
 using NServiceBus.Config.ConfigurationSource;
 
 public class CustomConfigSource

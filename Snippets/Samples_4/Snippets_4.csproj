@@ -96,46 +96,55 @@
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus, Version=4.6.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Interfaces.4.6.3\lib\net40\NServiceBus.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Interfaces.4.6.5\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Azure">
-      <HintPath>..\packages\NServiceBus.Azure.5.3.0\lib\net40\NServiceBus.Azure.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus">
-      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.5.3.0\lib\net40\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues">
-      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.5.3.0\lib\net40\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Core, Version=4.6.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.Azure, Version=5.3.3.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.4.6.3\lib\net40\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Azure.5.3.3\lib\net40\NServiceBus.Azure.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Host">
-      <HintPath>..\packages\NServiceBus.Host.4.6.3\lib\net40\NServiceBus.Host.exe</HintPath>
+    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus, Version=5.3.3.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.5.3.3\lib\net40\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=5.3.3.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.5.3.3\lib\net40\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.4.6.5\lib\net40\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Host, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.Host.4.6.5\lib\net40\NServiceBus.Host.exe</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\packages\NServiceBus.NHibernate.4.5.0\lib\net40\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Autofac">
-      <HintPath>..\packages\NServiceBus.Autofac.4.6.3\lib\net40\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
+    <Reference Include="NServiceBus.ObjectBuilder.Autofac, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.Autofac.4.6.5\lib\net40\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Ninject">
-      <HintPath>..\packages\NServiceBus.Ninject.4.6.3\lib\net40\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
+    <Reference Include="NServiceBus.ObjectBuilder.Ninject, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.Ninject.4.6.5\lib\net40\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Spring">
-      <HintPath>..\packages\NServiceBus.Spring.4.6.3\lib\net40\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
+    <Reference Include="NServiceBus.ObjectBuilder.Spring, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.Spring.4.6.5\lib\net40\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.StructureMap">
-      <HintPath>..\packages\NServiceBus.StructureMap.4.6.3\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
+    <Reference Include="NServiceBus.ObjectBuilder.StructureMap, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.StructureMap.4.6.5\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Unity">
       <HintPath>..\packages\NServiceBus.Unity.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Testing">
-      <HintPath>..\packages\NServiceBus.Testing.4.4.2\lib\net40\NServiceBus.Testing.dll</HintPath>
+    <Reference Include="NServiceBus.Testing, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.Testing.4.6.5\lib\net40\NServiceBus.Testing.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.SQLServer">
       <HintPath>..\packages\NServiceBus.SqlServer.1.2.2\lib\net40\NServiceBus.Transports.SQLServer.dll</HintPath>

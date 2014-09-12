@@ -1,7 +1,6 @@
 ﻿using System;
 using NServiceBus;
 using NServiceBus.Management.Retries;
-using NServiceBus.Management.Retries.Helpers;
 using NServiceBus.Unicast.Transport;
 
 public class SecondLevelRetriesConfig

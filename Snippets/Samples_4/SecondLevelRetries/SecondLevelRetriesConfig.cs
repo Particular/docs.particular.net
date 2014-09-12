@@ -1,7 +1,6 @@
 ﻿using System;
 using NServiceBus;
 using NServiceBus.Features;
-using NServiceBus.SecondLevelRetries.Helpers;
 
 public class SecondLevelRetriesConfig
 {

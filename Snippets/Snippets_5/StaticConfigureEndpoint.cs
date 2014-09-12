@@ -1,5 +1,4 @@
 ﻿using NServiceBus;
-using NServiceBus.Persistence;
 
 public class StaticConfigureEndpoint
 {
