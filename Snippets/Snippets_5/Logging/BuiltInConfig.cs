@@ -2,9 +2,10 @@
 
 public class BuiltInConfig
 {
+    string pathToLoggingDirectory = "";
+
     public void ChangingDefaults()
     {
-        var pathToLoggingDirectory = "";
 
         #region OverrideLoggingDefaultsInCode
 
