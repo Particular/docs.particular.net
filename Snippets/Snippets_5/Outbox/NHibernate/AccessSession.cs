@@ -23,7 +23,7 @@ class OrderPlacedHandler : IHandleMessages<OrderPlaced>
 
 class OrderEntity
 {
-    public bool Shipped;
+    public bool Shipped { get; set; }
 }
 class OrderPlaced
 {
