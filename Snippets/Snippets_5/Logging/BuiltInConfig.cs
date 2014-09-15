@@ -2,7 +2,6 @@
 
 public class BuiltInConfig
 {
-    string pathToLoggingDirectory = "";
 
     public void ChangingDefaults()
     {
@@ -10,7 +9,7 @@ public class BuiltInConfig
         #region OverrideLoggingDefaultsInCode
 
         var defaultFactory = LogManager.Use<DefaultFactory>();
-        defaultFactory.Directory(pathToLoggingDirectory);
+        defaultFactory.Directory("pathToLoggingDirectory");
         defaultFactory.Level(LogLevel.Debug);
 
         #endregion
