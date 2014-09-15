@@ -1425,7 +1425,7 @@ Please use `NServiceBus.Hosting.Profiles.IConfigureLogging` instead. Will be rem
 
 #### NServiceBus.IInMemoryOperations  
 
-Removed to reduce complexity and API confusion. See http://docs.particular.net/nservicebus/inmemoryremoval for more information. Will be treated as an error from version 5.1.0. Will be removed in version 6.0.0. TreatAsError=False
+Removed to reduce complexity and API confusion. Will be treated as an error from version 5.1.0. Will be removed in version 6.0.0. TreatAsError=False
 
 
 
@@ -1573,8 +1573,8 @@ Since ISaga has been merged into the abstract class Saga this interface is no lo
 
 ##### Obsolete Methods
 
-  - `void Raise<T>(Action<T>)` [ [link](https://github.com/Particular/NServiceBus/blob/5.0.0-beta4/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs#L12) ]<br>InMemory.Raise has been removed from the core please see http://docs.particular.net/nservicebus/inmemoryremoval. Will be removed in version 6.0.0. TreatAsError=True
-  - `void Raise<T>(T)` [ [link](https://github.com/Particular/NServiceBus/blob/5.0.0-beta4/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs#L18) ]<br>InMemory.Raise has been removed from the core please see http://docs.particular.net/nservicebus/inmemoryremoval. Will be removed in version 6.0.0. TreatAsError=True
+  - `void Raise<T>(Action<T>)` [ [link](https://github.com/Particular/NServiceBus/blob/5.0.0-beta4/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs#L12) ]<br>InMemory.Raise has been removed from the core. Will be removed in version 6.0.0. TreatAsError=True
+  - `void Raise<T>(T)` [ [link](https://github.com/Particular/NServiceBus/blob/5.0.0-beta4/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs#L18) ]<br>InMemory.Raise has been removed from the core. Will be removed in version 6.0.0. TreatAsError=True
 
 #### NServiceBus.ConfigureBinarySerializer  [ [link](https://github.com/Particular/NServiceBus/blob/5.0.0-beta4/src/NServiceBus.Core/Serializers/Binary/Config/ConfigureBinarySerializer_Obsolete.cs) ]
 
