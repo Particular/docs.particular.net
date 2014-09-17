@@ -1,5 +1,5 @@
 ---
-title: Installing The Platform Componennts Manually - Offline
+title: Installing The Platform Components Manually - Offline
 summary: 'Guidance on how to install the platform components offline'
 tags: [Platform, Installation, Offline]
 ---
