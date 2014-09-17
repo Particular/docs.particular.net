@@ -46,7 +46,7 @@ The current approach moving forward for the RavenDB integration to ship outside 
  * Allow us to evolve the implementation more closely instep with the RavenDB release schedule. 
  * Reduce the need for version compatibility hacks
  * Allow the shipping upgrades to this library without having to ship the core. 
- * Make the approach to RavenDB persistence consistence with the other persistence integrations 
+ * Make the approach to RavenDB persistence consistent with the other persistence integrations 
 
 ### Supported RavenDB versions 
 
