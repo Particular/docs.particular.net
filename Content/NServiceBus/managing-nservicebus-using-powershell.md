@@ -24,7 +24,7 @@ Create a new class library project, go to `Package Manager Console`
 
 Type `Install-Package NServiceBus.PowerShell`
 
-After it is complete you will have the `NServiceBus.Powershell.dll` in your packages folder in you solution directory
+After it is complete you will have the `NServiceBus.Powershell.dll` in your packages folder in your solution directory
 
 To use it promptly inside visual studio, you can do
 
