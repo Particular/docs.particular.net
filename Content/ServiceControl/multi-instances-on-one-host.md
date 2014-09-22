@@ -62,12 +62,19 @@ For additional instances the logging location is changed and the "ServiceControl
 This logging location can be overridden via the configuration file. refer to [Configuring the Log Location](setting-custom-log-location) 
 
 
-#### Upgrading additional instances to v1.2.3
+#### Upgrading multiple instances 
 
-Upgrading to version 1.2.3 from 1.x is not a XCOPY update like previous version as the command line arguments used to launch ServiceControl changed in this version.  When upgrading to 1.2.3 from an earlier version you must uninstall and re-install the additional instances so the correct command line arguments are set.    
-  
-To uninstall an additional instance use the following command line:
+Any host machine that has multiple instances of Service Control and is upgrading to version 1.2.3 or greater will need to uninstall and re-install any manually installed instances of ServiceControl
+
+First uninstall the instance using
 
 ```
-ServiceControl.exe --uninstall --serviceName="<instanceName>"
+ServiceControl.exe --uninstall --serviceName="<serviceName>"
 ```
+
+Then re-register the service as discussed in the [Register A Service] 
+
+This is required because:
+
+1. The command line used to run the service has changed as of version 1.2.3 
+2. Additional Instances now use their own queues which are created via the install command. The MSMQ queue names used by ServiceControl instance will be the same as the Windows service name
