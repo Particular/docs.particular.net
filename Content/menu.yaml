@@ -234,6 +234,8 @@
         - "ServiceControl/how-purge-expired-data"
         - "ServiceControl/use-ravendb-studio"
         - "ServiceControl/backup-sc-database"
+        - "ServiceControl/configure-non-privileged-service-account"
+        - "ServiceControl/multi-instances-on-one-host"
     - 
       Name: "troubleshooting"
       Title: "Troubleshooting"
