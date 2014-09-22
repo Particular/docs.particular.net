@@ -72,7 +72,7 @@ First uninstall the instance using
 ServiceControl.exe --uninstall --serviceName="<serviceName>"
 ```
 
-Then re-register the service as discussed in the [Register A Service] 
+Then re-register the service as discussed in [Register the Service](#register-the-service) section.
 
 This is required because:
 
