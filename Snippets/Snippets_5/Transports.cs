@@ -21,6 +21,9 @@ public class Transports
         // Configure to use SqlServer
         configuration.UseTransport<SqlServer>();
 
+        // Configure to use Rabbit
+        configuration.UseTransport<RabbitMQTransport>();
+
         #endregion
     }
 
