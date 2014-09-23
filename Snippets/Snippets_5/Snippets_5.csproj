@@ -42,8 +42,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging">
-      <HintPath>..\packages\Common.Logging.2.0.0\lib\2.0\Common.Logging.dll</HintPath>
+    <Reference Include="Common.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.3.3.4000\lib\Net35\Iesi.Collections.dll</HintPath>
@@ -103,32 +108,35 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.6.0.0-beta0003\lib\net45\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.CommonLogging">
-      <HintPath>..\packages\NServiceBus.CommonLogging.1.2.0-beta0001\Lib\NET45\NServiceBus.CommonLogging.dll</HintPath>
+    <Reference Include="NServiceBus.CommonLogging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.CommonLogging.2.0.0\lib\net45\NServiceBus.CommonLogging.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.5.0.0-beta0005\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.5.0.0\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Gateway">
       <HintPath>..\packages\NServiceBus.Gateway.1.0.0-beta0001\lib\net45\NServiceBus.Gateway.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Host, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Host.5.0.0-beta0005\lib\net45\NServiceBus.Host.exe</HintPath>
+      <HintPath>..\packages\NServiceBus.Host.5.0.0\lib\net45\NServiceBus.Host.exe</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Log4Net">
-      <HintPath>..\packages\NServiceBus.Log4Net.0.2.0-beta0001\Lib\NET45\NServiceBus.Log4Net.dll</HintPath>
+    <Reference Include="NServiceBus.Log4Net, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.Log4Net.1.0.0\lib\net45\NServiceBus.Log4Net.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\packages\NServiceBus.NHibernate.5.0.0-beta0002\lib\net45\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.NLog">
-      <HintPath>..\packages\NServiceBus.NLog.0.2.0-beta0001\Lib\NET45\NServiceBus.NLog.dll</HintPath>
+    <Reference Include="NServiceBus.NLog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.NLog.1.0.0\lib\net45\NServiceBus.NLog.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Autofac, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Autofac.5.0.0-beta0005\lib\net45\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Autofac.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.CastleWindsor, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -192,7 +200,7 @@
     <Content Include="Gateway\AppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Logging\OverrideInAppConfig.xml">
+    <Content Include="Logging\Log4Net\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Outbox\NHibernate\TimeToKeep.xml">
@@ -228,10 +236,11 @@
     <Compile Include="EncryptionService.cs" />
     <Compile Include="EndpointName.cs" />
     <Compile Include="FileShareDataBus.cs" />
-    <Compile Include="Logging\OverrideViaProfile.cs" />
+    <Compile Include="Logging\CommonLogging\CommonLoggingConfig.cs" />
+    <Compile Include="Logging\Log4Net\OverrideViaProfile.cs" />
     <Compile Include="Logging\MyMessage.cs" />
-    <Compile Include="Logging\Log4NetConfig.cs" />
-    <Compile Include="Logging\NLogConfig.cs" />
+    <Compile Include="Logging\Log4Net\Log4NetConfig.cs" />
+    <Compile Include="Logging\NLog\NLogConfig.cs" />
     <Compile Include="Logging\BuiltInConfig.cs" />
     <Compile Include="CustomConfigOverrides.cs" />
     <Compile Include="CustomRavenConfig.cs" />
@@ -260,6 +269,7 @@
     <Compile Include="Transports.cs" />
     <Compile Include="TypeScanning.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <StartAction>Program</StartAction>

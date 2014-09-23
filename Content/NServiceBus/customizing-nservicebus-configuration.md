@@ -23,9 +23,11 @@ If you don't want your process to have its configuration specified in the config
 ### Initialize the bus to use the custom configuration source
 
 #### Version 5
+
 <!-- import RegisterCustomConfigSource-v5 -->
 
 #### Version 4
+
 <!-- import RegisterCustomConfigSource-v4 -->
 
 ### Define your custom configuration source to provide the configuration values instead of `app.config`

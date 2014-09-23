@@ -1,7 +1,7 @@
 ﻿using NLog;
 using NLog.Config;
 using NLog.Targets;
-using NServiceBus.NLog;
+using NServiceBus;
 
 public class NLogConfig
 {
@@ -19,7 +19,8 @@ public class NLogConfig
         config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, consoleTarget));
 
         LogManager.Configuration = config;
-        NLogConfigurator.Configure();
+
+        NServiceBus.Logging.LogManager.Use<NLogFactory>();
 
         #endregion
     }

@@ -80,11 +80,26 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) available t
 
 Configure NLog using its standard API then call 
 
-    NLogConfigurator.Configure();
+    LogManager.Use<NLogFactory>();
 
 Example Usage 
 
 <!-- import NLogInCode -->
+
+
+### CommonLogging
+
+There is a [nuget](https://www.nuget.org/packages/NServiceBus.CommonLogging/) available that allows for simple integration of NServiceBus and [CommonLogging](http://netcommon.sourceforge.net/).
+
+    Install-Package NServiceBus.CommonLogging
+
+Configure NLog using its standard API then call 
+
+    LogManager.Use<CommonLoggingFactory>();
+
+Example Usage 
+
+<!-- import CommonLoggingInCode -->
 
 ### Log4Net
 
@@ -95,7 +110,7 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.Log4Net/) availabl
 
 Configure Log4net using its standard API then call 
 
-    Log4NetConfigurator.Configure();
+    LogManager.Use<Log4NetFactory>();
 
 Example Usage 
 

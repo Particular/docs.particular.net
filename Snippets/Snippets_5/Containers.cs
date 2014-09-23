@@ -9,7 +9,7 @@ public class Containers
         var configuration = new BusConfiguration();
 
         // Autofac
-        configuration.UseContainer<NServiceBus.Autofac>();
+        configuration.UseContainer<AutofacBuilder>();
 
         // Ninject
         configuration.UseContainer<NServiceBus.Ninject>();

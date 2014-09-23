@@ -37,7 +37,8 @@ public class Log4NetConfig
         appender.ActivateOptions();
 
         BasicConfigurator.Configure(appender, consoleAppender);
-        Log4NetConfigurator.Configure();
+
+        NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
 
         #endregion
     }
