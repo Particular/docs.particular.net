@@ -7,25 +7,16 @@ tags:
 
 The equivalent to the [one way bus in Rhino Service Bus](http://ayende.com/blog/140289/setting-up-a-rhino-service-bus-application-part-ii-one-way-bus) is what NServiceBus calls "Send only mode". You would use this for endpoints whose only purpose is sending messages, such as websites. This is the code for starting an endpoint in send only mode.
 
+### Version 5
 
-In Version 4.0:
+<!-- import SendOnly-v5 -->
 
+### Version 4
 
-```C#
-var bus = Configure.With()
-    .DefaultBuilder()
-    .UseTransport<Msmq>()
-    .UnicastBus()
-    .SendOnly();
-bus.Send(new TestMessage());
-
-```
+<!-- import SendOnly-v4 -->
 
 
-
-
-In Version 3.0:
-
+### Version 3
 
 ```C#
 var bus = Configure.With()
