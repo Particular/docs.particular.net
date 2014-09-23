@@ -14,7 +14,7 @@ The ServiceControl MSI does not provide an option to install additional instance
 To illustrate the process this procedure assumes the following:
 -  An existing "default" instance of ServiceControl has been installed using the default settings. 
 -  A second instance of ServiceControl is to be added using the Window Service Name "Particular.ServiceControl.Test" 
--  The second instance URI will be http://localhost33334/api.
+-  The second instance URI will be http://localhost:33334/api.
 
 
 ### Adding the Instance 
