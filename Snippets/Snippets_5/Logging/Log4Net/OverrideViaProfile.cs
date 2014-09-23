@@ -10,7 +10,8 @@ public class OverrideViaProfile
         public void Configure(IConfigureThisEndpoint specifier)
         {
             // setup your logging infrastructure then call
-            Log4NetConfigurator.Configure();
+
+            NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
         }
     }
 
