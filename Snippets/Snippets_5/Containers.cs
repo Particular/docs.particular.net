@@ -12,16 +12,16 @@ public class Containers
         configuration.UseContainer<AutofacBuilder>();
 
         // Ninject
-        configuration.UseContainer<NServiceBus.Ninject>();
+        configuration.UseContainer<NinjectBuilder>();
 
         // Unity
-        //configuration.UseContainer<NServiceBus.Unity>());
+        configuration.UseContainer<UnityBuilder>();
 
         // Spring
-        configuration.UseContainer<NServiceBus.Spring>();
+        configuration.UseContainer<SpringBuilder>();
 
         // StructureMap
-        configuration.UseContainer<NServiceBus.StructureMap>();
+        configuration.UseContainer<StructureMapBuilder>();
 
         #endregion
     }
