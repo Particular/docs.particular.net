@@ -33,6 +33,12 @@ Assuming an existing NServiceBus endpoint is to be used, these steps need to be 
 .DefiningEventsAs(t => typeof(IEvent).IsAssignableFrom(t) || t.Namespace != null && t.Namespace.StartsWith("ServiceControl.Contracts"))
 ```
 
+ * Configure the endpoint to use JSON serialization
+
+```C#
+Configure.Serialization.Json();
+```
+
  * Make sure the endpoint knows the location of ServiceControl. In the `UnicastBusConfig` section add following mapping for the `particular.servicecontrol` queue or whatever queue ServiceControl instance has been configured with:
 
 ```XML
