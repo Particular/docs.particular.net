@@ -18,8 +18,8 @@ public class Transports
         // Configure to use AzureServiceBus
         configuration.UseTransport<AzureServiceBus>();
 
-        // Configure to use SqlServer
-        configuration.UseTransport<SqlServer>();
+        // Configure to use SqlServerB
+        configuration.UseTransport<SqlServerTransport>();
 
         // Configure to use Rabbit
         configuration.UseTransport<RabbitMQTransport>();
