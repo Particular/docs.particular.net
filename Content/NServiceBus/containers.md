@@ -14,6 +14,7 @@ Other containers are available on nuget.
 
 - http://www.nuget.org/packages/NServiceBus.Autofac/
 - http://www.nuget.org/packages/NServiceBus.Ninject/
+- http://www.nuget.org/packages/NServiceBus.CastleWindsor/
 - http://www.nuget.org/packages/NServiceBus.StructureMap/
 - http://www.nuget.org/packages/NServiceBus.Spring/
 - http://www.nuget.org/packages/NServiceBus.Unity/
