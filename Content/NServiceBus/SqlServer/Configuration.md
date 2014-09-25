@@ -27,9 +27,42 @@ Additionally, a clustered index on a ```[RowVersion]``` column is created. The c
 
 ## Concurrency
 
-The SQLServer transport starts up to ```MaximumConcurrencyLevel``` ([set via ```TransportConfig``` section](msmqtransportconfig.md) threads, each running the receive loop in which it tries to receive a single message via aforementioned ```DELETE``` statement and, if succeeded, passes that message into the processing pipeline. Otherwise it backs up for a while.
+The SQLServer transport starts up to ```MaximumConcurrencyLevel``` ([set via ```TransportConfig``` section](../msmqtransportconfig.md) threads, each running the receive loop in which it tries to receive a single message via aforementioned ```DELETE``` statement and, if succeeded, passes that message into the processing pipeline. Otherwise it backs up for a while.
 
 ## Transactions
+
+The SQLServer transport can work in three modes with regards to transactions. These modes are enabled based on the bus configurations:
+
+### TransactionScope
+
+The ```TransactionScope``` mode is selected by default. It relies or ```Transactions.Enabled``` setting being set to ```true``` and ```Transactions.SuppressDistributedTransactions``` being set to false. One can change these via bus configuration API respecively:
+
+```C#
+busConfig.Transactions().Disable();
+busConfig.Transactions().DisableDistributedTransactions();
+```
+
+When in this mode, the receive operation is wrapped in a ```TransactionScope``` together with the message processing in the pipeline. This means that usage of any other persistent resource manager (e.g. RavenDB client, another ```SqlConnection```) will cause escalation of the transaction to full 2-Phase Commit protocol handled via Distributed Transaction Coordinator.
+
+### Native transaction
+
+The native transaction mode requires both ```Transactions.Enabled``` and ```Transactions.SuppressDistributedTransactions``` to be set to ```true```. It can be selcted via
+
+```C#
+busConfig.Transactions().DisableDistributedTransactions();
+```
+
+When in this mode, the receive operation is wrapped in a plain ADO.NET ```SqlTransaction```. Both connection and the transaction instances are attached to the pipeline context under these keys ```SqlConnection-{ConnectionString}``` and ```SqlTransaction-{ConnectionString}```. 
+
+### No transaction
+
+The no transaction mode requires ```Transactions.Enabled``` to be set to false which can be achieved via following API call:
+
+```C#
+busConfig.Transactions().Disable();
+```
+
+When in this mode, the receive operation is not wrapped in any transaction so it is executed in its own implicit transaction by the SQLServer. This means that as soon as the ```DELETE``` operation used for receiving completes, the message is gone and any exception that happens during processing of this message causes it to be permanently lost.
 
 ## Primary queue
 
