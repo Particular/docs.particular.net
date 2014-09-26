@@ -10,8 +10,7 @@ Mixing logical orchestration and routing with business logic, data access, and w
 
 NServiceBus guides you away from these dangerous anti-patterns while still providing messaging patterns and integration.
 
-Best of both worlds
--------------------
+## Best of both worlds
 
 In many cases you need to integrate your code with existing systems and legacy applications possibly running on different technologies and proprietary protocols. This is a classical Enterprise Application Integration (EAI) situation and is not what service buses are meant to address.
 
@@ -21,8 +20,7 @@ In these cases, between your high-level business services you can use NServicebu
 
 As you can see, the use of BizTalk behind a service boundary is something of an implementation/integration detail. By keeping the scope of the problem domain small, using BizTalk for a small orchestration to synchronize customer information between Oracle PeopleSoft and SalesForce won't run into either performance or maintainability problems.
 
-Next steps
-----------
+## Next steps
 
 Sometimes you need a hammer, sometimes you need a screwdriver, and sometimes you need both. While a Swiss army knife may appear to do both, it is a poor choice for any but the most trivial undertakings.
 

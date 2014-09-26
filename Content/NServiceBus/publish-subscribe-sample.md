@@ -10,8 +10,7 @@ tags:
 
 ![pubsub solution](http://liveparticularwebstr.blob.core.windows.net/media/Default/images/documentation/pubsubsample/pubsubsolutionview.PNG)
 
-Preparing the Solution
-----------------------
+## Preparing the Solution
 
 Locate the Publish/Subscribe sample in the `NServiceBus\vX.X\Samples` folder within your Particular install directory. Open the `PubSub.sln` solution in Visual Studio and compile the solution.
 
@@ -23,8 +22,7 @@ Prequisites:
 -   The sample is dependent on Castle Windsor to demonstrate alternative IOC containers.
 -   You must have RavenDB installed as running.
 
-Reviewing the solution
-----------------------
+## Reviewing the solution
 
 Before running the sample, look over the solution structure, the projects, and the classes. The projects `MyPublisher`, `Subscriber1`, and `Subscriber2` are their own processes, even though they look like regular class libraries. They represent endpoints on the bus that will each be [hosted in NServiceBus host process](the-nservicebus-host) and have a reference to the NServiceBus.Host.exe. This host process will run as a console application during development but can be installed as a Windows service at runtime.
 
@@ -93,8 +91,7 @@ The handlers in each project are in files that end in with the word
 
 The subscriptions are therefore done explicitly at startup, in the `Subscriber2Endpoint.cs` file.
 
-Run the sample
---------------
+## Run the sample
 
 When running the sample, you'll see three open console applications and many log messages on each. Almost none of these logs represent messages sent between the processes.
 
@@ -111,8 +108,7 @@ Click Enter repeatedly in the `MyPublisher` processes console window, and see ho
 
 Now let's see some of the other features of NServiceBus.
 
-Fault-tolerant messaging
-------------------------
+## Fault-tolerant messaging
 
 Shut down `Subscriber1` by closing its console window. Return to the `MyPublisher` process and publish a few more messages by clicking Enter several more times. Notice how the publishing process does not change and there are no errors even though one of the subscribers is no longer running.
 
@@ -122,8 +118,7 @@ In Visual Studio, right click the project of the closed subscriber, and restart 
 
 Note how `Subscriber1` immediately receives the messages that were published while it was not running. The publisher safely places the message into the transport in this case MSMQ without knowledge of the running status of any subscriber. MSMQ safely places the message in the inbound queue of the subscriber where it awaits handling, so you can be sure that even when processes or machines restart, NServiceBus protects your messages so they won't get lost.
 
-Durable subscriptions by default
---------------------------------
+## Durable subscriptions by default
 
 With both subscribers still running, close and restart the `MyPublisher` process. After it restarts, click Enter several times in the publisher's console window.
 
@@ -143,8 +138,7 @@ NOTE: The default profile when no profiles are specified is NServiceBus.Producti
 
 Restart the publisher and subscribers. Now when you click Enter in the publisher's console, you will see that the subscribers receive the events, but if you restart just the publisher while the subscribers are running, the subscribers no longer receive events. It is for this reason that NServiceBus is safe by default, starting in NServiceBus.Production profile if no profiles are specified, and setting up durable subscriptions.
 
-Additional features
--------------------
+## Additional features
 
 In addition to basic publish and subscribe, the sample demonstrates a few additional features of the NServiceBus framework.
 
@@ -160,8 +154,7 @@ NServiceBus endpoints are configurable through the app.config file as well as th
 
 NServiceBus uses inversion of control as the default container but [additional containers are supported](containers.md). In the `EndpointConfig.cs` file of `Subscriber2`, the Fluent configuration API is used to specify `CastleWindsorBuilder` as the container adapter for that endpoint. No other code changes are needed but note that the `Castle.Core`, `Castle.Windsor`, and `NServiceBus.ObjectBuilder.CastleWindsor` assemblies must be referenced.
 
-Next steps
-----------
+## Next steps
 
 Scale out your publishers and subscribers. 
 

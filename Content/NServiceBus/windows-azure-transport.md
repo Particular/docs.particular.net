@@ -22,8 +22,7 @@ As part of the Windows Azure support for NServiceBus, you can choose between two
 
 Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits your application's needs, review the MSDN article "[Windows Azure Queues and Windows Azure Service Bus Queues - Compared and Contrasted](http://msdn.microsoft.com/library/azure/hh767287.aspx)".
 
-Samples
-----------------
+## Samples
 
 Samples for various scenario's are available on Github
 
@@ -37,8 +36,7 @@ To run these samples, update the configuration connection strings and queue name
 The Windows Azure transport for NServiceBus are available from nuget. You can download the latest (and previous) release from the
 [nuget website](https://www.nuget.org/profiles/nservicebus/).
 
-Prerequisites
--------------
+## Prerequisites
 
 The Windows Azure transport for NServiceBus and its samples require the following:
 
@@ -47,8 +45,7 @@ The Windows Azure transport for NServiceBus and its samples require the followin
 
 -   [Microsoft Windows Azure SDK version 2.0](http://azure.microsoft.com/en-us/downloads/)
 
-Configuring for cloud service hosting
--------------------------------------
+## Configuring for cloud service hosting
 
 For a detailed description of the cloud service configuration in Windows Azure, see "[Set Up a Cloud Service for Windows Azure](http://msdn.microsoft.com/library/azure/hh124108.aspx#bk_Config)".
 
@@ -75,7 +72,6 @@ schemaVersion="2013-03.2.0">
   </Role>
 </ServiceConfiguration>
 ```
-
 
 The "AzureQueueConfig.ConnectionString" for Windows Azure Queues follows this format:
 
@@ -131,8 +127,7 @@ In your NServiceBus solution, specify the endpoint configuration to use AzureSer
 	    }
 	}
 
-Configuring for on-premise hosting
-----------------------------------
+## Configuring for on-premise hosting
 
 In the configuration file for the application (web.config or app.config), add an "NServiceBus\\Transport" element as follows:
 
@@ -151,8 +146,7 @@ The connection string value should be set according to the selected Windows Azur
 
 NOTE: Setting the connection string in the application configuration files (web.config or app.config) is overridden by any settings placed in the service configuration file (ServiceConfiguration.cscfg) if one exists. This allows a cloud hosting scenario to override an on-premise deployment scenario, with minimal changes to the configuration, while allowing easy updates to the deployment configuration through the service configuration files only, with no need to update the applications configuration files.
 
-Learn more
-----------------
+## Learn more
 
 More in depth documentation can be found in the following documents:
 

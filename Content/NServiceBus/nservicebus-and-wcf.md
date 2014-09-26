@@ -8,8 +8,7 @@ The main thing missing from WCF is publish/subscribe, but why should you have to
 
 The next important thing is fault-tolerance. Exceptions cause WCF proxies to break, requiring you to "refresh" them in code but the call data is liable to be lost. NServiceBus provides full system rollback. Not only does your database remain consistent, but your messages return to their queues and no valuable data is lost.
 
-Same for plain MSMQ
--------------------
+## Same for plain MSMQ
 
 Whether you're looking at the MSMQ bindings for WCF or programming directly against MSMQ, in both cases you have to handle pub/sub and the transaction and exception management needed for full fault tolerance. You also have to handle long-running processes with MSMQ. Here's what one CIO remarked:
 
@@ -20,8 +19,7 @@ Whether you're looking at the MSMQ bindings for WCF or programming directly agai
 Thank you for creating this great framework."
 Karell Ste-Marie, CIO of BrainBank Inc.
 
-Long-running processes
-----------------------
+## Long-running processes
 
 WCF integrates with WF to provide a capability known as durable services. WF provides the state management facilities that hook into the communication facilities provided by WCF. Unfortunately, transaction and exception boundaries aren't specified by the infrastructure.
 
@@ -31,8 +29,7 @@ Since regular business logic is simple and stable enough on its own, NServiceBus
 
 Transactions are automatically handled on a per-message basis and inherently span all communications and state-management work done by an endpoint. An exception causes all work to be undone, including the sending of any messages, so that remote services and clients do not get exposed to inconsistent data.
 
-Interoperability
-----------------
+## Interoperability
 
 You can expose your NServiceBus endpoints as WCF services with as little as one line of code and the standard WCF configuration. All you need to do is write an empty class that inherits from NServiceBus.WcfService, specifying the types of the request and the response, and NServiceBus does the rest, as follows:
 

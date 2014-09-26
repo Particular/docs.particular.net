@@ -10,8 +10,7 @@ If real scale is what you're looking for, as in tens, hundreds or even thousands
 
 This role allows you to co-locate multiple endpoints on the same set of machines, while preserving the regular worker role programming model so that you can easily put each endpoint on it's own role again when required later.
 
-How it works
--------------
+## How it works
 
 **Prerequisites** This approach assumes you already have your endpoints hosted in worker roles, as per the [documentation on this topic](/nservicebus/hosting-nservicebus-in-windows-azure-cloud-services). The rest of this article will focus on how to transition from a multi worker environment to a shared hosting environment.
 
@@ -19,8 +18,7 @@ Instead of having our endpoints packaged & deployed by the windows azure infrast
 
 Then we'll add a new worker role to the cloud services solution that will act as the host. This host will be configured to pull the endpoints from the well known location, extract them to disk and run them.
 
-Preparing the endpoint
------------------------
+## Preparing the endpoint
 
 Assuming you have a working endpoint hosted in a worker role. Open your cloud services project, expand `Roles` and click remove on the worker role that you're preparing.
 
@@ -34,8 +32,7 @@ Next, you need to pack the build output as a zip file so that the NServiceBus.Ho
 
 Finally, go to your windows azure storage account and create a private container called `endpoints` and put the zip file in there. We'll configure the host role entry point to download endpoints from this container later.
 
-Creating the host
------------------
+## Creating the host
 
 Once you have prepared and uploaded all your endpoints, you can add a new worker role project to your solution. This worker role will serve as a host for all your endpoints.
 
@@ -95,16 +92,13 @@ Other configuration settings are available as well if you need more fine grained
 * DynamicHostControllerConfig.TimeToWaitUntilProcessIsKilled: When updating an endpoint to a new version, the host will kill the current process. Sometimes this fails or takes a very long time. This property specifies how long the host should wait, if this time elapses without the process going down, the host will reboot the machine (by throwing an exception). Default value: 10000.
 * DynamicHostControllerConfig.RecycleRoleOnError: By default windows azure role instances will reboot when an exception is thrown from the role entrypoint, but not when thrown from a child process. If you want the role instance to reboot in this case as well, set RecycleRoleOnError on true. Then the host will start monitoring the child process for errors and request a recycle when it throws.
 
-Configuration concerns
----------------------------------
+## Configuration concerns
 
 The windows azure configuration system applies to all instances of all roles. It has a built in way to separate role types, but not role instance and definitely no separation for processes on those instances. This means that a configuration override put in the service configuration file will automatically apply to all endpoints hosted on those roles. This is obviously not desirable, and can be dealt with in 2 ways. 
 
 * Put your configuration settings in the app.config. As autoupdate is available you can easily manage it this way as changing a config simply means uploading a new zip to your azure storage account and the hosts will update themselves automatically. (This is the default)
 * Alternatively you can separate the configuration settings in the service configuration file by convention. The `.AzureConfigurationSource(prefix)` overload allows you to set a prefix in every endpoint that will be prepended to it's configuration settings. Call this configuration method with a prefix of your choice and you can still use the configuration settings file for your hosted endpoints.
 
-
-Sample
-------
+## Sample
 
 Want to see the dynamic host in action? Checkout the [Video store sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud.DynamicHost).

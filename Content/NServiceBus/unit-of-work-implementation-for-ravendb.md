@@ -6,8 +6,7 @@ tags: []
 
 When using a framework like NServiceBus you usually need to create your own unit of work to avoid repeating code in your message handlers. Following is one approach on how to implement the NServiceBus Unit of Work for RavenDB.
 
-Sharing the session
--------------------
+## Sharing the session
 
 Share the session between the message handler(s) and the actual unit of work implementation. Do not use thread static, which has issues mentioned by [Andreas Öhlund](http://andreasohlund.net/) in a [blog post](http://andreasohlund.net/2010/03/25/thread-static-caching-in-nservicebus/).
 
@@ -38,8 +37,7 @@ Configure.With()
 
 The above code tells the container to create a new `IDocumentSession` using the specified lambda. The fact that all message processing is done using a child container means that all message handlers processing the message get the same session instance.
 
-Implementing the unit of work
------------------------------
+## Implementing the unit of work
 
 In RavenDB, to persist your data to the database, you need to explicitly call `IDocumentSession.SaveChanges()`. To avoid making this call in all the handlers, add a unit of work implementation. This saves typing and prevents you from forgetting to make the call:
 
@@ -77,8 +75,7 @@ c.For<IManageUnitsOfWork>()
     .Use<RavenUnitOfWork>();
 ```
 
-Disposing of the session
-------------------------
+## Disposing of the session
 
 Rescue comes from the child containers together with the fact that the main container disposes of all single call components created in the child container together with the child container. NServiceBus disposes of the child container when it finishes processing a transport message, which means that any object implementing `IDisposable` is disposed of. Luckily, [IDocumentSession](https://github.com/ravendb/ravendb/blob/master/Raven.Client.Lightweight/IDocumentSession.cs) does just this! So it is possible to create clean message handlers that interact with Raven:
 
@@ -102,8 +99,7 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 }
 ```
 
-Working code, please!
----------------------
+## Working code, please!
 
 A [working sample](https://github.com/andreasohlund/Blog/tree/master/RavenUnitOfWork) is at [Andreas Öhlund's github account](https://github.com/andreasohlund/) . 
 

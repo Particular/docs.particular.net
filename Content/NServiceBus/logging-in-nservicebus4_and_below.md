@@ -9,8 +9,7 @@ Like many other open-source frameworks on the .NET platform, NServiceBus uses of
 
 NServiceBus extends the Log4Net APIs with a simplified model that prevents administrators from accidentally changing behavior you set at design time.
 
-Logging basics
---------------
+## Logging basics
 
 Start to log with NServiceBus:
 
@@ -60,8 +59,7 @@ Include a Log4Net configuration section in the application configuration file th
 For more information about standard Log4Net functionality, see the
 [Log4Net home page](http://logging.apache.org/log4net/index.html).
 
-Logging message contents
-------------------------
+## Logging message contents
 
 When NServiceBus sends a message, it writes the result of the `ToString()` method of the message class to the log. By default, this writes the name of the message type only. To write the full message contents to the log, override the `ToString()` method of the relevant message class. Here's an example:
 
@@ -84,8 +82,7 @@ When NServiceBus sends a message, it writes the result of the `ToString()` metho
 
 NOTE : NServiceBus only makes these calls at a log threshold of DEBUG or lower.
 
-Customized logging
-------------------
+## Customized logging
 
 You can tell NServiceBus to use any of the built-in Log4Net appenders, specifying additional properties of the chosen appender using the following API:
 
@@ -120,8 +117,7 @@ As you can see, there isn't much effort involved in plugging in your own logging
 -   SMTP
 -   UDP
 
-Administrative configuration
-----------------------------
+## Administrative configuration
 
 As you saw before, most of the logging configuration done with NServiceBus is in code. This prevents administrators from accidentally changing values set by developers. It also provides developers with compile-time checking, intellisense, and the other productivity-enhancing capabilities of Visual Studio.
 
@@ -142,8 +138,7 @@ The production profile only logs to a file, unless you are running within Visual
 [Profiles](profiles-for-nservicebus-host.md) for more detail.
 
 
-Logging Profiles
------------------
+## Logging Profiles
 
 Logging is another kind of behavior that you can change from one profile to another. However, unlike other profile behaviors, logging levels and sinks need to be defined before you configure other components, even before the container. For that reason, logging configuration is kept separate from other profile behaviors.
 
@@ -168,8 +163,7 @@ When running under the production profile, the logs are written to 'logfile' in 
 
 If you want different logging behaviors than these, see the next section.
 
-Customized logging
-==================
+## Customized logging
 
 To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type. The implementation of this interface is similar to that described for `IWantCustomLogging` in the [host page](the-nservicebus-host.md).
 

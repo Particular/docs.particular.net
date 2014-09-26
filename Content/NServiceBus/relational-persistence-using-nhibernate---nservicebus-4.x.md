@@ -14,9 +14,7 @@ PM> Install-Package NServiceBus.NHibernate
 ```
 This automatically sets up all the dependencies and is the recommended way of using NHibernate support.
 
-
-Subscriptions, Sagas, Timeouts and Gateway persistance
-------------------------------------------------------
+## Subscriptions, Sagas, Timeouts and Gateway persistance
 
 To use Subscriptions, Sagas, Timeouts and Gateway persistance using NHibernate, use this configuration:
 

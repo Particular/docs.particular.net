@@ -10,8 +10,7 @@ When a system is broken down into multiple processes, each with its own queue, y
 
 Unfortunately, despite the many performance counters Microsoft provides for MSMQ (including messages in queues, machine-wide incoming and outgoing messages per second, and the total messages in all queues), there is no built-in performance counter for the time it takes a message to get through each queue.
 
-NServiceBus performance counters
---------------------------------
+## NServiceBus performance counters
 
 As a part of the NServiceBus installation, two performance counters are installed under the new "NServiceBus" category.
 
@@ -29,8 +28,7 @@ The following video shows NServiceBus performance counters, and demonstrates the
 
 <iframe allowfullscreen frameborder="0" src="http://www.youtube.com/embed/gKLHT7Kj4Rg"></iframe>
 
-Best practices
---------------
+## Best practices
 
 If the monitored system is designed according to the NServiceBus best practice of having each process (and by corollary each queue) handle only a single message type, you can then know how long each type of messages is waiting in the system. This enables you to provide the business with information on a use-case by use-case basis. The business can, in turn, specify SLA requirements per use case, which can then be monitored.
 

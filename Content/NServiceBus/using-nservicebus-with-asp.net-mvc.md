@@ -33,8 +33,7 @@ Now, look at the code. This sample has three projects:
 -   `Messages`: Declaration of messages
 -   `Server`: Destination of messages sent from the MVC 3 project. Hosted in a console application
 
-Initializing the bus
---------------------
+## Initializing the bus
 
 The sample controllers hold a reference of the bus, which is used later to send messages and receive a response.
 
@@ -65,8 +64,7 @@ Read [how the IBus is injected into the controllers](injecting-the-bus-into-asp.
 
 The rest of the code is typical for hosting NServiceBus in your own process. You can read more about [the other lines](hosting-nservicebus-in-your-own-process.md).
 
-Sending a message
------------------
+## Sending a message
 
 ### Asynchronous message sending: SendAsync controller
 
@@ -112,8 +110,7 @@ The controller is referencing its `IBus` (NServiceBus injected it when the contr
 
 The call registers a callback method that will be called (with this parameter) as soon as a response is received by the server.
 
-Routing Configuration
----------------------
+## Routing Configuration
 
 Open the `web.config` file in `AsyncPagesMvc3` and scroll down to the following code:
 
@@ -132,8 +129,7 @@ The `UnicastBusConfig` section describes which messages are sent to which queue.
 
 In the `Server` project, the queue name equals the namespace of the `MessageEndpoint` class; that is, `Server`. This is how routing is configured in NServiceBus. In this case, the routing configures a request/response interaction rather than a publish/subscribe interaction, but later you'll see that the same configuration holds for all kinds of interactions.
 
-Handling the message
---------------------
+## Handling the message
 
 In the Server project, open the `CommandMessageHandler` class to see the following:
 
@@ -160,8 +156,7 @@ NServiceBus manages the classes that implement this interface. When a message ar
 
 Notice the `IBus` property of the class. This is how it gets a reference to the bus. In the method body you can see it calling the `Return` method on the bus, which results in a message being returned to `WebApplication1`, specifically putting a message in the input queue whose name is determined by the namespace where the bus was configured; in this case, the `global.asax`: `AsyncPagesMVC3`.
 
-Next steps
-----------
+## Next steps
 
 If you are not familiar with Unobtrusive messaging mode, read the [documentation](unobtrusive-mode-messages.md) or see the [working sample](unobtrusive-sample.md).
 

@@ -10,13 +10,11 @@ The Windows Azure platform and NServiceBus are a perfect fit. The Azure platform
 
 Windows Azure offers various ways to host applications. Each of these hosting options can be used in the context of NServiceBus, but there are some things to keep in mind for each.
 
-General Considerations
-----------------------
+## General Considerations
 
 Because of the size and service nature of the Windows Azure platform, you cannot rely on distributed transactions in this environment. Therefore, you cannot rely on any setup that would require distributed transactions, including the MSMQ transport. For details, refer to ['Understanding transactions in Windows Azure'](/nservicebus/understanding-transactions-in-windows-azure).
 
-Windows Azure Virtual Machines
-------------------------------
+## Windows Azure Virtual Machines
 
 The Virtual Machines hosting model is similar to any other virtualization technology in your datacenter. Machines are created from a virtual machine template, you are responsible for managing their content, and any change you make to them automatically persists in Windows Azure storage services.
 
@@ -31,9 +29,7 @@ For more information about enabling the Azure storage queues or Azure Service Bu
 
 For persistence you can rely on any option, including RavenDB, SQL Server installed on a Virtual Machine, SQL Azure or Windows Azure storage services.
 
-
-Windows Azure Websites
-----------------------
+## Windows Azure Websites
 
 Another deployment model is Windows Azure Websites, where you use a regular website and push it to your favorite source control repository (like GitHub).  On your behalf, Microsoft takes the latest issue from the repository, builds the binaries, runs your tests, and deploys to production.
 
@@ -47,9 +43,7 @@ The same applies to the persistence infrastructure if you select an 'as a servic
 
 To learn more about enabling persistence with Windows Azure storage, refer to [Azure storage persisters](/nservicebus/using-azure-storage-persistence-in-nservicebus).
 
-
-Cloud Services 
---------------
+## Cloud Services 
 
 The third hosting model available on the Windows Azure platform is 'Cloud Services'. In this hosting model, which is intended for applications with huge scalability demands, you define a layout for your application in a service definition file. 
 
@@ -70,9 +64,7 @@ To integrate these facilities with your endpoint code, we have provided a specif
 
 To learn more about the details of hosting in windows azure cloud services, refer to [Cloud Services](/nservicebus/hosting-nservicebus-in-windows-azure-cloud-services).
 
-
-Cloud Services - Shared Hosting
--------------------------------
+## Cloud Services - Shared Hosting
 
 The Cloud Services model is beautiful when it comes to building large scale systems, but in reality only a few systems need size from the very beginning, and find this model quite expensive. Most want to start out small and cheap, then grow larger over time. 
 
@@ -80,8 +72,6 @@ To support this need to start small, we also provide a shared hosting option, us
 
 If you want to learn more about the shared hosting options, please refer to [Cloud Services - Shared hosting](/nservicebus/shared-hosting-nservicebus-in-windows-azure-cloud-services).
 
-
-Sample
-------
+## Sample
 
 To see these hosting models in action, refer to the [Video store samples.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/).

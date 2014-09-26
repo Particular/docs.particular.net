@@ -15,8 +15,7 @@ Run the solution. Two console applications should start up. Find the client appl
 
 ![Full Duplex sample](fullduplex.png "Full Duplex sample")
 
-Code walk-through
------------------
+## Code walk-through
 
 Look at the Messages.cs file in the MyMessages project:
 
@@ -151,7 +150,6 @@ Here, the bus creates an instance of the `DataResponseMessage` class rather than
 
 Next, the `Test` header that was set on the request is copied to the response, and a couple of additional headers are set on the response message.
 
-
 ```C#
 response.CopyHeaderFromRequest("Test");
 response.SetHeader("1", "1");
@@ -173,7 +171,6 @@ Look back at `ClientEndpoint.cs` to see that it gets the header information from
 
 Open `DataResponseMessageHandler.cs` in the `MyClient` project and find a class whose signature looks similar to the message handler on the server:
 
-
 ```C#
 class DataResponseMessageHandler : IHandleMessages<DataResponseMessage>
 ```
@@ -181,7 +178,6 @@ class DataResponseMessageHandler : IHandleMessages<DataResponseMessage>
 In NServiceBus, clients can also have message handlers, just like servers. This is useful for separating the concerns on the client. Put logic that needs the context of the request in the callback code. Put logic that doesn't need that context in a separate message handler class.
 
 To unit-test the server, open the Tests.cs file in the `MyServer.Tests` project. You should see this:
-
 
 ```C#
 [Test]

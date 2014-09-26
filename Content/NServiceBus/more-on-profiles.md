@@ -17,8 +17,7 @@ Technically there is no difference between the environment- and feature-related 
 
 Let's look at each of them, starting with the environment-related profiles.
 
-Environment-related profiles
-----------------------------
+## Environment-related profiles
 
 NServiceBus comes with three built-in profiles whose main goal is to adjust the behavior of the host, depending on the environment where the endpoint is running.
 

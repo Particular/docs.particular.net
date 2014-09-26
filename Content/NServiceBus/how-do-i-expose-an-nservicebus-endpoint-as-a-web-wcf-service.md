@@ -15,15 +15,13 @@ OR
 
     public class YourWcfService : WcfService { }
 
-Queries and other return values
--------------------------------
+## Queries and other return values
 
 To allow clients to perform queries, it is best not to use NServiceBus. Messaging is designed for non-blocking operations, and queries are (for the most part) operations for which the user wishes to wait.
 
 If there is some other operation that isn't strictly a query that returns a value for example some type of calculation consider invoking the operation locally where possible by referencing the DLL on the client.
 
-Calling Web/WCF services
-------------------------
+## Calling Web/WCF services
 
 If you need to invoke a Web/WCF service as a part of your message handling logic, where that logic also updates transactional resources like a database, the best practice is to split it into two endpoints.
 

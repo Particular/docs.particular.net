@@ -6,8 +6,7 @@ tags: []
 
 MSMQ is the default transport used by NServiceBus.
 
-History
--------
+## History
 
 Microsoft Message Queuing (MSMQ) is available on almost all Windows machines from Windows 2000 onwards (though not the Win2K home edition). With Windows XP and Server 2003, Microsoft introduced MSMQ 3.0, and Service Pack 2 brought MSMQ to version 3.1, with an enterprise-ready feature set.
 
@@ -15,22 +14,19 @@ During the time that the Connected Systems Division at Microsoft was developing 
 
 Technologies such as BizTalk and SQL Server Service Broker still do not have a .NET API in the Base Class Library (BCL). MSMQ 4.0 was included in the Vista release, showing Microsoft's continued commitment. To this day, MSMQ remains the primary durable communications technology on the Microsoft platform.
 
-Virtual Private Networks (VPN)
-------------------------------
+## Virtual Private Networks (VPN)
 
 MSMQ isn't smart enough to dynamically detect network interfaces. Therefore, if you connect a VPN after the MSMQ service starts, you have to restart the MSMQ service for it to detect the VPN. Once it starts with the interface, the VPN is free to disconnect/reconnect whenever it wants.
 
 It is recommended to have batch setup scripts that run on server startups to connect the VPN, which then restarts the MSMQ service automatically.
 
-MSMQ clustering
----------------
+## MSMQ clustering
 
 MSMQ clustering works by having the active node running the instance of the MSMQ service and the other nodes being cold standbys. On failover, a new instance of the MSMQ service has to be loaded from scratch. All active network connections and associated queue handles break and have to be reconnected. Any transactional processing of messages aborts, returning the message to the queue after startup.
 
 So downtime is proportional to the time taken for the MSMQ service to restart on another node. This is affected by how many messages are in currently storage, awaiting processing.
 
-Useful links
-------------
+## Useful links
 
 -   [MSMQ Forums](http://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/home?forum=msmq)
 -   [MSMQ on Windows Server 2003](http://technet.microsoft.com/en-gb/library/cc757108%28WS.10%29.aspx)

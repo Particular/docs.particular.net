@@ -22,8 +22,7 @@ Now let's look at the code.
 
 ![Encryption sample](encryption.png "Encryption sample")
 
-Code walk-through
------------------
+## Code walk-through
 
 Starting with the Messages project, open the MessageWithSecretData.cs file and look at the following code:
 

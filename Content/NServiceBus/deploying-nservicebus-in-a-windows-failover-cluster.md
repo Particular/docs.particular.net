@@ -9,8 +9,7 @@ tags:
 
 NServiceBus is designed for scalability and reliability, but to take advantage of these features, you need to deploy it in a Windows Failover Cluster. Unfortunately, information on how to do this effectively is, as yet, incomplete and scattered. This article describes the process for deploying NServiceBus in a failover cluster. This article does not cover the generic setup of a failover cluster. There are other, better resources for that, such as [Creating a Cluster in Windows Server 2008](http://blogs.msdn.com/b/clustering/archive/2008/01/18/7151154.aspx). The focus here is the setup related to NServiceBus.
 
-Planning your infrastructure
-----------------------------
+## Planning your infrastructure
 
 A simple setup for scalability and reliability includes at least two servers in a failover cluster, and two additional servers for worker endpoints. The failover cluster servers run the following:
 
@@ -133,8 +132,7 @@ With your distributors installed, you can repeat the same procedure for any Comm
 
 Again, try swapping the cluster back and forth, to make sure it can move freely between the cluster nodes.
 
-​Setting up the workers
------------------------
+​## Setting up the workers
 
 Set up your worker processes on both worker servers (not the cluster nodes!) as services, as you did for the distributors. But instead of using NServiceBus.Distributor, use NServiceBus.Worker profile instead.
 
@@ -167,8 +165,7 @@ While in development, your endpoint configurations probably don't have any @ sym
 
 ```
 
- Conclusion
-----------
+## Conclusion
 
 This article shows how to set up a Windows Failover Cluster and two worker node servers to run a scalable, maintainable, and reliable NServiceBus application infrastructure.
 

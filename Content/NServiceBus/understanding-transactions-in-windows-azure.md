@@ -10,8 +10,7 @@ The Windows Azure Platform and NServiceBus make a perfect fit. On the one hand t
 
 To better understand why this feature is lacking, let's examine the implications of these technologies.
 
-Understanding transactions
---------------------------
+## Understanding transactions
 
 Transaction processing is designed to maintain systems integrity (typically a database or some modern filesystems and services) in a known, consistent state, by ensuring that interdependent operations on the system are either all completed successfully or all canceled successfully. This article mostly considers database technology and storage services.
 
@@ -28,8 +27,7 @@ For example:
 
 When both the database management system and client are under the same ownership, imagine you just deployed SQL Server to your own virtual machine, so locks are no longer an issue and you can control the lock duration. But even in this case, you need to be careful when it comes to distributed transactions. 
 
-Understanding distributed transactions and the two-phase commit protocol
-------------------------------------------------------------------------
+## Understanding distributed transactions and the two-phase commit protocol
 
 When multiple transaction-aware resources are involved in a single transaction, then this transaction automatically promotes to a distributed transaction. That means that handling the unit of work is now performed outside the database system by the so-called Global Transaction Manager, or Distributed Transaction Coordinator (DTC). This coordinator, the DTC service on the machine where the transaction started, communicates with similar services on the machines involved by means of the two-phase commit protocol, called resource managers.
 
@@ -46,8 +44,7 @@ This is the reason why none of the Windows Azure services supports distributed t
 
 Side note: The .net framework promotes to a distributed transaction rather quickly; for example, two open connections to the same resource (exact same connectionstring), will still promote to a distributed transaction, and there is no option to disable promotion. 
 
-How to use NServiceBus in this environment
-------------------------------------------
+## How to use NServiceBus in this environment
 
 By default, NServiceBus relies on the DTC to make distributed system development really easy. But in the Windows Azure environment, you cannot use the DTC. So you have to configure/use it a bit differently. 
 
@@ -122,8 +119,7 @@ Where the saga approach uses a central coordinator that orchestrates the work in
 *  Less flexible than sagas, requires linear thinking, can't execute handlers in parallel, and therefore is often slower.
 
 
-The need for idempotency
-------------------------
+## The need for idempotency
 
 Note that every approach involving retries will result in delivery semantics at least once. In other words, you can get the same message multiple times. You need to take this into account when designing your business logic and ensure that every operation is idempotent, or can be executed multiple times.
 

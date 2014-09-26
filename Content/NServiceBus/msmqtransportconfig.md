@@ -6,8 +6,7 @@ tags:
 - MSMQ
 ---
 
-NServiceBus V3
---------------
+## NServiceBus V3
 
 The configuration section defines properties of the MSMQ transport. Read background on [MSMQ](msmq-information.md).
 
@@ -51,8 +50,7 @@ This property is related to the `ErrorQueue` property, defining the number of ti
 
 Default value: 5.
 
-NServiceBus V4: Changes to MsmqTransportConfig
-----------------------------------------------
+## NServiceBus V4: Changes to MsmqTransportConfig
 
 The MsmqTransportConfig configuration section became obsolete in V4.0. Use the TransportConfig section instead:
 

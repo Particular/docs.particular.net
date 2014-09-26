@@ -13,8 +13,7 @@ Windows Azure Queue storage is a service, hosted on the Windows Azure platform, 
 - The main advantage of this service is that it offers a highly reliable and very cheap queuing service ($0.1 per million messages). A single queue message can be up to 64 KB in size, and a queue can contain millions of messages, up to the total capacity limit of a storage account (200 TB). Furthermore it is capable to emulate local transactions using it's queue peek lock mechanism.
 - The main disadvantage of this service is latency introduced by it's remoteness and the fact that it only supports HTTP based communication.
 
-How to enable the transport
----------------------------
+## How to enable the transport
 
 First you need to reference the assembly that contains the azure storage queue transport definition. The recommended way of doing this is by adding a nuget package reference to the  `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` package to your project.
 
@@ -36,19 +35,19 @@ Alternatively, when using one of the NServiceBus provided hosting processes, you
 	    }
 	}
 
-Setting the connection string
-----------------------------
+## Setting the connection string
 
 The default way of setting the connection string is using the .net provided connectionstrings configuration section in app.config or web.config, with the name `NServicebus\Transport`
 
+```
 <connectionStrings>
    <add name="NServiceBus/Transport" connectionString="UseDevelopmentStorage=true" />
 </connectionStrings> 
+```
 
 Note that multiple connection string formats apply when working with windows azure storage services. When you're running against the emulated environment the format is `UseDevelopmentStorage=true`, but when running against a cloud hosted storage account the format is `DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;` 
 
-Detailed configuration
-----------------------
+## Detailed configuration
 
 If you need more fine grained control on how the azure storage queue transport behaves, you can override the default settings by adding a configuration section called `AzureQueueConfig` to your web.config or app.config. For example:
 
@@ -68,8 +67,7 @@ Using this configuration setting you can change the following values.
 - `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. Defaults to 10. Depending on the load you expect, I would vary this value between 1 and 1000 (which is the limit)
 - `QueuePerInstance`: Tells nservicebus to create a separate queue for every instance of the endpoint hosted. This is useful in pub sub scenario's where you want a message to arrive at every instance of the endpoint, f.e. in a webfarm that has local cache on every machine. Defaults to false.
 
-Sample
-------
+## Sample
 
 Want to see this transport in action? Checkout the [Video storage sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud)
 

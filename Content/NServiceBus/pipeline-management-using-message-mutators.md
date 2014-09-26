@@ -9,8 +9,7 @@ The message pipeline in NServiceBus V2.X consisted of message modules. They serv
 
 The [DataBus feature](attachments-databus-sample.md) of NServiceBus V3.0 uses message mutators to change the content of a message before and after sending it on the wire and act as fine-grained hooks into the pipeline. See how to use them.
 
-Two flavors of mutators
------------------------
+## Two flavors of mutators
 
 NServiceBus enables two types of message mutators:
 
@@ -28,15 +27,13 @@ Create transport message mutators by implementing the `IMutateTransportMessages`
 
 Remember that message mutators are NOT automatically registered in the container, so to invoke them, register them in the container yourself.
 
-When should I use a message mutator?
-------------------------------------
+## When should I use a message mutator?
 
 Just like the recommendation for headers, only use message mutators for infrastructure purposes.
 
 As a rule of thumb, consider using message mutators only to solve technical requirements.
 
-What happens if a mutator throws an exception?
-----------------------------------------------
+## What happens if a mutator throws an exception?
 
 If a server side (incoming) mutator throws an exception, the message aborts, rolls back to the queue, and is retried.
 

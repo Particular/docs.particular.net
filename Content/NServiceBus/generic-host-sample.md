@@ -10,8 +10,7 @@ This [sample](https://github.com/Particular/NServiceBus/tree/3.3.8/Samples/Gener
 
 Even though NServiceBus uses Log4Net as its logging infrastructure, the default configuration model is different from Log4Net. This default logging configuration model is shown in the LoggingWithConfigurableThreshold project.
 
-LoggingWithConfigurableThreshold
---------------------------------
+## LoggingWithConfigurableThreshold
 
 Open the app.config file. See the Logging configuration section at the top as well as its contents:
 
@@ -30,8 +29,7 @@ This code instructs NServiceBus to only output logs at a level of WARN or higher
 
 The rest of the logging configuration is already in NServiceBus and you can control it using profiles. Read background on [what profiles are and how to use them](profiles-for-nservicebus-host.md) .
 
-LoggingFromAppConfig
---------------------
+## LoggingFromAppConfig
 
 This project tells NServiceBus to use standard log4net configuration.
 
@@ -80,8 +78,7 @@ This instructs Log4Net to output to the console using a pattern including data l
 
 The reason that this technique isn't used by default is that NServiceBus tries to prevent administrators from being able to accidentally change things they shouldn't touch; for example, the pattern. NServiceBus takes things that should be managed by developers and provides an API for them. This is shown in the next example.
 
-Logging
--------
+## Logging
 
 While you may want to change the logging of a process without having to recompile it, the most common scenario is switching between a few well-defined configurations, known as [profiles](profiles-for-nservicebus-host) in NServiceBus.
 
@@ -119,8 +116,7 @@ Now open the properties of the Logging project, and click the Debug tab:
 
 See the command line arguments for `Logging.MyProductionProfile`, which specify which profile the host should use, via the command line.
 
-Next steps
-----------
+## Next steps
 
 If you have not yet done so, read about [profiles](profiles-for-nservicebus-host.md) .
 

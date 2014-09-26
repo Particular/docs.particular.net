@@ -8,26 +8,20 @@ NOTE: Bus.InMemory feature has been deprecated starting from version 4.6 and wil
 
 Prior to V4.0, NServiceBus provided an asynchronous method of communication between parts of the system using `Send`, `Reply`, and `Publish` API. Asynchronous forms of communication are great for ensuring reliable and durable communication between parts of the system. NServiceBus V4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.
 
-
 This is the same concept as for the [domain events pattern](http://www.udidahan.com/2009/06/14/domain-events-salvation/).
 
-
-Events
-------
-
+## Events
 
 In the OO world, nouns identify objects. In the event-driven world, the word "when" identifies events. For example, if a business rule says,
 "When a customer becomes a preferred client, we want to send them a welcome email", this is the pre-cursor for the "ClientBecamePreferred" event.
 
 In .NET 4.0, to define an event, use the event keyword in the signature of your event field, and specify the type of delegate for the event and its arguments. For example:
 
-
 ### Define an event:
     
 ```C#
 public event EventHandler<ClientBecamePreferredEventArgs> RaiseClientBecamePreferredEvent;
 ```
-
 
 ### Define the event arguments:
     
@@ -59,15 +53,14 @@ protected virtual void OnRaiseClientBecamePreferredEvent(ClientBecamePrefferedEv
 }
 ```
 
-In-memory events
-----------------
-
+## In-memory events
 
 In-memory events are like regular .NET events in that all observing objects that have registered interest are called synchronously. They are implemented in the same fashion as the rest of the bus events. In-memory events can be useful if a few things must be handled synchronously when a certain business event has occurred. Define them as IEvent or POCOs, and use the unobtrusive conventions in the same way as before.
 
 For example:
 
 ### Event defined using the IEvent marker interface
+
 ```C#
 public class ClientBecamePreferred : IEvent
 {
@@ -76,6 +69,7 @@ public class ClientBecamePreferred : IEvent
 ```
 
 ### POCO Event
+
 ```
 public class ClientBecamePreferred
 {
@@ -135,8 +129,7 @@ Examples:
 -   Where reliable and durable integration is needed; for example, when integrating with third-party web services.
 -   Sending an email, because the email should be sent only when the transaction succeeds in its entirety. To send emails directly, use `Bus.Send` in the handler instead of SMTP code.
 
-NServiceBus eventing style 
---------------------------
+## NServiceBus eventing style 
 
 NServiceBus uses IoC heavily. When the endpoints start, NServiceBus scans the assemblies in the directory. It finds event, command, and message types, either the marker interfaces or unobtrusive conventions. It also scans the assemblies to identify the types that implement the handlers for event types that implement `IHandleMessages<T>`, and registers them in the container. Read more about [NServiceBus and its use of containers](containers.md).
 

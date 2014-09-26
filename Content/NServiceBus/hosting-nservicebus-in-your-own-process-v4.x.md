@@ -8,8 +8,7 @@ Lighter-weight than BizTalk and more powerful than WCF, NServiceBus comes with i
 
 Requiring as few as three assemblies to be referenced, the Fluent configuration API can get you up and running with transactional one-way messaging in a snap.
 
-Assembly references
--------------------
+## Assembly references
 
 ![Assembly references](webapp_references.png)
 
@@ -22,8 +21,7 @@ To host NServiceBus in your own process, the assemblies shown on the left need t
 The [Video store sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/VideoStore.Msmq) for v4.x.
 
 
-NServiceBus initialization
---------------------------
+## NServiceBus initialization
 
 In the `ApplicationStart` method of your `Global.asax` file in a web application, or in the `Main` method of your `Program` file for console or Windows Forms applications, include the following initialization code:
 
@@ -81,8 +79,7 @@ public class MvcApplication : System.Web.HttpApplication
     }
 ```
 
-Configuration Code
-------------------
+## Configuration Code
 
 Most of the methods are extensions for the
 [NServiceBus.Configure](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config) class provided by the specific components packaged in the NServiceBus.Core assembly. You can similarly configure your own components by writing your own extension methods.
@@ -101,8 +98,7 @@ For NServiceBus v4.x:
 In addition to the above initialization code, NServiceBus requires certain configuration data to be available. By default, it retrieves this information from the application config file, though this can be changed with the CustomConfigurationSource() method.
 
 
-Configuration files
--------------------
+## Configuration files
 
 To use the initialization code above, provide configuration for the MsmqTransport and processing of faults; specifically, the number of threads it runs, and where it sends messages that cannot be processed.
 
@@ -122,8 +118,7 @@ type="NServiceBus.Config.MessageForwardingInCaseOfFaultConfig, NServiceBus.Core"
 
  If an exception is thrown during the processing of a message, NServiceBus automatically retries the message (as it might have failed due to something transient like a database deadlock). MaxRetries specifies the maximum number of times this is done before the message is moved to the ErrorQueue.
 
-Routing configuration
----------------------
+## Routing configuration
 
 While you can tell NServiceBus to which address to send a message using the API: `Bus.Send(toDestination, message);` NServiceBus enables you to keep your code decoupled from where endpoints are deployed on the network through the use of routing configuration. Include this configuration section:
 

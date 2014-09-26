@@ -24,8 +24,7 @@ Now let's look at the code.
 
 ![Message mutaturs sample](MessageMutatorSolutionExplorer.png "Message mutaturs sample")
 
-Code walk-through
------------------
+## Code walk-through
 
 This sample shows how to create a custom message mutator.
 
@@ -44,8 +43,7 @@ This sample implements two mutators:
 
 Let's look at the MessageMutators Assembly.
 
-Message mutators assembly
--------------------------
+## Message mutators assembly
 
 Both interfaces are implemented in the MessageMutators project.
 
@@ -57,7 +55,7 @@ Examine the implementation of ValidationMessageMutator:
 ```C#
 public class ValidationMessageMutator : IMessageMutator
 {
-  private static readonly ILog Logger = LogManager.GetLogger("ValidationMessageMutator");
+  static ILog Logger = LogManager.GetLogger("ValidationMessageMutator");
 
   public object MutateOutgoing(object message)
   {
@@ -172,8 +170,7 @@ Otherwise, the incoming method is replacing the transport message Body compresse
 
 Now all we have to do it hook those two mutators into the NServiceBus message flow.
 
-Configuring NServiceBus to use the message mutators
----------------------------------------------------
+## Configuring NServiceBus to use the message mutators
 
 To hook the sample message mutators into NServiceBus messaging flow:
 
@@ -199,8 +196,8 @@ Since the `HookMyMessageMutators` class is defined in the MessageMutators class 
 
 Simply dropping the MessageMutators assembly in the executable folder means that that the client and server are agnostic to the fact that message mutation is being executed and to its nature. The message mutation can be replaced, updated, and removed without the client and server knowing about it.
 
-Client and server code
-----------------------
+## Client and server code
+
 
 Since registration is done automatically by the framework, the server and client code are NServiceBus standard for sending and handling a message. There is nothing special here.
 

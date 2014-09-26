@@ -13,8 +13,7 @@ To use the default storage, ensure you have a RavenDB server running to which yo
 -   [Download](http://ravendb.net/download) and install RavenDB yourself (if you already use Raven or if you have other specific requirements for the installation)
 -   Let NServiceBus do it for you
 
-NServiceBus auto-installation of RavenDB
-----------------------------------------
+## NServiceBus auto-installation of RavenDB
 
 **Version 3.0:** RavenDB is included with the NServiceBus binaries (not ilmerged) and an infrastructure installer ensures that Raven is installed on the local machine when the installers are invoked. The install is only performed if the following is true:
 
@@ -33,15 +32,13 @@ NServiceBus auto-installation of RavenDB
 
 For instructions on how to administrate and operate a RavenDB server, refer to the [documentation for RavenDB](http://ravendb.net/docs/server/administration).
 
-Upgrading RavenDB
------------------
+## Upgrading RavenDB
 
 To upgrade an existing RavenDB installation refer to the [RavenDB website article describing the upgrade process](http://ravendb.net/docs/2.0/server/administration/upgrade).
 
 Note it is highly recommended that you backup your Raven database prior to upgrading.
 
-Which versions of RavenDB are compatible?
------------------------------------------
+## Which versions of RavenDB are compatible?
 
 NServiceBus V3.X is tested and compatible with all RavenDB versions from 616 through 992 and RavenDB v2. We strongly recommend using 992 since it has better support for transaction recovery. Download v992 here: [RavenDB Server - 992](http://hibernatingrhinos.com/builds/ravendb-stable-v1.0/992).
 
@@ -51,8 +48,7 @@ NServiceBus V5.0 requires RavenDB v2.5 build 2900 and above.
 
 For more information regarding RavenDB compatibility, please refer to the [RavenDB website](http://ravendb.net/docs/2.0/client-api/backward-compatibility).
 
-Next steps
-----------
+## Next steps
 
 You can continue reading about [connecting to RavenDB in NService bus](using-ravendb-in-nservicebus-connecting.md) or about [unit of work implementation for RavenDB](unit-of-work-implementation-for-ravendb.md).
 

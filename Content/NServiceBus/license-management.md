@@ -8,8 +8,8 @@ tags:
 
 There are several ways to make sure that your NServiceBus endpoints pick up and use your license. The following options are available: [Registry](#registry), [subfolder in your BIN directory](#subfolder_in_BIN), [app.config](#app.config), or [fluent API](#fluent_api).
 
-Using the registry
--------------------------------------------------------
+## Using the registry
+
 NServiceBus supports storing the license in a registry key. This allows you to install a license for the entire server, making it very easy to update. If you are managing many machines this also allows you to automatically roll out changes to all machines using group policies. 
 
 **NServiceBus 4.5 and above**
@@ -45,14 +45,12 @@ When installed using the [Install-NServiceBusLicense](managing-nservicebus-using
 In order to install the license file under HKCU (same location in version 3.3), please use the `-c` option on the `LicenseInstaller.exe`
 
 
-Using a subfolder in your BIN directory
---------------------------------------------------------------------------------------------
+## Using a subfolder in your BIN directory
 
 To have NServiceBus automatically pick up your License.xml file, place it in a subfolder named /License under your BIN folder.
 
 
-Using the app.config settings
-------------------------------------------------------
+## Using the app.config settings
 
 As a developer you can specify the license in app.config:
 
@@ -78,8 +76,7 @@ license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;201
 ```
 
 
-Using the Fluent API
--------------------------------------------------------------
+## Using the Fluent API
 
 As a developer you can specify the license to use in your configuration code:
 

@@ -14,8 +14,7 @@ Concurrent access to saga instances is divided into two scenarios;
 
 Let's look at both scenarios in detail and see your options.
 
-Concurrent access to non-existing saga instances
-------------------------------------------------
+## Concurrent access to non-existing saga instances
 
 Sagas are started by the message types you handle as `IAmStartedByMessages<T>`. If more than one are processed concurrently and are mapped to the same saga instance there is a risk that more than one thread tries to create a new saga instance.
 
@@ -27,8 +26,7 @@ In NServiceBus V2.X you had to create the constraint yourself but V3.X has the [
 
 With this constraint in place, only one thread is allowed to create a new saga instance.
 
-Concurrent access to existing saga instances
---------------------------------------------
+## Concurrent access to existing saga instances
 
 This works predictably due to reliance on the underlying database providing optimistic concurrency support. When more than one thread tries to update the same saga instance, the database detects it and only allows one of them to commit. If this happens the retries will occur and the race condition be solved.
 

@@ -15,8 +15,7 @@ Four persistence technologies are in use in NServiceBus:
 
 Read about [installing Raven DB](using-ravendb-in-nservicebus-installing.md) and [how to connect to it](using-ravendb-in-nservicebus-connecting.md) .
 
-Using NHibernate for persistence
---------------------------------
+## Using NHibernate for persistence
 
 Starting with NServiceBus V3.0, support for NHibernate persistence is located in a separate assembly.  The configuration was then simplified further for V4.0+.
 
@@ -25,8 +24,7 @@ Starting with NServiceBus V3.0, support for NHibernate persistence is located in
 [NHibernate persistence for V4.x](relational-persistence-using-nhibernate---nservicebus-4.x.md).
 
 
-What's available?
------------------
+## What's available?
 
 The following table summarizes what is available and how to configure each feature.
 
@@ -85,10 +83,7 @@ static void Main()
     .CreateBus()
     .Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
 }
-
 ```
-
-
 
 When you use NServiceBus.Host.exe out of the box, you can utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, you can override the configured defaults. Read more about
 [profiles](profiles-for-nservicebus-host.md) , [here too](more-on-profiles.md).
@@ -105,14 +100,10 @@ NOTE: Before configuring persistence technology, to avoid overriding your config
 |  Gateway                        |Lite     |MultiSite             |-            |-     					   |
 |  Distributor                    |- 	    |-                     |-            |Distributor				   |
 
-Default persisting technology
------------------------------
+## Default persisting technology
 
 The `AsAServer` role activates the timeout manager. This role does not explicitly determine which persisting technology to use. Hence, the default persisting technology for timeout manager (RavenDB) is used.
 
 Similarly to the `AsAServer` role, the various profiles activate the different NServiceBus features, without explicitly configuring the persisting technology.
 
 Read more about the [different profiles](more-on-profiles.md) .
-
-
-

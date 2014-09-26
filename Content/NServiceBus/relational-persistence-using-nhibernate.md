@@ -15,9 +15,7 @@ If you require that your data persist in a relational database, NServiceBus prov
 
 This automatically sets up all the dependencies and is the recommended way of using NHibernate support.
 
-
-Subscriptions
--------------
+## Subscriptions
 
 To store subscriptions using NHibernate, use this configuration:
 
@@ -49,8 +47,7 @@ NServiceBus then picks up the connection setting from your app.config. Here is a
 
 Read about the [available properties](http://nhforge.org/doc/nh/en/index.html#configuration-xmlconfig).
 
-Sagas
------
+## Sagas
 
 To store sagas using NHibernate, use this configuration:
 
@@ -79,8 +76,7 @@ Example configuration:
   </NHibernateSagaPersisterConfig>
 ```
 
-Timeouts
---------
+## Timeouts
 
 For the timeout manager to store timeouts using NHibernate, use this configuration (SqlServer2008 in this case). This is valid from V3.2.3 onwards.
 

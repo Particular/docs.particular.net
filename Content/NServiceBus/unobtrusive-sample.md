@@ -14,8 +14,7 @@ To demonstrate NServiceBus operating in unobtrusive mode, open the [unobtrusive 
 
 Run the solution. Two console applications should start up. Find the client application by looking for the one with "Client" in its path and follow the onscreen instructions to send messages to the server.
 
-Configuring the Unobtrusive message
------------------------------------
+## Configuring the Unobtrusive message
 
 The following code snippet shows how to determine which types are message definitions by passing in your own conventions, instead of using the `IMessage`, `ICommand`, or `IEvent` interfaces:
 
@@ -52,8 +51,7 @@ For these three projects of message definitions, open the references to see that
 -   Events Class library defines an event
 -   Messages Class library defines a request and a response message, and includes messages that are express and have a time to be received
 
-Sample messaging patterns
--------------------------
+## Sample messaging patterns
 
 This sample contains three messaging patterns:
 
@@ -61,8 +59,7 @@ This sample contains three messaging patterns:
 -   Command: The client sends a command to the server that returns a status
 -   Messages Class library: defines a request and a response message. See that no references are required for NServiceBus libraries
 
-Send/Reply messaging pattern code
----------------------------------
+## Send/Reply messaging pattern code
 
 Read the [Full Duplex](full-duplex-sample-v3.md) sample.
 
@@ -112,8 +109,7 @@ Bus.Reply(new Response
 public class ResponseHandler : IHandleMessages<Response>
 ```
 
- Command/Status messaging pattern code
--------------------------------------
+## Command/Status messaging pattern code
 
 ### Client side message declaration
 
@@ -187,8 +183,7 @@ Configure.With()
 
 The encryption algorithm is declared in App.config of both client and server with the  `RijndaelEncryptionServiceConfig` section name. See the [Encryption sample](encryption-sample.md).
 
-Publish/Subscribe messaging pattern code
-----------------------------------------
+## Publish/Subscribe messaging pattern code
 
 For a complete sample, see the [Pub/Sub documentation](how-pub-sub-works.md) .
 
@@ -233,8 +228,7 @@ Bus.Publish<IMyEvent>(m =>
 
 When using naming convention to mark your commands events and messages, you can achieve freedom from dependency on NServiceBus message versioning. The sample shows that after declaring messages, commands, and events, the way NServiceBus sends and receives code is identical to scenarios where the messages interface implementation is done explicitly.
 
-Next steps
-----------
+## Next steps
 
 Read about [Message Mutators](nservicebus-message-mutators-sample.md) .
 

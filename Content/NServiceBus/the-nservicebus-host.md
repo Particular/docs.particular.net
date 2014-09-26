@@ -8,8 +8,7 @@ To avoid re-writing the same configuration code, or to host your endpoints in a 
 
 The NServiceBus host streamlines service development and deployment, allows you to change technologies without code, and is administrator-friendly when setting permissions and accounts.
 
-Overview
---------
+## Overview
 
 To implement back-end message processing, you don't need to write your own host process. Just reference NServiceBus.Host.exe from your message handler assembly and write a single class that inherits from
 `IConfigureThisEndpoint`, specifying whether you want server or client behavior (as described below).
@@ -24,8 +23,7 @@ To run and debug your endpoint, change the Debug settings of the Visual Studio p
 
 Make sure that 'Start external program' is selected under Start Action and choose the file 'NServiceBus.Host.exe' in the `/bin/debug` directory of your project. 
 
-Configuration
--------------
+## Configuration
 
 How does the host know which configuration file to use? NServiceBus.Host.exe scans the runtime directory loading all DLLs into memory. It searches the types defined in those assemblies for a class that implements the `IConfigureThisEndpoint` interface. The name of the assembly holding that type is used to create `assembly.dll.config` and that is the file used for configuration.
 
@@ -40,8 +38,7 @@ Shortcut the scanning process by telling the host which type to use by including
 </configuration>
 ```
 
-File scanning
--------------
+## File scanning
 
 By default, NServiceBus scans files to find types implementing its interfaces so that it can configure them automatically. This is separate from the host's file scanning behavior and happens in the '`NServiceBus.Configure.With()` call.
 
@@ -55,8 +52,7 @@ Configure.With(IEnumerable<Type> typesToScan)
 
 NOTE: The NServiceBus assemblies are always included in scanning since NServiceBus needs them to function properly.
 
-Logging
--------
+## Logging
 
 To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure your custom setup. To make NServiceBus use your logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](logging-in-nservicebus.md) and shown below:
 
@@ -73,8 +69,7 @@ class MyEndpointConfig : IConfigureThisEndpoint, IWantCustomLogging
 
 You may want to specify different logging levels (`DEBUG`, `WARN`, etc.) and possibly different targets `(CONSOLE`, `FILE`, etc.). The host provides a mechanism for changing these permutations with no code or config changes, via [profiles](profiles-for-nservicebus-host.md) .
 
-Custom initialization and startup
----------------------------------
+## Custom initialization and startup
 
 On top of the standard NServiceBus initialization you can initialize your own components. NServiceBus let you do it during its own initialization so that no messages are processed until all initialization is complete.
 
@@ -94,8 +89,7 @@ NOTE: Do not perform any startup behaviors in the `Init` method.
 Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing
 `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in v3.x) should kick off things such as web crawling, data mining, and batch processes.
 
-Containers and dependency injection
------------------------------------
+## Containers and dependency injection
 
 By default, the host makes use of Autofac internally as its container
 (dependency injection framework). To use a different container, implement the
@@ -133,8 +127,7 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomIni
 If you omit the serialization configuration, XML is used by default. The rest of the code specifying transport, subscription storage, and other technologies isn't here, because of the
 `AsA_Server` built-in configuration described next.
 
-Built-in configurations
------------------------
+## Built-in configurations
 
 While NServiceBus allows you to pick and choose which technologies to use and how to configure each of them, the host packages these choices into three built-in options: `AsA_Client`, `AsA_Server`, and
 `AsA_Publisher`. All these options make use of `XmlSerializer`, `MsmqTransport`, and `UnicastBus`. The difference is in the configuration:
@@ -143,8 +136,7 @@ While NServiceBus allows you to pick and choose which technologies to use and ho
 -   `AsA_Server` sets `MsmqTransport` as transactional and does not purge messages from its queue on startup. This makes it fault-tolerant.
 -   `AsA_Publisher` extends`AsA_Server` and indicates to the infrastructure to set up storage for    subscription requests, described in the [profiles page](profiles-for-nservicebus-host.md).
 
-Installation
-------------
+## Installation
 
 To install your process as a Windows Service, you need to pass `/install` on the command line to the host. By default, the name of the service is the name of your endpoint and the endpoint name is the namespace of your endpoint config class. To enable side-by-side operations, use the `/sideBySide` switch to add the semver version to the service name. Passing /install also causes the host to invoke the
 [installers](nservicebus-installers.md) .

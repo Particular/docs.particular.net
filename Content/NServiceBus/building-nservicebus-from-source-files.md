@@ -4,11 +4,7 @@ summary: Build NServiceBus from its source files, noting entry points, Build.ps1
 tags: []
 ---
 
-Getting the source
-==================
-
-Cloning the git repository
---------------------------
+## Cloning the git repository
 
 If you want all the source for all versions of NServiceBus you should
 "Clone the repository". The recommended approaches are
@@ -16,8 +12,7 @@ If you want all the source for all versions of NServiceBus you should
 - Using [GitHub for Windows](https://windows.github.com/)
 - Using the [Git command line](http://git-scm.com/book/en/Git-Basics-Getting-a-Git-Repository)
 
-Downloading a zip
------------------
+## Downloading a zip
 
 GitHub supports downloading a zip file of the source. The convention is
 `https://github.com/NServiceBus/NServiceBus/archive/{branchOrTagName}.zip`. So for example

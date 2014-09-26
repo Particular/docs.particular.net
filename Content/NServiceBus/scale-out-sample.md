@@ -26,8 +26,7 @@ NOTE: Either the distributor or one of the workers could process the messages fr
 
 Now let's look at the code.
 
-Code walk-through
------------------
+## Code walk-through
 
 There are five projects in the solution.
 
@@ -37,8 +36,7 @@ There are five projects in the solution.
 -   `Orders.Handler.Worker1` contains the exact same code as the Orders.Handler. The only change is in the `app.config` and is setup to run using the Worker profile.
 -   `Orders.Handler.Worker2` contains the exact same code as the Orders.Handler. The only change is in the `app.config` and is setup to run using the Worker profile.
 
-Scaling out
------------
+## Scaling out
 
 Assuming business is booming, orders are flowing in, and `PlaceOrder` commands are stacking up in the `Orders.Handler` endpoint, you need to scale out.
 
@@ -128,8 +126,7 @@ Nothing has to be done to the Sender; NServiceBus does all the distribution work
 
 ![Scale out diagram with one worker on another machine](scaleoutDiagramOneWorker.png "Scale out diagram with one worker on another machine")
 
-What is going on here?
-----------------------
+## What is going on here?
 
 As can be seen from the diagram, nothing changes for the `Orders.Sender`. It still sends messages to the `Orders.Handler` endpoint.
 
@@ -139,8 +136,7 @@ As can be seen from the diagram, nothing changes for the `Orders.Sender`. It sti
 
 When the workers finish handling the `ProcessOrder` command, they re-send "I'm ready to process messages" to the Distributor control endpoint: Orders.Handler.Control. The workers share the subscription storage so they can both publish the `OrderPlaces` event. NServiceBus is responsible for informing the workers to which database to connect. The database should be accessible to the workers.
 
-Worker at work
---------------
+## Worker at work
 
 The following snapshot shows the Worker console window at work (the worker is running from a different machine than the Distributor).
 
@@ -150,8 +146,7 @@ You can see from the Worker console window (above) that the worker receives the 
 
 The error messages appear when there is no valid license for the worker and it works on a different node from the distributor. This message is logged for every received message from the remote worker. In this case, a [valid NServiceBus License](http://particular.net/licensing) should be obtained.
 
-Next steps
-----------
+## Next steps
 
 Read about [the distributor](load-balancing-with-the-distributor.md).
 

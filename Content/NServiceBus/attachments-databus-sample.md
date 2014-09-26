@@ -20,8 +20,7 @@ To see how to send and receive attachments in NServiceBus, open the [Databus sam
 ![Databus sample Running](DatabusRunning.png "Databus sample Running")
 
 
-Code walk-through
------------------
+## Code walk-through
 
 This sample contains three projects:
 
@@ -82,7 +81,6 @@ Following is an example of the signaling message that is sent to the receiving e
 </Messages>
 ```
 
-
 ### Sender project
 
 The Sender project shows how to configure NServiceBus to handle attachments, starting with the Sender project app.config:
@@ -97,7 +95,6 @@ The Sender project shows how to configure NServiceBus to handle attachments, sta
  The sender instructs NServiceBus to send messages with Namespace equal to Receiver.Messages to the Receiver endpoint.
 
 Open EndpointConfig in the Sender project:
-
 
 ```C#
 public class EndpointConfig : IConfigureThisEndpoint, AsA_Client, IWantCustomInitialization
@@ -119,7 +116,6 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Client, IWantCustomIni
 
 The following sender project code sends the MessageWithLargePayload message, utilizing the NServiceBus attachment mechanism:
 
-
 ```C#
 bus.Send<MessageWithLargePayload>(m =>
 {
@@ -128,11 +124,7 @@ bus.Send<MessageWithLargePayload>(m =>
 });
 ```
 
-
-
-
 The following Sender project code sends the AnotherMessageWithLargePayload message without utilizing the NServiceBus attachment mechanism:
-
 
 ```C#
 bus.Send<AnotherMessageWithLargePayload>(m =>
@@ -141,8 +133,6 @@ bus.Send<AnotherMessageWithLargePayload>(m =>
 });
 ```
 
-
-
 In both cases, a 5MB message is sent, but in the MessageWithLargePayload it goes through, while AnotherMessageWithLargePayload fails.
 
 Go to the Receiver project to see the receiving application.
@@ -150,7 +140,6 @@ Go to the Receiver project to see the receiving application.
 ### Receiver project
 
 The endpoint configuration code of Receiver is identical to that of the Sender. Open EndpointConfig in the Sender project:
-
 
 ```C#
 public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization
@@ -169,7 +158,6 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomIni
 
  Following is the receiving message handler:
 
-
 ```C#
 public class MessageWithLargePayloadHandler : IHandleMessages<MessageWithLargePayload>
 {
@@ -180,7 +168,6 @@ public class MessageWithLargePayloadHandler : IHandleMessages<MessageWithLargePa
 }
 ```
 
- Next steps
-----------
+## Next steps
 
 If you are not familiar with [Unobtrusive messaging](unobtrusive-mode-messages.md) mode, read the documentation or see the [working sample](unobtrusive-sample.md).

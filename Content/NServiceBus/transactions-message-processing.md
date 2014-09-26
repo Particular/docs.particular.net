@@ -6,20 +6,17 @@ tags: []
 
 As a part of the NServiceBus "Fault-Tolerant by Default" design, the infrastructure manages transactions automatically so you don't have to remember the configuration of all threading and state management elements.
 
-Clients and servers
--------------------
+## Clients and servers
 
 Ideally, server code processes messages transactionally, but it often isn't required for clients, particularly desktop applications. This is one of the differences between the `AsAClient` and `AsAServer` settings of the [generic host](the-nservicebus-host.md) in NServiceBus.
 
-Specifying transactions in code
--------------------------------
+## Specifying transactions in code
 
 If you aren't using the generic host, you can specify whether the current endpoint should process messages transactionally by setting the `.IsTransactional(true)` after `.MsmqTransport()` (in version 3) or `.UseTransport<Msmq>()` (in version 4).
 
 To override the System.Transactions default timeout of 10 minutes, follow the steps described in [this blog post](http://blogs.msdn.com/b/ajit/archive/2008/06/18/override-the-system-transactions-default-timeout-of-10-minutes-in-the-code.aspx).
 
-Distributed Transaction Coordinator
------------------------------------
+## Distributed Transaction Coordinator
 
 In Windows, there is an OS-level service called the DTC that manages transactions needing to span multiple resources, like queues and databases. This service isn't always configured correctly and may require troubleshooting. Download a tool called
 [DTCPing](http://www.microsoft.com/en-us/download/details.aspx?id=2868) to help you discover if one machine can access a remote machine over the DTC. The tool looks like this.
@@ -51,8 +48,7 @@ Make sure you perform all the steps not just on the servers that connect to the 
 
 Finally, check the TCP ports in use on the servers, making sure that each has a different port configured as the communication is bi-directional. At this point, you should be able to run transactional NServiceBus endpoints.
 
-Message processing loop
------------------------
+## Message processing loop
 
 Messages are processed in NServiceBus as follows:
 
@@ -70,8 +66,7 @@ In this manner, even under all kinds of failure conditions like the application 
 
 The automatic retry mechanism is usually able to recover from most temporary problems. When that isn't possible, the message is passed to the [SLR](second-level-retries.md) to decide what to do next.
 
-Resolving more permanent errors
--------------------------------
+## Resolving more permanent errors
 
 In situations where more permanent errors affect systems, despite their diversity, the NServiceBus solution is the same. Before describing it, let's see examples of some of these situations:
 
@@ -85,8 +80,7 @@ SLRs also aids in the [resolution of more permanent errors](second-level-retries
 
 There is nothing necessarily wrong with the message itself. It might contain valuable information that shouldn't get lost under these conditions. Therefore, after the administrator finishes resolving the issue, they should return the message to the queue it came from. Luckily, NServiceBus comes with a tool that does exactly that.
 
-ReturnToSourceQueue.exe
------------------------
+## ReturnToSourceQueue.exe
 
 ![Return to source queue tool](ReturnToSourceQueue.png)
 

@@ -40,8 +40,7 @@ If you are using the Request-Response or Full Duplex pattern, your handler will 
 
 If you are handling a message in a publish and subscribe scenario, see [How to Publish/Subscribe to a Message](how-to-pub-sub-with-NServiceBus).
 
-What happens when there is no handlers for a message?
----------------
+## What happens when there is no handlers for a message?
 
 Receiving a message for which there is no message handlers is considered an error and the received message will be forwarded to the configured error queue. 
 

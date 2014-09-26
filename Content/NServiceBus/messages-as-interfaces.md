@@ -8,13 +8,11 @@ Message schema flexibility is at the core of NServiceBus. Beyond just standard X
 
 The versioning advantages of NServiceBus message types allow for easily extending endpoints without breaking clients or subscribers.
 
-Use classes for commands
-------------------------
+## Use classes for commands
 
 When writing commands, it is recommended to use classes rather than interfaces for those messages. The advantage of using a class is that you can include validation logic in the class constructor so that clients sending these messages are not able to send invalid commands. Of course, you will re-validating these commands on the server side anyway.
 
-Use interfaces for events
--------------------------
+## Use interfaces for events
 
 Since events represent something that occurred in the past, the importance of validation is much decreased. Also, only the publisher of an event is the one that creates and sends the event. Subscribers cannot invalidate an event that was published. As such, the ability to put logic in the class representing a message is less relevant for events.
 

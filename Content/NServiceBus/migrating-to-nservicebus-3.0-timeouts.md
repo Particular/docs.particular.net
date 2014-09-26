@@ -21,8 +21,7 @@ To skip migration and run the TimeoutManagers side by side:
 
 NOTE: This is NOT the same queue as the input queue that you would have configured in your endpoint mappings.
 
-Why to migrate?
----------------
+## Why to migrate?
 
 The fact that time-outs are durable means that they could and usually are set to a time very far off in the future. For example, if you have insurance with long cycles you can have your renewal saga set to wake up in X years. In this situation you don't want to run both time-out managers in parallel for that long a time. This is when you would consider doing a migration instead.
 
@@ -48,8 +47,7 @@ Typical settings:
 -   storageQueue Timeout.Storage
 -   destination {endpointName}.Timeouts
 
-NOTES
------
+## NOTES
 
 -   Make sure to use NServiceBus V3.0.1 or higher
 -   Update to NServiceBus V2.6.0.1511 if you need to do a zero downtime migration

@@ -15,8 +15,7 @@ Design processes with more than one remote call use sagas.
 
 While it may seem excessive at first, the business implications of your system getting out of sync with the other systems it interacts with can be substantial. It's not just about exceptions that end up in your log files.
 
-Long-running means stateful
----------------------------
+## Long-running means stateful
 
 Any process that involves multiple network calls (or messages sent and received) has an interim state. That state may be kept in memory, persisted to disk, or stored in a distributed cache; it may be as simple as 'Response 1 received, pending response 2', but the state exists.
 
@@ -37,8 +36,7 @@ public class MySagaData : IContainSagaData
 By default, NServiceBus stores your sagas in RavenDB. The schema-less nature of document databases makes them a perfect fit for saga storage where each saga instance is persisted as a single document. There is also support for relational databases using
 [NHibernate](http://sourceforge.net/projects/nhibernate/) . NHibernate support is located in the NServiceBus.NHibernate assembly. You can, as always, swap out these technologies, by implementing the IPersistSagas interface.
 
-Adding behavior
----------------
+## Adding behavior
 
 The important part of a long-running process is its behavior. With NServiceBus, you specify behavior by writing a class that implements `ISaga<T>` where `T` is the saga data. There is also a base class for sagas that contains many features required for implementing long-running processes. All the examples below make use of this base class.
 
@@ -62,8 +60,7 @@ public class MySaga : Saga<MySagaData>,
 }
 ```
 
- Starting and correlating sagas
-------------------------------
+## Starting and correlating sagas
 
 Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sometimes it's simply the arrival of a given message type. In our previous example, let's say that a new saga should be started every time a message of type `Message1` arrives, like this:
 
@@ -129,16 +126,14 @@ public class MySaga3 : Saga<MySagaData>,
 
 Underneath the covers, when `Message2` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `MySagaData` that has a property `SomeID` whose value is the same as the `SomeID` property of the message.
 
-Uniqueness
-----------
+## Uniqueness
 
 For NServiceBus to ensure uniqueness across your saga instances, it's highly recommended that you adorn your correlation properties with the
 `[Unique]` attribute. This tells NServiceBus that there can be only one instance for each property value. This also increases performance for property lockups in most cases. While there are plans for it, NServiceBus doesn't currently support mapping one message to more than one instance of the same saga.
 
 Read more about the [Unique property and concurrency](nservicebus-sagas-and-concurrency.md) .
 
-Notifying callers of status
----------------------------
+## Notifying callers of status
 
 While you always have the option of publishing a message at any time in a saga, sometimes you want to notify the original caller who caused the saga to be started of some interm state that isn't relevant to other subscribers.
 
@@ -187,8 +182,7 @@ public class MySaga4 : Saga<MySagaData>,
 
  This is one of the methods on the saga base class that would be very difficult to implement yourself without tying your applicative saga code to low-level parts of the NServiceBus infrastructure.
 
-Timeouts
---------
+## Timeouts
 
 When working in a message-driven environment, you cannot make assumptions about when the next message will arrive. While the connectionless nature of messaging prevents our system from bleeding expensive resources while waiting, there is usually an upper limit on how long from a business perspective to wait. At that point, some business-specific action should be taken, as shown:
 
@@ -251,8 +245,7 @@ When the time is up, the Timeout Manager sends a message back to the saga causin
 
 **IMPORTANT** : Don't assume that other messages haven't arrived in the meantime.
 
-Ending a long-running process
------------------------------
+## Ending a long-running process
 
 After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done simply by calling the `MarkAsComplete()` method. The infrastructure contacts the Timeout Manager (if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages that are handled by the saga(`IHandleMessages<T>`) arrive after the saga has completed, they are discarded. Note that a new saga will be started if a message that is configured to start a saga arrives(`IAmStartedByMessages<T>`).
 
@@ -268,8 +261,7 @@ If compensating actions need to be taken for messages that are handled by the sa
 
 Note that the message will be considered successfully processed and sent to the audit queue even if no saga was found. If you want the message to end up in the error queue just throw an exception from your IHandleSagaNotFound implementation.
 
-Complex saga finding logic
---------------------------
+## Complex saga finding logic
 
 Sometimes a saga handles certain message types without a single simple property that can be mapped to a specific saga instance. In those cases, you'll want finer-grained control of how to find a saga instance, as follows:
 
@@ -286,8 +278,7 @@ public class MySagaFinder : IFindSagas<MySagaData>.Using<Message2>
 
 You can have as many of these classes as you want for a given saga or message type. If a saga can't be found, return null, and if the saga specifies that it is to be started for that message type, NServiceBus will know that a new saga instance is to be created.
 
-Sagas in self-hosted endpoints
-------------------------------
+## Sagas in self-hosted endpoints
 
 When [hosting NServiceBus in your own endpoint](hosting-nservicebus-in-your-own-process.md), make sure to include `.Sagas().RavenSagaPersister()`, as follows:
 
@@ -304,13 +295,11 @@ NServiceBus.Configure.With()
                     .Start();  
 ```
 
- Sagas and automatic subscriptions
----------------------------------
+## Sagas and automatic subscriptions
 
 In NServiceBus V3.0 and onwards the autosubscription feature applies to sagas as well as your regular message handlers. This is a change compared to earlier versions of NServiceBus.
 
-Sagas and request/response
---------------------------
+## Sagas and request/response
 
 Sagas often play the role of coordinator, especially when used in integration scenarios. In essence this means that the saga decides what to do next and then asks someone else to do it. This allows you to keep your sagas free from interacting with non-transactional things like file systems and rest services. The type of communication pattern best suited best for these type of interactions is the request/response pattern since there is really only one party interested in the response and that is the saga itself.
 
@@ -318,8 +307,7 @@ A typical scenario is a saga controlling the process of billing a customer throu
 
 The usual way is to correlate on some kind of ID and let the user tell you how to find the correct saga instance using that ID. While this is easily done we decided that this was common enough to warrant native support in NServiceBus for these type of interactions. In V3.0, NServiceBus handles all this for you without getting in your way. If you do IBus.Reply in response to a message coming from a saga, NServiceBus will detect it and automatically set the correct headers so that you can correlate the reply back to the saga instance that issued the request. You can see all this in action in the [Video Store sample.](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/VideoStore.Msmq)
 
-Learn more
-----------
+## Learn more
 
 - [Sagas and concurrency](nservicebus-sagas-and-concurrency)
 - [Using Sagas in ServiceMatrix](/ServiceMatrix/getting-started-sagasfullduplex-2.0)

@@ -12,7 +12,7 @@ It is recommended that you specify a central auditing queue for all related endp
 
 ## Configuring auditing
 
-## Version 3
+### Version 3
 
 Add the attribute `ForwardReceivedMessagesTo` to the `UnicastBusConfig` section of an endpoint's configuration file, as shown:
 
@@ -30,7 +30,7 @@ Add the attribute `ForwardReceivedMessagesTo` to the `UnicastBusConfig` section 
 
 NOTE: In version 3.X use the `ForwardReceivedMessageTo` Attribute
 
-## Version 4
+### Version 4
 
 Add the `AuditConfig` section to the configuration file, as shown:
 
@@ -77,8 +77,7 @@ Custom headers are attached to each message. You can examine them in the audit q
 | NServiceBus.ProcessingMachine     | The machine on which the message was processed
 | NServiceBus.OriginatingAddress    | The queue that the message originated from
 
-Next steps
-----------
+##Next steps
 
 Learn more about how [logging works in NServiceBus](logging-in-nservicebus.md).
 

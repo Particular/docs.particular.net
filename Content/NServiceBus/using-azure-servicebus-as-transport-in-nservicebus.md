@@ -13,8 +13,7 @@ Windows Azure Service Bus is messaging infrastructure that sits between applicat
 - The main advantage of this service is that it offers a highly reliable and (relatively) low latency remote messaging infrastructure. A single queue message can be up to 256 KB in size, and a queue can contain many messages, up to 5GB in total. Furthermore it is capable of emulating local transactions using its queue peek-lock mechanism and has many built-in features that you (and NServiceBus) can take advantage of, such as message deduplication and deferred messages.
 - The main disadvantage of this service is its dependency on TCP (if you want low latency), which may require you to open some outbound ports on your firewall. Additionally, the price may be steep, depending on your scenario ($1 per million messages).
 
-Enabling the Transport
-----------------------
+## Enabling the Transport
 
 First, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a NuGet package reference to the  `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package to your project.
 
@@ -36,8 +35,7 @@ Alternatively, when using one of the NServiceBus provided hosting processes, you
 	   }
 	}
 
-Setting the Connection String
------------------------------
+## Setting the Connection String
 
 The default way to set the connection string is using the .net provided connectionStrings configuration section in app.config or web.config, with the name `NServicebus\Transport`:
 
@@ -45,8 +43,7 @@ The default way to set the connection string is using the .net provided connecti
 	   <add name="NServiceBus/Transport" connectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
 	</connectionStrings> 
 
-Configuring in Detail
------------------------
+## Configuring in Detail
 
 If you need fine grained control on how the Azure Service Bus transport behaves, you can override the default settings by adding a configuration section called `AzureServiceBusQueueConfig` to your web.config or app.config files. For example:
 
@@ -75,8 +72,7 @@ Using this configuration setting you can change the following values. NOTE: Most
 - `EnableDeadLetteringOnFilterEvaluationExceptions`: Specifies whether messages should be moved to a dead letter queue upon filter evaluation exceptions. Defaults to false.
 - `QueuePerInstance`: Tells NServiceBus to create a separate queue for every instance of the endpoint hosted. This is useful in pub/sub scenarios where you want a message to arrive for every instance of the endpoint, i.e., in a webfarm that has a local cache on every machine. Defaults to false.
 
-Sample
-------
+## Sample
 
 To see this transport in action, see the [Video store sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureServiceBus.Cloud)
 

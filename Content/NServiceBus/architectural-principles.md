@@ -11,17 +11,13 @@ Service-oriented architecture (SOA) and event-driven architecture together provi
 Strategic Domain-Driven Design helps bridge the business/IT divide and drives the choice of business events published using NServiceBus.
 
 
-How NServiceBus aligns with SOA
--------------------------------
+## How NServiceBus aligns with SOA
 
 <iframe src="//fast.wistia.net/embed/iframe/6g70txthct" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="480"></iframe>
 
 In this presentation, Udi Dahan explains the disadvantages of classical web services thinking that places services at a layer below the user interface and above the business logic. Instead, he describes an approach that cuts across all layers of an application, outlining the inherent lines of loose and tight coupling. Finally, Udi shows how these vertical services collaborate together using events in order to bring about flexible and high performance business processes.
 
-
-
-Drilling down into details
---------------------------
+## Drilling down into details
 
 One of the problems with the distributed systems built today is that they are fragile. As one part of the system slows down, the effect tends to ripple out and cripple the entire system. One of the primary design goals of NServiceBus is to eliminate that, guiding developers to write code that is robust in production environments. That robustness prevents data loss under failure conditions.
 

@@ -13,8 +13,7 @@ If real scale is what you're looking for, as in tens, hundreds or even thousands
 NOTE: if you don't need the scale offered by cloud services, there are [other hosting options available.](/nservicebus/hosting-nservicebus-in-windows-azure)
 
 
-Cloud Services - Worker Roles
------------------
+## Cloud Services - Worker Roles
 
 First you need to reference the assembly that contains the windows azure role entry point integration. The recommended way of doing this is by adding a nuget package reference to the `NServiceBus.Hosting.Azure` package to your project.
 
@@ -61,8 +60,7 @@ This will integrate and configure the default infrastructure for you, being:
 * Saga's are enabled by default and persisted in the chosen persistence store.
 * Timeouts are enabled by default and persisted in the chosen persistence store.
 
-Configuration override convention
----------------------------------
+## Configuration override convention
 
 Because windows azure cloud services has it's own configuration model, but nservicebus is typically used with it's configuration in app.config, we've decided to go for a convention based override model. Where most of the configuration is in app.config, but you can add any setting 'by convention' to the service configuration file to override the original value in app.config. This makes it easy to develop locally (without the service runtime), but still make use of this feature in production.
 
@@ -116,8 +114,7 @@ The name to be used for the property override is always structured like this: `T
 
 The override order used in this example applies, lowest priority is the default value, then the app.config value is applied, and than the service configuration value is applied.
 
-Logging
--------
+## Logging
 
 The NServiceBus logging integrates with the Windows Azure Diagnostics service through a simple trace logger. In the past it would itself setup azure diagnostics service and integrate with it directly, but this is no longer the case today. The primary reason for this is that Visual Studio tooling now sets everything up for you anyway.
 
@@ -136,8 +133,7 @@ If the following trace listener is added to your app.config, all nservicebus log
 
 Logging settings can than be controlled by configuring the windows azure diagnostics service itself using a .wadcfg file. Check out the (msdn documentation)[http://msdn.microsoft.com/library/azure/hh411551.aspx] for more information on this topic.
 
-Cloud Services - Web Roles
------------------
+## Cloud Services - Web Roles
 
 Next to worker roles, cloud services also has a role type called 'Web Roles'. These are simply worker roles which have IIS configured properly, this means that they run a worker role process (the entry point is in webrole.cs) and an IIS process on the same codebase.
 
@@ -163,7 +159,6 @@ a short explanation of each:
 * UsePersistence: Configures azure storage for persistence of enabled features (like subscriptions, saga's & timeouts).
 
 
-Sample
-------
+## Sample
 
 Want to see these persisters in action? Checkout the [Video store sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud) and more specifically, the `VideoStore.Sales` endpoint

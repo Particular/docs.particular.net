@@ -4,9 +4,7 @@ summary: Publish and subscribe to messages using NServiceBus, automatically and 
 tags: []
 ---
 
-How to publish a message?
--------------------------
-
+## How to publish a message?
 
 ```C#
 var message = new MyMessage
@@ -19,7 +17,6 @@ Bus.Publish(message);
 
  OR instantiate and publish all at once:
 
-
 ```C#
 Bus.Publish<IMyMessage>( m => { 
                                 m.Prop1 = v1; 
@@ -27,19 +24,16 @@ Bus.Publish<IMyMessage>( m => {
                               });
 ```
 
- How to subscribe to a message?
-------------------------------
+## How to subscribe to a message?
 
 To manually subscribe and unsubscribe from a message:
-
 
 ```C#
 Bus.Subscribe<MyMessage>();    
 Bus.Unsubscribe<MyMessage>();
 ```
 
- To subscribe to a message, you must have a `UnicastBusConfig` entry, as follows:
-
+To subscribe to a message, you must have a `UnicastBusConfig` entry, as follows:
 
 ```XML
 <UnicastBusConfig>

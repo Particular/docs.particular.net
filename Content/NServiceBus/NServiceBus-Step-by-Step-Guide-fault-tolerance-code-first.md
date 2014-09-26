@@ -4,8 +4,7 @@ summary: See how NServiceBus messaging can get past all sorts of failure scenari
 tags: []
 ---
 
-Durable messaging
------------------
+## Durable messaging
 
 In [the previous section](NServiceBus-Step-by-Step-Guide.md) you've seen how a send to send a messages, see how messaging can get past all sorts of failure scenarios:
 

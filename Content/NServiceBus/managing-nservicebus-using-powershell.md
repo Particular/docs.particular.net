@@ -11,8 +11,7 @@ NServiceBus provides a set of PowerShell commandlets to make it easy to manage a
 
 NOTE: Before installing NServiceBus, ensure PowerShell 2.0+ is present on the target machine.
 
-Installing the NServiceBus commandlets in V4.0
-----------------------------------------------
+## Installing the NServiceBus commandlets in V4.0
 
 These cmdlets are built into the NServiceBus.Powershell.dll.
 
@@ -106,8 +105,7 @@ Displays all messages in a queue.
 NOTE: `NServiceBus.Host` no longer supports `/installinfrastructure`. Use PowerShell cmdlets instead.
 
 
-Installing the NServiceBus commandlets in V3.0
-----------------------------------------------
+## Installing the NServiceBus commandlets in V3.0
 
 Load the cmdlets into PowerShell using the Import-Module cmdlet:
 
@@ -121,8 +119,7 @@ For a detailed description of all our commandlets, use the get-help command:
 
     PM> get-help about_NServiceBus
 
-Infrastructure commandlets
---------------------------
+## Infrastructure commandlets
 
 Following are the available infrastructure cmdlets:
 
@@ -150,8 +147,7 @@ Gets the current version of NServiceBus (Semver).
 
 Installs a NServiceBus license file into the registry.
 
-Known Issues
--------------------------------------
+## Known Issues
 
 If you are getting the following error:
 

@@ -8,8 +8,7 @@ Child containers are essentially a snapshot of the main container where transien
 
 NOTE: Child containers are not supported by spring.net, so if you plan to take advantage of it, use one of the other containers supported by NServiceBus.
 
-Deterministic disposal
-----------------------
+## Deterministic disposal
 
 Instance lifetime is usually not tracked by the container (Windsor is an exception) and that means that you have to manually call dispose any instance that needs deterministic disposal. Child containers solve this issue by automatically disposing all transient objects created within each specific child container.
 
@@ -30,23 +29,23 @@ Beginning with NServiceBus V3, you can get a "session per transport message" by 
 
 This code allows you to inject your session to all components involved in processing each message:
 
-
-    public class NHibernateMessageHandler:IHandleMessages
+```
+public class NHibernateMessageHandler:IHandleMessages
+{
+    readonly ISession session;
+    public NHibernateMessageHandler(ISession session)
     {
-        readonly ISession session;
-        public NHibernateMessageHandler(ISession session)
-        {
-            this.session = session;
-        }
-        public void Handle(NHibernateMessage message)
-        {
-            session.Save(new PersistentEntity
-                {
-                    Data = "Whatever " + DateTime.Now.ToShortTimeString()
-                });
-        }
+        this.session = session;
     }
-
+    public void Handle(NHibernateMessage message)
+    {
+        session.Save(new PersistentEntity
+            {
+                Data = "Whatever " + DateTime.Now.ToShortTimeString()
+            });
+    }
+}
+```
 
 When the message is processed, the session is disposed and all resources such as database connections are released.
 
@@ -54,9 +53,4 @@ Child containers are a powerful feature that can simplify your code and should d
 
 If you configure your components using the NServiceBus configure API, it's possible to configure instance lifecyle to be per unit of work, using this:
 
-
     Configure.Instance.Configurer.ConfigureComponent(DependencyLifecycle.InstancePerUnitOfWork);
-
-
-
-
