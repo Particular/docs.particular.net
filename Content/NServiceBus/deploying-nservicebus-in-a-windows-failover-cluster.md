@@ -24,9 +24,7 @@ A simple setup for scalability and reliability includes at least two servers in 
 
 The two other servers are worker nodes, and contain only endpoints with simple message handlers. The endpoints request work from the clustered distributors, do the work, and then ask for more.
 
-
-Setting up the clustered service
---------------------------------
+## Setting up the clustered service
 
 While technically it shouldn't matter from which clustered server you set up, generally it is more reliable to set up everything from whichever server currently holds the Quorum disk. Find the server that has it (it moves around when the server holding it restarts), and open up Failover Cluster Management under Administrative Tools.
 
@@ -71,8 +69,7 @@ Keep in mind that this only seems to work if you're viewing Failover Cluster Man
 
 Try swapping the MSMQ Network Name back and forth between nodes a few times. It's best to make sure that everything is working properly now before continuing.
 
-More about MSMQ Network Name
-----------------------------
+## More about MSMQ Network Name
 
 The "cluster name" is a Network Name created for the cluster as part of the core Cluster Group - a group created by default for each cluster. The core cluster group is different than the MSMQ cluster group and it has a Different network name. One of the most common confusions while using MSMQ on a cluster is using the Cluster Name in the client instead of the MSMQ Network Name.
 
@@ -88,8 +85,7 @@ In this picture:
 
 NOTE: Under "DNS Name" you will find the MSMQ DNS Name, which may or may not be "MSMQ-1".
 
-Installing the clustered services
----------------------------------
+## Installing the clustered services
 
 Before you can cluster the NServiceBus.Host.exe processes, you need to install them as services on all clustered nodes.
 

@@ -10,22 +10,19 @@ The NServiceBus Distributor is similar in behavior to standard load balancers. I
 
 As a standard NServiceBus process, the distributor maintains all the fault-tolerant and performance characteristics of NServiceBus but is designed never to overwhelm any of the worker nodes configured to receive work from it.
 
-When to use it?
----------------
+## When to use it?
 
 Scaling out (with or without a distributor) is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](monitoring-nservicebus-endpoints.md) on the endpoint and when you have the need, add in the distributor. Scaling out using the distributor when needed is made easy by not having to change code, just starting the same endpoint in distributor and worker profiles and this article explains how.
 
 The distributor is applicable only when using Msmq as the transport for exchanging messages. NServiceBus uses MSMQ as the default transport. The distributor is not required when using other brokered transports like SqlServer and RabbitMQ, since they share the same queue, even if there are multiple instances of the endpoints running. NServiceBus will ensure that only one of these instances of that endpoint will process that message in this case.
 
-Why use it?
------------
+## Why use it?
 
 When starting to use NServiceBus, you'll see that you can easily run multiple instances of the same process with the same input queue. This may look like scaling-out at first, but is really no different from running multiple threads within the same process. You'll see that you can't share a single input queue across multiple machines.
 
 The distributor gets around this limitation.
 
-What about MSMQ V4?
--------------------
+## What about MSMQ V4?
 
 Version 4 of MSMQ, made available with Vista and Server 2008, can perform 'remote transactional receive'. This means that processes on other machines can transactionally pull work from a queue on a different machine. If the machine processing the message crashes, the message roll back to the queue and other machines could then process it.
 
@@ -33,8 +30,7 @@ Even though the distributor provided similar functionality even before Vista was
 
 In short, the scale-out benefits of MSMQ V4 by itself are quite limited.
 
-Performance?
-------------
+## Performance?
 
 The distributor is doing multiple operations for each message it is processing (receives a ready message form a worker, sends the work message to the worker, receives a ready message post processing) so it's performance is limited although it is doing very little work, therefore the benefit of using a distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short lived unites of work (a quick read form the database and dispatching a message using Bus.Send/Bus.Publish)
 
@@ -42,9 +38,7 @@ To get a sense of the expected performance you can divide your regular endpoint 
 
 If you need to scale out small unites of work you might want to consider slicing your handlers to smaller vertical slices of functionality and deploying them on their own end points.
 
-
-How does it work?
------------------
+## How does it work?
 
 Worker nodes send messages to the distributor, telling it when they're ready for work. These messages arrive at the distributor via a separate 'control' queue. The distributor stores this information. When applicative messages arrive at the distributor, it uses previously stored information to find a free worker node, and sends the message to it. If no worker nodes are free, the distributor waits before repeating the previous step.
 
@@ -52,15 +46,13 @@ All pending work stays in the distributor's queue (rather than building up in ea
 
 For more information on monitoring, see [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints.md).
 
-Where is it?
-------------
+## Where is it?
 
 Unlike NServiceBus V2.6, there is no specific Distributor process. Any NServiceBus endpoint can be configured to work as a Distributor.
 
 To see the Distributor in action, see the [ScaleOut sample](scale-out-sample.md).
 
-Distributor configuration
--------------------------
+## Distributor configuration
 
 ### When hosting in NServiceBus.Host.exe
 
@@ -95,10 +87,9 @@ Configure.With()
          .Start();
 ```
 
- To run the Distributor without a worker on its endpoint, replace `.RunDistributor()` with with `.RunDistributorWithNoWorkerOnItsEndpoint()`.
+To run the Distributor without a worker on its endpoint, replace `.RunDistributor()` with with `.RunDistributorWithNoWorkerOnItsEndpoint()`.
 
-Worker Configuration
---------------------
+## Worker Configuration
 
 Any NServiceBus endpoint can run as a Worker node. To activate it, create a handler for the relevant messages and ensure that the app.config file contains routing information for the Distributor.
 
@@ -140,10 +131,9 @@ Configure.With()
          .Start();
 ```
 
- Similar to self hosting, ensure the app.config of the worker contains the MasterNodeConfig section to point to the host name where the master node (and a distributor) are running.
+Similar to self hosting, ensure the app.config of the worker contains the MasterNodeConfig section to point to the host name where the master node (and a distributor) are running.
 
-Routing with the Distributor
-----------------------------
+## Routing with the Distributor
 
 The distributor uses two queues for its runtime operation. The DataInputQueue is the queue where the client processes send their applicative messages. The ControlInputQueue is the queue where the worker nodes send their control messages.
 
@@ -170,16 +160,14 @@ When using the distributor in a full publish/subscribe deployment, you see is a 
 
 Keep in mind that the distributor is designed for load balancing within a single site, so do not use it between sites. In the image above, all publishers and subscribers are within a single physical site. For information on using NServiceBus across multiple physical sites, see [the gateway](the-gateway-and-multi-site-distribution.md).
 
-High availability
------------------
+## High availability
 
 If the distributor goes down, even if its worker nodes remain running, they do not receive any messages. Therefore, it is important to run the distributor on a cluster that configuring its queues as clustered resources.
 
 Since the distributor does not do CPU or memory intensive work, you can often put several distributor processes on the same clustered server. Be aware that the network IO may end up being the bottleneck for the distributor, so take into account message sizes and throughput when sizing your infrastructure.
 
 
-Next steps
-----------
+## Next steps
 
 Build a scalable solution using Master node and the workers solution that are in the [ScaleOut sample](scale-out-sample.md) .
 

@@ -10,7 +10,7 @@ NOTE: This article refers to NServiceBus V3 and V4
 
 Every NServiceBus endpoint that works properly relies on a configuration to determine settings and behaviors other than endpoint core functionalities.
 
-###NServiceBus Host
+### NServiceBus Host
 
 NServiceBus provides its own [hosting service][1] that can be used to outsource the whole hosting boilerplate code without worrying about how to deal with Windows services.
 
@@ -35,7 +35,7 @@ At runtime, during the startup phase, NServiceBus scans all the types, looking f
 
 More about the [NServiceBus.Host](the-nservicebus-host).
 
-###Configuration Customization
+### Configuration Customization
 
 When NServiceBus endpoints are hosted using the built-in NServiceBus host, you can customize the default configuration by adding a class to the project that implements the `IWantCustomInitialization` interface. This class is invoked at runtime by the hosting process and is provided with the default configuration initialized by the host:
 
@@ -53,7 +53,7 @@ NOTE: Do not start the bus; the host will do it. *`(comment - expand on this top
 
 More about [configuration customization](customizing-nservicebus-configuration).
 
-###Features (V4 only)
+### Features (V4 only)
 
 NServiceBus V4 has introduced the concept of features. A *feature* is a high level concept that encapsulates a set of settings related to a certain feature. Features can be enabled or disabled. Enabled features can be configured.
 
@@ -95,12 +95,12 @@ Configure.Features.Disable<TFeature>();
 
 where the feature type is one of the feature classes defined in the `NServiceBus.Features` namespace.
 
-###Self-Hosting Configuration
+### Self-Hosting Configuration
 
 In some scenarios you need to self-host the bus without relying on the NServiceBus Host process. A well known sample scenario is a web application. When opting for self-hosting, you are responsible for configuring, creating, and starting the bus.
 The configuration entry point is the `Configure` class that exposes a Fluent configuration API that allows fine grained control over all configuration settings.
 
-####Self-Hosting in V4
+#### Self-Hosting in V4
 
 Below is a sample console application with minimal code to create, initialize, and finally start NServiceBus.
 
@@ -121,7 +121,7 @@ public class Program
 
 More on [Self-hosting in v4](hosting-nservicebus-in-your-own-process-v4.x).
 
-####Self-Hosting in V3
+#### Self-Hosting in V3
 
 ```c#
 public class Program

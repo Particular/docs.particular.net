@@ -18,8 +18,7 @@ The web page renders synchronously; from the user's perspective, the interaction
 
 This sample has three projects: `Messages`, `Server`, and `WebApplication1`. `WebApplication1` is a web application that sends messages (found in the `Messages` project) to the Server project, which is hosted as a console application.
 
-Initializing the bus
---------------------
+## Initializing the bus
 
 In `WebApplication1`, open `Global.asax.cs` and look at the code in the `ApplicationStart` method:
 
@@ -39,8 +38,7 @@ The rest of the code is typical for hosting NServiceBus in your own process. Rea
 
 The code holds a reference to the bus, which is used later for sending messages. This isn't the only option available; if the classes for sending messages are managed by Dependency Injection, then they can get a reference to the bus by declaring a dependency on IBus. [See an example](how-do-i-get-a-reference-to-ibus-in-my-message-handler.md).
 
-Sending a message
------------------
+## Sending a message
 
 Open `Default.aspx.cs` in `WebApplication1` to see the `Button1Click` method:
 
@@ -68,8 +66,7 @@ The "bus" isn't anything special in code; it is just an object for calling metho
 
 Skip the rest of the code and see what happens to the message you just sent.
 
-Routing configuration
----------------------
+## Routing configuration
 
 Open the `web.config` file in `WebApplication1`, and scroll down to the following code:
 
@@ -86,8 +83,7 @@ There are two configuration sections: [MsmqTransportConfig](msmqtransportconfig.
 
 One way to determine endpoint names is by the namespace that contains the call to `NServiceBus.Configure.With()`. Read about [endpoint naming](how-to-specify-your-input-queue-name.md).
 
-Handling the message
---------------------
+## Handling the message
 
 In the Server project, find this code in the CommandMessageHandler class:
 
@@ -112,8 +108,7 @@ This class implements the NServiceBus interface `IHandleMessages<T>` where `T` i
 
 The `IBus` property of the class is how it gets a reference to the bus. In the method body you can see it calling the Return method on the bus, which results in a message being returned to `WebApplication1`, specifically putting a message in its input queue `MyWebClient`.
 
-Handling the response
----------------------
+## Handling the response
 
 When the response arrives back at `WebApplication1`, the bus invokes the callback that was registered when the request was sent by this code:
 

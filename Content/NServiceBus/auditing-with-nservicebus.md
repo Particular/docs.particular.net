@@ -49,8 +49,7 @@ NServiceBus then forwards all messages arriving at the given endpoint to the que
 
 What you choose to do with those messages is now up to you: save them in a database, do custom logging, etc. The important thing is that you now have a centralized record of everything that is happening in your system while maintaining all the benefits of keep things distributed.
 
-Turning off auditing
---------------------
+## Turning off auditing
 
 If the auditing settings are in `app.config`, remove them or comment them out.
 
@@ -62,8 +61,7 @@ If running 64 bit, in addition to the above, also clear the value for `AuditQueu
 
     HKEYLOCALMACHINE\\SOFTWARE\\Wow6432Node\\ParticularSoftware\\ServiceBus
 
-Message headers
----------------
+## Message headers
 
 Custom headers are attached to each message. You can examine them in the audit queue using a third-party tool for MSMQ.
 
