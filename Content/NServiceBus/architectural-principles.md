@@ -10,7 +10,6 @@ Service-oriented architecture (SOA) and event-driven architecture together provi
 
 Strategic Domain-Driven Design helps bridge the business/IT divide and drives the choice of business events published using NServiceBus.
 
-
 ## How NServiceBus aligns with SOA
 
 <iframe src="//fast.wistia.net/embed/iframe/6g70txthct" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="640" height="480"></iframe>
@@ -24,8 +23,6 @@ One of the problems with the distributed systems built today is that they are fr
 To make effective use of NServiceBus, you need to understand the distributed systems architecture it is designed to support. In other words, if you design your system according to the principles laid out below, NServiceBus will make your life a lot easier. On the other hand, if you do not follow these principles, NServiceBus will probably make it harder.
 
 The extensibility features in NServiceBus enable you tweak its behavior to suit your specific needs, yet they are documented separately.
-
-* * * * *
 
 The communications pattern that enables robustness is one-way messaging, also known as "fire and forget". This is discussed in more detail shortly.
 

@@ -100,7 +100,6 @@ Using this naming convention, all of your applications' queues are grouped toget
 
 Install each distributor from the command line:
 
-
 ```C#
 NServiceBus.Host.exe
 /install
@@ -112,7 +111,7 @@ NServiceBus.Host.exe
 NServiceBus.Production NServiceBus.Distributor
 ```
 
- It's easier to set the service name, display name, and description to be the same. It helps when trying to start and stop things from a NET START/STOP command and when viewing them in the multiple graphical tools. Starting each one with Distributor puts them all together alphabetically in the Services MMC snap-in.
+It's easier to set the service name, display name, and description to be the same. It helps when trying to start and stop things from a NET START/STOP command and when viewing them in the multiple graphical tools. Starting each one with Distributor puts them all together alphabetically in the Services MMC snap-in.
 
 Don't forget the `NServiceBus.Production` at the end, which sets the profile for the NServiceBus generic host, as described in the [Generic Host page](the-nservicebus-host.md) and the `NServiceBus.Distributor` which sets up the host in distributor mode.
 

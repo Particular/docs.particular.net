@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
+    <Compile Include="SendOnly.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SecondLevelRetries\app.config.xml">
