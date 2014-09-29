@@ -20,7 +20,7 @@ The Virtual Machines hosting model is similar to any other virtualization techno
 
 The installation model is therefore also the same as any on-premise NServiceBus project. Use `NServiceBus.Host.exe` to run your endpoint, or use the `Configure` API to self-host your endpoint, for example, in a website.
 
-The main difference, as outlined above, is that you should not rely on any technology that itself depends on 2PC. In other words, MSMQ is not a good transport in this environment. Instead, use `AzureStorageQueues` or `AzureServiceBus`. Other options include deploying `RabbitMQ` or another non-DTC transport to an Azure Virtual Machine.
+The main difference, as outlined above, is that you should not rely on any technology that itself depends on 2PC. In other words, MSMQ is not a good transport in this environment. Instead, use `AzureStorageQueuesTransport` or `AzureServiceBusTransport`. Other options include deploying `RabbitMQ` or another non-DTC transport to an Azure Virtual Machine.
 
 For more information about enabling the Azure storage queues or Azure Service Bus transports, refer to the following documentation:
 
@@ -37,7 +37,7 @@ As for an NServiceBus programming model, this is roughly the same as any other s
 
 The only quirk in this model is that Windows Azure website is built with cheap hosting in mind. By default, its technology puts your website in suspended mode when there is no traffic. This also implies that if you have an NServiceBus endpoint hosted here, it is also suspended and stops processing messages. However, the 'Always on' feature periodically sends requests to your website to keep it active. This feature requires standard mode and is not available in the free edition. 
 
-The advised transports in this environment are `AzureStorageQueues` and `AzureServiceBus`. As it is impossible to include these websites in the same virtual network as Windows Azure virtual machines, it is impossible to use any other hosted transport such as RabbitMQ, unless you don't mind offering your transport infrastructure through a public endpoint.
+The advised transports in this environment are `AzureStorageQueuesTransport` and `AzureServiceBusTransport`. As it is impossible to include these websites in the same virtual network as Windows Azure virtual machines, it is impossible to use any other hosted transport such as RabbitMQ, unless you don't mind offering your transport infrastructure through a public endpoint.
 
 The same applies to the persistence infrastructure if you select an 'as a service' option such as Windows Azure storage or SQL Azure, as you cannot put the websites in the same virtual network as your hosted infrastructure.
 
@@ -51,7 +51,7 @@ This layout is based on a concept called `Roles`. Roles define what a specific s
 
 But it does this in a very particular way! To ensure an identical set of machines (i.e., identical to the role template) it will simply destroy a machine and install a new one. This means that anything that was on the disk of a machine will be lost! This fact makes any transport or persistence option that relies on a disk unsuitable for this environment, including MSMQ, RabbitMQ, ActiveMQ, SQL Server, RavenDB, and so on.
 
-The advised transports in this environment are `AzureStorageQueues` or `AzureServiceBus`, and the Windows Azure storage persisters for persistance purposes.
+The advised transports in this environment are `AzureStorageQueuesTransport` or `AzureServiceBusTransport`, and the Windows Azure storage persisters for persistance purposes.
 
 NOTE: It is possible to put Cloud Services and Virtual Machines in the same virtual network, so a hybrid architecture with some of the above transports and storage options might still be suitable (as long as you don't rely on the DTC).
 
