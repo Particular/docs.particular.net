@@ -46,7 +46,7 @@ Next to starting the role entry point, you also need to define how you want your
     
      	public void Customize(BusConfiguration builder)
         {
-            builder.UseTransport<AzureServiceBus>();
+            builder.UseTransport<AzureServiceBusTransport>();
             builder.UsePersistence<AzureStorage>();
         }
     
@@ -146,7 +146,7 @@ The fluent API is used with the following extension methods to achieve the same 
             .AzureConfigurationSource()
             .TraceLogger()
 
-            .UseTransport<AzureStorageQueue>()
+            .UseTransport<AzureStorageQueueTransport>()
             .UsePersistence<AzureStorage>()
 		
 	    ...
@@ -155,7 +155,7 @@ a short explanation of each:
 
 * AzureConfigurationSource: Tells nservicebus to override any settings from the app.config file with settings from the service configuration file.
 * TraceLogger: Redirects all logs to the trace logger (which in turn should be configured for diagnostics monitor trace listener.
-* UseTransport<AzureStorageQueue>: Sets azure storage queues as the transport
+* UseTransport<AzureStorageQueueTransport>: Sets azure storage queues as the transport
 * UsePersistence: Configures azure storage for persistence of enabled features (like subscriptions, saga's & timeouts).
 
 
