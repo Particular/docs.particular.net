@@ -139,7 +139,7 @@
       Name: "samples"
       Title: "Samples"
       Articles: 
-        - "NServiceBus/full-duplex-sample-v3"
+        - "NServiceBus/full-duplex-sample"
         - "NServiceBus/publish-subscribe-sample"
         - "NServiceBus/unobtrusive-sample"
         - "NServiceBus/scale-out-sample"
