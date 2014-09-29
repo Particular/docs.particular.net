@@ -17,21 +17,21 @@ Windows Azure Queue storage is a service, hosted on the Windows Azure platform, 
 
 First you need to reference the assembly that contains the azure storage queue transport definition. The recommended way of doing this is by adding a nuget package reference to the  `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` package to your project.
 
-Once you've done that you can use the fluent `Configure` API to setup NServiceBus, all you need to do is specify `.UseTransport<AzureStorageQueue>()` to override the default transport.
+Once you've done that you can use the fluent `Configure` API to setup NServiceBus, all you need to do is specify `.UseTransport<AzureStorageQueueTransport>()` to override the default transport.
 
 	Configure.With()
          ...
-         .UseTransport<AzureStorageQueue>()
+         .UseTransport<AzureStorageQueueTransport>()
          ...
          .CreateBus()
 
-Alternatively, when using one of the NServiceBus provided hosting processes, you should supply the `UsingTransport<AzureStorageQueue>` on the endpoint configuration. In the windows azure role entrypoint host, for example, it would look like this.
+Alternatively, when using one of the NServiceBus provided hosting processes, you should supply the `UsingTransport<AzureStorageQueueTransport>` on the endpoint configuration. In the windows azure role entrypoint host, for example, it would look like this.
 
 	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
 	{
 	    public void Customize(BusConfiguration builder)
 	    {
-	        builder.UseTransport<AzureStorageQueue>();
+	        builder.UseTransport<AzureStorageQueueTransport>();
 	    }
 	}
 
