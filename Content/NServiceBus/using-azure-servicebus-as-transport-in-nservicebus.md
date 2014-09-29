@@ -17,21 +17,21 @@ Windows Azure Service Bus is messaging infrastructure that sits between applicat
 
 First, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a NuGet package reference to the  `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package to your project.
 
-Then, use the Fluent `Configure` API to set up NServiceBus, by specifying `.UseTransport<AzureServiceBus>()` to override the default transport:
+Then, use the Fluent `Configure` API to set up NServiceBus, by specifying `.UseTransport<AzureServiceBusTransport>()` to override the default transport:
 
 	Configure.With()
          ...
-         .UseTransport<AzureServiceBus>()
+         .UseTransport<AzureServiceBusTransport>()
          ...
          .CreateBus()
 
-Alternatively, when using one of the NServiceBus provided hosting processes, you should call the `UseTransport<AzureServiceBus>` on the endpoint configuration. In the Windows Azure role entrypoint host, for example, it looks like this:
+Alternatively, when using one of the NServiceBus provided hosting processes, you should call the `UseTransport<AzureServiceBusTransport>` on the endpoint configuration. In the Windows Azure role entrypoint host, for example, it looks like this:
 
 	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
 	{
 	   public void Customize(BusConfiguration builder)
 	   {
-		 builder.UseTransport<AzureServiceBus>();
+		 builder.UseTransport<AzureServiceBusTransport>();
 	   }
 	}
 
