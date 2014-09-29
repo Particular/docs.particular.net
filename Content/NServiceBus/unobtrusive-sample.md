@@ -61,7 +61,7 @@ This sample contains three messaging patterns:
 
 ## Send/Reply messaging pattern code
 
-Read the [Full Duplex](full-duplex-sample-v3.md) sample.
+Read the [Full Duplex](full-duplex-sample.md) sample.
 
 ### Client side message declaration
 
