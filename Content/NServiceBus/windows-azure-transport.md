@@ -87,7 +87,7 @@ In your NServiceBus solution, specify the Endpoint Configuration to use AzureSto
 	{
 	    public void Customize(BusConfiguration builder)
 	    {
-	        builder.UseTransport<AzureStorageQueue>();
+	        builder.UseTransport<AzureStorageQueueTransport>();
 	    }
 	}
 
@@ -123,7 +123,7 @@ In your NServiceBus solution, specify the endpoint configuration to use AzureSer
 	{
 	    public void Customize(BusConfiguration builder)
 	    {
-	        builder.UseTransport<AzureServiceBus>();
+	        builder.UseTransport<AzureServiceBusTransport>();
 	    }
 	}
 
