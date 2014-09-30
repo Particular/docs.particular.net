@@ -15,11 +15,11 @@ The steps in the processing pipeline are dynamic in nature. They are added or re
 
 ##Some of the commonly used steps
 
-Following there is the list of the basic pipeline steps, incoming and outgoing, that are configured by default in a NServiceBus endpoint.
+Because steps can be added into the pipeline and or replaced based on the features that are enabled or disabled by each endpoint, listed below are only some of the steps for the basic incoming and outgoing pipeline.
 
 ###Incoming Message Pipeline
 
-1. `CreateChildContainer`: NServiceBus heavily relies in IoC to work properly and requires every message to be handled in its own context, to achieve that every message that arrives to an Endpoint will at first create a new child container to generate a new dependency resolution scope; 
+- `CreateChildContainer`: NServiceBus heavily relies in IoC to work properly and requires every message to be handled in its own context, to achieve that every message that arrives to an Endpoint will at first create a new child container to generate a new dependency resolution scope; 
 * `ExecuteUnitOfWork`: the ExecuteUnitOfWork behavior is responsible to handle the creation of the Unit of Work, that wrap every message execution, whose role is to guarantee the execution of message in a transaction fashion;
 * `MutateIncomingTransportMessage`: NServiceBus has the concept of message mutators (link to docu) this behavior is responsible to execute each registered `TransportMessage` mutator;
 * `DeserializeMessages`: The DeserializeMessages behavior will deserialize the incoming message from its raw form, the `TransportMessage`, to a well known `class` or `interface` instance using the configured serializer;
@@ -30,7 +30,7 @@ Following there is the list of the basic pipeline steps, incoming and outgoing, 
 
 ###Outgoing Message Pipeline
 
-1. `EnforceBestPractices`: this behavior is responsible to ensure that best practices are respected, for example, among all, that the user is not trying to `send` an event or to `publish` a command;
+- `EnforceBestPractices`: this behavior is responsible to ensure that best practices are respected, for example, among all, that the user is not trying to `send` an event or to `publish` a command;
 * `MutateOutgoingMessages`: each message, as for incoming messages, is passed to a set of message mutators that have the opportunity to manage and mutate the outgoing message;
 * `CreatePhysicalMessage`: this behavior transform the logical messages that need to be sent to the corresponding `TransportMessage`;
 * `SerializeMessage`: The SerializeMessage behavior takes care of using the configured serialization engine to serialize the outgoing message;
