@@ -116,6 +116,20 @@ Example Usage
 
 <!-- import Log4netInCode -->
 
+## Filtering
+
+NServiceBus write a significant amount of information to the log. To limit this information you can use the filtering features of your underlying logging framework. 
+
+For example to limit log output to a specific namespace
+
+### In Log4net 
+
+<!-- import Log4netFiltering -->
+
+### In NLog
+
+<!-- import NLogFiltering -->
+
 ## Logging message contents
 
 When NServiceBus sends a message, it writes the result of the `ToString()` method of the message class to the log. By default, this writes the name of the message type only. To write the full message contents to the log, override the `ToString()` method of the relevant message class. Here's an example:

@@ -1,6 +1,7 @@
 ﻿using log4net.Appender;
 using log4net.Config;
 using log4net.Core;
+using log4net.Filter;
 using log4net.Layout;
 using NServiceBus.Log4Net;
 
@@ -21,7 +22,7 @@ public class Log4NetConfig
             Layout = layout
         };
         consoleAppender.ActivateOptions();
-        var appender = new RollingFileAppender
+        var fileAppender = new RollingFileAppender
         {
             DatePattern = "yyyy-MM-dd'.txt'",
             RollingStyle = RollingFileAppender.RollingMode.Composite,
@@ -34,9 +35,29 @@ public class Log4NetConfig
             AppendToFile = true,
             Threshold = Level.Debug,
         };
-        appender.ActivateOptions();
+        fileAppender.ActivateOptions();
 
-        BasicConfigurator.Configure(appender, consoleAppender);
+        BasicConfigurator.Configure(fileAppender, consoleAppender);
+
+        NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
+
+        #endregion
+    }
+    public void Filtering()
+    {
+        #region Log4NetFiltering
+
+        var consoleAppender = new ColoredConsoleAppender
+        {
+            Threshold = Level.Debug,
+            Layout = new SimpleLayout(),
+        };
+
+        consoleAppender.AddFilter(new LoggerMatchFilter { LoggerToMatch = "MyNamespace" });
+        consoleAppender.AddFilter(new DenyAllFilter());
+        consoleAppender.ActivateOptions();
+
+        BasicConfigurator.Configure(consoleAppender);
 
         NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
 

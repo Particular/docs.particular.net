@@ -24,4 +24,20 @@ public class NLogConfig
 
         #endregion
     }
+    public void Filtering()
+    {
+        #region NLogFiltering
+
+        var config = new LoggingConfiguration();
+
+        var consoleTarget = new ColoredConsoleTarget();
+        config.AddTarget("console", consoleTarget);
+        config.LoggingRules.Add(new LoggingRule("MyNamespace.*", LogLevel.Debug, consoleTarget));
+
+        LogManager.Configuration = config;
+
+        NServiceBus.Logging.LogManager.Use<NLogFactory>();
+
+        #endregion
+    }
 }
