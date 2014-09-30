@@ -39,9 +39,9 @@ Following there is the list of the basic pipeline steps, incoming and outgoing, 
 * `MutateOutgoingTransportMessage`: Before the `TransportMessage` is dispatched to the physical transport all the outgoing message mutators are invoked;
 * `DispatchMessageToTransport`: The last step is to dispatch the `TransportMessage` to the underlying transport;
 
-The above steps are the required steps to correctly handle incoming and outgoing messages, the built-in steps can be replaced until the new ones guarantee the same conceptual behavior; it is also important to note that the execution order of the built-in pipeline steps cannot be changed.
+Although the execution order of the built-in pipeline cannot be changed, it is possible to change the built-in behavior of these steps and/or new steps can be added to the pipeline. 
 
-##How do you code behaviors?
+##How to code behaviors?
 
 A message behavior is a class that implements the `IBehavior<TContext>` interface:
 
@@ -67,68 +67,49 @@ The pipeline is implemented using the [Russian Doll](http://en.wikipedia.org/wik
 
 At runtime, the pipeline will call the `Invoke` method of each registered behavior passing in as arguments the current message context and an action to invoke the next behavior in the pipeline. It is responsibility of each behavior to invoke the next behavior in the pipeline chain.
 
-##How do you register a behavior?
+##How to register a behavior?
 
-Once a behavior is created the last step is to register it in the message handling pipeline:
+Once a behavior is created we need to specify, which step is going to be implementing this new behavior in the pipeline. For example, is a new step going to contain this behavior or if it's going to replace existing behavior of a built-in step.
 
-```c#
-public class RegisterSampleBehavior : INeedInitialization
-{
-    public void Init(Configure config)
-    {
-        config.Pipeline.Register( "step unique id", typeof( SampleBehavior ), "Description of the sample step");
-    }
-}
-```
-
-In the above sample, this behavior now becomes the innermost step of the pipeline. Sometimes the step you are trying to register might be dependent on other steps.To ensure that your step is executed before or after a dependent step, you need to create a custom registration. 
+### How to create a new step?
 
 To do this:
 
 1. Create a class that implements `RegisterStep`.
 2. Register the step itself in the pipeline.
 
-```c#
-class TriggerWarning : RegisterStep
-{
-    public TriggerWarning()
-        : base("TriggerWarning", typeof(TriggerWarningBehavior), "Logs a warning when a message takes too long to process")
-    {
-    	// Specify where it needs to be invoked in the pipeline
-	InsertBefore(WellKnownStep.InvokeHandlers);
-    }
-}
 
-// Register the new step in the pipeline
-class TriggerWarningRegistration : INeedInitialization
-{
-    public void Init(Configure config)
+```c#
+   class NewStepInPipeline : RegisterStep
     {
-        config.Pipeline.Register<TriggerWarning>();
+        public NewStepInPipeline()
+            : base("NewStepInPipeline", typeof(SampleBehavior), "Logs a warning when a message takes too long to process")
+        {
+            // Optional: Specify where it needs to be invoked in the pipeline, for example InsertBefore or InsertAfter:
+            InsertBefore(WellKnownStep.InvokeHandlers);
+        }
     }
-}
+
+    class NewStepInPipelineRegistration : INeedInitialization
+    {
+        public void Customize(BusConfiguration configuration)
+        {
+            // Register the new step in the pipeline
+            configuration.Pipeline.Register<NewStepInPipeline>();
+        }
+    }
 ```
 
-## How to replace a well known behavior?
+### How to replace behavior of a built-in step?
+
 We can also replace existing behaviors using the `Replace` method and passing as the first argument the `id` of the step we want to replace. For example:
+
 ```c#
-public class ReplaceExistingBehavior : INeedInitialization
-{
-    public void Init(Configure config)
+    public class ReplaceExistingBehavior : INeedInitialization
     {
-        config.Pipeline.Replace( "id of the step to replace", typeof( NewBehaviorType ), "description" )
+        public void Init(Configure config)
+        {
+            config.Pipeline.Replace( "id of the step to replace", typeof(SampleBehavior), "description" )
+        }
     }
-}
 ```
-
-
-##Diagnostics Tool
-
-Because of the dynamic nature of the pipeline, it is hard to visualize what the incoming and outgoing steps are at any given time. To make this easier an instrumentation tool has been added to help visualize the exact steps for an endpoint. 
-
-The following picture summarize the message lifecycle pipeline for an endpoint as depicted by the instrumentation tool:
-
-![Message lifecycle pipeline](001_pipeline.png)
-
-###How to visualize the pipeline of your endpoint with Diagnostics
-<TODO>
