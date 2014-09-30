@@ -6,8 +6,6 @@ tags:
 - NServiceBus
 ---
 
-**NOTE: This article refers to a beta version of NServiceBus (V5) and is subject to changes and updates.**
-
 NServiceBus has always had the concept of a pipeline execution order that is executed when a message is received and also when a message is dispatched. NServiceBus v5 makes this pipeline a first level concept and exposes it to the end user.
 This now allows the end users to take full control of the incoming and/or the outgoing built-in default functionality.
 
