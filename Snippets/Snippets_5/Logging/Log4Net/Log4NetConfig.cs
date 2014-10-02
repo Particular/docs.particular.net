@@ -47,17 +47,17 @@ public class Log4NetConfig
     {
         #region Log4NetFiltering
 
-        var consoleAppender = new ColoredConsoleAppender
+        var appender = new ColoredConsoleAppender
         {
             Threshold = Level.Debug,
             Layout = new SimpleLayout(),
         };
 
-        consoleAppender.AddFilter(new LoggerMatchFilter { LoggerToMatch = "MyNamespace" });
-        consoleAppender.AddFilter(new DenyAllFilter());
-        consoleAppender.ActivateOptions();
+        appender.AddFilter(new LoggerMatchFilter { LoggerToMatch = "MyNamespace" });
+        appender.AddFilter(new DenyAllFilter());
+        appender.ActivateOptions();
 
-        BasicConfigurator.Configure(consoleAppender);
+        BasicConfigurator.Configure(appender);
 
         NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
 

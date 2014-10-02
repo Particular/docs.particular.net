@@ -30,9 +30,9 @@ public class NLogConfig
 
         var config = new LoggingConfiguration();
 
-        var consoleTarget = new ColoredConsoleTarget();
-        config.AddTarget("console", consoleTarget);
-        config.LoggingRules.Add(new LoggingRule("MyNamespace.*", LogLevel.Debug, consoleTarget));
+        var target = new ColoredConsoleTarget();
+        config.AddTarget("console", target);
+        config.LoggingRules.Add(new LoggingRule("MyNamespace.*", LogLevel.Debug, target));
 
         LogManager.Configuration = config;
 
