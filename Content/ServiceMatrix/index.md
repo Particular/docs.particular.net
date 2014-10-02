@@ -12,6 +12,7 @@ summary: ServiceMatrix Documentation Table of Contents
 - [Publish and Subscribe Messaging](getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe)
 - [Using ServiceMatrix with ServiceInsight](servicematrix-serviceinsight.md "Using ServiceMatrix and ServiceInsight Together")
 - [Sagas in ServiceMatrix](getting-started-sagasfullduplex-2.0.md "Sagas in ServiceMatrix")
+- [Integrating SignalR with ServiceMatrix](getting-started-signalr-2.2.md)
 
 ### Presentations and Webinars
 - [Building Better .NET Solutions](http://fast.wistia.net/embed/iframe/4348umnahj?canonicalUrl=https%3A%2F%2Fparticular-1.wistia.com%2Fmedias%2F4348umnahj&canonicalTitle=Building%20Better%20.NET%20Solutions%20with%20the%20Particular%20Service%20Platform%20-%20particular-1&autoPlay=true) (May 2014)

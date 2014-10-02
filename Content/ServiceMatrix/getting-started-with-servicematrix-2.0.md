@@ -1,6 +1,6 @@
 ---
-title: Send and Receive with ServiceMatrix V2.0
-summary: 'Getting Started with the ServiceMatrix V2.0 for Visual Studio 2012 using a send and receive example.'
+title: Send and Receive with ServiceMatrix V2.X
+summary: 'Getting Started with the ServiceMatrix V2.X for Visual Studio 2012 and 2013 using a send and receive example.'
 tags:
 - ServiceMatrix
 - Send and Receive
@@ -15,12 +15,13 @@ This step-by-step guide to the Particular Service Platform walks you through the
 4.  [Creating a Message](#creating-a-message)
 5.  [Creating Services](#creating-services)
 5.  [Deploying Components](#deploying-components)
+6.  [Selecting a Persistence Store](#selecting-a-persistence-store)
 6.  [Handling a Message](#handling-a-message)
 6.  [Running the Application](#running-the-application)
 7.  [Using ServiceInsight](#using-serviceinsight)
 9.  [Next Steps](#next-steps)
 
-The example demonstrates the integration of an online sales web store with a back-end system using the request-response pattern and NServiceBus.
+The example demonstrates the integration of an online sales web store with a backend system using the request-response pattern and NServiceBus.
 
 ## Installing ServiceMatrix for Visual Studio
 
@@ -31,7 +32,7 @@ This document reviews the use of ServiceMatrix for Visual Studio, assuming Servi
 ServiceMatrix can be installed using the Particular Platform Installer. To download and install ServiceMatrix separately, [follow the instructions](installing-servicematrix-2.0.md "Installing ServiceMatrix").
 
 For this example you need to meet the following system requirements:
-- Visual Studio 2012 or 2013
+- Visual Studio 2012 or 2013 (Professional or above - not Express)
 - ASP.NET MVC 4 ([http://www.asp.net/downloads](http://www.asp.net/downloads))
 
 NOTE: If you have both Visual Studio 2010 and Visual Studio 2012/13 installed on your machine, you can install ServiceMatrix for one Visual Studio version only. This document reviews the use of ServiceMatrix V2.0 for Visual Studio 2012 or 2013.
@@ -42,31 +43,32 @@ To get started with ServiceMatrix, create a new project.
 
 ### Create an NServiceBus project
 
-In Visual Studio, select `File\New\Project` and select 'NServiceBus System' under the Visual C\# project type. Target the .NET Framework 4.5 for this project. 
+In Visual Studio, select `File\New\Project` and select 'NServiceBus v5 System' under the Visual C\# project type. Target the .NET Framework 4.5 for this project.
 
-![NewProject](images/servicematrix-reqresp-newproject.png)
+![NewProject](images/servicematrix-reqresp-newprojectv2.2.0.png)
 
 In the Solution name, type 'OnlineSales' (or any other name) for the name of your application.
+
+NOTE: It is recommended that you use the 'NServiceBus v5 System' project template unless you need to remain on NServiceBus v4 for some particular reason. NServiceBus V5 is wire compatible with earlier versions, so you should be able to use the latest version without breaking compatibility with services that may already be deployed and running on an earlier version. [Read this document](../nservicebus/upgradeguides/4to5.md) for an overview of the differences in V5 from V4.
 
 ### Review The Solution
 
 You'll see that a solution folder has been created for your solution, as shown. 
 
-![New Solution](images/servicematrix-reqresp-freshsolution.png)
+![New Solution](images/servicematrix-reqresp-freshsolutionv2.2.0.png)
 
 A number of projects have been created for you, as shown in the Solution Explorer pane. The `Solution Items` folder is part of the ServiceMatrix infrastructure.
 
-Two important folders are the `Contract` and `Internal` projects as they are where all message types are placed:
--   All defined events will be put in the `Contract` project.
+Two important folders are the `Contracts` and `Internal` projects as they are where all message types are placed:
+-   All defined events will be put in the `Contracts` project.
 -   All commands will be put in the `Internal` project. 
 
 Later you will see how messages from different services are partitioned in these projects. 
 
-Look at the design environment. The [Solution Builder](images/servicematrix-solutionbuilder.png "Solution Builder") on the left provides a hierarchy of the logical elements of the solution. If you  don't see a docked window in Visual Studio called Solution Builder,  open it via the View menu.
+Look at the design environment. The [Solution Builder](images/servicematrix-solutionbuilderv2.2.0.png "Solution Builder") on the left provides a hierarchy of the logical elements of the solution. If you  don't see a docked window in Visual Studio called Solution Builder,  open it via the View menu.
 
-You should see folders in Solution Builder called 'Infrastructure', 'Libraries', 'Endpoints', and 'Services'.
+You should see folders in Solution Builder called 'Infrastructure',  'Endpoints', and 'Services'.
 -   Infrastructure is where cross-cutting concerns like authentication and auditing are handled.
--   Libraries are units of code that can be reused, including logging and data access.
 -   Endpoints are where code is deployed as executable processes. They can be MVC web applications or [NServiceBus Hosts](../NServiceBus/the-nservicebus-host.md).
 -   Services are logical containers for code that provide the structure for publish/subscribe events and command-processing. 
 
@@ -78,9 +80,9 @@ Alternatively, you can create them using the Solution Builder tree view.  Howeve
 
 ## Building the Online Sales Solution
 
-This online sales example involves a website that collects online orders, and a back-end order processing system that processes them.  
+This online sales example involves a website that collects online orders, and a backend order processing system that processes them.  
 
-To build the solution you will define and endpoint for the website and another endpoint for the order processing system.  A new 'Sales' service will define components for submitting and processing orders as well as a command message to represent the order submission.  
+To build the solution you will define an endpoint for the website and another endpoint for the order processing system.  A new 'Sales' service will define components for submitting and processing orders as well as a command message to represent the order submission.  
 
 ## Creating Endpoints
 
@@ -110,19 +112,21 @@ At this point your solution should have both endpoints on the NServiceBus canvas
 
 ![Canvas With Endpoints](images/servicematrix-canvaswithendpoints.png) 
 
-Notice how you can control the zoom with your mouse scroll wheel, and drag the boxes around. This is how you rearrange the canvas when you add more things to it.
+Notice how you can control the zoom with your mouse scroll wheel, and drag the boxes around. This is how you rearrange the canvas when you add more things to it. Also notice that the Solution Builder has been updated with your new endpoints.
+
+![Solution Builder With Endpoints](images/servicematrix-solnbuilderwithendpointsv2.2.0.png)
 
 ## Creating a Message
 
-To facilitate communication between the website and the back-end `OrderProcessing` endpoint, use a command message. Create this message using the drop-down menu of the `ECommerce` endpoint, and select `Send Command` as shown.  
+To facilitate communication between the website and the backend `OrderProcessing` endpoint, use a command message. Create this message using the drop-down menu of the `ECommerce` endpoint, and select `Send Command` as shown.  
 
 ![Send Command](images/servicematrix-ecommercesendcommand.png)
 
 ## Creating Services 
 
-As you create the new command message, you are prompted for the name of a service.  In NServiceBus a service contains components responsible for facilitating the communication between the website and order processing.  Name the new service `Sales` and the command `SubmitOrder` as shown.
+As you create the new command message, you are prompted for the name of a service.  In NServiceBus a service contains components responsible for facilitating the communication between the website and order processing.  Name the new service `Sales` and the command `SubmitOrder` as shown. Leave 'Handled with' as '[new handler]'.
 
-![Sales Service and SubmitOrder Command](images/servicematrix-sales-submitorder.png)
+![Sales Service and SubmitOrder Command](images/servicematrix-sales-submitorderv2.2.0.png)
   
 The canvas now illustrates the new Sales service with two components.  The `SubmitOrderSender` component sends the command and is deployed to the `ECommerce` endpoint.  The `SubmitOrderHandler` component receives the command message and is shown in an 'Undeployed Components' box.  
 
@@ -201,36 +205,41 @@ Lastly, review how the 'ECommerce' website sends a message.  When ServiceMatrix 
 
 ### Review MVC Code
 
-Find the `TestMessagesController.generated.cs` file in the Controllers folder in the OnlineSales.ECommerce project.  ServiceMatrix generates this file as part of the MVC application. Notice the `SubmitOrderSender.Send` method that sends the command message `SubmitOrder`.  This method was generated in a different partial class file located in the `Infrastructure\Sales\SubmitOrderSender.cs` file.  
+Find the `TestMessagesController.generated.cs` file in the Controllers folder in the OnlineSales.ECommerce project.  ServiceMatrix generates this file as part of the MVC application. Notice the `SubmitOrderSender.Send` method that sends the command message `SubmitOrder`.  This method was generated in a different partial class file located in the `Infrastructure\Sales\SubmitOrderSender.cs` file.
 
 ```C#
 namespace OnlineSales.ECommerce.Controllers
 {
-    public partial class TestMessagesController : Controller
+  public partial class TestMessagesController : Controller
+  {
+    //
+    // GET: /TestMessages/
+
+    public ActionResult Index()
     {
-        // GET: /TestMessages/
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // POST: /TestMessages/SendMessageSubmitOrder
-          
-        public ISubmitOrderSender SubmitOrderSender { get; set; }
-          
-        [HttpPost]
-        public ActionResult SendMessageSubmitOrder(SubmitOrder SubmitOrder)
-        {
-            ConfigureSubmitOrder(SubmitOrder);
-            SubmitOrderSender.Send(SubmitOrder);
-
-            ViewBag.MessageSent = "SubmitOrder";
-
-            return View("Index");
-        }
-        partial void ConfigureSubmitOrder(SubmitOrder message);
+      return View();
     }
+
+
+    public ISubmitOrderSender SubmitOrderSender { get; set; }
+
+    // POST: /TestMessages/SendMessageSubmitOrder
+
+    [HttpPost]
+    public string SendMessageSubmitOrder(SubmitOrder SubmitOrder)
+    {
+      ConfigureSubmitOrder(SubmitOrder);
+      SubmitOrderSender.Send(SubmitOrder);
+      return "<p> SubmitOrder command sent</p>";
+    }
+
+
+    // Send Commands
+
+    partial void ConfigureSubmitOrder(SubmitOrder message);
+
+    // Publish Events
+  }
 }
 ```  
 
@@ -249,6 +258,69 @@ namespace OnlineSales.Sales
     }
 }
 ```
+
+## Selecting a Persistence Store
+
+NServiceBus requires a persistence store. By default, ServiceMatrix provisions your solution to use the `InMemoryPersistence` class, but only if the Visual Studio debugger is attached. If you attempt to run your project without the debugger attached, you will receive an exception informing you to choose a durable persistence class.
+
+### Selecting Persistence for ECommerce MVC Endpoint
+
+Each endpoint should be configured. For your ECommerce MVC endpoint, you will find the setup in `Infrastructure\WebGlobalInitialization.cs`. 
+
+````C#
+if (Debugger.IsAttached)
+{
+  // For production use, please select a durable persistence.
+  // To use RavenDB, install-package NServiceBus.RavenDB and then use configuration.UsePersistence<RavenDBPersistence>();
+  // To use SQLServer, install-package NServiceBus.NHibernate and then use configuration.UsePersistence<NHibernatePersistence>();	
+  config.UsePersistence<InMemoryPersistence>();
+
+  // In Production, make sure the necessary queues for this endpoint are installed before running the website
+  // While calling this code will create the necessary queues required, this step should
+  // ideally be done just one time as opposed to every execution of this endpoint.
+  config.EnableInstallers();
+}
+````
+
+Right-click on your OnlineSales.ECommerce project in the Solution Explorer and select 'Manage NuGet Packages...' Search Online for the NServiceBus.RavenDB package and install it.
+
+![NServiceBus.RavenDB NuGet Package](images/servicematrix-ravendb-nuget.png)
+
+Now, in the `Infrastructure\WebGlobalInitialization.cs` code, update it to initialize the RavenDBPersistence class *outside* of the `Debugger.IsAttached` check.
+
+````C#
+config.UsePersistence<RavenDBPersistence>();
+
+if (Debugger.IsAttached)
+{
+  // In Production, make sure the necessary queues for this endpoint are installed before running the website
+  // While calling this code will create the necessary queues required, this step should
+  // ideally be done just one time as opposed to every execution of this endpoint.
+  config.EnableInstallers();
+}
+````
+
+### Selecting Peristence for OrderProcessing NServiceBus Host Endpoint
+
+In your OrderProcessing endpoint, you will find the setup in `EndpointConfig.cs`.
+
+````C#
+// For production use, please select a durable persistence.
+// To use RavenDB, install-package NServiceBus.RavenDB and then use configuration.UsePersistence<RavenDBPersistence>();
+// To use SQLServer, install-package NServiceBus.NHibernate and then use configuration.UsePersistence<NHibernatePersistence>();
+if (Debugger.IsAttached)
+{
+  configuration.UsePersistence<InMemoryPersistence>();
+}
+````
+
+Repeat the steps above to install the NServiceBus.RavenDB NuGet package into your OnlineSales.OrderProcessing project and modify the code in `EndpointConfig.cs`.
+
+````C#
+config.UsePersistence<RavenDBPersistence>();
+````
+
+**TODO: Getting an error trying to run this. RavenDB 2.0 is installed, but it says 2.5 is required.**
 
 ## Running the Application
 

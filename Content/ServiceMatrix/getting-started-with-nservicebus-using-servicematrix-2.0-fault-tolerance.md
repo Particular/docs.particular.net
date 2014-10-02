@@ -77,12 +77,12 @@ The defaults are three retries and ten seconds, resulting in a wait of 10 second
 
 ### Demonstrating second-level retry
 
-To demonstrate this feature you must make the processing of messages in `OrderProcessing` fail. The easiest way to do this is to throw an exception in the `SubmitOrderProcessor` code, like this:
+To demonstrate this feature you must make the processing of messages in `OrderProcessing` fail. The easiest way to do this is to throw an exception in the `SubmitOrderHandler` code, like this:
 
 ```C#
 namespace OnlineSales.Sales
 {
-    public partial class SubmitOrderProcessor
+    public partial class SubmitOrderHandler
     {
 		
        partial void HandleImplementation(SubmitOrder message)
@@ -90,14 +90,14 @@ namespace OnlineSales.Sales
          
             Console.WriteLine("Sales received " + message.GetType().Name);
 
-            //Throw and exception to simulate an error!
+            //Throw an exception to simulate an error!
             throw new Exception("Oh no.. something bad happened");
         }
     }
 }
 ```
 
-Run your solution again, but this time use Ctrl-F5 or from the menu choose [start without debugging](images/servicematrix-startnodebugging.png "Start without debugging") so that Visual Studio does not break each time the exception is thrown.  
+Run your solution again, but this time use Ctrl-F5 or from the menu choose [start without debugging](images/servicematrix-startnodebugging.png "Start without debugging") so that Visual Studio does not break each time the exception is thrown.
 
 Now send a `submitorder` message from the ECommerce app by clicking 'Send'. You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
 
@@ -130,8 +130,7 @@ The audit and error queues can be on a remote machine by simply appending `@mach
 
 ## Monitoring the errors and audits
 
-Traditionally, administrators used a variety of techniques and monitoring tools to keep tabs on the endpoints and the error queues.   This has been made much easier with the Service.
-The monitoring and managing of NServiceBus queues has been made much easier with the introduction of  [ServicePulse](http://particular.net/ServicePulse-1 "ServicePulse") and [ServiceInsight](http://particular.net/ServiceInsight "ServiceInsight").  ServicePulse provides the ability to monitor the uptime and SLA of your endpoints.  ServiceInsight is designed to provide visibility into the processes and the relationship among them. 
+Traditionally, administrators used a variety of techniques and monitoring tools to keep tabs on the endpoints and the error queues.   This has been made much easier with the introduction of  [ServicePulse](http://particular.net/ServicePulse-1 "ServicePulse") and [ServiceInsight](http://particular.net/ServiceInsight "ServiceInsight").  ServicePulse provides the ability to monitor the uptime and SLA of your endpoints.  ServiceInsight is designed to provide visibility into the processes and the relationship among them. 
 
 Make sure you remove the code that throws an exception before going on.
 

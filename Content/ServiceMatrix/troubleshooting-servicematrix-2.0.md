@@ -13,6 +13,7 @@ This article provides information on how to troubleshoot ServiceMatrix.
 1.  [Issues Uninstalling](#issues-uninstalling-servicematrix)
 2.  [Accessing the Log File](#access-the-servicematrix-log-file)
 3.  [Microsoft FixIt Tool](#using-the-microsoft-fixit-tool)
+4.  [Disconnecting a solution from ServiceMatrix](#disconnecting-a-solution-from-servicematrix)
 
 ## Issues Uninstalling ServiceMatrix
 

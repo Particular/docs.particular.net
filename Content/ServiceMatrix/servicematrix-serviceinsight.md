@@ -40,7 +40,7 @@ Turn on the automatic launch of ServiceInsight using the property shown.  By def
 
 #How Debugging Works
 ###Debugging Metadata
-When debugging a ServiceMatrix solution, an new assembly is added to your project. If you look at your project references in the Solution Explorer, you will see that your projects have a reference to the `ServiceControl.Plugin.DebugSession` assembly.  This assembly is a [ServiceControl Endpoint Plugin](../ServiceControl/Plugins.md "ServiceControl Endpoint Plugins") for debugging. 
+When debugging a ServiceMatrix solution, an new assembly is added to your project. If you look at your project references in the Solution Explorer, you will see that your projects have a reference to the `ServiceControl.Plugin.DebugSession` assembly (or `ServiceControl.Plugin.Nsb5.DebugSession`).  This assembly is a [ServiceControl Endpoint Plugin](../ServiceControl/Plugins.md "ServiceControl Endpoint Plugins") for debugging. 
 
 This debug assembly is loaded by NServiceBus and adds a specific debug session ID to the header of each message.  When ServiceInsight is launched, it uses this ID to filter the results to only the messages for your debug session. 
 
