@@ -10,7 +10,7 @@ ServiceControl is a backend data service for ServicePulse production monitoring 
 
 As such, ServiceControl serves as a recent data repository, and it is not intended to serve as a long-term archiving solution (for example: some data archiving policies require storing data for long periods measured in years; such requirements are met by dedicated long-term archiving tools).
 
-ServiceControl implements a configurable data purging policy, removing audited messages that are older than a specified timespan. Failed messages (including messages that are manually archived using ServicePulse's Archive feature) are not purged. 
+ServiceControl implements a configurable data purging policy, removing audited messages that are older than a specified timespan. **Failed messages (including messages that are manually archived using ServicePulse's Archive feature) are not purged.** 
 
 By default ServiceControl purges old data periodically, checking each minute and deleting data older than 30 days.
 
