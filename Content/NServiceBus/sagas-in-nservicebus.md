@@ -11,7 +11,7 @@ One of the common mistakes developers make when designing distributed systems is
 
 While a single web service invocation need not be considered "long-running", once there are two or more calls within a given use case, you should take issues of consistency into account. The first call may be successful but the second call can time out. Sagas allow coding for these cases in a simple and robust fashion.
 
-Design processes with more than one remote call use sagas.
+Design processes with more than one remote call to use sagas.
 
 While it may seem excessive at first, the business implications of your system getting out of sync with the other systems it interacts with can be substantial. It's not just about exceptions that end up in your log files.
 
