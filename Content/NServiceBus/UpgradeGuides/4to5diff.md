@@ -7,7 +7,7 @@ tags:
 - diff
 ---
 
-### The following public types have been removed.
+## The following public types have been removed.
 
 - `NServiceBus.Audit.MessageAuditer` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Audit/MessageAuditer.cs) ]
 - `NServiceBus.AutomaticSubscriptions.AutoSubscriber` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscriber.cs) ]
@@ -155,7 +155,7 @@ tags:
 - `NServiceBus.Unicast.Transport.Transactional.Config.AdvancedTransactionalConfig` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/Config/AdvancedTransactionalConfig.cs) ]
 
 
-### The following public types have been made internal.
+## The following public types have been made internal.
 
 - `NDesk.Options.Option` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/Options.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Options.cs) ]
 - `NDesk.Options.OptionAction<TKey, TValue>` 
@@ -221,20 +221,20 @@ tags:
 - `NServiceBus.Unicast.Transport.TransportMessageExtensions` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransportMessageExtensions.cs) ]
 
 
-### The following types have differences.
+## The following types have differences.
 
 
-#### NServiceBus.Address  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Address.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Address.cs) ]
+### NServiceBus.Address  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Address.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Address.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `NServiceBus.Address get_PublicReturnAddress()` 
   - `void PreventChanges()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Address.cs#L191) ]
 
 
-#### NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs) ]
+### NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs#L8) ]
   - `NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings AutoSubscribePlainMessages()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs#L36) ]
@@ -243,32 +243,32 @@ tags:
   - `NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings DoNotRequireExplicitRouting()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs#L27) ]
 
 
-#### NServiceBus.AutoSubscribeSettingsExtensions  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettingsExtensions.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettingsExtensions.cs) ]
+### NServiceBus.AutoSubscribeSettingsExtensions  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettingsExtensions.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettingsExtensions.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `NServiceBus.Features.FeatureSettings AutoSubscribe(NServiceBus.Features.FeatureSettings, Action<NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettingsExtensions.cs#L11) ]
 
 
-#### NServiceBus.Config.IWantToRunWhenConfigurationIsComplete  
+### NServiceBus.Config.IWantToRunWhenConfigurationIsComplete  
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Run()` 
 
 
-#### NServiceBus.Configure  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure.cs) ]
+### NServiceBus.Configure  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure.cs) ]
 
-##### Fields Removed
+#### Fields Removed
 
   - `Func<string> DefineEndpointVersionRetriever`
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void Initialize()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs#L337) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure.cs#L102) ]
   - `void set_Builder(NServiceBus.ObjectBuilder.IBuilder)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs#L75) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void add_ConfigurationComplete(Action)` 
   - `void ForAllTypes<T>(Action<Type>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs#L379) ]
@@ -282,29 +282,29 @@ tags:
   - `void set_ConfigurationSource(NServiceBus.Config.ConfigurationSource.IConfigurationSource)` 
 
 
-#### NServiceBus.ConfigureCriticalErrorAction  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/ConfigureCriticalErrorAction.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/CriticalError/ConfigureCriticalErrorAction_Obsolete.cs) ]
+### NServiceBus.ConfigureCriticalErrorAction  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/ConfigureCriticalErrorAction.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/CriticalError/ConfigureCriticalErrorAction_Obsolete.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void RaiseCriticalError(NServiceBus.Configure, string, Exception)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/ConfigureCriticalErrorAction.cs#L44) ]
 
 
-#### NServiceBus.EndpointSLAAttribute  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Configuration/EndpointSLAAttribute.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Monitoring/SLA/EndpointSLAAttribute.cs) ]
+### NServiceBus.EndpointSLAAttribute  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Configuration/EndpointSLAAttribute.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Monitoring/SLA/EndpointSLAAttribute.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `string get_SLA()` 
   - `void set_SLA(string)` 
 
 
-#### NServiceBus.ExtensionMethods  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/ExtensionMethods.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ExtensionMethods.cs) ]
+### NServiceBus.ExtensionMethods  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/ExtensionMethods.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ExtensionMethods.cs) ]
 
-##### Fields Removed
+#### Fields Removed
 
   - `Func<object, string, string> GetHeaderAction`
   - `Action<object, string, string> SetHeaderAction`
 
-##### Methods Removed
+#### Methods Removed
 
   - `NServiceBus.IBus get_Bus()` 
   - `Func<IDictionary<string, string>> get_GetStaticOutgoingHeadersAction()` 
@@ -315,59 +315,59 @@ tags:
   - `void SetMessageHeader(NServiceBus.IBus, object, string, string)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/ExtensionMethods.cs#L65) ]
 
 
-#### NServiceBus.Features.Audit  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Audit/Audit.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Audit/Audit.cs) ]
+### NServiceBus.Features.Audit  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Audit/Audit.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Audit/Audit.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void .ctor()` [ [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Audit/Audit.cs#L15) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `bool get_IsEnabledByDefault()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Audit/Audit.cs#L41) ]
   - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Audit/Audit.cs#L16) ]
 
 
-#### NServiceBus.Features.AutoSubscribe  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs) ]
+### NServiceBus.Features.AutoSubscribe  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void .ctor()` [ [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs#L13) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `bool get_IsEnabledByDefault()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs#L34) ]
   - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs#L12) ]
 
 
-#### NServiceBus.Features.BinarySerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerialization.cs) ]
+### NServiceBus.Features.BinarySerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerialization.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void .ctor()` [ [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerialization.cs#L11) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerialization.cs#L9) ]
 
 
-#### NServiceBus.Features.BsonSerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/Config/BsonSerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/BsonSerialization.cs) ]
+### NServiceBus.Features.BsonSerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/Config/BsonSerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/BsonSerialization.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void .ctor()` [ [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/BsonSerialization.cs#L12) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/Config/BsonSerialization.cs#L10) ]
 
 
-#### NServiceBus.Features.Feature  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Features/Feature.cs) ]
+### NServiceBus.Features.Feature  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Features/Feature.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void EnableByDefault<T>()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L75) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Features/Feature.cs#L97) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `IEnumerable<NServiceBus.Features.Feature> ByCategory(NServiceBus.Features.FeatureCategory)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L142) ]
   - `void Disable<T>()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L93) ]
@@ -388,40 +388,40 @@ tags:
   - `bool ShouldBeEnabled()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L26) ]
 
 
-#### NServiceBus.Features.JsonSerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/Config/JsonSerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/JsonSerialization.cs) ]
+### NServiceBus.Features.JsonSerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/Config/JsonSerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/JsonSerialization.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void .ctor()` [ [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/JsonSerialization.cs#L13) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/Config/JsonSerialization.cs#L11) ]
 
 
-#### NServiceBus.Features.MessageDrivenSubscriptions  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptions.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptions.cs) ]
+### NServiceBus.Features.MessageDrivenSubscriptions  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptions.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptions.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void .ctor()` [ [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptions.cs#L11) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptions.cs#L10) ]
 
 
-#### NServiceBus.Features.Sagas  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/Sagas.cs) ]
+### NServiceBus.Features.Sagas  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/Sagas.cs) ]
 
-##### Fields Removed
+#### Fields Removed
 
   - `IDictionary<Type, IDictionary<Type, KeyValuePair<PropertyInfo, PropertyInfo>>> SagaEntityToMessageToPropertyLookup`
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void .ctor()` [ [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/Sagas.cs#L281) ]
   - `bool IsSagaType(Type)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L282) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/Sagas.cs#L221) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Clear()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L460) ]
   - `void ConfigureFinder(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L331) ]
@@ -436,26 +436,26 @@ tags:
   - `bool ShouldMessageStartSaga(Type, Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L120) ]
 
 
-#### NServiceBus.Features.SecondLevelRetries  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs) ]
+### NServiceBus.Features.SecondLevelRetries  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void .ctor()` [ [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs#L13) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `bool get_IsEnabledByDefault()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs#L50) ]
   - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs#L56) ]
   - `bool ShouldBeEnabled()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs#L31) ]
 
 
-#### NServiceBus.Features.TimeoutManager  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/TimeoutManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/TimeoutManager.cs) ]
+### NServiceBus.Features.TimeoutManager  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/TimeoutManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/TimeoutManager.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void .ctor()` [ [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/TimeoutManager.cs#L13) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `NServiceBus.Address get_DispatcherAddress()` 
   - `NServiceBus.Address get_InputAddress()` 
@@ -464,42 +464,42 @@ tags:
   - `bool ShouldBeEnabled()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/TimeoutManager.cs#L24) ]
 
 
-#### NServiceBus.Features.XmlSerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/Config/XmlSerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerialization.cs) ]
+### NServiceBus.Features.XmlSerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/Config/XmlSerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerialization.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void .ctor()` [ [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerialization.cs#L12) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/Config/XmlSerialization.cs#L11) ]
 
 
-#### NServiceBus.Hosting.Helpers.SkippedFile  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs) ]
+### NServiceBus.Hosting.Helpers.SkippedFile  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void .ctor(string, string)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs#L9) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs#L9) ]
 
 
-#### NServiceBus.Hosting.Profiles.IHandleProfile  
+### NServiceBus.Hosting.Profiles.IHandleProfile  
 
-##### Methods Removed
+#### Methods Removed
 
   - `void ProfileActivated()` 
 
 
-#### NServiceBus.Hosting.Windows.WindowsHost  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/WindowsHost.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/WindowsHost.cs) ]
+### NServiceBus.Hosting.Windows.WindowsHost  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/WindowsHost.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/WindowsHost.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void .ctor(Type, String[], string, bool, IEnumerable<string>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/WindowsHost.cs#L26) ]
   - `void Install(string)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/WindowsHost.cs#L75) ]
 
 
-#### NServiceBus.IBus  
+### NServiceBus.IBus  
 
-##### Methods Removed
+#### Methods Removed
 
   - `IDictionary<string, string> get_OutgoingHeaders()` 
   - `void Publish<T>(T)` 
@@ -519,30 +519,30 @@ tags:
   - `void Subscribe(Type, Predicate<object>)` 
 
 
-#### NServiceBus.IMessageContext  
+### NServiceBus.IMessageContext  
 
-##### Methods Removed
+#### Methods Removed
 
   - `DateTime get_TimeSent()` 
 
 
-#### NServiceBus.INeedInitialization  
+### NServiceBus.INeedInitialization  
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Init()` 
 
 
-#### NServiceBus.Installation.INeedToInstallSomething  
+### NServiceBus.Installation.INeedToInstallSomething  
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Install(string)` 
 
 
-#### NServiceBus.IStartableBus  
+### NServiceBus.IStartableBus  
 
-##### Methods Removed
+#### Methods Removed
 
   - `void add_Started(EventHandler)` 
   - `void remove_Started(EventHandler)` 
@@ -550,63 +550,63 @@ tags:
   - `NServiceBus.IBus Start(Action)` 
 
 
-#### NServiceBus.IWantToRunBeforeConfigurationIsFinalized  
+### NServiceBus.IWantToRunBeforeConfigurationIsFinalized  
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Run()` 
 
 
-#### NServiceBus.Logging.LogManager  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Logging/LogManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/LogManager.cs) ]
+### NServiceBus.Logging.LogManager  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Logging/LogManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/LogManager.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void .ctor()` 
   - `NServiceBus.Logging.ILoggerFactory get_LoggerFactory()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Logging/LogManager.cs#L12) ]
   - `void set_LoggerFactory(NServiceBus.Logging.ILoggerFactory)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Logging/LogManager.cs#L15) ]
 
 
-#### NServiceBus.MessageIntentEnum  
+### NServiceBus.MessageIntentEnum  
 
-##### Fields Removed
+#### Fields Removed
 
   - `NServiceBus.MessageIntentEnum Init`
 
 
-#### NServiceBus.MessageInterfaces.MessageMapper.Reflection.MessageMapper  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs) ]
+### NServiceBus.MessageInterfaces.MessageMapper.Reflection.MessageMapper  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `Type CreateTypeFrom(Type, ModuleBuilder)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L150) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L156) ]
   - `string GetNewTypeName(Type)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L141) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L147) ]
   - `void InitType(Type, ModuleBuilder)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L51) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L51) ]
 
 
-#### NServiceBus.MessageMutator.IMutateOutgoingTransportMessages  
+### NServiceBus.MessageMutator.IMutateOutgoingTransportMessages  
 
-##### Methods Removed
+#### Methods Removed
 
   - `void MutateOutgoing(Object[], NServiceBus.TransportMessage)` 
 
 
-#### NServiceBus.ObjectBuilder.IConfigureComponents  
+### NServiceBus.ObjectBuilder.IConfigureComponents  
 
-##### Methods Removed
+#### Methods Removed
 
   - `NServiceBus.ObjectBuilder.IConfigureComponents RegisterSingleton<T>(object)` 
 
 
-#### NServiceBus.Saga.ISagaPersister  
+### NServiceBus.Saga.ISagaPersister  
 
-##### Methods Removed
+#### Methods Removed
 
   - `T Get<T>(Guid)` 
   - `T Get<T>(string, object)` 
 
 
-#### NServiceBus.Saga.Saga&lt;TSagaData&gt;  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/Saga.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Saga/SagaT.cs) ]
+### NServiceBus.Saga.Saga&lt;TSagaData&gt;  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/Saga.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Saga/SagaT.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void ConfigureHowToFindSaga()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/Saga.cs#L46) ]
   - `NServiceBus.IBus get_Bus()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/Saga.cs#L91) ]
@@ -622,51 +622,51 @@ tags:
   - `void set_SagaMessageFindingConfiguration(NServiceBus.Saga.IConfigureHowToFindSagaWithMessage)` 
 
 
-#### NServiceBus.Saga.ToSagaExpression&lt;TSagaData, TMessage&gt;  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/ToSagaExpression.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Saga/ToSagaExpression.cs) ]
+### NServiceBus.Saga.ToSagaExpression&lt;TSagaData, TMessage&gt;  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/ToSagaExpression.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Saga/ToSagaExpression.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void ToSaga(Expression<Func<TSaga, object>>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/ToSagaExpression.cs#L30) ]
 
 
-#### NServiceBus.SecondLevelRetries.Config.SecondLevelRetriesSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesSettings.cs) ]
+### NServiceBus.SecondLevelRetries.Config.SecondLevelRetriesSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesSettings.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesSettings.cs#L8) ]
 
 
-#### NServiceBus.Serialization.IMessageSerializer  
+### NServiceBus.Serialization.IMessageSerializer  
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Serialize(Object[], Stream)` 
 
 
-#### NServiceBus.Serializers.Binary.BinaryMessageSerializer  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Binary/BinaryMessageSerializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/BinaryMessageSerializer.cs) ]
+### NServiceBus.Serializers.Binary.BinaryMessageSerializer  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Binary/BinaryMessageSerializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/BinaryMessageSerializer.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Serialize(Object[], Stream)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Binary/BinaryMessageSerializer.cs#L32) ]
 
 
-#### NServiceBus.Serializers.Json.JsonMessageSerializer  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializer.cs) ]
+### NServiceBus.Serializers.Json.JsonMessageSerializer  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializer.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `T DeserializeObject<T>(string)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializer.cs#L36) ]
 
 
-#### NServiceBus.Serializers.Json.JsonMessageSerializerBase  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializerBase.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializerBase.cs) ]
+### NServiceBus.Serializers.Json.JsonMessageSerializerBase  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializerBase.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializerBase.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Serialize(Object[], Stream)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializerBase.cs#L46) ]
 
 
-#### NServiceBus.Serializers.XML.XmlMessageSerializer  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/XmlMessageSerializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/XmlMessageSerializer.cs) ]
+### NServiceBus.Serializers.XML.XmlMessageSerializer  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/XmlMessageSerializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/XmlMessageSerializer.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void .ctor(NServiceBus.MessageInterfaces.IMessageMapper)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/XmlMessageSerializer.cs#L27) ]
   - `bool get_SkipWrappingElementForSingleMessages()` 
@@ -674,82 +674,82 @@ tags:
   - `void set_SkipWrappingElementForSingleMessages(bool)` 
 
 
-#### NServiceBus.Settings.ScaleOutSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/ScaleOutSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/ScaleOutSettings.cs) ]
+### NServiceBus.Settings.ScaleOutSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/ScaleOutSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/ScaleOutSettings.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void .ctor()` 
   - `NServiceBus.Settings.ScaleOutSettings UseSingleBrokerQueue()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/ScaleOutSettings.cs#L16) ]
   - `NServiceBus.Settings.ScaleOutSettings UseUniqueBrokerQueuePerMachine()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/ScaleOutSettings.cs#L27) ]
 
 
-#### NServiceBus.Settings.SettingsHolder  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/SettingsHolder.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/SettingsHolder.cs) ]
+### NServiceBus.Settings.SettingsHolder  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/SettingsHolder.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/SettingsHolder.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void PreventChanges()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/SettingsHolder.cs#L165) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/SettingsHolder.cs#L253) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void ApplyTo<T>()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/SettingsHolder.cs#L180) ]
   - `void Reset()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/SettingsHolder.cs#L115) ]
 
 
-#### NServiceBus.Settings.TransactionSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/TransactionSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/TransactionSettings.cs) ]
+### NServiceBus.Settings.TransactionSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/TransactionSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/TransactionSettings.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/TransactionSettings.cs#L33) ]
   - `NServiceBus.Settings.TransactionSettings Advanced(Action<NServiceBus.Settings.TransactionSettings/TransactionAdvancedSettings>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/TransactionSettings.cs#L65) ]
 
 
-#### NServiceBus.Timeout.Core.IPersistTimeouts  
+### NServiceBus.Timeout.Core.IPersistTimeouts  
 
-##### Methods Removed
+#### Methods Removed
 
   - `List<Tuple<string, DateTime>> GetNextChunk(DateTime, DateTime&)` 
 
 
-#### NServiceBus.Timeout.Core.TimeoutData  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/Core/TimeoutData.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Core/TimeoutData.cs) ]
+### NServiceBus.Timeout.Core.TimeoutData  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/Core/TimeoutData.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Core/TimeoutData.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `string get_CorrelationId()` 
   - `void set_CorrelationId(string)` 
 
 
-#### NServiceBus.TransportMessage  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/TransportMessage.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransportMessage.cs) ]
+### NServiceBus.TransportMessage  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/TransportMessage.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransportMessage.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `string get_IdForCorrelation()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/TransportMessage.cs#L85) ]
   - `void set_ReplyToAddress(NServiceBus.Address)` 
 
 
-#### NServiceBus.Transports.IDeferMessages  
+### NServiceBus.Transports.IDeferMessages  
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Defer(NServiceBus.TransportMessage, DateTime, NServiceBus.Address)` 
 
 
-#### NServiceBus.Transports.IPublishMessages  
+### NServiceBus.Transports.IPublishMessages  
 
-##### Methods Removed
+#### Methods Removed
 
   - `bool Publish(NServiceBus.TransportMessage, IEnumerable<Type>)` 
 
 
-#### NServiceBus.Transports.ISendMessages  
+### NServiceBus.Transports.ISendMessages  
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Send(NServiceBus.TransportMessage, NServiceBus.Address)` 
 
 
-#### NServiceBus.Transports.Msmq.MsmqDequeueStrategy  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqDequeueStrategy.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqDequeueStrategy.cs) ]
+### NServiceBus.Transports.Msmq.MsmqDequeueStrategy  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqDequeueStrategy.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqDequeueStrategy.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqDequeueStrategy.cs#L363) ]
   - `bool get_PurgeOnStartup()` 
@@ -758,31 +758,31 @@ tags:
   - `void set_UnitOfWork(NServiceBus.Transports.Msmq.MsmqUnitOfWork)` 
 
 
-#### NServiceBus.Transports.Msmq.MsmqMessageSender  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqMessageSender.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqMessageSender.cs) ]
+### NServiceBus.Transports.Msmq.MsmqMessageSender  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqMessageSender.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqMessageSender.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void Send(NServiceBus.TransportMessage, NServiceBus.Address)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqMessageSender.cs#L38) ]
 
 
-#### NServiceBus.Transports.Msmq.MsmqUnitOfWork  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs) ]
+### NServiceBus.Transports.Msmq.MsmqUnitOfWork  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void ClearTransaction()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs#L31) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs#L45) ]
   - `void SetTransaction(System.Messaging.MessageQueueTransaction)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs#L21) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs#L31) ]
 
 
-#### NServiceBus.Unicast.MessageHandlerRegistry  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/MessageHandlerRegistry.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/MessageHandlerRegistry.cs) ]
+### NServiceBus.Unicast.MessageHandlerRegistry  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/MessageHandlerRegistry.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/MessageHandlerRegistry.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/MessageHandlerRegistry.cs#L81) ]
 
 
-#### NServiceBus.Unicast.Messages.MessageMetadata  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Messages/MessageMetadata.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Messages/MessageMetadata.cs) ]
+### NServiceBus.Unicast.Messages.MessageMetadata  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Messages/MessageMetadata.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Messages/MessageMetadata.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void .ctor()` 
   - `void set_MessageHierarchy(IEnumerable<Type>)` 
@@ -791,32 +791,32 @@ tags:
   - `void set_TimeToBeReceived(TimeSpan)` 
 
 
-#### NServiceBus.Unicast.Queuing.IWantQueueCreated  
+### NServiceBus.Unicast.Queuing.IWantQueueCreated  
 
-##### Methods Removed
+#### Methods Removed
 
   - `bool get_IsDisabled()` 
 
 
-#### NServiceBus.Unicast.Transport.ControlMessage  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs) ]
+### NServiceBus.Unicast.Transport.ControlMessage  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `NServiceBus.TransportMessage Create(NServiceBus.Address)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs#L14) ]
 
 
-#### NServiceBus.Unicast.Transport.ITransport  
+### NServiceBus.Unicast.Transport.ITransport  
 
-##### Methods Removed
+#### Methods Removed
 
   - `int get_MaxThroughputPerSecond()` 
   - `int get_NumberOfWorkerThreads()` 
   - `void set_MaxThroughputPerSecond(int)` 
 
 
-#### NServiceBus.Unicast.Transport.TransactionSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs) ]
+### NServiceBus.Unicast.Transport.TransactionSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs#L9) ]
   - `NServiceBus.Unicast.Transport.TransactionSettings get_Default()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs#L33) ]
@@ -824,15 +824,15 @@ tags:
   - `void set_DontUseDistributedTransactions(bool)` 
 
 
-#### NServiceBus.Unicast.Transport.TransportReceiver  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs) ]
+### NServiceBus.Unicast.Transport.TransportReceiver  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void DisposeManaged()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L481) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L421) ]
   - `void set_MaximumConcurrencyLevel(int)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L75) ]
   - `void set_TransactionSettings(NServiceBus.Unicast.Transport.TransactionSettings)` 
 
-##### Methods Removed
+#### Methods Removed
 
   - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L493) ]
   - `void ChangeNumberOfWorkerThreads(int)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L171) ]
@@ -842,13 +842,13 @@ tags:
   - `void Start(string)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L176) ]
 
 
-#### NServiceBus.Unicast.UnicastBus  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs) ]
+### NServiceBus.Unicast.UnicastBus  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs) ]
 
-##### Methods changed to non-public
+#### Methods changed to non-public
 
   - `void DisposeManaged()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L949) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/UnicastBus.cs#L746) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `void add_MessageReceived(NServiceBus.Unicast.UnicastBus/MessageReceivedDelegate)` 
   - `void add_MessagesSent(EventHandler<NServiceBus.Unicast.MessagesEventArgs>)` 
@@ -899,1006 +899,1006 @@ tags:
   - `void Subscribe(Type, Predicate<object>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L373) ]
 
 
-#### NServiceBus.XmlSerializerConfigurationExtensions  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions_Obsolete.cs) ]
+### NServiceBus.XmlSerializerConfigurationExtensions  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions_Obsolete.cs) ]
 
-##### Methods Removed
+#### Methods Removed
 
   - `NServiceBus.Settings.SerializationSettings Xml(NServiceBus.Settings.SerializationSettings, Action<NServiceBus.Serializers.XML.Config.XmlSerializationSettings>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions.cs#L15) ]
 
 
-### The following types have Obsoletes.
+## The following types have Obsoletes.
 
-#### NServiceBus.ConfigureQueueCreation  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureQueueCreation.cs) ]
+### NServiceBus.ConfigureQueueCreation  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureQueueCreation.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure DoNotCreateQueues(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureQueueCreation_Obsolete.cs#L16) ]<br>Use `configuration.DoNotCreateQueues()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure DoNotCreateQueues(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureQueueCreation_Obsolete.cs#L16) ]<br>Use `configuration.DoNotCreateQueues()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureInMemoryFaultManagement  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureInMemoryFaultManagement.cs) ]
+### NServiceBus.ConfigureInMemoryFaultManagement  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureInMemoryFaultManagement.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure InMemoryFaultManagement(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureInMemoryFaultManagement_obsolete.cs#L20) ]<br>Use `configuration.DiscardFailedMessagesInsteadOfSendingToErrorQueue()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure InMemoryFaultManagement(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureInMemoryFaultManagement_obsolete.cs#L20) ]<br>Use `configuration.DiscardFailedMessagesInsteadOfSendingToErrorQueue()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureCriticalErrorAction  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/CriticalError/ConfigureCriticalErrorAction_Obsolete.cs) ]
+### NServiceBus.ConfigureCriticalErrorAction  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/CriticalError/ConfigureCriticalErrorAction_Obsolete.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure DefineCriticalErrorAction(NServiceBus.Configure, Action<string, Exception>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/CriticalError/ConfigureCriticalErrorAction_Obsolete.cs#L17) ]<br>Use `configuration.DefineCriticalErrorAction()`, where configuration is an instance of type `BusConfiguration`. Please use `ConfigureCriticalErrorAction.DefineCriticalErrorAction()` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `void RaiseCriticalError(string, Exception)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/CriticalError/ConfigureCriticalErrorAction_Obsolete.cs#L26) ]<br>Inject an instace of `CriticalError` and call `CriticalError.Raise`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure DefineCriticalErrorAction(NServiceBus.Configure, Action<string, Exception>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/CriticalError/ConfigureCriticalErrorAction_Obsolete.cs#L17) ]<br>Use `configuration.DefineCriticalErrorAction()`, where configuration is an instance of type `BusConfiguration`. Please use `ConfigureCriticalErrorAction.DefineCriticalErrorAction()` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void RaiseCriticalError(string, Exception)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/CriticalError/ConfigureCriticalErrorAction_Obsolete.cs#L26) ]<br>Inject an instace of `CriticalError` and call `CriticalError.Raise`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureFileShareDataBus  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/DataBus/ConfigureFileShareDataBus_Obsolete.cs) ]
+### NServiceBus.ConfigureFileShareDataBus  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/DataBus/ConfigureFileShareDataBus_Obsolete.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure FileShareDataBus(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/DataBus/ConfigureFileShareDataBus_Obsolete.cs#L17) ]<br>Use `configuration.FileShareDataBus(basePath)`, where `configuration` is an instance of type `BusConfiguration`. Please use `ConfigureFileShareDataBus.FileShareDataBus(this BusConfiguration config, string basePath)` instead. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure FileShareDataBus(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/DataBus/ConfigureFileShareDataBus_Obsolete.cs#L17) ]<br>Use `configuration.FileShareDataBus(basePath)`, where `configuration` is an instance of type `BusConfiguration`. Please use `ConfigureFileShareDataBus.FileShareDataBus(this BusConfiguration config, string basePath)` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureRijndaelEncryptionService  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Encryption/ConfigureRijndaelEncryptionService_Obsolete.cs) ]
+### NServiceBus.ConfigureRijndaelEncryptionService  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Encryption/ConfigureRijndaelEncryptionService_Obsolete.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure RijndaelEncryptionService(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Encryption/ConfigureRijndaelEncryptionService_Obsolete.cs#L15) ]<br>Use `configuration.RijndaelEncryptionService()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure RijndaelEncryptionService(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Encryption/ConfigureRijndaelEncryptionService_Obsolete.cs#L15) ]<br>Use `configuration.RijndaelEncryptionService()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.IBus_Obsoletes  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/IBus_Obsoletes.cs) ]
+### NServiceBus.IBus_Obsoletes  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/IBus_Obsoletes.cs) ]
 
-Placeholder for obsoletes. Will be removed in version 6.0.0. TreatAsError=True
+Placeholder for obsoletes. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `T CreateInstance<T>(NServiceBus.IBus)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L21) ]<br>Since multi message sends is obsoleted in v5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `T CreateInstance<T>(NServiceBus.IBus, Action<T>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L34) ]<br>Since multi message sends is obsoleted in v5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `object CreateInstance(NServiceBus.IBus, Type)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L46) ]<br>Since multi message sends is obsoleted in v5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. TreatAsError=True
+  - `T CreateInstance<T>(NServiceBus.IBus)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L21) ]<br>Since multi message sends is obsoleted in v5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `T CreateInstance<T>(NServiceBus.IBus, Action<T>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L34) ]<br>Since multi message sends is obsoleted in v5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `object CreateInstance(NServiceBus.IBus, Type)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L46) ]<br>Since multi message sends is obsoleted in v5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.InstallConfigExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Installation/InstallConfigExtensions_obsolete.cs) ]
+### NServiceBus.InstallConfigExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Installation/InstallConfigExtensions_obsolete.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure EnableInstallers(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Installation/InstallConfigExtensions_obsolete.cs#L15) ]<br>Use `configuration.EnableInstallers()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure EnableInstallers(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Installation/InstallConfigExtensions_obsolete.cs#L15) ]<br>Use `configuration.EnableInstallers()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureLicenseExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Licensing/ConfigureLicenseExtensions.cs) ]
+### NServiceBus.ConfigureLicenseExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Licensing/ConfigureLicenseExtensions.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure License(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Licensing/ConfigureLicenseExtensions_Obsolete.cs#L16) ]<br>Use `configuration.License(licenseText)`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure LicensePath(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Licensing/ConfigureLicenseExtensions_Obsolete.cs#L26) ]<br>Use `configuration.LicensePath(licenseFile)`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure License(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Licensing/ConfigureLicenseExtensions_Obsolete.cs#L16) ]<br>Use `configuration.License(licenseText)`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure LicensePath(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Licensing/ConfigureLicenseExtensions_Obsolete.cs#L26) ]<br>Use `configuration.LicensePath(licenseFile)`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.MessageConventionException  
+### NServiceBus.MessageConventionException  
 
-Since the case where this exception was thrown should not be handled by consumers of the API it has been removed. Will be removed in version 6.0.0. TreatAsError=True
+Since the case where this exception was thrown should not be handled by consumers of the API it has been removed. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Persistence.ConcurrencyException  
+### NServiceBus.Persistence.ConcurrencyException  
 
-Since the case where this exception was thrown should not be handled by consumers of the API it has been removed. Will be removed in version 6.0.0. TreatAsError=True
+Since the case where this exception was thrown should not be handled by consumers of the API it has been removed. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Unicast.Transport.TransportMessageHandlingFailedException  
+### NServiceBus.Unicast.Transport.TransportMessageHandlingFailedException  
 
-Since the case where this exception was thrown should not be handled by consumers of the API it has been removed. Will be removed in version 6.0.0. TreatAsError=True
+Since the case where this exception was thrown should not be handled by consumers of the API it has been removed. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Unicast.Queuing.FailedToSendMessageException  
+### NServiceBus.Unicast.Queuing.FailedToSendMessageException  
 
-Since the case where this exception was thrown should not be handled by consumers of the API it has been removed. Will be removed in version 6.0.0. TreatAsError=True
+Since the case where this exception was thrown should not be handled by consumers of the API it has been removed. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.IdGeneration.CombGuid  
+### NServiceBus.IdGeneration.CombGuid  
 
-This class was never intended to be exposed as part of the public API. Will be removed in version 6.0.0. TreatAsError=True
+This class was never intended to be exposed as part of the public API. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Utils.RegistryReader&lt;T&gt;  
+### NServiceBus.Utils.RegistryReader&lt;T&gt;  
 
-This class was never intended to be exposed as part of the public API. Will be removed in version 6.0.0. TreatAsError=True
+This class was never intended to be exposed as part of the public API. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Utils.FileVersionRetriever  
+### NServiceBus.Utils.FileVersionRetriever  
 
-This class was never intended to be exposed as part of the public API. Will be removed in version 6.0.0. TreatAsError=True
+This class was never intended to be exposed as part of the public API. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Unicast.Callback  
+### NServiceBus.Unicast.Callback  
 
-Please use `ICallback` instead. Will be removed in version 6.0.0. TreatAsError=True
+Please use `ICallback` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Unicast.IUnicastBus  
+### NServiceBus.Unicast.IUnicastBus  
 
-Please use `IBus` instead. Will be removed in version 6.0.0. TreatAsError=True
+Please use `IBus` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Hosting.GenericHost  
+### NServiceBus.Hosting.GenericHost  
 
-This class was never intended to be exposed as part of the public API. Will be removed in version 6.0.0. TreatAsError=True
+This class was never intended to be exposed as part of the public API. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Hosting.IHost  
+### NServiceBus.Hosting.IHost  
 
-This class was never intended to be exposed as part of the public API. Will be removed in version 6.0.0. TreatAsError=True
+This class was never intended to be exposed as part of the public API. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### System.Threading.Tasks.Schedulers.MTATaskScheduler  
+### System.Threading.Tasks.Schedulers.MTATaskScheduler  
 
-This class was never intended to be exposed as part of the public API. Will be removed in version 6.0.0. TreatAsError=True
+This class was never intended to be exposed as part of the public API. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.Log4NetBridge.ConfigureInternalLog4NetBridge  
+### NServiceBus.Logging.Log4NetBridge.ConfigureInternalLog4NetBridge  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. TreatAsError=True
+Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.Loggers.ConsoleLogger  
+### NServiceBus.Logging.Loggers.ConsoleLogger  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. TreatAsError=True
+Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.Loggers.ConsoleLoggerFactory  
+### NServiceBus.Logging.Loggers.ConsoleLoggerFactory  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. TreatAsError=True
+Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.Loggers.Log4NetAdapter.Log4NetAppenderFactory  
+### NServiceBus.Logging.Loggers.Log4NetAdapter.Log4NetAppenderFactory  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. TreatAsError=True
+Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.Loggers.Log4NetAdapter.Log4NetConfigurator  
+### NServiceBus.Logging.Loggers.Log4NetAdapter.Log4NetConfigurator  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. TreatAsError=True
+Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.Loggers.Log4NetAdapter.Log4NetLogger  
+### NServiceBus.Logging.Loggers.Log4NetAdapter.Log4NetLogger  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. TreatAsError=True
+Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.Loggers.Log4NetAdapter.Log4NetLoggerFactory  
+### NServiceBus.Logging.Loggers.Log4NetAdapter.Log4NetLoggerFactory  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. TreatAsError=True
+Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.Loggers.NLogAdapter.NLogConfigurator  
+### NServiceBus.Logging.Loggers.NLogAdapter.NLogConfigurator  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. TreatAsError=True
+Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.Loggers.NLogAdapter.NLogLogger  
+### NServiceBus.Logging.Loggers.NLogAdapter.NLogLogger  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. TreatAsError=True
+Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.Loggers.NLogAdapter.NLogLoggerFactory  
+### NServiceBus.Logging.Loggers.NLogAdapter.NLogLoggerFactory  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. TreatAsError=True
+Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.Loggers.NLogAdapter.NLogTargetFactory  
+### NServiceBus.Logging.Loggers.NLogAdapter.NLogTargetFactory  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. TreatAsError=True
+Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.Loggers.NullLogger  
+### NServiceBus.Logging.Loggers.NullLogger  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. TreatAsError=True
+Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.Loggers.NullLoggerFactory  
+### NServiceBus.Logging.Loggers.NullLoggerFactory  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. TreatAsError=True
+Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Logging.LoggingLibraryException  
+### NServiceBus.Logging.LoggingLibraryException  
 
-Since the case where this exception was thrown should not be handled by consumers of the API it has been removed. Will be removed in version 6.0.0. TreatAsError=True
+Since the case where this exception was thrown should not be handled by consumers of the API it has been removed. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.IWantTheEndpointConfig  
+### NServiceBus.IWantTheEndpointConfig  
 
-`IHandleProfile` is now passed an instance of `Configure`. `IWantCustomInitialization` is now expected to return a new instance of `Configure`. Will be removed in version 6.0.0. TreatAsError=True
+`IHandleProfile` is now passed an instance of `Configure`. `IWantCustomInitialization` is now expected to return a new instance of `Configure`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Timeout.Core.IManageTimeouts  
+### NServiceBus.Timeout.Core.IManageTimeouts  
 
-Timeout management is an internal concern and cannot be replaced. Will be removed in version 6.0.0. TreatAsError=True
+Timeout management is an internal concern and cannot be replaced. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Installation.Environments.Windows  
+### NServiceBus.Installation.Environments.Windows  
 
-IEnvironment is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. TreatAsError=True
+IEnvironment is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Installation.IEnvironment  
+### NServiceBus.Installation.IEnvironment  
 
-`IEnvironment` is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. TreatAsError=True
+`IEnvironment` is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Installation.INeedToInstallSomething&lt;T&gt;  
+### NServiceBus.Installation.INeedToInstallSomething&lt;T&gt;  
 
-`IEnvironment` is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. TreatAsError=True
+`IEnvironment` is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Installer&lt;T&gt;  
+### NServiceBus.Installer&lt;T&gt;  
 
-`IEnvironment` is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. TreatAsError=True
+`IEnvironment` is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Install  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
+### NServiceBus.Install  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
 
-`IEnvironment` is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. TreatAsError=True
+`IEnvironment` is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Installer<T> ForInstallationOn<T>(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L352) ]<br>`IEnvironment` is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Installer<T> ForInstallationOn<T>(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L361) ]<br>`IEnvironment` is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Installer<T> ForInstallationOn<T>(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L352) ]<br>`IEnvironment` is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Installer<T> ForInstallationOn<T>(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L361) ]<br>`IEnvironment` is no longer required instead use the non generic `INeedToInstallSomething` and use `configuration.EnableInstallers()`, where `configuration` is an instance of type `BusConfiguration` to execute them. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.EndpointConventions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
+### NServiceBus.EndpointConventions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
 
-Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure DefineEndpointName(NServiceBus.Configure, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L383) ]<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure DefineEndpointName(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L392) ]<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure DefineEndpointName(NServiceBus.Configure, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L383) ]<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DefineEndpointName(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L392) ]<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureRavenPersistence  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
+### NServiceBus.ConfigureRavenPersistence  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
 
-RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Will be removed in version 6.0.0. TreatAsError=True
+RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure CustomiseRavenPersistence(NServiceBus.Configure, object)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L413) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure MessageToDatabaseMappingConvention(NServiceBus.Configure, Func<NServiceBus.IMessageContext, string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L422) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetMessageToDatabaseMappingConvention(convention)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure RavenPersistence(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L431) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package.` Use `configuration.UsePersistence<RavenDBPersistence>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure RavenPersistence(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L440) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetDefaultDocumentStore(...)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure RavenPersistence(NServiceBus.Configure, string, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L449) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetDefaultDocumentStore(...)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure RavenPersistence(NServiceBus.Configure, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L458) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetDefaultDocumentStore(...)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure RavenPersistence(NServiceBus.Configure, Func<string>, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L467) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetDefaultDocumentStore(...)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure RavenPersistenceWithStore(NServiceBus.Configure, object)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L477) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetDefaultDocumentStore(documentStore)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `void RegisterDefaults()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L486) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure CustomiseRavenPersistence(NServiceBus.Configure, object)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L413) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure MessageToDatabaseMappingConvention(NServiceBus.Configure, Func<NServiceBus.IMessageContext, string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L422) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetMessageToDatabaseMappingConvention(convention)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure RavenPersistence(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L431) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package.` Use `configuration.UsePersistence<RavenDBPersistence>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure RavenPersistence(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L440) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetDefaultDocumentStore(...)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure RavenPersistence(NServiceBus.Configure, string, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L449) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetDefaultDocumentStore(...)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure RavenPersistence(NServiceBus.Configure, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L458) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetDefaultDocumentStore(...)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure RavenPersistence(NServiceBus.Configure, Func<string>, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L467) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetDefaultDocumentStore(...)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure RavenPersistenceWithStore(NServiceBus.Configure, object)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L477) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetDefaultDocumentStore(documentStore)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void RegisterDefaults()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L486) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureRavenSagaPersister  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
+### NServiceBus.ConfigureRavenSagaPersister  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
 
-RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Will be removed in version 6.0.0. TreatAsError=True
+RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure RavenSagaPersister(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L504) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().For(Storage.Sagas)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure RavenSagaPersister(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L504) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().For(Storage.Sagas)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureRavenSubscriptionStorage  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
+### NServiceBus.ConfigureRavenSubscriptionStorage  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
 
-RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Will be removed in version 6.0.0. TreatAsError=True
+RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure RavenSubscriptionStorage(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L523) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().For(Storage.Subscriptions)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure RavenSubscriptionStorage(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L523) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().For(Storage.Subscriptions)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureTimeoutManager  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
+### NServiceBus.ConfigureTimeoutManager  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
 
-Will be removed in version 6.0.0. TreatAsError=True
+Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure DisableTimeoutManager(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L541) ]<br>Use `configuration.DisableFeature<TimeoutManager>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure UseInMemoryTimeoutPersister(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L551) ]<br>Use `configuration.UsePersistence<InMemoryPersistence>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure UseRavenTimeoutPersister(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L560) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().For(Storage.Timeouts)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure DisableTimeoutManager(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L541) ]<br>Use `configuration.DisableFeature<TimeoutManager>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure UseInMemoryTimeoutPersister(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L551) ]<br>Use `configuration.UsePersistence<InMemoryPersistence>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure UseRavenTimeoutPersister(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L560) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().For(Storage.Timeouts)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureUnicastBus  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
+### NServiceBus.ConfigureUnicastBus  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
 
-Will be removed in version 6.0.0. TreatAsError=True
+Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Address GetTimeoutManagerAddress(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L579) ]<br>Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure UnicastBus(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L588) ]<br>UnicastBus is now the default and hence calling this method is redundant. `Bus.Create(configuration)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Address GetTimeoutManagerAddress(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L579) ]<br>Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure UnicastBus(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L588) ]<br>UnicastBus is now the default and hence calling this method is redundant. `Bus.Create(configuration)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.MessageHandlerExtensionMethods  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
+### NServiceBus.MessageHandlerExtensionMethods  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
 
-Inject an instance of `IBus` in the constructor and assign that to a field for use. Will be removed in version 6.0.0. TreatAsError=True
+Inject an instance of `IBus` in the constructor and assign that to a field for use. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.IBus Bus<T>(NServiceBus.IHandleMessages<T>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L607) ]<br>Inject an instance of `IBus` in the constructor and assign that to a field for use. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.IBus Bus<T>(NServiceBus.IHandleMessages<T>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L607) ]<br>Inject an instance of `IBus` in the constructor and assign that to a field for use. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Transports.Msmq.MsmqUtilities  
+### NServiceBus.Transports.Msmq.MsmqUtilities  
 
-`MsmqUtilities` was never intended to be exposed as part of the public API. PLease copy the required functionality into your codebase. Will be removed in version 6.0.0. TreatAsError=True
+`MsmqUtilities` was never intended to be exposed as part of the public API. PLease copy the required functionality into your codebase. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Unicast.Config.ConfigUnicastBus  
+### NServiceBus.Unicast.Config.ConfigUnicastBus  
 
-Please use `Configure` instead. Will be removed in version 6.0.0. TreatAsError=True
+Please use `Configure` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Features.StorageDrivenPublisher  
+### NServiceBus.Features.StorageDrivenPublisher  
 
-Please use `NServiceBus.Features.StorageDrivenPublishing` instead. Will be removed in version 6.0.0. TreatAsError=True
+Please use `NServiceBus.Features.StorageDrivenPublishing` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.TransportReceiverConfig  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
+### NServiceBus.TransportReceiverConfig  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs) ]
 
-Will be removed in version 6.0.0. TreatAsError=True
+Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure UseTransport<T>(NServiceBus.Configure, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L659) ]<br>Use `configuration.UseTransport(transportDefinitionType).ConnectionString()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure UseTransport(NServiceBus.Configure, Type, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L668) ]<br>Use `configuration.UseTransport(transportDefinitionType).ConnectionString()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure UseTransport<T>(NServiceBus.Configure, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L659) ]<br>Use `configuration.UseTransport(transportDefinitionType).ConnectionString()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure UseTransport(NServiceBus.Configure, Type, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Obsoletes.cs#L668) ]<br>Use `configuration.UseTransport(transportDefinitionType).ConnectionString()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Address  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Address.cs) ]
+### NServiceBus.Address  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Address.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `void InitializeLocalAddress(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Address.cs#L48) ]<br>Please use `ConfigureTransport<T>.LocalAddress(queue)` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `void OverridePublicReturnAddress(NServiceBus.Address)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Address.cs#L62) ]<br>Use `configuration.OverridePublicReturnAddress(address)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `void InitializeLocalAddress(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Address.cs#L48) ]<br>Please use `ConfigureTransport<T>.LocalAddress(queue)` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void OverridePublicReturnAddress(NServiceBus.Address)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Address.cs#L62) ]<br>Use `configuration.OverridePublicReturnAddress(address)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Configure  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure.cs) ]
+### NServiceBus.Configure  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure.cs) ]
 
 
-##### Obsolete Fields
+#### Obsolete Fields
 
-  - `Func<FileInfo, Assembly> LoadAssembly`<br>No longer an extension point for NSB. Will be removed in version 6.0.0. TreatAsError=True
-  - `Func<string> GetEndpointNameAction`<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `Func<FileInfo, Assembly> LoadAssembly`<br>No longer an extension point for NSB. Will be removed in version 6.0.0. Obsoleted with error.
+  - `Func<string> GetEndpointNameAction`<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `bool WithHasBeenCalled()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L64) ]<br>Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure RunCustomAction(Action)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L73) ]<br>Simply execute this action instead of calling this method. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.IStartableBus CreateBus()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L82) ]<br>Not needed, can safely be removed. Will be removed in version 6.0.0. TreatAsError=True
-  - `bool BuilderIsConfigured()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L93) ]<br>Will be removed in version 6.0.0. TreatAsError=True
-  - `T GetConfigSection<T>()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L102) ]<br>Please use `ReadOnlySettings.GetConfigSection<T>` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.ObjectBuilder.IComponentConfig Component(Type, NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L112) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.ObjectBuilder.IComponentConfig<T> Component<T>(NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L122) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.ObjectBuilder.IComponentConfig<T> Component<T>(Func<T>, NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L132) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.ObjectBuilder.IComponentConfig<T> Component<T>(Func<NServiceBus.ObjectBuilder.IBuilder, T>, NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L142) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `bool HasComponent<T>()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L152) ]<br>Configure is now instance based. Please use `configure.Configurer.HasComponent` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `bool HasComponent(Type)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L162) ]<br>Configure is now instance based. Please use `configure.Configurer.HasComponent` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure CustomConfigurationSource(NServiceBus.Config.ConfigurationSource.IConfigurationSource)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L171) ]<br>Use `configuration.CustomConfigurationSource(myConfigSource)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure With()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L181) ]<br>Please use `Bus.Create(new BusConfiguration())` instead. Will be removed in version 6.0.0. TreatAsError=True
+  - `bool WithHasBeenCalled()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L64) ]<br>Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure RunCustomAction(Action)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L73) ]<br>Simply execute this action instead of calling this method. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.IStartableBus CreateBus()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L82) ]<br>Not needed, can safely be removed. Will be removed in version 6.0.0. Obsoleted with error.
+  - `bool BuilderIsConfigured()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L93) ]<br>Will be removed in version 6.0.0. Obsoleted with error.
+  - `T GetConfigSection<T>()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L102) ]<br>Please use `ReadOnlySettings.GetConfigSection<T>` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.ObjectBuilder.IComponentConfig Component(Type, NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L112) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.ObjectBuilder.IComponentConfig<T> Component<T>(NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L122) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.ObjectBuilder.IComponentConfig<T> Component<T>(Func<T>, NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L132) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.ObjectBuilder.IComponentConfig<T> Component<T>(Func<NServiceBus.ObjectBuilder.IBuilder, T>, NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L142) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `bool HasComponent<T>()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L152) ]<br>Configure is now instance based. Please use `configure.Configurer.HasComponent` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `bool HasComponent(Type)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L162) ]<br>Configure is now instance based. Please use `configure.Configurer.HasComponent` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure CustomConfigurationSource(NServiceBus.Config.ConfigurationSource.IConfigurationSource)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L171) ]<br>Use `configuration.CustomConfigurationSource(myConfigSource)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure With()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L181) ]<br>Please use `Bus.Create(new BusConfiguration())` instead. Will be removed in version 6.0.0. Obsoleted with error.
   - `NServiceBus.Configure With(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L192) ]<br>var config = new BusConfig();
 config.ScanAssembliesInDirectory(directoryToProbe);
-Bus.Create(config);. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure With(IEnumerable<Assembly>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L201) ]<br>Use `configuration.AssembliesToScan(listOfAssemblies)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure With(Assembly[])` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L210) ]<br>Use `configuration.AssembliesToScan(listOfAssemblies)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure With(IEnumerable<Type>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L219) ]<br>Use `configuration.TypesToScan(listOfTypes)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure DefineEndpointName(Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L228) ]<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure DefineEndpointName(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L240) ]<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Bus.Create(config);. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure With(IEnumerable<Assembly>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L201) ]<br>Use `configuration.AssembliesToScan(listOfAssemblies)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure With(Assembly[])` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L210) ]<br>Use `configuration.AssembliesToScan(listOfAssemblies)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure With(IEnumerable<Type>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L219) ]<br>Use `configuration.TypesToScan(listOfTypes)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DefineEndpointName(Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L228) ]<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DefineEndpointName(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L240) ]<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Configure  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure.cs) ]
-
-
-##### Obsolete Fields
-
-  - `Func<FileInfo, Assembly> LoadAssembly`<br>No longer an extension point for NSB. Will be removed in version 6.0.0. TreatAsError=True
-  - `Func<string> GetEndpointNameAction`<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+### NServiceBus.Configure  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure.cs) ]
 
 
-##### Obsolete Methods
+#### Obsolete Fields
 
-  - `bool WithHasBeenCalled()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L64) ]<br>Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure RunCustomAction(Action)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L73) ]<br>Simply execute this action instead of calling this method. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.IStartableBus CreateBus()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L82) ]<br>Not needed, can safely be removed. Will be removed in version 6.0.0. TreatAsError=True
-  - `bool BuilderIsConfigured()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L93) ]<br>Will be removed in version 6.0.0. TreatAsError=True
-  - `T GetConfigSection<T>()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L102) ]<br>Please use `ReadOnlySettings.GetConfigSection<T>` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.ObjectBuilder.IComponentConfig Component(Type, NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L112) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.ObjectBuilder.IComponentConfig<T> Component<T>(NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L122) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.ObjectBuilder.IComponentConfig<T> Component<T>(Func<T>, NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L132) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.ObjectBuilder.IComponentConfig<T> Component<T>(Func<NServiceBus.ObjectBuilder.IBuilder, T>, NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L142) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `bool HasComponent<T>()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L152) ]<br>Configure is now instance based. Please use `configure.Configurer.HasComponent` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `bool HasComponent(Type)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L162) ]<br>Configure is now instance based. Please use `configure.Configurer.HasComponent` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure CustomConfigurationSource(NServiceBus.Config.ConfigurationSource.IConfigurationSource)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L171) ]<br>Use `configuration.CustomConfigurationSource(myConfigSource)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure With()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L181) ]<br>Please use `Bus.Create(new BusConfiguration())` instead. Will be removed in version 6.0.0. TreatAsError=True
+  - `Func<FileInfo, Assembly> LoadAssembly`<br>No longer an extension point for NSB. Will be removed in version 6.0.0. Obsoleted with error.
+  - `Func<string> GetEndpointNameAction`<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+
+
+#### Obsolete Methods
+
+  - `bool WithHasBeenCalled()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L64) ]<br>Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure RunCustomAction(Action)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L73) ]<br>Simply execute this action instead of calling this method. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.IStartableBus CreateBus()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L82) ]<br>Not needed, can safely be removed. Will be removed in version 6.0.0. Obsoleted with error.
+  - `bool BuilderIsConfigured()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L93) ]<br>Will be removed in version 6.0.0. Obsoleted with error.
+  - `T GetConfigSection<T>()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L102) ]<br>Please use `ReadOnlySettings.GetConfigSection<T>` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.ObjectBuilder.IComponentConfig Component(Type, NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L112) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.ObjectBuilder.IComponentConfig<T> Component<T>(NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L122) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.ObjectBuilder.IComponentConfig<T> Component<T>(Func<T>, NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L132) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.ObjectBuilder.IComponentConfig<T> Component<T>(Func<NServiceBus.ObjectBuilder.IBuilder, T>, NServiceBus.DependencyLifecycle)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L142) ]<br>Configure is now instance based. Please use `configure.Configurer.ConfigureComponent` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `bool HasComponent<T>()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L152) ]<br>Configure is now instance based. Please use `configure.Configurer.HasComponent` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `bool HasComponent(Type)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L162) ]<br>Configure is now instance based. Please use `configure.Configurer.HasComponent` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure CustomConfigurationSource(NServiceBus.Config.ConfigurationSource.IConfigurationSource)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L171) ]<br>Use `configuration.CustomConfigurationSource(myConfigSource)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure With()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L181) ]<br>Please use `Bus.Create(new BusConfiguration())` instead. Will be removed in version 6.0.0. Obsoleted with error.
   - `NServiceBus.Configure With(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L192) ]<br>var config = new BusConfig();
 config.ScanAssembliesInDirectory(directoryToProbe);
-Bus.Create(config);. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure With(IEnumerable<Assembly>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L201) ]<br>Use `configuration.AssembliesToScan(listOfAssemblies)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure With(Assembly[])` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L210) ]<br>Use `configuration.AssembliesToScan(listOfAssemblies)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure With(IEnumerable<Type>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L219) ]<br>Use `configuration.TypesToScan(listOfTypes)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure DefineEndpointName(Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L228) ]<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure DefineEndpointName(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L240) ]<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Bus.Create(config);. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure With(IEnumerable<Assembly>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L201) ]<br>Use `configuration.AssembliesToScan(listOfAssemblies)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure With(Assembly[])` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L210) ]<br>Use `configuration.AssembliesToScan(listOfAssemblies)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure With(IEnumerable<Type>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L219) ]<br>Use `configuration.TypesToScan(listOfTypes)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DefineEndpointName(Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L228) ]<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DefineEndpointName(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure_Obsolete.cs#L240) ]<br>Use `configuration.EndpointName(myEndpointName)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Features.FeatureSettings  
+### NServiceBus.Features.FeatureSettings  
 
-Use `configuration.EnableFeature<T>()` or `configuration.DisableFeature<T>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.EnableFeature<T>()` or `configuration.DisableFeature<T>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.ExtensionMethods  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ExtensionMethods.cs) ]
+### NServiceBus.ExtensionMethods  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ExtensionMethods.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `string GetHeader(NServiceBus.IMessage, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ExtensionMethods.cs#L61) ]<br>Please use `bus.GetMessageHeader(msg, key)` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `void SetHeader(NServiceBus.IMessage, string, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ExtensionMethods.cs#L76) ]<br>Please use `bus.SetMessageHeader(msg, key, value)` instead. Will be removed in version 6.0.0. TreatAsError=True
+  - `string GetHeader(NServiceBus.IMessage, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ExtensionMethods.cs#L61) ]<br>Please use `bus.GetMessageHeader(msg, key)` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void SetHeader(NServiceBus.IMessage, string, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ExtensionMethods.cs#L76) ]<br>Please use `bus.SetMessageHeader(msg, key, value)` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Headers  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Headers.cs) ]
+### NServiceBus.Headers  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Headers.cs) ]
 
 
-##### Obsolete Fields
+#### Obsolete Fields
 
-  - `string InvokedSagas`<br>Enriching the headers for saga related information has been moved to the SagaAudit plugin in ServiceControl. Add a reference to the Saga audit plugin in your endpoint to get more information. Will be treated as an error from version 5.1.0. Will be removed in version 6.0.0. TreatAsError=False
+  - `string InvokedSagas`<br>Enriching the headers for saga related information has been moved to the SagaAudit plugin in ServiceControl. Add a reference to the Saga audit plugin in your endpoint to get more information. Will be treated as an error from version 5.1.0. Will be removed in version 6.0.0. Obsoleted with warning.
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `string GetMessageHeader(object, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Headers.cs#L226) ]<br>Please use `bus.GetMessageHeader(msg, key)` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `void SetMessageHeader(object, string, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Headers.cs#L243) ]<br>Please use `bus.SetMessageHeader(msg, key, value)` instead. Will be removed in version 6.0.0. TreatAsError=True
+  - `string GetMessageHeader(object, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Headers.cs#L226) ]<br>Please use `bus.GetMessageHeader(msg, key)` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void SetMessageHeader(object, string, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Headers.cs#L243) ]<br>Please use `bus.SetMessageHeader(msg, key, value)` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Headers  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Headers.cs) ]
+### NServiceBus.Headers  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Headers.cs) ]
 
 
-##### Obsolete Fields
+#### Obsolete Fields
 
-  - `string InvokedSagas`<br>Enriching the headers for saga related information has been moved to the SagaAudit plugin in ServiceControl. Add a reference to the Saga audit plugin in your endpoint to get more information. Will be treated as an error from version 5.1.0. Will be removed in version 6.0.0. TreatAsError=False
+  - `string InvokedSagas`<br>Enriching the headers for saga related information has been moved to the SagaAudit plugin in ServiceControl. Add a reference to the Saga audit plugin in your endpoint to get more information. Will be treated as an error from version 5.1.0. Will be removed in version 6.0.0. Obsoleted with warning.
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `string GetMessageHeader(object, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Headers.cs#L226) ]<br>Please use `bus.GetMessageHeader(msg, key)` instead. Will be removed in version 6.0.0. TreatAsError=True
-  - `void SetMessageHeader(object, string, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Headers.cs#L243) ]<br>Please use `bus.SetMessageHeader(msg, key, value)` instead. Will be removed in version 6.0.0. TreatAsError=True
+  - `string GetMessageHeader(object, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Headers.cs#L226) ]<br>Please use `bus.GetMessageHeader(msg, key)` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void SetMessageHeader(object, string, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Headers.cs#L243) ]<br>Please use `bus.SetMessageHeader(msg, key, value)` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.IConfigureLogging  
+### NServiceBus.IConfigureLogging  
 
-Please use `NServiceBus.Hosting.Profiles.IConfigureLogging` instead. Will be removed in version 6.0.0. TreatAsError=True
+Please use `NServiceBus.Hosting.Profiles.IConfigureLogging` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.IConfigureLoggingForProfile&lt;T&gt;  
+### NServiceBus.IConfigureLoggingForProfile&lt;T&gt;  
 
-Please use `NServiceBus.Hosting.Profiles.IConfigureLoggingForProfile` instead. Will be removed in version 6.0.0. TreatAsError=True
+Please use `NServiceBus.Hosting.Profiles.IConfigureLoggingForProfile` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.IWantCustomLogging  
+### NServiceBus.IWantCustomLogging  
 
-Please use `NServiceBus.Hosting.Profiles.IConfigureLogging` instead. Will be removed in version 6.0.0. TreatAsError=True
+Please use `NServiceBus.Hosting.Profiles.IConfigureLogging` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.IInMemoryOperations  
+### NServiceBus.IInMemoryOperations  
 
-Removed to reduce complexity and API confusion. Will be treated as an error from version 5.1.0. Will be removed in version 6.0.0. TreatAsError=False
+Removed to reduce complexity and API confusion. Will be treated as an error from version 5.1.0. Will be removed in version 6.0.0. Obsoleted with warning.
 
 
 
-#### NServiceBus.IMessageModule  
+### NServiceBus.IMessageModule  
 
-Please use `NServiceBus.UnitOfWork.IManageUnitsOfWork` instead. Will be removed in version 5.1.0. TreatAsError=True
+Please use `NServiceBus.UnitOfWork.IManageUnitsOfWork` instead. Will be removed in version 5.1.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Schedule  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/Schedule_Obsolete.cs) ]
+### NServiceBus.Schedule  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/Schedule_Obsolete.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Schedule Every(TimeSpan)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/Schedule_Obsolete.cs#L15) ]<br>Inject an instance of `Schedule` to your class and then call the non-static version of `Schedule.Every(TimeSpan timeSpan, Action task)`. Will be removed in version 6.0.0. TreatAsError=True
-  - `void Action(Action)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/Schedule_Obsolete.cs#L24) ]<br>Inject an instance of `Schedule` to your class and then call the non static member `Schedule.Every(TimeSpan timeSpan, Action task)`. Will be removed in version 6.0.0. TreatAsError=True
-  - `void Action(string, Action)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/Schedule_Obsolete.cs#L33) ]<br>Inject an instance of `Schedule` to your class thenuse the non-static version of `Schedule.Every(TimeSpan timeSpan, string name, Action task)`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Schedule Every(TimeSpan)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/Schedule_Obsolete.cs#L15) ]<br>Inject an instance of `Schedule` to your class and then call the non-static version of `Schedule.Every(TimeSpan timeSpan, Action task)`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void Action(Action)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/Schedule_Obsolete.cs#L24) ]<br>Inject an instance of `Schedule` to your class and then call the non static member `Schedule.Every(TimeSpan timeSpan, Action task)`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void Action(string, Action)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/Schedule_Obsolete.cs#L33) ]<br>Inject an instance of `Schedule` to your class thenuse the non-static version of `Schedule.Every(TimeSpan timeSpan, string name, Action task)`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.SecondLevelRetries.Helpers.TransportMessageHelpers  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Helpers/TransportMessageHelpers_Obsolete.cs) ]
+### NServiceBus.SecondLevelRetries.Helpers.TransportMessageHelpers  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Helpers/TransportMessageHelpers_Obsolete.cs) ]
 
-Access the `TransportMessage.Headers` dictionary directly. Will be removed in version 6.0.0. TreatAsError=True
+Access the `TransportMessage.Headers` dictionary directly. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Address GetAddressOfFaultingEndpoint(NServiceBus.TransportMessage)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Helpers/TransportMessageHelpers_Obsolete.cs#L20) ]<br>Access the `TransportMessage.Headers` dictionary directly using the `FaultsHeaderKeys.FailedQ` key. Will be removed in version 6.0.0. TreatAsError=True
-  - `string GetHeader(NServiceBus.TransportMessage, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Helpers/TransportMessageHelpers_Obsolete.cs#L29) ]<br>Access the `TransportMessage.Headers` dictionary directly. Will be removed in version 6.0.0. TreatAsError=True
-  - `bool HeaderExists(NServiceBus.TransportMessage, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Helpers/TransportMessageHelpers_Obsolete.cs#L38) ]<br>Access the `TransportMessage.Headers` dictionary directly. Will be removed in version 6.0.0. TreatAsError=True
-  - `void SetHeader(NServiceBus.TransportMessage, string, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Helpers/TransportMessageHelpers_Obsolete.cs#L47) ]<br>Access the `TransportMessage.Headers` dictionary directly. Will be removed in version 6.0.0. TreatAsError=True
-  - `int GetNumberOfRetries(NServiceBus.TransportMessage)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Helpers/TransportMessageHelpers_Obsolete.cs#L56) ]<br>Access the `TransportMessage.Headers` dictionary directly using the `Headers.Retries` key. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Address GetAddressOfFaultingEndpoint(NServiceBus.TransportMessage)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Helpers/TransportMessageHelpers_Obsolete.cs#L20) ]<br>Access the `TransportMessage.Headers` dictionary directly using the `FaultsHeaderKeys.FailedQ` key. Will be removed in version 6.0.0. Obsoleted with error.
+  - `string GetHeader(NServiceBus.TransportMessage, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Helpers/TransportMessageHelpers_Obsolete.cs#L29) ]<br>Access the `TransportMessage.Headers` dictionary directly. Will be removed in version 6.0.0. Obsoleted with error.
+  - `bool HeaderExists(NServiceBus.TransportMessage, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Helpers/TransportMessageHelpers_Obsolete.cs#L38) ]<br>Access the `TransportMessage.Headers` dictionary directly. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void SetHeader(NServiceBus.TransportMessage, string, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Helpers/TransportMessageHelpers_Obsolete.cs#L47) ]<br>Access the `TransportMessage.Headers` dictionary directly. Will be removed in version 6.0.0. Obsoleted with error.
+  - `int GetNumberOfRetries(NServiceBus.TransportMessage)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Helpers/TransportMessageHelpers_Obsolete.cs#L56) ]<br>Access the `TransportMessage.Headers` dictionary directly using the `Headers.Retries` key. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Serializers.XML.Config.XmlSerializationSettings  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializationSettings_Obsolete.cs) ]
+### NServiceBus.Serializers.XML.Config.XmlSerializationSettings  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializationSettings_Obsolete.cs) ]
 
-Use configuration.UseSerialization<XmlSerializer>(), where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use configuration.UseSerialization<XmlSerializer>(), where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Serializers.XML.Config.XmlSerializationSettings DontWrapRawXml()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializationSettings_Obsolete.cs#L20) ]<br>Use `configuration.UseSerialization<XmlSerializer>().DontWrapRawXml()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Serializers.XML.Config.XmlSerializationSettings Namespace(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializationSettings_Obsolete.cs#L29) ]<br>Use `configuration.UseSerialization<XmlSerializer>().Namespace(namespaceToUse)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Serializers.XML.Config.XmlSerializationSettings SanitizeInput()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializationSettings_Obsolete.cs#L38) ]<br>Use `configuration.UseSerialization<XmlSerializer>().SanitizeInput()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Serializers.XML.Config.XmlSerializationSettings DontWrapRawXml()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializationSettings_Obsolete.cs#L20) ]<br>Use `configuration.UseSerialization<XmlSerializer>().DontWrapRawXml()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Serializers.XML.Config.XmlSerializationSettings Namespace(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializationSettings_Obsolete.cs#L29) ]<br>Use `configuration.UseSerialization<XmlSerializer>().Namespace(namespaceToUse)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Serializers.XML.Config.XmlSerializationSettings SanitizeInput()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializationSettings_Obsolete.cs#L38) ]<br>Use `configuration.UseSerialization<XmlSerializer>().SanitizeInput()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigurePurging  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/ConfigurePurging.cs) ]
+### NServiceBus.ConfigurePurging  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/ConfigurePurging.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure PurgeOnStartup(NServiceBus.Configure, bool)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/ConfigurePurging_Obsolete.cs#L21) ]<br>Use `configuration.PurgeOnStartup()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure PurgeOnStartup(NServiceBus.Configure, bool)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/ConfigurePurging_Obsolete.cs#L21) ]<br>Use `configuration.PurgeOnStartup()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.LoadMessageHandlersExtentions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Config/LoadMessageHandlersExtentions_Obsolete.cs) ]
+### NServiceBus.LoadMessageHandlersExtentions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Config/LoadMessageHandlersExtentions_Obsolete.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure LoadMessageHandlers(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Config/LoadMessageHandlersExtentions_Obsolete.cs#L15) ]<br>It is safe to remove this method call. This is the default behavior. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure LoadMessageHandlers<TFirst>(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Config/LoadMessageHandlersExtentions_Obsolete.cs#L24) ]<br>Use `configuration.LoadMessageHandlers<TFirst>`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure LoadMessageHandlers<T>(NServiceBus.Configure, NServiceBus.First<T>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Config/LoadMessageHandlersExtentions_Obsolete.cs#L33) ]<br>Use `configuration.LoadMessageHandlers<T>`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure LoadMessageHandlers(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Config/LoadMessageHandlersExtentions_Obsolete.cs#L15) ]<br>It is safe to remove this method call. This is the default behavior. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure LoadMessageHandlers<TFirst>(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Config/LoadMessageHandlersExtentions_Obsolete.cs#L24) ]<br>Use `configuration.LoadMessageHandlers<TFirst>`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure LoadMessageHandlers<T>(NServiceBus.Configure, NServiceBus.First<T>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Config/LoadMessageHandlersExtentions_Obsolete.cs#L33) ]<br>Use `configuration.LoadMessageHandlers<T>`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.MonitoringConfig  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Monitoring/MonitoringConfig_Obsolete.cs) ]
+### NServiceBus.MonitoringConfig  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Monitoring/MonitoringConfig_Obsolete.cs) ]
 
-Use `configuration.EnableCriticalTimePerformanceCounter()` or `configuration.EnableSLAPerformanceCounter(TimeSpan)`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.EnableCriticalTimePerformanceCounter()` or `configuration.EnableSLAPerformanceCounter(TimeSpan)`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure SetEndpointSLA(NServiceBus.Configure, TimeSpan)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Monitoring/MonitoringConfig_Obsolete.cs#L20) ]<br>Use `configuration.EnableSLAPerformanceCounter(TimeSpan)`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure EnablePerformanceCounters(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Monitoring/MonitoringConfig_Obsolete.cs#L30) ]<br>Use `configuration.EnableCriticalTimePerformanceCounter()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure SetEndpointSLA(NServiceBus.Configure, TimeSpan)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Monitoring/MonitoringConfig_Obsolete.cs#L20) ]<br>Use `configuration.EnableSLAPerformanceCounter(TimeSpan)`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure EnablePerformanceCounters(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Monitoring/MonitoringConfig_Obsolete.cs#L30) ]<br>Use `configuration.EnableCriticalTimePerformanceCounter()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Unicast.IMessageDispatcherFactory  
+### NServiceBus.Unicast.IMessageDispatcherFactory  
 
-Please use `Use the pipeline and replace the InvokeHandlers step` instead. Will be removed in version 6.0.0. TreatAsError=True
+Please use `Use the pipeline and replace the InvokeHandlers step` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.TransportConfiguration  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/TransportConfiguration.cs) ]
+### NServiceBus.TransportConfiguration  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/TransportConfiguration.cs) ]
 
-Will be removed in version 6.0.0. TreatAsError=True
+Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `void ConnectionString(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/TransportConfiguration.cs#L19) ]<br>Use `configuration.UseTransport<T>().ConnectionString(connectionString)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `void ConnectionStringName(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/TransportConfiguration.cs#L28) ]<br>Use `configuration.UseTransport<T>().ConnectionStringName(name)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `void ConnectionString(Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/TransportConfiguration.cs#L37) ]<br>Use` configuration.UseTransport<T>().ConnectionString(connectionString)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `void ConnectionString(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/TransportConfiguration.cs#L19) ]<br>Use `configuration.UseTransport<T>().ConnectionString(connectionString)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void ConnectionStringName(string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/TransportConfiguration.cs#L28) ]<br>Use `configuration.UseTransport<T>().ConnectionStringName(name)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void ConnectionString(Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/TransportConfiguration.cs#L37) ]<br>Use` configuration.UseTransport<T>().ConnectionString(connectionString)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.UseTransportExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/UseTransportExtensions_Obsolete.cs) ]
+### NServiceBus.UseTransportExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/UseTransportExtensions_Obsolete.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure UseTransport<T>(NServiceBus.Configure, Action<NServiceBus.TransportConfiguration>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/UseTransportExtensions_Obsolete.cs#L16) ]<br>Use `configuration.UseTransport<T>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure UseTransport(NServiceBus.Configure, Type, Action<NServiceBus.TransportConfiguration>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/UseTransportExtensions_Obsolete.cs#L25) ]<br>Use `configuration.UseTransport(transportDefinitionType)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure UseTransport<T>(NServiceBus.Configure, Action<NServiceBus.TransportConfiguration>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/UseTransportExtensions_Obsolete.cs#L16) ]<br>Use `configuration.UseTransport<T>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure UseTransport(NServiceBus.Configure, Type, Action<NServiceBus.TransportConfiguration>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/Config/UseTransportExtensions_Obsolete.cs#L25) ]<br>Use `configuration.UseTransport(transportDefinitionType)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureInMemoryTimeoutPersister  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/InMemory/Obsoletes/ConfigureInMemoryTimeoutPersister.cs) ]
+### NServiceBus.ConfigureInMemoryTimeoutPersister  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/InMemory/Obsoletes/ConfigureInMemoryTimeoutPersister.cs) ]
 
-Use `configuration.UsePersistence<InMemoryPersistence>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.UsePersistence<InMemoryPersistence>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure UseInMemoryTimeoutPersister(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/InMemory/Obsoletes/ConfigureInMemoryTimeoutPersister.cs#L20) ]<br>Use `configuration.UsePersistence<InMemoryPersistence>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure UseInMemoryTimeoutPersister(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/InMemory/Obsoletes/ConfigureInMemoryTimeoutPersister.cs#L20) ]<br>Use `configuration.UsePersistence<InMemoryPersistence>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Saga.ISaga  
+### NServiceBus.Saga.ISaga  
 
-Please use `NServiceBus.Saga.Saga` instead. Will be removed in version 6.0.0. TreatAsError=True
+Please use `NServiceBus.Saga.Saga` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Saga.ISaga&lt;T&gt;  
+### NServiceBus.Saga.ISaga&lt;T&gt;  
 
-Please use `NServiceBus.Saga.Saga<T>` instead. Will be removed in version 6.0.0. TreatAsError=True
+Please use `NServiceBus.Saga.Saga<T>` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Saga.IPersistSagas  
+### NServiceBus.Saga.IPersistSagas  
 
-Please use `ISagaPersister` instead. Will be removed in version 6.0.0. TreatAsError=True
+Please use `ISagaPersister` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Saga.IConfigurable  
+### NServiceBus.Saga.IConfigurable  
 
-Since `ISaga` has been merged into the abstract class `Saga` this interface is no longer required. Please use `NServiceBus.Saga.Saga` instead. Will be removed in version 6.0.0. TreatAsError=True
+Since `ISaga` has been merged into the abstract class `Saga` this interface is no longer required. Please use `NServiceBus.Saga.Saga` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Saga.HasCompleted  
+### NServiceBus.Saga.HasCompleted  
 
-Since `ISaga` has been merged into the abstract class `Saga` this interface is no longer required. Please use `NServiceBus.Saga.Saga.Completed` instead. Will be removed in version 6.0.0. TreatAsError=True
+Since `ISaga` has been merged into the abstract class `Saga` this interface is no longer required. Please use `NServiceBus.Saga.Saga.Completed` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.ScaleOutExtentions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/ScaleOutExtentions.cs) ]
+### NServiceBus.ScaleOutExtentions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/ScaleOutExtentions.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure ScaleOut(NServiceBus.Configure, Action<NServiceBus.Settings.ScaleOutSettings>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/ScaleOutExtentions.cs#L27) ]<br>Use `configuration.ScaleOut().UseSingleBrokerQueue()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure ScaleOut(NServiceBus.Configure, Action<NServiceBus.Settings.ScaleOutSettings>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/ScaleOutExtentions.cs#L27) ]<br>Use `configuration.ScaleOut().UseSingleBrokerQueue()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Unicast.UnicastBus  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs) ]
+### NServiceBus.Unicast.UnicastBus  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `void Raise<T>(Action<T>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs#L12) ]<br>InMemory.Raise has been removed from the core. Will be removed in version 6.0.0. TreatAsError=True
-  - `void Raise<T>(T)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs#L18) ]<br>InMemory.Raise has been removed from the core. Will be removed in version 6.0.0. TreatAsError=True
+  - `void Raise<T>(Action<T>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs#L12) ]<br>InMemory.Raise has been removed from the core. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void Raise<T>(T)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs#L18) ]<br>InMemory.Raise has been removed from the core. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureBinarySerializer  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/Config/ConfigureBinarySerializer_Obsolete.cs) ]
+### NServiceBus.ConfigureBinarySerializer  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/Config/ConfigureBinarySerializer_Obsolete.cs) ]
 
-Use `configuration.UseSerialization<BinarySerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.UseSerialization<BinarySerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure BinarySerializer(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/Config/ConfigureBinarySerializer_Obsolete.cs#L20) ]<br>Use `configuration.UseSerialization<BinarySerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure BinarySerializer(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/Config/ConfigureBinarySerializer_Obsolete.cs#L20) ]<br>Use `configuration.UseSerialization<BinarySerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureDefaultBuilder  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureDefaultBuilder_Obsolete.cs) ]
+### NServiceBus.ConfigureDefaultBuilder  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureDefaultBuilder_Obsolete.cs) ]
 
-Default builder will be used automatically. It is safe to remove this code. Will be removed in version 6.0.0. TreatAsError=True
+Default builder will be used automatically. It is safe to remove this code. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure DefaultBuilder(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureDefaultBuilder_Obsolete.cs#L20) ]<br>Default builder will be used automatically. It is safe to remove this code. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure DefaultBuilder(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureDefaultBuilder_Obsolete.cs#L20) ]<br>Default builder will be used automatically. It is safe to remove this code. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureDistributor  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Distributor/ConfigureDistributor_Obsolete.cs) ]
+### NServiceBus.ConfigureDistributor  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Distributor/ConfigureDistributor_Obsolete.cs) ]
 
-The NServiceBus Distributor was moved into its own assembly (NServiceBus.Distributor.MSMQ.dll), please make sure you reference the new assembly. Will be removed in version 6.0.0. TreatAsError=True
+The NServiceBus Distributor was moved into its own assembly (NServiceBus.Distributor.MSMQ.dll), please make sure you reference the new assembly. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.ConfigureFaultsForwarder  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureFaultsForwarder_Obsolete.cs) ]
+### NServiceBus.ConfigureFaultsForwarder  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureFaultsForwarder_Obsolete.cs) ]
 
-Will be removed in version 6.0.0. TreatAsError=True
+Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure MessageForwardingInCaseOfFault(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureFaultsForwarder_Obsolete.cs#L14) ]<br>It is safe to remove this method call. This is the default behavior. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure MessageForwardingInCaseOfFault(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ConfigureFaultsForwarder_Obsolete.cs#L14) ]<br>It is safe to remove this method call. This is the default behavior. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.SecondLevelRetriesConfigExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesConfigExtensions.cs) ]
+### NServiceBus.SecondLevelRetriesConfigExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesConfigExtensions.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure SecondLevelRetries(NServiceBus.Configure, Action<NServiceBus.SecondLevelRetries.Config.SecondLevelRetriesSettings>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesConfigExtensions.cs#L22) ]<br>Use `configuration.SecondLevelRetries().CustomRetryPolicy()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure SecondLevelRetries(NServiceBus.Configure, Action<NServiceBus.SecondLevelRetries.Config.SecondLevelRetriesSettings>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesConfigExtensions.cs#L22) ]<br>Use `configuration.SecondLevelRetries().CustomRetryPolicy()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.BinarySerializerConfigurationExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerializerConfigurationExtensions_Obsolete.cs) ]
+### NServiceBus.BinarySerializerConfigurationExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerializerConfigurationExtensions_Obsolete.cs) ]
 
-Use `configuration.UseSerialization<BinarySerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.UseSerialization<BinarySerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure Binary(NServiceBus.Settings.SerializationSettings)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerializerConfigurationExtensions_Obsolete.cs#L21) ]<br>Use `configuration.UseSerialization<BinarySerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure Binary(NServiceBus.Settings.SerializationSettings)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerializerConfigurationExtensions_Obsolete.cs#L21) ]<br>Use `configuration.UseSerialization<BinarySerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.JsonSerializerConfigurationExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/JsonSerializerConfigurationExtensions.cs) ]
+### NServiceBus.JsonSerializerConfigurationExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/JsonSerializerConfigurationExtensions.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Settings.SerializationSettings Json(NServiceBus.Settings.SerializationSettings)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/JsonSerializerConfigurationExtensions.cs#L19) ]<br>Use `configuration.UseSerialization<JsonSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Settings.SerializationSettings Bson(NServiceBus.Settings.SerializationSettings)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/JsonSerializerConfigurationExtensions.cs#L28) ]<br>Use `configuration.UseSerialization<BsonSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Settings.SerializationSettings Json(NServiceBus.Settings.SerializationSettings)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/JsonSerializerConfigurationExtensions.cs#L19) ]<br>Use `configuration.UseSerialization<JsonSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Settings.SerializationSettings Bson(NServiceBus.Settings.SerializationSettings)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/JsonSerializerConfigurationExtensions.cs#L28) ]<br>Use `configuration.UseSerialization<BsonSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.XmlSerializerConfigurationExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions_Obsolete.cs) ]
+### NServiceBus.XmlSerializerConfigurationExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions_Obsolete.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure Xml(NServiceBus.Settings.SerializationSettings, Action<NServiceBus.Serializers.XML.Config.XmlSerializationSettings>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions_Obsolete.cs#L22) ]<br>Use configuration.UseSerialization<XmlSerializer>(), where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure Xml(NServiceBus.Settings.SerializationSettings, Action<NServiceBus.Serializers.XML.Config.XmlSerializationSettings>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions_Obsolete.cs#L22) ]<br>Use configuration.UseSerialization<XmlSerializer>(), where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Settings.SerializationSettings  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serialization/SerializationSettings.cs) ]
+### NServiceBus.Settings.SerializationSettings  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serialization/SerializationSettings.cs) ]
 
-Will be removed in version 6.0.0. TreatAsError=True
+Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Settings.SerializationSettings WrapSingleMessages()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serialization/SerializationSettings.cs#L18) ]<br>In version 5 multi-message sends was removed. So Wrapping messages is no longer required. If you are communicating with version 3 ensure you are on the latest 3.3.x. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Settings.SerializationSettings DontWrapSingleMessages()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serialization/SerializationSettings.cs#L27) ]<br>In version 5 multi-message sends was removed. So Wrapping messages is no longer required. If you are communicating with version 3 ensure you are on the latest 3.3.x. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Settings.SerializationSettings WrapSingleMessages()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serialization/SerializationSettings.cs#L18) ]<br>In version 5 multi-message sends was removed. So Wrapping messages is no longer required. If you are communicating with version 3 ensure you are on the latest 3.3.x. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Settings.SerializationSettings DontWrapSingleMessages()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serialization/SerializationSettings.cs#L27) ]<br>In version 5 multi-message sends was removed. So Wrapping messages is no longer required. If you are communicating with version 3 ensure you are on the latest 3.3.x. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureInMemorySagaPersister  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/InMemory/Obsoletes/ConfigureInMemorySagaPersister.cs) ]
+### NServiceBus.ConfigureInMemorySagaPersister  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/InMemory/Obsoletes/ConfigureInMemorySagaPersister.cs) ]
 
-Use `configuration.UsePersistence<InMemoryPersistence>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.UsePersistence<InMemoryPersistence>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure InMemorySagaPersister(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/InMemory/Obsoletes/ConfigureInMemorySagaPersister.cs#L20) ]<br>Use `configuration.UsePersistence<InMemoryPersistence>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure InMemorySagaPersister(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/InMemory/Obsoletes/ConfigureInMemorySagaPersister.cs#L20) ]<br>Use `configuration.UsePersistence<InMemoryPersistence>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureInMemorySubscriptionStorage  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/InMemory/Obsoletes/ConfigureInMemorySubscriptionStorage.cs) ]
+### NServiceBus.ConfigureInMemorySubscriptionStorage  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/InMemory/Obsoletes/ConfigureInMemorySubscriptionStorage.cs) ]
 
-Use `configuration.UsePersistence<InMemoryPersistence>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.UsePersistence<InMemoryPersistence>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure InMemorySubscriptionStorage(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/InMemory/Obsoletes/ConfigureInMemorySubscriptionStorage.cs#L20) ]<br>Use `configuration.UsePersistence<InMemoryPersistence>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure InMemorySubscriptionStorage(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/InMemory/Obsoletes/ConfigureInMemorySubscriptionStorage.cs#L20) ]<br>Use `configuration.UsePersistence<InMemoryPersistence>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureJsonSerializer  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/ConfigureJsonSerializer_Obsolete.cs) ]
+### NServiceBus.ConfigureJsonSerializer  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/ConfigureJsonSerializer_Obsolete.cs) ]
 
-Use `configuration.UseSerialization<JsonSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.UseSerialization<JsonSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure JsonSerializer(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/ConfigureJsonSerializer_Obsolete.cs#L19) ]<br>Use `configuration.UseSerialization<JsonSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure BsonSerializer(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/ConfigureJsonSerializer_Obsolete.cs#L28) ]<br>Use `configuration.UseSerialization<BsonSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure JsonSerializer(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/ConfigureJsonSerializer_Obsolete.cs#L19) ]<br>Use `configuration.UseSerialization<JsonSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure BsonSerializer(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/ConfigureJsonSerializer_Obsolete.cs#L28) ]<br>Use `configuration.UseSerialization<BsonSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureMasterNode  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Distributor/MasterNode/ConfigureMasterNode_Obsolete.cs) ]
+### NServiceBus.ConfigureMasterNode  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Distributor/MasterNode/ConfigureMasterNode_Obsolete.cs) ]
 
-The NServiceBus Distributor was moved into its own assembly (NServiceBus.Distributor.MSMQ.dll), please make sure you reference the new assembly. Will be removed in version 6.0.0. TreatAsError=True
+The NServiceBus Distributor was moved into its own assembly (NServiceBus.Distributor.MSMQ.dll), please make sure you reference the new assembly. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.ConfigureMsmqMessageQueue  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/Config/ConfigureMsmqMessageQueue_Obsolete.cs) ]
+### NServiceBus.ConfigureMsmqMessageQueue  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/Config/ConfigureMsmqMessageQueue_Obsolete.cs) ]
 
-Please use 'UsingTransport<MsmqTransport>' on your 'IConfigureThisEndpoint' class or use `configuration.UseTransport<MsmqTransport>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Please use 'UsingTransport<MsmqTransport>' on your 'IConfigureThisEndpoint' class or use `configuration.UseTransport<MsmqTransport>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure MsmqTransport(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/Config/ConfigureMsmqMessageQueue_Obsolete.cs#L13) ]<br>Please use 'UsingTransport<MsmqTransport>' on your 'IConfigureThisEndpoint' class or use `configuration.UseTransport<MsmqTransport>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure MsmqTransport(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/Config/ConfigureMsmqMessageQueue_Obsolete.cs#L13) ]<br>Please use 'UsingTransport<MsmqTransport>' on your 'IConfigureThisEndpoint' class or use `configuration.UseTransport<MsmqTransport>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureMsmqSubscriptionStorage  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/Msmq/SubscriptionStorage/ConfigureMsmqSubscriptionStorage_Obsolete.cs) ]
+### NServiceBus.ConfigureMsmqSubscriptionStorage  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/Msmq/SubscriptionStorage/ConfigureMsmqSubscriptionStorage_Obsolete.cs) ]
 
-Use `configuration.UsePersistence<MsmqPersistence>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.UsePersistence<MsmqPersistence>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure MsmqSubscriptionStorage(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/Msmq/SubscriptionStorage/ConfigureMsmqSubscriptionStorage_Obsolete.cs#L20) ]<br>Use configuration.UsePersistence<MsmqPersistence>(), where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure MsmqSubscriptionStorage(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/Msmq/SubscriptionStorage/ConfigureMsmqSubscriptionStorage_Obsolete.cs#L29) ]<br>Use `configuration.UsePersistence<MsmqPersistence>()`, where `configuration` is an instance of type `BusConfiguration` and assign the queue name via `MsmqSubscriptionStorageConfig` section. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure MsmqSubscriptionStorage(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/Msmq/SubscriptionStorage/ConfigureMsmqSubscriptionStorage_Obsolete.cs#L20) ]<br>Use configuration.UsePersistence<MsmqPersistence>(), where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure MsmqSubscriptionStorage(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Persistence/Msmq/SubscriptionStorage/ConfigureMsmqSubscriptionStorage_Obsolete.cs#L29) ]<br>Use `configuration.UsePersistence<MsmqPersistence>()`, where `configuration` is an instance of type `BusConfiguration` and assign the queue name via `MsmqSubscriptionStorageConfig` section. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureXmlSerializer  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/ConfigureXmlSerializer_Obsolete.cs) ]
+### NServiceBus.ConfigureXmlSerializer  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/ConfigureXmlSerializer_Obsolete.cs) ]
 
-Use `configuration.UseSerialization<XmlSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.UseSerialization<XmlSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure XmlSerializer(NServiceBus.Configure, string, bool)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/ConfigureXmlSerializer_Obsolete.cs#L20) ]<br>Use `configuration.UseSerialization<XmlSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure XmlSerializer(NServiceBus.Configure, string, bool)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/ConfigureXmlSerializer_Obsolete.cs#L20) ]<br>Use `configuration.UseSerialization<XmlSerializer>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureSettingLocalAddressNameAction  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/Advanced/ConfigureSettingLocalAddressNameAction_Obsolete.cs) ]
+### NServiceBus.ConfigureSettingLocalAddressNameAction  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/Advanced/ConfigureSettingLocalAddressNameAction_Obsolete.cs) ]
 
-Will be removed in version 6.0.0. TreatAsError=True
+Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure DefineLocalAddressNameFunc(NServiceBus.Configure, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/Advanced/ConfigureSettingLocalAddressNameAction_Obsolete.cs#L18) ]<br>Queue name is controlled by the endpoint name. The endpoint name can be configured using a `EndpointNameAttribute`, by passing a serviceName parameter to the host or calling `BusConfiguration.EndpointName` in the fluent API. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure DefineLocalAddressNameFunc(NServiceBus.Configure, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/Advanced/ConfigureSettingLocalAddressNameAction_Obsolete.cs#L18) ]<br>Queue name is controlled by the endpoint name. The endpoint name can be configured using a `EndpointNameAttribute`, by passing a serviceName parameter to the host or calling `BusConfiguration.EndpointName` in the fluent API. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ConfigureExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/ConfigureExtensions.cs) ]
+### NServiceBus.ConfigureExtensions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/ConfigureExtensions.cs) ]
 
-Will be removed in version 6.0.0. TreatAsError=True
+Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.IBus SendOnly(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/ConfigureExtensions.cs#L18) ]<br>Please use `Bus.CreateSendOnly(new BusConfiguration())` instead. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.IBus SendOnly(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/ConfigureExtensions.cs#L18) ]<br>Please use `Bus.CreateSendOnly(new BusConfiguration())` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Config.MsmqMessageQueueConfig  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/MsmqMessageQueueConfig.cs) ]
+### NServiceBus.Config.MsmqMessageQueueConfig  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/MsmqMessageQueueConfig.cs) ]
 
-Use NServiceBus/Transport connectionString instead. Will be removed in version 6.0.0. TreatAsError=True
+Use NServiceBus/Transport connectionString instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Config.IFinalizeConfiguration  
+### NServiceBus.Config.IFinalizeConfiguration  
 
-`IFinalizeConfiguration` is no longer in use. Please use the Feature concept instead. Will be removed in version 6.0.0. TreatAsError=True
+`IFinalizeConfiguration` is no longer in use. Please use the Feature concept instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Encryption.Rijndael.EncryptionService  
+### NServiceBus.Encryption.Rijndael.EncryptionService  
 
-The Rijndael encryption functionality was an internal implementation detail of NServicebus as such it has been removed from the public API. Will be removed in version 6.0.0. TreatAsError=True
+The Rijndael encryption functionality was an internal implementation detail of NServicebus as such it has been removed from the public API. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.IWantCustomInitialization  
+### NServiceBus.IWantCustomInitialization  
 
-Please use `INeedInitialization` or `IConfigureThisEndpoint`. Will be removed in version 6.0.0. TreatAsError=True
+Please use `INeedInitialization` or `IConfigureThisEndpoint`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.IWantToRunBeforeConfiguration  
+### NServiceBus.IWantToRunBeforeConfiguration  
 
-`IWantToRunBeforeConfiguration` is no longer in use. Please use the Feature concept instead and register a Default() in the ctor of your feature. If you used this to apply your own conventions please use use `configuration.Conventions().Defining...` , where configuration is an instance of type `BusConfiguration` available by implementing `IConfigureThisEndpoint` or `INeedInitialization`. Will be removed in version 6.0.0. TreatAsError=True
+`IWantToRunBeforeConfiguration` is no longer in use. Please use the Feature concept instead and register a Default() in the ctor of your feature. If you used this to apply your own conventions please use use `configuration.Conventions().Defining...` , where configuration is an instance of type `BusConfiguration` available by implementing `IConfigureThisEndpoint` or `INeedInitialization`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.MessageConventions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs) ]
+### NServiceBus.MessageConventions  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs) ]
 
-Use `configuration.Conventions().DefiningMessagesAs(definesMessageType)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.Conventions().DefiningMessagesAs(definesMessageType)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure DefiningMessagesAs(NServiceBus.Configure, Func<Type, bool>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L20) ]<br>Use `configuration.Conventions().DefiningMessagesAs(definesMessageType)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure DefiningCommandsAs(NServiceBus.Configure, Func<Type, bool>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L30) ]<br>Use `configuration.Conventions().DefiningCommandsAs(definesCommandType)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure DefiningEventsAs(NServiceBus.Configure, Func<Type, bool>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L40) ]<br>Use `configuration.Conventions().DefiningEventsAs(definesEventType)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure DefiningEncryptedPropertiesAs(NServiceBus.Configure, Func<PropertyInfo, bool>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L50) ]<br>Use `configuration.Conventions().DefiningEncryptedPropertiesAs(definesEncryptedProperty)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure DefiningDataBusPropertiesAs(NServiceBus.Configure, Func<PropertyInfo, bool>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L60) ]<br>Use `configuration.Conventions().DefiningDataBusPropertiesAs(definesDataBusProperty)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure DefiningTimeToBeReceivedAs(NServiceBus.Configure, Func<Type, TimeSpan>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L70) ]<br>Use `configuration.Conventions().DefiningTimeToBeReceivedAs(retrieveTimeToBeReceived)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure DefiningExpressMessagesAs(NServiceBus.Configure, Func<Type, bool>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L80) ]<br>Use `configuration.Conventions().DefiningExpressMessagesAs(definesExpressMessageType)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure DefiningMessagesAs(NServiceBus.Configure, Func<Type, bool>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L20) ]<br>Use `configuration.Conventions().DefiningMessagesAs(definesMessageType)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DefiningCommandsAs(NServiceBus.Configure, Func<Type, bool>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L30) ]<br>Use `configuration.Conventions().DefiningCommandsAs(definesCommandType)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DefiningEventsAs(NServiceBus.Configure, Func<Type, bool>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L40) ]<br>Use `configuration.Conventions().DefiningEventsAs(definesEventType)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DefiningEncryptedPropertiesAs(NServiceBus.Configure, Func<PropertyInfo, bool>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L50) ]<br>Use `configuration.Conventions().DefiningEncryptedPropertiesAs(definesEncryptedProperty)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DefiningDataBusPropertiesAs(NServiceBus.Configure, Func<PropertyInfo, bool>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L60) ]<br>Use `configuration.Conventions().DefiningDataBusPropertiesAs(definesDataBusProperty)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DefiningTimeToBeReceivedAs(NServiceBus.Configure, Func<Type, TimeSpan>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L70) ]<br>Use `configuration.Conventions().DefiningTimeToBeReceivedAs(retrieveTimeToBeReceived)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DefiningExpressMessagesAs(NServiceBus.Configure, Func<Type, bool>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageConventions_Obsolete.cs#L80) ]<br>Use `configuration.Conventions().DefiningExpressMessagesAs(definesExpressMessageType)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.ObjectBuilder.Common.Config.ConfigureContainer  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ObjectBuilder/Common/ConfigureContainer_Obsolete.cs) ]
+### NServiceBus.ObjectBuilder.Common.Config.ConfigureContainer  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ObjectBuilder/Common/ConfigureContainer_Obsolete.cs) ]
 
-Use `configuration.UseContainer<T>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.UseContainer<T>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure UsingContainer<T>(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ObjectBuilder/Common/ConfigureContainer_Obsolete.cs#L20) ]<br>Use `configuration.UseContainer<T>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure UsingContainer<T>(NServiceBus.Configure, T)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ObjectBuilder/Common/ConfigureContainer_Obsolete.cs#L29) ]<br>Use `configuration.UseContainer(container)`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure UsingContainer<T>(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ObjectBuilder/Common/ConfigureContainer_Obsolete.cs#L20) ]<br>Use `configuration.UseContainer<T>()`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure UsingContainer<T>(NServiceBus.Configure, T)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ObjectBuilder/Common/ConfigureContainer_Obsolete.cs#L29) ]<br>Use `configuration.UseContainer(container)`, where configuration is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Scheduling.ScheduledTask  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/ScheduledTask.cs) ]
+### NServiceBus.Scheduling.ScheduledTask  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/ScheduledTask.cs) ]
 
-The Schedule is now injectable, This won't be needed. Will be removed in version 5.1.0. TreatAsError=True
+The Schedule is now injectable, This won't be needed. Will be removed in version 5.1.0. Obsoleted with error.
 
 
 
-#### NServiceBus.SetLoggingLibrary  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs) ]
+### NServiceBus.SetLoggingLibrary  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs) ]
 
-Log4Net and Nlog integration has been moved to a stand alone nugets, 'NServiceBus.Log4Net' and 'NServiceBus.NLog'. Will be removed in version 6.0.0. TreatAsError=True
+Log4Net and Nlog integration has been moved to a stand alone nugets, 'NServiceBus.Log4Net' and 'NServiceBus.NLog'. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure Log4Net(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L21) ]<br>Log4Net integration has been moved to a stand alone nuget 'NServiceBus.Log4Net'. Install the 'NServiceBus.Log4Net' nuget and run 'LogManager.Use<Log4NetFactory>();'. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure Log4Net<TAppender>(NServiceBus.Configure, Action<TAppender>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L30) ]<br>Log4Net integration has been moved to a stand alone nuget 'NServiceBus.Log4Net'. Install the 'NServiceBus.Log4Net' nuget and run 'LogManager.Use<Log4NetFactory>();'. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure Log4Net(NServiceBus.Configure, object)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L39) ]<br>Log4Net integration has been moved to a stand alone nuget 'NServiceBus.Log4Net'. Install the 'NServiceBus.Log4Net' nuget and run 'LogManager.Use<Log4NetFactory>();'. Will be removed in version 6.0.0. TreatAsError=True
-  - `void Log4Net()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L49) ]<br>Log4Net integration has been moved to a stand alone nuget 'NServiceBus.Log4Net'. Install the 'NServiceBus.Log4Net' nuget and run 'LogManager.Use<Log4NetFactory>();'. Will be removed in version 6.0.0. TreatAsError=True
-  - `void Log4Net(Action)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L58) ]<br>Log4Net integration has been moved to a stand alone nuget 'NServiceBus.Log4Net'. Install the 'NServiceBus.Log4Net' nuget and run 'LogManager.Use<Log4NetFactory>();'. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure NLog(NServiceBus.Configure, Object[])` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L67) ]<br>Nlog integration has been moved to a stand alone nuget 'NServiceBus.NLog'. Install the 'NServiceBus.NLog' nuget and run 'LogManager.Use<NLogFactory>();'. Will be removed in version 6.0.0. TreatAsError=True
-  - `void NLog()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L76) ]<br>Nlog integration has been moved to a stand alone nuget 'NServiceBus.NLog'. Install the 'NServiceBus.NLog' nuget and run 'LogManager.Use<Log4NetFactory>();'. Will be removed in version 6.0.0. TreatAsError=True
-  - `void Custom(NServiceBus.Logging.ILoggerFactory)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L85) ]<br>Please use `LogManager.UseFactory(ILoggerFactory)` instead. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure Log4Net(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L21) ]<br>Log4Net integration has been moved to a stand alone nuget 'NServiceBus.Log4Net'. Install the 'NServiceBus.Log4Net' nuget and run 'LogManager.Use<Log4NetFactory>();'. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure Log4Net<TAppender>(NServiceBus.Configure, Action<TAppender>)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L30) ]<br>Log4Net integration has been moved to a stand alone nuget 'NServiceBus.Log4Net'. Install the 'NServiceBus.Log4Net' nuget and run 'LogManager.Use<Log4NetFactory>();'. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure Log4Net(NServiceBus.Configure, object)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L39) ]<br>Log4Net integration has been moved to a stand alone nuget 'NServiceBus.Log4Net'. Install the 'NServiceBus.Log4Net' nuget and run 'LogManager.Use<Log4NetFactory>();'. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void Log4Net()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L49) ]<br>Log4Net integration has been moved to a stand alone nuget 'NServiceBus.Log4Net'. Install the 'NServiceBus.Log4Net' nuget and run 'LogManager.Use<Log4NetFactory>();'. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void Log4Net(Action)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L58) ]<br>Log4Net integration has been moved to a stand alone nuget 'NServiceBus.Log4Net'. Install the 'NServiceBus.Log4Net' nuget and run 'LogManager.Use<Log4NetFactory>();'. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure NLog(NServiceBus.Configure, Object[])` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L67) ]<br>Nlog integration has been moved to a stand alone nuget 'NServiceBus.NLog'. Install the 'NServiceBus.NLog' nuget and run 'LogManager.Use<NLogFactory>();'. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void NLog()` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L76) ]<br>Nlog integration has been moved to a stand alone nuget 'NServiceBus.NLog'. Install the 'NServiceBus.NLog' nuget and run 'LogManager.Use<Log4NetFactory>();'. Will be removed in version 6.0.0. Obsoleted with error.
+  - `void Custom(NServiceBus.Logging.ILoggerFactory)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/SetLoggingLibrary_Obsolete.cs#L85) ]<br>Please use `LogManager.UseFactory(ILoggerFactory)` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.TransactionalConfigManager  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransactionalConfigManager_Obsolete.cs) ]
+### NServiceBus.TransactionalConfigManager  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransactionalConfigManager_Obsolete.cs) ]
 
-Use `configuration.Transactions().Enable()` or `configuration.Transactions().Disable()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+Use `configuration.Transactions().Enable()` or `configuration.Transactions().Disable()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `NServiceBus.Configure IsTransactional(NServiceBus.Configure, bool)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransactionalConfigManager_Obsolete.cs#L20) ]<br>Use `configuration.Transactions()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure DontUseTransactions(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransactionalConfigManager_Obsolete.cs#L29) ]<br>Use `configuration.Transactions().Disable()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure IsolationLevel(NServiceBus.Configure, IsolationLevel)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransactionalConfigManager_Obsolete.cs#L38) ]<br>Use `configuration.Transactions().IsolationLevel(IsolationLevel.Chaos)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
-  - `NServiceBus.Configure TransactionTimeout(NServiceBus.Configure, TimeSpan)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransactionalConfigManager_Obsolete.cs#L47) ]<br>Use `configuration.Transactions().DefaultTimeout(TimeSpan.FromMinutes(5))`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. TreatAsError=True
+  - `NServiceBus.Configure IsTransactional(NServiceBus.Configure, bool)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransactionalConfigManager_Obsolete.cs#L20) ]<br>Use `configuration.Transactions()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DontUseTransactions(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransactionalConfigManager_Obsolete.cs#L29) ]<br>Use `configuration.Transactions().Disable()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure IsolationLevel(NServiceBus.Configure, IsolationLevel)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransactionalConfigManager_Obsolete.cs#L38) ]<br>Use `configuration.Transactions().IsolationLevel(IsolationLevel.Chaos)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure TransactionTimeout(NServiceBus.Configure, TimeSpan)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransactionalConfigManager_Obsolete.cs#L47) ]<br>Use `configuration.Transactions().DefaultTimeout(TimeSpan.FromMinutes(5))`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.TransportMessage  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransportMessage.cs) ]
+### NServiceBus.TransportMessage  [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransportMessage.cs) ]
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `void .ctor(string, Dictionary<string, string>, NServiceBus.Address)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransportMessage.cs#L54) ]<br>headers[Headers.ReplyToAddress]=replyToAddress; var tm = new TransportMessage(id,headers). Will be treated as an error from version 5.1.0. Will be removed in version 6.0.0. TreatAsError=False
+  - `void .ctor(string, Dictionary<string, string>, NServiceBus.Address)` [ [link](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransportMessage.cs#L54) ]<br>headers[Headers.ReplyToAddress]=replyToAddress; var tm = new TransportMessage(id,headers). Will be treated as an error from version 5.1.0. Will be removed in version 6.0.0. Obsoleted with warning.
 
-#### NServiceBus.AutomaticSubscriptions.IAutoSubscriptionStrategy  
+### NServiceBus.AutomaticSubscriptions.IAutoSubscriptionStrategy  
 
-Not an extension point any more. If you want full control over autosubscribe please turn the feature off and implement your own for-loop calling Bus.Subscribe<YourEvent>() when starting your endpoint. Will be removed in version 6.0.0. TreatAsError=True
+Not an extension point any more. If you want full control over autosubscribe please turn the feature off and implement your own for-loop calling Bus.Subscribe<YourEvent>() when starting your endpoint. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Hosting.Profiles.IHandleProfile  
+### NServiceBus.Hosting.Profiles.IHandleProfile  
 
 
 
-##### Obsolete Methods
+#### Obsolete Methods
 
-  - `void ProfileActivated(NServiceBus.Configure)` <br>Please use `ProfileActivated(ConfigurationBuilder config)` instead. Will be removed in version 6.0.0. TreatAsError=True
+  - `void ProfileActivated(NServiceBus.Configure)` <br>Please use `ProfileActivated(ConfigurationBuilder config)` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
-#### NServiceBus.Distributor  
+### NServiceBus.Distributor  
 
-The NServiceBus Distributor was moved into its own assembly (NServiceBus.Distributor.MSMQ.dll), please make sure you reference the new assembly. Will be removed in version 6.0.0. TreatAsError=True
+The NServiceBus Distributor was moved into its own assembly (NServiceBus.Distributor.MSMQ.dll), please make sure you reference the new assembly. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.MultiSite  
+### NServiceBus.MultiSite  
 
-Please use `MultiSite Profile is now obsolete. Gateway has been moved to its own stand alone nuget 'NServiceBus.Gateway'. To enable Gateway, install the nuget package and then call `configuration.EnableFeature<Gateway>()`, where `configuration` is an instance of type `BusConfiguration`.` instead. Will be removed in version 6.0.0. TreatAsError=True
+Please use `MultiSite Profile is now obsolete. Gateway has been moved to its own stand alone nuget 'NServiceBus.Gateway'. To enable Gateway, install the nuget package and then call `configuration.EnableFeature<Gateway>()`, where `configuration` is an instance of type `BusConfiguration`.` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Master  
+### NServiceBus.Master  
 
-The NServiceBus Distributor was moved into its own assembly (NServiceBus.Distributor.MSMQ.dll), please make sure you reference the new assembly. Will be removed in version 6.0.0. TreatAsError=True
+The NServiceBus Distributor was moved into its own assembly (NServiceBus.Distributor.MSMQ.dll), please make sure you reference the new assembly. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.Worker  
+### NServiceBus.Worker  
 
-The NServiceBus Distributor was moved into its own assembly (NServiceBus.Distributor.MSMQ.dll), please make sure you reference the new assembly. Will be removed in version 6.0.0. TreatAsError=True
+The NServiceBus Distributor was moved into its own assembly (NServiceBus.Distributor.MSMQ.dll), please make sure you reference the new assembly. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
-#### NServiceBus.AsA_Publisher  
+### NServiceBus.AsA_Publisher  
 
-Please use `AsA_Server` instead. Will be removed in version 6.0.0. TreatAsError=True
+Please use `AsA_Server` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
