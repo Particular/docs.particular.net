@@ -9,245 +9,245 @@ tags:
 
 ### The following public types have been removed.
 
-- `NServiceBus.Audit.MessageAuditer` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Audit/MessageAuditer.cs) ]
-- `NServiceBus.AutomaticSubscriptions.AutoSubscriber` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscriber.cs) ]
-- `NServiceBus.AutomaticSubscriptions.DefaultAutoSubscriptionStrategy` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/AutomaticSubscriptions/DefaultAutoSubscriptionStrategy.cs) ]
-- `NServiceBus.Config.AddressInitializer` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Config/AddressInitializer.cs) ]
-- `NServiceBus.Config.ChannelCollection` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Config/GatewayConfig.cs) ]
-- `NServiceBus.Config.ChannelConfig` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Config/GatewayConfig.cs) ]
-- `NServiceBus.Config.DisplayInfrastructureServicesStatus` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Config/InfrastructureServices.cs) ]
-- `NServiceBus.Config.GatewayConfig` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Config/GatewayConfig.cs) ]
-- `NServiceBus.Config.InfrastructureServices` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Config/InfrastructureServices.cs) ]
-- `NServiceBus.Config.SiteCollection` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Config/GatewayConfig.cs) ]
-- `NServiceBus.Config.SiteConfig` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Config/GatewayConfig.cs) ]
-- `NServiceBus.Config.WindowsInstallerRunner` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Config/WindowsInstallerRunner.cs) ]
-- `NServiceBus.ConfigureGateway` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/ConfigureGateway.cs) ]
-- `NServiceBus.ConfigureSagas` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/ConfigureSagas.cs) ]
-- `NServiceBus.ConfigureSecondLevelRetriesExtensions` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/SecondLevelRetries/Config/ConfigureSecondLevelRetriesExtensions.cs) ]
-- `NServiceBus.DataBus.Config.Bootstrapper` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/DataBus/Config/Bootstrapper.cs) ]
-- `NServiceBus.DataBus.DefaultDataBusSerializer` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/DataBus/DefaultDatabusSerializer.cs) ]
-- `NServiceBus.DataBus.FileShare.FileShareDataBus` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/DataBus/FileShare/FileShareDataBus.cs) ]
-- `NServiceBus.DataBus.InMemory.InMemoryDataBus` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/DataBus/InMemory/InMemoryDataBus.cs) ]
-- `NServiceBus.Encryption.EncryptionMessageMutator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Encryption/EncryptionMessageMutator.cs) ]
-- `NServiceBus.Features.Categories.Serializers` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Serializers.cs) ]
-- `NServiceBus.Features.EnableDefaultFeatures` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Support/EnableDefaultFeatures.cs) ]
-- `NServiceBus.Features.Feature<T>` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs) ]
-- `NServiceBus.Features.FeatureCategory` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs) ]
-- `NServiceBus.Features.FeatureInitializer` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Support/FeatureInitializer.cs) ]
-- `NServiceBus.Features.Gateway` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Gateway.cs) ]
-- `NServiceBus.Features.MsmqTransport` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Transports/Msmq/Config/MsmqTransport.cs) ]
-- `NServiceBus.FeatureSettingsExtensions` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/SecondLevelRetries/Config/FeatureSettingsExtensions.cs) ]
-- `NServiceBus.Gateway.Channels.Channel` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Channels/Channel.cs) ]
-- `NServiceBus.Gateway.Channels.ChannelFactory` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Channels/ChannelFactory.cs) ]
-- `NServiceBus.Gateway.Channels.ChannelTypeAttribute` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Channels/ChannelTypeAttribute.cs) ]
+- `NServiceBus.Audit.MessageAuditer` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Audit/MessageAuditer.cs) ]
+- `NServiceBus.AutomaticSubscriptions.AutoSubscriber` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscriber.cs) ]
+- `NServiceBus.AutomaticSubscriptions.DefaultAutoSubscriptionStrategy` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/DefaultAutoSubscriptionStrategy.cs) ]
+- `NServiceBus.Config.AddressInitializer` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Config/AddressInitializer.cs) ]
+- `NServiceBus.Config.ChannelCollection` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Config/GatewayConfig.cs) ]
+- `NServiceBus.Config.ChannelConfig` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Config/GatewayConfig.cs) ]
+- `NServiceBus.Config.DisplayInfrastructureServicesStatus` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Config/InfrastructureServices.cs) ]
+- `NServiceBus.Config.GatewayConfig` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Config/GatewayConfig.cs) ]
+- `NServiceBus.Config.InfrastructureServices` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Config/InfrastructureServices.cs) ]
+- `NServiceBus.Config.SiteCollection` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Config/GatewayConfig.cs) ]
+- `NServiceBus.Config.SiteConfig` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Config/GatewayConfig.cs) ]
+- `NServiceBus.Config.WindowsInstallerRunner` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Config/WindowsInstallerRunner.cs) ]
+- `NServiceBus.ConfigureGateway` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/ConfigureGateway.cs) ]
+- `NServiceBus.ConfigureSagas` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/ConfigureSagas.cs) ]
+- `NServiceBus.ConfigureSecondLevelRetriesExtensions` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/Config/ConfigureSecondLevelRetriesExtensions.cs) ]
+- `NServiceBus.DataBus.Config.Bootstrapper` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/DataBus/Config/Bootstrapper.cs) ]
+- `NServiceBus.DataBus.DefaultDataBusSerializer` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/DataBus/DefaultDatabusSerializer.cs) ]
+- `NServiceBus.DataBus.FileShare.FileShareDataBus` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/DataBus/FileShare/FileShareDataBus.cs) ]
+- `NServiceBus.DataBus.InMemory.InMemoryDataBus` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/DataBus/InMemory/InMemoryDataBus.cs) ]
+- `NServiceBus.Encryption.EncryptionMessageMutator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Encryption/EncryptionMessageMutator.cs) ]
+- `NServiceBus.Features.Categories.Serializers` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Serializers.cs) ]
+- `NServiceBus.Features.EnableDefaultFeatures` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Support/EnableDefaultFeatures.cs) ]
+- `NServiceBus.Features.Feature<T>` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs) ]
+- `NServiceBus.Features.FeatureCategory` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs) ]
+- `NServiceBus.Features.FeatureInitializer` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Support/FeatureInitializer.cs) ]
+- `NServiceBus.Features.Gateway` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Gateway.cs) ]
+- `NServiceBus.Features.MsmqTransport` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/Config/MsmqTransport.cs) ]
+- `NServiceBus.FeatureSettingsExtensions` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/Config/FeatureSettingsExtensions.cs) ]
+- `NServiceBus.Gateway.Channels.Channel` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Channels/Channel.cs) ]
+- `NServiceBus.Gateway.Channels.ChannelFactory` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Channels/ChannelFactory.cs) ]
+- `NServiceBus.Gateway.Channels.ChannelTypeAttribute` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Channels/ChannelTypeAttribute.cs) ]
 - `NServiceBus.Gateway.Channels.DataReceivedOnChannelArgs` 
-- `NServiceBus.Gateway.Channels.Http.DefaultResponder` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Channels/Http/DefaultResponder.cs) ]
-- `NServiceBus.Gateway.Channels.Http.HttpChannelReceiver` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Channels/Http/HttpChannelReceiver.cs) ]
-- `NServiceBus.Gateway.Channels.Http.HttpChannelSender` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Channels/Http/HttpChannelSender.cs) ]
+- `NServiceBus.Gateway.Channels.Http.DefaultResponder` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Channels/Http/DefaultResponder.cs) ]
+- `NServiceBus.Gateway.Channels.Http.HttpChannelReceiver` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Channels/Http/HttpChannelReceiver.cs) ]
+- `NServiceBus.Gateway.Channels.Http.HttpChannelSender` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Channels/Http/HttpChannelSender.cs) ]
 - `NServiceBus.Gateway.Channels.Http.HttpHeaders` 
 - `NServiceBus.Gateway.Channels.Http.IHttpResponder` 
-- `NServiceBus.Gateway.Channels.Http.SetDefaultResponder` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Channels/Http/SetDefaultResponder.cs) ]
+- `NServiceBus.Gateway.Channels.Http.SetDefaultResponder` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Channels/Http/SetDefaultResponder.cs) ]
 - `NServiceBus.Gateway.Channels.IChannelFactory` 
 - `NServiceBus.Gateway.Channels.IChannelReceiver` 
 - `NServiceBus.Gateway.Channels.IChannelSender` 
-- `NServiceBus.Gateway.Channels.ReceiveChannel` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Channels/Channel.cs) ]
+- `NServiceBus.Gateway.Channels.ReceiveChannel` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Channels/Channel.cs) ]
 - `NServiceBus.Gateway.Deduplication.GatewayMessage` 
-- `NServiceBus.Gateway.Deduplication.InMemoryDeduplication` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/InMemory/Gateway/InMemoryDeduplication.cs) ]
-- `NServiceBus.Gateway.Deduplication.RavenDBDeduplication` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/Gateway/RavenDBDeduplication.cs) ]
-- `NServiceBus.Gateway.DefaultInputAddress` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/DefaultInputAddress.cs) ]
-- `NServiceBus.Gateway.HeaderManagement.DataBusHeaderManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/HeaderManagement/DataBusHeaderManager.cs) ]
-- `NServiceBus.Gateway.HeaderManagement.GatewayHeaderManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/HeaderManagement/GatewayHeaderManager.cs) ]
+- `NServiceBus.Gateway.Deduplication.InMemoryDeduplication` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/InMemory/Gateway/InMemoryDeduplication.cs) ]
+- `NServiceBus.Gateway.Deduplication.RavenDBDeduplication` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/Gateway/RavenDBDeduplication.cs) ]
+- `NServiceBus.Gateway.DefaultInputAddress` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/DefaultInputAddress.cs) ]
+- `NServiceBus.Gateway.HeaderManagement.DataBusHeaderManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/HeaderManagement/DataBusHeaderManager.cs) ]
+- `NServiceBus.Gateway.HeaderManagement.GatewayHeaderManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/HeaderManagement/GatewayHeaderManager.cs) ]
 - `NServiceBus.Gateway.HeaderManagement.GatewayHeaders` 
-- `NServiceBus.Gateway.HeaderManagement.HeaderMapper` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/HeaderManagement/HeaderMapper.cs) ]
+- `NServiceBus.Gateway.HeaderManagement.HeaderMapper` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/HeaderManagement/HeaderMapper.cs) ]
 - `NServiceBus.Gateway.Notifications.IMessageNotifier` 
 - `NServiceBus.Gateway.Notifications.INotifyAboutMessages` 
-- `NServiceBus.Gateway.Notifications.MessageNotifier` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Notifications/MessageNotifier.cs) ]
+- `NServiceBus.Gateway.Notifications.MessageNotifier` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Notifications/MessageNotifier.cs) ]
 - `NServiceBus.Gateway.Notifications.MessageReceivedOnChannelArgs` 
-- `NServiceBus.Gateway.Persistence.InMemoryPersistence` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/InMemory/Gateway/InMemoryPersistence.cs) ]
+- `NServiceBus.Gateway.Persistence.InMemoryPersistence` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/InMemory/Gateway/InMemoryPersistence.cs) ]
 - `NServiceBus.Gateway.Persistence.MessageInfo` 
 - `NServiceBus.Gateway.Persistence.Raven.GatewayMessage` 
-- `NServiceBus.Gateway.Persistence.Raven.RavenDbPersistence` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/Gateway/RavenDBPersistence.cs) ]
-- `NServiceBus.Gateway.Receiving.ChannelException` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Receiving/ChannelException.cs) ]
-- `NServiceBus.Gateway.Receiving.ConfigurationBasedChannelManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Receiving/ConfigurationBasedChannelManager.cs) ]
-- `NServiceBus.Gateway.Receiving.ConventionBasedChannelManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Receiving/ConventionBasedChannelManager.cs) ]
-- `NServiceBus.Gateway.Receiving.GatewayReceiver` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Receiving/GatewayReceiver.cs) ]
+- `NServiceBus.Gateway.Persistence.Raven.RavenDbPersistence` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/Gateway/RavenDBPersistence.cs) ]
+- `NServiceBus.Gateway.Receiving.ChannelException` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Receiving/ChannelException.cs) ]
+- `NServiceBus.Gateway.Receiving.ConfigurationBasedChannelManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Receiving/ConfigurationBasedChannelManager.cs) ]
+- `NServiceBus.Gateway.Receiving.ConventionBasedChannelManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Receiving/ConventionBasedChannelManager.cs) ]
+- `NServiceBus.Gateway.Receiving.GatewayReceiver` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Receiving/GatewayReceiver.cs) ]
 - `NServiceBus.Gateway.Receiving.IManageReceiveChannels` 
 - `NServiceBus.Gateway.Receiving.IReceiveMessagesFromSites` 
-- `NServiceBus.Gateway.Receiving.SingleCallChannelReceiver` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Receiving/SingleCallChannelReceiver.cs) ]
-- `NServiceBus.Gateway.Routing.Endpoints.DefaultEndpointRouter` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Routing/Endpoints/DefaultEndpointRouter.cs) ]
+- `NServiceBus.Gateway.Receiving.SingleCallChannelReceiver` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Receiving/SingleCallChannelReceiver.cs) ]
+- `NServiceBus.Gateway.Routing.Endpoints.DefaultEndpointRouter` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Routing/Endpoints/DefaultEndpointRouter.cs) ]
 - `NServiceBus.Gateway.Routing.IRouteMessagesToEndpoints` 
 - `NServiceBus.Gateway.Routing.IRouteMessagesToSites` 
-- `NServiceBus.Gateway.Routing.Site` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Routing/Site.cs) ]
-- `NServiceBus.Gateway.Routing.Sites.ConfigurationBasedSiteRouter` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Routing/Sites/ConfigurationBasedSiteRouter.cs) ]
+- `NServiceBus.Gateway.Routing.Site` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Routing/Site.cs) ]
+- `NServiceBus.Gateway.Routing.Sites.ConfigurationBasedSiteRouter` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Routing/Sites/ConfigurationBasedSiteRouter.cs) ]
 - `NServiceBus.Gateway.Routing.Sites.KeyPrefixConventionSiteRouter` 
 - `NServiceBus.Gateway.Routing.Sites.OriginatingSiteHeaderRouter` 
 - `NServiceBus.Gateway.Sending.CallInfo` 
 - `NServiceBus.Gateway.Sending.CallType` 
-- `NServiceBus.Gateway.Sending.GatewaySender` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Sending/GatewaySender.cs) ]
+- `NServiceBus.Gateway.Sending.GatewaySender` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Sending/GatewaySender.cs) ]
 - `NServiceBus.Gateway.Sending.IForwardMessagesToSites` 
-- `NServiceBus.Gateway.Sending.SingleCallChannelForwarder` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Sending/SingleCallChannelForwarder.cs) ]
-- `NServiceBus.Gateway.Utils.Hasher` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Gateway/Utils/Hasher.cs) ]
-- `NServiceBus.Hosting.Configuration.ConfigManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Hosting/Configuration/ConfigurationManager.cs) ]
-- `NServiceBus.Hosting.Profiles.ProfileActivator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Hosting/Profiles/ProfileActivator.cs) ]
-- `NServiceBus.Hosting.Roles.Handlers.TransportRoleHandler` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/Roles/Handlers/TransportRoleHandler.cs) ]
+- `NServiceBus.Gateway.Sending.SingleCallChannelForwarder` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Sending/SingleCallChannelForwarder.cs) ]
+- `NServiceBus.Gateway.Utils.Hasher` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Gateway/Utils/Hasher.cs) ]
+- `NServiceBus.Hosting.Configuration.ConfigManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Configuration/ConfigurationManager.cs) ]
+- `NServiceBus.Hosting.Profiles.ProfileActivator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Profiles/ProfileActivator.cs) ]
+- `NServiceBus.Hosting.Roles.Handlers.TransportRoleHandler` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/Roles/Handlers/TransportRoleHandler.cs) ]
 - `NServiceBus.Hosting.Roles.IConfigureRole` 
 - `NServiceBus.Hosting.Roles.IConfigureRole<T>` 
 - `NServiceBus.Hosting.Roles.IRole` 
-- `NServiceBus.Hosting.Roles.RoleManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Hosting/Roles/RoleManager.cs) ]
-- `NServiceBus.Hosting.Windows.Roles.Handlers.ClientRoleHandler` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/Roles/Handlers/ClientRoleHandler.cs) ]
-- `NServiceBus.Hosting.Windows.Roles.Handlers.PublisherRoleHandler` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/Roles/Handlers/PublisherRoleHandler.cs) ]
-- `NServiceBus.Hosting.Windows.Roles.Handlers.ServerRoleHandler` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/Roles/Handlers/ServerRoleHandler.cs) ]
-- `NServiceBus.Installation.GatewayHttpListenerInstaller` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Installation/GatewayHttpListenerInstaller.cs) ]
-- `NServiceBus.Installation.PerformanceMonitorUsersInstaller` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Installation/PerformanceMonitorUsersInstaller.cs) ]
-- `NServiceBus.Management.Retries.SecondLevelRetries` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs) ]
-- `NServiceBus.MessageConventionExtensions` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus/MessageConventionExtensions.cs) ]
+- `NServiceBus.Hosting.Roles.RoleManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Roles/RoleManager.cs) ]
+- `NServiceBus.Hosting.Windows.Roles.Handlers.ClientRoleHandler` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/Roles/Handlers/ClientRoleHandler.cs) ]
+- `NServiceBus.Hosting.Windows.Roles.Handlers.PublisherRoleHandler` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/Roles/Handlers/PublisherRoleHandler.cs) ]
+- `NServiceBus.Hosting.Windows.Roles.Handlers.ServerRoleHandler` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/Roles/Handlers/ServerRoleHandler.cs) ]
+- `NServiceBus.Installation.GatewayHttpListenerInstaller` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Installation/GatewayHttpListenerInstaller.cs) ]
+- `NServiceBus.Installation.PerformanceMonitorUsersInstaller` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Installation/PerformanceMonitorUsersInstaller.cs) ]
+- `NServiceBus.Management.Retries.SecondLevelRetries` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs) ]
+- `NServiceBus.MessageConventionExtensions` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/MessageConventionExtensions.cs) ]
 - `NServiceBus.Msmq` 
-- `NServiceBus.ObjectBuilder.Common.Config.ConfigureCommon` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/ObjectBuilder/Common/Config/ConfigureCommon.cs) ]
-- `NServiceBus.ObjectBuilder.Common.SynchronizedInvoker` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/ObjectBuilder/Common/SynchronizedInvoker.cs) ]
-- `NServiceBus.Persistence.InMemory.InMemoryPersistence` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/InMemory/InMemoryPersistence.cs) ]
-- `NServiceBus.Persistence.InMemory.SagaPersister.InMemorySagaPersister` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/InMemory/SagaPersister/InMemorySagaPersister.cs) ]
-- `NServiceBus.Persistence.InMemory.SubscriptionStorage.InMemorySubscriptionStorage` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/InMemory/SubscriptionStorage/InMemorySubscriptionStorage.cs) ]
-- `NServiceBus.Persistence.InMemory.TimeoutPersister.InMemoryTimeoutPersistence` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersistence.cs) ]
-- `NServiceBus.Persistence.Msmq.SubscriptionStorage.Config.SubscriptionsQueueCreator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Msmq/SubscriptionStorage/Config/SubscriptionsQueueCreator.cs) ]
-- `NServiceBus.Persistence.Msmq.SubscriptionStorage.MsmqSubscriptionStorage` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Msmq/SubscriptionStorage/MsmqSubscriptionStorage.cs) ]
-- `NServiceBus.Persistence.Raven.RavenConventions` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/RavenConventions.cs) ]
-- `NServiceBus.Persistence.Raven.RavenPersistenceConstants` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/RavenPersistenceConstants.cs) ]
-- `NServiceBus.Persistence.Raven.RavenSessionFactory` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/RavenSessionFactory.cs) ]
-- `NServiceBus.Persistence.Raven.RavenUnitOfWork` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/RavenUnitofWork.cs) ]
-- `NServiceBus.Persistence.Raven.RavenUserInstaller` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/RavenUserInstaller.cs) ]
-- `NServiceBus.Persistence.Raven.SagaPersister.RavenSagaPersister` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/SagaPersister/RavenSagaPersister.cs) ]
-- `NServiceBus.Persistence.Raven.SagaPersister.SagaUniqueIdentity` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/SagaPersister/RavenSagaPersister.cs) ]
-- `NServiceBus.Persistence.Raven.StoreAccessor` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/StoreAccessor.cs) ]
-- `NServiceBus.Persistence.Raven.SubscriptionStorage.MessageTypeConverter` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/SubscriptionStorage/Subscription.cs) ]
-- `NServiceBus.Persistence.Raven.SubscriptionStorage.RavenSubscriptionStorage` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/SubscriptionStorage/RavenSubscriptionStorage.cs) ]
-- `NServiceBus.Persistence.Raven.SubscriptionStorage.Subscription` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/SubscriptionStorage/Subscription.cs) ]
-- `NServiceBus.Persistence.Raven.TimeoutPersister.RavenTimeoutPersistence` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/Raven/TimeoutPersister/RavenTimeoutPersistence.cs) ]
-- `NServiceBus.Persistence.SetupDefaultPersistence` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Persistence/SetupDefaultPersistence.cs) ]
-- `NServiceBus.Sagas.ConfigureTimeoutAsSystemMessages` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/ConfigureTimeoutAsSystemMessages.cs) ]
-- `NServiceBus.Scheduling.Configuration.ConfigureScheduledTaskAsSystemMessages` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Scheduling/Configuration/ConfigureScheduledTaskAsSystemMessages.cs) ]
-- `NServiceBus.Scheduling.Configuration.SchedulerConfiguration` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Scheduling/Configuration/SchedulerConfiguration.cs) ]
-- `NServiceBus.Scheduling.InMemoryScheduledTaskStorage` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Scheduling/InMemoryScheduledTaskStorage.cs) ]
+- `NServiceBus.ObjectBuilder.Common.Config.ConfigureCommon` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/ObjectBuilder/Common/Config/ConfigureCommon.cs) ]
+- `NServiceBus.ObjectBuilder.Common.SynchronizedInvoker` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/ObjectBuilder/Common/SynchronizedInvoker.cs) ]
+- `NServiceBus.Persistence.InMemory.InMemoryPersistence` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/InMemory/InMemoryPersistence.cs) ]
+- `NServiceBus.Persistence.InMemory.SagaPersister.InMemorySagaPersister` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/InMemory/SagaPersister/InMemorySagaPersister.cs) ]
+- `NServiceBus.Persistence.InMemory.SubscriptionStorage.InMemorySubscriptionStorage` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/InMemory/SubscriptionStorage/InMemorySubscriptionStorage.cs) ]
+- `NServiceBus.Persistence.InMemory.TimeoutPersister.InMemoryTimeoutPersistence` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersistence.cs) ]
+- `NServiceBus.Persistence.Msmq.SubscriptionStorage.Config.SubscriptionsQueueCreator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Msmq/SubscriptionStorage/Config/SubscriptionsQueueCreator.cs) ]
+- `NServiceBus.Persistence.Msmq.SubscriptionStorage.MsmqSubscriptionStorage` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Msmq/SubscriptionStorage/MsmqSubscriptionStorage.cs) ]
+- `NServiceBus.Persistence.Raven.RavenConventions` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/RavenConventions.cs) ]
+- `NServiceBus.Persistence.Raven.RavenPersistenceConstants` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/RavenPersistenceConstants.cs) ]
+- `NServiceBus.Persistence.Raven.RavenSessionFactory` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/RavenSessionFactory.cs) ]
+- `NServiceBus.Persistence.Raven.RavenUnitOfWork` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/RavenUnitofWork.cs) ]
+- `NServiceBus.Persistence.Raven.RavenUserInstaller` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/RavenUserInstaller.cs) ]
+- `NServiceBus.Persistence.Raven.SagaPersister.RavenSagaPersister` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/SagaPersister/RavenSagaPersister.cs) ]
+- `NServiceBus.Persistence.Raven.SagaPersister.SagaUniqueIdentity` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/SagaPersister/RavenSagaPersister.cs) ]
+- `NServiceBus.Persistence.Raven.StoreAccessor` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/StoreAccessor.cs) ]
+- `NServiceBus.Persistence.Raven.SubscriptionStorage.MessageTypeConverter` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/SubscriptionStorage/Subscription.cs) ]
+- `NServiceBus.Persistence.Raven.SubscriptionStorage.RavenSubscriptionStorage` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/SubscriptionStorage/RavenSubscriptionStorage.cs) ]
+- `NServiceBus.Persistence.Raven.SubscriptionStorage.Subscription` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/SubscriptionStorage/Subscription.cs) ]
+- `NServiceBus.Persistence.Raven.TimeoutPersister.RavenTimeoutPersistence` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/Raven/TimeoutPersister/RavenTimeoutPersistence.cs) ]
+- `NServiceBus.Persistence.SetupDefaultPersistence` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Persistence/SetupDefaultPersistence.cs) ]
+- `NServiceBus.Sagas.ConfigureTimeoutAsSystemMessages` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/ConfigureTimeoutAsSystemMessages.cs) ]
+- `NServiceBus.Scheduling.Configuration.ConfigureScheduledTaskAsSystemMessages` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Scheduling/Configuration/ConfigureScheduledTaskAsSystemMessages.cs) ]
+- `NServiceBus.Scheduling.Configuration.SchedulerConfiguration` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Scheduling/Configuration/SchedulerConfiguration.cs) ]
+- `NServiceBus.Scheduling.InMemoryScheduledTaskStorage` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Scheduling/InMemoryScheduledTaskStorage.cs) ]
 - `NServiceBus.Scheduling.IScheduledTaskStorage` 
 - `NServiceBus.Scheduling.IScheduler` 
-- `NServiceBus.Settings.Endpoint` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Settings/Endpoint.cs) ]
+- `NServiceBus.Settings.Endpoint` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/Endpoint.cs) ]
 - `NServiceBus.Settings.ISetDefaultSettings` 
 - `NServiceBus.Settings.TransportSettings` 
-- `NServiceBus.SyncConfig` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/SyncConfig.cs) ]
-- `NServiceBus.Timeout.Core.TimeoutManagerDefaults` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Timeout/Core/TimeoutManagerDefaults.cs) ]
-- `NServiceBus.Transports.ConfigureTransport<T>` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Transports/ConfigureTransport.cs) ]
+- `NServiceBus.SyncConfig` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SyncConfig.cs) ]
+- `NServiceBus.Timeout.Core.TimeoutManagerDefaults` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/Core/TimeoutManagerDefaults.cs) ]
+- `NServiceBus.Transports.ConfigureTransport<T>` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/ConfigureTransport.cs) ]
 - `NServiceBus.Transports.IConfigureTransport` 
 - `NServiceBus.Transports.IConfigureTransport<T>` 
-- `NServiceBus.Transports.Msmq.Config.CheckMachineNameForComplianceWithDtcLimitation` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Transports/Msmq/Config/CheckMachineNameForComplianceWithDTCLimitation.cs) ]
+- `NServiceBus.Transports.Msmq.Config.CheckMachineNameForComplianceWithDtcLimitation` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/Config/CheckMachineNameForComplianceWithDTCLimitation.cs) ]
 - `NServiceBus.Unicast.BusAsyncResultEventArgs` 
-- `NServiceBus.Unicast.Config.DefaultToTimeoutManagerBasedDeferal` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Config/DefaultToTimeoutManagerBasedDeferal.cs) ]
-- `NServiceBus.Unicast.Config.DefaultTransportForHost` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Config/DefaultTransportForHost.cs) ]
-- `NServiceBus.Unicast.DefaultDispatcherFactory` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/DefaultDispatcherFactory.cs) ]
-- `NServiceBus.Unicast.HandlerInvocationCache` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/HandlerInvocationCache.cs) ]
-- `NServiceBus.Unicast.Monitoring.CriticalTimeCalculator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Monitoring/CriticalTimeCalculator.cs) ]
-- `NServiceBus.Unicast.Monitoring.EstimatedTimeToSLABreachCalculator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Monitoring/EstimatedTimeToSLABreachCalculator.cs) ]
-- `NServiceBus.Unicast.Monitoring.PerformanceCounterInitializer` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Monitoring/PerformanceCounterInitializer.cs) ]
-- `NServiceBus.Unicast.Monitoring.ProcessingStatistics` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Monitoring/ProcessingStatistics.cs) ]
-- `NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.EnableMessageDrivenPublisherIfStorageIsFound` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/EnableMessageDrivenPublisherIfStorageIsFound.cs) ]
-- `NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.MessageDrivenSubscriptionManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptionManager.cs) ]
-- `NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.FilteringMutator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/SubcriberSideFiltering/FilteringMutator.cs) ]
-- `NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.SubscriptionPredicatesEvaluator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/SubcriberSideFiltering/SubscriptionPredicatesEvaluator.cs) ]
-- `NServiceBus.Unicast.Transport.Config.Bootstrapper` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/Config/Bootstrapper.cs) ]
-- `NServiceBus.Unicast.Transport.Transactional.Config.AdvancedTransactionalConfig` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/Config/AdvancedTransactionalConfig.cs) ]
+- `NServiceBus.Unicast.Config.DefaultToTimeoutManagerBasedDeferal` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Config/DefaultToTimeoutManagerBasedDeferal.cs) ]
+- `NServiceBus.Unicast.Config.DefaultTransportForHost` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Config/DefaultTransportForHost.cs) ]
+- `NServiceBus.Unicast.DefaultDispatcherFactory` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/DefaultDispatcherFactory.cs) ]
+- `NServiceBus.Unicast.HandlerInvocationCache` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/HandlerInvocationCache.cs) ]
+- `NServiceBus.Unicast.Monitoring.CriticalTimeCalculator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Monitoring/CriticalTimeCalculator.cs) ]
+- `NServiceBus.Unicast.Monitoring.EstimatedTimeToSLABreachCalculator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Monitoring/EstimatedTimeToSLABreachCalculator.cs) ]
+- `NServiceBus.Unicast.Monitoring.PerformanceCounterInitializer` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Monitoring/PerformanceCounterInitializer.cs) ]
+- `NServiceBus.Unicast.Monitoring.ProcessingStatistics` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Monitoring/ProcessingStatistics.cs) ]
+- `NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.EnableMessageDrivenPublisherIfStorageIsFound` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/EnableMessageDrivenPublisherIfStorageIsFound.cs) ]
+- `NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.MessageDrivenSubscriptionManager` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptionManager.cs) ]
+- `NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.FilteringMutator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/SubcriberSideFiltering/FilteringMutator.cs) ]
+- `NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.SubscriptionPredicatesEvaluator` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/SubcriberSideFiltering/SubscriptionPredicatesEvaluator.cs) ]
+- `NServiceBus.Unicast.Transport.Config.Bootstrapper` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/Config/Bootstrapper.cs) ]
+- `NServiceBus.Unicast.Transport.Transactional.Config.AdvancedTransactionalConfig` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/Config/AdvancedTransactionalConfig.cs) ]
 
 
 ### The following public types have been made internal.
 
-- `NDesk.Options.Option` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/Options.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Options.cs) ]
+- `NDesk.Options.Option` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/Options.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Options.cs) ]
 - `NDesk.Options.OptionAction<TKey, TValue>` 
-- `NDesk.Options.OptionContext` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/Options.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Options.cs) ]
-- `NDesk.Options.OptionException` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/Options.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Options.cs) ]
-- `NDesk.Options.OptionSet` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/Options.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Options.cs) ]
-- `NDesk.Options.OptionValueCollection` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/Options.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Options.cs) ]
+- `NDesk.Options.OptionContext` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/Options.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Options.cs) ]
+- `NDesk.Options.OptionException` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/Options.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Options.cs) ]
+- `NDesk.Options.OptionSet` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/Options.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Options.cs) ]
+- `NDesk.Options.OptionValueCollection` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/Options.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Options.cs) ]
 - `NDesk.Options.OptionValueType` 
-- `NServiceBus.CircuitBreakers.CircuitBreaker` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/CircuitBreakers/CircuitBreaker.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/CircuitBreakers/CircuitBreaker.cs) ]
-- `NServiceBus.Config.Conventions.EndpointHelper` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Config/Conventions/EndpointHelper.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/Conventions/EndpointHelper.cs) ]
-- `NServiceBus.Config.SatelliteConfigurer` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Config/SatelliteConfigurer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/SatelliteConfigurer.cs) ]
-- `NServiceBus.Faults.Forwarder.Config.FaultsQueueCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Faults/Forwarder/Config/FaultsQueueCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Faults/Forwarder/Config/FaultsQueueCreator.cs) ]
-- `NServiceBus.Faults.Forwarder.FaultManager` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Faults/Forwarder/FaultManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Faults/Forwarder/FaultManager.cs) ]
-- `NServiceBus.Faults.InMemory.FaultManager` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Faults/InMemory/FaultManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Faults/InMemory/FaultManager.cs) ]
-- `NServiceBus.Hosting.Profiles.ProfileManager` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Hosting/Profiles/ProfileManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Profiles/ProfileManager.cs) ]
-- `NServiceBus.Hosting.Wcf.WcfManager` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Hosting/Wcf/WcfManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Wcf/WcfManager.cs) ]
-- `NServiceBus.Hosting.Wcf.WcfServiceHost` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Hosting/Wcf/WcfServiceHost.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Wcf/WcfServiceHost.cs) ]
-- `NServiceBus.Hosting.Windows.Arguments.HostArguments` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/Arguments/HostArguments.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Arguments/HostArguments.cs) ]
-- `NServiceBus.Hosting.Windows.EndpointType` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/EndpointType.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/EndpointType.cs) ]
-- `NServiceBus.Hosting.Windows.EndpointTypeDeterminer` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/EndpointTypeDeterminer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/EndpointTypeDeterminer.cs) ]
-- `NServiceBus.Hosting.Windows.HostServiceLocator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/HostServiceLocator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/HostServiceLocator.cs) ]
-- `NServiceBus.Hosting.Windows.Installers.WindowsInstaller` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/Installers/WindowsInstaller.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Installers/WindowsInstaller.cs) ]
-- `NServiceBus.Hosting.Windows.LoggingHandlers.IntegrationLoggingHandler` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/LoggingHandlers/IntegrationLoggingHandler.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/LoggingHandlers/IntegrationLoggingHandler.cs) ]
-- `NServiceBus.Hosting.Windows.LoggingHandlers.LiteLoggingHandler` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/LoggingHandlers/LiteLoggingHandler.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/LoggingHandlers/LiteLoggingHandler.cs) ]
-- `NServiceBus.Hosting.Windows.LoggingHandlers.ProductionLoggingHandler` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/LoggingHandlers/ProductionLoggingHandler.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/LoggingHandlers/ProductionLoggingHandler.cs) ]
-- `NServiceBus.Hosting.Windows.Profiles.Handlers.PerformanceCountersProfileHandler` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/Profiles/Handlers/PerformanceCountersProfileHandler.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Profiles/Handlers/PerformanceCountersProfileHandler.cs) ]
-- `NServiceBus.Impersonation.Windows.WindowsIdentityEnricher` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Impersonation/Windows/WindowsIdentityEnricher.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Impersonation/Windows/WindowsIdentityEnricher.cs) ]
-- `NServiceBus.ObjectBuilder.Common.CommonObjectBuilder` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/ObjectBuilder/Common/CommonObjectBuilder.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ObjectBuilder/Common/CommonObjectBuilder.cs) ]
+- `NServiceBus.CircuitBreakers.CircuitBreaker` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/CircuitBreakers/CircuitBreaker.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/CircuitBreakers/CircuitBreaker.cs) ]
+- `NServiceBus.Config.Conventions.EndpointHelper` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Config/Conventions/EndpointHelper.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/Conventions/EndpointHelper.cs) ]
+- `NServiceBus.Config.SatelliteConfigurer` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Config/SatelliteConfigurer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config/SatelliteConfigurer.cs) ]
+- `NServiceBus.Faults.Forwarder.Config.FaultsQueueCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Faults/Forwarder/Config/FaultsQueueCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Faults/Forwarder/Config/FaultsQueueCreator.cs) ]
+- `NServiceBus.Faults.Forwarder.FaultManager` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Faults/Forwarder/FaultManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Faults/Forwarder/FaultManager.cs) ]
+- `NServiceBus.Faults.InMemory.FaultManager` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Faults/InMemory/FaultManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Faults/InMemory/FaultManager.cs) ]
+- `NServiceBus.Hosting.Profiles.ProfileManager` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Profiles/ProfileManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Profiles/ProfileManager.cs) ]
+- `NServiceBus.Hosting.Wcf.WcfManager` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Wcf/WcfManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Wcf/WcfManager.cs) ]
+- `NServiceBus.Hosting.Wcf.WcfServiceHost` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Wcf/WcfServiceHost.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Wcf/WcfServiceHost.cs) ]
+- `NServiceBus.Hosting.Windows.Arguments.HostArguments` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/Arguments/HostArguments.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Arguments/HostArguments.cs) ]
+- `NServiceBus.Hosting.Windows.EndpointType` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/EndpointType.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/EndpointType.cs) ]
+- `NServiceBus.Hosting.Windows.EndpointTypeDeterminer` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/EndpointTypeDeterminer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/EndpointTypeDeterminer.cs) ]
+- `NServiceBus.Hosting.Windows.HostServiceLocator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/HostServiceLocator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/HostServiceLocator.cs) ]
+- `NServiceBus.Hosting.Windows.Installers.WindowsInstaller` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/Installers/WindowsInstaller.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Installers/WindowsInstaller.cs) ]
+- `NServiceBus.Hosting.Windows.LoggingHandlers.IntegrationLoggingHandler` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/LoggingHandlers/IntegrationLoggingHandler.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/LoggingHandlers/IntegrationLoggingHandler.cs) ]
+- `NServiceBus.Hosting.Windows.LoggingHandlers.LiteLoggingHandler` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/LoggingHandlers/LiteLoggingHandler.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/LoggingHandlers/LiteLoggingHandler.cs) ]
+- `NServiceBus.Hosting.Windows.LoggingHandlers.ProductionLoggingHandler` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/LoggingHandlers/ProductionLoggingHandler.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/LoggingHandlers/ProductionLoggingHandler.cs) ]
+- `NServiceBus.Hosting.Windows.Profiles.Handlers.PerformanceCountersProfileHandler` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/Profiles/Handlers/PerformanceCountersProfileHandler.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Profiles/Handlers/PerformanceCountersProfileHandler.cs) ]
+- `NServiceBus.Impersonation.Windows.WindowsIdentityEnricher` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Impersonation/Windows/WindowsIdentityEnricher.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Impersonation/Windows/WindowsIdentityEnricher.cs) ]
+- `NServiceBus.ObjectBuilder.Common.CommonObjectBuilder` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/ObjectBuilder/Common/CommonObjectBuilder.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ObjectBuilder/Common/CommonObjectBuilder.cs) ]
 - `NServiceBus.Persistence.Msmq.SubscriptionStorage.Entry` 
-- `NServiceBus.Sagas.ConfigureHowToFindSagaWithMessageDispatcher` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/ConfigureHowToFindSagaWithMessageDispatcher.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/ConfigureHowToFindSagaWithMessageDispatcher.cs) ]
-- `NServiceBus.Sagas.Finders.HeaderSagaIdFinder<T>` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Finders/HeaderSagaIdFinder.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/Finders/HeaderSagaIdFinder.cs) ]
-- `NServiceBus.Sagas.Finders.PropertySagaFinder<TSagaData, TMessage>` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Finders/PropertySagaFinder.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/Finders/PropertySagaFinder.cs) ]
-- `NServiceBus.Satellites.Config.SatelliteContext` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Satellites/Config/SatelliteContext.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Satellites/Config/SatelliteContext.cs) ]
-- `NServiceBus.Satellites.SatelliteLauncher` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Satellites/SatelliteLauncher.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Satellites/SatelliteLauncher.cs) ]
-- `NServiceBus.Satellites.SatellitesQueuesCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Satellites/SatellitesQueuesCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Satellites/SatellitesQueuesCreator.cs) ]
-- `NServiceBus.Scheduling.DefaultScheduler` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Scheduling/DefaultScheduler.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/DefaultScheduler.cs) ]
+- `NServiceBus.Sagas.ConfigureHowToFindSagaWithMessageDispatcher` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/ConfigureHowToFindSagaWithMessageDispatcher.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/ConfigureHowToFindSagaWithMessageDispatcher.cs) ]
+- `NServiceBus.Sagas.Finders.HeaderSagaIdFinder<T>` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Finders/HeaderSagaIdFinder.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/Finders/HeaderSagaIdFinder.cs) ]
+- `NServiceBus.Sagas.Finders.PropertySagaFinder<TSagaData, TMessage>` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Finders/PropertySagaFinder.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/Finders/PropertySagaFinder.cs) ]
+- `NServiceBus.Satellites.Config.SatelliteContext` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Satellites/Config/SatelliteContext.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Satellites/Config/SatelliteContext.cs) ]
+- `NServiceBus.Satellites.SatelliteLauncher` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Satellites/SatelliteLauncher.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Satellites/SatelliteLauncher.cs) ]
+- `NServiceBus.Satellites.SatellitesQueuesCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Satellites/SatellitesQueuesCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Satellites/SatellitesQueuesCreator.cs) ]
+- `NServiceBus.Scheduling.DefaultScheduler` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Scheduling/DefaultScheduler.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/DefaultScheduler.cs) ]
 - `NServiceBus.Scheduling.Messages.ScheduledTask` 
-- `NServiceBus.Scheduling.ScheduledTaskMessageHandler` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Scheduling/ScheduledTaskMessageHandler.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/ScheduledTaskMessageHandler.cs) ]
+- `NServiceBus.Scheduling.ScheduledTaskMessageHandler` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Scheduling/ScheduledTaskMessageHandler.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Scheduling/ScheduledTaskMessageHandler.cs) ]
 - `NServiceBus.SecondLevelRetries.Helpers.SecondLevelRetriesHeaders` 
-- `NServiceBus.SecondLevelRetries.SecondLevelRetriesProcessor` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetriesProcessor.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetriesProcessor.cs) ]
-- `NServiceBus.Serializers.Json.Internal.MessageContractResolver` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Json/Internal/MessageContractResolver.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Internal/MessageContractResolver.cs) ]
-- `NServiceBus.Serializers.Json.Internal.MessageSerializationBinder` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Json/Internal/MessageSerializationBinder.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Internal/MessageSerializationBinder.cs) ]
-- `NServiceBus.Serializers.Json.Internal.XContainerConverter` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Json/Internal/XContainerConverter.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Internal/XContainerConverter.cs) ]
-- `NServiceBus.Serializers.XML.Config.MessageTypesInitializer` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/XML/Config/MessageTypesInitializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/MessageTypesInitializer.cs) ]
-- `NServiceBus.Serializers.XML.XmlSanitizingStream` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/XML/XmlSanitizingStream.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/XmlSanitizingStream.cs) ]
-- `NServiceBus.ServiceAsyncResult` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/ServiceAsyncResult.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Wcf/ServiceAsyncResult.cs) ]
-- `NServiceBus.Timeout.Core.DefaultTimeoutManager` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Timeout/Core/DefaultTimeoutManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Core/DefaultTimeoutManager.cs) ]
-- `NServiceBus.Timeout.Hosting.Windows.TimeoutDispatcherProcessor` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Timeout/Hosting/Windows/TimeoutDispatcherProcessor.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Hosting/Windows/TimeoutDispatcherProcessor.cs) ]
-- `NServiceBus.Timeout.Hosting.Windows.TimeoutMessageProcessor` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Timeout/Hosting/Windows/TimeoutMessageProcessor.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Hosting/Windows/TimeoutMessageProcessor.cs) ]
-- `NServiceBus.Timeout.Hosting.Windows.TimeoutPersisterReceiver` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Timeout/Hosting/Windows/TimeoutPersisterReceiver.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Hosting/Windows/TimeoutPersisterReceiver.cs) ]
-- `NServiceBus.Timeout.TimeoutManagerDeferrer` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Timeout/Core/TimeoutManagerDeferrer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Core/TimeoutManagerDeferrer.cs) ]
+- `NServiceBus.SecondLevelRetries.SecondLevelRetriesProcessor` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetriesProcessor.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetriesProcessor.cs) ]
+- `NServiceBus.Serializers.Json.Internal.MessageContractResolver` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/Internal/MessageContractResolver.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Internal/MessageContractResolver.cs) ]
+- `NServiceBus.Serializers.Json.Internal.MessageSerializationBinder` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/Internal/MessageSerializationBinder.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Internal/MessageSerializationBinder.cs) ]
+- `NServiceBus.Serializers.Json.Internal.XContainerConverter` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/Internal/XContainerConverter.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Internal/XContainerConverter.cs) ]
+- `NServiceBus.Serializers.XML.Config.MessageTypesInitializer` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/Config/MessageTypesInitializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/MessageTypesInitializer.cs) ]
+- `NServiceBus.Serializers.XML.XmlSanitizingStream` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/XmlSanitizingStream.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/XmlSanitizingStream.cs) ]
+- `NServiceBus.ServiceAsyncResult` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/ServiceAsyncResult.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/Wcf/ServiceAsyncResult.cs) ]
+- `NServiceBus.Timeout.Core.DefaultTimeoutManager` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/Core/DefaultTimeoutManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Core/DefaultTimeoutManager.cs) ]
+- `NServiceBus.Timeout.Hosting.Windows.TimeoutDispatcherProcessor` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/Hosting/Windows/TimeoutDispatcherProcessor.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Hosting/Windows/TimeoutDispatcherProcessor.cs) ]
+- `NServiceBus.Timeout.Hosting.Windows.TimeoutMessageProcessor` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/Hosting/Windows/TimeoutMessageProcessor.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Hosting/Windows/TimeoutMessageProcessor.cs) ]
+- `NServiceBus.Timeout.Hosting.Windows.TimeoutPersisterReceiver` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/Hosting/Windows/TimeoutPersisterReceiver.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Hosting/Windows/TimeoutPersisterReceiver.cs) ]
+- `NServiceBus.Timeout.TimeoutManagerDeferrer` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/Core/TimeoutManagerDeferrer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Core/TimeoutManagerDeferrer.cs) ]
 - `NServiceBus.Timeout.TimeoutManagerHeaders` 
-- `NServiceBus.Transports.Msmq.MsmqQueueCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Transports/Msmq/MsmqQueueCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqQueueCreator.cs) ]
-- `NServiceBus.Unicast.MessagingBestPractices` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/MessagingBestPractices.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/MessagingBestPractices.cs) ]
-- `NServiceBus.Unicast.Monitoring.CausationMutator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Monitoring/CausationMutator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Audit/CausationMutator.cs) ]
-- `NServiceBus.Unicast.Publishing.StorageDrivenPublisher` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Publishing/StorageDrivenPublisher.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Publishing/StorageDrivenPublisher.cs) ]
-- `NServiceBus.Unicast.Queuing.Installers.AuditQueueCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Queuing/Installers/AuditQueueCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Queuing/Installers/AuditQueueCreator.cs) ]
-- `NServiceBus.Unicast.Queuing.Installers.EndpointInputQueueCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Queuing/Installers/EndpointInputQueueCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Queuing/Installers/EndpointInputQueueCreator.cs) ]
-- `NServiceBus.Unicast.Queuing.Installers.ForwardReceivedMessagesToQueueCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Queuing/Installers/ForwardReceivedMessagesToQueueCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Queuing/Installers/ForwardReceivedMessagesToQueueCreator.cs) ]
-- `NServiceBus.Unicast.Queuing.QueuesCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Queuing/QueuesCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Queuing/QueuesCreator.cs) ]
-- `NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.NoopSubscriptionAuthorizer` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/NoopSubscriptionAuthorizer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/NoopSubscriptionAuthorizer.cs) ]
-- `NServiceBus.Unicast.Transport.TransportConnectionString` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/TransportConnectionString.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransportConnectionString.cs) ]
-- `NServiceBus.Unicast.Transport.TransportMessageExtensions` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransportMessageExtensions.cs) ]
+- `NServiceBus.Transports.Msmq.MsmqQueueCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqQueueCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqQueueCreator.cs) ]
+- `NServiceBus.Unicast.MessagingBestPractices` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/MessagingBestPractices.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/MessagingBestPractices.cs) ]
+- `NServiceBus.Unicast.Monitoring.CausationMutator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Monitoring/CausationMutator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Audit/CausationMutator.cs) ]
+- `NServiceBus.Unicast.Publishing.StorageDrivenPublisher` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Publishing/StorageDrivenPublisher.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Publishing/StorageDrivenPublisher.cs) ]
+- `NServiceBus.Unicast.Queuing.Installers.AuditQueueCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Queuing/Installers/AuditQueueCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Queuing/Installers/AuditQueueCreator.cs) ]
+- `NServiceBus.Unicast.Queuing.Installers.EndpointInputQueueCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Queuing/Installers/EndpointInputQueueCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Queuing/Installers/EndpointInputQueueCreator.cs) ]
+- `NServiceBus.Unicast.Queuing.Installers.ForwardReceivedMessagesToQueueCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Queuing/Installers/ForwardReceivedMessagesToQueueCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Queuing/Installers/ForwardReceivedMessagesToQueueCreator.cs) ]
+- `NServiceBus.Unicast.Queuing.QueuesCreator` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Queuing/QueuesCreator.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Queuing/QueuesCreator.cs) ]
+- `NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.NoopSubscriptionAuthorizer` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/NoopSubscriptionAuthorizer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/NoopSubscriptionAuthorizer.cs) ]
+- `NServiceBus.Unicast.Transport.TransportConnectionString` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportConnectionString.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransportConnectionString.cs) ]
+- `NServiceBus.Unicast.Transport.TransportMessageExtensions` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransportMessageExtensions.cs) ]
 
 
 ### The following types have differences.
 
 
-#### NServiceBus.Address  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus/Address.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Address.cs) ]
+#### NServiceBus.Address  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Address.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Address.cs) ]
 
 ##### Methods Removed
 
   - `NServiceBus.Address get_PublicReturnAddress()` 
-  - `void PreventChanges()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus/Address.cs#L191) ]
+  - `void PreventChanges()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Address.cs#L191) ]
 
 
-#### NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs) ]
-
-##### Methods Removed
-
-  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs#L8) ]
-  - `NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings AutoSubscribePlainMessages()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs#L36) ]
-  - `NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings CustomAutoSubscriptionStrategy<T>()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs#L47) ]
-  - `NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings DoNotAutoSubscribeSagas()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs#L18) ]
-  - `NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings DoNotRequireExplicitRouting()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs#L27) ]
-
-
-#### NServiceBus.AutoSubscribeSettingsExtensions  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettingsExtensions.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettingsExtensions.cs) ]
+#### NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs) ]
 
 ##### Methods Removed
 
-  - `NServiceBus.Features.FeatureSettings AutoSubscribe(NServiceBus.Features.FeatureSettings, Action<NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettingsExtensions.cs#L11) ]
+  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs#L8) ]
+  - `NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings AutoSubscribePlainMessages()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs#L36) ]
+  - `NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings CustomAutoSubscriptionStrategy<T>()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs#L47) ]
+  - `NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings DoNotAutoSubscribeSagas()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs#L18) ]
+  - `NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings DoNotRequireExplicitRouting()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettings.cs#L27) ]
+
+
+#### NServiceBus.AutoSubscribeSettingsExtensions  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettingsExtensions.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettingsExtensions.cs) ]
+
+##### Methods Removed
+
+  - `NServiceBus.Features.FeatureSettings AutoSubscribe(NServiceBus.Features.FeatureSettings, Action<NServiceBus.AutomaticSubscriptions.Config.AutoSubscribeSettings>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/Config/AutoSubscribeSettingsExtensions.cs#L11) ]
 
 
 #### NServiceBus.Config.IWantToRunWhenConfigurationIsComplete  
@@ -257,7 +257,7 @@ tags:
   - `void Run()` 
 
 
-#### NServiceBus.Configure  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Configure.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure.cs) ]
+#### NServiceBus.Configure  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure.cs) ]
 
 ##### Fields Removed
 
@@ -265,31 +265,31 @@ tags:
 
 ##### Methods changed to non-public
 
-  - `void Initialize()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Configure.cs#L337) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure.cs#L102) ]
-  - `void set_Builder(NServiceBus.ObjectBuilder.IBuilder)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Configure.cs#L75) ]
+  - `void Initialize()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs#L337) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Configure.cs#L102) ]
+  - `void set_Builder(NServiceBus.ObjectBuilder.IBuilder)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs#L75) ]
 
 ##### Methods Removed
 
   - `void add_ConfigurationComplete(Action)` 
-  - `void ForAllTypes<T>(Action<Type>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Configure.cs#L379) ]
+  - `void ForAllTypes<T>(Action<Type>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs#L379) ]
   - `NServiceBus.Config.ConfigurationSource.IConfigurationSource get_ConfigurationSource()` 
-  - `NServiceBus.Settings.Endpoint get_Endpoint()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Configure.cs#L161) ]
-  - `bool get_SendOnlyMode()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Configure.cs#L191) ]
-  - `NServiceBus.Settings.TransportSettings get_Transports()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Configure.cs#L167) ]
-  - `IEnumerable<Assembly> GetAssembliesInDirectory(string, String[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Configure.cs#L417) ]
+  - `NServiceBus.Settings.Endpoint get_Endpoint()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs#L161) ]
+  - `bool get_SendOnlyMode()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs#L191) ]
+  - `NServiceBus.Settings.TransportSettings get_Transports()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs#L167) ]
+  - `IEnumerable<Assembly> GetAssembliesInDirectory(string, String[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs#L417) ]
   - `void remove_ConfigurationComplete(Action)` 
-  - `void ScaleOut(Action<NServiceBus.Settings.ScaleOutSettings>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Configure.cs#L184) ]
+  - `void ScaleOut(Action<NServiceBus.Settings.ScaleOutSettings>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Configure.cs#L184) ]
   - `void set_ConfigurationSource(NServiceBus.Config.ConfigurationSource.IConfigurationSource)` 
 
 
-#### NServiceBus.ConfigureCriticalErrorAction  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/ConfigureCriticalErrorAction.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/CriticalError/ConfigureCriticalErrorAction_Obsolete.cs) ]
+#### NServiceBus.ConfigureCriticalErrorAction  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/ConfigureCriticalErrorAction.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/CriticalError/ConfigureCriticalErrorAction_Obsolete.cs) ]
 
 ##### Methods Removed
 
-  - `void RaiseCriticalError(NServiceBus.Configure, string, Exception)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/ConfigureCriticalErrorAction.cs#L44) ]
+  - `void RaiseCriticalError(NServiceBus.Configure, string, Exception)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/ConfigureCriticalErrorAction.cs#L44) ]
 
 
-#### NServiceBus.EndpointSLAAttribute  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Hosting/Configuration/EndpointSLAAttribute.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Monitoring/SLA/EndpointSLAAttribute.cs) ]
+#### NServiceBus.EndpointSLAAttribute  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Configuration/EndpointSLAAttribute.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Monitoring/SLA/EndpointSLAAttribute.cs) ]
 
 ##### Methods Removed
 
@@ -297,7 +297,7 @@ tags:
   - `void set_SLA(string)` 
 
 
-#### NServiceBus.ExtensionMethods  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus/ExtensionMethods.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ExtensionMethods.cs) ]
+#### NServiceBus.ExtensionMethods  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/ExtensionMethods.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/ExtensionMethods.cs) ]
 
 ##### Fields Removed
 
@@ -312,10 +312,10 @@ tags:
   - `void set_Bus(NServiceBus.IBus)` 
   - `void set_GetStaticOutgoingHeadersAction(Func<IDictionary<string, string>>)` 
   - `void set_MessageCreator(NServiceBus.IMessageCreator)` 
-  - `void SetMessageHeader(NServiceBus.IBus, object, string, string)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus/ExtensionMethods.cs#L65) ]
+  - `void SetMessageHeader(NServiceBus.IBus, object, string, string)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/ExtensionMethods.cs#L65) ]
 
 
-#### NServiceBus.Features.Audit  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Audit/Audit.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Audit/Audit.cs) ]
+#### NServiceBus.Features.Audit  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Audit/Audit.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Audit/Audit.cs) ]
 
 ##### Methods changed to non-public
 
@@ -323,11 +323,11 @@ tags:
 
 ##### Methods Removed
 
-  - `bool get_IsEnabledByDefault()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Audit/Audit.cs#L41) ]
-  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Audit/Audit.cs#L16) ]
+  - `bool get_IsEnabledByDefault()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Audit/Audit.cs#L41) ]
+  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Audit/Audit.cs#L16) ]
 
 
-#### NServiceBus.Features.AutoSubscribe  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs) ]
+#### NServiceBus.Features.AutoSubscribe  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs) ]
 
 ##### Methods changed to non-public
 
@@ -335,11 +335,11 @@ tags:
 
 ##### Methods Removed
 
-  - `bool get_IsEnabledByDefault()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs#L34) ]
-  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs#L12) ]
+  - `bool get_IsEnabledByDefault()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs#L34) ]
+  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/AutomaticSubscriptions/AutoSubscribe.cs#L12) ]
 
 
-#### NServiceBus.Features.BinarySerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerialization.cs) ]
+#### NServiceBus.Features.BinarySerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerialization.cs) ]
 
 ##### Methods changed to non-public
 
@@ -347,10 +347,10 @@ tags:
 
 ##### Methods Removed
 
-  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerialization.cs#L9) ]
+  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Binary/Config/BinarySerialization.cs#L9) ]
 
 
-#### NServiceBus.Features.BsonSerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Json/Config/BsonSerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/BsonSerialization.cs) ]
+#### NServiceBus.Features.BsonSerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/Config/BsonSerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/BsonSerialization.cs) ]
 
 ##### Methods changed to non-public
 
@@ -358,37 +358,37 @@ tags:
 
 ##### Methods Removed
 
-  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Json/Config/BsonSerialization.cs#L10) ]
+  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/Config/BsonSerialization.cs#L10) ]
 
 
-#### NServiceBus.Features.Feature  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Features/Feature.cs) ]
+#### NServiceBus.Features.Feature  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Features/Feature.cs) ]
 
 ##### Methods changed to non-public
 
-  - `void EnableByDefault<T>()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L75) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Features/Feature.cs#L97) ]
+  - `void EnableByDefault<T>()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L75) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Features/Feature.cs#L97) ]
 
 ##### Methods Removed
 
-  - `IEnumerable<NServiceBus.Features.Feature> ByCategory(NServiceBus.Features.FeatureCategory)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L142) ]
-  - `void Disable<T>()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L93) ]
-  - `void Disable(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L101) ]
-  - `void DisableByDefault(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L109) ]
-  - `void Enable<T>()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L59) ]
-  - `void Enable(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L67) ]
-  - `void EnableByDefault(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L83) ]
-  - `bool Equals(object)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L179) ]
-  - `NServiceBus.Features.FeatureCategory get_Category()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L134) ]
-  - `bool get_Enabled()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L50) ]
-  - `int GetHashCode()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L196) ]
-  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L19) ]
-  - `bool IsEnabled<T>()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L117) ]
-  - `bool IsEnabled(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L126) ]
-  - `bool op_Equality(NServiceBus.Features.Feature, NServiceBus.Features.Feature)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L202) ]
-  - `bool op_Inequality(NServiceBus.Features.Feature, NServiceBus.Features.Feature)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L212) ]
-  - `bool ShouldBeEnabled()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Features/Feature.cs#L26) ]
+  - `IEnumerable<NServiceBus.Features.Feature> ByCategory(NServiceBus.Features.FeatureCategory)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L142) ]
+  - `void Disable<T>()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L93) ]
+  - `void Disable(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L101) ]
+  - `void DisableByDefault(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L109) ]
+  - `void Enable<T>()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L59) ]
+  - `void Enable(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L67) ]
+  - `void EnableByDefault(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L83) ]
+  - `bool Equals(object)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L179) ]
+  - `NServiceBus.Features.FeatureCategory get_Category()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L134) ]
+  - `bool get_Enabled()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L50) ]
+  - `int GetHashCode()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L196) ]
+  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L19) ]
+  - `bool IsEnabled<T>()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L117) ]
+  - `bool IsEnabled(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L126) ]
+  - `bool op_Equality(NServiceBus.Features.Feature, NServiceBus.Features.Feature)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L202) ]
+  - `bool op_Inequality(NServiceBus.Features.Feature, NServiceBus.Features.Feature)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L212) ]
+  - `bool ShouldBeEnabled()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Features/Feature.cs#L26) ]
 
 
-#### NServiceBus.Features.JsonSerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Json/Config/JsonSerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/JsonSerialization.cs) ]
+#### NServiceBus.Features.JsonSerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/Config/JsonSerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/Config/JsonSerialization.cs) ]
 
 ##### Methods changed to non-public
 
@@ -396,10 +396,10 @@ tags:
 
 ##### Methods Removed
 
-  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Json/Config/JsonSerialization.cs#L11) ]
+  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/Config/JsonSerialization.cs#L11) ]
 
 
-#### NServiceBus.Features.MessageDrivenSubscriptions  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptions.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptions.cs) ]
+#### NServiceBus.Features.MessageDrivenSubscriptions  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptions.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptions.cs) ]
 
 ##### Methods changed to non-public
 
@@ -407,10 +407,10 @@ tags:
 
 ##### Methods Removed
 
-  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptions.cs#L10) ]
+  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Subscriptions/MessageDrivenSubscriptions/MessageDrivenSubscriptions.cs#L10) ]
 
 
-#### NServiceBus.Features.Sagas  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Sagas.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/Sagas.cs) ]
+#### NServiceBus.Features.Sagas  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/Sagas.cs) ]
 
 ##### Fields Removed
 
@@ -419,24 +419,24 @@ tags:
 ##### Methods changed to non-public
 
   - `void .ctor()` [ [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/Sagas.cs#L281) ]
-  - `bool IsSagaType(Type)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Sagas.cs#L282) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/Sagas.cs#L221) ]
+  - `bool IsSagaType(Type)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L282) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Sagas/Sagas.cs#L221) ]
 
 ##### Methods Removed
 
-  - `void Clear()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Sagas.cs#L460) ]
-  - `void ConfigureFinder(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Sagas.cs#L331) ]
-  - `void ConfigureSaga(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Sagas.cs#L302) ]
-  - `bool FindAndConfigureSagasIn(IEnumerable<Type>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Sagas.cs#L37) ]
-  - `MethodInfo GetFindByMethodForFinder(NServiceBus.Saga.IFinder, object)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Sagas.cs#L194) ]
-  - `IEnumerable<Type> GetFindersForMessageAndEntity(Type, Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Sagas.cs#L244) ]
-  - `IEnumerable<Type> GetSagaDataTypes()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Sagas.cs#L277) ]
-  - `Type GetSagaEntityTypeForSagaType(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Sagas.cs#L183) ]
-  - `Type GetSagaTypeForSagaEntityType(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Sagas.cs#L172) ]
-  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Sagas.cs#L17) ]
-  - `bool ShouldMessageStartSaga(Type, Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Sagas/Sagas.cs#L120) ]
+  - `void Clear()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L460) ]
+  - `void ConfigureFinder(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L331) ]
+  - `void ConfigureSaga(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L302) ]
+  - `bool FindAndConfigureSagasIn(IEnumerable<Type>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L37) ]
+  - `MethodInfo GetFindByMethodForFinder(NServiceBus.Saga.IFinder, object)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L194) ]
+  - `IEnumerable<Type> GetFindersForMessageAndEntity(Type, Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L244) ]
+  - `IEnumerable<Type> GetSagaDataTypes()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L277) ]
+  - `Type GetSagaEntityTypeForSagaType(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L183) ]
+  - `Type GetSagaTypeForSagaEntityType(Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L172) ]
+  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L17) ]
+  - `bool ShouldMessageStartSaga(Type, Type)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Sagas/Sagas.cs#L120) ]
 
 
-#### NServiceBus.Features.SecondLevelRetries  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs) ]
+#### NServiceBus.Features.SecondLevelRetries  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs) ]
 
 ##### Methods changed to non-public
 
@@ -444,12 +444,12 @@ tags:
 
 ##### Methods Removed
 
-  - `bool get_IsEnabledByDefault()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs#L50) ]
-  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs#L56) ]
-  - `bool ShouldBeEnabled()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs#L31) ]
+  - `bool get_IsEnabledByDefault()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs#L50) ]
+  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs#L56) ]
+  - `bool ShouldBeEnabled()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/SecondLevelRetries.cs#L31) ]
 
 
-#### NServiceBus.Features.TimeoutManager  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Timeout/TimeoutManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/TimeoutManager.cs) ]
+#### NServiceBus.Features.TimeoutManager  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/TimeoutManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/TimeoutManager.cs) ]
 
 ##### Methods changed to non-public
 
@@ -459,12 +459,12 @@ tags:
 
   - `NServiceBus.Address get_DispatcherAddress()` 
   - `NServiceBus.Address get_InputAddress()` 
-  - `bool get_IsEnabledByDefault()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Timeout/TimeoutManager.cs#L17) ]
-  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Timeout/TimeoutManager.cs#L42) ]
-  - `bool ShouldBeEnabled()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Timeout/TimeoutManager.cs#L24) ]
+  - `bool get_IsEnabledByDefault()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/TimeoutManager.cs#L17) ]
+  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/TimeoutManager.cs#L42) ]
+  - `bool ShouldBeEnabled()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/TimeoutManager.cs#L24) ]
 
 
-#### NServiceBus.Features.XmlSerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/XML/Config/XmlSerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerialization.cs) ]
+#### NServiceBus.Features.XmlSerialization  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/Config/XmlSerialization.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerialization.cs) ]
 
 ##### Methods changed to non-public
 
@@ -472,14 +472,14 @@ tags:
 
 ##### Methods Removed
 
-  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/XML/Config/XmlSerialization.cs#L11) ]
+  - `void Initialize()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/Config/XmlSerialization.cs#L11) ]
 
 
-#### NServiceBus.Hosting.Helpers.SkippedFile  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs) ]
+#### NServiceBus.Hosting.Helpers.SkippedFile  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs) ]
 
 ##### Methods changed to non-public
 
-  - `void .ctor(string, string)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs#L9) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs#L9) ]
+  - `void .ctor(string, string)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs#L9) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Hosting/Helpers/SkippedFile.cs#L9) ]
 
 
 #### NServiceBus.Hosting.Profiles.IHandleProfile  
@@ -489,12 +489,12 @@ tags:
   - `void ProfileActivated()` 
 
 
-#### NServiceBus.Hosting.Windows.WindowsHost  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/WindowsHost.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/WindowsHost.cs) ]
+#### NServiceBus.Hosting.Windows.WindowsHost  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/WindowsHost.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Hosting.Windows/WindowsHost.cs) ]
 
 ##### Methods Removed
 
-  - `void .ctor(Type, String[], string, bool, IEnumerable<string>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/WindowsHost.cs#L26) ]
-  - `void Install(string)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Hosting.Windows/WindowsHost.cs#L75) ]
+  - `void .ctor(Type, String[], string, bool, IEnumerable<string>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/WindowsHost.cs#L26) ]
+  - `void Install(string)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Hosting.Windows/WindowsHost.cs#L75) ]
 
 
 #### NServiceBus.IBus  
@@ -557,13 +557,13 @@ tags:
   - `void Run()` 
 
 
-#### NServiceBus.Logging.LogManager  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Logging/LogManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/LogManager.cs) ]
+#### NServiceBus.Logging.LogManager  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Logging/LogManager.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Logging/LogManager.cs) ]
 
 ##### Methods Removed
 
   - `void .ctor()` 
-  - `NServiceBus.Logging.ILoggerFactory get_LoggerFactory()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Logging/LogManager.cs#L12) ]
-  - `void set_LoggerFactory(NServiceBus.Logging.ILoggerFactory)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Logging/LogManager.cs#L15) ]
+  - `NServiceBus.Logging.ILoggerFactory get_LoggerFactory()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Logging/LogManager.cs#L12) ]
+  - `void set_LoggerFactory(NServiceBus.Logging.ILoggerFactory)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Logging/LogManager.cs#L15) ]
 
 
 #### NServiceBus.MessageIntentEnum  
@@ -573,13 +573,13 @@ tags:
   - `NServiceBus.MessageIntentEnum Init`
 
 
-#### NServiceBus.MessageInterfaces.MessageMapper.Reflection.MessageMapper  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs) ]
+#### NServiceBus.MessageInterfaces.MessageMapper.Reflection.MessageMapper  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs) ]
 
 ##### Methods changed to non-public
 
-  - `Type CreateTypeFrom(Type, ModuleBuilder)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L150) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L156) ]
-  - `string GetNewTypeName(Type)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L141) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L147) ]
-  - `void InitType(Type, ModuleBuilder)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L51) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L51) ]
+  - `Type CreateTypeFrom(Type, ModuleBuilder)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L150) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L156) ]
+  - `string GetNewTypeName(Type)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L141) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L147) ]
+  - `void InitType(Type, ModuleBuilder)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L51) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/MessageInterfaces/MessageMapper/Reflection/MessageMapper.cs#L51) ]
 
 
 #### NServiceBus.MessageMutator.IMutateOutgoingTransportMessages  
@@ -604,36 +604,36 @@ tags:
   - `T Get<T>(string, object)` 
 
 
-#### NServiceBus.Saga.Saga&lt;TSagaData&gt;  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus/Saga/Saga.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Saga/SagaT.cs) ]
+#### NServiceBus.Saga.Saga&lt;TSagaData&gt;  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/Saga.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Saga/SagaT.cs) ]
 
 ##### Methods Removed
 
-  - `void ConfigureHowToFindSaga()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus/Saga/Saga.cs#L46) ]
-  - `NServiceBus.IBus get_Bus()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus/Saga/Saga.cs#L91) ]
+  - `void ConfigureHowToFindSaga()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/Saga.cs#L46) ]
+  - `NServiceBus.IBus get_Bus()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/Saga.cs#L91) ]
   - `bool get_Completed()` 
   - `T get_Data()` 
-  - `NServiceBus.Saga.IContainSagaData get_Entity()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus/Saga/Saga.cs#L27) ]
+  - `NServiceBus.Saga.IContainSagaData get_Entity()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/Saga.cs#L27) ]
   - `NServiceBus.Saga.IHandleReplyingToNullOriginator get_HandleReplyingToNullOriginator()` 
   - `NServiceBus.Saga.IConfigureHowToFindSagaWithMessage get_SagaMessageFindingConfiguration()` 
-  - `void set_Bus(NServiceBus.IBus)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus/Saga/Saga.cs#L97) ]
+  - `void set_Bus(NServiceBus.IBus)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/Saga.cs#L97) ]
   - `void set_Data(T)` 
-  - `void set_Entity(NServiceBus.Saga.IContainSagaData)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus/Saga/Saga.cs#L28) ]
+  - `void set_Entity(NServiceBus.Saga.IContainSagaData)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/Saga.cs#L28) ]
   - `void set_HandleReplyingToNullOriginator(NServiceBus.Saga.IHandleReplyingToNullOriginator)` 
   - `void set_SagaMessageFindingConfiguration(NServiceBus.Saga.IConfigureHowToFindSagaWithMessage)` 
 
 
-#### NServiceBus.Saga.ToSagaExpression&lt;TSagaData, TMessage&gt;  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus/Saga/ToSagaExpression.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Saga/ToSagaExpression.cs) ]
+#### NServiceBus.Saga.ToSagaExpression&lt;TSagaData, TMessage&gt;  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/ToSagaExpression.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Saga/ToSagaExpression.cs) ]
 
 ##### Methods Removed
 
-  - `void ToSaga(Expression<Func<TSaga, object>>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus/Saga/ToSagaExpression.cs#L30) ]
+  - `void ToSaga(Expression<Func<TSaga, object>>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus/Saga/ToSagaExpression.cs#L30) ]
 
 
-#### NServiceBus.SecondLevelRetries.Config.SecondLevelRetriesSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesSettings.cs) ]
+#### NServiceBus.SecondLevelRetries.Config.SecondLevelRetriesSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesSettings.cs) ]
 
 ##### Methods Removed
 
-  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesSettings.cs#L8) ]
+  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/SecondLevelRetries/Config/SecondLevelRetriesSettings.cs#L8) ]
 
 
 #### NServiceBus.Serialization.IMessageSerializer  
@@ -643,64 +643,64 @@ tags:
   - `void Serialize(Object[], Stream)` 
 
 
-#### NServiceBus.Serializers.Binary.BinaryMessageSerializer  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Binary/BinaryMessageSerializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/BinaryMessageSerializer.cs) ]
+#### NServiceBus.Serializers.Binary.BinaryMessageSerializer  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Binary/BinaryMessageSerializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Binary/BinaryMessageSerializer.cs) ]
 
 ##### Methods Removed
 
-  - `void Serialize(Object[], Stream)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Binary/BinaryMessageSerializer.cs#L32) ]
+  - `void Serialize(Object[], Stream)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Binary/BinaryMessageSerializer.cs#L32) ]
 
 
-#### NServiceBus.Serializers.Json.JsonMessageSerializer  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializer.cs) ]
-
-##### Methods Removed
-
-  - `T DeserializeObject<T>(string)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializer.cs#L36) ]
-
-
-#### NServiceBus.Serializers.Json.JsonMessageSerializerBase  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializerBase.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializerBase.cs) ]
+#### NServiceBus.Serializers.Json.JsonMessageSerializer  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializer.cs) ]
 
 ##### Methods Removed
 
-  - `void Serialize(Object[], Stream)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializerBase.cs#L46) ]
+  - `T DeserializeObject<T>(string)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializer.cs#L36) ]
 
 
-#### NServiceBus.Serializers.XML.XmlMessageSerializer  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/XML/XmlMessageSerializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/XmlMessageSerializer.cs) ]
+#### NServiceBus.Serializers.Json.JsonMessageSerializerBase  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializerBase.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializerBase.cs) ]
 
 ##### Methods Removed
 
-  - `void .ctor(NServiceBus.MessageInterfaces.IMessageMapper)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/XML/XmlMessageSerializer.cs#L27) ]
+  - `void Serialize(Object[], Stream)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/Json/JsonMessageSerializerBase.cs#L46) ]
+
+
+#### NServiceBus.Serializers.XML.XmlMessageSerializer  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/XmlMessageSerializer.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/XmlMessageSerializer.cs) ]
+
+##### Methods Removed
+
+  - `void .ctor(NServiceBus.MessageInterfaces.IMessageMapper)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/XmlMessageSerializer.cs#L27) ]
   - `bool get_SkipWrappingElementForSingleMessages()` 
-  - `void Serialize(Object[], Stream)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/XML/XmlMessageSerializer.cs#L836) ]
+  - `void Serialize(Object[], Stream)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/XmlMessageSerializer.cs#L836) ]
   - `void set_SkipWrappingElementForSingleMessages(bool)` 
 
 
-#### NServiceBus.Settings.ScaleOutSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Settings/ScaleOutSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/ScaleOutSettings.cs) ]
+#### NServiceBus.Settings.ScaleOutSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/ScaleOutSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/ScaleOutSettings.cs) ]
 
 ##### Methods Removed
 
   - `void .ctor()` 
-  - `NServiceBus.Settings.ScaleOutSettings UseSingleBrokerQueue()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Settings/ScaleOutSettings.cs#L16) ]
-  - `NServiceBus.Settings.ScaleOutSettings UseUniqueBrokerQueuePerMachine()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Settings/ScaleOutSettings.cs#L27) ]
+  - `NServiceBus.Settings.ScaleOutSettings UseSingleBrokerQueue()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/ScaleOutSettings.cs#L16) ]
+  - `NServiceBus.Settings.ScaleOutSettings UseUniqueBrokerQueuePerMachine()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/ScaleOutSettings.cs#L27) ]
 
 
-#### NServiceBus.Settings.SettingsHolder  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Settings/SettingsHolder.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/SettingsHolder.cs) ]
+#### NServiceBus.Settings.SettingsHolder  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/SettingsHolder.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/SettingsHolder.cs) ]
 
 ##### Methods changed to non-public
 
-  - `void PreventChanges()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Settings/SettingsHolder.cs#L165) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/SettingsHolder.cs#L253) ]
+  - `void PreventChanges()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/SettingsHolder.cs#L165) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/SettingsHolder.cs#L253) ]
 
 ##### Methods Removed
 
-  - `void ApplyTo<T>()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Settings/SettingsHolder.cs#L180) ]
-  - `void Reset()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Settings/SettingsHolder.cs#L115) ]
+  - `void ApplyTo<T>()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/SettingsHolder.cs#L180) ]
+  - `void Reset()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/SettingsHolder.cs#L115) ]
 
 
-#### NServiceBus.Settings.TransactionSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Settings/TransactionSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/TransactionSettings.cs) ]
+#### NServiceBus.Settings.TransactionSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/TransactionSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Settings/TransactionSettings.cs) ]
 
 ##### Methods Removed
 
-  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Settings/TransactionSettings.cs#L33) ]
-  - `NServiceBus.Settings.TransactionSettings Advanced(Action<NServiceBus.Settings.TransactionSettings/TransactionAdvancedSettings>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Settings/TransactionSettings.cs#L65) ]
+  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/TransactionSettings.cs#L33) ]
+  - `NServiceBus.Settings.TransactionSettings Advanced(Action<NServiceBus.Settings.TransactionSettings/TransactionAdvancedSettings>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Settings/TransactionSettings.cs#L65) ]
 
 
 #### NServiceBus.Timeout.Core.IPersistTimeouts  
@@ -710,7 +710,7 @@ tags:
   - `List<Tuple<string, DateTime>> GetNextChunk(DateTime, DateTime&)` 
 
 
-#### NServiceBus.Timeout.Core.TimeoutData  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Timeout/Core/TimeoutData.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Core/TimeoutData.cs) ]
+#### NServiceBus.Timeout.Core.TimeoutData  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Timeout/Core/TimeoutData.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Timeout/Core/TimeoutData.cs) ]
 
 ##### Methods Removed
 
@@ -718,11 +718,11 @@ tags:
   - `void set_CorrelationId(string)` 
 
 
-#### NServiceBus.TransportMessage  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/TransportMessage.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransportMessage.cs) ]
+#### NServiceBus.TransportMessage  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/TransportMessage.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/TransportMessage.cs) ]
 
 ##### Methods Removed
 
-  - `string get_IdForCorrelation()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/TransportMessage.cs#L85) ]
+  - `string get_IdForCorrelation()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/TransportMessage.cs#L85) ]
   - `void set_ReplyToAddress(NServiceBus.Address)` 
 
 
@@ -747,40 +747,40 @@ tags:
   - `void Send(NServiceBus.TransportMessage, NServiceBus.Address)` 
 
 
-#### NServiceBus.Transports.Msmq.MsmqDequeueStrategy  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Transports/Msmq/MsmqDequeueStrategy.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqDequeueStrategy.cs) ]
+#### NServiceBus.Transports.Msmq.MsmqDequeueStrategy  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqDequeueStrategy.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqDequeueStrategy.cs) ]
 
 ##### Methods Removed
 
-  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Transports/Msmq/MsmqDequeueStrategy.cs#L363) ]
+  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqDequeueStrategy.cs#L363) ]
   - `bool get_PurgeOnStartup()` 
   - `NServiceBus.Transports.Msmq.MsmqUnitOfWork get_UnitOfWork()` 
   - `void set_PurgeOnStartup(bool)` 
   - `void set_UnitOfWork(NServiceBus.Transports.Msmq.MsmqUnitOfWork)` 
 
 
-#### NServiceBus.Transports.Msmq.MsmqMessageSender  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Transports/Msmq/MsmqMessageSender.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqMessageSender.cs) ]
+#### NServiceBus.Transports.Msmq.MsmqMessageSender  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqMessageSender.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqMessageSender.cs) ]
 
 ##### Methods Removed
 
-  - `void Send(NServiceBus.TransportMessage, NServiceBus.Address)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Transports/Msmq/MsmqMessageSender.cs#L38) ]
+  - `void Send(NServiceBus.TransportMessage, NServiceBus.Address)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqMessageSender.cs#L38) ]
 
 
-#### NServiceBus.Transports.Msmq.MsmqUnitOfWork  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs) ]
+#### NServiceBus.Transports.Msmq.MsmqUnitOfWork  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs) ]
 
 ##### Methods changed to non-public
 
-  - `void ClearTransaction()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs#L31) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs#L45) ]
-  - `void SetTransaction(System.Messaging.MessageQueueTransaction)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs#L21) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs#L31) ]
+  - `void ClearTransaction()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs#L31) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs#L45) ]
+  - `void SetTransaction(System.Messaging.MessageQueueTransaction)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs#L21) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Transports/Msmq/MsmqUnitOfWork.cs#L31) ]
 
 
-#### NServiceBus.Unicast.MessageHandlerRegistry  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/MessageHandlerRegistry.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/MessageHandlerRegistry.cs) ]
+#### NServiceBus.Unicast.MessageHandlerRegistry  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/MessageHandlerRegistry.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/MessageHandlerRegistry.cs) ]
 
 ##### Methods Removed
 
-  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/MessageHandlerRegistry.cs#L81) ]
+  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/MessageHandlerRegistry.cs#L81) ]
 
 
-#### NServiceBus.Unicast.Messages.MessageMetadata  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Messages/MessageMetadata.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Messages/MessageMetadata.cs) ]
+#### NServiceBus.Unicast.Messages.MessageMetadata  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Messages/MessageMetadata.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Messages/MessageMetadata.cs) ]
 
 ##### Methods Removed
 
@@ -798,11 +798,11 @@ tags:
   - `bool get_IsDisabled()` 
 
 
-#### NServiceBus.Unicast.Transport.ControlMessage  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs) ]
+#### NServiceBus.Unicast.Transport.ControlMessage  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs) ]
 
 ##### Methods Removed
 
-  - `NServiceBus.TransportMessage Create(NServiceBus.Address)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs#L14) ]
+  - `NServiceBus.TransportMessage Create(NServiceBus.Address)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/ControlMessage.cs#L14) ]
 
 
 #### NServiceBus.Unicast.Transport.ITransport  
@@ -814,39 +814,39 @@ tags:
   - `void set_MaxThroughputPerSecond(int)` 
 
 
-#### NServiceBus.Unicast.Transport.TransactionSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs) ]
+#### NServiceBus.Unicast.Transport.TransactionSettings  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs) ]
 
 ##### Methods Removed
 
-  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs#L9) ]
-  - `NServiceBus.Unicast.Transport.TransactionSettings get_Default()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs#L33) ]
+  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs#L9) ]
+  - `NServiceBus.Unicast.Transport.TransactionSettings get_Default()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransactionSettings.cs#L33) ]
   - `bool get_DontUseDistributedTransactions()` 
   - `void set_DontUseDistributedTransactions(bool)` 
 
 
-#### NServiceBus.Unicast.Transport.TransportReceiver  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs) ]
+#### NServiceBus.Unicast.Transport.TransportReceiver  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs) ]
 
 ##### Methods changed to non-public
 
-  - `void DisposeManaged()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L481) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L421) ]
-  - `void set_MaximumConcurrencyLevel(int)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L75) ]
+  - `void DisposeManaged()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L481) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L421) ]
+  - `void set_MaximumConcurrencyLevel(int)` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L75) ]
   - `void set_TransactionSettings(NServiceBus.Unicast.Transport.TransactionSettings)` 
 
 ##### Methods Removed
 
-  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L493) ]
-  - `void ChangeNumberOfWorkerThreads(int)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L171) ]
-  - `int get_MaxThroughputPerSecond()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L120) ]
-  - `int get_NumberOfWorkerThreads()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L64) ]
-  - `void set_MaxThroughputPerSecond(int)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L123) ]
-  - `void Start(string)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L176) ]
+  - `void .ctor()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L493) ]
+  - `void ChangeNumberOfWorkerThreads(int)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L171) ]
+  - `int get_MaxThroughputPerSecond()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L120) ]
+  - `int get_NumberOfWorkerThreads()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L64) ]
+  - `void set_MaxThroughputPerSecond(int)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L123) ]
+  - `void Start(string)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/Transport/TransportReceiver.cs#L176) ]
 
 
-#### NServiceBus.Unicast.UnicastBus  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs) ]
+#### NServiceBus.Unicast.UnicastBus  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/UnicastBus_Obsolete.cs) ]
 
 ##### Methods changed to non-public
 
-  - `void DisposeManaged()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L949) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/UnicastBus.cs#L746) ]
+  - `void DisposeManaged()` [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L949) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Unicast/UnicastBus.cs#L746) ]
 
 ##### Methods Removed
 
@@ -854,8 +854,8 @@ tags:
   - `void add_MessagesSent(EventHandler<NServiceBus.Unicast.MessagesEventArgs>)` 
   - `void add_NoSubscribersForMessage(EventHandler<NServiceBus.Unicast.MessageEventArgs>)` 
   - `void add_Started(EventHandler)` 
-  - `NServiceBus.ICallback Defer(TimeSpan, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L721) ]
-  - `NServiceBus.ICallback Defer(DateTime, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L745) ]
+  - `NServiceBus.ICallback Defer(TimeSpan, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L721) ]
+  - `NServiceBus.ICallback Defer(DateTime, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L745) ]
   - `NServiceBus.Address get_ForwardReceivedMessagesTo()` 
   - `NServiceBus.Address get_MasterNodeAddress()` 
   - `NServiceBus.Audit.MessageAuditer get_MessageAuditer()` 
@@ -864,24 +864,24 @@ tags:
   - `NServiceBus.Unicast.Messages.MessageMetadataRegistry get_MessageMetadataRegistry()` 
   - `NServiceBus.Transports.IPublishMessages get_MessagePublisher()` 
   - `NServiceBus.Serialization.IMessageSerializer get_MessageSerializer()` 
-  - `bool get_SkipDeserialization()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L1028) ]
+  - `bool get_SkipDeserialization()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L1028) ]
   - `NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.SubscriptionPredicatesEvaluator get_SubscriptionPredicatesEvaluator()` 
   - `TimeSpan get_TimeToBeReceivedOnForwardedMessages()` 
-  - `void Publish<T>(T[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L309) ]
+  - `void Publish<T>(T[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L309) ]
   - `void remove_MessageReceived(NServiceBus.Unicast.UnicastBus/MessageReceivedDelegate)` 
   - `void remove_MessagesSent(EventHandler<NServiceBus.Unicast.MessagesEventArgs>)` 
   - `void remove_NoSubscribersForMessage(EventHandler<NServiceBus.Unicast.MessageEventArgs>)` 
   - `void remove_Started(EventHandler)` 
-  - `void Reply(Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L472) ]
-  - `NServiceBus.ICallback Send(Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L569) ]
-  - `NServiceBus.ICallback Send(string, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L625) ]
-  - `NServiceBus.ICallback Send(NServiceBus.Address, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L630) ]
-  - `NServiceBus.ICallback Send(string, string, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L670) ]
-  - `NServiceBus.ICallback Send(NServiceBus.Address, string, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L680) ]
-  - `NServiceBus.ICallback SendLocal(Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L550) ]
-  - `NServiceBus.ICallback SendToSites(IEnumerable<string>, object)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L700) ]
-  - `NServiceBus.ICallback SendToSites(IEnumerable<string>, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L707) ]
-  - `void set_DisableMessageHandling(bool)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L68) ]
+  - `void Reply(Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L472) ]
+  - `NServiceBus.ICallback Send(Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L569) ]
+  - `NServiceBus.ICallback Send(string, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L625) ]
+  - `NServiceBus.ICallback Send(NServiceBus.Address, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L630) ]
+  - `NServiceBus.ICallback Send(string, string, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L670) ]
+  - `NServiceBus.ICallback Send(NServiceBus.Address, string, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L680) ]
+  - `NServiceBus.ICallback SendLocal(Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L550) ]
+  - `NServiceBus.ICallback SendToSites(IEnumerable<string>, object)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L700) ]
+  - `NServiceBus.ICallback SendToSites(IEnumerable<string>, Object[])` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L707) ]
+  - `void set_DisableMessageHandling(bool)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L68) ]
   - `void set_ForwardReceivedMessagesTo(NServiceBus.Address)` 
   - `void set_MasterNodeAddress(NServiceBus.Address)` 
   - `void set_MessageAuditer(NServiceBus.Audit.MessageAuditer)` 
@@ -890,20 +890,20 @@ tags:
   - `void set_MessageMetadataRegistry(NServiceBus.Unicast.Messages.MessageMetadataRegistry)` 
   - `void set_MessagePublisher(NServiceBus.Transports.IPublishMessages)` 
   - `void set_MessageSerializer(NServiceBus.Serialization.IMessageSerializer)` 
-  - `void set_SkipDeserialization(bool)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L1029) ]
+  - `void set_SkipDeserialization(bool)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L1029) ]
   - `void set_SubscriptionPredicatesEvaluator(NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubcriberSideFiltering.SubscriptionPredicatesEvaluator)` 
   - `void set_TimeToBeReceivedOnForwardedMessages(TimeSpan)` 
-  - `void Shutdown()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L988) ]
-  - `NServiceBus.IBus Start(Action)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L811) ]
-  - `void Subscribe<T>(Predicate<T>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L352) ]
-  - `void Subscribe(Type, Predicate<object>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Unicast/UnicastBus.cs#L373) ]
+  - `void Shutdown()` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L988) ]
+  - `NServiceBus.IBus Start(Action)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L811) ]
+  - `void Subscribe<T>(Predicate<T>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L352) ]
+  - `void Subscribe(Type, Predicate<object>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Unicast/UnicastBus.cs#L373) ]
 
 
-#### NServiceBus.XmlSerializerConfigurationExtensions  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions_Obsolete.cs) ]
+#### NServiceBus.XmlSerializerConfigurationExtensions  [ [old](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions.cs) | [new](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions_Obsolete.cs) ]
 
 ##### Methods Removed
 
-  - `NServiceBus.Settings.SerializationSettings Xml(NServiceBus.Settings.SerializationSettings, Action<NServiceBus.Serializers.XML.Config.XmlSerializationSettings>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.6/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions.cs#L15) ]
+  - `NServiceBus.Settings.SerializationSettings Xml(NServiceBus.Settings.SerializationSettings, Action<NServiceBus.Serializers.XML.Config.XmlSerializationSettings>)` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Serializers/XML/Config/XmlSerializerConfigurationExtensions.cs#L15) ]
 
 
 ### The following types have Obsoletes.
