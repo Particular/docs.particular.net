@@ -8,7 +8,7 @@ NServiceBus requires a persistance mechanism to store data for some of it's feat
 
 While a variety of persistence technologies are supported out of the box by NServiceBus (for example SQL databases via NHibernate, or RavenDB) you sometimes may want to write your own persistence, for example in order to reuse a database / persistence technology already in your stack and used by other parts of your system, but is not supported by NServiceBus yet. As you will see, writing an NServiceBus persistence is quite a straight forward task.
 
-This guide will explain the various tasks involved in writing a custom persistence. We will use the in-memory persistence which comes out of the box with NServiceBus to showcase a simple real-world implementation as we explain the various concepts and discuss potential pitfalls. The source code for the in-memory persistence implementation can be found here: https://github.com/Particular/NServiceBus/tree/4.6.5/src/NServiceBus.Core/Persistence/InMemory
+This guide will explain the various tasks involved in writing a custom persistence. We will use the in-memory persistence which comes out of the box with NServiceBus to showcase a simple real-world implementation as we explain the various concepts and discuss potential pitfalls. The source code for the in-memory persistence implementation can be found [here](https://github.com/Particular/NServiceBus/tree/4.6.5/src/NServiceBus.Core/Persistence/InMemory).
 
 The data persisted by NServiceBus needs to survive endpoint restarts, so it doesn't lose timeouts or important Saga data for example. All persister implementations provided by NServiceBus are durable, with the exception of the in-memory one which is used purely for testing. And every persister you will be writing should be durable and properly tested as well.
 
@@ -54,7 +54,7 @@ The last 3 methods in this interface are quite self explanatory. Additionally, y
 
 As a general comment that is also valid to the other persisters in this guide, it is preferred to design the implementation in such a way that prefers reads over writes. That is, prefer doing more work in the `Subscribe` and `Unsubscribe` methods so `GetSubscriberAddressesForMessage` can execute faster, as it is the one that's going to get called the most.
 
-An in-memory implementation of the `ISubscriptionStorage` interface can be seen here: https://github.com/Particular/NServiceBus/blob/4.6.5/src/NServiceBus.Core/Persistence/InMemory/SubscriptionStorage/InMemorySubscriptionStorage.cs
+An in-memory implementation of the `ISubscriptionStorage` interface can be seen [here](https://github.com/Particular/NServiceBus/blob/4.6.5/src/NServiceBus.Core/Persistence/InMemory/SubscriptionStorage/InMemorySubscriptionStorage.cs)
 
 ## Saga persister
 
@@ -103,7 +103,7 @@ Persisting a Saga is really just a matter of serializing this class and storing 
 
 Another important aspect of Saga persistence is concurrency. By design, it is possible for Sagas to be accessed and ammended by more than one thread concurrently. This requires the Saga persister to allow for a strong consistency model, to ensure Sagas are written and updated in an atomic manner. Every persistence technology is going to have its own way of providing this ability; for example SQL databases provide ACID guarantees and allow for optimizations like the Upgrade Lock mode to allow for efficient and secure updates under lock. RavenDB however is an eventually-consistent storage, and as such it uses optimistic concurrency and some tricks to implement the unique constraint functionality. To learn more about this and what is required from the Saga persister, read the [NServiceBus Sagas And Concurrency article](http://docs.particular.net/nservicebus/nservicebus-sagas-and-concurrency).
 
-The in-memory implementation of `ISagaPersister` can be found here: https://github.com/Particular/NServiceBus/blob/4.6.5/src/NServiceBus.Core/Persistence/InMemory/SagaPersister/InMemorySagaPersister.cs . Note how the Get by property method is implemented inefficiently, iterating through all Sagas instead of using indexes. For production worthy persisters this should not be the case.
+The in-memory implementation of `ISagaPersister` can be found [here](https://github.com/Particular/NServiceBus/blob/4.6.5/src/NServiceBus.Core/Persistence/InMemory/SagaPersister/InMemorySagaPersister.cs). Note how the Get by property method is implemented inefficiently, iterating through all Sagas instead of using indexes. For production worthy persisters this should not be the case.
 
 ## Timeout persister
 
@@ -151,7 +151,7 @@ The `TimeoutData` class holds timeout related data, like the `Time` it needs to 
 
 NServiceBus polls the persister for timeouts by calling `GetNextChunk`, and providing it with `DateTime startSlice` which specifies what is the last timeout it recieved in the previous call to this method, and then the persister should provide all timeouts that are due, meaning from that value to the current point in time. Some eventually consistent storages may require you to be innovative to make sure no timeouts are missed. Finally, the `nextTimeToRunQuery` needs to be set to tell NServiceBus when to next poll the persister for timeouts - usually this is set for the next known timeout after the current time. NServiceBus will automatically poll for timeouts again if it has reason to suspect new timeouts are available.
 
-The in-memory implementation of `IPersistTimeouts` can be seen here: https://github.com/Particular/NServiceBus/blob/4.6.5/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersistence.cs
+The in-memory implementation of `IPersistTimeouts` can be seen [here](https://github.com/Particular/NServiceBus/blob/4.6.5/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersistence.cs).
 
 // TODO Gateway and Outbox persisters
 
