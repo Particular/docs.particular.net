@@ -191,8 +191,16 @@ The Store method has to use the same persistence session as the user's code - th
 
 ## Enabling persisters via Features
 
-You can implement any of the persisters based on your requirements. None of them are mandatory, and you can even use different persistence technologies for different persistence concerns (like SQL Server for timeouts and RavenDB for Sagas). Once the persisters you need have been written and properly tested, you need to enable them using Features.
+You can implement any of the persisters based on your requirements. None of them are mandatory, and you can even use different persistence technologies for different persistence concerns (like SQL Server for timeouts and RavenDB for Sagas). Once the persisters you need have been written and properly tested, you need to enable them using [Features](http://docs.particular.net/nservicebus/fluent-config-api-v3-v4-intro#features).
 
-// TODO link to doco on developing and using Features
+Once a persister has been written, tested and exposed via a Feature, all that is left to do is add a reference to the assembly containing it from your endpoints, and change the endpoint configuration accordingly to enable it. An example for such configuration would be:
 
-Now add a reference to the your persistence assembly from your endpoints, and make sure you change the endpoint configuration accordingly to enable it.
+```csharp
+        var configure = new BusConfiguration();
+        configure.UsePersistence<RavenDBPersistence>(); // Select which persistence to use
+        configure.EnableFeature<Sagas>(); // Enable a feature or several of them
+        configure.UseSerialization<JsonSerializer>(); // Some more global configurations
+        configure.EnableInstallers();
+```
+
+You could write extension methods to add more configuraitons specific to your custom persistence (for example, to allow fine tuning of various aspects of it from the calling endpoint).
