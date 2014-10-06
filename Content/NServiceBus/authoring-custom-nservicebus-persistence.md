@@ -4,7 +4,7 @@ summary: How to author a custom NServiceBus persistence in NServiceBus v5
 tags: []
 ---
 
-NServiceBus requires a persistance mechanism to store data for some of it's features, as discussed in  [Persistence in NServiceBus](http://docs.particular.net/nservicebus/persistence-in-nservicebus).
+NServiceBus requires a persistence mechanism to store data for some of it's features, as discussed in  [Persistence in NServiceBus](http://docs.particular.net/nservicebus/persistence-in-nservicebus).
 
 While a variety of persistence technologies are supported out of the box by NServiceBus (for example SQL databases via NHibernate, or RavenDB) you sometimes may want to write your own persistence, for example in order to reuse a database / persistence technology already in your stack and used by other parts of your system, but is not supported by NServiceBus yet. As you will see, writing an NServiceBus persistence is quite a straight forward task.
 
