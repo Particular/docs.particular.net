@@ -153,7 +153,41 @@ NServiceBus polls the persister for timeouts by calling `GetNextChunk`, and prov
 
 The in-memory implementation of `IPersistTimeouts` can be seen [here](https://github.com/Particular/NServiceBus/blob/4.6.5/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersistence.cs).
 
-// TODO Gateway and Outbox persisters
+## Outbox persister
+
+The Outbox functionality, new in NServiceBus v5, is a feature providing reliable messaging on top of various transports without using MSDTC. You can read more about the Outbox feature in [Reliable messaging without MSDTC](https://github.com/Particular/docs.particular.net/blob/master/Content/NServiceBus/no-dtc.md).
+
+An Outbox persister is implementing the following interface:
+
+```csharp
+  /// <summary>
+  /// Implemented by the persisters to provide outbox storage capabilities
+  /// 
+  /// </summary>
+  public interface IOutboxStorage
+  {
+    /// <summary>
+    /// Tries to find the given message in the outbox
+    /// </summary>
+    bool TryGet(string messageId, out OutboxMessage message);
+
+    /// <summary>
+    /// Stores an array of operations under the provided messageId
+    /// </summary>
+    void Store(string messageId, IEnumerable<TransportOperation> transportOperations);
+
+    /// <summary>
+    /// Tells the storage that the message has been dispatched and its now safe to clean up the transport operations
+    /// </summary>
+    void SetAsDispatched(string messageId);
+  }
+```
+
+The Store method has to use the same persistence session as the user's code - the same one that is used for persisting his business data as well as any Sagas. Sharing the session is the only way NServiceBus can support the Outbox feature properly and with transactions.
+
+## Gateway
+
+// TODO
 
 ## Enabling persisters via Features
 
