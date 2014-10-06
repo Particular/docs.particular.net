@@ -53,7 +53,9 @@ NOTE: Do not start the bus; the host will do it. *`(comment - expand on this top
 
 More about [configuration customization](customizing-nservicebus-configuration).
 
-### Features (V4 only)
+### Features 
+
+NOTE: The following section applies to NServiceBus V4 (or later)
 
 NServiceBus V4 has introduced the concept of features. A *feature* is a high level concept that encapsulates a set of settings related to a certain feature. Features can be enabled or disabled. Enabled features can be configured.
 
