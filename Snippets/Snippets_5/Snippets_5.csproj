@@ -251,6 +251,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Transports\RabbitMQ\App.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
@@ -303,6 +304,7 @@
     <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="Transports.cs" />
+    <Compile Include="Transports\RabbitMQ\ConfigurationSettings.cs" />
     <Compile Include="TypeScanning.cs" />
   </ItemGroup>
   <ItemGroup />
