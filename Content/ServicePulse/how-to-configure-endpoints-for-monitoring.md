@@ -20,34 +20,47 @@ tags:
 
 1. An endpoint plugin DLL must be deployed in the binaries directory of each NServiceBus endpoint (required for endpoint availability and custom checks monitoring).
 1. Supported NServiceBus Endpoints:
+    * NServiceBus V5.0.0 or higher;
     * NServiceBus V4.0.0 or higher;
-    * NServiceBus V3.0.4 to V3.3.8;
+    * NServiceBus V3.0.4 or higher;
 1. Auditing must be enabled for all monitored endpoints (see [Auditing With NServiceBus](/NServiceBus/auditing-with-nservicebus)).
 1. All endpoints must forward audited data to a single audit and error queue that is monitored by a ServiceControl instance.
 
 **Deploying Endpoint Plugins in each Endpoint**
 
-1. The endpoint plugin consists of two NuGet packages:
+1. The endpoint plugin consists of these NuGet packages:
+    * NServiceBus V5.x: 
+        * [`ServiceControl.Plugin.Nsb5.Heartbeat`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat/)
+        * [`ServiceControl.Plugin.Nsb5.CustomChecks`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks/)
+        * [`ServiceControl.Plugin.Nsb5.SagaAudit`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.SagaAudit/)
     * NServiceBus V4.x: 
-        * [`ServiceControl.Plugin.Heartbeat`](https://www.nuget.org/packages/ServiceControl.Plugin.Heartbeat/)
-        * [`ServiceControl.Plugin.CustomChecks`](https://www.nuget.org/packages/ServiceControl.Plugin.CustomChecks/)
-    * NServiceBus V3.0.4 to V3.3.8: 
-        * [`ServiceControl.Plugin.Nsb3.Heartbeat`](https://www.myget.org/feed/particular-prerelease/package/ServiceControl.Plugin.Nsb3.Heartbeat)
-        * [`ServiceControl.Plugin.Nsb3.CustomChecks`](https://www.myget.org/feed/particular-prerelease/package/ServiceControl.Plugin.Nsb3.CustomChecks)
+        * [`ServiceControl.Plugin.Nsb4.Heartbeat`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat/)
+        * [`ServiceControl.Plugin.Nsb4.CustomChecks`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks/)
+        * [`ServiceControl.Plugin.Nsb4.SagaAudit`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit/)
+    * NServiceBus V3.0.4 or higher: 
+        * [`ServiceControl.Plugin.Nsb3.Heartbeat`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat/)
+        * [`ServiceControl.Plugin.Nsb3.CustomChecks`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks/)
 
-1. Get the Endpoint Heartbeat and CustomChecks plugins using the NuGet console: 
-     * `install-package ServiceControl.Plugin.Heartbeat`
-     * `install-package ServiceControl.Plugin.CustomChecks`
-     * or use the appropriate V3 package if your endpoint still targets NServiceBus V3:
+1. Install the plugins from NuGet in your endpoints: 
+     * `install-package ServiceControl.Plugin.Nsb5.Heartbeat`
+     * `install-package ServiceControl.Plugin.Nsb5.CustomChecks`
+    
+     If you want the saga visualization in ServiceInsight, 
+     * `install-package ServiceControl.Plugin.Nsb5.SagaAudit`
+
+     * or use the appropriate V4 package if your endpoint targets NServiceBus V4:
+	     * `install-package ServiceControl.Plugin.Nsb4.Heartbeat`
+	     * `install-package ServiceControl.Plugin.Nsb4.CustomChecks` 
+     	     * `install-package ServiceControl.Plugin.Nsb4.SagaAudit`
+
+     * or use the appropriate V3 package if your endpoint targets NServiceBus V3:
 	     * `install-package ServiceControl.Plugin.Nsb3.Heartbeat`
 	     * `install-package ServiceControl.Plugin.Nsb3.CustomChecks`
+
+**NOTE**: Saga Visualization plugin is only available from V4 and higher.
+	     
 1. For manual deployment, copy the endpoint plugin DLL files to each endpoint bin directory (and restart the endpoint to load the plugin).
 1. By default, the endpoint plugin sends a heartbeat indication to ServiceControl every 30 seconds. If a heartbeat indication is not received within 30 seconds, ServicePulse raises an event that indicates the issue.
-
-**NOTE**: NServiceBus V3 Endpoint Plugins are a pre-release version hosted on the Particular MyGet public feed. To install the pre-release packages add the `https://www.myget.org/F/particular-prerelease/` package source to Visual Studio or issue the following command using the Package Manager Console:
-
-    Install-Package DiscoverPackageSources
-    Discover-PackageSources -Url "https://www.myget.org/F/particular-prerelease/"
 
 #### Related articles
 
