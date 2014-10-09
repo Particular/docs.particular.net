@@ -81,11 +81,10 @@
         {
             var configuration = new BusConfiguration();
 
-
-            #region rabbitmq-config-useconnectionmanager
-
             var connectionManager = new MyConnectionManager();
 
+            #region rabbitmq-config-useconnectionmanager
+           
             configuration.UseTransport<RabbitMQTransport>()
                 .UseConnectionManager<MyConnectionManager>();
 
