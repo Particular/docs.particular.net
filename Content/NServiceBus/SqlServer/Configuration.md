@@ -1,5 +1,5 @@
 ---
-title: Queue table design in SQLServer transport
+title: The design of SQLServer transport
 summary: Design of tables that are used as queues in thr SQLServer transport
 tags:
 - SQLServer
@@ -35,12 +35,9 @@ The SQLServer transport can work in three modes with regards to transactions. Th
 
 ### TransactionScope
 
-The ```TransactionScope``` mode is selected by default. It relies or ```Transactions.Enabled``` setting being set to ```true``` and ```Transactions.SuppressDistributedTransactions``` being set to false. One can change these via bus configuration API respecively:
+The ```TransactionScope``` mode is selected by default. It relies or ```Transactions.Enabled``` setting being set to ```true``` and ```Transactions.SuppressDistributedTransactions``` being set to false. One needs to only select the transport:
 
-```C#
-busConfig.Transactions().Disable();
-busConfig.Transactions().DisableDistributedTransactions();
-```
+<!-- import sqlserver-config-transactionscope -->
 
 When in this mode, the receive operation is wrapped in a ```TransactionScope``` together with the message processing in the pipeline. This means that usage of any other persistent resource manager (e.g. RavenDB client, another ```SqlConnection```) will cause escalation of the transaction to full 2-Phase Commit protocol handled via Distributed Transaction Coordinator.
 
@@ -48,9 +45,7 @@ When in this mode, the receive operation is wrapped in a ```TransactionScope``` 
 
 The native transaction mode requires both ```Transactions.Enabled``` and ```Transactions.SuppressDistributedTransactions``` to be set to ```true```. It can be selcted via
 
-```C#
-busConfig.Transactions().DisableDistributedTransactions();
-```
+<!-- import sqlserver-config-native-transactions -->
 
 When in this mode, the receive operation is wrapped in a plain ADO.NET ```SqlTransaction```. Both connection and the transaction instances are attached to the pipeline context under these keys ```SqlConnection-{ConnectionString}``` and ```SqlTransaction-{ConnectionString}```. 
 
@@ -58,9 +53,7 @@ When in this mode, the receive operation is wrapped in a plain ADO.NET ```SqlTra
 
 The no transaction mode requires ```Transactions.Enabled``` to be set to false which can be achieved via following API call:
 
-```C#
-busConfig.Transactions().Disable();
-```
+<!-- import sqlserver-config-no-transactions -->
 
 When in this mode, the receive operation is not wrapped in any transaction so it is executed in its own implicit transaction by the SQLServer. This means that as soon as the ```DELETE``` operation used for receiving completes, the message is gone and any exception that happens during processing of this message causes it to be permanently lost.
 
@@ -70,21 +63,25 @@ For each endpoint there is a single primary queue table which name matches the n
 
 ## Secondary queues
 
-In order for callbacks (registerd via ```ICallback``` interface returned by ```IBus.Send```) to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is ncessary because callback handlers are stored in-memory in the node that did the send. The reply (via ```Bus.Reply```) should be delivered to this special queue so that it is picked up by the same node that registered the callback.
+In order for callbacks 
+
+<!-- import sqlserver-config-callbacks -->
+
+to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is ncessary because callback handlers are stored in-memory in the node that did the send. The reply 
+
+<!-- import sqlserver-config-callbacks-reply -->
+
+should be delivered to this special queue so that it is picked up by the same node that registered the callback.
 
 Secondary queue tables have the name of the machine appended to the name of the primary queue table with ```.``` as separator e.g. ```SomeEndpoint.MyMachine```.
 
 Secondary queues are enabled by default. In order to disable them, one must use the configuration API:
 
-```C#
-busConfiguration.UseTransport<SqlServerTransport>().DisableCallbackReceiver();
-```
+<!-- import sqlserver-config-disable-secondaries -->
 
 Secondary queues use same concurrency model to the primary queue but use different settings for the maximum concurrency level. The default value of this setting is 1 which schould be fine with most scenarios because it is small enough to not degrade the overall performance of the endpoint and large enough to cope with usually small number of callbacks. In order to change this value one should use the configuration API:
 
-```C#
-busConfiguration.UseTransport<SqlServerTransport>().CallbackReceiverMaxConcurrency(8);
-```
+<!-- import sqlserver-config-set-secondary-concurrency -->
 
 ### Satellites
 
