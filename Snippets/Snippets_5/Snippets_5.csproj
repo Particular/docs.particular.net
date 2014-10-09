@@ -305,6 +305,7 @@
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="Transports.cs" />
     <Compile Include="Transports\RabbitMQ\ConfigurationSettings.cs" />
+    <Compile Include="Transports\SqlServer\ConfigurationSettings.cs" />
     <Compile Include="TypeScanning.cs" />
   </ItemGroup>
   <ItemGroup />
