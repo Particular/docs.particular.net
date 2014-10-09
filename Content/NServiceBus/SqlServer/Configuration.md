@@ -63,11 +63,11 @@ For each endpoint there is a single primary queue table which name matches the n
 
 ## Secondary queues
 
-In order for callbacks 
+In order for callbacks e.g.
 
 <!-- import sqlserver-config-callbacks -->
 
-to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is ncessary because callback handlers are stored in-memory in the node that did the send. The reply 
+to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is necessary because callback handlers are stored in-memory in the node that did the send. The reply sent via
 
 <!-- import sqlserver-config-callbacks-reply -->
 
