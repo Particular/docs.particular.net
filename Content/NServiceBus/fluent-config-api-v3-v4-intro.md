@@ -49,7 +49,7 @@ public class CustomConfiguration : IWantCustomInitialization
 }
 ```
 
-NOTE: Do not start the bus; the host will do it. *`(comment - expand on this topic a bit)`*
+NOTE: Do not start the bus; the host will do it.
 
 More about [configuration customization](customizing-nservicebus-configuration).
 
