@@ -17,7 +17,6 @@
             {
                 protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
                 {
-                    throw new NotImplementedException();
                 }
 
                 public void Handle(Message2 message)
@@ -40,7 +39,6 @@
             {
                 protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
                 {
-                    throw new NotImplementedException();
                 }
 
                 public void Handle(Message1 message)
@@ -364,13 +362,9 @@
 
             #region saga-data
 
-            public class MySagaData : IContainSagaData
+            public class MySagaData : ContainSagaData
             {
-                // the following properties are mandatory
-                public Guid Id { get; set; }
-                public string Originator { get; set; }
-                public string OriginalMessageId { get; set; }
-                // all other properties you want persisted
+                // property used as correlation id
                 [Unique]
                 public string SomeID { get; set; }
 

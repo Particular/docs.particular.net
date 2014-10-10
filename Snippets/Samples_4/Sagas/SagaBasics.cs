@@ -109,17 +109,21 @@
             public String SomeID { get; set; }
         }
 
+        #region saga-data-v4
         public class MySagaData : IContainSagaData
         {
             // the following properties are mandatory
             public Guid Id { get; set; }
             public string Originator { get; set; }
             public string OriginalMessageId { get; set; }
-            // all other properties you want persisted
+
+            // property used as correlation id
             [Unique]
             public string SomeID { get; set; }
+
             // all other properties you want persisted
             public string SomeData { get; set; }
         }
+        #endregion
     }
 }
