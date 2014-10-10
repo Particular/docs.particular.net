@@ -292,7 +292,8 @@
     <Compile Include="Pipeline\SampleBehavior.cs" />
     <Compile Include="PurgeOnStartup.cs" />
     <Compile Include="RunCustomActionReplacement.cs" />
-    <Compile Include="SagaMapping.cs" />
+    <Compile Include="Sagas\SagaBasics.cs" />
+    <Compile Include="Sagas\SagaMapping.cs" />
     <Compile Include="Scheduler.cs" />
     <Compile Include="ScaleOut.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />

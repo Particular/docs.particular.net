@@ -69,6 +69,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
     <Compile Include="SendOnly.cs" />
@@ -78,5 +79,6 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
