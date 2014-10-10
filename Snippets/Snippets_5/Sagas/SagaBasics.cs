@@ -285,6 +285,8 @@
                 }
             }
 
+            #endregion
+
             public class MySagaData : IContainSagaData
             {
                 public Guid Id { get; set; }
@@ -293,8 +295,6 @@
                 public string SomeID { get; set; }
                 public string SomeData { get; set; }
             }
-
-            #endregion
         }
 
         public void ConfigueSelfHosted()
