@@ -30,6 +30,33 @@
             #endregion
         }
 
+        public class SagaWithoutMapping
+        {
+            #region saga-without-mapping
+
+            public class MySaga : Saga<MySagaData>,
+                                  IAmStartedByMessages<Message1>,
+                                  IHandleMessages<Message2>
+            {
+                protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
+                {
+                    throw new NotImplementedException();
+                }
+
+                public void Handle(Message1 message)
+                {
+                    // code to handle Message1
+                }
+
+                public void Handle(Message2 message)
+                {
+                    // code to handle Message2
+                }
+            }
+
+            #endregion
+        }
+
         public class SagaWithStartedBy
         {
             #region saga-with-started-by
@@ -64,7 +91,7 @@
                                   IAmStartedByMessages<Message1>,
                                   IHandleMessages<Message3>
             {
-                // startcode saga-find-by-expression
+                #region saga-find-by-expression
 
                 protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
                 {
@@ -72,7 +99,7 @@
                           .ToSaga(m => m.SomeID);
                 }
 
-                // endcode
+                #endregion
 
                 public void Handle(Message1 message)
                 {

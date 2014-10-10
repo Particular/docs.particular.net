@@ -10,7 +10,7 @@
         {
             #region saga-with-started-by-v3
 
-            public class MySaga : Saga<MySagaData>,
+            public class MySaga_V3 : Saga<MySagaData>,
                                   IAmStartedByMessages<Message1>,
                                   IHandleMessages<Message2>
             {

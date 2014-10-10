@@ -26,7 +26,7 @@
         {
             #region saga-with-started-by-v4
 
-            public class MySaga : Saga<MySagaData>,
+            public class MySaga_V4 : Saga<MySagaData>,
                                   IAmStartedByMessages<Message1>,
                                   IHandleMessages<Message2>
             {
@@ -76,6 +76,7 @@
             #endregion
         }
 
+// ReSharper disable RedundantNameQualifier
         public void ConfigueSelfHosted()
         {
             #region saga-configure-self-hosted-v4
@@ -91,6 +92,7 @@
 
             #endregion
         }
+// ReSharper restore RedundantNameQualifier
 
         public class Message1
         {
