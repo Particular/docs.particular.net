@@ -13,10 +13,10 @@ public class Transports
         configuration.UseTransport<MsmqTransport>();
 
         // Configure to use AzureStorageQueue
-        configuration.UseTransport<AzureStorageQueue>();
+        configuration.UseTransport<AzureStorageQueueTransport>();
 
         // Configure to use AzureServiceBus
-        configuration.UseTransport<AzureServiceBus>();
+        configuration.UseTransport<AzureServiceBusTransport>();
 
         // Configure to use SqlServerB
         configuration.UseTransport<SqlServerTransport>();
