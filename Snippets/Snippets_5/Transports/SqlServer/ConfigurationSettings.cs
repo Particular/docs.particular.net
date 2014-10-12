@@ -72,7 +72,7 @@
             #region sqlserver-config-callbacks
 
             var callback = bus.Send(new Request());
-            callback.Register(result => ProcessResponse(result));
+            callback.Register(ProcessResponse);
 
             #endregion
 
