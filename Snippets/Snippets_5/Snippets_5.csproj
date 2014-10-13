@@ -248,6 +248,7 @@
     <Content Include="SecondLevelRetries\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Audit\App.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -308,8 +309,6 @@
     <Compile Include="Transports\SqlServer\ConfigurationSettings.cs" />
     <Compile Include="TypeScanning.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Audit\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

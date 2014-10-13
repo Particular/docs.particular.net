@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Audit\App.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
