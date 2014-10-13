@@ -100,7 +100,7 @@ The `RequestTimeout<T>` method on the base class tells NServiceBus to send a mes
 
 When the time is up, the Timeout Manager sends a message back to the saga causing its Timeout method to be called with the same state message originally passed.
 
-**IMPORTANT** : Don't assume that other messages haven't arrived in the meantime. Plase note how the timeout handler method first checks if the `Message2` message has arrived.
+**IMPORTANT** : Don't assume that other messages haven't arrived in the meantime. Please note how the timeout handler method first checks if the `Message2` message has arrived.
 
 ## Ending a long-running process
 
