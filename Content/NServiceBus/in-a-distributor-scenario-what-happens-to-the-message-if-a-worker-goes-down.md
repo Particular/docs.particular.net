@@ -5,7 +5,7 @@ tags:
 - Distributor
 ---
 
-A shown in [How does the distributor work?](load-balancing-with-the-distributor.md#how-does-it-work-) a worker subscribes to its master when it sends a register message to it. From that moment the worker pulls messages from the master.
+A shown in [How does the distributor work?](http://docs.particular.net/nservicebus/load-balancing-with-the-distributor#how-does-it-work-) a worker subscribes to its master when it sends a register message to it. From that moment the worker pulls messages from the master.
 
 If a worker goes down messages can get stuck in the master or the worker:
 
