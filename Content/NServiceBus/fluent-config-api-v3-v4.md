@@ -8,6 +8,8 @@ tags:
 
 NOTE: This article refers to NServiceBus V3 and V4
 
+NOTE: Watch the webminar recording [Mastering NServiceBus Configuration](Mastering NServiceBus Configuration)(It includes V5 configurstion overview)
+
 An introduction to the NServiceBus configuration is available in the [Introduction to Fluent Configuration API in V3 and V4](fluent-config-api-v3-v4-intro) article. 
 
 ### Fluent Configuration API
