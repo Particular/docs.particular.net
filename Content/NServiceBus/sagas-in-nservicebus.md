@@ -23,7 +23,7 @@ Using NServiceBus, you can explicitly define the data used for this state by inh
 
 <!-- import saga-data -->
 
-In previous versions you are forced to use `IContainSagaData` interface directly (`ContainSagaData` implement `IContainSagaData`):
+In previous versions you are forced to use `IContainSagaData` interface directly (`ContainSagaData` implements `IContainSagaData`):
 
 <!-- import saga-data-v4 -->
 
