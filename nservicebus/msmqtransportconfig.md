@@ -1,12 +1,51 @@
 ---
-title: Transport Configuration
+title: MSMQ transport
 summary: 'Explains the available Transport Configuration options. Properties of the MSMQ transport: ErrorQueue, NumberOfWorkerThreads, and MaxRetries.'
 tags: 
 - Transports
 - MSMQ
 ---
 
-## NServiceBus V3
+## MSMQ
+
+Historically MSMQ is the first transport supported by NServiceBus. In version 5 it still is by far the most commonly used one. Because of these and also the fact that MSMQ client libraries are included in .NET Base Class Library (`System.Messaging` assembly), MSMQ transport is built into the core of NServiceBus.
+
+### Receiving algorithm
+
+Because of the way MSMQ API has been designed i.e. polling receive that throws an exception when timeout is reached the receive algorithm is more complex than for other polling-driven transports (such as [SQLServer](SqlServer/Configuration.md)).
+
+The main loops starts by subscribing to `PeekCompleted` event and calling the `BeginPeek` method. When a message arrives the event is raised by the MSMQ client API. The handler for this event starts a new receiving task and waits till this new task has completed its `Receive` call. After that is calls `BeginPeek` again to wait for more messages. 
+
+## Configuration
+
+Because of historic reasons, the configuration for MSMQ transport has been coupled to general bus configuration in the previous versions of NServiceBus.
+
+### MSMQ-specific
+
+Following settings are purely related to the MSMQ:
+
+ * UseDeadLetterQueue (default: true)
+ * UseJournalQueue (default: false)
+ * UseConnectionCache (default: true)
+ * UseTransactionalQueues (default: true)
+
+From version 4 onwards these settings are configured via a transport connection string (named `NServiceBus/Transport` for all transports).
+
+<!-- include MsmqTransportConnectionString -->
+
+Before V4 some of these properties could be set via `MsmqMessageQueueConfig` configuration section
+
+<!-- include MsmqTransportConnectionStringV4 -->
+
+while others where not available.
+
+### Audit
+
+### Failure handling
+
+### Throttling
+
+### NServiceBus V3
 
 The configuration section defines properties of the MSMQ transport. Read background on [MSMQ](msmq-information.md).
 
