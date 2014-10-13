@@ -40,7 +40,20 @@ If you need to scale out small unites of work you might want to consider slicing
 
 ## How does it work?
 
-Worker nodes send messages to the distributor, telling it when they're ready for work. These messages arrive at the distributor via a separate 'control' queue. The distributor stores this information. When applicative messages arrive at the distributor, it uses previously stored information to find a free worker node, and sends the message to it. If no worker nodes are free, the distributor waits before repeating the previous step.
+Worker nodes send messages to the distributor, telling it when they're ready for work. These messages arrive at the distributor via a separate 'control' queue:
+
+![worker registration](How_Distributor_Works_1.png)
+
+Then the distributor creates a ready message per available thread:
+
+![worker registration](How_Distributor_Works_2.png)
+
+The distributor stores this information. When applicative messages arrive at the distributor, it uses previously stored information to find a free worker node, and sends the message to it. If no worker nodes are free, the distributor waits before repeating the previous step.
+
+![worker registration](How_Distributor_Works_3.png)
+
+![worker registration](How_Distributor_Works_4.png)
+
 
 All pending work stays in the distributor's queue (rather than building up in each of the workers' queues), giving visibility of how long messages are actually waiting. This is important for complying with time-based service level agreements (SLAs).
 
