@@ -308,6 +308,8 @@
     <Compile Include="Transports\SqlServer\ConfigurationSettings.cs" />
     <Compile Include="TypeScanning.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Audit\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
