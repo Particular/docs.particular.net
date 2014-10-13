@@ -1,6 +1,6 @@
 ---
 title: MSMQ transport
-summary: 'Explains the available Transport Configuration options. Properties of the MSMQ transport: ErrorQueue, NumberOfWorkerThreads, and MaxRetries.'
+summary: 'Explains the mechanics of MSMQ transport, its configuration options and various other configuration settings that were at some point coupled to this transport'
 tags: 
 - Transports
 - MSMQ
@@ -37,13 +37,22 @@ Before V4 some of these properties could be set via `MsmqMessageQueueConfig` con
 
 <!-- include MsmqTransportConnectionStringV4 -->
 
-while others where not available.
+The connectionCache setting as well as ability to use non-trnasactional queues were not available prior to V4.
 
-### Audit
+### Failure handling & throttling
 
-### Failure handling
+NServiceBus is designed in such a way that a user does not have to care about exception handling. All the heavy lifting is done by the framework via a [two-level retries mechanism](how-do-i-handle-exceptions.md)
 
-### Throttling
+From V4 onwards the configuration for this mechanism is implemented in the `TransportConfig` section:
+
+<!-- include TransportConfig -->
+
+Some of these settings uses to be coupled to MSMQ becaouse they existed on `MsmqTransportConfig` configuation section before V4:
+
+<!-- include MsmqTransportConfigV3 -->
+
+ * In V3 the `ErrorQueue` (the queue where messages that fail a configured number of times) settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
+ * In V3 the `MaxRetries` as well as the throttling  (`NumberOfWorkerThreads`) settings can be set only via `MsmqTransportConfig` section.
 
 ### NServiceBus V3
 
