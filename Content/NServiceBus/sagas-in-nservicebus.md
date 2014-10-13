@@ -124,9 +124,9 @@ Sometimes a saga handles certain message types without a single simple property 
 
 You can have as many of these classes as you want for a given saga or message type. If a saga can't be found, return null, and if the saga specifies that it is to be started for that message type, NServiceBus will know that a new saga instance is to be created. The above example uses NServiceBus extension for NHibernate that allows both framework and user code to share the same NHibernate session. Similar extension point exists for RavenDB.
 
-## Sagas in self-hosted endpoints
+## Configuring Saga persistence
 
-When [hosting NServiceBus in your own endpoint](hosting-nservicebus-in-your-own-process.md), make sure to configure appropriate persistence mechanism. Below you can see how it is done via the V5 streamlined configuration API:
+Make sure to configure appropriate persistence mechanism. Below you can see how it is done via the V5 streamlined configuration API:
 
 <!-- saga-configure-self-hosted -->
 
