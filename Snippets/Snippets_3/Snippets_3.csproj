@@ -89,6 +89,8 @@
     <None Include="Persistence\NHibernate\nhibernate.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Transports\Msmq\MsmqTransportConfig.config" />
+    <None Include="Transports\Msmq\MsmqMessageQueueConfig.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
