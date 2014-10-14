@@ -21,7 +21,7 @@ To discard a message when a specific time interval has elapsed:
 
 <!-- import DiscardingOldMessagesWithFluentV4 -->
 
-### In Version 4
+### In Version 5
 
 <!-- import DiscardingOldMessagesWithFluentV5 -->
 
