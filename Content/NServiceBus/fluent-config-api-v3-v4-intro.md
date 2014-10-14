@@ -8,7 +8,7 @@ tags:
 
 NOTE: This article refers to NServiceBus V3 and V4
 
-NOTE: Watch the webminar recording [Mastering NServiceBus Configuration](Mastering NServiceBus Configuration)(It includes V5 configurstion overview)
+NOTE: Watch the webminar recording [Mastering NServiceBus Configuration](Mastering NServiceBus Configuration) (It includes V5 configuration overview)
 
 Every NServiceBus endpoint that works properly relies on a configuration to determine settings and behaviors other than endpoint core functionalities.
 
