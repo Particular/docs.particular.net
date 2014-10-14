@@ -17,7 +17,7 @@ NServiceBus relies on a few key pieces of infrastructure in order to run properl
 
 NServiceBus works on top of existing queuing systems to provide the reliable communications that has become the trademark of NServiceBus. By default we use MSMQ which is the queuing system that comes with every installation of Windows. NServiceBus will configure MSMQ automatically for you but if you need to do it manually just make sure not to enable the Active Directory integration since that causes the addressing used be NServiceBus to not function properly. 
 
-More on MSMQ [here](msmq-information.md).
+To read more about MSMQ go [here](msmq-information.md). To learn how the MSMQ transport works and how to configure it, go [here](msmqtransportconfig.md).
 
 ## Distributed Transaction Coordinator
 
@@ -26,9 +26,11 @@ In order to support guaranteed once delivery of messages NServiceBus makes use o
 You can read more on transactions
 [here](transactions-message-processing.md)
 
+Since version 5 of NServiceBus there is a _non-DTC_ mode of operation available. In this mode NServiceBus uses a concept of outbox, a message store backed by same DB as the user code, to temporarly store messages that need to be send as a result of processing an incoming message. To read more about this subject go [here](no-dtc.md).
+
 ## Storage
 
-In order to durably handle things like subscriptions, timeouts, sagas etc. NServiceBus needs a storage mechanism that supports the MSDTC. The default storage for NServiceBus 3 is RavenDB but relational databases is still supported through [NHibernate](relational-persistence-using-nhibernate.md). NServiceBus will automatically install RavenDB for you if no existing installation can be detected on your machine. 
+In order to durably handle things like subscriptions, timeouts, sagas etc. NServiceBus needs a storage mechanism that supports the MSDTC (or when in _non-DTC_ mode, uses the same DB as the user code). The default storage for NServiceBus 3 and 4 was RavenDB with an option of using ralational databases via [NHibernate](relational-persistence-using-nhibernate.md). Since version 5 there is no default storage and a user has to explicitly choose either RavenDB or NHibernate. 
 
 You can read more on the persistence needs of NServiceBus [here](persistence-in-nservicebus.md).
 
