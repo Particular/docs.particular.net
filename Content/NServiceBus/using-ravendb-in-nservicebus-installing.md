@@ -50,5 +50,5 @@ For more information regarding RavenDB compatibility, please refer to [this arti
 
 ## Next steps
 
-You can continue reading about [connecting to RavenDB in NService bus](using-ravendb-in-nservicebus-connecting.md) or about [unit of work implementation for RavenDB](unit-of-work-implementation-for-ravendb.md).
+You can continue reading about [connecting to RavenDB in NServiceBus](using-ravendb-in-nservicebus-connecting.md) or about [unit of work implementation for RavenDB](unit-of-work-implementation-for-ravendb.md).
 
