@@ -185,3 +185,11 @@ If the created bus is not a send-only bus it must be started:
 
 * `Start()`: starts the bus.
 * `Start( Action startupAction )`: Starts the bus, invoking the supplied delegate at startup time.
+
+
+
+
+
+### Resources
+
+[Customizing NServiceBus Configuration](customizing-nservicebus-configuration)
