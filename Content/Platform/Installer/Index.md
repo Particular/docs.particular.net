@@ -39,14 +39,12 @@ This installs the NServiceBus prerequisites and configures the machine to be com
  * Configures DTC for usage by NServiceBus 
  * Setup the NServiceBus Performance Counters
  * Install and configure Msmq
- * Install RavenDB
 
 The equivalent Chocolatey commands are 
 
     cinst NServicebus.Dtc.install
     cinst NServicebus.PerfCounters.install
     cinst NServicebus.Msmq.install
-    cinst NServiceBus.RavenDB.install
 
 ### ServiceMatrix for Visual Studio 2013
 
