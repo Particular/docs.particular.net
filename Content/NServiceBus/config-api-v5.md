@@ -12,59 +12,48 @@ NOTE: Watch the webminar recording [Mastering NServiceBus Configuration](Masteri
 
 An introduction to the NServiceBus configuration is available in the [Introduction to Configuration API in V5](config-api-v5-intro) article. 
 
-### Fluent Configuration API
+### Configuration API
 
-The NServiceBus configuration entry point is the `Configure` class and its static `With()` method. Each time you need to access an instance of the current configuration, use the static `Instance` property of the `Configuration` class. 
+NServiceBus V5 introduces a new configuration API to overcome limitations of the previous approach. The new configuration engine is a two step configuration engine where at startup time a new configration can be defined and finally used to create an `IBus` instance that will rely on a set of settings built given the original configuration, the `IBus` runtime settings are `read-only` and can only be changed recreating the bus.
 
-#### Entry Point Configuration
+The major change introduced in V5 is that NServiceBus V5 endpoints can now host multiple bus instances running different configurations. 
 
-The `With()` method has several overloads, each resulting in the creation of a new configuration instance.
+#### Configuration Entry Point
 
-* `With()`: Initializes a new configuration, scanning all the assemblies found in the `bin` folder of the current application;
-* `With(string probeDirectory)`: Initializes a new configuration, scanning all the assemblies found in the given `probeDirectory` folder;
-* `With(params Assembly[] assemblies)`: Initializes a new configuration, scanning all the supplied assemblies; *NOTE*: The supplied assemblies must also contain the NServiceBus binaries;
-* `With(IEnumerable<Type> typesToScan)`: Initializes a new configuration, scanning all the supplied types; *NOTE*: The supplied types must also contain all the NServiceBus types;
+The NServiceBus configuration entry point is the `BusConfiguration` class. In a self-hosting scenario we can manually create an instance of the `BusConfiguration` class, in a scenario where we are using the `NServiceBus.Host` hosting service a new instance is created by the hosting engine and will be given to the endpoint configuration class at startup time.   
 
-**NOTE**:
+If we need to specify which assemblies should be scanned at startup time we can rely on the `AssembliesToScan()` method; in order to specify which types should be scanned we can rely on the `TypesToScan()` method.
 
-* Subsequent calls to the `With` method are idempotent and only one configuration is created;
-* The `With` method (and in general the whole configuration API) is not thread safe; when you configure the entry point, make sure it is thread safe, based on the host used:
-	* For `IIS`, configure NServiceBus in the `Application_Start()` method;
-	* For `OWIN`, configure NServiceBus in the `Startup()` method;
-	* For self-hosted `WCF` services, configure NServiceBus before opening the `ServiceHost`;
+*NOTE*: The supplied assemblies/types must also contain all the NServiceBus assemblies or types;
 
 #### Endpoint Naming
 
-By default, the endpoint name is deduced by the namespace of the assembly that contains the configuration entry point. You can customize the endpoint name via the Fluent Configuration API using the `DefineEndpointName` method:            
+By default, the endpoint name is deduced by the namespace of the assembly that contains the configuration entry point. You can customize the endpoint name via the Configuration API using the `EndpointName()` method:            
 
-* `DefineEndpointName( string endpointName )`: defines the endpoint name using the supplied string; 
-
-NOTE: If you need to customize the endpoint name via code using the `DefineEndpointName` method, it is important to call it first, right after the `With()` configuration entry point.
+* `EndpointName( string endpointName )`: defines the endpoint name using the supplied string; 
 
 To dive into the endpoint naming definition, read [How To Specify Your Input Queue Name?](how-to-specify-your-input-queue-name).
 
 #### Dependency Injection
 
-NServiceBus relies heavily on Dependency Injection to work properly. To initialize the built-in Inversion of Control container, call the `.DefaultBuilder()` method.
+NServiceBus relies heavily on Dependency Injection to work properly. By default the built-in Inversion of Control container will be used.
 
 You can also instruct NServiceBus to use your container to benefit from the dependency resolution event of your custom types. For details on how to change the default container implementation, refer to the [Containers](containers) article.
 
 #### Transport
 
-The configuration of the NServiceBus transport depends on the version of the binaries you are using.
+The configuration of the NServiceBus transport is made via the `UseTransport()` method of the configuration API.
 
-In V3, configure the transport configuration using the `MsmqTransport()` method.
+* `UseTransport<TTransport>()`: the generic overload of the UseTransport method can be invoked using a transport class as generic parameter.
+* `UseTransport( Type transportType )`: the non-generic overload of the `UseTransport()` method accepts a `Type` instance that is the type of transport class.
 
-In V4, given the requirement to support multiple transports, call the `UseTransport()` method:
-
-* `UseTransport<TTransport>( "connection string (optional)" )`: the generic overload of the UseTransport method can be invoked using a transport class as generic parameter and optionally passing in a transport connection string.
-* `UseTransport( Type transportType, "connection string (optional)" )`: the non-generic overload of the `UseTransport()` method accepts a `Type` instance that is the type of transport class and optionally the transport connection string.
+In both cases the call to `UseTransport()` will return a `TransportExtensions` instance that allows the configuration of the transport connection string, via the `ConnectionString()` method, orthe transport connection string name via the `ConnectionStringName()` method.
 
 The list of the built-in supported transport is available in the [NServiceBus Connection String Samples](connection-strings-samples) article.
 
 #### Unobtrusive Mode
 
-Because plain C# classes or interfaces define message contracts, for NServiceBus to find those classes when scanning assemblies, you need to mark them with the special `IMessage` interface, or the `ICommand` or `IEvent` interfaces that inherit from the `IMessage` one. This requirement creates a strong dependency on the NServiceBus assemblies and can cause versioning issues. To completely overcome the problem, NServiceBus can run in unobtrusive mode, meaning that you do not need to mark your messages with any interface and at configuration time you can define messages, commands, and events for NServiceBus: 
+In NServiceBus V5 message interfaces, such as `IMessage`, `ICommand` or `IEvent` are deprecated in order to prevent a strong dependency on the NServiceBus assemblies and cause versioning issues. NServiceBus now relies only on unobtrusive conventions configuration that can be accessed via the `Conventions()` method on the `BusConfiguration` instance. The `Conventions()` method will return an instance of the `ConventionsBuilder` class that exposes the following methods: 
 
 * `DefiningMessagesAs( Func<Type, Boolean> predicate )`: for each type found in the scanned assemblies, the given predicate will be invoked to evaluate if the type should be considered a message or not. 
 * `DefiningCommandsAs( Func<Type, Boolean> predicate )`: for each type found in the scanned assemblies, the given predicate will be invoked to evaluate if the type should be considered a command or not.
@@ -94,29 +83,44 @@ Endpoints running on Windows Azure cannot access UNC paths or file shares. In th
 
 #### Encryption
 
-To configure the encryption feature you must define the encryption algorithm. NServiceBus supports Rijndael out of the box and you can configure it by calling the `RijndaelEncryptionService()` method.
+To configure the encryption feature you must define the encryption algorithm. NServiceBus supports Rijndael out of the box and you can configure it by calling the `RijndaelEncryptionService()` method. If we need to plugin our own encryption service we can invoke the `RegisterEncryptionService()` that accepts a delegate that will be invoked at runtime when an instance of the current `IEncryptionService` is required.
 
 #### Logging
 
-You can log NServiceBus using Log4Net as the logging library. To configure the endpoint simply call the `Log4Net()` method. More information on logging is in the [Logging in NServiceBus 4 and below](logging-in-nservicebus4_and_below) article.
+NServiceBus V5 has its own internal logging implementation.
 
 #### Fault Management
 
-NServiceBus [manages fault](msmqtransportconfig). To activate the fault manager, call the `MessageForwardingInCaseOfFault()` method.
+?????
 
 #### Performance Counters
+
+???? Enabled by default, no way to control it?
 
 To enable Performance Counters for a specific endpoint, call the `EnablePerformanceCounters()` method. For more information on  NServiceBus performance counters, read the [Performance Counters](monitoring-nservicebus-endpoints#nservicebus-performance-counters) article.
 
 #### Service Level Agreement
 
-NServiceBus has the concept of [SLA](/servicepulse/monitoring-nservicebus-endpoints#service-level-agreement-sla-). The endpoint SLA can be defined using the `SetEndpointSLA( TimeSpan sla )` method.
+NServiceBus has the concept of [SLA](/servicepulse/monitoring-nservicebus-endpoints#service-level-agreement-sla-). The endpoint SLA can be defined using the `EnableSLAPerformanceCounter( TimeSpan sla )` method.
 
-#### Persistance
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### Persistence
 
 Some NServiceBus features rely on persistence storage to work properly. Beginning with V3 the default persistence storage is RavenDB.
 
-#####R avenDB Persistence
+##### RavenDB Persistence
 
 * `RavenPersistence()`: configures the endpoint to use RavenDB and expects to find a connection string in the endpoint configuration file, named `NServiceBus/Persistence`.
 * `RavenPersistence( 
@@ -131,14 +135,14 @@ For a detailed explanation on how to connect to RavenDB, read the [Connecting to
                 
 ##### NHibernate
 
-Starting from NServiceBus V3, NHIbernate persistence is supported via a separate package:
+NHibernate persistence is supported via a separate package:
 
 * [Relational Persistence Using NHibernate in NServiceBus V3](relational-persistence-using-nhibernate);
 * [Relational Persistence Using NHibernate in NServiceBus V4](relational-persistence-using-nhibernate---nservicebus-4.x);
 
 ##### In Memory Persistence
 
-Some scenarios require an in-memory persistence configuration, such as the development environment or a lightweight client not interested in durability across restarts:
+Some scenarios my benefit from an in-memory persistence configuration, such as the development environment or a lightweight client not interested in durability across restarts:
 
 * `InMemoryFaultManagement()`: configures the fault manager to run in memory.
 * `InMemorySagaPersister()`: configures the saga persistence to run in memory.

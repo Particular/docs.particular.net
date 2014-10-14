@@ -18,14 +18,14 @@ NServiceBus provides its own [hosting service][1] that can be used to outsource 
 
 When using the built-in hosting service, the endpoint configuration is specified using the `EndpointConfig` class, automatically created when adding NServiceBus packages via NuGet, and implementing one of the core interfaces that determine endpoint behavior:
 
-* `As_AServer`: Indicates that the endpoint behaves as a server. It is configured as a transactional endpoint that does not purge messages on startup;
-* `As_APublisher`: Indicates that the endpoint is a publisher that can publish events, and extends the server role. An endpoint configured as a publisher cannot be configured as client at the same time;
+* `As_AServer`: Indicates that the endpoint behaves as a server. It is configured as a transactional endpoint that does not purge messages on startup, that can send commands and publish events;
+* `As_APublisher`: Is now deprecated and all its functionalities are included in the `As_AServer` behavior;
 * `As_AClient`: Indicates that the endpoint is a client.  A client endpoint is configured as a non-transactional endpoint that purges messages on startup.
 
 ```c#
 public class EndpointConfiguration : IConfigureThisEndpoint, As_AServer
 {
-	public void Init( BusConfiguration config )	{
+	public void Customize( BusConfiguration config )	{
 	}
 }
 ```
@@ -34,7 +34,7 @@ public class EndpointConfiguration : IConfigureThisEndpoint, As_AServer
 
 The class in the example above represents the main entry point of an NServiceBus endpoint. Under the hood this is determined by the fact that the class implements the `IConfigureThisEndpoint` interface that identifies the class responsible for holding the initial configuration for an endpoint.
 
-In V5 the `IConfigureThisEndpoint` interface requires us to implement a `Init` method that will receive an instance of the current configuration. From a customization point of view this is the preferred and easiest way to customize the current bus configuration.
+In V5 the `IConfigureThisEndpoint` interface requires us to implement a `Customize` method that will receive an instance of the current configuration. From a customization point of view this is the preferred and easiest way to customize the current bus configuration.
 
 At runtime, during the startup phase, NServiceBus scans all the types, looking for a class that implements the `IConfigureThisEndpoint` interface.
 
@@ -47,7 +47,7 @@ When NServiceBus endpoints are hosted using the built-in NServiceBus host, you c
 ```c#
 public class CustomConfiguration : INeedInitialization
 {
-	public void Init( BusConfiguration config )
+	public void Customize( BusConfiguration config )
 	{
 
 	}
@@ -57,6 +57,12 @@ public class CustomConfiguration : INeedInitialization
 NOTE: Do not start the bus; the host will do it.
 
 More about [configuration customization](customizing-nservicebus-configuration).
+
+### Pipeline
+
+NServiceBus V5 introduces a new message handling pipeline that allows to easily interact with all the various aspects and steps of the handling process of an incoming or of an outgoing message.
+
+More about the [message handling pipeline](nservicebus-pipeline-intro).
 
 ### Features 
 
@@ -111,7 +117,10 @@ public class Program
     public static void Main()
     {
         var config = new BusConfiguration();
-        config.UseTransport<Msmq>();
+        config.UsePersistence<InMemoryPersistence>();
+        config.Conventions()
+            .DefiningCommandsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Commands" ) )
+            .DefiningEventsAs( t => t.Namespace != null && t.Namespace.EndsWith( ".Events" ) );
         
         using( var bus = Bus.CreateBus( config ).Start() )
         {
@@ -122,8 +131,8 @@ public class Program
 ```
 The differences with the V3 and V4 configuration API is much more evident in the self-hosting scenario where we can create from scratch a new `BusConfiguration` instance, configure only what we require and rely on default values for all the other settings.
 
-V5 supports various transports (MSMQ, Azure, RabbitMQ, SQL, etc.) and the `UseTransport<TTransport>()` generic method defines the underlying transport that the bus instance will use. The example above uses MSMQ.
+V5 supports various transports (MSMQ, Azure, RabbitMQ, SQL, etc.) and the `UseTransport<TTransport>()` generic method defines the underlying transport that the bus instance will use. If not specified, as in the example above, the default transport is `MSMQ`.
 
-More about [Configuration API](fluent-config-api-v5).
+More about [Configuration API](config-api-v5).
 
 [1]: http://www.nuget.org/packages/NServiceBus.Host/ "NServiceBus Host NuGet package"
