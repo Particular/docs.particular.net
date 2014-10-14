@@ -112,11 +112,11 @@ To enable Performance Counters for a specific endpoint, call the `EnablePerforma
 
 NServiceBus has the concept of [SLA](/servicepulse/monitoring-nservicebus-endpoints#service-level-agreement-sla-). The endpoint SLA can be defined using the `SetEndpointSLA( TimeSpan sla )` method.
 
-#### Persistance
+#### Persistence
 
 Some NServiceBus features rely on persistence storage to work properly. Beginning with V3 the default persistence storage is RavenDB.
 
-#####R avenDB Persistence
+##### RavenDB Persistence
 
 * `RavenPersistence()`: configures the endpoint to use RavenDB and expects to find a connection string in the endpoint configuration file, named `NServiceBus/Persistence`.
 * `RavenPersistence( 
