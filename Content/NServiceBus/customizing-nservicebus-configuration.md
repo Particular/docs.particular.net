@@ -36,3 +36,9 @@ If you don't want your process to have its configuration specified in the config
 
 The initialization code instructs NServiceBus to use a `CustomConfigurationSource`, passing in an instance of a new object: `MyCustomConfigurationSource`. Its `GetConfiguration` method provides data for `RijndaelEncryptionServiceConfig` directly in code, while allowing all other configuration sections to be retrieved from the config file.
 
+#### Additional resources:
+
+* Fluent configuration API:
+  * [Introduction to fluent configuration API](fluent-config-api-v3-v4-intro)
+  * [Fluent configuration API documentation](fluent-config-api-v3-v4)
+* Webminar recording [Mastering NServiceBus Configuration](Mastering NServiceBus Configuration) (It includes V5 configuration overview)
