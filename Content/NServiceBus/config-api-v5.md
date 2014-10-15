@@ -26,13 +26,20 @@ If we need to specify which assemblies should be scanned at startup time we can 
 
 *NOTE*: The supplied assemblies/types must also contain all the NServiceBus assemblies or types;
 
-#### Endpoint Naming
+#### Endpoint Naming and Versioning
+
+##### Naming
 
 By default, the endpoint name is deduced by the namespace of the assembly that contains the configuration entry point. You can customize the endpoint name via the Configuration API using the `EndpointName()` method:            
 
 * `EndpointName( string endpointName )`: defines the endpoint name using the supplied string; 
 
 To dive into the endpoint naming definition, read [How To Specify Your Input Queue Name?](how-to-specify-your-input-queue-name).
+
+##### Versioning
+
+	//TODO
+	//cfg.EndpointVersion();
 
 #### Dependency Injection
 
@@ -91,10 +98,12 @@ NServiceBus V5 has its own internal logging implementation.
 
 #### Fault Management
 
+	//TODO
 ?????
 
 #### Performance Counters
 
+	//TODO
 ???? Enabled by default, no way to control it?
 
 To enable Performance Counters for a specific endpoint, call the `EnablePerformanceCounters()` method. For more information on  NServiceBus performance counters, read the [Performance Counters](monitoring-nservicebus-endpoints#nservicebus-performance-counters) article.
@@ -121,18 +130,20 @@ If the `For()` method is not called NServiceBus assumes that the given persisten
 
 The `NServiceBus.RavenDB` persistence package adds some behaviors to the default `PersitenceExtensions<TPersistence>` instance:
 
-* `SetDefaultDocumentStore`:
-* `UseDocumentStoreForGatewayDeduplication`:
-* `UseDocumentStoreForSagas`:
-* `UseDocumentStoreForSubscriptions`:
-* `UseDocumentStoreForTimeouts`:
-* `DoNotSetupDatabasePermissions`:
-* `AllowStaleSagaReads`:
-* `UseSharedSession`:
+* `SetDefaultDocumentStore`: sets the default RavenDB document store to use as default for storage;
+* `UseDocumentStoreForGatewayDeduplication`: sets the default RavenDB document store for gateway deduplication;
+* `UseDocumentStoreForSagas`: sets the default RavenDB document store for saga storage;
+* `UseDocumentStoreForSubscriptions`: sets the default RavenDB document store for subscriptions storage;
+* `UseDocumentStoreForTimeouts`: sets the default RavenDB document store for timeouts storage;
+* `DoNotSetupDatabasePermissions`: instructs NServiceBus to not try to setup database permissions on the current storage at startup;
+* `AllowStaleSagaReads`: allows the saga storage to retrieve sagas even if the saga query returns stale data;
+* `UseSharedSession`: setups a shared RavenDB session that can be used to retrieve data from the RavenDB storage;
 
 For a detailed explanation on how to connect to RavenDB, read the [Connecting to RavenDB from NServiceBus](using-ravendb-in-nservicebus-connecting) article.
                 
 ##### NHibernate
+
+	//TODO
 
 NHibernate persistence is supported via a separate package:
 
@@ -141,19 +152,13 @@ NHibernate persistence is supported via a separate package:
 
 ##### In Memory Persistence
 
-Some scenarios my benefit from an in-memory persistence configuration, such as the development environment or a lightweight client not interested in durability across restarts:
-
-* `InMemoryFaultManagement()`: configures the fault manager to run in memory.
-* `InMemorySagaPersister()`: configures the saga persistence to run in memory.
-* `InMemorySubscriptionStorage()`: configures the subscription manager to persist subscriptions in memory.
+Some scenarios my benefit from an in-memory persistence configuration, such as the development environment or a lightweight client not interested in durability across restarts. In order to configure in-memory persistence use the `InMemoryPersistence` persistence class.
 
 Details of all the persistence options are in the [Persistence in NServiceBus](persistence-in-nservicebus) article.
 
-#### MSMQ
-
-When using MSMQ as a transport you can use one queue as the subscription storage by invoking the `MsmqSubscriptionStorage()` method.
-
 #### License
+
+	//TODO
 
 The methods of assigning the license to an endpoint are all detailed in the [How to install your license file](license-management) article. You can also specify a license at configuration time:
 
@@ -162,6 +167,8 @@ The methods of assigning the license to an endpoint are all detailed in the [How
 
 ####Queue Management
 
+	//TODO
+
 At configuration time it is possible to define queue behavior:
 
 * `PurgeOnStartup( Boolean purge )`: determines if endpoint queues should be purged at startup.
@@ -169,16 +176,22 @@ At configuration time it is possible to define queue behavior:
 
 #### Creating and Starting the Bus
 
+	//TODO
+
 Once the endpoint is configured the last step is to define the type of the bus and create it.
 
 * `UnicastBus()`: defines that the bus is a unicast bus, currently the only supported bus type.
 
 #### Creation
 
+	//TODO
+
 * `CreateBus()`: creates a startable bus ready to be started as required.
 * `SendOnly()`: creates and starts a send-only bus, suitable for a send-only endpoint that does not receive commands and does not handle events.
 
 #### Startup
+
+	//TODO
 
 If the created bus is not a send-only bus it must be started:
 
@@ -192,3 +205,12 @@ If the created bus is not a send-only bus it must be started:
 ### Resources
 
 [Customizing NServiceBus Configuration](customizing-nservicebus-configuration)
+
+
+
+
+
+
+
+
+            //cfg.AutoSubscribe();            //cfg.DefineCriticalErrorAction();            //cfg.DisableDurableMessages();            //cfg.DisableFeature();            //cfg.DiscardFailedMessagesInsteadOfSendingToErrorQueue();            //cfg.DoNotCreateQueues();            //cfg.EnableCriticalTimePerformanceCounter();            //cfg.EnableDurableMessages();            //cfg.EnableFeature();            //cfg.EnableInstallers();            //cfg.EnableOutbox();            //cfg.License();            //cfg.LicensePath();            //cfg.LoadMessageHandlers();            //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.Pipeline;            //cfg.PurgeOnStartup();            //cfg.RegisterComponents();            //cfg.ScaleOut();            //cfg.ScanAssembliesInDirectory();            //cfg.SecondLevelRetries();            //cfg.Transactions();            //cfg.UsePersistence();            //cfg.UseSerialization();            //cfg.UseTransport();
