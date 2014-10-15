@@ -58,6 +58,11 @@ In both cases the call to `UseTransport()` will return a `TransportExtensions` i
 
 The list of the built-in supported transport is available in the [NServiceBus Connection String Samples](connection-strings-samples) article.
 
+#### Serialization
+
+	//TODO
+	            //cfg.UseSerialization();
+
 #### Unobtrusive Mode
 
 In NServiceBus V5 message interfaces, such as `IMessage`, `ICommand` or `IEvent` are deprecated in order to prevent a strong dependency on the NServiceBus assemblies and cause versioning issues. NServiceBus now relies only on unobtrusive conventions configuration that can be accessed via the `Conventions()` method on the `BusConfiguration` instance. The `Conventions()` method will return an instance of the `ConventionsBuilder` class that exposes the following methods: 
@@ -100,6 +105,9 @@ NServiceBus V5 has its own internal logging implementation.
 
 	//TODO
 ?????
+
+            //cfg.DefineCriticalErrorAction();
+	     //cfg.DiscardFailedMessagesInsteadOfSendingToErrorQueue();            //cfg.SecondLevelRetries();
 
 #### Performance Counters
 
@@ -158,8 +166,6 @@ Details of all the persistence options are in the [Persistence in NServiceBus](p
 
 #### License
 
-	//TODO
-
 The methods of assigning the license to an endpoint are all detailed in the [How to install your license file](license-management) article. You can also specify a license at configuration time:
 
 * `LicensePath( string partToLicenseFile )`: configures the endpoint to use the license file found at the supplied path;
@@ -172,6 +178,10 @@ The methods of assigning the license to an endpoint are all detailed in the [How
 At configuration time it is possible to define queue behavior:
 
 * `PurgeOnStartup( Boolean purge )`: determines if endpoint queues should be purged at startup.
+
+
+
+
 * `DoNotCreateQueues()`: configures the endpoint to not try to create queues at startup if they are not already created.
 
 #### Creating and Starting the Bus
@@ -199,4 +209,6 @@ If the created bus is not a send-only bus it must be started via the `Start()` m
 
 
 
-            //cfg.AutoSubscribe();            //cfg.DefineCriticalErrorAction();            //cfg.DisableDurableMessages();            //cfg.DisableFeature();            //cfg.DiscardFailedMessagesInsteadOfSendingToErrorQueue();            //cfg.DoNotCreateQueues();            //cfg.EnableCriticalTimePerformanceCounter();            //cfg.EnableDurableMessages();            //cfg.EnableFeature();            //cfg.EnableInstallers();            //cfg.EnableOutbox();            //cfg.License();            //cfg.LicensePath();            //cfg.LoadMessageHandlers();            //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.Pipeline;            //cfg.PurgeOnStartup();            //cfg.RegisterComponents();            //cfg.ScaleOut();            //cfg.ScanAssembliesInDirectory();            //cfg.SecondLevelRetries();            //cfg.Transactions();            //cfg.UsePersistence();            //cfg.UseSerialization();            //cfg.UseTransport();
+            //cfg.AutoSubscribe();            //cfg.DisableDurableMessages();            //cfg.EnableDurableMessages();            
+	//cfg.DisableFeature();            //cfg.DoNotCreateQueues();            //cfg.EnableCriticalTimePerformanceCounter();
+                        //cfg.EnableFeature();            //cfg.EnableInstallers();            //cfg.EnableOutbox();            //cfg.LoadMessageHandlers();            //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.Pipeline;            //cfg.RegisterComponents();            //cfg.ScaleOut();            //cfg.ScanAssembliesInDirectory();            //cfg.Transactions();
