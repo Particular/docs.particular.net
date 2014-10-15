@@ -38,6 +38,8 @@ For example, the following command line (with the appropriate adjustments for yo
 
 `Netsh http add urlacl  url=http://*:33333/  user=everyone  listen=yes`
 
+**NOTE:** Ensure that there is only one URLACL defined. 
+
 ### Configuring ServiceControl to Use a Virtual Directory
 
 You can customize ServiceControl to expose the API endpoint under a custom virtual directory at the configured URL. To customize the Virtual Directory, add a new setting to the ServiceControl configuration file:
