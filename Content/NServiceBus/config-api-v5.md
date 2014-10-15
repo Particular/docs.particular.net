@@ -103,33 +103,32 @@ To enable Performance Counters for a specific endpoint, call the `EnablePerforma
 
 NServiceBus has the concept of [SLA](/servicepulse/monitoring-nservicebus-endpoints#service-level-agreement-sla-). The endpoint SLA can be defined using the `EnableSLAPerformanceCounter( TimeSpan sla )` method.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 #### Persistence
 
-Some NServiceBus features rely on persistence storage to work properly. Beginning with V3 the default persistence storage is RavenDB.
+Some NServiceBus features rely on persistence storage to work properly. Until V4 the default persistence storage was RavenDB, now RavenDB is not part of the core anymore and has been externalized as a separate [package](http://www.nuget.org/packages/NServiceBus.RavenDB/).
+
+To define the persistence engine to use the `UsePersistence()` method must be called on the `BusConfiguration` instance. The `UsePersistence()` method returns a `PersitenceExtensions<TPersistence>` instance that allows the caller to define, via the `For()` method, for which features the given persistence storage should be used:
+
+* `Storage.Timeouts`: Storage for timeouts;
+* `Storage.Subscriptions`: Storage for subscriptions;
+* `Storage.Sagas`: Storage for sagas;
+* `Storage.GatewayDeduplication`: Storage for gateway deduplication;
+* `Storage.Outbox`: Storage for the outbox;
+
+If the `For()` method is not called NServiceBus assumes that the given persistence should be used for all the features that requires persistence.
 
 ##### RavenDB Persistence
 
-* `RavenPersistence()`: configures the endpoint to use RavenDB and expects to find a connection string in the endpoint configuration file, named `NServiceBus/Persistence`.
-* `RavenPersistence( 
-*  connectionString )`: configures the endpoint to use RavenDB using the supplied RavenDB connection string.
-* `RavenPersistence( Func<string> connectionStringProvider )`: configures the endpoint to use RavenDB and invokes the supplied delegate to get a valid RavenDB connection string at runtime.
-* `RavenPersistence( Func<string> connectionStringProvider, string dbName )`: configures the endpoint to use RavenDB, invokes the supplied delegate to get a valid RavenDB connection string at runtime, and expects the name of the database as the second parameter.
-* `RavenPersistenceWithStore( IDocumentStore store )`: configures the endpoint to use RavenDB using the supplied IDocumentStore.
-* `RavenSagaPersister()`: configures sagas to use RavenDB as storage.
-* `RavenSubscriptionStorage()`: configures the subscription manager to use RavenDB as storage.
+The `NServiceBus.RavenDB` persistence package adds some behaviors to the default `PersitenceExtensions<TPersistence>` instance:
+
+* `SetDefaultDocumentStore`:
+* `UseDocumentStoreForGatewayDeduplication`:
+* `UseDocumentStoreForSagas`:
+* `UseDocumentStoreForSubscriptions`:
+* `UseDocumentStoreForTimeouts`:
+* `DoNotSetupDatabasePermissions`:
+* `AllowStaleSagaReads`:
+* `UseSharedSession`:
 
 For a detailed explanation on how to connect to RavenDB, read the [Connecting to RavenDB from NServiceBus](using-ravendb-in-nservicebus-connecting) article.
                 
