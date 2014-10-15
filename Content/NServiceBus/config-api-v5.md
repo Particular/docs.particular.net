@@ -176,31 +176,17 @@ At configuration time it is possible to define queue behavior:
 
 #### Creating and Starting the Bus
 
-	//TODO
-
-Once the endpoint is configured the last step is to define the type of the bus and create it.
-
-* `UnicastBus()`: defines that the bus is a unicast bus, currently the only supported bus type.
+When using the `NServiceBus.Host` the bus creation and startup is done by the hosting engine, when self-hosting the bus we are responsible to create and start the bus.
 
 #### Creation
 
-	//TODO
-
-* `CreateBus()`: creates a startable bus ready to be started as required.
-* `SendOnly()`: creates and starts a send-only bus, suitable for a send-only endpoint that does not receive commands and does not handle events.
+Given a `BusConfiguration` instance to create the bus it is enough to call the static `Create` method of the `Bus` class, or to create a `SendOnly` bus call the `CreateSendOnly` method.
 
 #### Startup
 
-	//TODO
+If the created bus is not a send-only bus it must be started via the `Start()` method of the created bus instance.
 
-If the created bus is not a send-only bus it must be started:
-
-* `Start()`: starts the bus.
-* `Start( Action startupAction )`: Starts the bus, invoking the supplied delegate at startup time.
-
-
-
-
+	//TODO: startupAction ????
 
 ### Resources
 
