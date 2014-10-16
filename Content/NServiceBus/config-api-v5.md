@@ -234,4 +234,4 @@ If the created bus is not a send-only bus it must be started via the `Start()` m
 
             //cfg.AutoSubscribe();            //cfg.DisableDurableMessages();            //cfg.EnableDurableMessages();                        //cfg.DoNotCreateQueues();            //cfg.EnableCriticalTimePerformanceCounter();
             
-		//cfg.EnableInstallers();            //cfg.EnableOutbox();                        //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.Pipeline;            //cfg.ScaleOut();          
+		//cfg.EnableInstallers();            //cfg.EnableOutbox();                        //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.ScaleOut();          
