@@ -28,7 +28,7 @@ It is also possible to define a custom probing directory to override the default
 
 *NOTE*: The supplied assemblies/types must also contain all the NServiceBus assemblies or types;
 
-#### Endpoint Naming and Versioning
+#### Endpoint Naming, Versioning and Address
 
 ##### Naming
 
@@ -41,6 +41,13 @@ To dive into the endpoint naming definition, read [How To Specify Your Input Que
 ##### Versioning
 
 Along with the name of the endpoint it is possible, via the `EndpointVersion` method, to define the version of the current endpoint.
+
+##### Address
+
+At configuration time it is possible to control the endpoint addresses:
+
+* `OverrideLocalAddress`: Defines the endpoint local queue address;
+* `OverridePublicReturnAddress`: Defines the public return address of the current endpoint;
 
 #### Dependency Injection
 
@@ -261,4 +268,4 @@ NServicesBus allows the definition of [installers](nservicebus-installers) via t
 [Customizing NServiceBus Configuration](customizing-nservicebus-configuration)
 
             //cfg.DisableDurableMessages();            //cfg.EnableDurableMessages();
-                                    //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.ScaleOut();          
+            //cfg.ScaleOut();          
