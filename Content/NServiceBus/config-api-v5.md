@@ -14,7 +14,7 @@ An introduction to the NServiceBus configuration is available in the [Introducti
 
 ### Configuration API
 
-NServiceBus V5 introduces a new configuration API to overcome limitations of the previous approach. The new configuration engine is a two step configuration engine where at startup time a new configration can be defined and finally used to create an `IBus` instance that will rely on a set of settings built given the original configuration, the `IBus` runtime settings are `read-only` and can only be changed recreating the bus.
+NServiceBus V5 introduces a new configuration API to overcome limitations of the previous approach. The new configuration engine is a two step configuration engine where at startup time a new configuration can be defined and finally used to create an `IBus` instance that will rely on a set of settings built given the original configuration, the `IBus` runtime settings are `read-only` and can only be changed recreating the bus.
 
 The major change introduced in V5 is that NServiceBus V5 endpoints can now host multiple bus instances running different configurations. 
 
@@ -23,6 +23,8 @@ The major change introduced in V5 is that NServiceBus V5 endpoints can now host 
 The NServiceBus configuration entry point is the `BusConfiguration` class. In a self-hosting scenario we can manually create an instance of the `BusConfiguration` class, in a scenario where we are using the `NServiceBus.Host` hosting service a new instance is created by the hosting engine and will be given to the endpoint configuration class at startup time.   
 
 If we need to specify which assemblies should be scanned at startup time we can rely on the `AssembliesToScan()` method; in order to specify which types should be scanned we can rely on the `TypesToScan()` method.
+
+It is also possible to define a custom probing directory to override the default one, that is the one where the process is running from. In order to change the probing directory call the `ScanAssembliesInDirectory` method.
 
 *NOTE*: The supplied assemblies/types must also contain all the NServiceBus assemblies or types;
 
@@ -45,6 +47,9 @@ To dive into the endpoint naming definition, read [How To Specify Your Input Que
 
 NServiceBus relies heavily on Dependency Injection to work properly. By default the built-in Inversion of Control container will be used.
 
+	//TODO
+            //cfg.RegisterComponents();
+
 You can also instruct NServiceBus to use your container to benefit from the dependency resolution event of your custom types. For details on how to change the default container implementation, refer to the [Containers](containers) article.
 
 #### Transport
@@ -62,6 +67,17 @@ The list of the built-in supported transport is available in the [NServiceBus Co
 
 	//TODO
 	            //cfg.UseSerialization();
+	            
+#### Transactions
+
+	//TODO
+	            //cfg.Transactions();
+	            
+#### Message Handling Pipeline
+
+NServiceBus V5 introduces a new message handling pipeline, at configuration time it is possibile to interact with the pipeline configuration exposed by the `Pipeline` property.
+
+An introduction to the Pipeline is available in the [Message Handling Pipeline](nservicebus-pipeline-intro) article.
 
 #### Unobtrusive Mode
 
@@ -105,6 +121,7 @@ If a single endpoint contains multiple handlers that are registered to handle th
 
 #### Logging
 
+	//TODO
 NServiceBus V5 has its own internal logging implementation.
 
 #### Fault Management
@@ -200,7 +217,7 @@ Given a `BusConfiguration` instance to create the bus it is enough to call the s
 
 #### Startup
 
-If the created bus is not a send-only bus it must be started via the `Start()` method of the created bus instance.
+If the created bus is not a send-only bus it must be started via the `Start()` method of the `IStartableBus` instance.
 
 	//TODO: startupAction ????
 
@@ -217,4 +234,4 @@ If the created bus is not a send-only bus it must be started via the `Start()` m
 
             //cfg.AutoSubscribe();            //cfg.DisableDurableMessages();            //cfg.EnableDurableMessages();                        //cfg.DoNotCreateQueues();            //cfg.EnableCriticalTimePerformanceCounter();
             
-		//cfg.EnableInstallers();            //cfg.EnableOutbox();                        //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.Pipeline;            //cfg.RegisterComponents();            //cfg.ScaleOut();            //cfg.ScanAssembliesInDirectory();            //cfg.Transactions();
+		//cfg.EnableInstallers();            //cfg.EnableOutbox();                        //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.Pipeline;            //cfg.ScaleOut();          
