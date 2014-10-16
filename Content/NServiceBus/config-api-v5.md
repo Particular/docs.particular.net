@@ -83,8 +83,18 @@ Some serializers have specific `SerializationExtensions` that allows to customiz
 	            
 #### Transactions
 
+In order to configure the transactions settings of the endpoint it is possible to call the `Transactions()` method:
+
+* `DefaultTimeout`: Sets the default timeout period for the transaction;
+* `IsolationLevel`: Sets the isolation level of the transaction;
+* `Disable` / `Enable`: Configures the current Transport to use or not use any transactions;
+* `DisableDistributedTransactions` / `EnableDistributedTransactions`: Configures the crrent Transport to enlist or not in Distributed Transactions;
+* `DoNotWrapHandlersExecutionInATransactionScope` / `WrapHandlersExecutionInATransactionScope`: Configures the endpoint so that `IHandleMessages<T>` are not wrapped in a `System.Transactions.TransactionScope`;
+
+#### Outbox
+
 	//TODO
-	            //cfg.Transactions();
+	//cfg.EnableOutbox();
 	            
 #### Message Handling Pipeline
 
@@ -249,5 +259,4 @@ NServicesBus allows the definition of [installers](nservicebus-installers) via t
 [Customizing NServiceBus Configuration](customizing-nservicebus-configuration)
 
             //cfg.DisableDurableMessages();            //cfg.EnableDurableMessages();                        //cfg.EnableCriticalTimePerformanceCounter();
-            
-		//cfg.EnableInstallers();            //cfg.EnableOutbox();                        //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.ScaleOut();          
+                                    //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.ScaleOut();          
