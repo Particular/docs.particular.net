@@ -40,15 +40,18 @@ To dive into the endpoint naming definition, read [How To Specify Your Input Que
 
 ##### Versioning
 
-	//TODO
-	//cfg.EndpointVersion();
+Along with the name of the endpoint it is possible, via the `EndpointVersion` method, to define the version of the current endpoint.
 
 #### Dependency Injection
 
-NServiceBus relies heavily on Dependency Injection to work properly. By default the built-in Inversion of Control container will be used.
+NServiceBus relies heavily on Dependency Injection to work properly. By default the built-in Inversion of Control container will be used. To access the components registration API the `RegisterComponents` method must be called, as in the following sample:
 
-	//TODO
-            //cfg.RegisterComponents();
+	cfg.RegisterComponents( c => 
+	{
+	    c.ConfigureComponent<MyCustomComponent>( DependencyLifecycle.InstancePerUnitOfWork );
+	} );
+
+The `ConfigureComponent` method has several overloads that allows fine grain control over the registration behaviors and the instance creation of the registered component. 
 
 You can also instruct NServiceBus to use your container to benefit from the dependency resolution event of your custom types. For details on how to change the default container implementation, refer to the [Containers](containers) article.
 
@@ -93,8 +96,9 @@ In order to configure the transactions settings of the endpoint it is possible t
 
 #### Outbox
 
-	//TODO
+	//TODO: is there anything already somewhere?
 	//cfg.EnableOutbox();
+	// -> TimeToKeepDeduplicationData
 	            
 #### Message Handling Pipeline
 
@@ -157,16 +161,14 @@ NServiceBus V5 has its own internal logging implementation.
 
 #### Fault Management
 
-	//TODO
-?????
-
-            //cfg.DefineCriticalErrorAction();
-	     //cfg.DiscardFailedMessagesInsteadOfSendingToErrorQueue();            //cfg.SecondLevelRetries();
+	//TODO ?????
+	//cfg.DefineCriticalErrorAction();
+	//cfg.DiscardFailedMessagesInsteadOfSendingToErrorQueue();    //cfg.SecondLevelRetries();
 
 #### Performance Counters
 
-	//TODO
-???? Enabled by default, no way to control it?
+	//TODO ???? Enabled by default, no way to control it?
+	//EnableCriticalTimePerformanceCounter
 
 To enable Performance Counters for a specific endpoint, call the `EnablePerformanceCounters()` method. For more information on  NServiceBus performance counters, read the [Performance Counters](monitoring-nservicebus-endpoints#nservicebus-performance-counters) article.
 
@@ -258,5 +260,5 @@ NServicesBus allows the definition of [installers](nservicebus-installers) via t
 
 [Customizing NServiceBus Configuration](customizing-nservicebus-configuration)
 
-            //cfg.DisableDurableMessages();            //cfg.EnableDurableMessages();                        //cfg.EnableCriticalTimePerformanceCounter();
+            //cfg.DisableDurableMessages();            //cfg.EnableDurableMessages();
                                     //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.ScaleOut();          
