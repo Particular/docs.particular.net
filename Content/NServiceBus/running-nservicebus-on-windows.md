@@ -30,7 +30,7 @@ Since version 5 of NServiceBus there is a _non-DTC_ mode of operation available.
 
 ## Storage
 
-In order to durably handle things like subscriptions, timeouts, sagas etc. NServiceBus needs a storage mechanism that supports the MSDTC (or when in _non-DTC_ mode, uses the same DB as the user code). The default storage for NServiceBus 3 and 4 was RavenDB with an option of using ralational databases via [NHibernate](relational-persistence-using-nhibernate.md). Since version 5 there is no default storage and a user has to explicitly choose either RavenDB or NHibernate. 
+In order to durably handle things like subscriptions, timeouts, sagas, etc, NServiceBus needs a storage mechanism that supports the MSDTC (or when in _non-DTC_ mode, uses the same DB as the user code). The default storage for NServiceBus 3 and 4 was RavenDB with an option of using ralational databases via [NHibernate](relational-persistence-using-nhibernate.md). Since version 5 there is no default storage and a user has to explicitly choose either RavenDB or NHibernate. 
 
 You can read more on the persistence needs of NServiceBus [here](persistence-in-nservicebus.md).
 
