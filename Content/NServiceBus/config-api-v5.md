@@ -170,7 +170,7 @@ NServiceBus V5 has its own internal logging implementation.
 
 	//TODO ?????
 	//cfg.DefineCriticalErrorAction();
-	//cfg.DiscardFailedMessagesInsteadOfSendingToErrorQueue();    //cfg.SecondLevelRetries();
+	//cfg.DiscardFailedMessagesInsteadOfSendingToErrorQueue();It is possible to inject a custom retry policy, for Second Level Retries, via the `CustomRetryPolicy` method exposed by the `SecondLevelRetries` configuration setting. A custom retry policy allows to have fine control over the retry logic for each failing message.
 
 #### Performance Counters
 
@@ -263,9 +263,15 @@ If the created bus is not a send-only bus it must be started via the `Start()` m
 
 NServicesBus allows the definition of [installers](nservicebus-installers) via the `INeedToInstallSomething` interface, in NServiceBus V5 installers can be enabled calling the `EnableInstallers` method. 
 
+#### Scale out settings for broker scenarios
+
+When the endpoint transport is a broker based transport and we want to install more then one instance of the same endpoint we can control the scale out behavior of the endpoint via the `ScaleOut` method:
+
+* `UseUniqueBrokerQueuePerMachine`: Instructs the broker based transports to use a separate queue per endpoint when running on multiple machines. This allows clients to make use of callbacks. This setting is the default.
+* `UseSingleBrokerQueue`: Instructs the broker based transports to use a single queue for the endpoint regardless of which machine its running on. This is suitable for backend processing endpoints and is the default for the As_aServer role.  Clients that needs to make use of callbacks needs to make sure that this setting is off, via the `UseUniqueBrokerQueuePerMachine` method, since they need to have a unique input queue per machine in order to not miss any of the callbacks.
+
 ### Resources
 
 [Customizing NServiceBus Configuration](customizing-nservicebus-configuration)
 
-            //cfg.DisableDurableMessages();            //cfg.EnableDurableMessages();
-            //cfg.ScaleOut();          
+	//????	//cfg.DisableDurableMessages();    //cfg.EnableDurableMessages();          
