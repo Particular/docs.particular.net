@@ -6,7 +6,7 @@ tags:
 - RavenDB
 ---
 
-Starting from version 5.0 RavenDB is no longer a default peristence mechanism in NServiceBus. A user has to explicitly select either RavenDB or NHibernate. RavenDB-related code has been moved to a separate package [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) and it is up to a user to install the RavenDB server form the [official download page](http://ravendb.net/download) following instructions on RavenDB website.
+Starting from NServiceBus version 5.0 RavenDB is no longer a default peristence mechanism in NServiceBus. A user has to explicitly select either RavenDB or NHibernate. RavenDB-related code has been moved to a separate package [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) and it is up to a user to install the RavenDB server form the [official download page](http://ravendb.net/download) following instructions on RavenDB website.
 
 Starting from version 3.0, including all 3.x and 4.x releases, NServiceBus used RavenDB for persistence by default. The NServiceBus license permits the use of RavenDB for the storage needs of your endpoint. This only includes NServiceBus-related data such as sagas and subscriptions. If you store application-specific data in RavenDB you need to purchase a separate license.
 
@@ -16,6 +16,8 @@ To use the default storage, ensure you have a RavenDB server running to which yo
 -   Let NServiceBus do it for you
 
 ## NServiceBus auto-installation of RavenDB
+
+**Versions 5.x:** RavenDB is no longer auto-installed.
 
 **Versions 4.x:** The /installinfrastructure has been deprecated in version 4.0 and above on NServiceBus.Host, and NServiceBus now expects RavenDB instance to be pre-installed and accessible to it. Use the [powershell commandlets](managing-nservicebus-using-powershell.md) to install RavenDB on the needed servers. When the endpoints starts up, if the host is configured for RavenDB persistence and if the configured RavenDB persistence could not be contacted, then warnings will be logged.
 
