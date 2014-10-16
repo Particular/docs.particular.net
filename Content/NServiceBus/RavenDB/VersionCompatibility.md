@@ -12,12 +12,12 @@ RavanDB peristence is available as a separate nuget [NServiceBus.RavenDB](https:
 
     Install-Package NServiceBus.RavenDB
 
-The current approach moving forward for the RavenDB integration to ship outside the core in a stand alone assembly NServiceBus.RavenDB.dll. This has the following advantages
+The current approach moving forward for the RavenDB integration is to ship outside the core in a stand alone assembly NServiceBus.RavenDB.dll. This has the following advantages
 
- * Allow us to evolve the implementation more closely instep with the RavenDB release schedule. 
- * Reduce the need for version compatibility hacks
- * Allow the shipping upgrades to this library without having to ship the core. 
- * Make the approach to RavenDB persistence consistent with the other persistence integrations 
+ * Allow us to evolve the implementation more closely instep with the RavenDB release schedule;
+ * Reduce the need for version compatibility hacks;
+ * Allow the shipping upgrades to this library without having to ship the core; 
+ * Make the approach to RavenDB persistence consistent with the other persistence integrations;
 
 ### Supported RavenDB versions 
 
@@ -26,8 +26,8 @@ The current approach moving forward for the RavenDB integration to ship outside 
 
 ### Supported NServiceBus versions
 
- * Version 1 of NServiceBus.RavenDB target NServiceBus 4.1 and higher
- * Version 2, and higher, of NServiceBus.RavenDB target NServiceBus 5.0 and higher. 
+ * Version 1 of NServiceBus.RavenDB targets NServiceBus 4.1 or higher minor;
+ * Version 2 of NServiceBus.RavenDB targets NServiceBus 5.0 and higher minor;
 
 ## NServiceBus 4: Resource Merged into the core
 
