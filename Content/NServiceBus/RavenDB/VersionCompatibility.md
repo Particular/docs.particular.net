@@ -21,8 +21,7 @@ The current approach moving forward for the RavenDB integration is to ship outsi
 
 ### Supported RavenDB versions 
 
- * RavenDB Client 2.5.2908. The intent is that this package will compatible for any version from a known minimum until the next major. Note that if there are breaking changes in the RavenDB Client this may change in future versions of this library. However this will be handled explicitly through a dependency in the nuget package  
- * RavenDB Server 2.5.2908 
+ * RavenDB 2.5.2908. The intent is that this package is compatible for any version from a known minimum until the next major. Note that if there are breaking changes in the RavenDB Client this may change in future versions of this library. However this will be handled explicitly through a dependency in the nuget package.
 
 ### Supported NServiceBus versions
 
