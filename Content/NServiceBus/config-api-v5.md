@@ -97,6 +97,12 @@ Endpoints running on Windows Azure cannot access UNC paths or file shares. In th
 
 To configure the encryption feature you must define the encryption algorithm. NServiceBus supports Rijndael out of the box and you can configure it by calling the `RijndaelEncryptionService()` method. If we need to plugin our own encryption service we can invoke the `RegisterEncryptionService()` that accepts a delegate that will be invoked at runtime when an instance of the current `IEncryptionService` is required.
 
+#### Message Handlers Order
+
+If a single endpoint contains multiple handlers that are registered to handle the same message type, or a base classe of the incoming message type, whether required it is possible to specify the order in which handlers needs to be invoked each time a specific message is received:
+
+* `LoadMessageHandlers`: allow to specify the order in which handlers of a given message should be invoked;
+
 #### Logging
 
 NServiceBus V5 has its own internal logging implementation.
@@ -209,6 +215,6 @@ If the created bus is not a send-only bus it must be started via the `Start()` m
 
 
 
-            //cfg.AutoSubscribe();            //cfg.DisableDurableMessages();            //cfg.EnableDurableMessages();            
-	//cfg.DisableFeature();            //cfg.DoNotCreateQueues();            //cfg.EnableCriticalTimePerformanceCounter();
-                        //cfg.EnableFeature();            //cfg.EnableInstallers();            //cfg.EnableOutbox();            //cfg.LoadMessageHandlers();            //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.Pipeline;            //cfg.RegisterComponents();            //cfg.ScaleOut();            //cfg.ScanAssembliesInDirectory();            //cfg.Transactions();
+            //cfg.AutoSubscribe();            //cfg.DisableDurableMessages();            //cfg.EnableDurableMessages();                        //cfg.DoNotCreateQueues();            //cfg.EnableCriticalTimePerformanceCounter();
+            
+		//cfg.EnableInstallers();            //cfg.EnableOutbox();                        //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.Pipeline;            //cfg.RegisterComponents();            //cfg.ScaleOut();            //cfg.ScanAssembliesInDirectory();            //cfg.Transactions();
