@@ -65,8 +65,21 @@ The list of the built-in supported transport is available in the [NServiceBus Co
 
 #### Serialization
 
-	//TODO
-	            //cfg.UseSerialization();
+Serialization can be controlled via the `UseSerialization` method, using one of the following supported serializers:
+
+* `BinarySerializer`: binary serializer;
+* `BsonSerializer`: BSON serializer;
+* `JsonSerializer`: JSON serializer;
+* `XmlSerializer`: XML serializer;
+
+Some serializers have specific `SerializationExtensions` that allows to customize the serializer behavior:
+
+* `JsonSerializer`:
+	* `Encoding`: defines the necoding of the serialized stream;
+* `XmlSerializer`:
+	* `DontWrapRawXml`: Tells the serializer to not wrap properties which have either XDocument or XElement with a "PropertyName" element;
+	* `Namespace`: Configures the serializer to use a custom namespace. `http://tempuri.net` is the default. If the provided namespace ends with trailing forward slashes, those will be removed on the fly;
+	* `SanitizeInput`: Tells the serializer to sanitize the input data from illegal characters;
 	            
 #### Transactions
 
@@ -119,6 +132,14 @@ If a single endpoint contains multiple handlers that are registered to handle th
 
 * `LoadMessageHandlers`: allow to specify the order in which handlers of a given message should be invoked;
 
+#### Subscriptions
+
+Using the `AutoSubscribe` methos it is possible to control some options of the message subscriptions engine:
+
+* `DoNotRequireExplicitRouting`: Allows another endpoint to subscribe to messages addressed to the current endpoint;
+* `DoNotAutoSubscribeSagas`: Turns off auto subscriptions for sagas. Sagas where not auto subscribed by default before V4;
+* `AutoSubscribePlainMessages`: Turns on auto-subscriptions for messages not marked as commands. This was the default before V4;
+
 #### Logging
 
 	//TODO
@@ -159,7 +180,7 @@ If the `For()` method is not called NServiceBus assumes that the given persisten
 
 ##### RavenDB Persistence
 
-The `NServiceBus.RavenDB` persistence package adds some behaviors to the default `PersitenceExtensions<TPersistence>` instance:
+To configure the persitence engine to use RavenDB as the persitence storage call the `UsePersistence<RavenDBPersitence()`, or the `UsePersistence( typeof( RavenDBPersitence ) )`, method. The `NServiceBus.RavenDB` persistence package adds some behaviors to the default `PersitenceExtensions<TPersistence>` instance:
 
 * `SetDefaultDocumentStore`: sets the default RavenDB document store to use as default for storage;
 * `UseDocumentStoreForGatewayDeduplication`: sets the default RavenDB document store for gateway deduplication;
@@ -174,12 +195,16 @@ For a detailed explanation on how to connect to RavenDB, read the [Connecting to
                 
 ##### NHibernate
 
-	//TODO
+To configure the persitence engine to use NHibernate as the persitence ORM call the `UsePersistence<NHibernatePersistence()`, or the `UsePersistence( typeof( NHibernatePersistence ) )`, method. The `NServiceBus.NHibernate` persistence package adds some behaviors to the default `PersitenceExtensions<TPersistence>` instance:
 
-NHibernate persistence is supported via a separate package:
-
-* [Relational Persistence Using NHibernate in NServiceBus V3](relational-persistence-using-nhibernate);
-* [Relational Persistence Using NHibernate in NServiceBus V4](relational-persistence-using-nhibernate---nservicebus-4.x);
+* `DisableGatewayDeduplicationSchemaUpdate`: Disables the Gateway Deduplication schema updates;
+* `DisableSubscriptionStorageSchemaUpdate`: Disables the Subscription Storage schema updates;
+* `DisableTimeoutStorageSchemaUpdate`: Disables the Timeout Storage schema updates;
+* `SagaTableNamingConvention`: Allow to define the conventions used for Sagas table namings;
+* `UseGatewayDeduplicationConfiguration`: Defines the configuration to use for Gateway Deduplication;
+* `UseSubscriptionStorageConfiguration`: Defines the configuration to use for the Subscription Storage;
+* `UseTimeoutStorageConfiguration`: Defines the configuration to use for the Timeout Storage;
+* `EnableCachingForSubscriptionStorage`: Enables the usage of caching for Subscriptions;
 
 ##### In Memory Persistence
 
@@ -194,17 +219,11 @@ The methods of assigning the license to an endpoint are all detailed in the [How
 * `LicensePath( string partToLicenseFile )`: configures the endpoint to use the license file found at the supplied path;
 * `License( string licenseText )`: configures the endpoint to use the supplied license, where the license text is the content of a license file.
 
-####Queue Management
-
-	//TODO
+#### Queue Management
 
 At configuration time it is possible to define queue behavior:
 
-* `PurgeOnStartup( Boolean purge )`: determines if endpoint queues should be purged at startup.
-
-
-
-
+* `PurgeOnStartup( Boolean purge )`: determines if endpoint queues should be purged at startup. Purging queue at startup means that messages in the queue will be deleted each time the endpoint starts;
 * `DoNotCreateQueues()`: configures the endpoint to not try to create queues at startup if they are not already created.
 
 #### Creating and Starting the Bus
@@ -221,17 +240,14 @@ If the created bus is not a send-only bus it must be started via the `Start()` m
 
 	//TODO: startupAction ????
 
+#### Installers
+
+NServicesBus allows the definition of [installers](nservicebus-installers) via the `INeedToInstallSomething` interface, in NServiceBus V5 installers can be enabled calling the `EnableInstallers` method. 
+
 ### Resources
 
 [Customizing NServiceBus Configuration](customizing-nservicebus-configuration)
 
-
-
-
-
-
-
-
-            //cfg.AutoSubscribe();            //cfg.DisableDurableMessages();            //cfg.EnableDurableMessages();                        //cfg.DoNotCreateQueues();            //cfg.EnableCriticalTimePerformanceCounter();
+            //cfg.DisableDurableMessages();            //cfg.EnableDurableMessages();                        //cfg.EnableCriticalTimePerformanceCounter();
             
 		//cfg.EnableInstallers();            //cfg.EnableOutbox();                        //cfg.OverrideLocalAddress();            //cfg.OverridePublicReturnAddress();            //cfg.ScaleOut();          
