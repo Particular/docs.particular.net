@@ -46,12 +46,6 @@ Version 4 of NServiceBus was shipped with version 2.0.2375 of RavenDB resource m
 
 In **version 3 of NServiceBus** the default persistence was changed from NHibernate to RavenDB. The required RavenDB assemblies were [ILMerged](http://research.microsoft.com/en-us/people/mbarnett/ilmerge.aspx) into NServiceBus.Core.dll to give users a seamless OOTB experience.
 
-This worked but had several negative side effects
-
- * The RavenDB classes had to be internalized to avoid namespace conflicts when people also reference the actual RavenDB assemblies. This meant a strong typed configuration API, that takes a `DocumentStore`, was not possible.
- * If consumers of upgraded to newer versions of RavenDB assemblies, for bug fixes or performance improvements, it was not possible for NServiceBus to leverage these newer assemblies. NServiceBus was hard coded to use the ILMerged versions.
- * Any changes in the compatibility of the RavenDB Client and Server would require a new version of NServiceBus be release with a new ILMerged version of Raven.
-
 ### ILMerged RavenDB client versions 
 
 * Versions 3.0-3.2 of NServiceBus were shipped with version 1.0.616 of RavenDB ilmerged
