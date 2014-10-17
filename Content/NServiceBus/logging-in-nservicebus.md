@@ -17,6 +17,8 @@ The default logging behavior is as follows:
 
 All `Info` (and above) messages will be piped to the current console.
 
+Errors will be written with `ConsoleColor.Red`. Warnings will be written with `ConsoleColor.DarkYellow`. All other message will be written with `ConsoleColor.White`. 
+
 ### Trace
 
 All `Warn` (and above) messages will be written to `Trace.WriteLine`.
