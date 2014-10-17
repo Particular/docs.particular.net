@@ -252,6 +252,8 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Persistence\RavenDB\SharedDocumentStoreViaConnectionString.config" />
+    <None Include="Persistence\RavenDB\SpecificDocumentStoreViaConnectionString.config" />
     <None Include="Transports\RabbitMQ\App.config" />
   </ItemGroup>
   <ItemGroup>
@@ -288,6 +290,7 @@
     <Compile Include="Outbox\NHibernate\ShareConfiguration.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="Persistence.cs" />
+    <Compile Include="Persistence\RavenDB\Configure.cs" />
     <Compile Include="Pipeline\NewPipelineStep.cs" />
     <Compile Include="Pipeline\ReplacePipelineBehavior.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
