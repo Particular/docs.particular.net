@@ -34,7 +34,7 @@ tags:
    
 ```
 netsh http delete urlacl url=http://localhost:33333/api/
-netsh http add urlacl url=http://localhost:33333/api/ users=<accountname> Listen=yes
+netsh http add urlacl url=http://localhost:33333/api/ user=<accountname> Listen=yes
 ```
 
 ### Particular.ServiceControl windows service fails to start
