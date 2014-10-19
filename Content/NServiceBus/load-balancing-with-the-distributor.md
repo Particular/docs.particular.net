@@ -98,6 +98,10 @@ Any NServiceBus endpoint can run as a Worker node. To activate it, create a hand
 If you are hosting your endpoint with NServiceBus.Host.exe, to run as a worker, use this command line:
 
     > NServiceBus.Host.exe NServiceBus.Production NServiceBus.Worker
+    
+    > NServiceBus.Host.exe NServiceBus.Production NServiceBus.MSMQWorker  (in v5.x +)
+    
+    
 
 Configure the name of the master node server as shown in this app.config example. Note the `MasterNodeConfig` section:
 
