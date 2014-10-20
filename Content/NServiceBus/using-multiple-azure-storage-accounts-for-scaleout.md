@@ -54,13 +54,13 @@ Each endpoint uses its own Azure storage account, thereby increasing message thr
 
 ## Scale Units
 
-Scale out works to a certain extent, but it cannot be applied infinitely expecting throughput to increase accordingly. You can get so much of throughput from a single resource or group of resources grouped together. Technique applied in the cloud is resource partitioning and usage of scale units. Scale unit is a set of resources with well determined throughput where adding more resources to this unit will not result in increased throughput. When scale unit is determined, to improve throughput more scale units will be created. Scale units do not share resources.
+Scale out works to a certain extent, but you cannot apply it infinitely while expecting throughput to increase accordingly. You can only get so much throughput from a single resource or group of resources grouped together. 
 
-Example of partitioned application with different number of scale units deployed could be an application deployed in various regions.
+Suitable techniques in the cloud include resource partitioning and use of scale units. Scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput, create more scale units. Scale units do not share resources.
 
-## Sample
+An example of a partitioned application with a different number of deployed scale units is an application deployed in various regions.
 
-To see this in action, look at the [Video storage sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud)
+To see this in action, look at the [video storage sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud)
 
 **NOTE:** You must use real Azure storage accounts because the Azure storage emulator only supports a single fixed account named `devstoreaccount1`.
 
