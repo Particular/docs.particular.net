@@ -25,7 +25,7 @@ When the number of instances with endpoints are increased, all endpoints continu
 
 ![Single storage account with scaled out endpoints](../images/NServiceBus/azure01.png)
 
-While an NServiceBus endpoint can only read from a single Azure storage account, it can send messages to multiple storage accounts. Configure this by specifying a connection string when message mapping. 
+While an NServiceBus endpoint can only read from a single Azure storage account, it can send messages to multiple storage accounts. Configure this by specifying a connection string when message mapping. Each endpoint will have its own storage account to overcome Azure Storage account throughput limitation of 20,000 message/sec.
 
 Example: Endpoint 1 sends messages to Endpoint 2. Endpoint 1 defines message mapping with a connection string associated with the Endpoint 2 Azure storage account. The same idea applies to Endpoint 1 sending messages to Endpoint 2.
 
