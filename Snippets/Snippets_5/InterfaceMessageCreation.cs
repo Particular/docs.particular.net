@@ -15,6 +15,18 @@ public class InterfaceMessageCreation
         });
 
         #endregion
+
+        IMessageCreator messageCreator = null;
+        #region ReflectionInterfaceMessageCreationV5
+        //This type would be derived from some other runtime information
+        var messageType = typeof(MyInterfaceMessage);
+
+        var instance = messageCreator.CreateInstance(messageType);
+
+        //use reflection to set properties on the constructed instance
+
+        Bus.Publish(instance);
+        #endregion
     }
 
     public interface MyInterfaceMessage
