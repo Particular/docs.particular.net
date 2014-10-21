@@ -16,7 +16,7 @@ Every NServiceBus endpoint to work properly relies on a configuration to determi
 
 #### Configuration entry point
 
-[Configuration entry point](config-api-V3-V4-entry-point) in V3 and V4 is the `Configure` class.
+[Configuration entry point](V3-V4-entry-point) in V3 and V4 is the `Configure` class.
 
 #### Configuration Customization
 
@@ -58,7 +58,7 @@ Every NServiceBus endpoint to work properly relies on a configuration to determi
 
 #### Configuration entry point
 
-[Configuration entry point](config-api-V5-entry-point) in V5 is the `BusConfiguration` class.
+[Configuration entry point](V5-entry-point) in V5 is the `BusConfiguration` class.
 
 #### Configuration Customization
 
