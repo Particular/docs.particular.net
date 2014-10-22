@@ -99,6 +99,8 @@ namespace OnlineSales.Sales
 
 Run your solution again, but this time use Ctrl-F5 or from the menu choose [start without debugging](images/servicematrix-startnodebugging.png "Start without debugging") so that Visual Studio does not break each time the exception is thrown.
 
+NOTE: Be sure you have [selected a persistence store](getting-started-with-servicematrix-2.0.md#selecting-a-persistence-store). Otherwise, you will get an error message when running your solution without the debugger attached.
+
 Now send a `submitorder` message from the ECommerce app by clicking 'Send'. You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
 
 ![SLR Message in Console](images/servicematrix-slrtoerror.png) 

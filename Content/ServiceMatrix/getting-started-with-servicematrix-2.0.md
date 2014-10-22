@@ -317,10 +317,20 @@ if (Debugger.IsAttached)
 Repeat the steps above to install the NServiceBus.RavenDB NuGet package into your OnlineSales.OrderProcessing project and modify the code in `EndpointConfig.cs`.
 
 ````C#
-config.UsePersistence<RavenDBPersistence>();
+configuration.UsePersistence<RavenDBPersistence>();
 ````
 
-**TODO: Getting an error trying to run this. RavenDB 2.0 is installed, but it says 2.5 is required.**
+You will need to add the following using statement at the top of EndpointConfig.cs as well:
+
+````C#
+using NServiceBus.Persistence;
+````
+
+### Installing RavenDB 2.5
+
+An NServiceBus V5 ServiceMatrix project requires RavenDB V2.5. Download the installer from [ravendb.net](http://ravendb.net/download) and select "Development" for the target environment.
+
+NOTE: If you already have RavenDB 2.0 installed, you can uninstall the service by finding the Raven.Server.exe executable on your machine and running it from the command line with /uninstall.
 
 ## Running the Application
 
