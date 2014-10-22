@@ -68,7 +68,7 @@ With code you can configure both the Level and the logging directory. To do this
 
 <!-- import OverrideLoggingDefaultsInCode -->
 
-Ensure you do this before `Configure.With` is called.
+Ensure you do this before any bus configuration is done.
 
 ## Custom Logging
 
