@@ -41,4 +41,3 @@ The initialization code instructs NServiceBus to use a `CustomConfigurationSourc
 * Fluent configuration API:
   * [Introduction to fluent configuration API](fluent-config-api-v3-v4-intro)
   * [Fluent configuration API documentation](fluent-config-api-v3-v4)
-* Webinar recording [Mastering NServiceBus Configuration](https://particular-1.wistia.com/medias/q8tdr6mnzz) (It includes V5 configuration overview)
