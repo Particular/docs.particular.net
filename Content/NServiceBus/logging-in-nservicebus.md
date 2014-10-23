@@ -5,7 +5,7 @@ tags:
 - Logging
 ---
 
-INFO: this is relevant to versions 5 and above. For earlier versions, see [Logging in version 4 and below](logging-in-nservicebus4_and_below.md).
+INFO: This is relevant to versions 5 and above. For earlier versions, see [Logging in version 4 and below](logging-in-nservicebus4_and_below.md).
 
 ## Default Logging
 
