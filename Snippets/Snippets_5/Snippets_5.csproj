@@ -115,15 +115,15 @@
     </Reference>
     <Reference Include="NServiceBus.Azure, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Azure.6.0.0-beta0003\lib\net45\NServiceBus.Azure.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Azure.6.0.1\lib\net45\NServiceBus.Azure.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.6.0.0-beta0003\lib\net45\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.6.0.1\lib\net45\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.6.0.0-beta0003\lib\net45\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.6.0.1\lib\net45\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.CommonLogging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -131,7 +131,7 @@
     </Reference>
     <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.5.0.0\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.5.0.1\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Gateway, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -139,7 +139,7 @@
     </Reference>
     <Reference Include="NServiceBus.Host, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Host.5.0.0\lib\net45\NServiceBus.Host.exe</HintPath>
+      <HintPath>..\packages\NServiceBus.Host.5.0.1\lib\net45\NServiceBus.Host.exe</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Log4Net, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -172,12 +172,13 @@
     <Reference Include="NServiceBus.ObjectBuilder.StructureMap">
       <HintPath>..\packages\NServiceBus.StructureMap.5.0.0\lib\net45\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.ObjectBuilder.Unity, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.Unity.6.0.1\lib\net45\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus.RavenDB, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.RavenDB.2.0.0\lib\net45\NServiceBus.RavenDB.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Unity">
-      <HintPath>..\packages\NServiceBus.Unity.6.0.0\lib\net45\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.RabbitMQ, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -247,10 +248,13 @@
     <Content Include="SecondLevelRetries\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="app.config" />
+    <None Include="Audit\App.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Persistence\RavenDB\SharedDocumentStoreViaConnectionString.config" />
+    <None Include="Persistence\RavenDB\SpecificDocumentStoreViaConnectionString.config" />
+    <None Include="Transports\RabbitMQ\App.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
@@ -286,12 +290,14 @@
     <Compile Include="Outbox\NHibernate\ShareConfiguration.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="Persistence.cs" />
+    <Compile Include="Persistence\RavenDB\Configure.cs" />
     <Compile Include="Pipeline\NewPipelineStep.cs" />
     <Compile Include="Pipeline\ReplacePipelineBehavior.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
     <Compile Include="PurgeOnStartup.cs" />
     <Compile Include="RunCustomActionReplacement.cs" />
-    <Compile Include="SagaMapping.cs" />
+    <Compile Include="Sagas\SagaBasics.cs" />
+    <Compile Include="Sagas\SagaMapping.cs" />
     <Compile Include="Scheduler.cs" />
     <Compile Include="ScaleOut.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
@@ -303,12 +309,10 @@
     <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="Transports.cs" />
+    <Compile Include="Transports\RabbitMQ\ConfigurationSettings.cs" />
+    <Compile Include="Transports\SqlServer\ConfigurationSettings.cs" />
     <Compile Include="TypeScanning.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <StartAction>Program</StartAction>
-    <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
-  </PropertyGroup>
 </Project>

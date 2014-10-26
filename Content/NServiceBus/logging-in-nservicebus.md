@@ -5,7 +5,7 @@ tags:
 - Logging
 ---
 
-NOTE: this is relevant to versions 5 and above. For earlier versions, see [Logging in version 4 and below](logging-in-nservicebus4_and_below.md).
+INFO: This is relevant to versions 5 and above. For earlier versions, see [Logging in version 4 and below](logging-in-nservicebus4_and_below.md).
 
 ## Default Logging
 
@@ -16,6 +16,8 @@ The default logging behavior is as follows:
 ### Console
 
 All `Info` (and above) messages will be piped to the current console.
+
+Errors will be written with `ConsoleColor.Red`. Warnings will be written with `ConsoleColor.DarkYellow`. All other message will be written with `ConsoleColor.White`. 
 
 ### Trace
 
@@ -66,7 +68,7 @@ With code you can configure both the Level and the logging directory. To do this
 
 <!-- import OverrideLoggingDefaultsInCode -->
 
-Ensure you do this before `Configure.With` is called.
+Ensure you do this before any bus configuration is done.
 
 ## Custom Logging
 

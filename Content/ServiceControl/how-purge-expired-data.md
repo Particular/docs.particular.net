@@ -19,11 +19,15 @@ It is possible to control the above behavior using the following settings:
 * ExpirationProcessTimerInSeconds: the default is once a minute.
 * HoursToKeepMessagesBeforeExpiring: the default is 30 days.
 
-To change the ServiceControl behavior, add the above settings to the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file)).
+To change the ServiceControl behavior, you need to update its settings (see [Customizing ServiceControl configuration](creating-config-file)).
 
 **Example:** check for expiration every 2 minutes and expire messages older than 10 days.
 
-```xml
-<add key="ServiceControl/ExpirationProcessTimerInSeconds" value="120" />
-<add key="ServiceControl/HoursToKeepMessagesBeforeExpiring" value="240" />
+```bat
+x:\Your_Installed_Path\ServiceControl.exe --restart -d=ServiceControl/ExpirationProcessTimerInSeconds==120 -d=ServiceControl/HoursToKeepMessagesBeforeExpiring==240
 ```
+
+<p class="alert alert-info">
+<strong>ServiceControl default installed location</strong><br/>
+By default ServiceControl is installed in [Program Files]\Particular Software\ServiceControl.
+</p>

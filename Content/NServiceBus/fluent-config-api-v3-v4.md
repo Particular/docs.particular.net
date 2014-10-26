@@ -8,6 +8,8 @@ tags:
 
 NOTE: This article refers to NServiceBus V3 and V4
 
+NOTE: Watch the webminar recording [Mastering NServiceBus Configuration](https://particular-1.wistia.com/medias/q8tdr6mnzz) (It includes V5 configuration overview)
+
 An introduction to the NServiceBus configuration is available in the [Introduction to Fluent Configuration API in V3 and V4](fluent-config-api-v3-v4-intro) article. 
 
 ### Fluent Configuration API
@@ -110,11 +112,11 @@ To enable Performance Counters for a specific endpoint, call the `EnablePerforma
 
 NServiceBus has the concept of [SLA](/servicepulse/monitoring-nservicebus-endpoints#service-level-agreement-sla-). The endpoint SLA can be defined using the `SetEndpointSLA( TimeSpan sla )` method.
 
-#### Persistance
+#### Persistence
 
 Some NServiceBus features rely on persistence storage to work properly. Beginning with V3 the default persistence storage is RavenDB.
 
-#####R avenDB Persistence
+##### RavenDB Persistence
 
 * `RavenPersistence()`: configures the endpoint to use RavenDB and expects to find a connection string in the endpoint configuration file, named `NServiceBus/Persistence`.
 * `RavenPersistence( 

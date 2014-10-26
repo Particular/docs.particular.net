@@ -155,7 +155,7 @@ The in-memory implementation of `IPersistTimeouts` can be seen [here](https://gi
 
 ## Outbox persister
 
-The Outbox functionality, new in NServiceBus v5, is a feature providing reliable messaging on top of various transports without using MSDTC. You can read more about the Outbox feature in [Reliable messaging without MSDTC](https://github.com/Particular/docs.particular.net/blob/master/Content/NServiceBus/no-dtc.md).
+The Outbox functionality, new in NServiceBus v5, is a feature providing reliable messaging on top of various transports without using MSDTC. You can read more about the Outbox feature in [Reliable messaging without MSDTC](http://docs.particular.net/nservicebus/no-dtc).
 
 An Outbox persister is implementing the following interface:
 

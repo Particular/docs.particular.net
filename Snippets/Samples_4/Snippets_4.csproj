@@ -177,7 +177,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="Audit\App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +189,7 @@
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="Gateway\GatewayConfig.cs" />
+    <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
     <Compile Include="SubscriptionSettings.cs" />

@@ -14,14 +14,15 @@ Retrieve these two properties by issuing an HTTP call to `http://localhost:33333
 
 You can customize the two values in several ways:
 
-* Create or open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file)) and add the following settings:
+* Modify ServiceControl configuration (see [Customizing ServiceControl configuration](creating-config-file)) using the following command:
+  ```bat
+  x:\Your_Installed_Path\ServiceControl.exe --restart -d="ServiceControl/Name==YourFavoriteName" -d="ServiceControl/Description==ServiceControl service description"
+  ```
 
-
-```xml
-<add key="ServiceControl/Name" value="YourFavoriteName" />
-<add key="ServiceControl/Description" value="ServiceControl service description" />
-```
-
+  <p class="alert alert-info">
+  <strong>ServiceControl default installed location</strong><br/>
+  By default ServiceControl is installed in [Program Files]\Particular Software\ServiceControl.
+  </p>
 
 * Change the registry settings in the `HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceControl` node, editing the `Name` and `Description` keys.
 * Change the regstry settings in the `HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ParticularSoftware\ServiceControl` node, editing the `Name` and `Description` keys.

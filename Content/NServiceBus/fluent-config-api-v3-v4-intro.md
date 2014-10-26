@@ -8,6 +8,8 @@ tags:
 
 NOTE: This article refers to NServiceBus V3 and V4
 
+NOTE: Watch the webminar recording [Mastering NServiceBus Configuration](https://particular-1.wistia.com/medias/q8tdr6mnzz) (It includes V5 configuration overview)
+
 Every NServiceBus endpoint that works properly relies on a configuration to determine settings and behaviors other than endpoint core functionalities.
 
 ### NServiceBus Host
@@ -49,7 +51,7 @@ public class CustomConfiguration : IWantCustomInitialization
 }
 ```
 
-NOTE: Do not start the bus; the host will do it. *`(comment - expand on this topic a bit)`*
+NOTE: Do not start the bus; the host will do it.
 
 More about [configuration customization](customizing-nservicebus-configuration).
 

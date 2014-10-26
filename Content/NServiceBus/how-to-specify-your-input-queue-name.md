@@ -17,7 +17,9 @@ When using NServiceBus.Host, the namespace of the class implementing `IConfigure
 
 ### EndpointName attribute
 
-You can set the endpoint name using the `[EndpointName]` attribute on your endpoint configuration. NOTE: This will only work when using [NServiceBus host](the-nservicebus-host.md).
+You can set the endpoint name using the `[EndpointName]` attribute on your endpoint configuration. 
+
+NOTE: This will only work when using [NServiceBus host](the-nservicebus-host.md).
     
 <!-- import EndpointNameByAttributeV5 -->  
 
