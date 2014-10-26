@@ -8,7 +8,7 @@ As a part of the NServiceBus "Fault-Tolerant by Default" design, the infrastruct
 
 ## Clients and servers
 
-Ideally, server code processes messages transactionally, but it often isn't required for clients, particularly desktop applications. This is one of the differences between the `AsAClient` and `AsAServer` settings of the [generic host](the-nservicebus-host.md) in NServiceBus.
+Ideally, server code processes messages transactionally, but it often isn't required for clients, particularly desktop applications. This is one of the differences between the `AsA_Client` and `AsA_Server` settings of the [generic host](the-nservicebus-host.md) in NServiceBus.
 
 ## Specifying transactions in code
 
@@ -58,7 +58,7 @@ Messages are processed in NServiceBus as follows:
 4.  If the thread is able to get it, NServiceBus tries to deserialize the message. If this fails, the message moves to the configured error queue and the transaction commits.
 5.  After a successful deserialization, NServiceBus invokes all infrastructure and applicative message modules and handlers. An exception in this step causes the transaction to roll back and the message to return to the input queue.
 
-    -   This happens the "MaxRetries" [configurable](msmqtransportconfig.md#maxretries) number of times.
+    -   This happens the "MaxRetries" [configurable](msmqtransportconfig#maxretries) number of times.
     -   After that, the message passes to the [Second Level Retries (SLR).](second-level-retries.md)
     -   If after SLR the error still occurs, the message will be moved to the configured error queue.
 
