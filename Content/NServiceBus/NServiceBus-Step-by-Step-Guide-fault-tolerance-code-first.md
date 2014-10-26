@@ -50,7 +50,7 @@ SLR is enabled by default, the default policy will defer the message
 
 So, let's make the processing of messages in the 'Server' endpoint fail.
 
-Throw an exception in the `SubmitOrderProcessor` code like this:
+Throw an exception in the `PlaceOrderHandler` code like this:
 
 ```C#
 namespace Ordering.Server
