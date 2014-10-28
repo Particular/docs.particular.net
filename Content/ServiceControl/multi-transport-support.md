@@ -17,7 +17,7 @@ tags:
 
 First, download the NuGet package for the relevant transport including any dependencies.    
 
-* RabbitMQ: [NServiceBus.RabbitMQ v1.1.5](https://www.nuget.org/api/v2/package/NServiceBus.RabbitMQ/1.1.5) and [RabbitMQ.Client](https://www.nuget.org/api/v2/package/RabbitMQ.Client)
+* RabbitMQ: [NServiceBus.RabbitMQ v1.1.5](https://www.nuget.org/api/v2/package/NServiceBus.RabbitMQ/1.1.5) and [RabbitMQ.Client 3.3.5](https://www.nuget.org/api/v2/package/RabbitMQ.Client/3.3.5)
 * SQL Server: [NServiceBus.SqlServer v1.2.2](https://www.nuget.org/api/v2/package/NServiceBus.SqlServer/1.2.2)
 * Windows Azure Storage Queues: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/5.3.8) and [WindowsAzure.Storage](https://www.nuget.org/api/v2/package/WindowsAzure.Storage)
 * Windows Azure ServiceBus: [NServiceBus.Azure.Transports.WindowsAzureServiceBus v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureServiceBus/5.3.8) and [WindowsAzure.ServiceBus](https://www.nuget.org/api/v2/package/WindowsAzure.ServiceBus)
