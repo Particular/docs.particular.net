@@ -11,11 +11,17 @@ tags:
 - Windows
 ---
 
-NServiceBus relies on a few key pieces of infrastructure in order to run properly. This page gives you an overview of the requirements for running NSerivceBus on the windows platform.
+NServiceBus relies on a few key pieces of infrastructure in order to run properly. This page gives you an overview of the requirements for running NServiceBus on the windows platform.
 
 ## Queuing system
 
-NServiceBus works on top of existing queuing systems to provide the reliable communications that has become the trademark of NServiceBus. By default we use MSMQ which is the queuing system that comes with every installation of Windows. NServiceBus will configure MSMQ automatically for you but if you need to do it manually just make sure not to enable the Active Directory integration since that causes the addressing used be NServiceBus to not function properly. 
+NServiceBus works on top of existing queuing systems to provide the reliable communications that has become the trademark of NServiceBus. By default we use MSMQ which is the queuing system that comes with every installation of Windows. Configuring NServiceBus via the [PlatformInstaller](http://particular.net/downloads) will configure MSMQ automatically for you but if you need to do it manually just make sure not to enable the following components:
+- MSMQ Active Directory Domain Services Integration
+- MSMQ Http Support
+- MSMQ Triggers
+- Multicasting Support
+- MSMQ DCOM Proxy
+as they cause the addressing used in NServiceBus to not function properly 
 
 To read more about MSMQ go [here](msmq-information.md). To learn how the MSMQ transport works and how to configure it, go [here](msmqtransportconfig.md).
 
