@@ -25,7 +25,7 @@ CREATE TABLE [dbo].[{0}](
 
 Additionally, a clustered index on a ```[RowVersion]``` column is created. The column are directly mapped to the properties of ```NServiceBus.TransportMessage``` class. Receiving messages is conducted via a ```DELETE``` statement from the top of the table (the oldest row according to ```[RowVersion]``` column).
 
-The tables are created during host install time by [installers](http://docs.particular.net/nservicebus/nservicebus-installers). It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
+The tables are created during host install time by [installers](nservicebus/nservicebus-installers). It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
 
 ## Concurrency
 

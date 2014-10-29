@@ -46,7 +46,7 @@ The Refresh and Auto-Refresh toolbar buttons enable you to update the displayed 
 
 Auto-refresh keeps the information in ServiceInsight automatically refreshed, delivering near real-time information to the views. 
 
-You can specify the auto-refresh rate in the "View" > "Options" > "Auto-Refresh Timer" setting (default is auto-refresh every 15 seconds; lowest value is 1 second), or you can specify the auto-refresh rate using the ServiceInsight invocation parameter (see [ServiceInsight Invocation](http://docs.particular.net/Serviceinsight/application-invocation)) 
+You can specify the auto-refresh rate in the "View" > "Options" > "Auto-Refresh Timer" setting (default is auto-refresh every 15 seconds; lowest value is 1 second), or you can specify the auto-refresh rate using the ServiceInsight invocation parameter (see [ServiceInsight Invocation](Serviceinsight/application-invocation)) 
 
 ###Timing and Performance
 You can use the performance-related information in the message header to sort the messages in an endpoint based on the time the messages were sent, critical time, processing time, delivery time, Message Type and ID. 

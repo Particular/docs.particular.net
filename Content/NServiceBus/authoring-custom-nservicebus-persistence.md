@@ -4,7 +4,7 @@ summary: How to author a custom NServiceBus persistence in NServiceBus v5
 tags: []
 ---
 
-NServiceBus requires a persistence mechanism to store data for some of it's features, as discussed in  [Persistence in NServiceBus](http://docs.particular.net/nservicebus/persistence-in-nservicebus).
+NServiceBus requires a persistence mechanism to store data for some of it's features, as discussed in  [Persistence in NServiceBus](nservicebus/persistence-in-nservicebus).
 
 While a variety of persistence technologies are supported out of the box by NServiceBus (for example SQL databases via NHibernate, or RavenDB) you sometimes may want to write your own persistence, for example in order to reuse a database / persistence technology already in your stack and used by other parts of your system, but is not supported by NServiceBus yet. As you will see, writing an NServiceBus persistence is quite a straight forward task.
 
@@ -101,7 +101,7 @@ Another obvious piece of data that needs to be persisted by NServiceBus is Saga 
 
 Persisting a Saga is really just a matter of serializing this class and storing it within the underlying persistent storage. However, note how Sagas are allowed to be pulled by various criteria (property name and value) and not only by their ID. This means you should pay attention to those methods and use indexes or whatever other method that makes sense with your persistent technology of choice to pull Sagas efficiently. Like before, favor read speed over write speed.
 
-Another important aspect of Saga persistence is concurrency. By design, it is possible for Sagas to be accessed and ammended by more than one thread concurrently. This requires the Saga persister to allow for a strong consistency model, to ensure Sagas are written and updated in an atomic manner. Every persistence technology is going to have its own way of providing this ability; for example SQL databases provide ACID guarantees and allow for optimizations like the Upgrade Lock mode to allow for efficient and secure updates under lock. RavenDB however is an eventually-consistent storage, and as such it uses optimistic concurrency and some tricks to implement the unique constraint functionality. To learn more about this and what is required from the Saga persister, read the [NServiceBus Sagas And Concurrency article](http://docs.particular.net/nservicebus/nservicebus-sagas-and-concurrency).
+Another important aspect of Saga persistence is concurrency. By design, it is possible for Sagas to be accessed and ammended by more than one thread concurrently. This requires the Saga persister to allow for a strong consistency model, to ensure Sagas are written and updated in an atomic manner. Every persistence technology is going to have its own way of providing this ability; for example SQL databases provide ACID guarantees and allow for optimizations like the Upgrade Lock mode to allow for efficient and secure updates under lock. RavenDB however is an eventually-consistent storage, and as such it uses optimistic concurrency and some tricks to implement the unique constraint functionality. To learn more about this and what is required from the Saga persister, read the [NServiceBus Sagas And Concurrency article](nservicebus-sagas-and-concurrency).
 
 The in-memory implementation of `ISagaPersister` can be found [here](https://github.com/Particular/NServiceBus/blob/4.6.5/src/NServiceBus.Core/Persistence/InMemory/SagaPersister/InMemorySagaPersister.cs). Note how the Get by property method is implemented inefficiently, iterating through all Sagas instead of using indexes. For production worthy persisters this should not be the case.
 
@@ -155,7 +155,7 @@ The in-memory implementation of `IPersistTimeouts` can be seen [here](https://gi
 
 ## Outbox persister
 
-The Outbox functionality, new in NServiceBus v5, is a feature providing reliable messaging on top of various transports without using MSDTC. You can read more about the Outbox feature in [Reliable messaging without MSDTC](http://docs.particular.net/nservicebus/no-dtc).
+The Outbox functionality, new in NServiceBus v5, is a feature providing reliable messaging on top of various transports without using MSDTC. You can read more about the Outbox feature in [Reliable messaging without MSDTC](nservicebus/no-dtc).
 
 An Outbox persister is implementing the following interface:
 
@@ -191,7 +191,7 @@ The Store method has to use the same persistence session as the user's code - th
 
 ## Enabling persisters via Features
 
-You can implement any of the persisters based on your requirements. None of them are mandatory, and you can even use different persistence technologies for different persistence concerns (like SQL Server for timeouts and RavenDB for Sagas). Once the persisters you need have been written and properly tested, you need to enable them using [Features](http://docs.particular.net/nservicebus/fluent-config-api-v3-v4-intro#features).
+You can implement any of the persisters based on your requirements. None of them are mandatory, and you can even use different persistence technologies for different persistence concerns (like SQL Server for timeouts and RavenDB for Sagas). Once the persisters you need have been written and properly tested, you need to enable them using [Features](nservicebus/fluent-config-api-v3-v4-intro#features).
 
 Once a persister has been written, tested and exposed via a Feature, all that is left to do is add a reference to the assembly containing it from your endpoints, and change the endpoint configuration accordingly to enable it. An example for such configuration would be:
 
