@@ -188,7 +188,7 @@ There are several keys each of which map to a different colored alert
 | `WARNING`        | yellow |
 | `DANGER`         | red    | 
 
-Keys, that are case-sensistive, can be used in two manners
+Keys can be used in two manners
 
 ### Single-line
 
