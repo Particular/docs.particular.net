@@ -192,6 +192,12 @@ Keys can be used in two manners
 
 ### Single-line
 
+This can be done with the following syntax
+
+    KEY: the note text.
+
+For example this
+
     Note: Some sample note text.
 
 Will be rendered as
@@ -204,7 +210,7 @@ Will be rendered as
 
 Sometimes it is necessary to group markdown elements inside a note. This can be done with the following syntax
  
-    {{NOTE:
+    {{KEY:
     Inner markdown elements
     }}
 
