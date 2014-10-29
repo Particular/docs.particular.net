@@ -104,25 +104,6 @@ To link to the file `\Content\NServiceBus\Page2.md`, use `[Page 2 Text](Page2.md
 
 To link to the file `\Content\ServiceControl\Page3.md`, use `[Page 3 Text](../ServiceControl/Page3.md)`.
 
-## Notes
-
-Any text of the following form
-
-    Note: Some sample note text.
-
-Will be rendered as
-
-![](NoteExample.png)
-
-The text has to immediately follow `NOTE:`.
-
-If multi-line markdown is required inside a note then use the following 
-
-    <p class="alert alert-info">
-      NOTE: 
-       * Point One 
-       * Point Two
-    </p> 
 
 ## Markdown 
 
@@ -192,6 +173,55 @@ The resulting markdown will be will be
     var configure = Configure.With();
     ``` 
 
+## Alerts
+
+Sometimes is necessary to draw attention to items you want to call out in a document.
+
+This is achieved through bootstrap alerts http://getbootstrap.com/components/#alerts
+
+There are several keys each of which map to a different colored alert
+
+| Key              | Color  |
+|------------------|--------|
+| `SUCCESS`        | green  |
+| `NOTE` or `INFO` | blue   |
+| `WARNING`        | yellow |
+| `DANGER`         | red    | 
+
+Keys can be used in two manners
+
+### Single-line
+
+    Note: Some sample note text.
+
+Will be rendered as
+
+    <p class="alert alert-info">
+       Some sample note text.
+    </p> 
+
+### Multi-line
+
+Sometimes it is necessary to group markdown elements inside a note. This can be done with the following syntax
+ 
+    {{NOTE:
+    Inner markdown elements
+    }}
+
+For example this 
+
+    {{NOTE:
+    * Point one
+    * Point Two
+    }} 
+
+Would be rendered as 
+
+    <p class="alert alert-info">
+    * Point One 
+    * Point Two
+    </p> 
+
 ## Anchors
 
 One addition to standard markdown is the auto creation of anchors for headings.
@@ -211,22 +241,33 @@ Which means elsewhere in the page you can link to it with this:
 
     [Goto My Heading](#My-Heading)
 
-<!--
-## Alerts
+## Images
 
-Sometimes is necessary to draw attention to items you want to call out in a document.
-Unfortunately markdown does not have a way to add class attributes so you will have to write the HTML by hand and embed it.
+Images can be added using the following markdown syntax 
 
-```html
-<div class="alert alert-success">...</div>
-<div class="alert alert-info">...</div>
-<div class="alert alert-warning">...</div>
-<div class="alert alert-danger">...</div>
-```
+    ![Alt text](/path/to/img.jpg "Optional title")
 
-This will produce:
-![Alerts Example](alerts.jpg)
--->
+With the minimal syntax being 
+
+    ![](/path/to/img.jpg)
+
+### Image sizing 
+
+Image size can be controlled by adding a the text `width=x` to the end of the title
+
+For example
+
+    ![Alt text](/path/to/img.jpg "Optional title width=x")
+
+With the minimal syntax being 
+
+    ![](/path/to/img.jpg "with=x")
+
+This will result in the image being resized with the following parameters
+
+    width="x" height="auto"
+
+It will also wrap the image in a clickable lightbox so the full image can be accessed. 
 
 ## Some Useful Characters
 
