@@ -275,7 +275,7 @@ Since you selected the NServiceBus host for your OrderProcessing endpoint it is 
 As you click the Send button in the website, you will see the console indicate that the `OrderProcessing` endpoint has received the messages.
 
 ##Using ServiceInsight
-By default, when you run a ServiceMatrix project, [ServiceInsight](../ServiceInsight/index.md "ServiceInsight") is launched.  ServiceInsight is another Particular Service Platform application that provides a detailed runtime view of your solution.  It will illustrate and enumerate the messages, endpoints and data in your solution as you create an debug it.  To understand how to use ServiceInsight to complement ServiceMatrix please see [this article on that topic](servicematrix-serviceinsight.md "Using ServiceInsight and ServiceMatrix").  
+By default, when you run a ServiceMatrix project, [ServiceInsight](../ServiceInsight "ServiceInsight") is launched.  ServiceInsight is another Particular Service Platform application that provides a detailed runtime view of your solution.  It will illustrate and enumerate the messages, endpoints and data in your solution as you create an debug it.  To understand how to use ServiceInsight to complement ServiceMatrix please see [this article on that topic](servicematrix-serviceinsight.md "Using ServiceInsight and ServiceMatrix").  
 
 ![ServiceInsight](images/serviceinsight-screen.jpg)
 
@@ -285,7 +285,7 @@ You've just built your first NServiceBus application. Wasn't that easy?
 
 ## Next Steps
 
-We mentioned that [ServiceInsight](../ServiceInsight/index.md "ServiceInsight") can be a valuable tool in the design process and where to [learn more about it](servicematrix-serviceinsight.md).  For runtime monitoring of an NServiceBus solution, the platform also includes [ServicePulse](../ServicePulse/index.md "ServicePulse for Monitoring").  
+We mentioned that [ServiceInsight](../ServiceInsight) can be a valuable tool in the design process and where to [learn more about it](servicematrix-serviceinsight.md).  For runtime monitoring of an NServiceBus solution, the platform also includes [ServicePulse](../ServicePulse).  
 
 In this article you saw how to use ServiceMatrix to connect a front end website and a backend processing system using NServiceBus. 
 

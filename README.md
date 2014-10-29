@@ -104,6 +104,7 @@ To link to the file `\Content\NServiceBus\Page2.md`, use `[Page 2 Text](Page2.md
 
 To link to the file `\Content\ServiceControl\Page3.md`, use `[Page 3 Text](../ServiceControl/Page3.md)`.
 
+Don't link to `index.md` pages, instead link to the directory. So link to `/NServiceBus/Logging` and NOT `/NServiceBus/Logging/index.md`
 
 ## Markdown 
 
