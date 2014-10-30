@@ -177,7 +177,7 @@ The `Billing` service receives the `Orderaccepted` event and handles it in the `
 
 ## Using ServiceInsight
 
-[ServiceInsight](../ServiceInsight) is an additional tool in the NServiceBus framework.  It uses audit and error data to provide a valuable view of a running system.  If you have ServiceInsight installed, it launches each time you debug.  When used at debug time, ServiceInsight lists and illustrates the messages related to your current debug session.  
+[ServiceInsight](/ServiceInsight) is an additional tool in the NServiceBus framework.  It uses audit and error data to provide a valuable view of a running system.  If you have ServiceInsight installed, it launches each time you debug.  When used at debug time, ServiceInsight lists and illustrates the messages related to your current debug session.  
 ###Flow Diagram
 Read about [using ServiceInsight and ServiceMatrix](servicematrix-serviceinsight.md) together, then run this solution again. Review the messages as they are processed in the flow diagram:
 

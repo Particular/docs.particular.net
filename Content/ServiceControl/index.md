@@ -7,26 +7,26 @@ summary: ServiceControl Documentation Table of Contents
 
 ### Introduction
 
-- [Customizing ServiceControl Configuration](creating-config-file)
+- [Customizing ServiceControl Configuration](creating-config-file.md)
 
 ### Configuration
 
-- [Configuring ServiceControl to use non-MSMQ Transports](multi-transport-support)
-- [Setting custom hostname for ServiceControl & ServicePulse](setting-custom-hostname)
-- [Customize RavenDB Embedded Path and Drive](configure-ravendb-location)
-- [Setting Custom Name and Description Properties for ServiceControl API](customize-name-and-description)
-- [Configuring ServiceControl Log Location](setting-custom-log-location)
-- [Configuring a non-privileged Service Account](configure-non-privileged-service-account)
+- [Configuring ServiceControl to use non-MSMQ Transports](multi-transport-support.md)
+- [Setting custom hostname for ServiceControl & ServicePulse](setting-custom-hostname.md)
+- [Customize RavenDB Embedded Path and Drive](configure-ravendb-location.md)
+- [Setting Custom Name and Description Properties for ServiceControl API](customize-name-and-description.md)
+- [Configuring ServiceControl Log Location](setting-custom-log-location.md)
+- [Configuring a non-privileged Service Account](configure-non-privileged-service-account.md)
 
 ### Management
 
-- [Securing Access to ServiceControl](securing-servicecontrol)
-- [ServiceControl Capacity Planning](capacity-and-planning)
-- [Setting Automatic Expiration for ServiceControl Data](how-purge-expired-data)
-- [How to Backup the ServiceControl Database](backup-sc-database)
-- [How to Directly Access ServiceControl Data via RavenDB Studio](use-ravendb-studio)
-- [ServiceControl Capacity and Planning](capacity-and-planning)
+- [Securing Access to ServiceControl](securing-servicecontrol.md)
+- [ServiceControl Capacity Planning](capacity-and-planning.md)
+- [Setting Automatic Expiration for ServiceControl Data](how-purge-expired-data.md)
+- [How to Backup the ServiceControl Database](backup-sc-database.md)
+- [How to Directly Access ServiceControl Data via RavenDB Studio](use-ravendb-studio.md)
+- [ServiceControl Capacity and Planning](capacity-and-planning.md)
 
 ### Troubleshooting
 
-- [Troubleshooting](troubleshooting)
+- [Troubleshooting](troubleshooting.md)

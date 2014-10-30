@@ -56,7 +56,7 @@ The ServiceControl plugins are deployed with the endpoints they are monitoring. 
 NOTE: For NServiceBus version-dependent requirements for each plugin, review the "Dependencies" section in the NuGet Gallery page for the specific plugin.  
 **Related articles**
 
-- [How to configure endpoints for monitoring by ServicePulse](ServicePulse/how-to-configure-endpoints-for-monitoring)
+- [How to configure endpoints for monitoring by ServicePulse](ServicePulse/how-to-configure-endpoints-for-monitoring.md)
 
 ## Connecting the Plugins to ServiceControl
 
@@ -81,7 +81,7 @@ An inactive endpoint indicates that there is a failure in the communication path
 
 **Related articles**
 
-- [Introduction to Endpoints and Heartbeats in ServicePulse](/ServicePulse/intro-endpoints-heartbeats)
+- [Introduction to Endpoints and Heartbeats in ServicePulse](/ServicePulse/intro-endpoints-heartbeats.md)
 
 ### ServiceControl CustomChecks Plugin 
 
@@ -100,7 +100,7 @@ The result of a custom check is either success or a failure (with a detailed des
 
 **Related articles**
 
-- [How to Develop Custom Checks for ServicePulse](ServicePulse/how-to-develop-custom-checks)
+- [How to Develop Custom Checks for ServicePulse](ServicePulse/how-to-develop-custom-checks.md)
 
 ### ServiceControl SagaAudit Plugin
 
@@ -111,7 +111,7 @@ However, depending on the saga's update frequency, it may also result in a large
 
 **Related articles**
 
-* [ServiceInsight Overview - The Saga View](ServiceInsight/getting-started-overview#the-saga-view)
+* [ServiceInsight Overview - The Saga View](ServiceInsight/getting-started-overview#the-saga-view.md)
 
 ### ServiceControl DebugSession Plugin
 
@@ -121,5 +121,5 @@ When deployed, the debug session plugin adds a specified debug session identifie
 
 **Related articles**
 
-* [ServiceMatrix and ServiceInsight Interaction](ServiceMatrix/servicematrix-serviceinsight)
+* [ServiceMatrix and ServiceInsight Interaction](ServiceMatrix/servicematrix-serviceinsight.md)
   

@@ -51,4 +51,4 @@ NOTE: ServiceControl consumes messages from the Audit queue and stores it tempor
 
 ### Troubleshooting: 
 
-See [Troubleshooting Guide](Troubleshooting)
+See [Troubleshooting Guide](Troubleshooting.md)

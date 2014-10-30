@@ -7,11 +7,11 @@ summary: ServicePulse Documentation Table of Contents
 
 ### Introduction
 
-- [Installing ServicePulse](introduction-and-installing-servicepulse)
-- [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints)
-- [Monitoring Endpoints in ServicePulse](intro-endpoints-heartbeats)
-- [Monitoring Failed Messages](intro-failed-messages)
-- [Developing and monitoring Custom Checks](intro-endpoints-custom-checks)
+- [Installing ServicePulse](introduction-and-installing-servicepulse.md)
+- [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints.md)
+- [Monitoring Endpoints in ServicePulse](intro-endpoints-heartbeats.md)
+- [Monitoring Failed Messages](intro-failed-messages.md)
+- [Developing and monitoring Custom Checks](intro-endpoints-custom-checks.md)
 
 ### Presentations and Webinars
 
@@ -19,14 +19,14 @@ summary: ServicePulse Documentation Table of Contents
 
 ### How To
 
-- [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring)
+- [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md)
 - [How to develop Custom Checks for ServicePulse](how-to-develop-custom-checks)
 
 ### Troubleshooting
 
-- [Troubleshooting](Troubleshooting)
+- [Troubleshooting](Troubleshooting.md)
 
 ### Related Articles
 
 - [Setting a Custom Hostname for ServiceControl and ServicePulse](/ServiceControl/setting-custom-hostname)
-- [ServiceControl Endpoint Plugins](/ServiceControl/Plugins)
+- [ServiceControl Endpoint Plugins](/ServiceControl/Plugins.md)

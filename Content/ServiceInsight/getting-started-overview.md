@@ -129,4 +129,4 @@ After the NServiceBus completes auto-retry, the errant message goes to an error 
 
 ## Next Steps
 
-ServiceInsight allows you to visualize your NServiceBus system and get a detailed view of how it works.  Explore the other framework tools: [ServiceMatrix](../ServiceMatrix), [ServiceControl](../ServiceControl) and  [ServicePulse](../ServicePulse). 
+ServiceInsight allows you to visualize your NServiceBus system and get a detailed view of how it works.  Explore the other framework tools: [ServiceMatrix](/ServiceMatrix), [ServiceControl](/ServiceControl) and  [ServicePulse](/ServicePulse). 

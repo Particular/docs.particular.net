@@ -35,7 +35,7 @@ Two key properties are highlighted below:
 
 ![Solution Properties Window](images/servicematrix-solutionpropertieswindow.png)
 
-To set things up for debugging, ServiceMatrix not only needs to launch ServiceInsight, but also must locate and integrate with [ServiceControl](../ServiceControl). ServiceControl aggregates log and error information from the Errors and Audit queues of your system. It also provides the data and query ability necessary for ServiceInsight to access the message data. 
+To set things up for debugging, ServiceMatrix not only needs to launch ServiceInsight, but also must locate and integrate with [ServiceControl](/ServiceControl). ServiceControl aggregates log and error information from the Errors and Audit queues of your system. It also provides the data and query ability necessary for ServiceInsight to access the message data. 
 
 Turn on the automatic launch of ServiceInsight using the property shown.  By default, ServiceMatrix uses the Windows registry to determine the location of the ServiceControl but you can change this property for your specific situation as required. 
 
@@ -43,13 +43,13 @@ Turn on the automatic launch of ServiceInsight using the property shown.  By def
 
 ### Debugging Metadata
 
-When debugging a ServiceMatrix solution, an new assembly is added to your project. If you look at your project references in the Solution Explorer, you will see that your projects have a reference to the `ServiceControl.Plugin.DebugSession` assembly.  This assembly is a [ServiceControl Endpoint Plugin](../ServiceControl/Plugins.md "ServiceControl Endpoint Plugins") for debugging. 
+When debugging a ServiceMatrix solution, an new assembly is added to your project. If you look at your project references in the Solution Explorer, you will see that your projects have a reference to the `ServiceControl.Plugin.DebugSession` assembly.  This assembly is a [ServiceControl Endpoint Plugin](/ServiceControl/Plugins.md "ServiceControl Endpoint Plugins") for debugging. 
 
 This debug assembly is loaded by NServiceBus and adds a specific debug session ID to the header of each message.  When ServiceInsight is launched, it uses this ID to filter the results to only the messages for your debug session. 
 
 # Launching ServiceInsight
 
-When you launch your ServiceMatrix solution in the Visual Studio debugger, ServiceInsight launches and delivers the debug session ID needed for searching. For more details about invoking ServiceInsight, refer to the article on [ServiceInsight Application Invocation](../ServiceInsight/application-invocation.md "Invoking ServiceInsight").  The image below shows the search window of ServiceInsight populated with the filter that uses the debug session ID.
+When you launch your ServiceMatrix solution in the Visual Studio debugger, ServiceInsight launches and delivers the debug session ID needed for searching. For more details about invoking ServiceInsight, refer to the article on [ServiceInsight Application Invocation](/ServiceInsight/application-invocation.md "Invoking ServiceInsight").  The image below shows the search window of ServiceInsight populated with the filter that uses the debug session ID.
 
 ![ServiceInsight Message Window](images/servicematrix-serviceinsightmessagewindow.png)
 
@@ -67,4 +67,4 @@ ServiceInsight provides information including message data, a detailed saga view
 
 # Next Steps
 
-The debug integration of ServiceInsight and ServiceMatrix delivers the power of ServiceInsight to your design process. To learn more about ServiceInsight, refer to the articles [here](../ServiceInsight).
+The debug integration of ServiceInsight and ServiceMatrix delivers the power of ServiceInsight to your design process. To learn more about ServiceInsight, refer to the articles [here](/ServiceInsight).
