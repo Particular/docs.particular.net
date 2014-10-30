@@ -111,7 +111,7 @@ However, depending on the saga's update frequency, it may also result in a large
 
 **Related articles**
 
-* [ServiceInsight Overview - The Saga View](ServiceInsight/getting-started-overview#the-saga-view.md)
+* [ServiceInsight Overview - The Saga View](ServiceInsight/getting-started-overview.md#the-saga-view)
 
 ### ServiceControl DebugSession Plugin
 

@@ -27,7 +27,7 @@ To see a detailed display of the failed messages, click the Failed Messages indi
 * **Message Details:** For each failed message, displays the message type, exception description, endpoint name and location, and failure timestamp.    
 * **StackTrace:** Displays the full .NET exception stacktrace when you click the "Show stacktrace" link.
 * **Copy Message Id:** Copies the failed message unique identifier to the clipboard, for future reference, when you click "Copy ID to clipboard". 
-* **Open in ServiceInsight:** Launches ServiceInsight, focusing on the failed message for in-depth analysis of the failure causes. (For more details, see [ServiceInsight Overview](/ServiceInsight/getting-started-overview).) Only works if ServiceInsight is installed on the local machine.   
+* **Open in ServiceInsight:** Launches ServiceInsight, focusing on the failed message for in-depth analysis of the failure causes. (For more details, see [ServiceInsight Overview](/ServiceInsight/getting-started-overview.md).) Only works if ServiceInsight is installed on the local machine.   
 
 ### Failed Message Retry
 
@@ -47,7 +47,7 @@ NOTE: Tracking the number of repeated retry attempts may be significant to your 
 
 **Related articles:**
 
-* [Failed Messages display and Retry in ServiceInsight](/ServiceInsight/getting-started-overview#errors-and-retries)
+* [Failed Messages display and Retry in ServiceInsight](/ServiceInsight/getting-started-overview.md#errors-and-retries)
 
 ### Archiving Failed Messages
 

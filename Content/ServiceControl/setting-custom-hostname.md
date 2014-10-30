@@ -9,7 +9,7 @@ tags:
 
 To set a custom hostname and IP port for ServiceControl:
 
-1. Open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file))  
+1. Open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file.md))  
 1. Add the `ServiceControl/Hostname` and `ServiceControl/Port` settings in the `<appSettings>` section. 
 
 

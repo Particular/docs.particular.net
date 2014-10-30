@@ -26,7 +26,7 @@ If there is some other operation that isn't strictly a query that returns a valu
 If you need to invoke a Web/WCF service as a part of your message handling logic, where that logic also updates transactional resources like a database, the best practice is to split it into two endpoints.
 
 If you don't require a response from the Web/WCF service, have the first endpoint publish an event to which the second endpoint subscribes to
-([more FAQ info](how-to-pub-sub-with-NServiceBus)) and have the second endpoint call the Web/WCF service.
+([more FAQ info](how-to-pub-sub-with-NServiceBus.md)) and have the second endpoint call the Web/WCF service.
 
 If you do need a response from the Web/WCF service, turn the first endpoint into a [saga](sagas-in-nservicebus.md) that sends (not publishes) a message to the second endpoint, which calls the Web/WCF service and [replies](how-do-i-reply-to-a-message.md) with a response that is handled by the saga in the first endpoint.
 

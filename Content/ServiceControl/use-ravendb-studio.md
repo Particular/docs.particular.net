@@ -12,7 +12,7 @@ NOTE: The ServiceControl RavenDB embedded instance is used exclusively by Servic
 
 There are two ways to enable direct access to RavenDB:
 
-* Open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file)) add the following setting:
+* Open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file.md)) add the following setting:
 
 ```
 <add key="ServiceControl/ExposeRavenDB" value="true" />

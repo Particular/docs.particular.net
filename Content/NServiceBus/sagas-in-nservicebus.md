@@ -150,4 +150,4 @@ The usual way is to correlate on some kind of ID and let the user tell you how t
 
 - [Sagas and concurrency](nservicebus-sagas-and-concurrency.md)
 - [Using Sagas in ServiceMatrix](/ServiceMatrix/getting-started-sagasfullduplex-2.0.md)
-- [Saga View in ServiceInsight](/ServiceInsight/getting-started-overview#the-saga-view.md)
+- [Saga View in ServiceInsight](/ServiceInsight/getting-started-overview.md#the-saga-view)

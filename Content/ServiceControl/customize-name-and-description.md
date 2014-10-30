@@ -14,7 +14,7 @@ Retrieve these two properties by issuing an HTTP call to `http://localhost:33333
 
 You can customize the two values in several ways:
 
-* Modify ServiceControl configuration (see [Customizing ServiceControl configuration](creating-config-file)) using the following command:
+* Modify ServiceControl configuration (see [Customizing ServiceControl configuration](creating-config-file.md)) using the following command:
   ```bat
   x:\Your_Installed_Path\ServiceControl.exe --restart -d="ServiceControl/Name==YourFavoriteName" -d="ServiceControl/Description==ServiceControl service description"
   ```
