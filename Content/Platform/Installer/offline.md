@@ -41,4 +41,6 @@ Download and execute the following PowerShell script:
 
 Platform tools can be manually installed using their own standalone installer, available at the Particular web site [download page](http://www.particular.net/downloads).
 
-ServiceMatrix requires to download packages from a feed to function properly. A workaround, if the public NuGet feed is not accessible, is to setup a [local/private NuGet server](http://docs.nuget.org/docs/creating-packages/hosting-your-own-nuget-feeds) and host NServiceBus packages in it.
+#### ServiceMatrix
+
+ServiceMatrix requires to download packages from the NuGet public feed to function properly, currently ServiceMatrix can be installed offline using the stand alone installer but requires an internet connection, and access to NuGet public feed, to create and manage projects.
