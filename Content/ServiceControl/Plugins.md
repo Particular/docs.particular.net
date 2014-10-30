@@ -100,7 +100,7 @@ The result of a custom check is either success or a failure (with a detailed des
 
 **Related articles**
 
-- [How to Develop Custom Checks for ServicePulse](ServicePulse/how-to-develop-custom-checks.md)
+- [How to Develop Custom Checks for ServicePulse](/ServicePulse/how-to-develop-custom-checks.md)
 
 ### ServiceControl SagaAudit Plugin
 

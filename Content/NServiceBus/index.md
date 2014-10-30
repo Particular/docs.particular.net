@@ -123,7 +123,7 @@ summary: NServiceBus Documentation Table of Contents
 - [How Do I Expose an NServiceBus Endpoint as a Web WCF Service](how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service.md)
 - [Type Was Not Registered in the Serializer](type-was-not-registered-in-the-serializer.md)
 - [MessageQueueException Insufficient Resources to Perform Operation](messagequeueexception-insufficient-resources-to-perform-operation.md)
-- [How to Specify Your Input Queue Name](how-to-specify-your-input-queue-name)
+- [How to Specify Your Input Queue Name](how-to-specify-your-input-queue-name.md)
 - [In a Distributor Scenario What Happens to the Message If a Worker Goes Down](in-a-distributor-scenario-what-happens-to-the-message-if-a-worker-goes-down.md)
 - [No Endpoint Configuration Found in Scanned Assemblies Exception](no-endpoint-configuration-found-in-scanned-assemblies-exception.md)
 - [DtcPing Warning the Cid Values for Both Test Machines Are the Same](dtcping-warning-the-cid-values-for-both-test-machines-are-the-same.md)
