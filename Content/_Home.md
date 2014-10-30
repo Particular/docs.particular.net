@@ -180,7 +180,7 @@
 </div>
 <div class="block middle">
   <div class="ic">
-    <a href="/nservicebus/nservicebus-step-by-step-guide" class="img">
+    <a href="/nservicebus/nservicebus-step-by-step-guide.md" class="img">
       <img src="/images/home/gettingStarted.png" /><img src="/images/home/gettingStartedHover.png" class="hover"/><br/>
       Getting Started &rarr;
     </a>
@@ -198,7 +198,7 @@
     </a>
   </div>
   <div class="ic">
-    <a href="/platform/samples/" class="img rarr">
+    <a href="/platform/samples.md" class="img rarr">
       <img src="/images/home/Samples.png" /><img src="/images/home/SamplesHover.png" class="hover"/><br/>
       Samples &rarr;
     </a>
@@ -271,9 +271,9 @@
   <div class="productcolumn block">
     <p><h4>Generate a fully functional distributed application skeleton in a matter of minutes</h4></p>
     <ul>
-      <li><a href="/servicematrix/getting-started-with-servicematrix-2.0">Getting Started</a></li>
-      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe">Publish/Subscribe</a></li>
-      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance">Fault Tolerance</a></li>
+      <li><a href="/servicematrix/getting-started-with-servicematrix-2.0.md">Getting Started</a></li>
+      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li>
+      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md">Fault Tolerance</a></li>
     </ul>
     <a href="/servicematrix/"><h3>Learn more &rarr;</h3></a>
    <div style="clear: both"></div>
@@ -281,9 +281,9 @@
   <div class="productcolumn block">
     <p><h4>Complete under-the-hood visualization of the your system's behavior</h4></p>
     <ul>
-      <li><a href="/serviceinsight/getting-started-overview">Getting Started</a></li>
-      <li><a href="/servicematrix/servicematrix-serviceinsight">Interaction with ServiceMatrix</a></li>
-      <li><a href="/serviceinsight/application-invocation">Application invocation</a></li>
+      <li><a href="/serviceinsight/getting-started-overview.md">Getting Started</a></li>
+      <li><a href="/servicematrix/servicematrix-serviceinsight.md">Interaction with ServiceMatrix</a></li>
+      <li><a href="/serviceinsight/application-invocation.md">Application invocation</a></li>
     </ul>
     <a href="/serviceinsight/"><h3>Learn more &rarr;</h3></a>
     <div style="clear: both"></div>
@@ -291,9 +291,9 @@
   <div class="productcolumn last block">
     <p><h4>Real-time monitoring that is custom tailored to fit your distributed systems</h4></p>
     <ul>
-      <li><a href="/servicepulse/intro-endpoints-heartbeats">Monitoring Endpoints</a></li>
-      <li><a href="/servicepulse/intro-failed-messages">Handling Failed Messages</a></li>
-      <li><a href="/servicepulse/intro-endpoints-custom-checks">Introduction to Custom Checks</a></li>
+      <li><a href="/servicepulse/intro-endpoints-heartbeats.md">Monitoring Endpoints</a></li>
+      <li><a href="/servicepulse/intro-failed-messages.md">Handling Failed Messages</a></li>
+      <li><a href="/servicepulse/intro-endpoints-custom-checks.md">Introduction to Custom Checks</a></li>
     </ul>
     <a href="/servicepulse/"><h3>Learn more &rarr;</h3></a>
     <div style="clear: both"></div>
