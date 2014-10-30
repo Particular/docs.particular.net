@@ -44,10 +44,10 @@ You can install ServicePulse using the [Particular Service Platform Installer](/
 ServicePulse connects to and relies on ServiceControl as its data source.  
 For details on ServiceControl and ServicePulse configuration options, see: 
 
-* [Configuring ServiceControl](/ServiceControl/creating-config-file)
+* [Configuring ServiceControl](/ServiceControl/creating-config-file.md)
 * [ServiceControl Guidance](/servicecontrol)
  
-NOTE: ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](how-purge-expired-data).
+NOTE: ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](/servicecontrol/how-purge-expired-data.md).
 
 ### Troubleshooting: 
 

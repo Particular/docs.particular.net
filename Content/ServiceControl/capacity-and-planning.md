@@ -21,7 +21,7 @@ The storage size that ServiceControl requires depends on the production load and
 
 Since ServiceControl is intended to be a recent-history storage to support ServicePulse and ServiceInsight monitoring and debugging activity. This is different from a long-term data archiving system, that is intended to provide extremely long term archiving and storage solutions (measured in years, subject to various business or regulatory requirements).
 
-ServiceControl is configured with a [default expiration policy](/ServiceControl/how-purge-expired-data) that deletes old messages after a predefined time. The expiration policy can be [customized](/ServiceControl/how-purge-expired-data) to decrease or increase the amount of time data is retained, which impacts the storage requirements of ServiceControl.
+ServiceControl is configured with a [default expiration policy](/ServiceControl/how-purge-expired-data.md) that deletes old messages after a predefined time. The expiration policy can be [customized](/ServiceControl/how-purge-expired-data.md) to decrease or increase the amount of time data is retained, which impacts the storage requirements of ServiceControl.
 
 **NOTE**
 
