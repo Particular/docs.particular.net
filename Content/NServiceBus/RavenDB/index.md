@@ -8,4 +8,4 @@ tags:
 
 ## Table of Contents
 
-- [Version Compatibility](VersionCompatibility)
+- [Version Compatibility](VersionCompatibility.md)

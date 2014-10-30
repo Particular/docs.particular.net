@@ -6,9 +6,9 @@ tags:
 - Introduction
 ---
 
-When an NServiceBus endpoint fails to process a message, it performs a set of configurable attempts to recover from this failure. These attempts are referred to as First Level Retries (FLR) and Second Level Retries (SLR) and in many cases allow the endpoint to overcome intermittent communication failures. (For more details, see [Fault Tolerance](/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance#fault-tolerance) and [Second Level Retries](/NServiceBus/second-level-retries).)
+When an NServiceBus endpoint fails to process a message, it performs a set of configurable attempts to recover from this failure. These attempts are referred to as First Level Retries (FLR) and Second Level Retries (SLR) and in many cases allow the endpoint to overcome intermittent communication failures. (For more details, see [Fault Tolerance](/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md#fault-tolerance) and [Second Level Retries](/NServiceBus/second-level-retries.md).)
 
-If the FLR and SLR processing attempts also fail, the endpoint forwards the failed message to the central error queue defined for all endpoints in the system. (See [Auditing with NServiceBus](/NServiceBus/auditing-with-nservicebus).) 
+If the FLR and SLR processing attempts also fail, the endpoint forwards the failed message to the central error queue defined for all endpoints in the system. (See [Auditing with NServiceBus](/NServiceBus/auditing-with-nservicebus.md).) 
 
 ServicePulse (via ServiceControl) monitors the central error queue and displays the current status and details of failed messages as an indicator in the ServicePulse dashboard.
 

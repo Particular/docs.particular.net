@@ -13,7 +13,7 @@ The primary job of ServiceControl is to collect information on system behavior i
 
 #### Location
 
-ServiceControl stores its data in a RavenDB embedded instance, whose storage location on disk can be [customized](/ServiceControl/configure-ravendb-location). The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. You should configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
+ServiceControl stores its data in a RavenDB embedded instance, whose storage location on disk can be [customized](configure-ravendb-location.md). The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. You should configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
 
 #### Size
 
@@ -39,7 +39,7 @@ To access raw message data for storage in a long-term archive or in a specialize
 
 You can configure ServiceControl to forward any consumed messages into alternate queues, so that a copy of any message consumed by ServiceControl is available from these alternate queues.
 
-For more details, see [Customizing ServiceControl Configuration](creating-config-file#consuming-messages-from-audit-amp-error-queues).
+For more details, see [Customizing ServiceControl Configuration](creating-config-file.md#consuming-messages-from-audit-amp-error-queues).
 
 #### Query the ServiceControl HTTP API
 

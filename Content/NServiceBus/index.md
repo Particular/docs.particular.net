@@ -21,7 +21,7 @@ summary: NServiceBus Documentation Table of Contents
 
 ## Getting Started
 
-- [Overview](Overview)
+- [Overview](Overview.md)
 - [NServiceBus Step by Step Guide](NServiceBus-Step-by-Step-Guide.md)
 - [NServiceBus Step by Step Guide Fault Tolerance Code First](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md)
 - [NServiceBus Step by Step Publish Subscribe Communication Code First](nservicebus-step-by-step-publish-subscribe-communication-code-first.md)

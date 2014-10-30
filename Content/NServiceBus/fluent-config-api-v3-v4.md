@@ -106,11 +106,11 @@ NServiceBus [manages fault](msmqtransportconfig.md). To activate the fault manag
 
 #### Performance Counters
 
-To enable Performance Counters for a specific endpoint, call the `EnablePerformanceCounters()` method. For more information on  NServiceBus performance counters, read the [Performance Counters](monitoring-nservicebus-endpoints#nservicebus-performance-counters.md) article.
+To enable Performance Counters for a specific endpoint, call the `EnablePerformanceCounters()` method. For more information on  NServiceBus performance counters, read the [Performance Counters](monitoring-nservicebus-endpoints.md#nservicebus-performance-counters) article.
 
 #### Service Level Agreement
 
-NServiceBus has the concept of [SLA](/servicepulse/monitoring-nservicebus-endpoints#service-level-agreement-sla-.md). The endpoint SLA can be defined using the `SetEndpointSLA( TimeSpan sla )` method.
+NServiceBus has the concept of [SLA](/servicepulse/monitoring-nservicebus-endpoints.md#service-level-agreement-sla-). The endpoint SLA can be defined using the `SetEndpointSLA( TimeSpan sla )` method.
 
 #### Persistence
 

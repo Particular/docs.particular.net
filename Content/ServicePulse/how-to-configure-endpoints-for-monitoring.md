@@ -64,4 +64,4 @@ tags:
 
 #### Related articles
 
-* [ServiceControl Endpoint Plugins](/ServiceControl/Plugins)
+* [ServiceControl Endpoint Plugins](/ServiceControl/Plugins.md)
