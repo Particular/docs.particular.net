@@ -144,7 +144,7 @@ Some scenarios require an in-memory persistence configuration, such as the devel
 * `InMemorySagaPersister()`: configures the saga persistence to run in memory.
 * `InMemorySubscriptionStorage()`: configures the subscription manager to persist subscriptions in memory.
 
-Details of all the persistence options are in the [Persistence in NServiceBus](persistence-in-nservicebus) article.
+Details of all the persistence options are in the [Persistence in NServiceBus](persistence-in-nservicebus.md) article.
 
 #### MSMQ
 

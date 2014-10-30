@@ -145,7 +145,7 @@ Finally, in 'EndpointConfig.cs', select the `InMemoryPersistence` store like you
 configuration.UsePersistence<InMemoryPersistence>();
 ````
 
-NOTE: Remember, InMemoryPersistence is not appropriate for production use. Read [Persistence In NServiceBus](persistence-in-nservicebus) for details.
+NOTE: Remember, InMemoryPersistence is not appropriate for production use. Read [Persistence In NServiceBus](persistence-in-nservicebus.md) for details.
 
 ### Running the solution
 

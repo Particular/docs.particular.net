@@ -24,8 +24,8 @@ The main difference, as outlined above, is that you should not rely on any techn
 
 For more information about enabling the Azure storage queues or Azure Service Bus transports, refer to the following documentation:
 
-* [Azure storage queues](/nservicebus/using-azure-storage-queues-as-transport-in-nservicebus)
-* [Azure Service Bus](/nservicebus/using-azure-servicebus-as-transport-in-nservicebus)
+* [Azure storage queues](/nservicebus/using-azure-storage-queues-as-transport-in-nservicebus.md)
+* [Azure Service Bus](/nservicebus/using-azure-servicebus-as-transport-in-nservicebus.md)
 
 For persistence you can rely on any option, including RavenDB, SQL Server installed on a Virtual Machine, SQL Azure or Windows Azure storage services.
 
@@ -41,7 +41,7 @@ The advised transports in this environment are `AzureStorageQueuesTransport` and
 
 The same applies to the persistence infrastructure if you select an 'as a service' option such as Windows Azure storage or SQL Azure, as you cannot put the websites in the same virtual network as your hosted infrastructure.
 
-To learn more about enabling persistence with Windows Azure storage, refer to [Azure storage persisters](/nservicebus/using-azure-storage-persistence-in-nservicebus).
+To learn more about enabling persistence with Windows Azure storage, refer to [Azure storage persisters](/nservicebus/using-azure-storage-persistence-in-nservicebus.md).
 
 ## Cloud Services 
 
@@ -62,7 +62,7 @@ Next to your endpoint, the role definition will also include additional services
 
 To integrate these facilities with your endpoint code, we have provided a specific `NServiceBusRoleEntrypoint` that wires our regular host into a role entrypoint. In addition, there are specific NServiceBus `Roles` (not to be confused with Azure roles) such as `AsA_Worker` in the `NServiceBus.Hosting.Azure` package.
 
-To learn more about the details of hosting in windows azure cloud services, refer to [Cloud Services](/nservicebus/hosting-nservicebus-in-windows-azure-cloud-services).
+To learn more about the details of hosting in windows azure cloud services, refer to [Cloud Services](/nservicebus/hosting-nservicebus-in-windows-azure-cloud-services.md).
 
 ## Cloud Services - Shared Hosting
 
@@ -70,7 +70,7 @@ The Cloud Services model is beautiful when it comes to building large scale syst
 
 To support this need to start small, we also provide a shared hosting option, using the `AsA_Host` role. In this model, the role entry point doesn't actually host an endpoint itself. Instead, it downloads, invokes, and manages other worker role entry points as child processes on the same machine.
 
-If you want to learn more about the shared hosting options, please refer to [Cloud Services - Shared hosting](/nservicebus/shared-hosting-nservicebus-in-windows-azure-cloud-services).
+If you want to learn more about the shared hosting options, please refer to [Cloud Services - Shared hosting](/nservicebus/shared-hosting-nservicebus-in-windows-azure-cloud-services.md).
 
 ## Sample
 

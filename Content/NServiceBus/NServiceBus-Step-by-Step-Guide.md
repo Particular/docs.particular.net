@@ -194,7 +194,7 @@ The quickest way to fix this for the sake of this demonstration is to replace `P
 configuration.UsePersistence<InMemoryPersistence>();
 ````
 
-NServiceBus requires a persistence store for handling subscriptions, sagas, timeouts, deduplication, etc. InMemoryPersistence is fine for this simple example, but it is not intended for production use. Please read [Persistence In NServiceBus](persistence-in-nservicebus) for more information on how to select a persistence store and install the correct dependencies.
+NServiceBus requires a persistence store for handling subscriptions, sagas, timeouts, deduplication, etc. InMemoryPersistence is fine for this simple example, but it is not intended for production use. Please read [Persistence In NServiceBus](persistence-in-nservicebus.md) for more information on how to select a persistence store and install the correct dependencies.
 
 ### Running the solution
 
