@@ -32,7 +32,7 @@ In short, the scale-out benefits of MSMQ V4 by itself are quite limited.
 
 ## Performance?
 
-The distributor is doing multiple operations for each message it is processing (receives a ready message form a worker, sends the work message to the worker, receives a ready message post processing) so it's performance is limited although it is doing very little work, therefore the benefit of using a distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short lived unites of work (a quick read form the database and dispatching a message using Bus.Send/Bus.Publish)
+The distributor is doing multiple operations for each message it is processing (receives a ready message form a worker, sends the work message to the worker, receives a ready message post processing) so it's performance is limited although it is doing very little work, therefore the benefit of using a distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short lived unites of work (a quick read from the database and dispatching a message using Bus.Send/Bus.Publish)
 
 To get a sense of the expected performance you can divide your regular endpoint performance and divide it by 4.
 
