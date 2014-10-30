@@ -40,7 +40,7 @@ All the distributor does at this point is forward the message it receives to ano
 
 You can think of the distributor as something like a load balancer it distributes the messages coming to it to a number of other machines. This kind of physical one-to-many communication is needed for scaling out the number of machines running for a given subscriber, but doesn't actually entail any pub/sub. Each subscriber gets its own distributor and each of them decides independently to which machine it passes its messages.
 
-See [more information on the distributor](load-balancing-with-the-distributor).
+See [more information on the distributor](load-balancing-with-the-distributor.md).
 
 ## The same for any publisher node
 

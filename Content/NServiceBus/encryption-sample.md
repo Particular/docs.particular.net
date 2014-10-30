@@ -62,7 +62,7 @@ public class SecurityConfig : IWantCustomInitialization
 [Rijndael algorithm](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) .
 
 The rest of the file shows that you can set the contents of the encrypted property just like any other property, and then use the bus to send the message. Read about [sending messages](how-do-i-send-a-message.md) and
-[here](how-do-i-specify-store-forward-for-a-message) too.
+[here](how-do-i-specify-store-forward-for-a-message.md) too.
 
 Look at the app.config file in the client project. There is an additional configuration section for the Rijndael encryption service:
 

@@ -7,7 +7,7 @@ tags:
 - diff
 ---
 
-For specific examples of how to upgrade your code see the [4 to 5 upgrade guide](nservicebus/upgradeguides/4to5)
+For specific examples of how to upgrade your code see the [4 to 5 upgrade guide](4to5.md)
 
 
 ## The following public types have been removed.

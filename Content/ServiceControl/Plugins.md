@@ -56,7 +56,7 @@ The ServiceControl plugins are deployed with the endpoints they are monitoring. 
 NOTE: For NServiceBus version-dependent requirements for each plugin, review the "Dependencies" section in the NuGet Gallery page for the specific plugin.  
 **Related articles**
 
-- [How to configure endpoints for monitoring by ServicePulse](ServicePulse/how-to-configure-endpoints-for-monitoring.md)
+- [How to configure endpoints for monitoring by ServicePulse](/ServicePulse/how-to-configure-endpoints-for-monitoring.md)
 
 ## Connecting the Plugins to ServiceControl
 
@@ -111,7 +111,7 @@ However, depending on the saga's update frequency, it may also result in a large
 
 **Related articles**
 
-* [ServiceInsight Overview - The Saga View](ServiceInsight/getting-started-overview.md#the-saga-view)
+* [ServiceInsight Overview - The Saga View](/ServiceInsight/getting-started-overview.md#the-saga-view)
 
 ### ServiceControl DebugSession Plugin
 
@@ -121,5 +121,5 @@ When deployed, the debug session plugin adds a specified debug session identifie
 
 **Related articles**
 
-* [ServiceMatrix and ServiceInsight Interaction](ServiceMatrix/servicematrix-serviceinsight.md)
+* [ServiceMatrix and ServiceInsight Interaction](/ServiceMatrix/servicematrix-serviceinsight.md)
   
