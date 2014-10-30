@@ -1,5 +1,5 @@
 ---
-title: ServiceControl Documentation
+title: ServiceControl
 summary: ServiceControl Documentation Table of Contents
 ---
 

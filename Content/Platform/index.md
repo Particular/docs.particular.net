@@ -1,5 +1,5 @@
 ---
-title: Platform Documentation & Guidance
+title: Platform
 summary: Platform level index for articles, guidance and documentation
 ---
 

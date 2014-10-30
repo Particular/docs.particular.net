@@ -1,5 +1,5 @@
 ---
-title: ServicePulse Documentation
+title: ServicePulse
 summary: ServicePulse Documentation Table of Contents
 ---
 

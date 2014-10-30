@@ -1,5 +1,5 @@
 ---
-title: ServiceMatrix Documentation
+title: ServiceMatrix
 summary: ServiceMatrix Documentation Table of Contents
 ---
 
