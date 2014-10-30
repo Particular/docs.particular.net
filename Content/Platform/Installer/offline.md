@@ -4,9 +4,9 @@ summary: 'Guidance on how to install the platform components offline'
 tags: [Platform, Installation, Offline]
 ---
 
-The [Platform Installer](/paltform/installer) handles installing pre-requisites for NServiceBus and the Platform products, such as [ServiceInsight](/ServiceInsight), [ServiceMatrix](/ServiceMatrix), [ServicePulse](/ServicePulse) and [ServiceControl](/ServicePulse).
+The [Platform Installer](/platform/installer) handles installing pre-requisites for NServiceBus and the Platform products, such as [ServiceInsight](/ServiceInsight), [ServiceMatrix](/ServiceMatrix), [ServicePulse](/ServicePulse) and [ServiceControl](/ServicePulse).
 
-The Platform Installer depends on [Chocolatey](https://chocolatey.org) & Chocolatey packages, and those packages contain URLs for the sources for the binaries. For this reason the Platform Installer requires an internet connection and requires access to the Chocolatey repository to work properly.
+The Platform Installer depends on [Chocolatey](https://chocolatey.org) & Chocolatey packages, and those packages contain the URLs for the installation binaries. For this reason the Platform Installer requires an internet connection and requires access to the Chocolatey repository.
 
 ## Platform Offline Installation
 
@@ -29,7 +29,7 @@ Download the following files:
 * https://github.com/Particular/Packages.DTC/blob/master/src/tools/setup.ps1
 * https://github.com/Particular/Packages.DTC/blob/master/src/tools/RegHelper.cs
 
-Execute the Setup.ps1 PowerShell script.
+Execute the Setup.ps1 PowerShell script.   
 
 #### Performance Counters
 
