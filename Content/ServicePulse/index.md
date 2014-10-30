@@ -20,7 +20,7 @@ summary: ServicePulse Documentation Table of Contents
 ### How To
 
 - [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md)
-- [How to develop Custom Checks for ServicePulse](how-to-develop-custom-checks)
+- [How to develop Custom Checks for ServicePulse](how-to-develop-custom-checks.md)
 
 ### Troubleshooting
 
@@ -28,5 +28,5 @@ summary: ServicePulse Documentation Table of Contents
 
 ### Related Articles
 
-- [Setting a Custom Hostname for ServiceControl and ServicePulse](/ServiceControl/setting-custom-hostname)
+- [Setting a Custom Hostname for ServiceControl and ServicePulse](/ServiceControl/setting-custom-hostname.md)
 - [ServiceControl Endpoint Plugins](/ServiceControl/Plugins.md)

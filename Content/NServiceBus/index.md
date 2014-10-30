@@ -100,7 +100,7 @@ summary: NServiceBus Documentation Table of Contents
 
 ## Versioning
 
-- [Migrating to NServiceBus 3.0 Timeouts](migrating-to-nservicebus-3.0-timeouts)
+- [Migrating to NServiceBus 3.0 Timeouts](migrating-to-nservicebus-3.0-timeouts.md)
 
 ## FAQ
 

@@ -8,7 +8,7 @@ tags:
 
 Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on.
 
-If you haven't seen the [publish/subscribe sample](publish-subscribe-sample.md) yet take a minute to walk through or start by [creating a new project using NServiceBus](NServiceBus-Step-by-Step-Guide).
+If you haven't seen the [publish/subscribe sample](publish-subscribe-sample.md) yet take a minute to walk through or start by [creating a new project using NServiceBus](NServiceBus-Step-by-Step-Guide.md).
 
 The main thing to understand is this: subscribers let the publisher know they're interested, and the publisher stores their addresses so that it knows where to send which message. It's fairly straight-forward, once you know how it all works.
 
@@ -52,8 +52,8 @@ What this means is that you can scale out the number of publishing nodes just by
 
 ## Next steps
 
--   Learn about the [API and configuration involved in pub/sub](publish-subscribe-configuration).
--   See how to [configure the distributor and learn more about its internals](load-balancing-with-the-distributor).
--   Find out how to use the [generic NServiceBus Host process](the-nservicebus-host).
+-   Learn about the [API and configuration involved in pub/sub](publish-subscribe-configuration.md).
+-   See how to [configure the distributor and learn more about its internals](load-balancing-with-the-distributor.md).
+-   Find out how to use the [generic NServiceBus Host process](the-nservicebus-host.md).
 
 

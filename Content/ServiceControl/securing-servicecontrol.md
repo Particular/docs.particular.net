@@ -22,7 +22,7 @@ This applies also to accessing ServiceControl from ServicePulse and ServiceInsig
 
 ### Extending Access by Changing Hostname
 
-You can allow access to ServiceControl from other machines by [setting a custom host name and port number](setting-custom-hostname). The scope of the access extension allowed by this change depends on the specified custom host name and port number. It also depends on various network limitations (e.g., proxy, firewall, DNS settings) that may limit access to the specified ServiceControl host and port.
+You can allow access to ServiceControl from other machines by [setting a custom host name and port number](setting-custom-hostname.md). The scope of the access extension allowed by this change depends on the specified custom host name and port number. It also depends on various network limitations (e.g., proxy, firewall, DNS settings) that may limit access to the specified ServiceControl host and port.
 
 Note that ServicePulse and ServiceInsight users need to access the ServiceControl HTTP API using the specified custom host name and port number, so you need to make sure that the network rules enable access when you specifying these details  (as well as when you apply various limiting network rules and policies).
 
@@ -50,7 +50,7 @@ For more information, see [ServiceControl: Updating URLACL Settings](setting-cus
 
 For a more fine-grained limitation on message body visibility of specific properties, you can encrypt message properties that are sensitive (e.g., credit card numbers). 
 
-An example of how to set encryption per specific message property can be viewed in the [VideoStore sample](/platform/samples/) and the [Encryption Sample](/nservicebus/encryption-sample).   
+An example of how to set encryption per specific message property can be viewed in the [VideoStore sample](/platform/samples.md) and the [Encryption Sample](/nservicebus/encryption-sample.md).   
 
 ### Accessing the Embedded RavenDB Database
 
@@ -62,7 +62,7 @@ Similarly, when backing up the ServiceControl embedded database, ensure the data
 
 For more information:
 
-- [Customizing ServiceControl Configuration](creating-config-file)
-- [Customize RavenDB Embedded Path and Drive](configure-ravendb-location)
-- [How to Backup the ServiceControl Database](backup-sc-database)
+- [Customizing ServiceControl Configuration](creating-config-file.md)
+- [Customize RavenDB Embedded Path and Drive](configure-ravendb-location.md)
+- [How to Backup the ServiceControl Database](backup-sc-database.md)
         

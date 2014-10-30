@@ -10,7 +10,7 @@ The Windows Azure Platform and NServiceBus make a perfect fit. On the one hand t
 
 If real scale is what you're looking for, as in tens, hundreds or even thousands of machines hosting each endpoint, than cloud services is the deployment model you'll need.
 
-NOTE: if you don't need the scale offered by cloud services, there are [other hosting options available.](/nservicebus/hosting-nservicebus-in-windows-azure)
+NOTE: if you don't need the scale offered by cloud services, there are [other hosting options available.](/nservicebus/hosting-nservicebus-in-windows-azure.md)
 
 
 ## Cloud Services - Worker Roles

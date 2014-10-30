@@ -98,11 +98,11 @@ To configure the encryption feature you must define the encryption algorithm. NS
 
 #### Logging
 
-You can log NServiceBus using Log4Net as the logging library. To configure the endpoint simply call the `Log4Net()` method. More information on logging is in the [Logging in NServiceBus 4 and below](logging-in-nservicebus4_and_below) article.
+You can log NServiceBus using Log4Net as the logging library. To configure the endpoint simply call the `Log4Net()` method. More information on logging is in the [Logging in NServiceBus 4 and below](logging-in-nservicebus4_and_below.md) article.
 
 #### Fault Management
 
-NServiceBus [manages fault](msmqtransportconfig). To activate the fault manager, call the `MessageForwardingInCaseOfFault()` method.
+NServiceBus [manages fault](msmqtransportconfig.md). To activate the fault manager, call the `MessageForwardingInCaseOfFault()` method.
 
 #### Performance Counters
 
@@ -110,7 +110,7 @@ To enable Performance Counters for a specific endpoint, call the `EnablePerforma
 
 #### Service Level Agreement
 
-NServiceBus has the concept of [SLA](/servicepulse/monitoring-nservicebus-endpoints#service-level-agreement-sla-). The endpoint SLA can be defined using the `SetEndpointSLA( TimeSpan sla )` method.
+NServiceBus has the concept of [SLA](/servicepulse/monitoring-nservicebus-endpoints#service-level-agreement-sla-.md). The endpoint SLA can be defined using the `SetEndpointSLA( TimeSpan sla )` method.
 
 #### Persistence
 
