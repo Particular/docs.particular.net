@@ -6,7 +6,7 @@ tags:
 - publish subscribe
 ---
 
-In the previous section: [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md) we learnt about fault tolerance.
+In the previous section: [NServiceBus Step by Step Guide - Fault Tolerance - code first](NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first.md) we learned about fault tolerance.
 
 1.  [Creating an event message](#Creating-an-event-message)
 2.  [Publishing the event](#Publishing-an-event)
@@ -32,6 +32,8 @@ Right click your Messages Project and add a class file, and create a `OrderPlace
 The message class will implement the `IEvent` marker interface
 
 ```C#
+using NServiceBus;
+
 namespace Ordering.Messages
 {
 
@@ -70,16 +72,9 @@ namespace Ordering.Server
 }
 ```
 
-As the 'Ordering.Server' endpoint is now a publisher, we need to change the endpointConfig.cs file to implement the AsAPublisher marker interface that will configure the endpoint with a Publisher profile
+**For versions 4.x and older only:** As the 'Ordering.Server' endpoint is now a publisher, we need to change the endpointConfig.cs file to implement the `AsA_Publisher` marker interface that will configure the endpoint with a Publisher profile.
 
-```C#
-namespace Ordering.Server
-{
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Publisher
-    {
-    }
-}
-```
+NOTE: AsA_Publisher is now obsolete in versions 5.x. Use AsA_Server instead.
 
 To learn more about profiles go check out: [Profiles For NServiceBus Host](profiles-for-nservicebus-host.md)
 
@@ -92,13 +87,13 @@ Right click the Ordering solution and select 'Add' \> 'New Project...'
 
 ![](003_pubsub.png)
 
-Create a class library project and name the project Subscriber.
+Create a class library project and name the project Ordering.Subscriber.
 
 ![](004_pubsub.png)
 
 We will use nuget to install the an NServiceBus.Host, in the package manager window and type
 
-    PM> Install-Package NServiceBus.Host -ProjectName Subscriber
+    PM> Install-Package NServiceBus.Host -ProjectName Ordering.Subscriber
 
 Click reload all
 
@@ -106,7 +101,7 @@ Click reload all
 
 ### Handling the event
 
-In our new Subscriber project
+In our new Ordering.Subscriber project
 
 -   Add a new class file, name it `OrderPlacedHandler`
 -   Add a reference to the `Messages` project
@@ -114,6 +109,9 @@ In our new Subscriber project
 -   Add an IBus auto property and implement the handler as shown below
 
 ```C#
+using NServiceBus;
+using Ordering.Messages;
+
 namespace Ordering.Subscriber
 {
     public class OrderPlacedHandler : IHandleMessages<OrderPlaced>
@@ -141,6 +139,14 @@ In the Odering.Subscriber project we will add MessageEndpointMappings in the app
 </UnicastBusConfig>
 ```
 
+Finally, in 'EndpointConfig.cs', select the `InMemoryPersistence` store like you did previously for Ordering.Client and Ordering.Server:
+
+````C#
+configuration.UsePersistence<InMemoryPersistence>();
+````
+
+NOTE: Remember, InMemoryPersistence is not appropriate for production use. Read [Persistence In NServiceBus](persistence-in-nservicebus.md) for details.
+
 ### Running the solution
 
 Now it's time to run the solution and see it all working together we will run the Client, Server and the Subscriber projects:
@@ -153,7 +159,7 @@ in that screen select 'Multiple startup projects' and set the 'Ordering.Client',
 
 ![](007_pubsub.png)
 
-Finally click 'F5' to run the solution.
+Finally press 'F5' to run the solution.
 
 Three console application windows should start up
 

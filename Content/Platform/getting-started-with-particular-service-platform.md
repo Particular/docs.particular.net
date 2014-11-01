@@ -25,8 +25,8 @@ The example demonstrates the integration of an online sales web store with a bac
 
 NOTE: This example requires ServiceMatrix. For a code only introduction to NServiceBus, see:
 
-* [NServiceBus Overview](/NServiceBus/overview) 
-* [NServiceBus Step by Step Guide - code first](/NServiceBus/NServiceBus-Step-by-Step-Guide) 
+* [NServiceBus Overview](/NServiceBus/overview.md) 
+* [NServiceBus Step by Step Guide - code first](/NServiceBus/NServiceBus-Step-by-Step-Guide.md) 
 
 ## Installing ServiceMatrix for Visual Studio 2012
 
@@ -282,7 +282,7 @@ As you click the Send button in the website, you will see the console indicate t
 
 ## Using ServiceInsight
 
-By default, when you run a ServiceMatrix project, [ServiceInsight](../ServiceInsight/index.md "ServiceInsight") is launched.  ServiceInsight is another Particular Service Platform application that provides a detailed runtime view of your solution.  It will illustrate and enumerate the messages, endpoints and data in your solution as you create an debug it.  To understand how to use ServiceInsight to complement ServiceMatrix please see [this article on that topic](/ServiceMatrix/servicematrix-serviceinsight.md "Using ServiceInsight and ServiceMatrix").  
+By default, when you run a ServiceMatrix project, [ServiceInsight](/ServiceInsight) is launched.  ServiceInsight is another Particular Service Platform application that provides a detailed runtime view of your solution.  It will illustrate and enumerate the messages, endpoints and data in your solution as you create an debug it.  To understand how to use ServiceInsight to complement ServiceMatrix please see [this article on that topic](/ServiceMatrix/servicematrix-serviceinsight.md "Using ServiceInsight and ServiceMatrix").  
 
 ![ServiceInsight](images/serviceinsight-screen.jpg)
 
@@ -292,7 +292,7 @@ You've just built your first NServiceBus application. Wasn't that easy?
 
 ## Next steps
 
-We've mentioned that [ServiceInsight](../ServiceInsight/index.md "ServiceInsight") can be a valuable tool in the design process and where to [learn more about it](/ServiceMatrix/servicematrix-serviceinsight.md).  For runtime monitoring of an NServiceBus solution the platform also includes [ServicePulse](../ServicePulse/index.md "ServicePulse for Monitoring").  
+We've mentioned that [ServiceInsight](/ServiceInsight) can be a valuable tool in the design process and where to [learn more about it](/ServiceMatrix/servicematrix-serviceinsight.md).  For runtime monitoring of an NServiceBus solution the platform also includes [ServicePulse](/ServicePulse "ServicePulse for Monitoring").  
 
 In this article you have seen how ServiceMatrix can be used to connect a front end website and a backend processing system using NServiceBus. 
 What's so exciting about that?  After all inter-process communication has been done many times before. 

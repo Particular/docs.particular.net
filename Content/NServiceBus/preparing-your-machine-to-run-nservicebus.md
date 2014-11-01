@@ -58,6 +58,8 @@ $(document).ready(function(){
 
 </script>
 
+**NOTE: This article is only applicable to versions 3.x and 4.x of NServiceBus**
+
 NServiceBus relies on a few key infrastructure components in order to run properly.
 <ul id="li_dtc">
     <li>DTC</li>

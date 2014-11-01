@@ -17,13 +17,32 @@ These plugins are optional from the perspective of the NServiceBus framework its
 
 The ServiceControl plugins can be downloaded and installed from the NuGet gallery. 
 
+###For NserviceBus Version 5 
+
 | **Plugin** | **NuGet gallery URL** | 
 |:----- |:----- |
-|Heartbeat|https://www.nuget.org/packages/ServiceControl.Plugin.Heartbeat|
-|Custom Checks|https://www.nuget.org/packages/ServiceControl.Plugin.CustomChecks|
-|Saga Audit|https://www.nuget.org/packages/ServiceControl.Plugin.SagaAudit|
-|Debug Session|https://www.nuget.org/packages/ServiceControl.Plugin.DebugSession|
+|Heartbeat|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat|
+|Custom Checks|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks|
+|Saga Audit|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.SagaAudit|
+|Debug Session|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.DebugSession|
 
+
+###For NserviceBus Version 4 
+
+| **Plugin** | **NuGet gallery URL** | 
+|:----- |:----- |
+|Heartbeat|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat|
+|Custom Checks|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks|
+|Saga Audit|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit|
+|Debug Session|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.DebugSession|
+
+
+###For NserviceBus Version 3 
+
+| **Plugin** | **NuGet gallery URL** | 
+|:----- |:----- |
+|Heartbeat|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat|
+|Custom Checks|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks|
 
 ## Installing and Deploying
 
@@ -37,7 +56,7 @@ The ServiceControl plugins are deployed with the endpoints they are monitoring. 
 NOTE: For NServiceBus version-dependent requirements for each plugin, review the "Dependencies" section in the NuGet Gallery page for the specific plugin.  
 **Related articles**
 
-- [How to configure endpoints for monitoring by ServicePulse](http://docs.particular.net/ServicePulse/how-to-configure-endpoints-for-monitoring)
+- [How to configure endpoints for monitoring by ServicePulse](/ServicePulse/how-to-configure-endpoints-for-monitoring.md)
 
 ## Connecting the Plugins to ServiceControl
 
@@ -49,7 +68,7 @@ NOTE: Audit and error queues must be defined for each endpoint monitored by Serv
 
 ## Understanding Plugin Functionality and Behavior
 
-### ServiceControl.Plugin.Heartbeat
+### ServiceControl Heartbeat Plugin
 
 The heartbeat plugin sends heartbeat messages from the endpoint to the ServiceControl queue. These messages are sent every 10 seconds (by default).
 
@@ -62,9 +81,9 @@ An inactive endpoint indicates that there is a failure in the communication path
 
 **Related articles**
 
-- [Introduction to Endpoints and Heartbeats in ServicePulse](/ServicePulse/intro-endpoints-heartbeats)
+- [Introduction to Endpoints and Heartbeats in ServicePulse](/ServicePulse/intro-endpoints-heartbeats.md)
 
-### ServiceControl.Plugin.CustomChecks
+### ServiceControl CustomChecks Plugin 
 
 The custom checks plugin allows the developer of an NServiceBus endpoint to define a set of conditions that are checked on endpoint startup or periodically.
 
@@ -81,9 +100,9 @@ The result of a custom check is either success or a failure (with a detailed des
 
 **Related articles**
 
-- [How to Develop Custom Checks for ServicePulse](http://docs.particular.net/ServicePulse/how-to-develop-custom-checks)
+- [How to Develop Custom Checks for ServicePulse](/ServicePulse/how-to-develop-custom-checks.md)
 
-### ServiceControl.Plugin.SagaAudit
+### ServiceControl SagaAudit Plugin
 
 The Saga Audit plugin collects saga runtime activity information. This information enables the display of detailed saga data, behavior, and current status in the ServiceInsight Saga View. The plugin sends the relevant saga state information as messages to the ServiceControl queue whenever a saga state changes. This enables the Saga View to be highly detailed and up-to-date.
 
@@ -92,9 +111,9 @@ However, depending on the saga's update frequency, it may also result in a large
 
 **Related articles**
 
-* [ServiceInsight Overview - The Saga View](http://docs.particular.net/ServiceInsight/getting-started-overview#the-saga-view)
+* [ServiceInsight Overview - The Saga View](/ServiceInsight/getting-started-overview.md#the-saga-view)
 
-### ServiceControl.Plugin.DebugSession
+### ServiceControl DebugSession Plugin
 
 Debug session is a dedicated plugin that enables integration between ServiceMatrix and ServiceInsight.
 
@@ -102,5 +121,5 @@ When deployed, the debug session plugin adds a specified debug session identifie
 
 **Related articles**
 
-* [ServiceMatrix and ServiceInsight Interaction](http://docs.particular.net/ServiceMatrix/servicematrix-serviceinsight)
+* [ServiceMatrix and ServiceInsight Interaction](/ServiceMatrix/servicematrix-serviceinsight.md)
   

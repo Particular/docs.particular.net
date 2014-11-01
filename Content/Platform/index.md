@@ -1,13 +1,13 @@
 ---
-title: Platform Documentation & Guidance
+title: Platform
 summary: Platform level index for articles, guidance and documentation
 ---
 
 ### Platform
 
-- [Getting started with the Particular Service Platform](getting-started-with-particular-service-platform)
-- [Platform Samples](samples)
-- [Releases and Release Notes](release-notes)
+- [Getting started with the Particular Service Platform](getting-started-with-particular-service-platform.md)
+- [Platform Samples](samples.md)
+- [Releases and Release Notes](release-notes.md)
 - [Platform Installer](installer)
 
 ### Applications

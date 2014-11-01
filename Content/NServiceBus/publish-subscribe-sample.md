@@ -23,7 +23,7 @@ The "MyMessages" project contains the definition of the messages that are sent b
 ### Creating and publishing messages
 
 As the name implies, the "MyPublisher" project is a publisher of event messages. It uses the bus framework to send alternatively three different types of messages every time you click Enter in its console window. The first message is constructed using the provided factory function `Bus.CreateInstance(<messagetype>)`, which creates a message that implements a specified interface or a specific type. This is in keeping with the suggested practice of [using interfaces for events](messages-as-interfaces.md) . The other messages are created simply using the 'new' keyword. The created message is populated and
-[published](how-to-pub-sub-with-NServiceBus) using `Bus.Publish`.
+[published](how-to-pub-sub-with-NServiceBus.md) using `Bus.Publish`.
 
 ```C#
 var eventId = Guid.NewGuid();
@@ -63,7 +63,7 @@ switch (nextEventToPublish)
 
 ### Implementing subscribers
 
-To receive messages from the publisher, the subscribers [must subscribe to the message types](how-to-pub-sub-with-NServiceBus) they are designed to handle. A subscriber must have a handler for the type of message and a [configuration](publish-subscribe-configuration.md) that tells the bus where to send subscriptions for messages:
+To receive messages from the publisher, the subscribers [must subscribe to the message types](how-to-pub-sub-with-NServiceBus.md) they are designed to handle. A subscriber must have a handler for the type of message and a [configuration](publish-subscribe-configuration.md) that tells the bus where to send subscriptions for messages:
 
  * The "Subscriber1" process handles and subscribes to both the "EventMessage" and "AnotherEventMessage" types.
  * The "Subscriber2" handles and subscribes to any message implementing the interface "IMyEvent".

@@ -9,7 +9,7 @@ tags:
 
 To set a custom hostname and IP port for ServiceControl:
 
-1. Open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file))  
+1. Open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file.md))  
 1. Add the `ServiceControl/Hostname` and `ServiceControl/Port` settings in the `<appSettings>` section. 
 
 
@@ -37,6 +37,8 @@ NOTE: You must set both the `ServiceControl/Hostname` and the `ServiceControl/Po
 For example, the following command line (with the appropriate adjustments for your hostname and port number) adds the relevant URLACL settting:  
 
 `Netsh http add urlacl  url=http://*:33333/  user=everyone  listen=yes`
+
+**NOTE:** Ensure that there is only one URLACL defined. 
 
 ### Configuring ServiceControl to Use a Virtual Directory
 

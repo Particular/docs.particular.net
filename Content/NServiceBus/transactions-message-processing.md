@@ -8,7 +8,7 @@ As a part of the NServiceBus "Fault-Tolerant by Default" design, the infrastruct
 
 ## Clients and servers
 
-Ideally, server code processes messages transactionally, but it often isn't required for clients, particularly desktop applications. This is one of the differences between the `AsAClient` and `AsAServer` settings of the [generic host](the-nservicebus-host.md) in NServiceBus.
+Ideally, server code processes messages transactionally, but it often isn't required for clients, particularly desktop applications. This is one of the differences between the `AsA_Client` and `AsA_Server` settings of the [generic host](the-nservicebus-host.md) in NServiceBus.
 
 ## Specifying transactions in code
 

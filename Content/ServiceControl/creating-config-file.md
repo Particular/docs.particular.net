@@ -39,16 +39,16 @@ To override these default settings:
 
 #### Using custom domain names and TCP port number
 
-- See [Setting a Custom Hostname](setting-custom-hostname) for guidance and details.
-- See [Securing ServiceControl](securing-servicecontrol) for a discussion on security implications of custom domain access and access limitation options.
+- See [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
+- See [Securing ServiceControl](securing-servicecontrol.md) for a discussion on security implications of custom domain access and access limitation options.
 
 #### Embedded database location and size
 
-ServiceControl uses RavenDB as an embedded database. The database location has significant effect both on ServiceControl throughput (number of read/write operations it can perform) and on the storage capacity (the limiting factor being the available storage on the drive on which the embedded database is located. For more information, see '[Customize RavenDB Embedded Path and Drive](configure-ravendb-location)'.
+ServiceControl uses RavenDB as an embedded database. The database location has significant effect both on ServiceControl throughput (number of read/write operations it can perform) and on the storage capacity (the limiting factor being the available storage on the drive on which the embedded database is located. For more information, see '[Customize RavenDB Embedded Path and Drive](configure-ravendb-location.md)'.
 
 #### Automatic expiration of messages 
 
-ServiceControl consumes messages from the Audit and Error queues and stores these messages temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](how-purge-expired-data).
+ServiceControl consumes messages from the Audit and Error queues and stores these messages temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](how-purge-expired-data.md).
 
 #### Consuming messages from Audit & Error queues
 

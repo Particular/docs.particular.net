@@ -150,9 +150,9 @@ NOTE: Setting the connection string in the application configuration files (web.
 
 More in depth documentation can be found in the following documents:
 
--   [Hosting NServiceBus in Windows Azure](/nservicebus/hosting-nservicebus-in-windows-azure)
--   [Hosting NServiceBus in Windows Azure Cloud Services](/nservicebus/hosting-nservicebus-in-windows-azure-cloud-services)
--   [Using Azure ServiceBus as a transport in NServiceBus](/nservicebus/using-azure-servicebus-as-transport-in-nservicebus)
--   [Using Azure Storage Queues as a transport in NServiceBus](/nservicebus/using-azure-storage-queues-as-transport-in-nservicebus)
--   [Using Azure Storage Persistence in NServiceBus](/nservicebus/using-azure-storage-persistence-in-nservicebus)
+-   [Hosting NServiceBus in Windows Azure](/nservicebus/hosting-nservicebus-in-windows-azure.md)
+-   [Hosting NServiceBus in Windows Azure Cloud Services](/nservicebus/hosting-nservicebus-in-windows-azure-cloud-services.md)
+-   [Using Azure ServiceBus as a transport in NServiceBus](/nservicebus/using-azure-servicebus-as-transport-in-nservicebus.md)
+-   [Using Azure Storage Queues as a transport in NServiceBus](/nservicebus/using-azure-storage-queues-as-transport-in-nservicebus.md)
+-   [Using Azure Storage Persistence in NServiceBus](/nservicebus/using-azure-storage-persistence-in-nservicebus.md)
 

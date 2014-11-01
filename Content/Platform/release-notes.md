@@ -7,7 +7,7 @@ tags:
 
 ### Platform Installer 
 - [Download and Launch the Platform Installer](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
-- [Release notes](http://docs.particular.net/Platform/Installer)
+- [Release notes](Installer)
 
 ### Applications and Tools
 
@@ -30,7 +30,7 @@ The Particular Service Platform source code, current and previous releases and t
 
 ### NServiceBus Transports
 
-* See [NServiceBus Connection Strings samples](http://docs.particular.net/NServiceBus/connection-strings-samples)
+* See [NServiceBus Connection Strings samples](/NServiceBus/connection-strings-samples.md)
 
 | | | | 
 |:--- |:--- |:--- |
@@ -40,10 +40,10 @@ The Particular Service Platform source code, current and previous releases and t
 
 ### ServiceControl Plugins
 
-* See [ServiceControl Endpoints Plugins](http://docs.particular.net/ServiceControl/Plugins)
+* See [ServiceControl Endpoints Plugins](/ServiceControl/Plugins.md)
 
 ### Samples
 
-* See [Particular Service Platform Samples](http://docs.particular.net/platform/samples/)
+* See [Particular Service Platform Samples](samples.md)
 
 

@@ -13,7 +13,7 @@ The primary job of ServiceControl is to collect information on system behavior i
 
 #### Location
 
-ServiceControl stores its data in a RavenDB embedded instance, whose storage location on disk can be [customized](/ServiceControl/configure-ravendb-location). The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. You should configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
+ServiceControl stores its data in a RavenDB embedded instance, whose storage location on disk can be [customized](configure-ravendb-location.md). The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. You should configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
 
 #### Size
 
@@ -21,7 +21,7 @@ The storage size that ServiceControl requires depends on the production load and
 
 Since ServiceControl is intended to be a recent-history storage to support ServicePulse and ServiceInsight monitoring and debugging activity. This is different from a long-term data archiving system, that is intended to provide extremely long term archiving and storage solutions (measured in years, subject to various business or regulatory requirements).
 
-ServiceControl is configured with a [default expiration policy](/ServiceControl/how-purge-expired-data) that deletes old messages after a predefined time. The expiration policy can be [customized](/ServiceControl/how-purge-expired-data) to decrease or increase the amount of time data is retained, which impacts the storage requirements of ServiceControl.
+ServiceControl is configured with a [default expiration policy](/ServiceControl/how-purge-expired-data.md) that deletes old messages after a predefined time. The expiration policy can be [customized](/ServiceControl/how-purge-expired-data.md) to decrease or increase the amount of time data is retained, which impacts the storage requirements of ServiceControl.
 
 **NOTE**
 
@@ -39,7 +39,7 @@ To access raw message data for storage in a long-term archive or in a specialize
 
 You can configure ServiceControl to forward any consumed messages into alternate queues, so that a copy of any message consumed by ServiceControl is available from these alternate queues.
 
-For more details, see [Customizing ServiceControl Configuration](creating-config-file#consuming-messages-from-audit-amp-error-queues).
+For more details, see [Customizing ServiceControl Configuration](creating-config-file.md#consuming-messages-from-audit-amp-error-queues).
 
 #### Query the ServiceControl HTTP API
 

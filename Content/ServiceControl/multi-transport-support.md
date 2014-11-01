@@ -15,12 +15,14 @@ tags:
 
 ### Download Nugets
 
-First, download the NuGet package for the relevant transport including any dependencies.
+First, download the NuGet package for the relevant transport including any dependencies.    
 
-* RabbitMQ: [NServiceBus.RabbitMQ](https://www.nuget.org/api/v2/package/NServiceBus.RabbitMQ) and [RabbitMQ.Client](https://www.nuget.org/api/v2/package/RabbitMQ.Client)
-* SQL Server: [NServiceBus.SqlServer](https://www.nuget.org/api/v2/package/NServiceBus.SqlServer)
-* Windows Azure Storage Queues: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureStorageQueues) and [WindowsAzure.Storage](https://www.nuget.org/api/v2/package/WindowsAzure.Storage)
-* Windows Azure ServiceBus: [NServiceBus.Azure.Transports.WindowsAzureServiceBus](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureServiceBus) and [WindowsAzure.ServiceBus](https://www.nuget.org/api/v2/package/WindowsAzure.ServiceBus)
+* RabbitMQ: [NServiceBus.RabbitMQ v1.1.5](https://www.nuget.org/api/v2/package/NServiceBus.RabbitMQ/1.1.5) and [RabbitMQ.Client 3.3.5](https://www.nuget.org/api/v2/package/RabbitMQ.Client/3.3.5)
+* SQL Server: [NServiceBus.SqlServer v1.2.2](https://www.nuget.org/api/v2/package/NServiceBus.SqlServer/1.2.2)
+* Windows Azure Storage Queues: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/5.3.8) and [WindowsAzure.Storage](https://www.nuget.org/api/v2/package/WindowsAzure.Storage)
+* Windows Azure ServiceBus: [NServiceBus.Azure.Transports.WindowsAzureServiceBus v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureServiceBus/5.3.8) and [WindowsAzure.ServiceBus](https://www.nuget.org/api/v2/package/WindowsAzure.ServiceBus)
+
+NOTE: ServiceControl is built using NServiceBus version 4. Version 5 transport DLLs should not be used.
 
 The NuGet packages you just downloaded are in fact zip files. Rename the nupkg files to have a zip extension, and take the dlls from the `/lib` folder and put them in the ServiceControl bin folder: (`[Program Files]\Particular Software\ServiceControl`).
 

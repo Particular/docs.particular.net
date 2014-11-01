@@ -33,7 +33,7 @@ CD "C:\Program Files (x86)\Particular Software\ServiceControl-Test"
 ServiceControl.exe --install  --serviceName="Particular.ServiceControl.Test" --displayName="Particular.ServiceControl.Test" --d=ServiceControl/Hostname==localhost  --d=ServiceControl/port==33334
 ```
 
-As shown, you must specify the command line options for the host name and port when registering an additional instance. If not, the installation will default to port 33333 and 'localhost', which will clash with the default installation.  The install option will run the endpoint briefly to create the required message queues and register the appropriate URLACL using the Netsh command.  Refer to [Setting a Custom Hostname](setting-custom-hostname) for more details on setting the URLACL. 
+As shown, you must specify the command line options for the host name and port when registering an additional instance. If not, the installation will default to port 33333 and 'localhost', which will clash with the default installation.  The install option will run the endpoint briefly to create the required message queues and register the appropriate URLACL using the Netsh command.  Refer to [Setting a Custom Hostname](setting-custom-hostname.md) for more details on setting the URLACL. 
 
 
 #### Specifying the Service Account
@@ -44,12 +44,12 @@ CD "C:\Program Files (x86)\Particular Software\ServiceControl-Test"
 ServiceControl.exe --install  --username="corp\serviceuser" --password="p@ssw0rd!" --serviceName="Particular.ServiceControl.Test" --displayName="Particular.ServiceControl.Test" --d=ServiceControl/Hostname==localhost  --d=ServiceControlport==33334
 ```
 
-See [Configuring a non-privileged Service Account](configure-non-privileged-service-account) for information on additional steps that may be required to use a custom service account.   
+See [Configuring a non-privileged Service Account](configure-non-privileged-service-account.md) for information on additional steps that may be required to use a custom service account.   
   
 
 #### Updating Error and Audit Queues
 
-The "install" option on the command line creates a minimum configuration file.  Update this file to specify the error and audit queues to monitor. Details on modifying the configuration settings are in  [Customizing ServiceControl configuration](creating-config-file).
+The "install" option on the command line creates a minimum configuration file.  Update this file to specify the error and audit queues to monitor. Details on modifying the configuration settings are in  [Customizing ServiceControl configuration](creating-config-file.md).
  
 
 #### Logging Location
@@ -59,7 +59,7 @@ The default install of ServiceControl logs to `%LOCALAPPDATA%\Particular\Service
 For additional instances, the logging location changes, and the "ServiceControl" portion of the path is replaced with the Windows service name.  So assuming the command lines above were used to  register an addition instance, the path to that instance's logs is
 `%LOCALAPPDATA%\Particular\Particular.ServiceControl.Test\logs`. 
 
-You can override this logging location in the configuration file. See [Configuring the Log Location](setting-custom-log-location). 
+You can override this logging location in the configuration file. See [Configuring the Log Location](setting-custom-log-location.md). 
 
 
 #### Upgrading Multiple Instances 

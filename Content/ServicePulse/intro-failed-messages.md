@@ -6,9 +6,9 @@ tags:
 - Introduction
 ---
 
-When an NServiceBus endpoint fails to process a message, it performs a set of configurable attempts to recover from this failure. These attempts are referred to as First Level Retries (FLR) and Second Level Retries (SLR) and in many cases allow the endpoint to overcome intermittent communication failures. (For more details, see [Fault Tolerance](/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance#fault-tolerance) and [Second Level Retries](/NServiceBus/second-level-retries).)
+When an NServiceBus endpoint fails to process a message, it performs a set of configurable attempts to recover from this failure. These attempts are referred to as First Level Retries (FLR) and Second Level Retries (SLR) and in many cases allow the endpoint to overcome intermittent communication failures. (For more details, see [Fault Tolerance](/ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md#fault-tolerance) and [Second Level Retries](/NServiceBus/second-level-retries.md).)
 
-If the FLR and SLR processing attempts also fail, the endpoint forwards the failed message to the central error queue defined for all endpoints in the system. (See [Auditing with NServiceBus](/NServiceBus/auditing-with-nservicebus).) 
+If the FLR and SLR processing attempts also fail, the endpoint forwards the failed message to the central error queue defined for all endpoints in the system. (See [Auditing with NServiceBus](/NServiceBus/auditing-with-nservicebus.md).) 
 
 ServicePulse (via ServiceControl) monitors the central error queue and displays the current status and details of failed messages as an indicator in the ServicePulse dashboard.
 
@@ -27,7 +27,7 @@ To see a detailed display of the failed messages, click the Failed Messages indi
 * **Message Details:** For each failed message, displays the message type, exception description, endpoint name and location, and failure timestamp.    
 * **StackTrace:** Displays the full .NET exception stacktrace when you click the "Show stacktrace" link.
 * **Copy Message Id:** Copies the failed message unique identifier to the clipboard, for future reference, when you click "Copy ID to clipboard". 
-* **Open in ServiceInsight:** Launches ServiceInsight, focusing on the failed message for in-depth analysis of the failure causes. (For more details, see [ServiceInsight Overview](/ServiceInsight/getting-started-overview).) Only works if ServiceInsight is installed on the local machine.   
+* **Open in ServiceInsight:** Launches ServiceInsight, focusing on the failed message for in-depth analysis of the failure causes. (For more details, see [ServiceInsight Overview](/ServiceInsight/getting-started-overview.md).) Only works if ServiceInsight is installed on the local machine.   
 
 ### Failed Message Retry
 
@@ -47,7 +47,7 @@ NOTE: Tracking the number of repeated retry attempts may be significant to your 
 
 **Related articles:**
 
-* [Failed Messages display and Retry in ServiceInsight](/ServiceInsight/getting-started-overview#errors-and-retries)
+* [Failed Messages display and Retry in ServiceInsight](/ServiceInsight/getting-started-overview.md#errors-and-retries)
 
 ### Archiving Failed Messages
 

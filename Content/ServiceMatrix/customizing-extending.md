@@ -261,8 +261,9 @@ namespace OnlineSales.Billing
  
 The `AllMessagesReceived` is a convenient partial method.  As part of the dynamically generated handler code, every inbound message is stored in saga data. After each message is handled the saga data is checked to see if all the messages have been received.  If so, the virtual method `AllMessagesReceived` is called.  The example uses it to trigger the publishing of a `BillingCompleted` event and then mark the saga as complete.
 
-##Custom Saga Finding Logic
-When a saga handles a message it must be able to correlate the message to a unique saga instance in order to retrieve the correct saga data. It does this by mapping designated properties of the message to properties of the saga data.  ServiceMatrix generates default code for this mapping that can be modified.  In the [drop-down menu ](images/servicematrix-configuresaga.png)for the saga component is an option for `Configure Saga`. The provided partial class overrides the `ConfigureHowToFindSaga` method.  The comments indicate how it can be modified for a specific situation. 
+## Custom Saga Finding Logic
+
+When a saga handles a message it must be able to correlate the message to a unique saga instance in order to retrieve the correct saga data. It does this by mapping designated properties of the message to properties of the saga data.  ServiceMatrix generates default code for this mapping that can be modified.  In the [drop-down menu](images/servicematrix-configuresaga.png) for the saga component is an option for `Configure Saga`. The provided partial class overrides the `ConfigureHowToFindSaga` method.  The comments indicate how it can be modified for a specific situation. 
 
 When a saga uses a Bus.Send to send a request message and later handles a reply, a custom mapping is not required.  This is because the framework will put a unique saga ID in the header of the request message.  The recipient of the message will automatically put the same ID in the reply message to be used for correlation.   This automatic correlation is a nice convenience when doing request-response or full-duplex messaging.   
 
@@ -361,5 +362,5 @@ To learn more about using sagas within ServiceMatrix refer to [this article](get
 
 As you design your solution, learn to use ServiceInsight.  [This article](servicematrix-serviceinsight.md "ServiceMatrix and ServiceInsight") reviews how both products work together and add efficiency to your design process. 
 
-You can monitor your sagas and bus endpoints in production using [ServicePulse](../ServicePulse/Index.md "ServicePulse")
+You can monitor your sagas and bus endpoints in production using [ServicePulse](../ServicePulse)
      

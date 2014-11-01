@@ -7,6 +7,9 @@ tags:
 - diff
 ---
 
+For specific examples of how to upgrade your code see the [4 to 5 upgrade guide](4to5.md)
+
+
 ## The following public types have been removed.
 
 - `NServiceBus.Audit.MessageAuditer` [ [link](https://github.com/Particular/NServiceBus/blob/4.6.7/src/NServiceBus.Core/Audit/MessageAuditer.cs) ]

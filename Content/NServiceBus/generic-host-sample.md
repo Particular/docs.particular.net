@@ -80,7 +80,7 @@ The reason that this technique isn't used by default is that NServiceBus tries t
 
 ## Logging
 
-While you may want to change the logging of a process without having to recompile it, the most common scenario is switching between a few well-defined configurations, known as [profiles](profiles-for-nservicebus-host) in NServiceBus.
+While you may want to change the logging of a process without having to recompile it, the most common scenario is switching between a few well-defined configurations, known as [profiles](profiles-for-nservicebus-host.md) in NServiceBus.
 
 When you open up EndpointConfig.cs in the Logging project, this is what you see:
 

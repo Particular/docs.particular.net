@@ -24,9 +24,9 @@ Open Visual Studio as administrator, create a new 'Class Library' Project name i
 
 ![](Package_manager_console.png)
 
-We now need to add references the NServiceBus assemblies and the quickest and quickest way to do that is to use NuGet Package Manager Console.
+We now need to add references the NServiceBus assemblies and the quickest and easiest way to do that is to use NuGet Package Manager Console.
 
-Open the NuGet Package Manager Console: `Tools > Library Package Manager > Package Manager Console`.
+Open the NuGet Package Manager Console: `Tools > NuGet Package Manager > Package Manager Console`.
 
 Type the following command at the Package Manager Console:
 
@@ -72,11 +72,13 @@ First lets add a new Class Library project and call it 'Ordering.Messages'.
 
 The Messages project is the container of message definitions. This project will be shared between the client and server so both sides agree on the typed message descriptions.
 
-Install the 'NServiceBusInterfaces' NuGet package for this new project:
+Install the 'NServiceBus' NuGet package for this new project:
 
 At the Package Manager Console, type:
 
-    PM> Install-Package NServiceBus.Interfaces -ProjectName Ordering.Messages
+    PM> Install-Package NServiceBus -ProjectName Ordering.Messages
+
+NOTE: For version 4.x, install the NServiceBus.Interfaces package. As of version 5.x, this package has been deprecated.
 
 Add a command with a property to hold a product name:
 
@@ -101,7 +103,7 @@ namespace Ordering.Messages
 
 ### Creating the Server Project
 
-You are now ready to create the orders processing server, add a new class library project and name is 'Ordering.Server'.
+You are now ready to create the orders processing server. Add a new class library project and name it 'Ordering.Server'.
 
 
 [![](Creat_Server.png)](Creat_Server.png)
@@ -118,9 +120,12 @@ For the server side to understand and interpret the message content, add a refer
 
 Right click References in the 'Ordering.Server' Project -\> Add Reference -\> Ordering.Messages.
 
-Replace the content of 'PlaceOrderHandler.cs' with the following code:
+Rename 'Class1.cs' to 'PlaceOrderHandler.cs' and replace the content with the following code:
 
 ```C#
+using NServiceBus;
+using Ordering.Messages;
+
 namespace Ordering.Server
 {
     public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
@@ -141,6 +146,9 @@ namespace Ordering.Server
 We nearly done, all it is left to do is to go back to the 'Client' project add a reference to the 'Ordering.Messages' project and copy and paste the following code into the 'Class1.cs' (if you want you can rename the file to 'SendOrder.cs') file:
 
 ```C#
+using NServiceBus;
+using Ordering.Messages;
+
 namespace Ordering.Client
 {
     public class SendOrder : IWantToRunWhenBusStartsAndStops
@@ -168,7 +176,25 @@ namespace Ordering.Client
 }
 ```
 
-NOTE: The code above is version 4.x, the 3.x interface 'IWantToRunAtStartup' has been replaced with 'IWantToRunWhenBusStartsAndStops'
+NOTE: The code above is version 4.x and above, the 3.x interface 'IWantToRunAtStartup' has been replaced with 'IWantToRunWhenBusStartsAndStops'
+
+### Selecting a persistence store
+
+At this point, if you try to compile your solution, there should be two errors in the 'EndpointConfig.cs' for both the Ordering.Client and the Order.Server projects. You will see the compiler complain about this line of code in both projects:
+
+````C#
+configuration.UsePersistence<PLEASE_SELECT_ONE>();
+````
+
+NOTE: If you are using a version of NServiceBus prior to 5.x, you will not see this error and and skip to the next section.
+
+The quickest way to fix this for the sake of this demonstration is to replace `PLEASE_SELECT_ONE` with `InMemoryPersistence` like so:
+
+````C#
+configuration.UsePersistence<InMemoryPersistence>();
+````
+
+NServiceBus requires a persistence store for handling subscriptions, sagas, timeouts, deduplication, etc. InMemoryPersistence is fine for this simple example, but it is not intended for production use. Please read [Persistence In NServiceBus](persistence-in-nservicebus.md) for more information on how to select a persistence store and install the correct dependencies.
 
 ### Running the solution
 
@@ -186,7 +212,7 @@ in that screen select 'Multiple startup projects' and set the 'Ordering.Client' 
 
 ![](003_strartup.png)
 
-Finally click 'F5' to run the solution.
+Finally press 'F5' to run the solution.
 
 Two console application windows should start up
 

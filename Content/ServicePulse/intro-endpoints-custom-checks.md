@@ -6,7 +6,7 @@ tags:
 - Introduction
 ---
 
-ServicePulse monitors the health and activity of NServiceBus endpoints using heartbeat messages and activity indications. (See [Introduction to Endpoints and Heartbeats in ServicePulse](http://docs.particular.net/ServicePulse/intro-endpoints-heartbeats).)
+ServicePulse monitors the health and activity of NServiceBus endpoints using heartbeat messages and activity indications. (See [Introduction to Endpoints and Heartbeats in ServicePulse](intro-endpoints-heartbeats.md).)
 
 However, an endpoint and its hosting process may be fully functional (in the sense that it and its hosting process are able to send, receive, and process messages) but required external conditions may not be met, and required services that the endpoint's business logic relies on may malfunction. As a result, the endpoints may not be able to function as expected.
 
@@ -63,6 +63,6 @@ Muting a custom check means that the specific custom check failure event is disc
  
 ### Getting Started with Custom Checks
 
-* [How to Develop Custom Checks for ServicePulse](/ServicePulse/how-to-develop-custom-checks)
-* [How to Configure Endpoints for Monitoring by ServicePulse](/ServicePulse/how-to-configure-endpoints-for-monitoring)
-* [ServiceControl Custom Checks Plugin](/ServiceControl/Plugins#servicecontrol-plugin-customchecks)
+* [How to Develop Custom Checks for ServicePulse](how-to-develop-custom-checks.md)
+* [How to Configure Endpoints for Monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md)
+* [ServiceControl Custom Checks Plugin](/ServiceControl/Plugins.md#servicecontrol-plugin-customchecks)

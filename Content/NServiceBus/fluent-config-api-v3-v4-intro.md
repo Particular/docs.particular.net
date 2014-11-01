@@ -8,6 +8,8 @@ tags:
 
 NOTE: This article refers to NServiceBus V3 and V4
 
+NOTE: Watch the webminar recording [Mastering NServiceBus Configuration](https://particular-1.wistia.com/medias/q8tdr6mnzz) (It includes V5 configuration overview)
+
 Every NServiceBus endpoint that works properly relies on a configuration to determine settings and behaviors other than endpoint core functionalities.
 
 ### NServiceBus Host
@@ -33,7 +35,7 @@ The class in the example above represents the main entry point of an NServiceBus
 
 At runtime, during the startup phase, NServiceBus scans all the types, looking for a class that implements the `IConfigureThisEndpoint` interface.
 
-More about the [NServiceBus.Host](the-nservicebus-host).
+More about the [NServiceBus.Host](the-nservicebus-host.md).
 
 ### Configuration Customization
 
@@ -49,9 +51,9 @@ public class CustomConfiguration : IWantCustomInitialization
 }
 ```
 
-NOTE: Do not start the bus; the host will do it. *`(comment - expand on this topic a bit)`*
+NOTE: Do not start the bus; the host will do it.
 
-More about [configuration customization](customizing-nservicebus-configuration).
+More about [configuration customization](customizing-nservicebus-configuration.md).
 
 ### Features 
 
@@ -63,10 +65,10 @@ List of built-in features:
 
 * `Audit`: The audit feature is responsible for message auditing. When enabled and configured, every received message is forwarded to the audit queue. By default, the feature is enabled but not configured;
 * `AutoSubscribe`: This feature manages endpoint subscriptions in a pub/sub environment. It is enabled by default and  automatically subscribes to defined events;
-* `Gateway`: more about [Gateway](introduction-to-the-gateway);
+* `Gateway`: more about [Gateway](introduction-to-the-gateway.md);
 * `MessageDrivenSubscriptions`: brief description;
-* `Sagas`: more about [Sagas](sagas-in-nservicebus);
-* `SecondLevelRetries`: more about [Second Level Retries](second-level-retries);
+* `Sagas`: more about [Sagas](sagas-in-nservicebus.md);
+* `SecondLevelRetries`: more about [Second Level Retries](second-level-retries.md);
 * `StorageDrivenPublisher`: brief description;
 * `TimeoutManager`: brief description;
 
@@ -121,7 +123,7 @@ public class Program
 }
 ```
 
-More on [Self-hosting in v4](hosting-nservicebus-in-your-own-process-v4.x).
+More on [Self-hosting in v4](hosting-nservicebus-in-your-own-process-v4.x.md).
 
 #### Self-Hosting in V3
 
@@ -140,14 +142,14 @@ public class Program
 }
 ```
 
-More on [Self-hosting in V3](hosting-nservicebus-in-your-own-process).
+More on [Self-hosting in V3](hosting-nservicebus-in-your-own-process.md).
 
-The `With()` method is the main configuration entry point that initializes and starts the configuration engine, followed by a call to `DefaultBuilder()`, which instructs the configuration engine to use the built-in inversion of the control container to manage dependencies. More on [NServiceBus and IoC containers](containers).
+The `With()` method is the main configuration entry point that initializes and starts the configuration engine, followed by a call to `DefaultBuilder()`, which instructs the configuration engine to use the built-in inversion of the control container to manage dependencies. More on [NServiceBus and IoC containers](containers.md).
 
 V4 supports various transports (MSMQ, Azure, RabbitMQ, SQL, etc.) and the `UsingTransport<TTransport>()` generic method defines the underlying transport that the bus instance will use. The example above uses MSMQ. In V3 the only supported transport was MSMQ, thus the only viable option was to use the `MsmqTransport()` method.
 
 Finally, you define that the bus will be a unicast bus, which is the only option currently available, and then create and start the bus.
 
-More about [Fluent Configuration API](fluent-config-api-v3-v4).
+More about [Fluent Configuration API](fluent-config-api-v3-v4.md).
 
 [1]: http://www.nuget.org/packages/NServiceBus.Host/ "NServiceBus Host NuGet package"

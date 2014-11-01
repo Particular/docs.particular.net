@@ -6,24 +6,31 @@ tags:
 - Persistence
 ---
 
-## ILMerged into the Core 
+## NServiceBus 5: Externalised RavenDB
 
-In **version 3 of NServiceBus** the default persistence was changed from NHibernate to RavenDB. The required RavenDB assemblies were [ILMerged](http://research.microsoft.com/en-us/people/mbarnett/ilmerge.aspx) into NServiceBus.Core.dll to give users a seamless OOTB experience.
+RavanDB peristence is available as a separate nuget [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB)
 
-This worked but had several negative side effects
+    Install-Package NServiceBus.RavenDB
 
- * The RavenDB classes had to be internalized to avoid namespace conflicts when people also reference the actual RavenDB assemblies. This meant a strong typed configuration API, that takes a `DocumentStore`, was not possible.
- * If consumers of upgraded to newer versions of RavenDB assemblies, for bug fixes or performance improvements, it was not possible for NServiceBus to leverage these newer assemblies. NServiceBus was hard coded to use the ILMerged versions.
- * Any changes in the compatibility of the RavenDB Client and Server would require a new version of NServiceBus be release with a new ILMerged version of Raven.
+The current approach moving forward for the RavenDB integration is to ship outside the core in a stand alone assembly NServiceBus.RavenDB.dll. This has the following advantages
 
-### ILMerged RavenDB client versions 
+ * Allow us to evolve the implementation more closely instep with the RavenDB release schedule;
+ * Reduce the need for version compatibility hacks;
+ * Allow the shipping upgrades to this library without having to ship the core; 
+ * Make the approach to RavenDB persistence consistent with the other persistence integrations;
 
-* Versions 3.0-3.2 of NServiceBus were shipped with version 1.0.616 of RavenDB ilmerged
-* Version 3.3 of NServiceBus shipped with version 1.0.992 of RavenDB ilmerged
+### Supported RavenDB versions 
 
-## Resource Merged into the core
+ * Please check the minimum supported version on the [NuGet site](https://www.nuget.org/packages/NServiceBus.RavenDB).
 
-In **version 4 of NServiceBus** the approach to embedding RavenDB in NServiceBus.Core.dll changed from ILMerge to resource merging. 
+### Supported NServiceBus versions
+
+ * Version 1 of NServiceBus.RavenDB targets NServiceBus 4.1 or higher minor;
+ * Version 2 of NServiceBus.RavenDB targets NServiceBus 5.0 and higher minor;
+
+## NServiceBus 4: Resource Merged into the core
+
+In version 4 of NServiceBus the approach to embedding RavenDB in NServiceBus.Core.dll changed from ILMerge to resource merging. 
 
 This allowed us, at runtime, to chose the newest version of the RavenDB assemblies found on disk. So if a consumer of NServiceBus has updated to newer RavenDB assemblies NServiceBus would use those instead of the merged versions. 
 
@@ -35,26 +42,12 @@ The root underlying cause of these compatibility issue is that NServiceBus follo
 
 Version 4 of NServiceBus was shipped with version 2.0.2375 of RavenDB resource merged.
 
-## Externalised RavenDB
+## NServiceBus 3: ILMerged into the Core 
 
-Available on nuget as [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB)
+In **version 3 of NServiceBus** the default persistence was changed from NHibernate to RavenDB. The required RavenDB assemblies were [ILMerged](http://research.microsoft.com/en-us/people/mbarnett/ilmerge.aspx) into NServiceBus.Core.dll to give users a seamless OOTB experience.
 
-    Install-Package NServiceBus.RavenDB
+### ILMerged RavenDB client versions 
 
-The current approach moving forward for the RavenDB integration to ship outside the core in a stand alone assembly NServiceBus.RavenDB.dll. This has the following advantages
+* Versions 3.0-3.2 of NServiceBus were shipped with version 1.0.616 of RavenDB ilmerged
+* Version 3.3 of NServiceBus shipped with version 1.0.992 of RavenDB ilmerged
 
- * Allow us to evolve the implementation more closely instep with the RavenDB release schedule. 
- * Reduce the need for version compatibility hacks
- * Allow the shipping upgrades to this library without having to ship the core. 
- * Make the approach to RavenDB persistence consistent with the other persistence integrations 
-
-### Supported RavenDB versions 
-
- * RavenDB Client 2.5.2908. The intent is that this package will compatible for any version from a known minimum until the next major. Note that if there are breaking changes in the RavenDB Client this may change in future versions of this library. However this will be handled explicitly through a dependency in the nuget package  
- * RavenDB Server 2.5.2908 
-
-### Supported NServiceBus versions
-
- * Version 1 of NServiceBus.RavenDB target NServiceBus 4.1 and higher
- * Version 2, and higher, of NServiceBus.RavenDB target NServiceBus 5.0 and higher. 
- 

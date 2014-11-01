@@ -19,12 +19,14 @@ In this article you will expand the Online Sales system and introduce the Publis
 7. [Additional Exercises](#additional-exercises)
 
 # Introduction to Publish/Subscribe
+
 Before you move on, please confirm that the `OnlineSales` solution you created previously is still working correctly.  Picking up where you left off, your `OnlineSales` solution ServiceMatrix Canvas should look like this:
 
 ![OnlineSales Canvas](images/servicematrix-canvaswiredup.png)
 
 ## Expanding the OnlineSales Example
-So far the [Online Sales](getting-started-with-servicematrix-2.0 "Getting Started with ServiceMatrix") example implements the request response messaging pattern to facilitate communication between the website and your order processing system. We've all purchased items online and know that in reality many different things will need to happen when an order is accepted for processing. Arguably the most important business step should be billing the customer! In your example, consider how to add a billing capability to charge the customer for the order.
+
+So far the [Online Sales](getting-started-with-servicematrix-2.0.md "Getting Started with ServiceMatrix") example implements the request response messaging pattern to facilitate communication between the website and your order processing system. We've all purchased items online and know that in reality many different things will need to happen when an order is accepted for processing. Arguably the most important business step should be billing the customer! In your example, consider how to add a billing capability to charge the customer for the order.
 ## Create the OrderAccepted Event
 In your example the `SubmitOrderHandler` component handles the `SubmitOrder` messages.  Using the drop-down menu of `SubmitOrderHandler`, select 'Publish Event' as shown.
 
@@ -33,6 +35,7 @@ In your example the `SubmitOrderHandler` component handles the `SubmitOrder` mes
 Name the new event `OrderAccepted`.
 
 ##Adding the Code to Publish the Event
+
 When you create the `OrderAccepted` event you will be prompted by a dialog informing you of code changes that should be made.
 
 ![User Code Changes Required](images/servicematrix-orderaccepted-usercodechanges.png)
@@ -59,6 +62,7 @@ namespace OnlineSales.Sales
 This code will publish the `OrderAccepted` event immediately upon receipt of the `SubmitOrder` message.
 
 ## Adding the Subscriber
+
 To create a subscriber for this new event, select the dropdown of the `OrderAccepted` event and choose 'Add Subscriber' as shown here:
 
 ![New Event Subscriber](images/servicematrix-orderacceptedevent.png)
@@ -68,6 +72,7 @@ In the 'Add Event Subscriber' window use the 'Add new Service' text box to add a
 ![Undeployed Billing Service](images/servicematrix-undeployedbilling.png). 
 
 ## Deploy the OrderAcceptedHandler
+
 To deploy the `OrderAcceptedHandler` use the drop down menu and choose 'Deploy Component' as shown here:
 
 ![Deploy OrderAcceptedHandler](images/servicematrix-orderaccepted-deploy.png)
@@ -81,12 +86,17 @@ At this point with a little re-arranging your ServiceMatrix canvas should look l
 The `SubmitOrderHandler` raises the `OrderAccepted` event, to which `OrderAcceptedHandler` of the `Billing` service is subscribed.
 
 As you would expect, the ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilderv2.2.0.png "SolutionBuilder") reflects the new endpoint, service, component, and event you added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
+
 ## Review the Code
+
 ServiceMatrix generates the initial code for publishing and processing the event and both the publishing and subscribing end. 
+
 ### Event Publisher Code 
+
 When we created the `OrderAccepted` event ServiceMatrix generated the code to publish the event and modify the `SubmitOrderHandler` component.  The [section above](#adding-the-code-to-publish-the-event "Event Publishing Code") illustrates the code. 
 
 ### Subscriber Code
+
 In the `OrderAcceptedHandler` drop-down menu select `View Code` and you should see the following. 
 
 ```C#
@@ -103,26 +113,32 @@ namespace OnlineSales.Billing
 }
 
 ```
+
 There is nothing new here!  Notice that this generated `OrderAcceptedHandler` code is the exactly the same as was generated for the  `SubmitOrderHandler`.
+
 #Build and Run the Solution
+
 Go ahead and run the solution. This time, in addition to the [sales web site](images/servicematrix-demowebsite.png "Demo Website") and [`OrderProcessing` endpoint console](images/servicematrix-reqresp-orderprocessor.png "Order Processing"), you should see another console window for `Billing`.
 
 Send a few test messages from the website.  You should see them handled by the `OrderProcessing` console as before.  You should almost immediately see that the `Billing` endpoint has received your new `OrderAccepted` event as shown below:
 
 ![Billing Console](images/servicematrix-billingconsole.png)  
  
-##You Did It!##
+## You Did It!##
+
 Congratulations! You have created a complete working solution for communicating via publish/subscribe messaging.  
 
 As you see, it's very easy to get started with NServiceBus and ServiceMatrix.  
 
 
-##Additional Exercises
+## Additional Exercises
 
-###Explore the use of Sagas
+### Explore the use of Sagas
+
 Continue on and integrate a payment component into the billing service.  [The next article](getting-started-sagasfullduplex-2.0.md "Sagas in ServiceMatrix Request Response") will continue on with the creation of the OnlineSales solution. 
 
 ### Explore the ServiceMatrix Solution Views
+
 The Solution Builder of ServiceMatrix provides various views into the solution you have created. Look at the [toolbar](images/servicematrix-solutionbuilder-final.png "Solution Builder Toolbar") and review some of the other buttons. In addition to the Default View represented by the hammer, note the ServiceMatrix View icon. 
 
 Select an endpoint in the SolutionBuilder then press the 'ServiceMatrix View' icon. A new 'ServiceMatrix Details' window is displayed as shown here:
@@ -130,12 +146,3 @@ Select an endpoint in the SolutionBuilder then press the 'ServiceMatrix View' ic
 ![Endpoint View in SolutionBuilder](images/servicematrix-endpointsview.png)
 
 This view provides a convenient look into the properties and components of the endpoint. 
-#Next Steps
-To understand the licensing model for ServiceMatrix, please continue to [this article](licensing-servicematrix-v2.0.md "Licensing ServiceMatrix 2.0"). 
-
-Learn more about the advantages of the bus architectural style and try the entire NServiceBus platform at [Particular.net](http://docs.particular.net "Particular Docs"). 
- 
-Get some training!
-- Purchase the *Advanced Distributed Systems Design* [training video](http://particular.net/adsd "ADSD Training Video"). Presented by Udi Dahan and recorded in New York in 2013. 
-- Attend the online course *Introduction to NServiceBus* by [Pluralsight.](http://pluralsight.com/training/Courses/TableOfContents/nservicebus "Pluralsight")
-

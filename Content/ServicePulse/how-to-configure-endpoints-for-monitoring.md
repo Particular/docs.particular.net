@@ -19,21 +19,49 @@ tags:
 **Prerequisites for ServicePulse monitoring of endpoints:**
 
 1. An endpoint plugin DLL must be deployed in the binaries directory of each NServiceBus endpoint (required for endpoint availability and custom checks monitoring).
-1. Endpoints must use NServiceBus V4.0.0 or higher (support for earlier releases will be added in a future release).
-1. Auditing must be enabled for all monitored endpoints (see [Auditing With NServiceBus](/NServiceBus/auditing-with-nservicebus)).
+1. Supported NServiceBus Endpoints:
+    * NServiceBus V5.0.0 or higher;
+    * NServiceBus V4.0.0 or higher;
+    * NServiceBus V3.0.4 or higher;
+1. Auditing must be enabled for all monitored endpoints (see [Auditing With NServiceBus](/NServiceBus/auditing-with-nservicebus.md)).
 1. All endpoints must forward audited data to a single audit and error queue that is monitored by a ServiceControl instance.
 
 **Deploying Endpoint Plugins in each Endpoint**
 
-1. The endpoint plugin consists of two NuGet packages:
-    * [`ServiceControl.Plugin.Heartbeat`](https://www.nuget.org/packages/ServiceControl.Plugin.Heartbeat/)
-    * [`ServiceControl.Plugin.CustomChecks`](https://www.nuget.org/packages/ServiceControl.Plugin.CustomChecks/)
-1. Get the Endpoint Heartbeat and CustomChecks plugins using the NuGet console: 
-     * `install-package ServiceControl.Plugin.Heartbeat`
-     * `install-package ServiceControl.Plugin.CustomChecks`
+1. The endpoint plugin consists of these NuGet packages:
+    * NServiceBus V5.x: 
+        * [`ServiceControl.Plugin.Nsb5.Heartbeat`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat/)
+        * [`ServiceControl.Plugin.Nsb5.CustomChecks`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks/)
+        * [`ServiceControl.Plugin.Nsb5.SagaAudit`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.SagaAudit/)
+    * NServiceBus V4.x: 
+        * [`ServiceControl.Plugin.Nsb4.Heartbeat`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat/)
+        * [`ServiceControl.Plugin.Nsb4.CustomChecks`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks/)
+        * [`ServiceControl.Plugin.Nsb4.SagaAudit`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit/)
+    * NServiceBus V3.0.4 or higher: 
+        * [`ServiceControl.Plugin.Nsb3.Heartbeat`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat/)
+        * [`ServiceControl.Plugin.Nsb3.CustomChecks`](http://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks/)
+
+1. Install the plugins from NuGet in your endpoints: 
+     * `install-package ServiceControl.Plugin.Nsb5.Heartbeat`
+     * `install-package ServiceControl.Plugin.Nsb5.CustomChecks`
+    
+     If you want the saga visualization in ServiceInsight, 
+     * `install-package ServiceControl.Plugin.Nsb5.SagaAudit`
+
+     * or use the appropriate V4 package if your endpoint targets NServiceBus V4:
+	     * `install-package ServiceControl.Plugin.Nsb4.Heartbeat`
+	     * `install-package ServiceControl.Plugin.Nsb4.CustomChecks` 
+     	     * `install-package ServiceControl.Plugin.Nsb4.SagaAudit`
+
+     * or use the appropriate V3 package if your endpoint targets NServiceBus V3:
+	     * `install-package ServiceControl.Plugin.Nsb3.Heartbeat`
+	     * `install-package ServiceControl.Plugin.Nsb3.CustomChecks`
+
+**NOTE**: Saga Visualization plugin is only available from V4 and higher.
+	     
 1. For manual deployment, copy the endpoint plugin DLL files to each endpoint bin directory (and restart the endpoint to load the plugin).
 1. By default, the endpoint plugin sends a heartbeat indication to ServiceControl every 30 seconds. If a heartbeat indication is not received within 30 seconds, ServicePulse raises an event that indicates the issue.
 
 #### Related articles
 
-* [ServiceControl Endpoint Plugins](/ServiceControl/Plugins)
+* [ServiceControl Endpoint Plugins](/ServiceControl/Plugins.md)

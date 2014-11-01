@@ -10,7 +10,7 @@ ServiceControl stores its own data in a RavenDB embedded instance. By default it
 
 `%SystemDrive%\ProgramData\Particular\ServiceControl\localhost-33333`
 
-NOTE: `localhost-33333` is the default hostname and port number. Specifying a [custom hostname and port number](setting-custom-hostname) will result in ServiceControl generating a new RavenDB embedded instance in a subdirectory corresponding to the new hostname and port number.
+NOTE: `localhost-33333` is the default hostname and port number. Specifying a [custom hostname and port number](setting-custom-hostname.md) will result in ServiceControl generating a new RavenDB embedded instance in a subdirectory corresponding to the new hostname and port number.
 
 You may want to place the embedded RavenDB database in a different location. For example, if the system drive storage capacity is insufficient.
 
@@ -19,7 +19,7 @@ You may want to place the embedded RavenDB database in a different location. For
 To configure ServiceControl to store data in a different location immediately after installation:
 
  * Stop the ServiceControl service.
- * Locate/Create the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file))
+ * Locate/Create the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file.md))
  * Edit the configuration file to add a new setting:
 
 ```xml

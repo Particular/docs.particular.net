@@ -37,7 +37,7 @@ The difference between these examples is that in the latter a name is given for 
 
 ## Accuracy 
 
-The scheduling infrastructure leverages the reliable messaging approach at the core of NServiceBus. This allows scheduling to include features such as the error queue and reties. This however does have some side effects on the timeliness of scheduled tasks. When a task is scheduled to be run at a given time it is actual not "executed at that time", it is instead "queued at that time". In most cases this distinction will have no noticeable effect on the behavior of the the scheduling API. However in high load systems the fact that a scheduled task is added to the back of the queue can result in a noticeable delay between the "time the task has been request to be run" and the "time the task is actually executed".
+The scheduling infrastructure leverages the reliable messaging approach at the core of NServiceBus. This allows scheduling to include features such as the error queue and retries. This however does have some side effects on the timeliness of scheduled tasks. When a task is scheduled to be run at a given time it is actual not "executed at that time", it is instead "queued at that time". In most cases this distinction will have no noticeable effect on the behavior of the the scheduling API. However in high load systems the fact that a scheduled task is added to the back of the queue can result in a noticeable delay between the "time the task has been request to be run" and the "time the task is actually executed".
 
 ## Implementation
 
