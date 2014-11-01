@@ -286,17 +286,21 @@ Right-click on your OnlineSales.ECommerce project in the Solution Explorer and s
 
 ![NServiceBus.RavenDB NuGet Package](images/servicematrix-ravendb-nuget.png)
 
-Now, in the `Infrastructure\WebGlobalInitialization.cs` code, update it to initialize the RavenDBPersistence class *outside* of the `Debugger.IsAttached` check.
+Because `Infrastructure\WebGlobalInitialization.cs` is an auto-generated code file by ServiceMatrix, you should not edit it directly (or else your changes will be gone the next time it is rebuilt). Instead, add a new class file named `ConfigurePersistence.cs` to the Infrastructure folder of the ASP.NET project. Update it to initialize the RavenDBPersistence class as follows:
 
 ````C#
-config.UsePersistence<RavenDBPersistence>();
+using NServiceBus;
+using NServiceBus.Persistence;
 
-if (Debugger.IsAttached)
+namespace OnlineSalesV5.eCommerce.Infrastructure
 {
-  // In Production, make sure the necessary queues for this endpoint are installed before running the website
-  // While calling this code will create the necessary queues required, this step should
-  // ideally be done just one time as opposed to every execution of this endpoint.
-  config.EnableInstallers();
+  public class ConfigurePersistence : INeedInitialization
+  {
+    public void Customize(BusConfiguration config)
+    {
+      config.UsePersistence<RavenDBPersistence>();
+    }
+  }
 }
 ````
 
