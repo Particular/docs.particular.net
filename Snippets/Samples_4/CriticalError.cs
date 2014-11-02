@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Diagnostics;
 using NServiceBus;
-
 
 public class CriticalError
 {
@@ -14,7 +12,7 @@ public class CriticalError
         Configure.With().DefineCriticalErrorAction((message, exception) =>
         {
             var output = string.Format("We got a critical exception: '{0}'\r\n{1}", message, exception);
-            Debug.WriteLine(output);
+            Console.WriteLine(output);
             // Perhaps end the process??
         });
 

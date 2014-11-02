@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Deployable|AnyCPU'">
     <OutputPath>bin\Deployable\</OutputPath>
@@ -98,9 +100,9 @@
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Interfaces.4.6.5\lib\net40\NServiceBus.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Interfaces.4.7.4\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Azure, Version=5.3.3.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -114,29 +116,29 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.5.3.3\lib\net40\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Core, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.Core, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.4.6.5\lib\net40\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.4.7.4\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Host, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.Host, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Host.4.6.5\lib\net40\NServiceBus.Host.exe</HintPath>
+      <HintPath>..\packages\NServiceBus.Host.4.7.4\lib\net40\NServiceBus.Host.exe</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NHibernate, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.NHibernate.5.0.0\lib\net40\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Autofac, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.ObjectBuilder.Autofac, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Autofac.4.6.5\lib\net40\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Autofac.4.7.4\lib\net40\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Ninject, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.ObjectBuilder.Ninject, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Ninject.4.6.5\lib\net40\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Ninject.4.7.4\lib\net40\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Spring, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.ObjectBuilder.Spring, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Spring.4.6.5\lib\net40\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Spring.4.7.4\lib\net40\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.StructureMap, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -145,9 +147,9 @@
     <Reference Include="NServiceBus.ObjectBuilder.Unity">
       <HintPath>..\packages\NServiceBus.Unity.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Testing, Version=4.6.5.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.Testing, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Testing.4.6.5\lib\net40\NServiceBus.Testing.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Testing.4.7.4\lib\net40\NServiceBus.Testing.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.SQLServer">
       <HintPath>..\packages\NServiceBus.SqlServer.1.2.2\lib\net40\NServiceBus.Transports.SQLServer.dll</HintPath>
@@ -205,7 +207,7 @@
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DoNotCreateQueues.cs" />
-    <Compile Include="FileShareDataBus.cs" />
+    <Compile Include="DataBus.cs" />
     <Compile Include="DefineCriticalErrorAction.cs" />
     <Compile Include="CustomConfigOverrides.cs" />
     <Compile Include="CustomRavenConfig.cs" />
@@ -230,4 +232,8 @@
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
+  </PropertyGroup>
 </Project>

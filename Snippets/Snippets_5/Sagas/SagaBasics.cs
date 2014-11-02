@@ -297,7 +297,7 @@
             }
         }
 
-        public void ConfigueSelfHosted()
+        public void ConfigureSelfHosted()
         {
             #region saga-configure-self-hosted
 

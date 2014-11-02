@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 
-public class FileShareDataBus
+public class DataBus
 {
     public void Simple()
     {
@@ -8,7 +8,7 @@ public class FileShareDataBus
 
         var configuration = new BusConfiguration();
 
-        configuration.FileShareDataBus("path to databus");
+        configuration.UseDataBus<FileShareDataBus>();
 
         #endregion
     }

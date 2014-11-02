@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 
-public class FileShareDataBus
+public class DataBus
 {
     public void Simple()
     {

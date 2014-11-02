@@ -77,7 +77,7 @@
             #endregion
         }
 
-        public void SpeicifcDocumentStoreViaConnectionString()
+        public void SpecificDocumentStoreViaConnectionString()
         {
             //See the config file
         }
