@@ -1,9 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using NServiceBus;
-using NServiceBus.Config;
-using NServiceBus.Config.ConfigurationSource;
-using NServiceBus.Encryption;
 using NServiceBus.MessageMutator;
 using NServiceBus.Unicast.Messages;
 
