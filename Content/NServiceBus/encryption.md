@@ -75,8 +75,6 @@ NOTE: Defining encryption keys via the fluent API is only supported in V5 and up
 
 ### Multi-Key decryption 
 
-NOTE: Multi-Key decryption is specific to NServiceBus V3 and up.
-
 You will note in several of the above examples that both an encryption key and **multiple** decryption keys were defined.
 
 This feature allows a phased approach of managing encryption keys. So that different endpoints can update to a new encryption key while still maintaining wire compatibility with endpoints using the old key.
