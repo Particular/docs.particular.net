@@ -5,27 +5,37 @@ tags:
 - Encryption
 ---
 
-To see how to encrypt message data, open the [Encryption sample](https://github.com/Particular/NServiceBus/tree/3.3.8/Samples/Encryption)
+To see how to encrypt message data, open the [Encryption sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Encryption)
 .
 
-1.  Run the solution.
-     You should see two console applications start up.
-2.  Find the client application by looking for the one with "Client" in its path and press 'Enter' a couple of times in the window.
+## Run the solution.
 
-     The server application outputs "I know your secret - it's 'betcha can't guess my secret'."
+You will see two console applications start up.
 
-Your screen should look like this:
+### Endpoint1 
 
-![Encryption sample running](encryption_running.png "Encryption sample running")
+Which outputs
 
-Now let's look at the code.
+```
+MessageWithSecretData sent. 
+```
 
-![Encryption sample](encryption.png "Encryption sample")
+### Endpoint2 
+
+Which outputs
+
+```
+I know your secret - it's 'betcha can't guess my secret'
+SubSecret: My sub secret
+CreditCard: 312312312312312 is valid to 3/11/2015 5:21:59 AM
+CreditCard: 543645546546456 is valid to 3/11/2016 5:21:59 AM
+```
 
 ## Code walk-through
 
-Starting with the Messages project, open the MessageWithSecretData.cs file and look at the following code:
+### The message contract
 
+Starting with the Shared project, open the `MessageWithSecretData.cs` file and look at the following code:
 
 ```C#
 public class MessageWithSecretData : IMessage
@@ -34,57 +44,24 @@ public class MessageWithSecretData : IMessage
 }
 ```
 
- This class implements the NServiceBus IMessage interface, indicating that it is a message. It contains a single property of the type WireEncryptedString. This is an NServiceBus type specifying that the contents of the property are encrypted on the wire when transmitted by NServiceBus.
+Note that it contains a single property of the type WireEncryptedString. This is an NServiceBus type specifying that the contents of the property are encrypted on the wire when transmitted by NServiceBus.
 
-How does the encryption happen? Open the Client.cs file in the Client project and see one piece at a time:
+### How is encryption enabled. 
 
-The [configuration of the endpoint as a client](the-nservicebus-host.md) :
+Open either one of the `Program.cs`. You will notice the line 
 
+    busConfiguration.RijndaelEncryptionService("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
 
-```C#
-public class EndpointConfig : IConfigureThisEndpoint, AsA_Client {}
-```
+This code indicates that encryption should use the specified key.
 
- This code indicates how encryption is configured:
+Note: The key specified must be the same in the configuration of all processes that are communicating encrypted information, both on the sending and on the receiving sides. Open the app.config file of the server project and verify that the key is the same. This can be mitigated by defining multiple decryption keys, see [Encryption](encryption.md) 
 
+### The message on the wire
 
-```C#
-public class SecurityConfig : IWantCustomInitialization
-{
-    public void Init()
-    {
-        NServiceBus.Configure.Instance.RijndaelEncryptionService();
-    }
-}
-```
+Now run `Endpoint1` on its own (i.e. don't start `Endpoint2`).
 
-A class implements the NServiceBus interface IWantCustomInitialization. This interface allows implementors to hook into the NServiceBus initialization pipeline and specify additional configuration before the endpoint starts. This case accesses the current instance of the NServiceBus configuration via "NServiceBus.Configure.Instance" and then specifies RijndaelEncryptionService. Read background information on the [Rijndael algorithm](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) .
-
-The rest of the file shows that you can set the contents of the encrypted property just like any other property, and then use the bus to send the message. Read about [sending messages](how-do-i-send-a-message.md) and
-[here](how-do-i-specify-store-forward-for-a-message.md) too.
-
-Look at the app.config file in the client project. There is an additional configuration section for the Rijndael encryption service:
-
-
-```XML
-<configSections>
-	<section name="RijndaelEncryptionServiceConfig" 
-             type="NServiceBus.Config.RijndaelEncryptionServiceConfig, NServiceBus.Core"/>
-</configSections>
-
-<RijndaelEncryptionServiceConfig Key="gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"/>
-  
-```
-
- The key is used to encrypt all data in properties of type WireEncryptedString.
-
-**IMPORTANT** : The key specified must be the same in the configuration of all processes that are communicating encrypted information, both on the sending and on the receiving sides. Open the app.config file of the server project and verify that the key is the same.
-
-Now stop the server process and click 'Enter' one more time in the client process.
-
-Go to the server queue (called "MyServerInputQueue") and examine the message in it. Read how to do this in the
+Go to the server queue (called "EncryptionSampleEndpoint1") and examine the message in it. Read how to do this in the
 [FAQ](how-can-i-see-the-queues-and-messages-on-a-machine.md) . Your message should look like this:
-
 
 ```XML
 <?xml version="1.0" ?>
