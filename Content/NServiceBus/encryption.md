@@ -1,6 +1,6 @@
 ---
 title: Encryption
-summary: Encryption
+summary: Message Encryption
 tags:
 - Encryption
 ---
