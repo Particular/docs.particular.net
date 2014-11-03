@@ -61,6 +61,7 @@
       <HintPath>..\packages\NServiceBus.Testing.3.3.12\lib\net40\NServiceBus.Testing.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,11 +71,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Audit\App.config" />
+    <None Include="Encryption\encryption.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Encryption\PropertyEncryption.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />

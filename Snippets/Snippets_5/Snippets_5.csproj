@@ -212,6 +212,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -247,6 +248,9 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="Audit\App.config" />
+    <None Include="Encryption\encryption.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -263,12 +267,13 @@
     <Compile Include="CriticalError.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="Encryption\MessageBodyEncryption.cs" />
     <Compile Include="Gateway\GatewayConfig.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DefineCriticalErrorAction.cs" />
     <Compile Include="DoNotCreateQueues.cs" />
-    <Compile Include="EncryptionService.cs" />
+    <Compile Include="Encryption\PropertyEncryption.cs" />
     <Compile Include="EndpointName.cs" />
     <Compile Include="DataBus.cs" />
     <Compile Include="Logging\CommonLogging\CommonLoggingConfig.cs" />

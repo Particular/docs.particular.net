@@ -190,6 +190,9 @@
     <Compile Include="Conventions\ExpressMessages.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <None Include="Encryption\encryption.config">
+      <SubType>Designer</SubType>
+    </None>
     <Compile Include="Gateway\GatewayConfig.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
@@ -211,7 +214,7 @@
     <Compile Include="DefineCriticalErrorAction.cs" />
     <Compile Include="CustomConfigOverrides.cs" />
     <Compile Include="CustomRavenConfig.cs" />
-    <Compile Include="EncryptionService.cs" />
+    <Compile Include="Encryption\PropertyEncryption.cs" />
     <Compile Include="PurgeOnStartup.cs" />
     <Compile Include="InterfaceMessageCreation.cs" />
     <Compile Include="Conventions\MessageConventions.cs" />

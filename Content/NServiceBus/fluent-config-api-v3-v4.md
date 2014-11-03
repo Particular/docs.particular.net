@@ -82,7 +82,7 @@ To dive into the unobtrusive mode, data bus, and encryption features:
 * [Unobtrusive Mode Messages](unobtrusive-mode-messages.md).
 * [Encryption Sample](encryption-sample.md).
 * [DataBus / Attachments](attachments-databus-sample.md).
-* [Encryption with Multi-Key Decryption](encryption-with-multi-key-decryption.md)
+* [Encryption](encryption.md)
 
 #### DataBus
 

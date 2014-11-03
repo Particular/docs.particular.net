@@ -58,8 +58,7 @@ public class SecurityConfig : IWantCustomInitialization
 }
 ```
 
- A class implements the NServiceBus interface IWantCustomInitialization. This interface allows implementors to hook into the NServiceBus initialization pipeline and specify additional configuration before the endpoint starts. This case accesses the current instance of the NServiceBus configuration via "NServiceBus.Configure.Instance" and then specifies RijndaelEncryptionService. Read background information on the
-[Rijndael algorithm](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) .
+A class implements the NServiceBus interface IWantCustomInitialization. This interface allows implementors to hook into the NServiceBus initialization pipeline and specify additional configuration before the endpoint starts. This case accesses the current instance of the NServiceBus configuration via "NServiceBus.Configure.Instance" and then specifies RijndaelEncryptionService. Read background information on the [Rijndael algorithm](http://en.wikipedia.org/wiki/Advanced_Encryption_Standard) .
 
 The rest of the file shows that you can set the contents of the encrypted property just like any other property, and then use the bus to send the message. Read about [sending messages](how-do-i-send-a-message.md) and
 [here](how-do-i-specify-store-forward-for-a-message.md) too.
@@ -102,10 +101,3 @@ Go to the server queue (called "MyServerInputQueue") and examine the message in 
   </MessageWithSecretData>
 </Messages>
 ```
-
-The data in the property is encrypted, but the rest of the message is clear text. This keeps the performance impact of encryption as low as possible.
-
-**NOTE**: Keys used originally for encryption and expired while in-flight messages were not processed, can be used for decryption. Refer to [Encryption with Multi-Key Decryption](encryption-with-multi-key-decryption.md).
-
-Finally, keep in mind that the security is only as strong as the keys; if the key is exposed, then an attacker can decipher the information. As such, you may not want to have your encryption keys stored on the client (if deployed remotely) or even on a web server in the DMZ. Also, you may want to change the keys used by all processes simultaneously, by overriding the source of configuration for [the RijndaelEncryptionService](customizing-nservicebus-configuration.md) .
-
