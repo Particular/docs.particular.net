@@ -106,7 +106,7 @@ Configure the name of the master node server as shown in this app.config example
 <configuration>
   <configSections>
     <!-- Other sections go here -->
-    <section name="MasterNodeConfig" type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Distributor.MSMQ" />
+    <section name="MasterNodeConfig" type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Core" />
   </configSections>
   <!-- Other config options go here -->
   <MasterNodeConfig Node="MachineWhereDistributorRuns"/>
