@@ -1,6 +1,6 @@
 ---
-title: NServiceBus Step by Step Guide - code first
-summary: Get started with NServiceBus, step by step, code-first.
+title: NServiceBus Step by Step Guide
+summary: Get started with NServiceBus
 tags: []
 ---
 
