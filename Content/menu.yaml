@@ -15,7 +15,7 @@
         - "NServiceBus/nservicebus-and-wcf"
         - "NServiceBus/nservicebus-and-websphere-sonic"
         - "NServiceBus/nservicebus-and-biztalk"
-		- "NServiceBus/no-dtc"
+        - "NServiceBus/no-dtc"
     - 
       Name: "publish-subscribe"
       Title: "Publish Subscribe"
@@ -84,7 +84,7 @@
         - "NServiceBus/monitoring-nservicebus-endpoints"
         - "NServiceBus/msmq-information"
         - "NServiceBus/auditing-with-nservicebus"
-		- "NServiceBus/subscribing-to-push-based-error-notifications"
+        - "NServiceBus/subscribing-to-push-based-error-notifications"
     - 
       Name: "customization"
       Title: "Customization"
@@ -137,8 +137,8 @@
         - "NServiceBus/running-nservicebus-on-windows"
         - "NServiceBus/licensing-servicematrix-v2.0"
         - "NServiceBus/encryption"
-		- "NServiceBus/how-do-I-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages"
-		- "NServiceBus/how-to-register-a-custom-serializer"
+        - "NServiceBus/how-do-I-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages"
+        - "NServiceBus/how-to-register-a-custom-serializer"
     - 
       Name: "samples"
       Title: "Samples"
