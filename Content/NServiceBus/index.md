@@ -140,3 +140,4 @@ summary: NServiceBus Documentation Table of Contents
 - [Preparing Your Machine to Run NServiceBus](preparing-your-machine-to-run-nservicebus.md)
 - [Running NServiceBus on Windows](running-nservicebus-on-windows.md)
 - [Licensing ServiceMatrix V2.0](licensing-servicematrix-v2.0.md)
+- [How to specify time to wait before raising critical exception for timeout outages](how-do-I-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages.md)
