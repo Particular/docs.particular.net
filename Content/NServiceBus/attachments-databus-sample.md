@@ -76,7 +76,7 @@ static string BasePath = "..\\..\\..\\storage";
 static void Main()
 {
     ...
-    busConfiguration.FileShareDataBus(BasePath);
+    busConfiguration.UseDataBus<FileShareDataBus>().BasePath(BasePath);
     ...
 }
 ```
