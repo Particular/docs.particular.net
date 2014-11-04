@@ -83,6 +83,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints.md)
 - [MSMQ Information](msmq-information.md)
 - [Auditing with NServiceBus](auditing-with-nservicebus.md)
+- [Push-based error notifications](subscribing-to-push-based-error-notifications.md)
 
 ## Publish Subscribe
 
