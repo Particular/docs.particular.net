@@ -18,7 +18,7 @@ Following list outlines various ways to telling how to connect to the RavenDB se
 
 Shared session is only applicable to Saga and Outbox storage. It can be configured via
 
-<!-- include ravendb-persistence-shared-session-for-sagas -->
+<!-- import ravendb-persistence-shared-session-for-sagas -->
 
 The session configured in this was is made available via the `ISessionProvider` interface to the user code e.g. in the handler:
 
