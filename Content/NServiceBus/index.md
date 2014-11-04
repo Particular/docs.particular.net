@@ -142,3 +142,4 @@ summary: NServiceBus Documentation Table of Contents
 - [Running NServiceBus on Windows](running-nservicebus-on-windows.md)
 - [Licensing ServiceMatrix V2.0](licensing-servicematrix-v2.0.md)
 - [How to specify time to wait before raising critical exception for timeout outages](how-do-I-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages.md)
+- [How to register a custom serializer](how-to-register-a-custom-serializer.md)
