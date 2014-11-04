@@ -16,8 +16,8 @@ To disable the Store and Forward behaviour, decorate messages with the `[Express
 
 ### Version 4
 
-<!-- import ExpressMEssageConventionV4 -->
+<!-- import ExpressMessageConventionV4 -->
 
 ### Version 5
 
-<!-- import ExpressMEssageConventionV5 -->
+<!-- import ExpressMessageConventionV5 -->
