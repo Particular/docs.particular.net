@@ -5,7 +5,7 @@ tags:
 - Scheduler
 ---
 
-With the NServiceBus scheduling capability you can schedule a task or an action/lambda, to be executed repeatedly in a given interval.
+With the NServiceBus scheduling capability you can schedule a task to be executed repeatedly in a given interval.
 
 ## Use cases
 
@@ -41,7 +41,7 @@ The scheduling infrastructure leverages the reliable messaging approach at the c
 
 ## Implementation
 
-The scheduler holds a all list of tasks scheduled. In version 3 and 4 tasks are scoped per AppDomain. In version 5 they are scoped per Bus instance.
+The scheduler holds a all list of tasks scheduled. In version 3 and 4 tasks are scoped per `AppDomain`. In version 5 they are scoped per Bus instance.
 
 When the task is created it is given an unique identifier. The identifier for the task is sent in a message to the Timeout Manager. When it times out and the Timeout Manager returns the message containing the identifier to the endpoint with the scheduled task, the endpoint uses that identifier to fetch and invoke the task from its internal list of tasks.
 

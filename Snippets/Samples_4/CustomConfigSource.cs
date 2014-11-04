@@ -11,7 +11,8 @@ public class CustomConfigSource
         #region RegisterCustomConfigSource-v4
 
         Configure.With()
-            .CustomConfigurationSource(new MyCustomConfigurationSource()); //this call needs to happen right after With()
+            //this call needs to happen right after With()
+            .CustomConfigurationSource(new MyCustomConfigurationSource()); 
 
         #endregion RegisterCustomConfigSource-v4
     }
@@ -26,7 +27,10 @@ public class CustomConfigSource
             // the part you are overriding
             if (typeof(T) == typeof(RijndaelEncryptionServiceConfig))
             {
-                return new RijndaelEncryptionServiceConfig { Key = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6" } as T;
+                return new RijndaelEncryptionServiceConfig
+                       {
+                           Key = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"
+                       } as T;
             }
             // leaving the rest of the configuration as is:
             return ConfigurationManager.GetSection(typeof(T).Name) as T;
@@ -41,7 +45,10 @@ public class CustomConfigSource
     {
         public RijndaelEncryptionServiceConfig GetConfiguration()
         {
-            return new RijndaelEncryptionServiceConfig { Key = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6" };
+            return new RijndaelEncryptionServiceConfig
+                   {
+                       Key = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"
+                   };
         }
     }
 
