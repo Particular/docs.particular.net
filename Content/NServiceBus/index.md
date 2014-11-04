@@ -32,6 +32,7 @@ summary: NServiceBus Documentation Table of Contents
 - [NServiceBus and WCF](nservicebus-and-wcf.md)
 - [NServiceBus and WebSphere Sonic](nservicebus-and-websphere-sonic.md)
 - [NServiceBus and BizTalk](nservicebus-and-biztalk.md)
+- [Reliable messaging without MSDTC](no-dtc.md)
 
 ## Persistence in NServiceBus
 
