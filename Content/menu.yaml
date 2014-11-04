@@ -135,7 +135,6 @@
         - "NServiceBus/license-management"
         - "NServiceBus/preparing-your-machine-to-run-nservicebus"
         - "NServiceBus/running-nservicebus-on-windows"
-        - "NServiceBus/licensing-servicematrix-v2.0"
         - "NServiceBus/encryption"
         - "NServiceBus/how-do-I-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages"
         - "NServiceBus/how-to-register-a-custom-serializer"
