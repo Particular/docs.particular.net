@@ -1,5 +1,5 @@
 ---
-title: How to disable Store and Forward for a Message?
+title: Disabling MSMQ Store and Forward for a Message?
 summary: Store and Forward is not always the preferred method.
 tags: []
 ---
