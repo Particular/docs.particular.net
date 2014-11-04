@@ -194,6 +194,7 @@
       <SubType>Designer</SubType>
     </None>
     <Compile Include="Gateway\GatewayConfig.cs" />
+    <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />

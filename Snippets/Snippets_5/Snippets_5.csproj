@@ -281,6 +281,7 @@
     <Compile Include="CriticalError.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="RegisterCustomSerializer.cs" />
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
     <Compile Include="Encryption\MessageBodyEncryption.cs" />
