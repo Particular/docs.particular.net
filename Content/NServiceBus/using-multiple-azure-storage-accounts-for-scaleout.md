@@ -1,5 +1,5 @@
 ---
-title: Using Multiple Azure Storage Accounts for Scale out
+title: Using Multiple Azure Storage Accounts for Scale Out
 summary: NServiceBus can use multiple Azure storage accounts for scale out
 tags: 
 - Windows Azure
@@ -25,7 +25,7 @@ When the number of instances with endpoints are increased, all endpoints continu
 
 ![Single storage account with scaled out endpoints](../images/NServiceBus/azure01.png)
 
-While an NServiceBus endpoint can only read from a single Azure storage account, it can send messages to multiple storage accounts. Configure this by specifying a connection string when message mapping. Each endpoint will have its own storage account to overcome Azure Storage account throughput limitation of 20,000 message/sec.
+While an NServiceBus endpoint can only read from a single Azure storage account, it can send messages to multiple storage accounts. Configure this by specifying a connection string when message mapping. Each endpoint will have its own storage account to overcome the Azure storage account throughput limitation of 20,000 messages/sec.
 
 Example: Endpoint 1 sends messages to Endpoint 2. Endpoint 1 defines message mapping with a connection string associated with the Endpoint 2 Azure storage account. The same idea applies to Endpoint 1 sending messages to Endpoint 2.
 
@@ -54,9 +54,9 @@ Each endpoint uses its own Azure storage account, thereby increasing message thr
 
 ## Scale Units
 
-Scale out works to a certain extent, but you cannot apply it infinitely while expecting throughput to increase accordingly. You can only get so much throughput from a single resource or group of resources grouped together. 
+Scaleout works to a certain extent, but you cannot apply it infinitely while expecting throughput to increase accordingly. You can only get so much throughput from a single resource or group of resources grouped together. 
 
-Suitable techniques in the cloud include resource partitioning and use of scale units. Scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput, create more scale units. Scale units do not share resources.
+Suitable techniques in the cloud include resource partitioning and use of scale units. A scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput, create more scale units. Scale units do not share resources.
 
 An example of a partitioned application with a different number of deployed scale units is an application deployed in various regions.
 
