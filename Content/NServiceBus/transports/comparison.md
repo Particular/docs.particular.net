@@ -259,7 +259,7 @@ no-ops, all automatic, just configure a storage account via the Azure portal
 
 ### Resources:
 
-Temporary section that list all the external resources I ma using
+Temporary section that list all the external resources I am using
 
 Azure
 
