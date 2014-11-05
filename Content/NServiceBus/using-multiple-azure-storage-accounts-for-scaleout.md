@@ -23,7 +23,7 @@ A typical implementation uses a single storage account to send and receive messa
 
 When the number of instances with endpoints are increased, all endpoints continue reading and writing to the same storage account. Once the limit of 2,000 message/sec per queue or 20,000 message/sec per storage account is reached, Azure throttles the message throughput.
 
-![Single storage account with scaled out endpoints](../images/NServiceBus/azure01.png)
+![Single storage account with scaled out endpoints](../images/NServiceBus/azure02.png)
 
 While an NServiceBus endpoint can only read from a single Azure storage account, it can send messages to multiple storage accounts. Configure this by specifying a connection string when message mapping. Each endpoint will have its own storage account to overcome the Azure storage account throughput limitation of 20,000 messages/sec.
 
