@@ -10,8 +10,7 @@ The NServiceBus host streamlines service development and deployment, allows you 
 
 ## Overview
 
-To implement back-end message processing, you don't need to write your own host process. Just reference NServiceBus.Host.exe from your message handler assembly and write a single class that inherits from
-`IConfigureThisEndpoint`, specifying whether you want server or client behavior (as described below).
+To implement back-end message processing, you don't need to write your own host process. Just reference NServiceBus.Host.exe from your message handler assembly and write a single class that inherits from `IConfigureThisEndpoint`, specifying whether you want server or client behavior (as described below).
 
 Another option is to open the NuGet Package Manager Console and type:
 
@@ -21,7 +20,7 @@ To run and debug your endpoint, change the Debug settings of the Visual Studio p
 
 ![Debug settings](reference_host.png)
 
-Make sure that 'Start external program' is selected under Start Action and choose the file 'NServiceBus.Host.exe' in the `/bin/debug` directory of your project. 
+Make sure that 'Start external program' is selected under Start Action and choose the file `NServiceBus.Host.exe` in the `/bin/debug` directory of your project. 
 
 ## Configuration
 
@@ -86,60 +85,21 @@ Configure.With()
 
 NOTE: Do not perform any startup behaviors in the `Init` method.
 
-Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing
-`IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in v3.x) should kick off things such as web crawling, data mining, and batch processes.
-
-## Containers and dependency injection
-
-By default, the host makes use of Autofac internally as its container
-(dependency injection framework). To use a different container, implement the
-`IWantCustomInitialization` interface on the class that implements `IConfigureThisEndpoint` and [provide NServiceBus with an adapter object for your container](containers.md). Here is an example of setting Castle Windsor as the container of choice:
-
-NSeviceBus v3.x
-
-```C#
-class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization
-{
-    public void Init()
-    {
-        NServiceBus.Configure.With()
-        .CastleWindsorBuilder()
-        .XmlSerializer(); // or BinarySerializer()
-    }
-}
-```
-
-NSeviceBus v4.x 
-
-```C#
-public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization
-{        
-    public void Init()
-    {
-        Configure.Serialization.Xml();// or BinarySerializer()
-
-        Configure.With()
-            .CastleWindsorBuilder();
-    }
-}
-```
-
-If you omit the serialization configuration, XML is used by default. The rest of the code specifying transport, subscription storage, and other technologies isn't here, because of the
-`AsA_Server` built-in configuration described next.
+Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in v3.x) should kick off things such as web crawling, data mining, and batch processes.
 
 ## Built-in configurations
 
-While NServiceBus allows you to pick and choose which technologies to use and how to configure each of them, the host packages these choices into three built-in options: `AsA_Client`, `AsA_Server`, and
-`AsA_Publisher`. All these options make use of `XmlSerializer`, `MsmqTransport`, and `UnicastBus`. The difference is in the configuration:
+The rest of the code specifying transport, subscription storage, and other technologies isn't here, because of the `AsA_Server` built-in configuration described next.
+
+While NServiceBus allows you to pick and choose which technologies to use and how to configure each of them, the host packages these choices into three built-in options: `AsA_Client`, `AsA_Server`, and `AsA_Publisher`. All these options make use of `XmlSerializer`, `MsmqTransport`, and `UnicastBus`. The difference is in the configuration:
 
 -   `AsA_Client` sets `MsmqTransport` as non-transactional and purges its queue of messages on startup. This means that it starts afresh every time, not remembering anything before a crash. Also, it processes messages using its own permissions, not those of the message sender.
 -   `AsA_Server` sets `MsmqTransport` as transactional and does not purge messages from its queue on startup. This makes it fault-tolerant.
--   `AsA_Publisher` extends`AsA_Server` and indicates to the infrastructure to set up storage for    subscription requests, described in the [profiles page](profiles-for-nservicebus-host.md).
+-   `AsA_Publisher` extends `AsA_Server` and indicates to the infrastructure to set up storage for subscription requests, described in the [profiles page](profiles-for-nservicebus-host.md).
 
 ## Installation
 
-To install your process as a Windows Service, you need to pass `/install` on the command line to the host. By default, the name of the service is the name of your endpoint and the endpoint name is the namespace of your endpoint config class. To enable side-by-side operations, use the `/sideBySide` switch to add the semver version to the service name. Passing /install also causes the host to invoke the
-[installers](nservicebus-installers.md) .
+To install your process as a Windows Service, you need to pass `/install` on the command line to the host. By default, the name of the service is the name of your endpoint and the endpoint name is the namespace of your endpoint config class. To enable side-by-side operations, use the `/sideBySide` switch to add the semver version to the service name. Passing /install also causes the host to invoke the [installers](nservicebus-installers.md) .
 
 To override this and specify additional details for installation:
 
@@ -209,5 +169,4 @@ For example:
   
     > NServiceBus.Host.exe /uninstall /serviceName:YourServiceName /instance:YourInstanceName
 
- To invoke the infrastructure installers, run the host with the
-`/installInfrastructure` switch. [Learn about installers.](nservicebus-installers.md)
+To invoke the infrastructure installers, run the host with the `/installInfrastructure` switch. [Learn about installers.](nservicebus-installers.md)
