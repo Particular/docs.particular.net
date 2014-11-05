@@ -40,7 +40,7 @@ When you create the `OrderAccepted` event you will be prompted by a dialog infor
 
 ![User Code Changes Required](images/servicematrix-orderaccepted-usercodechanges.png)
 
-In order to publish this new event, the event message must be initialized an published by the `SubmitOrderProcessor`.  To make this easier, ServiceMatrix has generated the code in a convenient window for review.   Select the option to `Copy to Clipboard and Open File`.   The `SubmitOrderHandler` partial class file will be opened.  Paste the code from the clipboard after the comment as shown below. 
+In order to publish this new event, the event message must be initialized and published by the `SubmitOrderProcessor`.  To make this easier, ServiceMatrix has generated the code in a convenient window for review.   Select the option to `Copy to Clipboard and Open File`.   The `SubmitOrderHandler` partial class file will be opened.  Paste the code from the clipboard after the comment as shown below. 
 
 ```C#
 namespace OnlineSales.Sales
@@ -77,7 +77,7 @@ To deploy the `OrderAcceptedHandler` use the drop down menu and choose 'Deploy C
 
 ![Deploy OrderAcceptedHandler](images/servicematrix-orderaccepted-deploy.png)
 
-In the resulting '[Deploy To Endpoint](images/servicematrix-deploytonewendpoint.png "Deploy to Endpoint")' window choose the 'New Endpoint' option and [create an endpoint](images/servicematrix-newbillingendpoint.png "Add Billing Endpoint") called `Billing`.
+In the resulting '[Deploy To Endpoint](images/servicematrix-deploytonewendpointv2.2.0.png "Deploy to Endpoint")' window choose the 'New Endpoint' option and [create an endpoint](images/servicematrix-newbillingendpoint.png "Add Billing Endpoint") called `Billing`.
 
 At this point with a little re-arranging your ServiceMatrix canvas should look like this:
 
@@ -85,7 +85,7 @@ At this point with a little re-arranging your ServiceMatrix canvas should look l
 
 The `SubmitOrderHandler` raises the `OrderAccepted` event, to which `OrderAcceptedHandler` of the `Billing` service is subscribed.
 
-As you would expect, the ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilder.png "SolutionBuilder") reflects the new endpoint, service, component, and event you added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
+As you would expect, the ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilderv2.2.0.png "SolutionBuilder") reflects the new endpoint, service, component, and event you added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
 
 ## Review the Code
 

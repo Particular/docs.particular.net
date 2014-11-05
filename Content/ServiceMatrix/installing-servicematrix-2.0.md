@@ -18,7 +18,7 @@ If you're ready to learn more, this article reviews how to download and install 
 4.  [Next steps](#next-steps)
 
 ## Prerequisites
-ServiceMatrix is a Visual Studio extension.  Version 2.1 and beyond require that you have Visual Studio 2012 or 2013 on your system prior to installation. 
+ServiceMatrix is a Visual Studio extension.  Version 2.1 and beyond require that you have Visual Studio 2012 or 2013 on your system prior to installation. You will need the Professional or above edition of Visual Studio (Express editions not supported).
   
 If you are using Visual Studio 2010, ServiceMatrix 1.0 will be detected and installed. Version 1.0 builds solutions through a tree view in the solution builder interface. New features like the drawing canvas are only available in V2.X.  Version 1.0 will no longer be updated with new features.
 
