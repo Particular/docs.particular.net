@@ -131,6 +131,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.5.1.0\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.Distributor.MSMQ">
+      <HintPath>..\packages\NServiceBus.Distributor.MSMQ.5.0.1\lib\net45\NServiceBus.Distributor.MSMQ.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus.Gateway, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.Gateway.1.0.0\lib\net45\NServiceBus.Gateway.dll</HintPath>
@@ -281,6 +284,8 @@
     <Compile Include="CriticalError.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="Distributor\ConfiguringDistributor.cs" />
+    <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="RegisterCustomSerializer.cs" />
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />

@@ -1,35 +1,29 @@
 ---
-title: Disconnect Workers from a Running Distributor
-summary: How a worker can be disconnected from its distributor using powershell
+title: Disconnect Workers from a running Distributor
+summary: How a worker can be disconnected from its distributor using PowerShell cmdlets
 tags: 
 - Scalability
 - Distributor
 ---
 
+NServiceBus Distributor starts sending messages to a Worker once it is aware of it. A Worker registers itself with a Distributor by sending a message containing a SessionID that identifies the current running Worker and the number of messages it can handle concurrently.
 
+##How a Worker can be disconnected?
+If the Worker is configured using the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ), there is a PowerShell cmdlet that can be used to disconnect a Worker from a Distributor. The steps are the following:
 
-The NServiceBus Distributor sends messages to a worker after the worker sends a register message to it, this message contains a SessionID that identifies the current relation with the distributor and also the capacity of the worker. This way the distributor has a ready message in its storage queue for every message a worker can receive, and also it keeps in memory a list of workers with its session.
-
-##How a worker can be disconnected?
-If the worker is configured using the NServiceBus.Distributor.MSMQ NuGet there is a PowerShell functionallity that can be use to remove a Worker from a Distributor. The steps are the following:
-
-1. Load the [NServiceBus PowerShell CmdLet](managing-nservicebus-using-powershell.md) and execute Remove-NServiceBusMSMQWorker WorkerAddress DistributorAddress.
-<p class="alert alert-info">
-  NOTE: 
-   * The WorkerAddress = the worker queue name, eg Worker@localhost
-   * The DistributorAddress = the distributor queue name eg MyDistributor@localhost, Note: you just pass the distributor queue name, the PS script automatically appends ".distributor.control" to the end of the distributor queue.
-</p> 
-
-
-2. Wait for worker to drain all queued messages in its input queue.
+1. Load the [NServiceBus PowerShell CmdLet](managing-nservicebus-using-powershell.md) and execute `Remove-NServiceBusMSMQWorker WorkerAddress DistributorAddress`.
+{{NOTE:
+   * `WorkerAddress` is the Worker queue name, eg Worker@localhost
+   * `DistributorAddress` is the Distributor queue name eg MyDistributor@localhost, Note: you just pass the Distributor queue name, the PowerShell cmdlet will automatically appends ".distributor.control" to the end of the Distributor queue.
+}} 
+2. Wait for Worker to drain all queued messages from its input queue.
 3. Shutdown the endpoint.
 
 
-
-##What's happening inside the distributor after the PowerShell is executed?
-1. An unregister message is sent by the PowerShell to the distributor control queue.
-2. When the distributor processes it the worker with the address specified in the message is set with SessionID  "disconnected".
-3. Ready messages sent back by the worker to the distributor never match the session, so they are skipped and that way the worker won't receive any message more from the distributor.
+##What is happening inside the Distributor after the PowerShell is executed?
+1. A disconnect message is sent by the PowerShell to the Distributor control queue.
+2. When the Distributor processes it, the Worker with the address specified in the message is set with SessionID  "disconnected".
+3. Ready messages sent back by the Worker to the Distributor never match the session, so they are skipped and that way the Worker won't receive any more messages from the Distributor.
 
 
 
