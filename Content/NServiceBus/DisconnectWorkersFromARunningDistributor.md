@@ -12,7 +12,10 @@ NServiceBus Distributor starts sending messages to a Worker once it is aware of 
 
 If the Worker is configured using the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ), there is a PowerShell cmdlet that can be used to disconnect a Worker from a Distributor. The steps are the following:
 
-1. Load the [NServiceBus PowerShell CmdLet](managing-nservicebus-using-powershell.md) and execute `Remove-NServiceBusMSMQWorker WorkerAddress DistributorAddress`.
+1. Load the [NServiceBus PowerShell CmdLet](managing-nservicebus-using-powershell.md) and execute
+```ps
+Remove-NServiceBusMSMQWorker WorkerAddress DistributorAddress
+```
 {{NOTE:
    * `WorkerAddress` is the Worker queue name, eg Worker@localhost
    * `DistributorAddress` is the Distributor queue name eg MyDistributor@localhost, Note: you just pass the Distributor queue name, the PowerShell cmdlet will automatically appends ".distributor.control" to the end of the Distributor queue.
