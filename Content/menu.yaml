@@ -85,6 +85,7 @@
         - "NServiceBus/msmq-information"
         - "NServiceBus/auditing-with-nservicebus"
         - "NServiceBus/subscribing-to-push-based-error-notifications"
+        - "NServiceBus/DisconnectWorkersFromARunningDistributor"
     - 
       Name: "customization"
       Title: "Customization"
