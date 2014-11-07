@@ -119,7 +119,7 @@ Configure the name of the master node server as shown in this `app.config` examp
 </configuration>
 ```
 
-Read about the `DistributorControlAddress` and the `DistributorDataAddress` in the [Routing with the Distributor](load-balancing-with-the-distributor.md) section.
+Read about the `DistributorControlAddress` and the `DistributorDataAddress` in the [Routing with the Distributor](#routing-with-the-distributor) section.
 
 ### When self-hosting
 If you are self-hosting your endpoint here is the code required to enlist the endpoint with a Distributor.
