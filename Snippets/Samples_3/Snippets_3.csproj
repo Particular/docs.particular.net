@@ -79,6 +79,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Distributor\ConfiguringDistributor.cs" />
+    <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="Encryption\PropertyEncryption.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />

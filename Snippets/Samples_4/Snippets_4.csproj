@@ -120,6 +120,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.4.7.4\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.Distributor.MSMQ">
+      <HintPath>..\packages\NServiceBus.Distributor.MSMQ.4.4.7\lib\net40\NServiceBus.Distributor.MSMQ.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus.Host, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.Host.4.7.4\lib\net40\NServiceBus.Host.exe</HintPath>
@@ -179,6 +182,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Audit\App.config" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -193,6 +197,8 @@
     <None Include="Encryption\encryption.config">
       <SubType>Designer</SubType>
     </None>
+    <Compile Include="Distributor\ConfiguringDistributor.cs" />
+    <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="Gateway\GatewayConfig.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />

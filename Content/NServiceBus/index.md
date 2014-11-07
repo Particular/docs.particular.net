@@ -84,6 +84,7 @@ summary: NServiceBus Documentation Table of Contents
 - [MSMQ Information](msmq-information.md)
 - [Auditing with NServiceBus](auditing-with-nservicebus.md)
 - [Push-based error notifications](subscribing-to-push-based-error-notifications.md)
+- [Disconnect workers from a running Distributor](DisconnectWorkersFromARunningDistributor.md)
 
 ## Publish Subscribe
 
