@@ -4,7 +4,8 @@ summary: Get started with NServiceBus
 tags: []
 ---
 
-In this tutorial we are going to create a very simple ordering system that will send messages from a client to a server. The ordering system includes three projects: Client, Server, and Messages, to complete this tasks we will execute the following steps:
+In this tutorial we are going to create a very simple ordering system that will send messages from a client to a server.
+The ordering system includes three projects: Client, Server, and Messages, to complete this tasks we will execute the following steps:
 
 1.  [Creating the Client project](#Creating-the-Client-project)
 2.  [Creating the Messages project](#Creating-the-Messages-Project)
@@ -13,6 +14,8 @@ In this tutorial we are going to create a very simple ordering system that will 
 5.  [Running the solution](#Running-the-solution)
 
 The complete solution code can be found [here](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Documentation/001_OrderingSendOnly)
+
+Before Continuing: If you don’t have Particular Service Platform installed on the machine then Download and install the Particular Service Platform from [here](http://particular.net/downloads) 
 
 ### Creating the Client project
 
