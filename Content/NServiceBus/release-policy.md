@@ -33,7 +33,7 @@ Extremely low. Note that patch releases are 100% backwards compatible so you sho
 
 Read the release notes and consider upgrading if you're affected by any of the issues fixed.
 
-Any issues that could affect the production stability of your system will be classified as `hotfix`'s so please pay extra attention to those.
+Any issues that could affect the production stability of your system will be classified as `hotfix` so please pay extra attention to those.
 
 ### Effort 
 
