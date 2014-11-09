@@ -3,7 +3,7 @@
 To reduce scope risk we have optimized to release small components with a regular cadence. While this may seem to result in a large number of releases only a small fraction of these will actually affect you. This is how you should approach upgrades.
 
 
-### We follow SemVer 
+### Semantic Versioning 
 
 [Semver](http://semver.org/) is a simple set of rules and requirements that dictate how version numbers are assigned and incremented. 
 
