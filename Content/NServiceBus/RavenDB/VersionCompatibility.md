@@ -6,7 +6,7 @@ tags:
 - Persistence
 ---
 
-## NServiceBus 5: Externalised RavenDB
+## NServiceBus 5: Externalized RavenDB
 
 RavenDB persistence is available as a separate nuget [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB)
 
