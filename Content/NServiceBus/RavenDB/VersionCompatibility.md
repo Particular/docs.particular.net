@@ -8,7 +8,7 @@ tags:
 
 ## NServiceBus 5: Externalised RavenDB
 
-RavanDB peristence is available as a separate nuget [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB)
+RavenDB persistence is available as a separate nuget [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB)
 
     Install-Package NServiceBus.RavenDB
 
@@ -16,8 +16,8 @@ The current approach moving forward for the RavenDB integration is to ship outsi
 
  * Allow us to evolve the implementation more closely instep with the RavenDB release schedule;
  * Reduce the need for version compatibility hacks;
- * Allow the shipping upgrades to this library without having to ship the core; 
- * Make the approach to RavenDB persistence consistent with the other persistence integrations;
+ * Allows the shipping of upgrades to this library without having to ship the core; 
+ * Makes the approach to RavenDB persistence consistent with the other persistences; 
 
 ### Supported RavenDB versions 
 
