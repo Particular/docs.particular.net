@@ -43,6 +43,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Unit of Work in NServiceBus](unit-of-work-in-nservicebus.md)
 - [Unit of Work Implementation for RavenDB](unit-of-work-implementation-for-ravendb.md)
 - [Relational Persistence Using NHibernate NServiceBus 4.X](relational-persistence-using-nhibernate---nservicebus-4.x.md)
+- [RavenDB Version Compatibility](RavenDB/VersionCompatibility.md)
 
 ## Scaling Out
 

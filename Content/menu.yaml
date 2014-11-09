@@ -42,6 +42,7 @@
         - "NServiceBus/unit-of-work-in-nservicebus"
         - "NServiceBus/unit-of-work-implementation-for-ravendb"
         - "NServiceBus/relational-persistence-using-nhibernate---nservicebus-4.x"
+        - "NServiceBus/ravendb/versioncompatibility"
     - 
       Name: "long-running-processes"
       Title: "Long Running Processes"
