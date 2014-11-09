@@ -20,7 +20,7 @@ By following SemVer 2.0 you will be able to quickly determine the urgency, risk 
 
 ### We backport important bugfixes
 
-While not stipulated by SemVer we've made the decision to backport important fixes to all supported versions of NServiceBus. By supported we mean any minor version released with in the last year and all major versions withing the last 3 years. This means that you will get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version. Please let us know if there are any bugfixes that you believe should be backported to your current version.
+While not stipulated by SemVer we've made the decision to backport important fixes to all supported versions of NServiceBus. By supported we mean any minor version released with in the last year and all major versions within the last 3 years. This means that you will get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version. Please let us know if there are any bugfixes that you believe should be backported to your current version.
 
 
 
