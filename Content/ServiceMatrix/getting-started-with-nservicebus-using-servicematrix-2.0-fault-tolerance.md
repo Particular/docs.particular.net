@@ -79,23 +79,7 @@ The defaults are three retries and ten seconds, resulting in a wait of 10 second
 
 To demonstrate this feature you must make the processing of messages in `OrderProcessing` fail. The easiest way to do this is to throw an exception in the `SubmitOrderHandler` code, like this:
 
-```C#
-namespace OnlineSales.Sales
-{
-    public partial class SubmitOrderHandler
-    {
-		
-       partial void HandleImplementation(SubmitOrder message)
-        {
-         
-            Console.WriteLine("Sales received " + message.GetType().Name);
-
-            //Throw an exception to simulate an error!
-            throw new Exception("Oh no.. something bad happened");
-        }
-    }
-}
-```
+<!-- import ServiceMatrix.OnlineSales.Sales.SubmitOrderHandler.exception -->
 
 Run your solution again, but this time use Ctrl-F5 or from the menu choose [start without debugging](images/servicematrix-startnodebugging.png "Start without debugging") so that Visual Studio does not break each time the exception is thrown.
 

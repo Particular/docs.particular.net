@@ -42,23 +42,8 @@ When you create the `OrderAccepted` event you will be prompted by a dialog infor
 
 In order to publish this new event, the event message must be initialized and published by the `SubmitOrderProcessor`.  To make this easier, ServiceMatrix has generated the code in a convenient window for review.   Select the option to `Copy to Clipboard and Open File`.   The `SubmitOrderHandler` partial class file will be opened.  Paste the code from the clipboard after the comment as shown below. 
 
-```C#
-namespace OnlineSales.Sales
-{
-    public partial class SubmitOrderHandler
-    {
-        partial void HandleImplementation(SubmitOrder message)
-        {
-            // TODO: SubmitOrderHandler: Add code to handle the SubmitOrder message.
-            Console.WriteLine("Sales received " + message.GetType().Name);
-            
-            var orderAccepted = new OnlineSales.Contracts.Sales.OrderAccepted();
-            Bus.Publish(OrderAccepted);
-        }
-    }
-}
+<!-- import ServiceMatrix.OnlineSales.Sales.SubmitOrderHandler --> 
 
-```
 This code will publish the `OrderAccepted` event immediately upon receipt of the `SubmitOrder` message.
 
 ## Adding the Subscriber
@@ -99,20 +84,7 @@ When we created the `OrderAccepted` event ServiceMatrix generated the code to pu
 
 In the `OrderAcceptedHandler` drop-down menu select `View Code` and you should see the following. 
 
-```C#
-namespace OnlineSales.Billing
-{
-    public partial class OrderAcceptedHandler
-    {
-        partial void HandleImplementation(OrderAccepted message)
-        {
-            // TODO: OrderAcceptedHandler: Add code to handle the OrderAccepted message.
-            Console.WriteLine("Billing received " + message.GetType().Name);
-        }
-    }
-}
-
-```
+<!-- import ServiceMatrix.OnlineSales.Billing.OrderAcceptedHandler.before -->
 
 There is nothing new here!  Notice that this generated `OrderAcceptedHandler` code is the exactly the same as was generated for the  `SubmitOrderHandler`.
 
