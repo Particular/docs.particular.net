@@ -44,6 +44,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Unit of Work Implementation for RavenDB](unit-of-work-implementation-for-ravendb.md)
 - [Relational Persistence Using NHibernate NServiceBus 4.X](relational-persistence-using-nhibernate---nservicebus-4.x.md)
 - [RavenDB Version Compatibility](RavenDB/VersionCompatibility.md)
+- [Configuration order for persistence](persistence-order.md)
 
 ## Scaling Out
 
@@ -102,7 +103,6 @@ summary: NServiceBus Documentation Table of Contents
 - [Customizing NServiceBus Configuration](customizing-nservicebus-configuration.md)
 - [Pipeline Management Using Message Mutators](pipeline-management-using-message-mutators.md)
 - [Override host identifier](override-hostid.md)
-- [Configuration order for persistence](persistence-order.md)
 
 ## Versioning
 
