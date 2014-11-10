@@ -22,49 +22,57 @@ By following SemVer 2.0 you will be able to quickly determine the urgency, risk 
 
 While not stipulated by SemVer we've made the decision to backport important fixes to all supported versions of NServiceBus. By supported we mean any minor version released with in the last year and all major versions within the last 3 years. This means that you will get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version. Please let us know if there are any bugfixes that you believe should be backported to your current version.
 
+## Summary
+The following table summarize the risk effort and urgency for the different types of releases
+
+|  | Patch | Minor | Major |
+|---------|----------------|--------|-------|
+| Risk | Extremely low | Medium | High |
+| Urgency | High to medium | Low | Low |
+| Effort | Minimal | Low | High |
 
 
-## Patch
+### Patch
 Patches are put on on demand as soon as issues triaged as important is found
-### Risk
+#### Risk
 Extremely low. Note that patch releases are 100% backwards compatible so you should be able safely upgrade with low risk and effort.
 
-### Urgency
+#### Urgency
 
 Read the release notes and consider upgrading if you're affected by any of the issues fixed.
 
 Any issues that could affect the production stability of your system will be classified as `hotfix` so please pay extra attention to those.
 
-### Effort 
+#### Effort 
 
 Minimal, in rare case a code change might be required in relation to the patch. Minimal testing required but where possible verify that it fixes the issue in question.
 
-## Minor
+### Minor
 Minor versions are released every 1-2 months and contains features and bugfixes. Note that these releases are as stipulated by SemVer 100% backwards compatible.
 
-### Risk
+#### Risk
 Medium. Since adding new feature requires more code to be added/changed the risk is higher compared to a patch release.
 
-### Urgency
+#### Urgency
 Low. Since all critical issues will be backported. 
 
-### Effort 
+#### Effort 
 Low. Some new features will require code changes to take advantage of them
 
-## Major
+### Major
 Majors version are release rougly once per year.
 
-### Risk
+#### Risk
 High
 
-### Urgency
+#### Urgency
 Low
 
-### Effort 
+#### Effort 
 High. Since a new major version will contain breaking changes you will need to update code. Because of the extent of code changes in a major version you should expect to do a full regression test of your solution.
 
 
 ## How does this effect my support agreement?
 
-Do we need this in here? 
+We fully support all minor versions for one year and all major versions for 3 years. If you have a support agreement with us those limits can be set to a longer period of time. 
 
