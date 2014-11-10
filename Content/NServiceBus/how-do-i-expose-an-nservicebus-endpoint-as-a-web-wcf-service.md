@@ -1,19 +1,14 @@
 ---
-title: How to Expose an NServiceBus Endpoint as a Web/WCF Service?
-summary: How to Expose an NServiceBus Endpoint as a Web/WCF Service?
-tags: []
+title: How to Expose an NServiceBus Endpoint as a WCF Service?
+summary: How to Expose an NServiceBus Endpoint as a WCF Service?
+tags: [WCF]
 ---
 
-Inherited from NServiceBus.Webservice<tcommand, terrorcode>, as shown below. TCommand is the message type of the request and needs to implement IMessage. TErrorCode must be an enumerated type, and should represent the result of processing the command.
+Inherited from NServiceBus.WcfService<TCommand, TErrorCode>, as shown below. TCommand is the message type of the request. TErrorCode must be an enumerated type, and should represent the result of processing the command. Example:
 
-    [WebService(Namespace = "http://tempuri.org/")]
-    [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    [ToolboxItem(false)]
-    public class YourWebService : NServiceBus.Webservice { }
+<!-- import ExposeWCFService -->
 
-OR
-
-    public class YourWcfService : WcfService { }
+NOTE: In v5 of NServiceBus `WcfService<TCommand, TErrorCode>` has been moved to [NServiceBus.Host nuget package](http://www.nuget.org/packages/NServiceBus.Host), so you need to reference this package.
 
 ## Queries and other return values
 
