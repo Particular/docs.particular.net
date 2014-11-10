@@ -94,6 +94,7 @@
         - "NServiceBus/customizing-nservicebus-configuration"
         - "NServiceBus/pipeline-management-using-message-mutators"
         - "NServiceBus/override-hostid"
+        - "NServiceBus/persistence-order"
     - 
       Name: "versioning"
       Title: "Versioning"
