@@ -5,8 +5,6 @@ tags:
 - Persistence
 ---
 
-## Configuration order for persistence is important
-
 When configuring persistence in NServiceBus v5, order is very important.
 The last configured persistence option wins.
 Lets have a look at some examples.
