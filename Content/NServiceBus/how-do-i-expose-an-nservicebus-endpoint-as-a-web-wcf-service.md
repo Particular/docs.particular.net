@@ -4,7 +4,7 @@ summary: How to Expose an NServiceBus Endpoint as a WCF Service?
 tags: [WCF]
 ---
 
-Inherited from NServiceBus.WcfService<TCommand, TErrorCode>, as shown below. TCommand is the message type of the request. TErrorCode must be an enumerated type, and should represent the result of processing the command. Example:
+Inherited from `NServiceBus.WcfService<TCommand, TErrorCode>`, as shown below. `TCommand` is the message type of the request. `TErrorCode` must be an enumerated type, and should represent the result of processing the command. Example:
 
 <!-- import ExposeWCFService -->
 
