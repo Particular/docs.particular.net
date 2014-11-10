@@ -101,6 +101,7 @@ summary: NServiceBus Documentation Table of Contents
 
 - [Customizing NServiceBus Configuration](customizing-nservicebus-configuration.md)
 - [Pipeline Management Using Message Mutators](pipeline-management-using-message-mutators.md)
+- [Override host identifier](override-hostid.md)
 
 ## Versioning
 

@@ -93,6 +93,7 @@
       Articles: 
         - "NServiceBus/customizing-nservicebus-configuration"
         - "NServiceBus/pipeline-management-using-message-mutators"
+        - "NServiceBus/override-hostid"
     - 
       Name: "versioning"
       Title: "Versioning"
