@@ -194,6 +194,9 @@ var configure = Configure.With()
 ••.FileShareDataBus(databusPath)
 ```
 
+The same behavior will apply to leading tabs.
+
+
 #### Do not mix tabs and spaces
 
 If tabs and spaces are mixed there is no way for the snippets to work out what to trim.
