@@ -219,7 +219,7 @@ var configure = Configure.With()
 &#10137;&#10137;.FileShareDataBus(databusPath)
 </pre>
 
-Note the tabs will remain.
+Note none of the tabs have been trimmed.
 
 ## Alerts
 
