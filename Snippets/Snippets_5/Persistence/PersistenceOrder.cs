@@ -47,7 +47,6 @@
             config.UsePersistence<InMemoryPersistence>()
                 .For(Storage.GatewayDeduplication);
 
-
             // This one will override the above settings!
             config.UsePersistence<RavenDBPersistence>();
             #endregion
