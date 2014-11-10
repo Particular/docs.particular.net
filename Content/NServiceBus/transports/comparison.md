@@ -41,6 +41,9 @@ Choosing the correct transport can be challenging and the choice can depend on s
 |[Access control model](#security)|ACL|?|Host & Resource based|Delegated access via SAS tokens|RBAC via ACS
 |[HA support](#ha-support)|&#10006;|User|&#10004;\*|&#10004;|&#10004;
 |[3rd party SDK](#3rd-party-sdk)|&#10006;|&#10006;|RabbitMQ Client|Azure SDK|Azure SDK
+|[Express messages](#express-messages)|&#10004;|&#10006;|&#10006;|&#10006;|&#10006;
+|[Competing consumers](#competing-consumers)|&#10006;|&#10004;|&#10004;|&#10004;|&#10004;
+|[Topics support](#topics-support)|&#10006;|&#10006;|&#10004;|&#10004;|&#10006;
 
 (each of the followings should be shown in a fancy box as glossary of the above matrix attributes)
 
@@ -78,7 +81,7 @@ descriptions and notes on different behaviors and permissione where appropriate
 
 ##### Poison messages
 
-descritption
+description
 
 ##### Max queue size
 ##### Max message size
@@ -96,11 +99,22 @@ Authentication and authorization
 
 ##### HA support
 
-description and notes on different approcahes
+description and notes on different approaches
 
 ##### 3rd party SDK
 
 links
+
+##### Express messages
+
+description and links to docu
+
+##### Competing consumers
+
+On MSMQ requires the distributor?
+
+##### Topics support
+
 
 
 ### NServiceBus features
@@ -111,7 +125,6 @@ NServiceBus does its best to support all its built-in feature on all the support
 
   |MSMQ|SQL Server|RabbitMQ|Azure ServiceBus|Azure Storage Queues
 |---              |---         |---               |---              |---                           |---
-|Pub/Sub|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
 |Sagas|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
 |Outbox|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
 |De-Duplication (When Outbox is enabled)|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
@@ -122,8 +135,6 @@ NServiceBus does its best to support all its built-in feature on all the support
 |Second Level Retries|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
 |ServicePulse manual retry|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
 |ServiceControl Integration|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
-|Express messages|&#10004;|&#10006;|&#10006;|&#10006;|&#10006;|
-|Distributor|&#10004;|\--|\--|\--|\--|
 
 ### MSMQ
 
