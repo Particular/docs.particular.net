@@ -54,7 +54,7 @@ descriptions
 
 ##### MSDTC
 
-description and notes one network partions
+description and notes one network partitions
 
 ##### Ordering
 
@@ -96,7 +96,7 @@ Authentication and authorization
 
 ##### HA support
 
-description and notes on different aprocahes
+description and notes on different approcahes
 
 ##### 3rd party SDK
 
@@ -182,29 +182,29 @@ Transport package: [NServiceBus.SqlServer](https://www.nuget.org/packages/NServi
 
 ### RabbitMQ
 
-Transport package: [NServiceBus.RabbitMQ](https://www.nuget.org/packages/NServiceBus.RabbitMQ/)
+NServiceBus Transport package: [NServiceBus.RabbitMQ](https://www.nuget.org/packages/NServiceBus.RabbitMQ/)
 
-##### strengths
+##### Strengths
 
-* cluster, scale and shard support;
-* cross network boundaries via shovels and/or federation;
+* RabbitMQ has built-in support for [clustering, shard and scale-out](https://www.rabbitmq.com/clustering.html);
+* Via [shovels](https://www.rabbitmq.com/shovel.html) and [federation](https://www.rabbitmq.com/federation.html) plugins can be configured to cross network boundaries;
 
-##### weaknesses
+##### Weaknesses
 
-* no support for transactions, not really true add comments;
-* requires the Outbox thus requires all endpoints to run at least v5;
-* requires Erlang on the server hosting the RabbitMQ broker;
-* hard HA
+* There is no complete support for [transactions](https://www.rabbitmq.com/semantics.html), RabbitMQ favors [publisher acknowledgements](https://www.rabbitmq.com/confirms.html) over AMQP transactions;
+    * off by default 
+* To guarantee a transactional-like behavior requires the [NServiceBus Outbox](http://docs.particular.net/nservicebus/no-dtc) feature that requires that all endpoints run at least NServiceBus V5;
+* *(...hard HA...)*
 
 ##### IT/Ops Management tools
 
-* Built-in management web app;
+RabbitMQ has a built-in management web application, refer to the official documentation for details regarding the [Management Plugin](https://www.rabbitmq.com/management.html).
 
 ##### Deployment
 
-* Server: install Erlang, install the server, configure security and HA if required
-* Client: no ops
-* Queues: automatically created as endpoint startup if the endpoint connect with a user with enough permissions, otherwise manual creation?
+* *Server*: Refer to the official RabbitMQ documentation for a detailed installation guide: [Downloading and Installing RabbitMQ](https://www.rabbitmq.com/download.html);
+* *Client*: The RabbitMQ Client is automatically referenced by the endpoint when installing the `NServiceBus.RabbitMQ` transport package;
+* *Queues creation*: queues are automatically created at endpoint startup if the endpoint is connected to the RabbitMQ server with a user enough enough permissions; otherwise queues needs to be created manually;
 
 ### Azure ServiceBus
 
@@ -268,8 +268,6 @@ Azure
 Rabbit
 
 * https://www.rabbitmq.com/access-control.html
-* https://www.rabbitmq.com/federation.html
-* https://www.rabbitmq.com/shovel.html
 * http://www.rabbitmq.com/blog/2012/05/11/some-queuing-theory-throughput-latency-and-bandwidth/
 * https://www.rabbitmq.com/confirms.html
 * https://www.rabbitmq.com/semantics.html (tx)
