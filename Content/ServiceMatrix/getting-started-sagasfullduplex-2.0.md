@@ -44,24 +44,7 @@ When you add this new command, ServiceMatrix will prompt you with the code neces
 
 Copy the code to the clipboard and add it to the `OrderAcceptedHandler` inside the handler of the `OrderAccepted` event as shown.
 
-```C#
-namespace OnlineSales.Billing
-{
-    public partial class OrderAcceptedHandler
-    {
-        partial void HandleImplementation(OrderAccepted message)
-        {
-            // TODO: OrderAcceptedHandler: Add code to handle the OrderAccepted message.
-            Console.WriteLine("Billing received " + message.GetType().Name);
-
-			Console.WriteLine("Configuring the SubmitPayment Message");
-			//Paste the send code block here.
-            var submitPayment = new OnlineSales.Internal.Commands.Billing.SubmitPayment();
-            Bus.Send(submitPayment);
-        }
-    }
-}
-```
+<!-- import ServiceMatrix.OnlineSales.Billing.OrderAcceptedHandler -->
 
 This canvas will illustrate the new `SubmitPayment` command along with an undeployed `SubmitPaymentHandler` component.  Use the drop-down menu of this component to deploy it to a [new endpoint](images/servicematrix-deploytopaymentprocessing.png) hosted in the NServiceBus host, and name it `PaymentProcessing`.   The relationship between the `Billing` and `PaymentProcessing` endpoints should look like this:
 
@@ -100,16 +83,7 @@ In addition to the original `OrderAccepted` event from the previous example we w
 
 ## Adding Saga Data
 
-```C#
-namespace OnlineSales.Billing
-{
-    public partial class OrderAcceptedHandlerSagaData
-    {
-		//Put your own custom properties here.  
-		//private string OrderID{get;set;}
-    }
-}
-```
+<!-- import ServiceMatrix.OnlineSales.Billing.OrderAcceptedHandlerSagaData -->
 
 Saga data properties can be accessed or mutated using the `Data` object from any of the Sagas `Handle` methods.
 
@@ -117,50 +91,20 @@ Saga data properties can be accessed or mutated using the `Data` object from any
 
 ## Adding the Response Handler
 ServiceMatrix has implemented handlers that call partial methods on your `OrderAcceptedHandler` class that you can implement for handling the `SubmitPaymentResponse`.  Modify the partial class in `Billing\OrderAcceptedHandler.cs` to include the new partial method as shown:  
-```C#
-partial void HandleImplementation(Internal.Messages.Billing.SubmitPaymentResponse message)
-{
-   //Handle the SubmitPaymentResponse
-	Console.WriteLine("Billing received " + message.GetType().Name);
 
-	//To access and save to saga data use code like this..
-	//Data.AuthCode = message.AuthorizationCode;
-}
-```
+<!-- import ServiceMatrix.OnlineSales.Billing.OrderAcceptedHandler.handleSubmitPaymentResponse -->
 
 ## Completing the Saga
 
 The saga maintains data between calls but this persistence needs to last only until the process is over.  To end a saga and free up its resources it must be marked as complete when the final message is received.  ServiceMatrix generates code that keeps track of each message and provides a convenient partial method that can be used to complete the saga by calling the `MarkAsComplete` method.  Continue modifying the `OrderAcceptedHandler.cs` class by adding this code:
 
-```C#
-partial void AllMessagesReceived()
-{
-    Console.WriteLine("All messages received. Completing the Saga.");
-    MarkAsComplete();
-}
-```
+<!-- import ServiceMatrix.OnlineSales.Billing.OrderAcceptedHandler.AllMessagesReceived -->
 
 ## Reviewing the SubmitPaymentProcessor Code
 
 Use the drop-down on the `SubmitPaymentHandler` component to bring up the code window. As was the case with the saga, ServiceMatrix has generated the basic code needed  to handle the `SubmitPayment` message.  ServiceMatrix has also either generated or prompted you to add code for the creation of the `SubmitPaymentResponse` and the `Bus.Reply()` method. 
 
-```C#
-namespace OnlineSales.Billing
-{
-    public partial class SubmitPaymentHandler
-    {
-        partial void HandleImplementation(SubmitPayment message)
-        {
-            // TODO: SubmitPaymentHandler: Add code to handle the SubmitPayment message.
-            Console.WriteLine("Billing received " + message.GetType().Name);
-
-            
-			var submitPaymentResponse = new OnlineSales.Internal.Commands.Billing.SubmitPaymentResponse();
-            Bus.Reply(submitPaymentResponse);
-        }
-    }
-}
-```
+<!-- import ServiceMatrix.OnlineSales.Billing.SubmitPaymentHandler -->
 
 # Running the Solution
 
