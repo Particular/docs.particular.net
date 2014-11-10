@@ -32,16 +32,7 @@ Have the Billing service publish a new `BillingCompleted` event whenever the pay
 
 Publish a new event named `BillingCompleted`. You will receive the 'User code changes required message.' Copy the code to the clipboard and paste it into the `AllMessagesReceived` method as shown.
 
-````C#
-partial void AllMessagesReceived()
-{
-  Console.WriteLine("All messages received. Completing the Saga.");
-  MarkAsComplete();
-
-  var billingCompleted = new OnlineSales.Contracts.Billing.BillingCompleted();
-  Bus.Publish(billingCompleted);
-}
-````
+<!-- import ServiceMatrix.OnlineSales.Billing.OrderAcceptedHandler.AllMessagesReceived.signalr -->
 
 ## Subscribe ASP.NET MVC to BillingCompleted
 

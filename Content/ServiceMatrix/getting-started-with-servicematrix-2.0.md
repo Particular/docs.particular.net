@@ -150,54 +150,17 @@ In addition to illustrating them in the canvas, the [Solution Builder](images/se
 
 The `SubmitOrder` command is a simple message meant to communicate the order between your endpoints.  To view the generated class file, click the drop-down menu of the `SubmitOrder` command and select View Code [as shown](images/servicematrix-submitorderviewcode.png "View SubmitOrder Code"). This is a very simple C# class.  You can add all sorts of properties to your message to represent the order data: strings, integers, arrays, dictionaries, etc. Just make sure to provide both a get accessor and a set mutator for each property. 
 
-```C#
-namespace OnlineSales.Internal.Commands.Sales
-{
-    public class SubmitOrder
-    {
-		//Put your properties in the class.
-		//public string CustomerName { get; set; }
-    }
-}
-```
+<!-- import ServiceMatrix.OnlineSales.Internal.Commands.Sales -->
 
 ## Handling a Message
 
 Now build the solution and see how everything turns out.  Look at the `SubmitOrderHandler` code by selecting its drop-down menu and choosing 'View Code'.  As you can see below, there is not much there.  A partial class has been created where you can add your order processing logic. 
 
-```C#
-namespace OnlineSales.Sales
-{
-    public partial class SubmitOrderHandler
-    {
-        partial void HandleImplementation(SubmitOrder message)
-        {
-            // TODO: SubmitOrderHandler: Add code to handle the SubmitOrder message.
-            Console.WriteLine("Sales received " + message.GetType().Name);
-        }
-    }
-}
-```
+<!-- import ServiceMatrix.OnlineSales.Sales.SubmitOrderHandler.before -->
 
 You can locate the ServiceMatrix-generated partial class counterpart in the `OnlineSales.OrderProcessing` project and the `Infrastructure\Sales` folder. There is not much to see; just a class that implements `IHandleMessages<submitorder>` and has a reference to `IBus` that you can use from within your partial class to send out other messages, publish events, or to reply to commands.  The partial method `HandleImplementation(message)` is a call to the implementation above.  To learn more about the way to use the generated code, see [Using ServiceMatrix Generated Code](customizing-extending.md).  
     
-```C#
-namespace OnlineSales.Sales
-{
-    public partial class SubmitOrderHandler : IHandleMessages<SubmitOrder>
-    {
-		public void Handle(SubmitOrder message)
-		{
-			// Handle message on partial class
-			this.HandleImplementation(message);
-		}
-
-		partial void HandleImplementation(SubmitOrder message);
-        public IBus Bus { get; set; }
-    }
-}
-
-```
+<!-- import ServiceMatrix.OnlineSales.Sales.SubmitOrderHandler.auto -->
 
 ## Sending a Message 
 
@@ -207,57 +170,11 @@ Lastly, review how the 'ECommerce' website sends a message.  When ServiceMatrix 
 
 Find the `TestMessagesController.generated.cs` file in the Controllers folder in the OnlineSales.ECommerce project.  ServiceMatrix generates this file as part of the MVC application. Notice the `SubmitOrderSender.Send` method that sends the command message `SubmitOrder`.  This method was generated in a different partial class file located in the `Infrastructure\Sales\SubmitOrderSender.cs` file.
 
-```C#
-namespace OnlineSales.ECommerce.Controllers
-{
-  public partial class TestMessagesController : Controller
-  {
-    //
-    // GET: /TestMessages/
-
-    public ActionResult Index()
-    {
-      return View();
-    }
-
-
-    public ISubmitOrderSender SubmitOrderSender { get; set; }
-
-    // POST: /TestMessages/SendMessageSubmitOrder
-
-    [HttpPost]
-    public string SendMessageSubmitOrder(SubmitOrder SubmitOrder)
-    {
-      ConfigureSubmitOrder(SubmitOrder);
-      SubmitOrderSender.Send(SubmitOrder);
-      return "<p> SubmitOrder command sent</p>";
-    }
-
-
-    // Send Commands
-
-    partial void ConfigureSubmitOrder(SubmitOrder message);
-
-    // Publish Events
-  }
-}
-```  
+<!-- import OnlineSales.ECommerce.Controllers.TestMessagesController.auto --> 
 
 This is a demonstration site that provides an initial reference application in MVC.  Any modifications to this file will be overwritten by subsequent regeneration of the demonstration site.  To accomodate your changes, before the `SubmitOrderSender.Send` is called, the code invokes a partial method called `ConfigureSubmitOrder` that accepts your `SubmitOrder` message as a parameter.  You can implement this in the `SubmitOrderSender.cs` file in the `\Sales` directory of the `OnlinesSales.ECommerce` project, as shown in the following code snippet:  
 
-```C#
-namespace OnlineSales.Sales
-{
-    public partial class SubmitOrderSender
-    {
-        //You can add the partial method to change the submit order message.
-        partial void ConfigureSubmitOrder(SubmitOrder message)
-        {
-            message.CustomerName="John Doe";
-        }
-    }
-}
-```
+<!-- import ServiceMatrix.OnlineSales.Sales.SubmitOrderSender -->
 
 ## Selecting a Persistence Store
 
@@ -267,20 +184,7 @@ NServiceBus requires a persistence store. By default, ServiceMatrix provisions y
 
 Each endpoint should be configured. For your ECommerce MVC endpoint, you will find the setup in `Infrastructure\WebGlobalInitialization.cs`. 
 
-````C#
-if (Debugger.IsAttached)
-{
-  // For production use, please select a durable persistence.
-  // To use RavenDB, install-package NServiceBus.RavenDB and then use configuration.UsePersistence<RavenDBPersistence>();
-  // To use SQLServer, install-package NServiceBus.NHibernate and then use configuration.UsePersistence<NHibernatePersistence>();	
-  config.UsePersistence<InMemoryPersistence>();
-
-  // In Production, make sure the necessary queues for this endpoint are installed before running the website
-  // While calling this code will create the necessary queues required, this step should
-  // ideally be done just one time as opposed to every execution of this endpoint.
-  config.EnableInstallers();
-}
-````
+<!-- import ServiceMatrix.OnlineSales.ECommerce.Infrastructure.persistence -->
 
 Right-click on your OnlineSales.ECommerce project in the Solution Explorer and select 'Manage NuGet Packages...' Search Online for the NServiceBus.RavenDB package and install it.
 
@@ -288,47 +192,17 @@ Right-click on your OnlineSales.ECommerce project in the Solution Explorer and s
 
 Because `Infrastructure\WebGlobalInitialization.cs` is an auto-generated code file by ServiceMatrix, you should not edit it directly (or else your changes will be gone the next time it is rebuilt). Instead, add a new class file named `ConfigurePersistence.cs` to the Infrastructure folder of the ASP.NET project. Update it to initialize the RavenDBPersistence class as follows:
 
-````C#
-using NServiceBus;
-using NServiceBus.Persistence;
-
-namespace OnlineSalesV5.eCommerce.Infrastructure
-{
-  public class ConfigurePersistence : INeedInitialization
-  {
-    public void Customize(BusConfiguration config)
-    {
-      config.UsePersistence<RavenDBPersistence>();
-    }
-  }
-}
-````
+<!-- import ServiceMatrix.OnlineSalesV5.eCommerce.Infrastructure.ConfigurePersistence -->
 
 ### Selecting Peristence for OrderProcessing NServiceBus Host Endpoint
 
 In your OrderProcessing endpoint, you will find the setup in `EndpointConfig.cs`.
 
-````C#
-// For production use, please select a durable persistence.
-// To use RavenDB, install-package NServiceBus.RavenDB and then use configuration.UsePersistence<RavenDBPersistence>();
-// To use SQLServer, install-package NServiceBus.NHibernate and then use configuration.UsePersistence<NHibernatePersistence>();
-if (Debugger.IsAttached)
-{
-  configuration.UsePersistence<InMemoryPersistence>();
-}
-````
+<!-- import ServiceMatrix.OnlineSales.OrderProcessing.EndpointConfig.before -->
 
 Repeat the steps above to install the NServiceBus.RavenDB NuGet package into your OnlineSales.OrderProcessing project and modify the code in `EndpointConfig.cs`.
 
-````C#
-configuration.UsePersistence<RavenDBPersistence>();
-````
-
-You will need to add the following using statement at the top of EndpointConfig.cs as well:
-
-````C#
-using NServiceBus.Persistence;
-````
+<!-- import ServiceMatrix.OnlineSales.OrderProcessing.EndpointConfig.after -->
 
 ### Installing RavenDB 2.5
 

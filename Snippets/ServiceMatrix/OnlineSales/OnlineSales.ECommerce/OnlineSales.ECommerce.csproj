@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{758898C4-0A83-4001-8C16-4DC5C2E6DC8A}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OnlineSales.ECommerce</RootNamespace>
+    <AssemblyName>OnlineSales.ECommerce</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc4.3.1.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.1.0.0\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.0.0\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.1.0.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.1.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\packages\NServiceBus.5.1.1\lib\net45\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.ObjectBuilder.Autofac">
+      <HintPath>..\packages\NServiceBus.Autofac.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.RavenDB">
+      <HintPath>..\packages\NServiceBus.RavenDB.2.0.0\lib\net45\NServiceBus.RavenDB.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\packages\RavenDB.Client.2.5.2939\lib\net45\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\packages\RavenDB.Client.2.5.2939\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.CustomChecks">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.CustomChecks.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.CustomChecks.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.DebugSession">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.DebugSession.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.DebugSession.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.Heartbeat">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.Heartbeat.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.Heartbeat.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.SagaAudit">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.SagaAudit.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.SagaAudit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestMessagesController.cs" />
+    <Compile Include="Controllers\TestMessagesController.generated.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4fc2bc4c-4b66-4e17-978d-dd9cacb4000d</SourceModelReference>
+      <ItemGuid>3139bb28-1255-4b7f-b71f-1130ac3ddf6d</ItemGuid>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\ConfigurePersistence.cs">
+      <ItemGuid>f647a044-4cd6-4ef9-aaf9-d8111b767dc7</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\GeneratedCode\GeneratedWebInitialization.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4fc2bc4c-4b66-4e17-978d-dd9cacb4000d</SourceModelReference>
+      <ItemGuid>149e64e2-e66c-45ed-935f-d2c0ffb24d67</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\GeneratedCode\TransportConfig.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4fc2bc4c-4b66-4e17-978d-dd9cacb4000d</SourceModelReference>
+      <ItemGuid>b9409c06-5ac9-4ab8-b034-a43b546c87b1</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\MessageConventions.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4fc2bc4c-4b66-4e17-978d-dd9cacb4000d</SourceModelReference>
+      <ItemGuid>8d348ea6-d4ec-4c11-bf30-313aa316f5f7</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\Sales\BillingCompletedHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252fa7365f7f-254f-4000-b41b-807d1a45df27</SourceModelReference>
+      <ItemGuid>535f46ce-29ad-4f01-bdd8-9c9e8a24c5fd</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\Sales\SignalRBroadcastForBillingCompletedHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252fa7365f7f-254f-4000-b41b-807d1a45df27</SourceModelReference>
+      <ItemGuid>490585be-349e-46ba-904d-6a019a56b279</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\Sales\SignalRHubsForBillingCompletedHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252fa7365f7f-254f-4000-b41b-807d1a45df27</SourceModelReference>
+      <ItemGuid>3dff5b92-debc-4520-97e9-c38a52c3a435</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\Sales\SubmitOrderSender.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4bd9622b-0afd-43c8-a52f-1b99a2e65292</SourceModelReference>
+      <ItemGuid>40088b65-d01e-4f45-b144-ff978160f4a7</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\WebGlobalInitialization.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4fc2bc4c-4b66-4e17-978d-dd9cacb4000d</SourceModelReference>
+      <ItemGuid>43c1b2c0-8d6c-4bc3-8c4f-24172a94ff52</ItemGuid>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Infrastructure\INServiceBusComponent.cs" />
+    <Compile Include="Sales\BillingCompletedHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252fa7365f7f-254f-4000-b41b-807d1a45df27</SourceModelReference>
+      <ItemGuid>47df7a1e-13f3-44ca-8329-be85745897c4</ItemGuid>
+    </Compile>
+    <Compile Include="Sales\SubmitOrderSender.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4bd9622b-0afd-43c8-a52f-1b99a2e65292</SourceModelReference>
+      <ItemGuid>ed4fb91e-4d1e-4ebb-b4bd-4ef50d6b2dd1</ItemGuid>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs">
+      <ItemGuid>5ef6b9d7-b002-4c9d-8233-0e5f2465f285</ItemGuid>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\Content.css" />
+    <Content Include="Content\Css.css" />
+    <Content Include="Content\guidance.css">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252fa7365f7f-254f-4000-b41b-807d1a45df27</SourceModelReference>
+      <ItemGuid>6b4a4162-d214-4d5e-be11-3dad15b644b7</ItemGuid>
+    </Content>
+    <Content Include="Content\highlight.css">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252fa7365f7f-254f-4000-b41b-807d1a45df27</SourceModelReference>
+      <ItemGuid>8576d03e-d750-44de-9e05-6873ad8c6cd0</ItemGuid>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\TestMessages.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\favicon.ico" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\ns-step1.png" />
+    <Content Include="Images\ns-step2.png" />
+    <Content Include="Images\ns-step4.png" />
+    <Content Include="Images\search.png" />
+    <Content Include="Images\ns-step3.png" />
+    <Content Include="Infrastructure\Logging.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4fc2bc4c-4b66-4e17-978d-dd9cacb4000d</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>ada49969-6251-4ae2-a810-7d5afc37bc5e</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\MessageForwardingInCaseOfFaultConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4fc2bc4c-4b66-4e17-978d-dd9cacb4000d</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>17df5a37-9054-404a-95ed-2147fdb8828e</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\TransportConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4fc2bc4c-4b66-4e17-978d-dd9cacb4000d</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>1543d7a1-cce9-4db0-82d7-a467177772d8</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\UnicastBusConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4fc2bc4c-4b66-4e17-978d-dd9cacb4000d</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>0a522d55-9962-4998-9a8e-d1264539745d</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\TransportConnectionString.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4fc2bc4c-4b66-4e17-978d-dd9cacb4000d</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>69ffdaf2-3d20-4af9-b816-ed19938272a4</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\AuditConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4fc2bc4c-4b66-4e17-978d-dd9cacb4000d</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>592113d6-7c66-4729-bdf6-88b62d32337a</ItemGuid>
+    </Content>
+    <None Include="Scripts\jquery-1.7.1-vsdoc.js" />
+    <Content Include="Scripts\highlight.js">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252fa7365f7f-254f-4000-b41b-807d1a45df27</SourceModelReference>
+      <ItemGuid>d03cca56-3aa0-49dd-b431-a5e4663e1180</ItemGuid>
+    </Content>
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery.signalR-1.0.0.js" />
+    <Content Include="Scripts\jquery.signalR-1.0.0.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\TestMessages\Index.cshtml">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSales/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.slnbldr%252f4fc2bc4c-4b66-4e17-978d-dd9cacb4000d</SourceModelReference>
+      <ItemGuid>d4e758ae-e416-4b4a-b01f-5779e5f9b901</ItemGuid>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineSales.Contracts\OnlineSales.Contracts.csproj">
+      <Project>{D28FD132-7070-4E07-A7F6-BFB018FE23FA}</Project>
+      <Name>OnlineSales.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineSales.Internal\OnlineSales.Internal.csproj">
+      <Project>{2861C6F1-BC41-4364-94AB-7BA6B50F70D6}</Project>
+      <Name>OnlineSales.Internal</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64935</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64935/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
