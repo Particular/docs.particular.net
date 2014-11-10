@@ -1,5 +1,5 @@
 ---
-title: How to disable Store and Forward for a Message?
+title: Disabling MSMQ Store and Forward for a Message?
 summary: Store and Forward is not always the preferred method.
 tags: []
 ---
@@ -16,8 +16,8 @@ To disable the Store and Forward behaviour, decorate messages with the `[Express
 
 ### Version 4
 
-<!-- import ExpressMEssageConventionV4 -->
+<!-- import ExpressMessageConventionV4 -->
 
 ### Version 5
 
-<!-- import ExpressMEssageConventionV5 -->
+<!-- import ExpressMessageConventionV5 -->

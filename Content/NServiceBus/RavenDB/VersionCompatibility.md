@@ -6,9 +6,9 @@ tags:
 - Persistence
 ---
 
-## NServiceBus 5: Externalised RavenDB
+## NServiceBus 5: Externalized RavenDB
 
-RavanDB peristence is available as a separate nuget [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB)
+RavenDB persistence is available as a separate nuget [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB)
 
     Install-Package NServiceBus.RavenDB
 
@@ -16,8 +16,8 @@ The current approach moving forward for the RavenDB integration is to ship outsi
 
  * Allow us to evolve the implementation more closely instep with the RavenDB release schedule;
  * Reduce the need for version compatibility hacks;
- * Allow the shipping upgrades to this library without having to ship the core; 
- * Make the approach to RavenDB persistence consistent with the other persistence integrations;
+ * Allows the shipping of upgrades to this library without having to ship the core; 
+ * Makes the approach to RavenDB persistence consistent with the other persistences; 
 
 ### Supported RavenDB versions 
 
@@ -41,6 +41,26 @@ The root underlying cause of these compatibility issue is that NServiceBus follo
 ### Resource merged RavenDB versions 
 
 Version 4 of NServiceBus was shipped with version 2.0.2375 of RavenDB resource merged.
+
+### NServiceBus 4 and RavenDB 2.5
+NServiceBus Version 4 uses RavenDB.Client version 2.0 internally. Using RavenDB client 2.0 against a RavenDB Server 2.5 is not recommended. Server restarts may result in wiping out outstanding transactions potentially resulting in message loss. Therefore if using RavenDB server version 2.5, please do the following:
+
+1. Install version 1 of NServiceBus.RavenDB nuget package in your endpoint. This will ensure that RavenDB Client version 2.5 is being used instead of 2.0
+```
+Install-Package NServiceBus.RavenDB -version 1.X.Y
+```
+NOTE: Replace `X.Y` with latest minor/patch version.
+1. Then use the new initialization extension methods to properly setup persistence for RavenDB 2.5.
+
+RavenDB integration, in both the core and the externalized versions is configured using extension methods. Since these cannot be made distinct using namespace or type,  re-using the same extension method names would result in type conflicts. To avoid the conflicts the externalized version has had to slightly rename the extension points.
+
+So where you would previously do :
+
+<!-- import OldRavenDBPersistenceInitialization -->
+
+You now will use:
+
+<!-- import Version2_5RavenDBPersistenceInitialization -->
 
 ## NServiceBus 3: ILMerged into the Core 
 

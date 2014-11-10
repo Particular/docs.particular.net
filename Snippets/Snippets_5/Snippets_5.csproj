@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,6 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
@@ -42,13 +44,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Castle.Windsor.3.3.0\lib\net45\Castle.Windsor.dll</HintPath>
     </Reference>
-    <Reference Include="Common.Logging, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+    <Reference Include="Common.Logging, Version=2.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Common.Logging.2.2.0\lib\net40\Common.Logging.dll</HintPath>
-    </Reference>
-    <Reference Include="Common.Logging.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Common.Logging.Core.2.2.0\lib\net40\Common.Logging.Core.dll</HintPath>
+      <HintPath>..\packages\Common.Logging.2.3.0\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -115,15 +113,15 @@
     </Reference>
     <Reference Include="NServiceBus.Azure, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Azure.6.0.1\lib\net45\NServiceBus.Azure.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Azure.6.0.3\lib\net45\NServiceBus.Azure.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.6.0.1\lib\net45\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.6.0.3\lib\net45\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.6.0.1\lib\net45\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.6.0.3\lib\net45\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.CommonLogging, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -131,7 +129,10 @@
     </Reference>
     <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.5.0.1\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.5.1.0\lib\net45\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Distributor.MSMQ">
+      <HintPath>..\packages\NServiceBus.Distributor.MSMQ.5.0.1\lib\net45\NServiceBus.Distributor.MSMQ.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Gateway, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -139,7 +140,7 @@
     </Reference>
     <Reference Include="NServiceBus.Host, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Host.5.0.1\lib\net45\NServiceBus.Host.exe</HintPath>
+      <HintPath>..\packages\NServiceBus.Host.5.0.3\lib\net45\NServiceBus.Host.exe</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Log4Net, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -174,7 +175,7 @@
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Unity, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Unity.6.0.1\lib\net45\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Unity.6.1.0\lib\net45\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.RavenDB, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -182,7 +183,7 @@
     </Reference>
     <Reference Include="NServiceBus.Transports.RabbitMQ, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.RabbitMQ.2.0.1\lib\net45\NServiceBus.Transports.RabbitMQ.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.RabbitMQ.2.0.2\lib\net45\NServiceBus.Transports.RabbitMQ.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.SQLServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -214,6 +215,19 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Linq" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -248,7 +262,11 @@
     <Content Include="SecondLevelRetries\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="app.config" />
     <None Include="Audit\App.config" />
+    <None Include="Encryption\encryption.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -258,6 +276,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
+    <Compile Include="BusNotifications\Errors.cs" />
     <Compile Include="ContainerCustom.cs" />
     <Compile Include="Containers.cs" />
     <Compile Include="Conventions\ExpressMessages.cs" />
@@ -265,14 +284,21 @@
     <Compile Include="CriticalError.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="Distributor\ConfiguringDistributor.cs" />
+    <Compile Include="Distributor\ConfiguringWorker.cs" />
+    <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
+    <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
+    <Compile Include="RegisterCustomSerializer.cs" />
+    <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
+    <Compile Include="Encryption\MessageBodyEncryption.cs" />
     <Compile Include="Gateway\GatewayConfig.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DefineCriticalErrorAction.cs" />
     <Compile Include="DoNotCreateQueues.cs" />
-    <Compile Include="EncryptionService.cs" />
+    <Compile Include="Encryption\PropertyEncryption.cs" />
     <Compile Include="EndpointName.cs" />
-    <Compile Include="FileShareDataBus.cs" />
+    <Compile Include="DataBus.cs" />
     <Compile Include="Logging\CommonLogging\CommonLoggingConfig.cs" />
     <Compile Include="Logging\Log4Net\OverrideViaProfile.cs" />
     <Compile Include="Logging\MyMessage.cs" />

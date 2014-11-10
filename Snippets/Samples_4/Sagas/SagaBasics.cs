@@ -2,6 +2,7 @@
 {
     using System;
     using NServiceBus;
+    using NServiceBus.Features;
     using NServiceBus.Saga;
 
     public class SagaBasics
@@ -77,16 +78,15 @@
         }
 
 // ReSharper disable RedundantNameQualifier
-        public void ConfigueSelfHosted()
+        public void ConfigureSelfHosted()
         {
             #region saga-configure-self-hosted-v4
-
+            Feature.Enable<Sagas>();
+            Configure.Serialization.Xml();
             var bus = NServiceBus.Configure.With()
                                  .DefaultBuilder()
-                                 .XmlSerializer()
-                                 .MsmqTransport()
+                                 .UseTransport<Msmq>()
                                  .UnicastBus()
-                                 .Sagas()
                                  .RavenSagaPersister()
                                  .CreateBus();
 

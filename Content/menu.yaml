@@ -15,6 +15,7 @@
         - "NServiceBus/nservicebus-and-wcf"
         - "NServiceBus/nservicebus-and-websphere-sonic"
         - "NServiceBus/nservicebus-and-biztalk"
+        - "NServiceBus/no-dtc"
     - 
       Name: "publish-subscribe"
       Title: "Publish Subscribe"
@@ -41,6 +42,7 @@
         - "NServiceBus/unit-of-work-in-nservicebus"
         - "NServiceBus/unit-of-work-implementation-for-ravendb"
         - "NServiceBus/relational-persistence-using-nhibernate---nservicebus-4.x"
+        - "NServiceBus/ravendb/versioncompatibility"
     - 
       Name: "long-running-processes"
       Title: "Long Running Processes"
@@ -83,6 +85,8 @@
         - "NServiceBus/monitoring-nservicebus-endpoints"
         - "NServiceBus/msmq-information"
         - "NServiceBus/auditing-with-nservicebus"
+        - "NServiceBus/subscribing-to-push-based-error-notifications"
+        - "NServiceBus/DisconnectWorkersFromARunningDistributor"
     - 
       Name: "customization"
       Title: "Customization"
@@ -133,8 +137,9 @@
         - "NServiceBus/license-management"
         - "NServiceBus/preparing-your-machine-to-run-nservicebus"
         - "NServiceBus/running-nservicebus-on-windows"
-        - "NServiceBus/licensing-servicematrix-v2.0"
-        - "NServiceBus/encryption-with-multi-key-decryption"
+        - "NServiceBus/encryption"
+        - "NServiceBus/how-do-I-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages"
+        - "NServiceBus/how-to-register-a-custom-serializer"
     - 
       Name: "samples"
       Title: "Samples"

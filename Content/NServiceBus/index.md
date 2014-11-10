@@ -32,6 +32,7 @@ summary: NServiceBus Documentation Table of Contents
 - [NServiceBus and WCF](nservicebus-and-wcf.md)
 - [NServiceBus and WebSphere Sonic](nservicebus-and-websphere-sonic.md)
 - [NServiceBus and BizTalk](nservicebus-and-biztalk.md)
+- [Reliable messaging without MSDTC](no-dtc.md)
 
 ## Persistence in NServiceBus
 
@@ -42,6 +43,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Unit of Work in NServiceBus](unit-of-work-in-nservicebus.md)
 - [Unit of Work Implementation for RavenDB](unit-of-work-implementation-for-ravendb.md)
 - [Relational Persistence Using NHibernate NServiceBus 4.X](relational-persistence-using-nhibernate---nservicebus-4.x.md)
+- [RavenDB Version Compatibility](RavenDB/VersionCompatibility.md)
 
 ## Scaling Out
 
@@ -82,6 +84,8 @@ summary: NServiceBus Documentation Table of Contents
 - [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints.md)
 - [MSMQ Information](msmq-information.md)
 - [Auditing with NServiceBus](auditing-with-nservicebus.md)
+- [Push-based error notifications](subscribing-to-push-based-error-notifications.md)
+- [Disconnect workers from a running Distributor](DisconnectWorkersFromARunningDistributor.md)
 
 ## Publish Subscribe
 
@@ -139,4 +143,5 @@ summary: NServiceBus Documentation Table of Contents
 - [License Management](license-management.md)
 - [Preparing Your Machine to Run NServiceBus](preparing-your-machine-to-run-nservicebus.md)
 - [Running NServiceBus on Windows](running-nservicebus-on-windows.md)
-- [Licensing ServiceMatrix V2.0](licensing-servicematrix-v2.0.md)
+- [How to specify time to wait before raising critical exception for timeout outages](how-do-I-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages.md)
+- [How to register a custom serializer](how-to-register-a-custom-serializer.md)

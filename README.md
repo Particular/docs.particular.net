@@ -174,6 +174,53 @@ The resulting markdown will be will be
     var configure = Configure.With();
     ``` 
 
+### Code indentation
+
+The code snippets will do smart trimming of snippet indentation. 
+
+For example given this snippet. 
+
+<pre>
+&#8226;&#8226;#region DataBus
+&#8226;&#8226;var configure = Configure.With()
+&#8226;&#8226;&#8226;&#8226;.FileShareDataBus(databusPath);
+&#8226;&#8226;#endregion
+</pre>
+
+The leading two spaces (&#8226;&#8226;) will be trimmed and the result will be 
+
+```
+var configure = Configure.With()
+••.FileShareDataBus(databusPath)
+```
+
+The same behavior will apply to leading tabs.
+
+
+#### Do not mix tabs and spaces
+
+If tabs and spaces are mixed there is no way for the snippets to work out what to trim.
+
+So given this snippet 
+
+<pre>
+&#8226;&#8226;#region DataBus
+&#8226;&#8226;var configure = Configure.With()
+&#10137;&#10137;.FileShareDataBus(databusPath);
+&#8226;&#8226;#endregion
+</pre>
+
+Where &#10137; is a tab.
+
+The resulting markdown will be will be 
+
+<pre>
+var configure = Configure.With()
+&#10137;&#10137;.FileShareDataBus(databusPath)
+</pre>
+
+Note none of the tabs have been trimmed.
+
 ## Alerts
 
 Sometimes is necessary to draw attention to items you want to call out in a document.

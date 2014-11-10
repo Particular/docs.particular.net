@@ -4,6 +4,10 @@ summary: 'Guidance on how to use the Platform Installer and its underlying compo
 tags: [Platform, Installation]
 ---
 
+## Offline install
+
+The platform installer requires acceess to the internet and several dependencies (see below). If either of these are problematic given you current environment please see [Offline Install](offline.md).
+
 ## Download
 
 - [Clickonce download](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
@@ -11,12 +15,11 @@ tags: [Platform, Installation]
 
 NOTE: The platform Installer is recommended for use in development environments. For testing and production environments it is recommended you use the relevant Chocolatey commands, PowerShell cmdlets and NuGet packages.
 
-
 ## Dependencies 
 
 * ClickOnce
 * [.net 4.5](http://www.microsoft.com/en-au/download/details.aspx?id=40779) (will be installed as part of the ClickOnce deployment)
-* [Chocolatey](http://chocolatey.org/) (version 0.9.8.23 or higher) 
+* [Chocolatey](http://chocolatey.org/) (version 0.9.8.26 or higher) 
 
 ## License Acceptance
 

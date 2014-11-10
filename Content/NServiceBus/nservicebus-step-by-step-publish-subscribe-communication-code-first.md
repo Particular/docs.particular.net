@@ -1,5 +1,5 @@
 ---
-title: NServiceBus Step by Step Guide - Publish Subscribe Communication - code first
+title: Publish Subscribe Communication
 summary: See how NServiceBus messaging can get past all sorts of failure scenarios.
 tags:
 - pub sub

@@ -18,17 +18,17 @@ Following list outlines various ways to telling how to connect to the RavenDB se
 
 Shared session is only applicable to Saga and Outbox storage. It can be configured via
 
-<!-- include ravendb-persistence-shared-session-for-sagas -->
+<!-- import ravendb-persistence-shared-session-for-sagas -->
 
 The session configured in this was is made available via the `ISessionProvider` interface to the user code e.g. in the handler:
 
-<!-- ravendb-persistence-shared-session-for-sagas-handler -->
+<!-- import ravendb-persistence-shared-session-for-sagas-handler -->
 
 #### External store for a specific persister
 
 One can pass an externally created `DocumentStore` instance for usage in a specific persister (e.g. timeouts) by using following code:
 
-<!-- ravendb-persistence-specific-external-store -->
+<!-- import ravendb-persistence-specific-external-store -->
 
 #### Store defined via a connection string for a specific persister
 
@@ -40,19 +40,19 @@ One can configure a RavenDB connection string that is only applicable to a speci
 
 If for a given persister no method listed above works, NServiceBus looks for a shared externally-provided store. One can provide such a store via:
 
-<!-- ravendb-persistence-external-store -->
+<!-- import ravendb-persistence-external-store -->
 
 #### Shared store for all persisters defined via connection parameters
 
 One can pass an instance of `ConnectionParameters` that allows to specify Url, DatabaseName and the ApiKey of RavenDB instance for usage in all the persisters. The runtime will use the parameters to create a shared `DocumentStore`.
 
-<!-- ravendb-persistence-external-connection-params -->
+<!-- import ravendb-persistence-external-connection-params -->
 
 #### Shared store for all persisters defined via connection string
 
 If nothing above succeeded, the runtime looks for shared store connection strings in the order below:
 
-<!-- shared-document-store-via-connection-string -->
+<!-- import shared-document-store-via-connection-string -->
 
 If a connection string is found, a corresponding shared `DocumentStore` is created.
 
@@ -66,9 +66,15 @@ As a last resort, a `DocumentStore` that connects to `http://localhost:8080` is 
 
 One of the limitations of the RavenDB persistence is support for only one `[Unique]` property (a saga property which value is guaranteed to be unique across all sagas of this type). Because of that limitation advanced user can turn off the validation that ensures sagas are only being found by unique properties:
 
-<!-- include ravendb-persistence-stale-sagas -->
+<!-- import ravendb-persistence-stale-sagas -->
 
 **NOTE:** This is a potentially dangerous feature that can result in multiple instances of saga being created instead of one in cases of high contention. 
+
+#### Transaction recover storage
+
+By default NServiceBus chooses `IsolatedStorageTransactionRecoveryStorage` as its transaction recover storage for RavenDB. However it is easy to change this default:
+
+<!-- import ConfiguringTransactionRecoveryStorage-V5 -->
 
 ## Previous releases
 
@@ -90,6 +96,12 @@ In some situations the default behavior might not be right for you:
 
 -   You want to use your own connection string. If you're using RavenDB for your own data as well you might want to share the connection string. Use the `Configure.RavenPersistence(string connectionStringName)` signature to tell NServiceBus to connect to the server specified in that string. The default connection string for RavenDB is "RavenDB".
 -   You want to specify a explicit database name. To control the database name in code instead of via the configuration, use the `Configure.RavenPersistence(string connectionStringName, string databaseName)` signature. This can be useful in a multi-tenant scenario.
+
+#### Transaction recover storage
+
+By default NServiceBus chooses `IsolatedStorageTransactionRecoveryStorage` as its transaction recover storage for RavenDB. However it is easy to change this default:
+
+<!-- import ConfiguringTransactionRecoveryStorage-V4 -->
 
 ### Can I use the IDocumentStore used by NServiceBus for my own data?
 

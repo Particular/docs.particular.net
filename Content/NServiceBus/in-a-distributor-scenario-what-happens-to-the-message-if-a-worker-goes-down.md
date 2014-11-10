@@ -1,17 +1,19 @@
 ---
-title: In a Distributor Scenario, What Happens to the Message if a Worker Goes Down?
-summary: The solution is virtualization, where worker nodes run in a VM whose image is on a SAN somewhere.
+title: In a Distributor scenario, what happens to the message if a worker goes down?
+summary: The solution is virtualization, where worker nodes run in a virtual machine whose image is on a SAN somewhere.
 tags: 
 - Distributor
 ---
 
-The master forwards the message to the worker and relies on the store and forward messaging provided by MSMQ to make sure that it gets there. The message is processed when the worker returns to working order.
+As shown in "[How does the distributor work](load-balancing-with-the-distributor.md#how-does-it-work-)", a worker checks in for work with the distributor by sending a register message to it. From that moment the worker will start receiving messages from the distributor.
 
-The master keeps the messages in its queue until an available worker checks in for a unit of work (each thread in each worker is a separate "check in"). So, in essence, the workers pull messages from the master.
+If a worker goes down, messages can get stuck in the distributor or the worker.
 
-The solution to a "broken worker" or a "worker node's hard disk going up in smoke" is virtualization, where worker nodes run in a VM whose image is on a SAN somewhere.
+### What happens with the messages stored in the distributor outgoing queues?
+The distributor forwards the message to the worker and relies on the store and forward messaging provided by MSMQ to make sure that it gets there. The message is stored in a outgoing queue and processed when the worker returns to working order.
 
-Any messages stored locally in the worker node end up physically stored in the image on the SAN.
+### What happens with the messages that are already in the worker when the worker breaks?
+The solution to a "broken worker" or a "worker node's hard disk going up in smoke" is virtualization, where worker nodes run in a virtual machine whose image is stored redundantly in a SAN. That way any messages stored locally in the worker node end up physically stored in the image on the SAN. So if the host machine fails, the hypervisor then brings up the virtual machine that went down on a different host machine and all the messages are then processed.
 
-The hypervisor then brings up the VM that went down on a different machine and all the messages are then processed.
 
+![worker machine down](WorkerMachineDown.png)

@@ -1,5 +1,5 @@
 ---
-title: NServiceBus Step by Step Guide - Fault Tolerance - code first
+title: Fault Tolerance
 summary: See how NServiceBus messaging can get past all sorts of failure scenarios.
 tags: []
 ---

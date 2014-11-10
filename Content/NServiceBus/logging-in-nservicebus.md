@@ -109,7 +109,6 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.Log4Net/) package 
 
     Install-Package NServiceBus.Log4Net
 
-
 Configure Log4net using its standard API then call 
 
     LogManager.Use<Log4NetFactory>();
@@ -126,9 +125,17 @@ For example to limit log output to a specific namespace
 
 ### In Log4net 
 
+In log4net you can achieve this with a [Filter](http://logging.apache.org/log4net/release/manual/configuration.html#filters)
+
+Here is a code configuration example for adding a Filter 
+
 <!-- import Log4netFiltering -->
 
 ### In NLog
+
+In Nlog you can achieve this with a [Rule](https://github.com/nlog/NLog/wiki/Configuration-file#rules)
+
+Here is a code configuration example for adding a Rule
 
 <!-- import NLogFiltering -->
 
