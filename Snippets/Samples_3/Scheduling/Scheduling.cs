@@ -10,10 +10,7 @@ class Scheduling
 
         // To send a message every 5 minutes
         Schedule.Every(TimeSpan.FromMinutes(5))
-            .Action(() =>
-        {
-            bus.Send(new CallLegacySystem());
-        });
+            .Action(() => bus.Send(new CallLegacySystem()));
 
         // Name a schedule task and invoke it every 5 minutes
         Schedule.Every(TimeSpan.FromMinutes(5))
