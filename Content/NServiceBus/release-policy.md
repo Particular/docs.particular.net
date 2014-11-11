@@ -1,4 +1,4 @@
-## So there is a new version of NServiceBus available, how/when should I update?
+## How and When to upgrade to a new version of NServiceBus
 
 To reduce scope risk we have optimized to release small components with a regular cadence. While this may seem to result in a large number of releases only a small fraction of these will actually affect you. This is how you should approach upgrades.
 
