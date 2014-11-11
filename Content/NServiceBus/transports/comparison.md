@@ -136,6 +136,8 @@ NServiceBus does its best to support all its built-in feature on all the support
 |ServicePulse manual retry|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
 |ServiceControl Integration|&#10004;|&#10004;|&#10004;|&#10004;|&#10004;|
 
+(Add comments on the DataBus available implementations and what can be done given the transport)
+
 ### MSMQ
 
 Transport package: *not required, built-in the NServiceBus core*;
