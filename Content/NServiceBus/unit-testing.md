@@ -6,7 +6,7 @@ tags: []
 
 Developing enterprise-scale distributed systems is hard and testing them is just as challenging a task. The architectural approach supported by NServiceBus makes these challenges more manageable. And the testing facilities provided actually make unit testing endpoints and workflows easy. You can now develop your service layers and long-running processes using test-driven development.
 
-## Getting ready to test
+## Getting started
 
 NServiceBus ships with a stand alone testing helper nuget package that makes testing a lot simpler.  
 To install this package:
