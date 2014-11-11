@@ -40,7 +40,7 @@ NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NH
  
 <!-- import NHibernateAppConfigV3 -->
 
-There are equivalent config sections for named `DBSubscriptionStorageConfig` and `TimeoutPersisterConfig`.
+There are equivalent config sections named `DBSubscriptionStorageConfig` and `TimeoutPersisterConfig` for subscription and timeout storage respectively.
 
 #### Version 4 and 5
 
