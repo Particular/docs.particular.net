@@ -1,6 +1,6 @@
 ## How and When to upgrade to a new version of NServiceBus
 
-To reduce scope risk we have optimized to release small components with a regular cadence. While this may seem to result in a large number of releases only a small fraction of these will actually affect you. This is how you should approach upgrades.
+To reduce scope and risk we have optimized to release small components with a regular cadence. While this may seem to result in a large number of releases only a small fraction of these will actually affect you. This is how you should approach upgrades.
 
 
 ### Semantic Versioning 
@@ -22,7 +22,7 @@ By following SemVer 2.0 you will be able to quickly determine the urgency, risk 
 
 While not stipulated by SemVer we've made the decision to backport important fixes to all supported versions of NServiceBus.
 
-By "supported" we mean any minor version released within the last year and all major versions released within the last 3 years. This means that you will often get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version. 
+By "supported" we mean any minor version released within the last year and all major versions released within the last 3 years. This means that you will get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version. 
 
 We strongly recommend you upgrade frequently enough to stay on a supported version.
 
