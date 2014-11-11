@@ -20,7 +20,13 @@ By following SemVer 2.0 you will be able to quickly determine the urgency, risk 
 
 ### We backport important bugfixes
 
-While not stipulated by SemVer we've made the decision to backport important fixes to all supported versions of NServiceBus. By "supported" we mean any minor version released within the last year and all major versions released within the last 3 years. This means that you will often get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version. Please let us know if there are any bugfixes that you believe should be back-ported to your current version by emailing [support@particular.net](mailto:support@particular.net).
+While not stipulated by SemVer we've made the decision to backport important fixes to all supported versions of NServiceBus.
+
+By "supported" we mean any minor version released within the last year and all major versions released within the last 3 years. This means that you will often get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version. 
+
+We strongly recommend you upgrade frequently enough to stay on a supported version.
+
+Please let us know if there are any bugfixes that you believe should be back-ported to your current version by emailing [support@particular.net](mailto:support@particular.net).
 
 ## Summary
 The following table summarize the risk effort and urgency for the different types of releases
@@ -30,19 +36,23 @@ The following table summarize the risk effort and urgency for the different type
 | Risk | Extremely low | Medium | High |
 | Urgency | High to medium | Low | Low |
 | Effort | Minimal | Low | High |
-| Frequency | On demand | Every 1-2 Months | Yearly |
+| Frequency | As needed | Every 1-2 Months | Yearly |
 
 
 ### Patch
-Patches are put on on demand as soon as issues triaged as important is found. Read the release notes to determine if/how you're affected. 
+Patches are released as soon as an important issue is found. Read the release notes to determine if you're affected. 
 
-Any issues that could affect the production stability of your system will be classified as `hotfix` so please pay extra attention to those.
+**Important** Any issue that could affect the production stability of your system will be classified as `hotfix` so please pay extra attention to those.
 
-Patch releases are 100% backwards compatible so you should be able safely upgrade with low risk and effort. In rare cases a code change might be required in relation to the patch. Minimal testing is required but where possible verify that it fixes the issue in question. 
+Patch releases are 100% backwards-compatible so you should be able safely upgrade with low risk and effort. In rare cases a code change might be required in relation to the patch. Minimal testing may be required, but where possible verify that it fixes the issue in question. 
 
 ### Minor
-Minor versions contains features and bugfixes not critical enough to warrant a `patch`. Note that these releases are as stipulated by SemVer 100% backwards compatible. Since adding new features requires more code to be added/changed the risk is higher compared to a `patch` release and it's likely that code changes will be needed to take advantage of them. Since all critical issues will be back-ported to your version you can choose to upgrade when it's suitable for you e.g. as part of releasing non trivial updates to your own functionality.
+Minor versions contain bugfixes not critical enough to warrant a `patch` as well as some feature enhancements. 
+
+Note that these releases are 100% backwards-compatible (as stipulated by SemVer). Since adding new features requires more code to be added/changed, the risk of upgrading to a `minor` is higher compared to a `patch` release and it's likely that code changes will be needed to take advantage of them. 
+
+Since all critical issues will be back-ported, you can choose to upgrade when it's suitable for you, for example as part of releasing non-trivial updates to your own system.
 
 ### Major
 
-Since a new `major` version will contain breaking changes you will need to update code. Because of the extent of code changes in a major version you should expect to do a full regression test of your solution.
+Since a new `major` version will contain breaking changes you will most probably need to update your code. Because of the extent of code changes in a major version, it is recommendation that you do a full regression test of your system.
