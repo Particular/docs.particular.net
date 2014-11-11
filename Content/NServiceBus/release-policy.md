@@ -41,7 +41,7 @@ Any issues that could affect the production stability of your system will be cla
 Patch releases are 100% backwards compatible so you should be able safely upgrade with low risk and effort. In rare cases a code change might be required in relation to the patch. Minimal testing is required but where possible verify that it fixes the issue in question. 
 
 ### Minor
-Minor versions contains features and bugfixes not critical enough to warrant a `patch`. Note that these releases are as stipulated by SemVer 100% backwards compatible. Since adding new feature requires more code to be added/changed the risk is higher compared to a `patch` release and some new features will require code changes to take advantage of them. Since all critical issues will be back-ported to your version you can choose to upgrade when it's suitable for you e.g.. as part of releasing non trivial updates to your own functionality.
+Minor versions contains features and bugfixes not critical enough to warrant a `patch`. Note that these releases are as stipulated by SemVer 100% backwards compatible. Since adding new features requires more code to be added/changed the risk is higher compared to a `patch` release and it's likely that code changes will be needed to take advantage of them. Since all critical issues will be back-ported to your version you can choose to upgrade when it's suitable for you e.g. as part of releasing non trivial updates to your own functionality.
 
 ### Major
 
