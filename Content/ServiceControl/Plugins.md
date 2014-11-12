@@ -67,21 +67,16 @@ NOTE: Audit and error queues must be defined for each endpoint monitored by Serv
 
 ### How the location of ServiceControl queue location is determined
 
-The order of precedence is as follows
+The order of precedence is as follows:
 
-#### AppSetting
-
+1. **AppSetting**  
 Check for an appsetting named `ServiceControl/Queue` eg `<add key="ServiceControl/Queue" value="particular.servicecontrol@machine"/>`.
-
-#### Convention based on the configured Error Queue machine 
-
+1. **Convention based on the configured Error Queue machine**  
 If an error queue is configured then the queue `Particular.ServiceControl` on the error queue machine name will be used i.e.  `Particular.ServiceControl@ErrorQueueMachineName`. 
-
-#### Convention based on the configured Audit Queue machine 
-
+1. **Convention based on the configured Audit Queue machine**  
 If an audit queue is configured then the queue `Particular.ServiceControl` on the audit queue machine name will be used i.e.  `Particular.ServiceControl@AuditQueueMachineName`. 
 
-Note: Audit Queue machine is only used in NServiceBus 4.1 and up.
+WARNING: Audit Queue machine is only used in NServiceBus v4.1 and up.
 
 ## Understanding Plugin Functionality and Behavior
 
