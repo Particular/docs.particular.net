@@ -18,8 +18,15 @@ To develop a custom check, this is all you have to do:
 
 1. In Visual Studio, create a new Class Library project.
 1. Add the endpoint plugin to the project using the NuGet console:
-	`install-package ServiceControl.Plugin.CustomChecks`
-1. Create a custom check:
+	`install-package ServiceControl.Plugin.Nsb5.CustomChecks`
+   
+	NOTE:
+	If your endpoint targets NServiceBus V4, use:
+		`install-package ServiceControl.Plugin.Nsb4.CustomChecks`
+	If your endpoint targets NServiceBus V3, use:
+		`install-package ServiceControl.Plugin.Nsb3.CustomChecks`
+
+1. Create a custom check
   * To execute once on endpoint startup, create a class that inherits from `CustomCheck` class (see sample code below).
   * To execute repeatedly, at defined time intervals, create a class that inherits from the `PeriodicCheck` class (see sample code below).
 1. Build and deploy the class library DLL in the bin directory of the endpoint that will execute these custom checks.
