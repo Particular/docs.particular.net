@@ -10,7 +10,7 @@ tags:
 - Stop the ServiceControl Windows Service
 - Open command line and go to ServiceControl binary folder
 - Type `ServiceControl -maint`
-- ServiceControl will start in the maintenance mode with all the features disabled and with RavenDB studio exposed on `http://localhost:33333/storage`
+- ServiceControl will start in the maintenance mode with all the features disabled and with RavenDB studio exposed on `http://localhost:{selected port}/storage` default this will be `http://localhost:33333/storage`
 
 ##Step 2: Export the current database
 - Open a browser and navigate to `http://localhost:33333/storage`
