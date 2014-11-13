@@ -171,13 +171,16 @@
       Name: "using-servicematrix"
       Title: "Using ServiceMatrix"
       Articles: 
+        - "ServiceMatrix/send-and-receive-with-servicematrix-2.0"
         - "ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance"
         - "ServiceMatrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe"
         - "ServiceMatrix/servicematrix-serviceinsight"
         - "ServiceMatrix/getting-started-sagasfullduplex-2.0"
         - "ServiceMatrix/getting-started-signalr-2.2"
-        - "ServiceMatrix/licensing-servicematrix-v2.0"
         - "ServiceMatrix/customizing-extending"
+        - "ServiceMatrix/servicematrix-persistence"
+        - "ServiceMatrix/servicematrix-transports"
+        - "ServiceMatrix/licensing-servicematrix-v2.0"
     - 
       Name: "troubleshooting"
       Title: "Troubleshooting"

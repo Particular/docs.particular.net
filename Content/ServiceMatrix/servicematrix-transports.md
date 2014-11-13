@@ -1,5 +1,5 @@
 ---
-title: Introduction to ServiceMatrix
+title: Changing Transports in a ServiceMatrix Project
 summary: 'Getting Started with the ServiceMatrix V2.X for Visual Studio 2012 and 2013 using a send and receive example.'
 tags:
 - ServiceMatrix
