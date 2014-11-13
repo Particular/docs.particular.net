@@ -6,11 +6,14 @@ tags:
 - RavenDB
 ---
 
+##Overview
+ServiceControl 1.4 introduced a database maintenance feature which allows ServiceControl to be run with all features except for RavenDB Studio disabled.   In this mode the following procedure can be used to compact the embedded RavenDB database.
+
 ##Step 1: Start ServiceControl in the maintenance mode
 - Stop the ServiceControl Windows Service
 - Open command line and go to ServiceControl binary folder
 - Type `ServiceControl -maint`
-- ServiceControl will start in the maintenance mode with all the features disabled and with RavenDB studio exposed on `http://localhost:{selected port}/storage` default this will be `http://localhost:33333/storage`
+- ServiceControl will start in the maintenance mode  with RavenDB studio exposed on `http://localhost:{selected port}/storage`.  Assuming a default installation this URL would be `http://localhost:33333/storage`
 
 ##Step 2: Export the current database
 - Open a browser and navigate to `http://localhost:33333/storage`
