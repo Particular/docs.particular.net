@@ -32,7 +32,7 @@ tags:
 
 ##Step 3: Delete the existing database
 
-- Once the export operation is complete, stop ServiceControl (press <enter> in the console).
+- Once the export operation is complete, stop ServiceControl (press `<enter>` in the console).
 - Delete the ServiceControl data file (localhost-33333) located at `C:\ProgramData\Particular\ServiceControl`
 - Start ServiceControl, again in the maintenance mode.
 
@@ -53,7 +53,7 @@ tags:
 
 ![](ImportDatabase-Step4.PNG)
 
-- Stop ServiceControl (press <enter> in the console).
+- Stop ServiceControl (press `<enter>` in the console).
 
 ##Step 5: Restart ServiceControl
 
