@@ -4,7 +4,7 @@ summary: Introduction to monitoring approaches and tools for NServiceBus endpoin
 tags:
 - ServicePulse
 - Monitoring
-- Audting
+- Auditing
 - Service Level Agreement
 - Heartbeat
 ---
