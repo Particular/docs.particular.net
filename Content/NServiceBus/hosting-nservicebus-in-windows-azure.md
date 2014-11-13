@@ -51,7 +51,7 @@ This layout is based on a concept called `Roles`. Roles define what a specific s
 
 But it does this in a very particular way! To ensure an identical set of machines (i.e., identical to the role template) it will simply destroy a machine and install a new one. This means that anything that was on the disk of a machine will be lost! This fact makes any transport or persistence option that relies on a disk unsuitable for this environment, including MSMQ, RabbitMQ, ActiveMQ, SQL Server, RavenDB, and so on.
 
-The advised transports in this environment are `AzureStorageQueuesTransport` or `AzureServiceBusTransport`, and the Windows Azure storage persisters for persistance purposes.
+The advised transports in this environment are `AzureStorageQueuesTransport` or `AzureServiceBusTransport`, and the Windows Azure storage persisters for persistence purposes.
 
 NOTE: It is possible to put Cloud Services and Virtual Machines in the same virtual network, so a hybrid architecture with some of the above transports and storage options might still be suitable (as long as you don't rely on the DTC).
 

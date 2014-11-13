@@ -21,9 +21,6 @@ Starting with NServiceBus V3.0, support for NHibernate persistence is located in
 
 [NHibernate persistence for V3.x](relational-persistence-using-nhibernate.md).
 
-[NHibernate persistence for V4.x](relational-persistence-using-nhibernate---nservicebus-4.x.md).
-
-
 ## What's available?
 
 The following table summarizes what is available and how to configure each feature.

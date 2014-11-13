@@ -133,8 +133,7 @@ For a detailed explanation on how to connect to RavenDB, read the [Connecting to
 
 Starting from NServiceBus V3, NHIbernate persistence is supported via a separate package:
 
-* [Relational Persistence Using NHibernate in NServiceBus V3](relational-persistence-using-nhibernate.md);
-* [Relational Persistence Using NHibernate in NServiceBus V4](relational-persistence-using-nhibernate---nservicebus-4.x.md);
+* [Relational Persistence Using NHibernate in NServiceBus](relational-persistence-using-nhibernate.md);
 
 ##### In Memory Persistence
 

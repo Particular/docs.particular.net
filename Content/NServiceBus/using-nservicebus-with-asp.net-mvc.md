@@ -68,37 +68,18 @@ The rest of the code is typical for hosting NServiceBus in your own process. You
 
 ### Asynchronous message sending: SendAsync controller
 
-Open the `SendAsyncController` class:
-
-```
+Using `AsyncController`:
+```c#
 var command = new Command { Id = number };
 Bus.Send(command).Register(status=>
 {AsyncManager.Parameters["errorCode"] = Enum.GetName(typeof(ErrorCodes), status);});
 ```
 
-Line 1 is a new NServiceBus message of the type `Command`, initializing its `Id` property with the value from the text box.
-
-Line 2 sends the command using the Bus.Send syntax for registering a callback anonymous method.
-
-The method in line 3 is executed when the reply from the server is received. The server executes this code:
-
-    Bus.Return(ErrorCodes.Fail);
-
-OR
-
-    Bus.Return(ErrorCodes.None);
-
-Depending on whether the Command ID is an even or odd number.
-
-Open the class definition for the command type in the messages project:
-
-    [Serializable]
-    public class Command : IMessage
-    {
-        public int Id { get; set; }
-    }
-
-As you can see, this class is very simple; the only special thing is the `IMessage` interface that it implements. This interface comes from NServiceBus and indicates that instances of this class can be sent and received by the bus. The `IMessage` interface itself is an empty marker interface. Read about [defining messages](how-do-i-define-a-message.md). Beginning with NServiceBus V3, it is possible to send messages without implementing NServiceBus marker interfaces. See [Unobtrusive message](unobtrusive-mode-messages.md) and the [accompanying sample](unobtrusive-sample.md).
+Using Task-based Asynchronous Pattern:
+```c#
+var command = new Command { Id = number };
+ErrorCodes errorCode = await Bus.Send(command).Register<ErrorCodes>();
+```
 
 ### Synchronous message sending: SendAndBlockController controller
 
@@ -133,7 +114,7 @@ In the `Server` project, the queue name equals the namespace of the `MessageEndp
 
 In the Server project, open the `CommandMessageHandler` class to see the following:
 
-    public class CommandMessageHandler : IHandleMessages
+    public class CommandMessageHandler : IHandleMessages<Command>
     {
         public IBus Bus { get; set; }
 

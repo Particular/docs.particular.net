@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>618</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <NoWarn>618</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Deployable|AnyCPU'">
     <OutputPath>bin\Deployable\</OutputPath>
@@ -192,9 +194,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Audit\App.config" />
     <None Include="packages.config" />
+    <None Include="Persistence\NHibernate\nhibernate.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandler.cs" />
@@ -205,6 +209,8 @@
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="CustomRavenConfigForVersion2_5.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="HostIdentifier\HostIdFixer.cs" />
+    <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
     <None Include="Encryption\encryption.config">
       <SubType>Designer</SubType>
@@ -213,7 +219,7 @@
     <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="Gateway\GatewayConfig.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
-    <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
+    <Compile Include="Persistence\RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />

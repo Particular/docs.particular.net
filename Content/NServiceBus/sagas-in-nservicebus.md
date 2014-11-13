@@ -128,11 +128,11 @@ You can have as many of these classes as you want for a given saga or message ty
 
 Make sure to configure appropriate persistence mechanism. Below you can see how it is done via the V5 streamlined configuration API:
 
-<!-- saga-configure-self-hosted -->
+<!-- import saga-configure-self-hosted -->
 
 And via the old API:
 
-<!-- saga-configure-self-hosted-v4 -->
+<!-- import saga-configure-self-hosted-v4 -->
 
 ## Sagas and automatic subscriptions
 

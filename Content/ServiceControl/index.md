@@ -26,6 +26,7 @@ summary: ServiceControl Documentation Table of Contents
 - [How to Backup the ServiceControl Database](backup-sc-database.md)
 - [How to Directly Access ServiceControl Data via RavenDB Studio](use-ravendb-studio.md)
 - [ServiceControl Capacity and Planning](capacity-and-planning.md)
+- [How to compact the database](db-compaction.md)
 
 ### Troubleshooting
 

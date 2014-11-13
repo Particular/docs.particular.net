@@ -17,7 +17,7 @@ These plugins are optional from the perspective of the NServiceBus framework its
 
 The ServiceControl plugins can be downloaded and installed from the NuGet gallery. 
 
-###For NserviceBus Version 5 
+### For NserviceBus Version 5 
 
 | **Plugin** | **NuGet gallery URL** | 
 |:----- |:----- |
@@ -26,8 +26,7 @@ The ServiceControl plugins can be downloaded and installed from the NuGet galler
 |Saga Audit|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.SagaAudit|
 |Debug Session|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.DebugSession|
 
-
-###For NserviceBus Version 4 
+### For NserviceBus Version 4 
 
 | **Plugin** | **NuGet gallery URL** | 
 |:----- |:----- |
@@ -36,8 +35,7 @@ The ServiceControl plugins can be downloaded and installed from the NuGet galler
 |Saga Audit|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit|
 |Debug Session|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.DebugSession|
 
-
-###For NserviceBus Version 3 
+### For NserviceBus Version 3 
 
 | **Plugin** | **NuGet gallery URL** | 
 |:----- |:----- |
@@ -54,6 +52,7 @@ The ServiceControl plugins are deployed with the endpoints they are monitoring. 
 * When in production, add the plugin DLLs to the BIN directory of the endpoint, and restart the endpoint process for the changes to take effect and the plugin to be loaded.   
 
 NOTE: For NServiceBus version-dependent requirements for each plugin, review the "Dependencies" section in the NuGet Gallery page for the specific plugin.  
+
 **Related articles**
 
 - [How to configure endpoints for monitoring by ServicePulse](/ServicePulse/how-to-configure-endpoints-for-monitoring.md)
@@ -65,6 +64,19 @@ Once deployed on an active endpoint, the endpoints send plugin-specific informat
 The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl.  
 
 NOTE: Audit and error queues must be defined for each endpoint monitored by ServiceControl.
+
+### How the location of ServiceControl queue location is determined
+
+The order of precedence is as follows:
+
+1. **AppSetting**  
+Check for an appsetting named `ServiceControl/Queue` eg `<add key="ServiceControl/Queue" value="particular.servicecontrol@machine"/>`.
+1. **Convention based on the configured Error Queue machine**  
+If an error queue is configured then the queue `Particular.ServiceControl` on the error queue machine name will be used i.e.  `Particular.ServiceControl@ErrorQueueMachineName`. 
+1. **Convention based on the configured Audit Queue machine**  
+If an audit queue is configured then the queue `Particular.ServiceControl` on the audit queue machine name will be used i.e.  `Particular.ServiceControl@AuditQueueMachineName`. 
+
+WARNING: Audit Queue machine is only used in NServiceBus v4.1 and up.
 
 ## Understanding Plugin Functionality and Behavior
 

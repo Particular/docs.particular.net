@@ -129,7 +129,7 @@
     </Reference>
     <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.5.1.0\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.5.1.2\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Distributor.MSMQ">
       <HintPath>..\packages\NServiceBus.Distributor.MSMQ.5.0.1\lib\net45\NServiceBus.Distributor.MSMQ.dll</HintPath>
@@ -262,12 +262,14 @@
     <Content Include="SecondLevelRetries\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="app.config" />
     <None Include="Audit\App.config" />
     <None Include="Encryption\encryption.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Persistence\NHibernate\nhibernate.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="Persistence\RavenDB\SharedDocumentStoreViaConnectionString.config" />
@@ -286,7 +288,10 @@
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
     <Compile Include="Distributor\ConfiguringWorker.cs" />
+    <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
+    <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
+    <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="RegisterCustomSerializer.cs" />
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />

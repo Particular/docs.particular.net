@@ -6,6 +6,15 @@ tags: []
 
 Developing enterprise-scale distributed systems is hard and testing them is just as challenging a task. The architectural approach supported by NServiceBus makes these challenges more manageable. And the testing facilities provided actually make unit testing endpoints and workflows easy. You can now develop your service layers and long-running processes using test-driven development.
 
+## Getting started
+
+NServiceBus ships with a stand alone testing helper nuget package that makes testing a lot simpler.  
+To install this package:
+```
+Install-Package NServiceBus.Testing
+```
+Once the package is installed you need ensure that you call `Test.Initialize()` (or any of its overloads) before executing any test method.
+
 ## Unit testing the service layer
 
 The service layer in an NServiceBus application is made from message handlers. Each class typically handles one specific type of message. Testing these classes usually focuses on their externally visible behavior: the types of messages they send or reply with. This is as simple to test as could be expected:

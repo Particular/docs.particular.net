@@ -16,9 +16,8 @@ namespace UnitTesting.HeaderManipulation
 
             Test.Handler<MyMessageHandler>()
                 .SetIncomingHeader("Test", "abc")
+                .ExpectReply<ResponseMessage>(m => Test.Bus.GetMessageHeader(m, "MyHeaderKey") == "myHeaderValue")
                 .OnMessage<RequestMessage>(m => m.String = "hello");
-
-            Assert.AreEqual("myHeaderValue", Test.Bus.OutgoingHeaders["MyHeaderKey"]);
         }
     }
 
@@ -28,8 +27,9 @@ namespace UnitTesting.HeaderManipulation
 
         public void Handle(RequestMessage message)
         {
-            Bus.OutgoingHeaders["MyHeaderKey"] = "myHeaderValue";
-            Bus.Reply(new ResponseMessage());
+            var responseMessage = new ResponseMessage();
+            Bus.SetMessageHeader(responseMessage, "MyHeaderKey", "myHeaderValue");
+            Bus.Reply(responseMessage);
         }
     }
 
