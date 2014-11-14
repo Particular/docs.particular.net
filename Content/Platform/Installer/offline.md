@@ -44,3 +44,14 @@ Platform tools can be manually installed using their own standalone installer, a
 #### ServiceMatrix
 
 ServiceMatrix requires to download packages from the NuGet public feed to function properly, currently ServiceMatrix can be installed offline using the stand alone installer but requires an internet connection, and access to NuGet public feed, to create and manage projects.
+
+#### Custome Installation Notes
+To run the installer in quiet mode form commandline you can pass in the `/quiet` option 
+
+For Example: `Particular.ServiceControl-1.3.0.exe /quiet`
+
+To set the target directory you can use the property setter `APPDIR`
+
+For example: `Particular.ServiceControl-1.3.0.exe /quiet APPDIR=“C:\MyTagretDirectory”`
+
+
