@@ -79,11 +79,15 @@ You can configure ServiceControl to forward any consumed messages into alternate
 
 * `ServiceControl/ForwardAuditMessages` (bool `true`/`false`)
 
-  Use this setting to configure whether processed audit messages are forwarded to anothe queue or not. Default `false`
+  Use this setting to configure whether processed audit messages are forwarded to another queue or not. Default `false`
 
 * `ServiceControl/ExpirationProcessTimerInSeconds` (int) 
 
-  The number of seconds to wait between checking for expired messages, Default `60` (1 minute)
+  The number of seconds to wait between checking for expired messages.  The default prior to version 1.4 is `60` (1 minute), the new default is `300` (5 minutes)  
+
+* `ServiceControl/ExpirationProcessBatchSize` (int) , Default `65512`  
+ 
+  This setting was introduced in version 1.4. This minimum allowed value for this settings is 10240, there is no hardcoded maximum as this is heavily dependent on system performance.  
 
 * `ServiceControl/HoursToKeepMessagesBeforeExpiring` (int)
 
