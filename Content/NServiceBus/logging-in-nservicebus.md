@@ -74,6 +74,8 @@ Ensure you do this before any bus configuration is done.
 
 For more advanced logging, it is recommended that you utilize one of the many mature logging libraries available for .net. 
 
+Note: Moving to custom logging means none of the approaches used in the above Default Logging apply. 
+
 ### NLog
 
 There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) package available that allows for simple integration of NServiceBus and [NLog](http://nlog-project.org/).
