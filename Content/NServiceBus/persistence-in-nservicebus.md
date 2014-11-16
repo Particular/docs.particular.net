@@ -27,13 +27,13 @@ The following table summarizes what is available and how to configure each featu
 
 | Type                 | In-Memory  | RavenDB   | NHibernate    | MSMQ                                  |
 |--------------------  |:---------- |:--------- |:--------------|:------------------------------------- |
-| Timeout              | X          | X         | X             | Not supported beginning with V3.3,0   |
+| Timeout              | X          | X         | X             | Not supported as of v3.3.0   |
 | Subscription         | X          | X         | X             | X                                     |
 | Saga                 | X          | X         | X             | -                                     |
 | Gateway              | X          | X         | X             | -                                     |
 | Distributor          | -          | -         | -             | X                                     |
 
-NOTE: MSMQ persistence is not recommended for subscriptions in production since subscription queue cannot be shared among multiple endpoint. Use other persistence instead. 
+NOTE: Storing your subscriptions in MSMQ is not suitable for scenarios where you need to scale the endpoint out. The reason is that the subscription queue cannot be shared among multiple endpoints. 
 
 If self hosting, you can configure the persistence technology for each feature. For example, to store subscriptions in-memory and timeouts in RavenDB, use this code:
 
