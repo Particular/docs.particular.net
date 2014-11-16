@@ -33,6 +33,7 @@ The following table summarizes what is available and how to configure each featu
 | Gateway              | X          | X         | X             | -                                     |
 | Distributor          | -          | -         | -             | X                                     |
 
+NOTE: MSMQ persistence is not recommended for subscriptions in production since subscription queue cannot be shared among multiple endpoint. Use other persistence instead. 
 
 If self hosting, you can configure the persistence technology for each feature. For example, to store subscriptions in-memory and timeouts in RavenDB, use this code:
 
