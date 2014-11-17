@@ -90,7 +90,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Transports\Msmq\MsmqTransportConfig.config" />
-    <None Include="Transports\Msmq\MsmqMessageQueueConfig.config" />
+    <None Include="Transports\Msmq\MessageQueueConfiguration.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Distributor\ConfiguringDistributor.cs" />

@@ -262,7 +262,7 @@
     <Content Include="SecondLevelRetries\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Transports\Mqmq\AppConfig.config" />
+    <None Include="Transports\Mqmq\TransportConfig.config" />
     <None Include="Audit\App.config" />
     <None Include="Encryption\encryption.config">
       <SubType>Designer</SubType>
@@ -275,7 +275,7 @@
     </None>
     <None Include="Persistence\RavenDB\SharedDocumentStoreViaConnectionString.config" />
     <None Include="Persistence\RavenDB\SpecificDocumentStoreViaConnectionString.config" />
-    <None Include="Transports\Mqmq\ConnectionString.config" />
+    <None Include="Transports\Mqmq\MessageQueueConfiguration.config" />
     <None Include="Transports\RabbitMQ\App.config" />
   </ItemGroup>
   <ItemGroup>

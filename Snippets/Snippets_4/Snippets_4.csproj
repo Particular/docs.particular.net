@@ -199,6 +199,8 @@
     <None Include="Persistence\NHibernate\nhibernate.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Transports\Msmq\TransportConfig.config" />
+    <None Include="Transports\Msmq\MessageQueueConfiguration.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandler.cs" />
