@@ -19,9 +19,9 @@
 
     public class EndpointConfig : IConfigureThisEndpoint
     {
-        public void Customize(BusConfiguration builder)
+        public void Customize(BusConfiguration configuration)
         {
-            builder.UsePersistence<AzureStoragePersistence>();
+            configuration.UsePersistence<AzureStoragePersistence>();
         }
     }
 
