@@ -290,6 +290,7 @@
     <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
+    <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />

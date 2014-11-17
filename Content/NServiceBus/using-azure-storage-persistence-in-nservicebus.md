@@ -14,24 +14,25 @@ First you need to reference the assembly that contains the azure storage persist
 
 If self hosting, you can configure the persistence technology using the fluent configuration API and the extension method found in the `NServiceBus.Azure` assembly
 
-    static void Main()
-    {
-        Configure.With()
-        ...
-		.UsePersistence<AzureStoragePersistence>()
-	...
-        .Start();
-    }
+#### Version 5
+
+<!-- import PersistanceWithAzure-V5 -->
+
+#### Version 4
+
+<!-- import PersistanceWithAzure-V4 -->
+
+## Hosting
 
 When hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosting.Azure`, or any other nservicebus provided host, the azure storage persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config.
 
-	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
-	{
-	    public void Customize(BusConfiguration builder)
-	    {
-	        builder.UsePersistence<AzureStoragePersistence>();
-	    }
-	}
+#### Version 5
+
+<!-- import PersistenceWithAzureHost-V5 -->
+
+#### Version 4
+
+When hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
 ## Detailed configuration
 
