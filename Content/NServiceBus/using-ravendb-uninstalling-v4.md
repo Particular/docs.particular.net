@@ -1,12 +1,12 @@
 ---
-title: Removing NServiceBus.Persistence.v4 RavenDB v2.0
+title: Uninstall RavenDB v2.0
 summary: Article outlines uninstalling RavenDB that were installed by previous versions of the Platform Installer.
 tags:
 - Persistence
 - RavenDB
 ---
 
-As of October 15, 2014 the Platform Installer no longer installs "NServiceBus.Persistence.v4" as a prerequisite as NServiceBus V5 no longer uses it as the default persistence - [see this document](using-ravendb-in-nservicebus-installing.md). If you previously installed this and want to remove it either because you don't need it or you wish to install RavenDB version v2.5 (required version for NServiceBus V5), then you will need to manually remove it.
+As of October 15, 2014 the Platform Installer no longer installs RavenDB v2.0 in a folder called "NServiceBus.Persistence.v4" under `Program Files` as a prerequisite since NServiceBus V5 no longer uses it as the default persistence - [see this document](using-ravendb-in-nservicebus-installing.md). If you previously installed this and want to remove it either because you don't need it or you wish to install RavenDB version v2.5 (required version for NServiceBus V5), then you will need to manually remove it.
 
 ## Manual Removal Instructions
 
