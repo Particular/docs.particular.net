@@ -268,4 +268,4 @@ We mentioned that [ServiceInsight](/ServiceInsight) can be a valuable tool in th
 
 In this article you saw how to use ServiceMatrix to connect a front end website and a backend processing system using NServiceBus.  What's so exciting about that?  After all inter-process communication has been done many times before. One answer is ***fault tolerance***.  Next, you can explore the fault tolerance and durability features NServiceBus offers. You might want to next read a review of the fault tolerance features inherent in NServiceBus in [this article](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "Getting Started with Fault Tolerance").  
 
-Or, you can return to the ServiceMatrix [table of contents](index.md).
+Or, you can return to the ServiceMatrix [table of contents]('').
