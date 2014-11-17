@@ -24,7 +24,7 @@ It is possible to configure RavenDB to use a different resource manager identifi
 ```csharp
 const string id = "d5723e19-92ad-4531-adad-8611e6e05c8a";
 var store = new DocumentStore()  {
-     ResourceManagerId = new Guid(id)
+     ResourceManagerId = new Guid( id )
 }
 ```
 
