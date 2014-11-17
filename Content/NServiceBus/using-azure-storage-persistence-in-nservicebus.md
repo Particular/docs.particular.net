@@ -30,9 +30,7 @@ When hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosti
 
 <!-- import PersistenceWithAzureHost-V5 -->
 
-#### Version 4
-
-When hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
+NOTE: In version 4, when hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
 ## Detailed configuration
 
