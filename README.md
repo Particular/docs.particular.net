@@ -31,6 +31,14 @@ For more information see [Collaborating on GitHub](https://help.github.com/categ
 
 # Conventions
 
+## Lower case  and `-` delimited
+
+All content files (`.md`,`.png`,`.jpg` etx) and directories must be lower case. 
+
+All links pointing to them must be lower case.
+
+To delimiter file names use a dash (`-`).
+
 ## Headers
 
 Each document has a header. It is enclosed by `---` and is defined in a [YAML](http://en.wikipedia.org/wiki/YAML) document.
