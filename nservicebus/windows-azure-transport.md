@@ -13,7 +13,7 @@ The Windows Azure transports for NServiceBus enables the use of Windows Azure Qu
 
  * Cloud hosting scenario: An NServiceBus endpoint is hosted as a cloud service and communicates with another endpoint located in another cloud service through the use of one of the Windows Azure transports for NServiceBus.
 
- * Hybrid scenario: An NServiceBus is hosted on-premise and uses one of the Windows Azure transports for NServiceBus to communicate with another NServiceBus endpoint hosted on a Cloud Service and/or on-premise.
+ * Hybrid scenario: An NServiceBus endpoint is hosted on-premise and uses one of the Windows Azure transports for NServiceBus to communicate with another NServiceBus endpoint hosted on a Cloud Service and/or on-premise.
 
 As part of the Windows Azure support for NServiceBus, you can choose between two options provided by the Windows Azure platform:
 
