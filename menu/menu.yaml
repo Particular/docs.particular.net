@@ -1,0 +1,249 @@
+- 
+  Name: "NServiceBus"
+  Topics: 
+    - 
+      Name: "getting-started"
+      Title: "Getting Started"
+      Articles: 
+        - "nservicebus/overview"
+        - "nservicebus/NServiceBus-Step-by-Step-Guide"
+        - "nservicebus/NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first"
+        - "nservicebus/nservicebus-step-by-step-publish-subscribe-communication-code-first"
+        - "nservicebus/architectural-principles"
+        - "nservicebus/transactions-message-processing"
+        - "nservicebus/building-nservicebus-from-source-files"
+        - "nservicebus/nservicebus-and-wcf"
+        - "nservicebus/nservicebus-and-websphere-sonic"
+        - "nservicebus/nservicebus-and-biztalk"
+        - "nservicebus/no-dtc"
+    - 
+      Name: "publish-subscribe"
+      Title: "Publish Subscribe"
+      Articles: 
+        - "nservicebus/how-pub-sub-works"
+        - "nservicebus/publish-subscribe-configuration"
+    - 
+      Name: "scaling-out"
+      Title: "Scaling Out"
+      Articles: 
+        - "nservicebus/performance"
+        - "nservicebus/the-gateway-and-multi-site-distribution"
+        - "nservicebus/load-balancing-with-the-distributor"
+        - "nservicebus/introduction-to-the-gateway"
+        - "nservicebus/deploying-nservicebus-in-a-windows-failover-cluster"
+    - 
+      Name: "persistence-in-nservicebus"
+      Title: "Persistence In NServiceBus"
+      Articles: 
+        - "nservicebus/persistence-in-nservicebus"
+        - "nservicebus/using-ravendb-in-nservicebus-installing"
+        - "nservicebus/using-ravendb-in-nservicebus-connecting"
+        - "nservicebus/relational-persistence-using-nhibernate"
+        - "nservicebus/unit-of-work-in-nservicebus"
+        - "nservicebus/unit-of-work-implementation-for-ravendb"
+        - "nservicebus/ravendb/version-compatibility"
+        - "nservicebus/persistence-order"
+    - 
+      Name: "long-running-processes"
+      Title: "Long Running Processes"
+      Articles: 
+        - "nservicebus/sagas-in-nservicebus"
+        - "nservicebus/nservicebus-sagas-and-concurrency"
+    - 
+      Name: "day-to-day"
+      Title: "Day To Day"
+      Articles: 
+        - "nservicebus/containers"
+        - "nservicebus/nservicebus-support-for-child-containers"
+        - "nservicebus/logging-in-nservicebus"
+        - "nservicebus/messages-as-interfaces"
+        - "nservicebus/introducing-ievent-and-icommand"
+        - "nservicebus/staying-updated-with-nuget"
+        - "nservicebus/unobtrusive-mode-messages"
+        - "nservicebus/unit-testing"
+        - "nservicebus/one-way-send-only-endpoints"
+        - "nservicebus/scheduling-with-nservicebus"
+        - "nservicebus/second-level-retries"
+        - "nservicebus/nservicebus-installers"
+        - "nservicebus/managing-nservicebus-using-powershell"
+        - "nservicebus/connection-strings-samples"
+    - 
+      Name: "hosting"
+      Title: "Hosting"
+      Articles: 
+        - "nservicebus/the-nservicebus-host"
+        - "nservicebus/hosting-nservicebus-in-your-own-process"
+        - "nservicebus/profiles-for-nservicebus-host"
+        - "nservicebus/more-on-profiles"
+        - "nservicebus/nservicebus-32-bit-x86-host-process"
+        - "nservicebus/hosting-nservicebus-in-your-own-process-v4.x"
+        - "nservicebus/understanding-transactions-in-windows-azure"
+    - 
+      Name: "management-and-monitoring"
+      Title: "Management And Monitoring"
+      Articles: 
+        - "nservicebus/monitoring-nservicebus-endpoints"
+        - "nservicebus/msmq-information"
+        - "nservicebus/auditing-with-nservicebus"
+        - "nservicebus/subscribing-to-push-based-error-notifications"
+        - "nservicebus/disconnect-workers-from-running-distributor"
+    - 
+      Name: "customization"
+      Title: "Customization"
+      Articles: 
+        - "nservicebus/customizing-nservicebus-configuration"
+        - "nservicebus/pipeline-management-using-message-mutators"
+        - "nservicebus/override-hostid"
+    - 
+      Name: "versioning"
+      Title: "Versioning"
+      Articles: 
+        - "nservicebus/migrating-to-nservicebus-3.0-timeouts"
+    - 
+      Name: "faq"
+      Title: "Faq"
+      Articles: 
+        - "nservicebus/msmqtransportconfig"
+        - "nservicebus/how-do-i-define-a-message"
+        - "nservicebus/using-the-in-memory-bus"
+        - "nservicebus/how-do-i-specify-store-forward-for-a-message"
+        - "nservicebus/how-do-i-discard-old-messages"
+        - "nservicebus/how-do-i-instantiate-a-message"
+        - "nservicebus/how-do-i-send-a-message"
+        - "nservicebus/how-do-i-specify-to-which-destination-a-message-will-be-sent"
+        - "nservicebus/how-can-i-see-the-queues-and-messages-on-a-machine"
+        - "nservicebus/how-do-i-handle-a-message"
+        - "nservicebus/how-do-i-specify-the-order-in-which-handlers-are-invoked"
+        - "nservicebus/how-do-i-get-a-reference-to-ibus-in-my-message-handler"
+        - "nservicebus/how-do-i-get-technical-information-about-a-message"
+        - "nservicebus/how-do-i-reply-to-a-message"
+        - "nservicebus/how-do-i-handle-responses-on-the-client-side"
+        - "nservicebus/how-to-pub-sub-with-NServiceBus"
+        - "nservicebus/how-do-i-handle-exceptions"
+        - "nservicebus/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service"
+        - "nservicebus/type-was-not-registered-in-the-serializer"
+        - "nservicebus/messagequeueexception-insufficient-resources-to-perform-operation"
+        - "nservicebus/how-to-specify-your-input-queue-name"
+        - "nservicebus/in-a-distributor-scenario-what-happens-to-the-message-if-a-worker-goes-down"
+        - "nservicebus/no-endpoint-configuration-found-in-scanned-assemblies-exception"
+        - "nservicebus/dtcping-warning-the-cid-values-for-both-test-machines-are-the-same"
+        - "nservicebus/why-you-can-t-use-nlb-with-msmq"
+        - "nservicebus/configuring-aws-for-nservicebus"
+        - "nservicebus/licensing-and-distribution"
+        - "nservicebus/how-to-debug-ravendb-through-fiddler-using-nservicebus"
+        - "nservicebus/how-do-i-centralize-all-unobtrusive-declarations"
+        - "nservicebus/definingmessagesas-and-definingeventsas-when-starting-endpoint"
+        - "nservicebus/how-to-reduce-throughput-of-an-endpoint"
+        - "nservicebus/invalidoperationexception-in-unobtrusive-mode"
+        - "nservicebus/license-management"
+        - "nservicebus/preparing-your-machine-to-run-nservicebus"
+        - "nservicebus/running-nservicebus-on-windows"
+        - "nservicebus/encryption"
+        - "nservicebus/how-do-i-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages"
+        - "nservicebus/how-to-register-a-custom-serializer"
+    - 
+      Name: "samples"
+      Title: "Samples"
+      Articles: 
+        - "nservicebus/full-duplex-sample"
+        - "nservicebus/publish-subscribe-sample"
+        - "nservicebus/unobtrusive-sample"
+        - "nservicebus/scale-out-sample"
+        - "nservicebus/using-nservicebus-in-a-asp.net-web-application"
+        - "nservicebus/using-nservicebus-with-asp.net-mvc"
+        - "nservicebus/injecting-the-bus-into-asp.net-mvc-controller"
+        - "nservicebus/encryption-sample"
+        - "nservicebus/generic-host-sample"
+        - "nservicebus/versioning-sample"
+        - "nservicebus/nservicebus-message-mutators-sample"
+        - "nservicebus/attachments-databus-sample"
+        - "nservicebus/windows-azure-transport"
+- 
+  Name: "ServiceMatrix"
+  Topics: 
+    - 
+      Name: "getting-started"
+      Title: "Getting Started"
+      Articles: 
+        - "servicematrix/installing-servicematrix-2.0"
+        - "servicematrix/getting-started-with-servicematrix-2.0"
+        - "servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance"
+        - "servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe"
+        - "servicematrix/servicematrix-serviceinsight"
+        - "servicematrix/getting-started-sagasfullduplex-2.0"
+    - 
+      Name: "using-servicematrix"
+      Title: "Using ServiceMatrix"
+      Articles: 
+        - "servicematrix/licensing-servicematrix-v2.0"
+        - "servicematrix/customizing-extending"
+    - 
+      Name: "troubleshooting"
+      Title: "Troubleshooting"
+      Articles: 
+        - "servicematrix/troubleshooting-servicematrix-2.0"
+    - 
+      Name: "version-1.0"
+      Title: "Version 1.0"
+      Articles: 
+        - "servicematrix/getting-started-creating-a-new-project-servicematrix-1.0"
+        - "servicematrix/getting-started-fault-tolerance-servicematrix-1.0"
+        - "servicematrix/getting-started-publish-subscribe-communication-servicematrix-1.0"
+- 
+  Name: "ServiceInsight"
+  Topics: 
+    - 
+      Name: "getting-started"
+      Title: "Getting Started"
+      Articles: 
+        - "serviceinsight/getting-started-overview"
+        - "serviceinsight/application-invocation"
+        - "serviceinsight/how-logging-works"
+- 
+  Name: "ServicePulse"
+  Topics: 
+    - 
+      Name: "introduction"
+      Title: "Introduction"
+      Articles: 
+        - "servicepulse/introduction-and-installing-servicepulse"
+        - "servicepulse/monitoring-nservicebus-endpoints"
+        - "servicepulse/intro-endpoints-heartbeats"
+        - "servicepulse/intro-failed-messages"
+        - "servicepulse/intro-endpoints-custom-checks"
+    - 
+      Name: "configuration"
+      Title: "Configuration"
+      Articles: 
+        - "servicepulse/how-to-configure-endpoints-for-monitoring"
+        - "servicepulse/how-to-develop-custom-checks"
+        - "servicepulse/troubleshooting"
+- 
+  Name: "ServiceControl"
+  Topics: 
+    - 
+      Name: "configuration"
+      Title: "Configuration"
+      Articles: 
+        - "servicecontrol/creating-config-file"
+        - "servicecontrol/multi-transport-support"
+        - "servicecontrol/configure-ravendb-location"
+        - "servicecontrol/customize-name-and-description"
+        - "servicecontrol/setting-custom-hostname"
+        - "servicecontrol/setting-custom-log-location"
+    - 
+      Name: "management"
+      Title: "Management"
+      Articles: 
+        - "servicecontrol/securing-servicecontrol"
+        - "servicecontrol/capacity-and-planning"
+        - "servicecontrol/how-purge-expired-data"
+        - "servicecontrol/use-ravendb-studio"
+        - "servicecontrol/backup-sc-database"
+        - "servicecontrol/configure-non-privileged-service-account"
+        - "servicecontrol/multi-instances-on-one-host"
+    - 
+      Name: "troubleshooting"
+      Title: "Troubleshooting"
+      Articles: 
+        - "servicecontrol/troubleshooting"
