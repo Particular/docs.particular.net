@@ -31,6 +31,14 @@ For more information see [Collaborating on GitHub](https://help.github.com/categ
 
 # Conventions
 
+## Lower case  and `-` delimited
+
+All content files (`.md`,`.png`,`.jpg` etx) and directories must be lower case. 
+
+All links pointing to them must be lower case.
+
+To delimiter file names use a dash (`-`).
+
 ## Headers
 
 Each document has a header. It is enclosed by `---` and is defined in a [YAML](http://en.wikipedia.org/wiki/YAML) document.
@@ -78,19 +86,19 @@ URL redirects are not currently implemented but will be included as part of the 
 
 ## Menu
 
-The menu is a YAML text document stored at [Content/menu.yaml](Content/menu.yaml).
+The menu is a YAML text document stored at [menu/menu.yaml](menu/menu.yaml).
 
 ## URLs
 
 The directory structure where a `.md` exists is used to derive the URL for that document. 
 
-So a file existing at `Content\NServiceBus\Logging\NLog.md` will have a resultant URL of `http://docs.particular.net/NServiceBus/Logging/Nlog`.
+So a file existing at `nservicebus\logging\nlog.md` will have a resultant URL of `http://docs.particular.net/nservicebus/logging/nlog`.
 
 ### Index Pages
 
-One exception to this rule is when a page is named `Index.md`. In this case the `Index.md` is omitted in the resultant URL and only the directory structure is used.
+One exception to this rule is when a page is named `index.md`. In this case the `index.md` is omitted in the resultant URL and only the directory structure is used.
 
-So a file existing at `Content\NServiceBus\Logging\Index.md` will have a resultant URL of `http://docs.particular.net/NServiceBus/Logging`.
+So a file existing at `nservicebus\logging\index.md` will have a resultant URL of `http://docs.particular.net/nservicebus/logging/`.
 
 ### Linking
 
@@ -98,13 +106,13 @@ Links to other documentation pages should be relative and contain the `.md` exte
 
 The `.md` allows links to work inside the GitHub web UI. The `.md` will be trimmed when they are finally rendered.
 
-Given the case of editing a page located at `\Content\NServiceBus\Page1.md`:
+Given the case of editing a page located at `\nservicebus\page1.md`:
 
-To link to the file `\Content\NServiceBus\Page2.md`, use `[Page 2 Text](Page2.md)`.
+To link to the file `nservicebus\page2.md`, use `[Page 2 Text](Page2.md)`.
 
-To link to the file `\Content\ServiceControl\Page3.md`, use `[Page 3 Text](/ServiceControl/Page3.md)`.
+To link to the file `\servicecontrol\page3.md`, use `[Page 3 Text](/servicecontrol/page3.md)`.
 
-Don't link to `index.md` pages, instead link to the directory. So link to `/NServiceBus/Logging` and NOT `/NServiceBus/Logging/index.md`
+Don't link to `index.md` pages, instead link to the directory. So link to `/nservicebus/logging` and NOT `/nservicebus/logging/index.md`
 
 ## Markdown 
 
