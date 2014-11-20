@@ -33,8 +33,7 @@ As of NServiceBus v5 you customize the endpoint behavior using the `IConfigureTh
 
 As of NServiceBus v5 logging for the host is controlled with the same API as the core. This is documented [here](logging-in-nservicebus.md).
 
-Just make the API calls in your implementation of `IConfigureThisEndpoint.Customize` mentioned above. 
-
+You can add the logging API calls as mentioned in the above article directly in your implementation of `IConfigureThisEndoint.Customize` method.
 
 #### NServiceBus v4 and v3
 To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure your custom setup. To make NServiceBus use your logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](logging-in-nservicebus4-and-below.md) and shown below:
@@ -65,7 +64,7 @@ As of version 5 roles are obsoleted and should not be used. Most of the function
 
 <!-- import AsAClientEquivalent -->
 
-#### NServiceBus v3 + v4
+#### NServiceBus v4 and v3
 
 The rest of the code specifying transport, subscription storage, and other technologies isn't here, because of the `AsA_Server` built-in configuration described next.
 
