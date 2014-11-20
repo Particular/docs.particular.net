@@ -26,14 +26,14 @@ If you want to avoid the scanning process you can explicitly configure the type 
 
 ## Custom initialization and startup
 
-As of NServiceBus v5 you customize the endpoint behavior using the `IConfigureThisEndoint.Customize` method on your endpoint configuration class. Just call the appropriate methods on the `BusConfiguration` parameter passed to the method.
+As of NServiceBus v5 you customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on your endpoint configuration class. Just call the appropriate methods on the `BusConfiguration` parameter passed to the method.
 
 
 ## Logging
 
 As of NServiceBus v5 logging for the host is controlled with the same API as the core. This is documented [here](logging-in-nservicebus.md).
 
-Just make the API calls in your implementation of `IConfigureThisEndoint.Customize` mentioned above. 
+Just make the API calls in your implementation of `IConfigureThisEndpoint.Customize` mentioned above. 
 
 
 #### NServiceBus v4 and v3
