@@ -1,6 +1,6 @@
 ---
 title: The NServiceBus Host
-summary: Avoid writing repeat config code, host your endpoints in a Windows Service, and change technologies without code.
+summary: Avoid writing repeat configuration code, host your endpoints in a Windows Service, and change technologies without code.
 tags: []
 ---
 
@@ -8,72 +8,43 @@ To avoid re-writing the same configuration code, or to host your endpoints in a 
 
 The NServiceBus host streamlines service development and deployment, allows you to change technologies without code, and is administrator-friendly when setting permissions and accounts.
 
-## Overview
+To use the host just create a new C# class library and reference the NServiceBus.Host NuGet package
 
-To implement back-end message processing, you don't need to write your own host process. Just reference NServiceBus.Host.exe from your message handler assembly and write a single class that inherits from `IConfigureThisEndpoint`, specifying whether you want server or client behavior (as described below).
-
-Another option is to open the NuGet Package Manager Console and type:
-
-    Install-Package NServiceBus.Host
-
-To run and debug your endpoint, change the Debug settings of the Visual Studio project by right-clicking it, selecting Properties, and then the Debug tab, as shown:
-
-![Debug settings](reference-host.png)
-
-Make sure that 'Start external program' is selected under Start Action and choose the file `NServiceBus.Host.exe` in the `/bin/debug` directory of your project. 
-
-## Configuration
-
-How does the host know which configuration file to use? NServiceBus.Host.exe scans the runtime directory loading all DLLs into memory. It searches the types defined in those assemblies for a class that implements the `IConfigureThisEndpoint` interface. The name of the assembly holding that type is used to create `assembly.dll.config` and that is the file used for configuration.
-
-Shortcut the scanning process by telling the host which type to use by including a file called `NServiceBus.Host.exe.config` in which you specify the type implementing `IConfigureThisEndpoint`, like this:
-
-```XML
-<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-  <appSettings>
-    <add key="EndpointConfigurationType" value="YourNamespace.YourTypeName, YourAssembly"/>
-  </appSettings>
-</configuration>
+```
+install-package NServiceBus.Host
 ```
 
-## File scanning
+That's it, the package will create an example endpoint configuration and setup the NServiceBus.Host.exe to run your endpoint.
 
-By default, NServiceBus scans files to find types implementing its interfaces so that it can configure them automatically. This is separate from the host's file scanning behavior and happens in the '`NServiceBus.Configure.With()` call.
+## Configuring your endpoint
 
-To tell NServiceBus which assemblies to use, set the container by implementing `IWantCustomInitialization` as described in the Container section below. In the `Init` method you can use the appropriate method overload:
+The `NServiceBus.Host.exe` scans the runtime directory for assemblies containing a class that implements the `IConfigureThisEndpoint` interface. This class will contain the configuration for this endpoint. You can read more on how NServiceBus does assembly scanning [here](assembly-scanning.md)
 
-```C#
-Configure.With(string probeDirectory)
-Configure.With(params Assembly[] assemblies)
-Configure.With(IEnumerable<Type> typesToScan)  
-```
+If you want to avoid the scanning process you can explicitly configure the type of your endpoint configuration by adding the following to the `NServiceBus.Host.exe.config` file. The below example show the exact syntax:
 
-NOTE: The NServiceBus assemblies are always included in scanning since NServiceBus needs them to function properly.
-
-## Logging
-
-To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure your custom setup. To make NServiceBus use your logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](logging-in-nservicebus.md) and shown below:
-
-```C#
-class MyEndpointConfig : IConfigureThisEndpoint, IWantCustomLogging
-{
-    public void Init()
-    {
-        // setup your logging infrastructure then call
-        NServiceBus.SetLoggingLibrary.Log4Net(null, yourLogger);
-    }
-}
-```
-
-You may want to specify different logging levels (`DEBUG`, `WARN`, etc.) and possibly different targets `(CONSOLE`, `FILE`, etc.). The host provides a mechanism for changing these permutations with no code or config changes, via [profiles](profiles-for-nservicebus-host.md) .
+<!-- import ExplicitHostConfigType -->
 
 ## Custom initialization and startup
 
-On top of the standard NServiceBus initialization you can initialize your own components. NServiceBus let you do it during its own initialization so that no messages are processed until all initialization is complete.
+As of NServiceBus v5 you customize the endpoint behavior using the `IConfigureThisEndoint.Customize` method on your endpoint configuration class. Just call the appropriate methods on the `BusConfiguration` parameter passed to the method.
 
-From files scanned above, the host looks for classes that implement `INeedInitialization` and calls their
-`Init()` method. The best practice is to have one initialization class per independent component to initialize. You can have as many classes as you like, although you should avoid any assumptions about the order of their invocation.
+
+## Logging
+
+As of NServiceBus v5 logging for the host is controlled with the same API as the core. This is documented [here](logging-in-nservicebus.md).
+
+Just make the API calls in your implementation of `IConfigureThisEndoint.Customize` mentioned above. 
+
+
+#### NServiceBus v4 and v3
+To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure your custom setup. To make NServiceBus use your logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](logging-in-nservicebus4-and-below.md) and shown below:
+
+<!-- import CustomHostLoggingV4 -->
+
+You may want to specify different logging levels (`DEBUG`, `WARN`, etc.) and possibly different targets `(CONSOLE`, `FILE`, etc.). The host provides a mechanism for changing these permutations with no code or configuration changes, via [profiles](profiles-for-nservicebus-host.md) .
+
+
+#### NServiceBus v4 and v3
 
 To change core settings such as assembly scanning, container, and serialization format, implement
 `IWantCustomInitialization` on the endpoint configuration class (the same class that implements
@@ -85,9 +56,16 @@ Configure.With()
 
 NOTE: Do not perform any startup behaviors in the `Init` method.
 
+After the custom initalization is done the regular core `INeedInitalization` implementations found will be called in the same way as when you're self hosting. 
+
 Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in v3.x) should kick off things such as web crawling, data mining, and batch processes.
 
-## Built-in configurations
+## Roles - Built-in configurations
+As of version 5 roles are obsoleted and should not be used. Most of the functionality of `AsA_Server`, and `AsA_Publisher` has been made defaults in the core and can be safely removed. If you still need the `AsA_Client` behavior please add the following to your configuration.
+
+<!-- import AsAClientEquivalent -->
+
+#### NServiceBus v3 + v4
 
 The rest of the code specifying transport, subscription storage, and other technologies isn't here, because of the `AsA_Server` built-in configuration described next.
 
@@ -99,12 +77,11 @@ While NServiceBus allows you to pick and choose which technologies to use and ho
 
 ## Installation
 
-To install your process as a Windows Service, you need to pass `/install` on the command line to the host. By default, the name of the service is the name of your endpoint and the endpoint name is the namespace of your endpoint config class. To enable side-by-side operations, use the `/sideBySide` switch to add the semver version to the service name. Passing /install also causes the host to invoke the [installers](nservicebus-installers.md) .
+To install your process as a Windows Service, you need to pass `/install` on the command line to the host. By default, the name of the service is the name of your endpoint and the endpoint name is the namespace of your endpoint configuration class. To enable side-by-side operations, use the `/sideBySide` switch to add the SemVer version to the service name. Passing /install also causes the host to invoke the [installers](nservicebus-installers.md) .
 
 To override this and specify additional details for installation:
 
-```Batchfile
-USAGE:
+```
 NServiceBus.Host.exe [/install [/serviceName]
 [/displayName]
 [/description]
@@ -124,8 +101,8 @@ NServiceBus.Host.exe [/install [/serviceName]
 
 You can get to this list by running the following at the command line:
 
-```Batchfile
-> NServiceBus.Host.exe /?
+```
+NServiceBus.Host.exe /?
 ```
 
 To set the actual name of the Windows Services in the registry, specify `/serviceName:YourServiceName`. This is different from what you see in the Windows Service Manager.
@@ -146,7 +123,7 @@ To specify under which account you want your service to run, pass in the usernam
 
 Following is an example of the `/install` command line:
 
-```Batchfile
+```
 NServiceBus.Host.exe /install /serviceName:"MyPublisher" 
 /displayName:"My Publisher Service"
 /description:"Service for publishing event messages"
@@ -157,16 +134,20 @@ NServiceBus.Host.exe /install /serviceName:"MyPublisher"
 
 To uninstall, call
 
-```Batchfile
+```
 NServiceBus.Host.exe /uninstall
 ```
 
 If you specify a service name or instance name when installing your service, you need to pass them in to the uninstall command as well:
 
-    > NServiceBus.Host.exe [/uninstall  [/serviceName] [/instance]]
+```
+NServiceBus.Host.exe [/uninstall  [/serviceName] [/instance]]
+```
 
 For example:
-  
-    > NServiceBus.Host.exe /uninstall /serviceName:YourServiceName /instance:YourInstanceName
+
+```  
+NServiceBus.Host.exe /uninstall /serviceName:YourServiceName /instance:YourInstanceName
+```
 
 To invoke the infrastructure installers, run the host with the `/installInfrastructure` switch. [Learn about installers.](nservicebus-installers.md)
