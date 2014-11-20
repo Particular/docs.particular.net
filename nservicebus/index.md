@@ -146,5 +146,4 @@ summary: NServiceBus Documentation Table of Contents
 - [Running NServiceBus on Windows](running-nservicebus-on-windows.md)
 - [How to specify time to wait before raising critical exception for timeout outages](how-do-i-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages.md)
 - [How to register a custom serializer](how-to-register-a-custom-serializer.md)
-- [NServiceBus .Net Framework version requierments](
-nServicebus_net_framework_version_requierments.md)
+- [NServiceBus .Net Framework version requierments](nServicebus_net_framework_version_requierments.md)
