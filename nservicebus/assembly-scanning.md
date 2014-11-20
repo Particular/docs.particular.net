@@ -4,9 +4,9 @@ summary: To enable automatic detection of various features NServiceBus scans you
 tags: []
 ---
 
-By default, NServiceBus scans all assemblies in the endpoints bin-folder to find types implementing its interfaces so that it can configure them automatically. 
+By default, NServiceBus scans all assemblies in the endpoint bin folder to find types implementing its interfaces so that it can configure them automatically. 
 
-NOTE: NServiceBus own assemblies are always included in scanning since NServiceBus needs them to function properly. 
+NOTE: NServiceBus scanning always includes `NServiceBus.Core.dll` and if in use `NServiceBus.Host.exe` since NServiceBus needs them to function properly. 
 
 ## Controlling the assemblies to scan
 
@@ -17,7 +17,6 @@ Even though our scanning gets smarter and smarter sometimes you might need to fi
 You can pass a list of assemblies:
 
 <!-- import ScanningListOfAssembliesV5 -->
-
 
 You can pass the assemblies one by one:
 
