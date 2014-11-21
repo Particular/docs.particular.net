@@ -6,10 +6,6 @@ tags:
 - ServiceInsight
 - Invocation
 - Debugging
-
-redirects:
-- SM-SI
-
 ---
 
 ServiceMatrix dramatically accelerates the creation of NServiceBus systems using a graphical design tool that is integrated into the Visual Studio environment.  
