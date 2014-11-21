@@ -58,6 +58,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Containers](containers.md)
 - [NServiceBus Support for Child Containers](nservicebus-support-for-child-containers.md)
 - [Logging in NServiceBus](logging-in-nservicebus.md)
+- [Assembly scanning](assembly-scanning.md)
 - [Messages as Interfaces](messages-as-interfaces.md)
 - [Introducing IEvent and ICommand](introducing-ievent-and-icommand.md)
 - [Staying Updated with Nuget](staying-updated-with-nuget.md)
