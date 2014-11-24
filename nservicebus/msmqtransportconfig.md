@@ -12,7 +12,7 @@ Historically MSMQ is the first transport supported by NServiceBus. In version 5 
 
 ### Receiving algorithm
 
-Because of the way MSMQ API has been designed i.e. polling receive that throws an exception when timeout is reached the receive algorithm is more complex than for other polling-driven transports (such as [SQLServer](SqlServer/Configuration.md)).
+Because of the way MSMQ API has been designed i.e. polling receive that throws an exception when timeout is reached the receive algorithm is more complex than for other polling-driven transports (such as [SQLServer](sqlserver/configuration.md)).
 
 The main loops starts by subscribing to `PeekCompleted` event and calling the `BeginPeek` method. When a message arrives the event is raised by the MSMQ client API. The handler for this event starts a new receiving task and waits till this new task has completed its `Receive` call. After that is calls `BeginPeek` again to wait for more messages. 
 
@@ -29,7 +29,7 @@ Following settings are purely related to the MSMQ:
  * UseConnectionCache (default: true)
  * UseTransactionalQueues (default: true)
 
-From version 4 onwards these settings are configured via a transport connection string (named `NServiceBus/Transport` for all transports). Before V4 some of these properties could be set via `MsmqMessageQueueConfig` configuration section while other (namely the connectionCache and the ability to use non-transactional queues) were not available prior to V4.
+From version 4 onwards these settings are configured via a transport connection string (named `nservicebus/transport` for all transports). Before V4 some of these properties could be set via `MsmqMessageQueueConfig` configuration section while other (namely the connectionCache and the ability to use non-transactional queues) were not available prior to V4.
 
 <!-- include MessageQueueConfiguration -->
 
