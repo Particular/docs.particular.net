@@ -10,6 +10,7 @@ tags:
 - Windows Azure
 - Cloud
 ---
+NOTE: This documents assumes you had already installed ServiceControl
 
 ## Configuring ServiceControl to use non-MSMQ Transports:
 
