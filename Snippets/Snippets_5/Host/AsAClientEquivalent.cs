@@ -7,7 +7,7 @@
     {
         public AsAClientEquivalent()
         {
-            #region AsAClientEquivalent
+            #region AsAClientEquivalent-v5
             var config = new BusConfiguration();
 
             config.PurgeOnStartup(true);

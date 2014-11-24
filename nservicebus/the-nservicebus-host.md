@@ -64,7 +64,7 @@ You may want to specify different logging levels (`DEBUG`, `WARN`, etc.) and pos
 ## Roles - Built-in configurations
 As of version 5 roles are obsoleted and should not be used. Most of the functionality of `AsA_Server`, and `AsA_Publisher` has been made defaults in the core and can be safely removed. If you still need the `AsA_Client` behavior please add the following to your configuration.
 
-<!-- import AsAClientEquivalent -->
+<!-- import AsAClientEquivalent-v5 -->
 
 #### NServiceBus v4 and v3
 
