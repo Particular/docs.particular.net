@@ -23,7 +23,7 @@ Note: The default ServiceControl installation folder is located under `%programf
 ```
 ServiceControl.exe -install -serviceName="custom-service-name" -displayName="Particular ServiceControl #2" -description="your description, if any, here"```
 
-* Start the newly installed instance: `net start "custom-service-name"`## UninstallTo manually uninstall a previously configured ServiceControl service run, from an elevated command prompt the following commands:
+* Start the newly installed instance: `net start "custom-service-name"`## UninstallTo manually uninstall a previously configured ServiceControl service run, from an elevated command prompt, the following commands:
 
 * `net stop "custom-service-name"` to stop the instance that needs to be removed;
 * `ServiceControl.exe -uninstall -serviceName="custom-service-name"` to uninstall the Windows Service;
