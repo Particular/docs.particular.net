@@ -247,6 +247,9 @@
     <Content Include="Gateway\AppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Host\ExplicitConfigType.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -291,12 +294,15 @@
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
     <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
+    <Compile Include="Host\AsAClientEquivalent.cs" />
+    <Compile Include="Host\CustomizingHost.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="RegisterCustomSerializer.cs" />
+    <Compile Include="Scanning\ScanningPublicApiV5.cs" />
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
     <Compile Include="Encryption\MessageBodyEncryption.cs" />
     <Compile Include="Gateway\GatewayConfig.cs" />
