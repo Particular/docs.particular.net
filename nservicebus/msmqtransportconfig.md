@@ -31,7 +31,7 @@ Following settings are purely related to the MSMQ:
 
 From version 4 onwards these settings are configured via a transport connection string (named `NServiceBus/Transport` for all transports). Before V4 some of these properties could be set via `MsmqMessageQueueConfig` configuration section while other (namely the connectionCache and the ability to use non-transactional queues) were not available prior to V4.
 
-<!-- include MessageQueueConfiguration-.config -->
+<!-- include MessageQueueConfiguration -->
 
 ### Failure handling & throttling
 
@@ -39,7 +39,7 @@ NServiceBus is designed in such a way that a user does not have to care about ex
 
 From V4 onwards the configuration for this mechanism is implemented in the `TransportConfig` section. 
 
-<!-- include TransportConfig-.config -->
+<!-- include TransportConfig -->
 
  * MaximumMessageThroughputPerSecond (default: 0) sets a limit on how quickly messages can be processed between all threads. Use a value of 0 to have no throughput limit.
  * MaximumConcurrencyLevel defines the maximum number of threads concurrently processing messages at any given point in time
