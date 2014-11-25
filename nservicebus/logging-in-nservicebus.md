@@ -76,7 +76,7 @@ For more advanced logging, it is recommended that you utilize one of the many ma
 
 The code shown below needs to be added either before calling `Bus.Create` if self-hosting or in the constructor of the class that implements `IConfigureThisEndpoint` when using [NServiceBus.Host](the-nservicebus-host.md).
 
-Note: Moving to custom logging means none of the approaches used in the above [Default Logging(#default-logging) apply. 
+Note: Moving to custom logging means none of the approaches used in the above [Default Logging](#default-logging) apply. 
 
 ### NLog
 
