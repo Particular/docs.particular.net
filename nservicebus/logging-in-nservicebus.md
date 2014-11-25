@@ -72,9 +72,9 @@ Ensure you do this before any bus configuration is done.
 
 ## Custom Logging
 
-For more advanced logging, it is recommended that you utilize one of the many mature logging libraries available for .net. 
+For more advanced logging, it is recommended that you utilize one of the many mature logging libraries available for .Net. 
 
-Note: Moving to custom logging means none of the approaches used in the above Default Logging apply. 
+Note: Moving to custom logging means none of the approaches used in the above [Default Logging(#default-logging) apply. 
 
 ### NLog
 
@@ -155,12 +155,12 @@ NServiceBus has three built-in profiles for logging `Lite`, `Integration`, and `
 
 ### Customized logging via a profile
 
-To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type. The implementation of this interface is similar to that described for `IWantCustomLogging` in the [host page](the-nservicebus-host.md).
+To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type.
 
 <!-- import LoggingConfigWithProfile -->
 
 Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
 
-**IMPORTANT** : While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
+WARNING: While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
 
 See the [profiles for nservicebus host](profiles-for-nservicebus-host.md) for more information.
