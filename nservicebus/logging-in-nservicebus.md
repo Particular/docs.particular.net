@@ -74,6 +74,8 @@ Ensure you do this before any bus configuration is done.
 
 For more advanced logging, it is recommended that you utilize one of the many mature logging libraries available for .Net. 
 
+The code shown below needs to be added either before calling `Bus.Create` if self-hosting or in the constructor of the class that implements `IConfigureThisEndpoint` when using [NServiceBus.Host](the-nservicebus-host.md).
+
 Note: Moving to custom logging means none of the approaches used in the above [Default Logging(#default-logging) apply. 
 
 ### NLog
@@ -89,7 +91,6 @@ Configure NLog using its standard API then call
 Example Usage 
 
 <!-- import NLogInCode -->
-
 
 ### CommonLogging
 
