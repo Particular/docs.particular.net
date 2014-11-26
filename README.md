@@ -82,7 +82,32 @@ Tags are interpreted in two ways.
 
 ### Redirects
 
-URL redirects are not currently implemented but will be included as part of the header.
+When renaming an existing article to a new name, please add the `redirects:` section in the article header and specify the previous name for the article. If the old Url is linked anywhere, when the user clicks on it, the new renamed article will automatically be served.
+ 
+* Values specified in the `redirects` section must be lower cased.
+* Multiple values can be specified for the redirects, same as `tags`.
+
+## An example header for an article
+
+- In the following example, whenever the urls `/servicematrix/sm-si` or `/servicematrix/debugging-servicematrix` are being requested, the given article will be rendered.
+
+```
+---
+title: ServiceMatrix and ServiceInsight Interaction
+summary: 'Using ServiceMatrix and ServiceInsight Together'
+tags:
+- ServiceMatrix
+- ServiceInsight
+- Invocation
+- Debugging
+
+redirects:
+- sm-si
+- debugging-servicematrix
+
+---
+
+```
 
 ## Menu
 
