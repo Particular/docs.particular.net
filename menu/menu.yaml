@@ -108,7 +108,6 @@
         - "nservicebus/using-the-in-memory-bus"
         - "nservicebus/how-do-i-specify-store-forward-for-a-message"
         - "nservicebus/how-do-i-discard-old-messages"
-        - "nservicebus/how-do-i-instantiate-a-message"
         - "nservicebus/how-do-i-send-a-message"
         - "nservicebus/how-do-i-specify-to-which-destination-a-message-will-be-sent"
         - "nservicebus/how-can-i-see-the-queues-and-messages-on-a-machine"

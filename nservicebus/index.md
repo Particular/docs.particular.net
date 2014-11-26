@@ -115,7 +115,6 @@ summary: NServiceBus Documentation Table of Contents
 - [Using the in Memory Bus](using-the-in-memory-bus.md)
 - [How Do I Specify Store Forward for a Message](how-do-i-specify-store-forward-for-a-message.md)
 - [How Do I Discard Old Messages](how-do-i-discard-old-messages.md)
-- [How Do I Instantiate a Message](how-do-i-instantiate-a-message.md)
 - [How Do I Send a Message](how-do-i-send-a-message.md)
 - [How Do I Specify to Which Destination a Message Will Be Sent](how-do-i-specify-to-which-destination-a-message-will-be-sent.md)
 - [How Can I See the Queues and Messages on a Machine](how-can-i-see-the-queues-and-messages-on-a-machine.md)
