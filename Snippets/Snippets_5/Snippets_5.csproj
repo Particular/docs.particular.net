@@ -280,6 +280,7 @@
     <None Include="Persistence\RavenDB\SpecificDocumentStoreViaConnectionString.config" />
     <None Include="Transports\Mqmq\MessageQueueConfiguration.config" />
     <None Include="Transports\RabbitMQ\App.config" />
+    <None Include="Transports\SqlServer\MultiDb.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
