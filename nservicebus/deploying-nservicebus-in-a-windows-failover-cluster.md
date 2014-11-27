@@ -52,7 +52,7 @@ For more information, see [http://technet.microsoft.com/en-us/library/cc753575.a
 
 For NServiceBus endpoint destination, we address the queues by the MSMQ cluster group's name, where we will later add all the rest of our clustered resources. In non-cluster terms, we typically add the machine name to address the queue, i.e. `queue@MachineName`. In cluster terms we address it by queue@MSMQ Network name.
 
-WARNING: These queue(s) must be manually created they are not created by NServiceBus installation process
+WARNING: These queue(s) must be manually created as they are not created by NServiceBus installation process
 
 In Failover Cluster Management, from the server with Quorum:
 
