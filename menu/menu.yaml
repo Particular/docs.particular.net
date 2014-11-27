@@ -230,6 +230,7 @@
         - "servicecontrol/customize-name-and-description"
         - "servicecontrol/setting-custom-hostname"
         - "servicecontrol/setting-custom-log-location"
+        - "servicecontrol/plugins"
     - 
       Name: "management"
       Title: "Management"
