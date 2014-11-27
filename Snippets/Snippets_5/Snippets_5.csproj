@@ -309,7 +309,6 @@
     <Compile Include="Gateway\GatewayConfig.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="License.cs" />
-    <Compile Include="DefineCriticalErrorAction.cs" />
     <Compile Include="DoNotCreateQueues.cs" />
     <Compile Include="Encryption\PropertyEncryption.cs" />
     <Compile Include="EndpointName.cs" />
