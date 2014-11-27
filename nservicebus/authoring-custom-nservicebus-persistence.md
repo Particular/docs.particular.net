@@ -185,10 +185,6 @@ public interface IOutboxStorage
 
 The Store method has to use the same persistence session as the user's code - the same one that is used for persisting his business data as well as any Sagas. Sharing the session is the only way NServiceBus can support the Outbox feature properly and with transactions.
 
-## Gateway
-
-// TODO
-
 ## Enabling persisters via Features
 
 You can implement any of the persisters based on your requirements. None of them are mandatory, and you can even use different persistence technologies for different persistence concerns (like SQL Server for timeouts and RavenDB for Sagas). Once the persisters you need have been written and properly tested, you need to enable them using [Features](fluent-config-api-v3-v4-intro.md#features).
