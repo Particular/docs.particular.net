@@ -131,7 +131,7 @@ With your distributors installed, you can repeat the same procedure for any Comm
 
 Again, try swapping the cluster back and forth, to make sure it can move freely between the cluster nodes.
 
-​## Setting up the workers
+## Setting up the workers
 
 Set up your worker processes on both worker servers (not the cluster nodes!) as services, as you did for the distributors. But instead of using NServiceBus.Distributor, use NServiceBus.Worker profile instead.
 
