@@ -103,6 +103,9 @@ summary: NServiceBus Documentation Table of Contents
 - [Customizing NServiceBus Configuration](customizing-nservicebus-configuration.md)
 - [Pipeline Management Using Message Mutators](pipeline-management-using-message-mutators.md)
 - [Override host identifier](override-hostid.md)
+- [Message Handling Pipeline](nservicebus-pipeline-intro.md)
+- [Fluent Configuration API in V3 and V4](fluent-config-api-v3-v4.md)
+- [Introduction to Fluent Configuration API in V3 and V4](fluent-config-api-v3-v4-intro.md)
 
 ## Versioning
 

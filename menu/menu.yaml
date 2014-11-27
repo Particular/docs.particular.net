@@ -94,6 +94,9 @@
         - "nservicebus/customizing-nservicebus-configuration"
         - "nservicebus/pipeline-management-using-message-mutators"
         - "nservicebus/override-hostid"
+        - "nservicebus/nservicebus-pipeline-intro"
+        - "nservicebus/fluent-config-api-v3-v4"
+        - "nservicebus/fluent-config-api-v3-v4-intro"
     - 
       Name: "versioning"
       Title: "Versioning"
@@ -231,6 +234,7 @@
         - "servicecontrol/setting-custom-hostname"
         - "servicecontrol/setting-custom-log-location"
         - "servicecontrol/plugins"
+        - "servicecontrol/errorlog-auditlog-behavior"
     - 
       Name: "management"
       Title: "Management"
