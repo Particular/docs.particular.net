@@ -4,7 +4,7 @@ summary: What version numbers mean to Particular
 tags: []
 ---
 
-To reduce scope and risk we have optimized to release small components with a regular cadence. We're also commited to backport all important bugfixes to your specific version, this allows you to stay updated while keeping the risk of upgrading to a minimum.
+To reduce scope and risk we have optimized to release small components with a regular cadence. We're also committed to backport all important bugfixes to your specific version, this allows you to stay updated while keeping the risk of upgrading to a minimum.
 
 While this may seem to result in a large number of releases only a small fraction of these will actually affect you. This is how you should approach upgrades.
 
