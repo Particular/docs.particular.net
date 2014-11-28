@@ -12,7 +12,7 @@ tags:
 ## Custom notification and alerting using ServiceControl's events
 When your system is ready to go to production it is time to look at operational monitoring, who gets notified and how when an issue occurs. You don't want someone to be watching ServicePulse's dashboard 24/7, instead you want to build notifications/integrations that will alert of something going wrong in your system.
 
-![](platform.png)
+![](images\platform.png)
 
 [ServiceControl](servicecontrol) is a process running in the background, it consumes and processes the messages from the Audit, Error and Control queues (including their metadata, headers, and body) in a given system and raises events while processing theses messages (error, heartbeat, custom check), you can subscribe to these events and build custom functionality like sending emails, push notifications, build integrations, to notify the team/s supporting the system of these events so they can attend to them. 
 
