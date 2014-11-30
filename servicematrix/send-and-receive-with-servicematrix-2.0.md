@@ -9,7 +9,7 @@ tags:
 This article demonstrates how to setup a simple send and receive example with ServiceMatrix using the following steps:
 
 1.  [Creating a New Project](#creating-a-new-project)
-2.  [Creating Endpoints](#creating-endpoints)
+2.  [Creating Endpoints](#new-endpoint)
 3.  [Creating a Message](#creating-a-message)
 4.  [Creating Services](#creating-services)
 5.  [Deploying Components](#deploying-components)

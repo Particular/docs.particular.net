@@ -12,7 +12,7 @@ When you build an ASP.NET MVC 4 endpoint in ServiceMatrix, it allows you to leve
 
 1.  [Getting Started](#introducing-signalr-and-servicematrix)
 2.  [Adding a BillingCompleted Event](#adding-a-billingcompleted-event)
-3.  [Subscribe ASP.NET MVC to BillingCompleted](#subscribe-aspnet-mvc-to-billingcompleted)
+3.  [Subscribe ASP.NET MVC to BillingCompleted](#subscribe-asp-net-mvc-to-billingcompleted)
 4.  [Summary](#summary)
 
 # Introducing SignalR and ServiceMatrix

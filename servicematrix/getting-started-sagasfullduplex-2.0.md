@@ -9,10 +9,10 @@ tags:
 
 Business processes usually involve multiple steps and require coordination of multiple systems. You can use the saga pattern when dealing with this situation with message-based and event-driven architecture.  NServiceBus has built-in [support for sagas](../nservicebus/sagas-in-nservicebus.md "Saga Support in NServiceBus").  This article introduces how to use sagas in ServiceMatrix.
 
-1.  [Introduction to Sagas for Request-Response](#introduction-to-sagas-for-request-response "Intro to Sagas")
+1.  [Introduction to Sagas for Request-Response](#introducing-sagas-for-request-response "Intro to Sagas")
 2.  [Adding a Payment Processing Service](#adding-a-payment-processing-service)
 3.  [Correlating the Payment Response using a Saga](#correlating-the-payment-response-using-a-saga)
-4.  [Modifying the Saga Code](#modifying-the-saga-code)
+4.  [Modifying the Saga Code](#adding-saga-data)
 5.  [Running The Solution](#running-the-solution)
 6.  [Using ServiceInsight](#using-serviceinsight)
 

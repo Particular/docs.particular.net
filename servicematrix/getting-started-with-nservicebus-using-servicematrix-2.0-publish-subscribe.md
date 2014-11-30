@@ -11,11 +11,11 @@ This article introduces the Publish/Subscribe pattern using ServiceMatrix.  You 
 1. [Create a New Project](#create-a-new-project)
 2. [Create the BrowsedProduct Event](#create-the-browsedproduct-event)
 3. [Add A Subscriber](#adding-the-subscriber)
-4. [Deploy the Event Processor](#deploy-the-browsedproductprocessor)
+4. [Deploy the Event Processor](#deploy-the-browsedproducthandler)
 5. [Review the Code](#review-the-code)
 6. [Build and Run the Solution](#build-and-run-the-solution)
 
-# Creating a New Project
+# Create a New Project
 
 To demonstrate the publish/subscribe pattern, create a simple ServiceMatrix project named OnlineSales with an ASP.NET frontend named OnlineSales.ECommerce and a separate backend endpoint named OnlineSales.Marketing.  (For a walkthrough of creating a ServiceMatrix project, see [Getting started with ServiceMatrix](getting-started-with-servicematrix-2.0.md).) Your canvas should look something like this:
 

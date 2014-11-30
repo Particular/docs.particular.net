@@ -19,7 +19,7 @@ The integration and interaction features of ServiceMatrix and ServiceInsight inc
 ![](images/servicematrix-serviceinsight-graphic1.png 'width=800')
 Let's see how it works.
 
-1. [Setting Up ServiceInsight Integration](#setting-up-serviceinsight-debugging "Service Insight Debugging Setup")
+1. [Setting Up ServiceInsight Integration](#setting-up-serviceinsight-integration "Service Insight Debugging Setup")
 2. [How Debugging Works](#how-debugging-works "How Debugging Works")
 2. [Launching ServiceInsight](#launching-serviceinsight "Launching ServiceInsight")
 3. [Next Steps](#next-steps "Next Steps")
