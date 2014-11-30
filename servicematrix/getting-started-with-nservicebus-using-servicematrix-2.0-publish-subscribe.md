@@ -6,73 +6,64 @@ tags:
 - Publish Subscribe
 ---
 
-In the [previous article](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "ServiceMatrix Fault Tolerance") introducing ServiceMatrix, you explored some of the fault tolerance features of NServiceBus. 
+This article introduces the Publish/Subscribe pattern using ServiceMatrix.  You will proceed through the following steps:
 
-In this article you will expand the Online Sales system and introduce the Publish/Subscribe pattern using ServiceMatrix.  You will proceed through the following steps:
-
-1. [Introduction to Publish/Subscribe](#introduction-to-publish-subscribe)
-2. [Create the OrderAccepted Event](#create-the-orderaccepted-event)
+1. [Create a New Project](#create-a-new-project)
+2. [Create the BrowsedProduct Event](#create-the-browsedproduct-event)
 3. [Add A Subscriber](#adding-the-subscriber)
-4. [Deploy the Event Processor](#deploy-the-orderacceptedprocessor)
+4. [Deploy the Event Processor](#deploy-the-browsedproductprocessor)
 5. [Review the Code](#review-the-code)
 6. [Build and Run the Solution](#build-and-run-the-solution)
-7. [Additional Exercises](#additional-exercises)
 
-# Introduction to Publish/Subscribe
+# Creating a New Project
 
-Before you move on, please confirm that the `OnlineSales` solution you created previously is still working correctly.  Picking up where you left off, your `OnlineSales` solution ServiceMatrix Canvas should look like this:
+To demonstrate the publish/subscribe pattern, create a simple ServiceMatrix project named OnlineSales with an ASP.NET frontend named OnlineSales.ECommerce and a separate backend endpoint named OnlineSales.Marketing.  (For a walkthrough of creating a ServiceMatrix project, see [Getting started with ServiceMatrix](getting-started-with-servicematrix-2.0.md).) Your canvas should look something like this:
 
-![OnlineSales Canvas](images/servicematrix-canvaswiredup.png)
+![Canvas With Endpoints](images/servicematrix-canvaswithendpoints-pubsub.png)
 
-## Expanding the OnlineSales Example
+## Create the BrowsedProduct Event
 
-So far the [Online Sales](getting-started-with-servicematrix-2.0.md "Getting Started with ServiceMatrix") example implements the request response messaging pattern to facilitate communication between the website and your order processing system. We've all purchased items online and know that in reality many different things will need to happen when an order is accepted for processing. Arguably the most important business step should be billing the customer! In your example, consider how to add a billing capability to charge the customer for the order.
+Let's say you want to have an event published whenever a potential customer browses a product on the web site. You'll create a Marketing service that will subscribe to this event to compile analytics or perhaps send follow-up emails to the customer.
 
-## Create the OrderAccepted Event
-
-In your example the `SubmitOrderHandler` component handles the `SubmitOrder` messages.  Using the drop-down menu of `SubmitOrderHandler`, select 'Publish Event' as shown.
+On the `ECommerce` endpoint, click the dropdown menu and choose Publish Event...
 
 ![Publish Event](images/servicematrix-publishevent.png)
 
-Name the new event `OrderAccepted`.
+Name the service `Marketing` and the new event `BrowsedProduct`.
 
-##Adding the Code to Publish the Event
-
-When you create the `OrderAccepted` event you will be prompted by a dialog informing you of code changes that should be made.
-
-![User Code Changes Required](images/servicematrix-orderaccepted-usercodechanges.png)
-
-In order to publish this new event, the event message must be initialized and published by the `SubmitOrderProcessor`.  To make this easier, ServiceMatrix has generated the code in a convenient window for review.   Select the option to `Copy to Clipboard and Open File`.   The `SubmitOrderHandler` partial class file will be opened.  Paste the code from the clipboard after the comment as shown below. 
-
-<!-- import ServiceMatrix.OnlineSales.Sales.SubmitOrderHandler --> 
-
-This code will publish the `OrderAccepted` event immediately upon receipt of the `SubmitOrder` message.
+![Service and Event Name](images/servicematrix-publishevent-details.png)
 
 ## Adding the Subscriber
 
-To create a subscriber for this new event, select the dropdown of the `OrderAccepted` event and choose 'Add Subscriber' as shown here:
+To create a subscriber for this new event, select the dropdown of the `BrowsedProduct` event and choose 'Add Subscriber' as shown here:
 
-![New Event Subscriber](images/servicematrix-orderacceptedevent.png)
+![New Event Subscriber](images/servicematrix-browsedproductevent.png)
 
-In the 'Add Event Subscriber' window use the 'Add new Service' text box to add a [new service called Billing](images/servicematrix-addeventsubscriber.png "New Billing Service").  You should notice that `OrderAcceptedHandler` has been created in a new Billing Service. The dashed container indicates that the component has yet to be deployed. Also notice that the lines representing the `OrderAccepted` event messages are dashed.  This is because they are events. The `SubmitOrder' messages are commands and are illustrated with a solid line. 
+In the 'Add Event Subscriber' window select the existing Marketing service.
 
-![Undeployed Billing Service](images/servicematrix-undeployedbilling.png). 
+![Select Marketing Service](images/servicematrix-marketingservice.png)
 
-## Deploy the OrderAcceptedHandler
+You should notice that `BrowsedProductHandler` has been created in the Marketing Service. The dashed container indicates that the component has yet to be deployed. Also notice that the lines representing the `BrowedProduct` event messages are dashed.  This is because they are events. (Messages that are commands and are illustrated with a solid line.)
 
-To deploy the `OrderAcceptedHandler` use the drop down menu and choose 'Deploy Component' as shown here:
+![Undeployed Marketing Service](images/servicematrix-undeployedmarketing.png).
 
-![Deploy OrderAcceptedHandler](images/servicematrix-orderaccepted-deploy.png)
+## Deploy the BrowsedProductHandler
 
-In the resulting '[Deploy To Endpoint](images/servicematrix-deploytonewendpointv2.2.0.png "Deploy to Endpoint")' window choose the 'New Endpoint' option and [create an endpoint](images/servicematrix-newbillingendpoint.png "Add Billing Endpoint") called `Billing`.
+To deploy the `BrowsedProductHandler` use the drop down menu and choose 'Deploy Component' as shown here:
+
+![Deploy OrderAcceptedHandler](images/servicematrix-browsedproduct-deploy.png)
+
+In the resulting '[Deploy To Endpoint](images/servicematrix-deploytonewendpointv2.2.0.png "Deploy to Endpoint")' window choose the existing `Marketing` endpoint created earlier.
 
 At this point with a little re-arranging your ServiceMatrix canvas should look like this:
 
 ![Pub Sub Wired Up](images/servicematrix-pubsubcanvaswired.png)
 
-The `SubmitOrderHandler` raises the `OrderAccepted` event, to which `OrderAcceptedHandler` of the `Billing` service is subscribed.
+The `ECommerce` application raises the `BrowsedProduct` event, to which `BrowsedProductHandler` of the `Marketing` service is subscribed.
 
-As you would expect, the ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilderv2.2.0.png "SolutionBuilder") reflects the new endpoint, service, component, and event you added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
+As you would expect, the ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilderv2.2.0.png "SolutionBuilder") reflects the new endpoint, service, component, and event you added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution.png "Visual Studio Solution") in Visual Studio has the  project for `Marketing` with the new 'BrowsedProduct' event.
+
+NOTE: You may need to rebuild the solution to force all of the source files to be generated.
 
 ## Review the Code
 
@@ -80,43 +71,22 @@ ServiceMatrix generates the initial code for publishing and processing the event
 
 ### Event Publisher Code 
 
-When we created the `OrderAccepted` event ServiceMatrix generated the code to publish the event and modify the `SubmitOrderHandler` component.  The [section above](#adding-the-code-to-publish-the-event "Event Publishing Code") illustrates the code. 
+When we created the `BrowsedProduct` event ServiceMatrix generated test code in the TestMessages ASP.NET Controller to publish a new `BrowsedProduct` event message to the bus. You can view this code in the ECommerce project in `Controllers\TestMessagesController.generated.cs`...
+
+<!-- import ServiceMatrix.OnlineSalesPubSub.ECommerce.TestMessagesController -->
 
 ### Subscriber Code
 
-In the `OrderAcceptedHandler` drop-down menu select `View Code` and you should see the following. 
+In the `BrowsedProductHandler` drop-down menu select `View Code` and you should see the following. 
 
-<!-- import ServiceMatrix.OnlineSales.Billing.OrderAcceptedHandler.before -->
+<!-- import ServiceMatrix.OnlineSalesPubSub.Marketing.BrowsedProductHandler -->
 
-There is nothing new here!  Notice that this generated `OrderAcceptedHandler` code is the exactly the same as was generated for the  `SubmitOrderHandler`.
+# Build and Run the Solution
 
-#Build and Run the Solution
+Go ahead and run the solution. You should see the ASP.NET MVC ECommerce application open in a browser window and a console window for `Marketing`.
 
-Go ahead and run the solution. This time, in addition to the [sales web site](images/servicematrix-demowebsite.png "Demo Website") and [`OrderProcessing` endpoint console](images/servicematrix-reqresp-orderprocessor.png "Order Processing"), you should see another console window for `Billing`.
+Send a few test messages from the website.  You should almost immediately see that the `Marketing` endpoint has received your new `BrowsedProduct` event as shown below:
 
-Send a few test messages from the website.  You should see them handled by the `OrderProcessing` console as before.  You should almost immediately see that the `Billing` endpoint has received your new `OrderAccepted` event as shown below:
-
-![Billing Console](images/servicematrix-billingconsole.png)  
+![Billing Console](images/servicematrix-marketingconsole.png)  
  
-## You Did It!##
-
-Congratulations! You have created a complete working solution for communicating via publish/subscribe messaging.  
-
-As you see, it's very easy to get started with NServiceBus and ServiceMatrix.  
-
-
-## Additional Exercises
-
-### Explore the use of Sagas
-
-Continue on and integrate a payment component into the billing service.  [The next article](getting-started-sagasfullduplex-2.0.md "Sagas in ServiceMatrix Request Response") will continue on with the creation of the OnlineSales solution. 
-
-### Explore the ServiceMatrix Solution Views
-
-The Solution Builder of ServiceMatrix provides various views into the solution you have created. Look at the [toolbar](images/servicematrix-solutionbuilder-final.png "Solution Builder Toolbar") and review some of the other buttons. In addition to the Default View represented by the hammer, note the ServiceMatrix View icon. 
-
-Select an endpoint in the SolutionBuilder then press the 'ServiceMatrix View' icon. A new 'ServiceMatrix Details' window is displayed as shown here:
-
-![Endpoint View in SolutionBuilder](images/servicematrix-endpointsview.png)
-
-This view provides a convenient look into the properties and components of the endpoint. 
+Return to the ServiceMatrix [table of contents]('').

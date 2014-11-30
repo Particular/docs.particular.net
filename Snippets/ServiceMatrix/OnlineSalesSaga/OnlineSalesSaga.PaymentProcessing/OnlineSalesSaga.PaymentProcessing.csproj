@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E4D47661-A740-430D-8AF8-534F57F5DEEB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OnlineSalesSaga.PaymentProcessing</RootNamespace>
+    <AssemblyName>OnlineSalesSaga.PaymentProcessing</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\packages\NServiceBus.5.1.2\lib\net45\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Host">
+      <HintPath>..\packages\NServiceBus.Host.6.0.0\lib\net45\NServiceBus.Host.exe</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.CustomChecks">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.CustomChecks.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.CustomChecks.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.DebugSession">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.DebugSession.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.DebugSession.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.Heartbeat">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.Heartbeat.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.Heartbeat.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.SagaAudit">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.SagaAudit.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.SagaAudit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Billing\SubmitPaymentHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f96a23602-4255-4dee-8575-f240259eab78</SourceModelReference>
+      <ItemGuid>2b7a44b4-a72b-4acb-a26b-7179599f6875</ItemGuid>
+    </Compile>
+    <Compile Include="EndpointConfig.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f8c0d0055-4666-443b-9b99-d58913fd5170</SourceModelReference>
+      <ItemGuid>6d9b0484-3585-4638-ba06-eafaad2c1d40</ItemGuid>
+    </Compile>
+    <Compile Include="EndpointConfig.generated.cs">
+      <DependentUpon>EndpointConfig.cs</DependentUpon>
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f8c0d0055-4666-443b-9b99-d58913fd5170</SourceModelReference>
+      <ItemGuid>d93a195c-1e08-4f3c-808a-915b0cad99df</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\Billing\SubmitPaymentHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f96a23602-4255-4dee-8575-f240259eab78</SourceModelReference>
+      <ItemGuid>e7521956-fe05-4fea-ace3-1cc61e6eecf8</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\MessageConventions.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f8c0d0055-4666-443b-9b99-d58913fd5170</SourceModelReference>
+      <ItemGuid>f4c89709-8b80-43fd-8ecc-d59a7bd88da6</ItemGuid>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <ItemGuid>37d7ef96-061a-46b4-837d-66122280dc4b</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\INServiceBusComponent.cs">
+      <ItemGuid>53bcc700-b1f3-4834-a4d9-549f44d9f9ee</ItemGuid>
+    </Compile>
+    <Compile Include="TransportConfig.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f8c0d0055-4666-443b-9b99-d58913fd5170</SourceModelReference>
+      <ItemGuid>b564d799-69d1-4325-9fa5-78f03e619880</ItemGuid>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f8c0d0055-4666-443b-9b99-d58913fd5170</SourceModelReference>
+      <ItemGuid>028fbde6-de8e-4f4c-830e-ca3e88001724</ItemGuid>
+    </None>
+    <Content Include="Infrastructure\Logging.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f8c0d0055-4666-443b-9b99-d58913fd5170</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>7a174bb9-5fbc-4d44-9032-d765bb5631c3</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\MasterNodeConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f8c0d0055-4666-443b-9b99-d58913fd5170</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>089d2360-eee6-4d99-87de-f7a519e58180</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\MessageForwardingInCaseOfFaultConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f8c0d0055-4666-443b-9b99-d58913fd5170</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>4cfc8003-511a-4fe1-b184-9897994e6ec7</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\TransportConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f8c0d0055-4666-443b-9b99-d58913fd5170</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>621667bc-f4c5-4324-ace7-52d1a0df5727</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\UnicastBusConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f8c0d0055-4666-443b-9b99-d58913fd5170</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>4c75a87c-3b5d-40e3-85a1-c79c6cf97c03</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\TransportConnectionString.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f8c0d0055-4666-443b-9b99-d58913fd5170</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>20c97113-687a-411e-9a50-051b1364079c</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\SecondLevelRetriesConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f8c0d0055-4666-443b-9b99-d58913fd5170</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>09c2a0ef-01f1-4435-a10a-9250ed8de9aa</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\AuditConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSaga/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSaga\OnlineSalesSaga.slnbldr%252f8c0d0055-4666-443b-9b99-d58913fd5170</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>aca6863d-99ba-448d-8cf1-3b9538174968</ItemGuid>
+    </Content>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineSalesSaga.Internal\OnlineSalesSaga.Internal.csproj">
+      <Project>{BB595921-88C0-4716-9C9F-30E68955FD2F}</Project>
+      <Name>OnlineSalesSaga.Internal</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

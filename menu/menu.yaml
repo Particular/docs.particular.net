@@ -181,7 +181,10 @@
         - "servicematrix/getting-started-signalr-2.2"
         - "servicematrix/customizing-extending"
         - "servicematrix/servicematrix-persistence"
-        - "servicematrix/servicematrix-transports"
+
+      Name: "licensing-servicematrix"
+      Title: "Licensing ServiceMatrix"
+      Articles: 
         - "servicematrix/licensing-servicematrix-v2.0"
     - 
       Name: "troubleshooting"

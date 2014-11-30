@@ -7,9 +7,10 @@ tags:
 - Second-Level Retry
 - Second Level Retry 
 - Error Queue
+- Audit Queue
 ---
 
-In [the previous section](getting-started-with-servicematrix-2.0.md) you used ServiceMatrix to created a web application that communicates with a backend processing system using NServiceBus.  In this section you will continue on with your OnlineSales example and see how using NServiceBus and durable messaging can get past all sorts of failure scenarios.
+See how using ServiceMatrix, NServiceBus, and durable messaging can get past all sorts of failure scenarios.
 
 1. [Durable messaging](#durable-messaging)
 2. [Fault tolerance](#fault-tolerance)
@@ -19,17 +20,17 @@ In [the previous section](getting-started-with-servicematrix-2.0.md) you used Se
 
 Creating a website that can communicate with a backend platform is nothing new and can easily be done in a variety of ways, commonly using web services or direct connection to a database.   
 
-To demonstrate the durability and fault tolerance you will use your Online Sales example from the last section.  You will run the solution but shut down the backend system as you place orders.  Let's see what happens.
+To demonstrate the durability and fault tolerance create a simple ServiceMatrix project named OnlineSales with an ASP.NET frontend named OnlineSales.ECommerce and a separate backend endpoint named OnlineSales.OrderProcessing. Have the frontend send a SubmitOrder command message that the `OrderProcessing` backend handles. (For a walkthrough of creating a ServiceMatrix project, see [Getting started with ServiceMatrix](getting-started-with-servicematrix-2.0.md).)
 
-### Run the online sales solution
+### Run the solution
 
-In Visual Studio, hit F5 and run the `OnlineSales` solution again and make sure the messages are being processed.  The console application will indicate the `SubmitOrder` message was [received](images/servicematrix-reqresp-orderprocessor.png "Order Processing Console").
+In Visual Studio, hit F5 and run your solution and go to the 'Test Messages' page of the web application and click the 'Send' button a few times to send a few messages.  The console application will indicate the `SubmitOrder` messages were [received](images/servicematrix-reqresp-orderprocessor.png "Order Processing Console").
 
 ### Shut down order processing
 
 Close the Order Processing console application by clicking the 'X' in the top right corner.  Be sure to leave the website application running.
 
-Go to the 'Test Messages' page of the web application and click the 'Send' button a few times to send a few messages.
+Go to the 'Test Messages' page of the web application again and click the 'Send' button a few more times to send a few more messages.
 
 Notice that the website remains responsive and able to take orders even though the backend system is now shut down.  The front end and backend are not synchronously communicating so there is no blocking and no error in the front end when the backend is offline.  This makes it easier to upgrade the backend and provides for a more highly available system.   Contrast this to your experience when connecting directly to web services or a database.  In both cases your site would be down!
 
@@ -83,9 +84,9 @@ To demonstrate this feature you must make the processing of messages in `OrderPr
 
 Run your solution again, but this time use Ctrl-F5 or from the menu choose [start without debugging](images/servicematrix-startnodebugging.png "Start without debugging") so that Visual Studio does not break each time the exception is thrown.
 
-NOTE: Be sure you have [selected a persistence store](getting-started-with-servicematrix-2.0.md#selecting-a-persistence-store). Otherwise, you will get an error message when running your solution without the debugger attached.
+NOTE: Be sure you have [selected a persistence store](servicematrix-persistence.md). Otherwise, you will get an error message when running your solution without the debugger attached.
 
-Now send a `submitorder` message from the ECommerce app by clicking 'Send'. You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
+Now send a `SubmitOrder` message from the web site application by clicking 'Send'. You should see the endpoint scroll a bunch of warnings, ultimately putting out an error, and stopping, like this:
 
 ![SLR Message in Console](images/servicematrix-slrtoerror.png) 
 
@@ -118,9 +119,4 @@ The audit and error queues can be on a remote machine by simply appending `@mach
 
 Traditionally, administrators used a variety of techniques and monitoring tools to keep tabs on the endpoints and the error queues.   This has been made much easier with the introduction of  [ServicePulse](http://particular.net/ServicePulse "ServicePulse") and [ServiceInsight](http://particular.net/ServiceInsight "ServiceInsight").  ServicePulse provides the ability to monitor the uptime and SLA of your endpoints.  ServiceInsight is designed to provide visibility into the processes and the relationship among them. 
 
-Make sure you remove the code that throws an exception before going on.
-
-## Next steps
-
-See how to use NServiceBus for [Publish/Subscribe](getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md).
-
+Return to the ServiceMatrix [table of contents]('').

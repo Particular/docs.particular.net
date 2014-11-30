@@ -8,12 +8,7 @@ summary: ServiceMatrix Documentation Table of Contents
 ### Getting Started
 
 - [Installing ServiceMatrix](installing-servicematrix-2.0.md)
-- [Getting started with the Particular Service Platform](getting-started-with-servicematrix-2.0.md)
-- [Fault Tolerance and Durable Messaging](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md)
-- [Publish and Subscribe Messaging](getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md)
-- [Using ServiceMatrix with ServiceInsight](servicematrix-serviceinsight.md)
-- [Integrating SignalR with ServiceMatrix](getting-started-signalr-2.2.md)
-- [Sagas in ServiceMatrix](getting-started-sagasfullduplex-2.0.md)
+- [Getting started with ServiceMatrix](getting-started-with-servicematrix-2.0.md)
 
 ### Presentations and Webinars
 
@@ -21,7 +16,14 @@ summary: ServiceMatrix Documentation Table of Contents
 
 ### Using ServiceMatrix
 
+- [Send and Receive with ServiceMatrix](send-and-receive-with-servicematrix-2.0.md)
+- [Fault Tolerance and Durable Messaging](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md)
+- [Publish and Subscribe Messaging](getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md)
+- [Using ServiceMatrix with ServiceInsight](servicematrix-serviceinsight.md)
+- [Sagas in ServiceMatrix](getting-started-sagasfullduplex-2.0.md)
+- [Integrating SignalR with ServiceMatrix](getting-started-signalr-2.2.md)
 - [Using the ServiceMatrix Code](customizing-extending.md)
+- [Changing Persistence in a ServiceMatrix Project](servicematrix-persistence.md)
 
 ### Licensing
 
@@ -29,7 +31,7 @@ summary: ServiceMatrix Documentation Table of Contents
 
 ### Troubleshooting
 
-- [Troubleshooting Installation](installing-servicematrix-2.0.md)
+- [Troubleshooting ServiceMatrix](troubleshooting-servicematrix-2.0)
 
 ## ServiceMatrix 1.0 for Visual Studio 2010
 

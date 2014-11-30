@@ -1,0 +1,331 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7D2731CD-3541-4497-8264-0390D80AD28C}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OnlineSalesSignalR.ECommerce</RootNamespace>
+    <AssemblyName>OnlineSalesSignalR.ECommerce</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc4.3.1.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.1.0.0\lib\net40\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.0.0\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.1.0.0\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.1.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\packages\NServiceBus.5.1.2\lib\net45\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.ObjectBuilder.Autofac">
+      <HintPath>..\packages\NServiceBus.Autofac.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.CustomChecks">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.CustomChecks.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.CustomChecks.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.DebugSession">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.DebugSession.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.DebugSession.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.Heartbeat">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.Heartbeat.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.Heartbeat.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb5.SagaAudit">
+      <HintPath>..\packages\ServiceControl.Plugin.Nsb5.SagaAudit.1.0.0\lib\net45\ServiceControl.Plugin.Nsb5.SagaAudit.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20715.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestMessagesController.cs" />
+    <Compile Include="Controllers\TestMessagesController.generated.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f5cebf29f-ef00-4e44-a93a-a9126ee6e837</SourceModelReference>
+      <ItemGuid>344b039e-598e-4fba-83b5-3bd7335fe79a</ItemGuid>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\GeneratedCode\GeneratedWebInitialization.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f5cebf29f-ef00-4e44-a93a-a9126ee6e837</SourceModelReference>
+      <ItemGuid>c11bdf52-5631-48c8-acdf-b80801ad91b4</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\GeneratedCode\TransportConfig.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f5cebf29f-ef00-4e44-a93a-a9126ee6e837</SourceModelReference>
+      <ItemGuid>6a3935ca-960b-49b9-9181-f2605e08f4e2</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\MessageConventions.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f5cebf29f-ef00-4e44-a93a-a9126ee6e837</SourceModelReference>
+      <ItemGuid>9e1b39fc-ec51-46ab-905b-dd18e37158a1</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\Sales\BillingCompletedHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f872f154e-1ee6-466f-9d37-c84846e96e9f</SourceModelReference>
+      <ItemGuid>1d4dbbeb-2dc9-4092-abf8-2677574d9e8a</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\Sales\OrderAcceptedSender.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f43c98ed1-5a66-493a-b8bc-ab65ecd47254</SourceModelReference>
+      <ItemGuid>73d125e5-e88c-47f4-894b-79ec9a898305</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\Sales\SignalRBroadcastForBillingCompletedHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f872f154e-1ee6-466f-9d37-c84846e96e9f</SourceModelReference>
+      <ItemGuid>49b75897-8921-4ad7-ae6c-865600ae4d8b</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\Sales\SignalRHubsForBillingCompletedHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f872f154e-1ee6-466f-9d37-c84846e96e9f</SourceModelReference>
+      <ItemGuid>1c41256d-3edf-4711-93bd-694abeb270b1</ItemGuid>
+    </Compile>
+    <Compile Include="Infrastructure\WebGlobalInitialization.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f5cebf29f-ef00-4e44-a93a-a9126ee6e837</SourceModelReference>
+      <ItemGuid>808ad1c0-5fc4-4b11-bec3-c316adf4f58a</ItemGuid>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Infrastructure\INServiceBusComponent.cs" />
+    <Compile Include="Sales\BillingCompletedHandler.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f872f154e-1ee6-466f-9d37-c84846e96e9f</SourceModelReference>
+      <ItemGuid>334e5c67-a578-44c1-8e34-954062e9b2ce</ItemGuid>
+    </Compile>
+    <Compile Include="Sales\OrderAcceptedSender.cs">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f43c98ed1-5a66-493a-b8bc-ab65ecd47254</SourceModelReference>
+      <ItemGuid>cdf38a54-c715-4398-a332-a724bf81b91a</ItemGuid>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs">
+      <ItemGuid>a8e9480a-49c7-432b-a2f4-a2f3690d3b81</ItemGuid>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\Content.css" />
+    <Content Include="Content\Css.css" />
+    <Content Include="Content\guidance.css">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f872f154e-1ee6-466f-9d37-c84846e96e9f</SourceModelReference>
+      <ItemGuid>4e2e1bc8-15d7-47e9-9036-1676bbddcdf0</ItemGuid>
+    </Content>
+    <Content Include="Content\highlight.css">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f872f154e-1ee6-466f-9d37-c84846e96e9f</SourceModelReference>
+      <ItemGuid>09864d39-c5a0-4855-8541-aa1fd0d4a219</ItemGuid>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\TestMessages.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\favicon.ico" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\ns-step1.png" />
+    <Content Include="Images\ns-step2.png" />
+    <Content Include="Images\ns-step4.png" />
+    <Content Include="Images\search.png" />
+    <Content Include="Images\ns-step3.png" />
+    <Content Include="Infrastructure\Logging.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f5cebf29f-ef00-4e44-a93a-a9126ee6e837</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>55a0d46b-57b7-45df-be3b-edd3125212c1</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\MessageForwardingInCaseOfFaultConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f5cebf29f-ef00-4e44-a93a-a9126ee6e837</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>cea99069-4d0f-4700-9f6e-bef4830b5065</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\TransportConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f5cebf29f-ef00-4e44-a93a-a9126ee6e837</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>40e72d5b-dd59-4318-955c-b74a7d649c19</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\UnicastBusConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f5cebf29f-ef00-4e44-a93a-a9126ee6e837</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>6a96c0ef-b2c3-4f1b-b6cc-153899720dbc</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\TransportConnectionString.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f5cebf29f-ef00-4e44-a93a-a9126ee6e837</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>eb9a597c-833e-4d6a-8317-9a976b267a58</ItemGuid>
+    </Content>
+    <Content Include="Infrastructure\GeneratedCode\Config\AuditConfig.config">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f5cebf29f-ef00-4e44-a93a-a9126ee6e837</SourceModelReference>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ItemGuid>9f98aad5-b7e0-4116-804c-b665a8ce53dc</ItemGuid>
+    </Content>
+    <None Include="Scripts\jquery-1.7.1-vsdoc.js" />
+    <Content Include="Scripts\highlight.js">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f872f154e-1ee6-466f-9d37-c84846e96e9f</SourceModelReference>
+      <ItemGuid>e563c89b-6caa-4a25-a4b4-c0422d617268</ItemGuid>
+    </Content>
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery.signalR-1.0.0.js" />
+    <Content Include="Scripts\jquery.signalR-1.0.0.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\TestMessages\Index.cshtml">
+      <SourceModelReference>modelbus://NuPattern.Runtime.Store/OnlineSalesSignalR/Element/C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSalesSignalR\OnlineSalesSignalR.slnbldr%252f5cebf29f-ef00-4e44-a93a-a9126ee6e837</SourceModelReference>
+      <ItemGuid>4923fd48-ceb3-44a8-83f8-cd8b2d6ac413</ItemGuid>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineSalesSignalR.Contracts\OnlineSalesSignalR.Contracts.csproj">
+      <Project>{E8311BF3-680F-42AE-A872-E173D42DF88C}</Project>
+      <Name>OnlineSalesSignalR.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>50305</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49991/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
