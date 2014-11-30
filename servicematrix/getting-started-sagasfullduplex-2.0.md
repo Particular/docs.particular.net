@@ -122,4 +122,4 @@ When clicking on a message involved in the saga, a saga view windows will open. 
 
 Sagas allow NServiceBus to manage long running processes and to persist data between messages.  ServiceMatrix supports the saga pattern.  It recognizes the need for a saga in the request-response implementation and efficiently generates the code to make it work. 
 
-Return to the ServiceMatrix [table of contents]('').
+Return to the ServiceMatrix [table of contents](./).

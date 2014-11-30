@@ -119,4 +119,4 @@ The audit and error queues can be on a remote machine by simply appending `@mach
 
 Traditionally, administrators used a variety of techniques and monitoring tools to keep tabs on the endpoints and the error queues.   This has been made much easier with the introduction of  [ServicePulse](http://particular.net/ServicePulse "ServicePulse") and [ServiceInsight](http://particular.net/ServiceInsight "ServiceInsight").  ServicePulse provides the ability to monitor the uptime and SLA of your endpoints.  ServiceInsight is designed to provide visibility into the processes and the relationship among them. 
 
-Return to the ServiceMatrix [table of contents]('').
+Return to the ServiceMatrix [table of contents](./).

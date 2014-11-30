@@ -27,7 +27,7 @@ ServiceMatrix is a visual design tool that accelerates the design and coding of 
 
 ## Viewing The Code
 
-NOTE: In ServiceMatrix, to view the code for any of the components, use the drop-down within that component on the design canvas and choose `View Code`. To view related partial class definitions, put your cursor in the class name, right mouse-click and select `Go to Definition` or hit `F12`.
+In ServiceMatrix, to view the code for any of the components, use the drop-down within that component on the design canvas and choose `View Code`. To view related partial class definitions, put your cursor in the class name, right mouse-click and select `Go to Definition` or hit `F12`.
 
 # Message Definitions
 
@@ -200,10 +200,6 @@ This JavaScript should give you an example of what you need to place into your a
 
 The visual design environment of ServiceMatrix generates code designed to be extensible.  This article reviewed the partial classes and methods that need to be customized.  
 
-To learn more about using sagas within ServiceMatrix refer to [this article](getting-started-sagasfullduplex-2.0.md "Using Sagas in Full Duplex").
-
-As you design your solution, learn to use ServiceInsight.  [This article](servicematrix-serviceinsight.md "ServiceMatrix and ServiceInsight") reviews how both products work together and add efficiency to your design process. 
-
 You can monitor your sagas and bus endpoints in production using [ServicePulse](../servicepulse)
      
-Return to the ServiceMatrix [table of contents]('').
+Return to the ServiceMatrix [table of contents](./).

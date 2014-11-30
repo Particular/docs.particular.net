@@ -31,7 +31,7 @@ summary: ServiceMatrix Documentation Table of Contents
 
 ### Troubleshooting
 
-- [Troubleshooting ServiceMatrix](troubleshooting-servicematrix-2.0)
+- [Troubleshooting ServiceMatrix](troubleshooting-servicematrix-2.0.md)
 
 ## ServiceMatrix 1.0 for Visual Studio 2010
 

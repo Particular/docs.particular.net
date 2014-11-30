@@ -128,4 +128,4 @@ Since you selected the NServiceBus host for your OrderProcessing endpoint it is 
 
 As you click the Send button in the website, you will see the console indicate that the `OrderProcessing` endpoint has received the messages.
 
-Return to the ServiceMatrix [table of contents]('').
+Return to the ServiceMatrix [table of contents](./).

@@ -185,7 +185,7 @@ As you click the Send button in the website, you will see the console indicate t
 
 ## Using ServiceInsight
 
-By default, when you run a ServiceMatrix project, [ServiceInsight](/ServiceInsight) is launched.  ServiceInsight is another Particular Service Platform application that provides a detailed runtime view of your solution.  It will illustrate and enumerate the messages, endpoints and data in your solution as you create an debug it.  To understand how to use ServiceInsight to complement ServiceMatrix please see [this article on that topic](servicematrix-serviceinsight.md "Using ServiceInsight and ServiceMatrix").  
+By default, when you run a ServiceMatrix project, [ServiceInsight](/serviceinsight) is launched.  ServiceInsight is another Particular Service Platform application that provides a detailed runtime view of your solution.  It will illustrate and enumerate the messages, endpoints and data in your solution as you create an debug it.  To understand how to use ServiceInsight to complement ServiceMatrix please see [this article on that topic](servicematrix-serviceinsight.md "Using ServiceInsight and ServiceMatrix").  
 
 ![ServiceInsight](images/serviceinsight-screen.jpg)
 
@@ -268,4 +268,4 @@ We mentioned that [ServiceInsight](/serviceinsight) can be a valuable tool in th
 
 In this article you saw how to use ServiceMatrix to connect a front end website and a backend processing system using NServiceBus.  What's so exciting about that?  After all inter-process communication has been done many times before. One answer is ***fault tolerance***.  Next, you can explore the fault tolerance and durability features NServiceBus offers. You might want to next read a review of the fault tolerance features inherent in NServiceBus in [this article](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "Getting Started with Fault Tolerance").  
 
-Or, you can return to the ServiceMatrix [table of contents]('').
+Or, you can return to the ServiceMatrix [table of contents](./).

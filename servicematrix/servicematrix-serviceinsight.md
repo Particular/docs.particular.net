@@ -67,4 +67,4 @@ ServiceInsight provides information including message data, a detailed saga view
 
 The debug integration of ServiceInsight and ServiceMatrix delivers the power of ServiceInsight to your design process. To learn more about ServiceInsight, refer to the articles [here](/serviceinsight).
 
-Return to the ServiceMatrix [table of contents]('').
+Return to the ServiceMatrix [table of contents](./).

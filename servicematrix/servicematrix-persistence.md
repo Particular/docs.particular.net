@@ -49,4 +49,4 @@ NOTE: If you already have RavenDB 2.0 installed, you can uninstall the service b
 
 For more information on installing RavenDB for use with NService bus, refer to [this document](/nservicebus/using-ravendb-in-nservicebus-installing.md).
 
-Return to the ServiceMatrix [table of contents]('').
+Return to the ServiceMatrix [table of contents](./).

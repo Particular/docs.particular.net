@@ -89,4 +89,4 @@ Send a few test messages from the website.  You should almost immediately see th
 
 ![Billing Console](images/servicematrix-marketingconsole.png)  
  
-Return to the ServiceMatrix [table of contents]('').
+Return to the ServiceMatrix [table of contents](./).

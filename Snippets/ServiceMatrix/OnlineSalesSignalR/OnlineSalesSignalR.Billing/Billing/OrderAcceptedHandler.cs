@@ -5,6 +5,7 @@ using OnlineSalesSignalR.Contracts.Sales;
 
 namespace OnlineSalesSignalR.Billing
 {
+    #region ServiceMatrix.OnlineSalesSignalR.Billing.OrderAcceptedHandler
     public partial class OrderAcceptedHandler
     {
 		
@@ -18,4 +19,5 @@ namespace OnlineSalesSignalR.Billing
         }
 
     }
+    #endregion
 }

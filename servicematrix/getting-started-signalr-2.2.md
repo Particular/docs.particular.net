@@ -61,4 +61,4 @@ There's a lot more you can do with SignalR integration but hopefully you've seen
 
 NOTE: SignalR integration is currently a beta feature. Please review [this GitHub issue](https://github.com/Particular/ServiceMatrix/issues/417) for more information.
 
-Return to the ServiceMatrix [table of contents]('').
+Return to the ServiceMatrix [table of contents](./).
