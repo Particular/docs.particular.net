@@ -12,7 +12,7 @@ public class TypeScanning
         var listOfTypes = new List<Type>();
         string directoryToProbe = null;
 
-        #region TypeScanningV4
+        #region TypeScanningV5
 
         var configuration = new BusConfiguration();
 

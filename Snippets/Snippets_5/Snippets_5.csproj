@@ -247,6 +247,9 @@
     <Content Include="Gateway\AppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Host\ExplicitConfigType.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -262,6 +265,7 @@
     <Content Include="SecondLevelRetries\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Transports\Mqmq\TransportConfig.config" />
     <None Include="Audit\App.config" />
     <None Include="Encryption\encryption.config">
       <SubType>Designer</SubType>
@@ -274,7 +278,9 @@
     </None>
     <None Include="Persistence\RavenDB\SharedDocumentStoreViaConnectionString.config" />
     <None Include="Persistence\RavenDB\SpecificDocumentStoreViaConnectionString.config" />
+    <None Include="Transports\Mqmq\MessageQueueConfiguration.config" />
     <None Include="Transports\RabbitMQ\App.config" />
+    <None Include="Transports\SqlServer\MultiDb.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
@@ -289,17 +295,20 @@
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
     <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
+    <Compile Include="Host\AsAClientEquivalent.cs" />
+    <Compile Include="Host\CustomizingHost.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
+    <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="RegisterCustomSerializer.cs" />
+    <Compile Include="Scanning\ScanningPublicApiV5.cs" />
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
     <Compile Include="Encryption\MessageBodyEncryption.cs" />
     <Compile Include="Gateway\GatewayConfig.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="License.cs" />
-    <Compile Include="DefineCriticalErrorAction.cs" />
     <Compile Include="DoNotCreateQueues.cs" />
     <Compile Include="Encryption\PropertyEncryption.cs" />
     <Compile Include="EndpointName.cs" />
