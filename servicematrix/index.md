@@ -10,10 +10,6 @@ summary: ServiceMatrix Documentation Table of Contents
 - [Installing ServiceMatrix](installing-servicematrix-2.0.md)
 - [Getting started with ServiceMatrix](getting-started-with-servicematrix-2.0.md)
 
-### Presentations and Webinars
-
-- [Building Better .NET Solutions](http://fast.wistia.net/embed/iframe/4348umnahj?canonicalUrl=https%3A%2F%2Fparticular-1.wistia.com%2Fmedias%2F4348umnahj&canonicalTitle=Building%20Better%20.NET%20Solutions%20with%20the%20Particular%20Service%20Platform%20-%20particular-1&autoPlay=true) (May 2014)
-
 ### Using ServiceMatrix
 
 - [Send and Receive with ServiceMatrix](send-and-receive-with-servicematrix-2.0.md)
@@ -32,6 +28,10 @@ summary: ServiceMatrix Documentation Table of Contents
 ### Troubleshooting
 
 - [Troubleshooting ServiceMatrix](troubleshooting-servicematrix-2.0.md)
+
+### Presentations and Webinars
+
+- [Building Better .NET Solutions](http://fast.wistia.net/embed/iframe/4348umnahj?canonicalUrl=https%3A%2F%2Fparticular-1.wistia.com%2Fmedias%2F4348umnahj&canonicalTitle=Building%20Better%20.NET%20Solutions%20with%20the%20Particular%20Service%20Platform%20-%20particular-1&autoPlay=true) (May 2014)
 
 ## ServiceMatrix 1.0 for Visual Studio 2010
 
