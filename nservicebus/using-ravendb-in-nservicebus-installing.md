@@ -6,7 +6,9 @@ tags:
 - RavenDB
 ---
 
-Starting from NServiceBus version 5.0 RavenDB is no longer a default peristence mechanism in NServiceBus. A user has to explicitly select either RavenDB or NHibernate. RavenDB-related code has been moved to a separate package [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) and it is up to a user to install the RavenDB server from the [official download page](http://ravendb.net/download) following instructions on RavenDB website.
+Starting from NServiceBus version 5.0 RavenDB is no longer the default persistence option in NServiceBus. A user has to explicitly select persistence. For more information, on the various available persistence options, please read: [Persistence in NServiceBus](persistence-in-nservicebus.md).
+
+RavenDB-related code has been moved to a separate package [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) and it is up to a user to install the RavenDB server from the [official download page](http://ravendb.net/download) following instructions on RavenDB website.
 
 NServiceBus version 4.x and 3.x used RavenDB for persistence by default. The NServiceBus license permits the use of RavenDB for the storage needs of your endpoint. This only includes NServiceBus-related data such as sagas and subscriptions. If you store application-specific data in RavenDB you need to purchase a separate license.
 
