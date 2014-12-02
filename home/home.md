@@ -211,7 +211,7 @@
 <div class="block middle">
 <div class="left2">
     <h2>External training resources </h2>
-    <a href="http://pluralsight.com/training/Courses/TableOfContents/nservicebus" class="img">
+    <a href="http://www.pluralsight.com/courses/table-of-contents/nservicebus" class="img">
       <img src="/home/videos-small.png" />
       <img src="/home/videos-small-hover.png" class="hover"/>
       <h3>Pluralsight Introduction to NServiceBus &rarr;</h3>
