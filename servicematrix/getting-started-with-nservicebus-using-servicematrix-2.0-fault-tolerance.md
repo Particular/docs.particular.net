@@ -22,6 +22,8 @@ Creating a website that can communicate with a backend platform is nothing new a
 
 To demonstrate the durability and fault tolerance create a simple ServiceMatrix project named OnlineSales with an ASP.NET frontend named OnlineSales.ECommerce and a separate backend endpoint named OnlineSales.OrderProcessing. Have the frontend send a SubmitOrder command message that the `OrderProcessing` backend handles. (For a walkthrough of creating a ServiceMatrix project, see [Getting started with ServiceMatrix](getting-started-with-servicematrix-2.0.md).)
 
+![ServiceMatrix Canvas with Sample App](images/servicematrix-canvaswiredup.png)
+
 ### Run the solution
 
 In Visual Studio, hit F5 and run your solution and go to the 'Test Messages' page of the web application and click the 'Send' button a few times to send a few messages.  The console application will indicate the `SubmitOrder` messages were [received](images/servicematrix-reqresp-orderprocessor.png "Order Processing Console").

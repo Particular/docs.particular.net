@@ -228,11 +228,11 @@ In the resulting '[Deploy To Endpoint](images/servicematrix-deploytonewendpointv
 
 At this point with a little re-arranging your ServiceMatrix canvas should look like this:
 
-![Pub Sub Wired Up](images/servicematrix-pubsubcanvaswired.png)
+![Pub Sub Wired Up](images/servicematrix-pubsubcanvaswired-gettingstarted.png)
 
 The `SubmitOrderHandler` raises the `OrderAccepted` event, to which `OrderAcceptedHandler` of the `Billing` service is subscribed.
 
-As you would expect, the ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilderv2.2.0.png "SolutionBuilder") reflects the new endpoint, service, component, and event you added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
+As you would expect, the ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilder-gettingstarted.png "SolutionBuilder") reflects the new endpoint, service, component, and event you added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution-gettingstarted.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
 
 ### Review the Code
 

@@ -17,7 +17,7 @@ When you build an ASP.NET MVC 4 endpoint in ServiceMatrix, it allows you to leve
 
 # Introducing SignalR and ServiceMatrix
 
-To demonstrate SignalR you will create a simple ServiceMatrix project named OnlineSalesSignalR with an ASP.NET MVC endpoint named ECommerce and an NSB Hosted endpoint named. (For a walkthrough of creating a ServiceMatrix project, see [Getting started with ServiceMatrix](getting-started-with-servicematrix-2.0.md).) Have the ECommerce project publish an event called `OrderAccepted` and deploy a subscriber component to the `Billing` service. You should have something like the following:
+To demonstrate SignalR, begin by creating a simple ServiceMatrix project named OnlineSalesSignalR with an ASP.NET MVC endpoint named ECommerce and an NSB Hosted endpoint named Billing. (For a walkthrough of creating a ServiceMatrix project, see [Getting started with ServiceMatrix](getting-started-with-servicematrix-2.0.md).) Have the ECommerce project publish an event called `OrderAccepted` and deploy a subscriber component to the `Billing` service. You should have something like the following:
 
 ![SignalR Starting Canvas](images/servicematrix-signalrcanvas-start.png)
 

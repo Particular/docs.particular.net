@@ -43,7 +43,7 @@ In the 'Add Event Subscriber' window select the existing Marketing service.
 
 ![Select Marketing Service](images/servicematrix-marketingservice.png)
 
-You should notice that `BrowsedProductHandler` has been created in the Marketing Service. The dashed container indicates that the component has yet to be deployed. Also notice that the lines representing the `BrowedProduct` event messages are dashed.  This is because they are events. (Messages that are commands and are illustrated with a solid line.)
+You should notice that `BrowsedProductHandler` has been created in the Marketing Service. The dashed container indicates that the component has yet to be deployed. Also notice that the lines representing the `BrowsedProduct` event messages are dashed.  This is because they are events. (Messages that are commands and are illustrated with a solid line.)
 
 ![Undeployed Marketing Service](images/servicematrix-undeployedmarketing.png).
 

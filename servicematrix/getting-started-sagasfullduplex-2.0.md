@@ -18,7 +18,7 @@ Business processes usually involve multiple steps and require coordination of mu
 
 # Introducing Sagas for Request-Response
 
-To demonstrate a saga you will create a simple ServiceMatrix project named OnlineSalesSaga with an ASP.NET MVC endpoint named ECommerce and an NSB Hosted endpoint named. (For a walkthrough of creating a ServiceMatrix project, see [Getting started with ServiceMatrix](getting-started-with-servicematrix-2.0.md).) Have the ECommerce project publish an event called `OrderAccepted` and deploy a subscriber component to the `Billing` service. You should have something like the following:
+To demonstrate a saga, begin by creating a simple ServiceMatrix project named OnlineSalesSaga with an ASP.NET MVC endpoint named ECommerce and an NSB Hosted endpoint named Billing. (For a walkthrough of creating a ServiceMatrix project, see [Getting started with ServiceMatrix](getting-started-with-servicematrix-2.0.md).) Have the ECommerce project publish an event called `OrderAccepted` and deploy a subscriber component to the `Billing` service. You should have something like the following:
 
 ![Saga Starting Canvas](images/servicematrix-sagacanvas-start.png)
 
@@ -46,7 +46,7 @@ The canvas will illustrate the new `SubmitPayment` command along with an undeplo
 
 ![Billing and PaymentProcessing Endpoints](images/servicematrix-billingandpaymentprocessing.png)
 
-You created a new `PaymentProcessing` endpoint and a new command message that billing can use to submit payments for processing.  View the code in the `SubmitPaymentHandler` to see that it simply handles the `SubmitPayment` request. This component still needs to be modified to send a response message.  In a real-life scenario, it could invoke a web service that processes credit cards or other payments. This web service would likely return an authorization code that would be need to be packaged in a response message and returned to the requester.  The next step is to create a response.
+You created a new `PaymentProcessing` endpoint and a new command message that billing can use to submit payments for processing.  View the code in the `SubmitPaymentHandler` to see that it simply handles the `SubmitPayment` request. This component still needs to be modified to send a response message.  In a real-life scenario, it could invoke a web service that processes credit cards or other payments. This web service would likely return an authorization code that would need to be packaged in a response message and returned to the requester.  The next step is to create a response.
  
 ## Correlating the Payment Response Using a Saga
 
@@ -76,7 +76,7 @@ So that data can be persisted between handling messages on our new Saga, you use
 
 <!-- import ServiceMatrix.OnlineSalesSaga.Billing.OrderAcceptedHandlerSagaData -->
 
-Saga data properties can be accessed or mutated using the `Data` object from any of the Sagas `Handle` methods.
+Saga data properties can be accessed or mutated using the `Data` object from any of the Saga's `Handle` methods.
 
 ## Adding the Response Handler
 
@@ -102,7 +102,7 @@ Press `F5` to build and run the solution.  Arrange the consoles for Billing and 
 
 ![Billing and PaymentProcessing Endpoint Consoles](images/servicematrix-billingandpaymentprocessingconsoles.png)
 
-The `Billing` service receives the `Orderaccepted` event and handles it in the `OrderAcceptedHandler` component, now running as a saga.  It handles the event and sends the `SubmitPayment`command to the `SubmitPaymentHandler` component running in the `OrderProcessing` endpoint.  The `SubmitPaymentResponse` reply is sent back to the `OrderAcceptedHandler` saga.  Once both the `OrderAccepted` event and the `SubmitPaymentResponse` messages have been received, the saga is complete.
+The `Billing` service receives the `OrderAccepted` event and handles it in the `OrderAcceptedHandler` component, now running as a saga.  It handles the event and sends the `SubmitPayment`command to the `SubmitPaymentHandler` component running in the `OrderProcessing` endpoint.  The `SubmitPaymentResponse` reply is sent back to the `OrderAcceptedHandler` saga.  Once both the `OrderAccepted` event and the `SubmitPaymentResponse` messages have been received, the saga is complete.
 
 ## Using ServiceInsight
 
