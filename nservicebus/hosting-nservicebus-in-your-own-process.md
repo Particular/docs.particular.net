@@ -12,7 +12,7 @@ Requiring just a reference to the NServiceBus NuGet package the configuration AP
 
 ## Configuring the bus
 
-In the `ApplicationStart` method of your Global.asax file in a web application, or in the `Main` method of your `Program` file for console or Windows Forms applications, include the following initialization code:
+In the `ApplicationStart` method of your Global.asax file in a web application, or in the `Main` method of your `Program` file for console or Windows Forms application, include the following initialization code:
 
 
 <!-- import MinimumConfiguration -->
