@@ -1,6 +1,6 @@
 ---
 title: Hosting NServiceBus v4.x in-process 
-summary: Fluent configuration API to get transnational one-way messaging, referencing only three assemblies.
+summary: Fluent configuration API to get transactional one-way messaging, referencing only three assemblies.
 tags: []
 ---
 
