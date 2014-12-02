@@ -28,7 +28,7 @@ See "Building" in the `Readme.md` file at the root of the repository
 ## Building NServiceBus 3
 
 To build NServiceBus 3 from its source files, download the source files from
-[github](https://github.com/Particular/NServiceBus/zipball/develop) to get the latest unstable build, or retrieve the latest stable build source code from the [downloads page](http://particular.net/downloads).
+[github](https://github.com/Particular/NServiceBus/archive/develop.zip) to get the latest unstable build, or retrieve the latest stable build source code from the [downloads page](http://particular.net/downloads).
 
 ## Build NServiceBus options
 

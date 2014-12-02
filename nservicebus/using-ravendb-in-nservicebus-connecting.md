@@ -72,7 +72,7 @@ One of the limitations of the RavenDB persistence is support for only one `[Uniq
 
 #### Transaction recovery storage
 
-By default NServiceBus chooses `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage for RavenDB. However you may need to change this default if you are running into [this issue](https://groups.google.com/d/msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ), here is an example how to change the default:
+By default NServiceBus chooses `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage for RavenDB. However you may need to change this default if you are running into [this issue](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ), here is an example how to change the default:
 
 <!-- import ConfiguringTransactionRecoveryStorage-V5 -->
 
