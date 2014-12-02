@@ -348,7 +348,7 @@ For example
 
 With the minimal syntax being 
 
-    ![](/path/to/img.jpg "with=x")
+    ![](/path/to/img.jpg "width=x")
 
 This will result in the image being resized with the following parameters
 
