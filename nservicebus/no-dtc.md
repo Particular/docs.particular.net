@@ -12,7 +12,7 @@ NServiceBus Version 5 brings the option of running endpoints with the same relia
 
 Out of the box RabbitMQ is the only transport that is enabled automatically by default.
 
-SqlServer is also supported but in a different way (for details, see [SqlServer Transport](#SqlServer-Transport) section below).
+SqlServer is also supported but in a different way (for details, see [SqlServer Transport](#sqlserver-transport) section below).
 All other transports need to be enabled explicitly using both of the following configuration settings when configuring the endpoint:
 
 <!-- import OutboxEnablineInFluent -->  
