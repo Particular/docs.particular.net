@@ -110,4 +110,4 @@ See [Installing Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Instal
 
 ### FAQ
 
-* If you're having issues with connectivity please see this post on how to set Chocolatey and NuGet up behind a proxy: http://escapologist.wordpress.com/2013/02/27/nuget-and-chocolatey-behind-a-proxy/
+* If you're having issues with connectivity please see this post on how to set Chocolatey and NuGet up behind a proxy: https://escapologist.wordpress.com/2013/02/27/nuget-and-chocolatey-behind-a-proxy/
