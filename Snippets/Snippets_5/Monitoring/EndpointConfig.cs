@@ -4,7 +4,7 @@
     using NServiceBus;
     using NServiceBus.Persistence;
 
-    #region MessageFailedEndpointConfigV5
+    #region MessageFailedEndpointConfig 5.0
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
     {
         public void Customize(BusConfiguration configuration)
