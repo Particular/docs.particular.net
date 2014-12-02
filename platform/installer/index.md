@@ -19,7 +19,7 @@ NOTE: The platform Installer is recommended for use in development environments.
 
 * ClickOnce
 * [.net 4.5](http://www.microsoft.com/en-au/download/details.aspx?id=40779) (will be installed as part of the ClickOnce deployment)
-* [Chocolatey](http://chocolatey.org/) (version 0.9.8.26 or higher) 
+* [Chocolatey](https://chocolatey.org/) (version 0.9.8.26 or higher) 
 
 ## License Acceptance
 
@@ -51,32 +51,32 @@ The equivalent Chocolatey commands are
 
 ### ServiceMatrix for Visual Studio 2013
 
-Installs the [ServiceMatrix for VS2013 Chocolatey Package](http://chocolatey.org/packages/ServiceMatrix.VS2013.install). The equivalent VSIX can be downloaded from the [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).
+Installs the [ServiceMatrix for VS2013 Chocolatey Package](https://chocolatey.org/packages/ServiceMatrix.VS2013.install). The equivalent VSIX can be downloaded from the [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).
 
     cinst ServiceMatrix.VS2013.install
 
 
 ### ServiceMatrix for Visual Studio 2012
 
-Installs the [ServiceMatrix for VS2012 Chocolatey Package](http://chocolatey.org/packages/ServiceMatrix.VS2012.install). The equivalent VSIX can be downloaded from the [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).
+Installs the [ServiceMatrix for VS2012 Chocolatey Package](https://chocolatey.org/packages/ServiceMatrix.VS2012.install). The equivalent VSIX can be downloaded from the [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).
 
     cinst ServiceMatrix.VS2012.install
 
 ### ServiceInsight
 
-Installs the [ServiceInsight Chocolatey Package](http://chocolatey.org/packages/ServiceInsight.install). The equivalent msi can be downloaded from the [ServiceInsight Releases](https://github.com/Particular/ServiceInsight/releases).
+Installs the [ServiceInsight Chocolatey Package](https://chocolatey.org/packages/ServiceInsight.install). The equivalent msi can be downloaded from the [ServiceInsight Releases](https://github.com/Particular/ServiceInsight/releases).
 
     cinst ServiceInsight.install
 
 ### ServicePulse
 
-Installs the [ServicePulse Chocolatey Package](http://chocolatey.org/packages/ServicePulse.install). The equivalent msi can be downloaded from the [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases).
+Installs the [ServicePulse Chocolatey Package](https://chocolatey.org/packages/ServicePulse.install). The equivalent msi can be downloaded from the [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases).
     
     cinst ServicePulse.install
 
 ### ServiceControl
 
-Installs the [ServiceControl Chocolatey Package](http://chocolatey.org/packages/ServiceControl.install). The equivalent msi can be downloaded from the [ServiceControl Releases](https://github.com/Particular/ServiceControl/releases).
+Installs the [ServiceControl Chocolatey Package](https://chocolatey.org/packages/ServiceControl.install). The equivalent msi can be downloaded from the [ServiceControl Releases](https://github.com/Particular/ServiceControl/releases).
 
     cinst ServiceControl.install
 
