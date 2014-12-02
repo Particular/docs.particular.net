@@ -11,16 +11,19 @@ The NServiceBus Distributor is similar in behavior to standard [load balancers](
 As a standard NServiceBus process, the Distributor maintains all the fault-tolerant and performance characteristics of NServiceBus but is designed never to overwhelm any of the worker nodes configured to receive work from it.
 
 ## When to use it?
+
 Scaling out (with or without a Distributor) is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](monitoring-nservicebus-endpoints.md) on the endpoint and when you have the need, add in the Distributor. Scaling out using the Distributor when needed is made easy by not having to change code, just starting the same endpoint in Distributor and Worker profiles and this article explains how.
 
 The Distributor is applicable only when using MSMQ as the transport for exchanging messages. NServiceBus uses MSMQ as the default transport. The Distributor is not required when using other brokered transports like SqlServer and RabbitMQ, since they share the same queue, even if there are multiple instances of the endpoints running. NServiceBus will ensure that only one of these instances of that endpoint will process that message in this case.
 
 ## Why use it?
+
 When starting to use NServiceBus, you'll see that you can easily run multiple instances of the same process with the same input queue. This may look like scaling-out at first, but is really no different from running multiple threads within the same process. You'll see that you can't share a single input queue across multiple machines.
 
 The Distributor gets around this limitation.
 
 ## What about MSMQ V4?
+
 Version 4 of MSMQ, made available with Vista and Server 2008, can perform [remote transactional receive](http://msdn.microsoft.com/en-us/library/ms700128.aspx). This means that processes on other machines can transactionally pull work from a queue on a different machine. If the machine processing the message crashes, the message roll back to the queue and other machines could then process it.
 
 Even though the Distributor provided similar functionality even before Vista was released, there are other reasons to use it even on the newer operating systems. The problem with 'remote transactional receive' is that it gets proportionally slower as more worker nodes are added. This is due to the overhead of managing more transactions, as well as the longer period of time that these transactions are open.
@@ -28,6 +31,7 @@ Even though the Distributor provided similar functionality even before Vista was
 In short, the scale-out benefits of MSMQ V4 by itself are quite limited.
 
 ## Performance?
+
 The Distributor is doing multiple operations for each message, it is processing (receives a ready message form a Worker, sends the work message to the Worker, receives a ready message post processing) so its performance is limited although it is doing very little work, therefore the benefit of using a Distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short lived units of work (a quick read from the database and dispatching a message using `Bus.Send` or  `Bus.Publish`)
 
 To get a sense of the expected performance you can divide your regular endpoint performance and divide it by 4.
@@ -35,6 +39,7 @@ To get a sense of the expected performance you can divide your regular endpoint 
 If you need to scale out small units of work you might want to consider slicing your handlers to smaller vertical slices of functionality and deploying them on their own end points.
 
 ## How does it work?
+
 Worker nodes send messages to the Distributor, telling it when they're ready for work. These messages arrive at the distributor via a separate 'control' queue:
 
 ![worker registration](how-distributor-works-1.png)
@@ -57,6 +62,7 @@ For more information on monitoring, see [Monitoring NServiceBus Endpoints](monit
 ## Distributor configuration
 
 ### When hosting endpoints in NServiceBus.Host.exe
+
 If you are running with [NServiceBus.Host.exe](the-nservicebus-host.md), the following profiles start your endpoint with the Distributor functionality:
 
 To start your endpoint as a Distributor ensure you install the [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ) and then run the host from the command line, as follows:
@@ -82,6 +88,7 @@ NServiceBus.Host.exe NServiceBus.Master
 ```
 
 ### When self-hosting
+
 When you [self host](hosting-nservicebus-in-your-own-process.md) your endpoint, use this configuration:
 
 For v3:
@@ -94,17 +101,23 @@ For v5:
 <!-- import ConfiguringDistributor-V5 -->
 
 ## Worker Configuration
+
 Any NServiceBus endpoint can run as a Worker node. To activate it, create a handler for the relevant messages and ensure that the `app.config` file contains routing information for the Distributor.
 
 ### When hosting in NServiceBus.Host.exe
+
 If you are hosting your endpoint with NServiceBus.Host.exe, to run as a Worker, use this command line:
+
 ```cmd
 NServiceBus.Host.exe NServiceBus.MSMQWorker
 ```
+
 or if using a version of NServiceBus that is earlier than v4.3:
+
 ```cmd
 NServiceBus.Host.exe NServiceBus.Worker
 ```
+
 Configure the name of the master node server as shown in this `app.config` example. Note the `MasterNodeConfig` section:
 
 ```XML
@@ -122,6 +135,7 @@ Configure the name of the master node server as shown in this `app.config` examp
 Read about the `DistributorControlAddress` and the `DistributorDataAddress` in the [Routing with the Distributor](#routing-with-the-distributor) section.
 
 ### When self-hosting
+
 If you are self-hosting your endpoint here is the code required to enlist the endpoint with a Distributor.
 
 For v3:
@@ -136,7 +150,8 @@ For v5:
 Similar to self hosting, ensure the `app.config` of the Worker contains the `MasterNodeConfig` section to point to the host name where the master node (and a Distributor) are running.
 
 ## Routing with the Distributor
-The Distributor uses two queues for its runtime operation. The `DataInputQueue` is the queue where the client processes send their applicative messages. The `ControlInputQueue` is the queue where the worker nodes send their control messages.
+
+The Distributor uses two queues for its runtime operation. The `DataInputQueue` is the queue where the client processes send their applicable messages. The `ControlInputQueue` is the queue where the worker nodes send their control messages.
 
 To use values other than the NServiceBus defaults you can override them, as shown in the `UnicastBusConfig` section below:
 
@@ -162,11 +177,13 @@ When using the Distributor in a full publish/subscribe deployment, you see is a 
 Keep in mind that the Distributor is designed for load balancing within a single site, so do not use it between sites. In the image above, all publishers and subscribers are within a single physical site. For information on using NServiceBus across multiple physical sites, see [the gateway](the-gateway-and-multi-site-distribution.md).
 
 ## High availability
+
 If the Distributor goes down, even if its worker nodes remain running, they do not receive any messages. Therefore, it is important to run the Distributor on a cluster that has its its queues configured as clustered resources.
 
 Since the Distributor does not do CPU or memory intensive work, you can often put several Distributor processes on the same clustered server. Be aware that the network IO may end up being the bottleneck for the Distributor, so take into account message sizes and throughput when sizing your infrastructure.
 
 
 ## Next steps
+
 Build a scalable solution using Master node and the workers solution that are in the [ScaleOut sample](scale-out-sample.md) .
 
