@@ -6,18 +6,12 @@ tags: []
 
 ## With the fluent API
 
-### Version 4
-
-<!-- import HandlerOrderingWithFluentV4 -->
-
-### Version 5
-
-<!-- import HandlerOrderingWithFluentV5 -->
+<!-- import HandlerOrderingWithFluent -->
 
 ## Specifying First with ISpecifyMessageHandlerOrdering
 
-<!-- import HandlerOrderingWithFirstV4 -->
+<!-- import HandlerOrderingWithFirst -->
 
-## Specifying multiple handlers to run first order with with ISpecifyMessageHandlerOrdering
+## Specifying multiple handlers to run first order with with `ISpecifyMessageHandlerOrdering`
 
-<!-- import HandlerOrderingWithMultipleV4 -->
+<!-- import HandlerOrderingWithMultiple -->

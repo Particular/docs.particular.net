@@ -4,7 +4,7 @@ public class HandlerOrdering
 {
     public void Simple()
     {
-        #region HandlerOrderingWithFluentV5
+        #region HandlerOrderingWithFluent 5
         
         var configuration = new BusConfiguration();
 
@@ -13,7 +13,7 @@ public class HandlerOrdering
         #endregion
     }
 
-    #region HandlerOrderingWithFirstV5
+    #region HandlerOrderingWithFirst 5
     public class MySpecifyingFirst : ISpecifyMessageHandlerOrdering
     {
         public void SpecifyOrder(Order order)
@@ -23,7 +23,7 @@ public class HandlerOrdering
     }
     #endregion
 
-    #region HandlerOrderingWithMultipleV5
+    #region HandlerOrderingWithMultiple 5
     public class MySpecifyingOrder : ISpecifyMessageHandlerOrdering
     {
         public void SpecifyOrder(Order order)
