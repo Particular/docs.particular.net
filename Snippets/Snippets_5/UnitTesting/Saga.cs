@@ -44,6 +44,10 @@ namespace UnitTesting.SagaTest
             Bus.Publish<MyEvent>();
             MarkAsComplete();
         }
+
+        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
+        {
+        }
     }
 
     #endregion
