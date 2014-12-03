@@ -8,17 +8,17 @@ public class CustomConfigSource
     public CustomConfigSource()
     {
 
-        #region RegisterCustomConfigSource-v4
+        #region RegisterCustomConfigSource 4
 
         Configure.With()
             //this call needs to happen right after With()
             .CustomConfigurationSource(new MyCustomConfigurationSource()); 
 
-        #endregion RegisterCustomConfigSource-v4
+        #endregion 
     }
 
 
-    #region CustomConfigSource
+    #region CustomConfigSource 4
 
     public class MyCustomConfigurationSource : IConfigurationSource
     {
@@ -37,9 +37,9 @@ public class CustomConfigSource
         }
     }
 
-    #endregion CustomConfigSource
+    #endregion
 
-    #region CustomConfigProvider
+    #region CustomConfigProvider 4
 
     class CustomRijndaelEncryptionServiceConfigProvider : IProvideConfiguration<RijndaelEncryptionServiceConfig>
     {
@@ -52,5 +52,5 @@ public class CustomConfigSource
         }
     }
 
-    #endregion CustomConfigProvider
+    #endregion
 }
