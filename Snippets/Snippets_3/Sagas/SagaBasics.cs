@@ -7,9 +7,9 @@ public class SagaBasics
 {
     public class SagaWithStartedBy
     {
-        #region saga-with-started-by-v3
+        #region saga-with-started-by
 
-        public class MySaga_V3 : Saga<MySagaData>,
+        public class MySaga : Saga<MySagaData>,
                                 IAmStartedByMessages<Message1>,
                                 IHandleMessages<Message2>
         {
@@ -34,7 +34,7 @@ public class SagaBasics
 
     public class SagaWithStartedByAndCorrelationIdSet
     {
-        #region saga-with-started-by-and-correlation-id-set-v3
+        #region saga-with-started-by-and-correlation-id-set
 
         public class MySaga : Saga<MySagaData>,
                                 IAmStartedByMessages<Message1>,

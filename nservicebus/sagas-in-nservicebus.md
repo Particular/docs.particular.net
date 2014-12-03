@@ -35,13 +35,7 @@ The important part of a long-running process is its behavior. With NServiceBus, 
 
 Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled. Here is a saga that processes messages of type `Message2`:
 
-<!-- import saga-without-started-by -->
-
-Please note that since NServiceBus 5, the `ConfigureHowToFindSaga` method is abstract. This way the new API tries to guide the user towards best practices. Prior to V5, an empty saga would look like this:
-
-<!-- import saga-without-started-by-v4 -->
-
-Even though the method is virtual, you *should* implement it for each saga.
+<!-- import saga-without-started-by --> 
 
 ## Starting and correlating sagas
 
@@ -61,9 +55,7 @@ Since V5 it is possible to specify the mapping to the message using expressions 
 
 Previous releases (3.x and 4.x) of NServiceBus had slightly different API for configuring the mapping. Following snippets show the mapping in V4 and V3 respecively:
 
-<!-- import saga-with-started-by-and-correlation-id-set-v4 -->
-
-<!-- import saga-with-started-by-and-correlation-id-set-v3 -->
+<!-- import saga-with-started-by-and-correlation-id-set -->
 
 Underneath the covers, when `Message2` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `MySagaData` that has a property `SomeID` whose value is the same as the `SomeID` property of the message.
 
@@ -122,13 +114,9 @@ You can have as many of these classes as you want for a given saga or message ty
 
 ## Configuring Saga persistence
 
-Make sure to configure appropriate persistence mechanism. Below you can see how it is done via the V5 streamlined configuration API:
+Make sure to configure appropriate persistence mechanism. 
 
 <!-- import saga-configure-self-hosted -->
-
-And via the old API:
-
-<!-- import saga-configure-self-hosted-v4 -->
 
 ## Sagas and automatic subscriptions
 

@@ -360,7 +360,6 @@
     <Compile Include="Transports.cs" />
     <Compile Include="Transports\RabbitMQ\ConfigurationSettings.cs" />
     <Compile Include="Transports\SqlServer\ConfigurationSettings.cs" />
-    <Compile Include="TypeScanning.cs" />
     <Compile Include="UnitTesting\AdditionalServices.cs" />
     <Compile Include="UnitTesting\HeaderManipulation.cs" />
     <Compile Include="UnitTesting\Saga.cs" />

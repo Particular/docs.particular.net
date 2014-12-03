@@ -1,5 +1,5 @@
 ﻿
-#region customize_nsb_host_v5
+#region customize_nsb_host
 using NServiceBus;
 class CustomizingHost : IConfigureThisEndpoint
 {

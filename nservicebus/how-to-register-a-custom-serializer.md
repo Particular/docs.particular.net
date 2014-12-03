@@ -7,7 +7,14 @@ tags:
 
 Here is an example how to register a custom serializer:
 
+### Create a custom serializer
+
+<!-- import CustomSerializer --> 
+
+### Register that serializer
+
 <!-- import RegisterCustomSerializer -->
+
 
 
 

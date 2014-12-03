@@ -7,7 +7,7 @@ public class SagaBasics
 {
     public class SagaWithoutStartedBy
     {
-        #region saga-without-started-by-v4
+        #region saga-without-started-by
 
         public class MySaga : Saga<MySagaData>,
                                 IHandleMessages<Message2>
@@ -23,12 +23,13 @@ public class SagaBasics
 
     public class SagaWithStartedBy
     {
-        #region saga-with-started-by-v4
+        #region saga-with-started-by
 
-        public class MySaga_V4 : Saga<MySagaData>,
+        public class MySaga : Saga<MySagaData>,
                                 IAmStartedByMessages<Message1>,
                                 IHandleMessages<Message2>
         {
+            //Even though the method is virtual, you *should* implement it for each saga.
             public override void ConfigureHowToFindSaga()
             {
                 ConfigureMapping<Message2>(m => m.SomeID).ToSaga(s => s.SomeID);
@@ -50,7 +51,7 @@ public class SagaBasics
 
     public class SagaWithStartedByAndCorrelationIdSet
     {
-        #region saga-with-started-by-and-correlation-id-set-v4
+        #region saga-with-started-by-and-correlation-id-set
 
         public class MySaga : Saga<MySagaData>,
                                 IAmStartedByMessages<Message1>,
@@ -78,7 +79,7 @@ public class SagaBasics
 // ReSharper disable RedundantNameQualifier
     public void ConfigureSelfHosted()
     {
-        #region saga-configure-self-hosted-v4
+        #region saga-configure-self-hosted
         Feature.Enable<Sagas>();
         Configure.Serialization.Xml();
         var bus = NServiceBus.Configure.With()

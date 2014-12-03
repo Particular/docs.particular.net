@@ -5,7 +5,7 @@ public class ScaleOut
 {
     public void Simple()
     {
-        #region ScaleOutV5
+        #region ScaleOut
 
         var configuration = new BusConfiguration();
 

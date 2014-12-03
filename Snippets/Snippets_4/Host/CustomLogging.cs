@@ -1,7 +1,7 @@
 ﻿using NServiceBus;
 
 
-#region CustomHostLoggingV4
+#region CustomHostLogging
 class MyEndpointConfig : IConfigureThisEndpoint, IWantCustomLogging
 {
     public void Init()

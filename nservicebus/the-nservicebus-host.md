@@ -28,7 +28,7 @@ If you want to avoid the scanning process you can explicitly configure the type 
 
 As of NServiceBus v5 you customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on your endpoint configuration class. Just call the appropriate methods on the `BusConfiguration` parameter passed to the method.
 
-<!-- import customize_nsb_host_v5 -->
+<!-- import customize_nsb_host -->
 
 #### NServiceBus v4 and v3
 
@@ -56,7 +56,7 @@ You can add the logging API calls as mentioned in the above article directly in 
 
 To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure your custom setup. To make NServiceBus use your logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](logging-in-nservicebus4-and-below.md) and shown below:
 
-<!-- import CustomHostLoggingV4 -->
+<!-- import CustomHostLogging -->
 
 You may want to specify different logging levels (`DEBUG`, `WARN`, etc.) and possibly different targets `(CONSOLE`, `FILE`, etc.). The host provides a mechanism for changing these permutations with no code or configuration changes, via [profiles](profiles-for-nservicebus-host.md) .
 
@@ -64,7 +64,7 @@ You may want to specify different logging levels (`DEBUG`, `WARN`, etc.) and pos
 
 As of version 5 roles are obsoleted and should not be used. Most of the functionality of `AsA_Server`, and `AsA_Publisher` has been made defaults in the core and can be safely removed. If you still need the `AsA_Client` behavior please add the following to your configuration.
 
-<!-- import AsAClientEquivalent-v5 -->
+<!-- import AsAClientEquivalent -->
 
 #### NServiceBus v4 and v3
 

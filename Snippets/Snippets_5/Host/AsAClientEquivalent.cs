@@ -5,7 +5,7 @@ public class AsAClientEquivalent
 {
     public AsAClientEquivalent()
     {
-        #region AsAClientEquivalent-v5
+        #region AsAClientEquivalent
 
         var config = new BusConfiguration();
 

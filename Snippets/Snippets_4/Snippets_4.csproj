@@ -230,7 +230,6 @@
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
     <Compile Include="SubscriptionSettings.cs" />
-    <Compile Include="TypeScanning.cs" />
     <Compile Include="Containers.cs" />
     <Compile Include="EndpointName.cs" />
     <Compile Include="HandlerOrdering.cs" />
