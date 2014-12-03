@@ -4,14 +4,14 @@ using NServiceBus;
 public class DiscardingOldMessages
 {
 
-    #region DiscardingOldMessagesWithAnAttributeV5
+    #region DiscardingOldMessagesWithAnAttribute 5
     [TimeToBeReceived("00:01:00")] // Discard after one minute
     public class MyMessage { }
     #endregion
 
     public void Simple()
     {
-        #region DiscardingOldMessagesWithFluentV5
+        #region DiscardingOldMessagesWithFluent 5
 
         var configuration = new BusConfiguration();
 
