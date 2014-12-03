@@ -7,8 +7,8 @@ public class MessageConventions
     {
         #region MessageConventions
 
-        // NOTE: When you're self hosting, `.DefiningXXXAs()` has to be before `.UnicastBus()`, 
-        // otherwise you'll get: `System.InvalidOperationException: "No destination specified for message(s): MessageTypeName"
+        // NOTE: When you're self hosting, '.DefiningXXXAs()' has to be before '.UnicastBus()', 
+        // otherwise you'll get: 'System.InvalidOperationException: "No destination specified for message(s): MessageTypeName"
 
         var configure = Configure.With()
             .DefaultBuilder()

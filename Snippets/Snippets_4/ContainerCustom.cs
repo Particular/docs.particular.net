@@ -9,12 +9,12 @@ public class ContainerCustom
     // startcode CustomContainers
     public void CustomContainerUsage()
     {
-        //Call `Configure.UsingContainer<T>()` in your configuration
+        //Call 'Configure.UsingContainer<T>()' in your configuration
         Configure.With()
             .UsingContainer<MyCustomObjectBuilder>();
     }
 
-    //Create a class that implements `IContainer`
+    //Create a class that implements 'IContainer'
     public class MyCustomObjectBuilder : IContainer
     {
         // endcode

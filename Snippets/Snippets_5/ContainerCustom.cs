@@ -12,10 +12,10 @@ public class ContainerCustom
     public void CustomContainerExtensionUsage()
     {
         var configuration = new BusConfiguration();
-        //Register the container in the configuration with `.UseContainer<T>()`
+        //Register the container in the configuration with '.UseContainer<T>()'
         configuration.UseContainer<MyContainer>();
     }
-    // Create a class that implements `ContainerDefinition` and returns your `IContainer` implementation.
+    // Create a class that implements 'ContainerDefinition' and returns your 'IContainer' implementation.
     public class MyContainer : ContainerDefinition
     {
         public override IContainer CreateContainer(ReadOnlySettings settings)
@@ -23,7 +23,7 @@ public class ContainerCustom
             return new MyObjectBuilder();
         }
     }
-    //Create a class that implements `IContainer`
+    //Create a class that implements 'IContainer'
     public class MyObjectBuilder : IContainer
     {
     // endcode 
