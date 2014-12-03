@@ -12,7 +12,7 @@ public class GatewayConfig
 
         IBus Bus = null;
 
-        #region GatewayApi-v5
+        #region SendToSites 4
 
         Bus.SendToSites(new[] { "SiteA", "SiteB" }, new MyCrossSiteMessage());
 
