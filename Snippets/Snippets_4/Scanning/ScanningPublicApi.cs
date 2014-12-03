@@ -5,9 +5,9 @@
     using System.Reflection;
     using NServiceBus;
 
-    public class ScanningPublicApiV4
+    public class ScanningPublicApi
     {
-        public ScanningPublicApiV4()
+        public ScanningPublicApi()
         {
            IEnumerable<Assembly> myListOfAssemblies = null;
 

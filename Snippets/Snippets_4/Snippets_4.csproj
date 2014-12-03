@@ -215,7 +215,7 @@
     <Compile Include="Host\CustomLogging.cs" />
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
-    <Compile Include="Scanning\ScanningPublicApiV4.cs" />
+    <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
     <None Include="Encryption\encryption.config">
       <SubType>Designer</SubType>
