@@ -4,7 +4,7 @@ class ConfiguringNHibernate
 {
     public void Foo()
     {
-        #region ConfiguringNHibernateV3
+        #region ConfiguringNHibernate 3
 
         Configure.With()
                     .DefaultBuilder()
