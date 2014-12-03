@@ -34,7 +34,7 @@ NOTE: You must set both the `ServiceControl/Hostname` and the `ServiceControl/Po
 1. After modifying the config file, update the URLACL configurations accordingly. 
 1. Allow access to the ports specified for ServiceControl hostname & port number by configuring firewalls.
 
-For example, the following command line (with the appropriate adjustments for your hostname and port number) adds the relevant URLACL settting:  
+For example, the following command line (with the appropriate adjustments for your hostname and port number) adds the relevant URLACL setting:  
 
 `Netsh http add urlacl  url=http://*:33333/  user=everyone  listen=yes`
 
