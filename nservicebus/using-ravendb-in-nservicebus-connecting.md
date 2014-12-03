@@ -74,7 +74,7 @@ One of the limitations of the RavenDB persistence is support for only one `[Uniq
 
 By default NServiceBus chooses `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage for RavenDB. However you may need to change this default if you are running into [this issue](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ), here is an example how to change the default:
 
-<!-- import ConfiguringTransactionRecoveryStorage-V5 -->
+<!-- import ConfiguringTransactionRecoveryStorage -->
 
 ## Previous releases
 
@@ -96,12 +96,6 @@ In some situations the default behavior might not be right for you:
 
 -   You want to use your own connection string. If you're using RavenDB for your own data as well you might want to share the connection string. Use the `Configure.RavenPersistence(string connectionStringName)` signature to tell NServiceBus to connect to the server specified in that string. The default connection string for RavenDB is "RavenDB".
 -   You want to specify a explicit database name. To control the database name in code instead of via the configuration, use the `Configure.RavenPersistence(string connectionStringName, string databaseName)` signature. This can be useful in a multi-tenant scenario.
-
-#### Transaction recover storage
-
-By default NServiceBus chooses `IsolatedStorageTransactionRecoveryStorage` as its transaction recover storage for RavenDB. However it is easy to change this default:
-
-<!-- import ConfiguringTransactionRecoveryStorage-V4 -->
 
 ### Can I use the IDocumentStore used by NServiceBus for my own data?
 
