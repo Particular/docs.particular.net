@@ -38,17 +38,7 @@ This gives you a way to perform different actions depending on the outcome of th
 After implementing a `IManageUnitsOfWork`, you now need to register it with NServiceBus. 
 Here's an example of how to register your unit of work:  
 
-```c#
-public class UoWInitializer : INeedInitialization
-{
-    public void Init()
-    {
-        Configure.Instance.Configurer.
-                  ConfigureComponent<MyOwnUnitOfWork>(DependencyLifecycle.InstancePerUnitOfWork);
-
-    }
-}
-```
+<!-- import InstancePerUnitOfWorkRegistration -->
 
 NOTE: If you prefer, you can implement the `INeedInitialization` in the same class that implements `IManageUnitsOfWork`.
 
