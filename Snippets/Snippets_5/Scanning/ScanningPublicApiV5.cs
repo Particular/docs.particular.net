@@ -15,49 +15,49 @@ public class ScanningPublicApiV5
         IEnumerable<Type> myTypes = null;
 
 
-        #region ScanningDefault 5
+        #region ScanningDefault
 
         var configuration = new BusConfiguration();
 
         #endregion
 
-        #region ScanningListOfAssemblies 5
+        #region ScanningListOfAssemblies
 
         configuration.AssembliesToScan(myListOfAssemblies);
 
         #endregion
 
-        #region ScanningParamArrayOfAssemblies 5
+        #region ScanningParamArrayOfAssemblies
 
         configuration.AssembliesToScan(assembly1, assembly2);
 
         #endregion
 
-        #region ScanningCustomDirectory 5
+        #region ScanningCustomDirectory
 
         configuration.ScanAssembliesInDirectory(@"c:\my-custom-dir");
 
         #endregion
 
-        #region ScanningListOfTypes 5
+        #region ScanningListOfTypes
 
         configuration.TypesToScan(myTypes);
 
         #endregion
 
-        #region ScanningExcludeByName 5
+        #region ScanningExcludeByName
 
         configuration.AssembliesToScan(AllAssemblies.Except("MyAssembly.dll").And("MyAssembly.dll"));
 
         #endregion
 
-        #region ScanningIncludeByPattern 5
+        #region ScanningIncludeByPattern
 
         configuration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").And("SomethingElse"));
 
         #endregion
 
-        #region ScanningMixingIncludeAndExclude 5
+        #region ScanningMixingIncludeAndExclude
 
         configuration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").Except("BadAssembly.dll"));
 

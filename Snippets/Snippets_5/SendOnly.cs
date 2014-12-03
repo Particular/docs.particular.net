@@ -5,7 +5,7 @@ public class SendOnly
 {
     public void Simple()
     {
-        #region SendOnly 5
+        #region SendOnly
 
         var configuration = new BusConfiguration();
         

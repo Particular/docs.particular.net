@@ -10,7 +10,7 @@ public class Containers
 {
     public void Simple()
     {
-        #region Containers 4
+        #region Containers
 
         // Autofac
         Configure.With()

@@ -5,7 +5,7 @@ class ConfiguringNHibernate
 {
     public void Foo()
     {
-        #region ConfiguringNHibernate 5
+        #region ConfiguringNHibernate
 
         var config = new BusConfiguration();
 

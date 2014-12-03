@@ -5,7 +5,7 @@ public class ForInstallationOn
 {
     public void Simple()
     {
-        #region Installers 4
+        #region Installers
 
         Configure.With()
             .UnicastBus()

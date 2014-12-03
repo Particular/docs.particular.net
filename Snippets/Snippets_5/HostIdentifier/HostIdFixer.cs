@@ -9,7 +9,7 @@ using NServiceBus.Settings;
 using NServiceBus.Unicast;
 #pragma warning disable 618
 
-#region HostIdFixer 5
+#region HostIdFixer
 public class HostIdFixer : IWantToRunWhenBusStartsAndStops
 {
     UnicastBus bus;

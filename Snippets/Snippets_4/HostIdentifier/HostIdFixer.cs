@@ -6,7 +6,7 @@ using NServiceBus;
 using NServiceBus.Hosting;
 using NServiceBus.Unicast;
 
-#region HostIdFixer 4
+#region HostIdFixer
 public class HostIdFixer : IWantToRunWhenBusStartsAndStops
 {
     UnicastBus bus;

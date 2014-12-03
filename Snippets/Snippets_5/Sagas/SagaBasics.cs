@@ -360,7 +360,7 @@
         public class SimpleSagaData
         {
 
-            #region saga-data 5
+            #region saga-data
 
             public class MySagaData : ContainSagaData
             {

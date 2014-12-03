@@ -7,7 +7,7 @@ public class MessageBodyEncryption
 {
     public void Simple()
     {
-        #region UsingMessageBodyEncryptor 5
+        #region UsingMessageBodyEncryptor
 
         var configuration = new BusConfiguration();
         configuration.RegisterComponents(c => c.ConfigureComponent<MessageEncryptor>(DependencyLifecycle.InstancePerCall));
@@ -16,7 +16,7 @@ public class MessageBodyEncryption
     }
 }
 
-#region MessageBodyEncryptor 5
+#region MessageBodyEncryptor
 
 public class MessageEncryptor : IMutateTransportMessages
 {

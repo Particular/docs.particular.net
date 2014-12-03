@@ -8,7 +8,7 @@ public class CustomConfigSource
     public CustomConfigSource()
     {
 
-        #region RegisterCustomConfigSource 5
+        #region RegisterCustomConfigSource
 
         var configuration = new BusConfiguration();
 
@@ -19,7 +19,7 @@ public class CustomConfigSource
 
 }
 
-#region CustomConfigSource 5
+#region CustomConfigSource
 
 public class MyCustomConfigurationSource : IConfigurationSource
 {
@@ -40,7 +40,7 @@ public class MyCustomConfigurationSource : IConfigurationSource
 
 #endregion
 
-#region CustomConfigProvider 5
+#region CustomConfigProvider
 
 class CustomRijndaelEncryptionServiceConfigProvider : IProvideConfiguration<RijndaelEncryptionServiceConfig>
 {

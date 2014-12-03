@@ -8,7 +8,7 @@ public class PropertyEncryption
 
     public void Simple()
     {
-        #region EncryptionServiceSimple 4
+        #region EncryptionServiceSimple
         Configure.With()
             .RijndaelEncryptionService();
 
@@ -16,26 +16,26 @@ public class PropertyEncryption
     }
     public void Convention()
     {
-        #region DefiningEncryptedPropertiesAs 4
+        #region DefiningEncryptedPropertiesAs
         Configure.With()
             .DefiningEncryptedPropertiesAs(info => info.Name.EndsWith("EncryptedProperty"));
         #endregion
     }
 
-    #region MessageForEncryptionConvention 4
+    #region MessageForEncryptionConvention
     public class Message1 : IMessage
     {
         public string MyEncryptedProperty { get; set; }
     }
     #endregion
-    #region MessageWithEncryptedProperty 4
+    #region MessageWithEncryptedProperty
     public class MyMessage2 : IMessage
     {
         public WireEncryptedString MyEncryptedProperty { get; set; }
     }
     #endregion
 
-    #region EncryptionFromIProvideConfiguration 4
+    #region EncryptionFromIProvideConfiguration
 
     public class ConfigureEncryption : IProvideConfiguration<RijndaelEncryptionServiceConfig>
     {
@@ -56,7 +56,7 @@ public class PropertyEncryption
 
     public void FromCustomIEncryptionService()
     {
-        #region EncryptionFromIEncryptionService 4
+        #region EncryptionFromIEncryptionService
         //where MyCustomEncryptionService implements IEncryptionService 
         Configure.With()
             .Configurer.RegisterSingleton<IEncryptionService>(new MyCustomEncryptionService());

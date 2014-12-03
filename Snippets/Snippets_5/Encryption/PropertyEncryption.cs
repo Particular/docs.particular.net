@@ -8,7 +8,7 @@ public class PropertyEncryption
 {
     public void Simple()
     {
-        #region EncryptionServiceSimple 5
+        #region EncryptionServiceSimple
 
         var configuration = new BusConfiguration();
         configuration.RijndaelEncryptionService();
@@ -17,20 +17,20 @@ public class PropertyEncryption
     }
     public void Convention()
     {
-        #region DefiningEncryptedPropertiesAs 5
+        #region DefiningEncryptedPropertiesAs
         var configuration = new BusConfiguration();
         configuration.Conventions()
             .DefiningEncryptedPropertiesAs(info => info.Name.EndsWith("EncryptedProperty"));
         #endregion
     }
 
-    #region MessageForEncryptionConvention 5
+    #region MessageForEncryptionConvention
     public class Message1:IMessage
     {
         public string MyEncryptedProperty { get; set; }
     }
     #endregion
-    #region MessageWithEncryptedProperty 5
+    #region MessageWithEncryptedProperty
     public class MyMessage2 : IMessage
     {
         public WireEncryptedString MyEncryptedProperty { get; set; }
@@ -39,7 +39,7 @@ public class PropertyEncryption
 
     public void FromFluentAPI()
     {
-        #region EncryptionFromFluentAPI 5
+        #region EncryptionFromFluentAPI
 
         var configuration = new BusConfiguration();
         var encryptionKey = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6";
@@ -53,7 +53,7 @@ public class PropertyEncryption
         #endregion
     }
 
-    #region EncryptionFromIProvideConfiguration 5
+    #region EncryptionFromIProvideConfiguration
 
     public class ConfigureEncryption : IProvideConfiguration<RijndaelEncryptionServiceConfig>
     {
@@ -75,7 +75,7 @@ public class PropertyEncryption
 
     public void FromCustomIEncryptionService()
     {
-        #region EncryptionFromIEncryptionService 5
+        #region EncryptionFromIEncryptionService
 
         var configuration = new BusConfiguration();
         //where MyCustomEncryptionService implements IEncryptionService 

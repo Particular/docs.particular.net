@@ -1,6 +1,6 @@
 ﻿namespace Snippets_5.BusNotifications
 {
-    #region SubscribeToErrorsNotifications 5
+    #region SubscribeToErrorsNotifications
 
     using System;
     using System.Collections.Generic;

@@ -7,7 +7,7 @@
     {
         void Setup()
         {
-            #region PersistenceOrder_Correct 5
+            #region PersistenceOrder_Correct
             var config = new BusConfiguration();
 
             config.UsePersistence<RavenDBPersistence>();
@@ -22,7 +22,7 @@
 
         void Setup3()
         {
-            #region PersistenceOrder_Explicit 5
+            #region PersistenceOrder_Explicit
             var config = new BusConfiguration();
 
             config.UsePersistence<NHibernatePersistence>()
@@ -38,7 +38,7 @@
 
         void Setup2()
         {
-            #region PersistenceOrder_Incorrect 5
+            #region PersistenceOrder_Incorrect
             var config = new BusConfiguration();
 
             config.UsePersistence<NHibernatePersistence>()

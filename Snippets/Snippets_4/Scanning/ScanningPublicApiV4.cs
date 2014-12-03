@@ -16,35 +16,35 @@
 
             IEnumerable<Type> myTypes = null;
 
-            #region ScanningDefault 4
+            #region ScanningDefault
             Configure.With();
             #endregion
 
-            #region ScanningListOfAssemblies 4
+            #region ScanningListOfAssemblies
             Configure.With(myListOfAssemblies);
             #endregion
 
-            #region ScanningParamArrayOfAssemblies 4
+            #region ScanningParamArrayOfAssemblies
             Configure.With(assembly1, assembly2);
             #endregion
 
-            #region ScanningCustomDirectory 4
+            #region ScanningCustomDirectory
             Configure.With(@"c:\my-custom-dir");
             #endregion
 
-            #region ScanningListOfTypes 4
+            #region ScanningListOfTypes
             Configure.With(myTypes);
             #endregion
 
-            #region ScanningExcludeByName 4
+            #region ScanningExcludeByName
             Configure.With(AllAssemblies.Except("MyAssembly.dll").And("MyAssembly.dll"));
             #endregion
 
-            #region ScanningIncludeByPattern 4
+            #region ScanningIncludeByPattern
             Configure.With(AllAssemblies.Matching("MyCompany.").And("SomethingElse"));
             #endregion
 
-            #region ScanningMixingIncludeAndExclude 4
+            #region ScanningMixingIncludeAndExclude
             Configure.With(AllAssemblies.Matching("MyCompany.").Except("BadAssembly.dll"));
             #endregion
          

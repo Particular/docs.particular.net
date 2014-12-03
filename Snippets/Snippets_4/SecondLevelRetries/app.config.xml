@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
-  <!-- startcode SecondLevelRetiesAppConfig 4 -->
+  <!-- startcode SecondLevelRetiesAppConfig -->
   <configSections>
     <section name="SecondLevelRetriesConfig"
              type="NServiceBus.Config.SecondLevelRetriesConfig, NServiceBus.Core"/>

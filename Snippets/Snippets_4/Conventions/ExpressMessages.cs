@@ -4,7 +4,7 @@ public class ExpressMessages
 {
     public void Simple()
     {
-        #region ExpressMEssageConvention 4
+        #region ExpressMEssageConvention
 
         var configure = Configure.With()
             .DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
@@ -12,7 +12,7 @@ public class ExpressMessages
         #endregion
     }
 
-    #region ExpressMessageAttribute 4
+    #region ExpressMessageAttribute
     [Express]
     public class MyMessage : IMessage { }
     #endregion

@@ -4,7 +4,7 @@ public class GatewayConfig
 {
     public GatewayConfig()
     {
-        #region GatewayConfiguration 4
+        #region GatewayConfiguration
 
         Configure.Instance.RunGateway();
 
@@ -12,7 +12,7 @@ public class GatewayConfig
 
         IBus Bus = null;
 
-        #region SendToSites 4
+        #region SendToSites
 
         Bus.SendToSites(new[] { "SiteA", "SiteB" }, new MyCrossSiteMessage());
 
