@@ -11,7 +11,7 @@
 
     public class SubscribeToErrorsNotifications : IWantToRunWhenBusStartsAndStops
     {
-        readonly BusNotifications busNotifications;
+        BusNotifications busNotifications;
 
         public SubscribeToErrorsNotifications(BusNotifications busNotifications)
         {

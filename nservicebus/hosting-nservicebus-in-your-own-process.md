@@ -19,7 +19,7 @@ In the `ApplicationStart` method of your Global.asax file in a web application, 
 
 You can now setup the appropriate configuration by calling the methods on the configuration object. For example, to disable second level retries feature:
 
-<!-- import SecondLevelRetriesDisableV5 --> 
+<!-- import SecondLevelRetriesDisable --> 
 
 ## Creating an instance of the bus and starting it
 

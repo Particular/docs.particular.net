@@ -295,6 +295,7 @@
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
     <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
+    <Compile Include="HostIdentifier\HostIdFixer_5_1.cs" />
     <Compile Include="Host\AsAClientEquivalent.cs" />
     <Compile Include="Host\CustomizingHost.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
