@@ -4,7 +4,7 @@ public class EndpointName
 {
     public void Simple()
     {
-        #region EndpointNameFluent 4
+        #region EndpointNameFluent
         
         Configure.With()
             .DefineEndpointName("MyEndpoint");
@@ -13,7 +13,7 @@ public class EndpointName
     }
 }
 
-// startcode EndpointNameByAttribute 4
+// startcode EndpointNameByAttribute
 [EndpointName("MyEndpointName")]
 public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
 {
@@ -21,7 +21,7 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
 // endcode
 }
 
-// startcode EndpointNameByNamespace 4
+// startcode EndpointNameByNamespace
 namespace MyServer
 {
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
