@@ -4,7 +4,7 @@ public class HandlerOrdering
 {
     public void Simple()
     {
-        #region HandlerOrderingWithFluentV4
+        #region HandlerOrderingWithFluent 4
 
         Configure.With()
             .UnicastBus()
@@ -13,7 +13,7 @@ public class HandlerOrdering
         #endregion
     }
 
-    #region HandlerOrderingWithFirstV4
+    #region HandlerOrderingWithFirst 4
     public class MySpecifyingFirst : ISpecifyMessageHandlerOrdering
     {
         public void SpecifyOrder(Order order)
@@ -23,7 +23,7 @@ public class HandlerOrdering
     }
     #endregion
 
-    #region HandlerOrderingWithMultipleV4
+    #region HandlerOrderingWithMultiple 4
     public class MySpecifyingOrder : ISpecifyMessageHandlerOrdering
     {
         public void SpecifyOrder(Order order)

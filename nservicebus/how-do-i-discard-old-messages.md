@@ -13,16 +13,9 @@ To discard a message when a specific time interval has elapsed:
 
 ## Using an Attribute
 
-<!-- import DiscardingOldMessagesWithAnAttributeV4 -->
+<!-- import DiscardingOldMessagesWithAnAttribute -->
 
 ## Using the fluent API
 
-### In Version 4
-
-<!-- import DiscardingOldMessagesWithFluentV4 -->
-
-### In Version 5
-
-<!-- import DiscardingOldMessagesWithFluentV5 -->
-
+<!-- import DiscardingOldMessagesWithFluent -->
 

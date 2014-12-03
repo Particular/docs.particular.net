@@ -75,15 +75,8 @@ license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;201
 </appSettings>
 ```
 
-
 ## Using the Fluent API
 
 As a developer you can specify the license to use in your configuration code:
 
-### Version 4
-
-<!-- import LicenseV4 -->
-
-### Version 5
-
-<!-- import LicenseV5 --> 
+<!-- import License -->

@@ -4,7 +4,7 @@ public class ForInstallationOnReplacement
 {
     public void Simple()
     {
-        #region InstallersV5
+        #region Installers 5
 
         var configuration = new BusConfiguration();
 

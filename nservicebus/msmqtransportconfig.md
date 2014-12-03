@@ -31,7 +31,7 @@ Following settings are purely related to the MSMQ:
 
 From version 4 onwards these settings are configured via a transport connection string (named `nservicebus/transport` for all transports). Before V4 some of these properties could be set via `MsmqMessageQueueConfig` configuration section while other (namely the connectionCache and the ability to use non-transactional queues) were not available prior to V4.
 
-<!-- include MessageQueueConfiguration -->
+<!-- import MessageQueueConfiguration -->
 
 ### Failure handling & throttling
 

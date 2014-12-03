@@ -13,7 +13,7 @@ So given the following mappings:
 <!-- import sqlserver-multidb-messagemapping -->
 
 and the following connection strings:
-
+ 
 <!-- import sqlserver-multidb-connectionstrings -->
 
 the messages sent to `billing` will go to the specific database `Billing` on server `DbServerB` while the messages to `sales` will go to the database and server set by default i.e. `MyDefaultDB` on server `DbServerA`.

@@ -8,7 +8,8 @@ Inherited from `NServiceBus.WcfService<TCommand, TErrorCode>`, as shown below. `
 
 <!-- import ExposeWCFService -->
 
-And finally you need to expiose the wcf service via the config file, for the example above the xml would look somthing like:
+And finally you need to expose the wcf service via the config file, for the example above the xml would look something like:
+
 ```xml
 <system.serviceModel>
   <behaviors>

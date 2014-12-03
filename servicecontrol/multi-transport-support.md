@@ -84,7 +84,7 @@ When deploying using a packaging technology, like Windows Azure Cloud Services p
 
 If you are configuring ServiceControl for use with Windows Azure ServiceBus, you may encounter an error during the above commands because `NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll` has a reference to Microsoft.ServiceBus version 2.2.0.0, but you may be using a later version (via NuGet). The attempted installation will have created a `ServiceControl.exe.config` file, which you can modify, and add an assembly binding redirect section (exactly as NuGet would have done in your main project config file). Once the config file has been updated you can run `ServiceControl.exe --install`
 
-  ```xml
+```xml
 <configuration>
   ...
   <runtime>
@@ -96,4 +96,4 @@ If you are configuring ServiceControl for use with Windows Azure ServiceBus, you
 		</assemblyBinding>
 	</runtime>
 </configuration>
-	```
+```

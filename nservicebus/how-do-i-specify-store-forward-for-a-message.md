@@ -10,14 +10,9 @@ To disable the Store and Forward behaviour, decorate messages with the `[Express
 
 ## Using an Attribute
 
-<!-- import ExpressMessageAttributeV4 -->
+<!-- import ExpressMessageAttribute -->
 
 ## Using conventions
 
-### Version 4
+<!-- import ExpressMessageConvention -->
 
-<!-- import ExpressMessageConventionV4 -->
-
-### Version 5
-
-<!-- import ExpressMessageConventionV5 -->

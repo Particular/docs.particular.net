@@ -4,7 +4,7 @@ public class GatewayConfig
 {
     public GatewayConfig()
     {
-        #region GatewayConfiguration-v4
+        #region GatewayConfiguration 4
 
         Configure.Instance.RunGateway();
 

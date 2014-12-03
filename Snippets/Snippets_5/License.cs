@@ -4,7 +4,7 @@ public class License
 {
     public void Simple()
     {
-        #region LicenseV5
+        #region License 5
      
         var configuration = new BusConfiguration();
 
