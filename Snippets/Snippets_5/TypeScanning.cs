@@ -7,7 +7,6 @@ public class TypeScanning
 {
     public void Simple()
     {
-        // Autofac
         var listOfAssemblies = new List<Assembly>();
         var listOfTypes = new List<Type>();
         string directoryToProbe = null;
