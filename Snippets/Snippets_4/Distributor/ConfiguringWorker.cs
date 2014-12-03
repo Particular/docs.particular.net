@@ -1,15 +1,14 @@
-﻿namespace Snippets_4.Distributor
-{
-    using NServiceBus;
+﻿using NServiceBus;
 
-    class ConfiguringWorker
+class ConfiguringWorker
+{
+    public void Foo()
     {
-        public void Foo()
-        {
-            #region ConfiguringWorker
-            Configure.With()
-                .EnlistWithMSMQDistributor();
-            #endregion
-        }
+        #region ConfiguringWorker
+
+        Configure.With()
+            .EnlistWithMSMQDistributor();
+
+        #endregion
     }
 }

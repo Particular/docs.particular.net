@@ -1,15 +1,12 @@
-﻿namespace Snippets_3.Distributor
-{
-    using NServiceBus;
+﻿using NServiceBus;
 
-    class ConfiguringWorker
+class ConfiguringWorker
+{
+    public void Foo()
     {
-        public void Foo()
-        {
-            #region ConfiguringWorker
-            Configure.With()
-                .EnlistWithDistributor();
-            #endregion
-        }
+        #region ConfiguringWorker
+        Configure.With()
+            .EnlistWithDistributor();
+        #endregion
     }
 }

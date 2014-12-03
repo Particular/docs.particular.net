@@ -1,21 +1,20 @@
-﻿namespace MyServer.Host
+﻿using NServiceBus;
+using NServiceBus.Features;
+
+public class AsAClientEquivalent
 {
-    using NServiceBus;
-    using NServiceBus.Features;
-
-    public class AsAClientEquivalent
+    public AsAClientEquivalent()
     {
-        public AsAClientEquivalent()
-        {
-            #region AsAClientEquivalent-v5
-            var config = new BusConfiguration();
+        #region AsAClientEquivalent-v5
 
-            config.PurgeOnStartup(true);
-            config.Transactions().Disable();
-            config.DisableFeature<SecondLevelRetries>();
-            config.DisableFeature<StorageDrivenPublishing>();
-            config.DisableFeature<TimeoutManager>();
-            #endregion
-        } 
+        var config = new BusConfiguration();
+
+        config.PurgeOnStartup(true);
+        config.Transactions().Disable();
+        config.DisableFeature<SecondLevelRetries>();
+        config.DisableFeature<StorageDrivenPublishing>();
+        config.DisableFeature<TimeoutManager>();
+
+        #endregion
     }
 }
