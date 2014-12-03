@@ -9,20 +9,20 @@ public class SecondLevelRetriesConfig
 
         var configuration = new BusConfiguration();
 
-        #region SecondLevelRetriesDisableV5
+        #region SecondLevelRetriesDisable 5
 
         configuration.DisableFeature<SecondLevelRetries>();
 
         #endregion
 
-        #region SecondLevelRetriesCustomPolicyV5
+        #region SecondLevelRetriesCustomPolicy 5
 
         configuration.SecondLevelRetries().CustomRetryPolicy(MyCustomRetryPolicy);
 
         #endregion
     }
 
-    #region SecondLevelRetriesCustomPolicyHandlerV5
+    #region SecondLevelRetriesCustomPolicyHandler 5
     TimeSpan MyCustomRetryPolicy(TransportMessage message)
     {
         // retry max 3 times

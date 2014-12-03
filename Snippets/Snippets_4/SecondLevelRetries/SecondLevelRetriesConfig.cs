@@ -6,20 +6,20 @@ public class SecondLevelRetriesConfig
 {
     public void Simple()
     {
-        #region SecondLevelRetriesDisableV4
+        #region SecondLevelRetriesDisable 4
 
         Configure.Features.Disable<SecondLevelRetries>();
 
         #endregion
 
-        #region SecondLevelRetriesCustomPolicyV4
+        #region SecondLevelRetriesCustomPolicy 4
 
         Configure.Features.SecondLevelRetries(s => s.CustomRetryPolicy(MyCustomRetryPolicy));
 
         #endregion
     }
 
-    #region SecondLevelRetriesCustomPolicyHandlerV4
+    #region SecondLevelRetriesCustomPolicyHandler 4
     TimeSpan MyCustomRetryPolicy(TransportMessage message)
     {
         // retry max 3 times
