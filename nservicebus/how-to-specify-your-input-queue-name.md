@@ -13,7 +13,7 @@ tags:
 
 When using NServiceBus.Host, the namespace of the class implementing `IConfigureThisEndpoint` will be used as the endpoint name as the default convention. In the following example, the endpoint name when running NServiceBus host becomes `MyServer`. This is the recommended way to name a endpoint. Also this emphasizes convention over configuration approach.
 
-<!-- import EndpointNameByNamespaceV5 -->
+<!-- import EndpointNameByNamespace -->
 
 ### EndpointName attribute
 
@@ -21,7 +21,7 @@ You can set the endpoint name using the `[EndpointName]` attribute on your endpo
 
 NOTE: This will only work when using [NServiceBus host](the-nservicebus-host.md).
     
-<!-- import EndpointNameByAttributeV5 -->  
+<!-- import EndpointNameByAttribute -->  
 
 ### Installation parameter 
 
