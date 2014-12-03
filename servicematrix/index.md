@@ -20,13 +20,7 @@ summary: ServiceMatrix Documentation Table of Contents
 - [Integrating SignalR with ServiceMatrix](getting-started-signalr-2.2.md)
 - [Using the ServiceMatrix Code](customizing-extending.md)
 - [Changing Persistence in a ServiceMatrix Project](servicematrix-persistence.md)
-
-### Licensing
-
 - [Licensing ServiceMatrix](licensing-servicematrix-v2.0.md)
-
-### Troubleshooting
-
 - [Troubleshooting ServiceMatrix](troubleshooting-servicematrix-2.0.md)
 
 ### Presentations and Webinars
