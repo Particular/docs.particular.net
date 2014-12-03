@@ -5,7 +5,7 @@ using NServiceBus;
 using NServiceBus.Serialization;
 
 
-#region RegisterCustomSerializer-V5
+#region RegisterCustomSerializer 5
 public class RegisterCustomSerializer : INeedInitialization
 {
     public void Customize(BusConfiguration configuration)
