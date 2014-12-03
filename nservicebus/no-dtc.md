@@ -75,4 +75,4 @@ This sample shows how to configure an Endpoint that uses SQL Server transport an
 
 ### [Outbox Sample](https://github.com/Particular/NServiceBus.NHibernate/archive/Samples.zip) 
 
-This sample shows how to enable Outbox on an endpoint and how to access the NHIbernate `ISession` for a `Saga` and a `Handler`. 
+This sample shows how to enable Outbox on an endpoint and how to access the NHibernate `ISession` for a `Saga` and a `Handler`. 
