@@ -6,7 +6,7 @@
     {
         public void Foo()
         {
-            #region ConfiguringDistributor-V4
+            #region ConfiguringDistributor
             
             // --------------------------------------
             // Running the Distributor and a Worker

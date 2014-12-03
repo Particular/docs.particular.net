@@ -6,7 +6,7 @@
     {
         public void Foo()
         {
-            #region ConfiguringWorker-V3
+            #region ConfiguringWorker
             Configure.With()
                 .EnlistWithDistributor();
             #endregion

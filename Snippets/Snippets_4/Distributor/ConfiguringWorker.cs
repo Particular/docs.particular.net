@@ -6,7 +6,7 @@
     {
         public void Foo()
         {
-            #region ConfiguringWorker-V4
+            #region ConfiguringWorker
             Configure.With()
                 .EnlistWithMSMQDistributor();
             #endregion

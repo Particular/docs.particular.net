@@ -6,7 +6,7 @@
     {
         public void Foo()
         {
-            #region ConfiguringWorker-V5
+            #region ConfiguringWorker
             var configuration = new BusConfiguration();
             configuration.EnlistWithMSMQDistributor();
             #endregion

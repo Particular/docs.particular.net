@@ -6,7 +6,7 @@
     {
         public void Foo()
         {
-            #region ConfiguringDistributor-V5
+            #region ConfiguringDistributor
             var configuration = new BusConfiguration();
 
             // --------------------------------------

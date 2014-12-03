@@ -6,13 +6,15 @@ using NServiceBus.ObjectBuilder.Common.Config;
 
 public class ContainerCustom
 {
-    // startcode CustomContainersV4
+    // startcode CustomContainers
     public void CustomContainerUsage()
     {
+        //Call `Configure.UsingContainer<T>()` in your configuration
         Configure.With()
             .UsingContainer<MyCustomObjectBuilder>();
     }
 
+    //Create a class that implements `IContainer`
     public class MyCustomObjectBuilder : IContainer
     {
         // endcode

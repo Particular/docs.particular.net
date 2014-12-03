@@ -90,15 +90,10 @@ NServiceBus.Host.exe NServiceBus.Master
 ### When self-hosting
 
 When you [self host](hosting-nservicebus-in-your-own-process.md) your endpoint, use this configuration:
+ 
+<!-- import ConfiguringDistributor -->
 
-For v3:
-<!-- import ConfiguringDistributor-V3 -->
-
-For v4 using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ):
-<!-- import ConfiguringDistributor-V4 -->
-
-For v5:
-<!-- import ConfiguringDistributor-V5 -->
+NOTE: In versions 4 and up use the using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
 ## Worker Configuration
 
@@ -138,14 +133,9 @@ Read about the `DistributorControlAddress` and the `DistributorDataAddress` in t
 
 If you are self-hosting your endpoint here is the code required to enlist the endpoint with a Distributor.
 
-For v3:
-<!-- import ConfiguringWorker-V3 -->
+<!-- import ConfiguringWorker --> 
 
-For v4 using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ):
-<!-- import ConfiguringWorker-V4 -->
-
-For v5:
-<!-- import ConfiguringWorker-V5 -->
+NOTE: In versions 4 and up use the using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
 Similar to self hosting, ensure the `app.config` of the Worker contains the `MasterNodeConfig` section to point to the host name where the master node (and a Distributor) are running.
 
