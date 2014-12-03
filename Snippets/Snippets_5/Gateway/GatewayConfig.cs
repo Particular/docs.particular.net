@@ -5,7 +5,7 @@ public class GatewayConfig
 {
     public GatewayConfig()
     {
-        #region GatewayConfiguration-v5
+        #region GatewayConfiguration 5
 
         var configuration = new BusConfiguration();
 
