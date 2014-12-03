@@ -9,7 +9,6 @@
     {
         public ScanningPublicApiV5()
         {
-            var configuration = new BusConfiguration();
             IEnumerable<Assembly> myListOfAssemblies = null;
 
             Assembly assembly2 = null;
@@ -18,39 +17,37 @@
             IEnumerable<Type> myTypes = null;
 
 
-            #region ScanningListOfAssembliesV5
+            #region ScanningDefault 5
+            var configuration = new BusConfiguration();
+            #endregion
+
+            #region ScanningListOfAssemblies 5
             configuration.AssembliesToScan(myListOfAssemblies);
             #endregion
 
-            #region ScanningParamArrayOfAssembliesV5
+            #region ScanningParamArrayOfAssemblies 5
             configuration.AssembliesToScan(assembly1, assembly2);
             #endregion
 
-
-            #region ScanningCustomDirectoryV5
+            #region ScanningCustomDirectory 5
             configuration.ScanAssembliesInDirectory(@"c:\my-custom-dir");
             #endregion
 
-
-            #region ScanningListOfTypesV5
+            #region ScanningListOfTypes 5
             configuration.TypesToScan(myTypes);
             #endregion
 
-            #region ScanningExcludeByNameV5
+            #region ScanningExcludeByName 5
             configuration.AssembliesToScan(AllAssemblies.Except("MyAssembly.dll").And("MyAssembly.dll"));
             #endregion
 
-            #region ScanningIncludeByPatternV5
+            #region ScanningIncludeByPattern 5
             configuration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").And("SomethingElse"));
             #endregion
 
-
-            #region ScanningMixingIncludeAndExcludeV5
+            #region ScanningMixingIncludeAndExclude 5
             configuration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").Except("BadAssembly.dll"));
             #endregion
-
-            
-            
 
         }
     }
