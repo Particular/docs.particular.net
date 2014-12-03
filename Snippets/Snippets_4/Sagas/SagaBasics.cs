@@ -109,7 +109,7 @@
             public String SomeID { get; set; }
         }
 
-        #region saga-data-v4
+        #region saga-data 4
         public class MySagaData : IContainSagaData
         {
             // the following properties are mandatory

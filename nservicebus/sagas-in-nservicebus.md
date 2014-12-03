@@ -15,17 +15,13 @@ Design processes with more than one remote call to use sagas.
 
 While it may seem excessive at first, the business implications of your system getting out of sync with the other systems it interacts with can be substantial. It's not just about exceptions that end up in your log files.
 
-## Long-running means stateful
+## Long-running means stateful  
 
 Any process that involves multiple network calls (or messages sent and received) has an interim state. That state may be kept in memory, persisted to disk, or stored in a distributed cache; it may be as simple as 'Response 1 received, pending response 2', but the state exists.
 
 Using NServiceBus, you can explicitly define the data used for this state by inheriting from the `ContainSagaData` abstract class. All public get/set properties are persisted by default:
 
-<!-- import saga-data -->
-
-In previous versions you are forced to use `IContainSagaData` interface directly (`ContainSagaData` implements `IContainSagaData`):
-
-<!-- import saga-data-v4 -->
+<!-- import saga-data --> 
 
 There are two production-supported storage mechanisms for saga data in NServiceBus, namely RavenDB and NHibernate. Prior to V5, RavenDB was a default implementation. Since NServiceBus 5, both implementations are equal and the user needs to explicitly chose one.
 
