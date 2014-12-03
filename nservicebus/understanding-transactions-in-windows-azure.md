@@ -146,7 +146,7 @@ Many operations can be designed in a naturally idempotent way. `TurnOntheLights`
 
 ### Entities and messages with version information
 
-Another technique is to add versioning information to your entities (timestamp or versionnumber or the likes) and include that version information whenever a command is sent that would alter the state of said entity. Now the handling logic can compare the versioning information on both the entity and the message and decide whether this logic needs to be executed or not. 
+Another technique is to add versioning information to your entities (timestamp or version number or the likes) and include that version information whenever a command is sent that would alter the state of said entity. Now the handling logic can compare the versioning information on both the entity and the message and decide whether this logic needs to be executed or not. 
 
 The downside of this approach is that the version of the entity can change for different commands, and may therefore cause unexpected outcomes when unrelated commands arrive in a different order than logically sent.
 

@@ -294,7 +294,6 @@
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
     <Compile Include="Distributor\ConfiguringWorker.cs" />
-    <Compile Include="HostIdentifier\HostIdFixerV5_1.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="Host\AsAClientEquivalent.cs" />
     <Compile Include="Host\CustomizingHost.cs" />
