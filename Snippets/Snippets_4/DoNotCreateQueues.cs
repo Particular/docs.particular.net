@@ -5,7 +5,7 @@ public class DoNotCreateQueues
 {
     public void Simple()
     {
-        #region DoNotCreateQueuesV4
+        #region DoNotCreateQueues
         Configure.With().DoNotCreateQueues();
         #endregion
     }

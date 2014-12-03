@@ -7,7 +7,7 @@ public class TransactionConfig
 {
     public void Simple()
     {
-        #region TransactionConfigV5
+        #region TransactionConfig
 
         var configuration = new BusConfiguration();
 

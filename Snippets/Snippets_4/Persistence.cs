@@ -6,7 +6,7 @@ public class Persistence
     public void AllThePersistence()
     {
 
-        #region ConfigurePersistenceV4
+        #region ConfigurePersistence
 
         // Configure to use InMemory 
         Configure.With().InMemorySagaPersister();
