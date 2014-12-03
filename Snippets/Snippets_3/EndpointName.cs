@@ -5,14 +5,12 @@ public class EndpointName
     public void Simple()
     {
         #region EndpointNameFluent
-
-        var configuration = new BusConfiguration();
-
-        configuration.EndpointName("MyEndpoint");
         
+        Configure.With()
+            .DefineEndpointName("MyEndpoint");
+
         #endregion
     }
-
 }
 
 // startcode EndpointNameByAttribute
@@ -21,9 +19,6 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
 {
     // ... your custom config
 // endcode
-    public void Customize(BusConfiguration configuration)
-    {
-    }
 }
 
 // startcode EndpointNameByNamespace
@@ -32,9 +27,6 @@ namespace MyServer
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
     {
         // ... your custom config
-    // endcode
-        public void Customize(BusConfiguration co)
-        {
-        }
+        // endcode
     }
 }

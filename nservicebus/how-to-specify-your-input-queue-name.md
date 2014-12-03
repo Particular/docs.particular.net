@@ -15,7 +15,7 @@ You can define your own convention in the endpoint initialization code using thi
 
 <!-- import EndpointNameFluent -->
 
-## When using the NServiceBus.Host.exe 
+## When using the NServiceBus.Host.exe  
 
 ### Namespace convention
 
