@@ -4,7 +4,6 @@ using System.IO;
 using NServiceBus;
 using NServiceBus.Serialization;
 
-
 public class RegisterCustomSerializer 
 {
     public void Customize()
