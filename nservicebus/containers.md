@@ -21,13 +21,7 @@ Other containers are available on nuget.
 
 ## Configuring NServiceBus to use other containers
 
-### Version 4
-
-<!-- import ContainersV4 -->
-
-### Version 5
-
-<!-- import ContainersV5 -->
+<!-- import Containers -->
 
 ## Plugging in your own container
 
