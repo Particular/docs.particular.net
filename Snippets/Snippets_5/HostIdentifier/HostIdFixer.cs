@@ -1,29 +1,49 @@
-﻿namespace Snippets_4.HostIdentifier
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Security.Cryptography;
+using System.Text;
+using NServiceBus;
+using NServiceBus.Hosting;
+using NServiceBus.Settings;
+using NServiceBus.Unicast;
+#pragma warning disable 618
+
+#region HostIdFixer 5
+public class HostIdFixer : IWantToRunWhenBusStartsAndStops
 {
-    using System;
-    using NServiceBus;
+    UnicastBus bus;
+    ReadOnlySettings settings;
 
-    public class HostIdFixer
+    public HostIdFixer(UnicastBus bus, ReadOnlySettings settings)
     {
-        public void Start()
-        {
-            #region HostIdFixer-V5
+        this.bus = bus;
+        this.settings = settings;
+    }
 
-            var config = new BusConfiguration();
-            config.UniquelyIdentifyRunningInstance()
-                  .UsingNames("endpointName", Environment.MachineName);
-            // or
-            var hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
-            config.UniquelyIdentifyRunningInstance()
-                .UsingCustomIdentifier(hostId);
-            
-            #endregion
-        }
+    public void Start()
+    {
+        var hostId = CreateGuid(Environment.MachineName, settings.EndpointName());
+        var location = Assembly.GetExecutingAssembly().Location;
+        var properties = new Dictionary<string, string>
+                                {
+                                    {"Location",location}
+                                };
+        bus.HostInformation = new HostInformation(hostId, Environment.MachineName, properties);
+    }
 
-        Guid CreateMyUniqueIdThatIsTheSameAcrossRestarts()
+    static Guid CreateGuid(params string[] data)
+    {
+        using (var provider = new MD5CryptoServiceProvider())
         {
-            throw new NotImplementedException();
+            var inputBytes = Encoding.Default.GetBytes(String.Concat(data));
+            var hashBytes = provider.ComputeHash(inputBytes);
+            return new Guid(hashBytes);
         }
     }
-    
+
+    public void Stop()
+    {
+    }
 }
+#endregion

@@ -11,12 +11,10 @@ These extra headers uniquely identify the running host (not to be confused with 
 The defaults are the machine name for `$.diagnostics.hostdisplayname` and for `$.diagnostics.hostid` is a hash of the running executable installed path concatenated with the machine name.
 These defaults mostly work, except in environments where endpoint upgrades are done to a new path or in Azure deployments.
 
-
 ## What is a host identifier used for
 
 The host identifier is used by ServiceControl to map a running endpoint to the host where they are deployed.
 This information is then displayed in ServicePulse so that OPS knows the "host" that an endpoint is deployed to, so they can quick diagnose issues with the host environment.
-
 
 ## When do I need to override a host identifier
 
@@ -27,10 +25,5 @@ Another deployment where it is needed for the user to manage these settings is w
 
 ## How do I override an endpoint host identifier
 
-In v4.4 up to v5.0, the only way to override it is using the following code:
+<!-- import HostIdFixer -->
 
-<!-- import HostIdFixer-V4 -->
-
-From v5.1, there are a few more options to choose from:
-
-<!-- import HostIdFixer-V5 -->
