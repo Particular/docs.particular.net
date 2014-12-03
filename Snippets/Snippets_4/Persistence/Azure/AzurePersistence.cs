@@ -1,19 +1,16 @@
-﻿namespace Snippets_4.Persistence.Azure
+﻿using NServiceBus;
+
+class AzurePersistence
 {
-    using NServiceBus;
-
-    class AzurePersistence
+    public void Demo()
     {
-        public void Demo()
-        {
-            #region PersistanceWithAzure-V4
+        #region PersistanceWithAzure
 
-            Configure.With()
-                .AzureSubscriptionStorage()
-                .AzureSagaPersister()
-                .UseAzureTimeoutPersister();
+        Configure.With()
+            .AzureSubscriptionStorage()
+            .AzureSagaPersister()
+            .UseAzureTimeoutPersister();
 
-            #endregion
-        }
+        #endregion
     }
 }
