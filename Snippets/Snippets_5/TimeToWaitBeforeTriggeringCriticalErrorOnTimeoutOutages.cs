@@ -6,7 +6,7 @@ public class TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
 {
     public void Simple()
     {
-        #region TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages-V5
+        #region TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages 5
 
         var configuration = new BusConfiguration();
 
