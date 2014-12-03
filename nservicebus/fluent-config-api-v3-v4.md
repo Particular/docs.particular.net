@@ -25,7 +25,7 @@ The `With()` method has several overloads, each resulting in the creation of a n
 * `With(params Assembly[] assemblies)`: Initializes a new configuration, scanning all the supplied assemblies; *NOTE*: The supplied assemblies must also contain the NServiceBus binaries;
 * `With(IEnumerable<Type> typesToScan)`: Initializes a new configuration, scanning all the supplied types; *NOTE*: The supplied types must also contain all the NServiceBus types;
 
-**NOTE**:
+{{NOTE:
 
 * Subsequent calls to the `With` method are idempotent and only one configuration is created;
 * The `With` method (and in general the whole configuration API) is not thread safe; when you configure the entry point, make sure it is thread safe, based on the host used:
@@ -33,11 +33,13 @@ The `With()` method has several overloads, each resulting in the creation of a n
 	* For `OWIN`, configure NServiceBus in the `Startup()` method;
 	* For self-hosted `WCF` services, configure NServiceBus before opening the `ServiceHost`;
 
+}}
+
 #### Endpoint Naming
 
 By default, the endpoint name is deduced by the namespace of the assembly that contains the configuration entry point. You can customize the endpoint name via the Fluent Configuration API using the `DefineEndpointName` method:            
 
-* `DefineEndpointName( string endpointName )`: defines the endpoint name using the supplied string; 
+* `DefineEndpointName(string endpointName)`: defines the endpoint name using the supplied string; 
 
 NOTE: If you need to customize the endpoint name via code using the `DefineEndpointName` method, it is important to call it first, right after the `With()` configuration entry point.
 
