@@ -1,4 +1,4 @@
-﻿namespace Snippets_4.WCF
+﻿namespace WCF
 {
     using NServiceBus;
 
