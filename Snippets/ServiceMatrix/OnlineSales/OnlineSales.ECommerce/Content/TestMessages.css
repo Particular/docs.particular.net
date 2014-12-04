@@ -1,0 +1,41 @@
+﻿.sidebar {
+    width: 100%; 
+    float: none; 
+    margin: 10px; 
+    text-align: center;
+    padding-top: 30px;
+}
+
+.sidebar .button{
+    float: none; 
+    padding: 0px;
+}
+
+.sidebar .label {
+    padding: 0px;
+}
+
+.sendMessage {
+    border: 2px solid #0071a0; 
+    line-height: 35px; 
+    width: 75%; 
+    margin: 0px auto;
+    margin-bottom: 20px;
+}
+
+.sendMessage h2 {
+    margin: 0px; 
+    background-color: #00a3c4; 
+    border-bottom: 5px solid #0071a0; 
+    color: white; 
+    line-height: 45px; 
+    font-size: 16px;
+}
+
+.sendMessage table {
+    margin: 0px auto;
+}
+
+.sendMessage a {
+    cursor: pointer;
+}

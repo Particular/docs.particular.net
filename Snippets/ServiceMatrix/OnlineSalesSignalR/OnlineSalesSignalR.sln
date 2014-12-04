@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D8EFFE86-1E66-461C-BF5C-A3EC91425741}"
+	ProjectSection(SolutionItems) = preProject
+		OnlineSalesSignalR.guidancestate = OnlineSalesSignalR.guidancestate
+		OnlineSalesSignalR.slnbldr = OnlineSalesSignalR.slnbldr
+		ServiceMatrixVersion.txt = ServiceMatrixVersion.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineSalesSignalR.Contracts", "OnlineSalesSignalR.Contracts\OnlineSalesSignalR.Contracts.csproj", "{E8311BF3-680F-42AE-A872-E173D42DF88C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineSalesSignalR.Internal", "OnlineSalesSignalR.Internal\OnlineSalesSignalR.Internal.csproj", "{C0A3BEB9-C906-4222-8950-AFC1B0E0D2BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineSalesSignalR.ECommerce", "OnlineSalesSignalR.ECommerce\OnlineSalesSignalR.ECommerce.csproj", "{7D2731CD-3541-4497-8264-0390D80AD28C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineSalesSignalR.Billing", "OnlineSalesSignalR.Billing\OnlineSalesSignalR.Billing.csproj", "{220C0542-4EA6-4B83-A65D-5575174596F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8311BF3-680F-42AE-A872-E173D42DF88C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8311BF3-680F-42AE-A872-E173D42DF88C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8311BF3-680F-42AE-A872-E173D42DF88C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8311BF3-680F-42AE-A872-E173D42DF88C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0A3BEB9-C906-4222-8950-AFC1B0E0D2BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0A3BEB9-C906-4222-8950-AFC1B0E0D2BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0A3BEB9-C906-4222-8950-AFC1B0E0D2BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0A3BEB9-C906-4222-8950-AFC1B0E0D2BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D2731CD-3541-4497-8264-0390D80AD28C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D2731CD-3541-4497-8264-0390D80AD28C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D2731CD-3541-4497-8264-0390D80AD28C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D2731CD-3541-4497-8264-0390D80AD28C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{220C0542-4EA6-4B83-A65D-5575174596F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{220C0542-4EA6-4B83-A65D-5575174596F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{220C0542-4EA6-4B83-A65D-5575174596F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{220C0542-4EA6-4B83-A65D-5575174596F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		GuidanceWorkflows = 23795EC3-3DEA-4F04-9044-4056CF91A2ED:ServiceMatrix Guidance:2.2.1
+	EndGlobalSection
+EndGlobal

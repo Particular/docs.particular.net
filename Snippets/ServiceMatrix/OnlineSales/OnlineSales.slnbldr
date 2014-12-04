@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<productState xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.2.0.0" Id="fd3b3b73-2afc-46e4-83f0-f8e04ec6d36b" xmlns="http://schemas.microsoft.com/visualstudio/patterning/runtime/productstate">
+  <products>
+    <product Id="8ae8654a-352a-4f5a-8581-5efb3b2b5576" definitionId="2c52bbfe-442d-4f40-8f6f-7df75dd99cac" definitionName="Application" instanceName="OnlineSales" extensionId="23795EC3-3DEA-4F04-9044-4056CF91A2ED" extensionName="ServiceMatrix" author="Particular Software" version="2.2.1">
+      <properties>
+        <property Id="9c73832a-cc4f-4470-8b9e-9f2e922f81a9" definitionId="fad5bb76-e58a-4d6f-a4dd-4d460d1d56e5" definitionName="ForwardReceivedMessagesTo" rawValue="audit" />
+        <property Id="93deb423-e671-4987-8ff3-3d99266c0112" definitionId="2d4e9c90-92f5-4b3b-a413-49796b498035" definitionName="ErrorQueue" rawValue="error" />
+        <property Id="37a268ea-d420-4e8a-9ef4-711d6b1a5dc4" definitionId="8823a0ac-36e9-47a6-9007-705cd12080a8" definitionName="NServiceBusVersion" rawValue="4.3.0" />
+        <property Id="23c807f1-6106-4e0f-8e95-729413dc3aca" definitionId="0580d214-a417-4747-b859-2ad7596b5092" definitionName="ExtensionPath" rawValue="C:\USERS\DPROTHERO\APPDATA\LOCAL\MICROSOFT\VISUALSTUDIO\12.0\EXTENSIONS\FQFAOI1P.Z25\" />
+        <property Id="b7ea3171-50ee-4b95-8df0-ab490bf4d6dd" definitionId="d8ea971b-49de-4972-8560-f404017d8b83" definitionName="Transport" rawValue="Msmq" />
+        <property Id="7e369745-2dd8-43b1-a001-72a31dd3d612" definitionId="854c4ee6-e91f-4e5a-b3b1-a305eee860cb" definitionName="TransportConnectionString" />
+        <property Id="c7faa443-e358-488e-a9f4-0a7945d4184b" definitionId="744106ae-5a52-49c2-973c-2f592e18f74c" definitionName="CompanyLogo" />
+        <property Id="1c3b86e6-1823-429a-8c4b-f8d9f095146c" definitionId="a8525853-f598-4912-91b7-22f6f70aad2f" definitionName="Title" rawValue="OnlineSales" />
+        <property Id="1f593705-7354-4a09-adc6-8544ff4e17d5" definitionId="7096419d-5f7a-4901-9ec5-c4b5de4ff570" definitionName="ToolkitVersion" rawValue="2.2.1" />
+        <property Id="81ecdd9e-27dd-47ae-bed9-a92d09d861cd" definitionId="44ae36f7-a899-4e23-8611-f08ce41c85ff" definitionName="ProjectNameInternalMessages" rawValue="Internal" />
+        <property Id="a4b03ad1-fb56-4f8e-8521-a5dc89273485" definitionId="0f48a4d8-72c6-46c0-9d02-0fec854ec573" definitionName="ProjectNameContracts" rawValue="Contracts" />
+        <property Id="e033efd4-d0e8-4242-8893-8683124c7bd3" definitionId="6f1b4d42-33f8-41b0-a013-57013927d546" definitionName="ProjectNameCode" rawValue="Code" />
+        <property Id="6e94f727-09e8-4c53-8129-d26ec83615d8" definitionId="a5c36b54-f61a-425e-8e40-d49b951eec4c" definitionName="LicensedVersion" rawValue="False" />
+        <property Id="822db34f-b496-4a79-b010-879e5af511d0" definitionId="f754071a-321c-40dd-a177-0e1ef12143bb" definitionName="ServiceControlEndpointPluginVersion" rawValue="0.8.0-Unstable0210" />
+        <property Id="654562d7-fcce-49e4-a0ea-fc371918817d" definitionId="b943e76d-90d1-45d2-b98b-bf2986088bff" definitionName="ServiceControlInstanceURI" rawValue="http://localhost:33333/api" />
+        <property Id="e8a1194a-7281-405b-bdbb-44faa784e2a1" definitionId="1ed83bc3-ef51-4efc-b8d1-128afc800298" definitionName="LaunchServiceInsightOnDebug" rawValue="True" />
+        <property Id="3048fe50-b487-4de7-86bb-d5e6c74b5cf0" definitionId="ede73009-77d7-438f-8a53-cad296db531f" definitionName="TargetNsbVersion" rawValue="NSB 5.0" />
+        <property Id="52f4e4f2-ff8c-49d0-b82f-0f5bcde72dfe" definitionId="58f462bd-3e26-41e2-81be-43969034fd41" definitionName="TargetFrameworkVersion" rawValue="4.5" />
+      </properties>
+      <references>
+        <reference Id="efc3567a-ab4b-4633-bf04-9083506fc813" value="ServiceMatrix Guidance" kind="NuPattern.Runtime.References.GuidanceReference" />
+      </references>
+      <views>
+        <view Id="33f3b656-bd4d-4fe1-8892-c1700d093f55" definitionId="6bc9143a-3e32-4dee-b950-2aa11e4c5f5d" definitionName="Design">
+          <elements>
+            <collection Id="518d21c3-bce6-443b-ad99-d010bae80bcf" definitionId="25802dff-4552-4b8a-9fec-4943a9f20c26" definitionName="Services" instanceName="Services">
+              <elements>
+                <element Id="8ee8f4ce-6ad6-45e9-a0fd-47d716290c56" definitionId="4aac6b0a-1178-4761-ac92-d2989a83335b" definitionName="Service" instanceName="Sales">
+                  <elements>
+                    <collection Id="43b5bef0-d048-4d3c-a3d8-683e95020bdb" definitionId="14dd0a39-32b5-4814-9ed5-4279aba392af" definitionName="Contract" instanceName="Contract">
+                      <elements>
+                        <collection Id="2d10d3c8-586d-480d-a051-a7797b4a2df3" definitionId="6b6c2df4-f261-4d62-819f-70e170c196ca" definitionName="Events" instanceName="Events">
+                          <properties>
+                            <property Id="9fc109f6-d863-4bba-be39-05df82f71a4f" definitionId="33af7451-bb69-4898-932b-245a595d9551" definitionName="Namespace" rawValue="OnlineSales.Contracts.Sales" />
+                          </properties>
+                          <elements>
+                            <element Id="82c623e5-166d-476d-8286-5c15f1ea2fb3" definitionId="f06eaa91-971c-42ee-a7cb-eaa77a97dbdd" definitionName="Event" instanceName="OrderAccepted">
+                              <properties>
+                                <property Id="d801a964-7089-484d-8718-31413a165ba0" definitionId="1236f913-5219-4a1a-985d-0a936ac82306" definitionName="DoNotAutogenerateComponents" rawValue="False" />
+                              </properties>
+                              <references>
+                                <reference Id="79fe5fa2-8d62-4e1b-a9f4-d864cfd0f6da" value="solution://d28fd132-7070-4e07-a7f6-bfb018fe23fa/ed10d549-29e8-4fb7-9e82-34f6ad5f4c51" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;0757e840-a92f-4f7c-ade6-a9bc878796d4&quot;&#xD;&#xA;}" />
+                              </references>
+                            </element>
+                          </elements>
+                        </collection>
+                        <collection Id="4e3e728f-fe85-47de-97ca-3a7ea4927eb4" definitionId="fa52a7b2-5908-451e-a185-4eb52d4e6343" definitionName="Commands" instanceName="Commands">
+                          <properties>
+                            <property Id="23c8c6bc-79a0-4731-b6fb-dcaf217a39be" definitionId="480d695b-e1f8-4869-adef-bd2aa2a2db53" definitionName="Namespace" rawValue="OnlineSales.Internal.Commands.Sales" />
+                          </properties>
+                          <elements>
+                            <element Id="118fd088-dac3-4d8b-bce9-2d51af53e5a5" definitionId="c2f83a83-1117-43d5-b427-3ede53888fa4" definitionName="Command" instanceName="SubmitOrder">
+                              <properties>
+                                <property Id="14340bf7-35da-41f7-9e70-549e374ab035" definitionId="4167ef6f-215b-4967-8116-4cf5eac26e5c" definitionName="DoNotAutogenerateComponents" rawValue="False" />
+                                <property Id="3e2d6fe1-ec15-44cf-b927-28e2e9db3119" definitionId="c5331f25-ac8e-4484-83f7-fd916a74269f" definitionName="DoNotAutogenerateSenderComponent" rawValue="False" />
+                              </properties>
+                              <references>
+                                <reference Id="b06bca06-6aed-4b79-af24-342dee256fa3" value="solution://2861c6f1-bc41-4364-94ab-7ba6b50f70d6/3a9906ea-d616-4c57-af86-5f8de533faf7" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;e0cce5ad-fee6-4711-89d3-01a04457a8f0&quot;&#xD;&#xA;}" />
+                              </references>
+                            </element>
+                          </elements>
+                        </collection>
+                        <collection Id="a55748d2-6941-45f1-bf47-dd9e2d0f0227" definitionId="70cc6b8d-e54b-45a0-a7af-9ecf3dee7b5d" definitionName="Messages" instanceName="Messages">
+                          <properties>
+                            <property Id="310f760f-1757-4c22-91cc-ccf9f8433250" definitionId="886284e5-4f80-4b1b-ac4c-5e2e1874e64d" definitionName="Namespace" rawValue="OnlineSales.Internal.Messages.Sales" />
+                          </properties>
+                        </collection>
+                      </elements>
+                    </collection>
+                    <collection Id="7a43b2f2-3bc7-412a-b187-4a590dde6b0b" definitionId="54f49375-e376-4668-94e0-df31f6184f56" definitionName="Components" instanceName="Components">
+                      <elements>
+                        <element Id="4bd9622b-0afd-43c8-a52f-1b99a2e65292" definitionId="f1e3bdfb-c55d-4600-b1bc-d12c8b27318f" definitionName="Component" instanceName="SubmitOrderSender">
+                          <properties>
+                            <property Id="a3fc747b-cb49-497f-aba6-99f055283d0b" definitionId="304a32af-b6be-4401-a3f1-c30c3d107cf2" definitionName="Namespace" rawValue="OnlineSales.Sales" />
+                            <property Id="b6267729-f255-4bb9-a841-68161a37bd82" definitionId="b85a7c13-b983-4252-90ef-9eaf8be1146d" definitionName="AdditionalUsings" rawValue="using OnlineSales.Internal.Commands.Sales;&#xD;&#xA;" />
+                            <property Id="cb2297ad-7a74-4e4c-b439-fa68174e13b2" definitionId="6ff7444a-d751-42e4-9233-98a97c2b95b7" definitionName="Inherits" rawValue=": ISubmitOrderSender, ServiceMatrix.Shared.INServiceBusComponent" />
+                            <property Id="70831935-a54c-4283-bd95-9230f6c8415d" definitionId="f8f807c4-03ba-4cfb-ad60-583be21676c4" definitionName="ClassBody" rawValue="&#xD;&#xA;        public void Send(SubmitOrder message)&#xD;&#xA;        {&#xD;&#xA;            ConfigureSubmitOrder(message);&#xD;&#xA;            Bus.Send(message);&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        partial void ConfigureSubmitOrder(SubmitOrder message);&#xD;&#xA;&#xD;&#xA;        public IBus Bus { get; set; }&#xD;&#xA;" />
+                            <property Id="fee330e1-c4dd-4dc3-97dd-fb0af3c8a7db" definitionId="4b413384-c62a-45a7-87dc-d8542bae3618" definitionName="CustomClassBody" />
+                            <property Id="e98c85ff-b5a6-4dde-86f3-6bd010d5de62" definitionId="61fc0cf8-b810-4091-8212-5441b8e67513" definitionName="IsSaga" rawValue="False" />
+                            <property Id="5dce6a1d-3b18-4f0b-b069-5d56b266b437" definitionId="5b80c9f7-44e6-4acc-a9db-1be527d89f81" definitionName="InterfaceBody" rawValue="&#xD;&#xA;        void Send(SubmitOrder message);&#xD;&#xA;" />
+                            <property Id="7d1b37cf-46f7-45f9-88db-5212095cde5a" definitionId="3da71921-7816-4280-a945-eaf182cb8ab9" definitionName="ConfigureHowToFindSagaBody" rawValue="&#xD;&#xA;" />
+                            <property Id="81225fca-ae4d-4845-aae6-a0e680a41b08" definitionId="640126ae-7c81-42e4-bbe6-d685270cae55" definitionName="UnfoldedCustomCode" rawValue="True" />
+                            <property Id="1dd9c571-97b7-4764-809c-da49fe1b599b" definitionId="0f96bb02-ec3e-4a5d-bc5d-d0518afea0aa" definitionName="IsBroadcastingViaSignalR" rawValue="False" />
+                          </properties>
+                          <references>
+                            <reference Id="37f78c90-b2bf-4013-b8fe-a80ec30cedb4" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/40088b65-d01e-4f45-b144-ff978160f4a7" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;0fa0f1e3-2a8d-4e12-b629-9012e20354ad&quot;&#xD;&#xA;}" />
+                            <reference Id="7a867645-ef92-4aff-a46b-f0048bacf3fc" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/ed4fb91e-4d1e-4ebb-b4bd-4ef50d6b2dd1" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;36939d09-f7c3-45f5-881c-3908f1476ab4&quot;&#xD;&#xA;}" />
+                          </references>
+                          <elements>
+                            <collection Id="80e530df-e478-4dc2-b22d-0cf4d18fa47c" definitionId="318cc384-e8ba-465f-8469-1235fce91ef0" definitionName="Publishes" instanceName="Publishes / Sends">
+                              <elements>
+                                <element Id="d0eeed9a-97a4-42a6-96f0-e4f6d95d9330" definitionId="0d8a0645-22b8-48e8-be8c-774c7fc5442d" definitionName="CommandLink" instanceName="SubmitOrder">
+                                  <properties>
+                                    <property Id="73b5f4df-007c-4847-902d-ee90d03db397" definitionId="3c664bf2-ab15-4c03-ba95-1c753da1b1eb" definitionName="CommandId" rawValue="118fd088-dac3-4d8b-bce9-2d51af53e5a5" />
+                                    <property Id="fdbcfa36-0712-4bbd-a624-31240fb418a7" definitionId="f428580a-cc0d-48dd-892d-4415510233e4" definitionName="CommandName" rawValue="SubmitOrder" />
+                                    <property Id="6bb1146b-3d38-4660-bb14-8fe2094475bb" definitionId="8d360b93-c5cd-4084-97e0-ba1596e571e9" definitionName="Namespace" rawValue="OnlineSales.Sales" />
+                                    <property Id="8a18d42b-0ee5-4bac-9436-219ec9f4ccaa" definitionId="59e50f56-3448-4a47-8ff5-a0846dcaa402" definitionName="ComponentName" rawValue="SubmitOrderSender" />
+                                    <property Id="03671499-460d-48b5-ba4f-ca74718cae40" definitionId="60e718ea-738d-43d5-adad-9ae862e48daf" definitionName="ComponentBaseType" rawValue="ISubmitOrderSender, ServiceMatrix.Shared.INServiceBusComponent" />
+                                    <property Id="2cfc54a9-b11d-485e-bd05-5ee37f7a3a42" definitionId="5e1f5709-c400-4dd6-8ea3-a024d79212cc" definitionName="SenderNeedsRegistration" rawValue="False" />
+                                  </properties>
+                                </element>
+                              </elements>
+                            </collection>
+                            <collection Id="14f1f3f3-ca69-426e-9f1c-ee725b0391c8" definitionId="ffcf83ed-8aca-42ea-bebd-af35d17f23be" definitionName="Subscribes" instanceName="Subscribes / Processes" />
+                          </elements>
+                        </element>
+                        <element Id="501bd5a2-9d65-48f6-8ce5-7560de5fb0cf" definitionId="f1e3bdfb-c55d-4600-b1bc-d12c8b27318f" definitionName="Component" instanceName="SubmitOrderHandler">
+                          <properties>
+                            <property Id="e4860cbc-e128-412c-8ddd-28a8fd3e7e14" definitionId="304a32af-b6be-4401-a3f1-c30c3d107cf2" definitionName="Namespace" rawValue="OnlineSales.Sales" />
+                            <property Id="4d68774e-e3ad-4fa3-a4d5-2419014a9b0b" definitionId="b85a7c13-b983-4252-90ef-9eaf8be1146d" definitionName="AdditionalUsings" rawValue="using OnlineSales.Internal.Commands.Sales;&#xD;&#xA;" />
+                            <property Id="02bb86ed-616a-4407-9333-a8a1292b32ce" definitionId="6ff7444a-d751-42e4-9233-98a97c2b95b7" definitionName="Inherits" rawValue=": IHandleMessages&lt;SubmitOrder&gt;" />
+                            <property Id="8f193988-1a66-4dff-b7ae-06c2b051e4ed" definitionId="f8f807c4-03ba-4cfb-ad60-583be21676c4" definitionName="ClassBody" rawValue="&#xD;&#xA;&#x9;&#x9;public void Handle(SubmitOrder message)&#xD;&#xA;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;// Handle message on partial class&#xD;&#xA;&#x9;&#x9;&#x9;this.HandleImplementation(message);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;partial void HandleImplementation(SubmitOrder message);&#xD;&#xA;&#xD;&#xA;        public IBus Bus { get; set; }&#xD;&#xA;" />
+                            <property Id="3c2e7e70-ab3a-4d91-bb95-04365baca23f" definitionId="4b413384-c62a-45a7-87dc-d8542bae3618" definitionName="CustomClassBody" rawValue="&#xD;&#xA;        partial void HandleImplementation(SubmitOrder message)&#xD;&#xA;        {&#xD;&#xA;            // TODO: SubmitOrderHandler: Add code to handle the SubmitOrder message.&#xD;&#xA;            Console.WriteLine(&quot;Sales received &quot; + message.GetType().Name);&#xD;&#xA;&#xD;&#xA;            var orderAccepted = new OnlineSales.Contracts.Sales.OrderAccepted();&#xD;&#xA;            Bus.Publish(orderAccepted);&#xD;&#xA;        }&#xD;&#xA;" />
+                            <property Id="6cf3d4dc-4af1-482f-84b6-d81b24dfb632" definitionId="61fc0cf8-b810-4091-8212-5441b8e67513" definitionName="IsSaga" rawValue="False" />
+                            <property Id="ef5bef88-85fc-4b07-9a26-38234a97840a" definitionId="5b80c9f7-44e6-4acc-a9db-1be527d89f81" definitionName="InterfaceBody" rawValue="&#xD;&#xA;" />
+                            <property Id="3b64465c-da42-4678-9316-740a9ea86639" definitionId="3da71921-7816-4280-a945-eaf182cb8ab9" definitionName="ConfigureHowToFindSagaBody" rawValue="&#xD;&#xA;" />
+                            <property Id="0da1ae8d-d00c-4601-b43d-96c72ab95ef1" definitionId="640126ae-7c81-42e4-bbe6-d685270cae55" definitionName="UnfoldedCustomCode" rawValue="True" />
+                            <property Id="54b4f054-ba6d-49cf-8d09-6565e21eac60" definitionId="0f96bb02-ec3e-4a5d-bc5d-d0518afea0aa" definitionName="IsBroadcastingViaSignalR" rawValue="False" />
+                          </properties>
+                          <references>
+                            <reference Id="03ea51b9-df9e-42cb-b617-961d5aa3fd27" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/7b674cce-af49-4a6a-aee0-34596d67c89a" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;0fa0f1e3-2a8d-4e12-b629-9012e20354ad&quot;&#xD;&#xA;}" />
+                            <reference Id="eeaae06a-1dbf-4a5f-b4ee-8028efca3d28" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/af04f7b6-b855-4974-a80c-71db708e87fd" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;36939d09-f7c3-45f5-881c-3908f1476ab4&quot;&#xD;&#xA;}" />
+                          </references>
+                          <elements>
+                            <collection Id="2136e365-b917-4300-a4d1-06ff894c13bb" definitionId="318cc384-e8ba-465f-8469-1235fce91ef0" definitionName="Publishes" instanceName="Publishes / Sends">
+                              <elements>
+                                <element Id="eb967110-c2a2-491d-9a34-a3c3dbe597c0" definitionId="999b0f01-0b06-4b91-87aa-c8b7fb276c46" definitionName="EventLink" instanceName="OrderAccepted">
+                                  <properties>
+                                    <property Id="19612e4c-af07-41fd-9bd7-20f47786bbc2" definitionId="8f746710-e3d3-495d-a824-3192f8fe723d" definitionName="EventId" rawValue="82c623e5-166d-476d-8286-5c15f1ea2fb3" />
+                                    <property Id="02d9be5f-3550-492b-a389-ceba3a39d34d" definitionId="14abd907-ac70-44db-83eb-3b10fe5d8b17" definitionName="EventName" rawValue="OrderAccepted" />
+                                    <property Id="ea4b95ab-464f-4573-98fb-13fcea9487ca" definitionId="16c22281-f2c1-49f5-ae4a-6b37ec08e1bf" definitionName="Namespace" rawValue="OnlineSales.Sales" />
+                                    <property Id="a9ed7498-8bed-49c1-a09b-b67bd2401f9e" definitionId="9df92f68-33bc-4a00-aa34-2da1e40ac7b3" definitionName="ComponentName" rawValue="SubmitOrderHandler" />
+                                  </properties>
+                                </element>
+                              </elements>
+                            </collection>
+                            <collection Id="7413afdd-2171-4148-8dc8-b604661f460c" definitionId="ffcf83ed-8aca-42ea-bebd-af35d17f23be" definitionName="Subscribes" instanceName="Subscribes / Processes">
+                              <elements>
+                                <element Id="d1fdaced-d271-472d-9564-43efdf7ea0e5" definitionId="1362e8eb-d279-4f17-82a0-97504b493ab3" definitionName="ProcessedCommandLink" instanceName="SubmitOrder">
+                                  <properties>
+                                    <property Id="76e2af6b-2660-4858-82d5-53e0c4bdc09b" definitionId="bb37f0f8-13a2-4b26-8b00-f900c5c42e37" definitionName="CommandId" rawValue="118fd088-dac3-4d8b-bce9-2d51af53e5a5" />
+                                    <property Id="d115d52f-55fb-4988-ba50-89647df24960" definitionId="30899b31-2dfa-4a01-a00a-e86c90b4bf5d" definitionName="CommandName" rawValue="SubmitOrder" />
+                                    <property Id="b9062004-47c7-4016-b9c3-581964ba95ef" definitionId="ab1926d8-63cc-4404-89fc-db24e1a18f3d" definitionName="Namespace" rawValue="OnlineSales.Sales" />
+                                    <property Id="1238df02-b339-4aef-9fea-b2626f9a1a3d" definitionId="9a3afb25-11d0-40d5-a5a7-c580ecf96d28" definitionName="PublishesAnEvent" rawValue="True" />
+                                    <property Id="ae2af5a8-f40a-4bc7-ac55-1598ed20b017" definitionId="f0e71c5e-3f90-4257-b86d-546f78e97196" definitionName="CommandCodeIdentifier" rawValue="SubmitOrder" />
+                                    <property Id="ced426bb-4f75-462d-9438-324a18cc625b" definitionId="02d7bc46-2773-4929-8db8-71a2bba5bfb3" definitionName="StartsSaga" rawValue="False" />
+                                  </properties>
+                                </element>
+                              </elements>
+                            </collection>
+                          </elements>
+                        </element>
+                        <element Id="a7365f7f-254f-4000-b41b-807d1a45df27" definitionId="f1e3bdfb-c55d-4600-b1bc-d12c8b27318f" definitionName="Component" instanceName="BillingCompletedHandler">
+                          <properties>
+                            <property Id="3aa5249c-b423-4a79-9fa2-872583ec7bea" definitionId="304a32af-b6be-4401-a3f1-c30c3d107cf2" definitionName="Namespace" rawValue="OnlineSales.Sales" />
+                            <property Id="c91f9e68-ae25-4aad-a377-d1b4e955b177" definitionId="b85a7c13-b983-4252-90ef-9eaf8be1146d" definitionName="AdditionalUsings" rawValue="using OnlineSales.Contracts.Billing;&#xD;&#xA;" />
+                            <property Id="e720a55d-06aa-49a5-b66c-c499e7a56c3c" definitionId="6ff7444a-d751-42e4-9233-98a97c2b95b7" definitionName="Inherits" rawValue=": IHandleMessages&lt;BillingCompleted&gt;" />
+                            <property Id="99718108-be98-4c8b-9af0-9fe70bbcfb2c" definitionId="f8f807c4-03ba-4cfb-ad60-583be21676c4" definitionName="ClassBody" rawValue="&#xD;&#xA;&#x9;&#x9;public void Handle(BillingCompleted message)&#xD;&#xA;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;// Handle message on partial class&#xD;&#xA;&#x9;&#x9;&#x9;this.HandleImplementation(message);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;partial void HandleImplementation(BillingCompleted message);&#xD;&#xA;&#xD;&#xA;        public IBus Bus { get; set; }&#xD;&#xA;" />
+                            <property Id="96117d13-44ff-4c20-84b3-8be2e8a33387" definitionId="4b413384-c62a-45a7-87dc-d8542bae3618" definitionName="CustomClassBody" rawValue="&#xD;&#xA;        partial void HandleImplementation(BillingCompleted message)&#xD;&#xA;        {&#xD;&#xA;            // TODO: BillingCompletedHandler: Add code to handle the BillingCompleted message.&#xD;&#xA;            Console.WriteLine(&quot;Sales received &quot; + message.GetType().Name);&#xD;&#xA;        }&#xD;&#xA;" />
+                            <property Id="5008e221-c890-487c-add1-24207c49b014" definitionId="61fc0cf8-b810-4091-8212-5441b8e67513" definitionName="IsSaga" rawValue="False" />
+                            <property Id="e79f37d3-9361-48b0-8d75-6b59bdaeab67" definitionId="5b80c9f7-44e6-4acc-a9db-1be527d89f81" definitionName="InterfaceBody" rawValue="&#xD;&#xA;" />
+                            <property Id="9fcb3b40-4415-46bc-b3d9-4a83ec3f3b9b" definitionId="3da71921-7816-4280-a945-eaf182cb8ab9" definitionName="ConfigureHowToFindSagaBody" rawValue="&#xD;&#xA;" />
+                            <property Id="435e0425-0fd8-42d1-bac5-953b16e153c3" definitionId="640126ae-7c81-42e4-bbe6-d685270cae55" definitionName="UnfoldedCustomCode" rawValue="True" />
+                            <property Id="f7e52a96-7390-4619-9a46-7ffb30fd5b3b" definitionId="0f96bb02-ec3e-4a5d-bc5d-d0518afea0aa" definitionName="IsBroadcastingViaSignalR" rawValue="True" />
+                          </properties>
+                          <references>
+                            <reference Id="642d74eb-fd69-427e-b70a-2b2453aa7198" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/3dff5b92-debc-4520-97e9-c38a52c3a435" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;SignalRHubsFor{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;c9a984c3-c0d6-46f5-a050-6d5be1b736ab&quot;&#xD;&#xA;}" />
+                            <reference Id="004498b9-f199-421e-b7b9-af2db7209f0d" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/490585be-349e-46ba-904d-6a019a56b279" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;SignalRBroadcastFor{InstanceName}&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;c6563779-ff3e-40aa-99ac-361aa452505e&quot;&#xD;&#xA;}" />
+                            <reference Id="b87a7fca-d984-480d-a695-84a27b93b09c" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/6b4a4162-d214-4d5e-be11-3dad15b644b7" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;guidance.css&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;e93fc2e2-16a2-4c0e-a00c-811c37b50275&quot;&#xD;&#xA;}" />
+                            <reference Id="7554de39-8ef8-4f66-9059-0fa3dcd70ad0" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/8576d03e-d750-44de-9e05-6873ad8c6cd0" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;highlight.css&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;dd29ea6e-3409-4f85-a33a-0a1b19b3afe1&quot;&#xD;&#xA;}" />
+                            <reference Id="08b800fd-fc7e-45ea-bd7e-17db370885f3" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/d03cca56-3aa0-49dd-b431-a5e4663e1180" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;highlight.js&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;bdfe1fc9-0f8b-41f3-a746-aa60417884b5&quot;&#xD;&#xA;}" />
+                            <reference Id="6ce31618-49a5-4cdb-bd87-a1e8c1bd7517" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/535f46ce-29ad-4f01-bdd8-9c9e8a24c5fd" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;0fa0f1e3-2a8d-4e12-b629-9012e20354ad&quot;&#xD;&#xA;}" />
+                            <reference Id="8a3baa35-45c5-4e91-9df3-7852a1b7b6ba" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/47df7a1e-13f3-44ca-8329-be85745897c4" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;36939d09-f7c3-45f5-881c-3908f1476ab4&quot;&#xD;&#xA;}" />
+                          </references>
+                          <elements>
+                            <collection Id="6619e1cf-d20c-42e0-918b-fcea43c3af3a" definitionId="318cc384-e8ba-465f-8469-1235fce91ef0" definitionName="Publishes" instanceName="Publishes / Sends" />
+                            <collection Id="c77e5786-223c-40dd-9995-85338a44152a" definitionId="ffcf83ed-8aca-42ea-bebd-af35d17f23be" definitionName="Subscribes" instanceName="Subscribes / Processes">
+                              <elements>
+                                <element Id="3f0877c2-584a-4db7-913d-12fc818d0ebb" definitionId="75f698c0-fb68-4f37-b015-82cd5a1e367c" definitionName="SubscribedEventLink" instanceName="BillingCompleted">
+                                  <properties>
+                                    <property Id="c796187f-7120-4643-abfd-0919f9f20184" definitionId="26053fc0-a090-4d84-bf92-1f55771ab211" definitionName="EventId" rawValue="456db540-acde-4afa-a59f-b83b8a09985d" />
+                                    <property Id="0273b44e-e2d7-46f5-88d3-21265c87c214" definitionId="d1d77316-ca0b-4f89-a8af-ff8ff631b911" definitionName="EventName" rawValue="BillingCompleted" />
+                                    <property Id="df0c78d9-6b1c-4938-b0e9-64404b8f446d" definitionId="192747b5-55f3-4627-83e7-31e39ebecacf" definitionName="Namespace" rawValue="OnlineSales.Sales" />
+                                    <property Id="4eb0e30e-5d7d-47b2-afd4-fa87a012e0a7" definitionId="e366fa7e-3f62-48c3-8ce3-e87617597de6" definitionName="PublishesAnEvent" rawValue="False" />
+                                    <property Id="8f96b261-03fe-435c-93a1-4816019911ce" definitionId="7c9fb6f6-3d66-4e0f-bd15-1c5725c2c5a9" definitionName="EventCodeIdentifier" rawValue="BillingCompleted" />
+                                    <property Id="2310d73d-d248-4d92-998f-be3ab8c67d0d" definitionId="79c1f735-fe1b-44d1-afe2-effc12d8474f" definitionName="HandlerFileName" rawValue="BillingCompletedHandler.cs" />
+                                    <property Id="6c0395b6-87c8-44b4-8d8e-cb867068bbe4" definitionId="4e27bf41-cdae-4f50-b782-d73f70dd7f6b" definitionName="StartsSaga" rawValue="False" />
+                                  </properties>
+                                </element>
+                              </elements>
+                            </collection>
+                          </elements>
+                        </element>
+                      </elements>
+                    </collection>
+                  </elements>
+                </element>
+                <element Id="81d26058-37dc-41d8-899d-7ab546f6855f" definitionId="4aac6b0a-1178-4761-ac92-d2989a83335b" definitionName="Service" instanceName="Billing">
+                  <elements>
+                    <collection Id="0ec5bb79-400f-474f-930b-ae58bc245f12" definitionId="14dd0a39-32b5-4814-9ed5-4279aba392af" definitionName="Contract" instanceName="Contract">
+                      <elements>
+                        <collection Id="7c46f14f-b5d5-42db-b4b8-069a37b3d719" definitionId="6b6c2df4-f261-4d62-819f-70e170c196ca" definitionName="Events" instanceName="Events">
+                          <properties>
+                            <property Id="7b1fc37e-1230-41c5-83f0-d6db92061a39" definitionId="33af7451-bb69-4898-932b-245a595d9551" definitionName="Namespace" rawValue="OnlineSales.Contracts.Billing" />
+                          </properties>
+                          <elements>
+                            <element Id="456db540-acde-4afa-a59f-b83b8a09985d" definitionId="f06eaa91-971c-42ee-a7cb-eaa77a97dbdd" definitionName="Event" instanceName="BillingCompleted">
+                              <properties>
+                                <property Id="f3de7d33-f3b4-4e5a-b5d1-e0b681477ac2" definitionId="1236f913-5219-4a1a-985d-0a936ac82306" definitionName="DoNotAutogenerateComponents" rawValue="False" />
+                              </properties>
+                              <references>
+                                <reference Id="bc598a47-ea28-45b5-9ce2-a65375250b9d" value="solution://d28fd132-7070-4e07-a7f6-bfb018fe23fa/f982619b-2af4-4cba-9ffa-c0fbb288dace" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;0757e840-a92f-4f7c-ade6-a9bc878796d4&quot;&#xD;&#xA;}" />
+                              </references>
+                            </element>
+                          </elements>
+                        </collection>
+                        <collection Id="2c389bec-bd3c-40b9-bac0-393ac68627cf" definitionId="fa52a7b2-5908-451e-a185-4eb52d4e6343" definitionName="Commands" instanceName="Commands">
+                          <properties>
+                            <property Id="734d168c-1fc2-4c3f-8ea8-9eb39d635e06" definitionId="480d695b-e1f8-4869-adef-bd2aa2a2db53" definitionName="Namespace" rawValue="OnlineSales.Internal.Commands.Billing" />
+                          </properties>
+                          <elements>
+                            <element Id="7b19924b-c138-4ff5-8500-b0fa475c5877" definitionId="c2f83a83-1117-43d5-b427-3ede53888fa4" definitionName="Command" instanceName="SubmitPayment">
+                              <properties>
+                                <property Id="9d9250a3-6102-4e33-b6e1-b6ea71b0d337" definitionId="4167ef6f-215b-4967-8116-4cf5eac26e5c" definitionName="DoNotAutogenerateComponents" rawValue="False" />
+                                <property Id="09cc77bb-a8f0-48f8-8741-23841020764e" definitionId="c5331f25-ac8e-4484-83f7-fd916a74269f" definitionName="DoNotAutogenerateSenderComponent" rawValue="False" />
+                              </properties>
+                              <references>
+                                <reference Id="c5f00aae-ac4e-4c42-be4c-e44ebe6f6cf1" value="solution://2861c6f1-bc41-4364-94ab-7ba6b50f70d6/82ce5b81-75f9-4225-9cd5-43caa22ff196" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;e0cce5ad-fee6-4711-89d3-01a04457a8f0&quot;&#xD;&#xA;}" />
+                              </references>
+                            </element>
+                          </elements>
+                        </collection>
+                        <collection Id="d79c5e52-ac24-4bc3-a893-26f6516b4c01" definitionId="70cc6b8d-e54b-45a0-a7af-9ecf3dee7b5d" definitionName="Messages" instanceName="Messages">
+                          <properties>
+                            <property Id="a065099b-829f-4e64-9f9d-7d8b4ecb204c" definitionId="886284e5-4f80-4b1b-ac4c-5e2e1874e64d" definitionName="Namespace" rawValue="OnlineSales.Internal.Messages.Billing" />
+                          </properties>
+                          <elements>
+                            <element Id="c65fed40-df96-4eff-9e4b-b1ca9cac0b4a" definitionId="4d326ab2-417c-422c-9920-809ef2beec3d" definitionName="Message" instanceName="SubmitPaymentResponse">
+                              <references>
+                                <reference Id="a64117bc-1d71-42f9-8c75-2bbf8b06ee91" value="solution://2861c6f1-bc41-4364-94ab-7ba6b50f70d6/37720cb6-1716-4737-bcf1-9deef768da62" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;b12110b5-ccbe-41de-8939-88f03ed42017&quot;&#xD;&#xA;}" />
+                              </references>
+                            </element>
+                          </elements>
+                        </collection>
+                      </elements>
+                    </collection>
+                    <collection Id="9bf804e7-cec6-4689-b27a-5be8cbb8190e" definitionId="54f49375-e376-4668-94e0-df31f6184f56" definitionName="Components" instanceName="Components">
+                      <elements>
+                        <element Id="0027773b-5804-4d5b-8321-dccfc8827ef1" definitionId="f1e3bdfb-c55d-4600-b1bc-d12c8b27318f" definitionName="Component" instanceName="OrderAcceptedHandler">
+                          <properties>
+                            <property Id="65139e03-6f86-4eaf-bd4c-8cad3e1db01c" definitionId="304a32af-b6be-4401-a3f1-c30c3d107cf2" definitionName="Namespace" rawValue="OnlineSales.Billing" />
+                            <property Id="cc43d902-471c-47b0-b5cd-b56ae778f22d" definitionId="b85a7c13-b983-4252-90ef-9eaf8be1146d" definitionName="AdditionalUsings" rawValue="using OnlineSales.Internal.Commands.Billing;&#xD;&#xA;using OnlineSales.Contracts.Sales;&#xD;&#xA;using OnlineSales.Internal.Messages.Billing;&#xD;&#xA;using NServiceBus.Saga;&#xD;&#xA;" />
+                            <property Id="9c005540-10bf-48cc-b4eb-045a2dcd186e" definitionId="6ff7444a-d751-42e4-9233-98a97c2b95b7" definitionName="Inherits" rawValue=": Saga&lt;OrderAcceptedHandlerSagaData&gt;, IOrderAcceptedHandler, ServiceMatrix.Shared.INServiceBusComponent, IAmStartedByMessages&lt;OrderAccepted&gt;, IHandleMessages&lt;SubmitPaymentResponse&gt;" />
+                            <property Id="fa12f305-6c09-4691-8424-6e5e0b0e159f" definitionId="f8f807c4-03ba-4cfb-ad60-583be21676c4" definitionName="ClassBody" rawValue="&#xD;&#xA;&#x9;&#x9;public void Handle(OrderAccepted message)&#xD;&#xA;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;// Store message in Saga Data for later use&#xD;&#xA;&#x9;&#x9;&#x9;this.Data.OrderAccepted = message;&#xD;&#xA;&#x9;&#x9;&#x9;// Handle message on partial class&#xD;&#xA;&#x9;&#x9;&#x9;this.HandleImplementation(message);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;// Check if Saga is Completed &#xD;&#xA;&#x9;&#x9;&#x9;CheckIfAllMessagesReceived();&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;partial void HandleImplementation(OrderAccepted message);&#xD;&#xA;&#xD;&#xA;        public void Send(SubmitPayment message)&#xD;&#xA;        {&#xD;&#xA;            ConfigureSubmitPayment(message);&#xD;&#xA;            Bus.Send(message);&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        partial void ConfigureSubmitPayment(SubmitPayment message);&#xD;&#xA;&#xD;&#xA;        public void Handle(SubmitPaymentResponse message)&#xD;&#xA;        {&#xD;&#xA;            // Store message in Saga Data for later use&#xD;&#xA;            this.Data.SubmitPaymentResponse = message;&#xD;&#xA;&#xD;&#xA;            // Handle message on partial class&#xD;&#xA;            this.HandleImplementation(message);&#xD;&#xA;&#xD;&#xA;            // Check if Saga is Completed &#xD;&#xA;            CheckIfAllMessagesReceived();&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        partial void HandleImplementation(SubmitPaymentResponse message);&#xD;&#xA;&#xD;&#xA;        public void CheckIfAllMessagesReceived()&#xD;&#xA;        {&#xD;&#xA;            if (this.Data.OrderAccepted != null &amp;&amp; this.Data.SubmitPaymentResponse != null)&#xD;&#xA;            {&#xD;&#xA;                AllMessagesReceived();&#xD;&#xA;            }&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        partial void AllMessagesReceived();&#xD;&#xA;     }&#xD;&#xA;&#xD;&#xA;     public partial class OrderAcceptedHandlerSagaData : IContainSagaData&#xD;&#xA;     {&#xD;&#xA;           public virtual Guid Id { get; set; }&#xD;&#xA;           public virtual string Originator { get; set; }&#xD;&#xA;           public virtual string OriginalMessageId { get; set; }&#xD;&#xA;&#xD;&#xA;           public virtual OrderAccepted OrderAccepted { get; set; }&#xD;&#xA;           public virtual SubmitPaymentResponse SubmitPaymentResponse { get; set; }&#xD;&#xA;" />
+                            <property Id="927ceab0-358e-454a-b11a-0dcb8de8475e" definitionId="4b413384-c62a-45a7-87dc-d8542bae3618" definitionName="CustomClassBody" rawValue="&#xD;&#xA;        partial void HandleImplementation(OrderAccepted message)&#xD;&#xA;        {&#xD;&#xA;            // TODO: OrderAcceptedHandler: Add code to handle the OrderAccepted message.&#xD;&#xA;            Console.WriteLine(&quot;Billing received &quot; + message.GetType().Name);&#xD;&#xA;&#xD;&#xA;            var submitPayment = new OnlineSales.Internal.Commands.Billing.SubmitPayment();&#xD;&#xA;            Bus.Send(submitPayment);&#xD;&#xA;&#xD;&#xA;            var billingCompleted = new OnlineSales.Contracts.Billing.BillingCompleted();&#xD;&#xA;            Bus.Publish(billingCompleted);&#xD;&#xA;        }&#xD;&#xA;" />
+                            <property Id="cd240f53-2cef-4bf5-b81d-409af26a07cb" definitionId="61fc0cf8-b810-4091-8212-5441b8e67513" definitionName="IsSaga" rawValue="True" />
+                            <property Id="66ab5ee8-19fa-4872-84b3-5e2ef50586de" definitionId="5b80c9f7-44e6-4acc-a9db-1be527d89f81" definitionName="InterfaceBody" rawValue="&#xD;&#xA;        void Send(SubmitPayment message);&#xD;&#xA;" />
+                            <property Id="2f634d09-8712-4086-ada6-1fb64a6627f5" definitionId="3da71921-7816-4280-a945-eaf182cb8ab9" definitionName="ConfigureHowToFindSagaBody" rawValue="&#xD;&#xA;            // mapper.ConfigureMapping&lt;SubmitPaymentResponse&gt;(m =&gt; /* specify message property m.PropertyThatCorrelatesToSaga */).ToSaga(s =&gt; /* specify saga data property s.PropertyThatCorrelatesToMessage */);&#xD;&#xA;" />
+                            <property Id="b5f8fde3-3263-4eaf-8fcd-92a3edf8148d" definitionId="640126ae-7c81-42e4-bbe6-d685270cae55" definitionName="UnfoldedCustomCode" rawValue="True" />
+                            <property Id="ab2ffff5-5e45-4ce3-8d0f-3cb634b86b39" definitionId="0f96bb02-ec3e-4a5d-bc5d-d0518afea0aa" definitionName="IsBroadcastingViaSignalR" rawValue="False" />
+                          </properties>
+                          <references>
+                            <reference Id="d1bed703-7457-4754-8e75-10d2d5e08a7c" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/0e87e4dc-2313-48a1-8b0b-8a004a2b204e" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;0fa0f1e3-2a8d-4e12-b629-9012e20354ad&quot;&#xD;&#xA;}" />
+                            <reference Id="b16d15ec-328f-4997-be7d-57549aa9012b" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/ec94f1cc-dc4f-4470-b566-e18ea6f386bc" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;36939d09-f7c3-45f5-881c-3908f1476ab4&quot;&#xD;&#xA;}" />
+                            <reference Id="b08cd7f2-94d1-423d-9bc4-4cc911eeae4d" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/11556c78-245f-4e34-808c-1591da6ae305" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}SagaData.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;b2adde29-7d8c-4c77-9640-3aaa7ba96752&quot;&#xD;&#xA;}" />
+                            <reference Id="8dc94042-65c8-4321-a8ff-a4340d850b0a" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/34e29ea0-e851-4500-8c0d-a3ee25ce0beb" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}ConfigureHowToFindSaga.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;8938e043-f81d-49a7-8c9b-35c02b437c67&quot;&#xD;&#xA;}" />
+                          </references>
+                          <elements>
+                            <collection Id="64409686-156d-4688-a083-2f3130faad49" definitionId="318cc384-e8ba-465f-8469-1235fce91ef0" definitionName="Publishes" instanceName="Publishes / Sends">
+                              <elements>
+                                <element Id="88c71a0f-c4ad-449e-aecd-b9f9c5f9e859" definitionId="0d8a0645-22b8-48e8-be8c-774c7fc5442d" definitionName="CommandLink" instanceName="SubmitPayment">
+                                  <properties>
+                                    <property Id="2b9e6e1c-f89e-4620-b251-9fc4864f24e7" definitionId="3c664bf2-ab15-4c03-ba95-1c753da1b1eb" definitionName="CommandId" rawValue="7b19924b-c138-4ff5-8500-b0fa475c5877" />
+                                    <property Id="e1f28dd2-4e48-403d-8361-fc6854e39567" definitionId="f428580a-cc0d-48dd-892d-4415510233e4" definitionName="CommandName" rawValue="SubmitPayment" />
+                                    <property Id="d5a48283-4462-4168-b5c9-311d8487b6fc" definitionId="8d360b93-c5cd-4084-97e0-ba1596e571e9" definitionName="Namespace" rawValue="OnlineSales.Billing" />
+                                    <property Id="fe315e88-ab39-4a16-bbfa-40c775157cf6" definitionId="59e50f56-3448-4a47-8ff5-a0846dcaa402" definitionName="ComponentName" rawValue="OrderAcceptedHandler" />
+                                    <property Id="60fa0cbe-9eb9-430f-b5a5-3724251dc1f5" definitionId="60e718ea-738d-43d5-adad-9ae862e48daf" definitionName="ComponentBaseType" />
+                                    <property Id="ab6b9b99-cb2a-4249-9c89-71774a9da147" definitionId="5e1f5709-c400-4dd6-8ea3-a024d79212cc" definitionName="SenderNeedsRegistration" rawValue="False" />
+                                  </properties>
+                                </element>
+                                <element Id="b9cfa8e7-50ed-4ed5-bc47-42f657dd7a0f" definitionId="999b0f01-0b06-4b91-87aa-c8b7fb276c46" definitionName="EventLink" instanceName="BillingCompleted">
+                                  <properties>
+                                    <property Id="3b83a5b3-1873-42d4-909f-304f0f7cd203" definitionId="8f746710-e3d3-495d-a824-3192f8fe723d" definitionName="EventId" rawValue="456db540-acde-4afa-a59f-b83b8a09985d" />
+                                    <property Id="382afdc0-b25a-4718-a4b9-b92a3505a64e" definitionId="14abd907-ac70-44db-83eb-3b10fe5d8b17" definitionName="EventName" rawValue="BillingCompleted" />
+                                    <property Id="c388e04e-3377-4072-bd9e-05f6264b2839" definitionId="16c22281-f2c1-49f5-ae4a-6b37ec08e1bf" definitionName="Namespace" rawValue="OnlineSales.Billing" />
+                                    <property Id="5a347ede-a233-47e7-9d40-d77efa68d2ec" definitionId="9df92f68-33bc-4a00-aa34-2da1e40ac7b3" definitionName="ComponentName" rawValue="OrderAcceptedHandler" />
+                                  </properties>
+                                </element>
+                              </elements>
+                            </collection>
+                            <collection Id="bf5c157e-2527-4e40-8719-03f8a8544f5e" definitionId="ffcf83ed-8aca-42ea-bebd-af35d17f23be" definitionName="Subscribes" instanceName="Subscribes / Processes">
+                              <elements>
+                                <element Id="7c03f67d-2211-45dd-b7d5-b22cc4922c26" definitionId="75f698c0-fb68-4f37-b015-82cd5a1e367c" definitionName="SubscribedEventLink" instanceName="OrderAccepted">
+                                  <properties>
+                                    <property Id="a7c7ae8b-f8b9-4af7-b62d-8d8b7cf80d9e" definitionId="26053fc0-a090-4d84-bf92-1f55771ab211" definitionName="EventId" rawValue="82c623e5-166d-476d-8286-5c15f1ea2fb3" />
+                                    <property Id="462240ba-d4c7-47d9-abda-dd9c0e76f831" definitionId="d1d77316-ca0b-4f89-a8af-ff8ff631b911" definitionName="EventName" rawValue="OrderAccepted" />
+                                    <property Id="6cd34975-50ca-4882-af2b-ff8254191eee" definitionId="192747b5-55f3-4627-83e7-31e39ebecacf" definitionName="Namespace" rawValue="OnlineSales.Billing" />
+                                    <property Id="74c61dbf-5eb1-442d-b20e-cb9053a478cc" definitionId="e366fa7e-3f62-48c3-8ce3-e87617597de6" definitionName="PublishesAnEvent" rawValue="True" />
+                                    <property Id="d609e8d6-ff0b-4d1c-93ad-a687101ca9d8" definitionId="7c9fb6f6-3d66-4e0f-bd15-1c5725c2c5a9" definitionName="EventCodeIdentifier" rawValue="OrderAccepted" />
+                                    <property Id="75aeea12-1f44-4823-b2cc-5a6485d5674d" definitionId="79c1f735-fe1b-44d1-afe2-effc12d8474f" definitionName="HandlerFileName" rawValue="OrderAcceptedHandler.cs" />
+                                    <property Id="090961fc-7213-45ef-82a5-69efe7bfba71" definitionId="4e27bf41-cdae-4f50-b782-d73f70dd7f6b" definitionName="StartsSaga" rawValue="True" />
+                                  </properties>
+                                </element>
+                                <element Id="45be5a04-52f5-4909-befb-04d4ee9a5d6b" definitionId="e6841b96-497b-48b1-9f42-d813edfdbb83" definitionName="HandledMessageLink" instanceName="SubmitPaymentResponse">
+                                  <properties>
+                                    <property Id="80ef5841-773b-4c81-a27e-ea07726cfc92" definitionId="7a62aebd-0060-47e0-b635-b94b9792b987" definitionName="MessageCodeIdentifier" />
+                                    <property Id="31cf60f3-0d00-447c-afa7-4edbdd8751dd" definitionId="cff73023-d5a5-4467-89ed-80f54315ff58" definitionName="MessageId" rawValue="c65fed40-df96-4eff-9e4b-b1ca9cac0b4a" />
+                                    <property Id="abb3c840-09be-4f06-a2df-0765f945e8a9" definitionId="e95cc76f-5ef6-47f9-b078-6c3e6fbb1a8d" definitionName="MessageName" rawValue="SubmitPaymentResponse" />
+                                  </properties>
+                                </element>
+                              </elements>
+                            </collection>
+                          </elements>
+                        </element>
+                        <element Id="46ebbd6b-247f-4647-8b24-cf4acf59b8a1" definitionId="f1e3bdfb-c55d-4600-b1bc-d12c8b27318f" definitionName="Component" instanceName="SubmitPaymentHandler">
+                          <properties>
+                            <property Id="a98448b7-9f37-4462-bd8e-d4e1eb099ad5" definitionId="304a32af-b6be-4401-a3f1-c30c3d107cf2" definitionName="Namespace" rawValue="OnlineSales.Billing" />
+                            <property Id="6dcecddb-9525-40fc-9cbe-b1c6323aeb95" definitionId="b85a7c13-b983-4252-90ef-9eaf8be1146d" definitionName="AdditionalUsings" rawValue="using OnlineSales.Internal.Commands.Billing;&#xD;&#xA;" />
+                            <property Id="d9eb8339-845d-4c1c-bc03-dd1a8b98e409" definitionId="6ff7444a-d751-42e4-9233-98a97c2b95b7" definitionName="Inherits" rawValue=": IHandleMessages&lt;SubmitPayment&gt;" />
+                            <property Id="e7d1e06f-7c71-4e4e-98bd-3da77ef6f29e" definitionId="f8f807c4-03ba-4cfb-ad60-583be21676c4" definitionName="ClassBody" rawValue="&#xD;&#xA;&#x9;&#x9;public void Handle(SubmitPayment message)&#xD;&#xA;&#x9;&#x9;{&#xD;&#xA;&#x9;&#x9;&#x9;// Handle message on partial class&#xD;&#xA;&#x9;&#x9;&#x9;this.HandleImplementation(message);&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;partial void HandleImplementation(SubmitPayment message);&#xD;&#xA;&#xD;&#xA;        public IBus Bus { get; set; }&#xD;&#xA;" />
+                            <property Id="7942a3e6-7035-43de-b46b-3614d9cfb961" definitionId="4b413384-c62a-45a7-87dc-d8542bae3618" definitionName="CustomClassBody" rawValue="&#xD;&#xA;        partial void HandleImplementation(SubmitPayment message)&#xD;&#xA;        {&#xD;&#xA;            // TODO: SubmitPaymentHandler: Add code to handle the SubmitPayment message.&#xD;&#xA;            Console.WriteLine(&quot;Billing received &quot; + message.GetType().Name);&#xD;&#xA;&#xD;&#xA;            var response = new OnlineSales.Internal.Messages.Billing.SubmitPaymentResponse();&#xD;&#xA;            Bus.Reply(response);&#xD;&#xA;        }&#xD;&#xA;" />
+                            <property Id="2e401cb5-89d7-412b-b02e-417081c1d29a" definitionId="61fc0cf8-b810-4091-8212-5441b8e67513" definitionName="IsSaga" rawValue="False" />
+                            <property Id="24e6d955-87f3-40d6-b8e4-622dafe468dc" definitionId="5b80c9f7-44e6-4acc-a9db-1be527d89f81" definitionName="InterfaceBody" rawValue="&#xD;&#xA;" />
+                            <property Id="e2bfae0a-4dde-4a80-a253-be930d45476f" definitionId="3da71921-7816-4280-a945-eaf182cb8ab9" definitionName="ConfigureHowToFindSagaBody" rawValue="&#xD;&#xA;" />
+                            <property Id="f755dd6c-06e6-4a2b-be04-78f5a58334ce" definitionId="640126ae-7c81-42e4-bbe6-d685270cae55" definitionName="UnfoldedCustomCode" rawValue="True" />
+                            <property Id="c30dc696-5040-4efb-ac6c-3f9599f1a6b5" definitionId="0f96bb02-ec3e-4a5d-bc5d-d0518afea0aa" definitionName="IsBroadcastingViaSignalR" rawValue="False" />
+                          </properties>
+                          <references>
+                            <reference Id="3391886d-1b3f-4c3b-abe4-f2744098aa78" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/169a917b-e949-405e-9ebb-0e02dba29f0c" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;0fa0f1e3-2a8d-4e12-b629-9012e20354ad&quot;&#xD;&#xA;}" />
+                            <reference Id="6cebdf04-cc9b-463c-9dec-d88a80b2e0d7" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/81aaf256-516b-43ef-b40b-335cf51d9266" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{CodeIdentifier}.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;36939d09-f7c3-45f5-881c-3908f1476ab4&quot;&#xD;&#xA;}" />
+                          </references>
+                          <elements>
+                            <collection Id="e7a0444a-2f8f-452f-94ef-da5c081aac74" definitionId="318cc384-e8ba-465f-8469-1235fce91ef0" definitionName="Publishes" instanceName="Publishes / Sends" />
+                            <collection Id="c4c34bad-5ee3-4e1d-ab68-207d6ab58175" definitionId="ffcf83ed-8aca-42ea-bebd-af35d17f23be" definitionName="Subscribes" instanceName="Subscribes / Processes">
+                              <elements>
+                                <element Id="4d2f920e-5c8c-49a2-b3ea-456cdd41932c" definitionId="1362e8eb-d279-4f17-82a0-97504b493ab3" definitionName="ProcessedCommandLink" instanceName="SubmitPayment">
+                                  <properties>
+                                    <property Id="6c3bc99e-c7a2-4dd8-9d02-75f4a8f5865f" definitionId="bb37f0f8-13a2-4b26-8b00-f900c5c42e37" definitionName="CommandId" rawValue="7b19924b-c138-4ff5-8500-b0fa475c5877" />
+                                    <property Id="b403f718-9936-4c60-989a-6919b773f009" definitionId="30899b31-2dfa-4a01-a00a-e86c90b4bf5d" definitionName="CommandName" rawValue="SubmitPayment" />
+                                    <property Id="b36d3ad7-4408-44cf-8398-30caf79c18e7" definitionId="ab1926d8-63cc-4404-89fc-db24e1a18f3d" definitionName="Namespace" rawValue="OnlineSales.Billing" />
+                                    <property Id="6f6534bf-9a13-43b3-b7e6-7637bf360472" definitionId="9a3afb25-11d0-40d5-a5a7-c580ecf96d28" definitionName="PublishesAnEvent" rawValue="False" />
+                                    <property Id="20a1d118-6212-4086-b027-c6b14badaf83" definitionId="f0e71c5e-3f90-4257-b86d-546f78e97196" definitionName="CommandCodeIdentifier" rawValue="SubmitPayment" />
+                                    <property Id="7034ee74-55a2-42c5-b467-6cdeacc0a0e1" definitionId="02d7bc46-2773-4929-8db8-71a2bba5bfb3" definitionName="StartsSaga" rawValue="False" />
+                                  </properties>
+                                  <elements>
+                                    <element Id="3a087a04-2c34-4740-9840-4eb620e525f1" definitionId="01c627a8-bb25-4fa2-8468-ebd4a419682e" definitionName="ProcessedCommandLinkReply" instanceName="SubmitPaymentResponse">
+                                      <properties>
+                                        <property Id="fbe8e04f-baf4-47a7-b469-e573b20faab0" definitionId="a651c1b8-45fb-405e-9ae6-1dfd2102f4df" definitionName="MessageId" rawValue="c65fed40-df96-4eff-9e4b-b1ca9cac0b4a" />
+                                        <property Id="c79718b2-9b0a-45c6-ab94-39371e8cbe0c" definitionId="f607ffa7-4d05-481d-84c4-53dc33138ee7" definitionName="MessageName" rawValue="SubmitPaymentResponse" />
+                                        <property Id="bca8c51e-2378-4895-85ac-6cdee0870f98" definitionId="45689afb-7d33-46f9-82a3-7c31db4a03a6" definitionName="MessageCodeIdentifier" />
+                                      </properties>
+                                    </element>
+                                  </elements>
+                                </element>
+                              </elements>
+                            </collection>
+                          </elements>
+                        </element>
+                      </elements>
+                    </collection>
+                  </elements>
+                </element>
+              </elements>
+            </collection>
+            <collection Id="fbae8293-73d1-46ed-a330-df7397e291a8" definitionId="ad8ac730-01f5-47d8-bd53-5a1bc52ccb3b" definitionName="Endpoints" instanceName="Endpoints">
+              <elements>
+                <element Id="4fc2bc4c-4b66-4e17-978d-dd9cacb4000d" definitionId="55173bde-0618-431e-8b1a-5bb2c312c713" definitionName="NServiceBusMVC" instanceName="ECommerce">
+                  <properties>
+                    <property Id="c76bc851-34ca-45a2-8024-b216bbc8f7b5" definitionId="3745e7de-9402-455d-b230-999d9f5d7569" definitionName="ErrorQueue" rawValue="error" />
+                    <property Id="29c136f8-f615-44e1-9be7-27925ba83011" definitionId="438ed78d-a847-48c2-8d05-c1f7f57e59dc" definitionName="ForwardReceivedMessagesTo" rawValue="audit" />
+                    <property Id="c8e4d504-6a9f-420e-bb44-e30c5d408dfa" definitionId="38582c88-b24b-41d0-bb2e-daa22935c7b5" definitionName="HasComponentsThatPublishEvent" rawValue="False" />
+                    <property Id="9fbe8f27-6ff1-423f-b900-257b7886e45f" definitionId="f7f7ebb2-4f41-4949-883a-c7f7b51fe47c" definitionName="MaxRetries" rawValue="2" />
+                    <property Id="e7b65183-7e54-4487-9407-acab5525b9b4" definitionId="30049e59-bd8e-4eed-9c83-ba89e337767b" definitionName="MessageConventions" rawValue="namespace OnlineSales.ECommerce&#xD;&#xA;{&#xD;&#xA;    public class MessageConventions : INeedInitialization&#xD;&#xA;    {&#xD;&#xA;        public void Customize(BusConfiguration config)&#xD;&#xA;        {&#xD;&#xA;            config.Conventions()&#xD;&#xA;                .DefiningCommandsAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.StartsWith(&quot;OnlineSales.Internal.Commands&quot;))&#xD;&#xA;                .DefiningEventsAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.StartsWith(&quot;OnlineSales.Contracts&quot;))&#xD;&#xA;                .DefiningMessagesAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.StartsWith(&quot;OnlineSales.Internal.Messages&quot;));&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;" />
+                    <property Id="22087bfe-6ddf-41d2-9387-dd73886f0e46" definitionId="387f2db9-6647-4d81-82b8-b44209e7decc" definitionName="MessageEndpointMappingsConfig" rawValue="&lt;add Messages=&quot;OnlineSales.Internal.Commands.Sales.SubmitOrder, OnlineSales.Internal&quot; Endpoint=&quot;OnlineSales.OrderProcessing&quot; /&gt;&#xD;&#xA;&lt;add Messages=&quot;OnlineSales.Contracts.Billing.BillingCompleted, OnlineSales.Contracts&quot; Endpoint=&quot;OnlineSales.Billing&quot; /&gt;&#xD;&#xA;" />
+                    <property Id="d643c961-5702-4d46-ae8e-cc2ca2c3b23e" definitionId="6b9f41ec-adc9-4e43-9357-9b010917f71e" definitionName="Namespace" rawValue="OnlineSales.ECommerce" />
+                    <property Id="7facb29e-f4ac-40cb-a444-f7f6435dd4ab" definitionId="2c6f00c8-c9d3-47fc-a5e6-d4f2d536cb57" definitionName="NumberOfWorkerThreads" rawValue="1" />
+                    <property Id="63f212fb-bbf6-4349-a63d-00eab9d9b3ae" definitionId="6ae7e4c7-5ef1-470f-8bae-93b4c114fd68" definitionName="SLA" />
+                    <property Id="bee98e18-f27f-4777-b2f7-3ffdeb385a09" definitionId="9e93f933-0db1-4f69-aac8-048bbe4c0f4f" definitionName="CommandSenderNeedsRegistration" rawValue="False" />
+                    <property Id="996984b0-2d02-4366-acb8-91356aec7404" definitionId="18f525a9-eb78-4cd8-bd63-8d8869a03f7b" definitionName="TargetNsbVersion" rawValue="NSB 5.0" />
+                    <property Id="05108854-3736-4ecb-a2f7-71d1d04d8fe4" definitionId="dd4a2fdd-da4b-4ed0-8c3f-7db9c80bce31" definitionName="IsSignalREnabled" rawValue="True" />
+                    <property Id="72247231-e9bf-47ca-b9e8-129ee56c9116" definitionId="0405c61a-19fb-4b82-90fc-f69c33df0995" definitionName="TestControllerSupportDeployed" rawValue="True" />
+                  </properties>
+                  <references>
+                    <reference Id="e059db89-3957-48c6-b4d4-658f7df26428" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{Root.InstanceName}.{InstanceName}&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+                    <reference Id="bb4ce008-dc45-4a1f-903b-418115efdf20" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{Root.InstanceName}.{InstanceName}&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+                    <reference Id="0266aed9-238e-44d9-bef8-f7040d17b92d" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/8d348ea6-d4ec-4c11-bf30-313aa316f5f7" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;MessageConventions.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;60149b6b-52bd-4fac-9259-1a8ba480851a&quot;&#xD;&#xA;}" />
+                    <reference Id="dbe1873c-ad51-4b30-ad90-728e7b6f9fc1" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/ada49969-6251-4ae2-a810-7d5afc37bc5e" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;Logging.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;4dd3672b-f688-467d-8462-b7073b8e4ebf&quot;&#xD;&#xA;}" />
+                    <reference Id="fb136508-4dc9-4964-8bcf-79977989a0d8" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/17df5a37-9054-404a-95ed-2147fdb8828e" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;MessageForwardingInCaseOfFaultConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;338298e4-094c-4fa3-bb2e-1eb7d8e1097e&quot;&#xD;&#xA;}" />
+                    <reference Id="5ae4d8c3-54c9-4a7f-bac1-327af304bbf2" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/1543d7a1-cce9-4db0-82d7-a467177772d8" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;TransportConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;71d2d518-0a28-43c8-97bc-b3a1daa1d044&quot;&#xD;&#xA;}" />
+                    <reference Id="16aa4e1b-0f99-4e35-a011-27d9e8b0cc5e" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/0a522d55-9962-4998-9a8e-d1264539745d" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;UnicastBusConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;f1d05d84-fb55-49f4-8bac-0b7b21615f9e&quot;&#xD;&#xA;}" />
+                    <reference Id="5f83062d-c8a9-43f9-a32d-dc85a80a29e4" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/149e64e2-e66c-45ed-935f-d2c0ffb24d67" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;GeneratedWebInitialization.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;55056fbd-f4ca-46fb-8c77-0f54707eaf66&quot;&#xD;&#xA;}" />
+                    <reference Id="f388820d-2490-4dfe-8763-d4e8230a9153" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/43c1b2c0-8d6c-4bc3-8c4f-24172a94ff52" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;WebGlobalInitialization.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;87d1c6b4-d238-4a4a-9436-e8dabc2846f3&quot;&#xD;&#xA;}" />
+                    <reference Id="b0038644-a6d6-44c1-823b-de63c6907a78" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/b9409c06-5ac9-4ab8-b034-a43b546c87b1" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;TransportConfig.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;ceb76ec1-66d0-43d7-883c-524960335c61&quot;&#xD;&#xA;}" />
+                    <reference Id="5027d46e-e43a-4167-b901-163ed2e2cd52" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/69ffdaf2-3d20-4af9-b816-ed19938272a4" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;TransportConnectionString.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;bb9daf67-ea65-4b21-a8d9-bc4a84536d2e&quot;&#xD;&#xA;}" />
+                    <reference Id="609819fd-5753-454c-968c-4fecff8f92b0" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/592113d6-7c66-4729-bdf6-88b62d32337a" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;AuditConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;8fb1dadd-4c90-456f-a54c-0ec5df9d9a9a&quot;&#xD;&#xA;}" />
+                    <reference Id="959ba0be-7c9a-46ce-a7e4-12e1f67cd920" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/3139bb28-1255-4b7f-b71f-1130ac3ddf6d" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;TestMessagesController.generated.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;7459da8d-a7e6-4547-8019-cbebb69ee7f0&quot;&#xD;&#xA;}" />
+                    <reference Id="6b60486a-1c9b-4c0b-bd82-8b5111c7706a" value="solution://758898c4-0a83-4001-8c16-4dc5c2e6dc8a/d4e758ae-e416-4b4a-b01f-5779e5f9b901" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;Index.cshtml&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;e79472a8-53c0-4f08-9d5e-4498f6fab3b4&quot;&#xD;&#xA;}" />
+                  </references>
+                  <elements>
+                    <collection Id="aef86fbc-8e31-449d-8eed-5d495e01d9f0" definitionId="2cb77a1f-f887-467c-b0e3-df2de031b87c" definitionName="Components" instanceName="Components">
+                      <elements>
+                        <element Id="8cb4ccd5-6c16-4378-a182-a7cf67e206d6" definitionId="18db2bf8-3414-4c90-9e46-39e0475a018b" definitionName="ComponentLink" instanceName="01. Sales.SubmitOrderSender">
+                          <properties>
+                            <property Id="9b4f3680-d7f5-494f-85a6-f1256bbd6b3b" definitionId="019cc058-730b-4822-82da-bfad320be90b" definitionName="ComponentId" rawValue="4bd9622b-0afd-43c8-a52f-1b99a2e65292" />
+                            <property Id="dc97bb88-f456-4429-aea9-6ba7f9427121" definitionId="cf607283-3a01-4c65-b8d8-33d0f5af8399" definitionName="ComponentName" rawValue="SubmitOrderSender" />
+                            <property Id="3f89b453-587c-44bc-bd06-ea95f57d47e8" definitionId="78208a26-baff-40ff-85ae-b518ab21ec28" definitionName="Order" rawValue="1" />
+                          </properties>
+                        </element>
+                        <element Id="54d23080-3d8c-45e3-aa7e-4cda0d3a7fd0" definitionId="18db2bf8-3414-4c90-9e46-39e0475a018b" definitionName="ComponentLink" instanceName="02. Sales.BillingCompletedHandler">
+                          <properties>
+                            <property Id="c5566908-7157-4428-a50f-a48ebcf0ea58" definitionId="019cc058-730b-4822-82da-bfad320be90b" definitionName="ComponentId" rawValue="a7365f7f-254f-4000-b41b-807d1a45df27" />
+                            <property Id="48bcd926-c13b-44ce-b0a5-9ee242920b8c" definitionId="cf607283-3a01-4c65-b8d8-33d0f5af8399" definitionName="ComponentName" rawValue="BillingCompletedHandler" />
+                            <property Id="3f445d50-08c2-4cbd-88d0-190689753121" definitionId="78208a26-baff-40ff-85ae-b518ab21ec28" definitionName="Order" rawValue="2" />
+                          </properties>
+                        </element>
+                      </elements>
+                    </collection>
+                  </elements>
+                </element>
+                <element Id="331eec08-17ca-4d7b-80d1-2d8240d86b2a" definitionId="d9665948-7e01-4896-9843-c03ca1eedba7" definitionName="NServiceBusHost" instanceName="OrderProcessing">
+                  <properties>
+                    <property Id="18974d28-697b-488f-9520-99fad21f2266" definitionId="35ec46e6-cc15-4b4d-a7ec-3d409c1c3327" definitionName="ComponentsOrderDefinition" />
+                    <property Id="784936aa-115d-4d78-bd36-f3b4bef6a735" definitionId="3f97f5c3-12af-4b4a-b405-78e6e10e549e" definitionName="ErrorQueue" rawValue="error" />
+                    <property Id="7493a380-85c2-4840-95bc-b60132c96688" definitionId="1b1b6743-320f-41a7-a368-0b6909c26807" definitionName="ForwardReceivedMessagesTo" rawValue="audit" />
+                    <property Id="22204cf3-90cf-4c41-b0fd-7e1168f0a97f" definitionId="0614b355-46b4-4b33-af42-2ebc0b80f451" definitionName="MasterNode" />
+                    <property Id="6c3ad970-0360-493b-9dd0-bf9e625d1d9d" definitionId="fd845ffc-6d1d-4e5c-a38d-21935da8c5e0" definitionName="MaxRetries" rawValue="2" />
+                    <property Id="45484e21-0472-4cb8-ab83-3f40b6791658" definitionId="2961e1ef-a0c4-4edd-a15d-4c9bb664fa24" definitionName="MessageConventions" rawValue="namespace OnlineSales.OrderProcessing&#xD;&#xA;{&#xD;&#xA;    public class MessageConventions : INeedInitialization&#xD;&#xA;    {&#xD;&#xA;        public void Customize(BusConfiguration config)&#xD;&#xA;        {&#xD;&#xA;            config.Conventions()&#xD;&#xA;                .DefiningCommandsAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.StartsWith(&quot;OnlineSales.Internal.Commands&quot;))&#xD;&#xA;                .DefiningEventsAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.StartsWith(&quot;OnlineSales.Contracts&quot;))&#xD;&#xA;                .DefiningMessagesAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.StartsWith(&quot;OnlineSales.Internal.Messages&quot;));&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;" />
+                    <property Id="6d6b5990-5f7b-48c0-ad04-732ca1883511" definitionId="5efb5dcd-5cd5-4620-856c-46ca07231aee" definitionName="MessageEndpointMappingsConfig" />
+                    <property Id="f6619d9a-c9e6-4e05-9f38-a241948de431" definitionId="36788670-d7ad-4535-9640-7085cbd3b322" definitionName="Namespace" rawValue="OnlineSales.OrderProcessing" />
+                    <property Id="fbd0c6ec-7c09-4ae6-848e-b95ae7091b47" definitionId="51b2d898-a5f5-41ce-bbc0-45fb03a8757e" definitionName="NumberOfWorkerThreads" rawValue="1" />
+                    <property Id="69e081cc-6b09-4b5d-969c-34d6ba6cc74d" definitionId="3ff156ab-2834-463c-a2be-339b0945df20" definitionName="SLA" />
+                    <property Id="cdb2de73-8e8e-412d-9f43-298b429d439b" definitionId="44e518ec-0cb1-4e34-b579-b20e0fa3c7f7" definitionName="SLEnabled" rawValue="True" />
+                    <property Id="f5b43218-6cc8-4280-8595-65d2540283ea" definitionId="ffe8330c-7115-42e2-8028-9cb7e3acc3a3" definitionName="SLNumberOfRetries" rawValue="3" />
+                    <property Id="79e19ae0-dac6-4725-90d5-2d39adc0fb5c" definitionId="caef918a-e61b-4748-98a0-48480a8776f6" definitionName="SLTimeIncrease" rawValue="00:00:10" />
+                    <property Id="76c25ece-5660-44ea-b87d-16e191929032" definitionId="df341285-27c0-409b-8eb6-f4bf61d5af45" definitionName="CommandSenderNeedsRegistration" rawValue="False" />
+                    <property Id="339bc759-743b-434b-8e9e-e3a16ad4c2cb" definitionId="95a79914-151f-48e5-b0e6-2dcbefdec2a9" definitionName="TargetNsbVersion" rawValue="NSB 5.0" />
+                  </properties>
+                  <references>
+                    <reference Id="54b390ee-b414-41d9-9104-ee786bcb2e2f" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{Root.InstanceName}.{InstanceName}&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+                    <reference Id="af9da7ce-5d72-45ab-a1fe-d1e284478893" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{Root.InstanceName}.{InstanceName}&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+                    <reference Id="58ac941a-a505-4900-8fa5-f06bbcb85ea2" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/901f96ca-40d4-4fc7-bfc5-d6d0cd30a833" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;MessageConventions.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;68894bb3-5b54-41e0-8972-b4186984c290&quot;&#xD;&#xA;}" />
+                    <reference Id="c81413ad-5f9c-4ffa-a4f4-7f1110b6cfeb" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/7e97ee81-aae3-4ed2-ac26-5b3071aa7cea" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;Logging.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;f640e8f1-1189-43f8-8d95-3bbd26ce574d&quot;&#xD;&#xA;}" />
+                    <reference Id="6e4548ac-992e-4c58-aa2f-b9ef7ad5ea5a" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/80e80050-fc70-4320-90e3-fcb22702fff6" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;EndpointConfig.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;f0d12193-eea0-4677-bd94-cde70b531417&quot;&#xD;&#xA;}" />
+                    <reference Id="c186ee4b-e907-4a77-8399-defd7928f8a9" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/cf2c700b-129f-4de3-b1d3-44e0aca14746" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;MasterNodeConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;0c7a14be-6b82-476d-ac17-a46f8871d884&quot;&#xD;&#xA;}" />
+                    <reference Id="89909bf6-d498-41bb-b21e-8623515addec" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/1712f071-83c5-4135-b318-9eb39a5b9e58" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;MessageForwardingInCaseOfFaultConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;a99928a4-309c-4c2f-ab3f-0459aed6a3c6&quot;&#xD;&#xA;}" />
+                    <reference Id="998d714a-69c8-4686-a9f5-6fb35033f0de" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/fb05100d-8ffa-4f2c-b470-151e31da0b18" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;TransportConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;24589f3f-059f-4d5a-9b9b-a3897fff2449&quot;&#xD;&#xA;}" />
+                    <reference Id="5bc347eb-f270-4337-b571-b1b7cd906493" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/d3d29fc6-eb5e-4203-8ee0-b9bfb84e8846" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;UnicastBusConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;e4f4bcc6-41e9-4237-be6f-7fd91e691ced&quot;&#xD;&#xA;}" />
+                    <reference Id="8d0be316-2ce5-4e95-a914-41da58b90890" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/7641f495-b0b1-4909-a423-219f78941575" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;EndpointConfig.generated.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;163abd93-cedc-4e41-8a7d-67eedfac41aa&quot;&#xD;&#xA;}" />
+                    <reference Id="db1969e5-fb28-4343-9f9e-f84c920afc7c" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/6701407b-a46e-4dee-8a9c-68c6d80307f3" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;TransportConfig.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;4dfafba4-8e2b-4437-8c84-495041cb219f&quot;&#xD;&#xA;}" />
+                    <reference Id="4bdf9537-5aad-4548-b1cc-56b49e1afcca" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/278eb79f-0dda-4a1c-bcc0-0bfb8334bbe7" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;TransportConnectionString.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;99be7198-69a8-4174-bb1e-35190f5b6496&quot;&#xD;&#xA;}" />
+                    <reference Id="d82effce-f50b-4dc7-9646-8df135fc31d5" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/db31624b-304f-4d4b-b9f1-ae37bcc8485a" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;SecondLevelRetriesConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;61a98a15-e465-4876-96f9-e3079b9d03f8&quot;&#xD;&#xA;}" />
+                    <reference Id="364ac02f-89cf-466b-93e0-10e9c4d2d034" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/8e472165-060f-402d-b369-0ab2e4ed7b90" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;AuditConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;1decf8a2-8fda-4ca0-9410-a54735fde0c9&quot;&#xD;&#xA;}" />
+                    <reference Id="f1577b7d-8741-4e34-9d03-e180e11c53c1" value="solution://916b2a66-423e-408b-a768-1a17bb0c23d9/0803fa63-a383-4470-adb1-6c03e767e7b8" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;App.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;45fca2b9-4ca6-47d5-a720-54ca0239e02a&quot;&#xD;&#xA;}" />
+                  </references>
+                  <elements>
+                    <collection Id="4da17e3b-7751-4597-b367-d461dcfd8448" definitionId="4640ec7c-c09c-42a6-90de-ff9cd99fd6b1" definitionName="Components" instanceName="Components">
+                      <elements>
+                        <element Id="f934c9a9-a2d4-46e3-b43c-039b90ddba02" definitionId="58bd0df2-5250-472d-a169-4d72726325ae" definitionName="ComponentLink" instanceName="01. Sales.SubmitOrderHandler">
+                          <properties>
+                            <property Id="3881bad7-f570-4735-accf-a6fee136f548" definitionId="66fb536d-f50e-4dcc-a671-77a42f3f9890" definitionName="ComponentId" rawValue="501bd5a2-9d65-48f6-8ce5-7560de5fb0cf" />
+                            <property Id="44eea7f5-7667-4c3e-8440-3ca473124d3c" definitionId="677c28b7-2bf4-4004-8327-d4f93f38107e" definitionName="ComponentName" rawValue="SubmitOrderHandler" />
+                            <property Id="9c8d2845-c784-4a30-8020-b59a12b86caf" definitionId="e583683a-1534-4e78-bc7e-3f071bc024c3" definitionName="Order" rawValue="1" />
+                          </properties>
+                        </element>
+                      </elements>
+                    </collection>
+                  </elements>
+                </element>
+                <element Id="35a7c9a8-6659-419e-92d4-f714501604f7" definitionId="d9665948-7e01-4896-9843-c03ca1eedba7" definitionName="NServiceBusHost" instanceName="Billing">
+                  <properties>
+                    <property Id="e48f7b48-748b-4e35-b89c-473ca1627ac4" definitionId="35ec46e6-cc15-4b4d-a7ec-3d409c1c3327" definitionName="ComponentsOrderDefinition" />
+                    <property Id="261cb5fd-7386-4538-ba7b-fdcf9e960436" definitionId="3f97f5c3-12af-4b4a-b405-78e6e10e549e" definitionName="ErrorQueue" rawValue="error" />
+                    <property Id="b9c466d6-7779-4860-9afd-b2513767e14c" definitionId="1b1b6743-320f-41a7-a368-0b6909c26807" definitionName="ForwardReceivedMessagesTo" rawValue="audit" />
+                    <property Id="81aa1e4d-09d4-4e12-bae4-5b3cc461689b" definitionId="0614b355-46b4-4b33-af42-2ebc0b80f451" definitionName="MasterNode" />
+                    <property Id="e2362892-c43b-4bdb-9d0f-88517fd1718d" definitionId="fd845ffc-6d1d-4e5c-a38d-21935da8c5e0" definitionName="MaxRetries" rawValue="2" />
+                    <property Id="04f8e78a-c6fd-4274-8298-c2b768f28233" definitionId="2961e1ef-a0c4-4edd-a15d-4c9bb664fa24" definitionName="MessageConventions" rawValue="namespace OnlineSales.Billing&#xD;&#xA;{&#xD;&#xA;    public class MessageConventions : INeedInitialization&#xD;&#xA;    {&#xD;&#xA;        public void Customize(BusConfiguration config)&#xD;&#xA;        {&#xD;&#xA;            config.Conventions()&#xD;&#xA;                .DefiningCommandsAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.StartsWith(&quot;OnlineSales.Internal.Commands&quot;))&#xD;&#xA;                .DefiningEventsAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.StartsWith(&quot;OnlineSales.Contracts&quot;))&#xD;&#xA;                .DefiningMessagesAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.StartsWith(&quot;OnlineSales.Internal.Messages&quot;));&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;" />
+                    <property Id="665d607e-ece7-44db-8f7a-14b11663e12f" definitionId="5efb5dcd-5cd5-4620-856c-46ca07231aee" definitionName="MessageEndpointMappingsConfig" rawValue="&lt;add Messages=&quot;OnlineSales.Internal.Commands.Billing.SubmitPayment, OnlineSales.Internal&quot; Endpoint=&quot;OnlineSales.PaymentProcessing&quot; /&gt;&#xD;&#xA;&lt;add Messages=&quot;OnlineSales.Contracts.Sales.OrderAccepted, OnlineSales.Contracts&quot; Endpoint=&quot;OnlineSales.OrderProcessing&quot; /&gt;&#xD;&#xA;" />
+                    <property Id="9cf4bc01-499e-474b-bec8-d467daa638cf" definitionId="36788670-d7ad-4535-9640-7085cbd3b322" definitionName="Namespace" rawValue="OnlineSales.Billing" />
+                    <property Id="fba66636-66a6-43f4-9fe2-7f8ca8950d9d" definitionId="51b2d898-a5f5-41ce-bbc0-45fb03a8757e" definitionName="NumberOfWorkerThreads" rawValue="1" />
+                    <property Id="faa654f4-10b5-4ff5-8028-a70855e0fe7e" definitionId="3ff156ab-2834-463c-a2be-339b0945df20" definitionName="SLA" />
+                    <property Id="ad49cd71-ea5b-4357-97aa-ec4e04e04bce" definitionId="44e518ec-0cb1-4e34-b579-b20e0fa3c7f7" definitionName="SLEnabled" rawValue="True" />
+                    <property Id="f7cc12a4-61ef-4e6c-bfd0-23f46094d1c0" definitionId="ffe8330c-7115-42e2-8028-9cb7e3acc3a3" definitionName="SLNumberOfRetries" rawValue="3" />
+                    <property Id="103f6696-6e77-4afa-b887-f8ed94b57a5d" definitionId="caef918a-e61b-4748-98a0-48480a8776f6" definitionName="SLTimeIncrease" rawValue="00:00:10" />
+                    <property Id="ed14eff3-9773-45d8-ad06-4f8d13e16235" definitionId="df341285-27c0-409b-8eb6-f4bf61d5af45" definitionName="CommandSenderNeedsRegistration" rawValue="False" />
+                    <property Id="7757555a-3729-4afc-86e5-122efff657f2" definitionId="95a79914-151f-48e5-b0e6-2dcbefdec2a9" definitionName="TargetNsbVersion" rawValue="NSB 5.0" />
+                  </properties>
+                  <references>
+                    <reference Id="492917cb-18ea-4ab1-ba9d-cadfbd3975ef" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{Root.InstanceName}.{InstanceName}&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+                    <reference Id="26e59ef0-2526-4c94-9651-d9ca919512fc" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{Root.InstanceName}.{InstanceName}&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+                    <reference Id="7324ed58-30ef-4717-8e3d-1798d0ea4390" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/bbfaa99c-0c79-4d27-9b1c-6ff4b958df65" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;MessageConventions.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;68894bb3-5b54-41e0-8972-b4186984c290&quot;&#xD;&#xA;}" />
+                    <reference Id="07343b32-8362-4176-acf4-5404f25f4940" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/5bf4eb0d-0c98-4268-808e-925f3da081af" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;Logging.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;f640e8f1-1189-43f8-8d95-3bbd26ce574d&quot;&#xD;&#xA;}" />
+                    <reference Id="38a574bf-fdda-474a-8101-dfcc7fe31d52" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/dd711695-b63f-4941-aa8c-2463b37d032b" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;EndpointConfig.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;f0d12193-eea0-4677-bd94-cde70b531417&quot;&#xD;&#xA;}" />
+                    <reference Id="f0c2bb29-32d3-4d12-9272-61e54e741bd3" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/00f21aaa-a763-4217-850b-fad309ce14dc" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;MasterNodeConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;0c7a14be-6b82-476d-ac17-a46f8871d884&quot;&#xD;&#xA;}" />
+                    <reference Id="bfbbb37c-043c-40e9-8179-7983cc108b28" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/426fb810-ca33-4421-a86a-55ab65cb6879" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;MessageForwardingInCaseOfFaultConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;a99928a4-309c-4c2f-ab3f-0459aed6a3c6&quot;&#xD;&#xA;}" />
+                    <reference Id="85b2a7f9-9d60-40f4-a983-20a4232434a8" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/b32a8f2d-6c90-4f85-bef8-4effd0ee0427" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;TransportConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;24589f3f-059f-4d5a-9b9b-a3897fff2449&quot;&#xD;&#xA;}" />
+                    <reference Id="9adc81a3-7628-457f-a507-934c3881df02" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/72355483-14cb-4a43-ac4a-34cbad7c8882" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;UnicastBusConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;e4f4bcc6-41e9-4237-be6f-7fd91e691ced&quot;&#xD;&#xA;}" />
+                    <reference Id="94606682-b085-4447-92cf-4d167b4a13d3" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/2988d164-7d91-4c04-b649-77899a561e07" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;EndpointConfig.generated.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;163abd93-cedc-4e41-8a7d-67eedfac41aa&quot;&#xD;&#xA;}" />
+                    <reference Id="1b185cbb-3274-4186-ad74-af6732bffd78" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/7897e7c1-3eb7-45df-a94f-58ba1734c643" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;TransportConfig.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;4dfafba4-8e2b-4437-8c84-495041cb219f&quot;&#xD;&#xA;}" />
+                    <reference Id="eef54e41-8583-438a-b298-669b1d5e5c36" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/8659f0f9-acd7-4a1e-aad6-77e3aedf0d4f" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;TransportConnectionString.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;99be7198-69a8-4174-bb1e-35190f5b6496&quot;&#xD;&#xA;}" />
+                    <reference Id="3877a29f-7db5-4228-ab16-835436b072e6" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/2f58b16a-b815-47ce-abdc-d6609c62fa00" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;SecondLevelRetriesConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;61a98a15-e465-4876-96f9-e3079b9d03f8&quot;&#xD;&#xA;}" />
+                    <reference Id="9aa09434-f9c4-41ad-ac05-6518881140f1" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/41bbcbe7-b695-4648-8773-70fa799d2dfd" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;AuditConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;1decf8a2-8fda-4ca0-9410-a54735fde0c9&quot;&#xD;&#xA;}" />
+                    <reference Id="b93274e2-2720-4089-9f20-93bcbefdad17" value="solution://49515196-3d22-4ea6-9c2d-d427a94dcdc1/f001d64a-6659-464b-a3a6-4cb7e33f3993" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;App.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;45fca2b9-4ca6-47d5-a720-54ca0239e02a&quot;&#xD;&#xA;}" />
+                  </references>
+                  <elements>
+                    <collection Id="008d390f-19f3-4091-aae9-8d1760abcfe4" definitionId="4640ec7c-c09c-42a6-90de-ff9cd99fd6b1" definitionName="Components" instanceName="Components">
+                      <elements>
+                        <element Id="cdfc2681-041b-40cc-a840-da47414f01b3" definitionId="58bd0df2-5250-472d-a169-4d72726325ae" definitionName="ComponentLink" instanceName="01. Billing.OrderAcceptedHandler">
+                          <properties>
+                            <property Id="5fd62177-c363-41e7-805f-c3d7dc375e8c" definitionId="66fb536d-f50e-4dcc-a671-77a42f3f9890" definitionName="ComponentId" rawValue="0027773b-5804-4d5b-8321-dccfc8827ef1" />
+                            <property Id="fb92caf6-dbc1-4f18-afe6-247a0fd651de" definitionId="677c28b7-2bf4-4004-8327-d4f93f38107e" definitionName="ComponentName" rawValue="OrderAcceptedHandler" />
+                            <property Id="33c002f7-2b13-43fc-8d1c-e853ba604ce7" definitionId="e583683a-1534-4e78-bc7e-3f071bc024c3" definitionName="Order" rawValue="1" />
+                          </properties>
+                        </element>
+                      </elements>
+                    </collection>
+                  </elements>
+                </element>
+                <element Id="cced82f9-5b89-4c73-ae16-1ad4bede201c" definitionId="d9665948-7e01-4896-9843-c03ca1eedba7" definitionName="NServiceBusHost" instanceName="PaymentProcessing">
+                  <properties>
+                    <property Id="1ade62c1-ae35-4dfc-99ac-09305ac16e2c" definitionId="35ec46e6-cc15-4b4d-a7ec-3d409c1c3327" definitionName="ComponentsOrderDefinition" />
+                    <property Id="19daeeba-3e0a-467f-b120-202d2cb229fe" definitionId="3f97f5c3-12af-4b4a-b405-78e6e10e549e" definitionName="ErrorQueue" rawValue="error" />
+                    <property Id="19075ce8-636d-4543-b2a2-7b0d5fbf500e" definitionId="1b1b6743-320f-41a7-a368-0b6909c26807" definitionName="ForwardReceivedMessagesTo" rawValue="audit" />
+                    <property Id="75424b38-48bc-416f-a5c4-497ab2249db2" definitionId="0614b355-46b4-4b33-af42-2ebc0b80f451" definitionName="MasterNode" />
+                    <property Id="c7efc6a1-2940-4f3e-95df-32b6f7d16316" definitionId="fd845ffc-6d1d-4e5c-a38d-21935da8c5e0" definitionName="MaxRetries" rawValue="2" />
+                    <property Id="fdf22edf-5447-4f2c-8a53-04ed92d59c6b" definitionId="2961e1ef-a0c4-4edd-a15d-4c9bb664fa24" definitionName="MessageConventions" rawValue="namespace OnlineSales.PaymentProcessing&#xD;&#xA;{&#xD;&#xA;    public class MessageConventions : INeedInitialization&#xD;&#xA;    {&#xD;&#xA;        public void Customize(BusConfiguration config)&#xD;&#xA;        {&#xD;&#xA;            config.Conventions()&#xD;&#xA;                .DefiningCommandsAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.StartsWith(&quot;OnlineSales.Internal.Commands&quot;))&#xD;&#xA;                .DefiningEventsAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.StartsWith(&quot;OnlineSales.Contracts&quot;))&#xD;&#xA;                .DefiningMessagesAs(t =&gt; t.Namespace != null &amp;&amp; t.Namespace.StartsWith(&quot;OnlineSales.Internal.Messages&quot;));&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;" />
+                    <property Id="cb064656-f07d-4dce-bded-c4bdf84af9d2" definitionId="5efb5dcd-5cd5-4620-856c-46ca07231aee" definitionName="MessageEndpointMappingsConfig" />
+                    <property Id="45dc1ac2-7269-40c6-afe3-fa4bbf0b1688" definitionId="36788670-d7ad-4535-9640-7085cbd3b322" definitionName="Namespace" rawValue="OnlineSales.PaymentProcessing" />
+                    <property Id="aea0cba0-4d5a-4a99-ad31-139b7d9cdcfd" definitionId="51b2d898-a5f5-41ce-bbc0-45fb03a8757e" definitionName="NumberOfWorkerThreads" rawValue="1" />
+                    <property Id="4372577b-12c4-487b-9fca-3d6b9d9da3b4" definitionId="3ff156ab-2834-463c-a2be-339b0945df20" definitionName="SLA" />
+                    <property Id="99f69f5d-11ed-423b-b0d1-864cdbc37930" definitionId="44e518ec-0cb1-4e34-b579-b20e0fa3c7f7" definitionName="SLEnabled" rawValue="True" />
+                    <property Id="9b637d40-1fec-45fe-86cc-bce1346adb0f" definitionId="ffe8330c-7115-42e2-8028-9cb7e3acc3a3" definitionName="SLNumberOfRetries" rawValue="3" />
+                    <property Id="6192d585-d2bd-44c5-bbed-3536ca2660b1" definitionId="caef918a-e61b-4748-98a0-48480a8776f6" definitionName="SLTimeIncrease" rawValue="00:00:10" />
+                    <property Id="3b9307c9-4580-4d0b-b905-8532496577ac" definitionId="df341285-27c0-409b-8eb6-f4bf61d5af45" definitionName="CommandSenderNeedsRegistration" rawValue="False" />
+                    <property Id="4b1c33a0-138c-4ca2-ac70-78d9fa19e50f" definitionId="95a79914-151f-48e5-b0e6-2dcbefdec2a9" definitionName="TargetNsbVersion" rawValue="NSB 5.0" />
+                  </properties>
+                  <references>
+                    <reference Id="b6b3f3a1-cfec-4953-af1f-f420b2707aad" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{Root.InstanceName}.{InstanceName}&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+                    <reference Id="96ba6bf8-8f61-49b9-866e-be4eb67e517b" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;{Root.InstanceName}.{InstanceName}&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+                    <reference Id="0d13767c-918a-4249-9509-68d79b85ad0e" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/7cfe4070-b15a-479a-8985-b6e552b163da" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;MessageConventions.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;68894bb3-5b54-41e0-8972-b4186984c290&quot;&#xD;&#xA;}" />
+                    <reference Id="c4b50ff9-a4a4-472f-a791-ba0805c60b55" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/99798a26-e2dd-4109-87c7-237d237ea6d7" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;Logging.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;f640e8f1-1189-43f8-8d95-3bbd26ce574d&quot;&#xD;&#xA;}" />
+                    <reference Id="8d4862ae-d8f8-440d-a5e2-91396619d306" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/4d679cf1-a91c-4391-9f33-c772b783d393" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;EndpointConfig.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;f0d12193-eea0-4677-bd94-cde70b531417&quot;&#xD;&#xA;}" />
+                    <reference Id="32160b38-1019-42fa-9c3a-32649d13bc56" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/e91c000f-0f27-45f5-81cc-346e7bc612a5" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;MasterNodeConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;0c7a14be-6b82-476d-ac17-a46f8871d884&quot;&#xD;&#xA;}" />
+                    <reference Id="7d664c96-4b57-4eff-97d2-c9795b446e57" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/86f0a2fc-f63a-4ae7-a5ba-c84ad41d0792" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;MessageForwardingInCaseOfFaultConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;a99928a4-309c-4c2f-ab3f-0459aed6a3c6&quot;&#xD;&#xA;}" />
+                    <reference Id="f950a055-efeb-4e00-aada-105a4348ef48" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/9b73541e-d692-4c8d-b96e-5c4d48182fc5" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;TransportConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;24589f3f-059f-4d5a-9b9b-a3897fff2449&quot;&#xD;&#xA;}" />
+                    <reference Id="77cb2bb0-d26a-4e62-a06d-66fa10c42824" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/6dfde53f-9374-45a7-890a-dcf09d5aef82" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;UnicastBusConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;e4f4bcc6-41e9-4237-be6f-7fd91e691ced&quot;&#xD;&#xA;}" />
+                    <reference Id="53bcdab4-30e0-429f-9619-aa8121d59a2e" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/c0ee7e98-a422-4b0e-97b1-16c60bd42b7e" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;EndpointConfig.generated.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;163abd93-cedc-4e41-8a7d-67eedfac41aa&quot;&#xD;&#xA;}" />
+                    <reference Id="aa62b3a7-c464-4553-b8da-6b396a8cdf55" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/c159f0e8-b9d3-40f6-b851-1f46c7b08dad" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;TransportConfig.cs&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;4dfafba4-8e2b-4437-8c84-495041cb219f&quot;&#xD;&#xA;}" />
+                    <reference Id="946926d5-482d-47ec-8dfc-4aab7e85cb86" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/cf8b92e9-c78e-4389-8c84-a3430ab863e8" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;TransportConnectionString.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;99be7198-69a8-4174-bb1e-35190f5b6496&quot;&#xD;&#xA;}" />
+                    <reference Id="83c46037-4daa-4647-805e-a13e68ac3520" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/293a7892-ac21-4008-9ba4-31cc70d17369" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;SecondLevelRetriesConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;61a98a15-e465-4876-96f9-e3079b9d03f8&quot;&#xD;&#xA;}" />
+                    <reference Id="cf54992c-b0a5-4d7a-a684-274354b56e5f" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/6ace33ce-1fdb-426b-8eb1-589fc2872091" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;AuditConfig.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;1decf8a2-8fda-4ca0-9410-a54735fde0c9&quot;&#xD;&#xA;}" />
+                    <reference Id="897f2976-4b39-4ffe-a9ae-7ec13bb5db3b" value="solution://dbaa6429-841b-4e8f-b4e8-4942bb62ba84/45787f87-72cb-402e-9ecb-5122c176a229" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;App.config&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;45fca2b9-4ca6-47d5-a720-54ca0239e02a&quot;&#xD;&#xA;}" />
+                  </references>
+                  <elements>
+                    <collection Id="3b640b9e-f71e-4258-a51f-bacb8720ba5f" definitionId="4640ec7c-c09c-42a6-90de-ff9cd99fd6b1" definitionName="Components" instanceName="Components">
+                      <elements>
+                        <element Id="8931b6ad-4fd0-4090-bb17-16ad05b2a20c" definitionId="58bd0df2-5250-472d-a169-4d72726325ae" definitionName="ComponentLink" instanceName="01. Billing.SubmitPaymentHandler">
+                          <properties>
+                            <property Id="80564dc6-ffcd-4237-a0fa-cc6b64ad9365" definitionId="66fb536d-f50e-4dcc-a671-77a42f3f9890" definitionName="ComponentId" rawValue="46ebbd6b-247f-4647-8b24-cf4acf59b8a1" />
+                            <property Id="dd0fe41c-00b3-4b1d-9650-0922df07f8f3" definitionId="677c28b7-2bf4-4004-8327-d4f93f38107e" definitionName="ComponentName" rawValue="SubmitPaymentHandler" />
+                            <property Id="2817b553-b5c2-45da-998c-12653c93e657" definitionId="e583683a-1534-4e78-bc7e-3f071bc024c3" definitionName="Order" rawValue="1" />
+                          </properties>
+                        </element>
+                      </elements>
+                    </collection>
+                  </elements>
+                </element>
+              </elements>
+            </collection>
+            <collection Id="7e5a63a2-a966-40bd-ad30-b1494cd9075a" definitionId="f847dee0-d0b7-4270-932f-8b18ceb74f21" definitionName="Infrastructure" instanceName="Infrastructure" />
+            <collection Id="751ca7e5-c5e4-4af3-b954-5fee7f6f147f" definitionId="2f26d53d-1e7f-41ef-860b-f8c03f01624a" definitionName="DummyCollection" instanceName="Dummy Collection" />
+            <element Id="39224fdc-6ec8-49a5-8bcc-2105084a9d90" definitionId="f08604f7-cbcd-4f58-bd9b-ca1b64f72f5d" definitionName="ContractsProject" instanceName="OnlineSales.Contracts">
+              <references>
+                <reference Id="f0981072-554a-4cca-aa63-01203da2033e" value="solution://d28fd132-7070-4e07-a7f6-bfb018fe23fa/" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;OnlineSales.Contracts&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+                <reference Id="e6b07df6-91b1-437b-842b-7591ce68a2ac" value="solution://d28fd132-7070-4e07-a7f6-bfb018fe23fa/" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;OnlineSales.Contracts&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+              </references>
+            </element>
+            <element Id="539ff91e-196e-4be0-9698-d8ed8a89494d" definitionId="640eb378-e12e-4b7d-8362-f384c114dd76" definitionName="InternalMessagesProject" instanceName="OnlineSales.Internal">
+              <references>
+                <reference Id="d12b2057-0660-420e-a9cc-155bc086eec7" value="solution://2861c6f1-bc41-4364-94ab-7ba6b50f70d6/" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;OnlineSales.Internal&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+                <reference Id="0b29e723-b2b0-4805-a4ff-4c7116e36ba0" value="solution://2861c6f1-bc41-4364-94ab-7ba6b50f70d6/" kind="NuPattern.Runtime.References.SolutionArtifactLinkReference" tag="{&#xD;&#xA;  &quot;Tag&quot;: &quot;&quot;,&#xD;&#xA;  &quot;TargetFileName&quot;: &quot;OnlineSales.Internal&quot;,&#xD;&#xA;  &quot;SyncNames&quot;: false,&#xD;&#xA;  &quot;Id&quot;: &quot;00000000-0000-0000-0000-000000000000&quot;&#xD;&#xA;}" />
+              </references>
+            </element>
+          </elements>
+        </view>
+      </views>
+    </product>
+  </products>
+</productState>

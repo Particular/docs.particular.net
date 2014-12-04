@@ -1,0 +1,822 @@
+﻿2014-11-08 06:08:08.886 INFO  DefaultFactory Logging to 'C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.ECommerce\' with level Info
+2014-11-08 06:08:08.955 INFO  NServiceBus.Persistence.PersistenceStartup Activating persistence 'RavenDBPersistence' to provide storage for 'GatewayDeduplication' storage.
+2014-11-08 06:08:08.962 INFO  NServiceBus.Persistence.PersistenceStartup Activating persistence 'RavenDBPersistence' to provide storage for 'Timeouts' storage.
+2014-11-08 06:08:08.966 INFO  NServiceBus.Persistence.PersistenceStartup Activating persistence 'RavenDBPersistence' to provide storage for 'Sagas' storage.
+2014-11-08 06:08:08.969 INFO  NServiceBus.Persistence.PersistenceStartup Activating persistence 'RavenDBPersistence' to provide storage for 'Subscriptions' storage.
+2014-11-08 06:08:08.973 INFO  NServiceBus.Persistence.PersistenceStartup Persistence 'InMemoryPersistence' was not applied to storage 'Sagas' since that storage has been claimed by another persistence. This is a 'last one wins' scenario.
+2014-11-08 06:08:08.977 INFO  NServiceBus.Persistence.PersistenceStartup Persistence 'InMemoryPersistence' was not applied to storage 'Timeouts' since that storage has been claimed by another persistence. This is a 'last one wins' scenario.
+2014-11-08 06:08:08.981 INFO  NServiceBus.Persistence.PersistenceStartup Persistence 'InMemoryPersistence' was not applied to storage 'Subscriptions' since that storage has been claimed by another persistence. This is a 'last one wins' scenario.
+2014-11-08 06:08:08.984 INFO  NServiceBus.Persistence.PersistenceStartup Activating persistence 'InMemoryPersistence' to provide storage for 'Outbox' storage.
+2014-11-08 06:08:08.987 INFO  NServiceBus.Persistence.PersistenceStartup Persistence 'InMemoryPersistence' was not applied to storage 'GatewayDeduplication' since that storage has been claimed by another persistence. This is a 'last one wins' scenario.
+2014-11-08 06:08:09.075 INFO  NServiceBus.Licensing.LicenseManager Trial for Particular Service Platform is still active, trial expires on 11/12/2014.
+2014-11-08 06:08:09.123 INFO  NServiceBus.Features.UnicastBus Number of messages found: 6
+2014-11-08 06:08:11.366 INFO  NServiceBus.RavenDB.Internal.ConnectionVerifier Connection to RavenDB at http://localhost:8080 verified. Detected version: Product version: 2.5.0 / 6dce79a, Build version: 2935
+2014-11-08 06:08:11.372 INFO  NServiceBus.RavenDB.Internal.ConnectionVerifier Connection to RavenDB at http://localhost:8080 verified. Detected version: Product version: 2.5.0 / 6dce79a, Build version: 2935
+2014-11-08 06:08:11.641 INFO  NServiceBus.RavenDB.Persistence.RavenUserInstaller Adding user 'PROWIN1\dprothero' to raven. Instance:'http://localhost:8080', Database:'OnlineSales.ECommerce'.
+2014-11-08 06:08:11.710 WARN  NServiceBus.RavenDB.Persistence.RavenUserInstaller Failed to add user to raven. Processing will continue
+System.InvalidOperationException: Url: "/docs/Raven/Authorization/WindowsSettings"
+
+Raven.Abstractions.Exceptions.OperationVetoedException: PUT vetoed on document Raven/Authorization/WindowsSettings by Raven.Database.Server.Security.Triggers.WindowsAuthPutTrigger because: Cannot setup Windows Authentication without a valid commercial license.
+   at Raven.Database.DocumentDatabase.AssertPutOperationNotVetoed(String key, RavenJObject metadata, RavenJObject document, TransactionInformation transactionInformation)
+   at Raven.Database.DocumentDatabase.<>c__DisplayClass47.<Put>b__3f(IStorageActionsAccessor actions)
+   at Raven.Storage.Esent.TransactionalStorage.ExecuteBatch(Action`1 action, EsentTransactionContext transactionContext)
+   at Raven.Storage.Esent.TransactionalStorage.Batch(Action`1 action)
+   at Raven.Database.DocumentDatabase.Put(String key, Etag etag, RavenJObject document, RavenJObject metadata, TransactionInformation transactionInformation)
+   at Raven.Database.Server.Responders.Document.Put(IHttpContext context, String docId)
+   at Raven.Database.Server.Responders.Document.Respond(IHttpContext context)
+   at Raven.Database.Server.HttpServer.DispatchRequest(IHttpContext ctx)
+   at Raven.Database.Server.HttpServer.HandleActualRequest(IHttpContext ctx)
+ ---> System.Net.WebException: The remote server returned an error: (500) Internal Server Error.
+   at System.Net.HttpWebRequest.GetResponse()
+   at Raven.Client.Connection.HttpJsonRequest.ReadJsonInternal(Func`1 getResponse)
+   --- End of inner exception stack trace ---
+   at Raven.Client.Connection.HttpJsonRequest.HandleErrors(WebException e)
+   at Raven.Client.Connection.HttpJsonRequest.ReadJsonInternal(Func`1 getResponse)
+   at Raven.Client.Connection.HttpJsonRequest.ReadResponseJson()
+   at Raven.Client.Connection.ServerClient.DirectPut(RavenJObject metadata, String key, Etag etag, RavenJObject document, OperationMetadata operationMetadata)
+   at Raven.Client.Connection.ServerClient.<>c__DisplayClass13.<Put>b__12(OperationMetadata u)
+   at Raven.Client.Connection.ReplicationInformer.TryOperation[T](Func`2 operation, OperationMetadata operationMetadata, OperationMetadata primaryOperationMetadata, Boolean avoidThrowing, T& result, Boolean& wasTimeout)
+   at Raven.Client.Connection.ReplicationInformer.ExecuteWithReplication[T](String method, String primaryUrl, OperationCredentials primaryCredentials, Int32 currentRequest, Int32 currentReadStripingBase, Func`2 operation)
+   at Raven.Client.Connection.ServerClient.ExecuteWithReplication[T](String method, Func`2 operation)
+   at Raven.Client.Connection.ServerClient.Put(String key, Etag etag, RavenJObject document, RavenJObject metadata)
+   at NServiceBus.RavenDB.Persistence.RavenUserInstaller.InvokePut(IDatabaseCommands systemCommands, RavenJObject ravenJObject) in c:\BuildAgent\work\9b594c1b0f1d3bab\src\NServiceBus.RavenDB\Internal\RavenUserInstaller.cs:line 83
+   at NServiceBus.RavenDB.Persistence.RavenUserInstaller.AddUserToDatabase(String identity, DocumentStore documentStore) in c:\BuildAgent\work\9b594c1b0f1d3bab\src\NServiceBus.RavenDB\Internal\RavenUserInstaller.cs:line 76
+   at NServiceBus.RavenDB.Persistence.RavenUserInstaller.Install(String identity, Configure config) in c:\BuildAgent\work\9b594c1b0f1d3bab\src\NServiceBus.RavenDB\Internal\RavenUserInstaller.cs:line 42
+2014-11-08 06:08:11.715 INFO  NServiceBus.RavenDB.Persistence.RavenUserInstaller Adding user 'PROWIN1\dprothero' to raven. Instance:'http://localhost:8080', Database:'OnlineSales.ECommerce'.
+2014-11-08 06:08:11.758 WARN  NServiceBus.RavenDB.Persistence.RavenUserInstaller Failed to add user to raven. Processing will continue
+System.InvalidOperationException: Url: "/docs/Raven/Authorization/WindowsSettings"
+
+Raven.Abstractions.Exceptions.OperationVetoedException: PUT vetoed on document Raven/Authorization/WindowsSettings by Raven.Database.Server.Security.Triggers.WindowsAuthPutTrigger because: Cannot setup Windows Authentication without a valid commercial license.
+   at Raven.Database.DocumentDatabase.AssertPutOperationNotVetoed(String key, RavenJObject metadata, RavenJObject document, TransactionInformation transactionInformation)
+   at Raven.Database.DocumentDatabase.<>c__DisplayClass47.<Put>b__3f(IStorageActionsAccessor actions)
+   at Raven.Storage.Esent.TransactionalStorage.ExecuteBatch(Action`1 action, EsentTransactionContext transactionContext)
+   at Raven.Storage.Esent.TransactionalStorage.Batch(Action`1 action)
+   at Raven.Database.DocumentDatabase.Put(String key, Etag etag, RavenJObject document, RavenJObject metadata, TransactionInformation transactionInformation)
+   at Raven.Database.Server.Responders.Document.Put(IHttpContext context, String docId)
+   at Raven.Database.Server.Responders.Document.Respond(IHttpContext context)
+   at Raven.Database.Server.HttpServer.DispatchRequest(IHttpContext ctx)
+   at Raven.Database.Server.HttpServer.HandleActualRequest(IHttpContext ctx)
+ ---> System.Net.WebException: The remote server returned an error: (500) Internal Server Error.
+   at System.Net.HttpWebRequest.GetResponse()
+   at Raven.Client.Connection.HttpJsonRequest.ReadJsonInternal(Func`1 getResponse)
+   --- End of inner exception stack trace ---
+   at Raven.Client.Connection.HttpJsonRequest.HandleErrors(WebException e)
+   at Raven.Client.Connection.HttpJsonRequest.ReadJsonInternal(Func`1 getResponse)
+   at Raven.Client.Connection.HttpJsonRequest.ReadResponseJson()
+   at Raven.Client.Connection.ServerClient.DirectPut(RavenJObject metadata, String key, Etag etag, RavenJObject document, OperationMetadata operationMetadata)
+   at Raven.Client.Connection.ServerClient.<>c__DisplayClass13.<Put>b__12(OperationMetadata u)
+   at Raven.Client.Connection.ReplicationInformer.TryOperation[T](Func`2 operation, OperationMetadata operationMetadata, OperationMetadata primaryOperationMetadata, Boolean avoidThrowing, T& result, Boolean& wasTimeout)
+   at Raven.Client.Connection.ReplicationInformer.ExecuteWithReplication[T](String method, String primaryUrl, OperationCredentials primaryCredentials, Int32 currentRequest, Int32 currentReadStripingBase, Func`2 operation)
+   at Raven.Client.Connection.ServerClient.ExecuteWithReplication[T](String method, Func`2 operation)
+   at Raven.Client.Connection.ServerClient.Put(String key, Etag etag, RavenJObject document, RavenJObject metadata)
+   at NServiceBus.RavenDB.Persistence.RavenUserInstaller.InvokePut(IDatabaseCommands systemCommands, RavenJObject ravenJObject) in c:\BuildAgent\work\9b594c1b0f1d3bab\src\NServiceBus.RavenDB\Internal\RavenUserInstaller.cs:line 83
+   at NServiceBus.RavenDB.Persistence.RavenUserInstaller.AddUserToDatabase(String identity, DocumentStore documentStore) in c:\BuildAgent\work\9b594c1b0f1d3bab\src\NServiceBus.RavenDB\Internal\RavenUserInstaller.cs:line 76
+   at NServiceBus.RavenDB.Persistence.RavenUserInstaller.Install(String identity, Configure config) in c:\BuildAgent\work\9b594c1b0f1d3bab\src\NServiceBus.RavenDB\Internal\RavenUserInstaller.cs:line 42
+2014-11-08 06:08:11.791 ERROR NServiceBus.Transports.Msmq.MsmqQueueCreator Could not create queue audit@PROWIN1 or check its existence. Processing will still continue.
+System.Messaging.MessageQueueException (0x80004005): Access to Message Queuing system is denied.
+   at System.Messaging.MessageQueue.SetPermissions(AccessControlList dacl)
+   at System.Messaging.MessageQueue.SetPermissions(String user, MessageQueueAccessRights rights, AccessControlEntryType entryType)
+   at NServiceBus.Transports.Msmq.MsmqQueueCreator.SetPermissionsForQueue(MessageQueue queue, String account) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Transports\Msmq\MsmqQueueCreator.cs:line 105
+   at NServiceBus.Transports.Msmq.MsmqQueueCreator.SetPermissionsForQueue(String queuePath, String account) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Transports\Msmq\MsmqQueueCreator.cs:line 96
+   at NServiceBus.Transports.Msmq.MsmqQueueCreator.CreateQueueIfNecessary(Address address, String account) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Transports\Msmq\MsmqQueueCreator.cs:line 50
+2014-11-08 06:08:11.806 WARN  NServiceBus.Transports.Msmq.MsmqQueueCreator Queue PROWIN1\private$\OnlineSales.ECommerce does not exist.
+2014-11-08 06:08:11.994 ERROR NServiceBus.Transports.Msmq.MsmqQueueCreator Could not create queue error@PROWIN1 or check its existence. Processing will still continue.
+System.Messaging.MessageQueueException (0x80004005): Access to Message Queuing system is denied.
+   at System.Messaging.MessageQueue.SetPermissions(AccessControlList dacl)
+   at System.Messaging.MessageQueue.SetPermissions(String user, MessageQueueAccessRights rights, AccessControlEntryType entryType)
+   at NServiceBus.Transports.Msmq.MsmqQueueCreator.SetPermissionsForQueue(MessageQueue queue, String account) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Transports\Msmq\MsmqQueueCreator.cs:line 105
+   at NServiceBus.Transports.Msmq.MsmqQueueCreator.SetPermissionsForQueue(String queuePath, String account) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Transports\Msmq\MsmqQueueCreator.cs:line 96
+   at NServiceBus.Transports.Msmq.MsmqQueueCreator.CreateQueueIfNecessary(Address address, String account) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Transports\Msmq\MsmqQueueCreator.cs:line 50
+2014-11-08 06:08:12.003 WARN  NServiceBus.Transports.Msmq.MsmqQueueCreator Queue PROWIN1\private$\OnlineSales.ECommerce.Timeouts does not exist.
+2014-11-08 06:08:12.157 WARN  NServiceBus.Transports.Msmq.MsmqQueueCreator Queue PROWIN1\private$\OnlineSales.ECommerce.TimeoutsDispatcher does not exist.
+2014-11-08 06:08:12.313 WARN  NServiceBus.Transports.Msmq.MsmqQueueCreator Queue PROWIN1\private$\OnlineSales.ECommerce.Retries does not exist.
+2014-11-08 06:08:12.468 INFO  NServiceBus.PerformanceMonitorUsersInstaller Did not attempt to add user 'PROWIN1\dprothero' to group 'Performance Monitor Users' since process is not running with elevate privileges. Processing will continue. To manually perform this action run the following command from an admin console:
+net localgroup "Performance Monitor Users" "PROWIN1\dprothero" /add
+2014-11-08 06:08:12.484 INFO  NServiceBus.Features.DisplayDiagnosticsForFeatures ------------- FEATURES ----------------
+Name: CriticalErrorHandling
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: CustomIDataBus
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [DataBus]
+
+Name: DataBus
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -No databus properties was found in available messages
+
+Name: Encryptor
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -No encryption properties was found in available messages
+
+Name: ErrorSubscribers
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: ForwarderFaultManager
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: InMemoryFaultManager
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: 
+
+Name: InstallationSupport
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: CriticalTimeMonitoring
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: 
+
+Name: Audit
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: AutoSubscribe
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: ApplySubscriptions
+
+Name: MsmqSubscriptionPersistence
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: 
+
+Name: Scheduler
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: CustomSerialization
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -CustomSerialization not enable since serialization definition not detected.
+
+Name: ForwardReceivedMessages
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: 
+
+Name: RegisterHandlersInOrder
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: SLAMonitoring
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: 
+
+Name: LicenseReminder
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: Outbox
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: 
+
+Name: InMemoryGatewayPersistence
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [Gateway]
+
+Name: InMemoryOutboxPersistence
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [Outbox]
+
+Name: InMemorySagaPersistence
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [Sagas]
+
+Name: InMemorySubscriptionPersistence
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [MessageDrivenSubscriptions]
+
+Name: InMemoryTimeoutPersistence
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [TimeoutManager]
+
+Name: TimeoutManagerBasedDeferral
+Version: 5.1.1
+Enabled by Default: No
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: UnicastBus
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: BinarySerialization
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -BinarySerialization not enable since serialization definition not detected.
+
+Name: BsonSerialization
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -BsonSerialization not enable since serialization definition not detected.
+
+Name: JsonSerialization
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -JsonSerialization not enable since serialization definition not detected.
+
+Name: XmlSerialization
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: MsmqTransportConfigurator
+Version: 5.1.1
+Enabled by Default: No
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: TimeoutManager
+Version: 5.1.1
+Enabled by Default: No
+Status: Enabled
+Dependencies: [TimeoutManagerBasedDeferral]
+Startup Tasks: None
+
+Name: Sagas
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -No sagas was found in scanned types
+
+Name: SecondLevelRetries
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: [ForwarderFaultManager]
+Startup Tasks: None
+
+Name: DataBusFileBased
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [DataBus]
+
+Name: StorageDrivenPublishing
+Version: 5.1.1
+Enabled by Default: No
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: MessageDrivenSubscriptions
+Version: 5.1.1
+Enabled by Default: No
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: RavenDbGatewayDeduplication
+Version: 2.0.0
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [Gateway]
+
+Name: SharedDocumentStore
+Version: 2.0.0
+Enabled by Default: No
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: RavenDbStorageSession
+Version: 2.0.0
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [RavenDbSagaStorage]
+
+Name: RavenDbSagaStorage
+Version: 2.0.0
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [Sagas]
+
+Name: RavenDbSubscriptionStorage
+Version: 2.0.0
+Enabled by Default: No
+Status: Enabled
+Dependencies: [StorageDrivenPublishing],[SharedDocumentStore]
+Startup Tasks: None
+
+Name: RavenDbTimeoutStorage
+Version: 2.0.0
+Enabled by Default: No
+Status: Enabled
+Dependencies: [TimeoutManager]
+Startup Tasks: None
+
+Name: CustomChecks
+Version: 1.0.0
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: DebugSession
+Version: 1.0.0
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: Heartbeats
+Version: 1.0.0
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: SagaAudit
+Version: 1.0.0
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [Sagas]
+
+
+2014-11-08 06:08:12.515 INFO  NServiceBus.Satellites.SatelliteLauncher Started 2/3 NServiceBus.Timeout.Hosting.Windows.TimeoutDispatcherProcessor, NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c satellite
+2014-11-08 06:08:12.515 INFO  NServiceBus.Satellites.SatelliteLauncher Started 3/3 NServiceBus.SecondLevelRetries.SecondLevelRetriesProcessor, NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c satellite
+2014-11-08 06:08:12.535 INFO  NServiceBus.Satellites.SatelliteLauncher Started 1/3 NServiceBus.Timeout.Hosting.Windows.TimeoutMessageProcessor, NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c satellite
+2014-11-08 06:08:12.559 INFO  NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubscriptionManager Subscribing to OnlineSales.Contracts.Billing.BillingCompleted, OnlineSales.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null at publisher queue OnlineSales.Billing@PROWIN1
+2014-11-08 06:08:12.566 INFO  NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubscriptionManager Subscribing to OnlineSales.Contracts.Billing.BillingCompleted, OnlineSales.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null at publisher queue OnlineSales.Billing@PROWIN1
+2014-11-08 06:11:56.169 INFO  DefaultFactory Logging to 'C:\Particular\docs.particular.net\Snippets\ServiceMatrix\OnlineSales\OnlineSales.ECommerce\' with level Info
+2014-11-08 06:11:56.249 INFO  NServiceBus.Persistence.PersistenceStartup Activating persistence 'RavenDBPersistence' to provide storage for 'GatewayDeduplication' storage.
+2014-11-08 06:11:56.255 INFO  NServiceBus.Persistence.PersistenceStartup Activating persistence 'RavenDBPersistence' to provide storage for 'Timeouts' storage.
+2014-11-08 06:11:56.260 INFO  NServiceBus.Persistence.PersistenceStartup Activating persistence 'RavenDBPersistence' to provide storage for 'Sagas' storage.
+2014-11-08 06:11:56.264 INFO  NServiceBus.Persistence.PersistenceStartup Activating persistence 'RavenDBPersistence' to provide storage for 'Subscriptions' storage.
+2014-11-08 06:11:56.269 INFO  NServiceBus.Persistence.PersistenceStartup Persistence 'InMemoryPersistence' was not applied to storage 'Sagas' since that storage has been claimed by another persistence. This is a 'last one wins' scenario.
+2014-11-08 06:11:56.272 INFO  NServiceBus.Persistence.PersistenceStartup Persistence 'InMemoryPersistence' was not applied to storage 'Timeouts' since that storage has been claimed by another persistence. This is a 'last one wins' scenario.
+2014-11-08 06:11:56.276 INFO  NServiceBus.Persistence.PersistenceStartup Persistence 'InMemoryPersistence' was not applied to storage 'Subscriptions' since that storage has been claimed by another persistence. This is a 'last one wins' scenario.
+2014-11-08 06:11:56.279 INFO  NServiceBus.Persistence.PersistenceStartup Activating persistence 'InMemoryPersistence' to provide storage for 'Outbox' storage.
+2014-11-08 06:11:56.283 INFO  NServiceBus.Persistence.PersistenceStartup Persistence 'InMemoryPersistence' was not applied to storage 'GatewayDeduplication' since that storage has been claimed by another persistence. This is a 'last one wins' scenario.
+2014-11-08 06:11:56.364 INFO  NServiceBus.Licensing.LicenseManager Trial for Particular Service Platform is still active, trial expires on 11/12/2014.
+2014-11-08 06:11:56.407 INFO  NServiceBus.Features.UnicastBus Number of messages found: 6
+2014-11-08 06:11:56.570 INFO  NServiceBus.RavenDB.Internal.ConnectionVerifier Connection to RavenDB at http://localhost:8080 verified. Detected version: Product version: 2.5.0 / 6dce79a, Build version: 2935
+2014-11-08 06:11:56.576 INFO  NServiceBus.RavenDB.Internal.ConnectionVerifier Connection to RavenDB at http://localhost:8080 verified. Detected version: Product version: 2.5.0 / 6dce79a, Build version: 2935
+2014-11-08 06:11:56.888 INFO  NServiceBus.RavenDB.Persistence.RavenUserInstaller Adding user 'PROWIN1\dprothero' to raven. Instance:'http://localhost:8080', Database:'OnlineSales.ECommerce'.
+2014-11-08 06:11:56.952 WARN  NServiceBus.RavenDB.Persistence.RavenUserInstaller Failed to add user to raven. Processing will continue
+System.InvalidOperationException: Url: "/docs/Raven/Authorization/WindowsSettings"
+
+Raven.Abstractions.Exceptions.OperationVetoedException: PUT vetoed on document Raven/Authorization/WindowsSettings by Raven.Database.Server.Security.Triggers.WindowsAuthPutTrigger because: Cannot setup Windows Authentication without a valid commercial license.
+   at Raven.Database.DocumentDatabase.AssertPutOperationNotVetoed(String key, RavenJObject metadata, RavenJObject document, TransactionInformation transactionInformation)
+   at Raven.Database.DocumentDatabase.<>c__DisplayClass47.<Put>b__3f(IStorageActionsAccessor actions)
+   at Raven.Storage.Esent.TransactionalStorage.ExecuteBatch(Action`1 action, EsentTransactionContext transactionContext)
+   at Raven.Storage.Esent.TransactionalStorage.Batch(Action`1 action)
+   at Raven.Database.DocumentDatabase.Put(String key, Etag etag, RavenJObject document, RavenJObject metadata, TransactionInformation transactionInformation)
+   at Raven.Database.Server.Responders.Document.Put(IHttpContext context, String docId)
+   at Raven.Database.Server.Responders.Document.Respond(IHttpContext context)
+   at Raven.Database.Server.HttpServer.DispatchRequest(IHttpContext ctx)
+   at Raven.Database.Server.HttpServer.HandleActualRequest(IHttpContext ctx)
+ ---> System.Net.WebException: The remote server returned an error: (500) Internal Server Error.
+   at System.Net.HttpWebRequest.GetResponse()
+   at Raven.Client.Connection.HttpJsonRequest.ReadJsonInternal(Func`1 getResponse)
+   --- End of inner exception stack trace ---
+   at Raven.Client.Connection.HttpJsonRequest.HandleErrors(WebException e)
+   at Raven.Client.Connection.HttpJsonRequest.ReadJsonInternal(Func`1 getResponse)
+   at Raven.Client.Connection.HttpJsonRequest.ReadResponseJson()
+   at Raven.Client.Connection.ServerClient.DirectPut(RavenJObject metadata, String key, Etag etag, RavenJObject document, OperationMetadata operationMetadata)
+   at Raven.Client.Connection.ServerClient.<>c__DisplayClass13.<Put>b__12(OperationMetadata u)
+   at Raven.Client.Connection.ReplicationInformer.TryOperation[T](Func`2 operation, OperationMetadata operationMetadata, OperationMetadata primaryOperationMetadata, Boolean avoidThrowing, T& result, Boolean& wasTimeout)
+   at Raven.Client.Connection.ReplicationInformer.ExecuteWithReplication[T](String method, String primaryUrl, OperationCredentials primaryCredentials, Int32 currentRequest, Int32 currentReadStripingBase, Func`2 operation)
+   at Raven.Client.Connection.ServerClient.ExecuteWithReplication[T](String method, Func`2 operation)
+   at Raven.Client.Connection.ServerClient.Put(String key, Etag etag, RavenJObject document, RavenJObject metadata)
+   at NServiceBus.RavenDB.Persistence.RavenUserInstaller.InvokePut(IDatabaseCommands systemCommands, RavenJObject ravenJObject) in c:\BuildAgent\work\9b594c1b0f1d3bab\src\NServiceBus.RavenDB\Internal\RavenUserInstaller.cs:line 83
+   at NServiceBus.RavenDB.Persistence.RavenUserInstaller.AddUserToDatabase(String identity, DocumentStore documentStore) in c:\BuildAgent\work\9b594c1b0f1d3bab\src\NServiceBus.RavenDB\Internal\RavenUserInstaller.cs:line 76
+   at NServiceBus.RavenDB.Persistence.RavenUserInstaller.Install(String identity, Configure config) in c:\BuildAgent\work\9b594c1b0f1d3bab\src\NServiceBus.RavenDB\Internal\RavenUserInstaller.cs:line 42
+2014-11-08 06:11:56.956 INFO  NServiceBus.RavenDB.Persistence.RavenUserInstaller Adding user 'PROWIN1\dprothero' to raven. Instance:'http://localhost:8080', Database:'OnlineSales.ECommerce'.
+2014-11-08 06:11:56.999 WARN  NServiceBus.RavenDB.Persistence.RavenUserInstaller Failed to add user to raven. Processing will continue
+System.InvalidOperationException: Url: "/docs/Raven/Authorization/WindowsSettings"
+
+Raven.Abstractions.Exceptions.OperationVetoedException: PUT vetoed on document Raven/Authorization/WindowsSettings by Raven.Database.Server.Security.Triggers.WindowsAuthPutTrigger because: Cannot setup Windows Authentication without a valid commercial license.
+   at Raven.Database.DocumentDatabase.AssertPutOperationNotVetoed(String key, RavenJObject metadata, RavenJObject document, TransactionInformation transactionInformation)
+   at Raven.Database.DocumentDatabase.<>c__DisplayClass47.<Put>b__3f(IStorageActionsAccessor actions)
+   at Raven.Storage.Esent.TransactionalStorage.ExecuteBatch(Action`1 action, EsentTransactionContext transactionContext)
+   at Raven.Storage.Esent.TransactionalStorage.Batch(Action`1 action)
+   at Raven.Database.DocumentDatabase.Put(String key, Etag etag, RavenJObject document, RavenJObject metadata, TransactionInformation transactionInformation)
+   at Raven.Database.Server.Responders.Document.Put(IHttpContext context, String docId)
+   at Raven.Database.Server.Responders.Document.Respond(IHttpContext context)
+   at Raven.Database.Server.HttpServer.DispatchRequest(IHttpContext ctx)
+   at Raven.Database.Server.HttpServer.HandleActualRequest(IHttpContext ctx)
+ ---> System.Net.WebException: The remote server returned an error: (500) Internal Server Error.
+   at System.Net.HttpWebRequest.GetResponse()
+   at Raven.Client.Connection.HttpJsonRequest.ReadJsonInternal(Func`1 getResponse)
+   --- End of inner exception stack trace ---
+   at Raven.Client.Connection.HttpJsonRequest.HandleErrors(WebException e)
+   at Raven.Client.Connection.HttpJsonRequest.ReadJsonInternal(Func`1 getResponse)
+   at Raven.Client.Connection.HttpJsonRequest.ReadResponseJson()
+   at Raven.Client.Connection.ServerClient.DirectPut(RavenJObject metadata, String key, Etag etag, RavenJObject document, OperationMetadata operationMetadata)
+   at Raven.Client.Connection.ServerClient.<>c__DisplayClass13.<Put>b__12(OperationMetadata u)
+   at Raven.Client.Connection.ReplicationInformer.TryOperation[T](Func`2 operation, OperationMetadata operationMetadata, OperationMetadata primaryOperationMetadata, Boolean avoidThrowing, T& result, Boolean& wasTimeout)
+   at Raven.Client.Connection.ReplicationInformer.ExecuteWithReplication[T](String method, String primaryUrl, OperationCredentials primaryCredentials, Int32 currentRequest, Int32 currentReadStripingBase, Func`2 operation)
+   at Raven.Client.Connection.ServerClient.ExecuteWithReplication[T](String method, Func`2 operation)
+   at Raven.Client.Connection.ServerClient.Put(String key, Etag etag, RavenJObject document, RavenJObject metadata)
+   at NServiceBus.RavenDB.Persistence.RavenUserInstaller.InvokePut(IDatabaseCommands systemCommands, RavenJObject ravenJObject) in c:\BuildAgent\work\9b594c1b0f1d3bab\src\NServiceBus.RavenDB\Internal\RavenUserInstaller.cs:line 83
+   at NServiceBus.RavenDB.Persistence.RavenUserInstaller.AddUserToDatabase(String identity, DocumentStore documentStore) in c:\BuildAgent\work\9b594c1b0f1d3bab\src\NServiceBus.RavenDB\Internal\RavenUserInstaller.cs:line 76
+   at NServiceBus.RavenDB.Persistence.RavenUserInstaller.Install(String identity, Configure config) in c:\BuildAgent\work\9b594c1b0f1d3bab\src\NServiceBus.RavenDB\Internal\RavenUserInstaller.cs:line 42
+2014-11-08 06:11:57.023 ERROR NServiceBus.Transports.Msmq.MsmqQueueCreator Could not create queue audit@PROWIN1 or check its existence. Processing will still continue.
+System.Messaging.MessageQueueException (0x80004005): Access to Message Queuing system is denied.
+   at System.Messaging.MessageQueue.SetPermissions(AccessControlList dacl)
+   at System.Messaging.MessageQueue.SetPermissions(String user, MessageQueueAccessRights rights, AccessControlEntryType entryType)
+   at NServiceBus.Transports.Msmq.MsmqQueueCreator.SetPermissionsForQueue(MessageQueue queue, String account) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Transports\Msmq\MsmqQueueCreator.cs:line 105
+   at NServiceBus.Transports.Msmq.MsmqQueueCreator.SetPermissionsForQueue(String queuePath, String account) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Transports\Msmq\MsmqQueueCreator.cs:line 96
+   at NServiceBus.Transports.Msmq.MsmqQueueCreator.CreateQueueIfNecessary(Address address, String account) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Transports\Msmq\MsmqQueueCreator.cs:line 50
+2014-11-08 06:11:57.212 ERROR NServiceBus.Transports.Msmq.MsmqQueueCreator Could not create queue error@PROWIN1 or check its existence. Processing will still continue.
+System.Messaging.MessageQueueException (0x80004005): Access to Message Queuing system is denied.
+   at System.Messaging.MessageQueue.SetPermissions(AccessControlList dacl)
+   at System.Messaging.MessageQueue.SetPermissions(String user, MessageQueueAccessRights rights, AccessControlEntryType entryType)
+   at NServiceBus.Transports.Msmq.MsmqQueueCreator.SetPermissionsForQueue(MessageQueue queue, String account) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Transports\Msmq\MsmqQueueCreator.cs:line 105
+   at NServiceBus.Transports.Msmq.MsmqQueueCreator.SetPermissionsForQueue(String queuePath, String account) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Transports\Msmq\MsmqQueueCreator.cs:line 96
+   at NServiceBus.Transports.Msmq.MsmqQueueCreator.CreateQueueIfNecessary(Address address, String account) in c:\BuildAgent\work\1b05a2fea6e4cd32\src\NServiceBus.Core\Transports\Msmq\MsmqQueueCreator.cs:line 50
+2014-11-08 06:11:57.538 INFO  NServiceBus.PerformanceMonitorUsersInstaller Did not attempt to add user 'PROWIN1\dprothero' to group 'Performance Monitor Users' since process is not running with elevate privileges. Processing will continue. To manually perform this action run the following command from an admin console:
+net localgroup "Performance Monitor Users" "PROWIN1\dprothero" /add
+2014-11-08 06:11:57.555 INFO  NServiceBus.Features.DisplayDiagnosticsForFeatures ------------- FEATURES ----------------
+Name: CriticalErrorHandling
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: CustomIDataBus
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [DataBus]
+
+Name: DataBus
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -No databus properties was found in available messages
+
+Name: Encryptor
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -No encryption properties was found in available messages
+
+Name: ErrorSubscribers
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: ForwarderFaultManager
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: InMemoryFaultManager
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: 
+
+Name: InstallationSupport
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: CriticalTimeMonitoring
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: 
+
+Name: Audit
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: AutoSubscribe
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: ApplySubscriptions
+
+Name: MsmqSubscriptionPersistence
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: 
+
+Name: Scheduler
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: CustomSerialization
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -CustomSerialization not enable since serialization definition not detected.
+
+Name: ForwardReceivedMessages
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: 
+
+Name: RegisterHandlersInOrder
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: SLAMonitoring
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: 
+
+Name: LicenseReminder
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: Outbox
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: 
+
+Name: InMemoryGatewayPersistence
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [Gateway]
+
+Name: InMemoryOutboxPersistence
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [Outbox]
+
+Name: InMemorySagaPersistence
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [Sagas]
+
+Name: InMemorySubscriptionPersistence
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [MessageDrivenSubscriptions]
+
+Name: InMemoryTimeoutPersistence
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [TimeoutManager]
+
+Name: TimeoutManagerBasedDeferral
+Version: 5.1.1
+Enabled by Default: No
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: UnicastBus
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: BinarySerialization
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -BinarySerialization not enable since serialization definition not detected.
+
+Name: BsonSerialization
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -BsonSerialization not enable since serialization definition not detected.
+
+Name: JsonSerialization
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -JsonSerialization not enable since serialization definition not detected.
+
+Name: XmlSerialization
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: MsmqTransportConfigurator
+Version: 5.1.1
+Enabled by Default: No
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: TimeoutManager
+Version: 5.1.1
+Enabled by Default: No
+Status: Enabled
+Dependencies: [TimeoutManagerBasedDeferral]
+Startup Tasks: None
+
+Name: Sagas
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not fulfill its Prerequisites:
+   -No sagas was found in scanned types
+
+Name: SecondLevelRetries
+Version: 5.1.1
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: [ForwarderFaultManager]
+Startup Tasks: None
+
+Name: DataBusFileBased
+Version: 5.1.1
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [DataBus]
+
+Name: StorageDrivenPublishing
+Version: 5.1.1
+Enabled by Default: No
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: MessageDrivenSubscriptions
+Version: 5.1.1
+Enabled by Default: No
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: RavenDbGatewayDeduplication
+Version: 2.0.0
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [Gateway]
+
+Name: SharedDocumentStore
+Version: 2.0.0
+Enabled by Default: No
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: RavenDbStorageSession
+Version: 2.0.0
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [RavenDbSagaStorage]
+
+Name: RavenDbSagaStorage
+Version: 2.0.0
+Enabled by Default: No
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [Sagas]
+
+Name: RavenDbSubscriptionStorage
+Version: 2.0.0
+Enabled by Default: No
+Status: Enabled
+Dependencies: [StorageDrivenPublishing],[SharedDocumentStore]
+Startup Tasks: None
+
+Name: RavenDbTimeoutStorage
+Version: 2.0.0
+Enabled by Default: No
+Status: Enabled
+Dependencies: [TimeoutManager]
+Startup Tasks: None
+
+Name: CustomChecks
+Version: 1.0.0
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: DebugSession
+Version: 1.0.0
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: Heartbeats
+Version: 1.0.0
+Enabled by Default: Yes
+Status: Enabled
+Dependencies: None
+Startup Tasks: None
+
+Name: SagaAudit
+Version: 1.0.0
+Enabled by Default: Yes
+Status: Disabled
+Deactivation reason: Did not meet one of the dependencies: [Sagas]
+
+
+2014-11-08 06:11:57.579 INFO  NServiceBus.Satellites.SatelliteLauncher Started 3/3 NServiceBus.SecondLevelRetries.SecondLevelRetriesProcessor, NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c satellite
+2014-11-08 06:11:57.581 INFO  NServiceBus.Satellites.SatelliteLauncher Started 1/3 NServiceBus.Timeout.Hosting.Windows.TimeoutMessageProcessor, NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c satellite
+2014-11-08 06:11:57.583 INFO  NServiceBus.Satellites.SatelliteLauncher Started 2/3 NServiceBus.Timeout.Hosting.Windows.TimeoutDispatcherProcessor, NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c satellite
+2014-11-08 06:11:57.626 INFO  NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubscriptionManager Subscribing to OnlineSales.Contracts.Billing.BillingCompleted, OnlineSales.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null at publisher queue OnlineSales.Billing@PROWIN1
+2014-11-08 06:11:57.632 INFO  NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions.SubscriptionManager Subscribing to OnlineSales.Contracts.Billing.BillingCompleted, OnlineSales.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null at publisher queue OnlineSales.Billing@PROWIN1

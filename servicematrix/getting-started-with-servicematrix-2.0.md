@@ -1,41 +1,24 @@
 ---
-title: Send and Receive with ServiceMatrix V2.X
-summary: 'Getting Started with the ServiceMatrix V2.X for Visual Studio 2012 and 2013 using a send and receive example.'
+title: Introduction to ServiceMatrix
+summary: 'Getting Started with ServiceMatrix V2.X.'
 tags:
 - ServiceMatrix
 - Send and Receive
-- Visual Studio
+- Publish Subscribe
 ---
 
-This step-by-step guide to the Particular Service Platform walks you through the creation of a send-and-receive NServiceBus distributed application using ServiceMatrix V2.X for Visual Studio 2012 & 2013, using the following steps:
+This step-by-step guide to the Particular Service Platform walks you through the creation of an NServiceBus distributed application using ServiceMatrix V2.X for Visual Studio 2012 & 2013, using the following steps:
 
-1.  [Installing ServiceMatrix](#installing-servicematrix-for-visual-studio-2012)
-2.  [Creating a New Project](#creating-a-new-project)
-3.  [Creating Endpoints](#creating-endpoints)
-4.  [Creating a Message](#creating-a-message)
-5.  [Creating Services](#creating-services)
+1.  [Creating a New Project](#creating-a-new-project)
+2.  [Creating Endpoints](#creating-endpoints)
+3.  [Creating a Message](#creating-a-message)
+4.  [Creating Services](#creating-services)
 5.  [Deploying Components](#deploying-components)
-6.  [Selecting a Persistence Store](#selecting-a-persistence-store)
 6.  [Handling a Message](#handling-a-message)
-6.  [Running the Application](#running-the-application)
-7.  [Using ServiceInsight](#using-serviceinsight)
-9.  [Next Steps](#next-steps)
-
-The example demonstrates the integration of an online sales web store with a backend system using the request-response pattern and NServiceBus.
-
-## Installing ServiceMatrix for Visual Studio
-
-ServiceMatrix is a Visual Studio integrated development environment for developing the NServiceBus distributed system.
-
-This document reviews the use of ServiceMatrix for Visual Studio, assuming ServiceMatrix has already been installed.
-
-ServiceMatrix can be installed using the Particular Platform Installer. To download and install ServiceMatrix separately, [follow the instructions](installing-servicematrix-2.0.md "Installing ServiceMatrix").
-
-For this example you need to meet the following system requirements:
-- Visual Studio 2012 or 2013 (Professional or above - not Express)
-- ASP.NET MVC 4 ([http://www.asp.net/downloads](http://www.asp.net/downloads))
-
-NOTE: If you have both Visual Studio 2010 and Visual Studio 2012/13 installed on your machine, you can install ServiceMatrix for one Visual Studio version only. This document reviews the use of ServiceMatrix V2.0 for Visual Studio 2012 or 2013.
+7.  [Running the Application](#running-the-application)
+8.  [Using ServiceInsight](#using-serviceinsight)
+9.  [Adding Publish and Subscribe](#adding-publish-and-subscribe)  
+10.  [Next Steps](#next-steps)
 
 ## Creating a New Project
 
@@ -150,54 +133,17 @@ In addition to illustrating them in the canvas, the [Solution Builder](images/se
 
 The `SubmitOrder` command is a simple message meant to communicate the order between your endpoints.  To view the generated class file, click the drop-down menu of the `SubmitOrder` command and select View Code [as shown](images/servicematrix-submitorderviewcode.png "View SubmitOrder Code"). This is a very simple C# class.  You can add all sorts of properties to your message to represent the order data: strings, integers, arrays, dictionaries, etc. Just make sure to provide both a get accessor and a set mutator for each property. 
 
-```C#
-namespace OnlineSales.Internal.Commands.Sales
-{
-    public class SubmitOrder
-    {
-		//Put your properties in the class.
-		//public string CustomerName { get; set; }
-    }
-}
-```
+<!-- import ServiceMatrix.OnlineSales.Internal.Commands.Sales -->
 
 ## Handling a Message
 
 Now build the solution and see how everything turns out.  Look at the `SubmitOrderHandler` code by selecting its drop-down menu and choosing 'View Code'.  As you can see below, there is not much there.  A partial class has been created where you can add your order processing logic. 
 
-```C#
-namespace OnlineSales.Sales
-{
-    public partial class SubmitOrderHandler
-    {
-        partial void HandleImplementation(SubmitOrder message)
-        {
-            // TODO: SubmitOrderHandler: Add code to handle the SubmitOrder message.
-            Console.WriteLine("Sales received " + message.GetType().Name);
-        }
-    }
-}
-```
+<!-- import ServiceMatrix.OnlineSales.Sales.SubmitOrderHandler.before -->
 
 You can locate the ServiceMatrix-generated partial class counterpart in the `OnlineSales.OrderProcessing` project and the `Infrastructure\Sales` folder. There is not much to see; just a class that implements `IHandleMessages<submitorder>` and has a reference to `IBus` that you can use from within your partial class to send out other messages, publish events, or to reply to commands.  The partial method `HandleImplementation(message)` is a call to the implementation above.  To learn more about the way to use the generated code, see [Using ServiceMatrix Generated Code](customizing-extending.md).  
     
-```C#
-namespace OnlineSales.Sales
-{
-    public partial class SubmitOrderHandler : IHandleMessages<SubmitOrder>
-    {
-		public void Handle(SubmitOrder message)
-		{
-			// Handle message on partial class
-			this.HandleImplementation(message);
-		}
-
-		partial void HandleImplementation(SubmitOrder message);
-        public IBus Bus { get; set; }
-    }
-}
-
-```
+<!-- import ServiceMatrix.OnlineSales.Sales.SubmitOrderHandler.auto -->
 
 ## Sending a Message 
 
@@ -207,136 +153,11 @@ Lastly, review how the 'ECommerce' website sends a message.  When ServiceMatrix 
 
 Find the `TestMessagesController.generated.cs` file in the Controllers folder in the OnlineSales.ECommerce project.  ServiceMatrix generates this file as part of the MVC application. Notice the `SubmitOrderSender.Send` method that sends the command message `SubmitOrder`.  This method was generated in a different partial class file located in the `Infrastructure\Sales\SubmitOrderSender.cs` file.
 
-```C#
-namespace OnlineSales.ECommerce.Controllers
-{
-  public partial class TestMessagesController : Controller
-  {
-    //
-    // GET: /TestMessages/
-
-    public ActionResult Index()
-    {
-      return View();
-    }
-
-
-    public ISubmitOrderSender SubmitOrderSender { get; set; }
-
-    // POST: /TestMessages/SendMessageSubmitOrder
-
-    [HttpPost]
-    public string SendMessageSubmitOrder(SubmitOrder SubmitOrder)
-    {
-      ConfigureSubmitOrder(SubmitOrder);
-      SubmitOrderSender.Send(SubmitOrder);
-      return "<p> SubmitOrder command sent</p>";
-    }
-
-
-    // Send Commands
-
-    partial void ConfigureSubmitOrder(SubmitOrder message);
-
-    // Publish Events
-  }
-}
-```  
+<!-- import OnlineSales.ECommerce.Controllers.TestMessagesController.auto --> 
 
 This is a demonstration site that provides an initial reference application in MVC.  Any modifications to this file will be overwritten by subsequent regeneration of the demonstration site.  To accomodate your changes, before the `SubmitOrderSender.Send` is called, the code invokes a partial method called `ConfigureSubmitOrder` that accepts your `SubmitOrder` message as a parameter.  You can implement this in the `SubmitOrderSender.cs` file in the `\Sales` directory of the `OnlinesSales.ECommerce` project, as shown in the following code snippet:  
 
-```C#
-namespace OnlineSales.Sales
-{
-    public partial class SubmitOrderSender
-    {
-        //You can add the partial method to change the submit order message.
-        partial void ConfigureSubmitOrder(SubmitOrder message)
-        {
-            message.CustomerName="John Doe";
-        }
-    }
-}
-```
-
-## Selecting a Persistence Store
-
-NServiceBus requires a persistence store. By default, ServiceMatrix provisions your solution to use the `InMemoryPersistence` class, but only if the Visual Studio debugger is attached. If you attempt to run your project without the debugger attached, you will receive an exception informing you to choose a durable persistence class.
-
-### Selecting Persistence for ECommerce MVC Endpoint
-
-Each endpoint should be configured. For your ECommerce MVC endpoint, you will find the setup in `Infrastructure\WebGlobalInitialization.cs`. 
-
-````C#
-if (Debugger.IsAttached)
-{
-  // For production use, please select a durable persistence.
-  // To use RavenDB, install-package NServiceBus.RavenDB and then use configuration.UsePersistence<RavenDBPersistence>();
-  // To use SQLServer, install-package NServiceBus.NHibernate and then use configuration.UsePersistence<NHibernatePersistence>();	
-  config.UsePersistence<InMemoryPersistence>();
-
-  // In Production, make sure the necessary queues for this endpoint are installed before running the website
-  // While calling this code will create the necessary queues required, this step should
-  // ideally be done just one time as opposed to every execution of this endpoint.
-  config.EnableInstallers();
-}
-````
-
-Right-click on your OnlineSales.ECommerce project in the Solution Explorer and select 'Manage NuGet Packages...' Search Online for the NServiceBus.RavenDB package and install it.
-
-![NServiceBus.RavenDB NuGet Package](images/servicematrix-ravendb-nuget.png)
-
-Because `Infrastructure\WebGlobalInitialization.cs` is an auto-generated code file by ServiceMatrix, you should not edit it directly (or else your changes will be gone the next time it is rebuilt). Instead, add a new class file named `ConfigurePersistence.cs` to the Infrastructure folder of the ASP.NET project. Update it to initialize the RavenDBPersistence class as follows:
-
-````C#
-using NServiceBus;
-using NServiceBus.Persistence;
-
-namespace OnlineSalesV5.eCommerce.Infrastructure
-{
-  public class ConfigurePersistence : INeedInitialization
-  {
-    public void Customize(BusConfiguration config)
-    {
-      config.UsePersistence<RavenDBPersistence>();
-    }
-  }
-}
-````
-
-### Selecting Peristence for OrderProcessing NServiceBus Host Endpoint
-
-In your OrderProcessing endpoint, you will find the setup in `EndpointConfig.cs`.
-
-````C#
-// For production use, please select a durable persistence.
-// To use RavenDB, install-package NServiceBus.RavenDB and then use configuration.UsePersistence<RavenDBPersistence>();
-// To use SQLServer, install-package NServiceBus.NHibernate and then use configuration.UsePersistence<NHibernatePersistence>();
-if (Debugger.IsAttached)
-{
-  configuration.UsePersistence<InMemoryPersistence>();
-}
-````
-
-Repeat the steps above to install the NServiceBus.RavenDB NuGet package into your OnlineSales.OrderProcessing project and modify the code in `EndpointConfig.cs`.
-
-````C#
-configuration.UsePersistence<RavenDBPersistence>();
-````
-
-You will need to add the following using statement at the top of EndpointConfig.cs as well:
-
-````C#
-using NServiceBus.Persistence;
-````
-
-### Installing RavenDB 2.5
-
-An NServiceBus V5 ServiceMatrix project requires RavenDB V2.5. Download the installer from [ravendb.net](http://ravendb.net/download) and select "Development" for the target environment.
-
-NOTE: If you already have RavenDB 2.0 installed, you can uninstall the service by finding the Raven.Server.exe executable on your machine and running it from the command line with /uninstall.
-
-For more information on installing RavenDB for use with NService bus, refer to [this document](/nservicebus/using-ravendb-in-nservicebus-installing.md).
+<!-- import ServiceMatrix.OnlineSales.Sales.SubmitOrderSender -->
 
 ## Running the Application
 
@@ -368,18 +189,83 @@ By default, when you run a ServiceMatrix project, [ServiceInsight](/serviceinsig
 
 ![ServiceInsight](images/serviceinsight-screen.jpg)
 
+## Adding Publish and Subscribe
+In your example the `SubmitOrderHandler` component handles the `SubmitOrder` messages.  Using the drop-down menu of `SubmitOrderHandler`, select 'Publish Event' as shown.
+
+![Publish Event](images/servicematrix-publishevent.png)
+
+Name the new event `OrderAccepted`.
+
+### Adding the Code to Publish the Event
+
+When you create the `OrderAccepted` event you will be prompted by a dialog informing you of code changes that should be made.
+
+![User Code Changes Required](images/servicematrix-orderaccepted-usercodechanges.png)
+
+In order to publish this new event, the event message must be initialized and published by the `SubmitOrderProcessor`.  To make this easier, ServiceMatrix has generated the code in a convenient window for review.   Select the option to `Copy to Clipboard and Open File`.   The `SubmitOrderHandler` partial class file will be opened.  Paste the code from the clipboard after the comment as shown below. 
+
+<!-- import ServiceMatrix.OnlineSales.Sales.SubmitOrderHandler --> 
+
+This code will publish the `OrderAccepted` event immediately upon receipt of the `SubmitOrder` message.
+
+### Adding the Subscriber
+
+To create a subscriber for this new event, select the dropdown of the `OrderAccepted` event and choose 'Add Subscriber' as shown here:
+
+![New Event Subscriber](images/servicematrix-orderacceptedevent.png)
+
+In the 'Add Event Subscriber' window use the 'Add new Service' text box to add a [new service called Billing](images/servicematrix-addeventsubscriber.png "New Billing Service").  You should notice that `OrderAcceptedHandler` has been created in a new Billing Service. The dashed container indicates that the component has yet to be deployed. Also notice that the lines representing the `OrderAccepted` event messages are dashed.  This is because they are events. The `SubmitOrder' messages are commands and are illustrated with a solid line. 
+
+![Undeployed Billing Service](images/servicematrix-undeployedbilling.png). 
+
+### Deploy the OrderAcceptedHandler
+
+To deploy the `OrderAcceptedHandler` use the drop down menu and choose 'Deploy Component' as shown here:
+
+![Deploy OrderAcceptedHandler](images/servicematrix-orderaccepted-deploy.png)
+
+In the resulting '[Deploy To Endpoint](images/servicematrix-deploytonewendpointv2.2.0.png "Deploy to Endpoint")' window choose the 'New Endpoint' option and [create an endpoint](images/servicematrix-newbillingendpoint.png "Add Billing Endpoint") called `Billing`.
+
+At this point with a little re-arranging your ServiceMatrix canvas should look like this:
+
+![Pub Sub Wired Up](images/servicematrix-pubsubcanvaswired-gettingstarted.png)
+
+The `SubmitOrderHandler` raises the `OrderAccepted` event, to which `OrderAcceptedHandler` of the `Billing` service is subscribed.
+
+As you would expect, the ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilder-gettingstarted.png "SolutionBuilder") reflects the new endpoint, service, component, and event you added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution-gettingstarted.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
+
+### Review the Code
+
+ServiceMatrix generates the initial code for publishing and processing the event and both the publishing and subscribing end. 
+
+#### Event Publisher Code 
+
+When we created the `OrderAccepted` event ServiceMatrix generated the code to publish the event and modify the `SubmitOrderHandler` component.  The [section above](#adding-the-code-to-publish-the-event "Event Publishing Code") illustrates the code. 
+
+#### Subscriber Code
+
+In the `OrderAcceptedHandler` drop-down menu select `View Code` and you should see the following. 
+
+<!-- import ServiceMatrix.OnlineSales.Billing.OrderAcceptedHandler.before -->
+
+There is nothing new here!  Notice that this generated `OrderAcceptedHandler` code is the exactly the same as was generated for the  `SubmitOrderHandler`.
+
+### Build and Run the Solution Again
+
+Go ahead and run the solution. This time, in addition to the [sales web site](images/servicematrix-demowebsite.png "Demo Website") and [`OrderProcessing` endpoint console](images/servicematrix-reqresp-orderprocessor.png "Order Processing"), you should see another console window for `Billing`.
+
+Send a few test messages from the website.  You should see them handled by the `OrderProcessing` console as before.  You should almost immediately see that the `Billing` endpoint has received your new `OrderAccepted` event as shown below:
+
+![Billing Console](images/servicematrix-billingconsole.png)  
+
 ### Congratulations!
 
-You've just built your first NServiceBus application. Wasn't that easy?
+You've just built your first NServiceBus application using ServiceMatrix. Wasn't that easy?
 
 ## Next Steps
 
 We mentioned that [ServiceInsight](/serviceinsight) can be a valuable tool in the design process and where to [learn more about it](servicematrix-serviceinsight.md).  For runtime monitoring of an NServiceBus solution, the platform also includes [ServicePulse](/servicepulse).  
 
-In this article you saw how to use ServiceMatrix to connect a front end website and a backend processing system using NServiceBus. 
+In this article you saw how to use ServiceMatrix to connect a front end website and a backend processing system using NServiceBus.  What's so exciting about that?  After all inter-process communication has been done many times before. One answer is ***fault tolerance***.  Next, you can explore the fault tolerance and durability features NServiceBus offers. You might want to next read a review of the fault tolerance features inherent in NServiceBus in [this article](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "Getting Started with Fault Tolerance").  
 
-What's so exciting about that?  After all inter-process communication has been done many times before. 
-
-One answer is ***fault tolerance***.  Next, you can explore the fault tolerance and durability features NServiceBus offers.
-
-Continue with a review of the fault tolerance in the [next article](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "Getting Started with Fault Tolerance").  
+Or, you can return to the ServiceMatrix [table of contents](./).

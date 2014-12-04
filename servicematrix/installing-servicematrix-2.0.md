@@ -1,5 +1,5 @@
 ---
-title: Installation  
+title: Installing ServiceMatrix
 summary: 'Installing ServiceMatrix'
 tags:
 - ServiceMatrix
