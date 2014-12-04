@@ -12,6 +12,6 @@ tags: []
 
 <!-- import HandlerOrderingWithFirst -->
 
-### Specifying multiple handlers to run first order with with ISpecifyMessageHandlerOrdering
+### Specifying multiple handlers to run first order with ISpecifyMessageHandlerOrdering
 
 <!-- import HandlerOrderingWithMultiple -->
