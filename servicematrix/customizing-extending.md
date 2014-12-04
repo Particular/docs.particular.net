@@ -23,6 +23,7 @@ This article explores how to customize the ServiceMatrix solution and add your o
 11. [Summary](#summary)
 
 # Introduction
+
 ServiceMatrix is a visual design tool that accelerates the design and coding of an NServiceBus system.  It generates code and automates the creation of classes, projects and configurations that would take much longer if done manually.  The generated code is designed in a way that allows for user modification and extension. This article reviews this high level design and demonstrates the extension points.    
 
 ## Viewing The Code

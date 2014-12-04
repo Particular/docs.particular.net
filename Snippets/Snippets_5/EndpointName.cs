@@ -4,7 +4,7 @@ public class EndpointName
 {
     public void Simple()
     {
-        #region EndpointNameFluentV5
+        #region EndpointNameFluent
 
         var configuration = new BusConfiguration();
 
@@ -15,7 +15,7 @@ public class EndpointName
 
 }
 
-// startcode EndpointNameByAttributeV5
+// startcode EndpointNameByAttribute
 [EndpointName("MyEndpointName")]
 public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
 {
@@ -26,7 +26,7 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
     }
 }
 
-// startcode EndpointNameByNamespaceV5
+// startcode EndpointNameByNamespace
 namespace MyServer
 {
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Server

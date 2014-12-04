@@ -5,7 +5,7 @@ public class MessageConventions
 {
     public void Simple()
     {
-        #region MessageConventionsV5
+        #region MessageConventions
 
         var configuration = new BusConfiguration();
         var conventionsBuilder = configuration.Conventions();

@@ -4,7 +4,7 @@ public class StartupAction
 {
     public void Simple()
     {
-        #region StartupActionV4
+        #region StartupAction
 
         Configure.With().UnicastBus()
             .CreateBus()

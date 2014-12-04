@@ -4,7 +4,7 @@ public class PurgeOnStartup
 {
     public void Simple()
     {
-        #region PurgeOnStartupV5
+        #region PurgeOnStartup
 
         var configuration = new BusConfiguration();
 

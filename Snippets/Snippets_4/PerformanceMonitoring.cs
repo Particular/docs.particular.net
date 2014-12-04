@@ -5,7 +5,7 @@ public class PerformanceMonitoring
 {
     public void Simple()
     {
-        #region PerformanceMonitoringV4
+        #region PerformanceMonitoring
 
         Configure.With()
             .EnablePerformanceCounters();

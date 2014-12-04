@@ -4,7 +4,7 @@ public class StaticConfigureEndpoint
 {
     public void Simple()
     {
-        #region StaticConfigureEndpointReplacementV5
+        #region StaticConfigureEndpoint
 
         var configuration = new BusConfiguration();
 

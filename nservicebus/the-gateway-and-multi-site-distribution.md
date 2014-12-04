@@ -48,7 +48,7 @@ This model is recommended as it provides all the benefits of durable messaging b
 
 In cases where you only have access to HTTP for connection between sites, you can enable the NServiceBus Gateway on each site so it transmits messages from a queue in one site to a queue in another site, including the hash of the messages to ensure that the message is transmitted correctly. The following diagram shows how it works:
 
-![Gateway Headquarter to Site A](gateway-headquarter-to-site-a.png)
+![Gateway Headquarter to Site A](gateway-headquarter-to-site-a.png)  
 
 The sending process in site A sends a message to the gateway's input queue. The gateway then initiates an HTTP connection to its configured target site. The gateway in site B accepts HTTP connections, takes the message transmitted, hashes it, and returns the hash to site A. If the hashes match, the gateway in site B transmits the message it receives to a configured queue. If the hashes don't match, the gateway in site A retransmits.
 
@@ -58,7 +58,7 @@ When you configure the client endpoint, make sure that the UnicastBusConfig's `M
 
 To send a message to a remote site, use the `SendToSites` API call, as shown:
 
-<!-- import GatewayApi-v5 -->
+<!-- import SendToSites -->
 
  Did you notice the list of strings as the first parameter? This is the list of remote sites where you want the message(s) sent. While you can put the URLs of the site directly in the call, we recommend that you put these settings in `app.config` so your administrators can change them should the need arise. To do this, add this config section:
 

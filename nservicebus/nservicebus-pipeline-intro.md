@@ -13,11 +13,11 @@ In NServiceBus v5, there are two explicit pipelines, one for the outgoing messag
 
 The steps in the processing pipeline are dynamic in nature. They are added or removed based on what features are enabled. For example, if an endpoint has Sagas, then the Saga feature will be enabled by default, which in turn adds extra steps to the incoming pipeline to facilitate the handling of sagas. 
 
-##Some of the commonly used steps
+## Some of the commonly used steps
 
 Because steps can be added into the pipeline and or replaced based on the features that are enabled or disabled by each endpoint, listed below are only some of the steps for the basic incoming and outgoing pipeline.
 
-###Incoming Message Pipeline
+### Incoming Message Pipeline
 
 - `CreateChildContainer`: NServiceBus heavily relies in IoC to work properly and requires every message to be handled in its own context, to achieve that every message that arrives to an Endpoint will at first create a new child container to generate a new dependency resolution scope; 
 * `ExecuteUnitOfWork`: the ExecuteUnitOfWork behavior is responsible to handle the creation of the Unit of Work, that wrap every message execution, whose role is to guarantee the execution of message in a transaction fashion;
@@ -28,7 +28,7 @@ Because steps can be added into the pipeline and or replaced based on the featur
 * `LoadHandlers`: The LoadHandlers behavior will load all the handlers registered for the incoming messages and coordinate the execution logic of all the loaded handlers;
 * `InvokeHandlers`: This behavior is responsible to physically invoke each message handler;
 
-###Outgoing Message Pipeline
+### Outgoing Message Pipeline
 
 - `EnforceBestPractices`: this behavior is responsible to ensure that best practices are respected, for example, among all, that the user is not trying to `send` an event or to `publish` a command;
 * `MutateOutgoingMessages`: each message, as for incoming messages, is passed to a set of message mutators that have the opportunity to manage and mutate the outgoing message;
@@ -39,7 +39,7 @@ Because steps can be added into the pipeline and or replaced based on the featur
 
 Although the execution order of the built-in pipeline cannot be changed, it is possible to change the built-in behavior of these steps and/or new steps can be added to the pipeline. 
 
-##How to code behaviors?
+## How to code behaviors?
 
 A message behavior is a class that implements the `IBehavior<TContext>` interface:
 
@@ -57,7 +57,7 @@ The pipeline is implemented using the [Russian Doll](http://en.wikipedia.org/wik
 
 At runtime, the pipeline will call the `Invoke` method of each registered behavior passing in as arguments the current message context and an action to invoke the next behavior in the pipeline. It is responsibility of each behavior to invoke the next behavior in the pipeline chain.
 
-##How to register a behavior?
+## How to register a behavior?
 
 Once a behavior is created we need to specify, which step is going to be implementing this new behavior in the pipeline. For example, is a new step going to contain this behavior or if it's going to replace existing behavior of a built-in step.
 

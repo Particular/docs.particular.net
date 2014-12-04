@@ -53,7 +53,10 @@ public class Log4NetConfig
             Layout = new SimpleLayout(),
         };
 
-        appender.AddFilter(new LoggerMatchFilter { LoggerToMatch = "MyNamespace" });
+        appender.AddFilter(new LoggerMatchFilter
+                           {
+                               LoggerToMatch = "MyNamespace"
+                           });
         appender.AddFilter(new DenyAllFilter());
         appender.ActivateOptions();
 

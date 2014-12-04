@@ -20,6 +20,7 @@ To illustrate the process this procedure assumes the following:
 ### Adding the Instance 
 
 #### Copying the Binaries 
+
 To add a second instance, take a copy of the ServiceControl directory. This is necessary because ServiceControl maintains its configuration in the ServiceControl.exe.config, which is located in the same directory as the binaries.
 For this example we assume the new directory will be C:\Program Files (x86)\Particular Software\ServiceControl-Test.
 After copying the directory, ensure the file system ACLs are correct and that the service account you plan to use has read and execute rights.  
@@ -37,6 +38,7 @@ As shown, you must specify the command line options for the host name and port w
 
 
 #### Specifying the Service Account
+
 The command line arguments shown above will set the service account for "Particular.ServiceControl.Test to "Local System".  You can specify a service account on the command line using the username and password command line switches as follows:
 
 ```

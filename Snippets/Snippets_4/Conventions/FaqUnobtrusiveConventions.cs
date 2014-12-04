@@ -8,7 +8,9 @@ class FaqUnobtrusiveConventions
             .DefaultBuilder()
             #region UnobtrusiveConventionsFaqError
 
-            .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.EndsWith("Messages"));
+            .DefiningMessagesAs(t => 
+                t.Namespace != null && 
+                t.Namespace.EndsWith("Messages"));
 
         #endregion UnobtrusiveConventionsFaqError
 
@@ -16,7 +18,10 @@ class FaqUnobtrusiveConventions
             .DefaultBuilder()
             #region UnobtrusiveConventionsFaqFix
 
-            .DefiningMessagesAs(t => t.Namespace != null && t.Namespace.StartsWith("MyCompany") && t.Namespace.EndsWith("Messages"));
+            .DefiningMessagesAs(t =>
+                t.Namespace != null &&
+                t.Namespace.StartsWith("MyCompany") &&
+                t.Namespace.EndsWith("Messages"));
 
         #endregion UnobtrusiveConventionsFaqFix
 
