@@ -7,7 +7,7 @@ public class InterfaceMessageCreation
     {
         IBus Bus = null;
 
-        #region InterfaceMessageCreationV5
+        #region InterfaceMessageCreation
 
         Bus.Publish<MyInterfaceMessage>(o =>
         {
@@ -17,7 +17,7 @@ public class InterfaceMessageCreation
         #endregion
 
         IMessageCreator messageCreator = null;
-        #region ReflectionInterfaceMessageCreationV5
+        #region ReflectionInterfaceMessageCreation
         //This type would be derived from some other runtime information
         var messageType = typeof(MyInterfaceMessage);
 

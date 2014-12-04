@@ -4,7 +4,7 @@ public class RunCustomAction
 {
     public void Simple()
     {
-        #region RunCustomActionV4
+        #region RunCustomAction
 
         Configure.With().UnicastBus()
             .RunCustomAction(MyCustomAction)

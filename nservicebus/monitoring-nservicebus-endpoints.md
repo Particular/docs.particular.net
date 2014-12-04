@@ -26,7 +26,7 @@ Since all performance counters in Windows are exposed via Windows Management Ins
 
 The following video shows NServiceBus performance counters, and demonstrates their use.
 
-<iframe allowfullscreen frameborder="0" src="http://www.youtube.com/embed/gKLHT7Kj4Rg"></iframe>
+<iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/gKLHT7Kj4Rg"></iframe>
 
 ## Best practices
 

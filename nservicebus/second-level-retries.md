@@ -22,7 +22,7 @@ For example, if there is a call to an web service in your handler, but the servi
 
 To configure SLR, enable its configuration section:
 
-<!-- import SecondLevelRetiesAppConfigV5 -->
+<!-- import SecondLevelRetiesAppConfig -->
 
  *  `Enabled`: Turns the feature on and off. Default: true.
  *  `TimeIncrease`: A time span after which the time between retries increases. Default: 10 seconds (`00:00:10`).
@@ -32,17 +32,8 @@ To configure SLR, enable its configuration section:
 
 To disable the SLR feature, add this to your configuration 
 
-### In Version 5:
+<!-- import SecondLevelRetriesDisable -->
 
-<!-- import SecondLevelRetriesDisableV5 -->
-
-### In Version 4:
-
-<!-- import SecondLevelRetriesDisableV4 -->
-
-### In Version 3:
-
-<!-- import SecondLevelRetriesDisableV3 -->
 
 ## Custom Retry Policy
 
@@ -50,20 +41,11 @@ You can change the time between retries or the number of retries in code.
 
 Here is a sample method for handling this behavior.
 
-<!-- import SecondLevelRetriesCustomPolicyHandlerV4 -->
+<!-- import SecondLevelRetriesCustomPolicyHandler -->
 
 To plug this into NServiceBus use the following APIs.
-### Version 5:
 
-<!-- import SecondLevelRetriesCustomPolicyV5 -->
-
-### Version 4:
-
-<!-- import SecondLevelRetriesCustomPolicyV4 -->
-
-### Version 3:
-
-<!-- import SecondLevelRetriesCustomPolicyV3 -->
+<!-- import SecondLevelRetriesCustomPolicy -->
 
 ## Working sample 
 

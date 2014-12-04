@@ -215,7 +215,8 @@
     <Compile Include="Host\CustomLogging.cs" />
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
-    <Compile Include="Scanning\ScanningPublicApiV4.cs" />
+    <Compile Include="Scanning\ScanningPublicApi.cs" />
+    <Compile Include="UnitTesting\Saga.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
     <None Include="Encryption\encryption.config">
       <SubType>Designer</SubType>
@@ -229,7 +230,6 @@
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
     <Compile Include="SubscriptionSettings.cs" />
-    <Compile Include="TypeScanning.cs" />
     <Compile Include="Containers.cs" />
     <Compile Include="EndpointName.cs" />
     <Compile Include="HandlerOrdering.cs" />
@@ -266,8 +266,4 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <StartAction>Program</StartAction>
-    <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
-  </PropertyGroup>
 </Project>

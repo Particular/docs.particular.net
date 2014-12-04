@@ -4,7 +4,7 @@ class ConfiguringNHibernate
 {
     public void Foo()
     {
-        #region ConfiguringNHibernateV4
+        #region ConfiguringNHibernate
 
         Configure.With()
         .UseNHibernateSubscriptionPersister()

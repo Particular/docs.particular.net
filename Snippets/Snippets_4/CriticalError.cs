@@ -6,7 +6,7 @@ public class CriticalError
     public void DefineCriticalErrorAction()
     {
 
-        #region DefineCriticalErrorActionV4
+        #region DefineCriticalErrorAction
 
         // Configuring how NServicebus handles critical errors
         Configure.With().DefineCriticalErrorAction((message, exception) =>
@@ -22,7 +22,7 @@ public class CriticalError
     public void RaiseCriticalErrorAction()
     {
         Exception theException = null;
-        #region RaiseCriticalErrorV4
+        #region RaiseCriticalError
 
         // Configuring how NServicebus handles critical errors
         Configure.With().RaiseCriticalError("The message", theException);

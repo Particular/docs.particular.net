@@ -4,7 +4,7 @@ public class StaticConfigureEndpoint
 {
     public void Simple()
     {
-        #region StaticConfigureEndpointV4
+        #region StaticConfigureEndpoint
 
         Configure.Endpoint.AsSendOnly();
         Configure.Endpoint.AsVolatile();

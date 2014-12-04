@@ -9,72 +9,43 @@ By default, NServiceBus scans all assemblies in the endpoint bin folder to find 
 NOTE: During the scanning process, the core dlls for NServiceBus namely `NServiceBus.Core.dll`, `NServiceBus.dll` (in versions prior to Version 5) and if in use `NServiceBus.Host.exe` are automatically included since the endpoint needs them to function properly. 
 
 ## Controlling the assemblies to scan
+
 There are some cases where you need fine grained control over which assemblies are loaded:
+
 - To limit the number of assemblies being scanned and hence provide improvements to startup time.
 - If you are hosting multiple endpoints out of the same directory (made possible in Version 5) i.e. each endpoint would want to load a subset of assemblies.
 - In versions prior to Version 4.1, non .NET assemblies, e.g. COM dlls might need to be excluded. Starting with Version 4.1, non .NET assemblies are automatically excluded.
+ 
 
-#### Version 5
+### By default all types in your bin directory is scanned if you call:
 
-You can pass a list of assemblies:
+<!-- import ScanningDefault -->
+ 
+### You can pass a list of assemblies:
 
-<!-- import ScanningListOfAssembliesV5 -->
+<!-- import ScanningListOfAssemblies -->
 
-You can pass the assemblies one by one:
+### You can pass the assemblies one by one:
 
-<!-- import ScanningParamArrayOfAssembliesV5 -->
+<!-- import ScanningParamArrayOfAssemblies -->
 
-You can exclude specific assemblies by name:
+###You can exclude specific assemblies by name:
 
-<!-- import ScanningExcludeByNameV5 -->
+<!-- import ScanningExcludeByName -->
 
-You can include assemblies using pattern matching:
+### You can include assemblies using pattern matching:
 
-<!-- import ScanningIncludeByPatternV5 -->
+<!-- import ScanningIncludeByPattern -->
 
-You can mix includes and excludes:
+### You can mix includes and excludes:
 
-<!-- import ScanningMixingIncludeAndExcludeV5 -->
+<!-- import ScanningMixingIncludeAndExclude -->
 
-You can specify the directory to scan:
+### You can specify the directory to scan:
 
-<!-- import ScanningCustomDirectoryV5 -->
+<!-- import ScanningCustomDirectory -->
 
-And if you need to control the exact types that NServiceBus uses you can pass them in:
+### And if you need to control the exact types that NServiceBus uses you can pass them in:
 
-<!-- import ScanningListOfTypesV5 -->
+<!-- import ScanningListOfTypes -->
 
-#### Version 4
-
-By default all types in your bin directory is scanned if you call:
-
-<!-- import ScanningDefaultV4 -->
-
-You can pass a list of assemblies:
-
-<!-- import ScanningListOfAssembliesV4 -->
-
-You can pass the assemblies one by one:
-
-<!-- import ScanningParamArrayOfAssembliesV4 -->
-
-You can exclude specific assemblies by name:
-
-<!-- import ScanningExcludeByNameV4 -->
-
-You can include assemblies using pattern matching:
-
-<!-- import ScanningIncludeByPatternV4 -->
-
-You can mix includes and excludes:
-
-<!-- import ScanningMixingIncludeAndExcludeV4 -->
-
-
-You can specify a the directory to scan:
-
-<!-- import ScanningCustomDirectoryV4 -->
-
-And if you need to control the exact types that NServiceBus uses you can pass them in:
-
-<!-- import ScanningListOfTypesV4 -->

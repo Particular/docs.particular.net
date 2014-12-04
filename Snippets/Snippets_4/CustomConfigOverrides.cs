@@ -4,7 +4,7 @@ public class CustomConfigOverrides
 {
     public void Simple()
     {
-        #region CustomConfigOverridesV4
+        #region CustomConfigOverrides
 
         var configure = Configure.With(AllAssemblies.Except("NotThis.dll"))
             .DefaultBuilder();

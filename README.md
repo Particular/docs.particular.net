@@ -179,6 +179,7 @@ var configure = Configure.With();
 // endcode
 ```
 
+
 #### Using regions 
 
 Any code wrapped in a named C# region will pe picked up. The name of the region is used as the key. 
@@ -188,10 +189,40 @@ Any code wrapped in a named C# region will pe picked up. The name of the region 
 var configure = Configure.With();
 #endregion
 ```
+
+
+### Snippet versioning
+
+Snippets are versioned, these versions are used to render snippets in a tabbed manner.
+
+<img src="tabbed_snippets.png" style='border:1px solid #000000' />
+
+Version is of the form `Major.Minor.Patch`. If either `Minor` or `Patch` is not defined they will be rendered as an `x`. So for example Version `3.3` would be rendered as `3.3.x` and Version `3` would be rendered as `3.x`.
+
+Snippet versions are derived in two ways
+
+#### Version suffix on snippets
+
+Appending a version to the end of a snippet definition as follows.
+
+```
+#region ConfigureWith 4.5
+var configure = Configure.With();
+#endregion
+```
+
+#### Convention based on the directory
+
+If a snippet has no version defined then the version will be derived by walking up the directory tree until if finds a directory of the form `Name_Major.Minor.Patch`. eg
+
+ * Snippets extracted from `docs.particular.net\Snippets\Snippets_4\TheClass.cs` would have a default version of `4`.
+ * Snippets extracted from `docs.particular.net\Snippets\Snippets_4\Special_4.3\TheClass.cs` would have a default version of `4.3`.
  
 ### Using Snippets
 
 The keyed snippets can then be used in any documentation `.md` file by adding the text **&lt;!-- import KEY -->**.
+
+Then snippets with the key (all versions) will be rendered in a tabbed manner. If there is only a single version then it will be rendered as a simple code block with no tabs.
 
 For example 
 
@@ -348,7 +379,7 @@ For example
 
 With the minimal syntax being 
 
-    ![](/path/to/img.jpg "with=x")
+    ![](/path/to/img.jpg "width=x")
 
 This will result in the image being resized with the following parameters
 

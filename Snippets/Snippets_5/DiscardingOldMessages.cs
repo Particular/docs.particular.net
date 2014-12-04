@@ -4,18 +4,19 @@ using NServiceBus;
 public class DiscardingOldMessages
 {
 
-    #region DiscardingOldMessagesWithAnAttributeV5
+    #region DiscardingOldMessagesWithAnAttribute
     [TimeToBeReceived("00:01:00")] // Discard after one minute
     public class MyMessage { }
     #endregion
 
     public void Simple()
     {
-        #region DiscardingOldMessagesWithFluentV5
+        #region DiscardingOldMessagesWithFluent
 
         var configuration = new BusConfiguration();
 
-        configuration.Conventions().DefiningTimeToBeReceivedAs(type =>
+        configuration.Conventions()
+            .DefiningTimeToBeReceivedAs(type =>
         {
             if (type == typeof (MyMessage))
             {

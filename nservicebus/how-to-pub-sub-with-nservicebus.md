@@ -64,10 +64,4 @@ When subscribing to a message, you will probably have a [message handler](how-do
 
 You can also choose to **not** have the infrastructure automatically subscribe using the fluent API
 
-### Verison 4
-
-<!-- import DisableAutoSubscribeV4 -->
-
-### Version 5  
-
-<!-- import DisableAutoSubscribeV5 -->
+<!-- import DisableAutoSubscribe -->

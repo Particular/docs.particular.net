@@ -1,5 +1,5 @@
 ---
-title: ServiceControl error.log and audit.log behavior
+title: error.log and audit.log behavior
 summary: Details ServiceControl logging feature
 tags:
 - ServiceControl

@@ -10,7 +10,7 @@ These new event streams are exposed via the `BusNotifications` class that can be
 
 The following example shows how to be notified every time a message is about to be sent to the configured error queue so that an email is sent notifying interested parties.
 
-<!-- import SubscribeToErrorsNotifications-V5 -->
+<!-- import SubscribeToErrorsNotifications -->
 
 For more information about Reactive Extensions, see http://msdn.microsoft.com/en-au/data/gg577609.aspx
 
