@@ -6,7 +6,7 @@ tags: [ServicePulse, Concepts, Monitoring Events]
 
 ServicePulse is the Particular platform monitoring front-end, powered by ServiceControl. ServicePulse gives you an overview of the system health, based on endpoints heartbeats and custom checks, and a detailed view of all the failed messages.
 
-Note: You can consume the same information not only via the ServicePulse web interface but also subscribing to ServicePulse events broadcasted by the ServiceControl endpoint. (link to the article Sean is working on)
+Note: You can consume the same information not only via the ServicePulse web interface but also subscribing to ServicePulse events broadcasted by the ServiceControl endpoint.
 
 ### Heartbeats
 
