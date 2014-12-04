@@ -19,13 +19,8 @@ It is possible to configure RavenDB to use a different resource manager identifi
           connectionString="Url=http://localhost:8080;ResourceManagerId=d5723e19-92ad-4531-adad-8611e6e05c8a" />
 ```
 
-* At runtime when creating the `DocumentStore` instance:
+* At runtime when creating the `DocumentStore` instance, for example when you need to inject your own document store as in the following sample:
 
-```csharp
-const string id = "d5723e19-92ad-4531-adad-8611e6e05c8a";
-var store = new DocumentStore()  {
-     ResourceManagerId = new Guid( id )
-}
-```
+<!-- import ChangeResourceManagerID -->
 
 NOTE: Be sure that the resource manager id is constant across process restarts otherwise it will be impossibile for the instance to re-enlist in an existing distributed transaction in case of a crash.
