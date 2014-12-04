@@ -42,7 +42,8 @@ public class MyCustomConfigurationSource : IConfigurationSource
 
 #region CustomConfigProvider
 
-class CustomRijndaelEncryptionServiceConfigProvider : IProvideConfiguration<RijndaelEncryptionServiceConfig>
+class CustomRijndaelEncryptionServiceConfigProvider :
+    IProvideConfiguration<RijndaelEncryptionServiceConfig>
 {
     public RijndaelEncryptionServiceConfig GetConfiguration()
     {

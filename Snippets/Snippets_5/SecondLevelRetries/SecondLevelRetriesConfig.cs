@@ -17,7 +17,8 @@ public class SecondLevelRetriesConfig
 
         #region SecondLevelRetriesCustomPolicy
 
-        configuration.SecondLevelRetries().CustomRetryPolicy(MyCustomRetryPolicy);
+        configuration.SecondLevelRetries()
+            .CustomRetryPolicy(MyCustomRetryPolicy);
 
         #endregion
     }

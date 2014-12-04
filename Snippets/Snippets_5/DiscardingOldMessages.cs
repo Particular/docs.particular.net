@@ -15,7 +15,8 @@ public class DiscardingOldMessages
 
         var configuration = new BusConfiguration();
 
-        configuration.Conventions().DefiningTimeToBeReceivedAs(type =>
+        configuration.Conventions()
+            .DefiningTimeToBeReceivedAs(type =>
         {
             if (type == typeof (MyMessage))
             {
