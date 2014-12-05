@@ -11,7 +11,6 @@ public class CustomConfigOverrides
         configuration.AssembliesToScan(AllAssemblies.Except("NotThis.dll"));
         configuration.Conventions().DefiningEventsAs(type => type.Name.EndsWith("Event"));
         configuration.EndpointName("MyEndpointName");
-        configuration.EndpointVersion("1.2.3");
 
         #endregion
     }
