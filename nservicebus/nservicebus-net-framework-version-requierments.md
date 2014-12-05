@@ -10,4 +10,6 @@ NServiceBus 5.x requires .Net Framework v4.5 (https://github.com/Particular/NSer
 
 NServiceBus up to version 4.x requires .Net Framework v4.0
 
-NServiceBus up to version 3.3.x requires .Net Framework v3.5
+NServiceBus up to version 3.3.x requires .Net Framework v4.0
+
+NServiceBus up to version 2.x requires .Net Framework v3.5
