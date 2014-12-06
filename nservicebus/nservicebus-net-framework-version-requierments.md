@@ -1,7 +1,7 @@
 ---
 title: NServiceBus .Net Framework version requierments
 summary: List of the .Net Framework requierments for NServiceBus
-tags: [Net Framework, Competability]
+tags: [Net Framework, Compatibility]
 ---
 
 # NServiceBus .Net Framework version requierments
