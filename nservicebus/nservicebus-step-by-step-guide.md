@@ -36,29 +36,13 @@ NOTE: When prompted to reload the project, click reload
 
 The package installation process adds references to NServiceBus assemblies and creates several boiler template files in the Client project.
 
-For example, 'EndpointConfig.cs' is used to configure the project endpoints, and by default the configuration is set to Server.
+For example, 'EndpointConfig.cs' is used to configure the project endpoints.
 
-To change the configuration to 'Client', open the 'EndpointConfig.cs' file that was just created for you and replace this line:
-
-
-```C#
-namespace Ordering.Client
-{
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
-    {
-    }
-}
-```
-
- with
+To change the configuration to 'Client', open the 'EndpointConfig.cs' file that was just created for you and add `AsA_Client` as shown:
 
 ```C#
-namespace Ordering.Client
-{
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Client
-    {
-    }
-}
+
 ```
 
  You will add more code to the 'Client' project later on but now we are going to concentrate on the area that will handle our order requests.
@@ -78,7 +62,7 @@ At the Package Manager Console, type:
 
     PM> Install-Package NServiceBus -ProjectName Ordering.Messages
 
-NOTE: For version 4.x, install the NServiceBus.Interfaces package. As of version 5.x, this package has been deprecated.
+NOTE: For version 4.x, install the `NServiceBus.Interfaces` package. As of version 5.x, `NServiceBus.Interfaces` package has been deprecated.
 
 Add a command with a property to hold a product name:
 
@@ -91,6 +75,8 @@ Replace the content of 'PlaceOrder.cs' with the following code:
 ```C#
 namespace Ordering.Messages
 {
+    using System;
+    using NServiceBus;
 
     public class PlaceOrder : ICommand
     {
@@ -123,11 +109,12 @@ Right click References in the 'Ordering.Server' Project -\> Add Reference -\> Or
 Rename 'Class1.cs' to 'PlaceOrderHandler.cs' and replace the content with the following code:
 
 ```C#
-using NServiceBus;
-using Ordering.Messages;
-
 namespace Ordering.Server
 {
+    using System;
+    using Ordering.Messages;
+    using NServiceBus;
+
     public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
     {
         public IBus Bus { get; set; }
@@ -145,12 +132,13 @@ namespace Ordering.Server
 
 We nearly done, all it is left to do is to go back to the 'Client' project add a reference to the 'Ordering.Messages' project and copy and paste the following code into the 'Class1.cs' (if you want you can rename the file to 'SendOrder.cs') file:
 
-```C#
-using NServiceBus;
-using Ordering.Messages;
-
+```
 namespace Ordering.Client
 {
+    using System;
+    using Ordering.Messages;
+    using NServiceBus;
+
     public class SendOrder : IWantToRunWhenBusStartsAndStops
     {
         public IBus Bus { get; set; }
@@ -163,20 +151,19 @@ namespace Ordering.Client
             {
                 var id = Guid.NewGuid();
 
-                Bus.Send("Ordering.Server", new PlaceOrder() { Product = "New shoes", Id = id});
+                Bus.Send("Ordering.Server", new PlaceOrder { Product = "New shoes", Id = id});
 
                 Console.WriteLine("==========================================================================");
                 Console.WriteLine("Send a new PlaceOrder message with id: {0}", id.ToString("N"));
             }
         }
+
         public void Stop()
         {
         }
     }
 }
 ```
-
-NOTE: The code above is version 4.x and above, the 3.x interface 'IWantToRunAtStartup' has been replaced with 'IWantToRunWhenBusStartsAndStops'
 
 ### Selecting a persistence store
 
@@ -188,7 +175,7 @@ configuration.UsePersistence<PLEASE_SELECT_ONE>();
 
 NOTE: If you are using a version of NServiceBus prior to 5.x, you will not see this error and and skip to the next section.
 
-The quickest way to fix this for the sake of this demonstration is to replace `PLEASE_SELECT_ONE` with `InMemoryPersistence` like so:
+Starting with NServiceBus version 5, it is mandatory to pick the persistence. The quickest way to fix this for the sake of this demonstration is to replace `PLEASE_SELECT_ONE` with `InMemoryPersistence` as shown below:
 
 ````C#
 configuration.UsePersistence<InMemoryPersistence>();
