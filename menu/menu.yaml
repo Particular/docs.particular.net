@@ -177,12 +177,9 @@
       Name: "using-servicematrix"
       Title: "Using ServiceMatrix"
       Articles: 
-        - "servicematrix/licensing-servicematrix-v2.0"
         - "servicematrix/customizing-extending"
-    - 
-      Name: "troubleshooting"
-      Title: "Troubleshooting"
-      Articles: 
+        - "servicematrix/servicematrix-persistence"
+        - "servicematrix/licensing-servicematrix-v2.0"
         - "servicematrix/troubleshooting-servicematrix-2.0"
     - 
       Name: "version-1.0"
