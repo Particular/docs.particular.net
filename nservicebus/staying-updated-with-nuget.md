@@ -22,6 +22,9 @@ If you already downloaded the latest release and just want to an update, use thi
 
     PM> Update-Package NServiceBus
 
+NOTE: When resolving dependency version on a package, Nuget by default installs the latest patch version. In order to always use the latest minor version, please use the `-DependencyVersion HighestMinor`. This is avalialble from Nuget 2.8.x onwards. For example, when installing NServiceBus.Host, to always get the latest version of the NServiceBus core, use:
+`Install-Package NServiceBus.Host [ProjectName] -DependencyVersion HighestMinor`
+
 ## Downloading NServiceBus latest build
 
 The NServiceBus latest build can be downloaded from Particular MyGet feed `https://www.myget.org/F/particular/`. You can add this package source to your list of available [Package Sources](http://docs.nuget.org/docs/start-here/managing-nuget-packages-using-the-dialog#Package_Sources). If pre-releas packages are required the see [Installing Prerelease Packages](http://docs.nuget.org/docs/Reference/Versioning#Installing_Prerelease_Packages).
