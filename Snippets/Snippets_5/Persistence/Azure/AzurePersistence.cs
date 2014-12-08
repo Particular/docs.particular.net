@@ -23,5 +23,18 @@ class AzurePersistence
     }
 
     #endregion
+
+    public void CustomizingAzurePersistenceSubscriptions_6_2()
+    {
+        var configuration = new BusConfiguration();
+
+        #region AzurePersistenceSubscriptionsCustomization 6.2
+
+        configuration.UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()
+                        .ConnectionString("connectionString")
+                        .TableName("tableName")
+                        .CreateSchema(true);
+        #endregion
+    }
 }
 

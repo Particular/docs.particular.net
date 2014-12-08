@@ -25,22 +25,17 @@ When hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosti
 
 NOTE: In version 4, when hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
-## Detailed configuration
+## Detailed Configuration
 
-You can get more control on the behavior of each persister by specifying one of the respective configuration sections in your app.config and changing one of the available properties.
+You can get more control on the behavior of each persister by specifying one of the respective configuration sections in your app.config and changing one of the available properties, or through code.
 
-	<configSections>
-	    <section name="AzureSubscriptionStorageConfig" type="NServiceBus.Config.AzureSubscriptionStorageConfig, NServiceBus.Azure" />
-	    <section name="AzureSagaPersisterConfig" type="NServiceBus.Config.AzureSagaPersisterConfig, NserviceBus.Azure" />
-	    <section name="AzureTimeoutPersisterConfig" type="NServiceBus.Config.AzureTimeoutPersisterConfig, NserviceBus.Azure" />
-	</configSections>
-	<AzureSagaPersisterConfig ConnectionString="UseDevelopmentStorage=true" />
-	<AzureTimeoutPersisterConfig ConnectionString="UseDevelopmentStorage=true" />
-	<AzureSubscriptionStorageConfig ConnectionString="UseDevelopmentStorage=true" />
+### Detailed Configuration with Configuration Section
+
+<!-- import AzurePersistenceFromAppConfig -->
 
 The following settings are available for changing the behavior of subscription persistence through the `AzureSubscriptionStorageConfig` section:
 
-- `ConnectionString`: Allows you to set the connectionstring to the storage account for storing subscription information, defaults to `UseDevelopmentStorage=true`
+- `ConnectionString`: Allows you to set the connection string to the storage account for storing subscription information, defaults to `UseDevelopmentStorage=true`
 - `CreateSchema`: Instructs the persister to create the table automatically, defaults to true
 - `TableName`: Lets you choose the name of the table for storing subscriptions, defaults to `Subscription`.
 
@@ -57,6 +52,10 @@ The following settings are available for changing the behavior of timeout persis
 - `TimeoutDataTableName`: Allows you to set the name of the table where the timeouts themselves are stored, defaults to `TimeoutDataTableName`
 - `CatchUpInterval`: When a node hosting a timeout manager would go down, it needs to catch up with missed timeouts faster than it normally would (1 sec), this value allows you to set the catchup interval in seconds. Defaults to 3600, meaning it will process one hour at a time.
 - `PartitionKeyScope`: The time range used as partitionkey value for all timeouts. For optimal performance, this should be in line with the catchup interval so it should come to no surprise that the default value also represents an hour: yyyyMMddHH. 
+
+### Detailed Configuration with Code
+
+<!-- import AzurePersistenceSubscriptionsCustomization -->
 
 ## Sample
 
