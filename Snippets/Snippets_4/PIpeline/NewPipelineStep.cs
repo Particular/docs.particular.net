@@ -9,9 +9,8 @@ class NewStepInPipeline : PipelineOverride
     {
         behaviorList.InsertAfter<InvokeHandlersBehavior, SampleBehavior>();
     }
-    /*
-     * Classes inheriting from PipelineOverride are registered by convention. No need to explicitly register.
-     */
+
+    //Classes inheriting from PipelineOverride are registered by convention. No need to explicitly register.
 }
 #endregion
 
