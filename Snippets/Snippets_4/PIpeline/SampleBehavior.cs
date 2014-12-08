@@ -2,7 +2,7 @@
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
-#region SamplePipelineBehavior
+#region SamplePipelineBehavior 4.5
 
 public class SampleBehavior : IBehavior<HandlerInvocationContext>
 {
