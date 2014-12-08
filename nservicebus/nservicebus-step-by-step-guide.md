@@ -32,7 +32,7 @@ Type the following command at the Package Manager Console:
 
     PM> Install-Package NServiceBus.Host
 
-NOTE: When prompted to reload the project, click reload
+NOTE: When prompted to reload the project, click reload. To read more about how Nuget deals with dependencies and to ensure that the project is updated to latest version of the NServiceBus core, read [Staying updated with Nuget](staying-updated-with-nuget.md) 
 
 The package installation process adds references to NServiceBus assemblies and creates several boiler template files in the Client project.
 
@@ -100,7 +100,7 @@ At the Package Manager Console, type:
 
     PM> Install-Package NServiceBus.Host -ProjectName Ordering.Server
 
-NOTE: When prompted to reload the project, click reload
+NOTE: When prompted to reload the project, click reload. To read more about how Nuget deals with dependencies and to ensure that the project is updated to latest version of the NServiceBus core, read [Staying updated with Nuget](staying-updated-with-nuget.md) 
 
 For the server side to understand and interpret the message content, add a reference to the 'Messages' project you created earlier:
 
