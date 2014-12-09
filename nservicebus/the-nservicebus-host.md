@@ -77,7 +77,8 @@ While NServiceBus allows you to pick and choose which technologies to use and ho
 -   `AsA_Publisher` extends `AsA_Server` and indicates to the infrastructure to set up storage for subscription requests, described in the [profiles page](profiles-for-nservicebus-host.md).
 
 ## Installation
-When running the endpoint within the context of Visual Studio debugger, when the endpoint starts, the needed queues are created on startup to facilitate development. However, when deploying this endpoint to a server, starting the endpoint from the command prompt will not create the needed queues if the queues aren't already present. Creation of queues is a one time cost that will happen once during installation only and not every time the endpoint starts up.  
+When running the endpoint within the context of Visual Studio debugger, when the endpoint starts, the needed queues are created on startup to facilitate development. However, when deploying this endpoint to a server, starting the endpoint from the command prompt will not create the needed queues if the queues aren't already present. Creation of queues is a one time cost that will happen once during installation only and not every time the endpoint starts up.
+
 To install your process as a Windows Service, you need to pass `/install` on the command line to the host. By default, the name of the service is the name of your endpoint and the endpoint name is the namespace of your endpoint configuration class. To enable side-by-side operations, use the `/sideBySide` switch to add the SemVer version to the service name. Passing /install also causes the host to invoke the [installers](nservicebus-installers.md) .
 
 To override this and specify additional details for installation:
