@@ -3,7 +3,7 @@ title: Heartbeat configuration
 summary: Describes the available configuration options of the ServiceControl Heartbeat plugins
 tags:
 - ServiceControl
-- Hearthbeat
+- Heartbeat
 ---
 
 ### Heartbeat Interval
