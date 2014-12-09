@@ -235,6 +235,7 @@
         - "servicecontrol/setting-custom-hostname"
         - "servicecontrol/setting-custom-log-location"
         - "servicecontrol/plugins"
+        - "servicecontrol/heartbeat-configuration"
         - "servicecontrol/errorlog-auditlog-behavior"
     - 
       Name: "management"
