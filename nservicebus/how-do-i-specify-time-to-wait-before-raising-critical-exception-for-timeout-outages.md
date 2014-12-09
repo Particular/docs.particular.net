@@ -9,7 +9,7 @@ tags:
 
 To change the default and extend the wait time:
 
-<!-- import TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages-V5  -->
+<!-- import TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages  -->
 
 
 

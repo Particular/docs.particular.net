@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace UnitTesting.SagaTest
 {
 
-    #region TestingSagav4
+    #region TestingSaga
 
     public class MyTest
     {
@@ -16,7 +16,7 @@ namespace UnitTesting.SagaTest
         {
             Test.Initialize();
             Test.Saga<MySaga>()
-                    .ExpectReplyToOrginator<MyResponse>()
+                    .ExpectReplyToOriginator<MyResponse>() // In v4 the typo in Originator was fixed.
                     .ExpectTimeoutToBeSetIn<StartsSaga>((state, span) => span == TimeSpan.FromDays(7))
                     .ExpectPublish<MyEvent>()
                     .ExpectSend<MyCommand>()

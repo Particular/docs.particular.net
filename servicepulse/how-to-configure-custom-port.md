@@ -12,4 +12,4 @@ The port is set in the registry: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Ser
 
 To modify it, replace :9090 to the desired port and then restart service.
 
-NOTE:   if you upgrade ServicePulse you need to check this entry was not overwritten by the installer.
+NOTE: If you upgrade ServicePulse you need to check this entry was not overwritten by the installer.

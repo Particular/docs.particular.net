@@ -104,7 +104,7 @@
     </Reference>
     <Reference Include="NServiceBus, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Interfaces.4.7.4\lib\net40\NServiceBus.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Interfaces.4.7.5\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Azure, Version=5.3.3.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -120,7 +120,7 @@
     </Reference>
     <Reference Include="NServiceBus.Core, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.4.7.4\lib\net40\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.4.7.5\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Distributor.MSMQ">
       <HintPath>..\packages\NServiceBus.Distributor.MSMQ.4.4.7\lib\net40\NServiceBus.Distributor.MSMQ.dll</HintPath>
@@ -199,6 +199,8 @@
     <None Include="Persistence\NHibernate\nhibernate.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Transports\Msmq\TransportConfig.config" />
+    <None Include="Transports\Msmq\MessageQueueConfiguration.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandler.cs" />
@@ -210,8 +212,14 @@
     <Compile Include="CustomRavenConfigForVersion2_5.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
+    <Compile Include="Host\CustomLogging.cs" />
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
+    <Compile Include="PIpeline\NewPipelineStep.cs" />
+    <Compile Include="PIpeline\ReplacePipelineBehavior.cs" />
+    <Compile Include="PIpeline\SampleBehavior.cs" />
+    <Compile Include="Scanning\ScanningPublicApi.cs" />
+    <Compile Include="UnitTesting\Saga.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
     <None Include="Encryption\encryption.config">
       <SubType>Designer</SubType>
@@ -225,7 +233,6 @@
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
     <Compile Include="SubscriptionSettings.cs" />
-    <Compile Include="TypeScanning.cs" />
     <Compile Include="Containers.cs" />
     <Compile Include="EndpointName.cs" />
     <Compile Include="HandlerOrdering.cs" />
@@ -238,7 +245,6 @@
     <Compile Include="License.cs" />
     <Compile Include="DoNotCreateQueues.cs" />
     <Compile Include="DataBus.cs" />
-    <Compile Include="DefineCriticalErrorAction.cs" />
     <Compile Include="CustomConfigOverrides.cs" />
     <Compile Include="CustomRavenConfig.cs" />
     <Compile Include="Encryption\PropertyEncryption.cs" />
@@ -263,8 +269,4 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <StartAction>Program</StartAction>
-    <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
-  </PropertyGroup>
 </Project>

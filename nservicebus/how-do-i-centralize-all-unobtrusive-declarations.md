@@ -6,18 +6,13 @@ tags:
 - DRY
 ---
 
-When working with NServiceBus in unobtrusive mode you may feel that you are repeating the conventions over and over again on all the endpoints.
+When working with NServiceBus in unobtrusive mode you may feel that you are repeating the conventions over and over again on all the endpoints. 
 
-Just define your implementation in an assembly referenced by all the endpoints:
+Since message conventions are not usually dynamic in nature, one way to centralize these conventions would be to define these at configuration time.
 
-### Version 4
+Another option is to configure conventions before the bus starts.
 
-<!-- import UnobtrusiveConventionsV4 -->
+<!-- import UnobtrusiveConventions -->
 
-### Version 5
-
-<!-- import UnobtrusiveConventionsV5 -->
-
-
-
+For more details on this approach, refer to the [Unobtrusive Sample](unobtrusive-sample.md).
 

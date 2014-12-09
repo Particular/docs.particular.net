@@ -6,7 +6,7 @@ public class Serialization
     public void AllTheSerialization()
     {
 
-        #region ConfigureSerializationV4
+        #region ConfigureSerialization
 
         Configure.Serialization.Binary();
         Configure.Serialization.Bson();

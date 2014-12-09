@@ -4,7 +4,7 @@ public class PurgeOnStartup
 {
     public void Simple()
     {
-        #region PurgeOnStartupV4
+        #region PurgeOnStartup
 
         Configure.With()
             .PurgeOnStartup(true);

@@ -6,7 +6,7 @@ public class Serialization
     public void AllTheSerialization()
     {
 
-        #region ConfigureSerializationV5
+        #region ConfigureSerialization
 
         var configuration = new BusConfiguration();
 

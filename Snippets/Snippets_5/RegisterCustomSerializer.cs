@@ -4,15 +4,18 @@ using System.IO;
 using NServiceBus;
 using NServiceBus.Serialization;
 
-
-#region RegisterCustomSerializer-V5
-public class RegisterCustomSerializer : INeedInitialization
+public class RegisterCustomSerializer 
 {
-    public void Customize(BusConfiguration configuration)
+    public void Customize()
     {
+        BusConfiguration configuration = null;
+
+        #region RegisterCustomSerializer
         configuration.UseSerialization(typeof(MyCustomSerializer));
+        #endregion
     }
 
+    #region CustomSerializer
     class MyCustomSerializer : IMessageSerializer
     {
         public void Serialize(object message, Stream stream)
@@ -32,5 +35,5 @@ public class RegisterCustomSerializer : INeedInitialization
             get { throw new NotImplementedException(); }
         }
     }
+    #endregion
 }
-#endregion

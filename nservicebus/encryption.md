@@ -21,35 +21,23 @@ There are two ways of telling NServiceBus what properties to encrypt.
 
 Given a message of this convention 
 
-<!-- import MessageForEncryptionConventionV5 -->
+<!-- import MessageForEncryptionConvention -->
 
 You can encrypt `MyEncryptedProperty` using `DefiningEncryptedPropertiesAs`.
 
-#### Version 3 and 4
-
-<!-- import DefiningEncryptedPropertiesAsV4 -->
-
-#### Version 5
-
-<!-- import DefiningEncryptedPropertiesAsV5 --> 
+<!-- import DefiningEncryptedPropertiesAs -->
 
 #### Property type
 
 You can also use the `WireEncryptedString` type to flag that a property should be encrypted.
 
-<!-- import MessageWithEncryptedPropertyV3 --> 
+<!-- import MessageWithEncryptedProperty --> 
 
 ### Enabling property encryption
 
 Property encryption is enabled via the fluent API.
 
-#### Version 3 and 4
-
-<!-- import EncryptionServiceSimpleV4 -->
-
-#### Version 5
-
-<!-- import EncryptionServiceSimpleV5 --> 
+<!-- import EncryptionServiceSimple -->
 
 ### Defining the encryption key
 
@@ -59,11 +47,11 @@ In conjunction with enabling encryption you need to configure the encryption and
 
 The encryption key can be defined in the `app.config`.
 
-<!-- import EncryptionFromAppConfigV5 --> 
+<!-- import EncryptionFromAppConfig --> 
  
 #### IProvideConfiguration
 
-<!-- import EncryptionFromIProvideConfigurationV5 -->
+<!-- import EncryptionFromIProvideConfiguration -->
 
 For more info on `IProvideConfiguration` see [Customizing NServiceBus Configuration](customizing-nservicebus-configuration.md)
 
@@ -71,7 +59,7 @@ For more info on `IProvideConfiguration` see [Customizing NServiceBus Configurat
 
 NOTE: Defining encryption keys via the fluent API is only supported in V5 and up. 
 
-<!-- import EncryptionFromFluentAPIV5 -->
+<!-- import EncryptionFromFluentAPI -->
 
 ### Multi-Key decryption 
 
@@ -87,13 +75,7 @@ To take full control over how properties are encrypted you can replace the `IEnc
 
 This allows you to explicitly handled the encryption and decryption of each value. So for example if you want to use an algorithm other than Rijndael.
 
-#### Version 3 and 4
-
-<!-- import EncryptionFromIEncryptionServiceV4 -->
-
-#### Version 5 
-
-<!-- import EncryptionFromIEncryptionServiceV5 -->
+<!-- import EncryptionFromIEncryptionService -->
 
 ## Message Encryption
 
@@ -101,12 +83,10 @@ Message encryption leverages the pipeline to apply encryption to the whole messa
 
 Once way of achieving this is using a `IMutateTransportMessages`.
 
-#### Version 5
-
-<!-- import MessageBodyEncryptorV5 -->
+<!-- import MessageBodyEncryptor -->
 
 The this class can be then injected into the container using the following
 
-<!-- import UsingMessageBodyEncryptorV5 -->
+<!-- import UsingMessageBodyEncryptor -->
 
 NOTE: `IMutateTransportMessages` are non-deterministic in terms of order of execution. If you want more fine grained control over the pipeline see [Pipeline Introduction](nservicebus-pipeline-intro.md).

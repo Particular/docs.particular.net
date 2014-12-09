@@ -16,17 +16,7 @@ This automatically sets up all the dependencies and is the recommended way of us
 
 To use Subscriptions, Sagas, Timeouts and Gateway persistence using NHibernate, use this configuration:
 
-#### Version 3
-
-<!-- import ConfiguringNHibernateV3 -->
-
-#### Version 4
- 
-<!-- import ConfiguringNHibernateV4 -->
-
-#### Version 5 
-
-<!-- import ConfiguringNHibernateV5 -->
+<!-- import ConfiguringNHibernate  -->
 
 ## Additional Configuration 
 
@@ -34,19 +24,10 @@ NServiceBus then picks up the connection setting from your `app.config`.
 
 NOTE: When using SQL 2012 you need to change the dialect to `MsSql2012Dialect`.
 
-NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhforge.org/doc/nh/en/index.html#configuration-xmlconfig)
-
-#### Version 3
+NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhforge.org/doc/nh/en/index.html#configuration-xmlconfig) 
  
-<!-- import NHibernateAppConfigV3 -->
+<!-- import NHibernateAppConfig -->
 
-There are equivalent config sections named `DBSubscriptionStorageConfig` and `TimeoutPersisterConfig` for subscription and timeout storage respectively.
-
-#### Version 4 and 5
-
-app.config for using NHibernate is simplified in 4.x.
-
-<!-- import NHibernateAppConfigV5 --> 
 
 
 

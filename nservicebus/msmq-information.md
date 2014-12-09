@@ -28,7 +28,7 @@ So downtime is proportional to the time taken for the MSMQ service to restart on
 
 ## Useful links
 
--   [MSMQ Forums](http://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/home?forum=msmq)
+-   [MSMQ Forums](https://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/home?forum=msmq)
 -   [MSMQ on Windows Server 2003](http://technet.microsoft.com/en-gb/library/cc757108%28WS.10%29.aspx)
 -   [MSMQ on Windows Server 2008](http://technet.microsoft.com/en-gb/library/cc753070%28WS.10%29.aspx)
 -   [List of MSMQ articles](http://blogs.msdn.com/b/johnbreakwell/)(very helpful)

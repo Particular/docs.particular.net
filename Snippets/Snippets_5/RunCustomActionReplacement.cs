@@ -4,7 +4,7 @@ public class RunCustomActionReplacement
 {
     public void Simple()
     {
-        #region RunCustomActionReplacementV5
+        #region RunCustomAction
 
         var bus = Bus.Create(new BusConfiguration());
         MyCustomAction();

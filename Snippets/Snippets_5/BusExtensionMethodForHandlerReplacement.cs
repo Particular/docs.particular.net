@@ -1,8 +1,8 @@
 using NServiceBus;
 
-public class BusExtensionMethodForHandlerReplacement
+public class BusExtensionMethodForHandler
 {
-    #region BusExtensionMethodForHandlerReplacementV5
+    #region BusExtensionMethodForHandler
     public class MyHandler : IHandleMessages<MyMessage>
     {
         IBus bus;

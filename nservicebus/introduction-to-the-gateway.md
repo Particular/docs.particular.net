@@ -71,20 +71,11 @@ A gateway runs inside each host process. The gateway gets its input from a regul
 
 ### Configuring the gateway
 
-#### NServiceBus v5
-
-The gateway is provided by the `NServiceBus.Gateway` NuGet. After installing the package you just need to enable it using:
-
-<!-- import GatewayConfiguration-v5 -->
-
-
-#### NServiceBus v3 and v4
-
-The gateway is included in the core assembly, meaning that every endpoint is capable of running a gateway.
+In Version 5 the gateway is provided by the `NServiceBus.Gateway` NuGet. In Version 3 and v4 the gateway is included in the core assembly, meaning that every endpoint is capable of running a gateway.
 
 To turn on the gateway, add the following to your configuration:
 
-<!-- import GatewayConfiguration-v4 -->
+<!-- import GatewayConfiguration -->
 
 ## Key messages
 
