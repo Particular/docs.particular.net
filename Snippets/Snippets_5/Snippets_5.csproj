@@ -310,6 +310,7 @@
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
+    <Compile Include="RavenDB\ChangeResourceManagerID.cs" />
     <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="RegisterCustomSerializer.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
