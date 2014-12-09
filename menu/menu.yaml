@@ -145,6 +145,7 @@
         - "nservicebus/how-do-i-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages"
         - "nservicebus/how-to-register-a-custom-serializer"
         - "nservicebus/gateway-service-point-manager"
+        - "nservicebus/plugin-custom-databus"
     - 
       Name: "samples"
       Title: "Samples"
