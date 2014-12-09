@@ -55,6 +55,10 @@ The following settings are available for changing the behavior of timeout persis
 
 ### Detailed Configuration with Code
 
+For Subscriptions:
+<!-- import AzurePersistenceSubscriptionsCustomization -->
+
+For Sagas:
 <!-- import AzurePersistenceSubscriptionsCustomization -->
 
 ## Sample

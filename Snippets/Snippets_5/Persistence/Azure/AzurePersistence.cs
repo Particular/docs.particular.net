@@ -36,5 +36,17 @@ class AzurePersistence
                         .CreateSchema(true);
         #endregion
     }
+
+    public void CustomizingAzurePersistenceSagas_6_2()
+    {
+        var configuration = new BusConfiguration();
+
+        #region AzurePersistenceSagasCustomization 6.2
+
+        configuration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>()
+                        .ConnectionString("connectionString")
+                        .CreateSchema(true);
+        #endregion
+    }
 }
 
