@@ -122,7 +122,7 @@ Nothing has to be done to the Sender; NServiceBus does all the distribution work
 </UnicastBusConfig>
 ```
 
- Once Orders.Handler is set up as a distributor and the `Orders.Handler` starts as a worker on another machine, the following diagram demonstrates the flow of messages and the queues that exist on both machines:
+Once Orders.Handler is set up as a distributor and the `Orders.Handler` starts as a worker on another machine, the following diagram demonstrates the flow of messages and the queues that exist on both machines:
 
 ![Scale out diagram with one worker on another machine](scaleout-one-worker.png "Scale out diagram with one worker on another machine")
 

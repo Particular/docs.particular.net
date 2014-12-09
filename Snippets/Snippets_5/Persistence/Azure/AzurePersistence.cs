@@ -1,21 +1,18 @@
-﻿namespace Snippets_5.Persistence.Azure
+﻿using NServiceBus;
+
+class AzurePersistence
 {
-    using NServiceBus;
-
-    class AzurePersistence
+    public void Demo()
     {
-        public void Demo()
-        {
-            #region PersistanceWithAzure-V5
+        #region PersistanceWithAzure
 
-            var config = new BusConfiguration();
-            config.UsePersistence<AzureStoragePersistence>();
+        var config = new BusConfiguration();
+        config.UsePersistence<AzureStoragePersistence>();
 
-            #endregion
-        }
+        #endregion
     }
 
-    #region PersistenceWithAzureHost-V5
+    #region PersistenceWithAzureHost
 
     public class EndpointConfig : IConfigureThisEndpoint
     {
@@ -27,3 +24,4 @@
 
     #endregion
 }
+

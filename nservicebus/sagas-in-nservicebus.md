@@ -15,17 +15,13 @@ Design processes with more than one remote call to use sagas.
 
 While it may seem excessive at first, the business implications of your system getting out of sync with the other systems it interacts with can be substantial. It's not just about exceptions that end up in your log files.
 
-## Long-running means stateful
+## Long-running means stateful  
 
 Any process that involves multiple network calls (or messages sent and received) has an interim state. That state may be kept in memory, persisted to disk, or stored in a distributed cache; it may be as simple as 'Response 1 received, pending response 2', but the state exists.
 
 Using NServiceBus, you can explicitly define the data used for this state by inheriting from the `ContainSagaData` abstract class. All public get/set properties are persisted by default:
 
-<!-- import saga-data -->
-
-In previous versions you are forced to use `IContainSagaData` interface directly (`ContainSagaData` implements `IContainSagaData`):
-
-<!-- import saga-data-v4 -->
+<!-- import saga-data --> 
 
 There are two production-supported storage mechanisms for saga data in NServiceBus, namely RavenDB and NHibernate. Prior to V5, RavenDB was a default implementation. Since NServiceBus 5, both implementations are equal and the user needs to explicitly chose one.
 
@@ -39,13 +35,7 @@ The important part of a long-running process is its behavior. With NServiceBus, 
 
 Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled. Here is a saga that processes messages of type `Message2`:
 
-<!-- import saga-without-started-by -->
-
-Please note that since NServiceBus 5, the `ConfigureHowToFindSaga` method is abstract. This way the new API tries to guide the user towards best practices. Prior to V5, an empty saga would look like this:
-
-<!-- import saga-without-started-by-v4 -->
-
-Even though the method is virtual, you *should* implement it for each saga.
+<!-- import saga-without-started-by --> 
 
 ## Starting and correlating sagas
 
@@ -65,9 +55,7 @@ Since V5 it is possible to specify the mapping to the message using expressions 
 
 Previous releases (3.x and 4.x) of NServiceBus had slightly different API for configuring the mapping. Following snippets show the mapping in V4 and V3 respecively:
 
-<!-- import saga-with-started-by-and-correlation-id-set-v4 -->
-
-<!-- import saga-with-started-by-and-correlation-id-set-v3 -->
+<!-- import saga-with-started-by-and-correlation-id-set -->
 
 Underneath the covers, when `Message2` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `MySagaData` that has a property `SomeID` whose value is the same as the `SomeID` property of the message.
 
@@ -126,13 +114,9 @@ You can have as many of these classes as you want for a given saga or message ty
 
 ## Configuring Saga persistence
 
-Make sure to configure appropriate persistence mechanism. Below you can see how it is done via the V5 streamlined configuration API:
+Make sure to configure appropriate persistence mechanism. 
 
 <!-- import saga-configure-self-hosted -->
-
-And via the old API:
-
-<!-- import saga-configure-self-hosted-v4 -->
 
 ## Sagas and automatic subscriptions
 

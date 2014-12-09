@@ -4,7 +4,7 @@ public class CustomConfigOverrides
 {
     public void Simple()
     {
-        #region CustomConfigOverridesV5
+        #region CustomConfigOverrides
 
         var configuration = new BusConfiguration();
 

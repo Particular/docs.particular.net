@@ -8,13 +8,13 @@ public class CustomConfigSource
     public CustomConfigSource()
     {
 
-        #region RegisterCustomConfigSource-v4
+        #region RegisterCustomConfigSource
 
         Configure.With()
             //this call needs to happen right after With()
             .CustomConfigurationSource(new MyCustomConfigurationSource()); 
 
-        #endregion RegisterCustomConfigSource-v4
+        #endregion 
     }
 
 
@@ -37,7 +37,7 @@ public class CustomConfigSource
         }
     }
 
-    #endregion CustomConfigSource
+    #endregion
 
     #region CustomConfigProvider
 
@@ -52,5 +52,5 @@ public class CustomConfigSource
         }
     }
 
-    #endregion CustomConfigProvider
+    #endregion
 }

@@ -81,7 +81,7 @@ Secondary queues are enabled by default. In order to disable them, one must use 
 
 <!-- import sqlserver-config-disable-secondaries -->
 
-Secondary queues use same concurrency model to the primary queue but use different settings for the maximum concurrency level. The default value of this setting is 1 which schould be fine with most scenarios because it is small enough to not degrade the overall performance of the endpoint and large enough to cope with usually small number of callbacks. In order to change this value one should use the configuration API:
+Secondary queues use same concurrency model to the primary queue but use different settings for the maximum concurrency level. The default value of this setting is 1 which should be fine with most scenarios because it is small enough to not degrade the overall performance of the endpoint and large enough to cope with usually small number of callbacks. In order to change this value one should use the configuration API:
 
 <!-- import sqlserver-config-set-secondary-concurrency -->
 

@@ -52,6 +52,8 @@ For more information, see [http://technet.microsoft.com/en-us/library/cc753575.a
 
 For NServiceBus endpoint destination, we address the queues by the MSMQ cluster group's name, where we will later add all the rest of our clustered resources. In non-cluster terms, we typically add the machine name to address the queue, i.e. `queue@MachineName`. In cluster terms we address it by queue@MSMQ Network name.
 
+WARNING: These queue(s) must be manually created as they are not created by NServiceBus installation process
+
 In Failover Cluster Management, from the server with Quorum:
 
 1.  Right click Services and Applications and select Configure a Service or Application.
@@ -131,7 +133,7 @@ With your distributors installed, you can repeat the same procedure for any Comm
 
 Again, try swapping the cluster back and forth, to make sure it can move freely between the cluster nodes.
 
-​## Setting up the workers
+## Setting up the workers
 
 Set up your worker processes on both worker servers (not the cluster nodes!) as services, as you did for the distributors. But instead of using NServiceBus.Distributor, use NServiceBus.Worker profile instead.
 

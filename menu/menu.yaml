@@ -94,6 +94,9 @@
         - "nservicebus/customizing-nservicebus-configuration"
         - "nservicebus/pipeline-management-using-message-mutators"
         - "nservicebus/override-hostid"
+        - "nservicebus/nservicebus-pipeline-intro"
+        - "nservicebus/fluent-config-api-v3-v4"
+        - "nservicebus/fluent-config-api-v3-v4-intro"
     - 
       Name: "versioning"
       Title: "Versioning"
@@ -108,7 +111,6 @@
         - "nservicebus/using-the-in-memory-bus"
         - "nservicebus/how-do-i-specify-store-forward-for-a-message"
         - "nservicebus/how-do-i-discard-old-messages"
-        - "nservicebus/how-do-i-instantiate-a-message"
         - "nservicebus/how-do-i-send-a-message"
         - "nservicebus/how-do-i-specify-to-which-destination-a-message-will-be-sent"
         - "nservicebus/how-can-i-see-the-queues-and-messages-on-a-machine"
@@ -231,6 +233,8 @@
         - "servicecontrol/customize-name-and-description"
         - "servicecontrol/setting-custom-hostname"
         - "servicecontrol/setting-custom-log-location"
+        - "servicecontrol/plugins"
+        - "servicecontrol/errorlog-auditlog-behavior"
     - 
       Name: "management"
       Title: "Management"

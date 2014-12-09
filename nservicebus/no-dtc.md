@@ -12,7 +12,7 @@ NServiceBus Version 5 brings the option of running endpoints with the same relia
 
 Out of the box RabbitMQ is the only transport that is enabled automatically by default.
 
-SqlServer is also supported but in a different way (for details, see [SqlServer Transport](#SqlServer-Transport) section below).
+SqlServer is also supported but in a different way (for details, see [SqlServer Transport](#sqlserver-transport) section below).
 All other transports need to be enabled explicitly using both of the following configuration settings when configuring the endpoint:
 
 <!-- import OutboxEnablineInFluent -->  
@@ -75,4 +75,4 @@ This sample shows how to configure an Endpoint that uses SQL Server transport an
 
 ### [Outbox Sample](https://github.com/Particular/NServiceBus.NHibernate/archive/Samples.zip) 
 
-This sample shows how to enable Outbox on an endpoint and how to access the NHIbernate `ISession` for a `Saga` and a `Handler`. 
+This sample shows how to enable Outbox on an endpoint and how to access the NHibernate `ISession` for a `Saga` and a `Handler`. 

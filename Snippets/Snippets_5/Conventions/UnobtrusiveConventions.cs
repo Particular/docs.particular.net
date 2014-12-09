@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 
-#region UnobtrusiveConventionsV5
+#region UnobtrusiveConventions
 public class UnobtrusiveConventions : INeedInitialization
 {
     public void Customize(BusConfiguration configuration)

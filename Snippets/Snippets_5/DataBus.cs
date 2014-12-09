@@ -4,7 +4,7 @@ public class DataBus
 {
     public void Simple()
     {
-        #region FileShareDataBusV5
+        #region FileShareDataBus
 
         var configuration = new BusConfiguration();
 

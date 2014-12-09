@@ -2,7 +2,7 @@ using NServiceBus;
 
 public class BusExtensionMethodForHandler
 {
-    #region BusExtensionMethodForHandlerV4
+    #region BusExtensionMethodForHandler
     public class MyHandler : IHandleMessages<MyMessage>
     {
         public void Handle(MyMessage message)

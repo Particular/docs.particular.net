@@ -16,7 +16,7 @@ public class Containers
         StructureMap.IContainer structureMapContainer = null;
         UnityContainer unityContainer = null;
 
-        #region ContainersV5
+        #region Containers
 
         var configuration = new BusConfiguration();
 
