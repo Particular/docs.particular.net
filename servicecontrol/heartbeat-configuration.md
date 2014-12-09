@@ -18,4 +18,4 @@ Where the value is convertible to a `TimeSpan` value. In the above sample you ar
 
 Note: to enable the change the endpoint needs to be restarted.
 
-More on [ServiceControl Endpoint Plugins](/servicecontrol/plugins).
+More on [ServiceControl Endpoint Plugins](/servicecontrol/plugins.md).
