@@ -5,7 +5,7 @@ public class Transports
 {
     public void AllTheTransports()
     {
-        #region ConfigureTransportsV4
+        #region ConfigureTransports
 
         // Configure to use MSMQ 
         Configure.With().UseTransport<Msmq>();

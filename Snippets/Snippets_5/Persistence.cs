@@ -6,7 +6,7 @@ public class Persistence
     public void AllThePersistence()
     {
 
-        #region ConfigurePersistenceV5
+        #region ConfigurePersistence
 
         var configuration = new BusConfiguration();
 

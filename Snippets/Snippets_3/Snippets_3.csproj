@@ -62,6 +62,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.3.3.13\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.Host">
+      <HintPath>..\packages\NServiceBus.Host.3.3.13\lib\net40\NServiceBus.Host.exe</HintPath>
+    </Reference>
     <Reference Include="NServiceBus.NHibernate">
       <HintPath>..\packages\NServiceBus.NHibernate.3.3.13\lib\net40\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
@@ -89,11 +92,17 @@
     <None Include="Persistence\NHibernate\nhibernate.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Transports\Msmq\MsmqTransportConfig.config" />
+    <None Include="Transports\Msmq\MessageQueueConfiguration.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conventions\MessageConventions.cs" />
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
     <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="Encryption\PropertyEncryption.cs" />
+    <Compile Include="EndpointName.cs" />
+    <Compile Include="Gateway\GatewayConfig.cs" />
+    <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />

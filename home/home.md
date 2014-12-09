@@ -211,14 +211,14 @@
 <div class="block middle">
 <div class="left2">
     <h2>External training resources </h2>
-    <a href="http://pluralsight.com/training/Courses/TableOfContents/nservicebus" class="img">
+    <a href="http://www.pluralsight.com/courses/table-of-contents/nservicebus" class="img">
       <img src="/home/videos-small.png" />
       <img src="/home/videos-small-hover.png" class="hover"/>
       <h3>Pluralsight Introduction to NServiceBus &rarr;</h3>
     </a>
     <p>6hrs with Andreas Öhlund, Lead developer of NServiceBus</p>
     <div style="clear: both"></div>
-    <a href="http://www.packtpub.com/build-distributed-software-systems-using-dot-net-enterprise-service-bus/book" class="img">
+    <a href="https://www.packtpub.com/application-development/learning-nservicebus" class="img">
       <img src="/home/book.png" />
       <img src="/home/book-hover.png" class="hover"/>
       <h3>Learn NServiceBus &rarr;</h3>

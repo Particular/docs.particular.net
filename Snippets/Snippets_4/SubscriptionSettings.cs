@@ -5,7 +5,7 @@ public class SubscriptionSettings
 {
     public void DisableAutoSubscribe()
     {
-        #region DisableAutoSubscribeV4
+        #region DisableAutoSubscribe
 
         Configure.Features.Disable<AutoSubscribe>();
         Configure.With().UnicastBus()

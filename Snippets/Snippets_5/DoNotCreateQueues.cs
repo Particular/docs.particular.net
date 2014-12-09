@@ -5,7 +5,7 @@ public class DoNotCreateQueues
 {
     public void Simple()
     {
-        #region DoNotCreateQueuesV5
+        #region DoNotCreateQueues
 
         var configuration = new BusConfiguration();
 

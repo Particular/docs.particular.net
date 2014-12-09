@@ -30,7 +30,7 @@ With this constraint in place, only one thread is allowed to create a new saga i
 
 This works predictably due to reliance on the underlying database providing optimistic concurrency support. When more than one thread tries to update the same saga instance, the database detects it and only allows one of them to commit. If this happens the retries will occur and the race condition be solved.
 
-When you use the RavenDB saga persister, you don't have to do anything since the NServiceBus framework (on RavenDB) turns on [optimistic concurrency](http://ravendb.net/kb/16/using-optimistic-concurrency-in-real-world-scenarios).
+When you use the RavenDB saga persister, you don't have to do anything since the NServiceBus framework (on RavenDB) turns on [UseOptimisticConcurrency](http://ravendb.net/docs/article-page/3.0/csharp/client-api/session/configuration/how-to-enable-optimistic-concurrency).
 
 When running using the NHibernate saga persister, the NServiceBus framework requires you to add a ["Version" property to your saga data](http://ayende.com/blog/3946/nhibernate-mapping-concurrency) so that NHibernate can work its magic.
 

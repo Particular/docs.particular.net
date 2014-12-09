@@ -83,7 +83,7 @@ You can configure ServiceControl to forward any consumed messages into alternate
 
 * `ServiceControl/ExpirationProcessTimerInSeconds` (int) 
 
-  The number of seconds to wait between checking for expired messages.  The default prior to version 1.4 is `60` (1 minute), the new default is `300` (5 minutes).  Settings the value to 0 will disable the expiration process, this is not recommended and it only provided for fault finding.
+  The number of seconds to wait between checking for expired messages.  The default prior to version 1.4 is `60` (1 minute), the new default is `600` (10 minutes).  Settings the value to 0 will disable the expiration process, this is not recommended and it only provided for fault finding.
 
 * `ServiceControl/ExpirationProcessBatchSize` (int) , Default `65512`  
  

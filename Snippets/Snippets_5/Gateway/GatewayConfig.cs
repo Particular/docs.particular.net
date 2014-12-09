@@ -5,7 +5,7 @@ public class GatewayConfig
 {
     public GatewayConfig()
     {
-        #region GatewayConfiguration-v5
+        #region GatewayConfiguration
 
         var configuration = new BusConfiguration();
 
@@ -13,6 +13,16 @@ public class GatewayConfig
 
         #endregion
 
+        IBus Bus = null;
+
+        #region SendToSites
+
+        Bus.SendToSites(new[] { "SiteA", "SiteB" }, new MyCrossSiteMessage());
+
+        #endregion
+    }
+    public class MyCrossSiteMessage
+    {
     }
 
 }

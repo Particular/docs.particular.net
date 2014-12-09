@@ -21,27 +21,9 @@ Other containers are available on nuget.
 
 ## Configuring NServiceBus to use other containers
 
-### Version 4
-
-<!-- import ContainersV4 -->
-
-### Version 5
-
-<!-- import ContainersV5 -->
+<!-- import Containers --> 
 
 ## Plugging in your own container
 
-### Version 4
+<!-- import CustomContainers -->
 
- * Create a class that implements `IContainer`
- * Call `Configure.UsingContainer<T>()` in your configuration
-
-<!-- import CustomContainersV4 -->
-
-### Version 5
-
- * Create a class that implements `IContainer`
- * Create a class that implements `ContainerDefinition` and returns your `IContainer` implementation. Place this in the `NServiceBus` namespace for convenience to users.  
- * Register the container in the configuration with `.UseContainer<T>()`
-
-<!-- import CustomContainersV5 -->

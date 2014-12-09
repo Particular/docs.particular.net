@@ -53,7 +53,6 @@ By default 1 dedicated thread is used for the callbacks but if you want to add m
 
 <!-- import rabbitmq-config-callbackreceiver-thread-count -->
 
-
 ### Getting full control over the broker connection
 
 The default connection manager that comes with the transport is usually good enough for most users. But if you want full control over how the connection(s) with the broker is managed you can implement you own connection manager. To do this you need to create your own class inheriting from `IManageRabbitMqConnections`. This requires you to provide a connection for:
@@ -63,7 +62,6 @@ The default connection manager that comes with the transport is usually good eno
 3. Consuming messages from the broker
 
 In order for the transport to use you new connection manager you need to register it as shown below:
-
 
 <!-- import rabbitmq-config-useconnectionmanager -->
 

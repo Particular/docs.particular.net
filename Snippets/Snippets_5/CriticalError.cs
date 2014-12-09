@@ -6,7 +6,7 @@ public class CriticalErrorConfig
     public void DefineCriticalErrorAction()
     {
 
-        #region DefineCriticalErrorActionV5
+        #region DefineCriticalErrorAction
 
         var configuration = new BusConfiguration();
 
@@ -21,7 +21,7 @@ public class CriticalErrorConfig
         #endregion
     }
 
-    #region RaiseCriticalErrorV5
+    #region RaiseCriticalError
 
     //This could be a handler, a saga or some other service injected into the container
     public class MyService
