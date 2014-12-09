@@ -1,9 +1,11 @@
+---
 title: Install ServicePulse in IIS
 summary: Describes how to manually install ServicePulse in IIS.
-tags: [ ServicePulse ]
+tags:
+- ServicePulse
 ---
 
-[ServicePulse](introduction-and-installing-servicepulse), by default, is installed as a Windows Service that will self-host the ServicePulse web application.
+[ServicePulse](introduction-and-installing-servicepulse.md), by default, is installed as a Windows Service that will self-host the ServicePulse web application.
 
 It is possible to manually install ServicePulse using IIS following these steps:
 
