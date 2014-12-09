@@ -38,7 +38,13 @@ For example, the following command line (with the appropriate adjustments for yo
 
 `Netsh http add urlacl  url=http://*:33333/  user=everyone  listen=yes`
 
-**NOTE:** Ensure that there is only one URLACL defined. 
+NOTE: Ensure that there is only one URLACL defined.
+
+#### Security considerations
+
+URL ACL defines which user or security group can start to listen for incoming requests on the configured Url. In the above sample `everyone` is simply for demonstration purpose. Be sure to configure your URL ACL based on security policies defined in your environment.
+
+ServiceControl requires that the user running the Windows Service process is allowed, by the URL ACL setting above, to listen to the configured URL.
 
 ### Configuring ServiceControl to Use a Virtual Directory
 
