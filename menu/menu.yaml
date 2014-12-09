@@ -42,6 +42,7 @@
         - "nservicebus/unit-of-work-in-nservicebus"
         - "nservicebus/unit-of-work-implementation-for-ravendb"
         - "nservicebus/ravendb/version-compatibility"
+        - "nservicebus/ravendb/how-to-change-resourcemanagerid"
         - "nservicebus/persistence-order"
     - 
       Name: "long-running-processes"
