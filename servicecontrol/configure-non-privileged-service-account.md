@@ -17,6 +17,7 @@ Specifically, these are the changes:
 - For the default URLACL registration, members of the Windows "Users" group are authorized to listen on the endpoint URL
 
 ### Required Manual Configuration
+
 To allow a non-privileged account to function, you must configure some steps manually. 
 
 For MSMQ, the ACL default for a queue allows Administrators full access.  Switching to a low privileged account means that you need to modify the rights to give full control to the custom account.
@@ -34,29 +35,35 @@ At a minimum, you should modify the rights to these queues:
 If the service account user does not have appropriate rights the service will stop.
 
 ### Configuration Changes
+
 If the ServiceControl configuration is manually changed to listen to an alternate URL as detailed in  [Customizing ServiceControl configuration](creating-config-file.md), then update the URLACL to reflect the user account assigned to run the service.  Otherwise, the service will not start.
 
 ### RavenDB Security
+
 The installer will set the permissions to allow any member of the local Windows Users group to modify files in the embedded Raven DB folder.  You can change these rights manually to be more restrictive as long as the service account user retains modify rights.  Note that manual changes to the ACLs may be lost during an upgrade or re-installation of ServiceControl.  
 
 ### Logging 
+
 Out of the box ServiceControl persists logs and failed message imports to "%LOCALAPPDATA%\Particular\ServiceControl\logs".  The %LOCALAPPDATA% defines a user-specific location on disk, so the logging location will be different when the service is configured as a user account.      
 The logging location may also have been manually overridden as detailed in [Configuring the Log Location](setting-custom-log-location.md). If so, configure the permissions of the logging location to give the service account full access to the directory.
 
 If the service was previously running as LOCALSYSTEM you may want to migrate the logs to the new location.  When you do so,  ensure that the file ACLs are not copied from the original location.     
 
 ### Testing the Configuration
+
 These methods confirm that the user account has sufficient rights:
  - Configure and start the service as the user and then check the log files.   
  - Interactively run ServiceControl as the user.
 
 #### Method 1: Running the service as a non-privileged user 
+
 1. Open computer management.
 1. Change the service account to the non-privileged user and password and apply the change. The user account will be given "logon as a service privilege".
 1. Start the service and confirm that it started.
 1. Examine the log file to ensure that the service is operating as you expect. If the service does not start and the log file does not indicate the issue, try Method 2.
 
 #### Method 2: Running the service interactively as a non-privileged user 
+
 To run the service this way the user account must have rights to log on interactively on the computer.  
 2. Log on to the computer with admin privileges. 
 2. Substitute the appropriate domain and user name. 
@@ -83,5 +90,6 @@ ServiceControl.exe
 3. Start the service.
 
 ### Expected Warnings when Running as a Non-Privileged Account
+
 On service start up the Embedded RavenDB attempts to create Windows performance counters. This does not succeed and RavenDB performance counters are not available.
 You can safely ignore this warning.

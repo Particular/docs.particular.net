@@ -5,7 +5,7 @@ public class PerformanceMonitoring
 {
     public void Simple()
     {
-        #region PerformanceMonitoringV5
+        #region PerformanceMonitoring
 
         var configuration = new BusConfiguration();
 

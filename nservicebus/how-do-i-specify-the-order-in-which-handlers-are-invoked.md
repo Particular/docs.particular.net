@@ -4,20 +4,14 @@ summary: How to Specify the Order in which Handlers Are Invoked.
 tags: []
 ---
 
-## With the fluent API
+### With the fluent API
 
-### Version 4
+<!-- import HandlerOrderingWithFluent -->
 
-<!-- import HandlerOrderingWithFluentV4 -->
+### Specifying First with ISpecifyMessageHandlerOrdering
 
-### Version 5
+<!-- import HandlerOrderingWithFirst -->
 
-<!-- import HandlerOrderingWithFluentV5 -->
+### Specifying multiple handlers to run first order with ISpecifyMessageHandlerOrdering
 
-## Specifying First with ISpecifyMessageHandlerOrdering
-
-<!-- import HandlerOrderingWithFirstV4 -->
-
-## Specifying multiple handlers to run first order with with ISpecifyMessageHandlerOrdering
-
-<!-- import HandlerOrderingWithMultipleV4 -->
+<!-- import HandlerOrderingWithMultiple -->

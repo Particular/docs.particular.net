@@ -17,6 +17,8 @@ summary: ServiceControl Documentation Table of Contents
 - [Setting Custom Name and Description Properties for ServiceControl API](customize-name-and-description.md)
 - [Configuring ServiceControl Log Location](setting-custom-log-location.md)
 - [Configuring a non-privileged Service Account](configure-non-privileged-service-account.md)
+- [ServiceControl Endpoint Plugins](plugins.md)
+- [ServiceControl error.log and audit.log behavior](errorlog-auditlog-behavior.md)
 
 ### Management
 

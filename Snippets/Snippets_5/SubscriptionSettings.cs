@@ -5,7 +5,7 @@ public class SubscriptionSettings
 {
     public void DisableAutoSubscribe()
     {
-        #region DisableAutoSubscribeV5
+        #region DisableAutoSubscribe
 
         var configuration = new BusConfiguration();
 

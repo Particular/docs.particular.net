@@ -4,7 +4,7 @@ public class StartupActionReplacement
 {
     public void AllThePersistence()
     {
-        #region StartupActionReplacementV5
+        #region StartupAction
 
         var bus = Bus.Create(new BusConfiguration());
         MyCustomAction();

@@ -1,6 +1,6 @@
 ﻿using NServiceBus;
 
-#region UnobtrusiveConventionsV4
+#region UnobtrusiveConventions
 public class UnobtrusiveConventions : IWantToRunBeforeConfiguration
 {
     public void Init()

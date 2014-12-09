@@ -6,7 +6,7 @@ public class SendOnly
     public void Simple()
     {
 
-        #region SendOnlyV4
+        #region SendOnly
 
         var bus = Configure.With()
             .DefaultBuilder()

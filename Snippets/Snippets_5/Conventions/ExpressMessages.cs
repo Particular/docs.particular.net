@@ -4,7 +4,7 @@ public class ExpressMessages
 {
     public void Simple()
     {
-        #region ExpressMEssageConventionV5
+        #region ExpressMEssageConvention
 
         var configuration = new BusConfiguration();
 
@@ -13,7 +13,7 @@ public class ExpressMessages
         #endregion
     }
 
-    #region ExpressMessageAttributeV5
+    #region ExpressMessageAttribute
     [Express]
     public class MyMessage : IMessage { }
     #endregion

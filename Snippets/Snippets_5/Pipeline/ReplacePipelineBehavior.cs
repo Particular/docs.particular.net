@@ -1,14 +1,11 @@
-﻿namespace Snippets_5.Pipeline
-{
-    using NServiceBus;
+﻿using NServiceBus;
 
-    #region ReplacePipelineStep
-    public class ReplaceExistingBehavior : INeedInitialization
+#region ReplacePipelineStep
+public class ReplaceExistingBehavior : INeedInitialization
+{
+    public void Customize(BusConfiguration configuration)
     {
-        public void Customize(BusConfiguration configuration)
-        {
-            configuration.Pipeline.Replace("Id of the step to replace", typeof(SampleBehavior), "Description");
-        }
+        configuration.Pipeline.Replace("Id of the step to replace", typeof(SampleBehavior), "Description");
     }
-    #endregion 
 }
+#endregion 

@@ -2,8 +2,11 @@
 <!--startcode GatewayChannels-->
 <GatewayConfig>
   <Channels>
-    <Channel Address="https://Headquarter.mycorp.com/" ChannelType="Http" Default="true"/>
-    <Channel Address="http://Headquarter.myotherdomain.com/" ChannelType="Http"/>
+    <Channel Address="https://Headquarter.mycorp.com/"
+             ChannelType="Http" 
+             Default="true"/>
+    <Channel Address="http://Headquarter.myotherdomain.com/"
+             ChannelType="Http"/>
   </Channels>
 </GatewayConfig>
 <!--endcode -->

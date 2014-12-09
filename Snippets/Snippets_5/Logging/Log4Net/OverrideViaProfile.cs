@@ -5,7 +5,8 @@ public class OverrideViaProfile
 {
     #region LoggingConfigWithProfile
 
-    public class YourProfileLoggingHandler : NServiceBus.Hosting.Profiles.IConfigureLoggingForProfile<YourProfile>
+    public class YourProfileLoggingHandler : 
+        NServiceBus.Hosting.Profiles.IConfigureLoggingForProfile<YourProfile>
     {
         public void Configure(IConfigureThisEndpoint specifier)
         {

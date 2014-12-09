@@ -10,6 +10,7 @@ tags:
 - Windows Azure
 - Cloud
 ---
+NOTE: This documents assumes you had already installed ServiceControl
 
 ## Configuring ServiceControl to use non-MSMQ Transports:
 
@@ -19,7 +20,7 @@ First, download the NuGet package for the relevant transport including any depen
 
 * RabbitMQ: [NServiceBus.RabbitMQ v1.1.5](https://www.nuget.org/api/v2/package/NServiceBus.RabbitMQ/1.1.5) and [RabbitMQ.Client 3.3.5](https://www.nuget.org/api/v2/package/RabbitMQ.Client/3.3.5)
 * SQL Server: [NServiceBus.SqlServer v1.2.2](https://www.nuget.org/api/v2/package/NServiceBus.SqlServer/1.2.2)
-* Windows Azure Storage Queues: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/5.3.8) and [WindowsAzure.Storage](https://www.nuget.org/api/v2/package/WindowsAzure.Storage)
+* Windows Azure Storage Queues: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/5.3.8) and [WindowsAzure.Storage v3.1.0.1](https://www.nuget.org/api/v2/package/WindowsAzure.Storage/3.1.0.1)
 * Windows Azure ServiceBus: [NServiceBus.Azure.Transports.WindowsAzureServiceBus v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureServiceBus/5.3.8) and [WindowsAzure.ServiceBus](https://www.nuget.org/api/v2/package/WindowsAzure.ServiceBus)
 
 NOTE: ServiceControl is built using NServiceBus version 4. Version 5 transport DLLs should not be used.
@@ -55,6 +56,13 @@ Or for Windows Azure ServiceBus:
 ```bat
 x:\Your_Installed_Path\ServiceControl.exe --install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl" -d="ServiceControl/TransportType==NServiceBus.AzureServiceBus, NServiceBus.Azure.Transports.WindowsAzureServiceBus" -d="NServiceBus/Transport==Endpoint=sb://[endpoint-name].servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue=[your-shared-secret]"
 ```
+Or for Windows Azure StorageQueues:
+
+```bat
+x:\Your_Installed_Path\ServiceControl.exe —install -serviceName=“Particular.ServiceControl” -displayName=“Particular ServiceControl” -d=“ServiceControl/TransportType==NServiceBus.AzureStorageQueue, NServiceBus.Azure.Transports.WindowsAzureStorageQueues” -d="NServiceBus/Transport==Endpoint=sb://[endpoint-name].servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue=[your-shared-secret]"
+```
+
+
 
 Example, for SqlServer these settings would look like:
 
@@ -76,7 +84,7 @@ When deploying using a packaging technology, like Windows Azure Cloud Services p
 
 If you are configuring ServiceControl for use with Windows Azure ServiceBus, you may encounter an error during the above commands because `NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll` has a reference to Microsoft.ServiceBus version 2.2.0.0, but you may be using a later version (via NuGet). The attempted installation will have created a `ServiceControl.exe.config` file, which you can modify, and add an assembly binding redirect section (exactly as NuGet would have done in your main project config file). Once the config file has been updated you can run `ServiceControl.exe --install`
 
-  ```xml
+```xml
 <configuration>
   ...
   <runtime>
@@ -88,4 +96,4 @@ If you are configuring ServiceControl for use with Windows Azure ServiceBus, you
 		</assemblyBinding>
 	</runtime>
 </configuration>
-	```
+```

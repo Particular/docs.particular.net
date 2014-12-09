@@ -8,6 +8,33 @@ Inherited from `NServiceBus.WcfService<TCommand, TErrorCode>`, as shown below. `
 
 <!-- import ExposeWCFService -->
 
+And finally you need to expose the wcf service via the config file, for the example above the xml would look something like:
+
+```xml
+<system.serviceModel>
+  <behaviors>
+    <serviceBehaviors>
+      <behavior name="Default">
+        <serviceMetadata httpGetEnabled="true" />
+        <serviceDebug includeExceptionDetailInFaults="true" />
+      </behavior>
+    </serviceBehaviors>
+  </behaviors>
+  <services>
+    <service name="Server.WebServices.CancelOrderService" behaviorConfiguration="Default">
+      <endpoint address="mex" binding="mexHttpBinding" contract="IMetadataExchange" />
+      <host>
+        <baseAddresses>
+          <add baseAddress="http://localhost:9009/services/cancelOrder" />
+        </baseAddresses>
+      </host>
+    </service>
+  </services>
+</system.serviceModel>
+```
+
+The service name in `<service name="XXX"` needs to match the [type fullname](http://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) that derives from `NServiceBus.WcfService<TCommand, TErrorCode>`
+
 NOTE: In v5 of NServiceBus `WcfService<TCommand, TErrorCode>` has been moved to [NServiceBus.Host nuget package](http://www.nuget.org/packages/NServiceBus.Host), so you need to reference this package.
 
 ## Queries and other return values
