@@ -17,9 +17,15 @@ NServiceBus offers multiple options for different persistence technologies. Plea
 
 # Installing the RavenDB NuGet Package
 
-Regardless of what type of endpoint you have, you will need to install the NuGet package containing the classes for the persistence store you are planning to use. Right-click on your project in the Solution Explorer and select 'Manage NuGet Packages...' Search Online for the `NServiceBus.RavenDB` package and install it.
+Regardless of what type of endpoint you have, you will need to install the NuGet package containing the classes for the persistence store you are planning to use.
 
-![NServiceBus.RavenDB NuGet Package](images/servicematrix-ravendb-nuget.png)
+Open the NuGet Package Manager Console: `Tools > NuGet Package Manager > Package Manager Console`.
+
+Type the following command at the Package Manager Console:
+
+    PM> Install-Package NServiceBus.RavenDB
+
+NOTE: When prompted to reload the project, click reload
 
 # Selecting Persistence for an ASP.NET MVC Endpoint
 
@@ -87,10 +93,10 @@ namespace OnlineSales.OrderProcessing
 
 # Installing RavenDB 2.5
 
-An NServiceBus V5 ServiceMatrix project requires RavenDB V2.5. Download the installer from [ravendb.net](http://ravendb.net/download) and select "Development" for the target environment.
+If you are using RavenDB peristence and NServiceBus V5 you will need RavenDB **V2.5**. Download the installer from [ravendb.net](http://ravendb.net/download) and select "Development" for the target environment.
 
-NOTE: If you already have RavenDB 2.0 installed, you can uninstall the service by finding the Raven.Server.exe executable on your machine and running it from the command line with /uninstall.
+NOTE: Versions V4 and earlier of NServiceBus used an older version of RavenDB. If you already have RavenDB 2.0 installed, you can uninstall the service by finding the Raven.Server.exe executable on your machine and running it from the command line with /uninstall.
 
-For more information on installing RavenDB for use with NService bus, refer to [this document](/nservicebus/using-ravendb-in-nservicebus-installing.md).
+For more information on installing RavenDB for use with NService bus and the different version-specific requirements, refer to [this document](/nservicebus/using-ravendb-in-nservicebus-installing.md).
 
 Return to the ServiceMatrix [table of contents](./).
