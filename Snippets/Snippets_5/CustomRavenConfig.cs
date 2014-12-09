@@ -7,7 +7,7 @@ public class CustomRavenConfig
 {
     public void Simple()
     {
-        #region CustomRavenConfigV5
+        #region CustomRavenConfig
 
         var documentStore = new DocumentStore
         {

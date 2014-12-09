@@ -6,7 +6,15 @@ tags:
 ---
 
 Here is an example how to register a custom serializer:
-<!-- import RegisterCustomSerializer-V5  -->
+
+### Create a custom serializer
+
+<!-- import CustomSerializer --> 
+
+### Register that serializer
+
+<!-- import RegisterCustomSerializer -->
+
 
 
 

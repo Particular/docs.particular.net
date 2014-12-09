@@ -5,7 +5,7 @@ public class TransactionConfig
 {
     public void Simple()
     {
-        #region TransactionConfigV4
+        #region TransactionConfig
 
         //Enable
         Configure.Transactions.Enable();

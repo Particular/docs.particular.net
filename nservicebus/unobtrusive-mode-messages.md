@@ -29,12 +29,4 @@ The example above also shows the unobtrusive way to tell NServiceBus which prope
 
 The following snippet shows how to define those conventions:
 
-### In Version 3 and Version 4
-
-<!-- import MessageConventionsV4 -->
-
-NOTE: When you're self hosting, `.DefiningXXXAs()` has to be before `.UnicastBus()`, otherwise you get  `System.InvalidOperationException: "No destination specified for message(s): <message type name>"`
-
-### In Version 5
-
-<!-- import MessageConventionsV5 -->
+<!-- import MessageConventions -->  

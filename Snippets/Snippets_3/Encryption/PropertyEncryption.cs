@@ -8,36 +8,37 @@ public class PropertyEncryption
 
     public void Simple()
     {
-        #region EncryptionServiceSimpleV3
+        #region EncryptionServiceSimple
         Configure.With()
             .RijndaelEncryptionService();
         #endregion
     }
     public void Convention()
     {
-        #region DefiningEncryptedPropertiesAsV3
+        #region DefiningEncryptedPropertiesAs
         Configure.With()
             .DefiningEncryptedPropertiesAs(info => info.Name.EndsWith("EncryptedProperty"));
         #endregion
     }
 
-    #region MessageForEncryptionConventionV3
+    #region MessageForEncryptionConvention
     public class MyMessage1 : IMessage
     {
         public string MyEncryptedProperty { get; set; }
     }
     #endregion
 
-    #region MessageWithEncryptedPropertyV3
+    #region MessageWithEncryptedProperty
     public class MyMessage2 : IMessage
     {
         public WireEncryptedString MyEncryptedProperty { get; set; }
     }
     #endregion
 
-    #region EncryptionFromIProvideConfigurationV3
+    #region EncryptionFromIProvideConfiguration
 
-    public class ConfigureEncryption : IProvideConfiguration<RijndaelEncryptionServiceConfig>
+    public class ConfigureEncryption : 
+        IProvideConfiguration<RijndaelEncryptionServiceConfig>
     {
         public RijndaelEncryptionServiceConfig GetConfiguration()
         {
@@ -46,8 +47,14 @@ public class PropertyEncryption
                 Key = "gdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6",
                 ExpiredKeys = new RijndaelExpiredKeyCollection
                 		{
-                    		new RijndaelExpiredKey { Key = "abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6" },
-		                    new RijndaelExpiredKey { Key = "cdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6" }
+                    		new RijndaelExpiredKey
+                    		{
+                    		    Key = "abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"
+                    		},
+		                    new RijndaelExpiredKey
+		                    {
+		                        Key = "cdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"
+		                    }
 						}
             };
         }
@@ -56,7 +63,7 @@ public class PropertyEncryption
 
     public void FromCustomIEncryptionService()
     {
-        #region EncryptionFromIEncryptionServiceV3
+        #region EncryptionFromIEncryptionService
         //where MyCustomEncryptionService implements IEncryptionService 
         Configure.With()
             .Configurer.RegisterSingleton<IEncryptionService>(new MyCustomEncryptionService());

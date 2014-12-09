@@ -1,6 +1,6 @@
 ---
 title: Hosting NServiceBus v4.x in-process 
-summary: Fluent configuration API to get transnational one-way messaging, referencing only three assemblies.
+summary: Fluent configuration API to get transactional one-way messaging, referencing only three assemblies.
 tags: []
 ---
 
@@ -82,7 +82,7 @@ public class MvcApplication : System.Web.HttpApplication
 ## Configuration Code
 
 Most of the methods are extensions for the
-[NServiceBus.Configure](https://github.com/Particular/NServiceBus/tree/master/src/NServiceBus.Core/Config) class provided by the specific components packaged in the NServiceBus.Core assembly. You can similarly configure your own components by writing your own extension methods.
+[NServiceBus.Configure](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Config) class provided by the specific components packaged in the NServiceBus.Core assembly. You can similarly configure your own components by writing your own extension methods.
 
 -   `Log4Net()` tells NServiceBus what to [log](logging-in-nservicebus.md) with.
 -   `DefaultBuilder()` tells NServiceBus to use the default(Autofac) dependency injection framework. Other [dependency injection frameworks](containers.md) are available as well.

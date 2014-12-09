@@ -23,17 +23,7 @@ The scheduling API is often used to poll state, for example the file system or a
 
 The difference between these examples is that in the latter a name is given for the task. The name is used for logging.
 
-### Version 5
-
-`Schedule` is an instance class that can be resolved from the container.
-
-<!-- import ScheduleTaskV5 -->
-
-### Versions 3 and 4
-
-`Schedule` is a static class that can be accessed anywhere. 
-
-<!-- import ScheduleTaskV4 -->
+<!-- import ScheduleTask -->
 
 ## Accuracy 
 

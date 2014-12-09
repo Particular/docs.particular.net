@@ -7,7 +7,7 @@ public class InterfaceMessageCreation
     {
         IBus Bus = null;
 
-        #region InterfaceMessageCreationV4
+        #region InterfaceMessageCreation
 
         var message = Bus.CreateInstance<MyInterfaceMessage>(o =>
         {

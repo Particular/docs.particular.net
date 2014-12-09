@@ -4,7 +4,7 @@ using NServiceBus.Saga;
 
 public class SagaMapping
 {
-    // startcode ConfigureHowToFindSagaV4
+    // startcode ConfigureHowToFindSaga
     public class MySaga : Saga<MySagaData>,
         IAmStartedByMessages<Message1>,
         IHandleMessages<Message2>
