@@ -19,7 +19,7 @@ This means ServiceControl fails over automatically with the cluster.
 Then, because ServiceControl is running in the context of the cluster, you need to have a clustered MSMQ resource (can be on the same cluster) to host the queues. 
 
 You pretty much need a clustered MSMQ resource anyway if you want a resilient ServiceControl instance because you have to have a single queue address. 
-A single queue address needs to be a clustered queue (transnational MSMQ does not work behind a load balancer).
+A single queue address needs to be a clustered queue (transactional MSMQ does not work behind a load balancer).
 
 You need to put the ServiceControl service in the MSMQ group, make it depend on MSMQ and MSMQ network name, and check “use network name as computer name” in the service configuration. 
 
