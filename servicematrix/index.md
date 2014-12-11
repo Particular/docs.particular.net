@@ -22,13 +22,8 @@ summary: ServiceMatrix Documentation Table of Contents
 ### Using ServiceMatrix
 
 - [Using the ServiceMatrix Code](customizing-extending.md)
-
-### Licensing
-
+- [Changing Persistence in a ServiceMatrix Project](servicematrix-persistence.md)
 - [Licensing ServiceMatrix](licensing-servicematrix-v2.0.md)
-
-### Troubleshooting
-
 - [Troubleshooting Installation](installing-servicematrix-2.0.md)
 
 ## ServiceMatrix 1.0 for Visual Studio 2010
