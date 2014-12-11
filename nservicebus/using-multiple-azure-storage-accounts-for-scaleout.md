@@ -19,11 +19,11 @@ When the number of messages exceeds this quota, storage service responds with an
 
 A typical implementation uses a single storage account to send and receive messages. All endpoints are configured to receive and send messages using the same storage account. 
 
-![Single storage account](azure01.png)
+![Single storage account](azure01.png "width=50")
 
 When the number of instances with endpoints are increased, all endpoints continue reading and writing to the same storage account. Once the limit of 2,000 message/sec per queue or 20,000 message/sec per storage account is reached, Azure throttles the message throughput.
 
-![Single storage account with scaled out endpoints](azure02.png)
+![Single storage account with scaled out endpoints](azure02.png "width=50")
 
 While an NServiceBus endpoint can only read from a single Azure storage account, it can send messages to multiple storage accounts. Configure this by specifying a connection string when message mapping. Each endpoint will have its own storage account to overcome the Azure storage account throughput limitation of 20,000 messages/sec.
 
@@ -50,7 +50,7 @@ Message mapping for Endpoint 2:
 Each endpoint uses its own Azure storage account, thereby increasing message throughput.
 
 
-![Scale out with multiple storage accounts](azure03.png)
+![Scale out with multiple storage accounts](azure03.png "width=50")
 
 ## Scale Units
 
@@ -60,7 +60,7 @@ Suitable techniques in the cloud include resource partitioning and use of scale 
 
 An example of a partitioned application with a different number of deployed scale units is an application deployed in various regions.
 
-![Scale units](azure04.jpg)
+![Scale units](azure04.png "width=50")
 
 To see this in action, look at the [video storage sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud)
 
