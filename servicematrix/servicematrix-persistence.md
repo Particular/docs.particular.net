@@ -93,10 +93,6 @@ namespace OnlineSales.OrderProcessing
 
 # Installing RavenDB 2.5
 
-If you are using RavenDB peristence and NServiceBus V5 you will need RavenDB **V2.5**. Download the installer from [ravendb.net](http://ravendb.net/download) and select "Development" for the target environment.
-
-NOTE: Versions V4 and earlier of NServiceBus used an older version of RavenDB. If you already have RavenDB 2.0 installed, you can uninstall the service by finding the Raven.Server.exe executable on your machine and running it from the command line with /uninstall.
-
-For more information on installing RavenDB for use with NService bus and the different version-specific requirements, refer to [this document](/nservicebus/using-ravendb-in-nservicebus-installing.md).
+Refer to [Installing RavenDB 2.5](/nservicebus/ravendb/installing.md) for installation instructions.
 
 Return to the ServiceMatrix [table of contents](./).

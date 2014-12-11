@@ -282,9 +282,13 @@ if (Debugger.IsAttached)
 }
 ````
 
-Right-click on your OnlineSales.ECommerce project in the Solution Explorer and select 'Manage NuGet Packages...' Search Online for the NServiceBus.RavenDB package and install it.
+Open the NuGet Package Manager Console: `Tools > NuGet Package Manager > Package Manager Console`.
 
-![NServiceBus.RavenDB NuGet Package](images/servicematrix-ravendb-nuget.png)
+Type the following command at the Package Manager Console:
+
+    PM> Install-Package NServiceBus.RavenDB
+
+NOTE: When prompted to reload the project, click reload
 
 Because `Infrastructure\WebGlobalInitialization.cs` is an auto-generated code file by ServiceMatrix, you should not edit it directly (or else your changes will be gone the next time it is rebuilt). Instead, add a new class file named `ConfigurePersistence.cs` to the Infrastructure folder of the ASP.NET project. Update it to initialize the RavenDBPersistence class as follows:
 
