@@ -42,7 +42,7 @@ service account is running service control
 You need to create a ServiceControl configuration file and it needs to look
 something like this:
 
-<!-- import SCClusterAppSettingsV1 -->
+<!-- import SCClusterAppSettings 1.0 -->
 
 NOTE: for some reason, some of those AppSettings are prefixed with
 "ServiceBus" (not ServiceControl). Those aren't typos.
