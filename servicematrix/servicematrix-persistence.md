@@ -93,6 +93,4 @@ namespace OnlineSales.OrderProcessing
 
 # Installing RavenDB 2.5
 
-Refer to [Installing RavenDB 2.5](/nservicebus/ravendb/installing.md) for installation instructions.
-
-Return to the ServiceMatrix [table of contents](./).
+Refer to [Installing RavenDB](/nservicebus/using-ravendb-in-nservicebus-installing) for installation instructions.
