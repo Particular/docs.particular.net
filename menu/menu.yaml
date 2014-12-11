@@ -42,6 +42,7 @@
         - "nservicebus/unit-of-work-in-nservicebus"
         - "nservicebus/unit-of-work-implementation-for-ravendb"
         - "nservicebus/ravendb/version-compatibility"
+        - "nservicebus/ravendb/how-to-change-resourcemanagerid"
         - "nservicebus/persistence-order"
     - 
       Name: "long-running-processes"
@@ -143,6 +144,8 @@
         - "nservicebus/encryption"
         - "nservicebus/how-do-i-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages"
         - "nservicebus/how-to-register-a-custom-serializer"
+        - "nservicebus/gateway-service-point-manager"
+        - "nservicebus/plugin-custom-databus"
     - 
       Name: "samples"
       Title: "Samples"
@@ -216,6 +219,7 @@
       Articles: 
         - "servicepulse/how-to-configure-endpoints-for-monitoring"
         - "servicepulse/how-to-develop-custom-checks"
+        - "servicepulse/install-servicepulse-in-iis"
         - "servicepulse/troubleshooting"
 - 
   Name: "ServiceControl"
@@ -231,6 +235,7 @@
         - "servicecontrol/setting-custom-hostname"
         - "servicecontrol/setting-custom-log-location"
         - "servicecontrol/plugins"
+        - "servicecontrol/heartbeat-configuration"
         - "servicecontrol/errorlog-auditlog-behavior"
     - 
       Name: "management"
