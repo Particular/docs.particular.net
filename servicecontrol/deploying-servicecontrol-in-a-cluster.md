@@ -31,19 +31,19 @@ NOTE: Having MSMQ use the local queues on the node (which means data loss after 
 The RavenDB database need to be located in shared storage.
 
 #### ServiceControl ACLs
-You need to set the URL ACLs on each cluster node [as advised here:](/servicecontrol/troubleshooting)
+You need to set the URL ACLs on each cluster node [as advised here:](/servicecontrol/troubleshooting.md)
 The URL needs to be the cluster name and the ACL obviously set to whatever
 service account is running service control
 
 You need to create a ServiceControl configuration file and it needs to look
 something like this:
 
-<!-- import SCClusterAppSettings 1.0 -->
+<!-- import SCClusterAppSettings -->
 
 NOTE: for some reason, some of those AppSettings are prefixed with
 "ServiceBus" (not ServiceControl). Those aren't typos.
 
 #### ServiceControl's Logs
-If you look at ServiceControl's [Troubleshooting URL](/servicecontrol/troubleshooting) it tells you
+If you look at ServiceControl's [Troubleshooting URL](/servicecontrol/troubleshooting.md) it tells you
 where the ServiceControl log file is in case you have any problems starting
 the service.
