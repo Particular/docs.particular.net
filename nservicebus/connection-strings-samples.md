@@ -74,6 +74,7 @@ NOTE: The MSMQ connection string is optional.
 ```
 
 * For remote host provide username and password because remote hosts don't accept default guest credentials
+
 ```xml
 <connectionStrings>
    <!-- RabbitMQ -->
@@ -85,6 +86,7 @@ NOTE: The MSMQ connection string is optional.
 ```
 
 * For For clustered RabbitMQ 
+
 ```xml
 <connectionStrings>
    <!-- RabbitMQ -->
