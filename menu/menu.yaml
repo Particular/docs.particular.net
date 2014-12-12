@@ -180,6 +180,7 @@
       Name: "using-servicematrix"
       Title: "Using ServiceMatrix"
       Articles: 
+        - "servicematrix/servicematrix-publish-subscribe"
         - "servicematrix/customizing-extending"
         - "servicematrix/servicematrix-persistence"
         - "servicematrix/licensing-servicematrix-v2.0"
