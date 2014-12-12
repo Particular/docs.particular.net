@@ -84,6 +84,17 @@ NOTE: The MSMQ connection string is optional.
 </connectionStrings>
 ```
 
+* For For clustered RabbitMQ 
+```xml
+<connectionStrings>
+   <!-- RabbitMQ -->
+   <add name="NServiceBus/Transport" 
+			connectionString="host=rabbitNode1,rabbitNode2,rabbitNode3;
+				username=myuser;
+				password=password" />
+</connectionStrings>
+```
+
 ###SQL Server
 
 * NuGet transport package: [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer/);
