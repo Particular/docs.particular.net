@@ -228,16 +228,16 @@
   </div>
   <div class="right1">
     <h2>Community help</h2>
-    <a href="http://stackoverflow.com/questions/tagged/nservicebus" class="img">
-      <img src="/home/stackoverflow-big.png" />
-      <img src="/home/stackoverflow-big-hover.png" class="hover"/>
-      <h3>StackOverflow &rarr;</h3>
-    </a>
-    <div style="clear: both"></div>
     <a href="https://groups.google.com/forum/#!forum/particularsoftware" class="img">
       <img src="/home/discussion.png" />
       <img src="/home/discussion-hover.png" class="hover"/>
       <h3>Discussion group &rarr;</h3>
+    </a>
+    <div style="clear: both"></div>
+    <a href="http://stackoverflow.com/questions/tagged/nservicebus" class="img">
+      <img src="/home/stackoverflow-big.png" />
+      <img src="/home/stackoverflow-big-hover.png" class="hover"/>
+      <h3>StackOverflow &rarr;</h3>
     </a>
     <div style="clear: both"></div>
   </div>
@@ -300,40 +300,16 @@
   </div>
 </div>
 <div class="productcolumn">
-  <div class="block">
-    <h4>Community help</h4>
-    <a href="http://stackoverflow.com/questions/tagged/ServiceMatrix" class="img">
-      <img src="/home/stackoverflow-small.png" />
-      <img src="/home/stackoverflow-small-hover.png" class="hover" />
-      <h5>StackOverflow &rarr;</h5>
-    </a>
-  </div>
   <div class="block black">
     <span class="blue"><a href="https://github.com/Particular/ServiceMatrix/releases"><img src="/home/release-notes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/home/download.png" /> Downloads</a></span>
   </div>
 </div>
 <div class="productcolumn">
-  <div class="block">
-    <h4>Community help</h4>
-    <a href="http://stackoverflow.com/questions/tagged/ServiceInsight" class="img">
-      <img src="/home/stackoverflow-small.png" />
-      <img src="/home/stackoverflow-small-hover.png" class="hover" />
-      <h5>StackOverflow &rarr;</h5>
-    </a>
-  </div>
   <div class="block black">
     <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/home/download.png" /> Downloads</a></span>
   </div>
 </div>
 <div class="productcolumn last">
-  <div class="block">
-    <h4>Community help</h4>
-    <a href="http://stackoverflow.com/questions/tagged/ServicePulse" class="img">
-      <img src="/home/stackoverflow-small.png" />
-      <img src="/home/stackoverflow-small-hover.png" class="hover" />
-      <h5>StackOverflow &rarr;</h5>
-    </a>
-  </div>
   <div class="block black">
     <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><img src="/home/release-notes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/home/download.png" /> Downloads</a></span>
   </div>
