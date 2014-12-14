@@ -106,6 +106,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Message Handling Pipeline](nservicebus-pipeline-intro.md)
 - [Fluent Configuration API in V3 and V4](fluent-config-api-v3-v4.md)
 - [Introduction to Fluent Configuration API in V3 and V4](fluent-config-api-v3-v4-intro.md)
+- [Handler Ordering](handler-ordering.md)
 
 ## Versioning
 
@@ -122,7 +123,6 @@ summary: NServiceBus Documentation Table of Contents
 - [How Do I Specify to Which Destination a Message Will Be Sent](how-do-i-specify-to-which-destination-a-message-will-be-sent.md)
 - [How Can I See the Queues and Messages on a Machine](how-can-i-see-the-queues-and-messages-on-a-machine.md)
 - [How Do I Handle a Message](how-do-i-handle-a-message.md)
-- [How Do I Specify the Order in Which Handlers Are Invoked](how-do-i-specify-the-order-in-which-handlers-are-invoked.md)
 - [How Do I Get a Reference to IBus in My Message Handler](how-do-i-get-a-reference-to-ibus-in-my-message-handler.md)
 - [How Do I Get Technical Information about a Message](how-do-i-get-technical-information-about-a-message.md)
 - [How Do I Reply to a Message](how-do-i-get-technical-information-about-a-message.md)
