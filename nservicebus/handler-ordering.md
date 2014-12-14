@@ -24,6 +24,6 @@ The inference here is that the remaining handlers (not specified in the order) a
 
 <!-- import HandlerOrderingWithFirst -->
 
-### Specifying multiple handlers to run first order with ISpecifyMessageHandlerOrdering
+### Specifying multiple to run ordered with ISpecifyMessageHandlerOrdering
 
 <!-- import HandlerOrderingWithMultiple -->
