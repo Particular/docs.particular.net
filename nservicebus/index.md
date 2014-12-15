@@ -125,7 +125,7 @@ summary: NServiceBus Documentation Table of Contents
 - [How Can I See the Queues and Messages on a Machine](how-can-i-see-the-queues-and-messages-on-a-machine.md)
 - [How Do I Handle a Message](how-do-i-handle-a-message.md)
 - [How Do I Get a Reference to IBus in My Message Handler](how-do-i-get-a-reference-to-ibus-in-my-message-handler.md)
-- [How Do I Reply to a Message](how-do-i-get-technical-information-about-a-message.md)
+- [How Do I Reply to a Message](how-do-i-reply-to-a-message.md)
 - [How Do I Handle Responses on the Client Side](how-do-i-handle-responses-on-the-client-side.md)
 - [How Do I Handle Exceptions](how-do-i-handle-exceptions.md)
 - [How Do I Expose an NServiceBus Endpoint as a Web WCF Service](how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service.md)

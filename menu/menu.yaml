@@ -100,6 +100,7 @@
         - "nservicebus/fluent-config-api-v3-v4-intro"
         - "nservicebus/handler-ordering"
         - "nservicebus/express-messages"
+        - "nservicebus/message-headers"
     - 
       Name: "versioning"
       Title: "Versioning"
@@ -118,7 +119,6 @@
         - "nservicebus/how-can-i-see-the-queues-and-messages-on-a-machine"
         - "nservicebus/how-do-i-handle-a-message"
         - "nservicebus/how-do-i-get-a-reference-to-ibus-in-my-message-handler"
-        - "nservicebus/how-do-i-get-technical-information-about-a-message"
         - "nservicebus/how-do-i-reply-to-a-message"
         - "nservicebus/how-do-i-handle-responses-on-the-client-side"
         - "nservicebus/how-to-pub-sub-with-NServiceBus"
