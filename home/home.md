@@ -301,17 +301,17 @@
 </div>
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceMatrix/releases"><img src="/home/release-notes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/home/download.png" /> Downloads</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceMatrix/releases"><img src="/home/release-notes.png" /> Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/home/download.png" /> Downloads</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.png" /> Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn last">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><img src="/home/release-notes.png" /> Release notes</a></span><span class="blue"><a href="http://particular.net/downloads"><img src="/home/download.png" /> Downloads</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><img src="/home/release-notes.png" /> Release notes</a></span>
   </div>
 </div>
 <div style="clear: both; padding-top: 35px"></div>
