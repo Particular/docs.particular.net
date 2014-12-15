@@ -74,10 +74,16 @@ Ensure you do this before any bus configuration is done.
 
 For more advanced logging, it is recommended that you utilize one of the many mature logging libraries available for .Net. 
 
-The code shown below needs to be added either before calling `Bus.Create` if self-hosting or in the constructor of the class that implements `IConfigureThisEndpoint` when using [NServiceBus.Host](the-nservicebus-host.md).
-
 Note: Moving to custom logging means none of the approaches used in the above [Default Logging](#default-logging) apply. 
 
+### When to configure logging
+
+It is important to configure logging before any bus configuration is done since logging is configured in the static context of each NServiceBus class. So it should be configured at the startup of your app. For example
+
+ * At the start of the `Main` of a console app or windows service.
+ * At the start of the constructor of the class that implements `IConfigureThisEndpoint` when using [NServiceBus.Host](the-nservicebus-host.md).
+ * At the start of your `Global.Application_Start` in a asp.net application.
+ 
 ### NLog
 
 There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) package available that allows for simple integration of NServiceBus and [NLog](http://nlog-project.org/).
