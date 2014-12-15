@@ -14,7 +14,7 @@ Handler ordering allows you which handlers are grouped first and the order withi
 2. If order has been specified for any of those handlers move them at the start of the list
 3. Execute the handlers
 
-The inference here is that the remaining handlers (not specified in the order) are executes in a non-deterministic order.   
+The inference here is that the remaining handlers (not specified in the order) are executed in a non-deterministic order.   
 
 ### With the fluent API
 
