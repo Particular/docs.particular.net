@@ -107,6 +107,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Fluent Configuration API in V3 and V4](fluent-config-api-v3-v4.md)
 - [Introduction to Fluent Configuration API in V3 and V4](fluent-config-api-v3-v4-intro.md)
 - [Handler Ordering](handler-ordering.md)
+- [Express Messages](express-messages.md)
 
 ## Versioning
 
@@ -117,7 +118,6 @@ summary: NServiceBus Documentation Table of Contents
 - [MsmqTransportConfig](msmqtransportconfig.md)
 - [How Do I Define a Message](how-do-i-define-a-message.md)
 - [Using the in Memory Bus](using-the-in-memory-bus.md)
-- [How Do I Specify Store Forward for a Message](how-do-i-specify-store-forward-for-a-message.md)
 - [How Do I Discard Old Messages](how-do-i-discard-old-messages.md)
 - [How Do I Send a Message](how-do-i-send-a-message.md)
 - [How Do I Specify to Which Destination a Message Will Be Sent](how-do-i-specify-to-which-destination-a-message-will-be-sent.md)
