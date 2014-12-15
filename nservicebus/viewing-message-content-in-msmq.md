@@ -41,7 +41,7 @@ http://www.cogin.com/mq/
 
 > With QueueExplorer you can do much more than with built-in management console - copy, move or delete messages, save and load, stress test, view and edit full message bodies (with special support for .Net serialized objects), and much more. And it works with remote queues too!
 
-![](queue-explorer.png 'width=200')
+![](queue-explorer.png 'width=400')
 
 ### Service Bus MQ Manager
 
