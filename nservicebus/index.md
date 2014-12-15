@@ -145,7 +145,6 @@ summary: NServiceBus Documentation Table of Contents
 - [How to Reduce Throughput of an Endpoint](how-to-reduce-throughput-of-an-endpoint.md)
 - [InvalidOperationException in Unobtrusive Mode](invalidoperationexception-in-unobtrusive-mode.md)
 - [License Management](license-management.md)
-- [Preparing Your Machine to Run NServiceBus](preparing-your-machine-to-run-nservicebus.md)
 - [Running NServiceBus on Windows](running-nservicebus-on-windows.md)
 - [How to specify time to wait before raising critical exception for timeout outages](how-do-i-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages.md)
 - [How to register a custom serializer](how-to-register-a-custom-serializer.md)

@@ -1,12 +1,6 @@
 ---
 title: Preparing your machine to run NServiceBus
-summary: Details the infrastructure components required by NServicebus, and how to install them using Visual Studio&#39;s Package Manager Console
-tags:
-- Package Manager Console
-- infrastructure components
-- prerequisites
-- installation
-- nuget
+summary: Details the infrastructure components required by NServicebus, and how to install them using Visual Studio's Package Manager Console
 ---
 
 **NOTE: This article is only applicable to versions 3.x and 4.x of NServiceBus**
