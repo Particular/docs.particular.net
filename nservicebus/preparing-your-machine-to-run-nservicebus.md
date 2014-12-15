@@ -9,72 +9,14 @@ tags:
 - nuget
 ---
 
-
-<style type="text/css">div#uls ul{margin-bottom: -15px;}ul.ulcheck {list-style-image: url("check.png");} ul.ulnotcheck {list-style-image: url("redx.png");}</style>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-<script type="text/javascript">
-
-$(document).ready(function(){
-    var lowerHref = window.location.href.toLowerCase()
-    if (lowerHref.indexOf("dtc=true")>-1){
-        $("#li_dtc").addClass("ulcheck");
-        //$("#code_dtc").hide();
-    }
-
-    if (lowerHref.indexOf("dtc=false")>-1) {
-        $("#li_dtc").addClass("ulnotcheck");
-    }
-
-    if (lowerHref.indexOf("msmq=true")>-1){
-        $("#li_msmq").addClass("ulcheck");
-        //$("#code_msmq").hide();
-    }
-
-    if (lowerHref.indexOf("msmq=false")>-1){
-        $("#li_msmq").addClass("ulnotcheck");
-    }
-
-    if (lowerHref.indexOf("raven=true")>-1){
-        $("#li_ravendb").addClass("ulcheck");
-        //$("#code_ravendb").hide();
-    }
-
-    if (lowerHref.indexOf("raven=false")>-1){
-        $("#li_ravendb").addClass("ulnotcheck");
-        $("#ravendbport").show();
-    }
-
-    if (lowerHref.indexOf("perfcounter=true")>-1){
-        $("#li_performance").addClass("ulcheck");
-        //$("#code_performance").hide();
-    }
-
-    if (lowerHref.indexOf("perfcounter=false")>-1){
-        $("#li_performance").addClass("ulnotcheck");
-    }
-});
-
-</script>
-
 **NOTE: This article is only applicable to versions 3.x and 4.x of NServiceBus**
 
 NServiceBus relies on a few key infrastructure components in order to run properly.
-<ul id="li_dtc">
-    <li>DTC</li>
-</ul>
-<ul id="li_msmq">
-    <li>MSMQ</li>
-</ul>
 
-<ul id="li_ravendb">
-    <li>RavenDB &nbsp;(Note: only port 8080 is being scanned to see if RavenDB is installed.)</li>
-</ul>
-
-<ul id="li_performance">
-    <li>Performance Counters</li>
-</ul>
+ * DTC
+ * MSMQ
+ * RavenDB
+ * Performance Counters
 
 When installing NServicebus, the installation process verifies that these components are installed as required. If any of the components is not installed, the installation process will install the missing component.
 
