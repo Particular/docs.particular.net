@@ -8,9 +8,7 @@ tags:
 
 INFO: This is relevant to versions 4 and below. For newer versions, see [Logging in NServiceBus](logging-in-nservicebus.md).
 
-Like many other open-source frameworks on the .NET platform, NServiceBus uses Log4Net for its logging capabilities. Familiar to developers and administrators alike, Log4Net has been proven in years of production use.
-
-NServiceBus extends the Log4Net APIs with a simplified model that prevents administrators from accidentally changing behavior you set at design time.
+Like many other open-source frameworks on the .NET platform, NServiceBus uses Log4Net for its logging capabilities. Familiar to developers and administrators alike, Log4Net has been proven in years of production use.s
 
 ## Logging basics
 
@@ -122,9 +120,9 @@ As you can see, there isn't much effort involved in plugging in your own logging
 
 ## Administrative configuration
 
-As you saw before, most of the logging configuration done with NServiceBus is in code. This prevents administrators from accidentally changing values set by developers. It also provides developers with compile-time checking, intellisense, and the other productivity-enhancing capabilities of Visual Studio.
+As you saw before, most of the logging configuration done with NServiceBus is in code. Administrators can override values set by developers using configuration files. It also provides developers with compile-time checking, intellisense, and the other productivity-enhancing capabilities of Visual Studio.
 
-Yet certain parameters need to be under administrative control. The main parameter is the logging resolution of how much information is logged. Logging only errors is usually desirable in production scenarios as it gives the best performance. Yet, when a system behaves erratically, having more information logged can give greater insight into what is causing the problems. This is controlled by the application configuration file by including the following entries:
+Certain parameters need to be under administrative control. The main parameter is the logging resolution of how much information is logged. Logging only errors is usually desirable in production scenarios as it gives the best performance. Yet, when a system behaves erratically, having more information logged can give greater insight into what is causing the problems. This is controlled by the application configuration file by including the following entries:
 
 ```
 <configSections>
@@ -161,15 +159,13 @@ When running under the production profile, the logs are written to 'logfile' in 
 </configSections>
 <Logging Threshold="ERROR" />
 ```
-
- For changes to the configuration to have an effect, the process must be restarted.
+For changes to the configuration to have an effect, the process must be restarted.
 
 If you want different logging behaviors than these, see the next section.
 
 ## Customized logging
 
 To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type. The implementation of this interface is similar to that described for `IWantCustomLogging` in the [host page](the-nservicebus-host.md).
-
 
 ```C#
 class YourProfileLoggingHandler : IConfigureLoggingForProfile<YourProfile>
@@ -182,7 +178,7 @@ class YourProfileLoggingHandler : IConfigureLoggingForProfile<YourProfile>
 }
 ```
 
- Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
+Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
 
 **IMPORTANT** : While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
 
