@@ -14,9 +14,13 @@ It is recommended that you specify a central auditing queue for all related endp
 
 <!-- import ConfigureAudit -->
 
-Versions after 3 also supports setting up the error queue and the audit queue at the machine level in the registry. Use the [Set-NServiceBusLocalMachineSettings](managing-nservicebus-using-powershell.md) PowerShell commandlet to set these values at a machine level. When set at machine level, the setting is not required in the endpoint configuration file for messages to be forwarded to the audit queue.
+* `OverrideTimeToBeReceived`: Supported in Version 4 and higher. It is optional and defaults to the value of the TimeToBeReceived on the original message message.  
 
 Note: For backwards compatibility, Version 4 still supports the attribute `ForwardReceivedMessagesTo` on `UnicastBusConfig` section, but you will receive a warning recommending that you upgrade your configuration to use `AuditConfig` section.
+
+## Machine level configuration
+
+Version 4 and higher support setting the error queue and the audit queue at the machine level in the registry. Use the [Set-NServiceBusLocalMachineSettings](managing-nservicebus-using-powershell.md) PowerShell commandlet to set these values at a machine level. When set at machine level, the setting is not required in the endpoint configuration file for messages to be forwarded to the audit queue.
 
 ## Handling Audit messages
 
