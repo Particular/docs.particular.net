@@ -340,6 +340,15 @@ Would be rendered as
     * Point Two
     </p> 
 
+## Headings
+
+The first (and all top level) headers in a `.md` page should be a `h2` ie `##`. With sub-headers under it being `h2` are `h3` etc. 
+
+## Space
+
+* Add an empty after a heading
+* Add an empty line between paragraphs
+
 ## Anchors
 
 One addition to standard markdown is the auto creation of anchors for headings.
