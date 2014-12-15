@@ -75,3 +75,19 @@ To do this:
 We can also replace existing behaviors using the `Replace` method and passing as the first argument the `id` of the step we want to replace. For example:
 
 <!-- import ReplacePipelineStep -->
+
+## Exception Handling
+
+In general
+
+### MessageDeserializationException (Version 5.1 and up)
+
+As of Version 5.1 if a message fails to deserialize a `MessageDeserializationException` will be thrown. 
+
+#### When to throw
+
+The implementation of `DeserializeLogicalMessagesBehavior` handles deserialization and can throw `MessageDeserializationException`. So any behavior that replaces  `DeserializeLogicalMessagesBehavior` should duplicate this functionality.
+
+#### When to handle
+
+The implementation of `UnitOfWorkBehavior` handles aggregating multiple exceptions that can occur in a unit of work. However `MessageDeserializationException` is simply re-thrown (not aggregated). So any behavior that replaces  `UnitOfWorkBehavior` should duplicate this functionality.   
