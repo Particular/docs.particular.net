@@ -96,6 +96,7 @@
     <None Include="Transports\Msmq\MessageQueueConfiguration.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Conventions\ExpressMessages.cs" />
     <Compile Include="Conventions\MessageConventions.cs" />
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
     <Compile Include="Distributor\ConfiguringWorker.cs" />
