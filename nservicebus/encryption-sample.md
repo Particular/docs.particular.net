@@ -61,7 +61,7 @@ Note: The key specified must be the same in the configuration of all processes t
 Now run `Endpoint1` on its own (i.e. don't start `Endpoint2`).
 
 Go to the server queue (called "EncryptionSampleEndpoint1") and examine the message in it. Read how to do this in the
-[FAQ](how-can-i-see-the-queues-and-messages-on-a-machine.md) . Your message should look like this:
+[FAQ](viewing-message-content-in-msmq.md) . Your message should look like this:
 
 ```XML
 <?xml version="1.0" ?>
