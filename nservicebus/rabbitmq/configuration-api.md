@@ -27,6 +27,7 @@ Below is the full list of connection string options. Note that you needs to sepa
 * `UserName`: The username when connecting. Defaults to `guest`
 * `Password`: The password when connecting. Defaults to `guest`
 * `RequestedHeartbeat`: The interval for the heartbeats between the client and the server. Defaults to `5` seconds
+* `DequeueTimeout` The time period allowed for the dequeue strategy to dequeue a message. Defaults to `1` second
 * `PrefetchCount`: The number of messages to [prefetch](http://www.rabbitmq.com/consumer-prefetch.html) when consuming messages from the broker. Defaults to `1`
 * `UsePublisherConfirms`: Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used. Defaults to `true`
 * `MaxWaitTimeForConfirms`: How long the client should wait for publisher confirms if enabled. Defaults to `30` seconds.
@@ -40,6 +41,10 @@ If you prefer to use a custom name for you connection string use:
 or if you want to specify the connection string in code:
 
 <!-- import rabbitmq-config-connectionstring-in-code -->
+
+For debugging purposes, you can increase the RequestedHeartbeat and DequeueTimeout like this:
+
+<!-- import rabbitmqconnectionstring-debug -->
 
 ### Callback support
 
