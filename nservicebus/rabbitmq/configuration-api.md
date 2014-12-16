@@ -44,7 +44,7 @@ or if you want to specify the connection string in code:
 
 For debugging purposes, you can increase the RequestedHeartbeat and DequeueTimeout like this:
 
-<!-- import rabbitmq-config-connectionstring-debug -->
+<!-- import rabbitmqconnectionstring-debug -->
 
 ### Callback support
 
