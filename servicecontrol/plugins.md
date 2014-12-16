@@ -19,28 +19,28 @@ The ServiceControl plugins can be downloaded and installed from the NuGet galler
 
 ### For NserviceBus Version 5 
 
-| **Plugin** | **NuGet gallery URL** | 
+| **Plugin** | **NuGet** | 
 |:----- |:----- |
-|Heartbeat|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat|
-|Custom Checks|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks|
-|Saga Audit|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.SagaAudit|
-|Debug Session|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.DebugSession|
+|Heartbeat|[ServiceControl.Plugin.Nsb5.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat)|
+|Custom Checks|[ServiceControl.Plugin.Nsb5.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks)|
+|Saga Audit|[ServiceControl.Plugin.Nsb5.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.SagaAudit)|
+|Debug Session|[ServiceControl.Plugin.Nsb5.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.DebugSession)|
 
 ### For NserviceBus Version 4 
 
-| **Plugin** | **NuGet gallery URL** | 
+| **Plugin** | **NuGet** | 
 |:----- |:----- |
-|Heartbeat|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat|
-|Custom Checks|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks|
-|Saga Audit|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit|
-|Debug Session|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.DebugSession|
+|Heartbeat|[ServiceControl.Plugin.Nsb4.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat)|
+|Custom Checks|[ServiceControl.Plugin.Nsb4.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks)|
+|Saga Audit|[ServiceControl.Plugin.Nsb4.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit)|
+|Debug Session|[ServiceControl.Plugin.Nsb4.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.DebugSession)|
 
 ### For NserviceBus Version 3 
 
-| **Plugin** | **NuGet gallery URL** | 
+| **Plugin** | **NuGet** | 
 |:----- |:----- |
-|Heartbeat|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat|
-|Custom Checks|https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks|
+|Heartbeat|[ServiceControl.Plugin.Nsb3.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat)|
+|Custom Checks|[ServiceControl.Plugin.Nsb3.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks)|
 
 ## Installing and Deploying
 
@@ -120,7 +120,6 @@ The Saga Audit plugin collects saga runtime activity information. This informati
 
 However, depending on the saga's update frequency, it may also result in a large number of messages, and a higher load on both the sending endpoint and on the receiving ServiceControl instance. As a result, prior to deploying the Saga Audit plugin, you should test to verify that the Saga Audit plugin communication overhead does not interfere with your expected endpoint performance.   
 
-
 **Related articles**
 
 * [ServiceInsight Overview - The Saga View](/serviceinsight/getting-started-overview.md#the-saga-view)
@@ -135,3 +134,17 @@ When deployed, the debug session plugin adds a specified debug session identifie
 
 * [ServiceMatrix and ServiceInsight Interaction](/servicematrix/servicematrix-serviceinsight.md)
   
+
+
+## Deprecated Packages
+
+Early versions of the plugins were released in a non-version specific way. These packages have been deprecated an unlisted.
+
+Usage of these packages should be removed and replaced with the new packages.
+
+| **Plugin** | ** Old Package ** | **Replacement Package** | 
+|:----- |:----- |
+|Heartbeat|ServiceControl.Plugin.Heartbeat|[ServiceControl.Plugin.Nsb4.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat)|
+|Custom Checks|ServiceControl.Plugin.CustomChecks|[ServiceControl.Plugin.Nsb4.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks)|
+|Saga Audit|ServiceControl.Plugin.SagaAudit|[ServiceControl.Plugin.Nsb4.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit)|
+|Debug Session|ServiceControl.Plugin.DebugSession|[ServiceControl.Plugin.Nsb4.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.DebugSession)|
