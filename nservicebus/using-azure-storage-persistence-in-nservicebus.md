@@ -33,17 +33,16 @@ You can get more control on the behavior of each persister by specifying one of 
 
 <!-- import AzurePersistenceFromAppConfig -->
 
+The following settings are available for changing the behavior of saga persistence through the `AzureSagaPersisterConfig`section:
+
+- `ConnectionString`: Allows you to set the connectionstring to the storage account for storing saga information, defaults to `UseDevelopmentStorage=true`
+- `CreateSchema`: Instructs the persister to create the table automatically, defaults to true
+
 The following settings are available for changing the behavior of subscription persistence through the `AzureSubscriptionStorageConfig` section:
 
 - `ConnectionString`: Allows you to set the connection string to the storage account for storing subscription information, defaults to `UseDevelopmentStorage=true`
 - `CreateSchema`: Instructs the persister to create the table automatically, defaults to true
 - `TableName`: Lets you choose the name of the table for storing subscriptions, defaults to `Subscription`.
-
-
-The following settings are available for changing the behavior of saga persistence through the `AzureSagaPersisterConfig`section:
-
-- `ConnectionString`: Allows you to set the connectionstring to the storage account for storing saga information, defaults to `UseDevelopmentStorage=true`
-- `CreateSchema`: Instructs the persister to create the table automatically, defaults to true
 
 The following settings are available for changing the behavior of timeout persistence through the `AzureTimeoutPersisterConfig` section:
 
@@ -55,14 +54,16 @@ The following settings are available for changing the behavior of timeout persis
 
 ### Detailed Configuration with Code
 
-For Subscriptions:
-<!-- import AzurePersistenceSubscriptionsCustomization -->
-
 For Sagas:
 <!-- import AzurePersistenceSagasCustomization -->
 
+For Subscriptions:
+<!-- import AzurePersistenceSubscriptionsCustomization -->
+
 For Timeouts:
 <!-- import AzurePersistenceTimeoutsCustomization -->
+
+NOTE: Subscriptions and Timeouts persistence configuration only has an effect when used with Azure Storage Queues transport from NServiceBus Azure V6 and later.
 
 ## Sample
 
