@@ -31,6 +31,7 @@
         - "nservicebus/load-balancing-with-the-distributor"
         - "nservicebus/introduction-to-the-gateway"
         - "nservicebus/deploying-nservicebus-in-a-windows-failover-cluster"
+        - "nservicebus/using-multiple-azure-storage-accounts-for-scaleout"
     - 
       Name: "persistence-in-nservicebus"
       Title: "Persistence In NServiceBus"
