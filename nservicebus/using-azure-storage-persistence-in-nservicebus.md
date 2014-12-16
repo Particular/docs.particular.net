@@ -59,7 +59,10 @@ For Subscriptions:
 <!-- import AzurePersistenceSubscriptionsCustomization -->
 
 For Sagas:
-<!-- import AzurePersistenceSubscriptionsCustomization -->
+<!-- import AzurePersistenceSagasCustomization -->
+
+For Timeouts:
+<!-- import AzurePersistenceTimeoutsCustomization -->
 
 ## Sample
 

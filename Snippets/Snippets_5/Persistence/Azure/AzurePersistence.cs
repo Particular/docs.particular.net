@@ -48,5 +48,21 @@ class AzurePersistence
                         .CreateSchema(true);
         #endregion
     }
+
+    public void AzurePersistenceTimeoutsCustomization_6_2()
+    {
+        var configuration = new BusConfiguration();
+
+        #region AzurePersistenceTimeoutsCustomization 6.2
+
+        configuration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()
+                .ConnectionString("connectionString")
+                .CreateSchema(true)
+                .TimeoutManagerDataTableName("TimeoutManager")
+                .TimeoutDataTableName("TimeoutData")
+                .CatchUpInterval(3600)
+                .PartitionKeyScope("yyyy-MM-dd-HH");
+        #endregion
+    }
 }
 
