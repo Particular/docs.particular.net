@@ -9,8 +9,8 @@ NServiceBus endpoints support sending and receiving large chunks of data via the
 
 NServiceBus by default supports 2 DataBus implementations:
 
-* `FileShare DataBus`;
-* `Azure DataBus`;
+* `FileShare DataBus`
+* `Azure DataBus`
 
 Note: The `Azure DataBus` implementation is part of the Azure transport package.
 
