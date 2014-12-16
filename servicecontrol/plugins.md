@@ -138,7 +138,7 @@ When deployed, the debug session plugin adds a specified debug session identifie
 
 ## Deprecated Packages
 
-Early versions of the plugins were incorrectly named, they did not specific the NServiceBus target version. These packages have been deprecated and unlisted.
+Early versions of the plugins were incorrectly named, they did not specify the target version as NServiceBus 4. These packages have been deprecated and unlisted.
 
 Usage of these packages should be removed and replaced with the new packages.
 
