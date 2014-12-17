@@ -4,7 +4,7 @@ class AzurePersistence
 {
     public void Demo()
     {
-        #region PersistanceWithAzure
+        #region PersistanceWithAzure 6
 
         var config = new BusConfiguration();
         config.UsePersistence<AzureStoragePersistence>();
@@ -12,7 +12,7 @@ class AzurePersistence
         #endregion
     }
 
-    #region PersistenceWithAzureHost
+    #region PersistenceWithAzureHost 6
 
     public class EndpointConfig : IConfigureThisEndpoint
     {
