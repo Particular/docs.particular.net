@@ -10,6 +10,7 @@ public class SendOnly
 
         var bus = Configure.With()
             .DefaultBuilder()
+            //Other config
             .UnicastBus()
             .SendOnly();
 
