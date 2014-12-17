@@ -37,9 +37,11 @@ When the task is created it is given an unique identifier. The identifier for th
 
 ## Assumptions
 
-- If the process restarts, all scheduled tasks are recreated and given new identifiers. Tasks scheduled before the restart will not be found and a message is written to the log. This is expected behavior.
-- Each task executes on a new thread using the `Task.Factory.StartNew(Action)` method, which means that there will be no transaction scope by default and it is up to you to create one if needed.
-- You will probably only do a `Bus.Send()` or `Bus.SendLocal()` in the task. The handler of that message will have the transaction as usual. It will run forever.
+- Generally scheduled tasks are created at endpoint startup using for example a class the implements the `IWantToRunWhenBusStartsAndStops` interface;
+- If the process restarts, all scheduled tasks are recreated and given new identifiers. Tasks scheduled before the restart will not be found and a message is written to the log. This is expected behavior;
+- A scheduled task will run forever, as long as the endpoint is running, there is no way to cancel it except skipping its execution each time is invoked;
+- Each scheduled task executes on a new thread using the `Task.Factory.StartNew(Action)` method, which means that there will be no transaction scope by default and it is up to you to create one if needed;
+- You will probably only do a `Bus.Send()` or `Bus.SendLocal()` in the task. The handler of the sent message will be invoked as all other handlers and if configured and supported by underlying transport will be wrapped in a transaction as usual;
 
 ## When not to use it
 
