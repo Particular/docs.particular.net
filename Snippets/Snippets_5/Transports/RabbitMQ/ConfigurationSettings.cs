@@ -6,21 +6,16 @@ public class RabbitMQConfigurationSettings
 {
     void Basic()
     {
-
-
         #region rabbitmq-config-basic 2
 
         var configuration = new BusConfiguration();
         configuration.UseTransport<RabbitMQTransport>();
 
         #endregion
-
     }
 
     void CustomConnectionString()
     {
-
-
         #region rabbitmq-config-connectionstring-in-code 2
 
         var configuration = new BusConfiguration();
@@ -28,7 +23,6 @@ public class RabbitMQConfigurationSettings
             .ConnectionString("My custom connection string");
 
         #endregion
-
     }
 
     void CustomConnectionStringName()
@@ -37,10 +31,9 @@ public class RabbitMQConfigurationSettings
 
         var configuration = new BusConfiguration();
         configuration.UseTransport<RabbitMQTransport>()
-            .ConnectionStringName("MyOwnName");
+            .ConnectionStringName("MyConnectionStringName");
 
         #endregion
-
     }
 
 
@@ -53,7 +46,6 @@ public class RabbitMQConfigurationSettings
             .DisableCallbackReceiver();
 
         #endregion
-
     }
 
 
@@ -66,7 +58,6 @@ public class RabbitMQConfigurationSettings
             .CallbackReceiverMaxConcurrency(10);
 
         #endregion
-
     }
 
     void UseConnectionManager()
@@ -78,7 +69,6 @@ public class RabbitMQConfigurationSettings
             .UseConnectionManager<MyConnectionManager>();
 
         #endregion
-
     }
 
     class MyConnectionManager : IManageRabbitMqConnections
