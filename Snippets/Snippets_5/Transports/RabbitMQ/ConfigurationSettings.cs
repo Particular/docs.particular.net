@@ -6,11 +6,11 @@ public class RabbitMQConfigurationSettings
 {
     void Basic()
     {
+
+
+        #region rabbitmq-config-basic 2
+
         var configuration = new BusConfiguration();
-
-
-        #region rabbitmq-config-basic
-
         configuration.UseTransport<RabbitMQTransport>();
 
         #endregion
@@ -19,11 +19,11 @@ public class RabbitMQConfigurationSettings
 
     void CustomConnectionString()
     {
+
+
+        #region rabbitmq-config-connectionstring-in-code 2
+
         var configuration = new BusConfiguration();
-
-
-        #region rabbitmq-config-connectionstring-in-code
-
         configuration.UseTransport<RabbitMQTransport>()
             .ConnectionString("My custom connection string");
 
@@ -33,11 +33,9 @@ public class RabbitMQConfigurationSettings
 
     void CustomConnectionStringName()
     {
+        #region rabbitmq-config-connectionstringname 2
+
         var configuration = new BusConfiguration();
-
-
-        #region rabbitmq-config-connectionstringname
-
         configuration.UseTransport<RabbitMQTransport>()
             .ConnectionStringName("MyOwnName");
 
@@ -48,11 +46,9 @@ public class RabbitMQConfigurationSettings
 
     void DisableCallbackReceiver()
     {
+        #region rabbitmq-config-disablecallbackreceiver 2
+
         var configuration = new BusConfiguration();
-
-
-        #region rabbitmq-config-disablecallbackreceiver
-
         configuration.UseTransport<RabbitMQTransport>()
             .DisableCallbackReceiver();
 
@@ -63,11 +59,9 @@ public class RabbitMQConfigurationSettings
 
     void CallbackReceiverMaxConcurrency()
     {
+        #region rabbitmq-config-callbackreceiver-thread-count 2
+
         var configuration = new BusConfiguration();
-
-
-        #region rabbitmq-config-callbackreceiver-thread-count
-
         configuration.UseTransport<RabbitMQTransport>()
             .CallbackReceiverMaxConcurrency(10);
 
@@ -77,12 +71,9 @@ public class RabbitMQConfigurationSettings
 
     void UseConnectionManager()
     {
+        #region rabbitmq-config-useconnectionmanager 2
+
         var configuration = new BusConfiguration();
-
-        var connectionManager = new MyConnectionManager();
-
-        #region rabbitmq-config-useconnectionmanager
-
         configuration.UseTransport<RabbitMQTransport>()
             .UseConnectionManager<MyConnectionManager>();
 

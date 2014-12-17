@@ -31,7 +31,6 @@ Below is the full list of connection string options. Note that you needs to sepa
 * `PrefetchCount`: The number of messages to [prefetch](http://www.rabbitmq.com/consumer-prefetch.html) when consuming messages from the broker. Defaults to `1`
 * `UsePublisherConfirms`: Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used. Defaults to `true`
 * `MaxWaitTimeForConfirms`: How long the client should wait for publisher confirms if enabled. Defaults to `30` seconds.
-
 * `RetryDelay`: The time to wait before trying to reconnect to the broker if connection is lost. Defaults to `10` seconds
 
 If you prefer to use a custom name for you connection string use:
@@ -48,7 +47,7 @@ For debugging purposes, you can increase the RequestedHeartbeat and DequeueTimeo
 
 ### Callback support
 
-RabbitMQ is a broker which means that you scale out by adding more endpoints feeding of the same broker queue. This usually works fine if no state is shared between the different instances. This is not the case for callbacks since they do rely on local state kept in memory. In order to seamlessly support this scenario out of the box the RabbitMQ transport has the concept of a callback receiver. Essentially this is a separate queue named `{endpointname}.{machinename}` to which all callbacks are routed. This means that callbacks are handled by the same instance that requested them. This behaviour is on by default and if you're not using callbacks you can disable it using the following configuration:
+RabbitMQ is a broker which means that you scale out by adding more endpoints feeding of the same broker queue. This usually works fine if no state is shared between the different instances. This is not the case for callbacks since they do rely on local state kept in memory. In order to seamlessly support this scenario out of the box the RabbitMQ transport has the concept of a callback receiver. Essentially this is a separate queue named `{endpointname}.{machinename}` to which all callbacks are routed. This means that callbacks are handled by the same instance that requested them. This behavior is on by default and if you're not using callbacks you can disable it using the following configuration:
 
 <!-- import rabbitmq-config-disablecallbackreceiver -->
 
@@ -69,6 +68,3 @@ The default connection manager that comes with the transport is usually good eno
 In order for the transport to use you new connection manager you need to register it as shown below:
 
 <!-- import rabbitmq-config-useconnectionmanager -->
-
-
-
