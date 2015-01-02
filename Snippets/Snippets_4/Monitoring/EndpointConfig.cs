@@ -4,7 +4,7 @@
     using NServiceBus;
     using NServiceBus.Features;
 
-	#region MessageFailedEndpointConfig 4.0
+	#region MessageFailedEndpointConfig
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
     {
         public EndpointConfig()
