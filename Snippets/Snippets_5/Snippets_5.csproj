@@ -329,7 +329,7 @@
     <Compile Include="EndpointName.cs" />
     <Compile Include="DataBus.cs" />
     <Compile Include="Logging\CommonLogging\CommonLoggingConfig.cs" />
-    <Compile Include="Logging\Log4Net\OverrideViaProfile.cs" />
+    <Compile Include="Logging\OverrideViaProfile.cs" />
     <Compile Include="Logging\Log4Net\Log4NetConfig.cs" />
     <Compile Include="Logging\NLog\NLogConfig.cs" />
     <Compile Include="Logging\BuiltInConfig.cs" />

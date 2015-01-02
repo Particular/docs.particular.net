@@ -5,7 +5,6 @@ tags:
 - Logging
 ---
 
-
 INFO: This is relevant to versions 4 and below. For newer versions, see [Logging in NServiceBus](logging-in-nservicebus.md).
 
 Like many other open-source frameworks on the .NET platform, NServiceBus uses Log4Net for its logging capabilities. Familiar to developers and administrators alike, Log4Net has been proven in years of production use.
@@ -116,51 +115,3 @@ NOTE: If you set this value in code, the configuration value is ignored.
 
 The production profile only logs to a file, unless you are running within Visual Studio. See
 [Profiles](profiles-for-nservicebus-host.md) for more detail.
-
-
-## Logging Profiles
-
-Logging is another kind of behavior that you can change from one profile to another. However, unlike other profile behaviors, logging levels and sinks need to be defined before you configure other components, even before the container. For that reason, logging configuration is kept separate from other profile behaviors.
-
-The logging behavior configured for the three built-in profiles is shown:
-
-| Profile     | Appender     | Threshold  
-|-------------|--------------|-----
-| Lite        | Console      | Info                         
-| Integration | Console      | Info 
-| Production  | Rolling File | Info 
-
-When running under the production profile, the logs are written to 'logfile' in the same directory as the exe. The file grows to a maximum size of 1MB and then a new file is created. A maximum of 10 files is held and then the oldest file is erased. If no configuration exists, the logging threshold is Warn. Configure the logging threshold by including the following code in the application config file:
-
-```XML
-<configSections>
-	<section name="Logging" type="NServiceBus.Config.Logging, NServiceBus.Core" />
-</configSections>
-<Logging Threshold="ERROR" />
-```
-
- For changes to the configuration to have an effect, the process must be restarted.
-
-If you want different logging behaviors than these, see the next section.
-
-## Customized logging
-
-To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type. The implementation of this interface is similar to that described for `IWantCustomLogging` in the [host page](the-nservicebus-host.md).
-
-
-```C#
-class YourProfileLoggingHandler : IConfigureLoggingForProfile<YourProfile>
-{
-    public void Configure(IConfigureThisEndpoint specifier)
-    {
-        // setup your logging infrastructure then call
-        NServiceBus.SetLoggingLibrary.Log4Net(null, yourLogger);
-    }
-}
-```
-
- Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
-
-**IMPORTANT** : While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
-
-See the [logging documentation](profiles-for-nservicebus-host.md) for more information.

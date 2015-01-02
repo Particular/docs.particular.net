@@ -125,21 +125,3 @@ Configure Log4net using its standard API then call
 Example Usage 
 
 <!-- import Log4netInCode -->
-
-## Logging Profiles
-
-Logging can be configured via Profiles. However, unlike other profile behaviors, logging needs to be defined before you configure other components, even before the container. For that reason, logging configuration is kept separate from other profile behaviors.
-
-NServiceBus has three built-in profiles for logging `Lite`, `Integration`, and `Production`. These profiles are only placeholders for logging customization. If no customization is done then the profiles have no impact on the logging defaults listed above.
-
-### Customized logging via a profile
-
-To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type.
-
-<!-- import LoggingConfigWithProfile -->
-
-Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
-
-WARNING: While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
-
-See the [profiles for nservicebus host](profiles-for-nservicebus-host.md) for more information.

@@ -1,18 +1,16 @@
 ﻿using NServiceBus;
-using NServiceBus.Log4Net;
 
 public class OverrideViaProfile
 {
     #region LoggingConfigWithProfile
 
     public class YourProfileLoggingHandler : 
-        NServiceBus.Hosting.Profiles.IConfigureLoggingForProfile<YourProfile>
+        IConfigureLoggingForProfile<YourProfile>
     {
         public void Configure(IConfigureThisEndpoint specifier)
         {
             // setup your logging infrastructure then call
-
-            NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
+            SetLoggingLibrary.Log4Net();
         }
     }
 
