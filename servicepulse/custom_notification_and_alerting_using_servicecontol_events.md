@@ -12,7 +12,7 @@ tags:
 ## Custom notification and alerting using ServiceControl's events
 When your system is ready to go to production it is time to look at operational monitoring, who gets notified and how when an issue occurs. You don't want someone to be watching ServicePulse's dashboard 24/7, instead you want to build notifications/integrations that will alert of something going wrong in your system.
 
-The solution is ServiceControl, the backbone of the Particular Platform. ServiceControl's endpoint plugins provide the pipeline into ServiceControl. For more information see [ServiceControl Endpoint Plugins](plugins).
+The solution is ServiceControl, the backbone of the Particular Platform. ServiceControl's endpoint plugins provide the pipeline into ServiceControl. For more information see [ServiceControl Endpoint Plugins](plugins.md).
 
 ServiceControl provides the following events:
 - [FailedMessage event](#alerting-on-failedmessages-event "Alerting on FailedMessages Event")
