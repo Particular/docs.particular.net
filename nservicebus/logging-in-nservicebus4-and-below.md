@@ -1,6 +1,6 @@
 ---
 title: Logging in NServiceBus 4 and below
-summary: NServiceBus extends Log4Net APIs with a simple model to prevent admins from changing behavior you set at design time.
+summary: Logging in NServiceBus 4 and below
 tags: 
 - Logging
 ---
@@ -37,8 +37,7 @@ Include a Log4Net configuration section in the application configuration file th
 </log4net>
 ```
 
-For more information about standard Log4Net functionality, see the
-[Log4Net home page](http://logging.apache.org/log4net/index.html).
+For more information about standard Log4Net functionality, see the [Log4Net home page](http://logging.apache.org/log4net/index.html).
 
 ## Customized logging
 
@@ -65,7 +64,7 @@ Then plug your appender into NServiceBus like this:
 
 ## Administrative configuration
 
-As you saw before, most of the logging configuration done with NServiceBus is in code. This prevents administrators from accidentally changing values set by developers. It also provides developers with compile-time checking, intellisense, and the other productivity-enhancing capabilities of Visual Studio.
+As you saw before, most of the logging configuration done with NServiceBus is in code. This prevents administrators from accidentally changing values set by developers. It also provides developers with compile-time checking, IntelliSense, and the other productivity-enhancing capabilities of Visual Studio.
 
 Yet certain parameters need to be under administrative control. The main parameter is the logging resolution of how much information is logged. Logging only errors is usually desirable in production scenarios as it gives the best performance. Yet, when a system behaves erratically, having more information logged can give greater insight into what is causing the problems. This is controlled by the application configuration file by including the following entries:
 

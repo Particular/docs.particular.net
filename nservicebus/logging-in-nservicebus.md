@@ -104,7 +104,7 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.CommonLogging/) pa
 
     Install-Package NServiceBus.CommonLogging
 
-Configure NLog using its standard API then call 
+Configure CommonLogging using its standard API then call 
 
     LogManager.Use<CommonLoggingFactory>();
 
