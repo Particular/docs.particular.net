@@ -17,15 +17,20 @@ This can happen when the performance counter libraries get corrupted.
 The performance counters libraries need to be rebuild by doing the following steps:
 
 1. Open an elevated command prompt
-2. Execute the following command rebuilds the performance counter data:
+2. Execute the following command rebuilds the performance counter libraries:
 
     `LODCTR /R`  (Mind the uppercase /R)
 
+3. You maybe have to re-install the NServiceBus performance counters:
+ * [Managing NServiceBus using Powershell](managing-nservicebus-using-powershell)
+ * [Preparing your machine to run NServiceBus](preparing-your-machine-to-run-nservicebus)
+
+4. You may have to re-install other performance counters too. See the Microsoft support links for more information.
 
 
 ## More information
 
+* [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints)
 * [KB2554336: How to manually rebuild Performance Counters for Windows Server 2008 64bit or Windows Server 2008 R2 systems](http://support.microsoft.com/kb/2554336)
 * [KB300956: How to manually rebuild Performance Counter Library values](http://support.microsoft.com/kb/300956) 
-* [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints.md)
-* [LODCTR at TechNet](http://technet.microsoft.com/en-us/library/bb490926.aspx) Lodctr
+* [LODCTR at TechNet](http://technet.microsoft.com/en-us/library/bb490926.aspx)
