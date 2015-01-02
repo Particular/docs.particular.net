@@ -31,7 +31,7 @@ ServiceControl publishes MessageFailed event when a message gets to the error qu
 Let's see how we can subscribe to a MessageFailed Event and push a notification into HipChat.
 All it takes is to have an endpoint that subscribes to MessageFailed, and a simple HTTP call to HipChat's API
 
-NOTE: The endpoint will need to match ServiceControl's serieliser: JsonSerializer
+NOTE: The endpoint will need to match ServiceControl's serializer: JsonSerializer
 NOTE: In order for the endpoint to handle ServiceControl's events you need to register them in the endpoint's message Conventions
 
 #### Endpoint config
@@ -43,7 +43,7 @@ NOTE: In order for the endpoint to handle ServiceControl's events you need to re
 
 ### Alerting on HeartbeatStopped Event
 
-Heartbeats are used to track endpoints health see [this into for more information](/servicepulse/intro-endpoints-heartbeats#active-vs-inactive-endpoints)
+Heartbeats are used to track endpoints health see [this into for more information](/servicepulse/intro-endpoints-heartbeats#active-vs-inactive-endpoints.md)
 
 Once an endpoint stops sending heartbeats to ServiceControl queue ServiceControl will publish a [HeartbeatStopped](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/HeartbeatStopped.cs) event. As you can see the message contains enough context to help identify the endpoint, the time it was detected, the last heartbeat tiem and the hots.
 
