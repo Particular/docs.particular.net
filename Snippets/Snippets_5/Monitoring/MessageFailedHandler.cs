@@ -4,7 +4,7 @@
     using global::ServiceControl.Contracts;
     using NServiceBus;
 
-	#region MessageFailedHandler 5.0
+	#region MessageFailedHandler
     internal class MessageFailedHandler : IHandleMessages<MessageFailed>
     {
         public void Handle(MessageFailed message)
