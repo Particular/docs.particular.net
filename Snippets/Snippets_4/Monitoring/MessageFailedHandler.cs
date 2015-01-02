@@ -25,7 +25,6 @@
 		#endregion
         private string GetServiceInsightUri(string failedMessageId)
         {
-            //si://localhost:33333/api?Search=26f7b1dc-4ff1-4341-ada4-a3ae01057403
             return string.Format("si://localhost:33333/api?Search={0}", failedMessageId);
         }
     }
