@@ -43,7 +43,7 @@ NOTE: In order for the endpoint to handle ServiceControl's events you need to re
 
 ### Alerting on HeartbeatStopped Event
 
-Heartbeats are used to track endpoints health see [this into for more information](/servicepulse/intro-endpoints-heartbeats#active-vs-inactive-endpoints.md)
+Heartbeats are used to track endpoints health see [this into for more information](/servicepulse/intro-endpoints-heartbeats.md#active-vs-inactive-endpoints)
 
 Once an endpoint stops sending heartbeats to ServiceControl queue ServiceControl will publish a [HeartbeatStopped](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/HeartbeatStopped.cs) event. As you can see the message contains enough context to help identify the endpoint, the time it was detected, the last heartbeat tiem and the hots.
 
