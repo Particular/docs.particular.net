@@ -66,4 +66,4 @@ The following extension methods are available for changing the behaviour of `Azu
 - `MaxRetries`: set of upload/download retries, defaults to 5 retries
 - `NumberOfIOThreads`: set number of blocks that will be simultaneously uploaded , defaults to 5 threads
 - `BackOffInterval`:  set back-off time time between retries, defaults to 30 seconds
-<!-- NOT USED. See https://github.com/Particular/NServiceBus.Azure/issues/236   - `BlockSize`: set size of a single block for upload when number of IO threads is more than 1 , defaults to 4MB -->
+- `BlockSize`: set size of a single block for upload when number of IO threads is more than 1 , defaults to 4MB

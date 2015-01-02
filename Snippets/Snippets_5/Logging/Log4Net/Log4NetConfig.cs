@@ -1,9 +1,9 @@
 ﻿using log4net.Appender;
 using log4net.Config;
 using log4net.Core;
-using log4net.Filter;
 using log4net.Layout;
 using NServiceBus.Log4Net;
+using NServiceBus.Logging;
 
 public class Log4NetConfig
 {
@@ -39,30 +39,7 @@ public class Log4NetConfig
 
         BasicConfigurator.Configure(fileAppender, consoleAppender);
 
-        NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
-
-        #endregion
-    }
-    public void Filtering()
-    {
-        #region Log4NetFiltering
-
-        var appender = new ColoredConsoleAppender
-        {
-            Threshold = Level.Debug,
-            Layout = new SimpleLayout(),
-        };
-
-        appender.AddFilter(new LoggerMatchFilter
-                           {
-                               LoggerToMatch = "MyNamespace"
-                           });
-        appender.AddFilter(new DenyAllFilter());
-        appender.ActivateOptions();
-
-        BasicConfigurator.Configure(appender);
-
-        NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
+        LogManager.Use<Log4NetFactory>();
 
         #endregion
     }

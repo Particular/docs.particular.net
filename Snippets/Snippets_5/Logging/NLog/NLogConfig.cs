@@ -24,20 +24,4 @@ public class NLogConfig
 
         #endregion
     }
-    public void Filtering()
-    {
-        #region NLogFiltering
-
-        var config = new LoggingConfiguration();
-
-        var target = new ColoredConsoleTarget();
-        config.AddTarget("console", target);
-        config.LoggingRules.Add(new LoggingRule("MyNamespace.*", LogLevel.Debug, target));
-
-        LogManager.Configuration = config;
-
-        NServiceBus.Logging.LogManager.Use<NLogFactory>();
-
-        #endregion
-    }
 }

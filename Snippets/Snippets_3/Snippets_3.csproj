@@ -106,6 +106,9 @@
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Headers\HeaderUsage.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
+    <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
+    <Compile Include="Logging\MessageToLog.cs" />
+    <Compile Include="Logging\OverrideViaProfile.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />

@@ -1,0 +1,53 @@
+---
+title: Logging Profiles
+summary: How to configure logging using profiles
+tags: 
+- Logging
+---
+
+Logging can be configured via Profiles. However, unlike other profile behaviors, logging needs to be defined before you configure other components, even before the container. For that reason, logging configuration is kept separate from other profile behaviors.
+
+NServiceBus has three built-in profiles for logging `Lite`, `Integration`, and `Production`. 
+
+## Default profile behavior
+
+### In Version 5 and above
+
+These profiles are only placeholders for logging customization. If no customization is done then the profiles have no impact on the logging defaults listed above.
+
+### In Version 4 and below
+
+The logging behavior configured for the three built-in profiles is shown:
+
+| Profile     | Appender     | Threshold  
+|-------------|--------------|-----
+| Lite        | Console      | Info                         
+| Integration | Console      | Info 
+| Production  | Rolling File | Info 
+
+When running under the production profile, the logs are written to 'logfile' in the same directory as the exe. The file grows to a maximum size of 1MB and then a new file is created. A maximum of 10 files is held and then the oldest file is erased. If no configuration exists, the logging threshold is Warn. Configure the logging threshold by including the following code in the application config file:
+
+```XML
+<configSections>
+	<section name="Logging" type="NServiceBus.Config.Logging, NServiceBus.Core" />
+</configSections>
+<Logging Threshold="ERROR" />
+```
+
+For changes to the configuration to have an effect, the process must be restarted.
+
+If you want different logging behaviors than these, see the next section.
+
+To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type. The implementation of this interface is similar to that described for `IWantCustomLogging` in the [host page](the-nservicebus-host.md).
+
+## Customized logging via a profile
+
+To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type.
+
+<!-- import LoggingConfigWithProfile -->
+ 
+Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
+
+WARNING: While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
+
+See the [profiles for nservicebus host](profiles-for-nservicebus-host.md) for more information.

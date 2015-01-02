@@ -104,7 +104,7 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.CommonLogging/) pa
 
     Install-Package NServiceBus.CommonLogging
 
-Configure NLog using its standard API then call 
+Configure CommonLogging using its standard API then call 
 
     LogManager.Use<CommonLoggingFactory>();
 
@@ -125,49 +125,3 @@ Configure Log4net using its standard API then call
 Example Usage 
 
 <!-- import Log4netInCode -->
-
-## Filtering
-
-NServiceBus writes a significant amount of information to the log. To limit this information you can use the filtering features of your underlying logging framework. 
-
-For example to limit log output to a specific namespace
-
-### In Log4net 
-
-In log4net you can achieve this with a [Filter](http://logging.apache.org/log4net/release/manual/configuration.html#filters)
-
-Here is a code configuration example for adding a Filter 
-
-<!-- import Log4netFiltering -->
-
-### In NLog
-
-In Nlog you can achieve this with a [Rule](https://github.com/nlog/NLog/wiki/Configuration-file#rules)
-
-Here is a code configuration example for adding a Rule
-
-<!-- import NLogFiltering -->
-
-## Logging message contents
-
-When NServiceBus sends a message, it writes the result of the `ToString()` method of the message class to the log. By default, this writes the name of the message type only. To write the full message contents to the log, override the `ToString()` method of the relevant message class. Here's an example:
-
-<!-- import MessageWithToStringLogged -->
-
-## Logging Profiles
-
-Logging can be configured via Profiles. However, unlike other profile behaviors, logging needs to be defined before you configure other components, even before the container. For that reason, logging configuration is kept separate from other profile behaviors.
-
-NServiceBus has three built-in profiles for logging `Lite`, `Integration`, and `Production`. These profiles are only placeholders for logging customization. If no customization is done then the profiles have no impact on the logging defaults listed above.
-
-### Customized logging via a profile
-
-To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type.
-
-<!-- import LoggingConfigWithProfile -->
-
-Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
-
-WARNING: While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
-
-See the [profiles for nservicebus host](profiles-for-nservicebus-host.md) for more information.
