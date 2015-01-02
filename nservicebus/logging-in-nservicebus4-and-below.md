@@ -7,8 +7,6 @@ tags:
 
 INFO: This is relevant to versions 4 and below. For newer versions, see [Logging in NServiceBus](logging-in-nservicebus.md).
 
-Like many other open-source frameworks on the .NET platform, NServiceBus uses Log4Net for its logging capabilities. Familiar to developers and administrators alike, Log4Net has been proven in years of production use.
-
 NServiceBus extends the Log4Net APIs with a simplified model that prevents administrators from accidentally changing behavior you set at design time.
 
 ## Logging basics
@@ -19,28 +17,9 @@ Start to log with NServiceBus:
 
 This makes use of `ConsoleAppender`, which sets the logging threshold to Debug. All logging statements performed by NServiceBus or the application at a level at or above Debug (i.e., Warn, Error, and Fatal) are sent to the console for output.
 
-Calling Log4Net from your code is very straightforward. Often you'll set up a single static read-only reference to a logger in your classes, and then use it in all your methods, like this:
-
-```
-using log4net;
-  
-public class YourClass
-{
-    public void SomeMethod()
-    {
-        //your code
-        Logger.Debug("Something interesting happened.");
-    }
-    static ILog Logger = LogManager.GetLogger("Name");
-}
-```
-
 To make use of the standard Log4Net configuration found in the application configuration file, make the following call before the call to `NServiceBus.Configure.With()`:
 
     NServiceBus.SetLoggingLibrary.Log4Net(log4net.Config.XmlConfigurator.Configure);
-
-This isn't supported in the Fluent initialization API because NServiceBus frowns on the Log4Net model of mixing developer settings
-(such as the type of appender console, file, etc.) and administrator settings (such as the logging level) in the same place. In its place, NServiceBus suggests more operation-friendly approaches, as described lower down.
 
 Include a Log4Net configuration section in the application configuration file that results in the Debug threshold with the `ConsoleAppender`, as shown:
 
@@ -80,21 +59,9 @@ If there isn't a built-in appender for the technology you want to use for loggin
 	    }
     }
 
-
 Then plug your appender into NServiceBus like this:
 
     NServiceBus.Configure.With().Log4Net(a => a.YourProperty = "value");
-
-As you can see, there isn't much effort involved in plugging in your own logging technology. That being said, with the number of appenders available out of the box with Log4Net, you should be able to find something to suit your needs. Here's a taste:
-
--   ADO.NET
--   ASP.NET Trace
--   System.Diagnostics.Debug
--   System.Diagnostics.Trace
--   System Event Log
--   Rolling File
--   SMTP
--   UDP
 
 ## Administrative configuration
 
