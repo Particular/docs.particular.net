@@ -31,6 +31,8 @@ ServiceControl publishes MessageFailed event when a message gets to the error qu
 Let's see how we can subscribe to a MessageFailed Event and push a notification into HipChat.
 All it takes is to have an endpoint that subscribes to MessageFailed, and a simple HTTP call to HipChat's API
 
+NOTE: The endpoint will need to match ServiceControl's serieliser: JsonSerializer
+NOTE: In order for the endpoint to handle ServiceControl's events you need to register them in the endpoint's message Conventions
 
 #### Endpoint config
 <!-- import MessageFailedEndpointConfig -->
