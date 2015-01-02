@@ -309,7 +309,9 @@
     <Compile Include="Host\AsAClientEquivalent.cs" />
     <Compile Include="Host\CustomizingHost.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
+    <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
+    <Compile Include="Logging\NLog\NLogFiltering.cs" />
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />

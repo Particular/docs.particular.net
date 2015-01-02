@@ -126,28 +126,6 @@ Example Usage
 
 <!-- import Log4netInCode -->
 
-## Filtering
-
-NServiceBus writes a significant amount of information to the log. To limit this information you can use the filtering features of your underlying logging framework. 
-
-For example to limit log output to a specific namespace
-
-### In Log4net 
-
-In log4net you can achieve this with a [Filter](http://logging.apache.org/log4net/release/manual/configuration.html#filters)
-
-Here is a code configuration example for adding a Filter 
-
-<!-- import Log4netFiltering -->
-
-### In NLog
-
-In Nlog you can achieve this with a [Rule](https://github.com/nlog/NLog/wiki/Configuration-file#rules)
-
-Here is a code configuration example for adding a Rule
-
-<!-- import NLogFiltering -->
-
 ## Logging Profiles
 
 Logging can be configured via Profiles. However, unlike other profile behaviors, logging needs to be defined before you configure other components, even before the container. For that reason, logging configuration is kept separate from other profile behaviors.
