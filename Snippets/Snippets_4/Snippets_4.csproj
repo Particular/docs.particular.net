@@ -227,6 +227,7 @@
     <Compile Include="Headers\HeaderUsage.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="Host\CustomLogging.cs" />
+    <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Pipeline\NewPipelineStep.cs" />

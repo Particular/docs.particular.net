@@ -58,6 +58,7 @@
         - "nservicebus/containers"
         - "nservicebus/nservicebus-support-for-child-containers"
         - "nservicebus/logging-in-nservicebus"
+        - "nservicebus/logging-message-contents"        
         - "nservicebus/messages-as-interfaces"
         - "nservicebus/introducing-ievent-and-icommand"
         - "nservicebus/staying-updated-with-nuget"

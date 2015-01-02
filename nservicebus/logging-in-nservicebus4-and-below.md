@@ -62,29 +62,6 @@ Include a Log4Net configuration section in the application configuration file th
 For more information about standard Log4Net functionality, see the
 [Log4Net home page](http://logging.apache.org/log4net/index.html).
 
-## Logging message contents
-
-When NServiceBus sends a message, it writes the result of the `ToString()` method of the message class to the log. By default, this writes the name of the message type only. To write the full message contents to the log, override the `ToString()` method of the relevant message class. Here's an example:
-
-
-    public class MyMessage : IMessage
-    {
-	    public Guid EventId { get; set; }
-	    public DateTime? Time { get; set; }
-	    public TimeSpan Duration { get; set; }
-
-	    public override string ToString()
-	    {
-		    return string.Format(
-		    "MyMessage: EventId={0}, Time={1}, Duration={2}",
-		    EventId, Time, Duration
-		    );
-	    }
-    }
-
-
-NOTE : NServiceBus only makes these calls at a log threshold of DEBUG or lower.
-
 ## Customized logging
 
 You can tell NServiceBus to use any of the built-in Log4Net appenders, specifying additional properties of the chosen appender using the following API:

@@ -309,6 +309,7 @@
     <Compile Include="Host\AsAClientEquivalent.cs" />
     <Compile Include="Host\CustomizingHost.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
+    <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
@@ -327,7 +328,6 @@
     <Compile Include="DataBus.cs" />
     <Compile Include="Logging\CommonLogging\CommonLoggingConfig.cs" />
     <Compile Include="Logging\Log4Net\OverrideViaProfile.cs" />
-    <Compile Include="Logging\MyMessage.cs" />
     <Compile Include="Logging\Log4Net\Log4NetConfig.cs" />
     <Compile Include="Logging\NLog\NLogConfig.cs" />
     <Compile Include="Logging\BuiltInConfig.cs" />

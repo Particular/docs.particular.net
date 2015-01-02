@@ -106,6 +106,7 @@
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Headers\HeaderUsage.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
+    <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
@@ -117,8 +118,6 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Logging\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
