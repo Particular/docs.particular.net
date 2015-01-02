@@ -4,7 +4,6 @@
     using NServiceBus;
     using NServiceBus.Features;
 
-	#region MessageFailedEndpointConfig
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
     {
         public EndpointConfig()
@@ -17,6 +16,8 @@
     {
         public void Init()
         {
+        	
+	#region MessageFailedEndpointConfig        	
             Configure.Instance
                 .DefiningEventsAs(t => typeof (IEvent).IsAssignableFrom(t) || IsServiceControlContract(t));
         }
@@ -25,6 +26,7 @@
         {
             return t.Namespace != null && t.Namespace.StartsWith("ServiceControl.Contracts");
         }
+        
+        #endregion
     }
-	#endregion
 }
