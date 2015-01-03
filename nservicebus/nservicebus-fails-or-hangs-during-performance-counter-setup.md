@@ -21,11 +21,14 @@ The performance counters libraries need to be rebuild by doing the following ste
 
     `LODCTR /R`  (Mind the uppercase /R)
 
-3. You maybe have to re-install the NServiceBus performance counters:
+---
+You maybe have to re-install the NServiceBus performance counters or performance counters from other products :
+
  * [Managing NServiceBus using Powershell](managing-nservicebus-using-powershell)
  * [Preparing your machine to run NServiceBus](preparing-your-machine-to-run-nservicebus)
 
-4. You may have to re-install other performance counters too. See the Microsoft support links for more information.
+See the Microsoft support links for more information.
+---
 
 
 ## More information
