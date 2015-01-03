@@ -22,13 +22,13 @@ The performance counters libraries need to be rebuild by doing the following ste
     `LODCTR /R`  (Mind the uppercase /R)
 
 
-> Due to the corruption you may have to re-install performance counters of NServiceBus or other products. The following articles help in restoring the NServiceBus performance counters:
-> 
->  * [Managing NServiceBus using Powershell](managing-nservicebus-using-powershell)
->  * [Preparing your machine to run NServiceBus](preparing-your-machine-to-run-nservicebus)
-> 
-> See the Microsoft support links for more information to restore common Windows performance counters.
+{{NOTE: Due to the corruption you may have to re-install performance counters of NServiceBus or other products. The following articles help in restoring the NServiceBus performance counters:
 
+ * [Managing NServiceBus using Powershell](managing-nservicebus-using-powershell)
+ * [Preparing your machine to run NServiceBus](preparing-your-machine-to-run-nservicebus)
+
+See the Microsoft support links for more information to restore common Windows performance counters.
+}}
 
 ## More information
 
