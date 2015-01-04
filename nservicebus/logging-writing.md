@@ -10,3 +10,4 @@ Writing to logging from your code is straightforward. Set up a single static fie
 <!-- import UsingLogging -->
  
 
+Note: Since `LogManager.GetLogger("Name");` is an expensive call it is important that the field is static so that the call only happens once per class.
