@@ -1,22 +1,22 @@
 ---
-title: DataBus feature
+title: DataBus Feature
 summary: DataBus feature
 tags:
 - DataBus
 - Attachments
 ---
 
-## What is DataBus feature for?
+## What is the DataBus feature for
 
-Messages are intended to be small. Some scenarios require to send large binary data along with a message. For this purpose, NServiceBus has a DataBus feature to allow to overcome limitations of message size.
+Messages are intended to be small. Some scenarios require sending large binary data along with a message. For this purpose, NServiceBus has a DataBus feature to allow you to overcome the message size limitations.
 
-## How it works?
+## How it works
 
-`DataBus` is taking an approach of storing large payload and storing it in at a location both sending and receiving parties can access. Message is sent with a reference to the location, and upon processing payload is brought, allowing receiving part access message along with payload. In case location is not available upon sending, message will fail send operation. Receive operation will fail as well when payload location is not available and will cause standard NServiceBus behaviour, causing retries and eventually going into error queue.
+The `DataBus` approach is to store a large payload in a location that both the sending and receiving parties can access. The message is sent with a reference to the location, and upon processing, the payload is brought, allowing the receiving part to access the message along with the payload. If the location is not available upon sending, the message fails the send operation. When the payload location is not available, the receive operation fails as well and results in standard NServiceBus behaviour, causing retries and eventually going into the error queue.
 
 ## How to enable DataBus
 
-NServiceBus supports 2 DataBus implementations:
+NServiceBus supports two DataBus implementations:
 
 * `FileShareDataBus`
 * `AzureDataBus`
@@ -27,31 +27,31 @@ To enable DataBus, NServiceBus needs to be configured. For file share based Data
 For Azure (storage blobs) based DataBus:
 <!-- import AzureDataBus -->
 
-Note: The `AzureDataBus` implementation is part of the Azure transport package.
+NOTE: The `AzureDataBus` implementation is part of the Azure transport package.
 
 ## Specifying message properties for DataBus
 
-There are two ways to specify message properties to be sent using DataBus
+There are two ways to specify the message properties to be sent using DataBus
 1. Using `DataBusProperty<T>` type
 2. Message conventions
 
 ### Using DataBusProperty<T>
 
-Properties defined using `DataBusProperty<T>` type provided by NServiceBus will not be treated as part of a message, but persisted externally based on type of `DataBus` used and linked to the original message using a unique key. 
+Properties defined using the `DataBusProperty<T>` type provided by NServiceBus are not treated as part of a message, but persist externally based on the type of `DataBus` used, and are linked to the original message using a unique key. 
 
 <!-- import MessageWithLargePayload -->
 
 ### Using message conventions
 
-NServiceBus supports [message conventions feature](/nservicebus/unobtrusive-sample.md). This feature allows to define convention for data properties to be sent using `DataBus` without referencing NServiceBus specific types like `DataBusProperty<T>`.
+NServiceBus supports the [message conventions feature](/nservicebus/unobtrusive-sample.md). This feature allows defining a convention for data properties to be sent using `DataBus` without referencing NServiceBus specific types such as `DataBusProperty<T>`.
 
 <!-- import DefineMessageWithLargePayloadUsingConvention -->
 
 <!-- import MessageWithLargePayloadUsingConvention -->
 
-##DataBus attachements cleanup
+##DataBus attachments cleanup
 
-NServiceBus `DataBus` implementations currently behave differently in regards to cleanup of physical attachments used to transfer data properties. `FileShareDataBus` **does not** remove physical attachments once message is gone. `AzureDataBus` **does** remove Azure storage blobs used for physical attachments once message is gone.
+NServiceBus `DataBus` implementations currently behave differently with regard to cleanup of physical attachments used to transfer data properties. `FileShareDataBus` **does not** remove physical attachments once the message is gone. `AzureDataBus` **does** remove Azure storage blobs used for physical attachments once the message is gone.
 
 ## Configuring AzureDataBus
 
@@ -59,11 +59,11 @@ The following extension methods are available for changing the behaviour of `Azu
 
 <!-- import AzureDataBusConfiguration -->
 
-- `ConnectionString()`: set the connection string to the storage account for storing DataBus properties, defaults to `UseDevelopmentStorage=true`
-- `Container()`: set the container name, defaults to '`databus`'
-- `BasePath()`: set blobs base path under container, defaults to empty string
-- `DefaultTTL`: set time in seconds to keep blob in storage before it's removed, defaults to `Int64.MaxValue` seconds
-- `MaxRetries`: set of upload/download retries, defaults to 5 retries
-- `NumberOfIOThreads`: set number of blocks that will be simultaneously uploaded , defaults to 5 threads
-- `BackOffInterval`:  set back-off time time between retries, defaults to 30 seconds
-- `BlockSize`: set size of a single block for upload when number of IO threads is more than 1 , defaults to 4MB
+- `ConnectionString()`: the connection string to the storage account for storing DataBus properties, defaults to `UseDevelopmentStorage=true`
+- `Container()`: container name, defaults to '`databus`'
+- `BasePath()`: the blobs base path under the container, defaults to empty string
+- `DefaultTTL`: time in seconds to keep blob in storage before it is removed, defaults to `Int64.MaxValue` seconds
+- `MaxRetries`: number of upload/download retries, defaults to 5 retries
+- `NumberOfIOThreads`: number of blocks that will be simultaneously uploaded, defaults to 5 threads
+- `BackOffInterval`:  the back-off time between retries, defaults to 30 seconds
+- `BlockSize`: the size of a single block for upload when the number of IO threads is more than 1, defaults to 4MB
