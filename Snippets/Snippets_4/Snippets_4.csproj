@@ -263,7 +263,7 @@
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DoNotCreateQueues.cs" />
-    <Compile Include="DataBus.cs" />
+    <Compile Include="DataBus\DataBus.cs" />
     <Compile Include="CustomConfigOverrides.cs" />
     <Compile Include="CustomRavenConfig.cs" />
     <Compile Include="Encryption\PropertyEncryption.cs" />

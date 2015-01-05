@@ -7,10 +7,6 @@ tags:
 - Large messages
 ---
 
-Large chunks of data such as images or video files can be transported using NServiceBus DataBus.
-
-You only have to put an attribute over your large property and NServiceBus takes care of the rest. This is particularly important when running in cloud environments where limits on message size are usually much lower than on-premise.
-
 To see how to send and receive attachments in NServiceBus, open the [Databus sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/DataBus):
 
  1. Run the solution. Two console applications start.
