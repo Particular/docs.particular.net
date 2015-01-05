@@ -106,6 +106,7 @@
         - "nservicebus/handler-ordering"
         - "nservicebus/express-messages"
         - "nservicebus/message-headers"
+        - "nservicebus/databus"
     - 
       Name: "versioning"
       Title: "Versioning"
