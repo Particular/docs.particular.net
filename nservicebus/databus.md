@@ -8,7 +8,7 @@ tags:
 
 ## What is the DataBus feature for
 
-Messages are intended to be small. Some scenarios require sending large binary data along with a message. For this purpose, NServiceBus has a DataBus feature to allow you to overcome the message size limitations.
+Messages are intended to be small. Some scenarios require sending large binary data along with a message. For this purpose, NServiceBus has a DataBus feature to allow you to overcome the message size limitations imposed by underlying transport.
 
 ## How it works
 
