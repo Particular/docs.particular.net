@@ -1,7 +1,8 @@
 ---
-title: NServiceBus fails during performance counter setup
-summary: Sometimes an NServiceBus endpoint hangs or fails during startup while initializing the performance counters due corrupt performance counter libraries
-tags: []
+title: NServiceBus can fail or hang during performance counter setup when performance counter libraries are corrupt
+summary: Sometimes an NServiceBus endpoint hangs or fails during startup while initializing the performance counters due corrupt performance counter libraries. This can be resolved by rebuilding the performance counter libraries.
+tags:
+- Performance counteres
 ---
 
 ## Symptons
