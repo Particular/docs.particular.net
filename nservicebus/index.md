@@ -149,4 +149,7 @@ summary: NServiceBus Documentation Table of Contents
 - [How to specify time to wait before raising critical exception for timeout outages](how-do-i-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages.md)
 - [How to register a custom serializer](how-to-register-a-custom-serializer.md)
 - [.Net Framework version requierments](nservicebus-net-framework-version-requirements.md)
+
+## Troubleshooting
+
 - [NServiceBus can fail or hang during performance counter setup when performance counter libraries are corrupt](nservicebus-fails-or-hangs-during-performance-counter-setup.md)
