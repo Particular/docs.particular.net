@@ -129,11 +129,8 @@ summary: NServiceBus Documentation Table of Contents
 - [How Do I Handle Responses on the Client Side](how-do-i-handle-responses-on-the-client-side.md)
 - [How Do I Handle Exceptions](how-do-i-handle-exceptions.md)
 - [How Do I Expose an NServiceBus Endpoint as a Web WCF Service](how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service.md)
-- [Type Was Not Registered in the Serializer](type-was-not-registered-in-the-serializer.md)
-- [MessageQueueException Insufficient Resources to Perform Operation](messagequeueexception-insufficient-resources-to-perform-operation.md)
 - [How to Specify Your Input Queue Name](how-to-specify-your-input-queue-name.md)
 - [In a Distributor Scenario What Happens to the Message If a Worker Goes Down](in-a-distributor-scenario-what-happens-to-the-message-if-a-worker-goes-down.md)
-- [No Endpoint Configuration Found in Scanned Assemblies Exception](no-endpoint-configuration-found-in-scanned-assemblies-exception.md)
 - [DtcPing Warning the Cid Values for Both Test Machines Are the Same](dtcping-warning-the-cid-values-for-both-test-machines-are-the-same.md)
 - [Why You Can't Use NLB with MSMQ](why-you-can-t-use-nlb-with-msmq.md)
 - [Configuring AWS for NServiceBus](configuring-aws-for-nservicebus.md)
@@ -143,7 +140,6 @@ summary: NServiceBus Documentation Table of Contents
 - [How Do I Centralize All Unobtrusive Declarations](how-do-i-centralize-all-unobtrusive-declarations.md)
 - [DefiningMessagesas and DefiningEventsas When Starting Endpoint](definingmessagesas-and-definingeventsas-when-starting-endpoint.md)
 - [How to Reduce Throughput of an Endpoint](how-to-reduce-throughput-of-an-endpoint.md)
-- [InvalidOperationException in Unobtrusive Mode](invalidoperationexception-in-unobtrusive-mode.md)
 - [License Management](license-management.md)
 - [Running NServiceBus on Windows](running-nservicebus-on-windows.md)
 - [How to specify time to wait before raising critical exception for timeout outages](how-do-i-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages.md)
@@ -152,4 +148,8 @@ summary: NServiceBus Documentation Table of Contents
 
 ## Troubleshooting
 
+- [Type Was Not Registered in the Serializer](type-was-not-registered-in-the-serializer.md)
+- [MessageQueueException Insufficient Resources to Perform Operation](messagequeueexception-insufficient-resources-to-perform-operation.md)
+- [No Endpoint Configuration Found in Scanned Assemblies Exception](no-endpoint-configuration-found-in-scanned-assemblies-exception.md)
+- [InvalidOperationException in Unobtrusive Mode](invalidoperationexception-in-unobtrusive-mode.md)
 - [NServiceBus can fail or hang during performance counter setup when performance counter libraries are corrupt](nservicebus-fails-or-hangs-during-performance-counter-setup.md)
