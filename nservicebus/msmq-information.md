@@ -26,6 +26,10 @@ MSMQ clustering works by having the active node running the instance of the MSMQ
 
 So downtime is proportional to the time taken for the MSMQ service to restart on another node. This is affected by how many messages are in currently storage, awaiting processing.
 
+## Remote Queues
+Remote queues are not supported for MSMQ as this conflicts with the Distributed Bus architectural style that is predicated on consents of durability, autonomy and avoiding a single point of failure.
+For scenarios where you want to use a Broker Bus style architecture you can use transports like Sql Server and RabbitMQ.
+
 ## Useful links
 
 -   [MSMQ Forums](https://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/home?forum=msmq)
