@@ -1,5 +1,5 @@
 ---
-title: How and When to upgrade to a new version of NServiceBus
+title: Release Policy
 summary: What version numbers mean to Particular
 tags: []
 ---
