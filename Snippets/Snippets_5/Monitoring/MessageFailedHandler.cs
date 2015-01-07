@@ -32,11 +32,9 @@ class HipchatClient : IDisposable
 {
     public void Dispose()
     {
-        throw new NotImplementedException();
     }
 
     public void PostChatMessage(string chatMessage)
     {
-        throw new NotImplementedException();
     }
 }

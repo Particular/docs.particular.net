@@ -7,7 +7,7 @@ tags:
 - Notifications
 ---
 
-## Custom notification and alerting using ServiceControl's events
+## Custom notification and alerting using ServiceControl events
 
 ServiceControl events allow to build notifications/integrations that will alert of something going wrong in your system.
 
@@ -17,15 +17,16 @@ ServiceControl's endpoint plugins collect information from monitored NServicBus 
 
 Once a message ends up in the error queue ServiceControl will publish a [MessageFailed](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/MessageFailed.cs) event. As you can see the message contains enough context to help identify the cause of the error, the endpoint, the time, the stack trace and more. if you need more information you can call ServiceControl's HTTP API.
 
-### Subscribing to ServiceControl's Events 
+### Subscribing to ServiceControl Events 
 
 ServiceControl publishes `MessageFailed` event when a message gets to the error queue, let’s see how we can tap in by subscribing to these events and act on them (send an email, pager duty and so on)...
 
 Let's see how we can subscribe to a `MessageFailed` Event and push a notification into HipChat. All it takes is to have an endpoint that subscribes to `MessageFailed`, and a simple HTTP call to HipChat's API.
 
-NOTE: The endpoint will need to match ServiceControl's serializer: JsonSerializer
 
-#### Required endpoitn configuration ServiceControl messages in Conventions
+#### Required endpoint configuration ServiceControl messages in Conventions
+
+NOTE: The endpoint will need to match ServiceControl serializer: JsonSerializer
 
 NOTE: In order for the endpoint to handle ServiceControl's events you need to register them in the endpoint's message Conventions
 
