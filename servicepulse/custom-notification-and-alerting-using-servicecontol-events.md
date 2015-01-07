@@ -28,7 +28,7 @@ Let's see how we can subscribe to a `MessageFailed` Event and push a notificatio
 
 NOTE: The endpoint will need to match ServiceControl serializer: JsonSerializer
 
-NOTE: In order for the endpoint to handle ServiceControl's events you need to register them in the endpoint's message Conventions
+NOTE: In order for the endpoint to handle ServiceControl events you need to register them in the endpoint's message Conventions
 
 <!-- import ServiceControlEventsConfig -->
 
