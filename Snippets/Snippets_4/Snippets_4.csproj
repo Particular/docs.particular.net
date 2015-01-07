@@ -251,7 +251,7 @@
     <Compile Include="Gateway\GatewayConfig.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Persistence\RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
-    <Compile Include="Monitoring\EndpointConfig.cs" />
+    <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
