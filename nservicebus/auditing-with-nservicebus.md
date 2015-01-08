@@ -48,7 +48,7 @@ Custom headers are attached to each message. You can examine them in the audit q
 |-----------------------------------|------------------------------------------------
 | NServiceBus.Version               | Version of NServiceBus 
 | NServiceBus.TimeSent              | When was the message sent
-| NServiceBus.EnclosedMessageTypes  | Massage type(s) within the envelope
+| NServiceBus.EnclosedMessageTypes  | Message type(s) within the envelope
 | NServiceBus.ProcessingStarted     | Time when processing of the message started
 | NServiceBus.ProcessingEnded       | Time when the processing finished
 | NServiceBus.OriginatingAddress    | From where did the envelope originate
