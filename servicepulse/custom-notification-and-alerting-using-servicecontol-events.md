@@ -11,7 +11,7 @@ tags:
 
 ServiceControl events allow to build notifications/integrations that will alert of something going wrong in your system.
 
-ServiceControl's endpoint plugins collect information from monitored NServicBus endpoints. For more information see [ServiceControl Endpoint Plugins](/servicecontrol/plugins.md).
+ServiceControl's endpoint plugins collect information from monitored NServiceBus endpoints. For more information see [ServiceControl Endpoint Plugins](/servicecontrol/plugins.md).
 
 ### Alerting on FailedMessages Event
 
