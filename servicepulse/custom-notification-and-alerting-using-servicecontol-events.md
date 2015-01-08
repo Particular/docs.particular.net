@@ -12,7 +12,7 @@ tags:
 ServiceControl events allow to build notifications/integrations that will alert of something going wrong in your system.
 
 ServiceControl's endpoint plugins collect information from monitored NServicBus endpoints. For more information see [ServiceControl Endpoint Plugins](/servicecontrol/plugins.md).
- 
+
 ### Alerting on FailedMessages Event
 
 Once a message ends up in the error queue ServiceControl will publish a [MessageFailed](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/MessageFailed.cs) event. As you can see the message contains enough context to help identify the cause of the error, the endpoint, the time, the stack trace and more. if you need more information you can call ServiceControl's HTTP API.
