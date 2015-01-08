@@ -19,7 +19,7 @@ Once a message ends up in the error queue ServiceControl will publish a [Message
 
 ### Subscribing to ServiceControl Events 
 
-ServiceControl publishes `MessageFailed` event when a message gets to the error queue, let’s see how we can tap in by subscribing to these events and act on them (send an email, pager duty and so on)...
+ServiceControl publishes `MessageFailed` event when a message gets to the error queue, let's see how we can tap in by subscribing to these events and act on them (send an email, pager duty and so on)...
 
 Let's see how we can subscribe to a `MessageFailed` Event and push a notification into HipChat. All it takes is to have an endpoint that subscribes to `MessageFailed`, and a simple HTTP call to HipChat's API.
 
