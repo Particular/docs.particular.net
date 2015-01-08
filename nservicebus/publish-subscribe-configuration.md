@@ -193,7 +193,7 @@ NOTE: V2.X required a perfect match. This should make it easier to upgrade your 
 
 ## Best practices
 
-When you tell NServiceBus that your messages are event,s the framework helps you enforce best messaging practices by only allowing you to Bus.Publish|Subscribe|UnSubscribe events. Other calls result in a exception. More on [best practices](introducing-ievent-and-icommand.md) .
+When you tell NServiceBus that your messages are events, the framework helps you enforce best messaging practices by only allowing you to Bus.Publish|Subscribe|UnSubscribe events. Other calls result in a exception. More on [best practices](introducing-ievent-and-icommand.md) .
 
 As you can see, there is a lot going on under the hood. NServiceBus gives you full control over every part of the message exchange while abstracting the underlying technologies. Try modifying the sample a bit, adding your own message handlers, and debugging through the various pieces to get a better feel for what's going on.
 
