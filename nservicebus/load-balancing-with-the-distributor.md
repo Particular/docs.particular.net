@@ -59,7 +59,7 @@ All pending work stays in the Distributor's queue (rather than building up in ea
 
 For more information on monitoring, see [Monitoring NServiceBus Endpoints](monitoring-nservicebus-endpoints.md).
 
-For more information about Pub/Sub in a distributor scenario see [What the distributor does](how-pub-sub-works#what-the-distributor-does) and [The same for any publisher node](how-pub-sub-works#the-same-for-any-publisher-node)
+For more information about Pub/Sub in a distributor scenario see [What the distributor does](how-pub-sub-works.md#what-the-distributor-does) and [The same for any publisher node](how-pub-sub-works.md#the-same-for-any-publisher-node)
 
 ## Distributor configuration
 
