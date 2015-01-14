@@ -16,7 +16,7 @@ There are some cases where you need fine grained control over which assemblies a
 - If you are hosting multiple endpoints out of the same directory (made possible in Version 5) i.e. each endpoint would want to load a subset of assemblies.
 - In versions prior to Version 4.1, non .NET assemblies, e.g. COM dlls might need to be excluded. Starting with Version 4.1, non .NET assemblies are automatically excluded.
  
-NOTE: Extension (like NServiceBus.Distributor.MSMQ.dll or NServiceBus.RavenDB for example) are not considered core dlls and will nedd to be explicitly added if you customize assembly scanning 
+NOTE: Extension (like NServiceBus.Distributor.MSMQ.dll or NServiceBus.RavenDB for example) are not considered core dlls and will need to be explicitly added if you customize assembly scanning.
 
 ### By default all types in your bin directory is scanned if you call:
 
