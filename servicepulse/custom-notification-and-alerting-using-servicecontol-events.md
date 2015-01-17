@@ -21,18 +21,23 @@ Once a message ends up in the error queue ServiceControl will publish a [Message
 
 ServiceControl publishes `MessageFailed` event when a message gets to the error queue, let's see how we can tap in by subscribing to these events and act on them (send an email, pager duty and so on)...
 
-Let's see how we can subscribe to a `MessageFailed` Event and push a notification into HipChat. All it takes is to have an endpoint that subscribes to `MessageFailed`, and a simple HTTP call to HipChat's API.
-
-
-#### Required endpoint configuration ServiceControl messages in Conventions
-
-NOTE: The endpoint will need to match ServiceControl serializer: JsonSerializer
-
-NOTE: In order for the endpoint to handle ServiceControl events you need to register them in the endpoint's message Conventions
+To subscribe to the `MessageFailed` event:
+- Create an [NServiceBus endpoint](/nservicebus/the-nservicebus-host)
+- Add the message mapping in the `UnicastBusConfig` section of the endpoint's app.config so that this endpoint will subscribe to the events from ServiceControl as shown:
+```xml
+ <UnicastBusConfig>
+    <MessageEndpointMappings >
+      <add Assembly="ServiceControl.Contracts" Endpoint="Particular.ServiceControl" />
+    </MessageEndpointMappings>
+  </UnicastBusConfig>
+```
+- Customize the endpoint configuration to use `JsonSerializer` as the message published by ServiceControl uses Json serialization
+- Also customize the endpoint configuration such that the following conventions are used, as the `MessageFailed` event that is published by ServiceControl does not derive from `IEvent`. 
+The code sample to do both customizations is as shown below:
 
 <!-- import ServiceControlEventsConfig -->
 
-#### Custom action example
+- The endpoint will also need a message handler, that handles the `MessageFailed` event. In the following example, there is also a simple HTTP call to HipChat's API to show how you could integrate with a 3rd party system to provide notification of the error.
 
 <!-- import MessageFailedHandler -->
 
