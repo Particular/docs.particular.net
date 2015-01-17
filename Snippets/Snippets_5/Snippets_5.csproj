@@ -274,6 +274,7 @@
     <Content Include="SecondLevelRetries\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Monitoring\app.config" />
     <None Include="Transports\Mqmq\TransportConfig.config" />
     <None Include="Audit\App.config" />
     <None Include="Encryption\encryption.config">

@@ -204,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Audit\App.config" />
+    <None Include="Monitoring\app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
