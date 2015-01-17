@@ -124,7 +124,7 @@ To facilitate communication between the website and the backend `OrderProcessing
 
 ## Creating Services 
 
-As you create the new command message, you are prompted for the name of a service.  In NServiceBus a service contains components responsible for facilitating the communication between the website and order processing.  Name the new service `Sales` and the command `SubmitOrder` as shown. Leave 'Handled with' as '[new handler]'.
+As you create the new command message, you are prompted for the name of a service.  In NServiceBus a service contains components responsible for facilitating the communication between the website and order processing.  Name the new service `Sales` and the command `SubmitOrder` as shown. The 'Handled with' is a drop down list of all the other message handler components that belong to the selected service. By default, this is '[new handler]' and choosing this option will create a new message handler component for handling the `SubmitOrder`command. 
 
 ![Sales Service and SubmitOrder Command](images/servicematrix-sales-submitorderv2.2.0.png)
   
