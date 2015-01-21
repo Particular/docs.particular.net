@@ -48,7 +48,7 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Client, IWantCustomLog
 ```
 
 
-NOTE : This class implements the NServiceBus interface `IWantCustomLogging`. It instructs NServiceBus to stop using its standard logging configuration.
+NOTE: This class implements the NServiceBus interface `IWantCustomLogging`. It instructs NServiceBus to stop using its standard logging configuration.
 
 The `Init` method contains the call to `SetLoggingLibrary`, which tells NServiceBus to use Log4Net but to use the `XmlConfigurator` from Log4Net. In short, this returns NServiceBus to the standard Log4Net model.
 
