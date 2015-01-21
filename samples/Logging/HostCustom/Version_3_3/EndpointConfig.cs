@@ -1,0 +1,40 @@
+using log4net.Appender;
+using log4net.Config;
+using log4net.Layout;
+
+namespace HostCustomLogging_3_3 
+{
+    using NServiceBus;
+
+    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization, IWantCustomLogging
+    {
+        void IWantCustomLogging.Init()
+        {
+            var layout = new PatternLayout
+            {
+                ConversionPattern = "%d [%t] %-5p %c [%x] - %m%n"
+            };
+            layout.ActivateOptions();
+            var appender = new ConsoleAppender
+            {
+                Layout = layout
+            };
+            appender.ActivateOptions();
+
+            BasicConfigurator.Configure(appender);
+
+            SetLoggingLibrary.Log4Net();
+        }
+
+        void IWantCustomInitialization.Init()
+        {
+            var configure = Configure.With();
+            configure.DefineEndpointName("HostCustomLoggingSample");
+            configure.DefaultBuilder();
+            configure.InMemorySagaPersister();
+            configure.UseInMemoryTimeoutPersister();
+            configure.InMemorySubscriptionStorage();
+            configure.JsonSerializer();
+        }
+    }
+}
