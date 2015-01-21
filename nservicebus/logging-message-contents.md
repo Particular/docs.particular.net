@@ -9,4 +9,4 @@ When NServiceBus sends a message, it writes the result of the `ToString()` metho
 
 <!-- import MessageWithToStringLogged -->
 
-NOTE : NServiceBus only makes these calls at a log threshold of DEBUG or lower.
+NOTE: NServiceBus only makes these calls at a log threshold of DEBUG or lower.
