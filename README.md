@@ -163,7 +163,15 @@ Don't render YAML Front-Matter by going to
 
 And checking `Ignore YAML Front-matter`
 
+## Samples
+
+ * Samples are located here https://github.com/Particular/docs.particular.net/tree/master/Snippets
+ * Any directory in that structure with a sample.md will be considered a "root for a sample" or Sample Root.
+ * A Sample root may not contain an sample.md in subdirectories
+ * Each directory under the Sample Root will be rendered on the site as a downloadable zips
+
 ## Code Snippets
+
 
 ### Defining Snippets
 
