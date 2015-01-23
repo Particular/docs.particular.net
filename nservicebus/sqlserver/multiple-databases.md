@@ -1,10 +1,23 @@
 ---
-title: Configuring different databases for different endpoints
-summary: How to configure the transport to send messages to more than one database
+title: Multi-broker support
+summary: How to configure SQLServer transport to use multiple instances of the database and route messages between them.
 tags:
 - SQLServer
 - Transport
 ---
+
+The SQLServer transport allows you to use select on per-endpoint basis where the table queues should be created. The selection can be done on multiple levels:
+ * schema
+ * database
+ * instance
+
+The transport will route messages to destination endpoints based on the configuration. If no specific configuration has been provided for a particular destination endpoint, the transport assumes the destination has the same configuration (schema, database and instance) as the sending endpoint.
+
+### Current endpoint
+
+By default, SQLServer transport defaults to `dbo` schema and uses `NServiceBus/Transport` connection string from the configuration file to connect to the database. 
+
+### Other endpoints
 
 The SQLServer transport allows you to customize the connection string for each message mapping in order to allow endpoints to use separate databases or even database servers. This is done by adding additional connection strings that are matched against endpoints using a convention. By default the transport gets the connection string from the `NServiceBus/Transport` key but if you want a custom connection string for a given endpoint just add a new key that matches `NServiceBus/Transport/{name of the endpoint in the message mappings}`. 
 
