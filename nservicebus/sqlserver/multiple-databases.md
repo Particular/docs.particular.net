@@ -6,22 +6,22 @@ tags:
 - Transport
 ---
 
-The SQLServer transport allows you to use select on per-endpoint basis where the table queues should be created. The selection can be done on multiple levels:
- * schema
- * database
- * instance
+The SQLServer transport allows you to use select, on per-endpoint basis, where the table queues should be created. The selection can be done on multiple levels:
+ * schemas in a single database
+ * databases in a single SQLServer instance
+ * different SQLServer instances
 
-The transport will route messages to destination endpoints based on the configuration. If no specific configuration has been provided for a particular destination endpoint, the transport assumes the destination has the same configuration (schema, database and instance) as the sending endpoint.
+The transport will route messages to destination endpoints based on the configuration. If no specific configuration has been provided for a particular destination endpoint, the transport assumes the destination has the same configuration (schema, database and instance name/address) as the sending endpoint. If this assumption turns out to be false (the transport cannot connect to destination queue), an exception is thrown immediately. There is no store-and-forward mechanism (and hence -- no dead-letter queue).
 
 ### Current endpoint
 
-By default, SQLServer transport defaults to `dbo` schema and uses `NServiceBus/Transport` connection string from the configuration file to connect to the database. The default schema can be chnaged using following API
+SQLServer transport defaults to `dbo` schema and uses `NServiceBus/Transport` connection string from the configuration file to connect to the database. The default schema can be chnaged using following API
 
 ```
 busConfig.UseTransport<SqlServerTransport>().DefaultSchema("myschema")
 ```
 
-or via providing additional parameter in the connection string
+or via providing additional `Queue Schema` parameter in the connection string
 
 ```
 <connectionStrings>
@@ -37,15 +37,17 @@ The other parameters (database and instance name/address) can be changed in code
 busConfig.UseTransport<SqlServerTransport>().ConnectionString(@"Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True")
 ```
 
-NOTE: Unlike in the SQLServet transport, the connection string configuration API in NServiceBus core favaour code over config which means that if you configure connection string both in `app.config` and via the `ConnectionString()` method, the latter will win.
+NOTE: `Queue Schema` paramater can also be used in the connection string provided via code.
+
+NOTE: Unlike in the SQLServet transport, the connection string configuration API in NServiceBus core favors code over xml which means that if you configure connection string both in `app.config` and via the `ConnectionString()` method, the latter will win.
 
 ### Other endpoints
 
-If a particular remote endpoint requires customization of any part of the routing (schema, database or instance), it can be done either in code or via configuration convention.
+If a particular remote endpoint requires customization of any part of the routing (schema, database or instance name/address), appropriate values have to be provide either via code or via configuration convention.
 
 #### Push mode
 
-In the push mode the whole collection of endpoint connection information is passed during configuration time.
+In the push mode the whole collection of endpoint connection information objects is passed during configuration time.
 
 ```
 busConfig.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
@@ -74,7 +76,7 @@ busConfig.UseTransport<SqlServerTransport>()
 
 #### Config
 
-Endpoint-specific connection information is discovered by reading the connection strings from the configuration file with `NServiceBus/Transport/{name of the endpoint in the message mappings}` naming convention. If such a connection strin is found, it is used for a given endpoint and this setting has precedence over the code-provided connection information.
+Endpoint-specific connection information is discovered by reading the connection strings from the configuration file with `NServiceBus/Transport/{name of the endpoint in the message mappings}` naming convention. If such a connection string is found, it is used for a given endpoint and this setting has precedence over the code-provided connection information.
 Given the following mappings:
 
 <!-- import sqlserver-multidb-messagemapping -->
