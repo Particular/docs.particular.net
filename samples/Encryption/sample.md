@@ -3,10 +3,9 @@ title: Encryption Sample
 summary: How to encrypt message data.
 tags:
 - Encryption
+redirects:
+- /nservicebus/encryption-sample.md
 ---
-
-To see how to encrypt message data, open the [Encryption sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Encryption)
-.
 
 ## Run the solution.
 
@@ -54,14 +53,14 @@ Open either one of the `Program.cs`. You will notice the line
 
 This code indicates that encryption should use the specified key.
 
-Note: The key specified must be the same in the configuration of all processes that are communicating encrypted information, both on the sending and on the receiving sides. Open the app.config file of the server project and verify that the key is the same. This can be mitigated by defining multiple decryption keys, see [Encryption](encryption.md) 
+Note: The key specified must be the same in the configuration of all processes that are communicating encrypted information, both on the sending and on the receiving sides. Open the app.config file of the server project and verify that the key is the same. This can be mitigated by defining multiple decryption keys, see [Encryption](/nservicebus/encryption.md) 
 
 ### The message on the wire
 
 Now run `Endpoint1` on its own (i.e. don't start `Endpoint2`).
 
 Go to the server queue (called "EncryptionSampleEndpoint1") and examine the message in it. Read how to do this in the
-[FAQ](viewing-message-content-in-msmq.md) . Your message should look like this:
+[FAQ](/nservicebus/viewing-message-content-in-msmq.md) . Your message should look like this:
 
 ```XML
 <?xml version="1.0" ?>
