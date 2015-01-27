@@ -270,6 +270,7 @@ public class SagaBasics
     {
         #region saga-finder
 
+        // NHibernate example:
         public class MySagaFinder : IFindSagas<MySagaData>.Using<Message2>
         {
             public NHibernateStorageContext StorageContext { get; set; }
@@ -277,12 +278,25 @@ public class SagaBasics
             public MySagaData FindBy(Message2 message)
             {
                 //your custom finding logic here, e.g.
-                return StorageContext.Session.QueryOver<MySagaData>()
-                                        .Where(x => x.SomeID == message.SomeID && x.SomeData == message.SomeData)
-                                        .SingleOrDefault();
+                return StorageContext.Session
+                                        .QueryOver<MySagaData>()
+                                        .SingleOrDefault(x => x.SomeID == message.SomeID && x.SomeData == message.SomeData)
             }
         }
 
+        // RavenDb example:
+        public class MySagaFinder : IFindSagas<MySagaData>.Using<Message2>
+        {
+            public ISessionProvider SessionProvider { get; set; }
+
+            public MySagaData FindBy(Message2 message)
+            {
+                //your custom finding logic here, e.g.
+                return SessionProvider.Session
+                                        .Query<MySagaData>()
+                                        .SingleOrDefault(x => x.SomeID == message.SomeID && x.SomeData == message.SomeData);
+            }
+        }
         #endregion
 
         public class MySagaData : IContainSagaData
