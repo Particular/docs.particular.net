@@ -1,5 +1,5 @@
 ---
-title: Encryption Sample
+title: Encryption
 summary: How to encrypt message data.
 tags:
 - Encryption
@@ -37,8 +37,6 @@ CreditCard: 543645546546456 is valid to 3/11/2016 5:21:59 AM
 Starting with the Shared project, open the `MessageWithSecretData.cs` file and look at the following code:
 
 <!-- import Message -->
-
-Note that it contains a single property of the type WireEncryptedString. This is an NServiceBus type specifying that the contents of the property are encrypted on the wire when transmitted by NServiceBus.
 
 ### How is encryption configured. 
 
