@@ -24,7 +24,7 @@ static class Program
     {
         Console.WriteLine("This will publish IEvent, EventMessage, and AnotherEventMessage alternately.");
         Console.WriteLine("Press 'Enter' to publish a message.To exit, Ctrl + C");
-
+        #region PublishLoop
         var nextEventToPublish = 0;
         while (Console.ReadLine() != null)
         {
@@ -66,6 +66,7 @@ static class Program
 
             Console.WriteLine("==========================================================================");
         }
+        #endregion
     }
 
 }

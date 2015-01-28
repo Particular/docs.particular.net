@@ -5,7 +5,6 @@ using NServiceBus.Features;
 
 static class Program
 {
-
     static void Main()
     {
         var busConfiguration = new BusConfiguration();
