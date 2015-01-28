@@ -156,7 +156,6 @@
       Name: "samples"
       Title: "Samples"
       Articles: 
-        - "nservicebus/full-duplex-sample"
         - "nservicebus/publish-subscribe-sample"
         - "nservicebus/scale-out-sample"
         - "nservicebus/using-nservicebus-in-a-asp.net-web-application"
