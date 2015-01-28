@@ -1,6 +1,6 @@
 ---
-title: Publish/Subscribe Sample
-summary: Publish/subscribe, fault-tolerant messaging, and durable subscriptions.
+title: Publish/Subscribe
+summary: Publish/Subscribe, fault-tolerant messaging, and durable subscriptions.
 tags:
 - Publish Subscribe
 - Messaging Patterns
