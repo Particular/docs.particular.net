@@ -50,7 +50,7 @@ For more information, see [ServiceControl: Updating URLACL Settings](setting-cus
 
 For a more fine-grained limitation on message body visibility of specific properties, you can encrypt message properties that are sensitive (e.g., credit card numbers). 
 
-An example of how to set encryption per specific message property can be viewed in the [VideoStore sample](/platform/samples.md) and the [Encryption Sample](/samples/encryption/basic_encryption/sample.md).   
+An example of how to set encryption per specific message property can be viewed in the [VideoStore sample](/platform/samples.md) and the [Encryption Sample](/samples/encryption/basic-encryption/sample.md).   
 
 ### Accessing the Embedded RavenDB Database
 
