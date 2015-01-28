@@ -173,9 +173,3 @@ Keep in mind that the Distributor is designed for load balancing within a single
 If the Distributor goes down, even if its worker nodes remain running, they do not receive any messages. Therefore, it is important to run the Distributor on a cluster that has its its queues configured as clustered resources.
 
 Since the Distributor does not do CPU or memory intensive work, you can often put several Distributor processes on the same clustered server. Be aware that the network IO may end up being the bottleneck for the Distributor, so take into account message sizes and throughput when sizing your infrastructure.
-
-
-## Next steps
-
-Build a scalable solution using Master node and the workers solution that are in the [ScaleOut sample](scale-out-sample.md) .
-

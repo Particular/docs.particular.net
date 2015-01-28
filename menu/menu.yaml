@@ -156,7 +156,6 @@
       Name: "samples"
       Title: "Samples"
       Articles: 
-        - "nservicebus/scale-out-sample"
         - "nservicebus/using-nservicebus-in-a-asp.net-web-application"
         - "nservicebus/using-nservicebus-with-asp.net-mvc"
         - "nservicebus/injecting-the-bus-into-asp.net-mvc-controller"
