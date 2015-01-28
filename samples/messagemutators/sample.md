@@ -4,11 +4,9 @@ summary: 'Change messages by plugging custom logic in to a couple of interfaces,
 tags:
 - Mutator
 - Changing message content
+redirects:
+- \nservicebus\nservicebus-message-mutators-sample.md
 ---
-
-From NServiceBus V3 you can intercept and change messages by plugging custom logic into a couple of simple interfaces.
-
-To see MessageMutators in action, open the [MessageMutator sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/MessageMutators).
 
 1.  Run the solution.
 2.  Press 's' and 'Enter' in the window. Then press 'e' followed by 'Enter'.
@@ -29,7 +27,7 @@ e
 The Product Name value cannot exceed 20 characters.
 The field ListPrice must be between 1 and 5.
 
-```
+``` 
 
 Now let's look at the code.
 
@@ -53,50 +51,7 @@ This sample implements two mutators:
 
 This message mutator validates all DataAnnotations attributes that exist in the message.
 
-```C#
-public class ValidationMessageMutator : IMessageMutator
-{
-    static ILog Logger = LogManager.GetLogger("ValidationMessageMutator");
-
-    public object MutateOutgoing(object message)
-    {
-        ValidateDataAnnotations(message);
-        return message;
-    }
-
-    public object MutateIncoming(object message)
-    {
-        ValidateDataAnnotations(message);
-        return message;
-    }
-
-    static void ValidateDataAnnotations(object message)
-    {
-        var context = new ValidationContext(message, null, null);
-        var results = new List<ValidationResult>();
-
-        var isValid = Validator.TryValidateObject(message, context, results, true);
-
-        if (isValid)
-        {
-            Logger.Info("Validation succeeded for message: " + message);
-            return;
-        }
-
-        var errorMessage = new StringBuilder();
-        var error = string.Format("Validation failed for message {0}, with the following error/s: " + Environment.NewLine,message);
-        errorMessage.Append(error);
-
-        foreach (var validationResult in results)
-        {
-            errorMessage.Append(validationResult.ErrorMessage + Environment.NewLine);
-        }
-
-        Logger.Error(errorMessage.ToString());
-        throw new Exception(errorMessage.ToString());
-    }
-}
-```
+<!-- import ValidationMessageMutator -->
 
 `ValidationMessageMutator` implements the two interface methods: outgoing and incoming. As can be seen in the code, both incoming and outgoing mutators have the exact same code in them. The mutation is symmetrical.
 
@@ -112,44 +67,7 @@ Browse the code. It shows a standard way to test data annotations. In this sampl
 
 This transport mutator compresses the whole transport message.
 
-```C#
-public class TransportMessageCompressionMutator : IMutateTransportMessages
-{
-    static ILog Logger = LogManager.GetLogger("TransportMessageCompressionMutator");
-
-    public void MutateOutgoing(LogicalMessage message, TransportMessage transportMessage)
-    {
-        Logger.Info("transportMessage.Body size before compression: " + transportMessage.Body.Length);
-
-        var mStream = new MemoryStream(transportMessage.Body);
-        var outStream = new MemoryStream();
-
-        using (var tinyStream = new GZipStream(outStream, CompressionMode.Compress))
-        {
-            mStream.CopyTo(tinyStream);
-        }
-        // copy the compressed buffer only after the GZipStream is disposed, 
-        // otherwise, not all the compressed message will be copied.
-        transportMessage.Body = outStream.ToArray();
-        transportMessage.Headers["IWasCompressed"] = "true";
-        Logger.Info("transportMessage.Body size after compression: " + transportMessage.Body.Length);
-    }
-
-    public void MutateIncoming(TransportMessage transportMessage)
-    {
-        if (!transportMessage.Headers.ContainsKey("IWasCompressed"))
-        {
-            return;
-        }
-        using (var bigStream = new GZipStream(new MemoryStream(transportMessage.Body), CompressionMode.Decompress))
-        {
-            var bigStreamOut = new MemoryStream();
-            bigStream.CopyTo(bigStreamOut);
-            transportMessage.Body = bigStreamOut.ToArray();
-        }
-    }
-}
-```
+<!-- import TransportMessageCompressionMutator -->
 
 The `TransportMessageCompressionMutator` is a transport message mutator, meaning that NServiceBus allows you to mutate the outgoing or/and incoming transport message.
 
@@ -175,57 +93,19 @@ Now all we have to do it hook those two mutators into the NServiceBus message fl
 
 To hook the sample message mutators into NServiceBus messaging flow:
 
-```C#
-var busConfiguration = new BusConfiguration();
-busConfiguration.RegisterComponents(components =>
-{
-    components.ConfigureComponent<ValidationMessageMutator>(DependencyLifecycle.InstancePerCall);
-    components.ConfigureComponent<TransportMessageCompressionMutator>(DependencyLifecycle.InstancePerCall);
-});
-```
-
+<!-- import ComponentRegistartion -->
 ## The Sending code
 
-```C#
-bus.SendLocal(new CreateProductCommand
-              {
-                  ProductId = "XJ128",
-                  ProductName = "Milk",
-                  ListPrice = 4,
-                  // 7MB. MSMQ should throw an exception, but it will not since the buffer will be compressed 
-                  // before it reaches MSMQ.
-                  Image = new byte[1024*1024*7]
-              });
-```
+<!-- import SendingSmall --> 
 
 Since the message buffer field is empty, `GZipStreamer` in the outgoing transport message mutator easily compresses it to a size under the MSMQ limit of 4MB and the message will get to the server.
 
 See how an invalid message is sent that will never be received since an exception will be thrown at the outgoing message mutator:
 
-```C#
-bus.SendLocal(new CreateProductCommand
-              {
-                  ProductId = "XJ128",
-                  ProductName = "Milk Milk Milk Milk Milk",
-                  ListPrice = 15,
-                  // 7MB. MSMQ should throw an exception, but it will not since the buffer will be compressed 
-                  // before it reaches MSMQ.
-                  Image = new byte[1024*1024*7]
-              });
-```
+<!-- import SendingLarge --> 
 
 The message is invalid for several reasons: the product name is over the 20 character limit, the list price is too high, and the sell end date is not in the valid range. The thrown exception logs those invalid values. The server code is simple and straightforward:
 
-```C#
-public class Handler : IHandleMessages<CreateProductCommand>
-{
-    static ILog Log = LogManager.GetLogger<Handler>();
-
-    public void Handle(CreateProductCommand createProductCommand)
-    {
-        Log.Info("Received a CreateProductCommand message: " + createProductCommand);
-    }
-}
-```
+<!-- import Handler -->
 
 The handler code does not need to change on account of the message mutation.

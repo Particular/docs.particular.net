@@ -17,13 +17,13 @@ NServiceBus enables two types of message mutators:
 
 Message mutators change/react to individual messages being sent or received. The `IMessageMutator` interface lets you implement hooks for the sending and receiving sides. If you only need one, use the finely grained `IMutateOutgoingMessages` or `IMutateIncomingMessages`.
 
-You can use reactions to individual messages to perform actions such as validation of outgoing/incoming messages. The [Message Mutators Sample](nservicebus-message-mutators-sample.md) puts it into action.
+You can use reactions to individual messages to perform actions such as validation of outgoing/incoming messages. The [Message Mutators Sample](/samples/messagemutators/sample.md) puts it into action.
 
 NServiceBus uses this type of mutator internally to do things like property encryption and serialization/deserialization of properties to and from the DataBus.
 
 ### Transport Messages Mutators
 
-Create transport message mutators by implementing the `IMutateTransportMessages` interface. This type of mutator works on the entire transport message and is useful for compression, header manipulation, etc. See a [full explanation of the syntax](nservicebus-message-mutators-sample.md).
+Create transport message mutators by implementing the `IMutateTransportMessages` interface. This type of mutator works on the entire transport message and is useful for compression, header manipulation, etc. See a [full explanation of the syntax](/samples/messagemutators/sample.md).
 
 Remember that message mutators are NOT automatically registered in the container, so to invoke them, register them in the container yourself.
 
