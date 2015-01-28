@@ -229,7 +229,9 @@ If a snippet has no version defined then the version will be derived by walking 
  
 ### Using Snippets
 
-The keyed snippets can then be used in any documentation `.md` file by adding the text **&lt;!-- import KEY -->**.
+The keyed snippets can then be used in any documentation `.md` file by adding the text
+
+**&lt;!-- import KEY -->**.
 
 Then snippets with the key (all versions) will be rendered in a tabbed manner. If there is only a single version then it will be rendered as a simple code block with no tabs.
 
