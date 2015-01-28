@@ -25,7 +25,7 @@ public void Handle(RequestDataMessage message)
 }
 ```
 
-You should only use a reply when you implement the Request-Response pattern (also called the Full Duplex pattern). In this pattern the originator of the message should expect a response message and have a handler for it. See the [Full Duplex Sample](/samples/fullduplex.sample.md) provided with the install and the article [How to Handle Responses on the Client Side](how-do-i-handle-responses-on-the-client-side.md) for examples and more information.
+You should only use a reply when you implement the Request-Response pattern (also called the Full Duplex pattern). In this pattern the originator of the message should expect a response message and have a handler for it. See the [Full Duplex Sample](/samples/pubsub/sample.md) provided with the install and the article [How to Handle Responses on the Client Side](how-do-i-handle-responses-on-the-client-side.md) for examples and more information.
 
 When using the Publish-Subscribe pattern an endpoint handling an event shouldn't use `Bus.Reply`. This is because the publisher will not be expecting any reply and should not have a handler for it.
 
