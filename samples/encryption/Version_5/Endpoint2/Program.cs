@@ -6,6 +6,7 @@ class Program
     static void Main()
     {
         var busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("EncryptionSampleEndpoint2");
         busConfiguration.RijndaelEncryptionService("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         var startableBus = Bus.Create(busConfiguration);

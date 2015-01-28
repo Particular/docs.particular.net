@@ -8,6 +8,7 @@ class Program
     {
         Configure.Serialization.Json();
         var configure = Configure.With();
+        configure.DefineEndpointName("EncryptionSampleEndpoint2");
         configure.DefaultBuilder();
         configure.RijndaelEncryptionService();
         configure.UseTransport<Msmq>();
