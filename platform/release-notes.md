@@ -42,8 +42,4 @@ The Particular Service Platform source code, current and previous releases and t
 
 * See [ServiceControl Endpoints Plugins](/servicecontrol/plugins.md)
 
-### Samples
-
-* See [Particular Service Platform Samples](samples.md)
-
 
