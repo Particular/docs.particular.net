@@ -1,6 +1,6 @@
 ---
-title: Versioning Sample
-summary: Continuation of the pub/sub sample.
+title: Versioning
+summary: Illustrates message evolution over time using interfaces.
 tags: []
 redirects:
  - /nservicebus/versioning-sample.md
