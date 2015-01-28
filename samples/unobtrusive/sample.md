@@ -32,10 +32,3 @@ Look at the code. There are a number of projects in the solution:
 
 -   Client Class library sends a request and a command to the server and handles a published event
 -   Server Class library handles requests and commands, and publishes events
-
-For these three projects of message definitions, open the references to see that no references are required for NServiceBus libraries. No reference enables decoupling between those projects to NServiceBus versioning:
-
--   Commands Class library defines the command and definition for a returned status
--   Events Class library defines an event
--   Messages Class library defines a request and a response message, and includes messages that are express and have a time to be received
-

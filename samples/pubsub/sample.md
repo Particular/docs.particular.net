@@ -6,11 +6,9 @@ tags:
 - Messaging Patterns
 - Durability
 - Fault Tolerance
----
-
-## Preparing the Solution
-
-Locate the Publish/Subscribe sample in the https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/PubSub 
+redirects:
+- /nservicebus/publish-subscribe-sample.md
+--- 
 
 ## Reviewing the solution
 
@@ -22,8 +20,8 @@ The "MyMessages" project contains the definition of the messages that are sent b
 
 ### Creating and publishing messages
 
-As the name implies, the "MyPublisher" project is a publisher of event messages. It uses the bus framework to send alternatively three different types of messages every time you click Enter in its console window. The first message is constructed using the provided factory function `Bus.CreateInstance(<messagetype>)`, which creates a message that implements a specified interface or a specific type. This is in keeping with the suggested practice of [using interfaces for events](messages-as-interfaces.md) . The other messages are created simply using the 'new' keyword. The created message is populated and
-[published](how-to-pub-sub-with-nservicebus.md) using `Bus.Publish`.
+As the name implies, the "MyPublisher" project is a publisher of event messages. It uses the bus framework to send alternatively three different types of messages every time you click Enter in its console window. The first message is constructed using the provided factory function `Bus.CreateInstance(<messagetype>)`, which creates a message that implements a specified interface or a specific type. This is in keeping with the suggested practice of [using interfaces for events](/nservicebus/messages-as-interfaces.md) . The other messages are created simply using the 'new' keyword. The created message is populated and
+[published](/nservicebus/how-to-pub-sub-with-nservicebus.md) using `Bus.Publish`.
 
 ```C#
 var eventId = Guid.NewGuid();
@@ -102,7 +100,3 @@ To use durable subscriptions you will need to switch over to one of the other pe
 ## Subscriber authorization
 
 A publisher has control over the subscriptions it receives. By implementing the authorization methods of the `IAuthorizeSubscriptions` interface the publisher can return a Boolean operator indicating to the framework whether a subscription should be accepted. See the `SubscriptionAuthorizer.cs` file in the `MyPublisher` project for a basic example of this feature.
-
-## Next steps
-
-See the other NServiceBus pieces that handle this for you in [how pub/sub works](how-pub-sub-works.md).

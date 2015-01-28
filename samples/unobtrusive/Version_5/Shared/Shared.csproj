@@ -34,15 +34,26 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\packages\NServiceBus.5.1.0\lib\net45\NServiceBus.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandStatus.cs" />
+    <Compile Include="ConfigErrorQueue.cs" />
+    <Compile Include="ConventionExtensions.cs" />
     <Compile Include="DeferredMessage.cs" />
+    <Compile Include="IMyEvent.cs" />
     <Compile Include="MessageThatExpires.cs" />
+    <Compile Include="MyCommand.cs" />
     <Compile Include="Request.cs" />
     <Compile Include="LargeMessage.cs" />
     <Compile Include="RequestExpress.cs" />
     <Compile Include="Response.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
