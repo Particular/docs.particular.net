@@ -15,7 +15,7 @@ redirects:
 
 ## Code walk-through
 
-This sample contains three projects:
+This sample contains three projects: 
 
  * Messages - A class library containing the sample messages. Only one of the message types utilizes the NServiceBus DataBus.
  * Sender - A console application responsible for sending the large messages.
@@ -29,7 +29,7 @@ Let's look at the Messages project, at the two messages. We start with the large
 
 The other message utilizes the DataBus mechanism:
 
-<!-- import SendMessageLargePayload -->
+<!-- import MessageLargePayload -->
 
 `DataBusProperty<byte[]>` is an NServiceBus data type that instructs NServiceBus to treat the `LargeBlob` property as an attachment. It is not transported in the NServiceBus normal flow.
 
