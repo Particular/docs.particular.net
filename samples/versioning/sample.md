@@ -6,7 +6,7 @@ redirects:
  - /nservicebus/versioning-sample.md
 ---
 
-In this sample, there are two message projects: V1.Messages and V2.Messages:
+In this sample, there are two message projects: `V1.Messages` and `V2.Messages`:
  
 <!-- import V1Message -->
 
@@ -14,13 +14,13 @@ The version 2 message schema inherits from the version 1 schema as shown below, 
 
 <!-- import V2Message -->
 
-There are two subscribers as before, but now one subscriber is subscribed to the version 1 message schema, V1Subscriber; and the other subscriber is subscribed to the version 2 message schema, V2Subscriber.
+There are two subscribers as before, but now one subscriber is subscribed to the version 1 message schema, `V1Subscriber`; and the other subscriber is subscribed to the version 2 message schema, `V2Subscriber`.
 
-NOTE: Subscribers have a message handler for the messages from their respective versions. Yet there is a slight difference in their config files; V1Subscriber has the following in its UnicastBusConfig:
+NOTE: Subscribers have a message handler for the messages from their respective versions. Yet there is a slight difference in their config files; `V1Subscriber` has the following in its `UnicastBusConfig`:
 
 <!-- import V1SubscriberMapping -->
 
-While V2Subscriber has this in its UnicastBusConfig:
+While `V2Subscriber` has this in its `UnicastBusConfig`:
 
 <!-- import V2SubscriberMapping -->
 
