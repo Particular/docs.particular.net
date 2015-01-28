@@ -136,8 +136,3 @@ This class implements the NServiceBus interface `IHandleMessages<T>` where `T` i
 NServiceBus manages the classes that implement this interface. When a message arrives in the input queue, it is deserialized, and then, based on its type, NServiceBus instantiates the relevant classes and calls their Handle method, passing in the message object.
 
 Notice the `IBus` property of the class. This is how it gets a reference to the bus. In the method body you can see it calling the `Return` method on the bus, which results in a message being returned to `WebApplication1`, specifically putting a message in the input queue whose name is determined by the namespace where the bus was configured; in this case, the `global.asax`: `AsyncPagesMVC3`.
-
-## Next steps
-
-If you are not familiar with Unobtrusive messaging mode, read the [documentation](unobtrusive-mode-messages.md) or see the [working sample](unobtrusive-sample.md).
-

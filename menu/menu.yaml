@@ -158,7 +158,6 @@
       Articles: 
         - "nservicebus/full-duplex-sample"
         - "nservicebus/publish-subscribe-sample"
-        - "nservicebus/unobtrusive-sample"
         - "nservicebus/scale-out-sample"
         - "nservicebus/using-nservicebus-in-a-asp.net-web-application"
         - "nservicebus/using-nservicebus-with-asp.net-mvc"
