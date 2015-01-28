@@ -16,7 +16,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Customization](#customization)
 - [Versioning](#versioning)
 - [FAQ](#faq)
-- [Samples](/platform/samples.md)
+- [Samples](/samples/)
 
 
 ## Getting Started

@@ -198,7 +198,7 @@
     </a>
   </div>
   <div class="ic">
-    <a href="/platform/samples.md" class="img rarr">
+    <a href="/samples/" class="img rarr">
       <img src="/home/samples.png" /><img src="/home/samples-hover.png" class="hover"/><br/>
       Samples
     </a>
