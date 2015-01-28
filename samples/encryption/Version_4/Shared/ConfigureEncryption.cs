@@ -1,6 +1,7 @@
 ﻿using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
+#region ConfigureEncryption
 public class ConfigureEncryption :
     IProvideConfiguration<RijndaelEncryptionServiceConfig>
 {
@@ -12,3 +13,4 @@ public class ConfigureEncryption :
                };
     }
 }
+#endregion

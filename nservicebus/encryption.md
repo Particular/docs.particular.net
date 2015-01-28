@@ -43,6 +43,8 @@ Property encryption is enabled via the fluent API.
 
 In conjunction with enabling encryption you need to configure the encryption and decryption keys.
 
+Note: The key specified must be the same in the configuration of all processes that are communicating encrypted information, both on the sending and on the receiving sides.
+
 #### App.config
 
 The encryption key can be defined in the `app.config`.

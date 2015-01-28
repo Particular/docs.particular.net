@@ -38,24 +38,20 @@ Starting with the Shared project, open the `MessageWithSecretData.cs` file and l
 
 <!-- import Message -->
 
-```C#
-public class MessageWithSecretData : IMessage
-{
-  public WireEncryptedString Secret { get; set; }
-}
-```
-
 Note that it contains a single property of the type WireEncryptedString. This is an NServiceBus type specifying that the contents of the property are encrypted on the wire when transmitted by NServiceBus.
 
-### How is encryption enabled. 
+### How is encryption configured. 
 
 Open either one of the `Program.cs`. You will notice the line 
 
-    busConfiguration.RijndaelEncryptionService("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
+    busConfiguration.RijndaelEncryptionService();
 
-This code indicates that encryption should use the specified key.
+This code indicates that encryption should be enabled.
 
-Note: The key specified must be the same in the configuration of all processes that are communicating encrypted information, both on the sending and on the receiving sides. Open the app.config file of the server project and verify that the key is the same. This can be mitigated by defining multiple decryption keys, see [Encryption](/nservicebus/encryption.md) 
+The key is then configured using 
+
+<!-- import ConfigureEncryption --> 
+
 
 ### The message on the wire
 
@@ -79,3 +75,5 @@ Go to the server queue (called "EncryptionSampleEndpoint1") and examine the mess
   </MessageWithSecretData>
 </Messages>
 ```
+
+See also [Encryption](/nservicebus/encryption.md)
