@@ -29,7 +29,7 @@ Let's look at the Messages project, at the two messages. We start with the large
 
 The other message utilizes the DataBus mechanism:
 
-<!-- import MessageLargePayload -->
+<!-- import MessageWithLargePayload --> 
 
 `DataBusProperty<byte[]>` is an NServiceBus data type that instructs NServiceBus to treat the `LargeBlob` property as an attachment. It is not transported in the NServiceBus normal flow.
 
