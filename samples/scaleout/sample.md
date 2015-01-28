@@ -4,9 +4,9 @@ summary: See how easy it is to use NServiceBus to scale out your existing messag
 tags:
 - Distributor
 - Scalability
+redirects:
+- /nservicebus/scale-out-sample.md
 ---
-
-Source available here: https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/ScaleOut
 
 Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out your existing message processing by adding more workers on different machines.
 
@@ -40,7 +40,7 @@ There are five projects in the solution.
 
 Assuming business is booming, orders are flowing in, and `PlaceOrder` commands are stacking up in the `Orders.Handler` endpoint, you need to scale out.
 
-You can scale out by having the same Orders.Handler project function as a distributor and another copy of the `Orders.Handler` function as a worker as illustrated by the `Orders.Handler.Worker1` and `Orders.Handler.Worker2`. Starting the `Orders.Handler` with the `Master` profile, among other things, turns on the Distributor at this endpoint. Starting the `Orders.Handler` with the Worker profile makes it enlist with the Distributor and function as a worker. Being a [distributor](load-balancing-with-the-distributor.md) means that Workers can send an "I'm ready" message to the control endpoint of the Distributor, and the Distributor forwards messages to them in a round robin manner. Steps to scale out
+You can scale out by having the same Orders.Handler project function as a distributor and another copy of the `Orders.Handler` function as a worker as illustrated by the `Orders.Handler.Worker1` and `Orders.Handler.Worker2`. Starting the `Orders.Handler` with the `Master` profile, among other things, turns on the Distributor at this endpoint. Starting the `Orders.Handler` with the Worker profile makes it enlist with the Distributor and function as a worker. Being a [distributor](/nservicebus/load-balancing-with-the-distributor.md) means that Workers can send an "I'm ready" message to the control endpoint of the Distributor, and the Distributor forwards messages to them in a round robin manner. Steps to scale out
 
 Following are the steps required to scale out message handlers by deploying more workers on additional machines.
 
@@ -61,7 +61,7 @@ Turns on the Distributor within the Orders.Handler endpoint and starts a worker 
 
 ### NServiceBus.Integration
 
-The production and integration profiles configure NServiceBus to use RavenDB for storing the subscriptions. As stated earlier, this store is shared among all `Orders.Handler` endpoints (all workers). Read about [publish subscribe](how-pub-sub-works.md) .
+The production and integration profiles configure NServiceBus to use RavenDB for storing the subscriptions. As stated earlier, this store is shared among all `Orders.Handler` endpoints (all workers). Read about [publish subscribe](/nservicebus/how-pub-sub-works.md) .
 
 If running from Visual Studio, when configuring the `NServiceBus.Production` profile, NServiceBus creates the queues for you. If running from the command line, use `NServiceBus.Integration` to create the queues.
 
@@ -107,7 +107,7 @@ By specifying the `NServiceBus.Integration` and `NServiceBus.Worker` profiles al
 
 `NServiceBus.Host.Exe` uses the `NServiceBus.Worker` profile to enlist the worker endpoint at the Distributor.
 
-Read about [profiles,](profiles-for-nservicebus-host.md) and [here](more-on-profiles.md) too.
+Read about [profiles,](/nservicebus/profiles-for-nservicebus-host.md) and [here](/nservicebus/more-on-profiles.md) too.
 
 ### 3. Setting up the Sender
 
@@ -137,16 +137,10 @@ As can be seen from the diagram, nothing changes for the `Orders.Sender`. It sti
 When the workers finish handling the `ProcessOrder` command, they re-send "I'm ready to process messages" to the Distributor control endpoint: Orders.Handler.Control. The workers share the subscription storage so they can both publish the `OrderPlaces` event. NServiceBus is responsible for informing the workers to which database to connect. The database should be accessible to the workers.
 
 ## Worker at work
-
+ 
 The following snapshot shows the Worker console window at work (the worker is running from a different machine than the Distributor).
-
+ 
 ![The Worker console window while running on another machine than the distributor](scaleoutworkeronremotemachine.png)
 
 You can see from the Worker console window (above) that the worker receives the Process Order (order2) and replies with 'OK', processes the order, and publishes an Order Placed event.
-
-The error messages appear when there is no valid license for the worker and it works on a different node from the distributor. This message is logged for every received message from the remote worker. In this case, a [valid NServiceBus License](http://particular.net/licensing) should be obtained.
-
-## Next steps
-
-Read about [the distributor](load-balancing-with-the-distributor.md).
-
+ 
