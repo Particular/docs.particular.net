@@ -80,7 +80,7 @@ NServiceBus can also define special behaviors for some message properties:
 To dive into the unobtrusive mode, data bus, and encryption features:
 
 * [Unobtrusive Mode Messages](unobtrusive-mode-messages.md).
-* [Encryption Sample](/samples/encryption/sample.md).
+* [Encryption Sample](/samples/encryption/basic_encryption/sample.md).
 * [DataBus / Attachments](attachments-databus-sample.md).
 * [Encryption](encryption.md)
 
