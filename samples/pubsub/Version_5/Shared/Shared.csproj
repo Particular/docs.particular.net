@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnotherEventMessage.cs" />
+    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="EventMessage.cs" />
     <Compile Include="IMyEvent.cs" />
   </ItemGroup>
