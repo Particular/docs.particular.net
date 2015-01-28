@@ -1,0 +1,56 @@
+﻿namespace MyServer.Callback
+{
+    using NServiceBus;
+
+    public class Callback
+    {
+        class PlaceOrder : ICommand
+        {
+        }
+
+        class PlaceOrderResponse : IMessage
+        {
+            public object Response { get; set; }
+        }
+
+        public void CallbackSnippet()
+        {
+            var placeOrder = new PlaceOrder();
+            IBus bus = null;
+            // ReSharper disable once NotAccessedVariable
+            PlaceOrderResponse message; // get replied message
+
+            #region CallbackToAccessMessageRegistration
+
+            var sync = bus.Send(placeOrder)
+                .Register(ar =>
+                {
+                    var localResult = ar.AsyncState as CompletionResult;
+                    message = localResult.Messages[0] as PlaceOrderResponse;
+                }, null);
+
+            sync.AsyncWaitHandle.WaitOne();
+            // return message;
+
+            #endregion
+        }
+
+        enum Status
+        {
+            OK,
+            Error
+        }
+
+        public void TriggerCallback()
+        {
+            IBus bus = null;
+
+            #region TriggerCallback
+
+            bus.Return(Status.OK);
+
+            #endregion
+
+        }
+    }
+}

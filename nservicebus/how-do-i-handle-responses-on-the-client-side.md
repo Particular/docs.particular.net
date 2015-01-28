@@ -25,10 +25,19 @@ When sending a message/request, you can register a callback that is invoked when
 
 
 ```C#
-bus.Send( messageInstance ).Register( asyncCallback, state );
+bus.Send(messageInstance).Register(asyncCallback, state);
 ```
 
-DANGER: If the server process returns multiple responses, NServiceBus cannot know which response message will be the last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a crash as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](sagas-in-nservicebus.md) .
+DANGER: If the server process returns multiple responses, NServiceBus cannot know which response message will be the last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a crash as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](sagas-in-nservicebus.md).
 
-If your client is a web application, use the `RegisterWebCallback` method.
+To trigger a callback, you need to return an `enum` or `int` value.
+
+<!-- import TriggerCallback -->
+
+## Handling callbacks in the context of web application
+
+Callbacks can be used to provide an acknowledgement for successfully dispatched command, but should not be used instead of message handlers. Message handlers should handle asynchronous communication using [Full Duplex](/samples/fullduplex). Request/response with callback is possible, through discurraged and reason is outlined above. 
+
+To access response message through callback, the following code can be used
+<!-- import CallbackToAccessMessageRegistration -->
 
