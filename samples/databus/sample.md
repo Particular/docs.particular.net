@@ -5,9 +5,9 @@ tags:
 - DataBus
 - MSMQ Limit
 - Large messages
+redirects:
+- /nservicebus/attachments-databus-sample.md
 ---
-
-To see how to send and receive attachments in NServiceBus, open the [Databus sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/DataBus):
 
  1. Run the solution. Two console applications start.
  2. Find the Sender application by looking for the one with "Sender" in its path and pressing Enter in the window to send a message.      You have just sent a message that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
@@ -22,26 +22,14 @@ This sample contains three projects:
  * Receiver - A console application responsible for receiving the large messages from Sender.
 
 ### Messages project
-
+ 
 Let's look at the Messages project, at the two messages. We start with the large one that is not utilizing the DataBus mechanism. The message is a simple byte array command:
 
-```C#
-public class AnotherMessageWithLargePayload : ICommand
-{
-    public byte[]LargeBlob { get; set; }
-}
-```
+<!-- import AnotherMessageWithLargePayload -->
 
 The other message utilizes the DataBus mechanism:
 
-```C#
-[TimeToBeReceived("00:01:00")]
-public class MessageWithLargePayload : ICommand
-{
-    public string SomeProperty { get; set; }
-    public DataBusProperty<byte[]> LargeBlob { get; set; }
-}
-```
+<!-- import SendMessageLargePayload -->
 
 `DataBusProperty<byte[]>` is an NServiceBus data type that instructs NServiceBus to treat the `LargeBlob` property as an attachment. It is not transported in the NServiceBus normal flow.
 
@@ -65,7 +53,7 @@ Following is an example of the signaling message that is sent to the receiving e
 
 ### Configuring the Databus location
 
-Both the Sender and Receive project need to share a common location to store large binary objects. This is done by calling `FileShareDataBus`. This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment. 
+Both the `Sender` and `Receive` project need to share a common location to store large binary objects. This is done by calling `FileShareDataBus`. This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment. 
 
 ```C#
 static string BasePath = "..\\..\\..\\storage";
@@ -76,44 +64,23 @@ static void Main()
     ...
 }
 ```
-
+ 
 ### Sender project
 
-The following sender project code sends the MessageWithLargePayload message, utilizing the NServiceBus attachment mechanism:
+The following sender project code sends the `MessageWithLargePayload `message, utilizing the NServiceBus attachment mechanism:
 
-```C#
-var message = new MessageWithLargePayload
-{
-    SomeProperty = "This message contains a large blob that will be sent on the data bus",
-    LargeBlob = new DataBusProperty<byte[]>(new byte[1024*1024*5]) //5MB
-};
-bus.Send("Sample.DataBus.Receiver",message);
-```
+<!-- import SendMessageLargePayload -->
 
-The following Sender project code sends the AnotherMessageWithLargePayload message without utilizing the NServiceBus attachment mechanism:
+The following `Sender` project code sends the `AnotherMessageWithLargePayload` message without utilizing the NServiceBus attachment mechanism:
 
-```C#
-var message = new AnotherMessageWithLargePayload
-{
-    LargeBlob = new byte[1024 * 1024 * 5] //5MB
-};
-bus.Send("Sample.DataBus.Receiver", message);
-```
+<!-- import SendMessageTooLargePayload --> 
 
-In both cases, a 5MB message is sent, but in the MessageWithLargePayload it goes through, while AnotherMessageWithLargePayload fails.
+In both cases, a 5MB message is sent, but in the `MessageWithLargePayload `it goes through, while `AnotherMessageWithLargePayload` fails.
 
-Go to the Receiver project to see the receiving application.
+Go to the `Receiver` project to see the receiving application.
 
 ### Receiver project
 
 Following is the receiving message handler:
 
-```C#
-public class MessageWithLargePayloadHandler : IHandleMessages<MessageWithLargePayload>
-{
-    public void Handle(MessageWithLargePayload message)
-    {
-        Console.WriteLine("Message received, size of blob property: " + message.LargeBlob.Value.Length + " Bytes");
-    }
-}
-```
+<!-- import MessageWithLargePayloadHandler --> 

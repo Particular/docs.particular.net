@@ -26,7 +26,7 @@ The above code instructs NServiceBus to encrypt any property that starts with th
 
 The encryption algorithm is declared in App.config of both client and server with the  `RijndaelEncryptionServiceConfig` section name. See the [Encryption](/nservicebus/encryption.md). NServiceBus supports property level encryption by using a special `WireEncryptedString` property. The code snippet shows the unobtrusive way to tell NServiceBus which properties to encrypt.
  
-It also shows the unobtrusive way to tell NServiceBus which properties to deliver on a separate channel from the message itself using the [Data Bus](/nservicebus/attachments-databus-sample.md) feature, and which messages are express and/or have a defined time to be received.
+It also shows the unobtrusive way to tell NServiceBus which properties to deliver on a separate channel from the message itself using the [Data Bus](/nservicebus/databus.md) feature, and which messages are express and/or have a defined time to be received.
 
 Look at the code. There are a number of projects in the solution:
 

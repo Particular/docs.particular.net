@@ -165,7 +165,6 @@
         - "nservicebus/generic-host-sample"
         - "nservicebus/versioning-sample"
         - "nservicebus/nservicebus-message-mutators-sample"
-        - "nservicebus/attachments-databus-sample"
         - "nservicebus/windows-azure-transport"
 - 
   Name: "ServiceMatrix"
