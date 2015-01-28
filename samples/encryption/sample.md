@@ -36,6 +36,8 @@ CreditCard: 543645546546456 is valid to 3/11/2016 5:21:59 AM
 
 Starting with the Shared project, open the `MessageWithSecretData.cs` file and look at the following code:
 
+<!-- import Message -->
+
 ```C#
 public class MessageWithSecretData : IMessage
 {
