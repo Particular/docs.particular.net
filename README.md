@@ -163,7 +163,16 @@ Don't render YAML Front-Matter by going to
 
 And checking `Ignore YAML Front-matter`
 
+## Samples
+
+ * Samples are located here https://github.com/Particular/docs.particular.net/tree/master/Samples
+ * Any directory in that structure with a sample.md will be considered a "root for a sample" or Sample Root.
+ * A Sample Root may not contain an sample.md in subdirectories
+ * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename
+ * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root  
+
 ## Code Snippets
+
 
 ### Defining Snippets
 
@@ -220,7 +229,9 @@ If a snippet has no version defined then the version will be derived by walking 
  
 ### Using Snippets
 
-The keyed snippets can then be used in any documentation `.md` file by adding the text **&lt;!-- import KEY -->**.
+The keyed snippets can then be used in any documentation `.md` file by adding the text
+
+**&lt;!-- import KEY -->**.
 
 Then snippets with the key (all versions) will be rendered in a tabbed manner. If there is only a single version then it will be rendered as a simple code block with no tabs.
 
