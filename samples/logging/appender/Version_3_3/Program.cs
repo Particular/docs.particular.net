@@ -8,9 +8,9 @@ class Program
     {
         var configure = Configure.With();
         configure.DefineEndpointName("LoggingAppenderSample");
-
+        #region ConfigureAppender
         configure.Log4Net<MyConsoleAppender>(appender => { appender.Color = ConsoleColor.Green; });
-
+        #endregion
         configure.DefaultBuilder();
         configure.MsmqTransport();
         configure.InMemorySagaPersister();

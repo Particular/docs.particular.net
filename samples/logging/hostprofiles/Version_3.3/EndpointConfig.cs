@@ -1,19 +1,18 @@
 using NServiceBus;
 
-namespace HostProfileLogging_3_3 
+public class EndpointConfig :
+    IConfigureThisEndpoint,
+    AsA_Server,
+    IWantCustomInitialization
 {
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization
+    public void Init()
     {
-        public void Init()
-        {
-            var configure = Configure.With();
-            configure.DefineEndpointName("HostProfilesLogging");
-            configure.DefaultBuilder();
-            configure.InMemorySagaPersister();
-            configure.UseInMemoryTimeoutPersister();
-            configure.InMemorySubscriptionStorage();
-            configure.JsonSerializer();
-        }
+        var configure = Configure.With();
+        configure.DefineEndpointName("HostProfilesLogging");
+        configure.DefaultBuilder();
+        configure.InMemorySagaPersister();
+        configure.UseInMemoryTimeoutPersister();
+        configure.InMemorySubscriptionStorage();
+        configure.JsonSerializer();
     }
-
 }

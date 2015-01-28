@@ -6,11 +6,13 @@ class Program
 {
     static void Main()
     {
+        #region ConfigureLogging
         var configure = Configure.With();
         configure.DefineEndpointName("DefaultLoggingSample");
         
         //Configures a ConsoleAppender with a threshold of Debug
         configure.Log4Net();
+        #endregion
 
         configure.DefaultBuilder();
         configure.MsmqTransport();

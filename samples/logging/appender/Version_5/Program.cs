@@ -9,12 +9,14 @@ class Program
 
     static void Main()
     {
+        #region ConfigureAppender
         var consoleAppender = new MyConsoleAppender
                               {
                                   Color = ConsoleColor.Green
                               };
         BasicConfigurator.Configure(consoleAppender);
         LogManager.Use<Log4NetFactory>();
+        #endregion
 
         var busConfig = new BusConfiguration();
         busConfig.EndpointName("LoggingAppenderSample");

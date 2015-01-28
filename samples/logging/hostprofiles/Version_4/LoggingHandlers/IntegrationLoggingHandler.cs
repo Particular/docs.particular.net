@@ -1,6 +1,7 @@
 using log4net.Core;
 using NServiceBus;
 
+#region IntegrationHandler
 class IntegrationLoggingHandler : IConfigureLoggingForProfile<Integration>
 {
     public void Configure(IConfigureThisEndpoint specifier)
@@ -8,3 +9,4 @@ class IntegrationLoggingHandler : IConfigureLoggingForProfile<Integration>
         LoggingHelper.ConfigureLogging(Level.Warn);
     }
 }
+#endregion

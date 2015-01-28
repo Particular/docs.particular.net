@@ -2,6 +2,7 @@ using System;
 using log4net.Appender;
 using log4net.Core;
 
+#region Appender
 class MyConsoleAppender : AppenderSkeleton
 {
     protected override void Append(LoggingEvent loggingEvent)
@@ -14,3 +15,4 @@ class MyConsoleAppender : AppenderSkeleton
 
     public ConsoleColor Color { get; set; }
 }
+#endregion

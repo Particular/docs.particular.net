@@ -56,7 +56,7 @@
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="LoggingHandlers\IntegrationLoggingHandler.cs" />
     <Compile Include="LoggingHandlers\LiteLoggingHandler.cs" />
-    <Compile Include="LoggingHandlers\LoggingHelper.cs" />
+    <Compile Include="LoggingHelper.cs" />
     <Compile Include="LoggingHandlers\ProductionLoggingHandler.cs" />
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />

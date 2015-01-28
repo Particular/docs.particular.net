@@ -1,40 +1,44 @@
 using log4net.Appender;
 using log4net.Config;
+using log4net.Core;
 using log4net.Layout;
+using NServiceBus;
 
-namespace HostCustomLogging_3_3 
+#region Config
+public class EndpointConfig : 
+    IConfigureThisEndpoint, 
+    AsA_Server,
+    IWantCustomInitialization, 
+    IWantCustomLogging
 {
-    using NServiceBus;
-
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomInitialization, IWantCustomLogging
+    void IWantCustomLogging.Init()
     {
-        void IWantCustomLogging.Init()
-        {
-            var layout = new PatternLayout
-            {
-                ConversionPattern = "%d [%t] %-5p %c [%x] - %m%n"
-            };
-            layout.ActivateOptions();
-            var appender = new ConsoleAppender
-            {
-                Layout = layout
-            };
-            appender.ActivateOptions();
+        var layout = new PatternLayout
+                     {
+                         ConversionPattern = "%d %-5p %c - %m%n"
+                     };
+        layout.ActivateOptions();
+        var appender = new ConsoleAppender
+                       {
+                           Layout = layout,
+                           Threshold = Level.Info
+                       };
+        appender.ActivateOptions();
 
-            BasicConfigurator.Configure(appender);
+        BasicConfigurator.Configure(appender);
 
-            SetLoggingLibrary.Log4Net();
-        }
+        SetLoggingLibrary.Log4Net();
+    }
+#endregion
 
-        void IWantCustomInitialization.Init()
-        {
-            var configure = Configure.With();
-            configure.DefineEndpointName("HostCustomLoggingSample");
-            configure.DefaultBuilder();
-            configure.InMemorySagaPersister();
-            configure.UseInMemoryTimeoutPersister();
-            configure.InMemorySubscriptionStorage();
-            configure.JsonSerializer();
-        }
+    void IWantCustomInitialization.Init()
+    {
+        var configure = Configure.With();
+        configure.DefineEndpointName("HostCustomLoggingSample");
+        configure.DefaultBuilder();
+        configure.InMemorySagaPersister();
+        configure.UseInMemoryTimeoutPersister();
+        configure.InMemorySubscriptionStorage();
+        configure.JsonSerializer();
     }
 }
