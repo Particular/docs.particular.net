@@ -61,7 +61,7 @@ switch (nextEventToPublish)
 
 ### Implementing subscribers
 
-To receive messages from the publisher, the subscribers [must subscribe to the message types](how-to-pub-sub-with-nservicebus.md) they are designed to handle. A subscriber must have a handler for the type of message and a [configuration](publish-subscribe-configuration.md) that tells the bus where to send subscriptions for messages:
+To receive messages from the publisher, the subscribers [must subscribe to the message types](/nservicebus/how-to-pub-sub-with-nservicebus.md) they are designed to handle. A subscriber must have a handler for the type of message and a [configuration](/nservicebus/publish-subscribe-configuration.md) that tells the bus where to send subscriptions for messages:
 
  * The "Subscriber1" process handles and subscribes to both the "EventMessage" and "AnotherEventMessage" types.
  * The "Subscriber2" handles and subscribes to any message implementing the interface "IMyEvent".
