@@ -173,7 +173,6 @@ And checking `Ignore YAML Front-matter`
 
 ## Code Snippets
 
-
 ### Defining Snippets
 
 There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. All `.cs`, `.xml` and `.config` files in that directory are parsed for code snippets
@@ -188,7 +187,6 @@ var configure = Configure.With();
 // endcode
 ```
 
-
 #### Using regions 
 
 Any code wrapped in a named C# region will pe picked up. The name of the region is used as the key. 
@@ -198,7 +196,6 @@ Any code wrapped in a named C# region will pe picked up. The name of the region 
 var configure = Configure.With();
 #endregion
 ```
-
 
 ### Snippet versioning
 
@@ -270,7 +267,6 @@ var configure = Configure.With()
 ```
 
 The same behavior will apply to leading tabs.
-
 
 #### Do not mix tabs and spaces
 
