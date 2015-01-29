@@ -16,7 +16,7 @@ Changing the number in the text box from even to odd numbers changes the result.
 
 The web page renders synchronously; from the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is doing asynchronous messaging.
 
-This sample has three projects: `Messages`, `Server`, and `WebApplication`. `WebApplication` is a web application that sends messages (found in the `Messages` project) to the Server project, which is hosted as a console application. 
+This sample has three projects: `Shared`, `Server`, and `WebApplication`. `WebApplication` is a web application that sends messages (found in the `Shared` project) to the Server project, which is hosted as a console application. 
 
 ## Initializing the bus
 
@@ -36,7 +36,7 @@ Open `Default.aspx.cs` in `WebApplication` to see the `Button1Click` method:
 
 The first line of code simply parses the text passed in by the user. The second line creates a new NServiceBus message of the type `Command`, and initializes its `Id` property with the value from the text box.
 
-Open the class definition for the `Command` type in the `Messages` project:
+Open the class definition for the `Command` type in the `Shared` project:
 
 <!-- import Message -->
 

@@ -25,8 +25,6 @@ Choosing SendAsync results in the following page:
 
 Changing the number in the text box from even to odd changes the result.
 
-![AsyncPages sample](async-pages.png "AsyncPages sample")
-
 Now, look at the code. This sample has three projects:
 
 -   `AsyncPlagesMvc3`: ASP.NET MVC 3 application that sends messages (found in `Messages` project)
