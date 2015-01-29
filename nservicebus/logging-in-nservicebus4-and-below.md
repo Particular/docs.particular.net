@@ -21,6 +21,14 @@ To make use of the standard Log4Net configuration found in the application confi
 
     NServiceBus.SetLoggingLibrary.Log4Net(log4net.Config.XmlConfigurator.Configure);
 
+NOTE: When using `XmlConfigurator` you need to make sure you project references the `log4net` library. If not, run
+
+```
+Install-Package log4net -version 1.2.10
+```
+
+in the package management console.
+
 Include a Log4Net configuration section in the application configuration file that results in the Debug threshold with the `ConsoleAppender`, as shown:
 
 ```
