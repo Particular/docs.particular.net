@@ -1,5 +1,5 @@
 ---
-title: Unity Usage
+title: Unity Container Usage
 summary: How to use the Unity container in an endpoint.
 tags:
 - Logging
