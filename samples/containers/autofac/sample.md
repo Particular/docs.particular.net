@@ -1,5 +1,5 @@
 ---
-title: Autofac Usage
+title: Autofac Container Usage
 summary: How to use the Autofac container in an endpoint.
 tags:
 - Logging
