@@ -17,8 +17,6 @@ public class MyHandler : IHandleMessages<MyMessage>
 }
 ```
 
-You will probably need to access other objects in the client process in this handler. Use [dependency injection](containers.md) , declaring a property or constructor argument of the necessary type in your message handler. Then, register the relevant object in the container (most likely as a singleton).
-
 ## Handling responses in the context of the request
 
 When sending a message/request, you can register a callback that is invoked when a response arrives. This callback is invoked before any message handler as it is registered like this:
