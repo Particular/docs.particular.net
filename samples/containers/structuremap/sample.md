@@ -1,5 +1,5 @@
 ---
-title: StructureMap Usage
+title: StructureMap Container Usage
 summary: How to use the StructureMap container in an endpoint.
 tags:
 - Logging
