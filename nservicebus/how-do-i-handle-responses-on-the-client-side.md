@@ -36,7 +36,7 @@ To trigger a callback, you need to return an `enum` or `int` value.
 
 ## Handling callbacks in the context of web application
 
-Callbacks can be used to provide an acknowledgement for successfully dispatched command, but should not be used instead of message handlers. Message handlers should handle asynchronous communication using [Full Duplex](/samples/fullduplex). Request/response with callback is possible, through discurraged and reason is outlined above. 
+Callbacks can be used to provide an acknowledgement for successfully dispatched command, but should not be used instead of message handlers. Message handlers should handle asynchronous communication using [Full Duplex](/samples/fullduplex). Request/response with callback is possible, through discouraged and reason is outlined above. 
 
 To access response message through callback, the following code can be used
 <!-- import CallbackToAccessMessageRegistration -->
