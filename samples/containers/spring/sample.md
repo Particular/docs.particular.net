@@ -1,5 +1,5 @@
 ---
-title: Spring Usage
+title: Spring Container Usage
 summary: How to use the Spring container in an endpoint.
 tags:
 - Logging
