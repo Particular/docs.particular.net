@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.NHibernate;
+using NServiceBus.RavenDB.Persistence;
 using NServiceBus.Saga;
 
 public class SagaBasics
@@ -271,21 +273,21 @@ public class SagaBasics
         #region saga-finder
 
         // NHibernate example:
-        public class MySagaFinder : IFindSagas<MySagaData>.Using<Message2>
+        public class MyNHibernateSagaFinder : IFindSagas<MySagaData>.Using<Message2>
         {
             public NHibernateStorageContext StorageContext { get; set; }
 
             public MySagaData FindBy(Message2 message)
             {
                 //your custom finding logic here, e.g.
-                return StorageContext.Session
-                                        .QueryOver<MySagaData>()
-                                        .SingleOrDefault(x => x.SomeID == message.SomeID && x.SomeData == message.SomeData)
+                return StorageContext.Session.QueryOver<MySagaData>()
+                                        .Where(x => x.SomeID == message.SomeID && x.SomeData == message.SomeData)
+                                        .SingleOrDefault();
             }
         }
 
         // RavenDb example:
-        public class MySagaFinder : IFindSagas<MySagaData>.Using<Message2>
+        public class MyRavenDbSagaFinder : IFindSagas<MySagaData>.Using<Message2>
         {
             public ISessionProvider SessionProvider { get; set; }
 
