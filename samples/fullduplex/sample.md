@@ -1,5 +1,5 @@
 ---
-title: Full Duplex Sample using NServiceBus
+title: Full Duplex
 summary: An example of full-duplex, request/response communication.
 tags:
 - Request Response
