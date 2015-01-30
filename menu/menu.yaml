@@ -156,7 +156,6 @@
       Name: "samples"
       Title: "Samples"
       Articles: 
-        - "nservicebus/injecting-the-bus-into-asp.net-mvc-controller"
         - "nservicebus/generic-host-sample"
         - "nservicebus/windows-azure-transport"
 - 
