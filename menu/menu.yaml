@@ -8,7 +8,6 @@
         - "nservicebus/overview"
         - "nservicebus/NServiceBus-Step-by-Step-Guide"
         - "nservicebus/NServiceBus-Step-by-Step-Guide-fault-tolerance-code-first"
-        - "nservicebus/nservicebus-step-by-step-publish-subscribe-communication-code-first"
         - "nservicebus/architectural-principles"
         - "nservicebus/transactions-message-processing"
         - "nservicebus/building-nservicebus-from-source-files"
