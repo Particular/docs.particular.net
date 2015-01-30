@@ -8,8 +8,6 @@ public class SubscriptionSettings
         #region DisableAutoSubscribe
 
         Configure.Features.Disable<AutoSubscribe>();
-        Configure.With().UnicastBus()
-            .CreateBus();
 
         #endregion
     }
