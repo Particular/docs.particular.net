@@ -50,7 +50,7 @@ To get started with ServiceMatrix, create a new project.
 
 In Visual Studio select `File\New\Project` and Select 'NServiceBus System' under the Visual C\# project type. Target the .NET Framework 4.5 for this project. 
 
-![NewProject](images/servicematrix-reqresp-newproject.png)
+![NewProject](/servicematrix/images/servicematrix-reqresp-newproject.png)
 
 In the Solution name, type 'OnlineSales' (or any other name) for the name of your application.
 
