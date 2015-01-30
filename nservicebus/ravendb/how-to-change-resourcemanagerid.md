@@ -15,7 +15,7 @@ It is possible to configure RavenDB to use a different resource manager identifi
 * using the `connection string` adding a `ResourceManagerId` token as in the following sample:  
 
 ```xml
-<add name="myConnectionString"
+<add name="NServiceBus/Persistence"
           connectionString="Url=http://localhost:8080;ResourceManagerId=d5723e19-92ad-4531-adad-8611e6e05c8a" />
 ```
 
