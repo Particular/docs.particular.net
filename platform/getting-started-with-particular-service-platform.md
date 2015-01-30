@@ -58,7 +58,7 @@ In the Solution name, type 'OnlineSales' (or any other name) for the name of you
 
 You'll see that a solution folder has been created for your solution, as shown. 
 
-![New Solution](images/servicematrix-reqresp-freshsolution.png)
+![New Solution](/servicematrix/images/servicematrix-reqresp-freshsolution.png)
 
 A number of projects have been created for you, as shown in the Solution Explorer pane. The `Solution Items` folder is part of the ServiceMatrix infrastructure.
 
@@ -68,7 +68,7 @@ Two important folders are the `Contract` and `Internal` projects as they are whe
 
 Later you will see how messages from different services are partitioned in these projects. 
 
-Take a look at the design environment. The [Solution Builder](images/servicematrix-solutionbuilder.png "Solution Builder") on the left provides a hierarchy of the logical elements of the solution. If you  don't see a docked window in Visual Studio called Solution Builder,  open it via the View menu.
+Take a look at the design environment. The [Solution Builder](/servicematrix/images/servicematrix-solutionbuilder.png "Solution Builder") on the left provides a hierarchy of the logical elements of the solution. If you  don't see a docked window in Visual Studio called Solution Builder,  open it via the View menu.
 
 You should see folders in Solution Builder called 'Infrastructure', 'Libraries', 'Endpoints', and 'Services'.
 -   Infrastructure is where cross-cutting concerns like authentication and auditing are handled.
@@ -76,7 +76,7 @@ You should see folders in Solution Builder called 'Infrastructure', 'Libraries',
 -   Endpoints are where code is deployed as executable processes. They can be MVC web applications or [NServiceBus Hosts](../nservicebus/the-nservicebus-host.md).
 -   Services are logical containers for code that provide the structure for publish/subscribe events and command-processing. 
 
-The [NServiceBus Canvas](images/servicematrix-canvas.png "NServiceBus Canvas") is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise your solution will be created and illustrated here.
+The [NServiceBus Canvas](/servicematrix/images/servicematrix-canvas.png "NServiceBus Canvas") is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise your solution will be created and illustrated here.
 
 The dashed areas within the canvas and the buttons at the top are used to start building your solution.  
 
@@ -96,7 +96,7 @@ First you will create the endpoints for selling and processing.
 
 To create an endpoint on the canvas either select the dashed 'New Endpoint' area on the canvas or the button at the top of the canvas.
 
-![New Endpoint Popup](images/servicematrix-newendpoint.png)
+![New Endpoint Popup](/servicematrix/images/servicematrix-newendpoint.png)
 
 Name the endpoint `ECommerce` and choose ASP.NET MVC as the endpoint host.  
 
@@ -114,7 +114,7 @@ Create another endpoint called `OrderProcessing`.  This time select 'NServiceBus
 
 At this point your solution should have both endpoints on the NServiceBus canvas.
 
-![Canvas With Endpoints](images/servicematrix-canvaswithendpoints.png) 
+![Canvas With Endpoints](/servicematrix/images/servicematrix-canvaswithendpoints.png) 
 
 Notice how you can control the zoom with your mouse scroll wheel and drag the boxes around. This is how you will rearrange the canvas as more things are added to it.
 
@@ -122,35 +122,35 @@ Notice how you can control the zoom with your mouse scroll wheel and drag the bo
 
 Communication between the website and the back-end `OrderProcessing` endpoint will be done with a command message. To create this message use the drop-down menu of the `ECommerce` endpoint and select `Send Command` as shown.  
 
-![Send Command](images/servicematrix-ecommercesendcommand.png)
+![Send Command](/servicematrix/images/servicematrix-ecommercesendcommand.png)
 
 ## Creating Services 
 
 As you create the new command message, you'll also be prompted for the name of a service.  In NServiceBus a service will contain components responsible for facilitating the communication between the website and order processing.  Name the new service `Sales` and the command `SubmitOrder` as shown.
 
-![Sales Service and SubmitOrder Command](images/servicematrix-sales-submitorder.png)
+![Sales Service and SubmitOrder Command](/servicematrix/images/servicematrix-sales-submitorder.png)
   
 The canvas now illustrates the new Sales service with two components.  The `SubmitOrderSender` component sends the command and is deployed to the `ECommerce` endpoint.  The `SubmitOrderHandler` component is for receiving the command message and is shown in a 'Undeployed Components' box.  
 
-![Undeployed Sales Service](images/servicematrix-sales-undeployed.png)
+![Undeployed Sales Service](/servicematrix/images/servicematrix-sales-undeployed.png)
 
 ## Deploying Components
 
 You cannot build the solution with components that aren't deployed.  If you try to build at this point you will get an error indicating that the `Sales.SubmitOrderHandler` must be allocated to an endpoint.  Deploy the `SubmitOrderHandler` component by using its drop-down menu and the `Deploy Component` option.  When prompted, deploy the component to the `OrderProcessing` endpoint.
 
-![Deploy Component](images/servicematrix-deploysubmitorder.png)
+![Deploy Component](/servicematrix/images/servicematrix-deploysubmitorder.png)
 
 At this point, with a little reorganizing, the canvas should nicely illustrate the `ECommerce` and `OrderProcessing` endpoints using the `Sales` service components to send and process the `SubmitOrder` command.
 
-![Canvas with Service Deployed to Endpoints](images/servicematrix-canvaswiredup.png)
+![Canvas with Service Deployed to Endpoints](/servicematrix/images/servicematrix-canvaswiredup.png)
 
 By deploying these components to each endpoint, the `Sales` service will afford your systems the capability to easily communicate reliably and durably using a command message containing the data for the submitted order.  
 
-In addition to illustrating these in the canvas the [Solution Builder](images/servicematrix-solutionbuilder-salesservice.png "Solution Builder With Sales") now shows the `SubmitOrder` command in the commands folder.  It also illustrates the components and the fact they send and process the `SubmitOrder` command accordingly. You will notice there is now code that has been generated in the Visual Studio project as well.
+In addition to illustrating these in the canvas the [Solution Builder](/servicematrix/images/servicematrix-solutionbuilder-salesservice.png "Solution Builder With Sales") now shows the `SubmitOrder` command in the commands folder.  It also illustrates the components and the fact they send and process the `SubmitOrder` command accordingly. You will notice there is now code that has been generated in the Visual Studio project as well.
 
 ## Review the Message
 
-The `SubmitOrder` command is a simple message meant to communicate the order between your endpoints.  To view the generated class file, click the drop-down menu of the `SubmitOrder` command and select View Code [as shown](images/servicematrix-submitorderviewcode.png "View SubmitOrder Code"). This is  very simple C# class.  You can add all sorts of properties to your message to represent the order data: strings,  integers, arrays, dictionaries, etc. Just make sure to provide both a get accessor and a set mutator for each property. 
+The `SubmitOrder` command is a simple message meant to communicate the order between your endpoints.  To view the generated class file, click the drop-down menu of the `SubmitOrder` command and select View Code [as shown](/servicematrix/images/servicematrix-submitorderviewcode.png "View SubmitOrder Code"). This is  very simple C# class.  You can add all sorts of properties to your message to represent the order data: strings,  integers, arrays, dictionaries, etc. Just make sure to provide both a get accessor and a set mutator for each property. 
 
 ```C#
 namespace OnlineSales.Internal.Commands.Sales
@@ -264,11 +264,11 @@ Now press `F5` or press the 'Play' button in Visual Studio to debug the applicat
 
 The ECommerce website generated by ServiceMatrix should look like the image below.
 
-![ECommerce Website](images/servicematrix-demowebsite.png)
+![ECommerce Website](/servicematrix/images/servicematrix-demowebsite.png)
 
 Notice the 'Try NServiceBus' box and the 'Test Messages' button on the right half.  When you click the button another page opens and provides a button to publish the `SubmitOrder` to the bus as shown.
 
-![Send Message MVC](images/servicematrix-demowebsite-sendmvc.png)
+![Send Message MVC](/servicematrix/images/servicematrix-demowebsite-sendmvc.png)
 
 To send the `SubmitOrder` message just click the word 'Send!'. Go ahead and click to send a few times.
 
@@ -276,7 +276,7 @@ To send the `SubmitOrder` message just click the word 'Send!'. Go ahead and clic
 
 Since you selected the NServiceBus host for your OrderProcessing endpoint it is launched as a console application for convenient development.  Your console window should look like this.
 
-![OrderProcessing Console](images/servicematrix-reqresp-orderprocessor.png)
+![OrderProcessing Console](/servicematrix/images/servicematrix-reqresp-orderprocessor.png)
 
 As you click the Send button in the website, you will see the console indicate that the `OrderProcessing` endpoint has received the messages.
 
@@ -284,7 +284,7 @@ As you click the Send button in the website, you will see the console indicate t
 
 By default, when you run a ServiceMatrix project, [ServiceInsight](/serviceinsight) is launched.  ServiceInsight is another Particular Service Platform application that provides a detailed runtime view of your solution.  It will illustrate and enumerate the messages, endpoints and data in your solution as you create an debug it.  To understand how to use ServiceInsight to complement ServiceMatrix please see [this article on that topic](/servicematrix/servicematrix-serviceinsight.md "Using ServiceInsight and ServiceMatrix").  
 
-![ServiceInsight](images/serviceinsight-screen.jpg)
+![ServiceInsight](/servicematrix/images/serviceinsight-screen.jpg)
 
 ### Congratulations!
 

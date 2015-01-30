@@ -17,15 +17,15 @@ The Particular Service Platform source code, current and previous releases and t
 
 | | | | 
 |:--- |:--- |:--- |
-| ![](images/nservicebus-logo.png) | [Releases](https://github.com/Particular/NServiceBus/tags) | [Release Notes](https://github.com/Particular/NServiceBus/releases)|
+| ![](/menu/nservicebus-logo.png) | [Releases](https://github.com/Particular/NServiceBus/tags) | [Release Notes](https://github.com/Particular/NServiceBus/releases)|
 ||||
-| ![](images/servicematrix-logo.png) | [Releases](https://github.com/Particular/ServiceMatrix/tags)|[Release Notes](https://github.com/Particular/ServiceMatrix/releases)|
+| ![](/menu/servicematrix-logo.png) | [Releases](https://github.com/Particular/ServiceMatrix/tags)|[Release Notes](https://github.com/Particular/ServiceMatrix/releases)|
 ||||
-| ![](images/serviceinsight-logo.png) | [Releases](https://github.com/Particular/ServiceInsight/tags)|[Release Notes](https://github.com/Particular/ServiceInsight/releases)|
+| ![](/menu/serviceinsight-logo.png) | [Releases](https://github.com/Particular/ServiceInsight/tags)|[Release Notes](https://github.com/Particular/ServiceInsight/releases)|
 ||||
-| ![](images/servicepulse-logo.png) | [Releases](https://github.com/Particular/ServicePulse/tags)|[Release Notes](https://github.com/Particular/ServicePulse/releases)|
+| ![](/menu/servicepulse-logo.png) | [Releases](https://github.com/Particular/ServicePulse/tags)|[Release Notes](https://github.com/Particular/ServicePulse/releases)|
 ||||
-| ![](images/servicecontrol-logo.png) | [Releases](https://github.com/Particular/ServiceControl/tags)|[Release Notes](https://github.com/Particular/ServiceControl/releases)|
+| ![](/menu/servicecontrol-logo.png) | [Releases](https://github.com/Particular/ServiceControl/tags)|[Release Notes](https://github.com/Particular/ServiceControl/releases)|
 
 
 ### NServiceBus Transports
