@@ -23,8 +23,6 @@ summary: NServiceBus Documentation Table of Contents
 
 - [Overview](overview.md)
 - [NServiceBus Step by Step Guide](nservicebus-step-by-step-guide.md)
-- [NServiceBus Step by Step Guide Fault Tolerance Code First](nservicebus-step-by-step-guide-fault-tolerance-code-first.md)
-- [Getting Started Fault Tolerance](nservicebus-step-by-step-guide-fault-tolerance-code-first.md)
 - [Architectural Principles](architectural-principles.md)
 - [Transactions Message Processing](transactions-message-processing.md)
 - [Building NServiceBus from Source Files](building-nservicebus-from-source-files.md)

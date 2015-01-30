@@ -2,19 +2,11 @@
 title: Fault Tolerance
 summary: See how NServiceBus messaging can get past all sorts of failure scenarios.
 tags: []
+redirects:
+- /nservicebus/nservicebus-step-by-step-guide-fault-tolerance-code-first.md
 ---
 
-## Durable messaging
-
-In [the previous section](nservicebus-step-by-step-guide.md) you've seen how a send to send a messages, see how messaging can get past all sorts of failure scenarios:
-
-1.  [Durable Messaging Demo](#Durable-Messaging-Demo)
-2.  [Fault tolerance](#Fault-tolerance)
-3.  [Retries, errors, and auditing](#Retries-errors-and-auditing)
-
-The complete solution code can be found [here](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Documentation/002_OrderingFaultTolerance)
-
-### Durable Messaging Demo
+### Durable Messaging
 
 *  Run the 'Ordering' solution again and hit Enter on the 'Client' console a couple of times to make sure the messages are being processed. 
    
@@ -42,7 +34,7 @@ Consider scenarios where the processing of a message fails. This could be due to
 
 If the problem is something more protracted, like a third party web service going down or a database being unavailable, it makes sense to try again sometime later.
 
-This is called the [Second Level Retries](second-level-retries.md) (SLR) functionality of NServiceBus.
+This is called the [Second Level Retries](/nservicebus/second-level-retries.md) (SLR) functionality of NServiceBus.
 
 SLR is enabled by default, the default policy will defer the message
 `10*N` (where N is number of retries) seconds 3 times (60 sec total), resulting in a wait of 10s, then 20s, and then 30s; after which the message moves to the configured ErrorQueue.
@@ -50,24 +42,11 @@ SLR is enabled by default, the default policy will defer the message
 
 So, let's make the processing of messages in the 'Server' endpoint fail.
 
-Throw an exception in the `PlaceOrderHandler` code like this:
+Open `PlaceOrderHandler`:
 
-```C#
-namespace Ordering.Server
-{
-    public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
-    {
-        public IBus Bus { get; set; }
+<!-- import PlaceOrderHandler -->
 
-        public void Handle(PlaceOrder message)
-        {
-            Console.WriteLine(@"Order for Product:{0} placed with id: {1}", message.Product, message.Id);
-
-            throw new Exception("Uh oh - something went wrong....");
-        }
-    }
-}
-```
+Note the commented out `throw new Exception`. Uncomment that line.
 
 Run your solution again, but this time use `Ctrl-F5` so that Visual Studio does not break each time the exception is thrown, sending a message from the 'Client' console.
 
@@ -87,7 +66,7 @@ If a message fails continuously (due to a bug in the system, for example), it ul
 
 Since administrators must monitor these error queues, it is recommended that all endpoints use the same error queue.
 
-Read more about [how to configure retries](second-level-retries.md) .
+Read more about [how to configure retries](/nservicebus/second-level-retries.md).
 
 Make sure you remove the code which throws an exception before going on.
 
