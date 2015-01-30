@@ -85,7 +85,7 @@
       Title: "Cloud Hosting"
       Articles: 
         - "nservicebus/hosting-nservicebus-in-windows-azure"
-		- "nservicebus/windows-azure-transport"
+        - "nservicebus/windows-azure-transport"
         - "nservicebus/understanding-transactions-in-windows-azure"
         - "nservicebus/using-multiple-azure-storage-accounts-for-scaleout"		
     - 
