@@ -80,8 +80,14 @@
         - "nservicebus/more-on-profiles"
         - "nservicebus/nservicebus-32-bit-x86-host-process"
         - "nservicebus/hosting-nservicebus-in-your-own-process-v4.x"
+    - 
+      Name: "cloud-hosting"
+      Title: "Cloud Hosting"
+      Articles: 
+        - "nservicebus/hosting-nservicebus-in-windows-azure"
+		- "nservicebus/windows-azure-transport"
         - "nservicebus/understanding-transactions-in-windows-azure"
-        - "nservicebus/windows-azure-transport"
+        - "nservicebus/using-multiple-azure-storage-accounts-for-scaleout"		
     - 
       Name: "management-and-monitoring"
       Title: "Management And Monitoring"

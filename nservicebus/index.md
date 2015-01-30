@@ -74,7 +74,13 @@ summary: NServiceBus Documentation Table of Contents
 - [Profiles for NServiceBus Host](profiles-for-nservicebus-host.md)
 - [More on Profiles](more-on-profiles.md)
 - [NServiceBus 32 Bit X86 Host Process](nservicebus-32-bit-x86-host-process.md)
+
+## Cloud Hosting
+
 - [Hosting NServiceBus in Windows Azure](hosting-nservicebus-in-windows-azure.md)
+- [Windows Azure Transports](windows-azure-transport.md)
+- [Understanding Transactions in Windows Azure](understanding-transactions-in-windows-azure.md)
+- [Using Multiple Azure Storage Accounts For Scaleout](using-multiple-azure-storage-accounts-for-scaleout.md)
 
 ## Management and Monitoring
 
