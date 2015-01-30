@@ -20,7 +20,7 @@ Use constructor injection:
 
     public class H1 : IMessageHandler
     {
-         private IBus _bus;
+         IBus _bus;
          public H1(IBus bus)
          {
               _bus = bus;
