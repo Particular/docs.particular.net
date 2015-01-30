@@ -45,7 +45,7 @@ The `.ForMvc` extension method injects `IBus` into the controllers by implementi
  
 The NServiceBus builder registers and instantiates `IControllerActivator` so that when the controllers are requested, the NServiceBus builder has the opportunity to inject the `IBus` implementation into their `IBus` public property.
 
-Read [how the IBus is injected into the controllers](/nservicebus/injecting-the-bus-into-asp.net-mvc-controller.md), and also [David Boike's article: Injecting NServiceBus into ASP.NET MVC 3](http://www.make-awesome.com/2011/02/injecting-nservicebus-into-asp-net-mvc-3/).
+Read [how the IBus is injected into the controllers](/samples/web/asp-mvc-injecting-bus/sample.md).
 
 ## Sending a message
 
