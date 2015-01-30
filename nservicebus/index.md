@@ -25,7 +25,6 @@ summary: NServiceBus Documentation Table of Contents
 - [NServiceBus Step by Step Guide](nservicebus-step-by-step-guide.md)
 - [Architectural Principles](architectural-principles.md)
 - [Transactions Message Processing](transactions-message-processing.md)
-- [Building NServiceBus from Source Files](building-nservicebus-from-source-files.md)
 - [NServiceBus and WCF](nservicebus-and-wcf.md)
 - [NServiceBus and WebSphere Sonic](nservicebus-and-websphere-sonic.md)
 - [NServiceBus and BizTalk](nservicebus-and-biztalk.md)

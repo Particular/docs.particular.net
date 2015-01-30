@@ -9,7 +9,6 @@
         - "nservicebus/NServiceBus-Step-by-Step-Guide"
         - "nservicebus/architectural-principles"
         - "nservicebus/transactions-message-processing"
-        - "nservicebus/building-nservicebus-from-source-files"
         - "nservicebus/nservicebus-and-wcf"
         - "nservicebus/nservicebus-and-websphere-sonic"
         - "nservicebus/nservicebus-and-biztalk"
