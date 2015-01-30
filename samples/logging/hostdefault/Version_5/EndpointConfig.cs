@@ -6,7 +6,7 @@ public class EndpointConfig :
 {
     public void Customize(BusConfiguration configuration)
     {
-        configuration.EndpointName("HostDefaultLoggingSample");
+        configuration.EndpointName("Samples.Logging.HostDefault");
         configuration.UseSerialization<JsonSerializer>();
         configuration.EnableInstallers();
         configuration.UsePersistence<InMemoryPersistence>();

@@ -84,6 +84,7 @@
         - "nservicebus/nservicebus-32-bit-x86-host-process"
         - "nservicebus/hosting-nservicebus-in-your-own-process-v4.x"
         - "nservicebus/understanding-transactions-in-windows-azure"
+        - "nservicebus/windows-azure-transport"
     - 
       Name: "management-and-monitoring"
       Title: "Management And Monitoring"
@@ -152,12 +153,6 @@
         - "nservicebus/how-to-register-a-custom-serializer"
         - "nservicebus/gateway-service-point-manager"
         - "nservicebus/plugin-custom-databus"
-    - 
-      Name: "samples"
-      Title: "Samples"
-      Articles: 
-        - "nservicebus/generic-host-sample"
-        - "nservicebus/windows-azure-transport"
 - 
   Name: "ServiceMatrix"
   Topics: 

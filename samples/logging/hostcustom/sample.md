@@ -9,7 +9,7 @@ tags:
 
 This sample shows how to customize logging when running inside the NServiceBus host.
 
-### Configuring logging Logging
+### Configuring logging
 
 <!-- import Config --> 
   

@@ -19,7 +19,7 @@ class Program
         #endregion
 
         var busConfig = new BusConfiguration();
-        busConfig.EndpointName("LoggingAppenderSample");
+        busConfig.EndpointName("Samples.Log4Net.Appender");
         busConfig.UseSerialization<JsonSerializer>();
         busConfig.EnableInstallers();
         busConfig.UsePersistence<InMemoryPersistence>();

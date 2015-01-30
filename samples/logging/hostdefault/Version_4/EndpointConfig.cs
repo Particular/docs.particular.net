@@ -9,7 +9,7 @@ public class EndpointConfig :
     {
         Configure.Serialization.Json();
         var configure = Configure.With();
-        configure.DefineEndpointName("HostDefaultLoggingSample");
+        configure.DefineEndpointName("Samples.Logging.HostDefault");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();

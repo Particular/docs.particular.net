@@ -8,7 +8,7 @@ class Program
     {
         Configure.Serialization.Json();
         var configure = Configure.With();
-        configure.DefineEndpointName("LoggingAppenderSample");
+        configure.DefineEndpointName("Samples.Log4Net.Appender");
 
         #region ConfigureAppender
         configure.Log4Net<MyConsoleAppender>(appender => { appender.Color = ConsoleColor.Green; });

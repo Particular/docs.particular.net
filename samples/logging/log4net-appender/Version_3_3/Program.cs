@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         var configure = Configure.With();
-        configure.DefineEndpointName("Samples.LoggingAppender");
+        configure.DefineEndpointName("Samples.Log4Net.Appender");
         #region ConfigureAppender
         configure.Log4Net<MyConsoleAppender>(appender => { appender.Color = ConsoleColor.Green; });
         #endregion
