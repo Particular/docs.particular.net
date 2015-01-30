@@ -50,7 +50,7 @@ To subscribe to a message, you must have a `UnicastBusConfig` entry, as follows:
 </UnicastBusConfig>
 ```
 
-And a`UnicastBusConfig` config section.  
+And a `UnicastBusConfig` config section.  
 
 ```XML
 <configuration>
