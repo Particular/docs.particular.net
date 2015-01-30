@@ -6,25 +6,17 @@ class Program
 {
     static void Main()
     {
-        #region ConfigureLogging
+        Configure.Serialization.Json();
         var configure = Configure.With();
-        configure.DefineEndpointName("Samples.Logging.Default");
-        
-        //Configures a ConsoleAppender with a threshold of Debug
-        configure.Log4Net();
-        #endregion
-
+        configure.DefineEndpointName("Samples.Mvc.Server");
         configure.DefaultBuilder();
-        configure.MsmqTransport();
+        configure.UseTransport<Msmq>();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
-        configure.JsonSerializer();
         var bus = configure.UnicastBus()
             .CreateBus()
             .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
-
-        bus.SendLocal(new MyMessage());
 
         Console.WriteLine("\r\nPress any key to stop program\r\n");
         Console.ReadKey();

@@ -9,7 +9,7 @@ class Program
 
         #region ConfigureLogging
         var busConfig = new BusConfiguration();
-        busConfig.EndpointName("DefaultLoggingSample");
+        busConfig.EndpointName("Samples.Logging.Default");
         //Note that no config is required in V5 since logging is enabled by default
         #endregion
         busConfig.UseSerialization<JsonSerializer>();

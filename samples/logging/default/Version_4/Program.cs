@@ -9,7 +9,7 @@ class Program
         Configure.Serialization.Json();
         #region ConfigureLogging
         var configure = Configure.With();
-        configure.DefineEndpointName("DefaultLoggingSample");
+        configure.DefineEndpointName("Samples.Logging.Default");
 
         //Configures a ConsoleAppender with a threshold of Debug
         //Note that log4net.dll needs to exist in the bin directory
