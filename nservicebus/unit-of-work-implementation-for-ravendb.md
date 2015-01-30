@@ -1,5 +1,5 @@
 ---
-title: Unit of Work Implementation For RavenDB
+title: Unit of Work For RavenDB
 summary: Avoid repeating code in your message handlers by implementing the NServiceBus Unit of Work for RavenDB.
 tags: []
 ---
