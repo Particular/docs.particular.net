@@ -1,5 +1,5 @@
 ---
-title: NServiceBus Message Mutators Sample
+title: Message Mutators
 summary: 'Change messages by plugging custom logic in to a couple of interfaces, encrypting as required. '
 tags:
 - Mutator
