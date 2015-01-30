@@ -1,5 +1,5 @@
 ---
-title: Connecting to RavenDB from NServiceBus
+title: Connecting to RavenDB
 summary: For persistence, tell NServiceBus to use RavenDB, or override the defaults.
 tags:
 - RavenDB
