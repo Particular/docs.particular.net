@@ -45,7 +45,7 @@ Note it is highly recommended that you backup your Raven database prior to upgra
 
 NServiceBus V5.0 requires RavenDB v2.5 build 2908 or a higher build number for version 2.5. RavenDB version 3.0 is currently not supported.  
 
-NOTE: If you already have RavenDB 2.0 installed from a previous NServiceBus V4.0 or prior version and want to run v2.5, you can uninstall the service by finding the Raven.Server.exe executable on your machine and running it from the command line with /uninstall. [Read this document](using-ravendb-uninstalling-v4.md) for full removal instructions.
+NOTE: If you already have RavenDB 2.0 installed from a previous NServiceBus V4.0 or prior version and want to run v2.5, you can uninstall the service by finding the Raven.Server.exe executable on your machine and running it from the command line with /uninstall. [Read this document](using-ravendb-uninstalling-v4.md) for full removal instructions. Note that the v2.5 download will be unlicensed, so you will need to either copy the license.xml file from the v2.0 installation folder to the v2.5 installation folder, contact Particular Software and request a v2.5 license file, or use your own license file.  
 
 NServiceBus V4.0 is tested and compatible with RavenDB version 2261 and RavenDB v2.
 
