@@ -3,7 +3,7 @@ title: Handler Ordering
 summary: Handler Ordering
 tags: []
 redirects:
-- how-do-i-specify-the-order-in-which-handlers-are-invoked
+- nservicebus/how-do-i-specify-the-order-in-which-handlers-are-invoked
 ---
 
 Handler ordering allows you which handlers are grouped first and the order withing that group. 

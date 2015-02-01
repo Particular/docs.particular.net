@@ -3,7 +3,7 @@ title: Message Headers
 summary: Access and manipulate the built in NServiceBus headers or add custom headers.
 tags: []
 redirects:
-- how-do-i-get-technical-information-about-a-message
+- nservicebus/how-do-i-get-technical-information-about-a-message
 ---
 
 Extra information about a message is communicated over the transport in a serialized collection of key value pairs in a similar way to how http headers are used.

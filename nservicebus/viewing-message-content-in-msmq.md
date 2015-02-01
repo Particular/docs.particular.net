@@ -3,7 +3,7 @@ title: Viewing message content in MSMQ
 summary: See queues and message contents
 tags: []
 redirects:
-- how-can-i-see-the-queues-and-messages-on-a-machine
+- nservicebus/how-can-i-see-the-queues-and-messages-on-a-machine
 ---
 
 ### Visual Studio

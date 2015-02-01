@@ -3,7 +3,7 @@ title: Using Express Messages
 summary: When and how to use Express Messages
 tags: []
 redirects:
-- how-do-i-specify-store-forward-for-a-message
+- nservicebus/how-do-i-specify-store-forward-for-a-message
 ---
 
 ##MSMQ Transport

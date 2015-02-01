@@ -86,6 +86,7 @@ When renaming an existing article to a new name, please add the `redirects:` sec
  
 * Values specified in the `redirects` section must be lower cased.
 * Multiple values can be specified for the redirects, same as `tags`.
+* Values are fully qualified
 
 ## An example header for an article
 
@@ -102,8 +103,8 @@ tags:
 - Debugging
 
 redirects:
-- sm-si
-- debugging-servicematrix
+- servicematrix/sm-si
+- servicematrix/debugging-servicematrix
 
 ---
 
