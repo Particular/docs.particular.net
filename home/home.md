@@ -192,9 +192,10 @@
     </a>
   </div>
   <div class="ic">
-    <a href="http://particular.net/HandsOnLabs" class="img">
-      <img src="/home/hand-on-labs.png" /><img src="/home/hand-on-labs-hover.png" class="hover"/><br/>
-      Hands-On Labs
+    <a href="https://groups.google.com/forum/#!forum/particularsoftware" class="img">
+      <img src="/home/discussion-large.png" />
+      <img src="/home/discussion-large-hover.png" class="hover"/><br/>
+      Discussion group
     </a>
   </div>
   <div class="ic">
@@ -210,7 +211,6 @@
 </div>
 <div class="block middle">
 <div class="left2">
-    <h2>External training resources </h2>
     <a href="http://www.pluralsight.com/courses/table-of-contents/nservicebus" class="img">
       <img src="/home/videos-small.png" />
       <img src="/home/videos-small-hover.png" class="hover"/>
@@ -227,11 +227,10 @@
     <div style="clear: both"></div>
   </div>
   <div class="right1">
-    <h2>Community help</h2>
-    <a href="https://groups.google.com/forum/#!forum/particularsoftware" class="img">
-      <img src="/home/discussion.png" />
-      <img src="/home/discussion-hover.png" class="hover"/>
-      <h3>Discussion group</h3>
+    <a href="http://particular.net/HandsOnLabs" class="img">
+      <img src="/home/hand-on-labs-small.png" />
+      <img src="/home/hand-on-labs-small-hover.png" class="hover"/>
+      <h3>Hands-On Labs</h3>
     </a>
     <div style="clear: both"></div>
     <a href="http://stackoverflow.com/questions/tagged/nservicebus" class="img">
