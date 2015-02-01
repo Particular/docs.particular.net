@@ -3,7 +3,7 @@ title: Versioning
 summary: Illustrates message evolution over time using interfaces.
 tags: []
 redirects:
- - /nservicebus/versioning-sample.md
+ - /nservicebus/versioning-sample
 ---
 
 In this sample, there are two message projects: `V1.Messages` and `V2.Messages`:

@@ -4,7 +4,7 @@ summary: How to encrypt message data.
 tags:
 - Encryption
 redirects:
-- /nservicebus/encryption-sample.md
+- /nservicebus/encryption-sample
 ---
 
 ## Run the solution.

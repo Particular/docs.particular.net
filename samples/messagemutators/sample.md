@@ -5,7 +5,7 @@ tags:
 - Mutator
 - Changing message content
 redirects:
-- \nservicebus\nservicebus-message-mutators-sample.md
+- \nservicebus\nservicebus-message-mutators-sample
 ---
 
 1.  Run the solution.

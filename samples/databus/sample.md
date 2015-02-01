@@ -6,7 +6,7 @@ tags:
 - MSMQ Limit
 - Large messages
 redirects:
-- /nservicebus/attachments-databus-sample.md
+- /nservicebus/attachments-databus-sample
 ---
 
  1. Run the solution. Two console applications start.

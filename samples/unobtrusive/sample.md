@@ -9,7 +9,7 @@ tags:
 - Events
 - Conventions
 redirects:
-- /nservicebus/unobtrusive-sample.md
+- /nservicebus/unobtrusive-sample
 ---
 
 Run the solution. Two console applications should start up, `Client` and `Server`.
