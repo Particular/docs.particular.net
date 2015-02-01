@@ -3,7 +3,7 @@ title: Fault Tolerance
 summary: See how NServiceBus messaging can get past all sorts of failure scenarios.
 tags: []
 redirects:
-- /nservicebus/nservicebus-step-by-step-guide-fault-tolerance-code-first
+- nservicebus/nservicebus-step-by-step-guide-fault-tolerance-code-first
 ---
 
 ### Durable Messaging

@@ -7,7 +7,7 @@ tags:
 - Durability
 - Fault Tolerance
 redirects:
-- /nservicebus/publish-subscribe-sample
+- nservicebus/publish-subscribe-sample
 --- 
 
 ## Reviewing the solution

@@ -6,7 +6,7 @@ tags:
 - Messaging Patterns
 - Full Duplex
 redirects:
-- /nservicebus/full-duplex-sample
+- nservicebus/full-duplex-sample
 ---
 
 
