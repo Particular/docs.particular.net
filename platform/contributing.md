@@ -5,8 +5,6 @@ tags:
 - Platform
 ---
 
-# How to contribute
-
 We love getting patches to NServiceBus from our community. Here is a few guidelines that we
 need contributors to follow so that we can have a chance of keeping on top of things.
 
