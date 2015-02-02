@@ -7,6 +7,7 @@ class Scheduling
     {
         Schedule schedule = null;
         IBus bus = null;
+
         #region ScheduleTask
         // 'Schedule' is an instance class that can be resolved from the container.
         // To send a message every 5 minutes
@@ -18,11 +19,22 @@ class Scheduling
         #endregion
     }
 
+    public void ScheduleUniqueTask()
+    {
+        Schedule schedule = null;
+
+        #region ScheduleUniqueTask
+
+        schedule.UniqueAction(TimeSpan.FromMinutes(5), "Unique task name", () => { });
+
+        #endregion
+    }
+
     void SomeCustomMethod()
     {
     }
-
 }
+
 class CallLegacySystem
 {
 }

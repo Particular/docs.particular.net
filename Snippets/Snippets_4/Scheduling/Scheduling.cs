@@ -6,6 +6,7 @@ class Scheduling
     public void ScheduleTask()
     {
         IBus bus = null;
+
         #region ScheduleTask
         // 'Schedule' is a static class that can be accessed anywhere. 
         // To send a message every 5 minutes
@@ -18,6 +19,17 @@ class Scheduling
 
         #endregion
     }
+
+    public void ScheduleUniqueTask()
+    {
+        #region ScheduleUniqueTask
+
+        Schedule.Every(TimeSpan.FromMinutes(5))
+            .UniqueAction("Unique task name", () => { });
+
+        #endregion
+    }
+
 
     void SomeCustomMethod()
     {
