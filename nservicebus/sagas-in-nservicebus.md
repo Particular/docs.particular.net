@@ -53,7 +53,7 @@ Since V5 it is possible to specify the mapping to the message using expressions 
 
 <!-- import saga-find-by-expression -->
 
-Previous releases (3.x and 4.x) of NServiceBus had slightly different API for configuring the mapping. Following snippets show the mapping in V4 and V3 respecively:
+Previous releases (3.x and 4.x) of NServiceBus had slightly different API for configuring the mapping. Following snippets show the mapping in V4 and V3 respectively:
 
 <!-- import saga-with-started-by-and-correlation-id-set -->
 
@@ -68,7 +68,7 @@ Read more about the [Unique property and concurrency](nservicebus-sagas-and-conc
 
 ## Notifying callers of status
 
-While you always have the option of publishing a message at any time in a saga, sometimes you want to notify the original caller who caused the saga to be started of some interm state that isn't relevant to other subscribers.
+While you always have the option of publishing a message at any time in a saga, sometimes you want to notify the original caller who caused the saga to be started of some interim state that isn't relevant to other subscribers.
 
 If you tried to use `Bus.Reply()` or `Bus.Return()` to communicate with the caller, that would only achieve the desired result in the case where the current message came from that client, and not in the case where any other partner sent a message arriving at that saga. For this reason, you can see that the saga data contains the original client's return address. It also contains the message ID of the original request so that the client can correlate status messages on its end.
 
@@ -80,7 +80,7 @@ This is one of the methods on the saga base class that would be very difficult t
 
 ## Timeouts
 
-When working in a message-driven environment, you cannot make assumptions about when the next message will arrive. While the connectionless nature of messaging prevents our system from bleeding expensive resources while waiting, there is usually an upper limit on how long from a business perspective to wait. At that point, some business-specific action should be taken, as shown:
+When working in a message-driven environment, you cannot make assumptions about when the next message will arrive. While the connection-less nature of messaging prevents our system from bleeding expensive resources while waiting, there is usually an upper limit on how long from a business perspective to wait. At that point, some business-specific action should be taken, as shown:
 
 <!-- import saga-with-timeout -->
 
