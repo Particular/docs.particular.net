@@ -4,9 +4,9 @@ summary: 'Introduction to ServicePulse monitoring events'
 tags: [ServicePulse, Concepts, Monitoring Events]
 ---
 
-ServicePulse is the Particular platform monitoring front-end, powered by ServiceControl. ServicePulse gives you an overview of the system health, based on endpoints heartbeats and custom checks, and a detailed view of all the failed messages.
+ServicePulse gives you an overview of the system health, based on endpoints heartbeats and custom checks, and a detailed view of all the failed messages.
 
-Note: You can consume the same information not only via the ServicePulse web interface but also subscribing to ServicePulse events broadcasted by the ServiceControl endpoint.
+Note: You can consume the same information not only via the ServicePulse web interface but also subscribing to [ServicePulse events broadcasted by the ServiceControl endpoint](custom-notification-and-alerting-using-servicecontol-events.md).
 
 ### Heartbeats
 
@@ -18,7 +18,7 @@ The `HeartbeatStopped` event is published each time the monitoring infrastructur
 
 The `HeartbeatRestored` event is published to notify that a previously stopped heartbeat has been restored and the related endpoint is running as expected.
 
-More details on [Endpoints and Heartbeats in ServicePulse](http://docs.particular.net/servicepulse/intro-endpoints-heartbeats).
+More details on [Endpoints and Heartbeats in ServicePulse](intro-endpoints-heartbeats.md).
 
 ### MessageFailed
 
@@ -28,10 +28,10 @@ The `MessageFailed` event is published to notify that a message has failed all t
 * `RepeatedFailure`: The message has failed multiple times;
 * `ArchivedFailure`: The message has been archived;
 
-More details on [Failed Message Monitoring in ServicePulse](http://docs.particular.net/servicepulse/intro-failed-messages).
+More details on [Failed Message Monitoring in ServicePulse](intro-failed-messages.md).
 
 ### Custom Check / Periodic Check
 
-Custom checks allows an endpoint to notify ServicePulse if a condition, that is business related, is not met. The endpoint heartbeat signals that the endpoint is running, a custom check can add more information that are business related, such as the endpoint is running and can access the external resources required to operate correctly.
+Custom checks allow an endpoint to notify ServicePulse if a business related condition is not met. The endpoint heartbeat signals that the endpoint is running, a custom check can add more information, such as the endpoint is running and can access the external resources required to operate correctly.
 
-More details on [Custom Check Monitoring in ServicePulse](http://docs.particular.net/servicepulse/intro-endpoints-custom-checks). 
+More details on [Custom Check Monitoring in ServicePulse](intro-endpoints-custom-checks.md).
