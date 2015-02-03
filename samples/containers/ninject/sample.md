@@ -2,7 +2,7 @@
 title: Ninject Container Usage
 summary: How to use the Ninject container in an endpoint.
 tags:
-- Logging
+- Container
 ---
 
 ### Configuring NServiceBus to use the container 

@@ -2,7 +2,7 @@
 title: StructureMap Container Usage
 summary: How to use the StructureMap container in an endpoint.
 tags:
-- Logging
+- Container
 ---
 
 ### Configuring NServiceBus to use the container 

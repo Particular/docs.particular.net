@@ -2,7 +2,7 @@
 title: Spring Container Usage
 summary: How to use the Spring container in an endpoint.
 tags:
-- Logging
+- Container
 ---
 
 ### Configuring NServiceBus to use the container 
