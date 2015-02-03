@@ -180,7 +180,7 @@
 </div>
 <div class="block middle">
   <div class="ic">
-    <a href="/samples/step-by-step/sample.md" class="img">
+    <a href="/samples/step-by-step/" class="img">
       <img src="/home/getting-started.png" /><img src="/home/getting-started-hover.png" class="hover"/><br/>
       Getting Started
     </a>
@@ -193,8 +193,7 @@
   </div>
   <div class="ic">
     <a href="https://groups.google.com/forum/#!forum/particularsoftware" class="img">
-      <img src="/home/discussion-large.png" />
-      <img src="/home/discussion-large-hover.png" class="hover"/><br/>
+      <img src="/home/discussion-large.png" /><img src="/home/discussion-large-hover.png" class="hover"/><br/>
       Discussion group
     </a>
   </div>
