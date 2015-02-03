@@ -44,10 +44,3 @@ While it does take some getting used to, code written using NServiceBus is quite
 
 > It took a few weeks to grok the concepts involved in messaging but our devs needed only a week to implement a pub/sub solution which is testament to how straightforward NServiceBus makes the coding. We have just started our NServiceBus journey but already are excited about what it has to offer.
 > -- Charlie Barker
-
-## Next steps
-
--   [Download NServiceBus](http://particular.net/downloads)
--   Look at the differences between NServiceBus and [WCF](nservicebus-and-wcf.md), [BizTalk](nservicebus-and-biztalk.md), and [WebSphere or Sonic](nservicebus-and-websphere-sonic.md)
-
-
