@@ -12,6 +12,7 @@ summary: ServicePulse Documentation Table of Contents
 - [Monitoring Endpoints in ServicePulse](intro-endpoints-heartbeats.md)
 - [Monitoring Failed Messages](intro-failed-messages.md)
 - [Developing and monitoring Custom Checks](intro-endpoints-custom-checks.md)
+- [ServicePulse events](event-types.md)
 
 ### Presentations and Webinars
 
