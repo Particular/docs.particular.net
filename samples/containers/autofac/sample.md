@@ -2,7 +2,7 @@
 title: Autofac Container Usage
 summary: How to use the Autofac container in an endpoint.
 tags:
-- Logging
+- Container
 ---
 
 ### Configuring NServiceBus to use the container 
