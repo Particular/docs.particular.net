@@ -166,12 +166,20 @@ And checking `Ignore YAML Front-matter`
 
 ## Samples
 
- * Samples are located here https://github.com/Particular/docs.particular.net/tree/master/Samples
- * They are linked to from the home page and are rendered here http://docs.particular.net/samples/
+### Conventions
+
+ * Samples are located here https://github.com/Particular/docs.particular.net/tree/master/Samples.
+ * They are linked to from the home page and are rendered here http://docs.particular.net/samples/.
  * Any directory in that structure with a sample.md will be considered a "root for a sample" or Sample Root.
- * A Sample Root may not contain an sample.md in subdirectories
- * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename
- * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root  
+ * A Sample Root may not contain an sample.md in subdirectories.
+ * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
+ * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.  
+
+### Recommendations
+
+ * Avoid using screen shots in samples as they cause extra effort when the sample needs to be updated.
+ * Samples should illustrate a feature or scenario with as few moving pieces as possible. For example if the sample is "illustrating IOC with MVC" then "adding signalr" to that sample will only cause confusion. In general the fewer nugets you need to get the point across the better.
+ * Do not "document things inside a sample". A sample is "to show how something is used" not to document it. Instead update the appropriate documentation page and link to it. As a general rule if you add any content to a sample, where that guidance could possible be applicable to other samples, then that guidance should probably exist in a documentation page.
 
 ## Code Snippets
 
