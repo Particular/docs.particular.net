@@ -180,7 +180,7 @@
 </div>
 <div class="block middle">
   <div class="ic">
-    <a href="/nservicebus/nservicebus-step-by-step-guide.md" class="img">
+    <a href="/samples/step-by-step/sample.md" class="img">
       <img src="/home/getting-started.png" /><img src="/home/getting-started-hover.png" class="hover"/><br/>
       Getting Started
     </a>

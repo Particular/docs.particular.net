@@ -22,7 +22,7 @@ summary: NServiceBus Documentation Table of Contents
 ## Getting Started
 
 - [Overview](overview.md)
-- [NServiceBus Step by Step Guide](nservicebus-step-by-step-guide.md)
+- [NServiceBus Step by Step Guide](/samples/step-by-step/sample.md)
 - [Architectural Principles](architectural-principles.md)
 - [Transactions Message Processing](transactions-message-processing.md)
 - [NServiceBus and WCF](nservicebus-and-wcf.md)

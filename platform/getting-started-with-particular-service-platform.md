@@ -26,7 +26,7 @@ The example demonstrates the integration of an online sales web store with a bac
 NOTE: This example requires ServiceMatrix. For a code only introduction to NServiceBus, see:
 
 * [NServiceBus Overview](/nservicebus/overview.md) 
-* [NServiceBus Step by Step Guide - code first](/nservicebus/nservicebus-step-by-step-guide.md) 
+* [NServiceBus Step by Step Guide](/samples/step-by-step/sample.md) 
 
 ## Installing ServiceMatrix for Visual Studio 2012
 

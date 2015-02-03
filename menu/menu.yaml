@@ -6,7 +6,7 @@
       Title: "Getting Started"
       Articles: 
         - "nservicebus/overview"
-        - "nservicebus/NServiceBus-Step-by-Step-Guide"
+        - "samples/step-by-step/sample.md"
         - "nservicebus/architectural-principles"
         - "nservicebus/transactions-message-processing"
         - "nservicebus/nservicebus-and-wcf"
