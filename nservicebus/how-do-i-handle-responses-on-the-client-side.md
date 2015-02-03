@@ -32,9 +32,11 @@ To trigger a callback, you need to return an `enum` or `int` value.
 
 <!-- import TriggerCallback -->
 
-## Using callbacks in a web application
+## When should you use callbacks?
 
-When should you use callbacks? When the data returned is **not business critical and data loss is acceptable** and **blocking operation** is acceptable. Otherwise, use [request/response](/samples/fullduplex) with a message handler for reply messages.
+Use callbacks when the data returned is **not business critical and data loss is acceptable**. Otherwise, use [request/response](/samples/fullduplex) with a message handler for reply messages.
+
+When using callbacks in ASP.NET web application, NServiceBus is not blocking executing thread and allowing processing of other requests. When response is recieved, it is handled and returned to the client side. Client will be blocked while waiting for response. This scenario is common when migrating from traditional blocking request/response to messaging.
 
 To access response message through callback, the following code can be used
 <!-- import CallbackToAccessMessageRegistration -->
