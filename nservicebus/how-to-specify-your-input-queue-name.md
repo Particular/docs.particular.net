@@ -33,9 +33,15 @@ NOTE: This will only work when using [NServiceBus host](the-nservicebus-host.md)
 
 ### Installation parameter 
 
-If you specify a explicit service name when installing the NServiceBus host, this is used as the endpoint name: `/serviceName:"MyEndpoint"`.
+#### NServiceBus v3
+
+If you specify an explicit service name when installing the NServiceBus host, this is used as the endpoint name: `/serviceName:"MyEndpoint"`.  
+
+#### NServiceBus v4
+
+If you specify an explicit endpoint name when installing the NServiceBus host, this is used as the endpoint name: `/endpointName:"MyEndpoint"`.  
 
 ### Command-line parameter 
 
-You can specify a endpoint name when running the NServiceBus host: `/endpointName:"MyEndpoint"`.
+You can specify an endpoint name when running the NServiceBus host: `/endpointName:"MyEndpoint"`.
 
