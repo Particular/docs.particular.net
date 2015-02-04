@@ -60,7 +60,7 @@ x:\Your_Installed_Path\ServiceControl.exe --install -serviceName="Particular.Ser
 Or for Windows Azure StorageQueues:
 
 ```bat
-x:\Your_Installed_Path\ServiceControl.exe —install -serviceName=“Particular.ServiceControl” -displayName=“Particular ServiceControl” -d=“ServiceControl/TransportType==NServiceBus.AzureStorageQueue, NServiceBus.Azure.Transports.WindowsAzureStorageQueues” -d="NServiceBus/Transport==Endpoint=sb://[endpoint-name].servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue=[your-shared-secret]"
+x:\Your_Installed_Path\ServiceControl.exe —install -serviceName=“Particular.ServiceControl” -displayName=“Particular ServiceControl” -d=“ServiceControl/TransportType==NServiceBus.AzureStorageQueue, NServiceBus.Azure.Transports.WindowsAzureStorageQueues” -d="NServiceBus/Transport==DefaultEndpointsProtocol=https;AccountName=[account-name];AccountKey=[account-key];"
 ```
 
 
