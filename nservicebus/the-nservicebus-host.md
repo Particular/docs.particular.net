@@ -134,6 +134,8 @@ NServiceBus.Host.exe /install /serviceName:"MyPublisher"
 /password:"p@ssw0rd!" NServiceBus.Production
 ```
 
+NOTE: When installing the Host using a cusomt user account, as in the above sample, the user account is added to the `Performance Monitor Users` and is granted `run as a service` priviledges. If, at a later time the user needs to be changed it is suggested to uninstall the Host and re-install it in order to guarantee that the new user is correctly setup.
+
 To uninstall, call
 
 ```
