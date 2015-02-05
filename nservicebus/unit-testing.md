@@ -15,6 +15,8 @@ Install-Package NServiceBus.Testing
 ```
 Once the package is installed you need ensure that you call `Test.Initialize()` (or any of its overloads) before executing any test method.
 
+NOTE: To limit the assemblies and types scanned by the test framework it is possible to pass the the `Initialize()` overload that accepts a list of types the types that we want the framework to scan.
+
 ## Unit testing the service layer
 
 The service layer in an NServiceBus application is made from message handlers. Each class typically handles one specific type of message. Testing these classes usually focuses on their externally visible behavior: the types of messages they send or reply with. This is as simple to test as could be expected:
