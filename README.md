@@ -33,7 +33,7 @@ For more information see [Collaborating on GitHub](https://help.github.com/categ
 
 ## Lower case  and `-` delimited
 
-All content files (`.md`,`.png`,`.jpg` etx) and directories must be lower case. 
+All content files (`.md`,`.png`,`.jpg` etc) and directories must be lower case. 
 
 All links pointing to them must be lower case.
 
