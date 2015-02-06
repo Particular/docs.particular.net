@@ -74,3 +74,8 @@ The default connection manager that comes with the transport is usually good eno
 In order for the transport to use you new connection manager you need to register it as shown below:
 
 <!-- import rabbitmq-config-useconnectionmanager -->
+
+### Controlling behavior when broker connection is lost
+By the default the RabbitMQ transport will trigger the on critical error action when it continuously fails to connect to the the broker for 2 minutes. This can now be customized using the following configuration setting: (values must be parsable to `System.TimeSpan`)
+
+<!-- import rabbitmq-custom-breaker-settings -->
