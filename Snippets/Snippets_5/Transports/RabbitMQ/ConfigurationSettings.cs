@@ -59,7 +59,17 @@ public class RabbitMQConfigurationSettings
 
         #endregion
     }
+    void CustomIdStrategy()
+    {
+        #region rabbitmq-config-custom-id-strategy 2.1
 
+        var configuration = new BusConfiguration();
+        configuration.UseTransport<RabbitMQTransport>()
+            .CustomMessageIdStrategy(deliveryArgs => 
+                deliveryArgs.BasicProperties.Headers["MyCustomId"].ToString());
+
+        #endregion
+    }
     void UseConnectionManager()
     {
         #region rabbitmq-config-useconnectionmanager 2
