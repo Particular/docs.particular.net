@@ -28,7 +28,7 @@ Below is the full list of connection string options. Note that you needs to sepa
 * `Password`: The password when connecting. Defaults to `guest`
 * `RequestedHeartbeat`: The interval for the heartbeats between the client and the server. Defaults to `5` seconds
 * `DequeueTimeout` The time period allowed for the dequeue strategy to dequeue a message. Defaults to `1` second
-* `PrefetchCount`: The number of messages to [prefetch](http://www.rabbitmq.com/consumer-prefetch.html) when consuming messages from the broker. Defaults to `1`
+* `PrefetchCount`: The number of messages to [prefetch](http://www.rabbitmq.com/consumer-prefetch.html) when consuming messages from the broker. Defaults to the number of configured threads for the transport(as of v2.1)
 * `UsePublisherConfirms`: Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used. Defaults to `true`
 * `MaxWaitTimeForConfirms`: How long the client should wait for publisher confirms if enabled. Defaults to `30` seconds.
 * `RetryDelay`: The time to wait before trying to reconnect to the broker if connection is lost. Defaults to `10` seconds
