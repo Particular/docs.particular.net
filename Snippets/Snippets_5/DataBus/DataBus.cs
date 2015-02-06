@@ -89,7 +89,8 @@ namespace DataBusProperties
         {
             #region DefineMessageWithLargePayloadUsingConvention
 
-            configuration.Conventions().DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
+            configuration.Conventions()
+                .DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
 
             #endregion
 
@@ -124,19 +125,17 @@ namespace CustomDataBusPluginSnippet
 
     #endregion
 
-    #region PluginCustomDataBusV5 5
-
-
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
+    public class UseDataBusConfig
     {
-        public void Customize( BusConfiguration configuration )
+        void Customize()
         {
-            //other configuration calls
+            #region PluginCustomDataBusV5 5
 
-            configuration.UseDataBus( typeof( CustomDataBus ) );
+            var configuration = new BusConfiguration();
+            configuration.UseDataBus(typeof(CustomDataBus));
+
+            #endregion
         }
     }
-
-    #endregion
 
 }

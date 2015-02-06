@@ -6,11 +6,11 @@ class Program
 {
     static void Main()
     {
+        Configure.Serialization.Json();
         var configure = Configure.With();
-        configure.DefineEndpointName("Samples.Versioning.V1Subscriber");
+        configure.DefineEndpointName("Samples.Versioning.V2Subscriber");
         configure.DefaultBuilder();
-        configure.JsonSerializer();
-        configure.MsmqTransport();
+        configure.UseTransport<Msmq>();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();

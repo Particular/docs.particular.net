@@ -9,6 +9,7 @@ class Program
         var configure = Configure.With();
         configure.DefineEndpointName("Samples.Versioning.V2Subscriber");
         configure.DefaultBuilder();
+        configure.JsonSerializer();
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
