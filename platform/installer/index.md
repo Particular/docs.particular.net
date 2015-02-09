@@ -6,14 +6,14 @@ tags: [Platform, Installation]
 
 ## Offline install
 
-The platform installer requires acceess to the internet and several dependencies (see below). If either of these are problematic given you current environment please see [Offline Install](offline.md).
+The Platform Installer requires access to the internet and several dependencies (see below). If either of these are problematic given you current environment please see [Offline Install](offline.md).
 
 ## Download
 
 - [Clickonce download](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
 - [Direct setup download](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/setup.exe)
 
-NOTE: The platform Installer is recommended for use in development environments. For testing and production environments it is recommended you use the relevant Chocolatey commands, PowerShell cmdlets and NuGet packages.
+NOTE: The Platform Installer is recommended for use in development environments. For testing and production environments it is recommended you use the relevant Chocolatey commands, PowerShell cmdlets and NuGet packages.
 
 ## Dependencies 
 
@@ -23,7 +23,7 @@ NOTE: The platform Installer is recommended for use in development environments.
 
 ## License Acceptance
 
-When you first use the Platform installer you will be prompted to accept the NServiceBus License Agreement 
+When you first use the Platform Installer you will be prompted to accept the NServiceBus License Agreement 
 
 ## Confirm Chocolatey install
 
