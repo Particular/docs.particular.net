@@ -59,7 +59,7 @@ The [Jil Project](https://github.com/kevin-montrose/Jil) is a fast JSON serializ
 
 ### [MessagePack](https://github.com/SimonCropp/NServiceBus.MessagePack) <a href="http://www.nuget.org/packages/NServiceBus.MessagePack/"><img src="http://img.shields.io/nuget/v/NServiceBus.MessagePack.svg?" alt="NuGet Status"></a>
 
-[MessagePack](http://msgpack.org/) is an binary serialization designed to be both compact and fast.
+[MessagePack](http://msgpack.org/) is a binary serializer designed to be both compact and fast.
 
 ### [SystemXml](https://github.com/fhalim/NServiceBus.Serializers.SystemXml) <a href="http://www.nuget.org/packages/NServiceBus.Serializers.SystemXml/"><img src="http://img.shields.io/nuget/v/NServiceBus.Serializers.SystemXml.svg?" alt="NuGet Status"></a>
 
