@@ -77,11 +77,11 @@ There are current two projects supporting [MongoDB](http://www.mongodb.org/)
 
 #### [NServiceBus.Persistence.MongoDb](https://github.com/tekmaven/NServiceBus.Persistence.MongoDb) <a href="http://www.nuget.org/packages/NServiceBus.Persistence.MongoDb/"><img src="http://img.shields.io/nuget/v/NServiceBus.Persistence.MongoDb.svg?" alt="NuGet Status"></a>
 
-### [NHibernate](/nservicebus/relational-persistence-using-nhibernate.md) [![NuGet Status](http://img.shields.io/nuget/v/NServiceBus.NHibernate.svg?)](http://www.nuget.org/packages/NServiceBus.NHibernate/) <a href="http://www.nuget.org/packages/XX/"><img src="http://img.shields.io/nuget/v/XX.svg?" alt="NuGet Status"></a> [![A Particular run project](particular-project.png)](http://particular.net/)
+### [NHibernate](/nservicebus/relational-persistence-using-nhibernate.md) <a href="http://www.nuget.org/packages/NServiceBus.NHibernate/"><img src="http://img.shields.io/nuget/v/NServiceBus.NHibernate.svg?" alt="NuGet Status"></a> [![A Particular run project](particular-project.png)](http://particular.net/)
 
 Support for [NHibernate](http://nhforge.org/)
 
-### [PostgreSQL](https://github.com/fhalim/NServiceBus.PostgreSQL) [![NuGet Status](http://img.shields.io/nuget/v/NServiceBus.PostgreSQL.svg?)](http://www.nuget.org/packages/NServiceBus.PostgreSQL/) <a href="http://www.nuget.org/packages/XX/"><img src="http://img.shields.io/nuget/v/XX.svg?" alt="NuGet Status"></a>
+### [PostgreSQL](https://github.com/fhalim/NServiceBus.PostgreSQL) <a href="http://www.nuget.org/packages/NServiceBus.PostgreSQL/"><img src="http://img.shields.io/nuget/v/NServiceBus.PostgreSQL.svg?" alt="NuGet Status"></a>
 
 Support for [PostgreSQL](http://www.postgresql.org/)
 
