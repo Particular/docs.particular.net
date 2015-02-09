@@ -5,7 +5,7 @@ summary: A list of all extensions to NServiceBus including all community contrib
 
 ## Transports 
 
-### [AmazonSQS](https://github.com/ahofman/NServiceBus.AmazonSQS) [![NuGet Status](http://img.shields.io/nuget/v/NServiceBus.AmazonSQS.svg?)](http://www.nuget.org/packages/NServiceBus.AmazonSQS/)
+### [AmazonSQS](https://github.com/ahofman/NServiceBus.AmazonSQS) <a href="http://www.nuget.org/packages/NServiceBus.AmazonSQS/"><img src="http://img.shields.io/nuget/v/NServiceBus.AmazonSQS.svg?" alt="NuGet Status"></a>
 
 An [AWS SQS](http://aws.amazon.com/sqs/) transport.
 
