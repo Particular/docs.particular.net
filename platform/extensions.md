@@ -55,15 +55,11 @@ The [Jil Project](https://github.com/kevin-montrose/Jil) is a fast JSON serializ
 
 ### [ProtoBuf](https://github.com/SimonCropp/NServiceBus.ProtoBuf) <a href="http://www.nuget.org/packages/NServiceBus.ProtoBuf/"><img src="http://img.shields.io/nuget/v/NServiceBus.ProtoBuf.svg?" alt="NuGet Status"></a>
 
-[ProtoBuf](https://code.google.com/p/protobuf-net/) is a binary serializer designed to emphasized simplicity and performance developed by [Google](https://developers.google.com/protocol-buffers/).
-
-> think XML, but smaller, faster, and simpler. 
+[ProtoBuf](https://code.google.com/p/protobuf-net/) is [Googles](https://developers.google.com/protocol-buffers/) binary serializer designed to be small, fast and simple.
 
 ### [MessagePack](https://github.com/SimonCropp/NServiceBus.MessagePack) <a href="http://www.nuget.org/packages/NServiceBus.MessagePack/"><img src="http://img.shields.io/nuget/v/NServiceBus.MessagePack.svg?" alt="NuGet Status"></a>
 
-Using the [msgpack-cli](https://github.com/msgpack/msgpack-cli) to serialize via the [MessagePack](http://msgpack.org/) format. 
-
-> MessagePack is an efficient binary serialization format. It lets you exchange data among multiple languages like JSON. But it's faster and smaller. .
+[MessagePack](http://msgpack.org/) is an binary serialization designed to be both compact and fast.
 
 ### [SystemXml](https://github.com/fhalim/NServiceBus.Serializers.SystemXml) <a href="http://www.nuget.org/packages/NServiceBus.Serializers.SystemXml/"><img src="http://img.shields.io/nuget/v/NServiceBus.Serializers.SystemXml.svg?" alt="NuGet Status"></a>
 
