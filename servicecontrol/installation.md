@@ -30,7 +30,7 @@ Alternatively, if [Chocolatey](http://chocolatey.org) is installed you can insta
 #### Performance Counter 
 ServiceControl reports metrics via the NServiceBus Performance Counters.     
       
-To install these Performac Counters without the platform installer refer to the Performance Counters section of [Installing The Platform Components Manually](/platform/installer/offline#performance-counters)
+For instructions on how to install the Performance Counters without the Platform Installer refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
 
 Alternatively,if [Chocolatey](http://chocolatey.org) is installed you can install the performance counters running the following Chocolatey command:
 
@@ -70,5 +70,7 @@ Particular.ServiceControl.1.5.0.exe /LV* install.log
 A typical command line for enabling verbose MSI logging when running silently would be:
 
 ```bat
-Particular.ServiceControl.1.5.0.exe /quiet /LV* install.log   ForwardAuditMessages=true 
+Particular.ServiceControl.1.5.0.exe /quiet /LV* install.log ForwardAuditMessages=true 
 ```
+
+    
