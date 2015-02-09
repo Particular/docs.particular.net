@@ -78,6 +78,8 @@ If an audit queue is configured then the queue `Particular.ServiceControl` on th
 
 WARNING: Audit Queue machine is only used in NServiceBus v4.1 and up.
 
+NOTE: If the defined ServiceControl queue cannot be reached the default behavior is to shutdown the failing endpoint.
+
 ## Understanding Plugin Functionality and Behavior
 
 ### ServiceControl Heartbeat Plugin
