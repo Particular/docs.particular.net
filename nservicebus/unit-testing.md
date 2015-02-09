@@ -15,7 +15,7 @@ Install-Package NServiceBus.Testing
 ```
 Once the package is installed you need ensure that you call `Test.Initialize()` (or any of its overloads) before executing any test method.
 
-NOTE: To limit the assemblies and types scanned by the test framework it is possible to pass the the `Initialize()` overload that accepts a list of types the types that we want the framework to scan.
+NOTE: To limit the assemblies and types scanned by the test framework it is possible to use the `Initialize()` overload that accepts a delegate you can use to customize the `ConfigurationBuilder`.
 
 ## Unit testing the service layer
 
