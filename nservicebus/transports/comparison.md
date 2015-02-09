@@ -19,7 +19,7 @@ Choosing the correct transport can be challenging and the choice can depend on s
 
  |MSMQ|SQL Server|RabbitMQ|Azure ServiceBus|Azure Storage Queues
 |---              |---         |---               |---              |---                           |---
-|[Architecture](#architecture)|Store & Forward|Broker|Broker|Broker|Broker
+|[Architecture](#architecture)|Store & Forward|Semi-Broker|Broker|Broker|Broker
 |[Local Transactions](#local-transactions)|&#10004;|&#10004;|&#10004;/&#10006;|&#10004;|&#10006;
 |[MSDTC](#msdtc)|&#10004;|&#10004;|&#10006;|&#10006;|&#10006;
 |[Ordering](#ordering)|Fi-Fo|Fi-Fo|&#10006;|Fi-Fo\*|&#10006;
@@ -91,7 +91,8 @@ description
 ##### Max throughput
 ##### Average latency
 ##### Throttling
-description and behavior
+
+description and behavior
 
 ##### Security
 
@@ -176,12 +177,13 @@ Transport package: [NServiceBus.SqlServer](https://www.nuget.org/packages/NServi
 
 * scalable using SQL native solutions;
 * supports the DTC;
-* when the same database is also used as application data storage can benefit of local transactions only;
+* avoids DTC escalation if queues, user data and NServiceBus persistence data are in same database (can be used in SQL Azure);
 * support for SQL 2014 AlwaysOn;
 
 ##### weaknesses
 
-* any?
+* license cost;
+* no-DTC integration with NHibernate persistence requires usage of ambient transactions (`TransactionScope`);
 
 ##### IT/Ops Management tools:
 
