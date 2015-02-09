@@ -87,6 +87,8 @@ A custom XML serializer built into the NServiceBus core.
 
 ### [PostgreSQL](https://github.com/fhalim/NServiceBus.PostgreSQL) <a href="http://www.nuget.org/packages/NServiceBus.PostgreSQL/"><img src="http://img.shields.io/nuget/v/NServiceBus.PostgreSQL.svg?" alt="NuGet Status"></a>
 
+Leverages the [JSONB](http://www.postgresql.org/docs/devel/static/datatype-json.html) data type for storing data in [PostgreSQL](http://www.postgresql.org/).
+
 ### [RavenDB](/nservicebus/ravendb/) <a href="http://www.nuget.org/packages/NServiceBus.RavenDB/"><img src="http://img.shields.io/nuget/v/NServiceBus.RavenDB.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
 ### [DocumentDB](https://github.com/synhershko/NServiceBus.DocumentDB)
