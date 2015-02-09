@@ -77,7 +77,7 @@ There are current two projects supporting [MongoDB](http://www.mongodb.org/)
 
 #### [NServiceBus.Persistence.MongoDb](https://github.com/tekmaven/NServiceBus.Persistence.MongoDb) <a href="http://www.nuget.org/packages/NServiceBus.Persistence.MongoDb/"><img src="http://img.shields.io/nuget/v/NServiceBus.Persistence.MongoDb.svg?" alt="NuGet Status"></a>
 
-### [NHibernate](/nservicebus/relational-persistence-using-nhibernate.md) <a href="http://www.nuget.org/packages/NServiceBus.NHibernate/"><img src="http://img.shields.io/nuget/v/NServiceBus.NHibernate.svg?" alt="NuGet Status"></a> [![A Particular run project](particular-project.png)](http://particular.net/)
+### [NHibernate](/nservicebus/relational-persistence-using-nhibernate.md) <a href="http://www.nuget.org/packages/NServiceBus.NHibernate/"><img src="http://img.shields.io/nuget/v/NServiceBus.NHibernate.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
 Support for [NHibernate](http://nhforge.org/)
 
