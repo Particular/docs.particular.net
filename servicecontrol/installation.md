@@ -9,8 +9,8 @@ tags:
 
 The ServiceControl installation fileconsists of an embedded MSI bootstrapper EXE and an embedded MSI.  This installation can be executed standalone or via the Particular Software Platform Installer.
  
-### Pre-Requisites
-The ServiceControl Installation has the following pre-requisites:
+### Prerequisites
+The ServiceControl Installation has the following prerequisites:
 
 1. The Microsoft .Net 4.5 Runtime 
 2. The Microsoft Message Queueing (MSMQ) service
