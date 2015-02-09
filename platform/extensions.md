@@ -134,7 +134,7 @@ Leverages the [JSONB](http://www.postgresql.org/docs/devel/static/datatype-json.
  * #### [HandlerOrdering](https://github.com/SimonCropp/HandlerOrdering) <a href="http://www.nuget.org/packages/HandlerOrdering/"><img src="http://img.shields.io/nuget/v/HandlerOrdering.svg?" title="NuGet Status"></a>
  Allows a more expressive way to order handlers.
 
- * ### [NES (.NET Event Sourcing)](https://github.com/elliotritchie/NES) <a href="http://www.nuget.org/packages/NES.NServiceBus/"><img src="http://img.shields.io/nuget/v/NES.NServiceBus.svg?" title="NuGet Status"></a>
+ * #### [NES (.NET Event Sourcing)](https://github.com/elliotritchie/NES) <a href="http://www.nuget.org/packages/NES.NServiceBus/"><img src="http://img.shields.io/nuget/v/NES.NServiceBus.svg?" title="NuGet Status"></a>
  NES that helps you build domain models when you're doing event sourcing. It attempts to fill in the gaps between NServiceBus and NEventStore.
 
  * #### [SignalR](https://github.com/roycornelissen/SignalR.NServiceBus)
