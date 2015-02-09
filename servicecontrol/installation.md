@@ -7,7 +7,7 @@ tags:
 - 
 ---
 
-ServiceControl ships as a single exe installation file.  Ths file is an MSI bootstrapper and an embedded MSI.  This installation file can be run standalone or via the Particular Software Platform Installer
+ServiceControl ships as a single exe installation file.  Ths file consists of an embedded MSI bootstrapper EXE and an embedded MSI.  This installation file can be executed standalone or via the Particular Software Platform Installer.
  
 ### Pre-Requisites
 ServiceControl has the following pre-requisites:
@@ -16,10 +16,11 @@ ServiceControl has the following pre-requisites:
 2. The Microsoft Message Queueing (MSMQ) service
 3. NServiceBus Performance Counters
 
-If ServiceControl is installer via the Particular Software Platform Installer then the installation and configuration of these pre-requisites are managed for you. 
+If ServiceControl is installed via the Particular Software Platform Installer then the installation and configuration of these pre-requisites are managed for you. 
+
 
 #### MSMQ 
-ServiceControl is configured to us MSMQ as the out of the box transport. Even if you intend to use an alternative transport as detailed in [Multi Transport Support](multi-transport-support.md)) you must have the MSMQ service running for the installation to succeed.    
+ServiceControl is configured to use MSMQ as the out of the box transport. Even if you intend to use an alternative transport as detailed in [Multi Transport Support](multi-transport-support.md)) you must have the MSMQ service running for the installation to succeed.    
       
 To enabling and configuring MSMQ without the platform installer refer to the MSMQ section off [Installing The Platform Components Manually](/platform/installer/offline#msmq)
 
@@ -32,7 +33,7 @@ ServiceControl reports metrics via the NServiceBus Performance Counters.
       
 For instructions on how to install the Performance Counters without the Platform Installer refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
 
-Alternatively,if [Chocolatey](http://chocolatey.org) is installed you can install the performance counters running the following Chocolatey command:
+Alternatively, if [Chocolatey](http://chocolatey.org) is installed you can install the performance counters running the following Chocolatey command:
 
 	cinst NServicebus.PerfCounters.install
 
@@ -50,7 +51,7 @@ From V1.5 the silent install command line must also include the ForwardAuditMess
 Particular.ServiceControl.1.5.0.exe /quiet ForwardAuditMessages=true 
 ```
 
-The ForwardAuditMessages command line property is not mandatory if an upgrade is being carried out and the existing configuration file has "ServiceControl/ForwardAuditMessages"  set to true or false.  
+The ForwardAuditMessages command line property is not mandatory if an upgrade is being carried out and the existing application configuration file has the "ServiceControl/ForwardAuditMessages" defined and set to true or false.  
 
 Passing the ForwardAuditMessages property has no affect when the installer is not running silently  
 
