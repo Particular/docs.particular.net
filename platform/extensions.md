@@ -7,31 +7,31 @@ summary: A list of all extensions to NServiceBus including all community contrib
 
 ### [AmazonSQS](https://github.com/ahofman/NServiceBus.AmazonSQS) <a href="http://www.nuget.org/packages/NServiceBus.AmazonSQS/"><img src="http://img.shields.io/nuget/v/NServiceBus.AmazonSQS.svg?" alt="NuGet Status"></a>
 
-An [AWS SQS](http://aws.amazon.com/sqs/) transport.
+Provides support for sending messages over [Amazon SQS](http://aws.amazon.com/sqs/). 
 
 ### [Azure Service Bus](/nservicebus/windows-azure-transport.md)  <a href="http://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/"><img src="http://img.shields.io/nuget/v/NServiceBus.Azure.Transports.WindowsAzureServiceBus.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
-An [Azure Service Bus](http://azure.microsoft.com/en-us/services/service-bus/) transport.
+Provides support for sending messages over [Azure Service Bus](http://azure.microsoft.com/en-us/services/service-bus/).
 
 ### [Azure Storage Queues](/nservicebus/windows-azure-transport.md) <a href="http://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/"><img src="http://img.shields.io/nuget/v/NServiceBus.Azure.Transports.WindowsAzureStorageQueues.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
-An [Azure Storage Queue](http://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-how-to-use-queues/) transport.
+Provides support for sending messages over [Azure Storage Queue](http://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-how-to-use-queues/).
 
 ### [MSMQ](/nservicebus/msmqtransportconfig.md) <a href="http://www.nuget.org/packages/NServiceBus/"><img src="http://img.shields.io/nuget/v/NServiceBus.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
-The default transport in the NServiceBus core for [MSMQ](https://msdn.microsoft.com/en-us/library/ms711472%28v=vs.85%29.aspx).
+Provides support for sending messages over [Microsoft Message Queuing (MSMQ)](https://msdn.microsoft.com/en-us/library/ms711472%28v=vs.85%29.aspx). This is the default transport in the NServiceBus core.
 
 ### [OracleAQ](https://github.com/rosieks/NServiceBus.OracleAQ) <a href="http://www.nuget.org/packages/NServiceBus.OracleAQ/"><img src="http://img.shields.io/nuget/v/NServiceBus.OracleAQ.svg?" alt="NuGet Status"></a>
 
-An [Oracle Advanced Queuing (Oracle AQ)](http://docs.oracle.com/cd/B10500_01/appdev.920/a96587/qintro.htm) transport.
+Provides support for sending messages over [Oracle Advanced Queuing (Oracle AQ)](http://docs.oracle.com/cd/B10500_01/appdev.920/a96587/qintro.htm).
 
 ### [RabbitMQ](/nservicebus/rabbitmq/) <a href="http://www.nuget.org/packages/NServiceBus.RabbitMQ/"><img src="http://img.shields.io/nuget/v/NServiceBus.RabbitMQ.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
-An [RabbitMQ](http://www.rabbitmq.com/) transport.
+Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) using the [RabbitMQ .net Client](http://www.nuget.org/packages/RabbitMQ.Client/).
 
 ### [SqlServer](/nservicebus/sqlserver/) <a href="http://www.nuget.org/packages/NServiceBus.SqlServer/"><img src="http://img.shields.io/nuget/v/NServiceBus.SqlServer.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
-Support for [Microsoft Sql Server](http://www.microsoft.com/en-us/server-cloud/products/sql-server/)
+Provides support for sending messages over  [Microsoft Sql Server](http://www.microsoft.com/en-us/server-cloud/products/sql-server/) using SQL tables as the storage mechanism for messages.
 
 ## Serializers
 
@@ -41,27 +41,31 @@ There are several implementation of [JSON](http://en.wikipedia.org/wiki/JSON) se
 
 #### [Core Json](/) <a href="http://www.nuget.org/packages/NServiceBus/"><img src="http://img.shields.io/nuget/v/NServiceBus.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
-Using an merged copy of [Json.NET](http://www.newtonsoft.com/json) built into the NServiceBus core.
+Using an ILMeged copy of [Json.NET](http://www.newtonsoft.com/json) built into the NServiceBus core.
 
 #### [External Json](/) <a href="http://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/"><img src="http://img.shields.io/nuget/v/NServiceBus.Newtonsoft.Json.svg?" alt="NuGet Status"></a>
 
-Using an external copy of [Json.NET](http://www.newtonsoft.com/json).
+Using an external copy of [Json.NET](http://www.newtonsoft.com/json) so the full programmatic API of Json.NET can be leveraged.
 
 #### [Jil](https://github.com/SimonCropp/NServiceBus.Jil) <a href="http://www.nuget.org/packages/NServiceBus.Jil/"><img src="http://img.shields.io/nuget/v/NServiceBus.Jil.svg?" alt="NuGet Status"></a>
 
-Using the [Jil](https://github.com/kevin-montrose/Jil) Json serializer.
+The [Jil Project](https://github.com/kevin-montrose/Jil) is a fast JSON serializer built on [Sigil](https://github.com/kevin-montrose/Sigil) with a number of somewhat crazy optimization tricks.
 
 ### [ProtoBuf](https://github.com/SimonCropp/NServiceBus.ProtoBuf) <a href="http://www.nuget.org/packages/NServiceBus.ProtoBuf/"><img src="http://img.shields.io/nuget/v/NServiceBus.ProtoBuf.svg?" alt="NuGet Status"></a>
 
-Using the [ProtoBuf](https://code.google.com/p/protobuf-net/) binary serializer.
+[ProtoBuf](https://code.google.com/p/protobuf-net/) is a binary serializer designed to emphasized simplicity and performance developed by [Google](https://developers.google.com/protocol-buffers/).
+
+> think XML, but smaller, faster, and simpler. 
 
 ### [MessagePack](https://github.com/SimonCropp/NServiceBus.MessagePack) <a href="http://www.nuget.org/packages/NServiceBus.MessagePack/"><img src="http://img.shields.io/nuget/v/NServiceBus.MessagePack.svg?" alt="NuGet Status"></a>
 
-Using the [msgpack-cli](https://github.com/msgpack/msgpack-cli) to serialize via the [MessagePack](http://msgpack.org/) format.
+Using the [msgpack-cli](https://github.com/msgpack/msgpack-cli) to serialize via the [MessagePack](http://msgpack.org/) format. 
+
+> MessagePack is an efficient binary serialization format. It lets you exchange data among multiple languages like JSON. But it's faster and smaller. .
 
 ### [SystemXml](https://github.com/fhalim/NServiceBus.Serializers.SystemXml) <a href="http://www.nuget.org/packages/NServiceBus.Serializers.SystemXml/"><img src="http://img.shields.io/nuget/v/NServiceBus.Serializers.SystemXml.svg?" alt="NuGet Status"></a>
 
-Using the .net [System.Xml.Serialization](http://msdn.microsoft.com/en-us/library/system.xml.serialization.aspx) to serialize.
+Using the .net [System.Xml.Serialization](http://msdn.microsoft.com/en-us/library/system.xml.serialization.aspx) to serialize messages. It allows better interoperability with non-NServiceBus peers.
 
 ### [Xml](/) <a href="http://www.nuget.org/packages/NServiceBus/"><img src="http://img.shields.io/nuget/v/NServiceBus.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
@@ -71,7 +75,7 @@ A custom XML serializer built into the NServiceBus core.
 
 ### MongoDB
 
-There are current two projects supporting [MongoDB](http://www.mongodb.org/)
+[MongoDB](http://www.mongodb.org/) is a cross-platform document-oriented database. There are current two projects supporting 
 
 #### [NServiceBus.MongoDB](https://github.com/sbmako/NServiceBus.MongoDB) <a href="http://www.nuget.org/packages/NServiceBus.MongoDB/"><img src="http://img.shields.io/nuget/v/NServiceBus.MongoDB.svg?" alt="NuGet Status"></a>
 
@@ -79,15 +83,9 @@ There are current two projects supporting [MongoDB](http://www.mongodb.org/)
 
 ### [NHibernate](/nservicebus/relational-persistence-using-nhibernate.md) <a href="http://www.nuget.org/packages/NServiceBus.NHibernate/"><img src="http://img.shields.io/nuget/v/NServiceBus.NHibernate.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
-Support for [NHibernate](http://nhforge.org/)
-
 ### [PostgreSQL](https://github.com/fhalim/NServiceBus.PostgreSQL) <a href="http://www.nuget.org/packages/NServiceBus.PostgreSQL/"><img src="http://img.shields.io/nuget/v/NServiceBus.PostgreSQL.svg?" alt="NuGet Status"></a>
 
-Support for [PostgreSQL](http://www.postgresql.org/)
-
 ### [RavenDB](/nservicebus/ravendb/) <a href="http://www.nuget.org/packages/NServiceBus.RavenDB/"><img src="http://img.shields.io/nuget/v/NServiceBus.RavenDB.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
-
-Support for [RavenDB](http://ravendb.net/)
 
 ### [DocumentDB](https://github.com/synhershko/NServiceBus.DocumentDB)
 
@@ -97,45 +95,27 @@ A proof-of-concept project that shows the possibility of support for [Azure Docu
 
 ### [Log4Net](/nservicebus/logging-in-nservicebus.md#log4net)  <a href="http://www.nuget.org/packages/NServiceBus.Log4Net/"><img src="http://img.shields.io/nuget/v/NServiceBus.Log4Net.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
-Support for [Log4Net](http://logging.apache.org/log4net/)
-
 ### [NLog](/nservicebus/logging-in-nservicebus.md#nlog) <a href="http://www.nuget.org/packages/NServiceBus.NLog/"><img src="http://img.shields.io/nuget/v/NServiceBus.NLog.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
-
-Support for [NLog](http://nlog-project.org/)
 
 ### [CommonLogging](/nservicebus/logging-in-nservicebus.md#commonlogging) <a href="http://www.nuget.org/packages/NServiceBus.CommonLogging/"><img src="http://img.shields.io/nuget/v/NServiceBus.CommonLogging.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
-Support for [CommonLogging](https://github.com/net-commons/common-logging)
-
 ### [Serilog](https://github.com/SimonCropp/NServiceBus.Serilog) <a href="http://www.nuget.org/packages/NServiceBus.Serilog/"><img src="http://img.shields.io/nuget/v/NServiceBus.Serilog.svg?" alt="NuGet Status"></a>
 
-Support for [Serilog](http://serilog.net/) and [Seq](http://getseq.net/)
+Support for logging NServiceBus information to [Serilog](http://serilog.net/) logging library and the [Seq](http://getseq.net/) monitoring system both of which built on the concepts structured logging.
 
 ## Containers
 
 ### [Autofac](/nservicebus/containers.md) <a href="http://www.nuget.org/packages/NServiceBus.Autofac/"><img src="http://img.shields.io/nuget/v/NServiceBus.Autofac.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
-Support for [Ninject](http://autofac.org/)
-
 ### [CastleWindsor](/nservicebus/containers.md) <a href="http://www.nuget.org/packages/NServiceBus.CastleWindsor/"><img src="http://img.shields.io/nuget/v/NServiceBus.CastleWindsor.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
-
-Support for [CastleWindsor](http://docs.castleproject.org/Windsor.MainPage.ashx)
 
 ### [Ninject](/nservicebus/containers.md) <a href="http://www.nuget.org/packages/NServiceBus.Ninject/"><img src="http://img.shields.io/nuget/v/NServiceBus.Ninject.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
-Support for [Ninject](http://www.ninject.org/)
-
 ### [StructureMap](/nservicebus/containers.md)  <a href="http://www.nuget.org/packages/NServiceBus.StructureMap/"><img src="http://img.shields.io/nuget/v/NServiceBus.StructureMap.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
-
-Support for [StructureMap](http://structuremap.github.io/)
 
 ### [Spring](/nservicebus/containers.md) <a href="http://www.nuget.org/packages/NServiceBus.Spring/"><img src="http://img.shields.io/nuget/v/NServiceBus.Spring.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
 
-Support for [Spring](http://www.nuget.org/packages/Spring.Core/)
-
 ### [Unity](/nservicebus/containers.md) <a href="http://www.nuget.org/packages/NServiceBus.Unity/"><img src="http://img.shields.io/nuget/v/NServiceBus.Unity.svg?" alt="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" alt="A Particular run project"></a>
-
-Support for [Unity](http://unity.codeplex.com/)
 
 ## Other
 
@@ -165,11 +145,11 @@ Distributor for the MSMQ transport.
 
 ### [Mandrill](https://github.com/feinoujc/NServiceBus.Mandrill) <a href="http://www.nuget.org/packages/Aggregates.NET/"><img src="http://img.shields.io/nuget/v/Aggregates.NET.svg?" alt="NuGet Status"></a>
 
-Allow for sending [Mandrill](https://mandrillapp.com/api/docs/) emails as messages.
+[Mandrill](http://mandrill.com/) is a email infrastructure service built by [MailChimp](http://mailchimp.com/). This extension allow for sending Mandrill emails as messages.
 
 ### [Mailer](https://github.com/SimonCropp/NServiceBus.Mailer) <a href="http://www.nuget.org/packages/NServiceBus.Mailer/"><img src="http://img.shields.io/nuget/v/NServiceBus.Mailer.svg?" alt="NuGet Status"></a>
 
-Extension to enable sending emails as messages.
+Extension to enable sending SMTP emails as messages.
 
 ### [MessageRouting](https://github.com/jbogard/NServiceBus.MessageRouting) <a href="http://www.nuget.org/packages/NServiceBus.MessageRouting/"><img src="http://img.shields.io/nuget/v/NServiceBus.MessageRouting.svg?" alt="NuGet Status"></a>
 
