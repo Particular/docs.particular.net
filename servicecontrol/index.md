@@ -6,7 +6,7 @@ summary: ServiceControl Documentation Table of Contents
 ## Table of Contents
 
 ### Introduction
-- [Installation](installation.md)
+- [Installation and Prerequisites](installation.md)
 - [Customizing ServiceControl Configuration](creating-config-file.md)
 
 ### Configuration
