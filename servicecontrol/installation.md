@@ -58,7 +58,7 @@ NOTE: It is recommended to enable logging when running in silent mode as error m
 
 #### Troubleshooting 
 
-The installer will pass any [MSIEXEC command line switches] (https://technet.microsoft.com/en-us/library/cc759262%28v=ws.10%29.aspx) through when it is launched. 
+The installer will pass any [MSIEXEC command line switches](https://technet.microsoft.com/en-us/library/cc759262%28v=ws.10%29.aspx) through when it is launched. 
 
 A typical command line for enabling verbose MSI logging when running interactivly would be: 
 
