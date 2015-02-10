@@ -77,13 +77,17 @@ You can configure ServiceControl to forward any consumed messages into alternate
 
   The period that defines whether an endpoint is considered alive or not. Default: `00:00:40` (40 secs)
 
+* `ServiceControl/MaximumMessageThroughputPerSecond`
+   This setting was introduced in version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An apropriate limit ensures that the database can cope with number of insert operations. Otherwise the query performance would drop significantly and the message expiration process would stop working when under heavy insert load. Make sure to concudct thorough performance tests on your hardware before increasing this value.  Default: `350`. 
+   
 * `ServiceControl/ForwardAuditMessages` (bool `true`/`false`)
 
-  Use this setting to configure whether processed audit messages are forwarded to another queue or not. Default `false`
+  Use this setting to configure whether processed audit messages are forwarded to another queue or not. Default `false`.  From v1.5 if this setting is not explicitly set to true of false a warning is shown in the logs at startup.
+  See [Installation](installation.md) for details on how to set this at install time.
 
 * `ServiceControl/ExpirationProcessTimerInSeconds` (int) 
 
-  The number of seconds to wait between checking for expired messages.  The default prior to version 1.4 is `60` (1 minute), the new default is `600` (10 minutes).  Settings the value to 0 will disable the expiration process, this is not recommended and it only provided for fault finding.
+  The number of seconds to wait between checking for expired messages.  The default prior to version 1.4 was `60` (1 minute), the new default is `600` (10 minutes).  Settings the value to 0 will disable the expiration process, this is not recommended and it is only provided for fault finding.
 
 * `ServiceControl/ExpirationProcessBatchSize` (int) , Default `65512`  
  
