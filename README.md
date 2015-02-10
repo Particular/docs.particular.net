@@ -168,7 +168,7 @@ And checking `Ignore YAML Front-matter`
 
 ### Conventions
 
- * Samples are located here https://github.com/Particular/docs.particular.net/tree/master/Samples.
+ * Samples are located here https://github.com/Particular/docs.particular.net/tree/master/samples.
  * They are linked to from the home page and are rendered here http://docs.particular.net/samples/.
  * Any directory in that structure with a sample.md will be considered a "root for a sample" or Sample Root.
  * A Sample Root may not contain an sample.md in subdirectories.
