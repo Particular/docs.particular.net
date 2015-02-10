@@ -7,7 +7,7 @@ tags:
 - 
 ---
 
-The ServiceControl installation fileconsists of an embedded MSI bootstrapper EXE and an embedded MSI.  This installation can be executed standalone or via the Particular Software Platform Installer.
+The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI.  This installation can be executed standalone or via the Particular Software Platform Installer.
  
 ### Prerequisites
 The ServiceControl Installation has the following prerequisites:
@@ -22,7 +22,7 @@ If ServiceControl is installed via the Particular Software Platform Installer th
 #### MSMQ 
 ServiceControl is configured to use MSMQ as the out of the box transport. Even if you intend to use an alternative transport as detailed in [Multi Transport Support](multi-transport-support.md) you must have the MSMQ service running for the installation to succeed.    
       
-To enabling and configuring MSMQ without the platform installer refer to the MSMQ section off [Installing The Platform Components Manually](/platform/installer/offline#msmq)
+To enabling and configuring MSMQ without the Platform Installer refer to the MSMQ section off [Installing The Platform Components Manually](/platform/installer/offline#msmq)
 
 Alternatively, if [Chocolatey](http://chocolatey.org) is installed you can install and configure MSMQ by running the following Chocolatey command:
 
