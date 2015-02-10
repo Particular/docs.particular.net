@@ -78,7 +78,7 @@ You can configure ServiceControl to forward any consumed messages into alternate
   The period that defines whether an endpoint is considered alive or not. Default: `00:00:40` (40 secs)
 
 * `ServiceControl/MaximumMessageThroughputPerSecond`
-   This setting was introduced in version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second.   Default: `350`. 
+   This setting was introduced in version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying message database. An apropriate limit ensures that the database can cope with number of insert operations. Otherwise the query performance would drop significantly and the message expiration process would stop working when under heavy insert load. Make sure to concudct thorough performance tests on your hardware before increasing this value.  Default: `350`. 
    
 * `ServiceControl/ForwardAuditMessages` (bool `true`/`false`)
 
