@@ -3,8 +3,7 @@ title: Installing ServiceControl
 summary: Installation Options for ServiceControl
 tags:
 - ServiceControl
-- Installation
-- 
+- Installation 
 ---
 
 The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI.  This installation can be executed standalone or via the Particular Software Platform Installer.
