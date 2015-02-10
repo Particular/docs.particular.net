@@ -45,7 +45,7 @@ Prior to V1.5 of ServiceControl a silent install required the standard MSI comma
 Particular.ServiceControl.1.4.0.exe /quiet
 ```
 
-From V1.5 the silent install command line must also include the ForwardAuditMessages property, this corresponds to the "ServiceControl/ForwardAuditMessages" setting found in the configuration settings.  Refer [Customizing ServiceControl Configuration](creating-config-file.md).  The following example enables audit forwarding.
+From V1.5 the silent install command line must also include the ForwardAuditMessages property, this corresponds to the "ServiceControl/ForwardAuditMessages" setting found in the configuration settings.  Refer [Customizing ServiceControl Configuration](creating-config-file.md). The following example enables audit forwarding.
 
 ```bat
 Particular.ServiceControl.1.5.0.exe /quiet ForwardAuditMessages=true 
