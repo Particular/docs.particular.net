@@ -222,6 +222,7 @@
       Name: "configuration"
       Title: "Configuration"
       Articles: 
+        - "servicecontrol/installation"
         - "servicecontrol/creating-config-file"
         - "servicecontrol/multi-transport-support"
         - "servicecontrol/configure-ravendb-location"
