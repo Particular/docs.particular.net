@@ -56,7 +56,21 @@ The following settings are available for changing the behavior of timeout persis
 - `TimeoutManagerDataTableName`: Allows you to set the name of the table where the timeout manager stores it's internal state, defaults to `TimeoutManagerDataTable`
 - `TimeoutDataTableName`: Allows you to set the name of the table where the timeouts themselves are stored, defaults to `TimeoutDataTableName`
 - `CatchUpInterval`: When a node hosting a timeout manager would go down, it needs to catch up with missed timeouts faster than it normally would (1 sec), this value allows you to set the catchup interval in seconds. Defaults to 3600, meaning it will process one hour at a time.
-- `PartitionKeyScope`: The time range used as partitionkey value for all timeouts. For optimal performance, this should be in line with the catchup interval so it should come to no surprise that the default value also represents an hour: yyyyMMddHH. 
+- `PartitionKeyScope`: The time range used as partitionkey value for all timeouts. For optimal performance, this should be in line with the catchup interval so it should come to no surprise that the default value also represents an hour: yyyyMMddHH.
+
+## Additional performance tips
+
+Azure storage persistence is network IO intensive, every operation performed against storage implies one or more network hops, most of which are small http requests to a single IP address (of your storage cluster). By default the .net framework has been configured to be very restrictive when it comes to this kind of communication:
+- It only allows 2 simultaneous connections to a single IP address by default
+- It's algorithm stack has been optimized for larger payload exchanges, not for small requests
+- It doesn't trust the remote servers by default, so it verifies for revoked certificates on every request
+
+You can drastically improve performance by overriding these settings. You can leverage the ServicePointManager class for this end and change it's settings, but this must be done before your application makes any outbound connection, so ideally it's done very early in your application's startup routine.
+
+	ServicePointManager.DefaultConnectionLimit = 5000; // default settings only allows 2 concurrent requests per process to the same host
+	ServicePointManager.UseNagleAlgorithm = false; // optimize for small requests
+	ServicePointManager.Expect100Continue = false; // reduces number of http calls
+	ServicePointManager.CheckCertificateRevocationList = false; // optional, only if you trust all your dependencies	
 
 ## Sample
 
