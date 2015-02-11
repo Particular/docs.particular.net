@@ -1,11 +1,11 @@
 ---
-title: Extensions and community contributions
+title: Extensions
 summary: A list of all extensions to NServiceBus including all community contributions and external integrations
 ---
 
 This is a curated list of all the extensions to NServiceBus developed by both the community and Particular. To add an extension see [How to Contribute](https://github.com/Particular/docs.particular.net#how-to-contribute). If any extension has been abandoned and no longer maintained please [let us know](https://github.com/Particular/docs.particular.net/issues).
 
-**<a href="http://particular.net/"><img src="particular-project.png"></a> Means it is a Particular run project**
+**<a href="http://particular.net/"><img src="particular-project.png"></a> Particular run project**
 
 ## Transports 
 
