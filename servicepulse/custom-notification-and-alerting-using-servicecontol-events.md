@@ -62,7 +62,7 @@ Similarly to the code above you can subscribe to the event, handle it and provid
 
 ### Alerting on CustomCheckFailed Event
 
-Custom checks are used to alert OPS of possible issues with third parties see [this intro for more information](/servicepulse/intro-endpoints-custom-checks)
+Custom checks are used to alert OPS of possible issues with third parties see [this intro for more information](/servicepulse/intro-endpoints-custom-checks.md)
 
 Once a custom check fails ServiceControl will publish a [CustomCheckFailed](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/CustomCheckFailed.cs) event. 
 
