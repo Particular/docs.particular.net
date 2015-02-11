@@ -40,11 +40,11 @@ The code sample to do both customizations is as shown below:
 
 ### Common information contained in events
 
-Both heartbeat events contain identifying information about the host and the endpoint.
+Both heartbeat and custom check events contain identifying information about the host and the endpoint.
 
 ### Alerting on HeartbeatStopped Event
 
-Heartbeats are used to track endpoints health see [this into for more information](/servicepulse/intro-endpoints-heartbeats.md#active-vs-inactive-endpoints)
+Heartbeats are used to track endpoints health see [this intro for more information](/servicepulse/intro-endpoints-heartbeats.md#active-vs-inactive-endpoints)
 
 Once an endpoint stops sending heartbeats to ServiceControl queue ServiceControl will publish a [HeartbeatStopped](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/HeartbeatStopped.cs) event. 
 
@@ -57,5 +57,23 @@ Similarly to the code above you can subscribe to the event, handle it and provid
 Once an endpoint resumes sending heartbeats to ServiceControl queue ServiceControl will publish a [HeartbeatRestored](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/HeartbeatRestored.cs) event. 
 
 The event contains the time the heartbeat was restored.
+
+Similarly to the code above you can subscribe to the event, handle it and provide custom actions.
+
+### Alerting on CustomCheckFailed Event
+
+Custom checks are used to alert OPS of possible issues with third parties see [this intro for more information](/servicepulse/intro-endpoints-custom-checks)
+
+Once a custom check fails ServiceControl will publish a [CustomCheckFailed](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/CustomCheckFailed.cs) event. 
+
+The message contains the time it was detected and the failure reason.
+
+Similarly to the code above you can subscribe to the event, handle it and provide custom actions.
+
+### Alerting on CustomCheckSucceeded Event
+
+Once a custom check succeeds ServiceControl will publish a [CustomCheckSucceeded](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/CustomCheckSucceeded.cs) event. 
+
+The message contains the time it was detected.
 
 Similarly to the code above you can subscribe to the event, handle it and provide custom actions.
