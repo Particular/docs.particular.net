@@ -185,7 +185,7 @@
     </Reference>
     <Reference Include="NServiceBus.Transports.RabbitMQ, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.RabbitMQ.2.0.5\lib\net45\NServiceBus.Transports.RabbitMQ.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.RabbitMQ.2.1.0\lib\net45\NServiceBus.Transports.RabbitMQ.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.SQLServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -195,8 +195,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="RabbitMQ.Client">
-      <HintPath>..\packages\RabbitMQ.Client.3.3.5\lib\net30\RabbitMQ.Client.dll</HintPath>
+    <Reference Include="RabbitMQ.Client, Version=3.4.3.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RabbitMQ.Client.3.4.3\lib\net35\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -274,6 +275,7 @@
     <Content Include="SecondLevelRetries\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="app.config" />
     <None Include="Monitoring\app.config" />
     <None Include="Transports\Mqmq\TransportConfig.config" />
     <None Include="Audit\App.config" />

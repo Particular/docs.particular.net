@@ -28,7 +28,7 @@ Below is the full list of connection string options. Note that you needs to sepa
 * `Password`: The password when connecting. Defaults to `guest`
 * `RequestedHeartbeat`: The interval for the heartbeats between the client and the server. Defaults to `5` seconds
 * `DequeueTimeout` The time period allowed for the dequeue strategy to dequeue a message. Defaults to `1` second
-* `PrefetchCount`: The number of messages to [prefetch](http://www.rabbitmq.com/consumer-prefetch.html) when consuming messages from the broker. Defaults to `1`
+* `PrefetchCount`: The number of messages to [prefetch](http://www.rabbitmq.com/consumer-prefetch.html) when consuming messages from the broker. Defaults to the number of configured threads for the transport(as of v2.1)
 * `UsePublisherConfirms`: Controls if [publisher confirms](https://www.rabbitmq.com/confirms.html) should be used. Defaults to `true`
 * `MaxWaitTimeForConfirms`: How long the client should wait for publisher confirms if enabled. Defaults to `30` seconds.
 * `RetryDelay`: The time to wait before trying to reconnect to the broker if connection is lost. Defaults to `10` seconds
@@ -57,6 +57,12 @@ By default 1 dedicated thread is used for the callbacks but if you want to add m
 
 <!-- import rabbitmq-config-callbackreceiver-thread-count -->
 
+### Controlling the message id strategy
+
+By default NServiceBus uses the `message-id` property of the AMQP standard to relay the message id. If this header isn't set the transport will throw an exception since NServiceBus needs a message id in order to perform retries, de-duplication etc. in a safe way. In integration scenarios where you don't control the sender you might want to use your own custom scheme that extracts the message id from e.g.a custom header or some data contained in the actual message body. In these cases you can plug in your own strategy by calling: 
+
+<!-- import rabbitmq-config-custom-id-strategy -->
+
 ### Getting full control over the broker connection
 
 The default connection manager that comes with the transport is usually good enough for most users. But if you want full control over how the connection(s) with the broker is managed you can implement you own connection manager. To do this you need to create your own class inheriting from `IManageRabbitMqConnections`. This requires you to provide a connection for:
@@ -68,3 +74,8 @@ The default connection manager that comes with the transport is usually good eno
 In order for the transport to use you new connection manager you need to register it as shown below:
 
 <!-- import rabbitmq-config-useconnectionmanager -->
+
+### Controlling behavior when broker connection is lost
+By the default the RabbitMQ transport will trigger the on critical error action when it continuously fails to connect to the the broker for 2 minutes. This can now be customized using the following configuration setting: (values must be parsable to `System.TimeSpan`)
+
+<!-- import rabbitmq-custom-breaker-settings -->
