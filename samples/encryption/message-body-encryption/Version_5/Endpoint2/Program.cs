@@ -6,7 +6,7 @@ class Program
     static void Main()
     {
         var busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("MessageBodyEncryptionEndpoint2");
+        busConfiguration.EndpointName("Samples.MessageBodyEncryption.Endpoint2");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.RegisterMessageEncryptor();
         var startableBus = Bus.Create(busConfiguration);
