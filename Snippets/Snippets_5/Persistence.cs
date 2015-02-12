@@ -5,6 +5,7 @@ public class Persistence
 {
     public void AllThePersistence()
     {
+#pragma warning disable 618
 
         #region ConfigurePersistence
 
@@ -32,6 +33,7 @@ public class Persistence
             .For(Storage.Sagas, Storage.Subscriptions);
 
         #endregion
+#pragma warning restore 618
     }
 
 }

@@ -48,6 +48,7 @@ summary: NServiceBus Documentation Table of Contents
 - [Load Balancing with the Distributor](load-balancing-with-the-distributor.md)
 - [Introduction to the Gateway](introduction-to-the-gateway.md)
 - [Deploying NServiceBus in a Windows Fail-over Cluster](deploying-nservicebus-in-a-windows-failover-cluster.md)
+- [Individualizing endpoint queue names when Scaling-Out](individualizing-queues-when-scaling-out.md)
 
 ## Day to Day
 
@@ -147,6 +148,7 @@ summary: NServiceBus Documentation Table of Contents
 - [How to specify time to wait before raising critical exception for timeout outages](how-do-i-specify-time-to-wait-before-raising-critical-exception-for-timeout-outages.md)
 - [How to register a custom serializer](how-to-register-a-custom-serializer.md)
 - [.Net Framework version requirements](nservicebus-net-framework-version-requirements.md)
+- [Property injection in handlers](property-injection-in-handlers.md)
 
 ## Troubleshooting
 
