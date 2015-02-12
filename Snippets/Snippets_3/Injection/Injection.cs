@@ -7,17 +7,16 @@
     {
         public void ConfigurePropertyInjectionForHandler()
         {
-            var configuration = new BusConfiguration();
+            #region ConfigurePropertyInjectionForHandlerBefore
 
-            #region ConfigurePropertyInjectionForHandler 5.2
-
-            configuration.InitializeHandlerProperty<EmailHandler>("SmtpAddress", "10.0.1.233");
-            configuration.InitializeHandlerProperty<EmailHandler>("SmtpPort", 25);
+            Configure.With()
+                .DefaultBuilder()
+                .Configurer
+                    .ConfigureProperty<EmailHandler>(handler => handler.SmtpAddress, "10.0.1.233")
+                    .ConfigureProperty<EmailHandler>(handler => handler.SmtpPort, 25);
 
             #endregion
         }
-
-        #region PropertyInjectionWithHandler 5.2
 
         public class EmailHandler : IHandleMessages<EmailMessage>
         {
@@ -30,8 +29,6 @@
                 // ...
             }
         }
-
-        #endregion
     }
 
     public class EmailMessage
