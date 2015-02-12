@@ -1,6 +1,6 @@
 ---
-title: Custom notification and alerting using ServiceControl's events
-summary: How to build a custom notification by subscribing to ServiceControl's events
+title: Custom notification and alerting using ServiceControl events
+summary: How to build a custom notification by subscribing to ServiceControl events
 tags:
 - ServiceControl
 - ServicePulse
