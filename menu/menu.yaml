@@ -29,6 +29,7 @@
         - "nservicebus/introduction-to-the-gateway"
         - "nservicebus/deploying-nservicebus-in-a-windows-failover-cluster"
         - "nservicebus/using-multiple-azure-storage-accounts-for-scaleout"
+        - "nservicebus/individualizing-queues-when-scaling-out"
     - 
       Name: "persistence-in-nservicebus"
       Title: "Persistence In NServiceBus"
@@ -156,6 +157,7 @@
         - "nservicebus/how-to-register-a-custom-serializer"
         - "nservicebus/gateway-service-point-manager"
         - "nservicebus/plugin-custom-databus"
+        - "nservicebus/property-injection-in-handlers"
 - 
   Name: "ServiceMatrix"
   Topics: 
