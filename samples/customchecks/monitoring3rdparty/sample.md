@@ -1,0 +1,24 @@
+---
+title: Monitoring 3rd party systems with custom checks
+summary: This sample shows how to monitor 3rd party systems which are exposed as HTTP endpoints with custom checks.
+tags:
+- CustomCheck
+- ServicePulse
+- ServiceControl
+---
+
+## Code walk-through 
+When integrating with 3rd party systems, we often end up having many messages that fail when those systems are down. This sample shows how to monitor 3rd party systems which are exposed as HTTP endpoints with a custom check.
+
+Run the solution with elevated permissions. Two console applications should start up, `Sample` and `3rdPartySystem`.
+
+### 3rd Party System console
+The 3rd party system console application simulates a HTTP service running on `http://localhost:57789`. You can verify that the 3rd party system is running by opening a browser and point it to `http://localhost:57789/api/ThirdParty`. When you receive no error the 3rd system is running correctly.
+
+### The sample console
+The sample console hosts an endpoint instance which has a custom check associated with it. 
+
+### The custom check
+The custom check consists of an abstract base class which provides the monitoring capability. The monitoring capability implements a `PeriodicCheck` which calls a defined URI every time the specified interval is elapsed. When the 3rd system doesn't respond in a timely fashion a `CheckResult.Failed` is sent to ServiceControl.
+
+<!-- import thecustomcheck -->
