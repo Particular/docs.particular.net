@@ -7,7 +7,7 @@ tags:
 
 INFO: This is relevant to versions 5.2 and above.
 
-Depending on the transport you use it can be beneficial to run with a unique input queue per endpoint instance when scaling out since this avoids beeing limited by the throughput of a single queue. You'd still want to have all those instances share the same storage for eg. sagas, timeouts etc. and that is acheived by keeping endpoint name the same since NServiceBus by default use the endpoint name to select database.
+Depending on the transport you use it can be beneficial to run with a unique input queue per endpoint instance when scaling out since this avoids beeing limited by the throughput of a single queue. You'd still want to have all those instances share the same storage for eg. sagas, timeouts etc. and that is achieved by keeping endpoint name the same since NServiceBus by default uses the endpoint name to select the database.
 
 For this reason we have introduced a new API from NServiceBus v5.2 that allows you to enable queue name individualization per endpoint while still keeping the endpoint name stable.
 
