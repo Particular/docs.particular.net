@@ -6,7 +6,7 @@ tags:
 - ServicePulse
 - Notifications
 redirects:
-- nservicebus/custom-notification-and-alerting-using-servicecontrol-events
+- servicepulse/custom-notification-and-alerting-using-servicecontrol-events
 ---
 
 ## Custom notification and alerting using ServiceControl events
