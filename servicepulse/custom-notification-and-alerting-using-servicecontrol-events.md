@@ -5,6 +5,8 @@ tags:
 - ServiceControl
 - ServicePulse
 - Notifications
+redirects:
+- servicepulse/custom-notification-and-alerting-using-servicecontol-events
 ---
 
 ## Custom notification and alerting using ServiceControl events
