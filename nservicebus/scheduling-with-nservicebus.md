@@ -31,19 +31,25 @@ The scheduling infrastructure leverages the reliable messaging approach at the c
 
 ## Implementation
 
-The scheduler holds a all list of tasks scheduled. In version 3 and 4 tasks are scoped per `AppDomain`. In version 5 they are scoped per Bus instance.
+The scheduler holds a all list of tasks scheduled. In version 3 and 4 tasks are scoped per `AppDomain`. In version 5 they are scoped per Bus instance. Scheduler is non-durable.
 
-When the task is created it is given an unique identifier. The identifier for the task is sent in a message to the Timeout Manager. When it times out and the Timeout Manager returns the message containing the identifier to the endpoint with the scheduled task, the endpoint uses that identifier to fetch and invoke the task from its internal list of tasks.
+When the task is created it is given an unique internal identifier. The identifier for the task is sent in a message to the Timeout Manager. When it times out and the Timeout Manager returns the message containing the identifier to the endpoint with the scheduled task, the endpoint uses that identifier to fetch and invoke the task from its internal list of tasks.
+
+### Scale-out and Side-by-Side Upgrade scenarios
+
+For scale-out and side-by-side updated scenarios where multiple instances of the same endpoint are running, tasks need to be registered with unique name to ensure all instance of endpoint can execute registered tasks properly.
+
+<!-- import ScheduleUniqueTask -->
 
 ## Assumptions
 
-- Scheduled tasks are created at endpoint startup using for example a class the implements the `IWantToRunWhenBusStartsAndStops` interface;
+- Generally scheduled tasks are created at endpoint start-up using for example a class the implements the `IWantToRunWhenBusStartsAndStops` interface;
 - If the process restarts, all scheduled tasks are recreated and given new identifiers. Tasks scheduled before the restart will not be found and a message is written to the log. This is expected behavior;
 - A scheduled task will run forever, as long as the endpoint is running, there is no way to cancel it except skipping its execution each time is invoked;
 - Each scheduled task executes on a new thread using the `Task.Factory.StartNew(Action)` method, which means that there will be no transaction scope by default and it is up to you to create one if needed;
-- You will probably only do a `Bus.Send()` or `Bus.SendLocal()` in the task. The handler of the sent message will be invoked as all other handlers and if configured and supported by underlying transport will be wrapped in a transaction as usual;
+- You should only do a `Bus.Send()` or `Bus.SendLocal()` in the task. The handler of the sent message will be invoked as all other handlers and if configured and supported by underlying transport will be wrapped in a transaction as usual;
 
-## When not to use it
+## When not to use Scheduler
 
-You can look at a scheduled task as a simple never-ending saga. As soon as your task starts to get some branching logic (`if` or `switch` statements) you should consider moving to a [saga](sagas-in-nservicebus.md) .
+Scheduled tasks should dispatch simple messages and should not contain complex logic. As soon as your task starts to get some branching logic (`if` or `switch` statements) you should consider moving to a [saga](sagas-in-nservicebus.md) .
 
