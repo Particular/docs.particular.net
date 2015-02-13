@@ -23,7 +23,7 @@ NServiceBus uses this type of mutator internally to do things like property encr
 
 ### Transport Messages Mutators
 
-Create transport message mutators by implementing the `IMutateTransportMessages` interface. This type of mutator works on the entire transport message and is useful for compression, header manipulation, etc. See a [full explanation of the syntax](/samples/messagemutators/sample.md).
+Create transport message mutators by implementing the `IMutateTransportMessages` interface. This type of mutator works on the entire transport message and is useful for compression, header manipulation, etc. See a [full explanation of the syntax](/samples/messagemutators/).
 
 Remember that message mutators are NOT automatically registered in the container, so to invoke them, register them in the container yourself.
 
