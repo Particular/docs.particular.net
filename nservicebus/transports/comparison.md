@@ -19,7 +19,7 @@ Choosing the correct transport can be challenging and the choice can depend on s
 
  |MSMQ|SQL Server|RabbitMQ|Azure ServiceBus|Azure Storage Queues
 |---              |---         |---               |---              |---                           |---
-|[Architecture](#architecture)|Store & Forward|Semi-Broker|Broker|Broker|Broker
+|[Architecture](#architecture)|Store & Forward|Store & Forward|Broker|Broker|Broker
 |[Local Transactions](#local-transactions)|&#10004;|&#10004;|&#10004;/&#10006;|&#10004;|&#10006;
 |[MSDTC](#msdtc)|&#10004;|&#10004;|&#10006;|&#10006;|&#10006;
 |[Ordering](#ordering)|Fi-Fo|Fi-Fo|&#10006;|Fi-Fo\*|&#10006;
@@ -49,15 +49,23 @@ Choosing the correct transport can be challenging and the choice can depend on s
 
 ##### Architecture
 
-differences between S&F and broker
+A store-and-forward queueing system is inherently distributed, each machine having its own instance of it. Messages that are being sent are first stored in an outgoing queue of the local machine. At this point the enqueue operation finishes and the sender can move on. The queueing system will do its best to forward the stored message to its destination using whatever routing rules it implements.
+
+A broker is a centralized solution (although can be clustered to achieve either higher performance or for high availability). Clients connect to the broker over a network and use its APIs to enqueue and dequeue messages. Brokers frequently implement higher level messaging patterns such as publish/subscriber or multicast.
 
 ##### Local Transactions
 
-descriptions
+Most queueing systems offer transactional semantics of dequeue and enqueue operations, such as
+ * allow to enqueue more than one message as an atomic operation (either both messages are put into the queue or none is)
+ * ensure that at only one of multiple competing queue consumers can dequeue a given message
 
 ##### MSDTC
 
-description and notes one network partitions
+MS Distributed Transaction Coordinator (MS DTC) is a Windows service that allows execution of distributed transactions (transactions that involved more than one resource) using [Two-phase commit](http://en.wikipedia.org/wiki/Two-phase_commit_protocol) protocol. It can be used to form an extended transaction between a database server and a queueing system in order to
+ * automatically roll back dequeue transaction if database fails to commit the changes
+ * automatically roll back the changes done in the database if dequeue transaction fails to commit
+
+TODO notes one network partitions
 
 ##### Ordering
 
@@ -112,7 +120,7 @@ description and links to docu
 
 ##### Competing consumers
 
-On MSMQ requires the distributor?
+Competing consumers is a messaging pattern where more than one process or thread is allowed to dequeue messages from a given queue. It is primarily used to achieve higher processing throughput in cases where time of message processing is much longer than time it takes to dequeue a message. A queueing system that supports competing consumers need to guarantee that each message can be dequeued by only one client.
 
 ##### Topics support
 
@@ -172,6 +180,7 @@ Transport package: *not required, built-in the NServiceBus core*;
 ### SQL Server Transport
 
 Transport package: [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer/)
+SQL Server Transport is hybrid design, borrowing some ideas from store-and-forward approach and some from broker design. The queues are maintained in a centralized place (broker) but logic used to manipulate the queues is distributed and deployed to the endpoints (store-and-forward). SQL Server Transport can also work in a federated (broker) mode where clusters of (or single) endpoints use their own instances of SQL Server and messages are routed between them.
 
 ##### strengths
 
