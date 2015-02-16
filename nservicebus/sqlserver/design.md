@@ -6,7 +6,7 @@ tags:
 - Design
 ---
 
-The SQL Server transport implements a message queueing mechanism on top of a Microsoft SQL Server database. It uses plain tables to model queues. It does not make any use of ServiceBroker, a messaging technology built into the SQL Server, mainly due to cumbersome API and difficult maintenance. 
+The SQL Server transport implements a message queueing mechanism on top of a Microsoft SQL Server database. It uses tables to model queues. It does not make any use of ServiceBroker, a messaging technology built into the SQL Server, mainly due to cumbersome API and difficult maintenance. 
 
 The SQL Server transport is a hybrid queueing system which is neither store-and-forward (like MSMQ) nor a broker (like RabbitMQ). It treats the SQL Server only as a storage infrastructure for the queues. The queueing logic itself is implemented and executed as part of the transport code running in an NServiceBus endpoint. 
 
@@ -18,3 +18,8 @@ SQL Server transport is not limited to the described simple form. The Outbox fea
  * Each endpoint has its own database where it stores both the queues and the user data
  * Messages are not sent immediately upon calling `Bus.Send()` but rather are added to the *outbox* that is stored in the endpoints own database. After completing the handling logic the messages in the *outbox* are forwarded to their destination databases
  * Should one of the forward operations fail, it will be retried by means of standard NServiceBus retry mechanism (both first-level and second-level)
+
+#### Further reading
+
+ * [Table-based queue implementation](configuration.md)
+ * [Concurrency model](concurrency.md)
