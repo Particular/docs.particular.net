@@ -7,4 +7,4 @@ summary: NServiceBus SqlServer
 
 - [Design](configuration.md)
 - [Concurrency](concurrency.md)
-- [Multi-broker](multiple-databases.md)
+- [Multi database support](multiple-databases.md)
