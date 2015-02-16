@@ -1,27 +1,28 @@
 ---
-title: Multi-broker support
-summary: How to configure SQLServer transport to use multiple instances of the database and route messages between them.
+title: Multi-database support
+summary: How to configure SQL Server transport to use multiple instances of the database and route messages between them.
 tags:
-- SQLServer
+- SQL Server
 - Transport
 ---
 
-The SQLServer transport allows you to use select, on per-endpoint basis, where the table queues should be created. The selection can be done on multiple levels:
- * schemas in a single database
- * databases in a single SQLServer instance
- * different SQLServer instances
+The SQL Server transport allows you to use select, on per-endpoint basis, where the table queues should be created. The selection can be done on multiple levels:
+ * different schemas in a single database
+ * different databases in a single SQL Server instance
+ * different SQL Server instances
 
-The transport will route messages to destination endpoints based on the configuration. If no specific configuration has been provided for a particular destination endpoint, the transport assumes the destination has the same configuration (schema, database and instance name/address) as the sending endpoint. If this assumption turns out to be false (the transport cannot connect to destination queue), an exception is thrown immediately. There is no store-and-forward mechanism (and hence -- no dead-letter queue).
+The transport will route messages to destination endpoints based on the configuration. If no specific configuration has been provided for a particular destination endpoint, the transport assumes the destination has the same configuration (schema, database and instance name/address) as the sending endpoint. If this assumption turns out to be false (the transport cannot connect to destination queue), an exception is thrown immediately. There is no store-and-forward mechanism on the transport level (and hence -- no dead-letter queue). 
+NOTE: If the destination endpoint uses different database or server instance, sending a message to it might cause the transaction to escalate to a distributed transaction. Usually it is not a desired effect and one can use NServiceBus Outbox to avoid it.
 
 ### Current endpoint
 
-SQLServer transport defaults to `dbo` schema and uses `NServiceBus/Transport` connection string from the configuration file to connect to the database. The default schema can be chnaged using following API
+SQL Server transport defaults to `dbo` schema and uses `NServiceBus/Transport` connection string from the configuration file to connect to the database. The default schema can be changed using following API
 
 ```
 busConfig.UseTransport<SqlServerTransport>().DefaultSchema("myschema")
 ```
 
-or via providing additional `Queue Schema` parameter in the connection string
+or by providing additional `Queue Schema` parameter in the connection string
 
 ```
 <connectionStrings>
@@ -37,13 +38,13 @@ The other parameters (database and instance name/address) can be changed in code
 busConfig.UseTransport<SqlServerTransport>().ConnectionString(@"Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True")
 ```
 
-NOTE: `Queue Schema` paramater can also be used in the connection string provided via code.
+NOTE: `Queue Schema` parameter can also be used in the connection string provided via code.
 
-NOTE: Unlike in the SQLServet transport, the connection string configuration API in NServiceBus core favors code over xml which means that if you configure connection string both in `app.config` and via the `ConnectionString()` method, the latter will win.
+NOTE: Unlike in the SQL Server transport, the connection string configuration API in NServiceBus core favors code over config which means that if you configure connection string both in `app.config` and via the `ConnectionString()` method, the latter will win.
 
 ### Other endpoints
 
-If a particular remote endpoint requires customization of any part of the routing (schema, database or instance name/address), appropriate values have to be provide either via code or via configuration convention.
+If a particular remote endpoint requires customization of any part of the routing (schema, database or instance name/address), appropriate values have to be provided either via code or via configuration convention.
 
 #### Push mode
 
@@ -62,7 +63,7 @@ busConfig.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
 
 #### Pull mode
 
-The pull mode can be used when specific information is not available at configuration time. He can pass a `Func<String, ConnectionInfo>` that will be used by the SQLServer transport to resolve connection information at runtime.
+The pull mode can be used when specific information is not available at configuration time. One can pass a `Func<String, ConnectionInfo>` that will be used by the SQL Server transport to resolve connection information at runtime.
 
 ```
 busConfig.UseTransport<SqlServerTransport>()
@@ -85,4 +86,4 @@ and the following connection strings:
  
 <!-- import sqlserver-multidb-connectionstrings -->
 
-the messages sent to `billing` will go to the specific database `Billing` on server `DbServerB` while the messages to `sales` will go to the database and server set by default i.e. `MyDefaultDB` on server `DbServerA`.
+the messages sent to `billing` will go to database `Billing` on server `DbServerB` while the messages to `sales` will go to the database and server set by default i.e. `MyDefaultDB` on server `DbServerA`.
