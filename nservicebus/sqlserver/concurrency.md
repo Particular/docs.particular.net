@@ -15,7 +15,7 @@ The disadvantage of this simple model is the fact that satellites (e.g. Second-L
 
 ### 2.0
 
-In released 2.0 we added support for callbacks. Callbacks are implemented by each endpoint instance having a unique [secondary queue](configuration#secondary-queues). The receive for the secondary queue does not use the `MaximumConcurrencyLevel` and defaults to 1 thread. This value can be adjusted via the config API.
+In released 2.0 we added support for callbacks. Callbacks are implemented by each endpoint instance having a unique [secondary queue](configuration.md#secondary-queues). The receive for the secondary queue does not use the `MaximumConcurrencyLevel` and defaults to 1 thread. This value can be adjusted via the config API.
 
 ### 2.1
 
