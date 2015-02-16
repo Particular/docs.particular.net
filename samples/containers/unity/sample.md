@@ -5,7 +5,7 @@ tags:
 - Container
 ---
 
-### Configuring NServiceBus to use the container 
+### Configuring NServiceBus to use the container.
 
 <!-- import ContainerConfiguration -->
 
