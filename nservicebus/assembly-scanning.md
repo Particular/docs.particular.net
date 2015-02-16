@@ -18,7 +18,7 @@ There are some cases where you need fine grained control over which assemblies a
  
 NOTE: Extension (like NServiceBus.Distributor.MSMQ.dll or NServiceBus.RavenDB for example) are not considered core dlls and will need to be explicitly added if you customize assembly scanning.
 
-### By default all types in your bin directory is scanned if you call:
+### By default all types in your bin directory are scanned if you call:
 
 <!-- import ScanningDefault -->
  
