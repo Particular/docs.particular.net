@@ -5,5 +5,6 @@ summary: NServiceBus SqlServer
 
 ## Table of Contents
 
-- [Configuration API](configuration.md)
-- [Using multiple databases](multiple-databases.md)
+- [Design](configuration.md)
+- [Concurrency](concurrency.md)
+- [Multi-broker](multiple-databases.md)
