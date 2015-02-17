@@ -46,18 +46,6 @@ public class SqlServerConfigurationSettings
         #endregion
     }
 
-    void SetSecondaryReceiverConcurrency()
-    {
-
-        #region sqlserver-config-set-secondary-concurrency 2
-
-        var configuration = new BusConfiguration();
-        configuration.UseTransport<SqlServerTransport>()
-            .CallbackReceiverMaxConcurrency(16);
-
-        #endregion
-    }
-
     void Callbacks()
     {
         #region sqlserver-config-callbacks 2
