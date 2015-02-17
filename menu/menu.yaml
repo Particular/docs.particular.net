@@ -36,7 +36,7 @@
       Articles:
         - "nservicebus/msmq-information"
         - "nservicebus/sqlserver/design"
-        - "nservicebus/rabbitmq/index"
+        - "nservicebus/rabbitmq/configuration-api"
     - 
       Name: "persistence-in-nservicebus"
       Title: "Persistence In NServiceBus"
