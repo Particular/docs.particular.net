@@ -18,25 +18,17 @@ NOTE: If the destination endpoint uses different database or server instance, se
 
 SQL Server transport defaults to `dbo` schema and uses `NServiceBus/Transport` connection string from the configuration file to connect to the database. The default schema can be changed using following API
 
-```
-busConfig.UseTransport<SqlServerTransport>().DefaultSchema("myschema")
-```
+<!-- import sqlserver-multidb-current-endpoint-schema -->
 
 or by providing additional `Queue Schema` parameter in the connection string
 
-```
-<connectionStrings>
-   <add name="NServiceBus/Transport" connectionString="Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True; Queue Schema=nsb"/>
-</connectionStrings>
-```
+<!-- import sqlserver-multidb-current-endpoint-schema-config -->
 
 The second approach has precedence over the first one.
 
 The other parameters (database and instance name/address) can be changed in code using the connection string API
 
-```
-busConfig.UseTransport<SqlServerTransport>().ConnectionString(@"Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True")
-```
+<!-- import sqlserver-multidb-current-endpoint-connection-string -->
 
 NOTE: `Queue Schema` parameter can also be used in the connection string provided via code.
 
@@ -50,30 +42,13 @@ If a particular remote endpoint requires customization of any part of the routin
 
 In the push mode the whole collection of endpoint connection information objects is passed during configuration time.
 
-```
-busConfig.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
-   EndpointConnectionInfo.For("RemoteEndpoint")
-      .UseSchema("receiver1")
-      .UseConnectionString("SomeConnectionString"),
-   EndpointConnectionInfo.For("AnotherEndpoint")
-      .UseSchema("receiver2")
-      .UseConnectionString("SomeConnectionString")
-))
-```
+<!-- import sqlserver-multidb-other-endpoint-connection-push -->
 
 #### Pull mode
 
 The pull mode can be used when specific information is not available at configuration time. One can pass a `Func<String, ConnectionInfo>` that will be used by the SQL Server transport to resolve connection information at runtime.
 
-```
-busConfig.UseTransport<SqlServerTransport>()
-   .UseSpecificConnectionInformation(x =>
-   {
-      return x == "RemoteEndpoint" 
-        ? ConnectionInfo.Create().UseConnectionString(ReceiverConnectionString).UseSchema("nsb") 
-        : null;
-   })
-``` 
+<!-- import sqlserver-multidb-other-endpoint-connection-pull --> 
 
 #### Config
 
