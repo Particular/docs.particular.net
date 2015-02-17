@@ -49,5 +49,5 @@ To plug this into NServiceBus use the following APIs.
 
 ## Working sample 
 
-See [Error handling Sample](/samples/errorhandling/sample.md)
+See [Error handling Sample](/samples/errorhandling/)
 
