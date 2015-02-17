@@ -35,7 +35,7 @@
       Title: "Transports"
       Articles:
         - "nservicebus/msmq-information"
-        - "nservicebus/sqlserver/index"
+        - "nservicebus/sqlserver/design"
         - "nservicebus/rabbitmq/index"
     - 
       Name: "persistence-in-nservicebus"
