@@ -1,5 +1,5 @@
 ---
-title: Default Logging
+title: CommonLogging Usage
 summary: Illustrates CommonLogging logging capability of NServiceBus.
 tags:
 - Logging
