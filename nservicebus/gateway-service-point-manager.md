@@ -18,4 +18,4 @@ The above code can be placed in conjunction with the endpoint configuration code
 
 #### Resources
 
-ServicePointManager on MSDN: [http://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.aspx](http://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.aspx)
+ServicePointManager on MSDN: [https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.aspx](https://msdn.microsoft.com/en-us/library/system.net.servicepointmanager.aspx)

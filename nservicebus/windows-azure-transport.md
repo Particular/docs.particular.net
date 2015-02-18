@@ -20,7 +20,7 @@ As part of the Windows Azure support for NServiceBus, you can choose between two
 -   Windows Azure Queues
 -   Windows Azure Service Bus
 
-Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits your application's needs, review the MSDN article "[Windows Azure Queues and Windows Azure Service Bus Queues - Compared and Contrasted](http://msdn.microsoft.com/library/azure/hh767287.aspx)".
+Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits your application's needs, review the MSDN article "[Windows Azure Queues and Windows Azure Service Bus Queues - Compared and Contrasted](https://msdn.microsoft.com/library/azure/hh767287.aspx)".
 
 ## Samples
 
@@ -47,7 +47,7 @@ The Windows Azure transport for NServiceBus and its samples require the followin
 
 ## Configuring for cloud service hosting
 
-For a detailed description of the cloud service configuration in Windows Azure, see "[Set Up a Cloud Service for Windows Azure](http://msdn.microsoft.com/library/azure/hh124108.aspx#bk_Config)".
+For a detailed description of the cloud service configuration in Windows Azure, see "[Set Up a Cloud Service for Windows Azure](https://msdn.microsoft.com/library/azure/hh124108.aspx#bk_Config)".
 
 To configure NServiceBus to connect to a specific Windows Azure storage account (for Windows Azure Queues) or a Windows Azure Service Bus namespace, you must set the [appropriate connection string for each option](http://www.connectionstrings.com/windows-azure/).
 

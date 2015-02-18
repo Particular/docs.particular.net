@@ -82,7 +82,7 @@ Installs the [ServiceControl Chocolatey Package](https://chocolatey.org/packages
 
 ## MSI Information
 
-* [MSI error messages](http://msdn.microsoft.com/en-us/library/aa376931.aspx)
+* [MSI error messages](https://msdn.microsoft.com/en-us/library/aa376931.aspx)
 
 ## Chocolatey Information 
 
@@ -103,7 +103,7 @@ See [Installing Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Instal
 
 ## ClickOnce Information
 
-* [Troubleshooting ClickOnce Deployments](http://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
+* [Troubleshooting ClickOnce Deployments](https://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
 * [ClickOnce forum](https://social.msdn.microsoft.com/Forums/windows/en-US/home?forum=winformssetup)
 
 

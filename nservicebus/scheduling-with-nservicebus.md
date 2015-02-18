@@ -17,7 +17,7 @@ Do not add any business logic in your tasks; instead, use [sagas](sagas-in-nserv
 
 In the scenario where you are "polling" for some change in information state you should instead consider a "push" approach.
 
-The scheduling API is often used to poll state, for example the file system or an external webservice. In these scenarios it is much more efficient to adopt a push based model. In the case of the file system you should instead consider a [FileSystemWatcher](http://msdn.microsoft.com/en-us/library/system.io.filesystemwatcher.aspx). In the case a webservice should instead consider a [WebHook](http://en.wikipedia.org/wiki/Webhook).
+The scheduling API is often used to poll state, for example the file system or an external webservice. In these scenarios it is much more efficient to adopt a push based model. In the case of the file system you should instead consider a [FileSystemWatcher](https://msdn.microsoft.com/en-us/library/system.io.filesystemwatcher.aspx). In the case a webservice should instead consider a [WebHook](http://en.wikipedia.org/wiki/Webhook).
 
 ## Example usage
 

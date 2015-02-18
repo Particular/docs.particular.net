@@ -131,7 +131,7 @@ If the following trace listener is added to your app.config, all nservicebus log
 		</trace>
 	</system.diagnostics>
 
-Logging settings can than be controlled by configuring the windows azure diagnostics service itself using a .wadcfg file. Check out the (msdn documentation)[http://msdn.microsoft.com/library/azure/hh411551.aspx] for more information on this topic.
+Logging settings can than be controlled by configuring the windows azure diagnostics service itself using a .wadcfg file. Check out the (msdn documentation)[https://msdn.microsoft.com/library/azure/hh411551.aspx] for more information on this topic.
 
 ## Cloud Services - Web Roles
 

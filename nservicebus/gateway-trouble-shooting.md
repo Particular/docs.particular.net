@@ -42,4 +42,4 @@ Also to list all urlacls on a machine you can run
     netsh http show urlacl
 
 For more information see the relevant [Netsh commands for HTTP
-](http://msdn.microsoft.com/en-us/library/windows/desktop/cc307236)
+](https://msdn.microsoft.com/en-us/library/windows/desktop/cc307236)

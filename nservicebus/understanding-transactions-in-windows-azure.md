@@ -23,7 +23,7 @@ This is the primary reason why many Windows Azure hosted services do not support
 For example:
 
 * Windows Azure storage services have no support for transactions. This is not explicitly documented but you can find enough [references on stackoverflow](http://stackoverflow.com/questions/18045517/do-azure-storage-related-apis-participate-in-system-transactions)
-* The Windows Azure database supports local transactions, but only grants locks on resources, when required by a system task for 20 seconds, and 24 hours otherwise. See [this msdn article](http://msdn.microsoft.com/library/azure/dn338081.aspx#TransactionDurationLimit) for more details.
+* The Windows Azure database supports local transactions, but only grants locks on resources, when required by a system task for 20 seconds, and 24 hours otherwise. See [this msdn article](https://msdn.microsoft.com/library/azure/dn338081.aspx#TransactionDurationLimit) for more details.
 
 When both the database management system and client are under the same ownership, imagine you just deployed SQL Server to your own virtual machine, so locks are no longer an issue and you can control the lock duration. But even in this case, you need to be careful when it comes to distributed transactions. 
 

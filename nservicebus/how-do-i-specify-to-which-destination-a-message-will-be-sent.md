@@ -24,7 +24,7 @@ Add one of the following:
     <add Assembly="assembly" Namespace="namespace" Endpoint="queue@machinename" />
       
     <!-- To register a specific type in an assembly: -->
-    <add Assembly="assembly" Type="type fullname (http://msdn.microsoft.com/en-us/library/system.type.fullname.aspx)" Endpoint="queue@machinename" />
+    <add Assembly="assembly" Type="type fullname (https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx)" Endpoint="queue@machinename" />
   </MessageEndpointMappings>
 </UnicastBusConfig>
 ```

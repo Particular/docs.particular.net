@@ -33,7 +33,7 @@ And finally you need to expose the wcf service via the config file, for the exam
 </system.serviceModel>
 ```
 
-The service name in `<service name="XXX"` needs to match the [type fullname](http://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) that derives from `NServiceBus.WcfService<TCommand, TErrorCode>`
+The service name in `<service name="XXX"` needs to match the [type fullname](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) that derives from `NServiceBus.WcfService<TCommand, TErrorCode>`
 
 NOTE: In v5 of NServiceBus `WcfService<TCommand, TErrorCode>` has been moved to [NServiceBus.Host nuget package](http://www.nuget.org/packages/NServiceBus.Host), so you need to reference this package.
 

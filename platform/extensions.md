@@ -53,7 +53,7 @@ This is a curated list of all the extensions to NServiceBus developed by both th
  * #### XML
 
   * #### [SystemXml](https://github.com/fhalim/NServiceBus.Serializers.SystemXml) <a href="http://www.nuget.org/packages/NServiceBus.Serializers.SystemXml/"><img src="http://img.shields.io/nuget/v/NServiceBus.Serializers.SystemXml.svg?" title="NuGet Status"></a>
-Using the .net [System.Xml.Serialization](http://msdn.microsoft.com/en-us/library/system.xml.serialization.aspx) to serialize messages. It allows better interoperability with non-NServiceBus peers.
+Using the .net [System.Xml.Serialization](https://msdn.microsoft.com/en-us/library/system.xml.serialization.aspx) to serialize messages. It allows better interoperability with non-NServiceBus peers.
 
   * #### [Xml](/) <a href="http://www.nuget.org/packages/NServiceBus/"><img src="http://img.shields.io/nuget/v/NServiceBus.svg?" title="NuGet Status"></a> <a href="http://particular.net/"><img src="particular-project.png" title="A Particular run project"></a>
   A custom XML serializer built into the NServiceBus core.
