@@ -8,7 +8,7 @@ tags:
 
 Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on.
 
-If you haven't seen the [publish/subscribe sample](/samples/pubsub/sample.md) yet take a minute to walk through or start by [creating a new project using NServiceBus](/samples/step-by-step/sample.md).
+If you haven't seen the [publish/subscribe sample](/samples/pubsub/) yet take a minute to walk through or start by [creating a new project using NServiceBus](/samples/step-by-step/).
 
 The main thing to understand is this: subscribers let the publisher know they're interested, and the publisher stores their addresses so that it knows where to send which message. It's fairly straight-forward, once you know how it all works.
 

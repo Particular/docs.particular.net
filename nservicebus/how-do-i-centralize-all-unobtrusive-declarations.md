@@ -14,5 +14,5 @@ Another option is to configure conventions before the bus starts.
 
 <!-- import UnobtrusiveConventions -->
 
-For more details on this approach, refer to the [Unobtrusive Sample](/samples/unobtrusive/sample.md).
+For more details on this approach, refer to the [Unobtrusive Sample](/samples/unobtrusive/).
 

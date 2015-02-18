@@ -23,6 +23,6 @@ Messages implementing `IEvent`:
 To describe your message intent, use one of these methods:
 
 -   For reply messages in a request and response pattern, you may want to use `IMessage` since these replies are neither a command or an event.
--   These interfaces make your message classes dependent on a specific version of the `NServiceBus.dll`. To avoid this and to make your messages more cross-version compatible, use the unobtrusive mode for defining message intent using the Fluent configuration. See the [Unobtrusive sample](/samples/unobtrusive/sample.md) for more information on how to specify a command and an event.
+-   These interfaces make your message classes dependent on a specific version of the `NServiceBus.dll`. To avoid this and to make your messages more cross-version compatible, use the unobtrusive mode for defining message intent using the Fluent configuration. See the [Unobtrusive sample](/samples/unobtrusive/) for more information on how to specify a command and an event.
 
 

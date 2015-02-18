@@ -6,7 +6,7 @@ tags: []
 
 To avoid an `InvalidOperationException`, `DefiningMessagesAs` (or any one of the `DefiningXXXAs`) should come in the Fluent configuration before `.UnicastBus()`.
 
-You can read more about the [Unobtrusive mode](unobtrusive-mode-messages.md) or see the [Unobtrusive Sample](/samples/unobtrusive/sample.md) .
+You can read more about the [Unobtrusive mode](unobtrusive-mode-messages.md) or see the [Unobtrusive Sample](/samples/unobtrusive/).
 
 See how the server side in the unobtrusive sample might look when self hosting (instead of being hosted in NServiceBus Host):
 
