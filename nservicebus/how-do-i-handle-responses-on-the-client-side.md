@@ -26,7 +26,7 @@ When sending a message/request, you can register a callback that is invoked when
 bus.Send(messageInstance).Register(asyncCallback, state);
 ```
 
-DANGER: If the server process returns multiple responses, NServiceBus cannot know which response message will be the last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a crash as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](sagas-in-nservicebus.md).
+DANGER: If the server process returns multiple responses, NServiceBus cannot know which response message will be the last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a process restart (common scenrarios are a crash or an IIS recycle) as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](sagas-in-nservicebus.md).
 
 To trigger a callback, you need to return an `enum` or `int` value.
 
