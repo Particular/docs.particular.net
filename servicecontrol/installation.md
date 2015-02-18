@@ -32,7 +32,7 @@ ServiceControl reports metrics via the NServiceBus Performance Counters.
       
 For instructions on how to install the Performance Counters without the Platform Installer refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
 
-Alternatively, if [Chocolatey](http://chocolatey.org) is installed you can install the performance counters running the following Chocolatey command:
+Alternatively, if [Chocolatey](https://chocolatey.org) is installed you can install the performance counters running the following Chocolatey command:
 
 	cinst NServicebus.PerfCounters.install
 
