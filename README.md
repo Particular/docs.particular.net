@@ -21,7 +21,7 @@ For simple changes the GitHub web UI should suffice.
 
 For more complex changes you should fork and then submit a pull request. This is useful if you are proposing multiple file changes
 
- 1. [Fork](http://help.github.com/forking/) on GitHub.
+ 1. [Fork](https://help.github.com/forking/) on GitHub.
  1. Clone your fork locally.
  1. Work on your feature.
  1. Push the up to GitHub.
@@ -455,7 +455,7 @@ It will also wrap the image in a clickable lightbox so the full image can be acc
 
 # Additional Resources
 
-* [General GitHub documentation](http://help.github.com/)
-* [GitHub pull request documentation](http://help.github.com/send-pull-requests/)
+* [General GitHub documentation](https://help.github.com/)
+* [GitHub pull request documentation](https://help.github.com/send-pull-requests/)
 * [Forking a Repo](https://help.github.com/articles/fork-a-repo)
 * [Using Pull Requests](https://help.github.com/articles/using-pull-requests)

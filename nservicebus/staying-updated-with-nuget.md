@@ -27,7 +27,7 @@ NOTE: When resolving dependency version on a package, Nuget by default installs 
 
 ## Downloading NServiceBus latest build
 
-The NServiceBus latest build can be downloaded from Particular MyGet feed `https://www.myget.org/F/particular/`. You can add this package source to your list of available [Package Sources](http://docs.nuget.org/docs/start-here/managing-nuget-packages-using-the-dialog#Package_Sources). If pre-releas packages are required the see [Installing Prerelease Packages](http://docs.nuget.org/docs/Reference/Versioning#Installing_Prerelease_Packages).
+The NServiceBus latest build can be downloaded from Particular MyGet feed `https://www.myget.org/F/particular/`. You can add this package source to your list of available [Package Sources](http://docs.nuget.org/consume/package-manager-dialog#package-sources). If pre-releas packages are required the see [Installing Prerelease Packages](http://docs.nuget.org/create/versioning#installing-prerelease-packages).
 
 ## Additional NServiceBus NuGet packages
 

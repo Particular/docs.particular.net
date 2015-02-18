@@ -23,7 +23,7 @@ ServiceControl is configured to use MSMQ as the out of the box transport. Even i
       
 To enabling and configuring MSMQ without the Platform Installer refer to the MSMQ section off [Installing The Platform Components Manually](/platform/installer/offline.md#msmq)
 
-Alternatively, if [Chocolatey](http://chocolatey.org) is installed you can install and configure MSMQ by running the following Chocolatey command:
+Alternatively, if [Chocolatey](https://chocolatey.org) is installed you can install and configure MSMQ by running the following Chocolatey command:
 
 	cinst NServicebus.Msmq.install
 

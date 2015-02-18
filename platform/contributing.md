@@ -43,5 +43,5 @@ need contributors to follow so that we can have a chance of keeping on top of th
 
 # Additional Resources
 
-* [General GitHub documentation](http://help.github.com/)
+* [General GitHub documentation](https://help.github.com/)
 * [Using pull requests](https://help.github.com/articles/using-pull-requests/)
