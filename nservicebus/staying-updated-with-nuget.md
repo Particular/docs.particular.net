@@ -10,7 +10,7 @@ NuGet is an open source project that simplifies integration of third parties int
 
 After installing NuGet you have a few ways to get NServiceBus using NuGet. Right click your project references and choose "Manage NuGet Packages". Search for "NServiceBus", and select "Install". Alternatively you can get to the NuGet package manager via "Library Package Manage" and selecting "Manage NuGet Packages for Solution".
 
-To install NServiceBus core libraries, open the [Package Manager Console](http://docs.nuget.org/docs/start-here/using-the-package-manager-console) and type this:
+To install NServiceBus core libraries, open the [Package Manager Console](http://docs.nuget.org/consume/package-manager-console) and type this:
 
     PM> Install-Package NServiceBus
 
