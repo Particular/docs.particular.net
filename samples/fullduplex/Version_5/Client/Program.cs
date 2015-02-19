@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         var busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("FullDuplexSample_Client");
+        busConfiguration.EndpointName("Samples.FullDuplex.Client");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
@@ -27,7 +27,7 @@ class Program
                                   DataId = g,
                                   String = "<node>it's my \"node\" & i like it<node>"
                               };
-                bus.Send("FullDuplexSample_Server", message);
+                bus.Send("Samples.FullDuplex.Server", message);
             }
             #endregion
         }

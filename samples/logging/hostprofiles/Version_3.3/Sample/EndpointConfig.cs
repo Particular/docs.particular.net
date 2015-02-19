@@ -8,7 +8,7 @@ public class EndpointConfig :
     public void Init()
     {
         var configure = Configure.With();
-        configure.DefineEndpointName("HostProfilesLogging");
+        configure.DefineEndpointName("Samples.Logging.HostProfiles");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();

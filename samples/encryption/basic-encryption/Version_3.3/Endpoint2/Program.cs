@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         var configure = Configure.With();
-        configure.DefineEndpointName("EncryptionSampleEndpoint2");
+        configure.DefineEndpointName("Samples.Encryption.Endpoint2");
         configure.DefaultBuilder();
         configure.RijndaelEncryptionService();
         configure.MsmqTransport();

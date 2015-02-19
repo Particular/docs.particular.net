@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         var busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("EncryptionSampleEndpoint1");
+        busConfiguration.EndpointName("Samples.Encryption.Endpoint1");
         busConfiguration.RijndaelEncryptionService("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         var startableBus = Bus.Create(busConfiguration);
@@ -32,7 +32,7 @@ class Program
                                                 }
                                             }
                           };
-            bus.Send("EncryptionSampleEndpoint2", message);
+            bus.Send("Samples.Encryption.Endpoint2", message);
 
             Console.WriteLine("MessageWithSecretData sent. Press any key to exit");
             Console.ReadLine();

@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         var busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("FullDuplexSample_Server");
+        busConfiguration.EndpointName("Samples.FullDuplex.Server");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();

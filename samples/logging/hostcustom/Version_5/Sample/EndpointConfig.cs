@@ -32,7 +32,7 @@ public class EndpointConfig :
 #endregion
     public void Customize(BusConfiguration configuration)
     {
-        configuration.EndpointName("HostCustomLoggingSample");
+        configuration.EndpointName("Samples.Logging.HostCustom");
         configuration.UseSerialization<JsonSerializer>();
         configuration.EnableInstallers();
         configuration.UsePersistence<InMemoryPersistence>();

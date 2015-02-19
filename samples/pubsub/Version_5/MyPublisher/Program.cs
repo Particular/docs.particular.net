@@ -9,7 +9,7 @@ static class Program
     static void Main()
     {
         var busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Sample.PubSub.MyPublisher");
+        busConfiguration.EndpointName("Samples.PubSub.MyPublisher");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();

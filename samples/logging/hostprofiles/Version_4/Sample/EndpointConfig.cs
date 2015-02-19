@@ -8,7 +8,7 @@ public class EndpointConfig :
     {
         Configure.Serialization.Json();
         var configure = Configure.With();
-        configure.DefineEndpointName("HostProfilesLogging");
+        configure.DefineEndpointName("Samples.Logging.HostProfiles");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();

@@ -8,7 +8,7 @@ class Program
     static void Main()
     {
         var configure = Configure.With();
-        configure.DefineEndpointName("EncryptionSampleEndpoint1");
+        configure.DefineEndpointName("Samples.Encryption.Endpoint1");
         configure.DefaultBuilder();
         configure.RijndaelEncryptionService();
         configure.MsmqTransport();
@@ -39,7 +39,7 @@ class Program
                                              }
                                          }
                        };
-        bus.Send("EncryptionSampleEndpoint2", message);
+        bus.Send("Samples.Encryption.Endpoint2", message);
 
         Console.WriteLine("MessageWithSecretData sent. Press any key to exit");
         Console.ReadLine();

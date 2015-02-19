@@ -35,7 +35,7 @@ public class EndpointConfig :
     {
         Configure.Serialization.Json();
         var configure = Configure.With();
-        configure.DefineEndpointName("HostCustomLoggingSample");
+        configure.DefineEndpointName("Samples.Logging.HostCustom");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();

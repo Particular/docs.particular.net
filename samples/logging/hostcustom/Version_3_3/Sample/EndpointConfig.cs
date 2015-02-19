@@ -34,7 +34,7 @@ public class EndpointConfig :
     void IWantCustomInitialization.Init()
     {
         var configure = Configure.With();
-        configure.DefineEndpointName("HostCustomLoggingSample");
+        configure.DefineEndpointName("Samples.Logging.HostCustom");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
