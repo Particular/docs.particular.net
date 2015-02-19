@@ -181,6 +181,12 @@ And checking `Ignore YAML Front-matter`
  * Samples should illustrate a feature or scenario with as few moving pieces as possible. For example if the sample is "illustrating IOC with MVC" then "adding signalr" to that sample will only cause confusion. In general the fewer nugets you need to get the point across the better.
  * Do not "document things inside a sample". A sample is "to show how something is used" not to document it. Instead update the appropriate documentation page and link to it. As a general rule if you add any content to a sample, where that guidance could possible be applicable to other samples, then that guidance should probably exist in a documentation page.
 
+### Bootstrapping a sample
+
+At the moemnt the best way to get started on a sample is to copy an existing one. Ideally one that has similarities to what you are tyring to achieve. 
+
+A good sample to start with is the [Default Logging Sample](https://github.com/Particular/docs.particular.net/tree/master/samples/logging/default), since all it does is enable logging. You can then add the various moving pieces to your copy.
+
 ## Code Snippets
 
 ### Defining Snippets
