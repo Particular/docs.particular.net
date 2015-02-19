@@ -59,24 +59,20 @@ NOTE: For NServiceBus version-dependent requirements for each plugin, review the
 
 ## Connecting the Plugins to ServiceControl
 
-Once deployed on an active endpoint, the endpoints send plugin-specific information to ServiceControl, with no need for additional configuration. This is done by sending messages using the defined endpoint transport to the ServiceControl queue, which is located in the same physical location as the audit and error queues defined for the endpoint.
+Once deployed on an active endpoint, the endpoint sends plugin-specific information to ServiceControl. Plugins send messages using the defined endpoint transport to the ServiceControl queue. Location of ServiceControl queue is determined by the following:
+
+1. **Endpoint`s configuration file**  
+Check for an `appSetting` named `ServiceControl/Queue` e.g. `<add key="ServiceControl/Queue" value="particular.servicecontrol@machine"/>`.
+1. **Convention based on the configured Error Queue machine**  
+If an error queue is configured, for example `error@MachineName`, then the queue `Particular.ServiceControl@MachineName` will be used.
+1. **Convention based on the configured Audit Queue machine**  
+If an audit queue is configured, for example `audit@MachineName`, then the queue `Particular.ServiceControl@MachineName` will be used.
+
+WARNING: Endpoint with plugins installed that cannot communicate to ServiceControl will shut down.
 
 The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl.  
 
-NOTE: Audit and error queues must be defined for each endpoint monitored by ServiceControl.
-
-### How the location of ServiceControl queue location is determined
-
-The order of precedence is as follows:
-
-1. **AppSetting**  
-Check for an appsetting named `ServiceControl/Queue` eg `<add key="ServiceControl/Queue" value="particular.servicecontrol@machine"/>`.
-1. **Convention based on the configured Error Queue machine**  
-If an error queue is configured then the queue `Particular.ServiceControl` on the error queue machine name will be used i.e.  `Particular.ServiceControl@ErrorQueueMachineName`. 
-1. **Convention based on the configured Audit Queue machine**  
-If an audit queue is configured then the queue `Particular.ServiceControl` on the audit queue machine name will be used i.e.  `Particular.ServiceControl@AuditQueueMachineName`. 
-
-WARNING: Audit Queue machine is only used in NServiceBus v4.1 and up.
+NOTE: Audit and error queues must be defined for each endpoint monitored by ServiceControl and should be in the same location where ServiceControl is installed.
 
 ## Understanding Plugin Functionality and Behavior
 
