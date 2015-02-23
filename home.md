@@ -1,7 +1,3 @@
----
-title: HomePage
-summary: HomePage
----
 <style>
   a.img img.hover{display:none;}
   a.img:hover img{display:none;}
