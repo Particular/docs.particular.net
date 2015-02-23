@@ -37,6 +37,8 @@
         - "nservicebus/msmq-information"
         - "nservicebus/sqlserver/design"
         - "nservicebus/rabbitmq/configuration-api"
+        - "nservicebus/using-azure-servicebus-as-transport-in-nservicebus"
+        - "nservicebus/using-azure-storage-queues-as-transport-in-nservicebus"
     - 
       Name: "persistence-in-nservicebus"
       Title: "Persistence In NServiceBus"
