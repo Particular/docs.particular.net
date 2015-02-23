@@ -238,6 +238,10 @@
       <h3>StackOverflow</h3>
     </a>
     <div style="clear: both"></div>
+    <a href="/platform/extensions" class="img">
+      <h3>Extensions and integrations</h3>
+    </a>
+    <div style="clear: both"></div>
   </div>
   <div style="clear: both"></div>
 </div>
