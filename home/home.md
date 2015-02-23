@@ -224,6 +224,10 @@
     </a>
     <p>Book by David Boike. Register and get the first 3 chapters free</p>
     <div style="clear: both"></div>
+    <a href="/platform/extensions.md" class="img">
+      <h3>Extensions and integrations</h3>
+    </a>
+    <div style="clear: both"></div>
   </div>
   <div class="right1">
     <a href="http://particular.net/HandsOnLabs" class="img">
@@ -236,10 +240,6 @@
       <img src="/home/stackoverflow-big.png" />
       <img src="/home/stackoverflow-big-hover.png" class="hover"/>
       <h3>StackOverflow</h3>
-    </a>
-    <div style="clear: both"></div>
-    <a href="/platform/extensions.md" class="img">
-      <h3>Extensions and integrations</h3>
     </a>
     <div style="clear: both"></div>
   </div>
