@@ -15,6 +15,8 @@ Start to log with NServiceBus:
 
     NServiceBus.Configure.With().Log4Net();
 
+WARNING: In Version 4 only the Host has logging enable by default. In any other hosting scenario (eg self hosting or hosting in a website) you are required to enable and configure logging.  
+
 This makes use of `ConsoleAppender`, which sets the logging threshold to Debug. All logging statements performed by NServiceBus or the application at a level at or above Debug (i.e., Warn, Error, and Fatal) are sent to the console for output.
 
 To make use of the standard Log4Net configuration found in the application configuration file, make the following call before the call to `NServiceBus.Configure.With()`:
