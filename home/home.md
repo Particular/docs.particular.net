@@ -238,7 +238,7 @@
       <h3>StackOverflow</h3>
     </a>
     <div style="clear: both"></div>
-    <a href="/platform/extensions" class="img">
+    <a href="/platform/extensions.md" class="img">
       <h3>Extensions and integrations</h3>
     </a>
     <div style="clear: both"></div>
