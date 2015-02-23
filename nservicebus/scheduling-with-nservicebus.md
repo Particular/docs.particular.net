@@ -7,12 +7,6 @@ tags:
 
 The NServiceBus Scheduler is a lightweight/non-durable API that helps to schedule a task that needs to be executed repeatedly based on a specified interval. The scheduling infrastructure leverages the reliable messaging approach and the NServiceBus core functionality. This allows scheduling to include features such as built in retries and forwarding to the error queue. 
 
-## When not to use it
-
-- As soon as your task starts to get some branching logic (`if` or `switch` statements) or you start to add business logic, instead of a simple Bus.Send() or a Bus.SendLocal(), you should consider moving to a [saga](sagas-in-nservicebus.md) .
-
-- Often times, rather than poll for a certain state using the Scheduler API, you can use an eventing model instead, where an event is published when that state transition occurs and take the necessary action in that event message handler.
-
 ## How the scheduler works
 
 The scheduler holds a list of tasks scheduled in a non-durable in-memory dictionary. In version 3 and 4 tasks are scoped per `AppDomain`. In version 5 they are scoped per Bus instance.
@@ -24,6 +18,14 @@ When a new scheduled task is created it is given a unique identifier and stored 
 The difference between these examples is that in the latter a name is given for the task. The name is used for logging.
 
 <!-- import ScheduleTask -->
+
+## When not to use it
+
+- As soon as your task starts to get some branching logic (`if` or `switch` statements) or you start to add business logic, instead of a simple Bus.Send() or a Bus.SendLocal(), you should consider moving to a [saga](sagas-in-nservicebus.md) .
+
+- Often times, rather than poll for a certain state using the Scheduler API, you can use an eventing model instead, where an event is published when that state transition occurs and take the necessary action in that event message handler.
+
+- When you have requirements that are not currently supported by the Scheduler API. For example, scaling out the  tasks, canceling or deleting a schedule task, doing a side-by-side deployment of a schedule task as outlined by the following section. 
 
 ## Current Limitations
 
@@ -49,3 +51,5 @@ Using the same example usage of the scheduler API shown above, in order to conve
 In the following example, the endpoint upon startup will send itself a `StartMyCustomSaga` message to initiate the saga. The saga will request a timeout for 5 minutes if the task hasn't already been scheduled and in the timeout handler will send the `CallLegacySystem` message that will execute some task and also request another timeout for the specified interval.
 
 <!-- import ScheduleTaskSaga -->
+
+NOTE: If you need to cancel a schedule task, create a new message, e.g. `CancelMyCustomSaga` and modify the above saga to also handle this message, which will end the saga using [MarkAsComplete() method](sagas-in-nservicebus.md#ending-a-long-running-process). 
