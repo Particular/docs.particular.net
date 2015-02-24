@@ -72,6 +72,13 @@ Replace the content of `PlaceOrder.cs` with the following code:
 
 <!--import PlaceOrder-->
 
+And also create 'OrderPlaced.cs' with the following code:
+
+public class OrderPlaced : IEvent
+{
+    public Guid OrderId { get; set; }
+}
+
 ### Creating the Server Project
 
 You are now ready to create the orders processing server. Add a new class library project and name it 'Ordering.Server'.
