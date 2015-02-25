@@ -7,78 +7,62 @@ tags:
 - Outbox
 ---
 
- 1. Run the solution. Two console applications start.
- 2. Find the Sender application by looking for the one with "Sender" in its path and pressing Enter in the window to send a message.      You have just sent a message that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
- 3. Click 'e' and Enter. A message larger than the allowed 4MB is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown at the "Sender" application as shown below:
+ 1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create two databases: `sender` and `receiver`.
+ 2. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option). 
+ 3. Start the Receiver project.
+ 4. If you see `DtcRunningWarning` log message in the console, it means you have a Distributed Transaction Coordinator (DTC) service running. The Outbox feature is designed to provide *exactly once* delivery guarantees without DTC. We believe it is better to disable the DTC service to avoid confusion when you use Outbox.
+ 5. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready. 
+ 6. Hit <enter>.
+ 7. On the Receiver console you should see that order was submitted.
+ 8. On the Sender console you should see that the order was accepted.
+ 9. Finally, after a couple of seconds, on the Receiver console you should see that the timeout message has been received.
+ 10. Open SQL Server Management Studio and go to the receiver database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`)
 
 ## Code walk-through
 
 This sample contains three projects: 
 
- * Messages - A class library containing the sample messages. Only one of the message types utilizes the NServiceBus DataBus.
- * Sender - A console application responsible for sending the large messages.
- * Receiver - A console application responsible for receiving the large messages from Sender.
+ * Messages - A class library containing the messages.
+ * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
+ * Receiver - A console application responsible for processing the order message.
 
-### Messages project
- 
-Let's look at the Messages project, at the two messages. We start with the large one that is not utilizing the DataBus mechanism. The message is a simple byte array command:
+Sender and Receiver use different databases, just like in a production scenario where two systems are integrated using NServiceBus. Each database contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence.
 
-<!-- import AnotherMessageWithLargePayload -->
-
-The other message utilizes the DataBus mechanism:
-
-<!-- import MessageWithLargePayload --> 
-
-`DataBusProperty<byte[]>` is an NServiceBus data type that instructs NServiceBus to treat the `LargeBlob` property as an attachment. It is not transported in the NServiceBus normal flow.
-
-When sending a message using the NServiceBus Message attachments mechanism, the message's payload resides in the folder. In addition, a
-'signaling' message is sent to the Receiving endpoint.
-
-The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is allowed to clean the MSMQ message after one minute if it was not received by the receiver. The message payload remains in the Storage folder after the MSMQ message is cleaned by the NServiceBus framework.
-
-Following is an example of the signaling message that is sent to the receiving endpoint:
-
-```json
-{
-	"SomeProperty":"This message contains a large blob that will be sent on the data bus",
-	"LargeBlob":
-	{
-		"Key":"2014-09-29_09\\67de3a8e-0563-40d5-b81b-6f7b27d6431e",
-		"HasValue":true
-	}
-}
-```
-
-### Configuring the Databus location
-
-Both the `Sender` and `Receive` project need to share a common location to store large binary objects. This is done by calling `FileShareDataBus`. This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment. 
-
-```C#
-static string BasePath = "..\\..\\..\\storage";
-static void Main()
-{
-    ...
-    busConfiguration.UseDataBus<FileShareDataBus>().BasePath(BasePath);
-    ...
-}
-```
- 
 ### Sender project
+ 
+The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQLServer transport with NHibernate persistence and Outbox.
 
-The following sender project code sends the `MessageWithLargePayload `message, utilizing the NServiceBus attachment mechanism:
+<!-- import SenderConfiguration -->
 
-<!-- import SendMessageLargePayload -->
+The Sender uses a configuration file to tell NServiceBus where the messages 
+addressed to the Receiver should be sent
 
-The following `Sender` project code sends the `AnotherMessageWithLargePayload` message without utilizing the NServiceBus attachment mechanism:
-
-<!-- import SendMessageTooLargePayload --> 
-
-In both cases, a 5MB message is sent, but in the `MessageWithLargePayload `it goes through, while `AnotherMessageWithLargePayload` fails.
-
-Go to the `Receiver` project to see the receiving application.
+<!-- import SenderConnectionStrings -->
 
 ### Receiver project
 
-Following is the receiving message handler:
+The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence and Outbox but uses V2.1 code-based connection information API.
 
-<!-- import MessageWithLargePayloadHandler --> 
+<!-- import ReceiverConfiguration -->
+
+In order for the Outbox to work, the business data has to reuse the same connection string as NServiceBus' persistence
+
+<!-- import NHibernate -->
+
+When the message arrives at the Receiver, it is dequeued using a native SQLServer transaction. Then a `TransactionScope` is created that encompasses
+ * persisting business data
+
+<!-- import StoreUserData -->
+
+ * persisting saga data of `OrderLifecycleSaga` 
+ * storing the reply message
+
+<!-- import Reply -->
+
+and the timeout request
+
+<!-- import Timeout -->
+
+in the outbox.
+
+Finally the messages in the outbox are pushed to their destinations. The timeout message gets stored in NServiceBus timeout store and is sent back to the saga after requested delay of five seconds.
