@@ -50,19 +50,15 @@ In order for the Outbox to work, the business data has to reuse the same connect
 <!-- import NHibernate -->
 
 When the message arrives at the Receiver, it is dequeued using a native SQLServer transaction. Then a `TransactionScope` is created that encompasses
- * persisting business data
+ * persisting business data,
 
 <!-- import StoreUserData -->
 
- * persisting saga data of `OrderLifecycleSaga` 
- * storing the reply message
+ * persisting saga data of `OrderLifecycleSaga` ,
+ * storing the reply message and the timeout request in the outbox.
 
 <!-- import Reply -->
 
-and the timeout request
-
 <!-- import Timeout -->
-
-in the outbox.
 
 Finally the messages in the outbox are pushed to their destinations. The timeout message gets stored in NServiceBus timeout store and is sent back to the saga after requested delay of five seconds.
