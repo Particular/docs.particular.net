@@ -183,7 +183,7 @@ And checking `Ignore YAML Front-matter`
 
 ### Bootstrapping a sample
 
-At the moemnt the best way to get started on a sample is to copy an existing one. Ideally one that has similarities to what you are tyring to achieve. 
+At the moment the best way to get started on a sample is to copy an existing one. Ideally one that has similarities to what you are trying to achieve. 
 
 A good sample to start with is the [Default Logging Sample](https://github.com/Particular/docs.particular.net/tree/master/samples/logging/default), since all it does is enable logging. You can then add the various moving pieces to your copy.
 
