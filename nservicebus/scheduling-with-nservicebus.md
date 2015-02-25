@@ -37,7 +37,7 @@ The difference between these examples is that in the latter a name is given for 
 - The scheduler API does not support scaling out the endpoint on the same machine or doing a side-by-side deployment of an endpoint. When you have multiple instances of the endpoint that's running on the same machine as is the case with these scenarios, these endpoint instances share the same input queue. Since each endpoint maintains its own created tasks in memory, when the specified time is up and the task is queued at the endpoint, any of the endpoint instance that is currently running can dequeue that message. If an endpoint that did not originally create this task happened to dequeue this message in order to be execute it, it will not find the task in its list. 
   WARNING: **This will result in the task to not get executed and the task will also not be rescheduled again.**  
 
-## Converting a schedule task into a saga
+## Converting a scheduled task into a saga
 To store these tasks durably in order to support either a scale-out scenario or a side-by-side deployment scenario, you can use a [saga](sagas-in-nservicebus.md) instead. You can think of the scheduler as a never ending saga.
 
 Using the same example usage of the scheduler API shown above, in order to convert it to a saga:
