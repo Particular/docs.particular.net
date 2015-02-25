@@ -23,3 +23,4 @@ In order to overcome this limitation a higher level store-and-forward mechanism 
 
  * [Table-based queue implementation](configuration.md)
  * [Concurrency model](concurrency.md)
+ * [Multi database support](multiple-databases.md)
