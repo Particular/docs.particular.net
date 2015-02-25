@@ -13,7 +13,7 @@ class Scheduling
         schedule.Every(TimeSpan.FromMinutes(5), () => bus.Send(new CallLegacySystem()));
 
         // Name a schedule task and invoke it every 5 minutes
-        schedule.Every(TimeSpan.FromMinutes(5), "Task name", SomeCustomMethod);
+        schedule.Every(TimeSpan.FromMinutes(5), "MyCustomTask", SomeCustomMethod);
 
         #endregion
     }

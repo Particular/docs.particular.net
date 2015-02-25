@@ -15,7 +15,7 @@ class Scheduling
 
         // Name a schedule task and invoke it every 5 minutes
         Schedule.Every(TimeSpan.FromMinutes(5))
-            .Action("Task name", SomeCustomMethod);
+            .Action("MyCustomTask", SomeCustomMethod);
 
         #endregion
     }
