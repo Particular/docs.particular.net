@@ -107,7 +107,7 @@ You can configure ServiceControl to forward any consumed messages into alternate
 
 * `NServiceBus/Transport` (string)
 
-  The connection string for the transport.
+  The connection string for the transport. This setting should be placed in `connectionStrings` section of configuratoin file.
 
 * `ServiceBus/AuditQueue` (string)
 
