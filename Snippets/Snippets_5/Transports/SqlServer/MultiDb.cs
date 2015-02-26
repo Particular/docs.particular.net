@@ -9,18 +9,20 @@ public class MultiDb
 
         #region sqlserver-multidb-current-endpoint-schema 2.1
 
-        busConfig.UseTransport<SqlServerTransport>().DefaultSchema("myschema");
+        busConfig.UseTransport<SqlServerTransport>()
+            .DefaultSchema("myschema");
 
         #endregion
     }
-    
+
     void CurrentEndpointConnectionString()
     {
         var busConfig = new BusConfiguration();
 
         #region sqlserver-multidb-current-endpoint-connection-string 2
 
-        busConfig.UseTransport<SqlServerTransport>().ConnectionString(@"Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
+        busConfig.UseTransport<SqlServerTransport>()
+            .ConnectionString(@"Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
 
         #endregion
     }
@@ -42,7 +44,7 @@ public class MultiDb
 
         #endregion
     }
-    
+
     void OtherEndpointConnectionParamsPull()
     {
         var busConfig = new BusConfiguration();
@@ -50,12 +52,11 @@ public class MultiDb
         #region sqlserver-multidb-other-endpoint-connection-pull 2.1
 
         busConfig.UseTransport<SqlServerTransport>()
-            .UseSpecificConnectionInformation(x =>
-            {
-                return x == "RemoteEndpoint"
-                    ? ConnectionInfo.Create().UseConnectionString(@"Data Source=...").UseSchema("nsb")
-                    : null;
-            });
+            .UseSpecificConnectionInformation(x => x == "RemoteEndpoint"
+                ? ConnectionInfo.Create()
+                    .UseConnectionString(@"Data Source=...")
+                    .UseSchema("nsb")
+                : null);
 
         #endregion
     }

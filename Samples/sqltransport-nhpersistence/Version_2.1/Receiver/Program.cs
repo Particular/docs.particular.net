@@ -32,6 +32,7 @@ namespace Receiver
             new SchemaExport(hibernateConfig).Execute(false, true, false);
 
             #region ReceiverConfiguration
+            
             var busConfig = new BusConfiguration();
             busConfig.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
                 EndpointConnectionInfo.For("sender")
