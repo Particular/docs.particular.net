@@ -101,6 +101,8 @@ NOTE: In versions 4 and up use the using [NServiceBus.Distributor.MSMQ NuGet](ht
 
 Any NServiceBus endpoint can run as a Worker node. To activate it, create a handler for the relevant messages and ensure that the `app.config` file contains routing information for the Distributor.
 
+
+
 ### When hosting in NServiceBus.Host.exe
 
 If you are hosting your endpoint with NServiceBus.Host.exe, to run as a Worker, use this command line:
@@ -167,6 +169,18 @@ When using the Distributor in a full publish/subscribe deployment, you see is a 
 ![logical pub/sub and physical distribution 3](nservicebus-pubsub-3.png)
 
 Keep in mind that the Distributor is designed for load balancing within a single site, so do not use it between sites. In the image above, all publishers and subscribers are within a single physical site. For information on using NServiceBus across multiple physical sites, see [the gateway](the-gateway-and-multi-site-distribution.md).
+
+## Worker QMId needs to be unique 
+
+Every installation of MSMQ on a Windows machine is represented uniquely by a Queue Manager id (QMId). The QMId is stored as a key in the registry, ```HKLM\Software\Microsoft\MSMQ\Parameters\Machine Cache```. MSMQ uses the QMId to know where is should send acks and replies for incoming messages. 
+
+It is very important that all your machines have their own unique QMId. If two or more machines share the same QMId, only one of those machines are able so successfully send and receive messages with MSMQ. Exactly which machine works changes in a seemingly random fashion.
+
+The primary reason for machines ending up with duplicate QMIds is cloning of virtual machines from a common Windows image without running the recommended [Sysprep](https://technet.microsoft.com/en-us/library/cc766049(v=ws.10).aspx) tool. 
+
+Should you have two or more machines with the same QMId, simply reinstall the MSMQ feature to generate a new QMId.
+
+Check out [John Brakewells blog](http://blogs.msdn.com/b/johnbreakwell/archive/2007/02/06/msmq-prefers-to-be-unique.aspx) for more details.
 
 ## High availability
 
