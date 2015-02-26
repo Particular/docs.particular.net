@@ -16,18 +16,19 @@ namespace Receiver
     {
         static void Main(string[] args)
         {
-            #region NHibernate
             var hibernateConfig = new Configuration();
             hibernateConfig.DataBaseIntegration(x =>
             {                
                 x.ConnectionStringName = "NServiceBus/Persistence";
                 x.Dialect<MsSql2012Dialect>();
             });
+            #region NHibernate
             hibernateConfig.SetProperty("default_schema", "receiver");
+            #endregion
+
             var mapper = new ModelMapper();
             mapper.AddMapping<OrderMap>();
             hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
-            #endregion
 
             new SchemaExport(hibernateConfig).Execute(false, true, false);
 
