@@ -26,6 +26,8 @@ Fortunately the [Outbox](..\no-dtc.md) feature can be used to mitigate that prob
 
 In this mode the ambient transaction is started before receiving of the message and encompasses the whole processing process including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no Distributed Transaction Coordinator (DTC) escalation. 
 
+<!-- import OutboxSqlServerConnectionStrings -->
+
 ## Scenarios
 
 ### Messaging framework for the enterprise

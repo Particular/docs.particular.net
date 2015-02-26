@@ -2,7 +2,6 @@
 using System.Linq;
 using Messages;
 using NServiceBus;
-using NServiceBus.Transports.SQLServer;
 
 namespace Sender
 {
@@ -15,9 +14,9 @@ namespace Sender
             var busConfig = new BusConfiguration();
 
             #region SenderConfiguration
-            busConfig.UseTransport<SqlServerTransport>().DefaultSchema("sender")
-                .UseSpecificConnectionInformation(EndpointConnectionInfo.For("receiver").UseSchema("receiver"));
+            busConfig.UseTransport<SqlServerTransport>();
             busConfig.UsePersistence<NHibernatePersistence>();
+            busConfig.EnableOutbox();
             #endregion
 
             var bus = Bus.Create(busConfig).Start();

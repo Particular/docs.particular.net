@@ -37,26 +37,11 @@ Here is a diagram how it all works:
 - Currently only NHibernate storage has been implemented;
 - Both the business data and dedupplication data need to share the same database;
 
-## SqlServer Transport
+## SQL Server Transport
 
-SqlServer transport supports No-DTC without Outbox.
+SQL Server transport supports *exactly-once* message delivery without Outbox solely by means of sharing the transport connection with persistence. This mode of operation is discussed in depth in this [sampe](..\samples\sqltransport-nhpersistence\sample.md).
 
-To enable SqlServer transport to not use MSDTC you need to ensure that all of the following connection strings are exactly the same (including the casing) in your config file:
-
-<!-- import OutboxSqlServerConnectionStrings --> 
-
-Next you need to configure `NHibernate` to be the default persistence and pass the business data [NHibernate Configuration instance](http://www.nhforge.org/doc/nh/en/#configuration-programmatic) to it, eg:
-
-<!-- import OutboxShareNHibernateConfiguration -->  
-
-## How to access NHibernate Session
-
-To get access to the current `IDbConnection`, `ISession` or/and `ITransaction`, all it is required is to inject via DI the `NServiceBus.Persistence.NHibernate.NHibernateStorageContext` into your own sagas or/and handlers.
-Here is an example:
-
-<!-- import OutboxNHibernateAccessSession -->
-
-## What extra tables does NHibernate create 
+## What extra tables does NHibernate outbox persistence create 
 
 To keep track duplicate messages, the NHibernate implementation of Outbox requires the creation of two additional tables in your database, these are called `OutboxRecord` and `OutboxOperation`.
 
@@ -67,11 +52,9 @@ These default settings can be changed by specifying new defaults in the config f
 
 <!-- import OutboxNHibernateTimeToKeep -->
 
-## Samples
+## Sample
 
-### [Sql Server Transport without MSDTC Sample](https://github.com/Particular/NServiceBus.SqlServer/archive/Samples.zip)
-
-This sample shows how to configure an Endpoint that uses SQL Server transport and NHibernate as it business data storage and how to access the NHIbernate `ISession` for a `Saga` and a `Handler`.
+The sample shows how to configure an Endpoint that uses SQL Server transport and NHibernate as it business data storage and how to access the NHIbernate `ISession` for a `Saga` and a `Handler`.
 
 ### [Outbox Sample](https://github.com/Particular/NServiceBus.NHibernate/archive/Samples.zip) 
 
