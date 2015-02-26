@@ -46,12 +46,9 @@ It is essential to tell NHibernate what schema should it use while accessing the
 
 <!-- import NHibernate -->
 
-When the message arrives at the Receiver, an a `TransactionScope` is created that encompassed
+When the message arrives at the Receiver, a `TransactionScope` is created that encompasses
  * dequeuing the message
  * persisting business data using the shared session,
-
-<!-- import StoreUserData -->
-
  * persisting saga data of `OrderLifecycleSaga` ,
  * sending the reply message and the timeout request.
 
@@ -59,4 +56,8 @@ When the message arrives at the Receiver, an a `TransactionScope` is created tha
 
 <!-- import Timeout -->
 
-The shared session is managed by NServiceBus hence no need to explicitly begin a transaction or `Flush()` the session. The downside of this approach is, it is impossible to use NHibernate's second level cache feature since it requires usage of NHibernate's transactions and letting NHibernate manage database connections, both of which are disabled when operating in shared connection mode.
+The shared session is managed by NServiceBus hence no need to explicitly begin a transaction or `Flush()` the session. 
+
+<!-- import StoreUserData -->
+
+The downside of this approach is, it makes it impossible to use NHibernate's second level cache feature since it requires usage of NHibernate's transactions and letting NHibernate manage its database connections, both of which are disabled when operating in shared connection mode.
