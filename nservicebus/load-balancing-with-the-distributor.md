@@ -176,7 +176,7 @@ Every installation of MSMQ on a Windows machine is represented uniquely by a Que
 
 It is very important that all your machines have their own unique QMId. If two or more machines share the same QMId, only one of those machines are able so successfully send and receive messages with MSMQ. Exactly which machine works changes in a seemingly random fashion.
 
-The primary reason for machines ending up with duplicate QMIds is cloning of virtual machines from a common Windows image without running the recommended [Sysprep](https://technet.microsoft.com/en-us/library/cc766049(v=ws.10).aspx) tool. 
+The primary reason for machines ending up with duplicate QMIds is cloning of virtual machines from a common Windows image without running the recommended [Sysprep](https://technet.microsoft.com/en-us/library/cc766049.aspx) tool. 
 
 Should you have two or more machines with the same QMId, simply reinstall the MSMQ feature to generate a new QMId.
 
