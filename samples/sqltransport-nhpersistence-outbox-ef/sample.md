@@ -1,7 +1,8 @@
 ---
-title: SQLServer / NHibernate / EntityFramework / Outbox
+title: SQL Server / NHibernate / EntityFramework / Outbox
 summary: 'How to integrate SQLServer transport with NHibernate persistence and EntityFramework user data store using outbox'
 tags:
+- SQL Server
 - SQLServer
 - NHibernate
 - EntityFramework

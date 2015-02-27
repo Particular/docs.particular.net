@@ -1,7 +1,8 @@
 ---
-title: SQLServer / NHibernate
-summary: 'How to integrate SQLServer transport with NHibernate persistence without outbox'
+title: SQL Server / NHibernate
+summary: 'How to integrate SQL Server transport with NHibernate persistence without outbox'
 tags:
+- SQL Server
 - SQLServer
 - NHibernate
 ---
