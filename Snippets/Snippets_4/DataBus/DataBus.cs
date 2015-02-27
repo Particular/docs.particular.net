@@ -8,7 +8,7 @@ public class DataBus
 
         #region FileShareDataBus
 
-        var configure = Configure.With()
+        Configure configure = Configure.With()
             .FileShareDataBus(databusPath);
 
         #endregion

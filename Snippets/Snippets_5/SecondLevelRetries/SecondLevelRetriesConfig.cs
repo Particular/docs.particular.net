@@ -7,7 +7,7 @@ public class SecondLevelRetriesConfig
     public void Simple()
     {
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         #region SecondLevelRetriesDisable
 

@@ -8,7 +8,7 @@ class PersistenceOrder
 #pragma warning disable 618
 
         #region PersistenceOrder_Correct 5.0
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<RavenDBPersistence>();
             
@@ -24,7 +24,7 @@ class PersistenceOrder
     void Setup_5_2()
     {
         #region PersistenceOrder_Correct 5.2
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<RavenDBPersistence>();
 
@@ -40,7 +40,7 @@ class PersistenceOrder
 #pragma warning disable 618
 
         #region PersistenceOrder_Explicit 5.0
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<NHibernatePersistence>()
             .For(Storage.Outbox);
@@ -58,7 +58,7 @@ class PersistenceOrder
     void Setup3_5_2()
     {
         #region PersistenceOrder_Explicit 5.2
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 
@@ -75,7 +75,7 @@ class PersistenceOrder
 #pragma warning disable 618
 
         #region PersistenceOrder_Incorrect 5.0
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<NHibernatePersistence>()
             .For(Storage.Outbox);
@@ -92,7 +92,7 @@ class PersistenceOrder
     void Setup2_5_2()
     {
         #region PersistenceOrder_Incorrect 5.2
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 

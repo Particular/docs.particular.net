@@ -9,7 +9,7 @@ public class TransactionConfig
     {
         #region TransactionConfig
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         //Enable
         configuration.Transactions().Enable();

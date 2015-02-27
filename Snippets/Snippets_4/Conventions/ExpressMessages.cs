@@ -6,7 +6,7 @@ public class ExpressMessages
     {
         #region ExpressMEssageConvention
 
-        var configure = Configure.With()
+        Configure configure = Configure.With()
             .DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
 
         #endregion

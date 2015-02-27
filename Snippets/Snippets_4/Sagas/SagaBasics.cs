@@ -82,7 +82,7 @@ public class SagaBasics
         #region saga-configure-self-hosted
         Feature.Enable<Sagas>();
         Configure.Serialization.Xml();
-        var bus = NServiceBus.Configure.With()
+        IStartableBus bus = NServiceBus.Configure.With()
                                 .DefaultBuilder()
                                 .UseTransport<Msmq>()
                                 .UnicastBus()

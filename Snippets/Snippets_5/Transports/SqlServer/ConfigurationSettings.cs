@@ -6,7 +6,7 @@ public class SqlServerConfigurationSettings
     {
         #region sqlserver-config-transactionscope 2
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.UseTransport<SqlServerTransport>();
 
         #endregion
@@ -16,7 +16,7 @@ public class SqlServerConfigurationSettings
     {
         #region sqlserver-config-native-transactions 2
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.UseTransport<SqlServerTransport>();
         configuration.Transactions()
             .DisableDistributedTransactions();
@@ -28,7 +28,7 @@ public class SqlServerConfigurationSettings
     {
         #region sqlserver-config-no-transactions 2
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.UseTransport<SqlServerTransport>();
         configuration.Transactions().Disable();
 
@@ -39,7 +39,7 @@ public class SqlServerConfigurationSettings
     {
         #region sqlserver-config-disable-secondaries 2
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.UseTransport<SqlServerTransport>()
             .DisableCallbackReceiver();
 
@@ -50,11 +50,10 @@ public class SqlServerConfigurationSettings
     {
         #region sqlserver-config-callbacks 2
 
-        var configuration = new BusConfiguration();
-        var bus = Bus.Create(configuration);
-        var callback = bus.Send(new Request());
+        BusConfiguration configuration = new BusConfiguration();
+        IStartableBus bus = Bus.Create(configuration);
+        ICallback callback = bus.Send(new Request());
         callback.Register(ProcessResponse);
-
         #endregion
 
         #region sqlserver-config-callbacks-reply 2

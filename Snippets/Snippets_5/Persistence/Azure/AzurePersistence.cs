@@ -6,7 +6,7 @@ class AzurePersistence
     {
         #region PersistanceWithAzure 6
 
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
         config.UsePersistence<AzureStoragePersistence>();
 
         #endregion

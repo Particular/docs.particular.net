@@ -12,7 +12,7 @@ public class Log4NetFiltering
     {
         #region Log4NetFiltering
 
-        var appender = new ColoredConsoleAppender
+        ColoredConsoleAppender appender = new ColoredConsoleAppender
         {
             Threshold = Level.Debug,
             Layout = new SimpleLayout(),

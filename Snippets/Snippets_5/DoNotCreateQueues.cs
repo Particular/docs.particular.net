@@ -7,7 +7,7 @@ public class DoNotCreateQueues
     {
         #region DoNotCreateQueues
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.DoNotCreateQueues();
 

@@ -6,7 +6,7 @@
     {
         public void ConfigurePropertyInjectionForHandler()
         {
-            var configuration = new BusConfiguration();
+            BusConfiguration configuration = new BusConfiguration();
 
             #region UniqueQueuePerEndpointInstance 5.2
 

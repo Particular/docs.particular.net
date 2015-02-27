@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NServiceBus;
 using NServiceBus.MessageMutator;
 using NServiceBus.Pipeline;
@@ -11,9 +12,9 @@ class HeaderUsage
     {
         public void Invoke(ReceivePhysicalMessageContext context, Action next)
         {
-            var headers = context.PhysicalMessage.Headers;
-            var nsbVersion = headers[Headers.NServiceBusVersion];
-            var customHeader = headers["MyCustomHeader"];
+            Dictionary<string, string> headers = context.PhysicalMessage.Headers;
+            string nsbVersion = headers[Headers.NServiceBusVersion];
+            string customHeader = headers["MyCustomHeader"];
             next();
         }
     }
@@ -23,7 +24,7 @@ class HeaderUsage
     {
         public void Invoke(SendPhysicalMessageContext context, Action next)
         {
-            var headers = context.MessageToSend.Headers;
+            Dictionary<string, string> headers = context.MessageToSend.Headers;
             headers["MyCustomHeader"] = "My custom value";
             next();
         }
@@ -34,9 +35,9 @@ class HeaderUsage
     {
         public void MutateIncoming(TransportMessage transportMessage)
         {
-            var headers = transportMessage.Headers;
-            var nsbVersion = headers[Headers.NServiceBusVersion];
-            var customHeader = headers["MyCustomHeader"];
+            Dictionary<string, string> headers = transportMessage.Headers;
+            string nsbVersion = headers[Headers.NServiceBusVersion];
+            string customHeader = headers["MyCustomHeader"];
         }
     }
     #endregion
@@ -45,7 +46,7 @@ class HeaderUsage
     {
         public void MutateOutgoing(object[] messages, TransportMessage transportMessage)
         {
-            var headers = transportMessage.Headers;
+            Dictionary<string, string> headers = transportMessage.Headers;
             headers["MyCustomHeader"] = "My custom value";
         }
     }
@@ -57,9 +58,9 @@ class HeaderUsage
 
         public void Handle(MyMessage message)
         {
-            var headers = Bus.CurrentMessageContext.Headers;
-            var nsbVersion = headers[Headers.NServiceBusVersion];
-            var customHeader = headers["MyCustomHeader"];
+            IDictionary<string, string> headers = Bus.CurrentMessageContext.Headers;
+            string nsbVersion = headers[Headers.NServiceBusVersion];
+            string customHeader = headers["MyCustomHeader"];
         }
     }
     #endregion
@@ -70,7 +71,7 @@ class HeaderUsage
 
         public void Handle(MyMessage message)
         {
-            var headers = Bus.OutgoingHeaders;
+            IDictionary<string, string> headers = Bus.OutgoingHeaders;
             headers["MyCustomHeader"] = "My custom value";
         }
     }

@@ -6,7 +6,7 @@ public class EndpointName
     {
         #region EndpointNameFluent
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.EndpointName("MyEndpoint");
         

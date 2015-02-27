@@ -7,15 +7,15 @@ class MessageFailedHandler : IHandleMessages<MessageFailed>
 {
     public void Handle(MessageFailed message)
     {
-        var failedMessageId = message.FailedMessageId;
-        var exceptionMessage = message.FailureDetails.Exception.Message;
+        string failedMessageId = message.FailedMessageId;
+        string exceptionMessage = message.FailureDetails.Exception.Message;
 
-        var chatMessage = string.Format("Message with id: {0} failed with reason: '{1}'. Open in ServiceInsight: {2}",
+        string chatMessage = string.Format("Message with id: {0} failed with reason: '{1}'. Open in ServiceInsight: {2}",
             failedMessageId,
             exceptionMessage,
             GetServiceInsightUri(failedMessageId));
 
-        using (var client = new HipchatClient())
+        using (HipchatClient client = new HipchatClient())
         {
             client.PostChatMessage(chatMessage);
         }

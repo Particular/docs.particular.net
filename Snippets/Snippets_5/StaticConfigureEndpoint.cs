@@ -6,7 +6,7 @@ public class StaticConfigureEndpoint
     {
         #region StaticConfigureEndpoint
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         // SendOnly
         Bus.CreateSendOnly(configuration);

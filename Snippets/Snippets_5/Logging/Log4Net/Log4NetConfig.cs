@@ -11,18 +11,18 @@ public class Log4NetConfig
     {
         #region Log4NetInCode
 
-        var layout = new PatternLayout
+        PatternLayout layout = new PatternLayout
         {
             ConversionPattern = "%d [%t] %-5p %c [%x] - %m%n"
         };
         layout.ActivateOptions();
-        var consoleAppender = new ColoredConsoleAppender
+        ColoredConsoleAppender consoleAppender = new ColoredConsoleAppender
         {
             Threshold = Level.Debug,
             Layout = layout
         };
         consoleAppender.ActivateOptions();
-        var fileAppender = new RollingFileAppender
+        RollingFileAppender fileAppender = new RollingFileAppender
         {
             DatePattern = "yyyy-MM-dd'.txt'",
             RollingStyle = RollingFileAppender.RollingMode.Composite,

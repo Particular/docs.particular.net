@@ -23,9 +23,9 @@ public class HostIdFixer : IWantToRunWhenBusStartsAndStops
 
     public void Start()
     {
-        var hostId = CreateGuid(Environment.MachineName, settings.EndpointName());
-        var location = Assembly.GetExecutingAssembly().Location;
-        var properties = new Dictionary<string, string>
+        Guid hostId = CreateGuid(Environment.MachineName, settings.EndpointName());
+        string location = Assembly.GetExecutingAssembly().Location;
+        Dictionary<string, string> properties = new Dictionary<string, string>
                                 {
                                     {"Location",location}
                                 };
@@ -34,10 +34,10 @@ public class HostIdFixer : IWantToRunWhenBusStartsAndStops
 
     static Guid CreateGuid(params string[] data)
     {
-        using (var provider = new MD5CryptoServiceProvider())
+        using (MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider())
         {
-            var inputBytes = Encoding.Default.GetBytes(String.Concat(data));
-            var hashBytes = provider.ComputeHash(inputBytes);
+            byte[] inputBytes = Encoding.Default.GetBytes(String.Concat(data));
+            byte[] hashBytes = provider.ComputeHash(inputBytes);
             return new Guid(hashBytes);
         }
     }

@@ -5,7 +5,7 @@ public class MultiDb
 {
     void CurrentEndpointSchema()
     {
-        var busConfig = new BusConfiguration();
+        BusConfiguration busConfig = new BusConfiguration();
 
         #region sqlserver-multidb-current-endpoint-schema 2.1
 
@@ -17,7 +17,7 @@ public class MultiDb
 
     void CurrentEndpointConnectionString()
     {
-        var busConfig = new BusConfiguration();
+        BusConfiguration busConfig = new BusConfiguration();
 
         #region sqlserver-multidb-current-endpoint-connection-string 2
 
@@ -29,7 +29,7 @@ public class MultiDb
 
     void OtherEndpointConnectionParamsPush()
     {
-        var busConfig = new BusConfiguration();
+        BusConfiguration busConfig = new BusConfiguration();
 
         #region sqlserver-multidb-other-endpoint-connection-push 2.1
 
@@ -47,7 +47,7 @@ public class MultiDb
 
     void OtherEndpointConnectionParamsPull()
     {
-        var busConfig = new BusConfiguration();
+        BusConfiguration busConfig = new BusConfiguration();
 
         #region sqlserver-multidb-other-endpoint-connection-pull 2.1
 

@@ -9,7 +9,7 @@ public class Persistence
 
         #region ConfigurePersistence
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         // Configure to use InMemory for all persistence types
         configuration.UsePersistence<InMemoryPersistence>();

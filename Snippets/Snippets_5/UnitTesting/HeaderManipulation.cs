@@ -27,7 +27,7 @@ namespace UnitTesting.HeaderManipulation
 
         public void Handle(RequestMessage message)
         {
-            var responseMessage = new ResponseMessage();
+            ResponseMessage responseMessage = new ResponseMessage();
             Bus.SetMessageHeader(responseMessage, "MyHeaderKey", "myHeaderValue");
             Bus.Reply(responseMessage);
         }

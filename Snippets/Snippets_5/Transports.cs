@@ -7,7 +7,7 @@ public class Transports
     {
         #region ConfigureTransports
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         // Configure to use MSMQ 
         configuration.UseTransport<MsmqTransport>();

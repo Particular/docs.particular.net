@@ -9,7 +9,7 @@ public class InterfaceMessageCreation
 
         #region InterfaceMessageCreation
 
-        var message = Bus.CreateInstance<MyInterfaceMessage>(o =>
+        MyInterfaceMessage message = Bus.CreateInstance<MyInterfaceMessage>(o =>
         {
             o.OrderNumber = 1234;
         });

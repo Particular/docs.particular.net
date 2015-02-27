@@ -13,7 +13,7 @@ public class DiscardingOldMessages
     {
         #region DiscardingOldMessagesWithFluent
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.Conventions()
             .DefiningTimeToBeReceivedAs(type =>

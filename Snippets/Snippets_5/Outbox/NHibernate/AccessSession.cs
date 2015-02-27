@@ -13,7 +13,7 @@ class OrderPlacedHandler : IHandleMessages<OrderPlaced>
 
     public void Handle(OrderPlaced message)
     {
-        var order = nHibernateStorageContext.Session.Get<OrderEntity>(message.OrderId);
+        OrderEntity order = nHibernateStorageContext.Session.Get<OrderEntity>(message.OrderId);
         order.Shipped = true;
         nHibernateStorageContext.Session.Update(order);
     }

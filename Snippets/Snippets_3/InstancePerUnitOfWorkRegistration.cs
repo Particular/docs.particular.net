@@ -6,7 +6,7 @@ public class InstancePerUnitOfWorkRegistration
     {
         #region InstancePerUnitOfWorkRegistration
 
-        var configuration = Configure.With();
+        Configure configuration = Configure.With();
         configuration.Configurer.ConfigureComponent<MyService>(DependencyLifecycle.InstancePerCall);
 
         #endregion

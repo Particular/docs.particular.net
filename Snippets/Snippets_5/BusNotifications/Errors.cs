@@ -32,7 +32,7 @@ public class SubscribeToErrorsNotifications : IWantToRunWhenBusStartsAndStops
 
     public void Stop()
     {
-        foreach (var unsubscribeStream in unsubscribeStreams)
+        foreach (IDisposable unsubscribeStream in unsubscribeStreams)
         {
             unsubscribeStream.Dispose();
         }
@@ -40,10 +40,10 @@ public class SubscribeToErrorsNotifications : IWantToRunWhenBusStartsAndStops
 
     void SendEmailOnFailure(FailedMessage failedMessage)
     {
-        using (var c = new SmtpClient())
+        using (SmtpClient c = new SmtpClient())
         {
 
-            using (var mailMessage = new MailMessage("from@mail.com",
+            using (MailMessage mailMessage = new MailMessage("from@mail.com",
                 "to@mail.com", "Message sent to error queue",
                 failedMessage.Exception.ToString()))
             {

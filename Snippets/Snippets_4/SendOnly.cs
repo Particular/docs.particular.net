@@ -8,7 +8,7 @@ public class SendOnly
 
         #region SendOnly
 
-        var bus = Configure.With()
+        IBus bus = Configure.With()
             .DefaultBuilder()
             //Other config
             .UnicastBus()

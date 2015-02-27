@@ -6,7 +6,7 @@ public class License
     {
         #region License
      
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.LicensePath("PathToLicense");
         //or

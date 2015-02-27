@@ -7,7 +7,7 @@
     {
         public void ConfigurePropertyInjectionForHandler()
         {
-            var configuration = new BusConfiguration();
+            BusConfiguration configuration = new BusConfiguration();
 
             #region ConfigurePropertyInjectionForHandler 5.2
 
@@ -26,7 +26,7 @@
 
             public void Handle(EmailMessage message)
             {
-                var client = new SmtpClient(SmtpAddress, SmtpPort);
+                SmtpClient client = new SmtpClient(SmtpAddress, SmtpPort);
                 // ...
             }
         }

@@ -6,7 +6,7 @@ class ConfiguringDistributor
     {
         #region ConfiguringDistributor
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         // --------------------------------------
         // Running the Distributor and a Worker

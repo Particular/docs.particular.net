@@ -4,7 +4,7 @@ public class ServiceControlEventsConfig
 {
     public void Simple()
     {
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         #region ServiceControlEventsConfig 5.0
 

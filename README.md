@@ -308,6 +308,15 @@ var configure = Configure.With()
 
 Note none of the tabs have been trimmed.
 
+### Why is explicit variable typing used instead of 'var'
+
+This is done for two reasons
+
+ 1. Since the snippets are viewing inline to a page they lack much of the context of a full code file such as using statements. To remove the ambiguity explicit variable declaration is being used
+ 2. It makes it much easier to build the docs search engine when the types being used on a page can be inferred by the snippets used. 
+
+This is enforced by Resharper rules.
+
 ## Alerts
 
 Sometimes is necessary to draw attention to items you want to call out in a document.

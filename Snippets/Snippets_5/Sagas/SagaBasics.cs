@@ -315,9 +315,9 @@ public class SagaBasics
     {
         #region saga-configure-self-hosted
 
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
         config.UsePersistence<RavenDBPersistence>(); //or NHibernatePersistence
-        var bus = Bus.Create(config);
+        IStartableBus bus = Bus.Create(config);
 
         #endregion
     }

@@ -8,7 +8,7 @@ public class Serialization
 
         #region ConfigureSerialization
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.UseSerialization<BinarySerializer>();
         configuration.UseSerialization<BsonSerializer>();

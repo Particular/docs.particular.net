@@ -9,9 +9,9 @@ public class NLogConfig
     {
         #region NLogInCode
 
-        var config = new LoggingConfiguration();
+        LoggingConfiguration config = new LoggingConfiguration();
 
-        var consoleTarget = new ColoredConsoleTarget
+        ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget
         {
             Layout = "${level}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"
         };

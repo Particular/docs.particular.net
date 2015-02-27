@@ -8,7 +8,7 @@ public class RabbitMQConfigurationSettings
     {
         #region rabbitmq-config-basic 2
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.UseTransport<RabbitMQTransport>();
 
         #endregion
@@ -18,7 +18,7 @@ public class RabbitMQConfigurationSettings
     {
         #region rabbitmq-config-connectionstring-in-code 2
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.UseTransport<RabbitMQTransport>()
             .ConnectionString("My custom connection string");
 
@@ -29,7 +29,7 @@ public class RabbitMQConfigurationSettings
     {
         #region rabbitmq-config-connectionstringname 2
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.UseTransport<RabbitMQTransport>()
             .ConnectionStringName("MyConnectionStringName");
 
@@ -41,7 +41,7 @@ public class RabbitMQConfigurationSettings
     {
         #region rabbitmq-config-disablecallbackreceiver 2
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.UseTransport<RabbitMQTransport>()
             .DisableCallbackReceiver();
 
@@ -53,7 +53,7 @@ public class RabbitMQConfigurationSettings
     {
         #region rabbitmq-config-callbackreceiver-thread-count 2
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.UseTransport<RabbitMQTransport>()
             .CallbackReceiverMaxConcurrency(10);
 
@@ -63,7 +63,7 @@ public class RabbitMQConfigurationSettings
     {
         #region rabbitmq-config-custom-id-strategy 2.1
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.UseTransport<RabbitMQTransport>()
             .CustomMessageIdStrategy(deliveryArgs => 
                 deliveryArgs.BasicProperties.Headers["MyCustomId"].ToString());
@@ -74,7 +74,7 @@ public class RabbitMQConfigurationSettings
     {
         #region rabbitmq-config-useconnectionmanager 2
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.UseTransport<RabbitMQTransport>()
             .UseConnectionManager<MyConnectionManager>();
 

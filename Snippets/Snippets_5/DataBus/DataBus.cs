@@ -11,7 +11,7 @@ public class DataBus
 
         #region FileShareDataBus
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.UseDataBus<FileShareDataBus>()
             .BasePath(databusPath);
@@ -23,7 +23,7 @@ public class DataBus
     {
         #region AzureDataBus
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.UseDataBus<AzureDataBus>();
 
@@ -32,16 +32,16 @@ public class DataBus
 
     public void AzureDataBusConfiguration()
     {
-        var configuration = new BusConfiguration();
-        var azureStorageConnectionString = "";
-        var basePathWithinContainer = "";
-        var containerName = "";
-        var blockSize = 10;
-        var timeToLiveInSeconds = 1;
-        var maxNumberOfRetryAttempts = 3;
-        var numberOfIoThreads = 3; // number of parallel operations that may proceed.
+        BusConfiguration configuration = new BusConfiguration();
+        string azureStorageConnectionString = "";
+        string basePathWithinContainer = "";
+        string containerName = "";
+        int blockSize = 10;
+        int timeToLiveInSeconds = 1;
+        int maxNumberOfRetryAttempts = 3;
+        int numberOfIoThreads = 3; // number of parallel operations that may proceed.
         // number of blocks that may be simultaneously uploaded when uploading a blob that is greater than the value specified by the 
-        var backOffIntervalBetweenRetriesInSecs = 1000;
+        int backOffIntervalBetweenRetriesInSecs = 1000;
 
         #region AzureDataBusConfiguration
 
@@ -111,7 +111,7 @@ namespace CustomDataBusPluginSnippet
 
         public string Put( Stream stream, TimeSpan timeToBeReceived )
         {
-            using( var destination = File.OpenWrite( "blob.dat" ) )
+            using( FileStream destination = File.OpenWrite( "blob.dat" ) )
             {
                 stream.CopyTo( destination );
             }
@@ -131,7 +131,7 @@ namespace CustomDataBusPluginSnippet
         {
             #region PluginCustomDataBusV5 5
 
-            var configuration = new BusConfiguration();
+            BusConfiguration configuration = new BusConfiguration();
             configuration.UseDataBus(typeof(CustomDataBus));
 
             #endregion

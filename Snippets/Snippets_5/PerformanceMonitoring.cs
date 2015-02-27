@@ -7,7 +7,7 @@ public class PerformanceMonitoring
     {
         #region PerformanceMonitoring
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.EnableSLAPerformanceCounter();
         //or

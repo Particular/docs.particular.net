@@ -9,7 +9,7 @@ class ConfiguringNHibernate
 
         #region ConfiguringNHibernate 5.0
 
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<NHibernatePersistence>()
             .For(
@@ -28,7 +28,7 @@ class ConfiguringNHibernate
     {
         #region ConfiguringNHibernate 5.2
 
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<NHibernatePersistence, StorageType.Sagas>();
         config.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();

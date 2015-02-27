@@ -6,7 +6,7 @@ public class CustomConfigOverrides
     {
         #region CustomConfigOverrides
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.AssembliesToScan(AllAssemblies.Except("NotThis.dll"));
         configuration.Conventions().DefiningEventsAs(type => type.Name.EndsWith("Event"));

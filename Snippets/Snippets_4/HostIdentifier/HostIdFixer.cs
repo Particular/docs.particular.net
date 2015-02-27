@@ -18,17 +18,17 @@ public class HostIdFixer : IWantToRunWhenBusStartsAndStops
 
     public void Start()
     {
-        var hostId = CreateGuid(Environment.MachineName, Configure.EndpointName);
-        var identifier = Assembly.GetExecutingAssembly().Location;
+        Guid hostId = CreateGuid(Environment.MachineName, Configure.EndpointName);
+        string identifier = Assembly.GetExecutingAssembly().Location;
         bus.HostInformation = new HostInformation(hostId, Environment.MachineName, identifier);
     }
 
     static Guid CreateGuid(params string[] data)
     {
-        using (var provider = new MD5CryptoServiceProvider())
+        using (MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider())
         {
-            var inputBytes = Encoding.Default.GetBytes(String.Concat(data));
-            var hashBytes = provider.ComputeHash(inputBytes);
+            byte[] inputBytes = Encoding.Default.GetBytes(String.Concat(data));
+            byte[] hashBytes = provider.ComputeHash(inputBytes);
             return new Guid(hashBytes);
         }
     }

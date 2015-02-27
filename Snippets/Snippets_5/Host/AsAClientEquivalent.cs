@@ -7,7 +7,7 @@ public class AsAClientEquivalent
     {
         #region AsAClientEquivalent
 
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.PurgeOnStartup(true);
         config.Transactions().Disable();

@@ -6,7 +6,7 @@ class ConfiguringWorker
     {
         #region ConfiguringWorker
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.EnlistWithMSMQDistributor();
 
         #endregion

@@ -17,7 +17,7 @@ public class ScanningPublicApi
 
         #region ScanningDefault
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         #endregion
 

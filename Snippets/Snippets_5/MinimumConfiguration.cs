@@ -6,13 +6,13 @@ public class MinimumConfiguration
     {
         #region MinimumConfiguration
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         #endregion MinimumConfiguration
 
         #region BusDotCreate
 
-        using (var bus = Bus.Create(configuration))
+        using (IStartableBus bus = Bus.Create(configuration))
         {
             bus.Start();
         }
