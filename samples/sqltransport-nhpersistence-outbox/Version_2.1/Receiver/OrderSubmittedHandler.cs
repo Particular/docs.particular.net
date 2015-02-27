@@ -6,6 +6,8 @@ namespace Receiver
 {
     public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
     {
+        static readonly Random ChaosGenerator = new Random();
+
         public IBus Bus { get; set; }
 
         public void Handle(OrderSubmitted message)
@@ -28,6 +30,13 @@ namespace Receiver
             {
                 OrderId = message.OrderId,
             });
+            #endregion
+
+            #region Chaos
+            if (ChaosGenerator.Next(2) == 0)
+            {
+                throw new Exception("Boom!");
+            }
             #endregion
         }
     }

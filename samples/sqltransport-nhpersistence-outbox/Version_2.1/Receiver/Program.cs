@@ -5,6 +5,7 @@ using NHibernate.Dialect;
 using NHibernate.Mapping.ByCode;
 using NHibernate.Tool.hbm2ddl;
 using NServiceBus;
+using NServiceBus.Features;
 using NServiceBus.Transports.SQLServer;
 using Configuration = NHibernate.Cfg.Configuration;
 
@@ -40,6 +41,8 @@ namespace Receiver
             busConfig.UsePersistence<NHibernatePersistence>();
             busConfig.EnableOutbox();
             #endregion
+
+            busConfig.DisableFeature<SecondLevelRetries>();
 
             using (Bus.Create(busConfig).Start())
             {
