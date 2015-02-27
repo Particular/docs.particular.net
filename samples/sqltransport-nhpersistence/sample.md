@@ -1,5 +1,5 @@
 ---
-title: SQLServer / NHibernate sample
+title: SQLServer / NHibernate
 summary: 'How to integrate SQLServer transport with NHibernate persistence without outbox'
 tags:
 - SQLServer
