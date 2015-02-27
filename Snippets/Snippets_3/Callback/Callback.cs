@@ -1,5 +1,6 @@
 ﻿namespace MyServer.Callback
 {
+    using System;
     using NServiceBus;
 
     public class Callback
@@ -15,18 +16,18 @@
 
         public void CallbackSnippet()
         {
-            var placeOrder = new PlaceOrder();
+            PlaceOrder placeOrder = new PlaceOrder();
             IBus bus = null;
             // ReSharper disable once NotAccessedVariable
             PlaceOrderResponse message; // get replied message
 
             #region CallbackToAccessMessageRegistration
 
-            var sync = bus.Send(placeOrder)
+            IAsyncResult sync = bus.Send(placeOrder)
                 .Register(ar =>
                 {
-                    var localResult = ar.AsyncState as CompletionResult;
-                    message = localResult.Messages[0] as PlaceOrderResponse;
+                    CompletionResult localResult = (CompletionResult)ar.AsyncState;
+                    message = (PlaceOrderResponse)localResult.Messages[0];
                 }, null);
 
             sync.AsyncWaitHandle.WaitOne();
