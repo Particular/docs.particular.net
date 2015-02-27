@@ -9,7 +9,7 @@ tags:
 
 ### Prior to 2.0
 
-Prior to 2.0 there was no support for callbacks in the SQLServer transport. There is a single queue table for each logical endpoint, no matter how many actual endpoint instances were running. Each endpoint running SQLServer transport spins up a fixed number of threads (controlled by `MaximumConcurrencyLevel` property of `TransportConfig` section). Each thread runs a loop, polling the database for messages awaiting processing.
+Prior to 2.0 there was no support for callbacks in the SQLServer transport. There is a single queue table for each logical endpoint, no matter how many actual instances of the endpoint were running. Each endpoint running SQLServer transport spins up a fixed number of threads (controlled by `MaximumConcurrencyLevel` property of `TransportConfig` section). Each thread runs a loop, polling the database for messages awaiting processing.
 
 The disadvantage of this simple model is the fact that satellites (e.g. Second-Level Retries, Timeout Manager) share the same concurrency settings but usually have much lower throughput requirements. If both SLR and TM are enabled, setting `MaximumConcurrencyLevel` to 10 results in 40 threads in total, each polling the database even if there are no messages to be processed.
 
