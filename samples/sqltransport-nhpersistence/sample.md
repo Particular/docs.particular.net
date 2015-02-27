@@ -1,6 +1,6 @@
 ---
 title: SQLServer / NHibernate sample
-summary: 'How to integrate SQLServer transfer with NHibernate persistence without outbox'
+summary: 'How to integrate SQLServer transport with NHibernate persistence without outbox'
 tags:
 - SQLServer
 - NHibernate
@@ -38,7 +38,7 @@ The connection strings for both persistence and transport need to be exactly the
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence but instead of hard-coding the other endpoint's schema, it uses a convention based on the endpoint's queue name.
+The Receiver mimics a back-end system. It is also configured to use SQL Server transport with NHibernate persistence but instead of hard-coding the other endpoint's schema, it uses a convention based on the endpoint's queue name.
 
 <!-- import ReceiverConfiguration -->
 

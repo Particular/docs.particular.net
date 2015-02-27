@@ -1,9 +1,10 @@
 ---
-title: SQLServer / NHibernate / Outbox sample
-summary: 'How to integrate SQLServer transport with NHibernate persistence using outbox'
+title: SQLServer / NHibernate / EntityFramework / Outbox sample
+summary: 'How to integrate SQLServer transport with NHibernate persistence and EntityFramework user data store using outbox'
 tags:
 - SQLServer
 - NHibernate
+- EntityFramework
 - Outbox
 ---
 
@@ -41,13 +42,13 @@ addressed to the Receiver should be sent
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence and Outbox but uses V2.1 code-based connection information API.
+The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence  and Outbox but uses V2.1 code-based connection information API. It uses EntityFramework to store business data (orders).
 
 <!-- import ReceiverConfiguration -->
 
 In order for the Outbox to work, the business data has to reuse the same connection string as NServiceBus' persistence
 
-<!-- import NHibernate -->
+<!-- import EntityFramework -->
 
 When the message arrives at the Receiver, it is dequeued using a native SQL Server transaction. Then a `TransactionScope` is created that encompasses
  * persisting business data,
@@ -62,7 +63,3 @@ When the message arrives at the Receiver, it is dequeued using a native SQL Serv
 <!-- import Timeout -->
 
 Finally the messages in the outbox are pushed to their destinations. The timeout message gets stored in NServiceBus timeout store and is sent back to the saga after requested delay of five seconds.
-
-### How it works?
-
-All the data manipulations happen atomically because SQL Server 2008 and later allows multiple (but not overlapping) instances of `SqlConnection` to enlist in one `TransactionScope` without the need to escalate to DTC. The SQL Server manages these transactions like they were one `SqlTransaction`.
