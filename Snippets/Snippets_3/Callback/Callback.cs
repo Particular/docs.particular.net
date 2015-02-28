@@ -34,19 +34,6 @@
             // return message;
 
             #endregion
-            #region CallbackToAccessMessageRegistration
-
-            IAsyncResult sync = bus.Send(placeOrder)
-                .Register(ar =>
-                {
-                    CompletionResult localResult = (CompletionResult)ar.AsyncState;
-                    message = (PlaceOrderResponse)localResult.Messages[0];
-                }, null);
-
-            sync.AsyncWaitHandle.WaitOne();
-            // return message;
-
-            #endregion
         }
 
         enum Status
