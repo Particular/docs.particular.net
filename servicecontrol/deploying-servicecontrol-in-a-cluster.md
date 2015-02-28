@@ -32,6 +32,8 @@ The RavenDB database need to be located in shared storage. See [Customize RavenD
 You need to set the URL ACLs on each cluster node [as advised here:](/servicecontrol/troubleshooting.md)
 The URL needs to be the cluster name and the ACL is set to whatever service account is running service control.
 
+NOTE: Default install of SC locks down access to localhost only. Once the URLACL is changed from localhost to the cluster name as instructed here it is now accessible from the network which I realize is partially the point but I do think it worth prompting the user to consider securing this access (Firewall or VPN perhaps).
+
 You need to create a ServiceControl configuration file (ServiceControl.exe.Config), setting the following:
 - `DbPath` to the shared Database path
 - Setting the `Hostname` and `port` to the cluster name and port
