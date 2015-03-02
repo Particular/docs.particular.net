@@ -18,7 +18,7 @@ In a more complex scenario endpoints use separate databases and DTC is involved.
 In order to overcome this limitation a higher level store-and-forward mechanism needs to be used. The Outbox feature can be used to effectively implement a distributed decoupled architecture where:
  * Each endpoint has its own database where it stores both the queues and the user data
  * Messages are not sent immediately when calling `Bus.Send()` but are added to the *outbox* that is stored in the endpoint's own database. After completing the handling logic the messages in the *outbox* are forwarded to their destination databases
- * Should one of the forward operations fail, it will be retried by means of standard NServiceBus retry mechanism (both first-level and second-level). This might result in some messages being sent more than once but it is not a problem because the outbox automatically enables deduplication of incoming messages based on their ID.
+ * Should one of the forward operations fail, it will be retried by means of standard NServiceBus retry mechanism (both first-level and second-level). This might result in some messages being sent more than once but it is not a problem because the outbox automatically handles the deduplication of incoming messages based on their ID.
 
 #### Further reading
 
