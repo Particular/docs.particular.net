@@ -9,7 +9,7 @@ tags:
 ### ServicePulse is unable to connect to ServiceControl
 
 * See [ServiceControl release notes](https://github.com/Particular/ServiceControl/releases/) Troubleshooting section for guidance on detecting ServiceControl HTTP API accessibility
-* Verify that ServicePulse is trying to access the correct ServiceControl URI (based on ServicControl instance URI defined in ServicePulse installation settings)
+* Verify that ServicePulse is trying to access the correct ServiceControl URI (based on ServiceControl instance URI defined in ServicePulse installation settings)
 * Check that ServicePulse is not blocked from accessing the ServiceControl URI by firewall settings
 
 ### ServicePulse reports that 0 endpoints are active, although Endpoint plugins were deployed
@@ -49,6 +49,7 @@ The installation path of an endpoint is used by ServiceControl and ServicePulse 
 To workaround this issue see [Override host identifier](/nservicebus/override-hostid.md)
 
 ### How do I monitor my NSB V3.x endpoints using ServicePulse?
+
 1. Upgrade your NSB V3 endpoint to the latest service pack for version 3
 2. To turn on monitoring, add the heartbeat plugin to your existing v3 endpoints and restart your endpoint and ServiceControl
 ```
@@ -56,6 +57,7 @@ install-package ServiceControl.Plugin.Nsb3.Heartbeat
 ```
 
 ### How do I enable CustomChecks for my NSB V3.x endpoints?
+
 1. Upgrade your NSB V3 endpoint to the latest service pack for version 3
 2. Add the CustomChecks plugin to your existing v3 endpoints and restart your endpoint and ServiceControl
 ```
@@ -70,5 +72,3 @@ To workaround this issue in order to monitor V3 endpoints:
 
 - Add the heartbeat plugin to all V3 endpoints, which will add the requisite header with the host information, which ServiceControl can then process.
 - Restart ServiceControl to clear the endpoint counter.
-
-
