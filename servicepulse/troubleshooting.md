@@ -46,40 +46,7 @@ This may occur when an endpoint is re-deployed or updated to a different install
 
 The installation path of an endpoint is used by ServiceControl and ServicePulse as the default mechanism for generating the unique Id of an endpoint. Therefore, changing the installation path of the endpoint affects the generated Id, and causes the system to identify the endpoint as a new and different endpoint.
 
-To workaround this issue, add the following code in each monitored endpoint to define a consistent Id generation policy:
-
-```csharp
-public class HostIdFixer : IWantToRunWhenBusStartsAndStops
-{
-    UnicastBus bus;
-
-    public HostIdFixer(UnicastBus bus)
-    {
-        this.bus = bus;
-    }
-
-    public void Start()
-    {
-        var hostId = CreateGuid(Environment.MachineName, Configure.EndpointName);
-        var instanceIdentifier = Assembly.GetExecutingAssembly().Location;
-        bus.HostInformation = new HostInformation(hostId, Environment.MachineName, instanceIdentifier);
-    }
-
-    static Guid CreateGuid(params string[] data)
-    {
-        using (var provider = new MD5CryptoServiceProvider())
-        {
-            var inputBytes = Encoding.Default.GetBytes(String.Concat(data));
-            var hashBytes = provider.ComputeHash(inputBytes);
-            return new Guid(hashBytes);
-        }
-    }
-
-    public void Stop()
-    {
-    }
-}
-```
+To workaround this issue see [Override host identifier](/nservicebus/override-hostid.md)
 
 ### How do I monitor my NSB V3.x endpoints using ServicePulse?
 1. Upgrade your NSB V3 endpoint to the latest service pack for version 3
