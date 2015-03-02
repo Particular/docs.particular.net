@@ -27,8 +27,3 @@ In order to overcome this limitation a higher level store-and-forward mechanism 
  * [Table-based queue implementation](configuration.md)
  * [Concurrency model](concurrency.md)
 
-#### Samples
-
- * [SQL Server / NHibernate](..\..\samples\sqltransport-nhpersistence)
- * [SQL Server / NHibernate / Outbox](..\..\samples\sqltransport-nhpersistence-outbox)
- * [SQL Server / NHibernate / EntityFramework / Outbox](..\..\samples\sqltransport-nhpersistence-outbox-ef)
