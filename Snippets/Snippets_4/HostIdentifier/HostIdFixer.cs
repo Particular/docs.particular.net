@@ -3,20 +3,15 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using NServiceBus;
+using NServiceBus.Config;
 using NServiceBus.Hosting;
 using NServiceBus.Unicast;
 
 #region HostIdFixer
-public class HostIdFixer : IWantToRunWhenBusStartsAndStops
+public class HostIdFixer : IWantToRunWhenConfigurationIsComplete
 {
-    UnicastBus bus;
 
     public HostIdFixer(UnicastBus bus)
-    {
-        this.bus = bus;
-    }
-
-    public void Start()
     {
         Guid hostId = CreateGuid(Environment.MachineName, Configure.EndpointName);
         string identifier = Assembly.GetExecutingAssembly().Location;
@@ -33,7 +28,7 @@ public class HostIdFixer : IWantToRunWhenBusStartsAndStops
         }
     }
 
-    public void Stop()
+    public void Run()
     {
     }
 }
