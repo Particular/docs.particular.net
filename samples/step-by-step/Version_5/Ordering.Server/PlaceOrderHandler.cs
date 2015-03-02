@@ -20,7 +20,7 @@ namespace Ordering.Server
 
             // throw new Exception("Uh oh - something went wrong....");
 
-            Console.WriteLine(@"Publishing: OrderPlaceed for Order Id: {0}", message.Id);
+            Console.WriteLine(@"Publishing: OrderPlaced for Order Id: {0}", message.Id);
 
             var orderPlaced = new OrderPlaced
                               {
