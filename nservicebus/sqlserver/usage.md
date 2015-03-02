@@ -22,15 +22,11 @@ Because of the limitations of NHibernate connection management infrastructure, t
 
 Fortunately the [Outbox](..\no-dtc.md) feature can be used to mitigate that problem. In such scenario the messages are stored in the same physical store as saga and user data and dispatched after the whole processing is finished. NHibernate persistence detects the status of Outbox and the presence of SQLServer transport and automatically stops reusing the transport connection and transaction. All the data access is done within the Outbox ambient transaction. From the perspective of a particular endpoint this is *exactly-once* processing because of the deduplication that happens on the incoming queue. From a global point of view this is *at-least-once* since on the wire messages can get duplicated.
 
-A sample covering this mode of operation is available [here](..\..\samples\sqltransport-nhpersistence-outbox).
-
 ### Ambient transactions
 
 In this mode the ambient transaction is started before receiving of the message and encompasses the whole processing process including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no Distributed Transaction Coordinator (DTC) escalation. 
 
 <!-- import OutboxSqlServerConnectionStrings -->
-
-A sample covering this mode of operation is available [here](..\..\samples\sqltransport-nhpersistence).
 
 ## Scenarios
 
