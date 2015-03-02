@@ -4,24 +4,17 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using NServiceBus;
+using NServiceBus.Config;
 using NServiceBus.Hosting;
 using NServiceBus.Settings;
 using NServiceBus.Unicast;
 #pragma warning disable 618
 
 #region HostIdFixer
-public class HostIdFixer : IWantToRunWhenBusStartsAndStops
+public class HostIdFixer : IWantToRunWhenConfigurationIsComplete
 {
-    UnicastBus bus;
-    ReadOnlySettings settings;
 
     public HostIdFixer(UnicastBus bus, ReadOnlySettings settings)
-    {
-        this.bus = bus;
-        this.settings = settings;
-    }
-
-    public void Start()
     {
         Guid hostId = CreateGuid(Environment.MachineName, settings.EndpointName());
         string location = Assembly.GetExecutingAssembly().Location;
@@ -42,7 +35,7 @@ public class HostIdFixer : IWantToRunWhenBusStartsAndStops
         }
     }
 
-    public void Stop()
+    public void Run(Configure config)
     {
     }
 }
