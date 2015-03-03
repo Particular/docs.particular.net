@@ -8,10 +8,10 @@ static class Program
     static void Main()
     {
         #region ContainerConfiguration
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.EndpointName("Samples.Castle");
 
-        var container = new WindsorContainer();
+        WindsorContainer container = new WindsorContainer();
         container.Register(Component.For<MyService>().Instance(new MyService()));
 
         configuration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
@@ -21,7 +21,7 @@ static class Program
         configuration.UsePersistence<InMemoryPersistence>();
         configuration.EnableInstallers();
 
-        using (var bus = Bus.Create(configuration))
+        using (IStartableBus bus = Bus.Create(configuration))
         {
             bus.Start();
             bus.SendLocal(new MyMessage());

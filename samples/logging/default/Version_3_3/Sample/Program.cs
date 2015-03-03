@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         #region ConfigureLogging
-        var configure = Configure.With();
+        Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Logging.Default");
         
         //Configures a ConsoleAppender with a threshold of Debug
@@ -20,7 +20,7 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
-        var bus = configure.UnicastBus()
+        IBus bus = configure.UnicastBus()
             .CreateBus()
             .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 

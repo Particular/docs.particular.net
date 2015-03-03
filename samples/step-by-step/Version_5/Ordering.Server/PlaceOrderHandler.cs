@@ -22,7 +22,7 @@ namespace Ordering.Server
 
             Console.WriteLine(@"Publishing: OrderPlaced for Order Id: {0}", message.Id);
 
-            var orderPlaced = new OrderPlaced
+            OrderPlaced orderPlaced = new OrderPlaced
                               {
                                   OrderId = message.Id
                               };

@@ -2,8 +2,11 @@ using NServiceBus;
 using System;
 
 #region RequestDataMessageHandler
+
 public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
-#endregion
+
+    #endregion
+
 {
     IBus bus;
 
@@ -16,14 +19,17 @@ public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
     {
         Console.WriteLine("Received request {0}.", message.DataId);
         Console.WriteLine("String received: {0}.", message.String);
+
         #region DataResponseReply
-        var response = new DataResponseMessage
-        {
-            DataId = message.DataId,
-            String = message.String
-        };
+
+        DataResponseMessage response = new DataResponseMessage
+                                       {
+                                           DataId = message.DataId,
+                                           String = message.String
+                                       };
 
         bus.Reply(response);
+
         #endregion
     }
 }

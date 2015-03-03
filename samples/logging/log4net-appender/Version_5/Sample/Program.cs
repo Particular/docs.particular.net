@@ -10,7 +10,7 @@ class Program
     static void Main()
     {
         #region ConfigureAppender
-        var consoleAppender = new MyConsoleAppender
+        MyConsoleAppender consoleAppender = new MyConsoleAppender
                               {
                                   Color = ConsoleColor.Green
                               };
@@ -18,13 +18,13 @@ class Program
         LogManager.Use<Log4NetFactory>();
         #endregion
 
-        var busConfig = new BusConfiguration();
+        BusConfiguration busConfig = new BusConfiguration();
         busConfig.EndpointName("Samples.Log4Net.Appender");
         busConfig.UseSerialization<JsonSerializer>();
         busConfig.EnableInstallers();
         busConfig.UsePersistence<InMemoryPersistence>();
 
-        using (var bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfig))
         {
             bus.Start();
             bus.SendLocal(new MyMessage());

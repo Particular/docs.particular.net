@@ -5,14 +5,14 @@ class Program
 {
     static void Main()
     {
-        var busConfiguration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MessageBodyEncryption.Endpoint1");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.RegisterMessageEncryptor();
-        var startableBus = Bus.Create(busConfiguration);
-        using (var bus = startableBus.Start())
+        IStartableBus startableBus = Bus.Create(busConfiguration);
+        using (IBus bus = startableBus.Start())
         {
-            var completeOrder = new CompleteOrder
+            CompleteOrder completeOrder = new CompleteOrder
                                           {
                                               CreditCard = "123-456-789"
                                           };

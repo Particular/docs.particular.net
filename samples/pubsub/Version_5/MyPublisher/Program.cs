@@ -8,13 +8,13 @@ static class Program
 
     static void Main()
     {
-        var busConfiguration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PubSub.MyPublisher");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        var startableBus = Bus.Create(busConfiguration);
-        using (var bus = startableBus.Start())
+        IStartableBus startableBus = Bus.Create(busConfiguration);
+        using (IBus bus = startableBus.Start())
         {
             Start(bus);
         }
@@ -25,10 +25,10 @@ static class Program
         Console.WriteLine("This will publish IEvent, EventMessage, and AnotherEventMessage alternately.");
         Console.WriteLine("Press 'Enter' to publish a message.To exit, Ctrl + C");
         #region PublishLoop
-        var nextEventToPublish = 0;
+        int nextEventToPublish = 0;
         while (Console.ReadLine() != null)
         {
-            var eventId = Guid.NewGuid();
+            Guid eventId = Guid.NewGuid();
             switch (nextEventToPublish)
             {
                 case 0:
@@ -41,7 +41,7 @@ static class Program
                     nextEventToPublish = 1;
                     break;
                 case 1:
-                    var eventMessage = new EventMessage
+                    EventMessage eventMessage = new EventMessage
                     {
                         EventId = eventId,
                         Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null,
@@ -51,7 +51,7 @@ static class Program
                     nextEventToPublish = 2;
                     break;
                 default:
-                    var anotherEventMessage = new AnotherEventMessage
+                    AnotherEventMessage anotherEventMessage = new AnotherEventMessage
                     {
                         EventId = eventId,
                         Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null,

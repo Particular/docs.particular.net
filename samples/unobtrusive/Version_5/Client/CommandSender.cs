@@ -17,7 +17,7 @@ public class CommandSender
 
         while (true)
         {
-            var cmd = Console.ReadKey().Key.ToString().ToLower();
+            string cmd = Console.ReadKey().Key.ToString().ToLower();
             switch (cmd)
             {
                 case "c":
@@ -58,7 +58,7 @@ public class CommandSender
 
     static void Data(IBus bus)
     {
-        var requestId = Guid.NewGuid();
+        Guid requestId = Guid.NewGuid();
 
         bus.Send(new LargeMessage
         {
@@ -71,7 +71,7 @@ public class CommandSender
 
     static void Express(IBus bus)
     {
-        var requestId = Guid.NewGuid();
+        Guid requestId = Guid.NewGuid();
 
         bus.Send(new RequestExpress
         {
@@ -83,7 +83,7 @@ public class CommandSender
 
     static void SendRequest(IBus bus)
     {
-        var requestId = Guid.NewGuid();
+        Guid requestId = Guid.NewGuid();
 
         bus.Send(new Request
         {
@@ -95,7 +95,7 @@ public class CommandSender
 
     static void SendCommand(IBus bus)
     {
-        var commandId = Guid.NewGuid();
+        Guid commandId = Guid.NewGuid();
 
         bus.Send(new MyCommand
                  {

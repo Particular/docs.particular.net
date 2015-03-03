@@ -6,7 +6,7 @@ public static class ConventionExtensions
     #region CustomConvention
     public static void ApplyCustomConventions(this BusConfiguration busConfiguration)
     {
-        var conventions = busConfiguration.Conventions();
+        ConventionsBuilder conventions = busConfiguration.Conventions();
         conventions.DefiningCommandsAs(t => t.Namespace != null && t.Namespace.EndsWith("Commands"));
         conventions.DefiningEventsAs(t => t.Namespace != null && t.Namespace.EndsWith("Events"));
         conventions.DefiningMessagesAs(t => t.Namespace == "Messages");

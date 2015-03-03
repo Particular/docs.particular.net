@@ -6,7 +6,7 @@ class Program
 {
     static void Main()
     {
-        var configure = Configure.With();
+        Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Versioning.V1Subscriber");
         configure.DefaultBuilder();
         configure.JsonSerializer();

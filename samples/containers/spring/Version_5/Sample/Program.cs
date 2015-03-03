@@ -7,10 +7,10 @@ static class Program
     static void Main()
     {
         #region ContainerConfiguration
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.EndpointName("Samples.Spring");
 
-        var applicationContext = new GenericApplicationContext();
+        GenericApplicationContext applicationContext = new GenericApplicationContext();
         applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
         configuration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));
         #endregion
@@ -18,7 +18,7 @@ static class Program
         configuration.UsePersistence<InMemoryPersistence>();
         configuration.EnableInstallers();
 
-        using (var bus = Bus.Create(configuration))
+        using (IStartableBus bus = Bus.Create(configuration))
         {
             bus.Start();
             bus.SendLocal(new MyMessage());

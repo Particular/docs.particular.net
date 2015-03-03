@@ -11,13 +11,13 @@ namespace WebApplication
         protected void Application_Start(object sender, EventArgs e)
         {
             #region ApplicationStart
-            var configure = Configure.With();
+            Configure configure = Configure.With();
             configure.Log4Net();
             configure.DefineEndpointName("Samples.AsyncPages.WebApplication");
             configure.DefaultBuilder();
             configure.JsonSerializer();
             configure.MsmqTransport();
-            var startableBus = configure.UnicastBus().CreateBus();
+            IStartableBus startableBus = configure.UnicastBus().CreateBus();
             Bus = startableBus.Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
             #endregion
         }

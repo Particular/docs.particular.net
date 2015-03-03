@@ -5,12 +5,12 @@ class Program
 {
     static void Main()
     {
-        var busConfig = new BusConfiguration();
+        BusConfiguration busConfig = new BusConfiguration();
         busConfig.EndpointName("Samples.AsyncPages.Server");
         busConfig.UseSerialization<JsonSerializer>();
         busConfig.EnableInstallers();
         busConfig.UsePersistence<InMemoryPersistence>();
-        using (var bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfig))
         {
             bus.Start();
             Console.WriteLine("\r\nPress any key to stop program\r\n");

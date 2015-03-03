@@ -12,7 +12,7 @@ namespace WebApplication
         {
             #region ApplicationStart
 
-            var busConfig = new BusConfiguration();
+            BusConfiguration busConfig = new BusConfiguration();
             busConfig.EndpointName("Samples.AsyncPages.WebApplication");
             busConfig.UseSerialization<JsonSerializer>();
             busConfig.EnableInstallers();

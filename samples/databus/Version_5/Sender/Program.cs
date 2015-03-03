@@ -8,13 +8,13 @@ class Program
 
     static void Main()
     {
-        var busConfiguration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Sample.DataBus.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UseDataBus<FileShareDataBus>().BasePath(BasePath);
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (var bus = Bus.Create(busConfiguration))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             Run(bus);
@@ -30,7 +30,7 @@ class Program
 
         while (true)
         {
-            var key = Console.ReadKey();
+            ConsoleKeyInfo key = Console.ReadKey();
 
             if (key.Key == ConsoleKey.E)
             {
@@ -48,7 +48,7 @@ class Program
     static void SendMessageLargePayload(IBus bus)
     {
         #region SendMessageLargePayload
-        var message = new MessageWithLargePayload
+        MessageWithLargePayload message = new MessageWithLargePayload
         {
             SomeProperty = "This message contains a large blob that will be sent on the data bus",
             LargeBlob = new DataBusProperty<byte[]>(new byte[1024*1024*5]) //5MB
@@ -62,7 +62,7 @@ class Program
     static void SendMessageTooLargePayload(IBus bus)
     {
         #region SendMessageTooLargePayload
-        var message = new AnotherMessageWithLargePayload
+        AnotherMessageWithLargePayload message = new AnotherMessageWithLargePayload
         {
             LargeBlob = new byte[1024 * 1024 * 5] //5MB
         };

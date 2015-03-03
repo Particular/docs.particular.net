@@ -5,7 +5,7 @@ class Program
     public static void Main()
     {
         #region ComponentRegistartion
-        var busConfiguration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         busConfiguration.RegisterComponents(components =>
@@ -14,7 +14,7 @@ class Program
             components.ConfigureComponent<TransportMessageCompressionMutator>(DependencyLifecycle.InstancePerCall);
         });
         #endregion
-        using (var bus = Bus.Create(busConfiguration))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             Runner.Run(bus);

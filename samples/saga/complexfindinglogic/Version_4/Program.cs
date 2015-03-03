@@ -9,7 +9,7 @@ class Program
     {
         Configure.Serialization.Json();
         Configure.Features.Enable<Sagas>();
-        var configure = Configure.With();
+        Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.ComplexSagaFindingLogic");
         configure.Log4Net();
         configure.DefaultBuilder();
@@ -17,7 +17,7 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        var bus = configure.UnicastBus()
+        IBus bus = configure.UnicastBus()
             .CreateBus()
             .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 

@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         Configure.Serialization.Json();
-        var configure = Configure.With();
+        Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Versioning.V1Subscriber");
         configure.DefaultBuilder();
         configure.UseTransport<Msmq>();

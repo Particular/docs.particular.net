@@ -18,7 +18,7 @@ namespace WebApplication
             {
                 return;
             }
-            var command = new Command
+            Command command = new Command
                           {
                               Id = number
                           };

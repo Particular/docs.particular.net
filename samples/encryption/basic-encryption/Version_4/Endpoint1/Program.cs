@@ -8,7 +8,7 @@ class Program
     static void Main()
     {
         Configure.Serialization.Json();
-        var configure = Configure.With();
+        Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Encryption.Endpoint1");
         configure.DefaultBuilder();
         configure.RijndaelEncryptionService();
@@ -16,11 +16,11 @@ class Program
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
-        var bus = configure.UnicastBus()
+        IBus bus = configure.UnicastBus()
             .CreateBus()
             .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 
-        var message = new MessageWithSecretData
+        MessageWithSecretData message = new MessageWithSecretData
                        {
                            Secret = "betcha can't guess my secret",
                            SubProperty = new MySecretSubProperty

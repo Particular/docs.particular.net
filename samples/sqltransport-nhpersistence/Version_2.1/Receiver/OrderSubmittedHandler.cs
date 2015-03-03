@@ -13,18 +13,24 @@ namespace Receiver
         public void Handle(OrderSubmitted message)
         {
             Console.WriteLine("Order {0} worth {1} submitted", message.OrderId, message.Value);
+
             #region StoreUserData
-            StorageContext.Session.Save(new Order()
-            {
-                OrderId = message.OrderId,
-                Value = message.Value
-            });
+
+            StorageContext.Session.Save(new Order
+                                        {
+                                            OrderId = message.OrderId,
+                                            Value = message.Value
+                                        });
+
             #endregion
+
             #region Reply
-            Bus.Reply(new OrderAccepted()
-            {
-                OrderId = message.OrderId,
-            });
+
+            Bus.Reply(new OrderAccepted
+                      {
+                          OrderId = message.OrderId,
+                      });
+
             #endregion
         }
     }

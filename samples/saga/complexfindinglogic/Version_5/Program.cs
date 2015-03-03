@@ -6,13 +6,13 @@ class Program
 
     static void Main()
     {
-        var busConfig = new BusConfiguration();
+        BusConfiguration busConfig = new BusConfiguration();
         busConfig.EndpointName("Samples.ComplexSagaFindingLogic");
         busConfig.UseSerialization<JsonSerializer>();
         busConfig.EnableInstallers();
         busConfig.UsePersistence<InMemoryPersistence>();
 
-        using (var bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfig))
         {
             bus.Start();
             bus.SendLocal(new StartOrder

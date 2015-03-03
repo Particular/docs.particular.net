@@ -25,18 +25,18 @@ namespace AsyncPagesMVC
         protected void Application_Start()
         {
             #region ApplicationStart
-            var builder = new ContainerBuilder();
+            ContainerBuilder builder = new ContainerBuilder();
 
             // Register your MVC controllers.
             builder.RegisterControllers(typeof (MvcApplication).Assembly);
 
             // Set the dependency resolver to be Autofac.
-            var container = builder.Build();
+            IContainer container = builder.Build();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
             Configure.Serialization.Json();
-            var configure = Configure.With();
+            Configure configure = Configure.With();
             configure.DefineEndpointName("Samples.Mvc.WebApplication");
             configure.AutofacBuilder(container);
             configure.InMemorySagaPersister();

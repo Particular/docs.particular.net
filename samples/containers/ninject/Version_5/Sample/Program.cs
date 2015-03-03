@@ -7,10 +7,10 @@ static class Program
     static void Main()
     {
         #region ContainerConfiguration
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.EndpointName("Samples.Ninject");
 
-        var kernel = new StandardKernel();
+        StandardKernel kernel = new StandardKernel();
         kernel.Bind<MyService>().ToConstant(new MyService());
         configuration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
         #endregion
@@ -18,7 +18,7 @@ static class Program
         configuration.UsePersistence<InMemoryPersistence>();
         configuration.EnableInstallers();
 
-        using (var bus = Bus.Create(configuration))
+        using (IStartableBus bus = Bus.Create(configuration))
         {
             bus.Start();
             bus.SendLocal(new MyMessage());

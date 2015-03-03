@@ -1,22 +1,19 @@
-﻿using System;
-using NHibernate;
-using NHibernate.Cfg;
-using NHibernate.Dialect;
-using NHibernate.Mapping.ByCode;
-using NHibernate.Tool.hbm2ddl;
-using NHibernate.Util;
-using NServiceBus;
-using NServiceBus.Persistence;
-using NServiceBus.Transports.SQLServer;
-using Configuration = NHibernate.Cfg.Configuration;
-
-namespace Receiver
+﻿namespace Receiver
 {
+    using System;
+    using NHibernate.Cfg;
+    using NHibernate.Dialect;
+    using NHibernate.Mapping.ByCode;
+    using NHibernate.Tool.hbm2ddl;
+    using NServiceBus;
+    using NServiceBus.Persistence;
+    using NServiceBus.Transports.SQLServer;
+
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            var hibernateConfig = new Configuration();
+            Configuration hibernateConfig = new Configuration();
             hibernateConfig.DataBaseIntegration(x =>
             {                
                 x.ConnectionStringName = "NServiceBus/Persistence";
@@ -26,7 +23,7 @@ namespace Receiver
             hibernateConfig.SetProperty("default_schema", "receiver");
             #endregion
 
-            var mapper = new ModelMapper();
+            ModelMapper mapper = new ModelMapper();
             mapper.AddMapping<OrderMap>();
             hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
 
@@ -34,11 +31,11 @@ namespace Receiver
 
             #region ReceiverConfiguration
             
-            var busConfig = new BusConfiguration();
+            BusConfiguration busConfig = new BusConfiguration();
             busConfig.UseTransport<SqlServerTransport>().DefaultSchema("receiver")
                 .UseSpecificConnectionInformation(endpoint =>
                 {
-                    var schema = endpoint.Split(new[] {'.'}, StringSplitOptions.RemoveEmptyEntries)[0].ToLowerInvariant();
+                    string schema = endpoint.Split(new[] {'.'}, StringSplitOptions.RemoveEmptyEntries)[0].ToLowerInvariant();
                     return ConnectionInfo.Create().UseSchema(schema);
                 });
             busConfig.UsePersistence<NHibernatePersistence>().UseConfiguration(hibernateConfig);

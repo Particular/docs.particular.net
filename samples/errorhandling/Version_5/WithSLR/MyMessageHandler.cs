@@ -10,7 +10,7 @@ public class MyMessageHandler : IHandleMessages<MyMessage>
 
     public void Handle(MyMessage message)
     {
-        var context = Bus.CurrentMessageContext;
+        IMessageContext context = Bus.CurrentMessageContext;
         Console.WriteLine("ReplyToAddress: {0} MessageId:{1}", context.ReplyToAddress, context.Id);
 
         string numOfRetries;

@@ -5,11 +5,11 @@ class Program
 {
     static void Main()
     {
-        var busConfiguration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MessageBodyEncryption.Endpoint2");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.RegisterMessageEncryptor();
-        var startableBus = Bus.Create(busConfiguration);
+        IStartableBus startableBus = Bus.Create(busConfiguration);
         using (startableBus.Start())
         {
             Console.WriteLine("Press any key to exit");

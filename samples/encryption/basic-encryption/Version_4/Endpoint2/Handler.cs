@@ -10,7 +10,7 @@ public class Handler : IHandleMessages<MessageWithSecretData>
 
         Console.Out.WriteLine("SubSecret: " + message.SubProperty.Secret);
 
-        foreach (var creditCard in message.CreditCards)
+        foreach (CreditCardDetails creditCard in message.CreditCards)
         {
             Console.Out.WriteLine("CreditCard: {0} is valid to {1}", creditCard.Number.Value, creditCard.ValidTo);
         }

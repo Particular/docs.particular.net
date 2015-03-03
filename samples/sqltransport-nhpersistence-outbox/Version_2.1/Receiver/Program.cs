@@ -15,31 +15,35 @@ namespace Receiver
     {
         public static ISessionFactory SessionFactory;
 
-        static void Main(string[] args)
+        static void Main()
         {
             #region NHibernate
-            var hibernateConfig = new Configuration();
+
+            Configuration hibernateConfig = new Configuration();
             hibernateConfig.DataBaseIntegration(x =>
             {
                 x.ConnectionStringName = "NServiceBus/Persistence";
                 x.Dialect<MsSql2012Dialect>();
             });
-            var mapper = new ModelMapper();
+            ModelMapper mapper = new ModelMapper();
             mapper.AddMapping<OrderMap>();
             hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
             SessionFactory = hibernateConfig.BuildSessionFactory();
+
             #endregion
 
             new SchemaExport(hibernateConfig).Execute(false, true, false);
 
             #region ReceiverConfiguration
-            var busConfig = new BusConfiguration();
+
+            BusConfiguration busConfig = new BusConfiguration();
             busConfig.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
                 EndpointConnectionInfo.For("sender")
                     .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True"));
 
             busConfig.UsePersistence<NHibernatePersistence>();
             busConfig.EnableOutbox();
+
             #endregion
 
             busConfig.DisableFeature<SecondLevelRetries>();

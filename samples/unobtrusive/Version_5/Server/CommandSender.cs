@@ -3,7 +3,7 @@ using Events;
 using Messages;
 using NServiceBus;
 
-class CommandSender 
+class CommandSender
 {
 
     public static void Start(IBus bus)
@@ -14,7 +14,7 @@ class CommandSender
 
         while (true)
         {
-            var cmd = Console.ReadKey().Key.ToString().ToLower();
+            string cmd = Console.ReadKey().Key.ToString().ToLower();
 
             switch (cmd)
             {
@@ -37,7 +37,7 @@ class CommandSender
 
     static void PublishEvent(IBus bus)
     {
-        var eventId = Guid.NewGuid();
+        Guid eventId = Guid.NewGuid();
 
         bus.Publish<IMyEvent>(m =>
         {

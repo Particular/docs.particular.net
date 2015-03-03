@@ -20,9 +20,9 @@ namespace Ordering.Client
 
             while (Console.ReadLine() != null)
             {
-                var id = Guid.NewGuid();
+                Guid id = Guid.NewGuid();
 
-                var placeOrder = new PlaceOrder
+                PlaceOrder placeOrder = new PlaceOrder
                                  {
                                      Product = "New shoes", 
                                      Id = id

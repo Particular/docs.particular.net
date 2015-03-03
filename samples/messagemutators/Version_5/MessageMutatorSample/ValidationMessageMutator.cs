@@ -23,10 +23,10 @@ public class ValidationMessageMutator : IMessageMutator
 
     static void ValidateDataAnnotations(object message)
     {
-        var context = new ValidationContext(message, null, null);
-        var results = new List<ValidationResult>();
+        ValidationContext context = new ValidationContext(message, null, null);
+        List<ValidationResult> results = new List<ValidationResult>();
 
-        var isValid = Validator.TryValidateObject(message, context, results, true);
+        bool isValid = Validator.TryValidateObject(message, context, results, true);
 
         if (isValid)
         {
@@ -34,11 +34,11 @@ public class ValidationMessageMutator : IMessageMutator
             return;
         }
 
-        var errorMessage = new StringBuilder();
-        var error = string.Format("Validation failed for message {0}, with the following error/s: " + Environment.NewLine,message);
+        StringBuilder errorMessage = new StringBuilder();
+        string error = string.Format("Validation failed for message {0}, with the following error/s: " + Environment.NewLine,message);
         errorMessage.Append(error);
 
-        foreach (var validationResult in results)
+        foreach (ValidationResult validationResult in results)
         {
             errorMessage.Append(validationResult.ErrorMessage + Environment.NewLine);
         }

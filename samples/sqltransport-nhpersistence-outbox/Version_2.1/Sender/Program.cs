@@ -7,30 +7,32 @@ namespace Sender
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-            var random = new Random();
-            var busConfig = new BusConfiguration();
+            Random random = new Random();
+            BusConfiguration busConfig = new BusConfiguration();
 
             #region SenderConfiguration
+
             busConfig.UseTransport<SqlServerTransport>();
             busConfig.UsePersistence<NHibernatePersistence>();
             busConfig.EnableOutbox();
+
             #endregion
 
-            var bus = Bus.Create(busConfig).Start();
+            IBus bus = Bus.Create(busConfig).Start();
             while (true)
             {
                 Console.WriteLine("Press <enter> to send a message");
                 Console.ReadLine();
 
-                var orderId = new String(Enumerable.Range(0,4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                bus.Publish(new OrderSubmitted()
-                {
-                    OrderId = orderId,
-                    Value = random.Next(100)
-                });
+                string orderId = new String(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+                bus.Publish(new OrderSubmitted
+                            {
+                                OrderId = orderId,
+                                Value = random.Next(100)
+                            });
             }
         }
     }

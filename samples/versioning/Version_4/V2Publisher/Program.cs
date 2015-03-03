@@ -7,14 +7,14 @@ class Program
     static void Main()
     {
         Configure.Serialization.Json();
-        var configure = Configure.With();
+        Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Versioning.V2Publisher");
         configure.DefaultBuilder();
         configure.UseTransport<Msmq>();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
-        var bus = configure.UnicastBus()
+        IBus bus = configure.UnicastBus()
             .CreateBus()
             .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 

@@ -5,6 +5,8 @@ using NServiceBus;
 
 namespace AsyncPagesMVC.Controllers
 {
+    using System.Threading;
+
     public class SendAndBlockController : Controller
     {
         IBus bus;
@@ -30,11 +32,11 @@ namespace AsyncPagesMVC.Controllers
             if (!int.TryParse(textField, out number))
                 return View();
             #region SendAndBlockController
-            var command = new Command { Id = number };
+            Command command = new Command { Id = number };
 
-            var res =  bus.Send("Samples.Mvc.Server", command)
+            IAsyncResult res =  bus.Send("Samples.Mvc.Server", command)
                 .Register(SimpleCommandCallback, this);
-            var asyncWaitHandle = res.AsyncWaitHandle;
+            WaitHandle asyncWaitHandle = res.AsyncWaitHandle;
             asyncWaitHandle.WaitOne(50000);
             #endregion
             return View();
@@ -42,8 +44,8 @@ namespace AsyncPagesMVC.Controllers
         
         void SimpleCommandCallback(IAsyncResult asyncResult)
         {
-            var result = (CompletionResult)asyncResult.AsyncState;
-            var controller = (SendAndBlockController)result.State;
+            CompletionResult result = (CompletionResult)asyncResult.AsyncState;
+            SendAndBlockController controller = (SendAndBlockController)result.State;
             controller.ViewBag.ResponseText = Enum.GetName(typeof (ErrorCodes), result.ErrorCode);
         }
 

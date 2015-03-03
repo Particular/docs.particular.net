@@ -6,7 +6,7 @@ class Program
 {
     static void Main()
     {
-        var configure = Configure.With();
+        Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Log4Net.Appender");
         #region ConfigureAppender
         configure.Log4Net<MyConsoleAppender>(appender => { appender.Color = ConsoleColor.Green; });
@@ -17,7 +17,7 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
-        var bus = configure.UnicastBus()
+        IBus bus = configure.UnicastBus()
             .CreateBus()
             .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 

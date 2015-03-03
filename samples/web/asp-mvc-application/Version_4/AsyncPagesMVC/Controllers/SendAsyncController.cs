@@ -31,7 +31,7 @@ namespace AsyncPagesMVC.Controllers
                 return;
             }
             #region AsyncController
-            var command = new Command
+            Command command = new Command
                           {
                               Id = number
                           };

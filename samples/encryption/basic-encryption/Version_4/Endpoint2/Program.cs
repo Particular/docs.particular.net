@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         Configure.Serialization.Json();
-        var configure = Configure.With();
+        Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Encryption.Endpoint2");
         configure.DefaultBuilder();
         configure.RijndaelEncryptionService();

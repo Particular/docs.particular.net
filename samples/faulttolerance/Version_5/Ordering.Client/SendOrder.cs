@@ -14,7 +14,7 @@
 
             while (Console.ReadLine() != null)
             {
-                var id = Guid.NewGuid();
+                Guid id = Guid.NewGuid();
 
                 Bus.Send("Ordering.Server", new PlaceOrder
                 {

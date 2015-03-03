@@ -6,7 +6,7 @@ class Program
 {
     static void Main()
     {
-        var configure = Configure.With();
+        Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.ComplexSagaFindingLogic");
         configure.Log4Net();
         configure.DefaultBuilder();
@@ -16,7 +16,7 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
-        var bus = configure.UnicastBus()
+        IBus bus = configure.UnicastBus()
             .CreateBus()
             .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 

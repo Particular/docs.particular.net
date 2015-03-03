@@ -14,10 +14,10 @@ public class TransportMessageCompressionMutator : IMutateTransportMessages
     {
         Logger.Info("transportMessage.Body size before compression: " + transportMessage.Body.Length);
 
-        var mStream = new MemoryStream(transportMessage.Body);
-        var outStream = new MemoryStream();
+        MemoryStream mStream = new MemoryStream(transportMessage.Body);
+        MemoryStream outStream = new MemoryStream();
 
-        using (var tinyStream = new GZipStream(outStream, CompressionMode.Compress))
+        using (GZipStream tinyStream = new GZipStream(outStream, CompressionMode.Compress))
         {
             mStream.CopyTo(tinyStream);
         }
@@ -34,9 +34,9 @@ public class TransportMessageCompressionMutator : IMutateTransportMessages
         {
             return;
         }
-        using (var bigStream = new GZipStream(new MemoryStream(transportMessage.Body), CompressionMode.Decompress))
+        using (GZipStream bigStream = new GZipStream(new MemoryStream(transportMessage.Body), CompressionMode.Decompress))
         {
-            var bigStreamOut = new MemoryStream();
+            MemoryStream bigStreamOut = new MemoryStream();
             bigStream.CopyTo(bigStreamOut);
             transportMessage.Body = bigStreamOut.ToArray();
         }

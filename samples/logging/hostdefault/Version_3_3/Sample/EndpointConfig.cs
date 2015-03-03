@@ -7,7 +7,7 @@ public class EndpointConfig :
 {
     public void Init()
     {
-        var configure = Configure.With();
+        Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Logging.HostDefault");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();

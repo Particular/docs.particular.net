@@ -12,12 +12,12 @@ namespace WebApplication
         {
             #region ApplicationStart
             Configure.Serialization.Json();
-            var configure = Configure.With();
+            Configure configure = Configure.With();
             configure.Log4Net();
             configure.DefineEndpointName("Samples.AsyncPages.WebApplication");
             configure.DefaultBuilder();
             configure.UseTransport<Msmq>();
-            var startableBus = configure.UnicastBus().CreateBus();
+            IStartableBus startableBus = configure.UnicastBus().CreateBus();
             Bus = startableBus.Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
             #endregion
         }

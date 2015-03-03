@@ -4,7 +4,7 @@ class Program
 {
     public static void Main()
     {
-        var busConfiguration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
@@ -14,7 +14,7 @@ class Program
 
         busConfiguration.ApplyCustomConventions();
 
-        var bus = Bus.Create(busConfiguration);
+        IStartableBus bus = Bus.Create(busConfiguration);
         bus.Start();
         CommandSender.Start(bus);
     }

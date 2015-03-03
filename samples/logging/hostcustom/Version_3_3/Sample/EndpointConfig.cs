@@ -13,12 +13,12 @@ public class EndpointConfig :
 {
     void IWantCustomLogging.Init()
     {
-        var layout = new PatternLayout
+        PatternLayout layout = new PatternLayout
                      {
                          ConversionPattern = "%d %-5p %c - %m%n"
                      };
         layout.ActivateOptions();
-        var appender = new ConsoleAppender
+        ConsoleAppender appender = new ConsoleAppender
                        {
                            Layout = layout,
                            Threshold = Level.Info
@@ -33,7 +33,7 @@ public class EndpointConfig :
 
     void IWantCustomInitialization.Init()
     {
-        var configure = Configure.With();
+        Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Logging.HostCustom");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();

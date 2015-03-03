@@ -18,7 +18,7 @@ class Program
 
         NServiceBus.Logging.LogManager.Use<CommonLoggingFactory>();
 
-        var busConfig = new BusConfiguration();
+        BusConfiguration busConfig = new BusConfiguration();
         busConfig.EndpointName("Samples.Logging.CommonLogging");
 
         #endregion
@@ -27,7 +27,7 @@ class Program
         busConfig.EnableInstallers();
         busConfig.UsePersistence<InMemoryPersistence>();
 
-        using (var bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfig))
         {
             bus.Start();
             bus.SendLocal(new MyMessage());
