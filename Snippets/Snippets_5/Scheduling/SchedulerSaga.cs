@@ -12,7 +12,8 @@
     {
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MyCustomTaskSagaData> mapper)
         {
-            // To ensure that there is only one saga instance per the task name, regardless of if the endpoint is restarted or not.
+            // To ensure that there is only one saga instance per the task name, 
+            // regardless of if the endpoint is restarted or not.
             mapper.ConfigureMapping<StartMyCustomTaskSaga>(m => m.TaskName).ToSaga(s => s.TaskName);
         }
 
@@ -23,7 +24,8 @@
             // as those timeout messages will arrive when the specified time is up.
             if (!Data.IsTaskAlreadyScheduled)
             {
-                RequestTimeout<ExecuteTask>(TimeSpan.FromMinutes(5)); // Setup a timeout for the specified interval for the task to be executed.
+                // Setup a timeout for the specified interval for the task to be executed.
+                RequestTimeout<ExecuteTask>(TimeSpan.FromMinutes(5)); 
                 Data.IsTaskAlreadyScheduled = true;
             }
         }

@@ -8,7 +8,8 @@ public class InstancePerUnitOfWorkRegistration
         #region InstancePerUnitOfWorkRegistration
 
         Configure configuration = Configure.With();
-        configuration.Configurer.ConfigureComponent<MyUnitOfWork>(DependencyLifecycle.InstancePerCall);
+        configuration.Configurer
+            .ConfigureComponent<MyUnitOfWork>(DependencyLifecycle.InstancePerCall);
 
         #endregion
     }

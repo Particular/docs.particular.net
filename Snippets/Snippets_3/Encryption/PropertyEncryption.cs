@@ -17,7 +17,7 @@ public class PropertyEncryption
     {
         #region DefiningEncryptedPropertiesAs
         Configure.With()
-            .DefiningEncryptedPropertiesAs(info => info.Name.EndsWith("EncryptedProperty"));
+            .DefiningEncryptedPropertiesAs(x => x.Name.EndsWith("EncryptedProperty"));
         #endregion
     }
 

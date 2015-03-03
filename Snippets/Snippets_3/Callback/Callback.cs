@@ -1,57 +1,54 @@
-﻿namespace MyServer.Callback
+﻿using System;
+using NServiceBus;
+
+public class Callback
 {
-    using System;
-    using NServiceBus;
-
-    public class Callback
+    class PlaceOrder : ICommand
     {
-        class PlaceOrder : ICommand
-        {
-        }
+    }
 
-        class PlaceOrderResponse : IMessage
-        {
-            public object Response { get; set; }
-        }
+    class PlaceOrderResponse : IMessage
+    {
+        public object Response { get; set; }
+    }
 
-        public void CallbackSnippet()
-        {
-            PlaceOrder placeOrder = new PlaceOrder();
-            IBus bus = null;
-            // ReSharper disable once NotAccessedVariable
-            PlaceOrderResponse message; // get replied message
+    public void CallbackSnippet()
+    {
+        PlaceOrder placeOrder = new PlaceOrder();
+        IBus bus = null;
+        // ReSharper disable once NotAccessedVariable
+        PlaceOrderResponse message; // get replied message
 
-            #region CallbackToAccessMessageRegistration
+        #region CallbackToAccessMessageRegistration
 
-            IAsyncResult sync = bus.Send(placeOrder)
-                .Register(ar =>
-                {
-                    CompletionResult localResult = (CompletionResult)ar.AsyncState;
-                    message = (PlaceOrderResponse)localResult.Messages[0];
-                }, null);
+        IAsyncResult sync = bus.Send(placeOrder)
+            .Register(ar =>
+            {
+                CompletionResult localResult = (CompletionResult) ar.AsyncState;
+                message = (PlaceOrderResponse) localResult.Messages[0];
+            }, null);
 
-            sync.AsyncWaitHandle.WaitOne();
-            // return message;
+        sync.AsyncWaitHandle.WaitOne();
+        // return message;
 
-            #endregion
-        }
+        #endregion
+    }
 
-        enum Status
-        {
-            OK,
-            Error
-        }
+    enum Status
+    {
+        OK,
+        Error
+    }
 
-        public void TriggerCallback()
-        {
-            IBus bus = null;
+    public void TriggerCallback()
+    {
+        IBus bus = null;
 
-            #region TriggerCallback
+        #region TriggerCallback
 
-            bus.Return(Status.OK);
+        bus.Return(Status.OK);
 
-            #endregion
+        #endregion
 
-        }
     }
 }

@@ -84,7 +84,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Audit\App.config" />
     <None Include="Encryption\encryption.config">
       <SubType>Designer</SubType>
@@ -105,7 +104,6 @@
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
     <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="Encryption\PropertyEncryption.cs" />
-    <Compile Include="EndpointConfig.cs" />
     <Compile Include="EndpointName.cs" />
     <Compile Include="Gateway\GatewayConfig.cs" />
     <Compile Include="HandlerOrdering.cs" />
