@@ -4,9 +4,9 @@ using System.Web.Http.SelfHost;
 
 class Program3rdParty
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        var config = new HttpSelfHostConfiguration("http://localhost:57789");
+        HttpSelfHostConfiguration config = new HttpSelfHostConfiguration("http://localhost:57789");
 
         config.Routes.MapHttpRoute(
             "API Default", "api/{controller}/{id}",

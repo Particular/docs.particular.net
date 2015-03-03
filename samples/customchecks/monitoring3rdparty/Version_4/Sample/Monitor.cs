@@ -5,7 +5,7 @@ using ServiceControl.Plugin.CustomChecks;
 #region thecustomcheck
 abstract class Monitor : PeriodicCheck
 {
-    readonly Uri uri;
+    Uri uri;
 
     protected Monitor(Uri uri, TimeSpan interval)
         : base(string.Format("Monitor {0}", uri), "Monitor 3rd Party ", interval)
@@ -15,8 +15,7 @@ abstract class Monitor : PeriodicCheck
 
     public override CheckResult PerformCheck()
     {
-        CheckResult result = null;
-        using (var client = new HttpClient { Timeout = TimeSpan.FromSeconds(3), })
+        using (HttpClient client = new HttpClient { Timeout = TimeSpan.FromSeconds(3), })
         {
             try
             {
@@ -24,18 +23,18 @@ abstract class Monitor : PeriodicCheck
                 {
                     if (response.IsSuccessStatusCode)
                     {
-                        result = CheckResult.Pass;
+                        return CheckResult.Pass;
                     }
+                    string error = string.Format("Failed to contact '{0}'. HttpStatusCode: {1}", uri, response.StatusCode);
+                    return CheckResult.Failed(error);
                 }
-
             }
-            catch (Exception)
+            catch (Exception exception)
             {
-                result = CheckResult.Failed(string.Format("Failed to contact '{0}'", uri));
+                string error = string.Format("Failed to contact '{0}'. Error: {1}", uri, exception.Message);
+                return CheckResult.Failed(error);
             }
         }
-
-        return result;
     }
 }
 

@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         Configure.Serialization.Json();
-        var configure = Configure.With();
+        Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.CustomChecks.Monitor3rdParty");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();

@@ -6,7 +6,7 @@ class Program
 {
     static void Main()
     {
-        var configure = Configure.With();
+        Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.CustomChecks.Monitor3rdParty");
         configure.DefaultBuilder();
         configure.MsmqTransport();
@@ -14,7 +14,7 @@ class Program
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
-        var bus = configure.UnicastBus()
+        IBus bus = configure.UnicastBus()
             .CreateBus()
             .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 
