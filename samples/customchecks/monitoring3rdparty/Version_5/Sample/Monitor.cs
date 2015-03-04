@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Net.Http;
+using NServiceBus.Logging;
 using ServiceControl.Plugin.CustomChecks;
 
 #region thecustomcheck
 abstract class Monitor : PeriodicCheck
 {
-    readonly Uri uri;
+    Uri uri;
+    ILog logger = LogManager.GetLogger<Monitor>();
 
     protected Monitor(Uri uri, TimeSpan interval)
         : base(string.Format("Monitor {0}", uri), "Monitor 3rd Party ", interval)
@@ -23,15 +25,18 @@ abstract class Monitor : PeriodicCheck
                 {
                     if (response.IsSuccessStatusCode)
                     {
+                        logger.Info("Succeeded in contacting " + uri);
                         return CheckResult.Pass;
                     }
                     string error = string.Format("Failed to contact '{0}'. HttpStatusCode: {1}", uri, response.StatusCode);
+                    logger.Info(error);
                     return CheckResult.Failed(error);
                 }
             }
             catch (Exception exception)
             {
                 string error = string.Format("Failed to contact '{0}'. Error: {1}", uri, exception.Message);
+                logger.Info(error);
                 return CheckResult.Failed(error);
             }
         }
@@ -41,7 +46,7 @@ abstract class Monitor : PeriodicCheck
 class ThirdPartyMonitor : Monitor
 {
     public ThirdPartyMonitor()
-        : base(new Uri("http://localhost:57789/api/ThirdParty"), TimeSpan.FromSeconds(30))
+        : base(new Uri("http://localhost:57789"), TimeSpan.FromSeconds(10))
     {
     }
 }

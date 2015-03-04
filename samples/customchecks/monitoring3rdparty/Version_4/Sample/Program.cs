@@ -8,13 +8,14 @@ class Program
     {
         Configure.Serialization.Json();
         Configure configure = Configure.With();
+        configure.Log4Net();
         configure.DefineEndpointName("Samples.CustomChecks.Monitor3rdParty");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        var bus = configure.UnicastBus()
+        IBus bus = configure.UnicastBus()
             .CreateBus()
             .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 

@@ -7,6 +7,7 @@ class Program
     static void Main()
     {
         Configure configure = Configure.With();
+        configure.Log4Net();
         configure.DefineEndpointName("Samples.CustomChecks.Monitor3rdParty");
         configure.DefaultBuilder();
         configure.MsmqTransport();
