@@ -82,9 +82,9 @@ By the default the RabbitMQ transport will trigger the on critical error action 
 
 
 ### Changing routing topology
-By default the RabbitMQ transport will creates separate exchanges for each message type, including inherited types, being published in the system. This means that support polymorphic routing as well as multiple inheritance for events is supported since each subscriber will bind their input queue to the relevant exchange based on the event type that is has handlers for.
+By default the RabbitMQ transport create separate exchanges for each message type, including inherited types, being published in the system. This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchange based on the event types that it has handlers for.
 
-For less complex scenarios you can use the `DirectRoutingTopology` routes all events through a single exchange, `amq.topic` by default. The events will be published using a routing key based on the event type and subscribers will use that key to filter their subscriptions.
+For less complex scenarios you can use the `DirectRoutingTopology` that routes all events through a single exchange, `amq.topic` by default. The events will be published using a routing key based on the event type and subscribers will use that key to filter their subscriptions.
 
 To enable direct routing you would use the following configuration:
 
