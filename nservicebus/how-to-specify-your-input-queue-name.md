@@ -15,6 +15,8 @@ You can define your own convention in the endpoint initialization code using thi
 
 <!-- import EndpointNameFluent -->
 
+NOTE: If you need to customize the endpoint name via code using the `DefineEndpointName` method when using FluentAPI, it is important to call it first, right after the `With()` configuration entry point.
+
 ## When using the NServiceBus.Host.exe  
 
 ### Namespace convention
