@@ -79,3 +79,24 @@ In order for the transport to use you new connection manager you need to registe
 By the default the RabbitMQ transport will trigger the on critical error action when it continuously fails to connect to the the broker for 2 minutes. This can now be customized using the following configuration setting: (values must be parsable to `System.TimeSpan`)
 
 <!-- import rabbitmq-custom-breaker-settings -->
+
+
+### Changing routing topology
+By default the RabbitMQ transport create separate exchanges for each message type, including inherited types, being published in the system. This means that polymorphic routing and multiple inheritance for events is supported since each subscriber will bind its input queue to the relevant exchange based on the event types that it has handlers for.
+
+For less complex scenarios you can use the `DirectRoutingTopology` that routes all events through a single exchange, `amq.topic` by default. The events will be published using a routing key based on the event type and subscribers will use that key to filter their subscriptions.
+
+To enable direct routing you would use the following configuration:
+
+<!-- import rabbitmq-config-usedirectroutingtopology -->
+
+You can adjust the conventions for exchange name and routing key by using the overload:
+
+<!-- import rabbitmq-config-usedirectroutingtopologywithcustomconventions -->
+
+If the routing topologies mentioned above isn't flexible enough for you we allow you to take full control over how routing is done by implementing your own custom routing topology. This is done by:
+
+1. Define the topology by creating a class implementing `IRoutingTopology`
+2. Register it with the transport calling `.UseRoutingTopology` as shown below
+
+<!-- import rabbitmq-config-useroutingtopology -->
