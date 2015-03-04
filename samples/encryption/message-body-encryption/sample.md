@@ -37,8 +37,10 @@ This is a extension method that adds a `IMutateTransportMessages` to the configu
 
 <!-- import MessageEncryptorExtension --> 
 
-The Mutator
+#### The Mutator
+
+WARNING: Clearly this it not true encryption. It is only doing a byte array reversal to illustrate the API. In your production system you should do true encryption via the [.NET Framework Cryptography Model](https://msdn.microsoft.com/en-us/library/0ss79b2x.aspx). 
 
 <!-- import Mutator -->
 
-See also [Encryption](/nservicebus/encryption.md)
+See also [Encryption](/nservicebus/encryption.md) 
