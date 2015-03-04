@@ -13,18 +13,37 @@ Additionally it will automatically create necessery database objects when ???
 NHibernate-based persistence provide a few attributes that allow you to customize schema which will be generated:
 
 * `TableName` - allow you to provide custom table name of your class.
-
-	[TableName("customer_order_saga")]
-	public class CustomerOrderSaga : ContainSagaData
-	{
-    }
-
+```
+[TableName("customer_order_saga")]
+public class CustomerOrderSaga : ContainSagaData
+{
+}
+```
 * `LockMode` - this attribute describe which level of locking is used when saga data is read from database.
 * `RowVersion` - this attribute is used to specify which property describe saga version. 
 You can learn more about this in [NServiceBus Sagas And Concurrency](http://docs.particular.net/nservicebus/nservicebus-sagas-and-concurrency)
 
-If that is not engough you can also map saga classes over HBM or FluentNHibernate. 
-TODO: Describe how map saga over HBM or FluentNHibernate
+You can also map saga classes over HBM or FluentNHibernate. 
+
+### Map saga data by HBM file
+Mapping saga data class doesn't differ in any way from mapping other you classes. You just have to create hbm file marked as an Embedded Resource with your mapping in the same project that the saga exists on, eg:
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:nhibernate-mapping-2.2">
+    <class name="MY_NAMESPACE.PendingMentorEmailSagaData, MY_ASSEMBLY_NAME" table="PendingMentorEmailSagaData" dynamic-update="true" optimistic-lock="all">
+        <id name="Id" type="Guid">
+            <generator class="assigned" />
+        </id>
+        <property name="Originator" />
+        <property name="OriginalMessageId" />
+        <property name="LargeText" type="StringClob" />
+    </class>
+</hibernate-mapping>
+```
+
+### Map saga data by FluentNHibernate
+TODO: Describe how map saga over FluentNHibernate
 
 ## Disable schema update
 
