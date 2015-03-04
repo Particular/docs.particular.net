@@ -229,6 +229,7 @@
       <img src="/home/extensions-small-hover.png" class="hover"/>
       <h3>Extensions and integrations</h3>
     </a>
+    <p>Extensions to NServiceBus developed by both the community and Particular</p>
     <div style="clear: both"></div>
   </div>
   <div class="right1">
