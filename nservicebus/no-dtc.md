@@ -39,7 +39,7 @@ Here is a diagram how it all works:
 
 ## SQL Server Transport
 
-SQL Server transport supports *exactly-once* message delivery without Outbox solely by means of sharing the transport connection with persistence. This mode of operation is discussed in depth in this [sample](..\samples\sqltransport-nhpersistence).
+SQL Server transport supports *exactly-once* message delivery without Outbox solely by means of sharing the transport connection with persistence. This mode of operation is discussed in depth in this [sample](../samples/sqltransport-nhpersistence).
 
 ## What extra tables does NHibernate outbox persistence create 
 

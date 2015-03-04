@@ -20,9 +20,9 @@ The message is received and permanently deleted from the queue table without beg
 
 Because of the limitations of NHibernate connection management infrastructure, there is now was to provide *exactly-once* message processing guarantees solely by means of sharing instances of `SqlConnection` and `SqlTransaction` between the transport and NHibernate. For that reason NServiceBus does not allow that configuration and throws an exception during at start-up. 
 
-Fortunately the [Outbox](..\no-dtc.md) feature can be used to mitigate that problem. In such scenario the messages are stored in the same physical store as saga and user data and dispatched after the whole processing is finished. NHibernate persistence detects the status of Outbox and the presence of SQLServer transport and automatically stops reusing the transport connection and transaction. All the data access is done within the Outbox ambient transaction. From the perspective of a particular endpoint this is *exactly-once* processing because of the deduplication that happens on the incoming queue. From a global point of view this is *at-least-once* since on the wire messages can get duplicated.
+Fortunately the [Outbox](../no-dtc.md) feature can be used to mitigate that problem. In such scenario the messages are stored in the same physical store as saga and user data and dispatched after the whole processing is finished. NHibernate persistence detects the status of Outbox and the presence of SQLServer transport and automatically stops reusing the transport connection and transaction. All the data access is done within the Outbox ambient transaction. From the perspective of a particular endpoint this is *exactly-once* processing because of the deduplication that happens on the incoming queue. From a global point of view this is *at-least-once* since on the wire messages can get duplicated.
 
-A sample covering this mode of operation is available [here](..\..\samples\sqltransport-nhpersistence-outbox).
+A sample covering this mode of operation is available [here](../../samples/sqltransport-nhpersistence-outbox/).
 
 ### Ambient transactions
 
@@ -30,7 +30,7 @@ In this mode the ambient transaction is started before receiving of the message 
 
 <!-- import OutboxSqlServerConnectionStrings -->
 
-A sample covering this mode of operation is available [here](..\..\samples\sqltransport-nhpersistence).
+A sample covering this mode of operation is available [here](../../samples/sqltransport-nhpersistence/).
 
 ## Scenarios
 
@@ -38,7 +38,7 @@ A sample covering this mode of operation is available [here](..\..\samples\sqltr
 
 The SQL Server transport throughput is on par with the Microsoft Message Queueing (MSMQ) service. The actual value is very much dependent on the hardware and software configuration but is in the range few thousands messages per second per endpoint instance. If the enterprise has a solid high-performance SQL Server infrastructure, taking advantage of that infrastructure to implement messaging backbone is natural choice when moving from isolated applications to connected services. In the enterprise scenario there are probably multiple systems and these systems have their own databases. SQL Server transport [multi database](multiple-databases.md) has been designed exactly for such scenarios. It can be used in two transaction modes
  * **DTC** The receive operation, all data access and all the send operations potentially targeting different databases are conducted in a single distributed transaction coordinated by the DTC. This mode requires DTC service to be configured properly (including the high availability configuration matching the one of the SQL Server). The downside is that if a destination database is brought down for maintenance, the transactions that try to send messages to it are going to fail and this might cause the domino effect in other systems.
- * **Outbox** The *exactly-once* delivery guarantee is provided by the outbox. No DTC service is required. Messages addressed to a database that is temporarily down will by retried by means of [Second-Level Retries](..\second-level-retries.md) so SLR timeout larger than maintenance windows should be configured. The downside is that all the systems need to have Outbox enabled which requires them to use NServiceBus 5.x or later.
+ * **Outbox** The *exactly-once* delivery guarantee is provided by the outbox. No DTC service is required. Messages addressed to a database that is temporarily down will by retried by means of [Second-Level Retries](../second-level-retries.md) so SLR timeout larger than maintenance windows should be configured. The downside is that all the systems need to have Outbox enabled which requires them to use NServiceBus 5.x or later.
 
 ### Background worker replacement
 

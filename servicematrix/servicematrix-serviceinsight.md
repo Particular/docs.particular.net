@@ -28,7 +28,7 @@ Let's see how it works.
 
 ServiceMatrix is configured to integrate with ServiceInsight through the Application Properties of the  solution. To review them, open the Solution Builder window, right click the root application in the tree, and select properties.
 
-![Solution Properties](images\servicematrix-solutionproperties.png)
+![Solution Properties](images/servicematrix-solutionproperties.png)
 
 Two key properties are highlighted below:
 
