@@ -43,7 +43,7 @@ The command line arguments shown above will set the service account for "Particu
 
 ```
 CD "C:\Program Files (x86)\Particular Software\ServiceControl-Test"
-ServiceControl.exe --install  --username="corp\serviceuser" --password="p@ssw0rd!" --serviceName="Particular.ServiceControl.Test" --displayName="Particular.ServiceControl.Test" --d=ServiceControl/Hostname==localhost  --d=ServiceControlport==33334
+ServiceControl.exe --install  --username="corp\serviceuser" --password="p@ssw0rd!" --serviceName="Particular.ServiceControl.Test" --displayName="Particular.ServiceControl.Test" --d=ServiceControl/Hostname==localhost  --d=ServiceControl/Port==33334
 ```
 
 See [Configuring a non-privileged Service Account](configure-non-privileged-service-account.md) for information on additional steps that may be required to use a custom service account.   
