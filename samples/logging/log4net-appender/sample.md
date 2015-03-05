@@ -19,3 +19,6 @@ The appender simply outputs to the console with a given color.
 
 <!-- import ConfigureAppender --> 
    
+## More Info
+
+ * [Logging in NServiceBus](/nservicebus/logging-in-nservicebus.md)

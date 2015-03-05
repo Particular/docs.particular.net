@@ -11,6 +11,8 @@ INFO: This is relevant to versions 5 and above. For earlier versions, see [Loggi
 
 NServiceBus has some limited, and opinionated, logging built in.
 
+[See a working sample](/samples/logging/default)
+
 The default logging behavior is as follows:
 
 ### Console
@@ -98,6 +100,8 @@ Example Usage
 
 <!-- import NLogInCode -->
 
+[See a working sample](/samples/logging/nlog-custom)
+
 ### CommonLogging
 
 There is a [nuget](https://www.nuget.org/packages/NServiceBus.CommonLogging/) package available that allows for simple integration of NServiceBus and [CommonLogging](http://netcommon.sourceforge.net/).
@@ -125,3 +129,5 @@ Configure Log4net using its standard API then call
 Example Usage 
 
 <!-- import Log4netInCode -->
+
+[See a working sample](/samples/logging/log4net-custom)

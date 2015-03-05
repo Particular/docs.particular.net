@@ -12,3 +12,8 @@ This sample shows a usage of [CommonLogging](http://netcommon.sourceforge.net/) 
 ### Enabling Logging
 
 <!-- import ConfigureLogging -->
+
+
+## More Info
+
+ * [Logging in NServiceBus](/nservicebus/logging-in-nservicebus.md)

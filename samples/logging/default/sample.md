@@ -12,3 +12,7 @@ This sample shows the default logging functionality in NServiceBus.
 ### Enabling Logging
 
 <!-- import ConfigureLogging -->
+
+## More Info
+
+ * [Logging in NServiceBus](/nservicebus/logging-in-nservicebus.md)

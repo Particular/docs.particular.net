@@ -13,3 +13,6 @@ This sample shows how to customize logging when running inside the NServiceBus h
 
 <!-- import Config --> 
   
+## More Info
+
+ * [Logging in NServiceBus](/nservicebus/logging-in-nservicebus.md)

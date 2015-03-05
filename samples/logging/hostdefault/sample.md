@@ -14,3 +14,7 @@ Open the app.config file. See the Logging configuration section at the top as we
 <!-- import ThresholdConfig -->
 
 This code instructs NServiceBus to only output logs at a level of INFO or higher.
+
+## More Info
+
+ * [Logging in NServiceBus](/nservicebus/logging-in-nservicebus.md)

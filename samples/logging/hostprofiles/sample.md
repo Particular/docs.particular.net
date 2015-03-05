@@ -30,3 +30,7 @@ Inside the `LoggingHandlers` directory there are `IConfigureLoggingForProfile`s 
 #### Production
 
 <!-- import ProductionHandler --> 
+
+## More Info
+
+ * [Logging in NServiceBus](/nservicebus/logging-in-nservicebus.md)
