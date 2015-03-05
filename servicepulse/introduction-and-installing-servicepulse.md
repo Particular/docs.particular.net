@@ -15,7 +15,7 @@ Particular Software ServicePulse is the operational monitoring tool for distribu
 ### Prerequisites
 
 * .NET Framework 4.5 or later
-* Internet Explorer 9+  or similar modern browser
+* Internet Explorer 9 or higher, Chrome 35 or higher, Firefox 31 or higher, Safari 7 or higher
 * Particular Software ServiceControl 
 * Monitored NServiceBus endpoints must use NServiceBus 4.0.0 or higher
    * Support for NServiceBus 3.3.x can be obtained by contacting the [Particular Software support](http://particular.net/support) 
