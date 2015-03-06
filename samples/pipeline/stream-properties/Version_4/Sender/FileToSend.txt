@@ -1,1 +1,3 @@
-﻿The file content
+﻿The file content that we will send.
+Some more text.
+And some more.

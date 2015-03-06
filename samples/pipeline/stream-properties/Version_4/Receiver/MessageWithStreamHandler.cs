@@ -8,8 +8,11 @@ public class MessageWithStreamHandler : IHandleMessages<MessageWithStream>
     public void Handle(MessageWithStream message)
     {
         Console.WriteLine("Message received, size of stream property: " + message.StreamProperty.Length + " Bytes");
-        string streamContents = new StreamReader(message.StreamProperty).ReadToEnd();
-        Console.WriteLine("Stream content: " + streamContents);
+        using (StreamReader streamReader = new StreamReader(message.StreamProperty))
+        {
+            string streamContents = streamReader.ReadToEnd();
+            Console.WriteLine("Stream content: {0}...", streamContents.Substring(0, 20));
+        }
     }
 }
 #endregion
