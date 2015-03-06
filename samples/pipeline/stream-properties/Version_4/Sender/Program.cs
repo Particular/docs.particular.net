@@ -11,7 +11,7 @@ class Program
 
         Configure.Serialization.Json();
         Configure configure = Configure.With();
-        configure.DefineEndpointName("Sample.DataBus.Sender");
+        configure.DefineEndpointName("Sample.PipelineStream.Sender");
         configure.Log4Net();
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
@@ -53,7 +53,7 @@ class Program
             LargeStream = File.OpenRead("FileToSend.txt")
 
         };
-        bus.Send("Sample.DataBus.Receiver", message);
+        bus.Send("Sample.PipelineStream.Receiver", message);
 
         #endregion
         Console.WriteLine("Message sent");

@@ -10,7 +10,7 @@ class Program
 
         Configure.Serialization.Json();
         Configure configure = Configure.With();
-        configure.DefineEndpointName("Sample.DataBus.Receiver");
+        configure.DefineEndpointName("Sample.PipelineStream.Receiver");
         configure.Log4Net();
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();

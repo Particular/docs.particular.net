@@ -1,9 +1,10 @@
-using NServiceBus.DataBus;
+using NServiceBus.MessageMutator;
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
+using NServiceBus.Pipeline.MessageMutator;
 
 #pragma warning disable 618
-public class StreamDatabusOverride : IPipelineOverride
+public class PipelineStreamOverride : IPipelineOverride
 {
     public void Override(BehaviorList<HandlerInvocationContext> behaviorList)
     {
@@ -11,7 +12,7 @@ public class StreamDatabusOverride : IPipelineOverride
 
     public void Override(BehaviorList<ReceiveLogicalMessageContext> behaviorList)
     {
-        behaviorList.InsertBefore<DataBusReceiveBehavior, StreamReceiveBehavior>();
+        behaviorList.InsertAfter<ApplyIncomingMessageMutatorsBehavior, StreamReceiveBehavior>();
     }
 
     public void Override(BehaviorList<ReceivePhysicalMessageContext> behaviorList)
@@ -20,7 +21,7 @@ public class StreamDatabusOverride : IPipelineOverride
 
     public void Override(BehaviorList<SendLogicalMessageContext> behaviorList)
     {
-        behaviorList.InsertBefore<DataBusSendBehavior, StreamSendBehavior>();
+        behaviorList.InsertAfter<MutateOutgoingMessageBehavior, StreamSendBehavior>();
     }
 
     public void Override(BehaviorList<SendLogicalMessagesContext> behaviorList)
