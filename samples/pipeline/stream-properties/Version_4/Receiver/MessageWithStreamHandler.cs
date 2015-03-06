@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using NServiceBus;
 
-#region MessageWithLargePayloadHandler
+#region message-with-stream-handler
 public class MessageWithStreamHandler : IHandleMessages<MessageWithStream>
 {
     public void Handle(MessageWithStream message)

@@ -75,6 +75,10 @@ Cleanup the opened streams after message processing.
 
 NOTE: if you use a `MemoryStream` endure that the [Position](https://msdn.microsoft.com/en-us/library/system.io.memorystream.position.aspx) is set back to `0` before sending the message. Also note that writing large amounts of data to a `MemoryStream` will result in significant memory usage and put pressure on Garbage Collection. 
 
+### Handler
+
+<!-- import message-with-stream-handler -->
+
 ## Difference to the Databus
 
 The [built in DataBus](/nservicebus/databus.md) relies on byte arrays and memory streams to operate. As such it has limitations in the amount of data it can send. As long as 
