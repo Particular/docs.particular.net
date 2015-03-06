@@ -81,4 +81,4 @@ NOTE: If you use a `MemoryStream` ensure that the [Position](https://msdn.micros
 
 ## Difference to the Databus
 
-The [built in DataBus](/nservicebus/databus.md) relies on byte arrays and memory streams to operate. As such it has limitations in the amount of data it can send. As long as 
+The [built in DataBus](/nservicebus/databus.md) relies on byte arrays and memory streams to operate. As such it has limitations in the amount of data it can send. 
