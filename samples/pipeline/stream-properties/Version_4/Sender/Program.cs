@@ -1,11 +1,14 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using Messages;
 using NServiceBus;
 using NServiceBus.Installation.Environments;
 
 class Program
 {
+    static IBus bus;
+
     static void Main()
     {
 
@@ -18,48 +21,71 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
+        #region configure-stream-storage
         configure.SetStreamStorageLocation("..\\..\\..\\storage");
-        IBus bus = configure.UnicastBus()
+        #endregion
+        bus = configure.UnicastBus()
             .CreateBus()
             .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 
-        Run(bus);
+        Run();
     }
 
 
-    static void Run(IBus bus)
+    static void Run()
     {
-        Console.WriteLine("Press 'Enter' to send a message with a stream");
-        Console.WriteLine("Press 'E' to send a message that will exceed the limit and throw");
+        Console.WriteLine("Press 'F' to send a message with a file stream");
+        Console.WriteLine("Press 'H' to send a message with a http stream");
         Console.WriteLine("To exit, press Ctrl + C");
 
         while (true)
         {
             ConsoleKeyInfo key = Console.ReadKey();
 
-            if (key.Key == ConsoleKey.Enter)
+            if (key.Key == ConsoleKey.F)
             {
-                SendMessageLargePayload(bus);
+                SendMessageWithFileStream();
+                continue;
+            }
+            if (key.Key == ConsoleKey.H)
+            {
+                SendMessageWithHttpStream();
             }
         }
     }
 
-    static void SendMessageLargePayload(IBus bus)
+    static void SendMessageWithFileStream()
     {
-        #region SendMessageLargePayload
+        #region send-message-with-file-stream
 
-        MemoryStream memoryStream = new MemoryStream();
-        
         MessageWithStream message = new MessageWithStream
-        {
-            SomeProperty = "This message contains a large stream that will be written to a file share",
-            StreamProperty = File.OpenRead("FileToSend.txt")
-
-        };
+                                    {
+                                        SomeProperty = "This message contains a stream that will be written to a file share",
+                                        StreamProperty = File.OpenRead("FileToSend.txt")
+                                    };
         bus.Send("Sample.PipelineStream.Receiver", message);
-
         #endregion
-        Console.WriteLine("Message sent");
+
+        Console.WriteLine();
+        Console.WriteLine("Message with file stream sent");
+    }
+    static void SendMessageWithHttpStream()
+    {
+        #region send-message-with-http-stream
+
+        using (WebClient webClient = new WebClient())
+        {
+            MessageWithStream message = new MessageWithStream
+                                        {
+                                            SomeProperty = "This message contains a stream that will be written to a file share",
+                                            StreamProperty = webClient.OpenRead("http://www.particular.net")
+                                        };
+            bus.Send("Sample.PipelineStream.Receiver", message);
+        }
+        #endregion
+
+        Console.WriteLine();
+        Console.WriteLine("Message with http stream sent");
     }
 
 }

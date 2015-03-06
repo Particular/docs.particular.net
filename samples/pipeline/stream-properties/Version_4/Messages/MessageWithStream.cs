@@ -3,7 +3,7 @@
     using System.IO;
     using NServiceBus;
 
-    #region MessageWithLargePayload
+    #region message-with-stream
 
     [TimeToBeReceived("00:01:00")]
     public class MessageWithStream : ICommand

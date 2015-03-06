@@ -2,9 +2,10 @@
 using System.IO;
 using System.Reflection;
 using NServiceBus.DataBus;
-using NServiceBus.Gateway.HeaderManagement;
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
+using NServiceBus.Unicast.Messages;
+
 #pragma warning disable 618
 
 public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
@@ -14,23 +15,26 @@ public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
     
     string location;
 
-    public StreamSendBehavior(StreamStorageLocation storageLocation)
+    public StreamSendBehavior(StreamStorageSettings storageSettings)
     {
-        location = storageLocation.Location;
+        location = Path.GetFullPath(storageSettings.Location);
     }
     public void Invoke(SendLogicalMessageContext context, Action next)
     {
-        TimeSpan timeToBeReceived = context.MessageToSend.Metadata.TimeToBeReceived;
+        #region copy-stream-properties-to-disk
+        LogicalMessage logicalMessage = context.MessageToSend;
+        TimeSpan timeToBeReceived = logicalMessage.Metadata.TimeToBeReceived;
 
-        object message = context.MessageToSend.Instance;
+        object message = logicalMessage.Instance;
 
-        foreach (PropertyInfo property in StreamDatabusHelpers.GetStreamProperties(message))
+        foreach (PropertyInfo property in StreamStorageHelpers.GetStreamProperties(message))
         {
             Stream sourceStream = (Stream) property.GetValue(message, null);
 
             if (sourceStream == null)
+            {
                 continue;
-            SetPositionToStart(sourceStream);
+            }
             string fileKey = GenerateKey(timeToBeReceived);
 
             string filePath = Path.Combine(location, fileKey);
@@ -43,23 +47,14 @@ public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
 
             property.SetValue(message, null);
             sourceStream.Dispose();
-            string headerKey = StreamDatabusHelpers.GetHeaderKey(message, property);
-            context.MessageToSend.Headers[HeaderMapper.DATABUS_PREFIX + headerKey] = fileKey;
+            string headerKey = StreamStorageHelpers.GetHeaderKey(message, property);
+            logicalMessage.Headers["NServiceBus.PropertyStream." + headerKey] = fileKey;
         }
 
         next();
+        #endregion
     }
-
-    static void SetPositionToStart(Stream sourceStream)
-    {
-        if (!sourceStream.CanSeek)
-        {
-            throw new Exception("Stream must be CanSeek=true");
-        }
-        sourceStream.Position = 0;
-    }
-
-
+    #region generata-key-for-stream
     string GenerateKey(TimeSpan timeToBeReceived)
     {
         if (timeToBeReceived > MaxMessageTimeToLive)
@@ -72,6 +67,7 @@ public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
 
         return Path.Combine(keepMessageUntil.ToString("yyyy-MM-dd_HH"), Guid.NewGuid().ToString());
     }
+    #endregion
 
 
 }

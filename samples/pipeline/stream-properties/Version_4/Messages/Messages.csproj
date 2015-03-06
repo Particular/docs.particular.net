@@ -48,12 +48,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigLogging.cs" />
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="PipelineStreamOverride.cs" />
     <Compile Include="StreamReceiveBehavior.cs" />
     <Compile Include="StreamDatabusHelpers.cs" />
     <Compile Include="StreamSendBehavior.cs" />
     <Compile Include="MessageWithStream.cs" />
+    <Compile Include="StreamStorageSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
