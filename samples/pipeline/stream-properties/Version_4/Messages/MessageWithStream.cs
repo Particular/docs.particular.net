@@ -9,7 +9,7 @@
     public class MessageWithStream : ICommand
     {
         public string SomeProperty { get; set; }
-        public Stream LargeStream { get; set; }
+        public Stream StreamProperty { get; set; }
     }
 
     #endregion

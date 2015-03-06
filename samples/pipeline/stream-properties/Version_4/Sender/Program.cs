@@ -47,10 +47,13 @@ class Program
     static void SendMessageLargePayload(IBus bus)
     {
         #region SendMessageLargePayload
+
+        MemoryStream memoryStream = new MemoryStream();
+        
         MessageWithStream message = new MessageWithStream
         {
             SomeProperty = "This message contains a large stream that will be written to a file share",
-            LargeStream = File.OpenRead("FileToSend.txt")
+            StreamProperty = File.OpenRead("FileToSend.txt")
 
         };
         bus.Send("Sample.PipelineStream.Receiver", message);

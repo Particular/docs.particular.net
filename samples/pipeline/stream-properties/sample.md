@@ -1,11 +1,9 @@
 ---
-title: Attachments / DataBus Sample
-summary: 'Send images or video by putting an attribute over your large property. NServiceBus takes care of the rest. '
+title: Handling Stream properties in the pipeline 
+summary: Add support for writing Streams to a file share that can be access by multiple endpoints
 tags:
-- DataBus
-- MSMQ Limit
+- Pipeline
+- Stream
 - Large messages
-redirects:
-- nservicebus/attachments-databus-sample
 ---
 TODO

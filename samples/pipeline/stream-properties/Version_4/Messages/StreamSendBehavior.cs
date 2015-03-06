@@ -30,7 +30,7 @@ public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
 
             if (sourceStream == null)
                 continue;
-
+            SetPositionToStart(sourceStream);
             string fileKey = GenerateKey(timeToBeReceived);
 
             string filePath = Path.Combine(location, fileKey);
@@ -48,6 +48,15 @@ public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
         }
 
         next();
+    }
+
+    static void SetPositionToStart(Stream sourceStream)
+    {
+        if (!sourceStream.CanSeek)
+        {
+            throw new Exception("Stream must be CanSeek=true");
+        }
+        sourceStream.Position = 0;
     }
 
 
