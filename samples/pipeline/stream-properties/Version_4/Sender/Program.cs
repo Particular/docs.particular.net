@@ -59,7 +59,7 @@ class Program
 
         MessageWithStream message = new MessageWithStream
                                     {
-                                        SomeProperty = "This message contains a stream that will be written to a file share",
+                                        SomeProperty = "This message contains a stream",
                                         StreamProperty = File.OpenRead("FileToSend.txt")
                                     };
         bus.Send("Sample.PipelineStream.Receiver", message);
@@ -76,7 +76,7 @@ class Program
         {
             MessageWithStream message = new MessageWithStream
                                         {
-                                            SomeProperty = "This message contains a stream that will be written to a file share",
+                                            SomeProperty = "This message contains a stream",
                                             StreamProperty = webClient.OpenRead("http://www.particular.net")
                                         };
             bus.Send("Sample.PipelineStream.Receiver", message);
