@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using NServiceBus;
 
-public static class StreamStorageHelpers
+public static class StreamStorageHelper
 {
     internal static string GetHeaderKey(object message, PropertyInfo property)
     {

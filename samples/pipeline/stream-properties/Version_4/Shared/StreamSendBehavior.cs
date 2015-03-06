@@ -27,10 +27,11 @@ public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
 
         object message = logicalMessage.Instance;
 
-        foreach (PropertyInfo property in StreamStorageHelpers.GetStreamProperties(message))
+        foreach (PropertyInfo property in StreamStorageHelper.GetStreamProperties(message))
         {
             Stream sourceStream = (Stream) property.GetValue(message, null);
 
+            //Ignore null stream properties
             if (sourceStream == null)
             {
                 continue;
@@ -44,10 +45,15 @@ public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
             {
                 sourceStream.CopyTo(target);
             }
-
+            
+            //Reset the property to null so no other serializer attemps to use the property
             property.SetValue(message, null);
+
+            //Dispose of the stream
             sourceStream.Dispose();
-            string headerKey = StreamStorageHelpers.GetHeaderKey(message, property);
+            
+            //Store the header so on the receiving endpoint the file name is known
+            string headerKey = StreamStorageHelper.GetHeaderKey(message, property);
             logicalMessage.Headers["NServiceBus.PropertyStream." + headerKey] = fileKey;
         }
 
