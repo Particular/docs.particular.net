@@ -43,7 +43,7 @@ On disk (at the root of the solution for this sample) it will look like this
      > 593a4670-1c09-4bbe-80ef-c22fb5356704
 ```
 
-Where each guid is a file containing the contents of the emptied stream.
+Where each GUID is a file containing the contents of the emptied stream.
 
 ### Reading back from the stream
 
@@ -73,7 +73,7 @@ Cleanup the opened streams after message processing.
 
 <!-- import send-message-with-file-stream -->
 
-NOTE: if you use a `MemoryStream` endure that the [Position](https://msdn.microsoft.com/en-us/library/system.io.memorystream.position.aspx) is set back to `0` before sending the message. Also note that writing large amounts of data to a `MemoryStream` will result in significant memory usage and put pressure on Garbage Collection. 
+NOTE: If you use a `MemoryStream` ensure that the [Position](https://msdn.microsoft.com/en-us/library/system.io.memorystream.position.aspx) is set back to `0` before sending the message. Also note that writing large amounts of data to a `MemoryStream` will result in significant memory usage (perhaps resulting in an `OutOfMemoryException`) and put pressure on Garbage Collection. 
 
 ### Handler
 
