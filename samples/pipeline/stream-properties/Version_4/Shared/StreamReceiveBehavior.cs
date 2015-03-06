@@ -47,7 +47,7 @@ public class StreamReceiveBehavior : IBehavior<ReceiveLogicalMessageContext>
 
         #region cleanup-after-nested-action
         next();
-        //Clean up all the teporary streams after handler processing, via the `next()` delaget has occurred
+        //Clean up all the teporary streams after handler processing, via the "next()" delaget has occurred
         foreach (FileStream fileStream in streamsToCleanUp)
         {
             fileStream.Dispose();
