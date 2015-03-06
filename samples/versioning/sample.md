@@ -6,7 +6,7 @@ redirects:
  - nservicebus/versioning-sample
 ---
 
-In this sample, there are two message projects: `V1.Messages` and `V2.Messages`:
+In this sample there are two message projects: `V1.Messages` and `V2.Messages`:
  
 <!-- import V1Message -->
 
