@@ -4,8 +4,6 @@ summary: List of the .Net Framework requirements for NServiceBus
 tags: [Net Framework, Compatibility]
 ---
 
-# NServiceBus .Net Framework version requirements
-
 NServiceBus 5.x requires .Net Framework v4.5 
 
 NServiceBus version 3.x and 4.x requires .Net Framework v4.0
