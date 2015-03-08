@@ -30,7 +30,7 @@ To start processing message just get an instance of the bus and start it like sh
 
 ## Configuration files
 
-In order for the code above to work you need to tell NServiceBus where to forward messages that fails processing.
+In order for the code above to work you need to tell NServiceBus where to forward messages that fail processing.
 
 Include the following section:
 
