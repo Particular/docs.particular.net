@@ -42,3 +42,11 @@ NOTE: "Serializable" is the default isolation level for TransactionScopes.
 
 In NServiceBus V4.0 the default isolation level is
 "ReadCommitted", which is a more sensible default.
+
+### High load scenarios
+
+Under extreme high load like batch processing, trying to access the same Saga's data could lead to a situation where after FLR and SLR the messages will end up in the error queue.
+
+In that scenario you may need to look at re-designing your process.
+
+Take a look at Jimmy Bogard's blog about [Reducing Saga load](http://lostechies.com/jimmybogard/2014/02/27/reducing-nservicebus-saga-load/)
