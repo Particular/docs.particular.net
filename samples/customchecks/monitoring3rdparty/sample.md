@@ -26,6 +26,3 @@ The sample console hosts an endpoint instance which has a custom check associate
 The custom check consists of an abstract base class which provides the monitoring capability. The monitoring capability implements a `PeriodicCheck` which calls a defined URI every time the specified interval is elapsed. When the 3rd system doesn't respond in a timely fashion a `CheckResult.Failed` is sent to ServiceControl.
 
 <!-- import thecustomcheck -->
-
- Some places rely on external monitoring tools to do url monitoring, e.g. site24x7.com. Perhaps specify that this is one approach when that's not possible? Why write code if the users have some tool in place to monitor? cc / @gbiellem 
-Also should we link the sample to this article? http://docs.particular.net/servicepulse/how-to-develop-custom-checks
