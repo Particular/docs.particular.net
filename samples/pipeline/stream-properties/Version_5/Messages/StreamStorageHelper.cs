@@ -17,14 +17,17 @@ public static class StreamStorageHelper
             .Where(x => x.PropertyType.IsAssignableFrom(typeof(Stream)))
             .ToList();
     }
+
     #region stream-storage-helper
+
     public static void SetStreamStorageLocation(this BusConfiguration configure, string location)
     {
-        StreamStorageSettings streamStorageSettings = new StreamStorageSettings
-        {
-            Location = location,
-        };
-        configure.RegisterComponents(x => x.RegisterSingleton(streamStorageSettings));
+        StreamStorageSettings settings = new StreamStorageSettings
+                                         {
+                                             Location = location,
+                                         };
+        configure.RegisterComponents(x => x.RegisterSingleton(settings));
     }
+
     #endregion
 }

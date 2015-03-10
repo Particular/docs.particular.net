@@ -19,12 +19,14 @@ class StreamReceiveBehavior : IBehavior<IncomingContext>
         #region write-stream-properties-back
         object message = context.IncomingLogicalMessage.Instance;
         List<FileStream> streamsToCleanUp = new List<FileStream>();
-        foreach (PropertyInfo property in StreamStorageHelper.GetStreamProperties(message))
+        foreach (PropertyInfo property in StreamStorageHelper
+            .GetStreamProperties(message))
         {
             string headerKey = StreamStorageHelper.GetHeaderKey(message, property);
             string dataBusKey;
             //only attempt to process properties that have an associated header
-            if (!context.IncomingLogicalMessage.Headers.TryGetValue("NServiceBus.PropertyStream." + headerKey, out dataBusKey))
+            string key = "NServiceBus.PropertyStream." + headerKey;
+            if (!context.IncomingLogicalMessage.Headers.TryGetValue(key, out dataBusKey))
             {
                 continue;
             }
@@ -47,7 +49,8 @@ class StreamReceiveBehavior : IBehavior<IncomingContext>
 
         #region cleanup-after-nested-action
         next();
-        //Clean up all the temporary streams after handler processing, via the "next()" delegate has occurred
+        // Clean up all the temporary streams after handler processing
+        // via the "next()" delegate has occurred
         foreach (FileStream fileStream in streamsToCleanUp)
         {
             fileStream.Dispose();

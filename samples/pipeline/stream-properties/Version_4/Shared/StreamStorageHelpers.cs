@@ -17,14 +17,17 @@ public static class StreamStorageHelper
             .Where(x => x.PropertyType.IsAssignableFrom(typeof(Stream)))
             .ToList();
     }
+
     #region stream-storage-helper
+
     public static void SetStreamStorageLocation(this Configure configure, string location)
     {
-        StreamStorageSettings streamStorageSettings = new StreamStorageSettings
-                                                      {
-                                                          Location = location,
-                                                      };
-        configure.Configurer.ConfigureComponent(() => streamStorageSettings, DependencyLifecycle.SingleInstance);
+        StreamStorageSettings settings = new StreamStorageSettings
+                                         {
+                                             Location = location,
+                                         };
+        configure.Configurer.ConfigureComponent(() => settings, DependencyLifecycle.SingleInstance);
     }
+
     #endregion
 }

@@ -24,7 +24,8 @@ public class StreamReceiveBehavior : IBehavior<ReceiveLogicalMessageContext>
             string headerKey = StreamStorageHelper.GetHeaderKey(message, property);
             string dataBusKey;
             //only attempt to process properties that have an associated header
-            if (!context.LogicalMessage.Headers.TryGetValue("NServiceBus.PropertyStream." + headerKey, out dataBusKey))
+            string key = "NServiceBus.PropertyStream." + headerKey;
+            if (!context.LogicalMessage.Headers.TryGetValue(key, out dataBusKey))
             {
                 continue;
             }
@@ -47,7 +48,8 @@ public class StreamReceiveBehavior : IBehavior<ReceiveLogicalMessageContext>
 
         #region cleanup-after-nested-action
         next();
-        //Clean up all the temporary streams after handler processing, via the "next()" delegate has occurred
+        // Clean up all the temporary streams after handler processing
+        // via the "next()" delegate has occurred
         foreach (FileStream fileStream in streamsToCleanUp)
         {
             fileStream.Dispose();

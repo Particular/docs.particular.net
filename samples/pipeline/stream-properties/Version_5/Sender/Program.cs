@@ -13,7 +13,9 @@ class Program
         busConfiguration.EndpointName("Sample.PipelineStream.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        #region configure-stream-storage
         busConfiguration.SetStreamStorageLocation("..\\..\\..\\storage");
+        #endregion
         busConfiguration.EnableInstallers();
         bus = Bus.Create(busConfiguration);
         bus.Start();
