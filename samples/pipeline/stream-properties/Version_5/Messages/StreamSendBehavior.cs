@@ -5,9 +5,7 @@ using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 using NServiceBus.Unicast.Messages;
 
-#pragma warning disable 618
-
-public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
+class StreamSendBehavior : IBehavior<OutgoingContext>
 {
     TimeSpan MaxMessageTimeToLive = TimeSpan.FromDays(14);
     string location;
@@ -16,11 +14,10 @@ public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
     {
         location = Path.GetFullPath(storageSettings.Location);
     }
-
-    public void Invoke(SendLogicalMessageContext context, Action next)
+    public void Invoke(OutgoingContext context, Action next)
     {
         #region copy-stream-properties-to-disk
-        LogicalMessage logicalMessage = context.MessageToSend;
+        LogicalMessage logicalMessage = context.OutgoingLogicalMessage;
         TimeSpan timeToBeReceived = logicalMessage.Metadata.TimeToBeReceived;
 
         object message = logicalMessage.Instance;
@@ -72,6 +69,5 @@ public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
         return Path.Combine(keepMessageUntil.ToString("yyyy-MM-dd_HH"), Guid.NewGuid().ToString());
     }
     #endregion
-
 
 }

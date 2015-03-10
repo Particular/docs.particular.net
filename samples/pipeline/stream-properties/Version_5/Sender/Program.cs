@@ -1,31 +1,22 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Net;
 using NServiceBus;
-using NServiceBus.Installation.Environments;
 
 class Program
 {
-    static IBus bus;
+    static IStartableBus bus;
 
     static void Main()
     {
-        Configure.Serialization.Json();
-        Configure configure = Configure.With();
-        configure.DefineEndpointName("Sample.PipelineStream.Sender");
-        configure.Log4Net();
-        configure.DefaultBuilder();
-        configure.InMemorySagaPersister();
-        configure.UseInMemoryTimeoutPersister();
-        configure.InMemorySubscriptionStorage();
-        configure.UseTransport<Msmq>();
-        #region configure-stream-storage
-        configure.SetStreamStorageLocation("..\\..\\..\\storage");
-        #endregion
-        bus = configure.UnicastBus()
-            .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
-
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Sample.PipelineStream.Sender");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SetStreamStorageLocation("..\\..\\..\\storage");
+        busConfiguration.EnableInstallers();
+        bus = Bus.Create(busConfiguration);
+        bus.Start();
         Run();
     }
 
@@ -57,10 +48,10 @@ class Program
         #region send-message-with-file-stream
 
         MessageWithStream message = new MessageWithStream
-                                    {
-                                        SomeProperty = "This message contains a stream",
-                                        StreamProperty = File.OpenRead("FileToSend.txt")
-                                    };
+        {
+            SomeProperty = "This message contains a stream",
+            StreamProperty = File.OpenRead("FileToSend.txt")
+        };
         bus.Send("Sample.PipelineStream.Receiver", message);
         #endregion
 
@@ -74,10 +65,10 @@ class Program
         using (WebClient webClient = new WebClient())
         {
             MessageWithStream message = new MessageWithStream
-                                        {
-                                            SomeProperty = "This message contains a stream",
-                                            StreamProperty = webClient.OpenRead("http://www.particular.net")
-                                        };
+            {
+                SomeProperty = "This message contains a stream",
+                StreamProperty = webClient.OpenRead("http://www.particular.net")
+            };
             bus.Send("Sample.PipelineStream.Receiver", message);
         }
         #endregion
@@ -85,5 +76,5 @@ class Program
         Console.WriteLine();
         Console.WriteLine("Message with http stream sent");
     }
-
 }
+
