@@ -9,7 +9,7 @@ class ConfigEndpointMappings : IProvideConfiguration<UnicastBusConfig>
 		{
 			MessageEndpointMappings = new MessageEndpointMappingCollection() 
 			{
-				new MessageEndpointMapping()
+				new MessageEndpointMapping
 				{
 					AssemblyName = "Sample",
 					Endpoint = "Samples.RavenDBCustomSagaFinder"
