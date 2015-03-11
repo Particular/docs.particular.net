@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{48F718EE-6C45-41BA-80EC-81BF34D4A623}</ProjectGuid>
+    <ProjectGuid>{1621CEE1-9219-44AC-AAAF-76CBC349DAA7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sample</RootNamespace>
-    <AssemblyName>Sample</AssemblyName>
+    <RootNamespace>RavenServer</RootNamespace>
+    <AssemblyName>RavenServer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,28 +34,31 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NServiceBus.5.2.0\lib\net45\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="NServiceBus.RavenDB">
-      <HintPath>..\packages\NServiceBus.RavenDB.2.1.0\lib\net45\NServiceBus.RavenDB.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\RavenDB.Client.2.5.2956\lib\net45\Raven.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Raven.Bundles.UniqueConstraints">
+      <HintPath>..\packages\RavenDB.Bundles.UniqueConstraints.2.5.2956\lib\net45\Raven.Bundles.UniqueConstraints.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Embedded, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RavenDB.Embedded.2.5.2956\lib\net45\Raven.Client.Embedded.dll</HintPath>
+    </Reference>
     <Reference Include="Raven.Client.Lightweight, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\RavenDB.Client.2.5.2956\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
-    <Reference Include="Raven.Client.UniqueConstraints, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Raven.Database, Version=2.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.UniqueConstraints.2.5.2956\lib\net45\Raven.Client.UniqueConstraints.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Database.2.5.2956\lib\net45\Raven.Database.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -64,24 +67,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompleteOrder.cs" />
-    <Compile Include="ConfigEndpointMappings.cs" />
-    <Compile Include="PaymentTransactionCompletedSagaFinder.cs" />
-    <Compile Include="CompleteOrderSagaFinder.cs" />
-    <Compile Include="ConfigErrorQueue.cs" />
-    <Compile Include="IssuePaymentRequest.cs" />
-    <Compile Include="IssuePaymentRequestHandler.cs" />
-    <Compile Include="OrderSaga.cs" />
-    <Compile Include="OrderSagaData.cs" />
-    <Compile Include="PaymentTransactionCompleted.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="StartOrder.cs" />
-    <Compile Include="StartOrderSagaFinder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>mkdir $(TargetDir)Plugins
+del $(TargetDir)Plugins\Raven.Bundles.UniqueConstraints.*
+copy $(TargetDir)Raven.Bundles.UniqueConstraints.* $(TargetDir)\Plugins</PostBuildEvent>
+  </PropertyGroup>
 </Project>

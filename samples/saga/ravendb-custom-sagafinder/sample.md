@@ -7,6 +7,18 @@ tags:
 - RavenDB
 ---
 
+## Solution Structure
+
+The solution contains two projects. Both should be set as startup project
+
+### RavenServer
+
+This is a simple console app that starts a Raven Embedded server. This only exists so the sample can run without needing a RavenDB instance installed on your machine. This project also includes the `RavenDB.Bundles.UniqueConstraints` [bundle](http://ravendb.net/docs/article-page/2.5/csharp/server/extending/bundles/unique-constraints).
+
+### Sample
+
+Contains the actual endpoint code.
+
 ## Code walk-through
 
 When the default Saga message mappings do not satisfy our needs custom logic can be put in place to allow NServiceBus to find a saga data instance based on which logic best suites our environment.
