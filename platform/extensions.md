@@ -124,7 +124,7 @@ Leverages the [JSONB](http://www.postgresql.org/docs/devel/static/datatype-json.
 
 A proof-of-concept project that shows the possibility of support for [Azure DocumentDB](http://azure.microsoft.com/en-us/services/documentdb/)
 
-### <img src="particular-project.png" title="A Particular run project"> [Azure Storage](//nservicebus/using-azure-storage-persistence-in-nservicebus.md)
+### <img src="particular-project.png" title="A Particular run project"> [Azure Storage](/nservicebus/using-azure-storage-persistence-in-nservicebus.md)
 
 <a href="https://www.nuget.org/packages/NServiceBus.Azure/"><img src="http://img.shields.io/nuget/v/NServiceBus.Azure.svg?" title="NuGet Status"></a>
 
