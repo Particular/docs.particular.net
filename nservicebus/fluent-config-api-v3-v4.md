@@ -2,7 +2,6 @@
 title: Fluent Configuration API in V3 and V4
 summary: NServiceBus Fluent Configuration API in V3 and V4
 tags:
-- NServiceBus
 - Fluent Configuration
 ---
 
