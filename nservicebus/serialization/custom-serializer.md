@@ -2,7 +2,6 @@
 title: How to register a custom serializer
 summary: Registering a custom serializer via configuration.
 tags: 
-- serializer
 - serialization
 redirects:
 - nservicebus/how-to-register-a-custom-serializer
