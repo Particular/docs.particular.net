@@ -4,9 +4,7 @@ summary: Windows Azure transport enables Windows Azure Queues and Windows Azure 
 tags:
 - Cloud
 - Windows Azure
-- NServiceBus
 - Transports
-- Sample
 redirects:
  - nservicebus/windows-azure-transport
 ---
