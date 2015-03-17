@@ -130,6 +130,16 @@
         - "nservicebus/azure/hosting"
         - "nservicebus/azure/hosting-in-azure-cloud-services"
     - 
+      Title: "Logging"
+      Url: "nservicebus/logging"
+      Articles: 
+        - "nservicebus/logging/filtering"
+        - "nservicebus/logging/message-contents"
+        - "nservicebus/logging/nservicebus4-and-below"
+        - "nservicebus/logging/usage"
+        - "nservicebus/hosting/nservicebus-host/logging-profiles"
+        - "nservicebus/operations/auditing"
+    - 
       Title: "Azure"
       Url: "nservicebus/azure"
       Articles: 
