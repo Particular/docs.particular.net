@@ -3,7 +3,6 @@ title: Custom Checks for ServicePulse
 summary: Introduction to ServicePulse custom checks development
 tags:
 - ServicePulse
-- HowTo
 - Custom Checks
 ---
 
