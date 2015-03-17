@@ -3,7 +3,6 @@ title: SQL Server / NHibernate
 summary: 'How to integrate SQL Server transport with NHibernate persistence without outbox'
 tags:
 - SQL Server
-- SQLServer
 - NHibernate
 ---
 
