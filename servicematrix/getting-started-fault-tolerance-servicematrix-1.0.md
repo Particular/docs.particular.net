@@ -2,7 +2,7 @@
 title: Fault Tolerance using ServiceMatrix v1.0
 summary: See how NServiceBus messaging can get past all sorts of failure scenarios.
 tags:
-- ServiceMatrix 1.0
+- ServiceMatrix
 - Visual Studio 2010
 - Fault Tolerance
 ---
