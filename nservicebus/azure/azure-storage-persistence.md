@@ -27,30 +27,24 @@ When hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosti
 
 NOTE: In version 4, when hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
-## Detailed configuration
+## Detailed Configuration
 
-You can get more control on the behavior of each persister by specifying one of the respective configuration sections in your app.config and changing one of the available properties.
+You can get more control on the behavior of each persister by specifying one of the respective configuration sections in your app.config and changing one of the available properties, or through code.
 
-	<configSections>
-	    <section name="AzureSubscriptionStorageConfig" type="NServiceBus.Config.AzureSubscriptionStorageConfig, NServiceBus.Azure" />
-	    <section name="AzureSagaPersisterConfig" type="NServiceBus.Config.AzureSagaPersisterConfig, NserviceBus.Azure" />
-	    <section name="AzureTimeoutPersisterConfig" type="NServiceBus.Config.AzureTimeoutPersisterConfig, NserviceBus.Azure" />
-	</configSections>
-	<AzureSagaPersisterConfig ConnectionString="UseDevelopmentStorage=true" />
-	<AzureTimeoutPersisterConfig ConnectionString="UseDevelopmentStorage=true" />
-	<AzureSubscriptionStorageConfig ConnectionString="UseDevelopmentStorage=true" />
+### Detailed Configuration with Configuration Section
 
-The following settings are available for changing the behavior of subscription persistence through the `AzureSubscriptionStorageConfig` section:
-
-- `ConnectionString`: Allows you to set the connectionstring to the storage account for storing subscription information, defaults to `UseDevelopmentStorage=true`
-- `CreateSchema`: Instructs the persister to create the table automatically, defaults to true
-- `TableName`: Lets you choose the name of the table for storing subscriptions, defaults to `Subscription`.
-
+<!-- import AzurePersistenceFromAppConfig -->
 
 The following settings are available for changing the behavior of saga persistence through the `AzureSagaPersisterConfig`section:
 
 - `ConnectionString`: Allows you to set the connectionstring to the storage account for storing saga information, defaults to `UseDevelopmentStorage=true`
 - `CreateSchema`: Instructs the persister to create the table automatically, defaults to true
+
+The following settings are available for changing the behavior of subscription persistence through the `AzureSubscriptionStorageConfig` section:
+
+- `ConnectionString`: Allows you to set the connection string to the storage account for storing subscription information, defaults to `UseDevelopmentStorage=true`
+- `CreateSchema`: Instructs the persister to create the table automatically, defaults to true
+- `TableName`: Lets you choose the name of the table for storing subscriptions, defaults to `Subscription`.
 
 The following settings are available for changing the behavior of timeout persistence through the `AzureTimeoutPersisterConfig` section:
 
@@ -75,6 +69,19 @@ You can drastically improve performance by overriding these settings. You can le
 	ServicePointManager.UseNagleAlgorithm = false; // optimize for small requests
 	ServicePointManager.Expect100Continue = false; // reduces number of http calls
 	ServicePointManager.CheckCertificateRevocationList = false; // optional, only if you trust all your dependencies	
+
+### Detailed Configuration with Code
+
+For Sagas:
+<!-- import AzurePersistenceSagasCustomization -->
+
+For Subscriptions:
+<!-- import AzurePersistenceSubscriptionsCustomization -->
+
+For Timeouts:
+<!-- import AzurePersistenceTimeoutsCustomization -->
+
+NOTE: Subscriptions and Timeouts persistence configuration only has an effect when used with Azure Storage Queues transport from NServiceBus Azure V6 and later.
 
 ## Sample
 
