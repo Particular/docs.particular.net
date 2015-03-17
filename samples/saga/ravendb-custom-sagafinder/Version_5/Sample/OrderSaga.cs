@@ -17,7 +17,6 @@ public class OrderSaga : Saga<OrderSagaData>,
         //NOP
     }
 
-
     public void Handle(StartOrder message)
     {
         Data.OrderId = message.OrderId;
