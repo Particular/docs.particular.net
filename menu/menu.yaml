@@ -139,6 +139,8 @@
         - "nservicebus/logging/usage"
         - "nservicebus/hosting/nservicebus-host/logging-profiles"
         - "nservicebus/operations/auditing"
+        - Title: "Samples"
+          Url: "samples/logging"
     - 
       Title: "Azure"
       Url: "nservicebus/azure"
