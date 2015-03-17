@@ -32,6 +32,7 @@
         - "nservicebus/messaging/specify-input-queue-name"
         - "nservicebus/messaging/specify-message-destination"
         - "nservicebus/messaging/unobtrusive-mode"
+        - "nservicebus/scheduling"
         - Title: "Publish Subscribe"
           Url: "nservicebus/messaging/publish-subscribe"
           Articles: 
