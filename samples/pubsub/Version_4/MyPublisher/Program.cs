@@ -1,23 +1,25 @@
-using System;
+﻿using System;
 using NServiceBus;
-using NServiceBus.Logging;
+using NServiceBus.Installation.Environments;
 
-static class Program
+class Program
 {
-
     static void Main()
     {
-        LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.PubSub.MyPublisher");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-        IStartableBus startableBus = Bus.Create(busConfiguration);
-        using (IBus bus = startableBus.Start())
-        {
-            Start(bus);
-        }
+        Configure.Serialization.Json();
+        Configure configure = Configure.With();
+        configure.DefineEndpointName("Samples.PubSub.MyPublisher");
+        configure.Log4Net();
+        configure.DefaultBuilder();
+        configure.InMemorySagaPersister();
+        configure.UseInMemoryTimeoutPersister();
+        configure.InMemorySubscriptionStorage();
+        configure.UseTransport<Msmq>();
+        IBus bus = configure.UnicastBus()
+            .CreateBus()
+            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+
+        Start(bus);
     }
 
     static void Start(IBus bus)
@@ -35,7 +37,7 @@ static class Program
                     bus.Publish<IMyEvent>(m =>
                     {
                         m.EventId = eventId;
-                        m.Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null;
+                        m.Time = DateTime.Now.Second > 30 ? (DateTime?)DateTime.Now : null;
                         m.Duration = TimeSpan.FromSeconds(99999D);
                     });
                     nextEventToPublish = 1;
@@ -44,7 +46,7 @@ static class Program
                     EventMessage eventMessage = new EventMessage
                     {
                         EventId = eventId,
-                        Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null,
+                        Time = DateTime.Now.Second > 30 ? (DateTime?)DateTime.Now : null,
                         Duration = TimeSpan.FromSeconds(99999D)
                     };
                     bus.Publish(eventMessage);
@@ -54,7 +56,7 @@ static class Program
                     AnotherEventMessage anotherEventMessage = new AnotherEventMessage
                     {
                         EventId = eventId,
-                        Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null,
+                        Time = DateTime.Now.Second > 30 ? (DateTime?)DateTime.Now : null,
                         Duration = TimeSpan.FromSeconds(99999D)
                     };
                     bus.Publish(anotherEventMessage);
@@ -68,5 +70,4 @@ static class Program
         }
         #endregion
     }
-
 }

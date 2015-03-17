@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using NServiceBus;
 
 public class AnotherEventMessageHandler : IHandleMessages<AnotherEventMessage>

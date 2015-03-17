@@ -1,11 +1,13 @@
 using System;
 using NServiceBus;
+using NServiceBus.Logging;
 
 static class Program
 {
 
     static void Main()
     {
+        LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PubSub.Subscriber1");
         busConfiguration.UseSerialization<JsonSerializer>();

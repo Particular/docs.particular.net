@@ -16,12 +16,11 @@ Before running the sample, look over the solution structure, the projects, and t
 
 ### Defining messages
 
-The "MyMessages" project contains the definition of the messages that are sent between the processes. Note that there are no project references to NServiceBus. Open "Messages.cs" to see that it contains a standard `IMyEvent` interface and two different class definitions.
+The "Shared" project contains the definition of the messages that are sent between the processes. Note that there are no project references to NServiceBus. Open "Messages.cs" to see that it contains a standard `IMyEvent` interface and two different class definitions.
 
 ### Creating and publishing messages
 
-As the name implies, the "MyPublisher" project is a publisher of event messages. It uses the bus framework to send alternatively three different types of messages every time you click Enter in its console window. The created message is populated and
-[published](/nservicebus/messaging/publish-subscribe/) using `Bus.Publish`.
+As the name implies, the "MyPublisher" project is a publisher of event messages. It uses the bus framework to send alternatively three different types of messages every time you click Enter in its console window. The created message is populated and [published](/nservicebus/messaging/publish-subscribe/) using `Bus.Publish`.
 
 <!--import PublishLoop -->
 
@@ -32,8 +31,7 @@ To receive messages from the publisher, the subscribers [must subscribe to the m
  * The `Subscriber1` process handles and subscribes to both the `EventMessage` and `AnotherEventMessage` types.
  * The `Subscriber2` handles and subscribes to any message implementing the interface `IMyEvent`.
 
-The handlers in each project are in files that end in with the word `Handler` for example `EventMessageHandler.cs`. Since both the
-`EventMessage` and `AnotherEventMessage` classes in the `MyMessages` project implement the `IMyEvent` interface, when they are published both subscribers receive it. When the specific message types of `EventMessage` and `AnotherEventMessage` are published, only the handlers of that specific type in `Subscriber1` are invoked.
+The handlers in each project are in files that end in with the word `Handler` for example `EventMessageHandler.cs`. Since both the `EventMessage` and `AnotherEventMessage` classes in the `Shared` project implement the `IMyEvent` interface, when they are published both subscribers receive it. When the specific message types of `EventMessage` and `AnotherEventMessage` are published, only the handlers of that specific type in `Subscriber1` are invoked.
 
  * `Subscriber1` uses the default auto-subscription feature of the bus where the the bus automatically sends subscription messages to the configured publisher.
  * `Subscriber2` explicitly disables the auto-subscribe feature in the `Program.cs` file. The subscriptions are therefore done explicitly at startup.
@@ -44,8 +42,7 @@ When running the sample, you'll see three open console applications and many log
 
 Bring the `MyPublisher` process to the foreground.
 
-Click Enter repeatedly in the `MyPublisher` processes console window, and see how the messages appear in the other console windows.
-`Subscriber2` handles every published message and `Subscriber2` only handles `EventMessage` and `AnotherEventMessage`.
+Click Enter repeatedly in the `MyPublisher` processes console window, and see how the messages appear in the other console windows. `Subscriber2` handles every published message and `Subscriber2` only handles `EventMessage` and `AnotherEventMessage`.
 
 Now let's see some of the other features of NServiceBus.
 
@@ -59,4 +56,6 @@ Note how `Subscriber1` immediately receives the messages that were published whi
 
 ## Subscriber authorization
 
-A publisher has control over the subscriptions it receives. By implementing the authorization methods of the `IAuthorizeSubscriptions` interface the publisher can return a Boolean operator indicating to the framework whether a subscription should be accepted. See the `SubscriptionAuthorizer.cs` file in the `MyPublisher` project for a basic example of this feature.
+A publisher has control over the subscriptions it receives. By implementing the authorization methods of the `IAuthorizeSubscriptions` interface the publisher can return a Boolean operator indicating to the framework whether a subscription should be accepted.
+
+<!-- import SubscriptionAuthorizer -->
