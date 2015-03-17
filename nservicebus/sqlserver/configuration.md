@@ -83,3 +83,15 @@ Secondary queues are enabled by default. In order to disable them, one must use 
 <!-- import sqlserver-config-disable-secondaries -->
 
 Secondary queues use same adaptive concurrency model to the primary queue. Secondary queues (and hence callbacks) are disabled for satellite receivers.
+
+## Connection strings
+   
+```xml
+<connectionStrings>
+   <!-- SQL Server -->
+   <add name="NServiceBus/Transport"
+        connectionString="Data Source=.\SQLEXPRESS;
+                                      Initial Catalog=nservicebus;
+                                      Integrated Security=True"/>
+</connectionStrings>
+```
