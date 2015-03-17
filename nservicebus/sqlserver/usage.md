@@ -3,7 +3,6 @@ title: SQL Server Transport usage scenarios
 summary: The usage scenarios for SQLServer transport
 tags:
 - SQL Server
-- Design
 ---
 
 ## Persistence
