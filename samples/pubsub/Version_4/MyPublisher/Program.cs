@@ -65,8 +65,6 @@ class Program
             }
 
             Console.WriteLine("Published event with Id {0}.", eventId);
-
-            Console.WriteLine("==========================================================================");
         }
         #endregion
     }

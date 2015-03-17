@@ -8,6 +8,5 @@ public class AnotherEventMessageHandler : IHandleMessages<AnotherEventMessage>
         Console.WriteLine("Subscriber 1 received AnotherEventMessage with Id {0}.", message.EventId);
         Console.WriteLine("Message time: {0}.", message.Time);
         Console.WriteLine("Message duration: {0}.", message.Duration);
-        Console.WriteLine("==========================================================================");
     }
 }
