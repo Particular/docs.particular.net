@@ -2,7 +2,7 @@
 title: NServiceBus Installers
 summary: Installers ensure endpoint specific artifacts are installed and configured automatically.
 tags:
-- Installer
+- Installation
 - Setup
 redirects:
 - nservicebus/nservicebus-installers
