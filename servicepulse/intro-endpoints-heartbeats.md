@@ -3,7 +3,6 @@ title: Endpoints and Heartbeats in ServicePulse
 summary: Describes how ServicePulse monitors endpoints activity and availability using heartbeat messages
 tags:
 - ServicePulse
-- Introduction
 ---
 
 The Endpoints indicator in the ServicePulse dashboard displays the current status of the monitored NServiceBus endpoints. Specifically, it indicates whether, based on the heartbeats received from each endpoint, the endpoint is active or inactive.
