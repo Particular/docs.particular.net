@@ -3,7 +3,6 @@ title: Message Handling Pipeline
 summary: Overview of the message handling pipeline 
 tags:
 - Pipeline
-- NServiceBus
 redirects:
 - nservicebus/nservicebus-pipeline-intro
 ---
