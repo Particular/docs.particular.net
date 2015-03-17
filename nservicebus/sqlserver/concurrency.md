@@ -2,7 +2,7 @@
 title: Concurrency
 summary: How concurrency is controlled inside the SQLServer transport.
 tags:
-- SQLServer
+- SQL Server
 - Concurrency
 - Threading
 ---
