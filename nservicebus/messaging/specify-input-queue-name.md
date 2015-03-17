@@ -3,7 +3,6 @@ title: Specify Your Input Queue
 summary: There are many ways to specify the input endpoint name.
 tags:
 - Endpoint Name
-- Configuration
 - Conventions
 redirects:
 - nservicebus/how-to-specify-your-input-queue-name
