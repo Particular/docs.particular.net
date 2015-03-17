@@ -3,7 +3,6 @@ title: Message Handling Pipeline
 summary: Overview of the message handling pipeline 
 tags:
 - Pipeline
-- NServiceBus
 ---
 
 NServiceBus has always had the concept of a pipeline execution order that is executed when a message is received and also when a message is dispatched. NServiceBus v5 makes this pipeline a first level concept and exposes it to the end user.
