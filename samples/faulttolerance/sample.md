@@ -34,7 +34,7 @@ Consider scenarios where the processing of a message fails. This could be due to
 
 If the problem is something more protracted, like a third party web service going down or a database being unavailable, it makes sense to try again sometime later.
 
-This is called the [Second Level Retries](/nservicebus/second-level-retries.md) (SLR) functionality of NServiceBus.
+This is called the [Second Level Retries](/nservicebus/errors/second-level-retries.md) (SLR) functionality of NServiceBus.
 
 SLR is enabled by default, the default policy will defer the message
 `10*N` (where N is number of retries) seconds 3 times (60 sec total), resulting in a wait of 10s, then 20s, and then 30s; after which the message moves to the configured ErrorQueue.
@@ -66,7 +66,7 @@ If a message fails continuously (due to a bug in the system, for example), it ul
 
 Since administrators must monitor these error queues, it is recommended that all endpoints use the same error queue.
 
-Read more about [how to configure retries](/nservicebus/second-level-retries.md).
+Read more about [how to configure retries](/nservicebus/errors/second-level-retries.md).
 
 Make sure you remove the code which throws an exception before going on.
 

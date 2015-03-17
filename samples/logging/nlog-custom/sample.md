@@ -19,4 +19,4 @@ Illustrates customizing NLog usage by configuring NLog targets and rules.
 
 ## More Info
 
- * [Logging in NServiceBus](/nservicebus/logging-in-nservicebus.md)
+ * [Logging in NServiceBus](/nservicebus/logging/)

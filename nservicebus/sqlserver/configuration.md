@@ -26,11 +26,11 @@ CREATE TABLE [dbo].[{0}](
 
 Additionally, a clustered index on a `[RowVersion]` column is created. The column are directly mapped to the properties of `NServiceBus.TransportMessage` class. Receiving messages is conducted via a `DELETE` statement from the top of the table (the oldest row according to `[RowVersion]` column).
 
-The tables are created during host install time by [installers](/nservicebus/nservicebus-installers.md). It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
+The tables are created during host install time by [installers](/nservicebus/operations/installers.md). It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
 
 ## Concurrency
 
-The SQL Server transport adapts the number of receiving threads (up to `MaximumConcurrencyLevel` [set via `TransportConfig` section](../msmqtransportconfig.md)) to the amount of messages waiting for processing. When idle it maintains only one thread that continuously polls the table queue. A more details description of the concurrency control mechanism, as well as the description of behaviour of previous versions, can be found [here](concurrency.md).
+The SQL Server transport adapts the number of receiving threads (up to `MaximumConcurrencyLevel` [set via `TransportConfig` section](/nservicebus/msmq/transportconfig.md)) to the amount of messages waiting for processing. When idle it maintains only one thread that continuously polls the table queue. A more details description of the concurrency control mechanism, as well as the description of behaviour of previous versions, can be found [here](concurrency.md).
 
 ## Transactions
 

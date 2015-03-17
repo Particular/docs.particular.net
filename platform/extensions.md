@@ -17,19 +17,19 @@ This is a curated list of all the extensions to NServiceBus developed by both th
 
 Provides support for sending messages over [Amazon SQS](http://aws.amazon.com/sqs/). 
 
-### <img src="particular-project.png" title="A Particular run project"> [Azure Service Bus](/nservicebus/windows-azure-transport.md)
+### <img src="particular-project.png" title="A Particular run project"> [Azure Service Bus](/nservicebus/azure/azure-transport.md)
 
 <a href="http://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/"><img src="http://img.shields.io/nuget/v/NServiceBus.Azure.Transports.WindowsAzureServiceBus.svg?" title="NuGet Status"></a>
 
 Provides support for sending messages over [Azure Service Bus](http://azure.microsoft.com/en-us/services/service-bus/).
 
-### <img src="particular-project.png" title="A Particular run project"> [Azure Storage Queues](/nservicebus/windows-azure-transport.md)
+### <img src="particular-project.png" title="A Particular run project"> [Azure Storage Queues](/nservicebus/azure/azure-storage-queues-transport.md)
 
 <a href="http://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/"><img src="http://img.shields.io/nuget/v/NServiceBus.Azure.Transports.WindowsAzureStorageQueues.svg?" title="NuGet Status"></a>
 
 Provides support for sending messages over [Azure Storage Queue](http://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-how-to-use-queues/).
 
-### <img src="particular-project.png" title="A Particular run project"> [MSMQ](/nservicebus/msmqtransportconfig.md)
+### <img src="particular-project.png" title="A Particular run project"> [MSMQ](/nservicebus/msmq/)
 
 <a href="http://www.nuget.org/packages/NServiceBus/"><img src="http://img.shields.io/nuget/v/NServiceBus.svg?" title="NuGet Status"></a>
 
@@ -106,7 +106,7 @@ A custom XML serializer built into the NServiceBus core.
 
 <a href="http://www.nuget.org/packages/NServiceBus.Persistence.MongoDb/"><img src="http://img.shields.io/nuget/v/NServiceBus.Persistence.MongoDb.svg?" title="NuGet Status"></a>
 
-### <img src="particular-project.png" title="A Particular run project"> [NHibernate](/nservicebus/relational-persistence-using-nhibernate.md)
+### <img src="particular-project.png" title="A Particular run project"> [NHibernate](/nservicebus/nhibernate/)
 
 <a href="http://www.nuget.org/packages/NServiceBus.NHibernate/"><img src="http://img.shields.io/nuget/v/NServiceBus.NHibernate.svg?" title="NuGet Status"></a>
 
@@ -124,21 +124,21 @@ Leverages the [JSONB](http://www.postgresql.org/docs/devel/static/datatype-json.
 
 A proof-of-concept project that shows the possibility of support for [Azure DocumentDB](http://azure.microsoft.com/en-us/services/documentdb/)
 
-### <img src="particular-project.png" title="A Particular run project"> [Azure Storage](/nservicebus/using-azure-storage-persistence-in-nservicebus.md)
+### <img src="particular-project.png" title="A Particular run project"> [Azure Storage](/nservicebus/azure/azure-storage-persistence.md)
 
 <a href="https://www.nuget.org/packages/NServiceBus.Azure/"><img src="http://img.shields.io/nuget/v/NServiceBus.Azure.svg?" title="NuGet Status"></a>
 
 ## Logging
 
-### <img src="particular-project.png" title="A Particular run project"> [Log4Net](/nservicebus/logging-in-nservicebus.md#log4net) 
+### <img src="particular-project.png" title="A Particular run project"> [Log4Net](/nservicebus/logging/#log4net) 
 
 <a href="http://www.nuget.org/packages/NServiceBus.Log4Net/"><img src="http://img.shields.io/nuget/v/NServiceBus.Log4Net.svg?" title="NuGet Status"></a>
 
-### <img src="particular-project.png" title="A Particular run project"> [NLog](/nservicebus/logging-in-nservicebus.md#nlog)
+### <img src="particular-project.png" title="A Particular run project"> [NLog](/nservicebus/logging/#nlog)
 
 <a href="http://www.nuget.org/packages/NServiceBus.NLog/"><img src="http://img.shields.io/nuget/v/NServiceBus.NLog.svg?" title="NuGet Status"></a>
 
-### <img src="particular-project.png" title="A Particular run project"> [CommonLogging](/nservicebus/logging-in-nservicebus.md#commonlogging)
+### <img src="particular-project.png" title="A Particular run project"> [CommonLogging](/nservicebus/logging/#commonlogging)
 
 <a href="http://www.nuget.org/packages/NServiceBus.CommonLogging/"><img src="http://img.shields.io/nuget/v/NServiceBus.CommonLogging.svg?" title="NuGet Status"></a> 
 
@@ -150,27 +150,27 @@ Support for logging NServiceBus information to [Serilog](http://serilog.net/) lo
 
 ## Containers
 
-### <img src="particular-project.png" title="A Particular run project"> [Autofac](/nservicebus/containers.md)
+### <img src="particular-project.png" title="A Particular run project"> [Autofac](/nservicebus/containers/)
 
 <a href="http://www.nuget.org/packages/NServiceBus.Autofac/"><img src="http://img.shields.io/nuget/v/NServiceBus.Autofac.svg?" title="NuGet Status"></a>
 
-### <img src="particular-project.png" title="A Particular run project"> [CastleWindsor](/nservicebus/containers.md)
+### <img src="particular-project.png" title="A Particular run project"> [CastleWindsor](/nservicebus/containers/)
 
 <a href="http://www.nuget.org/packages/NServiceBus.CastleWindsor/"><img src="http://img.shields.io/nuget/v/NServiceBus.CastleWindsor.svg?" title="NuGet Status"></a>
 
-### <img src="particular-project.png" title="A Particular run project"> [Ninject](/nservicebus/containers.md)
+### <img src="particular-project.png" title="A Particular run project"> [Ninject](/nservicebus/containers/)
 
 <a href="http://www.nuget.org/packages/NServiceBus.Ninject/"><img src="http://img.shields.io/nuget/v/NServiceBus.Ninject.svg?" title="NuGet Status"></a>
 
-### <img src="particular-project.png" title="A Particular run project"> [StructureMap](/nservicebus/containers.md)
+### <img src="particular-project.png" title="A Particular run project"> [StructureMap](/nservicebus/containers/)
 
 <a href="http://www.nuget.org/packages/NServiceBus.StructureMap/"><img src="http://img.shields.io/nuget/v/NServiceBus.StructureMap.svg?" title="NuGet Status"></a> 
 
-### <img src="particular-project.png" title="A Particular run project"> [Spring](/nservicebus/containers.md)
+### <img src="particular-project.png" title="A Particular run project"> [Spring](/nservicebus/containers/)
 
 <a href="http://www.nuget.org/packages/NServiceBus.Spring/"><img src="http://img.shields.io/nuget/v/NServiceBus.Spring.svg?" title="NuGet Status"></a>
 
-### <img src="particular-project.png" title="A Particular run project"> [Unity](/nservicebus/containers.md)
+### <img src="particular-project.png" title="A Particular run project"> [Unity](/nservicebus/containers/)
 
 <a href="http://www.nuget.org/packages/NServiceBus.Unity/"><img src="http://img.shields.io/nuget/v/NServiceBus.Unity.svg?" title="NuGet Status"></a>
 
@@ -182,13 +182,13 @@ Support for logging NServiceBus information to [Serilog](http://serilog.net/) lo
 
 .NET event sourced domain driven design model via [NEventStore](http://www.appccelerate.com/distributedeventbroker.html).
 
-### <img src="particular-project.png" title="A Particular run project"> [Azure Host](/nservicebus/hosting-nservicebus-in-windows-azure.md)
+### <img src="particular-project.png" title="A Particular run project"> [Azure Host](/nservicebus/azure/hosting.md)
 
 <a href="http://www.nuget.org/packages/NServiceBus.Hosting.Azure/"><img src="http://img.shields.io/nuget/v/NServiceBus.Hosting.Azure.svg?" title="NuGet Status"></a>
 
 The process used when hosting an endpoint on [Azure](http://azure.microsoft.com/en-us/).
 
-### <img src="particular-project.png" title="A Particular run project"> [Multi Endpoint Azure Host](/nservicebus/hosting-nservicebus-in-windows-azure.md)
+### <img src="particular-project.png" title="A Particular run project"> [Multi Endpoint Azure Host](/nservicebus/azure/hosting.md)
 
 <a href="http://www.nuget.org/packages/NServiceBus.Hosting.Azure.HostProcess/"><img src="http://img.shields.io/nuget/v/NServiceBus.Hosting.Azure.HostProcess.svg?" title="NuGet Status"></a>
 
@@ -200,7 +200,7 @@ The process used when sharing an [Azure](http://azure.microsoft.com/en-us/) inst
 
 Allows sending events over the [Appccelerate.EventBroker](http://www.appccelerate.com/distributedeventbroker.html) infrastructure.
 
-### <img src="particular-project.png" title="A Particular run project"> [Distributor](/nservicebus/load-balancing-with-the-distributor.md) 
+### <img src="particular-project.png" title="A Particular run project"> [Distributor](/nservicebus/scalability-and-ha/distributor/) 
 
 <a href="http://www.nuget.org/packages/NServiceBus.Distributor.MSMQ/"><img src="http://img.shields.io/nuget/v/NServiceBus.Distributor.MSMQ.svg?" title="NuGet Status"></a>
 
@@ -208,7 +208,7 @@ Allows sending events over the [Appccelerate.EventBroker](http://www.appccelerat
 
 Distributor for the MSMQ transport.
 
-### <img src="particular-project.png" title="A Particular run project">  [Gateway](/nservicebus/introduction-to-the-gateway.md)
+### <img src="particular-project.png" title="A Particular run project">  [Gateway](/nservicebus/gateway/)
 
 <a href="http://www.nuget.org/packages/NServiceBus.Gateway/"><img src="http://img.shields.io/nuget/v/NServiceBus.Gateway.svg?" title="NuGet Status"></a> 
 

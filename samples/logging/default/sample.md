@@ -15,4 +15,4 @@ This sample shows the default logging functionality in NServiceBus.
 
 ## More Info
 
- * [Logging in NServiceBus](/nservicebus/logging-in-nservicebus.md)
+ * [Logging in NServiceBus](/nservicebus/logging/)

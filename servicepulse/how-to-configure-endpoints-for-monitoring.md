@@ -23,7 +23,7 @@ tags:
     * NServiceBus V5.0.0 or higher;
     * NServiceBus V4.0.0 or higher;
     * NServiceBus V3.0.4 or higher;
-1. Auditing must be enabled for all monitored endpoints (see [Auditing With NServiceBus](/nservicebus/auditing-with-nservicebus.md)).
+1. Auditing must be enabled for all monitored endpoints (see [Auditing With NServiceBus](/nservicebus/operations/auditing.md)).
 1. All endpoints must forward audited data to a single audit and error queue that is monitored by a ServiceControl instance.
 
 **Deploying Endpoint Plugins in each Endpoint**

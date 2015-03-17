@@ -8,7 +8,7 @@ tags:
 ---
 
 ## Using the registry
-When the license is [installed in the registry](/nservicebus/license-management.md) it is available machine wide and applied to all Particular products running on that machine.
+When the license is [installed in the registry](/nservicebus/licensing/license-management.md) it is available machine wide and applied to all Particular products running on that machine.
 
 
 ## Using the license file

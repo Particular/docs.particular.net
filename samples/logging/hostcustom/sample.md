@@ -15,4 +15,4 @@ This sample shows how to customize logging when running inside the NServiceBus h
   
 ## More Info
 
- * [Logging in NServiceBus](/nservicebus/logging-in-nservicebus.md)
+ * [Logging in NServiceBus](/nservicebus/logging/)

@@ -46,7 +46,7 @@ This may occur when an endpoint is re-deployed or updated to a different install
 
 The installation path of an endpoint is used by ServiceControl and ServicePulse as the default mechanism for generating the unique Id of an endpoint. Therefore, changing the installation path of the endpoint affects the generated Id, and causes the system to identify the endpoint as a new and different endpoint.
 
-To workaround this issue see [Override host identifier](/nservicebus/override-hostid.md)
+To workaround this issue see [Override host identifier](/nservicebus/hosting/override-hostid.md)
 
 ### How do I monitor my NSB V3.x endpoints using ServicePulse?
 

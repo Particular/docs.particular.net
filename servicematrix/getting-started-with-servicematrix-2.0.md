@@ -49,7 +49,7 @@ In Visual Studio, select `File\New\Project` and select 'NServiceBus v5 System' u
 
 In the Solution name, type 'OnlineSales' (or any other name) for the name of your application.
 
-NOTE: It is recommended that you use the 'NServiceBus v5 System' project template unless you need to remain on NServiceBus v4 for some particular reason. NServiceBus V5 is wire compatible with earlier versions, so you should be able to use the latest version without breaking compatibility with services that may already be deployed and running on an earlier version. [Read this document](../nservicebus/upgradeguides/4to5.md) for an overview of the differences in V5 from V4.
+NOTE: It is recommended that you use the 'NServiceBus v5 System' project template unless you need to remain on NServiceBus v4 for some particular reason. NServiceBus V5 is wire compatible with earlier versions, so you should be able to use the latest version without breaking compatibility with services that may already be deployed and running on an earlier version. [Read this document](/nservicebus/upgrades/4to5.md) for an overview of the differences in V5 from V4.
 
 ### Review The Solution
 
@@ -69,7 +69,7 @@ Look at the design environment. The [Solution Builder](images/servicematrix-solu
 
 You should see folders in Solution Builder called 'Infrastructure',  'Endpoints', and 'Services'.
 -   Infrastructure is where cross-cutting concerns like authentication and auditing are handled.
--   Endpoints are where code is deployed as executable processes. They can be MVC web applications or [NServiceBus Hosts](../nservicebus/the-nservicebus-host.md).
+-   Endpoints are where code is deployed as executable processes. They can be MVC web applications or [NServiceBus Hosts](/nservicebus/hosting/nservicebus-host/).
 -   Services are logical containers for code that provide the structure for publish/subscribe events and command-processing. 
 
 The [NServiceBus Canvas](images/servicematrix-canvas.png "NServiceBus Canvas") is in the center of the solution as shown above.   The endpoints, services, components, and messages that comprise your solution will be created and illustrated here.
@@ -340,7 +340,7 @@ An NServiceBus V5 ServiceMatrix project requires RavenDB V2.5. Download the inst
 
 NOTE: If you already have RavenDB 2.0 installed, you can uninstall the service by finding the Raven.Server.exe executable on your machine and running it from the command line with /uninstall.
 
-For more information on installing RavenDB for use with NService bus, refer to [this document](/nservicebus/using-ravendb-in-nservicebus-installing.md).
+For more information on installing RavenDB for use with NService bus, refer to [this document](/nservicebus/ravendb/installation.md).
 
 ## Running the Application
 

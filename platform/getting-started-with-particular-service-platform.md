@@ -25,7 +25,7 @@ The example demonstrates the integration of an online sales web store with a bac
 
 NOTE: This example requires ServiceMatrix. For a code only introduction to NServiceBus, see:
 
-* [NServiceBus Overview](/nservicebus/overview.md) 
+* [NServiceBus Overview](/nservicebus/architecture/) 
 * [NServiceBus Step by Step Guide](/samples/step-by-step/) 
 
 ## Installing ServiceMatrix for Visual Studio 2012
@@ -73,7 +73,7 @@ Take a look at the design environment. The [Solution Builder](/servicematrix/ima
 You should see folders in Solution Builder called 'Infrastructure', 'Libraries', 'Endpoints', and 'Services'.
 -   Infrastructure is where cross-cutting concerns like authentication and auditing are handled.
 -   Libraries are units of code that can be reused, including logging and data access.
--   Endpoints are where code is deployed as executable processes. They can be MVC web applications or [NServiceBus Hosts](../nservicebus/the-nservicebus-host.md).
+-   Endpoints are where code is deployed as executable processes. They can be MVC web applications or [NServiceBus Hosts](/nservicebus/hosting/nservicebus-host/).
 -   Services are logical containers for code that provide the structure for publish/subscribe events and command-processing. 
 
 The [NServiceBus Canvas](/servicematrix/images/servicematrix-canvas.png "NServiceBus Canvas") is in the center of the solution as shown above.   The endpoints, services, components and messages that comprise your solution will be created and illustrated here.

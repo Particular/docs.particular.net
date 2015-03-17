@@ -1,5 +1,5 @@
 ---
-title: NServiceBus Step by Step Guide
+title: Step by Step Guide
 summary: Get started with NServiceBus
 tags: []
 redirects:
@@ -32,7 +32,7 @@ Type the following command at the Package Manager Console:
 
     PM> Install-Package NServiceBus.Host
 
-NOTE: When prompted to reload the project, click reload. To read more about how Nuget deals with dependencies and to ensure that the project is updated to latest version of the NServiceBus core, read [Staying updated with Nuget](/nservicebus/staying-updated-with-nuget.md) 
+NOTE: When prompted to reload the project, click reload. To read more about how Nuget deals with dependencies and to ensure that the project is updated to latest version of the NServiceBus core.
 
 The package installation process adds references to NServiceBus assemblies and creates several boiler template files in the Client project.
 
@@ -84,7 +84,7 @@ At the Package Manager Console, type:
 
     PM> Install-Package NServiceBus.Host -ProjectName Ordering.Server
 
-NOTE: When prompted to reload the project, click reload. To read more about how Nuget deals with dependencies and to ensure that the project is updated to latest version of the NServiceBus core, read [Staying updated with Nuget](/nservicebus/staying-updated-with-nuget.md) 
+NOTE: When prompted to reload the project, click reload. To read more about how Nuget deals with dependencies and to ensure that the project is updated to latest version of the NServiceBus core.
 
 For the server side to understand and interpret the message content, add a reference to the `Messages` project you created earlier:
 
@@ -116,7 +116,7 @@ Starting with NServiceBus version 5, it is mandatory to pick the persistence. Th
 configuration.UsePersistence<InMemoryPersistence>();
 ````
 
-NServiceBus requires a persistence store for handling subscriptions, sagas, timeouts, deduplication, etc. InMemoryPersistence is fine for this simple example, but it is not intended for production use. Please read [Persistence In NServiceBus](/nservicebus/persistence-in-nservicebus.md) for more information on how to select a persistence store and install the correct dependencies.
+NServiceBus requires a persistence store for handling subscriptions, sagas, timeouts, deduplication, etc. InMemoryPersistence is fine for this simple example, but it is not intended for production use. Please read [Persistence In NServiceBus](/nservicebus/persistence/) for more information on how to select a persistence store and install the correct dependencies.
 
 ### Running the solution
 

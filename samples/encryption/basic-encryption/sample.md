@@ -56,7 +56,7 @@ The key is then configured using
 Now run `Endpoint1` on its own (i.e. don't start `Endpoint2`).
 
 Go to the server queue (called `EncryptionSampleEndpoint1`) and examine the message in it. Read how to do this in the
-[FAQ](/nservicebus/viewing-message-content-in-msmq.md).
+[FAQ](/nservicebus/msmq/viewing-message-content-in-msmq.md).
 
 Your message will look like this:
 
@@ -76,4 +76,4 @@ Your message will look like this:
 </Messages>
 ```
 
-See also [Encryption](/nservicebus/encryption.md)
+See also [Encryption](/nservicebus/security/encryption.md)

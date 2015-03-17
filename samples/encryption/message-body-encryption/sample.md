@@ -43,4 +43,4 @@ WARNING: Clearly this it not true encryption. It is only doing a byte array reve
 
 <!-- import Mutator -->
 
-See also [Encryption](/nservicebus/encryption.md) 
+See also [Encryption](/nservicebus/security/encryption.md) 

@@ -24,7 +24,7 @@ Once a message ends up in the error queue ServiceControl will publish a [Message
 ServiceControl publishes `MessageFailed` event when a message gets to the error queue, let's see how we can tap in by subscribing to these events and act on them (send an email, pager duty and so on)...
 
 To subscribe to the `MessageFailed` event:
-- Create an [NServiceBus endpoint](/nservicebus/the-nservicebus-host.md)
+- Create an [NServiceBus endpoint](/nservicebus/hosting/nservicebus-host/)
 - Install the `ServiceControl.Contracts` [nuget package](https://www.nuget.org/packages/ServiceControl.Contracts/).
 - Add the message mapping in the `UnicastBusConfig` section of the endpoint's app.config so that this endpoint will subscribe to the events from ServiceControl as shown:
 

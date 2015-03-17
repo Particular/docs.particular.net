@@ -21,4 +21,4 @@ The appender simply outputs to the console with a given color.
    
 ## More Info
 
- * [Logging in NServiceBus](/nservicebus/logging-in-nservicebus.md)
+ * [Logging in NServiceBus](/nservicebus/logging/)

@@ -55,7 +55,7 @@ Only monitored endpoints are expected by ServicePulse to send heartbeat messages
 
 ### Detecting New Endpoints
 
-When an endpoint is configured for auditing (see [Auditing with NServiceBus](/nservicebus/auditing-with-nservicebus.md)) but not for monitoring by ServicePulse, its messages are audited by the ServiceControl service and stored in its database.
+When an endpoint is configured for auditing (see [Auditing with NServiceBus](/nservicebus/operations/auditing.md)) but not for monitoring by ServicePulse, its messages are audited by the ServiceControl service and stored in its database.
 
 This allows ServicePulse to detect that endpoint as a new endpoint, and add it to its endpoint list. By default, all detected endpoints are marked for monitoring by ServicePulse, so ServicePulse can send an alert when such newly added endpoints are detected.
 

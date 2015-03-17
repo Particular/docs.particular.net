@@ -17,4 +17,4 @@ This code instructs NServiceBus to only output logs at a level of INFO or higher
 
 ## More Info
 
- * [Logging in NServiceBus](/nservicebus/logging-in-nservicebus.md)
+ * [Logging in NServiceBus](/nservicebus/logging/)

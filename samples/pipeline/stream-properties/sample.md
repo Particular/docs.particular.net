@@ -9,7 +9,7 @@ tags:
 
 ### Introduction
 
-This sample leverages the pipeline to provide a pure stream based approach for sending large amounts of data. It is similar to the  file share [DataBus](/nservicebus/databus.md) in that it uses assumes a common network file share accessible by endpoints and uses headers to correlate between a message and its connected files on disk.  
+This sample leverages the pipeline to provide a pure stream based approach for sending large amounts of data. It is similar to the  file share [DataBus](/nservicebus/messaging/databus.md) in that it uses assumes a common network file share accessible by endpoints and uses headers to correlate between a message and its connected files on disk.  
 
 ### Stream Storage helper
 
@@ -81,4 +81,4 @@ NOTE: If you use a `MemoryStream` ensure that the [Position](https://msdn.micros
 
 ## Difference to the Databus
 
-The [built in DataBus](/nservicebus/databus.md) relies on byte arrays and memory streams to operate. As such it has limitations in the amount of data it can send. 
+The [built in DataBus](/nservicebus/messaging/databus.md) relies on byte arrays and memory streams to operate. As such it has limitations in the amount of data it can send. 

@@ -1,6 +1,8 @@
 ---
 title: Platform
 summary: Platform level index for articles, guidance and documentation
+redirects:
+ - nservicebus/preparing-your-machine-to-run-nservicebus
 ---
 
 ### Platform

@@ -16,4 +16,4 @@ This sample shows a usage of [CommonLogging](http://netcommon.sourceforge.net/) 
 
 ## More Info
 
- * [Logging in NServiceBus](/nservicebus/logging-in-nservicebus.md)
+ * [Logging in NServiceBus](/nservicebus/logging/)

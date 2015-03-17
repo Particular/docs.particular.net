@@ -24,9 +24,9 @@ In `WebApplication`, open `Global.asax.cs` and look at the code in the `Applicat
 
 <!-- import ApplicationStart --> 
 
-The rest of the code is typical for hosting NServiceBus in your own process. Read more about [the other lines](/nservicebus/hosting-nservicebus-in-your-own-process.md).
+The rest of the code is typical for hosting NServiceBus in your own process. Read more about [the other lines](/nservicebus/hosting/self-hosting.md).
 
-The code holds a reference to the bus, which is used later for sending messages. This isn't the only option available; if the classes for sending messages are managed by Dependency Injection, then they can get a reference to the bus by declaring a dependency on IBus. [See an example](/nservicebus/how-do-i-get-a-reference-to-ibus-in-my-message-handler.md).
+The code holds a reference to the bus, which is used later for sending messages. This isn't the only option available; if the classes for sending messages are managed by Dependency Injection, then they can get a reference to the bus by declaring a dependency on IBus. [See an example](/nservicebus/containers/injecting-ibus.md).
 
 ## Sending a message
 
@@ -40,7 +40,7 @@ Open the class definition for the `Command` type in the `Shared` project:
 
 <!-- import Message -->
 
-This class is very simple. The only special thing is the `IMessage` interface that it implements. This interface comes from NServiceBus and indicates that instances of this class can be sent and received by the bus. The `IMessage` interface itself is an empty marker interface. Read more about [defining messages](/nservicebus/how-do-i-define-a-message.md).
+This class is very simple. The only special thing is the `IMessage` interface that it implements. This interface comes from NServiceBus and indicates that instances of this class can be sent and received by the bus. The `IMessage` interface itself is an empty marker interface. Read more about [defining messages](/nservicebus/messaging/define-a-message.md).
 
 Return to Default.aspx.cs and look at the code `Global.Bus.Send(command)`. Global.Bus references the Bus property of the Global class, which you saw in Global.asax.cs. Then the code calls the Send method, passing in the newly created command object.
 

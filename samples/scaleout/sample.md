@@ -40,7 +40,7 @@ There are five projects in the solution.
 
 Assuming business is booming, orders are flowing in, and `PlaceOrder` commands are stacking up in the `Orders.Handler` endpoint, you need to scale out.
 
-You can scale out by having the same Orders.Handler project function as a distributor and another copy of the `Orders.Handler` function as a worker as illustrated by the `Orders.Handler.Worker1` and `Orders.Handler.Worker2`. Starting the `Orders.Handler` with the `Master` profile, among other things, turns on the Distributor at this endpoint. Starting the `Orders.Handler` with the Worker profile makes it enlist with the Distributor and function as a worker. Being a [distributor](/nservicebus/load-balancing-with-the-distributor.md) means that Workers can send an "I'm ready" message to the control endpoint of the Distributor, and the Distributor forwards messages to them in a round robin manner. Steps to scale out
+You can scale out by having the same Orders.Handler project function as a distributor and another copy of the `Orders.Handler` function as a worker as illustrated by the `Orders.Handler.Worker1` and `Orders.Handler.Worker2`. Starting the `Orders.Handler` with the `Master` profile, among other things, turns on the Distributor at this endpoint. Starting the `Orders.Handler` with the Worker profile makes it enlist with the Distributor and function as a worker. Being a [distributor](/nservicebus/scalability-and-ha/distributor/) means that Workers can send an "I'm ready" message to the control endpoint of the Distributor, and the Distributor forwards messages to them in a round robin manner. Steps to scale out
 
 Following are the steps required to scale out message handlers by deploying more workers on additional machines.
 
@@ -61,7 +61,7 @@ Turns on the Distributor within the Orders.Handler endpoint and starts a worker 
 
 ### NServiceBus.Integration
 
-The production and integration profiles configure NServiceBus to use RavenDB for storing the subscriptions. As stated earlier, this store is shared among all `Orders.Handler` endpoints (all workers). Read about [publish subscribe](/nservicebus/how-pub-sub-works.md) .
+The production and integration profiles configure NServiceBus to use RavenDB for storing the subscriptions. As stated earlier, this store is shared among all `Orders.Handler` endpoints (all workers). Read about [publish subscribe](/nservicebus/messaging/publish-subscribe/) .
 
 If running from Visual Studio, when configuring the `NServiceBus.Production` profile, NServiceBus creates the queues for you. If running from the command line, use `NServiceBus.Integration` to create the queues.
 
@@ -107,7 +107,7 @@ By specifying the `NServiceBus.Integration` and `NServiceBus.Worker` profiles al
 
 `NServiceBus.Host.Exe` uses the `NServiceBus.Worker` profile to enlist the worker endpoint at the Distributor.
 
-Read about [profiles,](/nservicebus/profiles-for-nservicebus-host.md) and [here](/nservicebus/more-on-profiles.md) too.
+Read about [profiles](/nservicebus/hosting/nservicebus-host/profiles.md) too.
 
 ### 3. Setting up the Sender
 

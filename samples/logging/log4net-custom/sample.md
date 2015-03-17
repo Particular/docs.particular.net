@@ -19,4 +19,4 @@ Illustrates customizing Log4Net usage by configuring Log4Net targets and rules.
 
 ## More Info
 
- * [Logging in NServiceBus](/nservicebus/logging-in-nservicebus.md)
+ * [Logging in NServiceBus](/nservicebus/logging/)

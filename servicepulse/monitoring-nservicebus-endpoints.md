@@ -60,7 +60,7 @@ As a part of the NServiceBus installation, two additional performance counters a
 * **Critical time** monitors the age of the oldest message in the queue. This takes into account the whole chain, from the message being sent from the client machine until it is successfully processed by the server. Define a SLA for each of your endpoints and use the `CriticalTime` counter to make sure to adhere to it.
 * **Time to SLA breach** acts as an early warning system to tell you the number of seconds left until the SLA until the particular endpoint is breached. This system-wide counter can be monitored without putting the SLA into your monitoring software. Just set the alarm to trigger when the counter goes below X, which is the time that your operations team needs to be able to take action to prevent the SLA from being breached. To define the endpoint SLA, add the `[EndpointSLA]` attribute to your endpoint configuration. If self-hosting, use the `Configure.SetEndpointSLA()` method on the Fluent API instead. All processes running with NServiceBus collect this information and the counters are enabled by default. Since all performance counters in Windows are exposed via Windows Management Instrumentation (WMI), it is straightforward to pull this information into your existing monitoring infrastructure.
 
-Details on how to install and manage NServiceBus performance counters are in the [managing NServiceBus with PowerShell](/nservicebus/managing-nservicebus-using-powershell.md) article.
+Details on how to install and manage NServiceBus performance counters are in the [managing NServiceBus with PowerShell](/nservicebus/operations/management-using-powershell.md) article.
 
 ## Audit and Error Queues
 
@@ -68,7 +68,7 @@ Details on how to install and manage NServiceBus performance counters are in the
 
 If the role of performance counters is to monitor the time required by the system to handle messages, the role of the auditing infrastructure is to inspect the content of messages that flows into the system.
 
-Each endpoint can be [configured](/nservicebus/auditing-with-nservicebus.md)——machine-wide or per endpoint——to forward each received message to a dedicated audit queue where a monitoring process such as ServiceControl can handle all the messages, tracking them in a database to allow further processing and analysis.
+Each endpoint can be [configured](/nservicebus/operations/auditing.md)——machine-wide or per endpoint——to forward each received message to a dedicated audit queue where a monitoring process such as ServiceControl can handle all the messages, tracking them in a database to allow further processing and analysis.
 
 ### Error Queues
 

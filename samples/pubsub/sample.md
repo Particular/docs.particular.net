@@ -21,13 +21,13 @@ The "MyMessages" project contains the definition of the messages that are sent b
 ### Creating and publishing messages
 
 As the name implies, the "MyPublisher" project is a publisher of event messages. It uses the bus framework to send alternatively three different types of messages every time you click Enter in its console window. The created message is populated and
-[published](/nservicebus/how-to-pub-sub-with-nservicebus.md) using `Bus.Publish`.
+[published](/nservicebus/messaging/publish-subscribe/) using `Bus.Publish`.
 
 <!--import PublishLoop -->
 
 ### Implementing subscribers
 
-To receive messages from the publisher, the subscribers [must subscribe to the message types](/nservicebus/how-to-pub-sub-with-nservicebus.md) they are designed to handle. A subscriber must have a handler for the type of message and a [configuration](/nservicebus/publish-subscribe-configuration.md) that tells the bus where to send subscriptions for messages:
+To receive messages from the publisher, the subscribers [must subscribe to the message types](/nservicebus/messaging/publish-subscribe/) they are designed to handle. A subscriber must have a handler for the type of message and a [configuration](/nservicebus/messaging/publish-subscribe/) that tells the bus where to send subscriptions for messages:
 
  * The `Subscriber1` process handles and subscribes to both the `EventMessage` and `AnotherEventMessage` types.
  * The `Subscriber2` handles and subscribes to any message implementing the interface `IMyEvent`.
