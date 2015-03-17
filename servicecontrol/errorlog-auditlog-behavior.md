@@ -4,7 +4,7 @@ summary: Details ServiceControl logging feature
 tags:
 - ServiceControl
 - Error
-- Audit
+- Auditing
 - Logging
 ---
 When ServiceControl is installed and configured it starts monitoring `error` and `audit` queues and all messages flowing into these queues are processed by ServiceControl and stored into its internal database.
