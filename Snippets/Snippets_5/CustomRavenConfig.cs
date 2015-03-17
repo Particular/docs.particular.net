@@ -9,7 +9,7 @@ public class CustomRavenConfig
     {
         #region CustomRavenConfig
 
-        var documentStore = new DocumentStore
+        DocumentStore documentStore = new DocumentStore
         {
             Url = "http://localhost:8080",
             DefaultDatabase = "MyDatabase",
@@ -17,7 +17,7 @@ public class CustomRavenConfig
         
         documentStore.Initialize();
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.UsePersistence<RavenDBPersistence>()
             .SetDefaultDocumentStore(documentStore);

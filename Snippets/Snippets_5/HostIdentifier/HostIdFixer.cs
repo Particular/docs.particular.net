@@ -4,28 +4,21 @@ using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using NServiceBus;
+using NServiceBus.Config;
 using NServiceBus.Hosting;
 using NServiceBus.Settings;
 using NServiceBus.Unicast;
 #pragma warning disable 618
 
 #region HostIdFixer
-public class HostIdFixer : IWantToRunWhenBusStartsAndStops
+public class HostIdFixer : IWantToRunWhenConfigurationIsComplete
 {
-    UnicastBus bus;
-    ReadOnlySettings settings;
 
     public HostIdFixer(UnicastBus bus, ReadOnlySettings settings)
     {
-        this.bus = bus;
-        this.settings = settings;
-    }
-
-    public void Start()
-    {
-        var hostId = CreateGuid(Environment.MachineName, settings.EndpointName());
-        var location = Assembly.GetExecutingAssembly().Location;
-        var properties = new Dictionary<string, string>
+        Guid hostId = CreateGuid(Environment.MachineName, settings.EndpointName());
+        string location = Assembly.GetExecutingAssembly().Location;
+        Dictionary<string, string> properties = new Dictionary<string, string>
                                 {
                                     {"Location",location}
                                 };
@@ -34,15 +27,15 @@ public class HostIdFixer : IWantToRunWhenBusStartsAndStops
 
     static Guid CreateGuid(params string[] data)
     {
-        using (var provider = new MD5CryptoServiceProvider())
+        using (MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider())
         {
-            var inputBytes = Encoding.Default.GetBytes(String.Concat(data));
-            var hashBytes = provider.ComputeHash(inputBytes);
+            byte[] inputBytes = Encoding.Default.GetBytes(String.Concat(data));
+            byte[] hashBytes = provider.ComputeHash(inputBytes);
             return new Guid(hashBytes);
         }
     }
 
-    public void Stop()
+    public void Run(Configure config)
     {
     }
 }

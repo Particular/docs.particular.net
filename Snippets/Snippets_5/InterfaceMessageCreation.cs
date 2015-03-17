@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 
 // ReSharper disable PossibleNullReferenceException
 public class InterfaceMessageCreation
@@ -19,9 +20,9 @@ public class InterfaceMessageCreation
         IMessageCreator messageCreator = null;
         #region ReflectionInterfaceMessageCreation
         //This type would be derived from some other runtime information
-        var messageType = typeof(MyInterfaceMessage);
+        Type messageType = typeof(MyInterfaceMessage);
 
-        var instance = messageCreator.CreateInstance(messageType);
+        object instance = messageCreator.CreateInstance(messageType);
 
         //use reflection to set properties on the constructed instance
 

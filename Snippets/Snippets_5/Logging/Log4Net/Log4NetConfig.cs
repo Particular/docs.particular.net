@@ -1,9 +1,9 @@
 ﻿using log4net.Appender;
 using log4net.Config;
 using log4net.Core;
-using log4net.Filter;
 using log4net.Layout;
 using NServiceBus.Log4Net;
+using NServiceBus.Logging;
 
 public class Log4NetConfig
 {
@@ -11,18 +11,18 @@ public class Log4NetConfig
     {
         #region Log4NetInCode
 
-        var layout = new PatternLayout
+        PatternLayout layout = new PatternLayout
         {
             ConversionPattern = "%d [%t] %-5p %c [%x] - %m%n"
         };
         layout.ActivateOptions();
-        var consoleAppender = new ColoredConsoleAppender
+        ColoredConsoleAppender consoleAppender = new ColoredConsoleAppender
         {
             Threshold = Level.Debug,
             Layout = layout
         };
         consoleAppender.ActivateOptions();
-        var fileAppender = new RollingFileAppender
+        RollingFileAppender fileAppender = new RollingFileAppender
         {
             DatePattern = "yyyy-MM-dd'.txt'",
             RollingStyle = RollingFileAppender.RollingMode.Composite,
@@ -39,30 +39,7 @@ public class Log4NetConfig
 
         BasicConfigurator.Configure(fileAppender, consoleAppender);
 
-        NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
-
-        #endregion
-    }
-    public void Filtering()
-    {
-        #region Log4NetFiltering
-
-        var appender = new ColoredConsoleAppender
-        {
-            Threshold = Level.Debug,
-            Layout = new SimpleLayout(),
-        };
-
-        appender.AddFilter(new LoggerMatchFilter
-                           {
-                               LoggerToMatch = "MyNamespace"
-                           });
-        appender.AddFilter(new DenyAllFilter());
-        appender.ActivateOptions();
-
-        BasicConfigurator.Configure(appender);
-
-        NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
+        LogManager.Use<Log4NetFactory>();
 
         #endregion
     }

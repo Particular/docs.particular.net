@@ -21,7 +21,7 @@ For simple changes the GitHub web UI should suffice.
 
 For more complex changes you should fork and then submit a pull request. This is useful if you are proposing multiple file changes
 
- 1. [Fork](http://help.github.com/forking/) on GitHub.
+ 1. [Fork](https://help.github.com/forking/) on GitHub.
  1. Clone your fork locally.
  1. Work on your feature.
  1. Push the up to GitHub.
@@ -33,7 +33,7 @@ For more information see [Collaborating on GitHub](https://help.github.com/categ
 
 ## Lower case  and `-` delimited
 
-All content files (`.md`,`.png`,`.jpg` etx) and directories must be lower case. 
+All content files (`.md`,`.png`,`.jpg` etc) and directories must be lower case. 
 
 All links pointing to them must be lower case.
 
@@ -86,6 +86,7 @@ When renaming an existing article to a new name, please add the `redirects:` sec
  
 * Values specified in the `redirects` section must be lower cased.
 * Multiple values can be specified for the redirects, same as `tags`.
+* Values are fully qualified
 
 ## An example header for an article
 
@@ -102,8 +103,8 @@ tags:
 - Debugging
 
 redirects:
-- sm-si
-- debugging-servicematrix
+- servicematrix/sm-si
+- servicematrix/debugging-servicematrix
 
 ---
 
@@ -163,6 +164,29 @@ Don't render YAML Front-Matter by going to
 
 And checking `Ignore YAML Front-matter`
 
+## Samples
+
+### Conventions
+
+ * Samples are located here https://github.com/Particular/docs.particular.net/tree/master/samples.
+ * They are linked to from the home page and are rendered here http://docs.particular.net/samples/.
+ * Any directory in that structure with a sample.md will be considered a "root for a sample" or Sample Root.
+ * A Sample Root may not contain an sample.md in subdirectories.
+ * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
+ * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.  
+
+### Recommendations
+
+ * Avoid using screen shots in samples as they cause extra effort when the sample needs to be updated.
+ * Samples should illustrate a feature or scenario with as few moving pieces as possible. For example if the sample is "illustrating IOC with MVC" then "adding signalr" to that sample will only cause confusion. In general the fewer nugets you need to get the point across the better.
+ * Do not "document things inside a sample". A sample is "to show how something is used" not to document it. Instead update the appropriate documentation page and link to it. As a general rule if you add any content to a sample, where that guidance could possible be applicable to other samples, then that guidance should probably exist in a documentation page.
+
+### Bootstrapping a sample
+
+At the moment the best way to get started on a sample is to copy an existing one. Ideally one that has similarities to what you are trying to achieve. 
+
+A good sample to start with is the [Default Logging Sample](https://github.com/Particular/docs.particular.net/tree/master/samples/logging/default), since all it does is enable logging. You can then add the various moving pieces to your copy.
+
 ## Code Snippets
 
 ### Defining Snippets
@@ -179,7 +203,6 @@ var configure = Configure.With();
 // endcode
 ```
 
-
 #### Using regions 
 
 Any code wrapped in a named C# region will pe picked up. The name of the region is used as the key. 
@@ -189,7 +212,6 @@ Any code wrapped in a named C# region will pe picked up. The name of the region 
 var configure = Configure.With();
 #endregion
 ```
-
 
 ### Snippet versioning
 
@@ -220,7 +242,9 @@ If a snippet has no version defined then the version will be derived by walking 
  
 ### Using Snippets
 
-The keyed snippets can then be used in any documentation `.md` file by adding the text **&lt;!-- import KEY -->**.
+The keyed snippets can then be used in any documentation `.md` file by adding the text
+
+**&lt;!-- import KEY -->**.
 
 Then snippets with the key (all versions) will be rendered in a tabbed manner. If there is only a single version then it will be rendered as a simple code block with no tabs.
 
@@ -260,7 +284,6 @@ var configure = Configure.With()
 
 The same behavior will apply to leading tabs.
 
-
 #### Do not mix tabs and spaces
 
 If tabs and spaces are mixed there is no way for the snippets to work out what to trim.
@@ -284,6 +307,15 @@ var configure = Configure.With()
 </pre>
 
 Note none of the tabs have been trimmed.
+
+### Why is explicit variable typing used instead of 'var'
+
+This is done for two reasons
+
+ 1. Since the snippets are viewing inline to a page they lack much of the context of a full code file such as using statements. To remove the ambiguity explicit variable declaration is being used
+ 2. It makes it much easier to build the docs search engine when the types being used on a page can be inferred by the snippets used. 
+
+This is enforced by Resharper rules.
 
 ## Alerts
 
@@ -339,6 +371,15 @@ Would be rendered as
     * Point One 
     * Point Two
     </p> 
+
+## Headings
+
+The first (and all top level) headers in a `.md` page should be a `h2` ie `##`. With sub-headers under it being `h2` are `h3` etc. 
+
+## Space
+
+* Add an empty after a heading
+* Add an empty line between paragraphs
 
 ## Anchors
 
@@ -429,7 +470,7 @@ It will also wrap the image in a clickable lightbox so the full image can be acc
 
 # Additional Resources
 
-* [General GitHub documentation](http://help.github.com/)
-* [GitHub pull request documentation](http://help.github.com/send-pull-requests/)
+* [General GitHub documentation](https://help.github.com/)
+* [GitHub pull request documentation](https://help.github.com/send-pull-requests/)
 * [Forking a Repo](https://help.github.com/articles/fork-a-repo)
 * [Using Pull Requests](https://help.github.com/articles/using-pull-requests)

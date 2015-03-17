@@ -6,7 +6,7 @@ public class ForInstallationOnReplacement
     {
         #region Installers
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.EnableInstallers();
 

@@ -2,7 +2,6 @@
 title: Fluent Configuration API in V3 and V4
 summary: NServiceBus Fluent Configuration API in V3 and V4
 tags:
-- NServiceBus
 - Fluent Configuration
 ---
 
@@ -41,13 +40,13 @@ By default, the endpoint name is deduced by the namespace of the assembly that c
 
 NOTE: If you need to customize the endpoint name via code using the `DefineEndpointName` method, it is important to call it first, right after the `With()` configuration entry point.
 
-To dive into the endpoint naming definition, read [How To Specify Your Input Queue Name?](how-to-specify-your-input-queue-name.md).
+To dive into the endpoint naming definition, read [How To Specify Your Input Queue Name?](/nservicebus/messaging/specify-input-queue-name.md).
 
 #### Dependency Injection
 
 NServiceBus relies heavily on Dependency Injection to work properly. To initialize the built-in Inversion of Control container, call the `.DefaultBuilder()` method.
 
-You can also instruct NServiceBus to use your container to benefit from the dependency resolution event of your custom types. For details on how to change the default container implementation, refer to the [Containers](containers.md) article.
+You can also instruct NServiceBus to use your container to benefit from the dependency resolution event of your custom types. For details on how to change the default container implementation, refer to the [Containers](/nservicebus/containers/) article.
 
 #### Transport
 
@@ -60,8 +59,6 @@ In V4, given the requirement to support multiple transports, call the `UseTransp
 * `UseTransport<TTransport>( "connection string (optional)" )`: the generic overload of the UseTransport method can be invoked using a transport class as generic parameter and optionally passing in a transport connection string.
 * `UseTransport( Type transportType, "connection string (optional)" )`: the non-generic overload of the `UseTransport()` method accepts a `Type` instance that is the type of transport class and optionally the transport connection string.
 
-The list of the built-in supported transport is available in the [NServiceBus Connection String Samples](connection-strings-samples.md) article.
-
 #### Unobtrusive Mode
 
 Because plain C# classes or interfaces define message contracts, for NServiceBus to find those classes when scanning assemblies, you need to mark them with the special `IMessage` interface, or the `ICommand` or `IEvent` interfaces that inherit from the `IMessage` one. This requirement creates a strong dependency on the NServiceBus assemblies and can cause versioning issues. To completely overcome the problem, NServiceBus can run in unobtrusive mode, meaning that you do not need to mark your messages with any interface and at configuration time you can define messages, commands, and events for NServiceBus: 
@@ -69,8 +66,8 @@ Because plain C# classes or interfaces define message contracts, for NServiceBus
 * `DefiningMessagesAs( Func<Type, Boolean> predicate )`: for each type found in the scanned assemblies, the given predicate will be invoked to evaluate if the type should be considered a message or not. 
 * `DefiningCommandsAs( Func<Type, Boolean> predicate )`: for each type found in the scanned assemblies, the given predicate will be invoked to evaluate if the type should be considered a command or not.
 * `DefiningEventsAs(Func<Type, Boolean> predicate )`: for each type found in the scanned assemblies, the given predicate will be invoked to evaluate if the type should be considered an event or not.
-* `DefiningExpressMessagesAs( Func<Type, Boolean> predicate )`: for each type found in the scanned assemblies, the given predicate will be invoked to evaluate if the type should be considered an [express message](how-do-i-specify-store-forward-for-a-message.md).
-* `DefiningTimeToBeReceivedAs( Func<Type, TimeSpan> timeToBeReceivedHandler )`: for each type found in the scanned assemblies, the given predicate will be invoked to determine the [time to be received](how-do-i-discard-old-messages.md) of each message, if any. 
+* `DefiningExpressMessagesAs( Func<Type, Boolean> predicate )`: for each type found in the scanned assemblies, the given predicate will be invoked to evaluate if the type should be considered an [express message](/nservicebus/messaging/express-messages.md).
+* `DefiningTimeToBeReceivedAs( Func<Type, TimeSpan> timeToBeReceivedHandler )`: for each type found in the scanned assemblies, the given predicate will be invoked to determine the [time to be received](/nservicebus/messaging/discard-old-messages.md) of each message, if any. 
 
 NServiceBus can also define special behaviors for some message properties:
 
@@ -79,10 +76,9 @@ NServiceBus can also define special behaviors for some message properties:
                 
 To dive into the unobtrusive mode, data bus, and encryption features:
 
-* [Unobtrusive Mode Messages](unobtrusive-mode-messages.md).
-* [Encryption Sample](encryption-sample.md).
-* [DataBus / Attachments](attachments-databus-sample.md).
-* [Encryption](encryption.md)
+* [Unobtrusive Mode Messages](/nservicebus/messaging/unobtrusive-mode.md).
+* [DataBus / Attachments](/nservicebus/messaging/databus.md).
+* [Encryption](/nservicebus/security/encryption.md)
 
 #### DataBus
 
@@ -98,15 +94,15 @@ To configure the encryption feature you must define the encryption algorithm. NS
 
 #### Logging
 
-You can log NServiceBus using Log4Net as the logging library. To configure the endpoint simply call the `Log4Net()` method. More information on logging is in the [Logging in NServiceBus 4 and below](logging-in-nservicebus4-and-below.md) article.
+You can log NServiceBus using Log4Net as the logging library. To configure the endpoint simply call the `Log4Net()` method. More information on logging is in the [Logging in NServiceBus 4 and below](/nservicebus/logging/nservicebus4-and-below.md) article.
 
 #### Fault Management
 
-NServiceBus [manages fault](msmqtransportconfig.md). To activate the fault manager, call the `MessageForwardingInCaseOfFault()` method.
+NServiceBus [manages fault](/nservicebus/msmq/transportconfig.md). To activate the fault manager, call the `MessageForwardingInCaseOfFault()` method.
 
 #### Performance Counters
 
-To enable Performance Counters for a specific endpoint, call the `EnablePerformanceCounters()` method. For more information on  NServiceBus performance counters, read the [Performance Counters](monitoring-nservicebus-endpoints.md#nservicebus-performance-counters) article.
+To enable Performance Counters for a specific endpoint, call the `EnablePerformanceCounters()` method. For more information on  NServiceBus performance counters, read the [Performance Counters](/nservicebus/operations/monitoring-endpoints.md#nservicebus-performance-counters) article.
 
 #### Service Level Agreement
 
@@ -127,13 +123,13 @@ Some NServiceBus features rely on persistence storage to work properly. Beginnin
 * `RavenSagaPersister()`: configures sagas to use RavenDB as storage.
 * `RavenSubscriptionStorage()`: configures the subscription manager to use RavenDB as storage.
 
-For a detailed explanation on how to connect to RavenDB, read the [Connecting to RavenDB from NServiceBus](using-ravendb-in-nservicebus-connecting.md) article.
+For a detailed explanation on how to connect to RavenDB, read the [Connecting to RavenDB from NServiceBus](/nservicebus/ravendb/connecting.md) article.
                 
 ##### NHibernate
 
 Starting from NServiceBus V3, NHIbernate persistence is supported via a separate package:
 
-* [Relational Persistence Using NHibernate in NServiceBus](relational-persistence-using-nhibernate.md);
+* [Relational Persistence Using NHibernate in NServiceBus](/nservicebus/nhibernate/);
 
 ##### In Memory Persistence
 
@@ -143,7 +139,7 @@ Some scenarios require an in-memory persistence configuration, such as the devel
 * `InMemorySagaPersister()`: configures the saga persistence to run in memory.
 * `InMemorySubscriptionStorage()`: configures the subscription manager to persist subscriptions in memory.
 
-Details of all the persistence options are in the [Persistence in NServiceBus](persistence-in-nservicebus.md) article.
+Details of all the persistence options are in the [Persistence in NServiceBus](/nservicebus/persistence/) article.
 
 #### MSMQ
 
@@ -151,7 +147,7 @@ When using MSMQ as a transport you can use one queue as the subscription storage
 
 #### License
 
-The methods of assigning the license to an endpoint are all detailed in the [How to install your license file](license-management.md) article. You can also specify a license at configuration time:
+The methods of assigning the license to an endpoint are all detailed in the [How to install your license file](/nservicebus/licensing/license-management.md) article. You can also specify a license at configuration time:
 
 * `LicensePath( string partToLicenseFile )`: configures the endpoint to use the license file found at the supplied path;
 * `License( string licenseText )`: configures the endpoint to use the supplied license, where the license text is the content of a license file.

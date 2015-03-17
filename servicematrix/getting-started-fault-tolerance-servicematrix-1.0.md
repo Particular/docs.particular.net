@@ -2,8 +2,8 @@
 title: Fault Tolerance using ServiceMatrix v1.0
 summary: See how NServiceBus messaging can get past all sorts of failure scenarios.
 tags:
-- ServiceMatrix 1.0
-- Visual Studio 2010
+- ServiceMatrix
+- Visual Studio
 - Fault Tolerance
 ---
 
@@ -35,7 +35,7 @@ It processes all those messages, and if you go back to the queue shown above and
 ##Fault tolerance
 Consider scenarios where the processing of a message fails. This could be due to something transient like a deadlock in the database, in which case some quick retries overcome this problem, making the message processing ultimately succeed. NServiceBus automatically retries immediately when an exception is thrown during message processing, up to five times by default (which is configurable).
 
-If the problem is something more protracted, like a third-party web service going down or a database being unavailable, it makes sense to try again some time later. This is called the [second-level retries](../nservicebus/second-level-retries.md) functionality of NServiceBus. Configure its behavior by selecting the OrderProcessing endpoint in Solution Builder and opening its properties (F4). 
+If the problem is something more protracted, like a third-party web service going down or a database being unavailable, it makes sense to try again some time later. This is called the [second-level retries](/nservicebus/errors/second-level-retries.md) functionality of NServiceBus. Configure its behavior by selecting the OrderProcessing endpoint in Solution Builder and opening its properties (F4). 
 
 ![Endpoint properties](images/1.0/getting-started8.5.jpg) 
 
@@ -85,7 +85,7 @@ NOTE: If you specify an error queue for a specific endpoint, it won't change whe
 
 The second value, `ForwardReceivedMessagesTo`, defines the queue to which all messages will be audited. Any message that is processed by an endpoint is forwarded to this queue. This too can be overridden per endpoint.
 
-In production, set both of these queues to be on a central machine by setting a value like "error@machine" or "error@IP-Address". Read about [how to configure retries](../nservicebus/second-level-retries.md).
+In production, set both of these queues to be on a central machine by setting a value like "error@machine" or "error@IP-Address". Read about [how to configure retries](/nservicebus/errors/second-level-retries.md).
 
 Make sure you remove the code which throws an exception before continuing.
 

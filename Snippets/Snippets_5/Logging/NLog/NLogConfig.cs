@@ -9,30 +9,14 @@ public class NLogConfig
     {
         #region NLogInCode
 
-        var config = new LoggingConfiguration();
+        LoggingConfiguration config = new LoggingConfiguration();
 
-        var consoleTarget = new ColoredConsoleTarget
+        ColoredConsoleTarget consoleTarget = new ColoredConsoleTarget
         {
             Layout = "${level}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"
         };
         config.AddTarget("console", consoleTarget);
         config.LoggingRules.Add(new LoggingRule("*", LogLevel.Debug, consoleTarget));
-
-        LogManager.Configuration = config;
-
-        NServiceBus.Logging.LogManager.Use<NLogFactory>();
-
-        #endregion
-    }
-    public void Filtering()
-    {
-        #region NLogFiltering
-
-        var config = new LoggingConfiguration();
-
-        var target = new ColoredConsoleTarget();
-        config.AddTarget("console", target);
-        config.LoggingRules.Add(new LoggingRule("MyNamespace.*", LogLevel.Debug, target));
 
         LogManager.Configuration = config;
 

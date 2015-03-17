@@ -1,18 +1,20 @@
 ﻿using NServiceBus;
+using NServiceBus.Persistence;
+using NServiceBus.SagaPersisters;
 
 class AzurePersistence
 {
     public void Demo()
     {
-        #region PersistanceWithAzure
+        #region PersistanceWithAzure 6
 
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
         config.UsePersistence<AzureStoragePersistence>();
 
         #endregion
     }
 
-    #region PersistenceWithAzureHost
+    #region PersistenceWithAzureHost 6
 
     public class EndpointConfig : IConfigureThisEndpoint
     {
@@ -26,7 +28,7 @@ class AzurePersistence
 
     public void CustomizingAzurePersistenceSubscriptions_6_2()
     {
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         #region AzurePersistenceSubscriptionsCustomization 6.2
 
@@ -39,7 +41,7 @@ class AzurePersistence
 
     public void CustomizingAzurePersistenceSagas_6_2()
     {
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         #region AzurePersistenceSagasCustomization 6.2
 
@@ -51,7 +53,7 @@ class AzurePersistence
 
     public void AzurePersistenceTimeoutsCustomization_6_2()
     {
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         #region AzurePersistenceTimeoutsCustomization 6.2
 

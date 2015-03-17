@@ -18,7 +18,7 @@ public class Containers
 
         #region Containers
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         // Autofac
         configuration.UseContainer<AutofacBuilder>();

@@ -27,7 +27,7 @@ namespace UnitTesting.ServiceLayer
 
         public void Handle(RequestMessage message)
         {
-            var reply = new ResponseMessage
+            ResponseMessage reply = new ResponseMessage
             {
                 String = message.String
             };

@@ -3,7 +3,6 @@ title: Name and Description Properties for the API
 summary: How to configure the default values for the Name and Description properties of the ServiceControl API
 tags:
 - ServiceControl
-- Configuration
 ---
 The ServiceControl HTTP API exposes two properties that describe the ServiceControl installation:
 

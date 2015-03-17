@@ -8,12 +8,12 @@ class ConfiguringTransactionRecoveryStorage
     {
         #region ConfiguringTransactionRecoveryStorage
 
-        var transactionRecoveryPath = "path to transaction recovery storage";
+        string transactionRecoveryPath = "path to transaction recovery storage";
             
         Configure.With()
             .CustomiseRavenPersistence(store =>
             {
-                var documentStore = ((DocumentStore) store);
+                DocumentStore documentStore = ((DocumentStore) store);
                 documentStore.TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(transactionRecoveryPath);
             });
 

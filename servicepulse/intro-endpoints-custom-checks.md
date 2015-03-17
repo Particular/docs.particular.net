@@ -3,7 +3,6 @@ title: Custom Check Monitoring in ServicePulse
 summary: Describes how ServicePulse uses custom checks to monitor and detect problem that are unique to the solution or endpoint(s) monitored
 tags:
 - ServicePulse
-- Introduction
 ---
 
 ServicePulse monitors the health and activity of NServiceBus endpoints using heartbeat messages and activity indications. (See [Introduction to Endpoints and Heartbeats in ServicePulse](intro-endpoints-heartbeats.md).)

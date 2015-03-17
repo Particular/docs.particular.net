@@ -10,7 +10,7 @@ public class PropertyEncryption
     {
         #region EncryptionServiceSimple
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.RijndaelEncryptionService();
 
         #endregion
@@ -18,7 +18,7 @@ public class PropertyEncryption
     public void Convention()
     {
         #region DefiningEncryptedPropertiesAs
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.Conventions()
             .DefiningEncryptedPropertiesAs(info => info.Name.EndsWith("EncryptedProperty"));
         #endregion
@@ -41,9 +41,9 @@ public class PropertyEncryption
     {
         #region EncryptionFromFluentAPI
 
-        var configuration = new BusConfiguration();
-        var encryptionKey = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6";
-        var expiredKeys = new List<string>
+        BusConfiguration configuration = new BusConfiguration();
+        string encryptionKey = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6";
+        List<string> expiredKeys = new List<string>
                           {
                               "abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6",
                               "cdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"
@@ -77,7 +77,7 @@ public class PropertyEncryption
     {
         #region EncryptionFromIEncryptionService
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         //where MyCustomEncryptionService implements IEncryptionService 
         configuration.RegisterEncryptionService(b => new MyCustomEncryptionService());
 

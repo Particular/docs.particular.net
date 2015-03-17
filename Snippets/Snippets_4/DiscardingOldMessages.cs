@@ -13,7 +13,7 @@ public class DiscardingOldMessages
     {
         #region DiscardingOldMessagesWithFluent
 
-        var configure = Configure.With()
+        Configure configure = Configure.With()
             .DefiningTimeToBeReceivedAs(type =>
             {
                 if (type == typeof(MyMessage))

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.NHibernate;
+using NServiceBus.RavenDB.Persistence;
 using NServiceBus.Saga;
 
 public class SagaBasics
@@ -270,7 +272,8 @@ public class SagaBasics
     {
         #region saga-finder
 
-        public class MySagaFinder : IFindSagas<MySagaData>.Using<Message2>
+        // NHibernate example:
+        public class MyNHibernateSagaFinder : IFindSagas<MySagaData>.Using<Message2>
         {
             public NHibernateStorageContext StorageContext { get; set; }
 
@@ -283,6 +286,19 @@ public class SagaBasics
             }
         }
 
+        // RavenDb example:
+        public class MyRavenDbSagaFinder : IFindSagas<MySagaData>.Using<Message2>
+        {
+            public ISessionProvider SessionProvider { get; set; }
+
+            public MySagaData FindBy(Message2 message)
+            {
+                //your custom finding logic here, e.g.
+                return SessionProvider.Session
+                                        .Query<MySagaData>()
+                                        .SingleOrDefault(x => x.SomeID == message.SomeID && x.SomeData == message.SomeData);
+            }
+        }
         #endregion
 
         public class MySagaData : IContainSagaData
@@ -299,9 +315,9 @@ public class SagaBasics
     {
         #region saga-configure-self-hosted
 
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
         config.UsePersistence<RavenDBPersistence>(); //or NHibernatePersistence
-        var bus = Bus.Create(config);
+        IStartableBus bus = Bus.Create(config);
 
         #endregion
     }

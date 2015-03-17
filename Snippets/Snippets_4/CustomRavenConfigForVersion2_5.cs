@@ -28,13 +28,20 @@ public class UseRavenDBVersion2_5PersistenceUsingCustomInitialization : IWantCus
         #region Version2_5RavenDBPersistenceInitialization
 
         Configure.With()
-           .DefaultBuilder()
-           .RavenDBStorage() // Need to call this method
-           .UseRavenDBSagaStorage() // Call this method to use Raven saga storage
-           .UseRavenDBSubscriptionStorage() // Call this method to use Raven subscription storage
-           .UseRavenDBTimeoutStorage() // Call this method to use Raven timeout storage
-           .UseRavenDBGatewayDeduplicationStorage() // Call this method to use Raven deduplication storage for the Gateway
-           .UseRavenDBGatewayStorage(); // Call this method to use the  Raven Gateway storage method
+            .DefaultBuilder()
+            // Need to call this method
+            .RavenDBStorage() 
+            // Call this method to use Raven saga storage
+            .UseRavenDBSagaStorage() 
+            // Call this method to use Raven subscription storage
+            .UseRavenDBSubscriptionStorage() 
+            // Call this method to use Raven timeout storage
+            .UseRavenDBTimeoutStorage() 
+            // Call this method to use Raven deduplication storage for the Gateway
+            .UseRavenDBGatewayDeduplicationStorage()
+            // Call this method to use the  Raven Gateway storage method
+            .UseRavenDBGatewayStorage(); 
+
         #endregion
     }
 }

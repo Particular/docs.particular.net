@@ -6,7 +6,7 @@ public class StartupActionReplacement
     {
         #region StartupAction
 
-        var bus = Bus.Create(new BusConfiguration());
+        IStartableBus bus = Bus.Create(new BusConfiguration());
         MyCustomAction();
         bus.Start();
 

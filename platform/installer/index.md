@@ -6,14 +6,14 @@ tags: [Platform, Installation]
 
 ## Offline install
 
-The platform installer requires acceess to the internet and several dependencies (see below). If either of these are problematic given you current environment please see [Offline Install](offline.md).
+The Platform Installer requires access to the internet and several dependencies (see below). If either of these are problematic given you current environment please see [Offline Install](offline.md).
 
 ## Download
 
 - [Clickonce download](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
 - [Direct setup download](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/setup.exe)
 
-NOTE: The platform Installer is recommended for use in development environments. For testing and production environments it is recommended you use the relevant Chocolatey commands, PowerShell cmdlets and NuGet packages.
+NOTE: The Platform Installer is recommended for use in development environments. For testing and production environments it is recommended you use the relevant Chocolatey commands, PowerShell cmdlets and NuGet packages.
 
 ## Dependencies 
 
@@ -23,7 +23,7 @@ NOTE: The platform Installer is recommended for use in development environments.
 
 ## License Acceptance
 
-When you first use the Platform installer you will be prompted to accept the NServiceBus License Agreement 
+When you first use the Platform Installer you will be prompted to accept the NServiceBus License Agreement 
 
 ## Confirm Chocolatey install
 
@@ -82,7 +82,7 @@ Installs the [ServiceControl Chocolatey Package](https://chocolatey.org/packages
 
 ## MSI Information
 
-* [MSI error messages](http://msdn.microsoft.com/en-us/library/aa376931.aspx)
+* [MSI error messages](https://msdn.microsoft.com/en-us/library/aa376931.aspx)
 
 ## Chocolatey Information 
 
@@ -103,11 +103,11 @@ See [Installing Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Instal
 
 ## ClickOnce Information
 
-* [Troubleshooting ClickOnce Deployments](http://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
+* [Troubleshooting ClickOnce Deployments](https://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
 * [ClickOnce forum](https://social.msdn.microsoft.com/Forums/windows/en-US/home?forum=winformssetup)
 
 
 
 ### FAQ
 
-* If you're having issues with connectivity please see this post on how to set Chocolatey and NuGet up behind a proxy: https://escapologist.wordpress.com/2013/02/27/nuget-and-chocolatey-behind-a-proxy/
+* If you're having issues with connectivity please see this post on how to set Chocolatey and NuGet up behind a proxy: https://github.com/chocolatey/choco/wiki/Proxy-Settings-for-Chocolatey

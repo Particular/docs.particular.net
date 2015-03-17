@@ -5,8 +5,10 @@ class PersistenceOrder
 {
     void Setup_5_0()
     {
+#pragma warning disable 618
+
         #region PersistenceOrder_Correct 5.0
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<RavenDBPersistence>();
             
@@ -16,25 +18,29 @@ class PersistenceOrder
         config.UsePersistence<InMemoryPersistence>()
             .For(Storage.GatewayDeduplication);
         #endregion
+#pragma warning restore 618
     }
 
     void Setup_5_2()
     {
         #region PersistenceOrder_Correct 5.2
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<RavenDBPersistence>();
 
         config.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 
-        config.UsePersistence<InMemoryPersistence, Storage.GatewayDeduplication>();
+        config.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
+
         #endregion
     }
 
     void Setup3_5_0()
     {
+#pragma warning disable 618
+
         #region PersistenceOrder_Explicit 5.0
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<NHibernatePersistence>()
             .For(Storage.Outbox);
@@ -45,12 +51,14 @@ class PersistenceOrder
         config.UsePersistence<RavenDBPersistence>()
             .For(Storage.Sagas, Storage.Subscriptions, Storage.Timeouts);
         #endregion
+#pragma warning restore 618
+
     }
 
     void Setup3_5_2()
     {
         #region PersistenceOrder_Explicit 5.2
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 
@@ -64,8 +72,10 @@ class PersistenceOrder
 
     void Setup2_5_0()
     {
+#pragma warning disable 618
+
         #region PersistenceOrder_Incorrect 5.0
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<NHibernatePersistence>()
             .For(Storage.Outbox);
@@ -76,12 +86,13 @@ class PersistenceOrder
         // This one will override the above settings!
         config.UsePersistence<RavenDBPersistence>();
         #endregion
+#pragma warning restore 618
     }
 
     void Setup2_5_2()
     {
         #region PersistenceOrder_Incorrect 5.2
-        var config = new BusConfiguration();
+        BusConfiguration config = new BusConfiguration();
 
         config.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 

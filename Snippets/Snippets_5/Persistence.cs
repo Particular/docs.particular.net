@@ -5,10 +5,11 @@ public class Persistence
 {
     public void AllThePersistence()
     {
+#pragma warning disable 618
 
         #region ConfigurePersistence
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         // Configure to use InMemory for all persistence types
         configuration.UsePersistence<InMemoryPersistence>();
@@ -32,6 +33,7 @@ public class Persistence
             .For(Storage.Sagas, Storage.Subscriptions);
 
         #endregion
+#pragma warning restore 618
     }
 
 }

@@ -8,7 +8,7 @@ public class TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
     {
         #region TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages(TimeSpan.FromMinutes(5));
 

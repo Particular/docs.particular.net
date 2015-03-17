@@ -14,7 +14,7 @@ namespace UnitTesting.AdditionalDependencies
         {
             Test.Initialize();
 
-            var mockService = new MyService();
+            MyService mockService = new MyService();
             Test.Handler(bus => new WithDependencyInjectionHandler(mockService));
             //Rest of test
         }

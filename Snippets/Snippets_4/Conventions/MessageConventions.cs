@@ -10,7 +10,7 @@ public class MessageConventions
         // NOTE: When you're self hosting, '.DefiningXXXAs()' has to be before '.UnicastBus()', 
         // otherwise you'll get: 'System.InvalidOperationException: "No destination specified for message(s): MessageTypeName"
 
-        var configure = Configure.With()
+        Configure configure = Configure.With()
             .DefaultBuilder()
             .DefiningCommandsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"))
             .DefiningEventsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"))

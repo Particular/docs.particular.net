@@ -10,7 +10,7 @@ public class CustomConfigSource
 
         #region RegisterCustomConfigSource
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.CustomConfigurationSource(new MyCustomConfigurationSource());
 

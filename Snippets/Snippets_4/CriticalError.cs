@@ -11,7 +11,7 @@ public class CriticalError
         // Configuring how NServicebus handles critical errors
         Configure.With().DefineCriticalErrorAction((message, exception) =>
         {
-            var output = string.Format("We got a critical exception: '{0}'\r\n{1}", message, exception);
+            string output = string.Format("We got a critical exception: '{0}'\r\n{1}", message, exception);
             Console.WriteLine(output);
             // Perhaps end the process??
         });

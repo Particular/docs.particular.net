@@ -6,7 +6,7 @@ public class HandlerOrdering
     {
         #region HandlerOrderingWithFluent
         
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>());
 

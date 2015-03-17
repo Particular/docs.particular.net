@@ -9,13 +9,13 @@ class ConfiguringTransactionRecoveryStorage
     {
         #region ConfiguringTransactionRecoveryStorage
 
-        var transactionRecoveryPath = "path to transaction recovery storage";
-        var myDocumentStore = new DocumentStore
+        string transactionRecoveryPath = "path to transaction recovery storage";
+        DocumentStore myDocumentStore = new DocumentStore
         {
             TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(transactionRecoveryPath)
         };
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.UsePersistence<RavenDBPersistence>()
             .SetDefaultDocumentStore(myDocumentStore);
 

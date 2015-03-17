@@ -7,7 +7,7 @@ public class ScaleOut
     {
         #region ScaleOut
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.ScaleOut().UseSingleBrokerQueue();
         //or

@@ -3,7 +3,6 @@ title: Configuring a Non-Privileged Service Account
 summary: Describes the changes made to allow ServiceControl V1.2 to run as a low privilege domain account
 tags:
 - ServiceControl
-- Configuration
 ---
 
 ServiceControl 1.2 installation sets up the service to run under the LOCALSYSTEM account.  This configuration works with the default MSMQ transport, but when working with other transports such as SQL, you should change the service account to a custom user account to allow use of Windows integrated credentials. 

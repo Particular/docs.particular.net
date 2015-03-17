@@ -6,7 +6,7 @@ public class PurgeOnStartup
     {
         #region PurgeOnStartup
 
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
 
         configuration.PurgeOnStartup(true);
 
