@@ -1,5 +1,5 @@
 ---
-title: Auditing With NServiceBus
+title: Auditing Messages
 summary: 'Tell NServiceBus where to send messages and it provides built-in message auditing for every endpoint'
 tags:
 - Auditing
