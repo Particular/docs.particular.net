@@ -2,7 +2,6 @@
 title: MSMQ connection strings
 summary: Detailed connection string information for MSMQ.
 tags:
-- NServiceBus
 - Connection strings
 - Transports
 ---
