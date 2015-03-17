@@ -9,6 +9,7 @@ public class MessageWithBinary : IMessage
 {
     public string SomeProperty { get; set; }
 }
+
 [SerializeWithJson]
 public class MessageWithJson : IMessage
 {

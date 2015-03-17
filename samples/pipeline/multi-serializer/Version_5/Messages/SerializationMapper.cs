@@ -44,7 +44,7 @@ public class SerializationMapper
         bool isBinaryMessage = messageType.ContainsAttribute<SerializeWithBinaryAttribute>();
         if (isBinaryMessage && isJsonMessage)
         {
-            string message = string.Format("Chose either [SerializeWithBinaryAttribute] or  [SerializeWithJsonAttribute] for serialization of '{0}'.", messageType.Name);
+            string message = string.Format("Choose either [SerializeWithBinary] or [SerializeWithJson] for serialization of '{0}'.", messageType.Name);
             throw new Exception(message);
         }
         if (isBinaryMessage)
