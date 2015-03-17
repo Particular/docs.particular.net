@@ -1,5 +1,5 @@
 ---
-title: .Net Framework version requirements
+title: .Net Framework requirements
 summary: List of the .Net Framework requirements for NServiceBus
 tags: 
  - Net Framework
