@@ -4,7 +4,7 @@ summary: Design of tables that are used as queues in thr SQL Server transport
 tags:
 - SQL Server
 - SQLServer
-- Transport
+- Transports
 ---
 
 ## Queue table structure
