@@ -4,7 +4,6 @@ summary: Increase space for monitored data by configuring ServiceControl to save
 tags:
 - ServiceControl
 - RavenDB Embedded
-- Configuration
 ---
 ServiceControl stores its own data in a RavenDB embedded instance. By default it is located here:
 
