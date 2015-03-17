@@ -3,7 +3,6 @@ title: ServiceInsight Application Invocation
 summary: How the integration between ServicePulse and ServiceInsight works and how to use the parametrized invocation of ServiceInsight.
 tags: 
 - Integration
-- Application Invocation
 ---
 
 When we built the NServiceBus suite of tools, we carefully considered the integration between them. Since the tools are conceptually built for different purposes, the people using them must be able to collaborate.
