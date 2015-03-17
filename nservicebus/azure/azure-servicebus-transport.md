@@ -39,11 +39,13 @@ Alternatively, when using one of the NServiceBus provided hosting processes, you
 
 ## Setting the Connection String
 
-The default way to set the connection string is using the .net provided connectionStrings configuration section in app.config or web.config, with the name `NServicebus\Transport`:
+The default way to set the connection string is using the .net provided `connectionStrings` configuration section in app.config or web.config, with the name `NServicebus\Transport`:
 
 	<connectionStrings>
 	   <add name="NServiceBus/Transport" connectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
 	</connectionStrings> 
+
+For more detail see [Configuration Connection Strings](https://msdn.microsoft.com/en-us/library/azure/jj149830.aspx)
 
 ## Configuring in Detail
 
@@ -73,19 +75,6 @@ Using this configuration setting you can change the following values. NOTE: Most
 - `EnableDeadLetteringOnMessageExpiration`: Specifies whether messages should be moved to a dead letter queue upon expiration. Defaults to false (TTL is so large it wouldn't matter anyway). This assumes there have been no attempts to deliver. Errors on delivery will still put the message on the dead letter queue.
 - `EnableDeadLetteringOnFilterEvaluationExceptions`: Specifies whether messages should be moved to a dead letter queue upon filter evaluation exceptions. Defaults to false.
 - `QueuePerInstance`: Tells NServiceBus to create a separate queue for every instance of the endpoint hosted. This is useful in pub/sub scenarios where you want a message to arrive for every instance of the endpoint, i.e., in a webfarm that has a local cache on every machine. Defaults to false.
-
-
-### Connection string sample
-
-```xml
-<connectionStrings>
-   <!-- Azure ServiceBus -->
-   <add name="NServiceBus/Transport"
-        connectionString="Endpoint=sb://[namespace].servicebus.windows.net;
-                                      SharedSecretIssuer=owner;
-                                      SharedSecretValue=someSecret"/>
-</connectionStrings>
-```
 
 ## Sample
 

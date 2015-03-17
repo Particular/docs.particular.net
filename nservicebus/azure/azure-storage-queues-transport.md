@@ -49,6 +49,8 @@ The default way of setting the connection string is using the .net provided conn
 
 Note that multiple connection string formats apply when working with windows azure storage services. When you're running against the emulated environment the format is `UseDevelopmentStorage=true`, but when running against a cloud hosted storage account the format is `DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;` 
 
+For more information see [Configuring Azure Connection Strings](https://msdn.microsoft.com/en-us/library/azure/ee758697.aspx)
+
 ## Detailed configuration
 
 If you need more fine grained control on how the azure storage queue transport behaves, you can override the default settings by adding a configuration section called `AzureQueueConfig` to your web.config or app.config. For example:
@@ -69,16 +71,6 @@ Using this configuration setting you can change the following values.
 - `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. Defaults to 10. Depending on the load you expect, I would vary this value between 1 and 1000 (which is the limit)
 - `QueuePerInstance`: Tells nservicebus to create a separate queue for every instance of the endpoint hosted. This is useful in pub sub scenario's where you want a message to arrive at every instance of the endpoint, f.e. in a webfarm that has local cache on every machine. Defaults to false.
 
-### Connection string sample
-
-```xml
-<connectionStrings>
-   <!-- Azure Storage Queues -->
-   <add name="NServiceBus/Transport"
-        connectionString="DefaultEndpointsProtocol=https;
-                                      AccountName=myAccount;
-                                      AccountKey=myKey;"/>
-</connectionStrings>
 ```
 
 ## Sample

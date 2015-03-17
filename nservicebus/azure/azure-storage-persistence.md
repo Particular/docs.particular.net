@@ -60,6 +60,8 @@ The following settings are available for changing the behavior of timeout persis
 - `CatchUpInterval`: When a node hosting a timeout manager would go down, it needs to catch up with missed timeouts faster than it normally would (1 sec), this value allows you to set the catchup interval in seconds. Defaults to 3600, meaning it will process one hour at a time.
 - `PartitionKeyScope`: The time range used as partitionkey value for all timeouts. For optimal performance, this should be in line with the catchup interval so it should come to no surprise that the default value also represents an hour: yyyyMMddHH.
 
+For more information see [Configuring Azure Connection Strings](https://msdn.microsoft.com/en-us/library/azure/ee758697.aspx)
+
 ## Additional performance tips
 
 Azure storage persistence is network IO intensive, every operation performed against storage implies one or more network hops, most of which are small http requests to a single IP address (of your storage cluster). By default the .net framework has been configured to be very restrictive when it comes to this kind of communication:
