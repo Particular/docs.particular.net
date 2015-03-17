@@ -3,7 +3,6 @@ title: Centralizing Unobtrusive Declarations
 summary: Don't repeat yourself when writing unobtrusive declarations
 tags:
 - Unobtrusive
-- DRY
 redirects:
 - nservicebus/how-do-i-centralize-all-unobtrusive-declarations
 ---
