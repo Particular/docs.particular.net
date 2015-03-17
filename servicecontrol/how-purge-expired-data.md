@@ -4,7 +4,6 @@ summary: How to configure ServiceControl to automatically purge old data after a
 tags:
 - ServiceControl
 - Expiration
-- Configuration
 ---
 ServiceControl is a backend data service for ServicePulse production monitoring and ServiceInsight advanced debugging applications. It collects and stores all the traffic, in term of messages, that flows into the monitored system's endpoints (including audited messages, failed messages, status messages such as endpoint heartbeats, custom checks, and saga state). 
 
