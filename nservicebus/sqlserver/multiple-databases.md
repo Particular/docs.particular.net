@@ -3,7 +3,7 @@ title: Multi-database support
 summary: How to configure SQL Server transport to use multiple instances of the database and route messages between them.
 tags:
 - SQL Server
-- Transport
+- Transports
 ---
 
 The SQL Server transport allows you to use select, on per-endpoint basis, where the table queues should be created. The selection can be done on multiple levels:
