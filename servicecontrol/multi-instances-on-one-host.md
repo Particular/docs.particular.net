@@ -3,7 +3,6 @@ title: Installing Multiple Instances of ServiceControl on a Host
 summary: Describes the process to install multiple instances of ServiceControl on a single host
 tags:
 - ServiceControl
-- Configuration
 - Installation
 ---
 
