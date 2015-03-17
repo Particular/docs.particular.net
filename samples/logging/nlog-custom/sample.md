@@ -2,7 +2,8 @@
 title: Custom NLog configuration
 summary: Illustrates customizing NLog usage by configuring NLog targets and rules.
 tags:
-- Logging, NLog
+- Logging
+- NLog
 ---
 
 ## Code walk-through

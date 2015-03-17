@@ -2,7 +2,8 @@
 title: Custom Log4Net configuration
 summary: Illustrates customizing NLog usage by configuring NLog targets and rules.
 tags:
-- Logging, Log4Net
+- Logging
+- Log4Net
 ---
 
 ## Code walk-through
