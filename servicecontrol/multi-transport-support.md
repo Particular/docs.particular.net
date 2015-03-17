@@ -4,7 +4,6 @@ summary: How to configure ServiceControl to use non-MSMQ Transports
 tags:
 - ServiceControl
 - Transports
-- Configuration
 - RabbitMQ
 - SQL Server
 - Windows Azure
