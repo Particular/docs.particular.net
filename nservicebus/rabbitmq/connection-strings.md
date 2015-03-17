@@ -2,7 +2,6 @@
 title: RabbitMQ connection strings
 summary: Detailed connection string information for RabbitMQ.
 tags:
-- NServiceBus
 - Connection strings
 - Transports
 ---
