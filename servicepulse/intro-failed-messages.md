@@ -3,7 +3,6 @@ title: Failed Message Monitoring in ServicePulse
 summary: Describes how ServicePulse detects and monitors failed messages, and how you can resend messages for reprocessing, or archive repeatedly failing messages
 tags:
 - ServicePulse
-- Introduction
 ---
 
 When an NServiceBus endpoint fails to process a message, it performs a set of configurable attempts to recover from this failure. These attempts are referred to as First Level Retries (FLR) and Second Level Retries (SLR) and in many cases allow the endpoint to overcome intermittent communication failures. (For more details, see [Fault Tolerance](/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md#fault-tolerance) and [Second Level Retries](/nservicebus/errors/second-level-retries.md).)
