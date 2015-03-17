@@ -4,7 +4,6 @@ summary: How to configure ServiceControl to be exposed through a custom hostname
 tags:
 - ServiceControl
 - ServicePulse
-- Configuration
 ---
 
 To set a custom hostname and IP port for ServiceControl:
