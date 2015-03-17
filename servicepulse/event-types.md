@@ -1,7 +1,9 @@
 ---
 title: ServicePulse events
 summary: 'Introduction to ServicePulse monitoring events'
-tags: [ServicePulse, Concepts, Monitoring Events]
+tags: 
+- ServicePulse 
+- Monitoring Events
 ---
 
 ServicePulse gives you an overview of the system health, based on endpoints heartbeats and custom checks, and a detailed view of all the failed messages.
