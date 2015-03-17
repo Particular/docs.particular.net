@@ -3,7 +3,6 @@ title: Customizing ServiceControl Configuration
 summary: How ServiceControl manages configuration and how to create and customize the ServiceControl configuration file.
 tags:
 - ServiceControl
-- Configuration
 ---
 
 ServiceControl allows you to create a configuration file with settings that override default settings.
