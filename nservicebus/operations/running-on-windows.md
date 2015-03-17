@@ -8,7 +8,6 @@ tags:
 - Powershell
 - Storage
 - NHibernate
-- Windows
 redirects:
 - nservicebus/running-nservicebus-on-windows
 ---
