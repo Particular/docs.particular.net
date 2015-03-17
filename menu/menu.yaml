@@ -80,12 +80,14 @@
         - Title: "MSMQ"
           Url: "nservicebus/msmq"
           Articles: 
+            - "nservicebus/msmq/connection-strings"
             - "nservicebus/msmq/viewing-message-content-in-msmq"
             - "nservicebus/msmq/transportconfig"
             - "nservicebus/msmq/network-load-balancing"
         - Title: "RabbitMQ"
           Url: "nservicebus/rabbitmq"
           Articles: 
+            - "nservicebus/rabbitmq/connection-strings"
             - "nservicebus/rabbitmq/configuration-api"
     - 
       Title: "Serialization"

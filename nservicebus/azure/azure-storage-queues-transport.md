@@ -69,6 +69,18 @@ Using this configuration setting you can change the following values.
 - `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. Defaults to 10. Depending on the load you expect, I would vary this value between 1 and 1000 (which is the limit)
 - `QueuePerInstance`: Tells nservicebus to create a separate queue for every instance of the endpoint hosted. This is useful in pub sub scenario's where you want a message to arrive at every instance of the endpoint, f.e. in a webfarm that has local cache on every machine. Defaults to false.
 
+### Connection string sample
+
+```xml
+<connectionStrings>
+   <!-- Azure Storage Queues -->
+   <add name="NServiceBus/Transport"
+        connectionString="DefaultEndpointsProtocol=https;
+                                      AccountName=myAccount;
+                                      AccountKey=myKey;"/>
+</connectionStrings>
+```
+
 ## Sample
 
 Want to see this transport in action? Checkout the [Video storage sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud)

@@ -60,8 +60,6 @@ In V4, given the requirement to support multiple transports, call the `UseTransp
 * `UseTransport<TTransport>( "connection string (optional)" )`: the generic overload of the UseTransport method can be invoked using a transport class as generic parameter and optionally passing in a transport connection string.
 * `UseTransport( Type transportType, "connection string (optional)" )`: the non-generic overload of the `UseTransport()` method accepts a `Type` instance that is the type of transport class and optionally the transport connection string.
 
-The list of the built-in supported transport is available in the [NServiceBus Connection String Samples](connection-strings-samples.md) article.
-
 #### Unobtrusive Mode
 
 Because plain C# classes or interfaces define message contracts, for NServiceBus to find those classes when scanning assemblies, you need to mark them with the special `IMessage` interface, or the `ICommand` or `IEvent` interfaces that inherit from the `IMessage` one. This requirement creates a strong dependency on the NServiceBus assemblies and can cause versioning issues. To completely overcome the problem, NServiceBus can run in unobtrusive mode, meaning that you do not need to mark your messages with any interface and at configuration time you can define messages, commands, and events for NServiceBus: 

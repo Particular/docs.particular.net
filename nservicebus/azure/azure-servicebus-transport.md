@@ -74,6 +74,19 @@ Using this configuration setting you can change the following values. NOTE: Most
 - `EnableDeadLetteringOnFilterEvaluationExceptions`: Specifies whether messages should be moved to a dead letter queue upon filter evaluation exceptions. Defaults to false.
 - `QueuePerInstance`: Tells NServiceBus to create a separate queue for every instance of the endpoint hosted. This is useful in pub/sub scenarios where you want a message to arrive for every instance of the endpoint, i.e., in a webfarm that has a local cache on every machine. Defaults to false.
 
+
+### Connection string sample
+
+```xml
+<connectionStrings>
+   <!-- Azure ServiceBus -->
+   <add name="NServiceBus/Transport"
+        connectionString="Endpoint=sb://[namespace].servicebus.windows.net;
+                                      SharedSecretIssuer=owner;
+                                      SharedSecretValue=someSecret"/>
+</connectionStrings>
+```
+
 ## Sample
 
 To see this transport in action, see the [Video store sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureServiceBus.Cloud)
