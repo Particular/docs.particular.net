@@ -3,7 +3,6 @@ title: Message Mutators
 summary: 'Change messages by plugging custom logic in to a couple of interfaces, encrypting as required. '
 tags:
 - Mutator
-- Changing message content
 redirects:
 - nservicebus/nservicebus-message-mutators-sample
 ---
