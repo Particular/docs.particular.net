@@ -1,9 +1,9 @@
 ---
-title: Configuring the Log Location
+title: Configuring the Logging Location
 summary: How to configure ServiceControl to store logs in a different location
 tags:
 - ServiceControl
-- Log
+- Logging
 - Configuration
 ---
 When ServiceControl runs as LocalSystem, the default log file location is `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs `.
