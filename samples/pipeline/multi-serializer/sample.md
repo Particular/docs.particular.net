@@ -1,10 +1,9 @@
 ---
-title: Handling large Stream properties via the pipeline 
-summary: Add support for writing Streams to a file share that can be access by multiple endpoints
+title: Taking control of serialization via the pipeline 
+summary: Add support attribute based message serialization
 tags:
 - Pipeline
-- Stream
-- Large messages
+- Serialization
 ---
 
 ## Introduction
