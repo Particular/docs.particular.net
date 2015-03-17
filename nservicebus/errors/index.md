@@ -1,5 +1,5 @@
 ---
-title: How to Handle Exceptions
+title: Error handling
 summary: Don't try to handle exceptions in your message handlers. Let NServiceBus do it for you.
 tags:
 - Exceptions
