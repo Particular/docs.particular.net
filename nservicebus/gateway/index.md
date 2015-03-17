@@ -1,5 +1,5 @@
 ---
-title: Introduction to the Gateway
+title: Gateway
 summary: NServiceBus enables durable fire-and-forget messaging across physically separated IT infrastructure.
 tags: []
 redirects:
