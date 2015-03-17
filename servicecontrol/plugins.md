@@ -74,6 +74,8 @@ The ServiceControl queue (and all other ServiceControl related sub-queues) are c
 
 NOTE: Audit and error queues must be defined for each endpoint monitored by ServiceControl and should be in the same location where ServiceControl is installed.
 
+NOTE: If the defined ServiceControl queue cannot be reached the default behavior is to shutdown the failing endpoint.
+
 ## Understanding Plugin Functionality and Behavior
 
 ### ServiceControl Heartbeat Plugin
