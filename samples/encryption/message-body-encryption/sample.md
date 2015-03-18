@@ -5,9 +5,13 @@ tags:
 - Encryption
 ---
 
+## Introduction
+
+This Sample shows how to use `IMutateTransportMessages` to (fake) encrypt/decrypt the binary data of a message as it passed through the pipeline.
+
 ## Run the solution.
 
-You will see two console applications start up.
+Set both `Endpoint1` and `Endpoint2` as projects and run the solution.
 
 ### Endpoint1 
 
