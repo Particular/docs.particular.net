@@ -8,15 +8,12 @@ class Program
 	{
 		#region multi-hosting
 
-		var bus1 = StartInstance1();
-		var bus2 = StartInstance2();
-
-		Console.WriteLine( "\r\nBus instances created and configured; press any key to stop program\r\n" );
-		Console.ReadKey();
-
-		bus1.Dispose();
-		bus2.Dispose();
-
+		using( var bus1 = StartInstance1() )
+		using( var bus2 = StartInstance2() )
+		{
+			Console.WriteLine( "\r\nBus instances created and configured; press any key to stop program\r\n" );
+			Console.ReadKey();
+		}
 		#endregion
 	}
 
