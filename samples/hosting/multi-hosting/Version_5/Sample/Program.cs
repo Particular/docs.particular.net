@@ -4,50 +4,47 @@ using NServiceBus;
 class Program
 {
 
-	static void Main()
-	{
-		#region multi-hosting
+    static void Main()
+    {
+        #region multi-hosting
 
-		using( var bus1 = StartInstance1() )
-		using( var bus2 = StartInstance2() )
-		{
-			Console.WriteLine( "\r\nBus instances created and configured; press any key to stop program\r\n" );
-			Console.ReadKey();
-		}
-		#endregion
-	}
+        using (IBus bus1 = StartInstance1())
+        using (IBus bus2 = StartInstance2())
+        {
+            Console.WriteLine("\r\nBus instances created and configured; press any key to stop program\r\n");
+            Console.ReadKey();
+        }
 
-	static IBus StartInstance1()
-	{
-		#region multi-hosting-assembly-scan
+        #endregion
+    }
 
-		BusConfiguration busConfig = new BusConfiguration();
+    static IBus StartInstance1()
+    {
+        #region multi-hosting-assembly-scan
 
-		busConfig.EndpointName( "Samples.MultiHosting-1" );
-		busConfig.AssembliesToScan( AllAssemblies.Matching( "instance-1-assembly." ) );
-		busConfig.UseSerialization<JsonSerializer>();
-		busConfig.EnableInstallers();
-		busConfig.UsePersistence<InMemoryPersistence>();
+        BusConfiguration busConfig = new BusConfiguration();
 
-		IBus bus = Bus.Create( busConfig ).Start();
+        busConfig.EndpointName("Samples.MultiHosting-1");
+        busConfig.AssembliesToScan(AllAssemblies.Matching("Instance1."));
+        busConfig.UseSerialization<JsonSerializer>();
+        busConfig.EnableInstallers();
+        busConfig.UsePersistence<InMemoryPersistence>();
 
-		return bus;
+        return Bus.Create(busConfig).Start();
 
-		#endregion
-	}
+        #endregion
+    }
 
-	static IBus StartInstance2()
-	{
-		BusConfiguration busConfig = new BusConfiguration();
+    static IBus StartInstance2()
+    {
+        BusConfiguration busConfig = new BusConfiguration();
 
-		busConfig.EndpointName( "Samples.MultiHosting-2" );
-		busConfig.AssembliesToScan( AllAssemblies.Matching( "instance-2-assembly." ) );
-		busConfig.UseSerialization<XmlSerializer>();
-		busConfig.EnableInstallers();
-		busConfig.UsePersistence<InMemoryPersistence>();
+        busConfig.EndpointName("Samples.MultiHosting-2");
+        busConfig.AssembliesToScan(AllAssemblies.Matching("Instance2."));
+        busConfig.UseSerialization<XmlSerializer>();
+        busConfig.EnableInstallers();
+        busConfig.UsePersistence<InMemoryPersistence>();
 
-		IBus bus = Bus.Create( busConfig ).Start();
-
-		return bus;
-	}
+        return Bus.Create(busConfig).Start();
+    }
 }
