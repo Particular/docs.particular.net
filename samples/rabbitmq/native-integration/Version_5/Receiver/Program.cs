@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Text;
 using NServiceBus;
-using NServiceBus.Logging;
 
 class Program
 {
 
     static void Main()
     {
-        DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
-
-        defaultFactory.Level(LogLevel.Warn);
-
-
         BusConfiguration busConfig = new BusConfiguration();
         #region ConfigureRabbitQueueName
         busConfig.EndpointName("Samples.RabbitMQ.NativeIntegration");

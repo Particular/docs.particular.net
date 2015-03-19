@@ -15,7 +15,7 @@ When integrating native RabbitMQ sender with your NServiceBus endpoints the firs
 
 <!-- import ConfigureRabbitQueueName -->
 
-with this in place we can just have the native sender put a message in this queue using:
+With this in place we can just have the native sender put a message in this queue using:
 
 <!-- import SendMessage -->
 

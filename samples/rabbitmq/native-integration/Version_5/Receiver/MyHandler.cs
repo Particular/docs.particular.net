@@ -3,7 +3,7 @@ using NServiceBus;
 
 public class MyHandler : IHandleMessages<MyMessage>
 {
-    readonly IBus bus;
+    IBus bus;
 
     public MyHandler(IBus bus)
     {
