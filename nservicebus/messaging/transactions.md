@@ -31,7 +31,7 @@ NOTE: In this mode messages on the wire can get duplicated at each endpoint so t
 
 In this mode, if supported by the transport, the receive transaction is wrapped in `TransactionScope`. All the operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole. There is no atomicity guarantee as changes to the database might be visible *before* the messages on the queue or vice-versa. Specific configurations might provide stronger guarantees, but not weaker.
 
-That **does not** mean that a distributed transaction is started right away. The transaction only is escalated to the distributed one (following two-phase commit protocol) when it is required. An example when it is not required to do so is using SQL Server transport with NHibernate persistence, both in the same database. Since in this case ADO.NET driver guarantees that everything happens inside a single database transaction, ACID guarantees are held for the whole processing.
+That **does not** mean that a distributed transaction is started right away. The transaction is only escalated to the distributed one (following two-phase commit protocol) when it is required. An example when it is not required to do so is using SQL Server transport with NHibernate persistence, both in the same database. Since in this case ADO.NET driver guarantees that everything happens inside a single database transaction, ACID guarantees are held for the whole processing.
 
 Ambient transaction mode is enabled by default. It can be enabled explicitly via
 
