@@ -49,7 +49,7 @@ resulting in suppressing any ambient transaction if existed. This effectively tu
  * sends without matching updates (where messages has already been sent but the update failed).
 
 
-NOTE: In the *transport transaction* and *unreliable* modes this behavior is the default. Wrapping the handlers in the `TransactionScope` has to be enabled explicitly
+NOTE: Starting with version 5, in the *transport transaction* and *unreliable* modes this behavior is the default. Wrapping the handlers in the `TransactionScope` has to be enabled explicitly
 
 <!-- import TransactionsWrapHandlersExecutionInATransactionScope -->
 
@@ -57,6 +57,6 @@ NOTE: In the *transport transaction* and *unreliable* modes this behavior is the
 
 Outbox is a [feature](/nservicebus/outbox) (enabled by default only for RabbitMQ transport, requires explicit enabling when using other transports) that enhances the *transport transaction* mode guarantees. 
 
-<!-- TransactionsOutbox -->
+<!-- import TransactionsOutbox -->
 
 When using the outbox, the messages resulting from processing a given received message are not being sent immediately but rather and stored in the persistence database and pushed out after handling logic is done. This mechanism ensures that the handling logic can only succeed once so there is no need to design for idempotence.
