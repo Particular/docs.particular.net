@@ -54,7 +54,7 @@ NOTE: In the *transport transaction* and *unreliable* modes the default behavior
 
 ## Outbox
 
-Outbox is a [feature](..\outbox\index.md) (enabled by default only for RabbitMQ transport, requires explicit enabling when using other transports) that enhances the *transport transaction* mode guarantees. 
+Outbox is a [feature](/nservicebus/outbox) (enabled by default only for RabbitMQ transport, requires explicit enabling when using other transports) that enhances the *transport transaction* mode guarantees. 
 
 <!-- TransactionsOutbox -->
 
