@@ -17,7 +17,7 @@ Based on transaction handling mode, NServiceBus offers three levels of guarantee
 
 In this mode the transport in use does not attempt to wrap the receive operation in any kind of transaction. Once the message has been received, it can't be put back into the queue. Should the message processing fail for any reason (including system crash), the message is **permanently lost**. 
 
-<!-- TransactionsDisable -->
+<!-- import TransactionsDisable -->
 
 ### Transport transaction
 
@@ -25,7 +25,7 @@ In this mode, if supported by the transport, the receive operation is wrapped in
 
 NOTE: In this mode messages on the wire can get duplicated at each endpoint so the handler logic has to be designed to be idempotent.
 
-<!-- TransactionsDisableDistributedTransactions -->
+<!-- import TransactionsDisableDistributedTransactions -->
 
 ### Ambient transaction
 
@@ -35,7 +35,7 @@ That **does not** mean that a distributed transaction is started right away. The
 
 Ambient transaction mode is enabled by default. It can be enabled explicitly via
 
-<!-- TransactionsEnable -->
+<!-- import TransactionsEnable -->
 
 ## Handlers
 
