@@ -43,12 +43,13 @@ In the ambient transaction mode NServiceBus executes all message handlers in a s
 
 <!-- import TransactionsDoNotWrapHandlersExecutionInATransactionScope --> 
 
-resulting in suppressing any ambient transaction if existed. In the *transport transaction* and *ambient transaction* modes this results in the *eventually consistent* behaviour where partial results might be visible: 
+resulting in suppressing any ambient transaction if existed. This effectively turns the *ambient transaction* mode into *transport transaction* mode with regards to handler behariour (the only different is type of transation used by the transport). Some (or all) handlers might get invoked multipe times and partial results might be visible: 
  * partial updates (where one handler succeeded updating its data but the other didn't), 
  * partial sends (where some of the messages has been sent but others not),
  * sends without matching updates (where messages has already been sent but the update failed).
 
-NOTE: In the *transport transaction* and *unreliable* modes the default behavior is to *not wrap* the handlers in the `TransactionScope`. It can be enabled explicitly by calling
+
+NOTE: In the *transport transaction* and *unreliable* modes this behavior is the default. Wrapping the handlers in the `TransactionScope` has to be enabled explicitly
 
 <!-- import TransactionsWrapHandlersExecutionInATransactionScope -->
 
