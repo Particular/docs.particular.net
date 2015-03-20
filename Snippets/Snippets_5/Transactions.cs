@@ -24,7 +24,7 @@ public class Transactions
     {
         var busConfig = new BusConfiguration();
         #region TransactionsEnable
-        busConfig.Transactions().Enable();
+        busConfig.Transactions().Enable().EnableDistributedTransactions();
         #endregion
 
         #region TransactionsDoNotWrapHandlersExecutionInATransactionScope
