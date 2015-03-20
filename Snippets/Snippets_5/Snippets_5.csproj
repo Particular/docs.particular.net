@@ -381,6 +381,7 @@
     <Compile Include="SubscriptionSettings.cs" />
     <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
     <Compile Include="TransactionConfig.cs" />
+    <Compile Include="Transactions.cs" />
     <Compile Include="Transports.cs" />
     <Compile Include="Transports\RabbitMQ\ConfigurationSettings.cs" />
     <Compile Include="Transports\SqlServer\MultiDb.cs" />
