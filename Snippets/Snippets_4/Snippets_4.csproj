@@ -244,6 +244,7 @@
     <Compile Include="Pipeline\SampleBehavior.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />
+    <Compile Include="Transactions.cs" />
     <Compile Include="Transports\RabbitMQ\ConfigurationSettings.cs" />
     <Compile Include="UnitTesting\Saga.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
