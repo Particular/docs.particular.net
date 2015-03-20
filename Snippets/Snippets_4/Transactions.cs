@@ -27,11 +27,4 @@ public class Transactions
         Configure.Transactions.Advanced(x => x.DoNotWrapHandlersExecutionInATransactionScope());
         #endregion
     }
-
-    public void TransportTransactionsWithScope()
-    {
-        #region TransactionsWrapHandlersExecutionInATransactionScope
-        Configure.Transactions.Advanced(x => x.DoNotWrapHandlersExecutionInATransactionScope());
-        #endregion
-    }
 }
