@@ -214,7 +214,7 @@ Distributor for the MSMQ transport.
 
 ### <img src="community-project.png" title="A Community run project"> [Mandrill](https://github.com/feinoujc/NServiceBus.Mandrill)
 
-<a href="http://www.nuget.org/packages/Aggregates.NET/"><img src="http://img.shields.io/nuget/v/Aggregates.NET.svg?" title="NuGet Status"></a>
+<a href="http://www.nuget.org/packages/NServiceBus.Mandrill/"><img src="http://img.shields.io/nuget/v/NServiceBus.Mandrill.svg?" title="NuGet Status"></a>
 
 [Mandrill](http://mandrill.com/) is a email infrastructure service built by [MailChimp](http://mailchimp.com/). This extension allow for sending Mandrill emails as messages.
 
