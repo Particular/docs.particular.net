@@ -38,6 +38,8 @@ The package installation process adds references to NServiceBus assemblies and c
 
 For example, `EndpointConfig.cs` is used to configure the project endpoints.
 
+Please note that as of version 5, endpoint roles such as client or server have been deprecated. For client or one-off message sending please see [NServiceBus Host] documentation. The following instructions are from an older version and may not work.
+
 To change the configuration to `Client`, open the `EndpointConfig.cs` file that was just created for you and add `AsA_Client` as shown:
 
 ```C#
