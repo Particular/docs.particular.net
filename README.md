@@ -191,7 +191,7 @@ A good sample to start with is the [Default Logging Sample](https://github.com/P
 
 ### Defining Snippets
 
-There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. All `.cs`, `.xml` and `.config` files in that directory are parsed for code snippets
+There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. All `.cs`, `.xml`, `.sql` and `.config` files in that directory are parsed for code snippets
 
 #### Using comments
 
