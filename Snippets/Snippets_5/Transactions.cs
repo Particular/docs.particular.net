@@ -4,17 +4,16 @@ public class Transactions
 {
     public void Unreliable()
     {
-        var busConfig = new BusConfiguration();
-
         #region TransactionsDisable
+        BusConfiguration busConfig = new BusConfiguration();
         busConfig.Transactions().Disable();
         #endregion
     }
 
     public void TransportTransactions()
     {
-        var busConfig = new BusConfiguration();
         #region TransactionsDisableDistributedTransactions
+        BusConfiguration busConfig = new BusConfiguration();
         busConfig.Transactions().DisableDistributedTransactions();
         #endregion
 
@@ -22,8 +21,8 @@ public class Transactions
 
     public void AmbientTransactions()
     {
-        var busConfig = new BusConfiguration();
         #region TransactionsEnable
+        BusConfiguration busConfig = new BusConfiguration();
         busConfig.Transactions().Enable().EnableDistributedTransactions();
         #endregion
 
@@ -34,19 +33,18 @@ public class Transactions
 
     public void TransportTransactionsWithScope()
     {
-        var busConfig = new BusConfiguration();
-
         #region TransactionsWrapHandlersExecutionInATransactionScope
+        BusConfiguration busConfig = new BusConfiguration();
         busConfig.Transactions().DisableDistributedTransactions().WrapHandlersExecutionInATransactionScope();
         #endregion
     }
 
     public void Outbox()
     {
-        var busConfig = new BusConfiguration();
 
         #region TransactionsOutbox
 
+        BusConfiguration busConfig = new BusConfiguration();
         busConfig.EnableOutbox(); //Implies .DisableDistributedTransactions().DoNotWrapHandlersExecutionInATransactionScope();
 
         #endregion

@@ -2,6 +2,8 @@ using System.Data.Entity;
 
 namespace Receiver
 {
+    using System.Data.Entity.ModelConfiguration;
+
     public class ReceiverDataContext : DbContext
     {
         #region EntityFramework
@@ -17,7 +19,7 @@ namespace Receiver
         {
             base.OnModelCreating(modelBuilder);
 
-            var orders = modelBuilder.Entity<Order>();
+            EntityTypeConfiguration<Order> orders = modelBuilder.Entity<Order>();
             orders.ToTable("Orders");
             orders.HasKey(x => x.OrderId);
             orders.Property(x => x.Value);

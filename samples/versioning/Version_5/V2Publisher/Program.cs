@@ -7,7 +7,7 @@ class Program
 {
     static void Main()
     {
-        var busConfig = new BusConfiguration();
+        BusConfiguration busConfig = new BusConfiguration();
         busConfig.EndpointName("Samples.Versioning.V2Publisher");
         busConfig.UseSerialization<JsonSerializer>();
         busConfig.UsePersistence<InMemoryPersistence>();
@@ -15,7 +15,7 @@ class Program
             .For(Storage.Subscriptions);
         busConfig.EnableInstallers();
 
-        using (var bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfig))
         {
             bus.Start();
             Console.WriteLine("Press 'Enter' to publish a message, Ctrl + C to exit.");
