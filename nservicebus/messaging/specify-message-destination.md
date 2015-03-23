@@ -31,7 +31,7 @@ Add one of the following:
 </UnicastBusConfig>
 ```
 
-For more information, see the [PubSub sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/PubSub) config file.
+For more information, see the [PubSub sample](/samples/pubsub) config file.
 
 Destinations can be `QueueName@ServerName`, or just `QueueName` if the destination is the local machine.
 
