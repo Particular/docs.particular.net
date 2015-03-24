@@ -38,7 +38,7 @@ class Program
 			{
 				bus.Send( new IssueNext
 				{
-					SequenceId = DateTime.Now.ToString("yyyy-MM-dd-hh-mm") //every minute we want a new sequence
+					SequenceId = DateTime.Now.ToString("yyyy-MM-dd") //every day we want a new sequence
 				} );
 			} );
 
