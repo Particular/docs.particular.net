@@ -21,7 +21,8 @@ class Program
             Threshold = Level.Info,
             Layout = layout
         };
-        consoleAppender.ActivateOptions();
+        // Note that no consoleAppender.ActivateOptions(); is required since NSB 4 does this internally
+
         RollingFileAppender fileAppender = new RollingFileAppender
         {
             DatePattern = "yyyy-MM-dd'.txt'",
@@ -45,7 +46,7 @@ class Program
         Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Logging.Log4NetCustom");
 
-        //Log4Net will pick up the config set in BasicConfigurator
+        //Pass the appenders to NServiceBus
         configure.Log4Net(consoleAppender);
         configure.Log4Net(fileAppender);
         #endregion
