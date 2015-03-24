@@ -47,7 +47,7 @@ The ServiceControl plugins can be downloaded and installed from the NuGet galler
 The ServiceControl plugins are deployed with the endpoints they are monitoring. You can add a plugin to an endpoint during development, testing, or production: 
  
 * During development, add the relevant plugin NuGet package to the endpoint's project in Visual Studio using the NuGet Package Manager Console:
-   * See "[Finding and Installing a NuGet Package Using the Package Manager Console](https://docs.nuget.org/docs/start-here/using-the-package-manager-console)".
+   * See "[Finding and Installing a NuGet Package Using the Package Manager Console](https://docs.nuget.org/consume/package-manager-console)".
    * The plugin-specific NuGet commands are displayed in the relevant NuGet package page in the NuGet Gallery.    
 * When in production, add the plugin DLLs to the BIN directory of the endpoint, and restart the endpoint process for the changes to take effect and the plugin to be loaded.   
 

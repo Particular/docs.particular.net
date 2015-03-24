@@ -40,7 +40,7 @@ As illustrated in the diagram below, the two-phase commit protocol consists of t
 Note that this protocol requires two communication steps for each resource manager added to the transaction and requires a response from each of them to be able to continue. Both of these conditions are problematic in a huge datacenter such as Windows Azure.
 
 * Two communication steps per added resource manager results in an exponential explosion of communication. 2 resources = 4 network calls, 4 = 16, 100 = 10000, etc...
-* Requirement to wait for all responses: the Windows Azure datacenters are huge. Check out [this video (5 mins in)](http://www.youtube.com/watch?v=JJ44hEr5DFE) to get an idea of how huge. It is very likely that network partitioning will occur in your solution as virtual machines are physically remote from each other, so network infrastructure will die, resulting in slow or in doubt transactions being more common than in a small network.
+* Requirement to wait for all responses: the Windows Azure datacenters are huge. Check out [this video (5 mins in)](https://www.youtube.com/watch?v=JJ44hEr5DFE) to get an idea of how huge. It is very likely that network partitioning will occur in your solution as virtual machines are physically remote from each other, so network infrastructure will die, resulting in slow or in doubt transactions being more common than in a small network.
 
 This is the reason why none of the Windows Azure services supports distributed transactions, and so you are encouraged not to use distributed transactions even if you technically could.
 
