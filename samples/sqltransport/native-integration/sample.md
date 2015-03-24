@@ -72,9 +72,3 @@ and create an `on inserted` trigger that will send a `LegacyOrderDetected` messa
 Notice how we generate a unique message id by hashing the identity column. NServiceBus requires each message to have a unique id in order to safely perform retries.
 
 That's it, just add a few orders to the table and notice how the app receives the messages. In a real life scenario you would likely use this to trigger a `bus.Publish` to push an `OrderAccepted` event out on the bus.
-
-
-
-
-
-

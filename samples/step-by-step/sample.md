@@ -20,8 +20,6 @@ Let's start by creating a `Client` project that will send order requests to a NS
 
 Open Visual Studio as administrator, create a new 'Class Library' Project name it `Ordering.Client`, and name the solution `Ordering`.
 
-![](001-new-solution.png)
-
 ![](package-manager-console.png)
 
 We now need to add references the NServiceBus assemblies and the quickest and easiest way to do that is to use NuGet Package Manager Console.
@@ -124,15 +122,9 @@ You've completed coding the example and now it's time to run the solution.
 
 To see the complete system, run both the Client and the Server projects together:
 
-To run the `Client` and `Server` projects together so you can see it all working, right click on the `Ordering` solution and select 'Set StartUp Projects...'
+To run the `Client` and `Server` projects together so you can see it all working so set them both as startup projects.
 
-![](002-startup.png)
-
-in that screen select 'Multiple startup projects' and set the `Ordering.Client` and `Ordering.Server` action to be 'Start'.
-
-![](003-startup.png)
-
-Finally press 'F5' to run the solution.
+Run the solution.
 
 Two console application windows should start up
 
