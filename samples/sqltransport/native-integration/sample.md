@@ -1,5 +1,5 @@
 ---
-title: SQL Server
+title: SQL Server Native integration
 summary: 'How to integrate natively with the SQL Server transport'
 tags:
 - SQL Server
