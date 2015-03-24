@@ -7,5 +7,5 @@ redirects:
 ---
 
 
-While non-transactional messaging in a network load balancing (NLB) environment is possible, it is much harder to achieve load-balancing in transactional MSMQ. [Microsoft provides a detailed answer](http://support.microsoft.com/kb/899611/en-us).
+While non-transactional messaging in a network load balancing (NLB) environment is possible, it is much harder to achieve load-balancing in transactional MSMQ. [Microsoft provides a detailed answer](https://support.microsoft.com/kb/899611/en-us).
 

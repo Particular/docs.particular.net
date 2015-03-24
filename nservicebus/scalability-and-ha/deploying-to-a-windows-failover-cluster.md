@@ -50,7 +50,7 @@ Set up a MSMQ Cluster Group. Cluster group is a group of resources that have a u
 -   In Windows 2008, you would create a "cluster service or application"
 -   In Windows 2012, you would create a "cluster role"
 
-For more information, see [http://technet.microsoft.com/en-us/library/cc753575.aspx](http://technet.microsoft.com/en-us/library/cc753575.aspx)
+For more information, see https://technet.microsoft.com/en-us/library/cc753575.aspx
 
 For NServiceBus endpoint destination, we address the queues by the MSMQ cluster group's name, where we will later add all the rest of our clustered resources. In non-cluster terms, we typically add the machine name to address the queue, i.e. `queue@MachineName`. In cluster terms we address it by queue@MSMQ Network name.
 
