@@ -37,4 +37,4 @@ See the Microsoft support links for more information to restore common Windows p
 * [Monitoring NServiceBus Endpoints](/nservicebus/operations/monitoring-endpoints.md)
 * [KB2554336: How to manually rebuild Performance Counters for Windows Server 2008 64bit or Windows Server 2008 R2 systems](http://support.microsoft.com/kb/2554336)
 * [KB300956: How to manually rebuild Performance Counter Library values](https://support.microsoft.com/kb/300956) 
-* [LODCTR at TechNet](http://technet.microsoft.com/en-us/library/bb490926.aspx)
+* [LODCTR at TechNet](https://technet.microsoft.com/en-us/library/bb490926.aspx)
