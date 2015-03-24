@@ -1,14 +1,14 @@
 ---
-title: Transactions in Windows Azure
-summary: Understanding what kind of transactions are supported in Windows Azure and how we deal with this in NServiceBus.
+title: Transactions in Azure
+summary: Understanding what kind of transactions are supported in Azure and how we deal with this in NServiceBus.
 tags: 
-- Windows Azure
+- Azure
 - Cloud
 redirects:
  - nservicebus/understanding-transactions-in-windows-azure
 ---
 
-The Windows Azure Platform and NServiceBus make a perfect fit. On the one hand the Azure platform offers the scalable and flexible platform that you are looking for in your designs, and on the other hand NServiceBus makes development on this highly distributed environment a breeze. However, there are a few things to keep in mind when developing for this platform, the most important being the lack of (distributed) transactions. 
+The Azure Platform and NServiceBus make a perfect fit. On the one hand the Azure platform offers the scalable and flexible platform that you are looking for in your designs, and on the other hand NServiceBus makes development on this highly distributed environment a breeze. However, there are a few things to keep in mind when developing for this platform, the most important being the lack of (distributed) transactions. 
 
 To better understand why this feature is lacking, let's examine the implications of these technologies.
 
@@ -18,14 +18,14 @@ Transaction processing is designed to maintain systems integrity (typically a da
 
 What is often overlooked in transactional processing, especially in the context of cloud services, is that to guarantee isolation, the database engine must lock certain records in use during the transaction, depending on isolation level, so that other transactions cannot work with them at the same time.
 
-Such locks become a trust issue in a cloud or self-service environment, as external parties can use these locks to perform a denial of service attack. The Windows Azure platform must assume that you are a malicious user and is thus very hesitant to let you control all the locks by means of a transaction. 
+Such locks become a trust issue in a cloud or self-service environment, as external parties can use these locks to perform a denial of service attack. The Azure platform must assume that you are a malicious user and is thus very hesitant to let you control all the locks by means of a transaction. 
 
-This is the primary reason why many Windows Azure hosted services do not support transactions at all or are very aggressive when it comes to lock duration. 
+This is the primary reason why many Azure hosted services do not support transactions at all or are very aggressive when it comes to lock duration. 
 
 For example:
 
-* Windows Azure storage services have no support for transactions. This is not explicitly documented but you can find enough [references on stackoverflow](http://stackoverflow.com/questions/18045517/do-azure-storage-related-apis-participate-in-system-transactions)
-* The Windows Azure database supports local transactions, but only grants locks on resources, when required by a system task for 20 seconds, and 24 hours otherwise. See [this msdn article](https://msdn.microsoft.com/library/azure/dn338081.aspx#TransactionDurationLimit) for more details.
+* Azure storage services have no support for transactions. This is not explicitly documented but you can find enough [references on stackoverflow](http://stackoverflow.com/questions/18045517/do-azure-storage-related-apis-participate-in-system-transactions)
+* The Azure database supports local transactions, but only grants locks on resources, when required by a system task for 20 seconds, and 24 hours otherwise. See [this msdn article](https://msdn.microsoft.com/library/azure/dn338081.aspx#TransactionDurationLimit) for more details.
 
 When both the database management system and client are under the same ownership, imagine you just deployed SQL Server to your own virtual machine, so locks are no longer an issue and you can control the lock duration. But even in this case, you need to be careful when it comes to distributed transactions. 
 
@@ -37,18 +37,18 @@ As illustrated in the diagram below, the two-phase commit protocol consists of t
 
 ![Two Phase Commit](two-phase-commit.jpg)
 
-Note that this protocol requires two communication steps for each resource manager added to the transaction and requires a response from each of them to be able to continue. Both of these conditions are problematic in a huge datacenter such as Windows Azure.
+Note that this protocol requires two communication steps for each resource manager added to the transaction and requires a response from each of them to be able to continue. Both of these conditions are problematic in a huge datacenter such as Azure.
 
 * Two communication steps per added resource manager results in an exponential explosion of communication. 2 resources = 4 network calls, 4 = 16, 100 = 10000, etc...
-* Requirement to wait for all responses: the Windows Azure datacenters are huge. Check out [this video (5 mins in)](https://www.youtube.com/watch?v=JJ44hEr5DFE) to get an idea of how huge. It is very likely that network partitioning will occur in your solution as virtual machines are physically remote from each other, so network infrastructure will die, resulting in slow or in doubt transactions being more common than in a small network.
+* Requirement to wait for all responses: the Azure datacenters are huge. Check out [this video (5 mins in)](https://www.youtube.com/watch?v=JJ44hEr5DFE) to get an idea of how huge. It is very likely that network partitioning will occur in your solution as virtual machines are physically remote from each other, so network infrastructure will die, resulting in slow or in doubt transactions being more common than in a small network.
 
-This is the reason why none of the Windows Azure services supports distributed transactions, and so you are encouraged not to use distributed transactions even if you technically could.
+This is the reason why none of the Azure services supports distributed transactions, and so you are encouraged not to use distributed transactions even if you technically could.
 
 Side note: The .net framework promotes to a distributed transaction rather quickly; for example, two open connections to the same resource (exact same connectionstring), will still promote to a distributed transaction, and there is no option to disable promotion. 
 
 ## How to use NServiceBus in this environment
 
-By default, NServiceBus relies on the DTC to make distributed system development really easy. But in the Windows Azure environment, you cannot use the DTC. So you have to configure/use it a bit differently. 
+By default, NServiceBus relies on the DTC to make distributed system development really easy. But in the Azure environment, you cannot use the DTC. So you have to configure/use it a bit differently. 
 
 There are quite a few options. The remainder of this article discusses each option with its advantages and disadvantages. Depending on your scenario you may choose to use NServiceBus differently.
 
@@ -70,12 +70,12 @@ Prevent transaction promotion by reusing a single local transaction. The idea is
 
 **Disadvantages** 
 
-* You are limited to a single transactional resource for your entire system. The technique can only be applied if your application fits the limits of this transactional resource. As some Windows Azure services throttle quite aggressively, sometimes on behavior of other tenants, capacity planning might become an issue.
+* You are limited to a single transactional resource for your entire system. The technique can only be applied if your application fits the limits of this transactional resource. As some Azure services throttle quite aggressively, sometimes on behavior of other tenants, capacity planning might become an issue.
 * Must be able and willing to inject the transaction, which may be a challenge when using third-party libraries, for example.
 
 ### Atomic operations and transport retries
 
-This technique is used when a resource does not support transactions at all. The idea is that every single operation is 'transactional' by default, in the sense that the operation either succeeds or fails as a single unit. And if you limit yourself to single operations only, you don't need transactions anymore. A unit of work pattern with batching is a single operation as well and can therefore be used to emulate a transaction, but with big restrictions. Windows Azure storage services allow you to group a number of operations into a single batch, to make the set atomic, but only on Windows Azure storage tables and only when the partition key for all operations is exactly the same.
+This technique is used when a resource does not support transactions at all. The idea is that every single operation is 'transactional' by default, in the sense that the operation either succeeds or fails as a single unit. And if you limit yourself to single operations only, you don't need transactions anymore. A unit of work pattern with batching is a single operation as well and can therefore be used to emulate a transaction, but with big restrictions. Azure storage services allow you to group a number of operations into a single batch, to make the set atomic, but only on Azure storage tables and only when the partition key for all operations is exactly the same.
 
 However, regular transactions also imply 'rollback' semantics that will make the receive infrastructure retry the original message again later. Therefore, you need to combine this technique with a transport that supports retry semantics.
 

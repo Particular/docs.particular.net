@@ -461,7 +461,7 @@ It will also wrap the image in a clickable lightbox so the full image can be acc
  * Log4Net not log4net 
  * Intellisense	not intellisense
  * ServiceInsight not serviceInsight
- * Windows Azure Service Bus not windows azure servicebus
+ * Azure Service Bus not Azure servicebus
  * First Level Retries not First-Level-Retries
 
 ## More Info

@@ -1,14 +1,14 @@
 ---
 title: Hosting in Azure Cloud Services
-summary: Using Windows Azure Cloud Services to host NServiceBus.
+summary: Using Azure Cloud Services to host NServiceBus.
 tags: 
-- Windows Azure
+- Azure
 - Cloud
 redirects:
  - nservicebus/hosting-nservicebus-in-windows-azure-cloud-services
 ---
 
-The Windows Azure Platform and NServiceBus make a perfect fit. On the one hand the azure platform offers us the scalable and flexible platform that we are looking for in our designs, on the other hand NServiceBus makes development on this highly distributed environment a breeze.
+The Azure Platform and NServiceBus make a perfect fit. On the one hand the azure platform offers us the scalable and flexible platform that we are looking for in our designs, on the other hand NServiceBus makes development on this highly distributed environment a breeze.
 
 If real scale is what you're looking for, as in tens, hundreds or even thousands of machines hosting each endpoint, than cloud services is the deployment model you'll need.
 
@@ -17,7 +17,7 @@ NOTE: if you don't need the scale offered by cloud services, there are [other ho
 
 ## Cloud Services - Worker Roles
 
-First you need to reference the assembly that contains the windows azure role entry point integration. The recommended way of doing this is by adding a nuget package reference to the `NServiceBus.Hosting.Azure` package to your project.
+First you need to reference the assembly that contains the Azure role entry point integration. The recommended way of doing this is by adding a nuget package reference to the `NServiceBus.Hosting.Azure` package to your project.
 
 NOTE: If self hosting, like we'll do later in this article for Web Roles, you can configure everything using the fluent configuration API and the extension methods found in the `NServiceBus.Azure` package, no need to reference the hosting package in that case.
 
@@ -64,7 +64,7 @@ This will integrate and configure the default infrastructure for you, being:
 
 ## Configuration override convention
 
-Because windows azure cloud services has it's own configuration model, but nservicebus is typically used with it's configuration in app.config, we've decided to go for a convention based override model. Where most of the configuration is in app.config, but you can add any setting 'by convention' to the service configuration file to override the original value in app.config. This makes it easy to develop locally (without the service runtime), but still make use of this feature in production.
+Because Azure cloud services has it's own configuration model, but nservicebus is typically used with it's configuration in app.config, we've decided to go for a convention based override model. Where most of the configuration is in app.config, but you can add any setting 'by convention' to the service configuration file to override the original value in app.config. This makes it easy to develop locally (without the service runtime), but still make use of this feature in production.
 
 NServiceBus makes extensive use of the .net configuration section model, which allows it to apply default settings if you do not specify anything in app.config. So if you don't specify anything, than the following will apply:
 
@@ -91,7 +91,7 @@ You can then override this setting in your app.config file, by specifying this c
 	</configSections>
 	<AzureSubscriptionStorageConfig ConnectionString="YourConnectionstring" />
 
-When hosting in a windows azure cloud service, you can override this setting again in the service configuration (.cscfg) file. 
+When hosting in a Azure cloud service, you can override this setting again in the service configuration (.cscfg) file. 
 
 First you need to define the setting in the service definition file (.csdef) and then specify the value for every cloud service deployment you have in your Cloud Services project.
 
@@ -118,7 +118,7 @@ The override order used in this example applies, lowest priority is the default 
 
 ## Logging
 
-The NServiceBus logging integrates with the Windows Azure Diagnostics service through a simple trace logger. In the past it would itself setup azure diagnostics service and integrate with it directly, but this is no longer the case today. The primary reason for this is that Visual Studio tooling now sets everything up for you anyway.
+The NServiceBus logging integrates with the Azure Diagnostics service through a simple trace logger. In the past it would itself setup azure diagnostics service and integrate with it directly, but this is no longer the case today. The primary reason for this is that Visual Studio tooling now sets everything up for you anyway.
 
 If the following trace listener is added to your app.config, all nservicebus logs should be forwarded to the diagnostics service.
 
@@ -133,7 +133,7 @@ If the following trace listener is added to your app.config, all nservicebus log
 		</trace>
 	</system.diagnostics>
 
-Logging settings can than be controlled by configuring the windows azure diagnostics service itself using a .wadcfg file. Check out the (msdn documentation)[https://msdn.microsoft.com/library/azure/hh411551.aspx] for more information on this topic.
+Logging settings can than be controlled by configuring the Azure diagnostics service itself using a .wadcfg file. Check out the (msdn documentation)[https://msdn.microsoft.com/library/azure/hh411551.aspx] for more information on this topic.
 
 ## Cloud Services - Web Roles
 

@@ -38,7 +38,7 @@ There are two ways to avoid the issue:
 1. Configuring IIS to avoid recycling (see possible method [here](http://blogs.msdn.com/b/lucascan/archive/2011/09/30/using-a-windows-azure-startup-script-to-prevent-your-site-from-being-shutdown.aspx));
 2. Use a periodic warm-up HTTP GET to make sure the website is not brought down due to inactivity (the frequency needs to be less than 20 mins, which is the default IIS recycle-on-idle time)
 
-In some cases configuring IIS to avoid recycling is not possible (for example, when using Windows Azure WebSites or other scenarios in which the IIS is not fully configurable). In these cases, the recommended approach is the second one. It also has the side benefit of avoiding the "first user after idle time" wake-up response-time hit.
+In some cases configuring IIS to avoid recycling is not possible (for example, when using Azure WebSites or other scenarios in which the IIS is not fully configurable). In these cases, the recommended approach is the second one. It also has the side benefit of avoiding the "first user after idle time" wake-up response-time hit.
 
 ### Duplicate Endpoints appear in ServicePulse after re-deployment
 

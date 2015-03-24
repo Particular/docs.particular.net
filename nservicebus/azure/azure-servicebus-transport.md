@@ -1,16 +1,16 @@
 ---
 title: Azure Service Bus as Transport
-summary: NServiceBus can use Windows Azure Service Bus to take advantage of its peek-lock mechanism in environments where one cannot rely on the DTC.
+summary: NServiceBus can use Azure Service Bus to take advantage of its peek-lock mechanism in environments where one cannot rely on the DTC.
 tags: 
-- Windows Azure
+- Azure
 - Cloud
 redirects:
  - nservicebus/using-azure-servicebus-as-transport-in-nservicebus
 ---
 
-In some environments such as very large cloud networks or hybrid network scenarios, it is not possible or recommended to rely heavily on the DTC, and thus on MSMQ, to ensure transactional behavior and retry in case of failures. A good alternative to MSMQ in this case is to use Windows Azure Service Bus instead.
+In some environments such as very large cloud networks or hybrid network scenarios, it is not possible or recommended to rely heavily on the DTC, and thus on MSMQ, to ensure transactional behavior and retry in case of failures. A good alternative to MSMQ in this case is to use Azure Service Bus instead.
 
-Windows Azure Service Bus is messaging infrastructure that sits between applications, allowing them to exchange messages in a loosely coupled way for improved scale and resiliency. Service Bus Queues offer simple first in, first out guaranteed message delivery and supports a range of standard protocols (REST, AMQP, WS*) and APIs to put/pull messages on/off a queue. Service Bus Topics deliver messages to multiple subscriptions and easily fan out message delivery at scale to downstream systems.
+Azure Service Bus is messaging infrastructure that sits between applications, allowing them to exchange messages in a loosely coupled way for improved scale and resiliency. Service Bus Queues offer simple first in, first out guaranteed message delivery and supports a range of standard protocols (REST, AMQP, WS*) and APIs to put/pull messages on/off a queue. Service Bus Topics deliver messages to multiple subscriptions and easily fan out message delivery at scale to downstream systems.
  
 - The main advantage of this service is that it offers a highly reliable and (relatively) low latency remote messaging infrastructure. A single queue message can be up to 256 KB in size, and a queue can contain many messages, up to 5GB in total. Furthermore it is capable of emulating local transactions using its queue peek-lock mechanism and has many built-in features that you (and NServiceBus) can take advantage of, such as message deduplication and deferred messages.
 - The main disadvantage of this service is its dependency on TCP (if you want low latency), which may require you to open some outbound ports on your firewall. Additionally, the price may be steep, depending on your scenario ($1 per million messages).
@@ -27,7 +27,7 @@ Then, use the Fluent `Configure` API to set up NServiceBus, by specifying `.UseT
          ...
          .CreateBus()
 
-Alternatively, when using one of the NServiceBus provided hosting processes, you should call the `UseTransport<AzureServiceBusTransport>` on the endpoint configuration. In the Windows Azure role entrypoint host, for example, it looks like this:
+Alternatively, when using one of the NServiceBus provided hosting processes, you should call the `UseTransport<AzureServiceBusTransport>` on the endpoint configuration. In the Azure role entrypoint host, for example, it looks like this:
 
 	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
 	{

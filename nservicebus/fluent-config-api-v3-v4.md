@@ -86,7 +86,7 @@ To configure the DataBus feature, call the `FileShareDataBus( string pathToShare
 
 ##### Azure and the DataBus
 
-Endpoints running on Windows Azure cannot access UNC paths or file shares. In this case the [NServiceBus Azure Transport](http://www.nuget.org/packages/nservicebus.azure) provides its own DataBus implementation that you can configure using the `AzureDataBus()` method.
+Endpoints running on Azure cannot access UNC paths or file shares. In this case the [NServiceBus Azure Transport](http://www.nuget.org/packages/nservicebus.azure) provides its own DataBus implementation that you can configure using the `AzureDataBus()` method.
 
 #### Encryption
 

@@ -1,16 +1,16 @@
 ---
 title: Azure Storage Persistence
-summary: Using Windows Azure Storage for persistence features of NServiceBus including timeouts, sagas, and subscription storage.
+summary: Using Azure Storage for persistence features of NServiceBus including timeouts, sagas, and subscription storage.
 tags: 
-- Windows Azure
+- Azure
 - Cloud
 redirects:
  - nservicebus/using-azure-storage-persistence-in-nservicebus
 ---
 
-Various features of NServiceBus require persistence. Among them are subscription storage, sagas, and timeouts. Various storage options are available including, Windows Azure Storage Services.
+Various features of NServiceBus require persistence. Among them are subscription storage, sagas, and timeouts. Various storage options are available including, Azure Storage Services.
 
-## How To enable persistence with windows azure storage services
+## How To enable persistence with Azure storage services
 
 First you need to reference the assembly that contains the azure storage persisters. The recommended way of doing this is by adding a NuGet package reference to the  `NServiceBus.Azure` package to your project.
 
@@ -20,12 +20,12 @@ If self hosting, you can configure the persistence technology using the fluent c
 
 ## Hosting
 
-When hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosting.Azure`, or any other NServiceBus provided host, the azure storage persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config.
+When hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, or any other NServiceBus provided host, the azure storage persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config.
 
 
 <!-- import PersistenceWithAzureHost -->
 
-NOTE: In version 4, when hosting in the Windows azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
+NOTE: In version 4, when hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
 ## Detailed Configuration
 

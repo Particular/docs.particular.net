@@ -2,7 +2,7 @@
 title: Multiple Azure Storage Accounts for Scale Out
 summary: NServiceBus can use multiple Azure storage accounts for scale out
 tags: 
-- Windows Azure
+- Azure
 - Cloud
 - Azure Storage
 redirects:

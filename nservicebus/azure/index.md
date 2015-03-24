@@ -1,7 +1,7 @@
 ---
-title: NServiceBus and Windows Azure
-summary: NServiceBus and Windows Azure
+title: NServiceBus and Azure
+summary: NServiceBus and Azure
 tags: 
-- Windows Azure
+- Azure
 - Cloud
 ---
