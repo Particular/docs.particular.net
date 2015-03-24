@@ -1,6 +1,6 @@
 ---
-title: Windows Azure Transport
-summary: Windows Azure transport enables Windows Azure Queues and Windows Azure Service Bus as underlying NServiceBus transports, in cloud-hosting and hybrid scenarios.
+title: Azure Transports
+summary: Azure transports enable Azure Storage Queues and Windows Azure Service Bus as underlying NServiceBus transports, in cloud-hosting and hybrid scenarios.
 tags:
 - Cloud
 - Windows Azure
@@ -9,16 +9,16 @@ redirects:
  - nservicebus/windows-azure-transport
 ---
 
-The Windows Azure transports for NServiceBus enables the use of Windows Azure Queues and Windows Azure Service Bus as the underlying transports used by NServiceBus. It can be used in multiple scenarios:
+The Azure transports for NServiceBus enable the use of Azure Queues and Azure Service Bus as the underlying transports used by NServiceBus. It can be used in multiple scenarios:
 
- * Cloud hosting scenario: An NServiceBus endpoint is hosted as a cloud service and communicates with another endpoint located in another cloud service through the use of one of the Windows Azure transports for NServiceBus.
+ * Cloud hosting scenario: An NServiceBus endpoint is hosted as a cloud service and communicates with another endpoint located in another cloud service through the use of one of the Azure transports for NServiceBus.
 
- * Hybrid scenario: An NServiceBus endpoint is hosted on-premise and uses one of the Windows Azure transports for NServiceBus to communicate with another NServiceBus endpoint hosted on a Cloud Service and/or on-premise.
+ * Hybrid scenario: An NServiceBus endpoint is hosted on-premise and uses one of the Azure transports for NServiceBus to communicate with another NServiceBus endpoint hosted on a Cloud Service and/or on-premise.
 
-As part of the Windows Azure support for NServiceBus, you can choose between two options provided by the Windows Azure platform:
+As part of the Azure support for NServiceBus, you can choose between two options provided by the Azure platform:
 
--   Windows Azure Queues
--   Windows Azure Service Bus
+-   Azure Storage Queues
+-   Azure Service Bus
 
 Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits your application's needs, review the MSDN article "[Windows Azure Queues and Windows Azure Service Bus Queues - Compared and Contrasted](https://msdn.microsoft.com/library/azure/hh767287.aspx)".
 
@@ -26,10 +26,10 @@ Each of these two options has separate features, capabilities, and usage charact
 
 Samples for various scenario's are available on Github
 
--   [Windows Azure Service Bus transport hosted in cloud services](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureServiceBus.Cloud)
--   [Windows Azure Service Bus transport hosted in an on-premises host](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureServiceBus.OnPremises)
--   [Windows Azure Queues transport hosted in cloud services](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud)
--    [Windows Azure Queues transport hosted in cloud services with multiple endpoints hosted on the same role instances](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud.DynamicHost)
+-   [Azure Service Bus transport hosted in cloud services](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureServiceBus.Cloud)
+-   [Azure Service Bus transport hosted in an on-premises host](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureServiceBus.OnPremises)
+-   [Azure Queues transport hosted in cloud services](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud)
+-   [Azure Queues transport hosted in cloud services with multiple endpoints hosted on the same role instances](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud.DynamicHost)
 
 To run these samples, update the configuration connection strings and queue names settings in the relevant configuration files (as described below).
 
@@ -51,9 +51,9 @@ For a detailed description of the cloud service configuration in Windows Azure, 
 
 To configure NServiceBus to connect to a specific Windows Azure storage account (for Windows Azure Queues) or a Windows Azure Service Bus namespace, you must set the [appropriate connection string for each option](http://www.connectionstrings.com/windows-azure/).
 
-### Windows Azure Queues
+### Azure Storage Queues
 
-In the Windows Azure Service Configuration file (ServiceConfiguration.cscfg), add the following sections:
+In the Azure Service Configuration file (ServiceConfiguration.cscfg), add the following sections:
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -91,9 +91,9 @@ In your NServiceBus solution, specify the Endpoint Configuration to use AzureSto
 	    }
 	}
 
-### Windows Azure Service Bus 
+### Azure Service Bus 
 
-In the Windows Azure Service Configuration file
+In the Azure Service Configuration file
 (ServiceConfiguration.cscfg), add the following sections:
 
 ```
@@ -115,7 +115,7 @@ schemaVersion="2013-03.2.0">
 ```
 
 
-The "AzureQueueConfig.ConnectionString" for Windows Azure Service Bus namespace connection string can be retrieved from the Windows Azure portal using an authorized account.
+The "AzureQueueConfig.ConnectionString" for Windows Azure Service Bus namespace connection string can be retrieved from the Azure portal using an authorized account.
 
 In your NServiceBus solution, specify the endpoint configuration to use AzureServiceBus transport:
 
