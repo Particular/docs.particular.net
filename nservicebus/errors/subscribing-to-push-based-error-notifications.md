@@ -17,7 +17,7 @@ The following example shows how to be notified every time a message is about to 
 For more information about Reactive Extensions, see https://msdn.microsoft.com/en-au/data/gg577609.aspx
 
 {{DANGER:
-It is important to ensure all subscriptions are handled in another thread, the example code provided above does that by using `SubscribeOn(Scheduler.Default)`. Failure to do so may impact the overall system performance. See [schedulers](https://msdn.microsoft.com/en-us/library/hh242963.aspx) for more information.
+It is important to ensure all subscriptions are handled in another thread, the example code provided above does that by using `ObserveOn(Scheduler.Default)`. Failure to do so may impact the overall system performance. See [schedulers](https://msdn.microsoft.com/en-us/library/hh242963.aspx) for more information.
 }}
 
 {{DANGER:
