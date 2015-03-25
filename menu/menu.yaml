@@ -181,6 +181,7 @@
           Articles: 
             - "nservicebus/scalability-and-ha/distributor/when-worker-goes-down"
             - "nservicebus/scalability-and-ha/distributor/disconnect-workers"
+            - "nservicebus/scalability-and-ha/distributor/upgrading-the-distributor"
 - 
   Name: "ServiceMatrix"
   Topics: 
