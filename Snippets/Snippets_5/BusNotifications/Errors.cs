@@ -24,7 +24,7 @@ public class SubscribeToErrorsNotifications : IWantToRunWhenBusStartsAndStops, I
             busNotifications.Errors.MessageSentToErrorQueue
                 // It is very important to handle streams on another thread
                 // otherwise the system performance can be impacted
-                .SubscribeOn(System.Reactive.Concurrency.Scheduler.Default) // Uses a pool-based scheduler
+                .ObserveOn(System.Reactive.Concurrency.Scheduler.Default) // Uses a pool-based scheduler
                 .Subscribe(SendEmailOnFailure)
             );
 
