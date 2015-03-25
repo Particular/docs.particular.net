@@ -20,7 +20,7 @@ This can happen when the performance counter libraries get corrupted.
 The performance counters libraries need to be rebuild by doing the following steps:
 
 1. Open an elevated command prompt
-2. Execute the following command rebuilds the performance counter libraries:
+2. Execute the following command to rebuild the performance counter libraries:
 
     `LODCTR /R`  (Mind the uppercase /R)
 
