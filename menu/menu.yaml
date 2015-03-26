@@ -197,6 +197,7 @@
     - 
       Title: "Using ServiceMatrix"
       Articles: 
+        - "servicematrix/publish-subscribe-with-servicematrix-2.0"
         - "servicematrix/customizing-extending"
         - "servicematrix/servicematrix-persistence"
         - "servicematrix/licensing-servicematrix-v2.0"

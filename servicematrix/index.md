@@ -17,6 +17,7 @@ summary: ServiceMatrix Documentation Table of Contents
 
 ### Using ServiceMatrix
 
+- [Publish & Subscribe with ServiceMatrix](publish-subscribe-with-servicematrix-2.0.md)
 - [Using the ServiceMatrix Code](customizing-extending.md)
 - [Changing Persistence in a ServiceMatrix Project](servicematrix-persistence.md)
 - [Licensing ServiceMatrix](licensing-servicematrix-v2.0.md)
