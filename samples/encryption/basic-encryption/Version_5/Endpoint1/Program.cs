@@ -8,7 +8,7 @@ class Program
     {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Encryption.Endpoint1");
-        busConfiguration.RijndaelEncryptionService("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
+        busConfiguration.RijndaelEncryptionService();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         IStartableBus startableBus = Bus.Create(busConfiguration);
         using (IBus bus = startableBus.Start())
