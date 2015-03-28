@@ -9,7 +9,7 @@ tags:
 
 ## Code walk-through
 
-When the default Saga message mappings do not satisfy our needs custom logic can be put in place to allow NServiceBus to find a saga data instance based on which logic best suites our environment.
+When the default Saga message mappings do not satisfy our needs custom logic can be put in place to allow NServiceBus to find a saga data instance based on which logic best suits our environment.
 
 This sample shows how to perform custom saga finding logic based on custom query logic.
 
