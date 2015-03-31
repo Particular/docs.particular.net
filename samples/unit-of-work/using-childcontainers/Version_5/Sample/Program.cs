@@ -20,7 +20,6 @@ static class Program
                             DefaultDatabase = "Samples.UoWWithChildContainers"
                         }
                         .Initialize());
-
             x.For<IDocumentSession>().Use(c => c.GetInstance<IDocumentStore>().OpenSession());
         });
 
