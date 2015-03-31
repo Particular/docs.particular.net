@@ -6,7 +6,7 @@ using Raven.Client;
 #region RavenUnitOfWork
 class RavenUnitOfWork : IBehavior<IncomingContext>
 {
-    readonly IDocumentSession session;
+    IDocumentSession session;
 
     public RavenUnitOfWork(IDocumentSession session)
     {
@@ -21,7 +21,10 @@ class RavenUnitOfWork : IBehavior<IncomingContext>
 
     public class Registration:RegisterStep
     {
-        public Registration() : base("MyRavenDBUoW", typeof(RavenUnitOfWork), "Manages the RavenDB IDocumentSession for my handlers")
+        public Registration() : base(
+            "MyRavenDBUoW", 
+            typeof(RavenUnitOfWork), 
+            "Manages the RavenDB IDocumentSession for my handlers")
         {
         }
     }
