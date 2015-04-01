@@ -183,25 +183,6 @@
             - "nservicebus/scalability-and-ha/distributor/disconnect-workers"
             - "nservicebus/scalability-and-ha/distributor/upgrading-the-distributor"
 - 
-  Name: "ServiceMatrix"
-  Topics: 
-    - 
-      Title: "Getting Started"
-      Articles: 
-        - "servicematrix/installing-servicematrix-2.0"
-        - "servicematrix/getting-started-with-servicematrix-2.0"
-        - "servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance"
-        - "servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe"
-        - "servicematrix/servicematrix-serviceinsight"
-        - "servicematrix/getting-started-sagasfullduplex-2.0"
-    - 
-      Title: "Using ServiceMatrix"
-      Articles: 
-        - "servicematrix/customizing-extending"
-        - "servicematrix/servicematrix-persistence"
-        - "servicematrix/licensing-servicematrix-v2.0"
-        - "servicematrix/troubleshooting-servicematrix-2.0"
-- 
   Name: "ServiceInsight"
   Topics: 
     - 
@@ -259,3 +240,22 @@
       Title: "Troubleshooting"
       Articles: 
         - "servicecontrol/troubleshooting"
+- 
+  Name: "ServiceMatrix"
+  Topics: 
+    - 
+      Title: "Getting Started"
+      Articles: 
+        - "servicematrix/installing-servicematrix-2.0"
+        - "servicematrix/getting-started-with-servicematrix-2.0"
+        - "servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance"
+        - "servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe"
+        - "servicematrix/servicematrix-serviceinsight"
+        - "servicematrix/getting-started-sagasfullduplex-2.0"
+    - 
+      Title: "Using ServiceMatrix"
+      Articles: 
+        - "servicematrix/customizing-extending"
+        - "servicematrix/servicematrix-persistence"
+        - "servicematrix/licensing-servicematrix-v2.0"
+        - "servicematrix/troubleshooting-servicematrix-2.0"
