@@ -7,7 +7,8 @@ tags:
 
 ## Table of Contents
 
-- [High level design](design.md)
+- [Introduction](design.md)
+- [Usage scenarios](usage.md)
 - [Table-based queue](configuration.md)
 - [Concurrency model](concurrency.md)
 - [Multi database support](multiple-databases.md)
