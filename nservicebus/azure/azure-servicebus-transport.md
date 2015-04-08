@@ -59,7 +59,6 @@ If you need fine grained control on how the Azure Service Bus transport behaves,
 Using this configuration setting you can change the following values. NOTE: Most of these values are applied when a queue or topic is created and cannot be changed afterwards).
 
 - `ConnectionString`: Overrides the default "NServiceBus/Transport" connectionstring value.
-- `QueueName`: Allows you to specify the queue name. If not set, NServiceBus creates a queue name for you based on the endpoint naming convention.
 - `ConnectivityMode`: Allows you to switch between HTTP and TCP based communication. Defaults to TCP. Very useful when behind a firewall.
 - `ServerWaitTime`: The transport uses longpolling to communicate with the Azure Service Bus entities. This value specifies the amount of time, in seconds, the longpoll can take. Defaults to 300 seconds. 
 - `BackoffTimeInSeconds`: The transport will back off linearly when no messages can be found on the queue to save some money on the transaction operations. This value specifies how fast it will back off. Defaults to 10 seconds.
@@ -74,7 +73,8 @@ Using this configuration setting you can change the following values. NOTE: Most
 - `DefaultMessageTimeToLive`: Specifies the time that a message can stay in the queue without being delivered. Defaults to int64.MaxValue, which is roughly 10.000 days.
 - `EnableDeadLetteringOnMessageExpiration`: Specifies whether messages should be moved to a dead letter queue upon expiration. Defaults to false (TTL is so large it wouldn't matter anyway). This assumes there have been no attempts to deliver. Errors on delivery will still put the message on the dead letter queue.
 - `EnableDeadLetteringOnFilterEvaluationExceptions`: Specifies whether messages should be moved to a dead letter queue upon filter evaluation exceptions. Defaults to false.
-- `QueuePerInstance`: Tells NServiceBus to create a separate queue for every instance of the endpoint hosted. This is useful in pub/sub scenarios where you want a message to arrive for every instance of the endpoint, i.e., in a webfarm that has a local cache on every machine. Defaults to false.
+
+NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.
 
 ## Sample
 
