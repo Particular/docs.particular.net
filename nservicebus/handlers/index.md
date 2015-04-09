@@ -40,9 +40,9 @@ public class GenericMessageHandler : IHandleMessages<Object>
 
 If you are using the Request-Response or Full Duplex pattern, your handler will probably do the work it needs to do, such as updating a database or calling a web service, then creating and sending a response message. See [How to Reply to a Message](/nservicebus/messaging/reply-to-a-message.md).
 
-If you are handling a message in a publish and subscribe scenario, see [How to Publish/Subscribe to a Message](/nservicebus/messaging/publish-subscribe/).
+If you are handling a message in a publish-and-subscribe scenario, see [How to Publish/Subscribe to a Message](/nservicebus/messaging/publish-subscribe/).
 
-## What happens when there is no handlers for a message?
+## What happens when there are no handlers for a message?
 
 Receiving a message for which there is no message handlers is considered an error and the received message will be forwarded to the configured error queue. 
 
