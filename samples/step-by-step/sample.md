@@ -100,7 +100,7 @@ We nearly done, all it is left to do is to go back to the `Client` project add a
 
 ### Selecting a persistence store
 
-At this point, if you try to compile your solution, there should be two errors in the `EndpointConfig.cs` for both the Ordering.Client`` and the `Order.Server` projects. You will see the compiler complain about this line of code in both projects:
+At this point, if you try to compile your solution, there should be two errors in the `EndpointConfig.cs` for both the `Ordering.Client` and the `Order.Server` projects. You will see the compiler complain about this line of code in both projects:
 
 ````C#
 configuration.UsePersistence<PLEASE_SELECT_ONE>();
