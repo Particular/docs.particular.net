@@ -6,7 +6,7 @@ tags:
 - Transports
 ---
 
-The SQL Server transport allows you to use select, on per-endpoint basis, where the table queues should be created. The selection can be done on multiple levels:
+The SQL Server transport allows you to select, on per-endpoint basis, where the table queues should be created. The selection can be done on multiple levels:
  * different schemas in a single database
  * different databases in a single SQL Server instance
  * different SQL Server instances
