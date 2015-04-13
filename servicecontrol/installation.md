@@ -56,6 +56,14 @@ Passing the ForwardAuditMessages property has no affect when the installer is no
 
 NOTE: It is recommended to enable logging when running in silent mode as error messages are suppressed. See Troubleshooting 
 
+#### Silent UnInstallation
+
+The following command can be used to uninstall ServiceControl silently:
+
+```bat
+wmic product where (name like '%servicecontrol%') call uninstall
+```
+
 #### Troubleshooting 
 
 The installer will pass any [MSIEXEC command line switches](https://technet.microsoft.com/en-us/library/cc759262%28v=ws.10%29.aspx) through when it is launched. 
