@@ -24,7 +24,6 @@ tags:
 1. You should get a valid response with JSON data containing ServiceControl default settings.
 1. Verify that firewall settings do not block access to the ServiceControl port (default: 33333) and that the default URI is accessible and responsive from a browser / HTTP client from the machine on which ServicePulse or ServiceInsight is trying to connect to ServiceControl
 
-
 ### Unable to start Particular.ServiceControl as a standard user
 
 1. If the Particular.ServiceControl fails to start and it is set to run with a standard user account (no elevated or specific privileges) this may be due to missing access rights to storage directory in which the internal database is located (by default, this is the `C:\ProgramData\Particular` directory
@@ -44,5 +43,8 @@ netsh http add urlacl url=http://localhost:33333/api/ user=<accountname> Listen=
     * `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs` if the issue relates to ServiceControl normal operations. Logs location may vary depending on the user that has been configured to run the ServiceControl service, the above one is the one where the LocalSystem user outputs logs information;
 * Most common cause is prerequisites installation and configuration issues;
 
- 
+### Particular.ServiceControl fails to start: `EsentInstanceUnavailableException`
 
+If the Particular.ServiceControl fails to start raising in the logs a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl database directory, sub-directory and files, is excluded from any anti-virus and anti-maleware real-time and scheduled scan.
+
+NOTE: ServiceControl default database directory is located at `%SystemDrive%\ProgramData\Particular\ServiceControl\localhost-33333`
