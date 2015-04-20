@@ -92,6 +92,10 @@ Rename `Class1.cs` to `PlaceOrderHandler.cs` and replace the content with the fo
 
 <!-- import PlaceOrderHandler -->
 
+Add a new class to the `Client` project called `OrderPlaced.cs` with the following code:
+
+<!--import OrderPlaced-->
+
 ### Sending the order
 
 We nearly done, all it is left to do is to go back to the `Client` project add a reference to the `Ordering.Messages` project and copy and paste the following code into the `Class1.cs` (if you want you can rename the file to `SendOrder.cs`) file:
