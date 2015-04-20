@@ -391,6 +391,8 @@
     <Compile Include="UnitTesting\Saga.cs" />
     <Compile Include="UnitTesting\ServiceLayer.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Outbox\RavenDB\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
