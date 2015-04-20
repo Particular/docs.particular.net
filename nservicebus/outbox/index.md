@@ -73,5 +73,3 @@ The RavenDB implementation by default keeps deduplication records for 7 days and
 These default settings can be changed by specifying new defaults in the settings dictionary, here is how to do it:
 
 <!-- import OutboxRavendBTimeToKeep -->
-
-### Sample
