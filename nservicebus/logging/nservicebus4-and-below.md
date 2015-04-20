@@ -9,8 +9,6 @@ redirects:
 
 INFO: This is relevant to versions 4 and below. For newer versions, see [Logging in NServiceBus](./).
 
-NServiceBus extends the Log4Net APIs with a simplified model that prevents administrators from accidentally changing behavior you set at design time.
-
 ## Logging basics
 
 Start to log with NServiceBus:
@@ -74,11 +72,9 @@ Then plug your appender into NServiceBus like this:
 
     NServiceBus.Configure.With().Log4Net(a => a.YourProperty = "value");
 
-## Administrative configuration
+## Logging Threshold
 
-As you saw before, most of the logging configuration done with NServiceBus is in code. This prevents administrators from accidentally changing values set by developers. It also provides developers with compile-time checking, IntelliSense, and the other productivity-enhancing capabilities of Visual Studio.
-
-Yet certain parameters need to be under administrative control. The main parameter is the logging resolution of how much information is logged. Logging only errors is usually desirable in production scenarios as it gives the best performance. Yet, when a system behaves erratically, having more information logged can give greater insight into what is causing the problems. This is controlled by the application configuration file by including the following entries:
+The logging threshold can be controled using the following in you `app.config.
 
 ```
 <configSections>
@@ -91,5 +87,4 @@ The 'Threshold' value attribute of the 'Logging' element can be any of the stand
 
 NOTE: If you set this value in code, the configuration value is ignored.
 
-The production profile only logs to a file, unless you are running within Visual Studio. See
-[Profiles](/nservicebus/hosting/nservicebus-host/profiles.md) for more detail.
+The production profile only logs to a file, unless you are running within Visual Studio. See [Profiles](/nservicebus/hosting/nservicebus-host/profiles.md) for more detail.
