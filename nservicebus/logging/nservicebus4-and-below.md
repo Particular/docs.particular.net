@@ -74,7 +74,7 @@ Then plug your appender into NServiceBus like this:
 
 ## Logging Threshold
 
-The logging threshold can be controled using the following in you `app.config.
+The logging threshold can be controlled using the following in you `app.config.
 
 ```
 <configSections>
