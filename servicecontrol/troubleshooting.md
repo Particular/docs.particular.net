@@ -45,6 +45,4 @@ netsh http add urlacl url=http://localhost:33333/api/ user=<accountname> Listen=
 
 ### Particular.ServiceControl fails to start: `EsentInstanceUnavailableException`
 
-If the Particular.ServiceControl fails to start raising in the logs a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl database directory, sub-directory and files, is excluded from any anti-virus and anti-maleware real-time and scheduled scan.
-
-NOTE: ServiceControl default database directory is located at `%SystemDrive%\ProgramData\Particular\ServiceControl\localhost-33333`
+If the Particular.ServiceControl fails to start raising in the logs a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-maleware real-time and scheduled scan.
