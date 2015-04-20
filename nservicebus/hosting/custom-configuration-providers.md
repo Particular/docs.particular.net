@@ -1,5 +1,5 @@
 ---
-title: Overrideing app.config settings
+title: Overriding app.config settings
 summary: NServiceBus uses the process config file as its default source of configuration.
 tags:
 - app.config
