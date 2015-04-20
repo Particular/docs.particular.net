@@ -58,7 +58,7 @@
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />
-    <Compile Include="Starter.cs" />
+    <Compile Include="MessageSender.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

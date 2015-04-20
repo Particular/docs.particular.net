@@ -1,9 +1,10 @@
 using NServiceBus;
 
-public class Starter :IWantToRunWhenBusStartsAndStops{
+public class MessageSender : IWantToRunWhenBusStartsAndStops
+{
     IBus bus;
 
-    public Starter(IBus bus)
+    public MessageSender(IBus bus)
     {
         this.bus = bus;
     }
