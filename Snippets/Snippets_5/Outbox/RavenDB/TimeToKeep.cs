@@ -1,6 +1,5 @@
 ﻿using System;
 using NServiceBus;
-using NServiceBus.Configuration.AdvanceExtensibility;
 
 public class TimeToKeep
 {
@@ -9,8 +8,8 @@ public class TimeToKeep
         BusConfiguration configuration = null;
 
         #region OutboxRavendBTimeToKeep
-        configuration.GetSettings().Set("Outbox.TimeToKeepDeduplicationData", TimeSpan.FromDays(7));
-        configuration.GetSettings().Set("Outbox.FrequencyToRunDeduplicationDataCleanup", TimeSpan.FromMinutes(1));
+        configuration.SetTimeToKeepDeduplicationData(TimeSpan.FromDays(7));
+        configuration.SetFrequencyToRunDeduplicationDataCleanup(TimeSpan.FromMinutes(1));
         #endregion
     }
 }

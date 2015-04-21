@@ -329,6 +329,7 @@
     <Compile Include="Logging\NLog\NLogFiltering.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
+    <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
@@ -391,8 +392,6 @@
     <Compile Include="UnitTesting\Saga.cs" />
     <Compile Include="UnitTesting\ServiceLayer.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Outbox\RavenDB\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
