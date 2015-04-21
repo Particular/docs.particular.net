@@ -193,6 +193,8 @@ A good sample to start with is the [Default Logging Sample](https://github.com/P
 
 There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. All `.cs`, `.xml`, `.sql` and `.config` files in that directory are parsed for code snippets
 
+Snippets are compiled against the versions of the packages referenced in the snippets project. When a snippet doesn't compile the build will break. Make sure the snippets you use are compiling properly. There is one exception to this rule: If you are writing snippets for features which are not yet released.
+
 #### Using comments
 
 Any code wrapped in a convention based comment will be picked up. The comment needs to start with `startcode` which is followed by the key.
