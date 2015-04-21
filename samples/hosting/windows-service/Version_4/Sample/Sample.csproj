@@ -57,7 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
-    <Compile Include="ProgramService.cs" />
+    <Compile Include="MyHandler.cs" />
+    <Compile Include="MyMessage.cs" />
+    <Compile Include="ProgramService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Sender.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
