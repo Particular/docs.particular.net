@@ -63,15 +63,13 @@ If you need more fine grained control on how the azure storage queue transport b
 Using this configuration setting you can change the following values.
 
 - `ConnectionString`: Overrides the default "NServiceBus/Transport" value and defaults to "UseDevelopmentStorage=true" if not set. Best to set this value when specifying the configuration setting to prevent surprises.
-- `QueueName`: Allows you to specify the queue name, if not set NServiceBus will create a queue name for you based on the endpoint naming convention.
 - `PeekInterval`: Represents the amount of time that the transport waits before polling the queue in milliseconds, defaults to 50 ms.
 - `MaximumWaitTimeWhenIdle`: The transport will back of linearly when no messages can be found on the queue to save some money on the transaction operations, but it will never wait longer than the value specified here, also in milliseconds and defaults to 1000 (1 second)
 - `PurgeOnStartup`: Instructs the transport to remove any existing messages from the queue on startup, defaults to false.
 - `MessageInvisibleTime`: The peek lock system, supported by azure storage queues relies on a period of time that a message becomes locked/invisible after being read. If the processing unit fails to delete the message by the specified time it will reappear on the queue so that another process can retry. This value is defined in milliseconds and defaults to 30000 (30 seconds).
 - `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. Defaults to 10. Depending on the load you expect, I would vary this value between 1 and 1000 (which is the limit)
-- `QueuePerInstance`: Tells nservicebus to create a separate queue for every instance of the endpoint hosted. This is useful in pub sub scenario's where you want a message to arrive at every instance of the endpoint, f.e. in a webfarm that has local cache on every machine. Defaults to false.
 
-```
+NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.
 
 ## Sample
 
