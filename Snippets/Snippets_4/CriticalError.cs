@@ -20,6 +20,17 @@ public class CriticalError
         #endregion
     }
 
+    public void RaiseCriticalErrorAction()
+    {
+        Exception theException = null;
+        #region RaiseCriticalError
+
+        // Configuring how NServicebus handles critical errors
+        Configure.With().RaiseCriticalError("The message", theException);
+
+        #endregion
+    }
+
     public void DefineCriticalErrorActionForAzureHost()
     {
 
@@ -37,17 +48,6 @@ public class CriticalError
             
             Environment.FailFast(String.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
         });
-
-        #endregion
-    }
-
-    public void RaiseCriticalErrorAction()
-    {
-        Exception theException = null;
-        #region RaiseCriticalError
-
-        // Configuring how NServicebus handles critical errors
-        Configure.With().RaiseCriticalError("The message", theException);
 
         #endregion
     }
