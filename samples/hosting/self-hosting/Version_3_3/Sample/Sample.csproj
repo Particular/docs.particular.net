@@ -61,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
+    <Compile Include="MyHandler.cs" />
+    <Compile Include="MyMessage.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -25,7 +25,8 @@ class Program
 
 		#endregion
 
-		Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
+        Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
+        bus.SendLocal(new MyMessage());
         Console.ReadKey();
     }
 }
