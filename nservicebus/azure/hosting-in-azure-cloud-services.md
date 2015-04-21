@@ -160,6 +160,18 @@ a short explanation of each:
 * UseTransport<AzureStorageQueueTransport>: Sets azure storage queues as the transport
 * UsePersistence: Configures azure storage for persistence of enabled features (like subscriptions, saga's & timeouts).
 
+## Handling critical errors
+
+### Azure Host version 6.2.1 and up
+
+Azure host is terminated on critical errors by default. When host is terminated, Azure Fabric will restart the host automatically.
+
+### Azure Host version 6.2 and lower
+
+Azure host is not terminated on critical errors by default and only shuts down the bus. This would cause role not to process messages until host (role) is restarted.
+To address this, implement critical errors handling code that shuts down the host.
+
+<!-- import DefineCriticalErrorActionForAzureHost -->
 
 ## Sample
 
