@@ -29,11 +29,11 @@ class Program3rdParty
         {
             if (isReturningOk)
             {
-                Console.WriteLine("Currently returning success");
+                Console.WriteLine("\r\nCurrently returning success");
             }
             else
             {
-                Console.WriteLine("Currently returning error");
+                Console.WriteLine("\r\nCurrently returning error");
             }
             Console.ReadKey();
             isReturningOk = !isReturningOk;
