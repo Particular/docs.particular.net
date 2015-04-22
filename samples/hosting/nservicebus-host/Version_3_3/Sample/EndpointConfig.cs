@@ -14,7 +14,7 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomIni
         configure.Sagas();
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
-        configure.UseInMemoryTimeoutPersister();
+        configure.RunTimeoutManagerWithInMemoryPersistence();
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
     }

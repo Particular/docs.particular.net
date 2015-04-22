@@ -37,7 +37,7 @@ public class EndpointConfig :
         configure.DefineEndpointName("Samples.Logging.HostCustom");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
-        configure.UseInMemoryTimeoutPersister();
+        configure.RunTimeoutManagerWithInMemoryPersistence();
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
     }

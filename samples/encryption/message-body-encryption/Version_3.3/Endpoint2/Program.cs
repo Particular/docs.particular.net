@@ -12,7 +12,7 @@ class Program
         configure.RijndaelEncryptionService();
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
-        configure.UseInMemoryTimeoutPersister();
+        configure.RunTimeoutManagerWithInMemoryPersistence();
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
         configure.RegisterMessageEncryptor();

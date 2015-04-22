@@ -14,7 +14,7 @@ class Program
         configure.DefaultBuilder();
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
-        configure.UseInMemoryTimeoutPersister();
+        configure.RunTimeoutManagerWithInMemoryPersistence();
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
         IBus bus = configure.UnicastBus()

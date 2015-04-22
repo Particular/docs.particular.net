@@ -12,7 +12,7 @@ class Program
         configure.JsonSerializer();
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
-        configure.UseInMemoryTimeoutPersister();
+        configure.RunTimeoutManagerWithInMemoryPersistence();
         configure.InMemorySubscriptionStorage();
         configure.UnicastBus()
             .CreateBus()
