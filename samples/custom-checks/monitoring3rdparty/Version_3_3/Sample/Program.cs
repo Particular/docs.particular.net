@@ -13,7 +13,7 @@ class Program
         configure.MsmqTransport();
         configure.JsonSerializer();
         configure.InMemorySagaPersister();
-        configure.UseInMemoryTimeoutPersister();
+        configure.RunTimeoutManagerWithInMemoryPersistence();
         configure.InMemorySubscriptionStorage();
         IBus bus = configure.UnicastBus()
             .CreateBus()
