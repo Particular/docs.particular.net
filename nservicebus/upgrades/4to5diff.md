@@ -1,6 +1,6 @@
 ---
 title: API differences between V4 and V5
-summary: API differences between V4 and V5 
+summary: Detailed binary level API differences between the NServiceBus V4 and V5 assemblies
 tags:
  - upgrade
  - migration
