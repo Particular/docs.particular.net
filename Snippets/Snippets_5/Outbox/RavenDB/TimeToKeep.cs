@@ -1,5 +1,6 @@
 ﻿using System;
 using NServiceBus;
+using NServiceBus.RavenDB.Outbox;
 
 public class TimeToKeep
 {
