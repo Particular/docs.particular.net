@@ -186,7 +186,7 @@
     </Reference>
     <Reference Include="NServiceBus.RavenDB, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.RavenDB.2.1.0\lib\net45\NServiceBus.RavenDB.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.RavenDB.2.2.0\lib\net45\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Testing, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -329,6 +329,7 @@
     <Compile Include="Logging\NLog\NLogFiltering.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
+    <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />

@@ -35,28 +35,41 @@ Here is a diagram how it all works:
 
 ## Caveats
 
-- Currently only NHibernate storage has been implemented;
-- Both the business data and dedupplication data need to share the same database;
+- Both the business data and dedupplication data need to share the same database
 
-## SQL Server Transport
+## Using outbox with NHibernate persistence
+
+### SQL Server Transport
 
 SQL Server transport supports *exactly-once* message delivery without Outbox solely by means of sharing the transport connection with persistence. This mode of operation is discussed in depth in this [sample](/samples/sqltransport-nhpersistence).
 
-## What extra tables does NHibernate outbox persistence create 
+### What extra tables does NHibernate outbox persistence create 
 
 To keep track duplicate messages, the NHibernate implementation of Outbox requires the creation of two additional tables in your database, these are called `OutboxRecord` and `OutboxOperation`.
 
-## How long are the deduplication records kept
+### How long are the deduplication records kept
 
 The NHibernate implementation by default keeps deduplication records for 7 days and runs the purge every 1 minute.
 These default settings can be changed by specifying new defaults in the config file using [TimeStamp strings](https://msdn.microsoft.com/en-us/library/ee372286.aspx), here is how to do it:
 
 <!-- import OutboxNHibernateTimeToKeep -->
 
-## Sample
+### Sample
 
 The sample shows how to configure an Endpoint that uses SQL Server transport and NHibernate as it business data storage and how to access the NHIbernate `ISession` for a `Saga` and a `Handler`.
 
 ### [Outbox Sample](https://github.com/Particular/NServiceBus.NHibernate/archive/Samples.zip) 
 
 This sample shows how to enable Outbox on an endpoint and how to access the NHibernate `ISession` for a `Saga` and a `Handler`. 
+
+## Using outbox with RavenDB persistence
+### What extra documents does RavenDB outbox persistence create 
+
+To keep track duplicate messages, the RavenDB implementation of Outbox creates a special collection of documents inside your database, these are called `OutboxRecord`.
+
+### How long are the deduplication records kept
+
+The RavenDB implementation by default keeps deduplication records for 7 days and runs the purge every 1 minute.
+These default settings can be changed by specifying new defaults in the settings dictionary, here is how to do it:
+
+<!-- import OutboxRavendBTimeToKeep -->
