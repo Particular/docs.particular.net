@@ -1,6 +1,6 @@
 ---
-title: Message Handling Pipeline
-summary: Overview of the message handling pipeline 
+title: Customising the Pipeline
+summary: Customising the message handling pipeline 
 tags:
 - Pipeline
 ---
