@@ -49,14 +49,12 @@ public class MvcApplication : HttpApplication
 
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
-
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Mvc.WebApplication");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-
 
         var startableBus = Bus.Create(busConfiguration);
         bus = startableBus.Start();
