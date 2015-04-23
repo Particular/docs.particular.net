@@ -187,6 +187,17 @@ At the moment the best way to get started on a sample is to copy an existing one
 
 A good sample to start with is the [Default Logging Sample](https://github.com/Particular/docs.particular.net/tree/master/samples/logging/default), since all it does is enable logging. You can then add the various moving pieces to your copy.
 
+### Screenshots
+
+Avoid using screen shots in sample unless it adds significant value over what can be expressed in text. The have the following problems 
+
+ * Screenshots are more time consuming to update than text
+ * Not search-able
+ * Are prone to resulting an in inconsistent feel as different people take screenshot at different sizes, different zoom levels and with different color schemes for the app in question
+ * Screenshots add significantly to the page load time. 
+
+The most common mis-use of screenshots it when capturing console output. DO NOT DO THIS. Put the text inside a formatted code section instead. 
+
 ## Code Snippets
 
 ### Defining Snippets
