@@ -17,21 +17,27 @@ This sample shows how to share a RavenDB `IDocumentSession` between multiple han
 2. Avoids the need to call `.SaveChanges` in all handlers
 
 With the UoW in place our handlers can focus solely on the business problem we're solving. Our handler in the sample looks like this:
+
 <!-- import PlaceOrderHandler -->
+
 Notice how we inject the `IDocumentSession` and then call `.Store` on it.
 
-
 #### Saving the changes
+
 With RavenDB you need to call `.SaveChanges` explicitly. We'll add a pipeline step that does this once after all our handlers have been called.
 
 In this sample we'll use a incoming pipeline behavior to handler this.
+
 <!-- import RavenUnitOfWork -->
+
 Notice how we first call `next()` to invoke the pipeline and if no exception is thrown we'll call `.SaveChanges()` to apply the changes to our database.
 
 #### Registering the UoW in the pipeline
 
 This is a easy as
+
 <!-- import PipelineRegistration -->
+
 #### Sharing the session between handlers and behavior
 
 For this we're leaning on the child container support of our container. This sample is using StructureMap but it would work on most other containers as well. (please check the documentation for your chosen container to make sure)
@@ -41,14 +47,7 @@ NServiceBus will create a child container per message and the semantics of a chi
 The final piece of the puzzle is disposing of the session. Again the works out of the box since the child container will automatically dispose any instances that was created by it.
 
 With this in mind we configure our StructureMap container as follows
+
 <!-- import ContainerConfiguration -->
+
 Notice how we define the session factory as `single instance` and the session as `per call`.
-
-
-
-
-
-
-
-
-
