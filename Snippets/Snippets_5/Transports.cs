@@ -7,22 +7,22 @@ public class Transports
     {
         #region ConfigureTransports
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         // Configure to use MSMQ 
-        configuration.UseTransport<MsmqTransport>();
+        busConfiguration.UseTransport<MsmqTransport>();
 
         // Configure to use AzureStorageQueue
-        configuration.UseTransport<AzureStorageQueueTransport>();
+        busConfiguration.UseTransport<AzureStorageQueueTransport>();
 
         // Configure to use AzureServiceBus
-        configuration.UseTransport<AzureServiceBusTransport>();
+        busConfiguration.UseTransport<AzureServiceBusTransport>();
 
         // Configure to use SqlServerB
-        configuration.UseTransport<SqlServerTransport>();
+        busConfiguration.UseTransport<SqlServerTransport>();
 
         // Configure to use Rabbit
-        configuration.UseTransport<RabbitMQTransport>();
+        busConfiguration.UseTransport<RabbitMQTransport>();
 
         #endregion
     }

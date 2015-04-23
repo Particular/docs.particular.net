@@ -6,21 +6,21 @@ public class StaticConfigureEndpoint
     {
         #region StaticConfigureEndpoint
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         // SendOnly
-        Bus.CreateSendOnly(configuration);
+        Bus.CreateSendOnly(busConfiguration);
 
         // AsVolatile
-        configuration.Transactions().Disable();
-        configuration.DisableDurableMessages();
-        configuration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.Transactions().Disable();
+        busConfiguration.DisableDurableMessages();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
         // DisableDurableMessages
-        configuration.DisableDurableMessages();
+        busConfiguration.DisableDurableMessages();
 
         // EnableDurableMessages
-        configuration.EnableDurableMessages();
+        busConfiguration.EnableDurableMessages();
 
         #endregion
     }

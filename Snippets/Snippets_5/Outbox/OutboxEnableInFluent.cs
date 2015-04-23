@@ -6,9 +6,9 @@ public class OutboxEnableInFluent
     {
         #region OutboxEnablineInFluent
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.EnableOutbox();
+        busConfiguration.EnableOutbox();
 
         #endregion
     }

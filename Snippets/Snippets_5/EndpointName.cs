@@ -6,9 +6,9 @@ public class EndpointName
     {
         #region EndpointNameFluent
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.EndpointName("MyEndpoint");
+        busConfiguration.EndpointName("MyEndpoint");
         
         #endregion
     }
@@ -21,7 +21,7 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server
 {
     // ... your custom config
 // endcode
-    public void Customize(BusConfiguration configuration)
+    public void Customize(BusConfiguration busConfiguration)
     {
     }
 }
@@ -33,7 +33,7 @@ namespace MyServer
     {
         // ... your custom config
     // endcode
-        public void Customize(BusConfiguration co)
+        public void Customize(BusConfiguration busConfiguration)
         {
         }
     }

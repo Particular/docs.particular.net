@@ -6,11 +6,11 @@ public class ForInstallationOnReplacement
     {
         #region Installers
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.EnableInstallers();
+        busConfiguration.EnableInstallers();
 
-        Bus.Create(configuration);//this will run the installers
+        Bus.Create(busConfiguration);//this will run the installers
 
         #endregion
     }

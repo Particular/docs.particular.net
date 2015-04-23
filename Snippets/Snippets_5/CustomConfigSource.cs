@@ -10,9 +10,9 @@ public class CustomConfigSource
 
         #region RegisterCustomConfigSource
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.CustomConfigurationSource(new MyCustomConfigurationSource());
+        busConfiguration.CustomConfigurationSource(new MyCustomConfigurationSource());
 
         #endregion
     }

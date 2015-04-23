@@ -30,11 +30,11 @@ public class EndpointConfig :
         LogManager.Use<Log4NetFactory>();
     }
 #endregion
-    public void Customize(BusConfiguration configuration)
+    public void Customize(BusConfiguration busConfiguration)
     {
-        configuration.EndpointName("Samples.Logging.HostCustom");
-        configuration.UseSerialization<JsonSerializer>();
-        configuration.EnableInstallers();
-        configuration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.EndpointName("Samples.Logging.HostCustom");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
     }
 }

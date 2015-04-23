@@ -17,9 +17,9 @@ public class CustomRavenConfig
         
         documentStore.Initialize();
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.UsePersistence<RavenDBPersistence>()
+        busConfiguration.UsePersistence<RavenDBPersistence>()
             .SetDefaultDocumentStore(documentStore);
         #endregion
     }

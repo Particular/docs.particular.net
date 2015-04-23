@@ -6,9 +6,9 @@ public class HandlerOrdering
     {
         #region HandlerOrderingWithFluent
         
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>());
+        busConfiguration.LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>());
 
         #endregion
     }

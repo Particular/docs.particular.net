@@ -3,9 +3,9 @@ namespace Ordering.Client
     using NServiceBus;
 	public class EndpointConfig : IConfigureThisEndpoint, AsA_Client
     {
-	    public void Customize(BusConfiguration configuration)
+	    public void Customize(BusConfiguration busConfiguration)
 	    {
-	        configuration.UsePersistence<InMemoryPersistence>();
+	        busConfiguration.UsePersistence<InMemoryPersistence>();
 	    }
     }
 }

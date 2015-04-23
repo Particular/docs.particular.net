@@ -15,8 +15,8 @@ class ConfiguringTransactionRecoveryStorage
             TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(transactionRecoveryPath)
         };
 
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.UsePersistence<RavenDBPersistence>()
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UsePersistence<RavenDBPersistence>()
             .SetDefaultDocumentStore(myDocumentStore);
 
         #endregion

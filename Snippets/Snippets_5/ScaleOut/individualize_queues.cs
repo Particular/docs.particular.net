@@ -6,17 +6,17 @@
     {
         public void ConfigurePropertyInjectionForHandler()
         {
-            BusConfiguration configuration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
             #region UniqueQueuePerEndpointInstance 5.2
 
-            configuration.ScaleOut().UniqueQueuePerEndpointInstance();
+            busConfiguration.ScaleOut().UniqueQueuePerEndpointInstance();
 
             #endregion
 
             #region UniqueQueuePerEndpointInstanceWithSuffix 5.2
 
-            configuration.ScaleOut().UniqueQueuePerEndpointInstance("-MyCustomSuffix");
+            busConfiguration.ScaleOut().UniqueQueuePerEndpointInstance("-MyCustomSuffix");
 
             #endregion
         }

@@ -10,16 +10,16 @@ public class PropertyEncryption
     {
         #region EncryptionServiceSimple
 
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.RijndaelEncryptionService();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.RijndaelEncryptionService();
 
         #endregion
     }
     public void Convention()
     {
         #region DefiningEncryptedPropertiesAs
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.Conventions()
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.Conventions()
             .DefiningEncryptedPropertiesAs(info => info.Name.EndsWith("EncryptedProperty"));
         #endregion
     }
@@ -41,14 +41,14 @@ public class PropertyEncryption
     {
         #region EncryptionFromFluentAPI
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
         string encryptionKey = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6";
         List<string> expiredKeys = new List<string>
                           {
                               "abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6",
                               "cdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"
                           };
-        configuration.RijndaelEncryptionService(encryptionKey, expiredKeys);
+        busConfiguration.RijndaelEncryptionService(encryptionKey, expiredKeys);
 
         #endregion
     }
@@ -77,9 +77,9 @@ public class PropertyEncryption
     {
         #region EncryptionFromIEncryptionService
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
         //where MyCustomEncryptionService implements IEncryptionService 
-        configuration.RegisterEncryptionService(b => new MyCustomEncryptionService());
+        busConfiguration.RegisterEncryptionService(b => new MyCustomEncryptionService());
 
         #endregion
     }

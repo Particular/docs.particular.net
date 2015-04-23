@@ -8,8 +8,8 @@ static class Program
 {
     static void Main()
     {
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.EndpointName("Samples.UoWWithChildContainers");
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.UoWWithChildContainers");
 
         #region ContainerConfiguration
         Container container = new Container(x =>
@@ -23,19 +23,19 @@ static class Program
             x.For<IDocumentSession>().Use(c => c.GetInstance<IDocumentStore>().OpenSession());
         });
 
-        configuration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
+        busConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
         #endregion
 
         #region PipelineRegistration
-        configuration.Pipeline.Register<RavenUnitOfWork.Registration>();
+        busConfiguration.Pipeline.Register<RavenUnitOfWork.Registration>();
         #endregion
 
-        configuration.UsePersistence<InMemoryPersistence>();
-        configuration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.EnableInstallers();
 
         int orderNumber = 1;
 
-        using (IStartableBus bus = Bus.Create(configuration))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
 

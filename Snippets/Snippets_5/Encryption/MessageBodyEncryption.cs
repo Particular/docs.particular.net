@@ -9,8 +9,8 @@ public class MessageBodyEncryption
     {
         #region UsingMessageBodyEncryptor
 
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.RegisterComponents(c => c.ConfigureComponent<MessageEncryptor>(DependencyLifecycle.InstancePerCall));
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.RegisterComponents(c => c.ConfigureComponent<MessageEncryptor>(DependencyLifecycle.InstancePerCall));
 
         #endregion
     }

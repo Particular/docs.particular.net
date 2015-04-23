@@ -13,9 +13,9 @@ public class DiscardingOldMessages
     {
         #region DiscardingOldMessagesWithFluent
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.Conventions()
+        busConfiguration.Conventions()
             .DefiningTimeToBeReceivedAs(type =>
         {
             if (type == typeof (MyMessage))

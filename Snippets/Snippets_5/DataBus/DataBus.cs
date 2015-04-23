@@ -11,9 +11,9 @@ public class DataBus
 
         #region FileShareDataBus
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.UseDataBus<FileShareDataBus>()
+        busConfiguration.UseDataBus<FileShareDataBus>()
             .BasePath(databusPath);
 
         #endregion
@@ -23,16 +23,16 @@ public class DataBus
     {
         #region AzureDataBus
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.UseDataBus<AzureDataBus>();
+        busConfiguration.UseDataBus<AzureDataBus>();
 
         #endregion
     }
 
     public void AzureDataBusConfiguration()
     {
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
         string azureStorageConnectionString = "";
         string basePathWithinContainer = "";
         string containerName = "";
@@ -45,7 +45,7 @@ public class DataBus
 
         #region AzureDataBusConfiguration
 
-        configuration.UseDataBus<AzureDataBus>()
+        busConfiguration.UseDataBus<AzureDataBus>()
             .ConnectionString(azureStorageConnectionString)
             .Container(containerName)
             .BasePath(basePathWithinContainer)
@@ -85,11 +85,11 @@ namespace DataBusProperties
 
     public static class MessageConventions
     {
-        public static void DefineDataBusPropertiesConvention(BusConfiguration configuration)
+        public static void DefineDataBusPropertiesConvention(BusConfiguration busConfiguration)
         {
             #region DefineMessageWithLargePayloadUsingConvention
 
-            configuration.Conventions()
+            busConfiguration.Conventions()
                 .DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
 
             #endregion
@@ -131,8 +131,8 @@ namespace CustomDataBusPluginSnippet
         {
             #region PluginCustomDataBusV5 5
 
-            BusConfiguration configuration = new BusConfiguration();
-            configuration.UseDataBus(typeof(CustomDataBus));
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseDataBus(typeof(CustomDataBus));
 
             #endregion
         }

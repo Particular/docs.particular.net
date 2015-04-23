@@ -17,49 +17,49 @@ public class ScanningPublicApi
 
         #region ScanningDefault
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         #endregion
 
         #region ScanningListOfAssemblies
 
-        configuration.AssembliesToScan(myListOfAssemblies);
+        busConfiguration.AssembliesToScan(myListOfAssemblies);
 
         #endregion
 
         #region ScanningParamArrayOfAssemblies
 
-        configuration.AssembliesToScan(assembly1, assembly2);
+        busConfiguration.AssembliesToScan(assembly1, assembly2);
 
         #endregion
 
         #region ScanningCustomDirectory
 
-        configuration.ScanAssembliesInDirectory(@"c:\my-custom-dir");
+        busConfiguration.ScanAssembliesInDirectory(@"c:\my-custom-dir");
 
         #endregion
 
         #region ScanningListOfTypes
 
-        configuration.TypesToScan(myTypes);
+        busConfiguration.TypesToScan(myTypes);
 
         #endregion
 
         #region ScanningExcludeByName
 
-        configuration.AssembliesToScan(AllAssemblies.Except("MyAssembly.dll").And("MyAssembly.dll"));
+        busConfiguration.AssembliesToScan(AllAssemblies.Except("MyAssembly.dll").And("MyAssembly.dll"));
 
         #endregion
 
         #region ScanningIncludeByPattern
 
-        configuration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").And("SomethingElse"));
+        busConfiguration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").And("SomethingElse"));
 
         #endregion
 
         #region ScanningMixingIncludeAndExclude
 
-        configuration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").Except("BadAssembly.dll"));
+        busConfiguration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").Except("BadAssembly.dll"));
 
         #endregion
 

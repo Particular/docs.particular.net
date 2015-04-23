@@ -6,11 +6,11 @@ public class License
     {
         #region License
      
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.LicensePath("PathToLicense");
+        busConfiguration.LicensePath("PathToLicense");
         //or
-        configuration.License("YourCustomLicenseText");
+        busConfiguration.License("YourCustomLicenseText");
 
         #endregion
     }

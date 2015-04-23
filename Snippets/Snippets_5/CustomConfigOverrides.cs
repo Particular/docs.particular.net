@@ -6,11 +6,11 @@ public class CustomConfigOverrides
     {
         #region CustomConfigOverrides
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.AssembliesToScan(AllAssemblies.Except("NotThis.dll"));
-        configuration.Conventions().DefiningEventsAs(type => type.Name.EndsWith("Event"));
-        configuration.EndpointName("MyEndpointName");
+        busConfiguration.AssembliesToScan(AllAssemblies.Except("NotThis.dll"));
+        busConfiguration.Conventions().DefiningEventsAs(type => type.Name.EndsWith("Event"));
+        busConfiguration.EndpointName("MyEndpointName");
 
         #endregion
     }

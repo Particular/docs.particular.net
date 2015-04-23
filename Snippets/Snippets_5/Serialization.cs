@@ -8,12 +8,12 @@ public class Serialization
 
         #region ConfigureSerialization
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.UseSerialization<BinarySerializer>();
-        configuration.UseSerialization<BsonSerializer>();
-        configuration.UseSerialization<JsonSerializer>();
-        configuration.UseSerialization<XmlSerializer>();
+        busConfiguration.UseSerialization<BinarySerializer>();
+        busConfiguration.UseSerialization<BsonSerializer>();
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.UseSerialization<XmlSerializer>();
 
         #endregion
     }
@@ -22,8 +22,8 @@ public class Serialization
 
         #region JsonSerialization
 
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.UseSerialization<JsonSerializer>();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UseSerialization<JsonSerializer>();
 
         #endregion
     }
@@ -32,8 +32,8 @@ public class Serialization
 
         #region BinarySerialization
 
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.UseSerialization<BinarySerializer>();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UseSerialization<BinarySerializer>();
 
         #endregion
     }
@@ -41,8 +41,8 @@ public class Serialization
     {
         #region BsonSerialization
 
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.UseSerialization<BsonSerializer>();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UseSerialization<BsonSerializer>();
         #endregion
     }
 
@@ -50,8 +50,8 @@ public class Serialization
     {
         #region XmlSerialization
 
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.UseSerialization<XmlSerializer>();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UseSerialization<XmlSerializer>();
 
         #endregion
     }

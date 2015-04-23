@@ -4,9 +4,9 @@ namespace Orders.Sender
 {
     class EndpointConfig : IConfigureThisEndpoint, AsA_Server
     {
-        public void Customize(BusConfiguration configuration)
+        public void Customize(BusConfiguration busConfiguration)
         {
-            configuration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
         }
     }
 }

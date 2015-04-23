@@ -11,9 +11,9 @@ public class ContainerCustom
 
     public void CustomContainerExtensionUsage()
     {
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
         //Register the container in the configuration with '.UseContainer<T>()'
-        configuration.UseContainer<MyContainer>();
+        busConfiguration.UseContainer<MyContainer>();
     }
     // Create a class that implements 'ContainerDefinition' and returns your 'IContainer' implementation.
     public class MyContainer : ContainerDefinition

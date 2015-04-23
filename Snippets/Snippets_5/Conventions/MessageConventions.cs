@@ -7,8 +7,8 @@ public class MessageConventions
     {
         #region MessageConventions
 
-        BusConfiguration configuration = new BusConfiguration();
-        ConventionsBuilder conventions = configuration.Conventions();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        ConventionsBuilder conventions = busConfiguration.Conventions();
         conventions.DefiningCommandsAs(t => t.Namespace != null && t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"));
         conventions.DefiningEventsAs(t => t.Namespace != null && t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"));
         conventions.DefiningMessagesAs(t => t.Namespace != null && t.Namespace == "Messages");

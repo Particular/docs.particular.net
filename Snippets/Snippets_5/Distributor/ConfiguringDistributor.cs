@@ -6,18 +6,18 @@ class ConfiguringDistributor
     {
         #region ConfiguringDistributor
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         // --------------------------------------
         // Running the Distributor and a Worker
-        configuration.AsMSMQMasterNode();
+        busConfiguration.AsMSMQMasterNode();
         //or 
-        configuration.RunMSMQDistributor();
+        busConfiguration.RunMSMQDistributor();
         // --------------------------------------
 
         // --------------------------------------
         // Running the Distributor only
-        configuration.RunMSMQDistributor(false);
+        busConfiguration.RunMSMQDistributor(false);
         // --------------------------------------
 
         #endregion

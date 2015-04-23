@@ -9,19 +9,19 @@ public class TransactionConfig
     {
         #region TransactionConfig
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         //Enable
-        configuration.Transactions().Enable();
+        busConfiguration.Transactions().Enable();
 
         // Disable
-        configuration.Transactions().Disable();
+        busConfiguration.Transactions().Disable();
 
         // IsolationLevel
-        configuration.Transactions().IsolationLevel(IsolationLevel.Chaos);
+        busConfiguration.Transactions().IsolationLevel(IsolationLevel.Chaos);
 
         // DefaultTimeout
-        configuration.Transactions().DefaultTimeout(TimeSpan.FromMinutes(5));
+        busConfiguration.Transactions().DefaultTimeout(TimeSpan.FromMinutes(5));
 
         #endregion
     }

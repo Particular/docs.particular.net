@@ -18,9 +18,9 @@ class AzurePersistence
 
     public class EndpointConfig : IConfigureThisEndpoint
     {
-        public void Customize(BusConfiguration configuration)
+        public void Customize(BusConfiguration busConfiguration)
         {
-            configuration.UsePersistence<AzureStoragePersistence>();
+            busConfiguration.UsePersistence<AzureStoragePersistence>();
         }
     }
 
@@ -28,11 +28,11 @@ class AzurePersistence
 
     public void CustomizingAzurePersistenceSubscriptions_6_2()
     {
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         #region AzurePersistenceSubscriptionsCustomization 6.2
 
-        configuration.UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()
+        busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Subscriptions>()
                         .ConnectionString("connectionString")
                         .TableName("tableName")
                         .CreateSchema(true);
@@ -41,11 +41,11 @@ class AzurePersistence
 
     public void CustomizingAzurePersistenceSagas_6_2()
     {
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         #region AzurePersistenceSagasCustomization 6.2
 
-        configuration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>()
+        busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Sagas>()
                         .ConnectionString("connectionString")
                         .CreateSchema(true);
         #endregion
@@ -53,11 +53,11 @@ class AzurePersistence
 
     public void AzurePersistenceTimeoutsCustomization_6_2()
     {
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         #region AzurePersistenceTimeoutsCustomization 6.2
 
-        configuration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()
+        busConfiguration.UsePersistence<AzureStoragePersistence, StorageType.Timeouts>()
                 .ConnectionString("connectionString")
                 .CreateSchema(true)
                 .TimeoutManagerDataTableName("TimeoutManager")

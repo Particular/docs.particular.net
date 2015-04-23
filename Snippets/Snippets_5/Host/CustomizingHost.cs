@@ -3,11 +3,11 @@
 using NServiceBus;
 class CustomizingHost : IConfigureThisEndpoint
 {
-    public void Customize(BusConfiguration configuration)
+    public void Customize(BusConfiguration busConfiguration)
     {
         // To customize, use the configuration parameter. 
         // For example, to customize the endpoint name:
-        configuration.EndpointName("NewEndpointName");
+        busConfiguration.EndpointName("NewEndpointName");
     }
 }
 #endregion

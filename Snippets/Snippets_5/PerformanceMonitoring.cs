@@ -7,11 +7,11 @@ public class PerformanceMonitoring
     {
         #region PerformanceMonitoring
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.EnableSLAPerformanceCounter();
+        busConfiguration.EnableSLAPerformanceCounter();
         //or
-        configuration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
+        busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
 
         #endregion
     }

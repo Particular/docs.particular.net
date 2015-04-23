@@ -18,37 +18,37 @@ public class Containers
 
         #region Containers
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         // Autofac
-        configuration.UseContainer<AutofacBuilder>();
+        busConfiguration.UseContainer<AutofacBuilder>();
         // Autofac with a container instance
-        configuration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(lifetimeScope));
+        busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(lifetimeScope));
 
         // Castle
-        configuration.UseContainer<WindsorBuilder>();
+        busConfiguration.UseContainer<WindsorBuilder>();
         // Castle with a container instance
-        configuration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(windsorContainer));
+        busConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(windsorContainer));
 
         // Ninject
-        configuration.UseContainer<NinjectBuilder>();
+        busConfiguration.UseContainer<NinjectBuilder>();
         // Ninject with a container instance 
-        configuration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(ninjectKernel));
+        busConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(ninjectKernel));
 
         // Unity
-        configuration.UseContainer<UnityBuilder>();
+        busConfiguration.UseContainer<UnityBuilder>();
         // Unity with a container instance 
-        configuration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(unityContainer));
+        busConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(unityContainer));
 
         // Spring
-        configuration.UseContainer<SpringBuilder>();
+        busConfiguration.UseContainer<SpringBuilder>();
         // Spring with an instance 
-        configuration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(springApplicationContext));
+        busConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(springApplicationContext));
 
         // StructureMap
-        configuration.UseContainer<StructureMapBuilder>();
+        busConfiguration.UseContainer<StructureMapBuilder>();
         // StructureMap with a container instance 
-        configuration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(structureMapContainer));
+        busConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(structureMapContainer));
         
         #endregion
     }

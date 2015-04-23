@@ -7,17 +7,17 @@ public class SecondLevelRetriesConfig
     public void Simple()
     {
 
-        BusConfiguration configuration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         #region SecondLevelRetriesDisable
 
-        configuration.DisableFeature<SecondLevelRetries>();
+        busConfiguration.DisableFeature<SecondLevelRetries>();
 
         #endregion
 
         #region SecondLevelRetriesCustomPolicy
 
-        configuration.SecondLevelRetries()
+        busConfiguration.SecondLevelRetries()
             .CustomRetryPolicy(MyCustomRetryPolicy);
 
         #endregion

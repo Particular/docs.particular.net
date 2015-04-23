@@ -6,13 +6,13 @@ public class ShareNHibernateConfiguration
 {
     public void Customize()
     {
-        BusConfiguration configuration = null;
+        BusConfiguration busConfiguration = null;
 
         #region OutboxShareNHibernateConfiguration
 
         Configuration hibernateConfiguration = BuildMyBusinessDataNHibernateConfiguration();
 
-        configuration.UsePersistence<NHibernatePersistence>()
+        busConfiguration.UsePersistence<NHibernatePersistence>()
             .UseConfiguration(hibernateConfiguration);
 
         #endregion

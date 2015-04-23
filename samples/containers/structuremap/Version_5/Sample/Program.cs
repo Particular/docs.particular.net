@@ -7,17 +7,17 @@ static class Program
     static void Main()
     {
         #region ContainerConfiguration
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.EndpointName("Samples.StructureMap");
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.StructureMap");
 
         Container container = new Container(x => x.For<MyService>().Use(new MyService()));
-        configuration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
+        busConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
         #endregion
-        configuration.UseSerialization<JsonSerializer>();
-        configuration.UsePersistence<InMemoryPersistence>();
-        configuration.EnableInstallers();
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.EnableInstallers();
 
-        using (IStartableBus bus = Bus.Create(configuration))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             bus.SendLocal(new MyMessage());

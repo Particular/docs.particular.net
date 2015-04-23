@@ -14,10 +14,10 @@ class NewStepInPipeline : RegisterStep
 
 class NewStepInPipelineRegistration : INeedInitialization
 {
-    public void Customize(BusConfiguration configuration)
+    public void Customize(BusConfiguration busConfiguration)
     {
         // Register the new step in the pipeline
-        configuration.Pipeline.Register<NewStepInPipeline>();
+        busConfiguration.Pipeline.Register<NewStepInPipeline>();
     }
 }
 

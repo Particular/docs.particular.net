@@ -22,14 +22,14 @@ namespace WebApplication
             // Set the dependency resolver to be Autofac.
             IContainer container = builder.Build();
 
-            BusConfiguration configuration = new BusConfiguration();
-            configuration.EndpointName("Samples.MvcInjection.WebApplication");
-            configuration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
-            configuration.UseSerialization<JsonSerializer>();
-            configuration.UsePersistence<InMemoryPersistence>();
-            configuration.EnableInstallers();
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.EndpointName("Samples.MvcInjection.WebApplication");
+            busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+            busConfiguration.UseSerialization<JsonSerializer>();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.EnableInstallers();
 
-            bus = Bus.CreateSendOnly(configuration);
+            bus = Bus.CreateSendOnly(busConfiguration);
             
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 

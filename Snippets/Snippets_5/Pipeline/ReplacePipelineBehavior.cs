@@ -3,9 +3,9 @@
 #region ReplacePipelineStep
 public class ReplaceExistingBehavior : INeedInitialization
 {
-    public void Customize(BusConfiguration configuration)
+    public void Customize(BusConfiguration busConfiguration)
     {
-        configuration.Pipeline.Replace("Id of the step to replace", typeof(SampleBehavior), "Description");
+        busConfiguration.Pipeline.Replace("Id of the step to replace", typeof(SampleBehavior), "Description");
     }
 }
 #endregion 

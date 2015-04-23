@@ -5,13 +5,13 @@ static class Program
 {
     static void Main()
     {
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.EndpointName("Samples.Mvc.Endpoint");
-        configuration.UseSerialization<JsonSerializer>();
-        configuration.UsePersistence<InMemoryPersistence>();
-        configuration.EnableInstallers();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.Mvc.Endpoint");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.EnableInstallers();
 
-        using (IStartableBus bus = Bus.Create(configuration))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             Console.WriteLine("To exit, press Ctrl + C");

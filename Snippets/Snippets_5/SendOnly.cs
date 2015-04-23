@@ -7,9 +7,9 @@ public class SendOnly
     {
         #region SendOnly
 
-        BusConfiguration configuration = new BusConfiguration();
-        
-        ISendOnlyBus bus = Bus.CreateSendOnly(configuration);
+        BusConfiguration busConfiguration = new BusConfiguration();
+
+        ISendOnlyBus bus = Bus.CreateSendOnly(busConfiguration);
 
         #endregion
     }

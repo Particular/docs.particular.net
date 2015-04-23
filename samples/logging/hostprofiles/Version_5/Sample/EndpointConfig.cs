@@ -4,11 +4,11 @@ public class EndpointConfig :
     IConfigureThisEndpoint, 
     AsA_Server
 {
-    public void Customize(BusConfiguration configuration)
+    public void Customize(BusConfiguration busConfiguration)
     {
-        configuration.EndpointName("Samples.Logging.HostProfiles");
-        configuration.UseSerialization<JsonSerializer>();
-        configuration.EnableInstallers();
-        configuration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.EndpointName("Samples.Logging.HostProfiles");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
     }
 }

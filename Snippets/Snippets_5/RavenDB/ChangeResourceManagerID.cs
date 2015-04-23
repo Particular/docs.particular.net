@@ -16,8 +16,8 @@ class ChangeResourceManagerID
                     };
         store.Initialize();
 
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.UsePersistence<RavenDBPersistence>()
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UsePersistence<RavenDBPersistence>()
             .SetDefaultDocumentStore(store);
 
         #endregion
