@@ -1,9 +1,5 @@
-﻿namespace Messages
+﻿public enum ErrorCodes
 {
-    public enum ErrorCodes
-    {
-        None,
-        Fail
-    }
+    None,
+    Fail
 }
-

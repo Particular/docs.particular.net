@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using Messages;
 using NServiceBus;
 
 namespace AsyncPagesMVC.Controllers

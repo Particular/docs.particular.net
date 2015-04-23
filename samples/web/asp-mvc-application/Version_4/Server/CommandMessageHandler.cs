@@ -1,32 +1,30 @@
 ﻿using System;
-using Messages;
 using NServiceBus;
 
-namespace Server
+#region CommandMessageHandler
+public class CommandMessageHandler : IHandleMessages<Command>
 {
-    #region CommandMessageHandler
-    public class CommandMessageHandler : IHandleMessages<Command>
+    IBus bus;
+
+    public CommandMessageHandler(IBus bus)
     {
-        IBus bus;
+        this.bus = bus;
+    }
 
-        public CommandMessageHandler(IBus bus)
+    public void Handle(Command message)
+    {
+        Console.WriteLine("Hello from CommandMessageHandler");
+
+        if (message.Id%2 == 0)
         {
-            this.bus = bus;
+            Console.WriteLine("Returning Fail");
+            bus.Return(ErrorCodes.Fail);
         }
-
-        public void Handle(Command message)
+        else
         {
-            Console.WriteLine("Hello from CommandMessageHandler");
-
-            if (message.Id%2 == 0)
-            {
-                bus.Return(ErrorCodes.Fail);
-            }
-            else
-            {
-                bus.Return(ErrorCodes.None);
-            }
+            Console.WriteLine("Returning None");
+            bus.Return(ErrorCodes.None);
         }
     }
-    #endregion
 }
+#endregion
