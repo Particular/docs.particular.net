@@ -12,7 +12,7 @@ Enter the number "1" into the text box in the browser, and click "Go". You shoul
 
 ![AsyncPages sample running](async-pages-running.png "AsyncPages sample running")
 
-Changing the number in the text box from even to odd numbers changes the result.
+Changing the number in the text box from even to odd numbers changes the result in the Server console.
 
 The web page renders synchronously; from the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is doing asynchronous messaging.
 
@@ -42,7 +42,7 @@ Open the class definition for the `Command` type in the `Shared` project:
 
 This class is very simple. The only special thing is the `IMessage` interface that it implements. This interface comes from NServiceBus and indicates that instances of this class can be sent and received by the bus. The `IMessage` interface itself is an empty marker interface. Read more about [defining messages](/nservicebus/messaging/define-a-message.md).
 
-Return to Default.aspx.cs and look at the code `Global.Bus.Send(command)`. Global.Bus references the Bus property of the Global class, which you saw in Global.asax.cs. Then the code calls the Send method, passing in the newly created command object.
+Return to `Default.aspx.cs` and look at the code `Global.Bus.Send(command)`. Global.Bus references the Bus property of the Global class, which you saw in `Global.asax.cs`. Then the code calls the Send method, passing in the newly created command object.
 
 The "bus" isn't anything special in code; it is just an object for calling methods.
 
@@ -51,7 +51,6 @@ Skip the rest of the code and see what happens to the message you just sent.
 ## Handling the message
 
 In the Server project, find this code in the CommandMessageHandler class:
-
 
 <!-- import Handler --> 
 
