@@ -216,7 +216,7 @@ var configure = Configure.With();
 
 #### Using regions 
 
-Any code wrapped in a named C# region will pe picked up. The name of the region is used as the key. 
+Any code wrapped in a named C# region will be picked up. The name of the region is used as the key. 
 
 ```
 #region ConfigureWith
