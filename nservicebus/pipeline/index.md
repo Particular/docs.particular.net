@@ -16,7 +16,7 @@ There are several ways to customize this pipeline with varying levels of complex
  * [Custom behaviors](/nservicebus/pipeline/customising.md)
  * [Message Mutators](/nservicebus/pipeline/message-mutators.md)
 
-### Feature build on the pipeline
+### Features build on the pipeline
 
  * [DataBus](/nservicebus/messaging/databus.md)
  * [Encryption](/nservicebus/security/encryption.md)
