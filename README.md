@@ -317,6 +317,14 @@ This is done for two reasons
 
 This is enforced by Resharper rules.
 
+### Snippets are compiled
+
+The the code used by snippets and samples is compiled on the build server. The compilation is done against the versions of the packages referenced in the snippets project. When a snippet doesn't compile the build will break so snippets are compiling properly. Samples and snippets should not reference unreleased nugets.
+
+#### Unreleased nugets
+
+There are some scenarios where documentation may require unreleased or beta nugets. For example when creating a PR against documentation for a feature that is not yet released. In this case it is ok to that PR to reference an unreleased nuget and have that PR fail to build on the build server. Once the nugets have been released that PR can be merged.
+
 ## Alerts
 
 Sometimes is necessary to draw attention to items you want to call out in a document.
