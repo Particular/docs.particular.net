@@ -202,7 +202,7 @@ The most common mis-use of screenshots it when capturing console output. DO NOT 
 
 ### Defining Snippets
 
-There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. All `.cs`, `.xml`, `.sql` and `.config` files in that directory are parsed for code snippets
+There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. All `.cs`, `.xml`, `.sql`, `.html` and `.config` files in that directory are parsed for code snippets
 
 #### Using comments
 
