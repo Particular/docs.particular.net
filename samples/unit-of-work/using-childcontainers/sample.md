@@ -2,7 +2,11 @@
 title: Unit of work with using Child Containers
 summary: How to create a unit of work that relies on child container support to store the session
 tags:
-- Container, UnitOfWork, RavenDB, Child Container, StructureMap
+- Container
+- UnitOfWork
+- RavenDB
+- Child Container
+- StructureMap
 ---
 
 ### Running the sample
