@@ -3,6 +3,8 @@ title: Message Body Encryption
 summary: How to encrypt the full message body using a mutator.
 tags:
 - Encryption
+related:
+- nservicebus/security/encryption
 ---
 
 ## Introduction

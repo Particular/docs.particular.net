@@ -5,6 +5,8 @@ tags:
 - Encryption
 redirects:
 - nservicebus/encryption
+related:
+- samples/encryption
 ---
 
 ## Property Encryption

@@ -6,6 +6,8 @@ tags:
 - IOC
 redirects:
 - nservicebus/containers
+related:
+- samples/containers
 ---
 
 NServiceBus automatically registers all its components as well as user-implemented handlers and sagas so that all instancing modes and wiring are done correctly by default and without errors.

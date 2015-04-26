@@ -7,6 +7,8 @@ tags:
 - Large messages
 redirects:
 - nservicebus/attachments-databus-sample
+related:
+- nservicebus/messaging/databus
 ---
 
  1. Run the solution. Two console applications start.

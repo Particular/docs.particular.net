@@ -5,6 +5,8 @@ tags:
 - Encryption
 redirects:
 - nservicebus/encryption-sample
+related:
+- nservicebus/security/encryption
 ---
 
 ## Run the solution.
@@ -75,5 +77,3 @@ Your message will look like this:
   </MessageWithSecretData>
 </Messages>
 ```
-
-See also [Encryption](/nservicebus/security/encryption.md)

@@ -3,6 +3,10 @@ title: Custom Check Monitoring in ServicePulse
 summary: Describes how ServicePulse uses custom checks to monitor and detect problem that are unique to the solution or endpoint(s) monitored
 tags:
 - ServicePulse
+related:
+- samples/custom-checks/monitoring3rdparty
+- servicepulse/how-to-develop-custom-checks
+- servicepulse/how-to-configure-endpoints-for-monitoring/servicecontrol/plugins
 ---
 
 ServicePulse monitors the health and activity of NServiceBus endpoints using heartbeat messages and activity indications. (See [Introduction to Endpoints and Heartbeats in ServicePulse](intro-endpoints-heartbeats.md).)
@@ -58,10 +62,4 @@ As you can see, there are four failing custom checks located on two endpoints (t
 
 If one or more of the failures is expected (for example, it may be caused by a planned maintenance activity that brought down an external service the endpoint relies on), you can mute the specific occurrence of the custom check.
 
-Muting a custom check means that the specific custom check failure event is discarded. If an additional failure occurs later (for example, when the custom check is defined to run periodically), a new failure event will be raised.    
- 
-### Getting Started with Custom Checks
-
-* [How to Develop Custom Checks for ServicePulse](how-to-develop-custom-checks.md)
-* [How to Configure Endpoints for Monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md)
-* [ServiceControl Custom Checks Plugin](/servicecontrol/plugins.md#servicecontrol-plugin-customchecks)
+Muting a custom check means that the specific custom check failure event is discarded. If an additional failure occurs later (for example, when the custom check is defined to run periodically), a new failure event will be raised.

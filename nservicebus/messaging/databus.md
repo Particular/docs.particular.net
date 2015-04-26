@@ -6,6 +6,8 @@ tags:
 - Attachments
 redirects:
 - nservicebus/databus
+related:
+- samples/databus
 ---
 
 ## What is the DataBus feature for

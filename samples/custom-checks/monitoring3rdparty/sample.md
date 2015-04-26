@@ -5,6 +5,9 @@ tags:
 - CustomCheck
 - ServicePulse
 - ServiceControl
+related:
+- servicecontrol/plugins
+- servicepulse/intro-endpoints-custom-checks
 ---
 
 ## Code walk-through 
