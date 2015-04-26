@@ -16,11 +16,11 @@ MSMQ is the default transport used by NServiceBus.
 
 ### [SqlServer](/nservicebus/sqlserver)
 
-Uses Sql Server tables as a queuing mechanism
+Uses Sql Server tables as a queuing mechanism.
 
 ### [Azure](/nservicebus/azure)
 
-Uses either Azure Servicebus or Azure Storage Queues as a transport/
+Uses either Azure Servicebus or Azure Storage Queues as a transport.
 
 ### Community run transports
 
