@@ -6,7 +6,8 @@ tags:
 related:
 - samples/custom-checks/monitoring3rdparty
 - servicepulse/how-to-develop-custom-checks
-- servicepulse/how-to-configure-endpoints-for-monitoring/servicecontrol/plugins
+- servicepulse/how-to-configure-endpoints-for-monitoring
+- servicecontrol/plugins
 ---
 
 ServicePulse monitors the health and activity of NServiceBus endpoints using heartbeat messages and activity indications. (See [Introduction to Endpoints and Heartbeats in ServicePulse](intro-endpoints-heartbeats.md).)
