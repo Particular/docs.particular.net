@@ -76,7 +76,14 @@
           Articles: 
             - "nservicebus/azure/azure-servicebus-transport"
             - "nservicebus/azure/azure-transport"
-        - "nservicebus/sqlserver"
+        - Title: "Sql Server"
+          Url: "nservicebus/sqlserver"
+          Articles: 
+            - "nservicebus/sqlserver/concurrency"
+            - "nservicebus/sqlserver/configuration"
+            - "nservicebus/sqlserver/design"
+            - "nservicebus/sqlserver/multiple-databases"
+            - "nservicebus/sqlserver/usage"
         - Title: "MSMQ"
           Url: "nservicebus/msmq"
           Articles: 
