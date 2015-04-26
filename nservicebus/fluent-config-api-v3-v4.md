@@ -7,7 +7,7 @@ tags:
 
 NOTE: This article refers to NServiceBus V3 and V4
 
-NOTE: Watch the webminar recording [Mastering NServiceBus Configuration](https://particular-1.wistia.com/medias/q8tdr6mnzz) (It includes V5 configuration overview)
+NOTE: Watch the webinar recording [Mastering NServiceBus Configuration](https://particular-1.wistia.com/medias/q8tdr6mnzz) (It includes V5 configuration overview)
 
 An introduction to the NServiceBus configuration is available in the [Introduction to Fluent Configuration API in V3 and V4](fluent-config-api-v3-v4-intro.md) article. 
 
@@ -127,7 +127,7 @@ For a detailed explanation on how to connect to RavenDB, read the [Connecting to
                 
 ##### NHibernate
 
-Starting from NServiceBus V3, NHIbernate persistence is supported via a separate package:
+Starting from NServiceBus V3, NHibernate persistence is supported via a separate package:
 
 * [Relational Persistence Using NHibernate in NServiceBus](/nservicebus/nhibernate/);
 
