@@ -12,7 +12,7 @@ Note: This sample uses the same approach as the [NServiceBus as a Windows Servic
 
 This samples walks through the most common choices you will need to make when creating your first endpoint. It will also show the configuration APIs needed to implement those choices. While this sample uses a Windows Service for hosting the same decisions will need to be made not matter the [Hosting choice](/nservicebus/hosting). 
 
-## Select an [Error](/nservicebus/errors) queue
+## Configure an [Error](/nservicebus/errors) queue
 
 When a message fails processing it will be forwarded here.
 
@@ -20,7 +20,7 @@ When a message fails processing it will be forwarded here.
 
 Note that this approach uses the [IProvideConfiguration](/nservicebus/hosting/custom-configuration-providers.md) approach to problematically override the error queue.
 
-## Select an [Audit](/nservicebus/operations/auditing.md) queue
+## Configure an [Audit](/nservicebus/operations/auditing.md) queue
 
 All messages received by an endpoint will be forwarded to the audit queue.
 
@@ -40,7 +40,7 @@ Log4net is being used to route log events to the Console.
 
 <!-- import endpoint-name -->
 
-## Select and configure [Container](/nservicebus/containers)
+## Select and configure a [Container](/nservicebus/containers)
 
 Autofac is being used with a customized container instance being passed into NServiceBus.
 
@@ -50,7 +50,7 @@ Autofac is being used with a customized container instance being passed into NSe
 
 <!-- import serialization -->
 
-## Select and configure [Transport](/nservicebus/transports)
+## Select and configure a [Transport](/nservicebus/transports)
 
 <!-- import transport -->
 
