@@ -7,13 +7,13 @@ public class AsAClientEquivalent
     {
         #region AsAClientEquivalent
 
-        BusConfiguration config = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        config.PurgeOnStartup(true);
-        config.Transactions().Disable();
-        config.DisableFeature<SecondLevelRetries>();
-        config.DisableFeature<StorageDrivenPublishing>();
-        config.DisableFeature<TimeoutManager>();
+        busConfiguration.PurgeOnStartup(true);
+        busConfiguration.Transactions().Disable();
+        busConfiguration.DisableFeature<SecondLevelRetries>();
+        busConfiguration.DisableFeature<StorageDrivenPublishing>();
+        busConfiguration.DisableFeature<TimeoutManager>();
 
         #endregion
     }

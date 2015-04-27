@@ -9,9 +9,9 @@ class ConfiguringNHibernate
 
         #region ConfiguringNHibernate 5.0
 
-        BusConfiguration config = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        config.UsePersistence<NHibernatePersistence>()
+        busConfiguration.UsePersistence<NHibernatePersistence>()
             .For(
                 Storage.Sagas,
                 Storage.Subscriptions,
@@ -28,13 +28,13 @@ class ConfiguringNHibernate
     {
         #region ConfiguringNHibernate 5.2
 
-        BusConfiguration config = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        config.UsePersistence<NHibernatePersistence, StorageType.Sagas>();
-        config.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
-        config.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();
-        config.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
-        config.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
+        busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Sagas>();
+        busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
+        busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();
+        busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
+        busConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
 
         #endregion
     }

@@ -8,8 +8,8 @@ class AzurePersistence
     {
         #region PersistanceWithAzure 6
 
-        BusConfiguration config = new BusConfiguration();
-        config.UsePersistence<AzureStoragePersistence>();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UsePersistence<AzureStoragePersistence>();
 
         #endregion
     }

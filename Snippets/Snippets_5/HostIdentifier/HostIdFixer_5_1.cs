@@ -7,12 +7,12 @@ public class HostIdFixer_5_1
     {
         #region HostIdFixer 5.1
 
-        BusConfiguration config = new BusConfiguration();
-        config.UniquelyIdentifyRunningInstance()
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UniquelyIdentifyRunningInstance()
                 .UsingNames("endpointName", Environment.MachineName);
         // or
         Guid hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
-        config.UniquelyIdentifyRunningInstance()
+        busConfiguration.UniquelyIdentifyRunningInstance()
             .UsingCustomIdentifier(hostId);
             
         #endregion

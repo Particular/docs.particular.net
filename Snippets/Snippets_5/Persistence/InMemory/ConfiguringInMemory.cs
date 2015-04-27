@@ -9,9 +9,9 @@ class ConfiguringInMemory
 
         #region ConfiguringInMemory 5.0
 
-        BusConfiguration config = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        config.UsePersistence<InMemoryPersistence>()
+        busConfiguration.UsePersistence<InMemoryPersistence>()
             .For(
                 Storage.Sagas,
                 Storage.Subscriptions,
@@ -29,13 +29,13 @@ class ConfiguringInMemory
     {
         #region ConfiguringInMemory 5.2
 
-        BusConfiguration config = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        config.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
-        config.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
-        config.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
-        config.UsePersistence<InMemoryPersistence, StorageType.Outbox>();
-        config.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
+        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
+        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
+        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
+        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Outbox>();
+        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
 
         #endregion
     }

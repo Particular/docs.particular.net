@@ -8,14 +8,14 @@ class PersistenceOrder
 #pragma warning disable 618
 
         #region PersistenceOrder_Correct 5.0
-        BusConfiguration config = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        config.UsePersistence<RavenDBPersistence>();
+        busConfiguration.UsePersistence<RavenDBPersistence>();
             
-        config.UsePersistence<NHibernatePersistence>()
+        busConfiguration.UsePersistence<NHibernatePersistence>()
             .For(Storage.Outbox);
 
-        config.UsePersistence<InMemoryPersistence>()
+        busConfiguration.UsePersistence<InMemoryPersistence>()
             .For(Storage.GatewayDeduplication);
         #endregion
 #pragma warning restore 618
@@ -24,13 +24,13 @@ class PersistenceOrder
     void Setup_5_2()
     {
         #region PersistenceOrder_Correct 5.2
-        BusConfiguration config = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        config.UsePersistence<RavenDBPersistence>();
+        busConfiguration.UsePersistence<RavenDBPersistence>();
 
-        config.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
+        busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 
-        config.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
+        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
 
         #endregion
     }
@@ -40,15 +40,15 @@ class PersistenceOrder
 #pragma warning disable 618
 
         #region PersistenceOrder_Explicit 5.0
-        BusConfiguration config = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        config.UsePersistence<NHibernatePersistence>()
+        busConfiguration.UsePersistence<NHibernatePersistence>()
             .For(Storage.Outbox);
 
-        config.UsePersistence<InMemoryPersistence>()
+        busConfiguration.UsePersistence<InMemoryPersistence>()
             .For(Storage.GatewayDeduplication);
 
-        config.UsePersistence<RavenDBPersistence>()
+        busConfiguration.UsePersistence<RavenDBPersistence>()
             .For(Storage.Sagas, Storage.Subscriptions, Storage.Timeouts);
         #endregion
 #pragma warning restore 618
@@ -58,15 +58,15 @@ class PersistenceOrder
     void Setup3_5_2()
     {
         #region PersistenceOrder_Explicit 5.2
-        BusConfiguration config = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        config.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
+        busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 
-        config.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
+        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
 
-        config.UsePersistence<RavenDBPersistence, StorageType.Sagas>();
-        config.UsePersistence<RavenDBPersistence, StorageType.Subscriptions>();
-        config.UsePersistence<RavenDBPersistence, StorageType.Timeouts>();
+        busConfiguration.UsePersistence<RavenDBPersistence, StorageType.Sagas>();
+        busConfiguration.UsePersistence<RavenDBPersistence, StorageType.Subscriptions>();
+        busConfiguration.UsePersistence<RavenDBPersistence, StorageType.Timeouts>();
         #endregion
     }
 
@@ -75,16 +75,16 @@ class PersistenceOrder
 #pragma warning disable 618
 
         #region PersistenceOrder_Incorrect 5.0
-        BusConfiguration config = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        config.UsePersistence<NHibernatePersistence>()
+        busConfiguration.UsePersistence<NHibernatePersistence>()
             .For(Storage.Outbox);
 
-        config.UsePersistence<InMemoryPersistence>()
+        busConfiguration.UsePersistence<InMemoryPersistence>()
             .For(Storage.GatewayDeduplication);
 
         // This one will override the above settings!
-        config.UsePersistence<RavenDBPersistence>();
+        busConfiguration.UsePersistence<RavenDBPersistence>();
         #endregion
 #pragma warning restore 618
     }
@@ -92,14 +92,14 @@ class PersistenceOrder
     void Setup2_5_2()
     {
         #region PersistenceOrder_Incorrect 5.2
-        BusConfiguration config = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        config.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
+        busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
 
-        config.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
+        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
             
         // This one will override the above settings!
-        config.UsePersistence<RavenDBPersistence>();
+        busConfiguration.UsePersistence<RavenDBPersistence>();
         #endregion
     }
 }
