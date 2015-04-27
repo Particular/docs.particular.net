@@ -5,13 +5,13 @@
       Title: "Getting Started"
       Url: "nservicebus/architecture"
       Articles: 
+        - "nservicebus/concept-overview"
+        - "samples/endpoint-configuration"
         - "samples/step-by-step"
         - "nservicebus/architecture/principles"
         - "nservicebus/operations/transactions-message-processing"
         - "nservicebus/architecture/nservicebus-and-wcf"
         - "nservicebus/architecture/nservicebus-and-biztalk"
-        - "nservicebus/fluent-config-api-v3-v4"
-        - "nservicebus/fluent-config-api-v3-v4-intro"
     - 
       Title: "Messaging"
       Url: "nservicebus/messaging"

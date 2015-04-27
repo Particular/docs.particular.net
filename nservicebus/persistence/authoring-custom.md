@@ -189,7 +189,7 @@ The Store method has to use the same persistence session as the user's code - th
 
 ## Enabling persisters via Features
 
-You can implement any of the persisters based on your requirements. None of them are mandatory, and you can even use different persistence technologies for different persistence concerns (like SQL Server for timeouts and RavenDB for Sagas). Once the persisters you need have been written and properly tested, you need to enable them using [Features](/nservicebus/fluent-config-api-v3-v4-intro.md#features).
+You can implement any of the persisters based on your requirements. None of them are mandatory, and you can even use different persistence technologies for different persistence concerns (like SQL Server for timeouts and RavenDB for Sagas). Once the persisters you need have been written and properly tested, you need to enable them using Features.
 
 Once a persister has been written, tested and exposed via a Feature, all that is left to do is add a reference to the assembly containing it from your endpoints, and change the endpoint configuration accordingly to enable it. An example for such configuration would be:
 
