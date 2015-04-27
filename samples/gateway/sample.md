@@ -3,6 +3,8 @@ title: Gateway
 summary: Illustrates Gateway capability of NServiceBus.
 tags:
 - Gateway
+related:
+- nservicebus/gateway
 ---
 
 ## Code walk-through
