@@ -6,6 +6,8 @@ tags:
 - Error Handling
 - Exceptions
 - Automatic retries
+relared:
+- nservicebus/errors
 ---
 
 When you run the sample, you should start them using Ctrl+F5 (start without debugging), press the letter "S" in both windows at the same time and watch the different outputs. 
