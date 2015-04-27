@@ -4,6 +4,9 @@ summary: 'How to integrate SQL Server transport with NHibernate persistence with
 tags:
 - SQL Server
 - NHibernate
+related:
+- nservicebus/nhibernate
+- nservicebus/sqlserver
 ---
 
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create a databases `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under *security* folder in SSMS database tree).
