@@ -4,6 +4,8 @@ summary: Illustrates customizing NLog usage by configuring NLog targets and rule
 tags:
 - Logging
 - Log4Net
+related:
+- nservicebus/logging
 ---
 
 ## Code walk-through
@@ -17,7 +19,3 @@ Illustrates customizing Log4Net usage by configuring Log4Net targets and rules.
 ### Pass that configuration to NServiceBus
 
 <!-- import UseConfig -->
-
-## More Info
-
- * [Logging in NServiceBus](/nservicebus/logging/)
