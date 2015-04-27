@@ -5,6 +5,8 @@ tags:
 - Mutator
 redirects:
 - nservicebus/nservicebus-message-mutators-sample
+related:
+- nservicebus/pipeline/message-mutators
 ---
 
 1.  Run the solution.
