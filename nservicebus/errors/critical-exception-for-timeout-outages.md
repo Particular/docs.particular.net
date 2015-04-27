@@ -1,5 +1,5 @@
 ---
-title: How to specify time to wait before raising critical exception for timeout outages?
+title: Wait time for raising critical exception
 summary: |
          A critical error is raised when timeout retrieval fails.
          By default we wait for 2 seconds for the storage to come back.
