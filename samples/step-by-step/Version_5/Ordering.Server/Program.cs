@@ -6,13 +6,13 @@ class Program
 
     static void Main()
     {
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.EndpointName("StepByStep.Ordering.Server");
-        busConfig.UseSerialization<JsonSerializer>();
-        busConfig.EnableInstallers();
-        busConfig.UsePersistence<InMemoryPersistence>();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("StepByStep.Ordering.Server");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IStartableBus bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             Console.WriteLine("To exit press 'Ctrl + C'");

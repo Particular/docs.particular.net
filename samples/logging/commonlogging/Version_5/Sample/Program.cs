@@ -18,16 +18,16 @@ class Program
 
         NServiceBus.Logging.LogManager.Use<CommonLoggingFactory>();
 
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.EndpointName("Samples.Logging.CommonLogging");
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.Logging.CommonLogging");
 
         #endregion
 
-        busConfig.UseSerialization<JsonSerializer>();
-        busConfig.EnableInstallers();
-        busConfig.UsePersistence<InMemoryPersistence>();
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IStartableBus bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             bus.SendLocal(new MyMessage());

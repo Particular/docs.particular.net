@@ -6,13 +6,13 @@ class Program
 
     static void Main()
     {
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.EndpointName("Samples.FaultTolerance.Client");
-        busConfig.UseSerialization<JsonSerializer>();
-        busConfig.EnableInstallers();
-        busConfig.UsePersistence<InMemoryPersistence>();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.FaultTolerance.Client");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IStartableBus bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             Console.WriteLine("Press 'Enter' to send a message.To exit, Ctrl + C");

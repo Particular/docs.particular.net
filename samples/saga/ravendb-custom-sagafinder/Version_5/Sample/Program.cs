@@ -10,10 +10,10 @@ class Program
 
     static void Main()
     {
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.EndpointName("Samples.RavenDBCustomSagaFinder");
-        busConfig.UseSerialization<JsonSerializer>();
-        busConfig.EnableInstallers();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.RavenDBCustomSagaFinder");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
 
         #region RavenDBSetup
 
@@ -25,13 +25,13 @@ class Program
             .RegisterListener(new UniqueConstraintsStoreListener())
             .Initialize();
 
-        busConfig.UsePersistence<RavenDBPersistence>()
+        busConfiguration.UsePersistence<RavenDBPersistence>()
             .DoNotSetupDatabasePermissions() //Only required to simplify the sample setup
             .SetDefaultDocumentStore(defaultStore);
 
         #endregion
 
-        using (IStartableBus bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             bus.SendLocal(new StartOrder

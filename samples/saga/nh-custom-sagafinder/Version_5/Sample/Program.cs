@@ -7,19 +7,19 @@ class Program
 
     static void Main()
     {
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.EndpointName("Samples.NHibernateCustomSagaFinder");
-        busConfig.UseSerialization<JsonSerializer>();
-        busConfig.EnableInstallers();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.NHibernateCustomSagaFinder");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
 
         #region NHibernateSetup
 
-        busConfig.UsePersistence<NHibernatePersistence>()
+        busConfiguration.UsePersistence<NHibernatePersistence>()
             .ConnectionString(@"Data Source=.\SqlExpress;Initial Catalog=NHCustomSagaFinder;Integrated Security=True");
 
         #endregion
 
-        using (IStartableBus bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             bus.SendLocal(new StartOrder

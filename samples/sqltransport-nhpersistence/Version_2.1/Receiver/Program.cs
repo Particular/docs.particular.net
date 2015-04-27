@@ -31,17 +31,17 @@
 
             #region ReceiverConfiguration
             
-            BusConfiguration busConfig = new BusConfiguration();
-            busConfig.UseTransport<SqlServerTransport>().DefaultSchema("receiver")
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<SqlServerTransport>().DefaultSchema("receiver")
                 .UseSpecificConnectionInformation(endpoint =>
                 {
                     string schema = endpoint.Split(new[] {'.'}, StringSplitOptions.RemoveEmptyEntries)[0].ToLowerInvariant();
                     return ConnectionInfo.Create().UseSchema(schema);
                 });
-            busConfig.UsePersistence<NHibernatePersistence>().UseConfiguration(hibernateConfig);
+            busConfiguration.UsePersistence<NHibernatePersistence>().UseConfiguration(hibernateConfig);
             #endregion
 
-            using (Bus.Create(busConfig).Start())
+            using (Bus.Create(busConfiguration).Start())
             {
                 Console.WriteLine("Press <enter> to exit");
                 Console.ReadLine();

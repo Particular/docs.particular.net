@@ -5,13 +5,13 @@ class Program
 {
     private static void Main()
     {
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.EndpointName("Samples.CustomChecks.Monitor3rdParty");
-        busConfig.UseSerialization<JsonSerializer>();
-        busConfig.EnableInstallers();
-        busConfig.UsePersistence<InMemoryPersistence>();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.CustomChecks.Monitor3rdParty");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IStartableBus bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             Console.WriteLine("\r\nPress any key to stop program\r\n");

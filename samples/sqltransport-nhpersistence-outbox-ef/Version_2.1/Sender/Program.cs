@@ -11,17 +11,17 @@ namespace Sender
         {
             const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
             Random random = new Random();
-            BusConfiguration busConfig = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
             #region SenderConfiguration
 
-            busConfig.UseTransport<SqlServerTransport>();
-            busConfig.UsePersistence<NHibernatePersistence>();
-            busConfig.EnableOutbox();
+            busConfiguration.UseTransport<SqlServerTransport>();
+            busConfiguration.UsePersistence<NHibernatePersistence>();
+            busConfiguration.EnableOutbox();
 
             #endregion
 
-            IBus bus = Bus.Create(busConfig).Start();
+            IBus bus = Bus.Create(busConfiguration).Start();
             while (true)
             {
                 Console.WriteLine("Press <enter> to send a message");

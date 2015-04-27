@@ -22,29 +22,29 @@ class Program
     {
         #region multi-hosting-assembly-scan
 
-        BusConfiguration busConfig = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        busConfig.EndpointName("Samples.MultiHosting-1");
-        busConfig.AssembliesToScan(AllAssemblies.Matching("Instance1."));
-        busConfig.UseSerialization<JsonSerializer>();
-        busConfig.EnableInstallers();
-        busConfig.UsePersistence<InMemoryPersistence>();
+        busConfiguration.EndpointName("Samples.MultiHosting-1");
+        busConfiguration.AssembliesToScan(AllAssemblies.Matching("Instance1."));
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        return Bus.Create(busConfig).Start();
+        return Bus.Create(busConfiguration).Start();
 
         #endregion
     }
 
     static IBus StartInstance2()
     {
-        BusConfiguration busConfig = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        busConfig.EndpointName("Samples.MultiHosting-2");
-        busConfig.AssembliesToScan(AllAssemblies.Matching("Instance2."));
-        busConfig.UseSerialization<XmlSerializer>();
-        busConfig.EnableInstallers();
-        busConfig.UsePersistence<InMemoryPersistence>();
+        busConfiguration.EndpointName("Samples.MultiHosting-2");
+        busConfiguration.AssembliesToScan(AllAssemblies.Matching("Instance2."));
+        busConfiguration.UseSerialization<XmlSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        return Bus.Create(busConfig).Start();
+        return Bus.Create(busConfiguration).Start();
     }
 }

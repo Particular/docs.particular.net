@@ -12,15 +12,15 @@ namespace Sender
         {
             const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
             Random random = new Random();
-            BusConfiguration busConfig = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
             #region SenderConfiguration
-            busConfig.UseTransport<SqlServerTransport>().DefaultSchema("sender")
+            busConfiguration.UseTransport<SqlServerTransport>().DefaultSchema("sender")
                 .UseSpecificConnectionInformation(EndpointConnectionInfo.For("receiver").UseSchema("receiver"));
-            busConfig.UsePersistence<NHibernatePersistence>();
+            busConfiguration.UsePersistence<NHibernatePersistence>();
             #endregion
 
-            IBus bus = Bus.Create(busConfig).Start();
+            IBus bus = Bus.Create(busConfiguration).Start();
             while (true)
             {
                 Console.WriteLine("Press <enter> to send a message");

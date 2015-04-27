@@ -9,16 +9,16 @@ class Program
     static void Main()
     {
         #region EndpointConfiguration
-        BusConfiguration busConfig = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
-        busConfig.UseTransport<SqlServerTransport>()
+        busConfiguration.UseTransport<SqlServerTransport>()
             .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True");
-        busConfig.EndpointName("Samples.SqlServer.NativeIntegration");
-        busConfig.UseSerialization<JsonSerializer>();
+        busConfiguration.EndpointName("Samples.SqlServer.NativeIntegration");
+        busConfiguration.UseSerialization<JsonSerializer>();
         #endregion
-        busConfig.UsePersistence<InMemoryPersistence>();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (Bus.Create(busConfig).Start())
+        using (Bus.Create(busConfiguration).Start())
         {
             Console.Out.WriteLine("Press any key to send a message. Press `q` to quit");
 

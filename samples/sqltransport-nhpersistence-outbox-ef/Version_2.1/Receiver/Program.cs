@@ -15,17 +15,17 @@ namespace Receiver
 
             #region ReceiverConfiguration
 
-            BusConfiguration busConfig = new BusConfiguration();
-            busConfig.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
                 EndpointConnectionInfo.For("sender")
                     .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True"));
 
-            busConfig.UsePersistence<NHibernatePersistence>();
-            busConfig.EnableOutbox();
+            busConfiguration.UsePersistence<NHibernatePersistence>();
+            busConfiguration.EnableOutbox();
 
             #endregion
 
-            using (Bus.Create(busConfig).Start())
+            using (Bus.Create(busConfiguration).Start())
             {
                 Console.WriteLine("Press <enter> to exit");
                 Console.ReadLine();

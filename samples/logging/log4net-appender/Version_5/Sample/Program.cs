@@ -18,13 +18,13 @@ class Program
         LogManager.Use<Log4NetFactory>();
         #endregion
 
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.EndpointName("Samples.Log4Net.Appender");
-        busConfig.UseSerialization<JsonSerializer>();
-        busConfig.EnableInstallers();
-        busConfig.UsePersistence<InMemoryPersistence>();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.Log4Net.Appender");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IStartableBus bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             bus.SendLocal(new MyMessage());

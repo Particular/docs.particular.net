@@ -5,16 +5,16 @@ public class Transactions
     public void Unreliable()
     {
         #region TransactionsDisable
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.Transactions().Disable();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.Transactions().Disable();
         #endregion
     }
 
     public void TransportTransactions()
     {
         #region TransactionsDisableDistributedTransactions
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.Transactions().DisableDistributedTransactions();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.Transactions().DisableDistributedTransactions();
         #endregion
 
     }
@@ -22,20 +22,20 @@ public class Transactions
     public void AmbientTransactions()
     {
         #region TransactionsEnable
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.Transactions().Enable().EnableDistributedTransactions();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.Transactions().Enable().EnableDistributedTransactions();
         #endregion
 
         #region TransactionsDoNotWrapHandlersExecutionInATransactionScope
-        busConfig.Transactions().DoNotWrapHandlersExecutionInATransactionScope();
+        busConfiguration.Transactions().DoNotWrapHandlersExecutionInATransactionScope();
         #endregion
     }
 
     public void TransportTransactionsWithScope()
     {
         #region TransactionsWrapHandlersExecutionInATransactionScope
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.Transactions().DisableDistributedTransactions().WrapHandlersExecutionInATransactionScope();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.Transactions().DisableDistributedTransactions().WrapHandlersExecutionInATransactionScope();
         #endregion
     }
 
@@ -44,8 +44,8 @@ public class Transactions
 
         #region TransactionsOutbox
 
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.EnableOutbox(); //Implies .DisableDistributedTransactions().DoNotWrapHandlersExecutionInATransactionScope();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EnableOutbox(); //Implies .DisableDistributedTransactions().DoNotWrapHandlersExecutionInATransactionScope();
 
         #endregion
     }

@@ -6,17 +6,17 @@ class Program
 
     static void Main()
     {
-        BusConfiguration busConfig = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
         #region ConfigureRabbitQueueName
-        busConfig.EndpointName("Samples.RabbitMQ.NativeIntegration");
+        busConfiguration.EndpointName("Samples.RabbitMQ.NativeIntegration");
         #endregion
-        busConfig.UseTransport<RabbitMQTransport>()
+        busConfiguration.UseTransport<RabbitMQTransport>()
             .ConnectionString("host=localhost");
 
-        busConfig.EnableInstallers();
-        busConfig.UsePersistence<InMemoryPersistence>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IStartableBus bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
 

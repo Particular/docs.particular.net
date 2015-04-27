@@ -9,18 +9,18 @@ class Program
 
         #region ConfigureRabbit
 
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.EndpointName("Samples.RabbitMQ.Simple");
-        busConfig.UseTransport<RabbitMQTransport>()
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.RabbitMQ.Simple");
+        busConfiguration.UseTransport<RabbitMQTransport>()
             .ConnectionString("host=localhost");
 
         #endregion
 
-        busConfig.UseSerialization<JsonSerializer>();
-        busConfig.EnableInstallers();
-        busConfig.UsePersistence<InMemoryPersistence>();
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IStartableBus bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             bus.SendLocal(new MyMessage());

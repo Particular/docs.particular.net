@@ -7,15 +7,15 @@ class Program
 {
     static void Main()
     {
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.EndpointName("Samples.Versioning.V2Publisher");
-        busConfig.UseSerialization<JsonSerializer>();
-        busConfig.UsePersistence<InMemoryPersistence>();
-        busConfig.UsePersistence<MsmqPersistence>()
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.Versioning.V2Publisher");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.UsePersistence<MsmqPersistence>()
             .For(Storage.Subscriptions);
-        busConfig.EnableInstallers();
+        busConfiguration.EnableInstallers();
 
-        using (IStartableBus bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             Console.WriteLine("Press 'Enter' to publish a message, Ctrl + C to exit.");

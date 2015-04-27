@@ -5,11 +5,11 @@ public class MultiDb
 {
     void CurrentEndpointSchema()
     {
-        BusConfiguration busConfig = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         #region sqlserver-multidb-current-endpoint-schema 2.1
 
-        busConfig.UseTransport<SqlServerTransport>()
+        busConfiguration.UseTransport<SqlServerTransport>()
             .DefaultSchema("myschema");
 
         #endregion
@@ -17,11 +17,11 @@ public class MultiDb
 
     void CurrentEndpointConnectionString()
     {
-        BusConfiguration busConfig = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         #region sqlserver-multidb-current-endpoint-connection-string 2
 
-        busConfig.UseTransport<SqlServerTransport>()
+        busConfiguration.UseTransport<SqlServerTransport>()
             .ConnectionString(@"Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
 
         #endregion
@@ -29,11 +29,11 @@ public class MultiDb
 
     void OtherEndpointConnectionParamsPush()
     {
-        BusConfiguration busConfig = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         #region sqlserver-multidb-other-endpoint-connection-push 2.1
 
-        busConfig.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
+        busConfiguration.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
             EndpointConnectionInfo.For("RemoteEndpoint")
                 .UseSchema("receiver1")
                 .UseConnectionString("SomeConnectionString"),
@@ -47,11 +47,11 @@ public class MultiDb
 
     void OtherEndpointConnectionParamsPull()
     {
-        BusConfiguration busConfig = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
 
         #region sqlserver-multidb-other-endpoint-connection-pull 2.1
 
-        busConfig.UseTransport<SqlServerTransport>()
+        busConfiguration.UseTransport<SqlServerTransport>()
             .UseSpecificConnectionInformation(x => x == "RemoteEndpoint"
                 ? ConnectionInfo.Create()
                     .UseConnectionString(@"Data Source=...")

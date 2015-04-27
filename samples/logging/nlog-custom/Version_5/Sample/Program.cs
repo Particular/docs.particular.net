@@ -28,16 +28,16 @@ class Program
         NServiceBus.Logging.LogManager.Use<NLogFactory>();
 
         // Then continue with your BusConfiguration
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.EndpointName("Samples.Logging.NLogCustom");
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.Logging.NLogCustom");
 
         #endregion
 
-        busConfig.UseSerialization<JsonSerializer>();
-        busConfig.EnableInstallers();
-        busConfig.UsePersistence<InMemoryPersistence>();
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IStartableBus bus = Bus.Create(busConfig))
+        using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
             bus.SendLocal(new MyMessage());

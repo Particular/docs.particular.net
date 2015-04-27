@@ -12,13 +12,13 @@ namespace WebApplication
         {
             #region ApplicationStart
 
-            BusConfiguration busConfig = new BusConfiguration();
-            busConfig.EndpointName("Samples.AsyncPages.WebApplication");
-            busConfig.UseSerialization<JsonSerializer>();
-            busConfig.EnableInstallers();
-            busConfig.UsePersistence<InMemoryPersistence>();
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.EndpointName("Samples.AsyncPages.WebApplication");
+            busConfiguration.UseSerialization<JsonSerializer>();
+            busConfiguration.EnableInstallers();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
 
-            Bus = NServiceBus.Bus.Create(busConfig).Start();
+            Bus = NServiceBus.Bus.Create(busConfiguration).Start();
 
             #endregion
         }

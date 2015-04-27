@@ -6,13 +6,13 @@ class Program
     #region ClientMain
     static void Main()
     {
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.EndpointName("StepByStep.Ordering.Client");
-        busConfig.UseSerialization<JsonSerializer>();
-        busConfig.EnableInstallers();
-        busConfig.UsePersistence<InMemoryPersistence>();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("StepByStep.Ordering.Client");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IStartableBus startableBus = Bus.Create(busConfig))
+        using (IStartableBus startableBus = Bus.Create(busConfiguration))
         {
            var bus = startableBus.Start();
            SendOrder(bus);
