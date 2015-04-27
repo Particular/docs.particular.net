@@ -47,7 +47,7 @@ Properties defined using the `DataBusProperty<T>` type provided by NServiceBus a
 
 ### Using message conventions
 
-NServiceBus supports the [message conventions feature](/samples/unobtrusive/). This feature allows defining a convention for data properties to be sent using `DataBus` without referencing NServiceBus specific types such as `DataBusProperty<T>`.
+NServiceBus supports defining DataBus properties via convention. This allows defining a convention for data properties to be sent using `DataBus` without using `DataBusProperty<T>`.
 
 <!-- import DefineMessageWithLargePayloadUsingConvention -->
 

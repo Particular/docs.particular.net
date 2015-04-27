@@ -57,7 +57,7 @@ protected virtual void OnRaiseClientBecamePreferredEvent(ClientBecamePrefferedEv
 
 ## In-memory events
 
-In-memory events are like regular .NET events in that all observing objects that have registered interest are called synchronously. They are implemented in the same fashion as the rest of the bus events. In-memory events can be useful if a few things must be handled synchronously when a certain business event has occurred. Define them as IEvent or POCOs, and use the unobtrusive conventions in the same way as before.
+In-memory events are like regular .NET events in that all observing objects that have registered interest are called synchronously. They are implemented in the same fashion as the rest of the bus events. In-memory events can be useful if a few things must be handled synchronously when a certain business event has occurred. Define them as IEvent or POCOs, and use the conventions in the same way as before.
 
 For example:
 
@@ -133,7 +133,7 @@ Examples:
 
 ## NServiceBus eventing style 
 
-NServiceBus uses IoC heavily. When the endpoints start, NServiceBus scans the assemblies in the directory. It finds event, command, and message types, either the marker interfaces or unobtrusive conventions. It also scans the assemblies to identify the types that implement the handlers for event types that implement `IHandleMessages<T>`, and registers them in the container. Read more about [NServiceBus and its use of containers](/nservicebus/containers/).
+NServiceBus uses IoC heavily. When the endpoints start, NServiceBus scans the assemblies in the directory. It finds event, command, and message types, either the [marker interfaces or conventions](/nservicebus/messaging/messages-events-commands.md). It also scans the assemblies to identify the types that implement the handlers for event types that implement `IHandleMessages<T>`, and registers them in the container. Read more about [NServiceBus and its use of containers](/nservicebus/containers/).
 
 When an event is raised, the bus invokes the `Handle` method on all the registered handlers for that event. For subscribers, this offers a consistent way of subscribing to the event, regardless of how these events are published (in-memory or durable).
 

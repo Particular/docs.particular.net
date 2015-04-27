@@ -65,4 +65,3 @@ When the response arrives back at `WebApplication`, the bus invokes the callback
 The `Register` method takes the callback code and tells the bus to invoke it when the response is received. There are several overloads to this method; the code above accepts a generic Enum parameter, effectively casting the return code from the server to the given enum.
 
 Finally, the code updates the Text property of a label on the web page, setting it to the string that represents the enum value: sometimes `None`, sometimes `Fail`.
-
