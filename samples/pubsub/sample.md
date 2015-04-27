@@ -8,6 +8,8 @@ tags:
 - Fault Tolerance
 redirects:
 - nservicebus/publish-subscribe-sample
+related:
+- nservicebus/messaging/publish-subscribe
 --- 
 
 ## Reviewing the solution
