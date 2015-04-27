@@ -6,7 +6,7 @@ related:
 - nservicebus/hosting/assembly-scanning
 ---
 
-Note: This uses the same approach as the [NServiceBus as a Windows Service](/samples/hosting/windows-service/) sample for in your own process with support for streamlined debugging experience from Visual Studio. This samples will instead focus on the NServiceBus configuration API and the choices you need to make.
+Note: This sample uses the same approach as the [NServiceBus as a Windows Service](/samples/hosting/windows-service/) for a streamlined Windows Service debugging experience.
 
 ## Code walk-through
 
