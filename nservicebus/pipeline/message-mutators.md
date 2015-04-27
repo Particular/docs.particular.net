@@ -5,6 +5,8 @@ tags:
 - Mutator
 redirects:
 - nservicebus/pipeline-management-using-message-mutators
+related:
+- samples/messagemutators
 ---
 
 The message pipeline in NServiceBus V2.X consisted of message modules. They served their purpose but didn't quite give full control over the message pipeline for more advanced things, and there was no way to hook into the pipeline at the sending/client side of the message conversation.
@@ -17,7 +19,7 @@ NServiceBus enables two types of message mutators:
 
 Message mutators change/react to individual messages being sent or received. The `IMessageMutator` interface lets you implement hooks for the sending and receiving sides. If you only need one, use the finely grained `IMutateOutgoingMessages` or `IMutateIncomingMessages`.
 
-You can use reactions to individual messages to perform actions such as validation of outgoing/incoming messages. The [Message Mutators Sample](/samples/messagemutators/) puts it into action.
+You can use reactions to individual messages to perform actions such as validation of outgoing/incoming messages.
 
 NServiceBus uses this type of mutator internally to do things like property encryption and serialization/deserialization of properties to and from the DataBus.
 
