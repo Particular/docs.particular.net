@@ -6,7 +6,7 @@ tags:
 - Error Handling
 - Exceptions
 - Automatic retries
-relared:
+related:
 - nservicebus/errors
 ---
 
