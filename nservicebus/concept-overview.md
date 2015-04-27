@@ -5,7 +5,8 @@ redirects:
 - nservicebus/fluent-config-api-v3-v4
 - nservicebus/fluent-config-api-v3-v4-intro
 ---
-Concept Overview
+
+A high level overview of the concepts, features and vernacular of NServiceBus.
 
 ### [Message](/nservicebus/messaging/)
 
