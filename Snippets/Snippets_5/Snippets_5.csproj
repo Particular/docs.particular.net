@@ -341,6 +341,7 @@
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
+    <Compile Include="Persistence\InMemory\ConfiguringInMemory.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="RavenDB\ChangeResourceManagerID.cs" />

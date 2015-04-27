@@ -238,6 +238,7 @@
     <Compile Include="Logging\NLog\NLogFiltering.cs" />
     <Compile Include="Logging\OverrideViaProfile.cs" />
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
+    <Compile Include="Persistence\InMemory\ConfiguringInMemory.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Pipeline\NewPipelineStep.cs" />
     <Compile Include="Pipeline\ReplacePipelineBehavior.cs" />

@@ -109,6 +109,7 @@
         - "nservicebus/persistence/order"
         - "nservicebus/persistence/authoring-custom"
         - "nservicebus/azure/azure-storage-persistence"
+        - "nservicebus/persistence/in-memory"
         - "nservicebus/nhibernate/"
         - Title: "RavendDB"
           Url: "nservicebus/ravendb"

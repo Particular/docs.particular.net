@@ -113,6 +113,7 @@
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\OverrideViaProfile.cs" />
+    <Compile Include="Persistence\InMemory\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />
