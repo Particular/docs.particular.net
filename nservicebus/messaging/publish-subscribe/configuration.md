@@ -175,11 +175,9 @@ public class HandlerThatPublishedEvent : IHandleMessages<MyMessage>
 
  The 'Bus' property is automatically filled by the infrastructure. This is known as 'Dependency Injection'. All development done with NServiceBus makes use of [these patterns](http://en.wikipedia.org/wiki/Dependency_injection) . The technology used as the dependency injection container by NServiceBus is pluggable, with five options available out of the box, Autofac is the default.
 
-In the 'Run' method, you see the creation of the event message. This can be as simple as instantiating the relevant class or using the bus object to instantiate messages defined as interfaces. Read more information on
-[whether to use interfaces or classes to represent messages](/nservicebus/messaging/messages-as-interfaces.md) .
+In the 'Run' method, you see the creation of the event message. This can be as simple as instantiating the relevant class or using the bus object to instantiate messages defined as interfaces. Read more information on [whether to use interfaces or classes to represent messages](/nservicebus/messaging/messages-as-interfaces.md) .
 
-Once the event message object has been created, the call to `Bus.Publish(eventMessage);` tells the bus object to have the given message sent to all subscribers who expressed interest in that type of message. As we saw in the walk-through, if a subscriber is unavailable, their messages aren't lost they're stored until the subscriber comes back on-line. See the 'store and forward messaging' section of the
-[architectural principles](/nservicebus/architecture/) of NServiceBus for more information.
+Once the event message object has been created, the call to `Bus.Publish(eventMessage);` tells the bus object to have the given message sent to all subscribers who expressed interest in that type of message. As we saw in the walk-through, if a subscriber is unavailable, their messages aren't lost they're stored until the subscriber comes back on-line. See the 'store and forward messaging' section of the [architectural principles](/nservicebus/architecture/) of NServiceBus for more information.
 
 ## Security and authorizations
 
@@ -195,6 +193,6 @@ NOTE: V2.X required a perfect match. This should make it easier to upgrade your 
 
 ## Best practices
 
-When you tell NServiceBus that your messages are events, the framework helps you enforce best messaging practices by only allowing you to Bus.Publish|Subscribe|UnSubscribe events. Other calls result in a exception. More on [best practices](/nservicebus/messaging/introducing-ievent-and-icommand.md) .
+When you tell NServiceBus that your messages are events, the framework helps you enforce best messaging practices by only allowing you to Bus.Publish|Subscribe|UnSubscribe events. Other calls result in a exception. More on [best practices](/nservicebus/messaging/messages-events-commands.md) .
 
 As you can see, there is a lot going on under the hood. NServiceBus gives you full control over every part of the message exchange while abstracting the underlying technologies. Try modifying the sample a bit, adding your own message handlers, and debugging through the various pieces to get a better feel for what's going on.

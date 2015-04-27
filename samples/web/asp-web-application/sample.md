@@ -40,8 +40,6 @@ Open the class definition for the `Command` type in the `Shared` project:
 
 <!-- import Message -->
 
-This class is very simple. The only special thing is the `IMessage` interface that it implements. This interface comes from NServiceBus and indicates that instances of this class can be sent and received by the bus. The `IMessage` interface itself is an empty marker interface. Read more about [defining messages](/nservicebus/messaging/define-a-message.md).
-
 Return to `Default.aspx.cs` and look at the code `Global.Bus.Send(command)`. Global.Bus references the Bus property of the Global class, which you saw in `Global.asax.cs`. Then the code calls the Send method, passing in the newly created command object.
 
 The "bus" isn't anything special in code; it is just an object for calling methods.

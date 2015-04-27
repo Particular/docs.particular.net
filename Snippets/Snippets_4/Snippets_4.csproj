@@ -224,8 +224,6 @@
     <Compile Include="BusExtensionMethodForHandler.cs" />
     <Compile Include="Callback\Callback.cs" />
     <Compile Include="ContainerCustom.cs" />
-    <Compile Include="Conventions\FaqUnobtrusiveConventions.cs" />
-    <Compile Include="Conventions\UnobtrusiveConventions.cs" />
     <Compile Include="Conventions\ExpressMessages.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="CustomRavenConfigForVersion2_5.cs" />

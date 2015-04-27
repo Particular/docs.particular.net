@@ -12,12 +12,12 @@ A high level overview of the concepts, features and vernacular of NServiceBus.
 
 A Message is the unit of communication for NServiceBus. Types of messages:
 
- * [Command](/nservicebus/messaging/introducing-ievent-and-icommand.md): Used to request that an action should be taken.
- * [Event](/nservicebus/messaging/introducing-ievent-and-icommand.md): Used to communicate that some action has taken place.
+ * [Command](/nservicebus/messaging/messages-events-commands.md): Used to request that an action should be taken.
+ * [Event](/nservicebus/messaging/messages-events-commands.md): Used to communicate that some action has taken place.
 
 Message type is usually defined via marker interfaces. 
 
-### [Message Conventions](/nservicebus/messaging/centralize-all-unobtrusive-declarations.md)
+### [Message Conventions](/nservicebus/messaging/messages-events-commands.md)
 
 Message Conventions (or Unobtrusive conventions) is a way of defining what classes are Messages/Events or commands without the use of interfaces.
 

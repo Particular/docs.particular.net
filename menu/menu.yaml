@@ -16,12 +16,9 @@
       Title: "Messaging"
       Url: "nservicebus/messaging"
       Articles: 
-        - "nservicebus/messaging/centralize-all-unobtrusive-declarations"
+        - "nservicebus/messaging/messages-events-commands"
         - "nservicebus/messaging/databus"
         - "nservicebus/messaging/custom-databus"
-        - "nservicebus/messaging/define-a-message"
-        - "nservicebus/messaging/introducing-ievent-and-icommand"
-        - "nservicebus/messaging/definingmessagesas-and-definingeventsas"
         - "nservicebus/messaging/discard-old-messages"
         - "nservicebus/messaging/express-messages"
         - "nservicebus/messaging/handling-responses-on-the-client-side"
