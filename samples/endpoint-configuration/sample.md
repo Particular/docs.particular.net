@@ -10,7 +10,7 @@ Note: This sample uses the same approach as the [NServiceBus as a Windows Servic
 
 ## Code walk-through
 
-This samples walks through the most common choices you will need to make when creating your first endpoint. It will also show the configuration APIs needed to implement those choices. While this sample uses a Windows Service for hosting the same decisions will need to be made not matter the [Hosting](/nservicebus/hosting) choice. 
+This samples walks through the most common choices you will need to make when creating your first endpoint. It will also show the configuration APIs needed to implement those choices. While this sample uses a Windows Service for hosting the same decisions will need to be made not matter the [Hosting choice](/nservicebus/hosting). 
 
 ## Select an [Error](/nservicebus/errors) queue
 
