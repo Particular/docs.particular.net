@@ -54,7 +54,7 @@ NServiceBus has retry logic which surrounds all calls to user code. This allows 
 
 Messages that fail all retires are send to a error queue for triage for either a retry or discarding.
 
-### [Pipeine](/nservicebus/pipeline/)
+### [Pipeline](/nservicebus/pipeline/)
 
 The Pipeline refers to the series of actions taken when an incoming message is processed and an outgoing message is sent. 
 
@@ -76,11 +76,11 @@ Allows the forwarding of every message received by an endpoint to a configured q
 
 ### [Serilization](/nservicebus/serialization/)
 
-Serialization is the process of converting an in memory .net object (in our case a message) into a stream of bytes in order to transmit it via the Transport. For Endpoints to communicate they need to share a common Serilization technology.
+Serialization is the process of converting an in memory .net object (in our case a message) into a stream of bytes in order to transmit it via the Transport. For Endpoints to communicate they need to share a common serilization language.
 
 ### [Persistence](/nservicebus/persistence/)
 
-Several NServiceBus features rely on persistence storage to function. This includes Sagas, Timeouts, Gateway, Outbox and Subscriptions
+Several NServiceBus features rely on persistence storage to function. This includes Sagas, Timeouts, Gateway, Outbox and Subscriptions.
 
 ### [Containers](/nservicebus/containers)
 
@@ -92,7 +92,7 @@ An Endpoint is the general term used to describe a collection of configuration a
 
 ### [Hosting](/nservicebus/hosting)
 
-The act of "Hosting" refers to running an Endpoint in some other process. This can be any .net process such as a console application, a website, or a windows service. Multiple logical Endpoints can be hosted in a single process (custom Appdomains are required to achieve this in version 4 and below).
+The act of "Hosting" refers to running an Endpoint in some other process. This can be any .NET process such as a console application, a website, or a Windows service. Multiple logical Endpoints can be hosted in a single process (custom AppDomains are required to achieve this in version 4 and below).
 
 ### [Assembly Scanning](/nservicebus/hosting/assembly-scanning.md)
 
