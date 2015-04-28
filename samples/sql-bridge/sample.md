@@ -107,4 +107,4 @@ Receives events from the SqlBridge. The endpoint address is the sql bridge addre
 3. The Sql bridge endpoint (setup to read from that input queue) processes that message and publishes the event.
 4. The Sql Subscriber, subscribes to the SqlBridge.
 
-Note: the steps of creating the queue and adding the additional subscription message in the subscriptions queue of the publisher can be automated for deployment. 
+Note: The steps of creating the queue and adding the additional subscription message in the subscriptions queue of the publisher can be automated for deployment. 
