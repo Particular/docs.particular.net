@@ -68,6 +68,10 @@
       <Project>{59f2ba7e-4da5-49f8-9dbc-520fa99f4679}</Project>
       <Name>VideoStore.Messages</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VideoStore.Shared\VideoStore.Shared.csproj">
+      <Project>{68263f62-14c1-4fb8-b7d5-0d1565951f5e}</Project>
+      <Name>VideoStore.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -1,6 +1,3 @@
-
-using System;
-using System.Diagnostics;
 using NServiceBus;
 
 namespace VideoStore.Sales
@@ -10,13 +7,7 @@ namespace VideoStore.Sales
     {
         public void Customize(BusConfiguration configuration)
         {
-            // For production use, please select a durable persistence.
-            // To use RavenDB, install-package NServiceBus.RavenDB and then use configuration.UsePersistence<RavenDBPersistence>();
-            // To use SQLServer, install-package NServiceBus.NHibernate and then use configuration.UsePersistence<NHibernatePersistence>();
-            if (Debugger.IsAttached)
-            {
-                configuration.UsePersistence<InMemoryPersistence>();
-            }
+            configuration.UsePersistence<InMemoryPersistence>();
             configuration.Conventions()
                 .DefiningCommandsAs(t => t.Namespace != null && t.Namespace.StartsWith("VideoStore") && t.Namespace.EndsWith("Commands"))
                 .DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("VideoStore") && t.Namespace.EndsWith("Events"))
@@ -27,6 +18,3 @@ namespace VideoStore.Sales
     }
 
 }
-
-
-
