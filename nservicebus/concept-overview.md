@@ -19,7 +19,7 @@ Message type is usually defined via marker interfaces.
 
 ### [Message Conventions](/nservicebus/messaging/messages-events-commands.md)
 
-Message Conventions is a way of defining what classes are used for Messages, Events or Commands without the use of marker interfaces. An extend use of Message Conventions, that allow a message assembly with no NServiceBus references, is call [Unobtrusive Mode](/nservicebus/messaging/unobtrusive-mode.md).
+Message Conventions is a way of defining what classes are used for Messages, Events or Commands without the use of marker interfaces. An extend use of Message Conventions, that allow a message assembly with no NServiceBus references, is called [Unobtrusive Mode](/nservicebus/messaging/unobtrusive-mode.md).
 
 ### [Header](/nservicebus/messaging/message-headers.md)
 
