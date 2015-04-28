@@ -3,7 +3,9 @@ title: Hosting NServiceBus v4.x in-process
 summary: Fluent configuration API to get transactional one-way messaging, referencing only three assemblies.
 tags: []
 redirects:
- - nservicebus/hosting-nservicebus-in-your-own-process-v4.x
+- nservicebus/hosting-nservicebus-in-your-own-process-v4.x
+related:
+- samples/hosting/self-hosting
 ---
 
 Lighter-weight than BizTalk and more powerful than WCF, NServiceBus comes with its own host process and allows you to host it in your own process.
@@ -19,9 +21,6 @@ To host NServiceBus in your own process, the assemblies shown on the left need t
 -   Log4Net is the industry-standard logging library used by NServiceBus.
 -   NServiceBus.dll contains the main interfaces developers should be programming against.
 -   NServiceBus.Core.dll contains all the runtime elements needed for execution.
-
-The [Video store sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/VideoStore.Msmq) for v4.x.
-
 
 ## NServiceBus initialization
 
@@ -95,7 +94,7 @@ Most of the methods are extensions for the
 For NServiceBus v4.x:
 
 -   `Configure.Serialization` tells NServiceBus to serialize messages as XML. Additional option is to specify BinarySerializer(), which does binary serialization of messages.
--   `UseTransport<msmq>()` tells NServiceBus to use MSMQ as its transactional messaging transport. NServiceBus also supports Azure queues, FTP, SqlServer (see sample [here](https://github.com/Particular/NServiceBus.SqlServer.Samples)) <!--, ActiveMQ (see sample [here](https://github.com/Particular/NServiceBus.ActiveMQ.Samples)) -->, RabbitMQ (see sample [here](https://github.com/Particular/NServiceBus.RabbitMQ.Samples) ) as transport mechanisms.
+-   `UseTransport<msmq>()` tells NServiceBus to use MSMQ as its transactional messaging transport. 
 
 In addition to the above initialization code, NServiceBus requires certain configuration data to be available. By default, it retrieves this information from the application config file, though this can be changed with the CustomConfigurationSource() method.
 
@@ -137,7 +136,3 @@ While you can tell NServiceBus to which address to send a message using the API:
 ```
 
  This tells NServiceBus that all messages in the MessageDLL assembly should be routed to the queue called DestinationQueue on the machine TargetMachine. You can send messages from that assembly, like this: `Bus.Send(messageFromMessageDLL);`
-
-
-
-
