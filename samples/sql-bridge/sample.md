@@ -3,6 +3,7 @@ title: SQL Bridge
 summary: This sample shows how to setup a sql subscriber so it can subscribe to events from a MSMQ publisher.
 related:
 - nservicebus/transports
+- nservicebus/msmq
 - nservicebus/sqlserver
 ---
 
