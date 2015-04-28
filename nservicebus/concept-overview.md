@@ -1,5 +1,5 @@
 ---
-title: Concept Overview
+title: Concepts Overview
 summary: A high level feature and concept overview of NServiceBus
 redirects:
 - nservicebus/fluent-config-api-v3-v4
