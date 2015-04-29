@@ -5,6 +5,10 @@ tags:
 - SQL Server
 - NHibernate
 - Outbox
+related:
+- nservicebus/outbox
+- nservicebus/sqlserver
+- nservicebus/nhibernate
 ---
 
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create three databases: `sender`, `receiver` and `shared`.
