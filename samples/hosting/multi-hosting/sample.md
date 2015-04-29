@@ -3,7 +3,7 @@ title: NServiceBus multi hosting
 summary: This sample shows how to host multiple NServiceBus instances in one process.
 tags:
 - Hosting
-related
+related:
 - nservicebus/hosting
 ---
 
