@@ -5,6 +5,7 @@ tags:
 - Encryption
 related:
 - nservicebus/security/encryption
+- nservicebus/pipeline/message-mutators
 ---
 
 ## Introduction
