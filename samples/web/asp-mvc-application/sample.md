@@ -4,6 +4,8 @@ summary: Integrating NServiceBus in ASP.NET MVC web applications, to be able to 
 tags: []
 redirects:
 - nservicebus/using-nservicebus-with-asp.net-mvc
+related:
+- nservicebus/hosting
 ---
 
 Run the solution. A new browser window/tab opens, as well as a console application.
