@@ -3,13 +3,11 @@
     $scope.errorMessage = null;
 
     $scope.products = [
-      { id: 'intro1', title: 'Introduction to NServiceBus - Part I', description: 'In this 2-hour presentation, Udi Dahan covers the architectural ramifications of using a service bus, and how the Bus pattern differs from RPC, as well as how to use the basic features of NServiceBus: one-way messaging, request/reply, publish/subscribe, and configuring NServiceBus.', selected: false },
-      { id: 'intro2', title: 'Introduction to NServiceBus - Part II', description: 'Continuation of Introduction to NServiceBus - Part I', selected: false },
-      { id: 'gems', title: 'Hidden NServiceBus Gems', description: 'Although NServiceBus has been around for a while, many developers are only familiar with the top-level public API. Join Udi Dahan for a look into some of the lesser known capabilities of NServiceBus that just might save you from having to reinvent the wheel.', selected: false },
-      { id: 'integ', title: 'Reliable Integration with NServiceBus', description: "Developers are dealing with more integrations today than ever before, and handling consistency and reliability across those connections isn't getting any easier either. Many developers are already using NServiceBus in the core parts of their systems for the reliability it brings but aren't aware that it can also help with integration as well. Come see how the saga capabilities in NServiceBus make integration code simpler, more robust, and testable.", selected: false },
-      { id: 'shiny', title: 'New and shiny things in NServiceBus 3.0', description: "Andreas Öhlund, one of the lead developers for NServiceBus, discusses the new and shiny things in NServiceBus 3.0. Come and get and overview of the new features in the upcoming NServiceBus 3.0 release.", selected: false },
-      { id: 'day', title: 'NServiceBus on DNR TV', description: "Just another session coding with NServiceBus.", selected: false },
-      { id: 'need', title: 'Who needs a service bus anyway?', description: "Although Enterprise Service Buses have been used in many larger companies, small and medium enterprises have often been put off by the high cost of these large middleware packages. These days we're seeing more open-source service buses gaining popularity and many developers are beginning to get curious - what would I use it for? Join Udi to get the scoop as well as see some patterns in action with NServiceBus", selected: false }
+      { id: 'videos', title: 'Videos and Presentations', description: 'Learn about SOA principles, systems design and the capabilities our platform brings to your system lifecycle.', selected: false },
+      { id: 'training', title: 'Get some on-site training', description: 'The fastest way to get a large team up to speed', selected: false },
+      { id: 'documentation', title: 'Community driven documentation', description: 'At Particular we linke to beuild things in a way that embraces our open source community. Documentation is no differnt and as such is hosted on GitHub for everyone to contribue.', selected: false },
+      { id: 'customers', title: 'In good company', description: "Companies across all industry verticals, from the smallest startups to the Global 2000, rely on our platform every day.", selected: false },
+      { id: 'platform', title: 'The .NET Service Platform', description: "Build better .NET service solutions using an integrated and comprehensive platform. Focus on developing your solution's unique features, while enjoying the out-of-the-box benefits of the Particular Service Platform.", selected: false }
     ];
 
     $scope.orders = [];
