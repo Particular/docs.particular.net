@@ -4,6 +4,8 @@ summary: This sample shows how to perform custom saga finding logic based on map
 tags:
 - Saga
 - SagaFinder
+related:
+- nservicebus/sagas
 ---
 
 ## Code walk-through
