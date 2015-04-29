@@ -4,6 +4,9 @@ summary: Leverages Autofac MVC integration to inject IBus into MVC Controllers.
 tags: []
 redirects:
 - nservicebus/injecting-the-bus-into-asp.net-mvc-controller
+related:
+- nservicebus/containers
+- nservicebus/hosting
 ---
 
 ### Packages
