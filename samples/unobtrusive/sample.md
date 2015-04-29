@@ -10,6 +10,8 @@ tags:
 - Conventions
 redirects:
 - nservicebus/unobtrusive-sample
+related:
+- nservicebus/messaging/unobtrusive-mode
 ---
 
 Run the solution. Two console applications should start up, `Client` and `Server`.
