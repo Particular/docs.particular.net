@@ -4,6 +4,8 @@ summary: See how to use NServiceBus in a WebForms application.
 tags: []
 redirects:
 - nservicebus/using-nservicebus-in-a-asp.net-web-application
+related:
+- nservicebus/hosting
 ---
 
 Run the solution, a new browser window/tab opens, as well as a console application.
