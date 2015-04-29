@@ -166,7 +166,6 @@
     </Content>
     <Content Include="Global.asax">
     </Content>
-    <Content Include="Content\js\jquery.signalR-1.0.0.js" />
     <Content Include="Content\js\jquery.signalR-1.0.0.min.js" />
     <Content Include="Web.config">
     </Content>
