@@ -4,6 +4,10 @@ summary: 'How to integrate natively with the SQL Server transport'
 tags:
 - SQL Server
 - NHibernate
+related:
+- nservicebus/msmq
+- nservicebus/sqlserver
+- nservicebus/nhibernate
 ---
 
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create a database `samples`
