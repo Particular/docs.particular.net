@@ -1,6 +1,6 @@
 ---
-title: How to Expose an NServiceBus Endpoint as a WCF Service?
-summary: How to Expose an NServiceBus Endpoint as a WCF Service?
+title: Exposing an NServiceBus Endpoint via WCF
+summary: Receiving and processing messages which pass through WCF
 tags: [WCF]
 redirects:
  - nservicebus/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service
