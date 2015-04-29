@@ -4,6 +4,9 @@ summary: Add support attribute based message serialization
 tags:
 - Pipeline
 - Serialization
+related:
+- nservicebus/pipeline
+- nservicebus/serialization
 ---
 
 ## Introduction
