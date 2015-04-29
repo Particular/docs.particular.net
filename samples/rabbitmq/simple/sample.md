@@ -3,6 +3,8 @@ title: Simple RabbitMQ usage
 summary: Shows basic RabbitMQ usage
 tags:
 - RabbitMQ
+related:
+- nservicebus/rabbitmq
 ---
 
 ## Code walk-through
