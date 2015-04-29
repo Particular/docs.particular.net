@@ -1,13 +1,13 @@
 ---
 title: On Premise Show Case
-summary: This sample implements a fictional video store utilizing several features of NServiceBus.
+summary: This sample implements a fictional store utilizing several features of NServiceBus.
 ---
  
-This sample implements a fictional video store. It is different from most samples in that it shows many features of NServiceBus working together
+This sample implements a fictional store. It is different from most samples in that it shows many features of NServiceBus working together
 
 ## Walk through
 
-Users can order videos from the website. Once orders are submitted, there is a window of time allocated for handling cancellations due to buyer's remorse. Once the order has been accepted, they are provisioned and made available for download. In implementing the above workflow various aspects are highlighted:
+Users can order products from the website. Once orders are submitted, there is a window of time allocated for handling cancellations due to buyer's remorse. Once the order has been accepted, they are provisioned and made available for download. In implementing the above workflow various aspects are highlighted:
 
 ## Feature usage
 
@@ -17,7 +17,7 @@ Illustrates the use of the Saga pattern to handle the buyer's remorse scenario.
 
 ### Request / Response   
 
-The request/response pattern is illustrated for the video provisioning between the ContentManagement endpoint and the Operations Endpoint.
+The request/response pattern is illustrated for the product provisioning between the ContentManagement endpoint and the Operations Endpoint.
 
 ### ASP MVC and SignalR
 
