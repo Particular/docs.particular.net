@@ -26,7 +26,7 @@
             {
                 r.ClientId = message.ClientId;
                 r.OrderNumber = message.OrderNumber;
-                r.VideoIds = message.VideoIds;
+                r.ProductIds = message.ProductIds;
             });
 
         }

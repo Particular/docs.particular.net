@@ -4,7 +4,7 @@
     public interface OrderAccepted 
     {
         int OrderNumber { get; set; }
-        string[] VideoIds { get; set; }
+        string[] ProductIds { get; set; }
         string ClientId { get; set; }
     }
 }

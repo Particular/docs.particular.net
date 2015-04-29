@@ -21,7 +21,7 @@
             }
 
             Data.OrderNumber = message.OrderNumber;
-            Data.VideoIds = message.VideoIds;
+            Data.ProductIds = message.ProductIds;
             Data.ClientId = message.ClientId;
 
             RequestTimeout(TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
@@ -38,7 +38,7 @@
             Bus.Publish<OrderAccepted>(e =>
                 {
                     e.OrderNumber = Data.OrderNumber;
-                    e.VideoIds = Data.VideoIds;
+                    e.ProductIds = Data.ProductIds;
                     e.ClientId = Data.ClientId;
                 });
 
@@ -77,7 +77,7 @@
         {
             [Unique]
             public int OrderNumber { get; set; }
-            public string[] VideoIds { get; set; }
+            public string[] ProductIds { get; set; }
             public string ClientId { get; set; }
         }
 

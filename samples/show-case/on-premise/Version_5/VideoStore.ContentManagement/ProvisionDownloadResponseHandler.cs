@@ -11,7 +11,7 @@
     public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloadResponse>
     {
         public IBus Bus { get; set; }
-        private readonly IDictionary<string, string> videoIdToUrlMap = new Dictionary<string, string>
+        private readonly IDictionary<string, string> productIdToUrlMap = new Dictionary<string, string>
             {
                 {"intro1", "http://youtu.be/6lYF83wKerA"},
                 {"intro2", "http://youtu.be/icze_WCyEdQ"},
@@ -35,11 +35,11 @@
             {
                 e.OrderNumber = message.OrderNumber;
                 e.ClientId = message.ClientId;
-                e.VideoUrls = new Dictionary<string, string>();
+                e.ProductUrls = new Dictionary<string, string>();
 
-                foreach (var videoId in message.VideoIds)
+                foreach (var productId in message.ProductIds)
                 {
-                    e.VideoUrls.Add(videoId, videoIdToUrlMap[videoId]);
+                    e.ProductUrls.Add(productId, productIdToUrlMap[productId]);
                 }
             });
 

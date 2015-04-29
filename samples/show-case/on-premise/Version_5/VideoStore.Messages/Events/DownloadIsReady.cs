@@ -5,7 +5,7 @@
     public interface DownloadIsReady 
     {
         int OrderNumber { get; set; }
-        Dictionary<string,string> VideoUrls { get; set; }
+        Dictionary<string, string> ProductUrls { get; set; }
         string ClientId { get; set; }
     }
 }

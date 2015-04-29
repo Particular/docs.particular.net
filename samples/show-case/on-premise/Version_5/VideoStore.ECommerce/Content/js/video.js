@@ -2,7 +2,7 @@
     $scope.debug = false;
     $scope.errorMessage = null;
 
-    $scope.videos = [
+    $scope.products = [
       { id: 'intro1', title: 'Introduction to NServiceBus - Part I', description: 'In this 2-hour presentation, Udi Dahan covers the architectural ramifications of using a service bus, and how the Bus pattern differs from RPC, as well as how to use the basic features of NServiceBus: one-way messaging, request/reply, publish/subscribe, and configuring NServiceBus.', selected: false },
       { id: 'intro2', title: 'Introduction to NServiceBus - Part II', description: 'Continuation of Introduction to NServiceBus - Part I', selected: false },
       { id: 'gems', title: 'Hidden NServiceBus Gems', description: 'Although NServiceBus has been around for a while, many developers are only familiar with the top-level public API. Join Udi Dahan for a look into some of the lesser known capabilities of NServiceBus that just might save you from having to reinvent the wheel.', selected: false },
@@ -19,20 +19,20 @@
     var ordersHub = $.connection.ordersHub;
 
     ordersHub.client.orderReceived = function (data) {
-        var selectedVideoTitles = [];
+        var selectedProductTitles = [];
 
-        for (var i = 0; i < data.VideoIds.length; i++) {
-            var id = data.VideoIds[i];
-            for (var j = 0; j < $scope.videos.length; j++) {
-                if ($scope.videos[j].id === id) {
-                    selectedVideoTitles.push($scope.videos[j].title);
+        for (var i = 0; i < data.ProductIds.length; i++) {
+            var id = data.ProductIds[i];
+            for (var j = 0; j < $scope.products.length; j++) {
+                if ($scope.products[j].id === id) {
+                    selectedProductTitles.push($scope.products[j].title);
                     break;
                 }
             }
         }
         
         $scope.$apply(function(scope) {
-            scope.orders.push({ number: data.OrderNumber, titles: selectedVideoTitles, status: 'Pending' });
+            scope.orders.push({ number: data.OrderNumber, titles: selectedProductTitles, status: 'Pending' });
         });
         
         $('#userWarning')
@@ -52,13 +52,13 @@
     ordersHub.client.orderReady = function (data) {
         var items = [];
         
-        for (var i = 0; i < data.VideoUrls.length; i++) {
-            var item = data.VideoUrls[i];
+        for (var i = 0; i < data.ProductUrls.length; i++) {
+            var item = data.ProductUrls[i];
 
-            for (var j = 0; j < $scope.videos.length; j++) {
+            for (var j = 0; j < $scope.products.length; j++) {
 
-                if ($scope.videos[j].id === item.Id) {
-                    items.push({ url: item.Url, title: $scope.videos[j].title });
+                if ($scope.products[j].id === item.Id) {
+                    items.push({ url: item.Url, title: $scope.products[j].title });
                     break;
                 }
             }
@@ -94,22 +94,22 @@
 
         $scope.errorMessage = null;
 
-        var selectedVideos = [];
-        angular.forEach($scope.videos, function (video) {
-            if (video.selected) {
-                selectedVideos.push(video.id);
+        var selectedProducts = [];
+        angular.forEach($scope.products, function (product) {
+            if (product.selected) {
+                selectedProducts.push(product.id);
             }
         });
 
-        if (selectedVideos.length === 0) {
+        if (selectedProducts.length === 0) {
             return;
         }
         
         ordersHub.state.debug = $scope.debug;
-        ordersHub.server.placeOrder(selectedVideos)
+        ordersHub.server.placeOrder(selectedProducts)
             .done(function () {
-                angular.forEach($scope.videos, function (video) {
-                    video.selected = false;
+                angular.forEach($scope.products, function (product) {
+                    product.selected = false;
                 });
             })
             .fail(function() {

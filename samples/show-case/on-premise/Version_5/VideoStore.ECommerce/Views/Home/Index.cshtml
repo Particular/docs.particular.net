@@ -5,28 +5,28 @@
 
 <div class="hero-unit" style="background-color: #2E2E2E; color: white; margin-top:5px; padding-bottom: 10px; padding-top: 10px;">
     <h1>Welcome to NService Bus Video Store!</h1>
-    <p>Select what videos you would like to watch</p>
+    <p>Select what products you would like</p>
 </div>
 
 <div>
     <fieldset>
-        <legend>List of available NServiceBus videos</legend>
-        <form name="videosList">
+        <legend>List of available NServiceBus products</legend>
+        <form name="productsList">
             <table class="table table-hover">
-                <tr ng-repeat="video in videos">
+                <tr ng-repeat="product in products">
                     <td>
                         <label class="checkbox">
-                            <input type="checkbox" ng-model="video.selected">
-                            <h5>{{video.title}}</h5>
-                            <div class="description">{{video.description}}</div>
+                            <input type="checkbox" ng-model="product.selected">
+                            <h5>{{product.title}}</h5>
+                            <div class="description">{{product.description}}</div>
                         </label>
                     </td>
                 </tr>
             </table>
-            
+
             <button style="margin-bottom: 50px;" ng-click="placeOrder()" class="btn btn-primary">Place Order</button>
             <span class="pull-right"><span class="label label-success">Debug me!</span> <label style="width: 80%;" class="checkbox"><input type="checkbox" ng-model="debug"><p class="text-success">Tick this box if you want to debug the code behind. We have placed breakpoints in specific places in the code to help you out become familiar with the NServiceBus way of doing things!</p></label></span>
-            
+
             <div class="alert alert-error" ng-show="errorMessage">
                 <span class="label label-important">Order failed</span> {{errorMessage}}
             </div>

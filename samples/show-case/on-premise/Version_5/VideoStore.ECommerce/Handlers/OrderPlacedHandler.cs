@@ -13,7 +13,7 @@
             context.Clients.Client(message.ClientId).orderReceived(new
                 {
                     message.OrderNumber,
-                    message.VideoIds
+                    message.ProductIds
                 });
         }
     }

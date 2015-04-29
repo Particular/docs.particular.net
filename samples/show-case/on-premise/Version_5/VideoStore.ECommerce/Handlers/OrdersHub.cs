@@ -23,7 +23,7 @@
             MvcApplication.Bus.Send(command);
         }
 
-        public void PlaceOrder(string[] videoIds)
+        public void PlaceOrder(string[] productIds)
         {
             if (((bool)Clients.Caller.debug))
             {
@@ -34,7 +34,7 @@
             {
                 ClientId = Context.ConnectionId,
                 OrderNumber = Interlocked.Increment(ref orderNumber),
-                VideoIds = videoIds,
+                ProductIds = productIds,
                 EncryptedCreditCardNumber = "4000 0000 0000 0008", // This property will be encrypted. Therefore when viewing the message in the queue, the actual values will not be shown. 
                 EncryptedExpirationDate = "10/13" // This property will be encrypted.
             };

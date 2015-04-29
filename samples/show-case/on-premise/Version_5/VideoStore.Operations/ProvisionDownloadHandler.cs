@@ -17,12 +17,12 @@
                 Debugger.Break();
             }
 
-            Console.WriteLine("Provision the videos and make the Urls available to the Content management for download ...[{0}] video(s) to provision", String.Join(", ", message.VideoIds));
+            Console.WriteLine("Provision the products and make the Urls available to the Content management for download ...[{0}] product(s) to provision", String.Join(", ", message.ProductIds));
 
             Bus.Reply(new ProvisionDownloadResponse
                 {
                     OrderNumber = message.OrderNumber,
-                    VideoIds = message.VideoIds,
+                    ProductIds = message.ProductIds,
                     ClientId = message.ClientId
                 });
         }
