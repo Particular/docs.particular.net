@@ -5,6 +5,9 @@ tags:
 - Saga
 - SagaFinder
 - NHibernate
+related:
+- nservicebus/sagas
+- nservicebus/nhibernate
 ---
 
 ## Code walk-through
