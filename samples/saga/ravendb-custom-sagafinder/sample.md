@@ -5,6 +5,9 @@ tags:
 - Saga
 - SagaFinder
 - RavenDB
+related:
+- nservicebus/sagas
+- nservicebus/ravendb
 ---
 
 ## Solution Structure
