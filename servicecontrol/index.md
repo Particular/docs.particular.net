@@ -15,7 +15,7 @@ summary: ServiceControl Documentation Table of Contents
 - [Setting custom hostname for ServiceControl & ServicePulse](setting-custom-hostname.md)
 - [Customize RavenDB Embedded Path and Drive](configure-ravendb-location.md)
 - [Setting Custom Name and Description Properties for ServiceControl API](customize-name-and-description.md)
-- [Configuring ServiceControl Log Location](setting-custom-log-location.md)
+- [ServiceControl Logging](logging.md)
 - [Configuring a non-privileged Service Account](configure-non-privileged-service-account.md)
 - [ServiceControl Endpoint Plugins](plugins.md)
 - [ServiceControl error.log and audit.log behavior](errorlog-auditlog-behavior.md)

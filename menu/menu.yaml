@@ -234,7 +234,7 @@
         - "servicecontrol/configure-ravendb-location"
         - "servicecontrol/customize-name-and-description"
         - "servicecontrol/setting-custom-hostname"
-        - "servicecontrol/setting-custom-log-location"
+        - "servicecontrol/logging"
         - "servicecontrol/plugins"
         - "servicecontrol/heartbeat-configuration"
         - "servicecontrol/errorlog-auditlog-behavior"

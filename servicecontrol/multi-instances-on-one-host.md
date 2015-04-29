@@ -60,7 +60,7 @@ The default install of ServiceControl logs to `%LOCALAPPDATA%\Particular\Service
 For additional instances, the logging location changes, and the "ServiceControl" portion of the path is replaced with the Windows service name.  So assuming the command lines above were used to  register an addition instance, the path to that instance's logs is
 `%LOCALAPPDATA%\Particular\Particular.ServiceControl.Test\logs`. 
 
-You can override this logging location in the configuration file. See [Configuring the Log Location](setting-custom-log-location.md). 
+You can override this logging location in the configuration file. See [ServiceControl Logging](logging.md). 
 
 
 #### Upgrading Multiple Instances 
