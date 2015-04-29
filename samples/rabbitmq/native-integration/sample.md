@@ -3,6 +3,8 @@ title: Native integration with RabbitMQ
 summary: Shows how to consume messages published by non NServiceBus endpoints
 tags:
 - RabbitMQ
+related:
+- nservicebus/rabbitmq
 ---
 
 ## Code walk-through
