@@ -18,7 +18,7 @@ Various features of NServiceBus require persistence.
 
 ## Available Persistences
 
-### In-Memory
+### [In-Memory](in-memory.md)
 
 A volatile RAM based () storage mainly used for development purposes. Can also be used where the storage is not required to persist between process restarts.
 
