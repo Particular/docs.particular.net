@@ -6,6 +6,10 @@ tags:
 - NHibernate
 - EntityFramework
 - Outbox
+related:
+- nservicebus/nhibernate
+- nservicebus/sqlserver
+- nservicebus/outbox
 ---
 
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create two databases: `sender` and `receiver`.
