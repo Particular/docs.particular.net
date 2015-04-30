@@ -1,5 +1,5 @@
 ---
-title: Logging Location ServiceControl
+title: ServiceControl Logging 
 summary: Where and what ServiceControl logs and how to change the location
 tags:
 - ServiceControl
