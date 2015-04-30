@@ -317,7 +317,7 @@ public class SagaBasics
 
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.UsePersistence<RavenDBPersistence>(); //or NHibernatePersistence
-        IStartableBus bus = Bus.Create(config);
+        IStartableBus bus = Bus.Create(busConfiguration);
 
         #endregion
     }
