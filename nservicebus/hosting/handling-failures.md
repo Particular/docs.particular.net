@@ -1,40 +1,33 @@
 ---
 title: Handling failures 
-summary: How to subscribe to notifications regarding critical errors which adversely affect messaging in your host.
+summary: How to subscribe to notifications regarding critical errors which adversely affect messaging in your endpoint.
 tags:
 - NServiceBus Host
 - Self Hosting
 ---
 
-NServiceBus offers an API that you can use in order to receive notifications when something undesirable happens which involves the ability to receive or send messages. e.g. your persistence storage that is essential for messaging goes down. 
+NServiceBus offers an error event handler that you can use in order to receive notifications when something undesirable happens in the endpoint which involves the ability to receive or send messages. E.g. When your persistence storage that is essential for messaging goes down. 
 
-If the bus is hosted via NServiceBus, a circuit breaker is triggered and if the faulty condition has not been rectified within a short period of time then the process is shutdown.
+If the bus is hosted via NServiceBus, a circuit breaker is triggered to monitor the situation for a short time and if the faulty condition has not been rectified within that time, then the process is shutdown automatically.
 
-However, this is slightly different if you are hosting the bus in your own process. In this scenario it may not be possible for us to determine the right time to shutdown the process. For example, the bus might be hosted within IIS in a website and bringing down the process will mean bringing down your website which may not be desirable.
+However, this is slightly different if you are hosting the bus in your own process. In this scenario it may not be possible for NServiceBus to determine if or when to shutdown the process. For example, the bus might be hosted within IIS in a website and bringing down the process will mean bringing down your website which may not be desirable.
 
-It is for this reason, we offer the following API which gives you the better control when you are self hosting or if you want better control of the shut down process in a NServiceBus.Host.
+It is for this reason, we offer the following API which gives you better control regardless of how you are hosting.
  
-NSB v4
+First, you specify your intent to listen to these critical error notifications regarding the bus.
 
-First, you specify your intent to listen to these critical error notifications regarding the bus
-
-```c#
-Configure.Instance.DefineCriticalErrorAction(OnCriticalError);
-```
+<!-- import CustomHostErrorHandlingSubscription -->
 
 Next you define what action you want to take when this scenario occurs:
 
-```c#
-private void OnCriticalError(string errorMessage, Exception exception)
-{
-    Logger.Fatal(string.Format("CRITICAL: {0}",errorMessage), exception);
+<!-- import CustomHostErrorHandlingAction -->
 
-    // If you want the process to be active, dispose the bus. 
-    // Keep in mind that when the bus is disposed, sending messages will throw with an ObjectDisposedException.
-    bus.Dispose();
+## Why should you do this?
 
-    // If you want to kill the process, raise a fail fast error as shown below. 
-    // Environment.FailFast(String.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
-}
-```
+- If you are using NServiceBus Host, and you wish to take a custom action before the endpoint process is killed.
+- If you are self hosting, by defining this action, you can get the same behavior as that of NServiceBus.host by calling `Environment.FailFast` which will kill the process. If this is a website and you don't wish to terminate the process, you can create a Fatal log entry and then dispose the bus, which you can then monitor and restart the website accordingly when convenient. By defining this action, if you're using [ServicePulse]() to monitor your web endpoint, then by doing so, it would appear `InActive`.
+
+If you choose to not kill the process and just dispose the bus, please be aware that any `bus.Send` operations will result in `ObjectDisposedException` and you will need to cater for it.
+
+NOTE:  When self hosting using NServiceBus Version4 and you did not explicitly define this action, while the bus was shutdown it wasn't disposed. Therefore the endpoint allowed you to send messages. However since the bus was shutdown, it did not process any messages that arrived in the queue. Therefore the process was running but not processing messages. By defining this action, you can now be aware of this situation and dispose the bus and optionally terminate the process based on your needs.
 
