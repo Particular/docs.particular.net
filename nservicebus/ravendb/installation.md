@@ -22,7 +22,8 @@ To use the default storage, ensure you have a RavenDB server running to which yo
 
 **Versions 4.x:** The /installinfrastructure has been deprecated in version 4.0 and above on NServiceBus.Host, and NServiceBus now expects RavenDB instance to be pre-installed and accessible to it. Use the [powershell commandlets](/nservicebus/operations/management-using-powershell.md) to install RavenDB on the needed servers. When the endpoints starts up, if the host is configured for RavenDB persistence and if the configured RavenDB persistence could not be contacted, then warnings will be logged.
 
-**Versions 3.x:** RavenDB is included with the NServiceBus binaries (not ilmerged). When using the `/installinfrastructure` switch on the NServiceBus.Host at install time, the infrastructure installer ensures that RavenDB is installed on the local machine. The install is only performed if the following is true:
+**Versions 3.x:** Note: These versions of NServiceBus.RavenDB are only due to be available on the first week of May 2015. 
+RavenDB is included with the NServiceBus binaries (not ilmerged). When using the `/installinfrastructure` switch on the NServiceBus.Host at install time, the infrastructure installer ensures that RavenDB is installed on the local machine. The install is only performed if the following is true:
 
 -   RavenDB persistence is configured for the endpoint
 -   A custom connection string is not specified by the user
