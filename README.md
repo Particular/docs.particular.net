@@ -452,37 +452,6 @@ It will also wrap the image in a clickable lightbox so the full image can be acc
  * Ticks are done with `&#10004;` &#10004;
  * Crosses are done with `&#10006;` &#10006;
   
-## Suggested Practices for Consistent Writing
-
-* Spell out numbers smaller than ten (not 2,3, etc.).
-* Do not use "please".
-* Use these:
- * "click" (not "click on" or "press")
- * "open" (not "open up")
- * V3, V3.1	(not version 3, v.3, v3)
- * Present tense (not future tense)
- * you, NServiceBus	(not "we") 
- * to (not "in order to")
- * Next steps (not	"Where to go from here?" or "Where to now?")
- * cannot, you would, is not	 (not contractions such as can't, you'd, isn't)
- * double click, right click	(not double-click, right-click)
- * you (not developers or users)
- * backend (not	back end)
-* Use these proper nouns:
- * Particular Software	not Particular 
- * Visual Studio	 not visual studio
- * NuGet	not Nuget
- * RavenDB not Raven DB
- * Fluent not fluent
- * PowerShell not powershell 
- * MVC 3 not Mvc3
- * ASP.NET not Asp.Net
- * Log4Net not log4net 
- * Intellisense	not intellisense
- * ServiceInsight not serviceInsight
- * Azure Service Bus not Azure servicebus
- * First Level Retries not First-Level-Retries
-
 ## More Info
  
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
