@@ -331,7 +331,7 @@
     <Compile Include="HostIdentifier\HostIdFixer_5_1.cs" />
     <Compile Include="Host\AsAClientEquivalent.cs" />
     <Compile Include="Host\CustomizingHost.cs" />
-    <Compile Include="Host\ErrorHandling.cs" />
+    <Compile Include="Host\CriticalErrors.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
