@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.ServiceProcess;
 using Autofac;
 using log4net.Appender;
