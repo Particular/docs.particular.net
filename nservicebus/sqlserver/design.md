@@ -3,6 +3,14 @@ title: SQL Server Transport
 summary: The design of SQL Server transport
 tags:
 - SQL Server
+related:
+- /nservicebus/sqlserver/usage
+- /nservicebus/sqlserver/multiple-databases
+- /nservicebus/sqlserver/configuration
+- /nservicebus/sqlserver/concurrency
+- /samples/sqltransport-nhpersistence
+- /samples/sqltransport-nhpersistence-outbox
+- /samples/sqltransport-nhpersistence-outbox-ef
 ---
 
 The SQL Server transport implements a message queueing mechanism on top of a Microsoft SQL Server database. It uses tables to model queues. It does not make any use of ServiceBroker, a messaging technology built into the SQL Server, mainly due to cumbersome API and difficult maintenance. 
@@ -40,16 +48,3 @@ In order to overcome this limitation a higher level store-and-forward mechanism 
  * Each endpoint has its own database where it stores both the queues and the user data
  * Messages are not sent immediately when calling `Bus.Send()` but are added to the *outbox* that is stored in the endpoint's own database. After completing the handling logic the messages in the *outbox* are forwarded to their destination databases
  * Should one of the forward operations fail, it will be retried by means of standard NServiceBus retry mechanism (both first-level and second-level). This might result in some messages being sent more than once but it is not a problem because the outbox automatically handles the deduplication of incoming messages based on their ID.
-
-#### Further reading
-
- * [More on usage scenarios](usage.md)
- * [Multi database support](multiple-databases.md)
- * [Table-based queue implementation](configuration.md)
- * [Concurrency model](concurrency.md)
-
-#### Samples
-
- * [SQL Server / NHibernate](../../samples/sqltransport-nhpersistence)
- * [SQL Server / NHibernate / Outbox](../../samples/sqltransport-nhpersistence-outbox)
- * [SQL Server / NHibernate / EntityFramework / Outbox](../../samples/sqltransport-nhpersistence-outbox-ef)
