@@ -139,6 +139,7 @@
         - "nservicebus/hosting/nservicebus-host"
         - "nservicebus/hosting/nservicebus-host/profiles"
         - "nservicebus/hosting/send-only-endpoints"
+        - "nservicebus/hosting/critical-errors"
         - "nservicebus/azure/hosting"
         - "nservicebus/azure/hosting-in-azure-cloud-services"
     - 

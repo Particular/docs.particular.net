@@ -8,10 +8,12 @@ using log4net.Appender;
 using log4net.Config;
 using log4net.Core;
 using log4net.Layout;
+using NServiceBus.Logging;
 
 class ProgramService : ServiceBase
 {
     IBus bus;
+    static ILog logger = LogManager.GetLogger("ProgramService");
 
     static void Main()
     {
@@ -86,12 +88,24 @@ class ProgramService : ServiceBase
         configure.InMemorySubscriptionStorage();
         #endregion
 
+        #region critical-errors
+        Configure.Instance.DefineCriticalErrorAction((errorMessage, exception) =>
+        {
+            // Log the critical error
+            logger.Fatal(string.Format("CRITICAL: {0}", errorMessage), exception);
+
+            // Kill the process on a critical error
+            Environment.FailFast(String.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
+        });
+        #endregion
+
         #region start-bus
         bus = configure.UnicastBus()
             .CreateBus()
             .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
         #endregion
     }
+
 
     protected override void OnStop()
     {

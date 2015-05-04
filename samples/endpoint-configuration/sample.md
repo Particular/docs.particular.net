@@ -73,3 +73,8 @@ Enable installers and start the bus.
 The bus implements `IDisposable` and should be shut down when the process is shut down.
 
 <!-- import stop-bus -->
+
+## Handling [Critical Errors](/nservicebus/hosting/critical-errors.md)
+Since this sample is configured to run as a windows service, the action defined when a critical error occurs is to shut down the process. 
+
+<!-- import critical-errors -->
