@@ -108,6 +108,7 @@
     <Compile Include="Gateway\GatewayConfig.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Headers\HeaderUsage.cs" />
+    <Compile Include="Host\CriticalErrors.cs" />
     <Compile Include="Injection\Injection.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
