@@ -56,7 +56,7 @@ When dealing with database connections in an environment where we do not want to
 The following requirements have to be satisfied:
 
 * the business specific data and the `Outbox` storage must be in the same database;
-* the user code accessing business related data must use the **exact** same `connection string` as the `Outbox` storage;
+* the user code accessing business related data must use the same `connection string` as the `Outbox` storage;
 
 ### Entity Framework caveats
 
