@@ -4,13 +4,13 @@ summary: The design of SQL Server transport
 tags:
 - SQL Server
 related:
-- /nservicebus/sqlserver/usage
-- /nservicebus/sqlserver/multiple-databases
-- /nservicebus/sqlserver/configuration
-- /nservicebus/sqlserver/concurrency
-- /samples/sqltransport-nhpersistence
-- /samples/sqltransport-nhpersistence-outbox
-- /samples/sqltransport-nhpersistence-outbox-ef
+- nservicebus/sqlserver/usage
+- nservicebus/sqlserver/multiple-databases
+- nservicebus/sqlserver/configuration
+- nservicebus/sqlserver/concurrency
+- samples/sqltransport-nhpersistence
+- samples/sqltransport-nhpersistence-outbox
+- samples/sqltransport-nhpersistence-outbox-ef
 ---
 
 The SQL Server transport implements a message queueing mechanism on top of a Microsoft SQL Server database. It uses tables to model queues. It does not make any use of ServiceBroker, a messaging technology built into the SQL Server, mainly due to cumbersome API and difficult maintenance. 
