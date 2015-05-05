@@ -50,7 +50,7 @@ For example:
 ```
 ---
 title: Auditing With NServiceBus
-summary: 'Provides built-in message auditing for every endpoint.'
+summary: Provides built-in message auditing for every endpoint.
 tags:
 - Auditing
 - Forwarding Messages
