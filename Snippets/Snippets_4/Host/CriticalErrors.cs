@@ -76,7 +76,20 @@ class CriticalErrors
             Thread.Sleep(10000); // so that user can see on their screen the problem
         }
 
-        Environment.FailFast(String.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
+        Environment.FailFast(string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
+
+        #endregion
+
+ }
+
+    void InvokeCriticalError()
+    {
+
+        string errorMessage = null;
+        Exception exception = null;
+        #region InvokeCriticalError
+
+        Configure.Instance.RaiseCriticalError(errorMessage, exception);
 
         #endregion
 

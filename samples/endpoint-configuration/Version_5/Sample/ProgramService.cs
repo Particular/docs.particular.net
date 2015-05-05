@@ -15,7 +15,6 @@ class ProgramService : ServiceBase
     IBus bus;
     static ILog logger = LogManager.GetLogger("ProgramService");
 
-
     static void Main()
     {
         using (ProgramService service = new ProgramService())
@@ -34,7 +33,6 @@ class ProgramService : ServiceBase
             Run(service);
         }
     }
-
 
     protected override void OnStart(string[] args)
     {
@@ -97,7 +95,7 @@ class ProgramService : ServiceBase
             logger.Fatal(string.Format("CRITICAL: {0}", errorMessage), exception);
 
             // Kill the process on a critical error
-            Environment.FailFast(String.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
+            Environment.FailFast(string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
         });
         #endregion
 

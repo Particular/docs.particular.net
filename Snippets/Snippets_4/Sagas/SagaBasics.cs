@@ -95,17 +95,17 @@ public class SagaBasics
 
     public class Message1
     {
-        public String SomeID { get; set; }
+        public string SomeID { get; set; }
     }
 
     public class Message2
     {
-        public String SomeID { get; set; }
+        public string SomeID { get; set; }
     }
 
     public class AlmostDoneMessage
     {
-        public String SomeID { get; set; }
+        public string SomeID { get; set; }
     }
 
     #region saga-data

@@ -1,5 +1,5 @@
 ---
-title: Handling failures 
+title: Critical Errors 
 summary: How to handle critical errors which adversely affect messaging in your endpoint.
 tags:
 - NServiceBus Host
@@ -13,7 +13,7 @@ For many scenarios NServiceBus has built-in error and exception management, for 
  * An exception occurs reading from the input queue.
  * A `IWantToRunWhenBusStartsAndStops.Start` throws an exception.
  
-### Default action handling in NServiceBus Core
+### Default action handling in NServiceBus
 
 And hence the default behavior that will be taken in any kind of self hosting scenario.
 
@@ -57,6 +57,12 @@ The default action should be overridden whenever that default does not meet your
 - If you are self hosting you can call shut down the process, via `Environment.FailFast`, and re-start the process one the root cause has been diagnosed. 
 
 NOTE: If you choose to not kill the process and just dispose the bus, please be aware that any `bus.Send` operations will result in `ObjectDisposedException` being thrown.
+
+## Raising Critical error
+
+Any code in your endpoint can invoke the Critical Error action.
+
+<!-- import InvokeCriticalError -->
 
 ## ServicePulse and ServiceControl Heartbeat functionality
 

@@ -34,7 +34,6 @@ class ProgramService : ServiceBase
         }
     }
 
-
     protected override void OnStart(string[] args)
     {
         #region logging
@@ -95,7 +94,7 @@ class ProgramService : ServiceBase
             logger.Fatal(string.Format("CRITICAL: {0}", errorMessage), exception);
 
             // Kill the process on a critical error
-            Environment.FailFast(String.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
+            Environment.FailFast(string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
         });
         #endregion
 

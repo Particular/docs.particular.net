@@ -66,4 +66,15 @@ class CriticalErrors
 
     }
 
+    void InvokeCriticalError()
+    {
+
+        #region InvokeCriticalError
+
+        Configure.Instance.OnCriticalError();
+
+        #endregion
+
+    }
+
 }

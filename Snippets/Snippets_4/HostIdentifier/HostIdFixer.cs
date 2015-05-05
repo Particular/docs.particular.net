@@ -22,7 +22,7 @@ public class HostIdFixer : IWantToRunWhenConfigurationIsComplete
     {
         using (MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider())
         {
-            byte[] inputBytes = Encoding.Default.GetBytes(String.Concat(data));
+            byte[] inputBytes = Encoding.Default.GetBytes(string.Concat(data));
             byte[] hashBytes = provider.ComputeHash(inputBytes);
             return new Guid(hashBytes);
         }

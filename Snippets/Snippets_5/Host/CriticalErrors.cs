@@ -89,4 +89,17 @@ class CriticalErrors
         #endregion
 
     }
+    void InvokeCriticalError()
+    {
+        CriticalError criticalError = null;
+        string errorMessage = null;
+        Exception exception = null;
+        #region InvokeCriticalError
+        // 'criticalError' is an instance of the NServiceBus.CriticalError class
+        // This instance can be resolved from the container. 
+        criticalError.Raise(errorMessage, exception);
+
+        #endregion
+
+    }
 }
