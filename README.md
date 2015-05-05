@@ -54,6 +54,11 @@ summary: 'Provides built-in message auditing for every endpoint.'
 tags:
 - Auditing
 - Forwarding Messages
+related:
+- samples/custom-checks/monitoring3rdparty
+- servicepulse/how-to-develop-custom-checks
+redirects:
+- nservicebus/overview
 ---
 ```
 
@@ -80,6 +85,10 @@ Tags are interpreted in two ways.
    * Tags are lower case
    * Dashes (`-`) are replaced with dashes spaces 
 
+### Related
+
+A list of related pages for this page. These links will be rendered at the bottom of the page. Can include both samples and articles and they will be grouped as such when rendered in html. 
+
 ### Redirects
 
 When renaming an existing article to a new name, please add the `redirects:` section in the article header and specify the previous name for the article. If the old Url is linked anywhere, when the user clicks on it, the new renamed article will automatically be served.
@@ -87,6 +96,10 @@ When renaming an existing article to a new name, please add the `redirects:` sec
 * Values specified in the `redirects` section must be lower cased.
 * Multiple values can be specified for the redirects, same as `tags`.
 * Values are fully qualified
+
+### Url format for Redirects and Related
+
+Should be the url relative to the root with no beginning or trailing slash padding and no .md.
 
 ## An example header for an article
 
