@@ -19,7 +19,7 @@ And hence the default behavior that will be taken in any kind of self hosting sc
 
 <!-- import DefaultCriticalErrorAction -->
 
-NOTE:  In Version 4 and Version 3 the bus was shutdown but not disposed. This means sending of messages is allowed but no processing of messages will occur.
+NOTE:  In Version 4 and Version 3 the bus stops procssing messages but is not disposed. This means sending of messages is allowed but no processing of messages will occur.
 
 ### Default action handling in NServiceBus.Host
 
