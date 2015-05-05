@@ -29,11 +29,12 @@ class CriticalErrors
         Logger.Fatal("CRITICAL Error");
 
         // If you want the process to be active, dispose the bus. 
-        // Keep in mind that when the bus is disposed, sending messages will throw with an ObjectDisposedException.
+        // Note that when the bus is disposed sending messages will throw with an ObjectDisposedException.
         bus.Dispose();
 
         // If you want to kill the process, raise a fail fast error as shown below. 
-        // Environment.FailFast(String.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
+        //string failMessage = string.Format("Critical error was encountered:\n{0}\nNServiceBus is shutting down.", errorMessage);
+        //Environment.FailFast(failMessage, exception);
     }
 
     #endregion
