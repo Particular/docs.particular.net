@@ -45,8 +45,9 @@ public class CriticalError
             {
                 Thread.Sleep(10000); // so that user can see on their screen the problem
             }
-            
-            Environment.FailFast(string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
+
+            string failMessage = string.Format("Critical error shutting down:'{0}'.", errorMessage);
+            Environment.FailFast(failMessage, exception);
         });
 
         #endregion

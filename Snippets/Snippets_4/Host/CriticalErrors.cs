@@ -27,7 +27,7 @@ class CriticalErrors
         bus.Dispose();
 
         // If you want to kill the process, raise a fail fast error as shown below. 
-        //string failMessage = string.Format("Critical error was encountered:\n{0}\nNServiceBus is shutting down.", errorMessage);
+        //string failMessage = string.Format("Critical error shutting down:'{0}'.", errorMessage);
         //Environment.FailFast(failMessage, exception);
     }
 
@@ -77,7 +77,8 @@ class CriticalErrors
             Thread.Sleep(10000); // so that user can see on their screen the problem
         }
 
-        Environment.FailFast(string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
+        string failMessage = string.Format("Critical error shutting down:'{0}'.", errorMessage);
+        Environment.FailFast(failMessage, exception);
 
         #endregion
 
