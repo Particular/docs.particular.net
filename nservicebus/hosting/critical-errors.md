@@ -29,11 +29,11 @@ WARNING: It is important to consider the effect these defaults will have on othe
 
 ### Logging of critical errors
 
-For Version 4 and up Critical Errors are logged before firing the handler action.
+For Version 4 and up Critical Errors are logged inside the critical error action. This means that if you replace the Critical Error in these versions you should also write the log entry.
 
 <!-- import DefaultCriticalErrorActionLogging -->
 
-NOTE:  Version 3 does not write a log entry as part of default Critical Error handler. This is done high up the stack in the location where the exception occurs. It is for this reason that the `Exception` instance is not passed to the Critical Error handler.
+NOTE:  Version 3 does not write a log entry as part of default Critical Error handler. This is done high up the stack in the location where the exception occurs. It is for this reason that the `Exception` instance is not passed to the Critical Error handler. So it is optional to write a log entry when replacing the Critical Error in Version 3.
 
 ## Custom handling
 
