@@ -4,110 +4,132 @@ summary: 'Guidance on how to use the Platform Installer and its underlying compo
 tags: [Platform, Installation]
 ---
 
-## Offline install
+## Overview
 
-The Platform Installer requires access to the internet and several dependencies (see below). If either of these are problematic given you current environment please see [Offline Install](offline.md).
+The Platform Installer is recommended for use on development machines only.  This is primarily because
 
-## Download
+- Platform Installer does not provide a choice of transport (Microsoft Message Queue is assumed).
+- Platform Installer requires Internet access which may not be available in a production environment.
 
-- [Clickonce download](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
-- [Direct setup download](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/setup.exe)
+The Platform Installer can be downloaded by clicking on the download now option on the Particular Downloads page
+    
+For testing and production environments it is recommended to: 
 
-NOTE: The Platform Installer is recommended for use in development environments. For testing and production environments it is recommended you use the relevant Chocolatey commands, PowerShell cmdlets and NuGet packages.
+- use the [NServiceBus Powershell Module](/nservicebus/operations/management-using-powershell.md) to install the prerequisite components you require. 
+- Download and run the individual installers from the [download](http://www.particular.net/downloads) page rather than install via the Platform Installer
 
-## Dependencies 
 
-* ClickOnce
-* [.net 4.5](http://www.microsoft.com/en-au/download/details.aspx?id=40779) (will be installed as part of the ClickOnce deployment)
-* [Chocolatey](https://chocolatey.org/) (version 0.9.8.26 or higher) 
+## What to expect 
 
-## License Acceptance
+The Platform Installer is a Microsoft Click-Once application which means it has a built in self-updating mechanism.  Click  once applications are sometimes blocked by corporate firewalls or software restriction policies. If you cannot run the platform installer please review the [Offline Install](offline.md). page for installation instructions.
 
-When you first use the Platform Installer you will be prompted to accept the NServiceBus License Agreement 
 
-## Confirm Chocolatey install
+### Dependencies
 
-If you do not already have Chocolatey installed you will be prompted to confirm
+The Click-Once setup.exe will install [.Net 4.5](http://www.microsoft.com/en-au/download/details.aspx?id=40779)  if required and with then bootstrap the Platform Installer 
+Application 
+
+
+### License Acceptance
+
+Before you can proceed with product selection the Platform Installer you will be prompted to accept the NServiceBus License Agreement.  
+
+    
+### Proxy Credentials
+
+Platform Installer requires Internet access to download individual packages. If non-windows integrated proxy authentication is required then a credentials dialog will be show. 
+
+![](credentials.png)
+
+This dialog offers to save credentials for future use. 
+If the Save Credentials option is chosen the credentials will be encrypted and stored in the registry at `HKEY_CURRENT_USER\Software\Particular\PlatformInstaller\Credentials` for use in subsequent launches of the Platform Installer.  
+
 
 ## Select items to install
 
-You will be prompted for which items to install.
+You will be prompted for which items to install. Individual components can be selected how for installation or upgrade. If the latest version of a product is installed that item will be disabled as there is no installation or upgrade action required.  Similarly if the Platform installer cannot communicate with the version information feed it will also disable product selection.      
 
 ![](select-items.png)
 
-### NServiceBus
+
+#### NServiceBus
 
 This installs the NServiceBus prerequisites and configures the machine to be compatible for usage by NServiceBus. 
+This step does the following:
 
- * Configures DTC for usage by NServiceBus 
- * Setup the NServiceBus Performance Counters
- * Install and configure Msmq
+ * Configures Microsoft Distributed Transaction Coordinator for usage by NServiceBus 
+ * Adds the NServiceBus Performance Counters
+ * Installs and configures Microsoft Message Queue (MSMQ) service
 
-The equivalent Chocolatey commands are 
+There is no harm in running these on multiple times. Each run will check the state of Microsoft Message Queue service, the Distributed Transaction Coordinator service and the Performance Counters and adjust settings or start services as required. In some case the prerequisites may prompt for a restart to complete a change.
 
-    cinst NServicebus.Dtc.install
-    cinst NServicebus.PerfCounters.install
-    cinst NServicebus.Msmq.install
-
-### ServiceMatrix for Visual Studio 2013
-
-Installs the [ServiceMatrix for VS2013 Chocolatey Package](https://chocolatey.org/packages/ServiceMatrix.VS2013.install). The equivalent VSIX can be downloaded from the [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).
-
-    cinst ServiceMatrix.VS2013.install
+Note: The NServiceBus prerequisites do not have a version number and do not toggle to a disabled state after installation.
 
 
-### ServiceMatrix for Visual Studio 2012
+#### ServiceMatrix for Visual Studio 2013
 
-Installs the [ServiceMatrix for VS2012 Chocolatey Package](https://chocolatey.org/packages/ServiceMatrix.VS2012.install). The equivalent VSIX can be downloaded from the [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).
+Installs the ServiceMatrix for Visual Studio 2013 Package. This VSIX can be downloaded directly from here: [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).  The file name for the Visual Studio 2013 version is `Particular.ServiceMatrix.12.0.vsix`.
 
-    cinst ServiceMatrix.VS2012.install
 
-### ServiceInsight
+#### ServiceMatrix for Visual Studio 2012
 
-Installs the [ServiceInsight Chocolatey Package](https://chocolatey.org/packages/ServiceInsight.install). The equivalent msi can be downloaded from the [ServiceInsight Releases](https://github.com/Particular/ServiceInsight/releases).
+Installs the ServiceMatrix for Visual Studio 2012. This VSIX can be downloaded directly from here: [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases). The file name for the Visual Studio 2012 version is `Particular.ServiceMatrix.11.0.vsix`.
 
-    cinst ServiceInsight.install
+ 
+#### ServiceInsight
 
-### ServicePulse
+Installs the ServiceInsight Package.  This MSI can be downloaded directly from here: [ServiceInsight Releases](https://github.com/Particular/ServiceInsight/releases/latest).
 
-Installs the [ServicePulse Chocolatey Package](https://chocolatey.org/packages/ServicePulse.install). The equivalent msi can be downloaded from the [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases).
+
+#### ServicePulse
+
+Installs the ServicePulse Package. This MSI can be downloaded directly from here: [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases/latest).
     
-    cinst ServicePulse.install
 
 ### ServiceControl
 
-Installs the [ServiceControl Chocolatey Package](https://chocolatey.org/packages/ServiceControl.install). The equivalent msi can be downloaded from the [ServiceControl Releases](https://github.com/Particular/ServiceControl/releases).
-
-    cinst ServiceControl.install
-
-## MSI Information
-
-* [MSI error messages](https://msdn.microsoft.com/en-us/library/aa376931.aspx)
-
-## Chocolatey Information 
-
-* [Chocolatey Google Group](https://groups.google.com/forum/#!forum/chocolatey)
-* [Chocolatey Wiki](https://github.com/chocolatey/chocolatey/wiki)
-* [Proxy Settings for Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Proxy-Settings-for-Chocolatey)
- 
-### Updating Chocolatey
-
-If you have an older version of chocolatey you can use the [chocolatey update command](https://github.com/chocolatey/chocolatey/wiki/CommandsUpdate#chocolatey-update-cup).
-
-    c:\> chocolatey update
-
-If that fails the recommended approach is to re-install Chocolatey using the following command
-
-    c:\>  @powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%systemdrive%\chocolatey\bin    
-See [Installing Chocolatey](https://github.com/chocolatey/chocolatey/wiki/Installation) for more info
-
-## ClickOnce Information
-
-* [Troubleshooting ClickOnce Deployments](https://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
-* [ClickOnce forum](https://social.msdn.microsoft.com/Forums/windows/en-US/home?forum=winformssetup)
+Installs the ServiceControl Package. This MSI can be downloaded directly from here: [ServiceControl Releases](https://github.com/Particular/ServiceControl/releases/latest).
 
 
+## TroubleShooting
 
-### FAQ
+### Downloads 
 
-* If you're having issues with connectivity please see this post on how to set Chocolatey and NuGet up behind a proxy: https://github.com/chocolatey/choco/wiki/Proxy-Settings-for-Chocolatey
+The Platform Installer caches the downloaded MSI and VSIX files in `%temp%\Temp\Particular\PlatformInstaller`.  These files are download directly from GitHub.  Some corporate firewalls prevent the downloading of executable files via content filters or by white/black listing specific web sites. If the Platform Installer cannot download the individual applications please consult with your network administration staff.  
+
+
+### MSI Logs
+
+The command line options used for the MSI  installations ensure that a detailed log file is produced for each installation.  These files are also co-located with the cached installers in `%temp%\Temp\Particular\PlatformInstaller`.
+An installation or upgrade of a product will overwrite any existing MSI log for that product. 
+
+MSI provide detailed error information via error codes.  This MSDN article details [MSI error messages](https://msdn.microsoft.com/en-us/library/aa376931.aspx) which can assist in fault finding installation issues. 
+
+
+### VSIX Installer Logs
+
+VSIX files are installed using the VSIX installer that ships with Visual Studio Professional (or greater).  The `VSIXInstaller.exe` creates log file in `%temp%`,  these log files use the following naming convention: `VSIXInstaller_<Random GUID>.log`. A typical log file name would be: `VSIXInstaller_06fb7e74-5b5a-490e-af27-3396433f3bea.log`.
+
+
+Unfortunately Microsoft does not provide a mechanism for setting the logging location or file name. If a VSIX installation fails the Platform Installer will try to indicate the correct VSIXInstaller log file to examine.  
+
+
+### Click-Once 
+
+As mentioned above in some circumstances Click-Once can be problematic.  The following links provide some useful tips on troubleshooting issues with Click-Once.
+
+* [Troubleshooting Click-Once Deployments](https://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
+* [Click-Once forum](https://social.msdn.microsoft.com/Forums/windows/en-US/home?forum=winformssetup)
+
+
+## Chocolatey   
+
+Early version of the Platform Installer relied on [Chocolatey](http://chocolatey.org) to deploy and update products.
+
+The current Platform installer no longer has this dependency.  If you installed Chocolatey solely to accommodate the Platform Installer then you can safely remove it by following these [instructions](https://github.com/chocolatey/choco/wiki/Uninstallation)
+
+Note: While Platform Installer no longer uses Chocolatey this does not mean that Particular will discontinue publishing updates via the  platform Chocolatey. We understand some user would prefer to install there packages this way and we will continue to make the Chocolatey packages available.  
+
+
+
+
