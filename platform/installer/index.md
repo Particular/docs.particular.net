@@ -129,7 +129,3 @@ Early version of the Platform Installer relied on [Chocolatey](http://chocolatey
 The current Platform installer no longer has this dependency.  If you installed Chocolatey solely to accommodate the Platform Installer then you can safely remove it by following these [instructions](https://github.com/chocolatey/choco/wiki/Uninstallation)
 
 Note: While Platform Installer no longer uses Chocolatey this does not mean that Particular will discontinue publishing updates via the  platform Chocolatey. We understand some user would prefer to install there packages this way and we will continue to make the Chocolatey packages available.  
-
-
-
-
