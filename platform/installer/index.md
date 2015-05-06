@@ -7,12 +7,14 @@ tags: [Platform, Installation]
 ## Overview
 
 The Platform Installer is recommended for use on development machines only.  This is primarily because
-- Platform Installer does not provide a choice of transport (Microsoft Message Queue is assumed) 
+
+- Platform Installer does not provide a choice of transport (Microsoft Message Queue is assumed).
 - Platform Installer requires Internet access which may not be available in a production environment.
 
 The Platform Installer can be downloaded by clicking on the download now option on the Particular Downloads page
     
 For testing and production environments it is recommended to: 
+
 - use the [NServiceBus Powershell Module](/nservicebus/operations/management-using-powershel.md) to install the prerequisite components you require. 
 - Download and run the individual installers from the [download](http://www.particular.net/downloads) page rather than install via the Platform Installer
 
