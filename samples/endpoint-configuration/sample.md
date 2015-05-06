@@ -18,7 +18,7 @@ When a message fails processing it will be forwarded here.
 
 <!-- import error -->
 
-Note that this approach uses the [IProvideConfiguration](/nservicebus/hosting/custom-configuration-providers.md) approach to problematically override the error queue.
+Note that this approach uses the [IProvideConfiguration](/nservicebus/hosting/custom-configuration-providers.md) approach to programmatically override the error queue.
 
 ## Configure an [Audit](/nservicebus/operations/auditing.md) queue
 
