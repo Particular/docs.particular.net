@@ -1,6 +1,6 @@
 ---
 title: Running on Windows
-summary: Overview of the requirements for running on windows (including MSMQ, MSDTC, Storage and powershell)
+summary: Overview of the requirements for running on windows (including MSMQ, MSDTC, Storage and PowerShell)
 tags:
 - MSMQ
 - MSDTC
@@ -30,8 +30,7 @@ To read more about MSMQ go [here](/nservicebus/msmq/).
 
 In order to support guaranteed once delivery of messages NServiceBus makes use of the Distributed Transaction Coordinator(DTC) to synchronise transaction between the queuing system and your database. For this to work correctly the MSDTC needs to be started and configured correctly. 
 
-You can read more on transactions
-[here](/nservicebus/operations/transactions-message-processing.md)
+You can read more on transactions [here](/nservicebus/operations/transactions-message-processing.md)
 
 Since version 5 of NServiceBus there is a _non-DTC_ mode of operation available. In this mode NServiceBus uses a concept of outbox, a message store backed by same DB as the user code, to temporarly store messages that need to be send as a result of processing an incoming message. To read more about this subject see [Outbox](/nservicebus/outbox/).
 
@@ -47,9 +46,8 @@ To better help you monitoring your system NServiceBus will update a set of perfo
 
 More info on the monitoring support in NServiceBus can be found [here](/nservicebus/operations/monitoring-endpoints.md).
 
-## Using powershell to setup the infrastructure manually
-
-Starting with NServiceBus 3.3.0 as set of powershell cmdlets are bundled with the binaries and can be used to automate setup of production servers. 
-
-More information about the powershell support can be found [here](management-using-powershell.md).
+## Using PowerShell to setup the infrastructure manually
+NServiceBus 3.3.0 introduced as set of PowerShell cmdlets that were bundled with the binaries and could be used to automate setup of production servers.
+These PowerShell cmdlets are now available as a standalone installation.
+More information about the PowerShell support can be found [here](management-using-powershell.md).
 
