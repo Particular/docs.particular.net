@@ -15,7 +15,7 @@ The Platform Installer can be downloaded by clicking on the download now option 
     
 For testing and production environments it is recommended to: 
 
-- use the [NServiceBus Powershell Module](/nservicebus/operations/management-using-powershel.md) to install the prerequisite components you require. 
+- use the [NServiceBus Powershell Module](/nservicebus/operations/management-using-powershell.md) to install the prerequisite components you require. 
 - Download and run the individual installers from the [download](http://www.particular.net/downloads) page rather than install via the Platform Installer
 
 
@@ -125,6 +125,7 @@ As mentioned above in some circumstances Click-Once can be problematic.  The fol
 ## Chocolatey   
 
 Early version of the Platform Installer relied on [Chocolatey](http://chocolatey.org) to deploy and update products.
+
 The current Platform installer no longer has this dependency.  If you installed Chocolatey solely to accommodate the Platform Installer then you can safely remove it by following these [instructions](https://github.com/chocolatey/choco/wiki/Uninstallation)
 
 Note: While Platform Installer no longer uses Chocolatey this does not mean that Particular will discontinue publishing updates via the  platform Chocolatey. We understand some user would prefer to install there packages this way and we will continue to make the Chocolatey packages available.  
