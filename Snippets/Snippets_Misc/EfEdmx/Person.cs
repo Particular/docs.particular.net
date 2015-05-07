@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Snippets_Misc.EF_EDMX
+namespace Snippets_Misc.EfEdmx
 {
     using System;
     using System.Collections.Generic;

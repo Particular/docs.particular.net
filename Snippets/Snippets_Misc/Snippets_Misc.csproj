@@ -50,48 +50,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EF EDMX\EntityConnectionCreation.cs" />
-    <Compile Include="EF EDMX\MySample.Context.cs">
+    <Compile Include="EfEdmx\EntityConnectionCreation.cs" />
+    <Compile Include="EfEdmx\MySample.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MySample.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF EDMX\MySample.cs">
+    <Compile Include="EfEdmx\MySample.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MySample.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF EDMX\MySample.Designer.cs">
+    <Compile Include="EfEdmx\MySample.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MySample.edmx</DependentUpon>
     </Compile>
-    <Compile Include="EF EDMX\MySampleContainer.cs" />
-    <Compile Include="EF EDMX\Person.cs">
+    <Compile Include="EfEdmx\MySampleContainer.cs" />
+    <Compile Include="EfEdmx\Person.cs">
       <DependentUpon>MySample.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="EF EDMX\MySample.Context.tt">
+    <Content Include="EfEdmx\MySample.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MySample.Context.cs</LastGenOutput>
       <DependentUpon>MySample.edmx</DependentUpon>
     </Content>
-    <Content Include="EF EDMX\MySample.tt">
+    <Content Include="EfEdmx\MySample.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MySample.cs</LastGenOutput>
       <DependentUpon>MySample.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="EF EDMX\MySample.edmx">
+    <EntityDeploy Include="EfEdmx\MySample.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MySample.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="EF EDMX\MySample.edmx.diagram">
+    <None Include="EfEdmx\MySample.edmx.diagram">
       <DependentUpon>MySample.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
