@@ -406,6 +406,7 @@
     <Compile Include="UnitTesting\HeaderManipulation.cs" />
     <Compile Include="UnitTesting\Saga.cs" />
     <Compile Include="UnitTesting\ServiceLayer.cs" />
+    <Compile Include="WCF\Expose_wcf.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
