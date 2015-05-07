@@ -179,7 +179,7 @@
         - "nservicebus/operations/installers"
         - "nservicebus/operations/management-using-powershell"
         - "nservicebus/operations/monitoring-endpoints"
-        - "nservicebus/operations/reducing-throughput"
+        - "nservicebus/operations/throughput"
         - "nservicebus/operations/running-on-windows"
         - "nservicebus/operations/transactions-message-processing"
         - "nservicebus/operations/warning-for-cid-values"

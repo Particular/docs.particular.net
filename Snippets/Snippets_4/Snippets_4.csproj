@@ -220,6 +220,9 @@
     <None Include="Transports\RabbitMQ\App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Transports\Throughtput\InitialThroughtput.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusExtensionMethodForHandler.cs" />
@@ -247,6 +250,7 @@
     <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Transports\RabbitMQ\ConfigurationSettings.cs" />
+    <Compile Include="Transports\Throughtput\Throughtput.cs" />
     <Compile Include="UnitTesting\Saga.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
     <None Include="Encryption\encryption.config">
