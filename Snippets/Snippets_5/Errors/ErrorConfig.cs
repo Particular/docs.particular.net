@@ -16,4 +16,33 @@
         }
     }
     #endregion
+
+
+    #region FlrConfiguration
+    class ConfigureFirstLevelRetries : IProvideConfiguration<TransportConfig>
+    {
+        public TransportConfig GetConfiguration()
+        {
+            return new TransportConfig
+            {
+                MaxRetries = 2
+            };
+        }
+    }
+    #endregion
+
+    #region SlrConfiguration
+    class ConfigureSecondLevelRetries : IProvideConfiguration<SecondLevelRetriesConfig>
+    {
+        public SecondLevelRetriesConfig GetConfiguration()
+        {
+            return new SecondLevelRetriesConfig
+            {
+                Enabled = true,
+                NumberOfRetries = 2,
+                TimeIncrease = TimeSpan.FromSeconds(10)
+            };
+        }
+    }
+    #endregion
 }

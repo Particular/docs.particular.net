@@ -23,6 +23,9 @@ This is only possible if you are running NServiceBus Version v4.x and above.
 
 <!-- import ErrorQueueConfiguration -->
 
+NOTE: In NServiceBus V3, it is important to configure the bus to use the configuration source when the bus is initalized. See below: 
+<!-- import UseCustomConfigurationSourceForErrorQueueConfig -->
+
 #### Configuring the error queue via App.Config
 
 <!-- import configureErrorQueueViaXml -->

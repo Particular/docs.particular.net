@@ -19,21 +19,21 @@ For situations like these, NServiceBus offers two levels of retries:
 NOTE: When a message cannot be deserialized, it will bypass all retry mechanisms both the FLR and SLR and the message will be moved directly to the error queue.
 
 ### First Level Retries
-NServiceBus automatically retries the message when an exception is thrown during message processing up to five successive times by default. This value can be configured through app.config.
+NServiceBus automatically retries the message when an exception is thrown during message processing up to five successive times by default. This value can be configured through app.config or code.
 
 #### Configuring FLR using app.config
 In NServiceBus V3, this configuration was available via `MsmqTransportConfig`
-From V4 onwards the configuration for this mechanism is implemented in the `TransportConfig` section. 
+From V4 onwards the configuration for this mechanism is implemented in the `TransportConfig` section. For more details on `MsmqTransportConfig` and `TransportConfig` [read this article](/nservicebus/msmq/transportconfig.md).
 
 <!-- import configureFlrViaXml -->
 
- * MaxRetries (default: 5) defines how many times a message is tried to be processed before is is moved to the *error queue* or passed to the SLR mechanism.
+#### Configuring FLR through code
 
-In V3 some of these setting were available via `MsqmTransportConfig` section with following 
+<!-- import FlrConfiguration -->
 
- * In V3 the `MaxRetries` as well as the throttling  (`NumberOfWorkerThreads`) settings can be set only via `MsmqTransportConfig` section.
 
-For more details on `MsmqTransportConfig` and `TransportConfig` [read this article](/nservicebus/msmq/transportconfig.md).
+NOTE: In NServiceBus V3, it is important to configure the bus to use the configuration source when the bus is initalized. See below: 
+<!-- import UseCustomConfigurationSourceForFLR -->
 
 ### Second Level Retries
 
@@ -57,12 +57,16 @@ To configure SLR, enable its configuration section:
 
 #### Configuration SLR using code
 
-To disable the SLR feature, add this to your configuration 
+You can disable the SLR feature or configure other SLR properties in one of two ways: 
 
-<!-- import SecondLevelRetriesDisable -->
+##### By overriding the Configuration Section
+<!-- import SlrConfiguration -->
+
+NOTE: In NServiceBus V3, it is important to configure the bus to use the configuration source when the bus is initalized. See below: 
+<!-- import UseCustomConfigurationSourceForSLR -->
 
 
-##### Custom Retry Policy
+##### By Providing Custom Retry Policy in the API
 
 You can change the time between retries or the number of retries in code.
 
