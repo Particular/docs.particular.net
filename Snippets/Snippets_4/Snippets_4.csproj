@@ -206,6 +206,8 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Audit\App.config" />
+    <None Include="Errors\configureErrorQueue.config" />
+    <None Include="Errors\flr.config" />
     <None Include="Monitoring\app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -229,6 +231,7 @@
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="CustomRavenConfigForVersion2_5.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="Errors\ErrorConfig.cs" />
     <Compile Include="Headers\HeaderUsage.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="Host\CustomLogging.cs" />

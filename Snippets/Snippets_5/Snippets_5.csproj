@@ -296,6 +296,8 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="app.config" />
+    <None Include="Errors\configureErrorQueue.config" />
+    <None Include="Errors\flr.config" />
     <None Include="Monitoring\app.config" />
     <None Include="Transports\Mqmq\TransportConfig.config" />
     <None Include="Audit\App.config" />
@@ -326,6 +328,7 @@
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
     <Compile Include="Distributor\ConfiguringWorker.cs" />
+    <Compile Include="Errors\ErrorConfig.cs" />
     <Compile Include="Headers\HeaderUsage.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="HostIdentifier\HostIdFixer_5_1.cs" />

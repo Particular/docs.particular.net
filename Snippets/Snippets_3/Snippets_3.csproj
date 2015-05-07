@@ -88,6 +88,8 @@
     <None Include="Encryption\encryption.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Errors\ConfigureErrorQueue.config" />
+    <None Include="Errors\flr.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
