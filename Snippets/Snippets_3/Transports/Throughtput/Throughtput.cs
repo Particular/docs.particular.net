@@ -1,6 +1,5 @@
 ﻿using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
-using NServiceBus.Unicast;
 
 public class Throughtput
 {
