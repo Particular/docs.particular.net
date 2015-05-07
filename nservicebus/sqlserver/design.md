@@ -4,6 +4,7 @@ summary: The design of SQL Server transport
 tags:
 - SQL Server
 related:
+- nservicebus/outbox
 - nservicebus/sqlserver/usage
 - nservicebus/sqlserver/multiple-databases
 - nservicebus/sqlserver/configuration
@@ -36,7 +37,7 @@ The SQL Server transport is a hybrid queueing system which is neither store-and-
 
 ## Single database
 
-In the simplest form, SQL Server transport uses a single instance of the SQL Server to maintain all the queues for all endpoints of a system. In order to send a message, an endpoint needs to connect to the (usually remote) database server and execute a SQL command. The message is delivered directly to the destination queue without any store-and-forward mechanism. Such a simplistic approach can only be only used for small-to-medium size systems because of the need to store everything in a single database. Using schemas to distingiush logical data stores might be a good compromise for mid-size projects. The upside is it does not require Distributed Transaction Coordinator (MS DTC). Another advantage is the ability to take a snapshot of entire system state (all the queues) by backing up a database. This is even more useful if the business data are stored in the same database.
+In the simplest form, SQL Server transport uses a single instance of the SQL Server to maintain all the queues for all endpoints of a system. In order to send a message, an endpoint needs to connect to the (usually remote) database server and execute a SQL command. The message is delivered directly to the destination queue without any store-and-forward mechanism. Such a simplistic approach can only be only used for small-to-medium size systems because of the need to store everything in a single database. Using schemas to distinguish logical data stores might be a good compromise for mid-size projects. The upside is it does not require Distributed Transaction Coordinator (MS DTC). Another advantage is the ability to take a snapshot of entire system state (all the queues) by backing up a database. This is even more useful if the business data are stored in the same database.
 
 ## Database-per-endpoint
 
@@ -51,9 +52,9 @@ In order to overcome this limitation a higher level store-and-forward mechanism 
 
 ## Sql Server Transport, the Outbox and user data: disabling the DTC
 
-When dealing with database connections in an environment where we do not want to use distributed transactions, and the MS DTC to coordinate them, it is important to prevent that a local transaction tries to escalate to a distributed one.
+When dealing with database connections in an environment where we do not want to use DTC it is important to prevent a local transaction from escalating to a distributed one.
 
-The following requirements have to be satisfied:
+The following are required:
 
 * the business specific data and the `Outbox` storage must be in the same database;
 * the user code accessing business related data must use the same `connection string` as the `Outbox` storage;
