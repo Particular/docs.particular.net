@@ -5,9 +5,13 @@ tags:
 - Conventions, Message Semantics, Command, Event
 ---
 
-By default NServiceBus will make sure that you are following [messaging best practices](messages-events-commands.md) for the messages you defines as either commands or events. In versions prior to v6 the only way to bypass those enforcements was to just define all your messages as plain messages. While this worked it caused other features like [auto subscribe](publish-subscribe/how-to-pub-sub.md) to stop working since only `Events` are auto subscribed.
+By default NServiceBus will make sure that you are following [messaging best practices](messages-events-commands.md) for the messages you defines as either commands or events.  While this worked it caused other features like [auto subscribe](publish-subscribe/how-to-pub-sub.md) to stop working since only `Events` are auto subscribed.
 
-As of version 6 you can now turn this feature on and off on the endpoint level using:
+You can bypass those enforcements was to just define all your messages as plain messages.
+
+BETA: In version 6 you can now override the default behavior
+
+You can now turn this feature on and off on the endpoint level using:
 
 <!-- import DisableBestPracticeEnforcementPerEndpoint -->
 
