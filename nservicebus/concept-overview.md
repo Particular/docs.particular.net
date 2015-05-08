@@ -46,7 +46,7 @@ A Saga can be thought of as a long running Handler that handles multiple Message
 
 Used by Sagas to indicate that a give action, and associated state, should be performed at some point in the future.
 
-### [Retries](/nservicebus/errors/second-level-retries.md)
+### [Retries](/nservicebus/errors/automatic-retries.md)
 
 NServiceBus has retry logic which surrounds all calls to user code. This allows failing business code to be retried in a sensible way.
 

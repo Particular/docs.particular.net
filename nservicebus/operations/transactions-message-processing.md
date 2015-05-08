@@ -63,12 +63,12 @@ Messages are processed in NServiceBus as follows:
 5.  After a successful deserialization, NServiceBus invokes all infrastructure and applicative message modules and handlers. An exception in this step causes the transaction to roll back and the message to return to the input queue.
 
     -   This happens the "MaxRetries" [configurable](/nservicebus/msmq/transportconfig.md#maxretries) number of times.
-    -   After that, the message passes to the [Second Level Retries (SLR).](/nservicebus/errors/second-level-retries.md)
+    -   After that, the message passes to the [Second Level Retries (SLR).](/nservicebus/errors/automatic-retries.md)
     -   If after SLR the error still occurs, the message will be moved to the configured error queue.
 
 In this manner, even under all kinds of failure conditions like the application server restarting in the middle of a message or a database deadlock, messages are not lost.
 
-The automatic retry mechanism is usually able to recover from most temporary problems. When that isn't possible, the message is passed to the [SLR](/nservicebus/errors/second-level-retries.md) to decide what to do next.
+The automatic retry mechanism is usually able to recover from most temporary problems. When that isn't possible, the message is passed to the [SLR](/nservicebus/errors/automatic-retries.md) to decide what to do next.
 
 ## Resolving more permanent errors
 
@@ -80,7 +80,7 @@ In situations where more permanent errors affect systems, despite their diversit
 
 In all of the above, administrative action is needed, from things as simple as bringing up a database or web service again, to more complex actions like reverting to the previous version of the system.
 
-SLRs also aids in the [resolution of more permanent errors](/nservicebus/errors/second-level-retries.md).
+SLRs also aids in the [resolution of more permanent errors](/nservicebus/errors/automatic-retries.md).
 
 There is nothing necessarily wrong with the message itself. It might contain valuable information that shouldn't get lost under these conditions. Therefore, after the administrator finishes resolving the issue, they should return the message to the queue it came from. Luckily, NServiceBus comes with a tool that does exactly that.
 
