@@ -6,6 +6,7 @@ redirects:
 - nservicebus/nservicebus-step-by-step-guide-fault-tolerance-code-first
 related:
 - nservicebus/errors
+- samples/errorhandling
 ---
 
 ### Durable Messaging
@@ -82,7 +83,5 @@ If you leave the endpoint running a while longer, you'll see that it tries proce
 In the above case, since SLR is automatically turned on by default you see this behavior.
 
 To turn off SLR, uncomment the code `busConfiguration.DisableFeature<SecondLevelRetries>();` and re-run the sample and notice the behavior. After successive retries the message is sent to the error queue right away. 
-
-For a more detailed sample on the two levels of error handling, see the [Error Handling with Automatic Retries](/samples/errorhandling) sample.
 
 Make sure you remove the code which throws an exception once you are done to resume processing of messages.

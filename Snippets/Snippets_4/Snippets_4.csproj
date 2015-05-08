@@ -231,7 +231,9 @@
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="CustomRavenConfigForVersion2_5.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
-    <Compile Include="Errors\ErrorConfig.cs" />
+    <Compile Include="Errors\ConfigErrorQueue.cs" />
+    <Compile Include="Errors\ConfigureFirstLevelRetries.cs" />
+    <Compile Include="Errors\ConfigureSecondLevelRetries.cs" />
     <Compile Include="Headers\HeaderUsage.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="Host\CustomLogging.cs" />
@@ -264,7 +266,7 @@
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
-    <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
+    <Compile Include="SecondLevelRetries\CustomSecondLevelRetriesConfig.cs" />
     <Compile Include="SubscriptionSettings.cs" />
     <Compile Include="Containers.cs" />
     <Compile Include="EndpointName.cs" />

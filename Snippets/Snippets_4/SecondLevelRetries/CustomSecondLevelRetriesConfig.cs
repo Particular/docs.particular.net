@@ -2,7 +2,7 @@
 using NServiceBus;
 using NServiceBus.Features;
 
-public class SecondLevelRetriesConfig
+public class CustomSecondLevelRetriesConfig
 {
     public void Simple()
     {

@@ -107,7 +107,9 @@
     <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="Encryption\PropertyEncryption.cs" />
     <Compile Include="EndpointName.cs" />
-    <Compile Include="Errors\ErrorConfig.cs" />
+    <Compile Include="Errors\ProvideErrorQueueConfiguration.cs" />
+    <Compile Include="Errors\ProvideFLRConfiguration.cs" />
+    <Compile Include="Errors\ProvideSLRConfiguration.cs" />
     <Compile Include="Gateway\GatewayConfig.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Headers\HeaderUsage.cs" />
@@ -122,7 +124,7 @@
     <Compile Include="Sagas\SagaBasics.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
-    <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
+    <Compile Include="SecondLevelRetries\CustomSecondLevelRetriesConfig.cs" />
     <Compile Include="SendOnly.cs" />
   </ItemGroup>
   <ItemGroup>

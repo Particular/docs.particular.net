@@ -328,7 +328,9 @@
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
     <Compile Include="Distributor\ConfiguringWorker.cs" />
-    <Compile Include="Errors\ErrorConfig.cs" />
+    <Compile Include="Errors\ConfigureSecondLevelRetries.cs" />
+    <Compile Include="Errors\ConfigErrorQueue.cs" />
+    <Compile Include="Errors\ConfigureFirstLevelRetries.cs" />
     <Compile Include="Headers\HeaderUsage.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="HostIdentifier\HostIdFixer_5_1.cs" />
@@ -394,7 +396,7 @@
     <Compile Include="StartupActionReplacement.cs" />
     <Compile Include="StaticConfigureEndpoint.cs" />
     <Compile Include="SubscriptionSettings.cs" />
-    <Compile Include="SecondLevelRetries\SecondLevelRetriesConfig.cs" />
+    <Compile Include="SecondLevelRetries\CustomSecondLevelRetriesConfig.cs" />
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Transports.cs" />

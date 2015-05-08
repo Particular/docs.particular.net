@@ -1,21 +1,24 @@
 ﻿using System;
 using NServiceBus;
-using NServiceBus.Management.Retries;
-using NServiceBus.Unicast.Transport;
+using NServiceBus.Features;
 
-public class SecondLevelRetriesConfig
+public class CustomSecondLevelRetriesConfig
 {
     public void Simple()
     {
+
+        BusConfiguration busConfiguration = new BusConfiguration();
+
         #region SecondLevelRetriesDisable
 
-        Configure.Instance.DisableSecondLevelRetries();
+        busConfiguration.DisableFeature<SecondLevelRetries>();
 
         #endregion
 
         #region SecondLevelRetriesCustomPolicy
 
-        SecondLevelRetries.RetryPolicy = MyCustomRetryPolicy;
+        busConfiguration.SecondLevelRetries()
+            .CustomRetryPolicy(MyCustomRetryPolicy);
 
         #endregion
     }
@@ -47,5 +50,7 @@ public class SecondLevelRetriesConfig
         }
         return 0;
     }
+
     #endregion
+
 }
