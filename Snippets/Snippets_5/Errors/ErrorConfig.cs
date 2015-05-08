@@ -1,6 +1,6 @@
 ﻿namespace Snippets_4.Errors
 {
-    using NServiceBus;
+    using System;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 

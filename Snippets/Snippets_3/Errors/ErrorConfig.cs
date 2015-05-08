@@ -17,7 +17,7 @@
             //To Provide FLR Config
             if (typeof(T) == typeof(MsmqTransportConfig))
             {
-                var flrConfig = new MsmqTransportConfig()
+                var flrConfig = new MsmqTransportConfig
                 {
                     MaxRetries = 2
                 };
@@ -45,7 +45,7 @@
 
             if (typeof(T) == typeof(MessageForwardingInCaseOfFaultConfig))
             {
-                var errorConfig = new MessageForwardingInCaseOfFaultConfig()
+                var errorConfig = new MessageForwardingInCaseOfFaultConfig
                 {
                     ErrorQueue = "error"
                 };
@@ -72,7 +72,7 @@
             // To provide SLR Config
             if (typeof(T) == typeof(SecondLevelRetriesConfig))
             {
-                var slrConfig = new SecondLevelRetriesConfig()
+                var slrConfig = new SecondLevelRetriesConfig
                 {
                     Enabled = true,
                     NumberOfRetries = 2, 
