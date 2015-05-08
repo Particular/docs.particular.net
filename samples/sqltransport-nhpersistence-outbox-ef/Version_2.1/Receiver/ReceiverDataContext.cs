@@ -2,6 +2,8 @@ using System.Data.Entity;
 
 namespace Receiver
 {
+    using System.Data;
+    using System.Data.Common;
     using System.Data.Entity.ModelConfiguration;
 
     public class ReceiverDataContext : DbContext
@@ -9,6 +11,10 @@ namespace Receiver
         #region EntityFramework
         public ReceiverDataContext()
             : base("NServiceBus/Persistence")
+        {
+        }
+        public ReceiverDataContext(IDbConnection connection)
+            : base((DbConnection) connection, false)
         {
         }
         #endregion

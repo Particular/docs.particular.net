@@ -4,6 +4,8 @@ using NServiceBus.Transports.SQLServer;
 
 namespace Receiver
 {
+    using NServiceBus.Persistence;
+
     class Program
     {
         static void Main()
@@ -20,8 +22,8 @@ namespace Receiver
                 EndpointConnectionInfo.For("sender")
                     .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True"));
 
-            busConfiguration.UsePersistence<NHibernatePersistence>();
-            busConfiguration.EnableOutbox();
+            busConfig.UsePersistence<NHibernatePersistence>().RegisterManagedSessionInTheContainer();
+            busConfig.EnableOutbox();
 
             #endregion
 
