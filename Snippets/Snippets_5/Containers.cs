@@ -20,6 +20,12 @@ public class Containers
 
         BusConfiguration busConfiguration = new BusConfiguration();
 
+        // In V5, for each container, the use of the customizer method starting with "Existing"
+        // such as Autofac's ExistingLifetimeScope(lifetimeScope) will ensure that your existing
+        // container is used, and that the IBus instance that is created is added to that
+        // container, so that you can resolve references to IBus in other components in your
+        // application.
+
         // Autofac
         busConfiguration.UseContainer<AutofacBuilder>();
         // Autofac with a container instance
