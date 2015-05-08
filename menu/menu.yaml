@@ -61,7 +61,7 @@
       Articles: 
         - "nservicebus/errors/critical-exception-for-timeout-outages"
         - "nservicebus/errors/exception-caveats"
-        - "nservicebus/errors/second-level-retries"
+        - "nservicebus/errors/automatic-retries"
         - "nservicebus/errors/subscribing-to-push-based-error-notifications"
     - 
       Title: "Pipeline"

@@ -6,6 +6,7 @@ redirects:
 - nservicebus/nservicebus-step-by-step-guide-fault-tolerance-code-first
 related:
 - nservicebus/errors
+- samples/errorhandling
 ---
 
 ### Durable Messaging
@@ -47,14 +48,6 @@ As you can see the 'Server' processes all those messages, and if you go back to 
 
 ### Fault tolerance
 
-Consider scenarios where the processing of a message fails. This could be due to something transient like a deadlock in the database, in which case some quick retries overcome this problem, making the message processing ultimately succeed. NServiceBus automatically retries immediately when an exception is thrown during message processing, up to five times by default (which is configurable).
-
-If the problem is something more protracted, like a third party web service going down or a database being unavailable, it makes sense to try again sometime later.
-
-This is called the [Second Level Retries](/nservicebus/errors/second-level-retries.md) (SLR) functionality of NServiceBus.
-
-SLR is enabled by default, the default policy will defer the message `10*N` (where N is number of retries) seconds 3 times (60 sec total), resulting in a wait of 10s, then 20s, and then 30s; after which the message moves to the configured ErrorQueue.
-
 #### Make the handler fail 
 
 So, let's make the handling of messages in the 'Server' endpoint fail. Open `MyHandler.cs`.
@@ -87,14 +80,8 @@ While the endpoint can now continue processing other incoming messages (which wi
 
 If you leave the endpoint running a while longer, you'll see that it tries processing the message again. After three retries, the retries stop and the message ends up in the error queue (in the default configuration this should be after roughly one minute).
 
-NOTE: When a message cannot be deserialized, it bypasses all retry and moves directly to the error queue.
+In the above case, since SLR is automatically turned on by default you see this behavior.
 
-### Retries, errors, and auditing
+To turn off SLR, uncomment the code `busConfiguration.DisableFeature<SecondLevelRetries>();` and re-run the sample and notice the behavior. After successive retries the message is sent to the error queue right away. 
 
-If a message fails continuously (due to a bug in the system, for example), it ultimately moves to the error queue that is configured for the endpoint after all the various retries have been performed.
-
-Since administrators must monitor these error queues, it is recommended that all endpoints use the same error queue.
-
-Read more about [how to configure retries](/nservicebus/errors/second-level-retries.md).
-
-Make sure you remove the code which throws an exception before going on.
+Make sure you remove the code which throws an exception once you are done to resume processing of messages.

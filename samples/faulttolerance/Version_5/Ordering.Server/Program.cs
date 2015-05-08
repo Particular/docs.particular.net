@@ -1,5 +1,6 @@
 using System;
 using NServiceBus;
+using NServiceBus.Features;
 
 class Program
 {
@@ -12,6 +13,9 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
+        // To disable second level retries(SLR), uncomment the following line. SLR is enabled by default.
+        // busConfiguration.DisableFeature<SecondLevelRetries>();
+        
         using (IStartableBus bus = Bus.Create(busConfiguration))
         {
             bus.Start();
