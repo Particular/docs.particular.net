@@ -1,5 +1,5 @@
 ---
-title: NHibernate Persistence installation nad configuration
+title: NHibernate Persistence installation and configuration
 summary: How to install and configure the NHibernate-based persistence for NServiceBus
 tags:
  - NHibernate
