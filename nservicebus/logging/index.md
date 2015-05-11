@@ -5,6 +5,8 @@ tags:
 - Logging
 redirects:
 - nservicebus/logging-in-nservicebus
+related:
+- samples/logging/log4net-custom
 ---
 
 INFO: This is relevant to versions 5 and above. For earlier versions, see [Logging in version 4 and below](nservicebus4-and-below.md).
@@ -131,5 +133,3 @@ Configure Log4net using its standard API then call
 Example Usage 
 
 <!-- import Log4netInCode -->
-
-[See a working sample](/samples/logging/log4net-custom)
