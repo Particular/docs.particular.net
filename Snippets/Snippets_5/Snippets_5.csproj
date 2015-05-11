@@ -162,7 +162,7 @@
     </Reference>
     <Reference Include="NServiceBus.NHibernate, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.NHibernate.6.1.0\lib\net45\NServiceBus.NHibernate.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.NHibernate.6.1.1\lib\net45\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NLog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -351,6 +351,7 @@
     <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\InMemory\ConfiguringInMemory.cs" />
+    <Compile Include="Persistence\NHibernate\AccessingData.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="RavenDB\ChangeResourceManagerID.cs" />
