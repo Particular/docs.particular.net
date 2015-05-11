@@ -25,7 +25,7 @@ namespace WebApplication
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName("Samples.MvcInjection.WebApplication");
             // ExistingLifetimeScope() ensures that IBus is added to the container as well,
-            // allowing you to resolve IBus from your MVC controllers.
+            // allowing you to resolve IBus from your own components.
             busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
             busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.UsePersistence<InMemoryPersistence>();
