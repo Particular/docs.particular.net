@@ -35,10 +35,14 @@
             busConfiguration.UseTransport<SqlServerTransport>().DefaultSchema("receiver")
                 .UseSpecificConnectionInformation(endpoint =>
                 {
-                    string schema = endpoint.Split(new[] {'.'}, StringSplitOptions.RemoveEmptyEntries)[0].ToLowerInvariant();
+                    if (endpoint == "error")
+                    {
+                        return ConnectionInfo.Create().UseSchema("dbo");
+                    }
+                    string schema = endpoint.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries)[0].ToLowerInvariant();
                     return ConnectionInfo.Create().UseSchema(schema);
                 });
-            busConfiguration.UsePersistence<NHibernatePersistence>().UseConfiguration(hibernateConfig);
+            busConfiguration.UsePersistence<NHibernatePersistence>().UseConfiguration(hibernateConfig).RegisterManagedSessionInTheContainer();
             #endregion
 
             using (Bus.Create(busConfiguration).Start())
