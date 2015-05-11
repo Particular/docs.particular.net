@@ -9,7 +9,7 @@ class Program
         #region ConfigureLogging
         Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Logging.Default");
-        
+
         //Configures a ConsoleAppender with a threshold of Debug
         configure.Log4Net();
         #endregion
