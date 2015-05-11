@@ -38,12 +38,10 @@ If you need specific configuration on a per-concern basis, you can use following
 NOTE: You can combine both approaches to define a common configuration and override it for one specific concern.
 
 WARNING: When using per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern you are enabling.
-
-The following code
+The following code will set up NHibernate persistence only for `GatewayDeduplication` concern but will override the default configuration **for all the concerns**. 
 
 <!-- import CustomCommonConfigurationWarning -->
 
-will set up NHibernate persistence only for `GatewayDeduplication` concern but will override the default configuration *for all the concerns*. 
 
 ### Using configuration convention
 
