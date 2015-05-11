@@ -2,7 +2,10 @@
 title: Configuring enforcement of best practices
 summary: How to enable/disable the enforcement of messaging best practices based on Events and Commands
 tags: 
-- Conventions, Message Semantics, Command, Event
+- Conventions
+- Message Semantics
+- Command
+- Event
 ---
 
 By default NServiceBus will make sure that you are following [messaging best practices](messages-events-commands.md) for the messages you defines as either commands or events.  While this worked it caused other features like [auto subscribe](publish-subscribe/how-to-pub-sub.md) to stop working since only `Events` are auto subscribed.
