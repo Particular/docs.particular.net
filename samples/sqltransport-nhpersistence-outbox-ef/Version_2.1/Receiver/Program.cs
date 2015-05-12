@@ -22,8 +22,8 @@ namespace Receiver
                 EndpointConnectionInfo.For("sender")
                     .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True"));
 
-            busConfig.UsePersistence<NHibernatePersistence>().RegisterManagedSessionInTheContainer();
-            busConfig.EnableOutbox();
+            busConfiguration.UsePersistence<NHibernatePersistence>().RegisterManagedSessionInTheContainer();
+            busConfiguration.EnableOutbox();
 
             #endregion
 
