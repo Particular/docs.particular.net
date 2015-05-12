@@ -4,6 +4,8 @@ summary: Steps to configure endpoints to be monitored by ServicePulse
 tags:
 - ServicePulse
 - Endpoint Configuration
+related:
+- servicecontrol/plugins
 ---
 
 **ServicePulse monitors NServiceBus endpoints for:**
@@ -60,7 +62,3 @@ tags:
 	     
 1. For manual deployment, copy the endpoint plugin DLL files to each endpoint bin directory (and restart the endpoint to load the plugin).
 1. By default, the endpoint plugin sends a heartbeat indication to ServiceControl every 30 seconds. If a heartbeat indication is not received within 30 seconds, ServicePulse raises an event that indicates the issue.
-
-#### Related articles
-
-* [ServiceControl Endpoint Plugins](/servicecontrol/plugins.md)

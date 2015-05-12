@@ -4,6 +4,8 @@ summary: Describes the available configuration options of the ServiceControl Hea
 tags:
 - ServiceControl
 - Heartbeat
+related:
+- servicecontrol/plugins
 ---
 
 ### Heartbeat Interval
@@ -17,5 +19,3 @@ ServiceControl heartbeats are sent, by the plugin, at a predefined interval of 1
 Where the value is convertible to a `TimeSpan` value. In the above sample you are setting the endpoint heartbeat interval to 40 seconds.
 
 Note: to enable the change the endpoint needs to be restarted.
-
-More on [ServiceControl Endpoint Plugins](/servicecontrol/plugins.md).

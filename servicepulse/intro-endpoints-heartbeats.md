@@ -14,8 +14,6 @@ This article explains how this is done, and defines the meaning of each of the t
 * [Active vs. Inactive Endpoints](#active-vs-inactive-endpoints)
 * [Detecting new Endpoints](#detecting-new-endpoints)
 
-
-
 <!--![ServicePulse Dashboard Indicators (all green)](images/indicators-green.JPG)-->
 
 ### Monitored vs. Unmonitored Endpoints
@@ -75,5 +73,3 @@ To display the list of monitored endpoints, click the Endpoints indicator in the
 * Inactive Endpoints (heartbeats were not received) 
 
 ![Endpoints Overview](images/endpoints-overview.jpg)
-
- 

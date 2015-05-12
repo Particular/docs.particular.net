@@ -5,6 +5,7 @@ tags:
 - ServiceControl
 - RavenDB Embedded
 ---
+
 ServiceControl stores its own data in a RavenDB embedded instance. By default it is located here:
 
 `%SystemDrive%\ProgramData\Particular\ServiceControl\localhost-33333`

@@ -4,6 +4,8 @@ summary: Describes how ServicePulse is installed - indepdendently or via the Pla
 tags:
 - ServicePulse
 - Installation
+related:
+- servicepulse/troubleshooting
 ---
 
 ### Introduction
@@ -49,7 +51,3 @@ For details on ServiceControl and ServicePulse configuration options, see:
 * [ServiceControl Guidance](/servicecontrol)
  
 NOTE: ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](/servicecontrol/how-purge-expired-data.md).
-
-### Troubleshooting: 
-
-See [Troubleshooting Guide](troubleshooting.md)

@@ -5,6 +5,7 @@ tags:
 - ServiceControl
 - External integration
 ---
+
 ServiceControl allows external NServiceBus endpoints to be notified when a message fails processing (either for the first time or repeatably). This feature can be used to implement custom logic related to processing failures such as sending e-mails, IM notifications etc.
 
 ### When the notifications are being sent?
@@ -13,7 +14,7 @@ The notifications are sent each time a message is put to the error queue and Ser
 
 ### What do the notifications contain?
 
-The notifications contain information about following asspects:
+The notifications contain information about following aspects:
 
  * The processing of the message (e.g. which endpoint sent and received the message)
  * The failure cause (e.g. the exception type and message)
