@@ -11,10 +11,10 @@ using Configuration = NHibernate.Cfg.Configuration;
 
 namespace Receiver
 {
+    using NServiceBus.Persistence;
+
     class Program
     {
-        public static ISessionFactory SessionFactory;
-
         static void Main()
         {
             #region NHibernate
@@ -28,7 +28,6 @@ namespace Receiver
             ModelMapper mapper = new ModelMapper();
             mapper.AddMapping<OrderMap>();
             hibernateConfig.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
-            SessionFactory = hibernateConfig.BuildSessionFactory();
 
             #endregion
 
@@ -41,8 +40,8 @@ namespace Receiver
                 EndpointConnectionInfo.For("sender")
                     .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True"));
 
-            busConfiguration.UsePersistence<NHibernatePersistence>();
-            busConfiguration.EnableOutbox();
+            busConfig.UsePersistence<NHibernatePersistence>().RegisterManagedSessionInTheContainer().UseConfiguration(hibernateConfig);
+            busConfig.EnableOutbox();
 
             #endregion
 

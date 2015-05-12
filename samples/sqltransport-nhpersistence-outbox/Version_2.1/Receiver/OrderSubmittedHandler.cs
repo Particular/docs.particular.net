@@ -11,6 +11,7 @@ namespace Receiver
         static readonly Random ChaosGenerator = new Random();
 
         public IBus Bus { get; set; }
+        public ISession Session { get; set; }
 
         public void Handle(OrderSubmitted message)
         {
@@ -18,16 +19,11 @@ namespace Receiver
 
             #region StoreUserData
 
-            using (ISession session = Program.SessionFactory.OpenSession())
-            using (ITransaction tx = session.BeginTransaction())
-            {
-                session.Save(new Order
-                             {
-                                 OrderId = message.OrderId,
-                                 Value = message.Value
-                             });
-                tx.Commit();
-            }
+            Session.Save(new Order
+                         {
+                             OrderId = message.OrderId,
+                             Value = message.Value
+                         });
 
             #endregion
 

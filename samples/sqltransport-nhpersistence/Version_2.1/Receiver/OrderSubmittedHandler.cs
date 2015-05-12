@@ -1,14 +1,15 @@
 using System;
 using Messages;
 using NServiceBus;
-using NServiceBus.Persistence.NHibernate;
+using NHibernate;
 
 namespace Receiver
 {
+
     public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
     {
         public IBus Bus { get; set; }
-        public NHibernateStorageContext StorageContext { get; set; }
+        public ISession Session { get; set; }
 
         public void Handle(OrderSubmitted message)
         {
@@ -16,7 +17,7 @@ namespace Receiver
 
             #region StoreUserData
 
-            StorageContext.Session.Save(new Order
+            Session.Save(new Order
                                         {
                                             OrderId = message.OrderId,
                                             Value = message.Value
