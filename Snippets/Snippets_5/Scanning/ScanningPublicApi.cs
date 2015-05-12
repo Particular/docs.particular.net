@@ -41,15 +41,15 @@ public class ScanningPublicApi
 
         #endregion
 
-        #region ScanningCustomDirectory
-
-        busConfiguration.ScanAssembliesInDirectory(@"c:\my-custom-dir");
-
-        #endregion
-
         #region ScanningIncludeByPattern
 
         busConfiguration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").And("SomethingElse"));
+
+        #endregion
+
+        #region ScanningCustomDirectory
+
+        busConfiguration.ScanAssembliesInDirectory(@"c:\my-custom-dir");
 
         #endregion
 

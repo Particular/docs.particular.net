@@ -1,7 +1,6 @@
 ﻿namespace Snippets_6.Scanning
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using NServiceBus;
 
@@ -55,7 +54,6 @@
             busConfiguration.ExcludeAssemblies(assembliesToExclude);
 
             #endregion
-
         }
     }
 }
