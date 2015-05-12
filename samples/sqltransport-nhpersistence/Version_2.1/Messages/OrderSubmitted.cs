@@ -1,10 +1,7 @@
-﻿namespace Messages
-{
-    using NServiceBus;
+﻿using NServiceBus;
 
-    public class OrderSubmitted : IEvent
-    {
-        public string OrderId { get; set; }
-        public decimal Value { get; set; }
-    }
+public class OrderSubmitted : IEvent
+{
+    public string OrderId { get; set; }
+    public decimal Value { get; set; }
 }

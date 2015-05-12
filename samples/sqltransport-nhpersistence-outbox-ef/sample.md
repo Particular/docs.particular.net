@@ -27,7 +27,7 @@ related:
 
 This sample contains three projects: 
 
- * Messages - A class library containing the messages.
+ * Shared - A class library containing common code including the message definitions.
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
  * Receiver - A console application responsible for processing the order message.
 

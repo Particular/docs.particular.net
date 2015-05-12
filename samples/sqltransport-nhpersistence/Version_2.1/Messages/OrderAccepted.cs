@@ -1,9 +1,6 @@
-﻿namespace Messages
-{
-    using NServiceBus;
+﻿using NServiceBus;
 
-    public class OrderAccepted : IMessage
-    {
-        public string OrderId { get; set; }
-    }
+public class OrderAccepted : IMessage
+{
+    public string OrderId { get; set; }
 }
