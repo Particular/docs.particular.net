@@ -14,7 +14,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Readme.txt = Readme.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snippets_6-pre", "Snippets_6-pre\Snippets_6.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snippets_6", "Snippets_6\Snippets_6.csproj", "{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
