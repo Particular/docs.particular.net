@@ -10,7 +10,7 @@ public class ScanningPublicApi
         IEnumerable<Assembly> myListOfAssemblies = null;
 
         Assembly assembly2 = null;
-        Assembly assembly1 = null;
+        Assembly assembly1 = null; 
 
         IEnumerable<Type> myTypes = null;
 
@@ -21,14 +21,22 @@ public class ScanningPublicApi
 
         #endregion
 
-        #region ScanningListOfAssemblies
+        #region ScanningExcludeByName
 
-        busConfiguration.AssembliesToScan(myListOfAssemblies);
+        busConfiguration.AssembliesToScan(AllAssemblies.Except("MyAssembly1.dll").And("MyAssembly2.dll"));
 
         #endregion
 
-        #region ScanningParamArrayOfAssemblies
+        #region ScanningListOfTypes
 
+        busConfiguration.TypesToScan(myTypes); 
+
+        #endregion
+
+        #region ScanningListOfAssemblies
+
+        busConfiguration.AssembliesToScan(myListOfAssemblies);
+        // or
         busConfiguration.AssembliesToScan(assembly1, assembly2);
 
         #endregion
@@ -36,18 +44,6 @@ public class ScanningPublicApi
         #region ScanningCustomDirectory
 
         busConfiguration.ScanAssembliesInDirectory(@"c:\my-custom-dir");
-
-        #endregion
-
-        #region ScanningListOfTypes
-
-        busConfiguration.TypesToScan(myTypes);
-
-        #endregion
-
-        #region ScanningExcludeByName
-
-        busConfiguration.AssembliesToScan(AllAssemblies.Except("MyAssembly.dll").And("MyAssembly.dll"));
 
         #endregion
 

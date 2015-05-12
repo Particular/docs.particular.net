@@ -1,5 +1,4 @@
-﻿using System;
-using NHibernate;
+﻿using NHibernate;
 using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.NHibernate;
