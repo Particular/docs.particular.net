@@ -18,6 +18,10 @@ There are some cases where you need fine grained control over which assemblies a
  
 NOTE: Extension (like NServiceBus.Distributor.MSMQ.dll or NServiceBus.RavenDB for example) are not considered core dlls and will need to be explicitly added if you customize assembly scanning.
 
+Use the `AllAssemblies` helper to easily create a list of assemblies either by creating a blacklist using the method `Except` or a whitelist by using `Matching` or a combination of both.
+
+NOTE: The `Except`, `Matching` and `And` methods behave like `string.StartsWith(string)`.
+
 ### By default all types in your bin directory are scanned if you call:
 
 <!-- import ScanningDefault -->

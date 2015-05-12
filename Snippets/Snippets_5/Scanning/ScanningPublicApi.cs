@@ -53,13 +53,13 @@ public class ScanningPublicApi
 
         #region ScanningIncludeByPattern
 
-        configuration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").And("SomethingElse"));
+        configuration.AssembliesToScan(AllAssemblies.Matching("NServiceBus").And("MyCompany.").And("SomethingElse"));
 
         #endregion
 
         #region ScanningMixingIncludeAndExclude
 
-        configuration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").Except("BadAssembly.dll"));
+        configuration.AssembliesToScan(AllAssemblies.Matching("NServiceBus").Matching("MyCompany.").Except("MyCompany.BadAssembly.dll"));
 
         #endregion
 
