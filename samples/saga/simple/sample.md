@@ -1,18 +1,22 @@
 ---
-title: Complex Saga Finding Logic
-summary: This sample shows how to perform custom saga finding logic based on mapping properties between a saga and messages.
+title: Saga Sample
+summary: This sample shows how build and use a saga.
 tags:
 - Saga
 - SagaFinder
+redirects:
+- samples/saga/complexfindinglogic
 related:
 - nservicebus/sagas
 ---
 
 ## Code walk-through
 
-This sample shows how to perform custom saga finding logic based on mapping properties between a saga and messages.
+This sample shows a simple saga.
 
-At startup the sample will send `StartOrder`s with two different `OrderId`s. This will cause two sagas to start because `StartOrder` is configured as a `IAmStartedByMessages` and there is a mapping between `StartOrder.OrderId` and `OrderSagaData.OrderId`.
+At startup the sample will send two `StartOrder`s with different `OrderId`s. This will cause two sagas to start because `StartOrder` is configured as a `IAmStartedByMessages` and there is a mapping between `StartOrder.OrderId` and `OrderSagaData.OrderId`.
+
+The ample also requests a 30min `CancelOrder` timeout that will mark the saga as complete if the saga is not already complete.
 
 The output to the console will be
 

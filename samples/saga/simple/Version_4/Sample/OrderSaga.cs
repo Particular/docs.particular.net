@@ -1,21 +1,24 @@
-﻿using log4net;
+﻿using System;
+using log4net;
 using NServiceBus;
 using NServiceBus.Saga;
 
 #region thesaga
 public class OrderSaga : Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
-    IHandleMessages<CompleteOrder>
+    IHandleMessages<CompleteOrder>,
+    IHandleTimeouts<CancelOrder>
 {
     static ILog logger = LogManager.GetLogger(typeof(OrderSaga));
 
     public override void ConfigureHowToFindSaga()
     {
-        ConfigureMapping<StartOrder>(m => m.OrderId).ToSaga(s => s.OrderId);
-        ConfigureMapping<CompleteOrder>(m => m.OrderId).ToSaga(s => s.OrderId);
+        ConfigureMapping<StartOrder>(m => m.OrderId)
+            .ToSaga(s => s.OrderId);
+        ConfigureMapping<CompleteOrder>(m => m.OrderId)
+            .ToSaga(s => s.OrderId);
     }
 
-#endregion
     public void Handle(StartOrder message)
     {
         Data.OrderId = message.OrderId;
@@ -24,6 +27,7 @@ public class OrderSaga : Saga<OrderSagaData>,
                            {
                                OrderId = Data.OrderId
                            });
+        RequestTimeout<CancelOrder>(TimeSpan.FromMinutes(30));
     }
 
     public void Handle(CompleteOrder message)
@@ -32,4 +36,11 @@ public class OrderSaga : Saga<OrderSagaData>,
         MarkAsComplete();
     }
 
+    public void Timeout(CancelOrder state)
+    {
+        logger.Info(string.Format("Complete not received soon enough OrderId {0}", Data.OrderId));
+        MarkAsComplete();
+    }
+
 }
+#endregion
