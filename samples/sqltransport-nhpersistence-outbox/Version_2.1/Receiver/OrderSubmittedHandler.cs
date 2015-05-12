@@ -1,49 +1,45 @@
 using System;
 using Messages;
 using NServiceBus;
+using NHibernate;
 
-namespace Receiver
+public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 {
-    using NHibernate;
+    static readonly Random ChaosGenerator = new Random();
 
-    public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
+    public IBus Bus { get; set; }
+    public ISession Session { get; set; }
+
+    public void Handle(OrderSubmitted message)
     {
-        static readonly Random ChaosGenerator = new Random();
+        Console.WriteLine("Order {0} worth {1} submitted", message.OrderId, message.Value);
 
-        public IBus Bus { get; set; }
-        public ISession Session { get; set; }
+        #region StoreUserData
 
-        public void Handle(OrderSubmitted message)
+        Session.Save(new Order
         {
-            Console.WriteLine("Order {0} worth {1} submitted", message.OrderId, message.Value);
+            OrderId = message.OrderId,
+            Value = message.Value
+        });
 
-            #region StoreUserData
+        #endregion
 
-            Session.Save(new Order
-                         {
-                             OrderId = message.OrderId,
-                             Value = message.Value
-                         });
+        #region Reply
 
-            #endregion
+        Bus.Reply(new OrderAccepted
+        {
+            OrderId = message.OrderId,
+        });
 
-            #region Reply
+        #endregion
 
-            Bus.Reply(new OrderAccepted
-                      {
-                          OrderId = message.OrderId,
-                      });
+        #region Chaos
 
-            #endregion
-
-            #region Chaos
-
-            if (ChaosGenerator.Next(2) == 0)
-            {
-                throw new Exception("Boom!");
-            }
-
-            #endregion
+        if (ChaosGenerator.Next(2) == 0)
+        {
+            throw new Exception("Boom!");
         }
+
+        #endregion
     }
 }
