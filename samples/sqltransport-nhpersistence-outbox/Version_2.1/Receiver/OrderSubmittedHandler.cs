@@ -1,5 +1,4 @@
 using System;
-using Messages;
 using NServiceBus;
 using NHibernate;
 

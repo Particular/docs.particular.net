@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using Messages;
 using NServiceBus;
 
 class Program

@@ -1,45 +1,39 @@
 using System;
-using Messages;
 using NServiceBus;
+using System.Data.Common;
+using NServiceBus.Persistence.NHibernate;
 
-namespace Receiver
+public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 {
-    using System.Data.Common;
-    using NHibernate.Transaction;
-    using NServiceBus.Persistence.NHibernate;
+    public IBus Bus { get; set; }
+    public NHibernateStorageContext StorageContext { get; set; }
 
-    public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
+    public void Handle(OrderSubmitted message)
     {
-        public IBus Bus { get; set; }
-        public NHibernateStorageContext StorageContext { get; set; }
+        Console.WriteLine("Order {0} worth {1} submitted", message.OrderId, message.Value);
 
-        public void Handle(OrderSubmitted message)
+        #region StoreUserData
+
+        using (ReceiverDataContext ctx = new ReceiverDataContext(StorageContext.Connection))
         {
-            Console.WriteLine("Order {0} worth {1} submitted", message.OrderId, message.Value);
-
-            #region StoreUserData
-
-            using (ReceiverDataContext ctx = new ReceiverDataContext(StorageContext.Connection))
-            {
-                ctx.Database.UseTransaction((DbTransaction) StorageContext.DatabaseTransaction);
-                ctx.Orders.Add(new Order
-                               {
-                                   OrderId = message.OrderId,
-                                   Value = message.Value
-                               });
-                ctx.SaveChanges();
-            }
-
-            #endregion
-
-            #region Reply
-
-            Bus.Reply(new OrderAccepted
-                      {
-                          OrderId = message.OrderId,
-                      });
-
-            #endregion
+            ctx.Database.UseTransaction((DbTransaction) StorageContext.DatabaseTransaction);
+            ctx.Orders.Add(new Order
+                            {
+                                OrderId = message.OrderId,
+                                Value = message.Value
+                            });
+            ctx.SaveChanges();
         }
+
+        #endregion
+
+        #region Reply
+
+        Bus.Reply(new OrderAccepted
+                    {
+                        OrderId = message.OrderId,
+                    });
+
+        #endregion
     }
 }
