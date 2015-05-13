@@ -18,6 +18,8 @@
             #endregion
         }
 
+        #region PropertyInjectionWithHandler
+
         public class EmailHandler : IHandleMessages<EmailMessage>
         {
             public string SmtpAddress { get; set; }
@@ -29,6 +31,8 @@
                 // ...
             }
         }
+
+        #endregion
     }
 
     public class EmailMessage

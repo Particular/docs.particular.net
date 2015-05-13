@@ -27,7 +27,7 @@
             #endregion
         }
 
-        #region PropertyInjectionWithHandler 5.2
+        #region PropertyInjectionWithHandler 
 
         public class EmailHandler : IHandleMessages<EmailMessage>
         {
