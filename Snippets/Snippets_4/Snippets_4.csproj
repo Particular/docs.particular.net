@@ -318,7 +318,6 @@
     <Compile Include="UnitTesting\HeaderManipulation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Monitoring\SCClusterAppSettings.xml" />
     <Content Include="SecondLevelRetries\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
