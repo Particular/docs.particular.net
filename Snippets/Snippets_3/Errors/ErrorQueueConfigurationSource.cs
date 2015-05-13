@@ -3,8 +3,8 @@ using NServiceBus.Config.ConfigurationSource;
 using System.Configuration;
 using NServiceBus;
 
-#region ErrorQueueConfiguration
-public class ProvideErrorQueueConfiguration : IConfigurationSource
+#region ErrorQueueConfigurationSource
+public class ErrorQueueConfigurationSource : IConfigurationSource
 {
     public T GetConfiguration<T>() where T : class, new()
     {
@@ -30,7 +30,7 @@ public class InjectProvideErrorQueueConfiguration
     {
         #region UseCustomConfigurationSourceForErrorQueueConfig
         Configure.With()
-            .CustomConfigurationSource(new ProvideErrorQueueConfiguration());
+            .CustomConfigurationSource(new ErrorQueueConfigurationSource());
         #endregion
     }
 }

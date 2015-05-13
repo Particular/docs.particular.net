@@ -247,9 +247,10 @@
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="CustomRavenConfigForVersion2_5.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
-    <Compile Include="Errors\ConfigErrorQueue.cs" />
+    <Compile Include="Errors\ErrorQueueConfigurationProvider.cs" />
     <Compile Include="Errors\ConfigureFirstLevelRetries.cs" />
     <Compile Include="Errors\ConfigureSecondLevelRetries.cs" />
+    <Compile Include="Errors\ErrorQueueConfigurationSource.cs" />
     <Compile Include="Headers\HeaderUsage.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="Host\CustomLogging.cs" />

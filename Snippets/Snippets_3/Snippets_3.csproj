@@ -112,7 +112,7 @@
     <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="Encryption\PropertyEncryption.cs" />
     <Compile Include="EndpointName.cs" />
-    <Compile Include="Errors\ProvideErrorQueueConfiguration.cs" />
+    <Compile Include="Errors\ErrorQueueConfigurationSource.cs" />
     <Compile Include="Errors\ProvideFLRConfiguration.cs" />
     <Compile Include="Errors\ProvideSLRConfiguration.cs" />
     <Compile Include="Gateway\GatewayConfig.cs" />

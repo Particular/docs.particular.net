@@ -1,7 +1,7 @@
 ﻿using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
-#region ErrorQueueConfiguration
+#region ErrorQueueConfigurationProvider
 class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
 {
     public MessageForwardingInCaseOfFaultConfig GetConfiguration()
@@ -13,6 +13,3 @@ class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultCon
     }
 }
 #endregion
-
-
-

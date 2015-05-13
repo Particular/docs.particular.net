@@ -333,8 +333,9 @@
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
     <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="Errors\ConfigureSecondLevelRetries.cs" />
-    <Compile Include="Errors\ConfigErrorQueue.cs" />
+    <Compile Include="Errors\ErrorQueueConfigurationProvider.cs" />
     <Compile Include="Errors\ConfigureFirstLevelRetries.cs" />
+    <Compile Include="Errors\ErrorQueueConfigurationSource.cs" />
     <Compile Include="Headers\HeaderUsage.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="HostIdentifier\HostIdFixer_5_1.cs" />

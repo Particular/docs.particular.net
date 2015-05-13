@@ -20,11 +20,15 @@ Error queue can be configured in one of two ways.
 
 ### Configuring the error queue via Code
 
-This is only possible if you are running NServiceBus Version v4.x and above.  
+#### Via a custom configuration provider 
 
-<!-- import ErrorQueueConfiguration -->
+<!-- import ErrorQueueConfigurationProvider -->
 
-NOTE: In NServiceBus V3, it is important to configure the bus to use the configuration source when the bus is initialized. See below: 
+#### Via a custom configuration source
+
+<!-- import ErrorQueueConfigurationSource-->
+
+Then at configuration time:
 
 <!-- import UseCustomConfigurationSourceForErrorQueueConfig -->
 
