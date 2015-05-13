@@ -358,6 +358,9 @@
     <Compile Include="RavenDB\ChangeResourceManagerID.cs" />
     <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="RegisterCustomSerializer.cs" />
+    <Compile Include="Sagas\SagaNotFoundHandler.cs" />
+    <Compile Include="Sagas\SagaFinder.cs" />
+    <Compile Include="Sagas\Timeouts.cs" />
     <Compile Include="ScaleOut\IndividualizeQueues.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />

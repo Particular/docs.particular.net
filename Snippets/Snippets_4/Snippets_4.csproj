@@ -267,6 +267,8 @@
     <Compile Include="Pipeline\NewPipelineStep.cs" />
     <Compile Include="Pipeline\ReplacePipelineBehavior.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
+    <Compile Include="Sagas\SagaNotFoundHandler.cs" />
+    <Compile Include="Sagas\Timeouts.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="Transactions.cs" />

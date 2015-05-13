@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Linq;
 using NServiceBus;
 using NServiceBus.Persistence;
-using NServiceBus.Persistence.NHibernate;
-using NServiceBus.RavenDB.Persistence;
 using NServiceBus.Saga;
 
 public class SagaBasics
@@ -167,47 +164,6 @@ public class SagaBasics
         #endregion
     }
 
-    public class SagaWithTimeout
-    {
-        #region saga-with-timeout
-
-        public class MySaga : Saga<MySagaData>,
-                                IAmStartedByMessages<Message1>,
-                                IHandleMessages<Message2>,
-                                IHandleTimeouts<MyCustomTimeout>
-        {
-            protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
-            {
-                mapper.ConfigureMapping<Message2>(s => s.SomeID)
-                        .ToSaga(m => m.SomeID);
-            }
-
-            public void Handle(Message1 message)
-            {
-                Data.SomeID = message.SomeID;
-                RequestTimeout<MyCustomTimeout>(TimeSpan.FromHours(1));
-            }
-
-            public void Handle(Message2 message)
-            {
-                Data.Message2Arrived = true;
-                ReplyToOriginator(new AlmostDoneMessage
-                    {
-                        SomeID = Data.SomeID
-                    });
-            }
-
-            public void Timeout(MyCustomTimeout state)
-            {
-                if (!Data.Message2Arrived)
-                {
-                    ReplyToOriginator(new TiredOfWaitingForMessage2());
-                }
-            }
-        }
-
-        #endregion
-    }
 
     public class SagaWithComplete
     {
@@ -254,63 +210,7 @@ public class SagaBasics
 
     }
 
-    #region saga-not-found
-
-    public class SagaNotFoundHandler : IHandleSagaNotFound
-    {
-        public IBus Bus { get; set; }
-
-        public void Handle(object message)
-        {
-            Bus.Reply(new SagaDisappearedMessage());
-        }
-    }
-
-    #endregion
-
-    public class SagaFinder
-    {
-        #region saga-finder
-
-        // NHibernate example:
-        public class MyNHibernateSagaFinder : IFindSagas<MySagaData>.Using<Message2>
-        {
-            public NHibernateStorageContext StorageContext { get; set; }
-
-            public MySagaData FindBy(Message2 message)
-            {
-                //your custom finding logic here, e.g.
-                return StorageContext.Session.QueryOver<MySagaData>()
-                                        .Where(x => x.SomeID == message.SomeID && x.SomeData == message.SomeData)
-                                        .SingleOrDefault();
-            }
-        }
-
-        // RavenDb example:
-        public class MyRavenDbSagaFinder : IFindSagas<MySagaData>.Using<Message2>
-        {
-            public ISessionProvider SessionProvider { get; set; }
-
-            public MySagaData FindBy(Message2 message)
-            {
-                //your custom finding logic here, e.g.
-                return SessionProvider.Session
-                                        .Query<MySagaData>()
-                                        .SingleOrDefault(x => x.SomeID == message.SomeID && x.SomeData == message.SomeData);
-            }
-        }
-        #endregion
-
-        public class MySagaData : IContainSagaData
-        {
-            public Guid Id { get; set; }
-            public string Originator { get; set; }
-            public string OriginalMessageId { get; set; }
-            public string SomeID { get; set; }
-            public string SomeData { get; set; }
-        }
-    }
-
+    
     public void ConfigureSelfHosted()
     {
         #region saga-configure-self-hosted
@@ -357,9 +257,6 @@ public class SagaBasics
     }
 
 
-    public class SagaDisappearedMessage
-    {
-    }
 
     public class MySagaData : IContainSagaData
     {

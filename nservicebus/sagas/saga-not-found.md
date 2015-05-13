@@ -13,4 +13,4 @@ When a message is received that could possibly be handled by a saga, and no exis
 
 Note that the message will be considered successfully processed and sent to the audit queue even if no saga was found. If you want the message to end up in the error queue just throw an exception from your `IHandleSagaNotFound` implementation.
 
-This feature is also useful if compensating actions need to be taken for messages that are handled by the saga which arrive after the saga has been marked as complete, then this can be done by implementing the `ISagaNotFound` interface.
+This feature is also useful if compensating actions need to be taken for messages that are handled by the saga which arrive after the saga has been marked as complete.
