@@ -1,4 +1,5 @@
-﻿using NServiceBus.Config;
+﻿using System;
+using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
 class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
@@ -9,5 +10,16 @@ class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultCon
                {
                    ErrorQueue = "error"
                };
+    }
+}
+class ProvideAuditConfig : IProvideConfiguration<AuditConfig>
+{
+    public AuditConfig GetConfiguration()
+    {
+        return new AuditConfig
+        {
+            QueueName = "auditqueue@adminmachine",
+            OverrideTimeToBeReceived = TimeSpan.FromMinutes(10)
+        };
     }
 }

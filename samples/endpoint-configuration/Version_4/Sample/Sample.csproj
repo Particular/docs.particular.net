@@ -64,6 +64,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigAuditQueue.cs" />
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />
@@ -73,7 +74,6 @@
     <Compile Include="Sender.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

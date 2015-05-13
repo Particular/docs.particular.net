@@ -1,5 +1,4 @@
-﻿using System;
-using NHibernate;
+﻿using NHibernate;
 using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.NHibernate;
@@ -35,8 +34,8 @@ public class AccessingData
         {
             #region NHibernateAccessingDataDirectlyConfig
 
-            BusConfiguration busConfig = new BusConfiguration();
-            busConfig.UsePersistence<NHibernatePersistence>().RegisterManagedSessionInTheContainer();
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UsePersistence<NHibernatePersistence>().RegisterManagedSessionInTheContainer();
 
             #endregion
         }
@@ -59,8 +58,8 @@ public class AccessingData
 
         public void Configure()
         {
-            BusConfiguration busConfig = new BusConfiguration();
-            busConfig.UsePersistence<NHibernatePersistence>().UseCustomSessionCreationMethod(CreateSession);
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UsePersistence<NHibernatePersistence>().UseCustomSessionCreationMethod(CreateSession);
         }
 
         ISession CreateSession(ISessionFactory sessionFactory, string connectionString)
