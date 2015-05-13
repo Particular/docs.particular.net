@@ -74,6 +74,9 @@
       <HintPath>..\packages\NServiceBus.Testing.3.3.15\lib\net40\NServiceBus.Testing.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ServiceControl.Contracts">
+      <HintPath>..\packages\ServiceControl.Contracts.1.1.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -84,12 +87,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Audit\App.config" />
     <None Include="Encryption\encryption.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="Errors\ConfigureErrorQueue.config" />
     <None Include="Errors\flr.config" />
+    <None Include="Monitoring\app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -124,6 +129,8 @@
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\OverrideViaProfile.cs" />
+    <Compile Include="Monitoring\MessageFailedHandler.cs" />
+    <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Persistence\InMemory\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />
