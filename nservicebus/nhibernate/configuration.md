@@ -5,6 +5,8 @@ tags:
  - NHibernate
  - Persistence
  - Configuration
+related:
+ - nservicebus/nhibernate/accessing-data
 ---
 
 If you require that your data persist in a relational database, NServiceBus provides a nuget ([NServiceBus.NHibernate](https://www.nuget.org/packages/NServiceBus.NHibernate)) for NHibernate-based persistence 
@@ -29,18 +31,17 @@ In case you want to customize the NHibernate `Configuration` object used to boot
 
 The following snippet tells NServiceBus to use a given `Configuration` object for all the persistence concerns
 
-<!-- import CustomCommonConfiguration -->
+<!-- import CommonNHibernateConfiguration -->
 
 If you need specific configuration on a per-concern basis, you can use following
 
-<!-- import CustomSpecificConfiguration -->
+<!-- import SpecificNHibernateConfiguration -->
 
 NOTE: You can combine both approaches to define a common configuration and override it for one specific concern.
 
 WARNING: When using per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern you are enabling. The following code will set up NHibernate persistence only for `GatewayDeduplication` concern but will override the default configuration **for all the concerns**. 
 
-<!-- import CustomCommonConfigurationWarning -->
-
+<!-- import CustomCommonNhibernateConfigurationWarning -->
 
 ### Using configuration convention
 
@@ -51,14 +52,3 @@ NOTE: When using SQL 2012 you need to change the dialect to `MsSql2012Dialect`.
 NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhforge.org/doc/nh/en/index.html#configuration-xmlconfig) 
  
 <!-- import NHibernateAppConfig -->
-
-#### Further reading
-
- * [Accessing data](accessing-data.md)
-
-
-
-
-
-
-

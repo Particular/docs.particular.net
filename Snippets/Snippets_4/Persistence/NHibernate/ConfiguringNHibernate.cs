@@ -8,26 +8,26 @@ class ConfiguringNHibernate
         #region ConfiguringNHibernate
 
         Configure.With()
-        .UseNHibernateSubscriptionPersister()
-        .UseNHibernateTimeoutPersister() 
-        .UseNHibernateSagaPersister() 
-        .UseNHibernateGatewayPersister();
+            .UseNHibernateSubscriptionPersister()
+            .UseNHibernateTimeoutPersister()
+            .UseNHibernateSagaPersister()
+            .UseNHibernateGatewayPersister();
 
         #endregion
     }
 
-    public void CustomSpecificConfiguration()
+    public void SpecificNHibernateConfiguration()
     {
-        #region CustomSpecificConfiguration
+        #region SpecificNHibernateConfiguration
 
-        Configuration config = new Configuration();
-        config.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
+        Configuration nhConfiguration = new Configuration();
+        nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
 
         Configure.With()
-         .UseNHibernateSubscriptionPersister(config)
-         .UseNHibernateTimeoutPersister(config, true)
-         .UseNHibernateSagaPersister(config)
-         .UseNHibernateGatewayPersister(config);
+            .UseNHibernateSubscriptionPersister(nhConfiguration)
+            .UseNHibernateTimeoutPersister(nhConfiguration, true)
+            .UseNHibernateSagaPersister(nhConfiguration)
+            .UseNHibernateGatewayPersister(nhConfiguration);
 
         #endregion
 
