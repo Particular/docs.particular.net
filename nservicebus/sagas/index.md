@@ -91,6 +91,9 @@ The `RequestTimeout<T>` method on the base class tells NServiceBus to send a mes
 
 When the time is up, the Timeout Manager sends a message back to the saga causing its Timeout method to be called with the same state message originally passed.
 
+### Timeout state
+The state parameter provides a way to pass state to the timeout handler. This is usefull when you have many timeouts of the same "type" that will be active at the same time. One example of this would be to pass in some id that uniqely identifies the timeout eg: `.RequestTimeout(new OrderNoLongerEligibleForBonus{OrderId = "xyz"})`. With this state passed to the timeout handler it can now decrement the bonus correctly by looking up the order value from saga state using the provided id.
+
 **IMPORTANT** : Don't assume that other messages haven't arrived in the meantime. Please note how the timeout handler method first checks if the `Message2` message has arrived.
 
 ## Ending a long-running process
