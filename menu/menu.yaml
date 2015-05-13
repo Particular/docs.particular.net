@@ -52,6 +52,9 @@
       Title: "Sagas"
       Url: "nservicebus/sagas"
       Articles: 
+        - "nservicebus/sagas/timeouts"
+        - "nservicebus/sagas/saga-finding"
+        - "nservicebus/sagas/saga-not-found"
         - "nservicebus/sagas/concurrency"
         - "nservicebus/testing/unit-testing"
         - "nservicebus/persistence"
