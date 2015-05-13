@@ -19,6 +19,7 @@ This is no longer supported.
 From v5.2 and above a new and more explicit API has been introduced.
 
 ### Here is how to use the new API
+
 Given the following handler class:
 
 <!-- import PropertyInjectionWithHandler --> 

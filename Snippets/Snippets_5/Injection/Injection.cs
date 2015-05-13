@@ -9,6 +9,16 @@
         {
             BusConfiguration busConfiguration = new BusConfiguration();
 
+            #region ConfigurePropertyInjectionForHandlerBefore 
+
+            busConfiguration.RegisterComponents(c =>
+                c.ConfigureComponent<EmailHandler>(DependencyLifecycle.InstancePerUnitOfWork)
+                    .ConfigureProperty(x => x.SmtpAddress, "10.0.1.233")
+                    .ConfigureProperty(x => x.SmtpPort, 25)
+                );
+
+            #endregion
+
             #region ConfigurePropertyInjectionForHandler 5.2
 
             busConfiguration.InitializeHandlerProperty<EmailHandler>("SmtpAddress", "10.0.1.233");
