@@ -133,8 +133,9 @@
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Persistence\InMemory\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
-    <Compile Include="Sagas\SagaBasics.cs" />
+    <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
+    <Compile Include="Sagas\SimpleSaga.cs" />
     <Compile Include="Sagas\Timeouts.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />

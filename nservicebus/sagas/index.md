@@ -22,13 +22,19 @@ Design processes with more than one remote call to use sagas.
 
 While it may seem excessive at first, the business implications of your system getting out of sync with the other systems it interacts with can be substantial. It's not just about exceptions that end up in your log files.
 
+## A simple Saga
+
+A minimal Saga implementation. With NServiceBus, you specify behavior by writing a class that inherits from `Saga<T>` where `T` is the saga data class. There is also a base class for sagas that contains many features required for implementing long-running processes. 
+
+<!-- import simple-saga --> 
+
 ## Long-running means stateful  
 
 Any process that involves multiple network calls (or messages sent and received) has an interim state. That state may be kept in memory, persisted to disk, or stored in a distributed cache; it may be as simple as 'Response 1 received, pending response 2', but the state exists.
 
 Using NServiceBus, you can explicitly define the data used for this state by inheriting from the `ContainSagaData` abstract class. All public get/set properties are persisted by default:
 
-<!-- import saga-data --> 
+<!-- import simple-saga-data --> 
 
 There are two production-supported storage mechanisms for saga data in NServiceBus, namely RavenDB and NHibernate. Prior to V5, RavenDB was a default implementation. Since NServiceBus 5, both implementations are equal and the user needs to explicitly chose one.
 
@@ -38,39 +44,35 @@ You can, as always, swap out these technologies, by implementing the `ISagaPersi
 
 ## Adding behavior
 
-The important part of a long-running process is its behavior. With NServiceBus, you specify behavior by writing a class that inherits from `Saga<T>` where `T` is the saga data class. There is also a base class for sagas that contains many features required for implementing long-running processes. All the examples below make use of this base class.
-
-Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled. Here is a saga that processes messages of type `Message2`:
-
-<!-- import saga-without-started-by --> 
+The important part of a long-running process is its behavior. Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled. 
 
 ## Starting and correlating sagas
 
-Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sometimes it's simply the arrival of a given message type. In our previous example, let's say that a new saga should be started every time a message of type `Message1` arrives, like this:
+Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sometimes it's simply the arrival of a given message type. In our previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives `IAmStartedByMessages<StartOrder>`
 
-<!-- import saga-without-mapping -->
+Please note that `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that. This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it.
 
-Please note that `IHandleMessages<Message1>` is replaced with `IAmStartedByMessages<Message1>`. This interface tells NServiceBus that the saga not only handles Message1, but that when that type of message arrives, a new instance of this saga should be created to handle it.
-
-How to correlate a `Message2` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. You only need to store this in the saga data, and tell NServiceBus about the connection. Here's how:
-
-<!-- import saga-with-started-by-and-correlation-id-set -->
+How to correlate a `CompleteOrder` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. You only need to store this in the saga data, and tell NServiceBus about the connection. This is done in the `ConfigureHowToFindSaga` in the above saga.
 
 Since V5 it is possible to specify the mapping to the message using expressions if the correlation information is split between multiple fields
 
 <!-- import saga-find-by-expression -->
 
-Previous releases (3.x and 4.x) of NServiceBus had slightly different API for configuring the mapping. Following snippets show the mapping in V4 and V3 respectively:
-
-<!-- import saga-with-started-by-and-correlation-id-set -->
-
-Underneath the covers, when `Message2` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `MySagaData` that has a property `SomeID` whose value is the same as the `SomeID` property of the message.
+Underneath the covers, when `CompleteOrder` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `OrderSagaData` that has a property `OrderId` whose value is the same as the `OrderId` property of the message.
 
 ## Uniqueness
 
 For NServiceBus to ensure uniqueness across your saga instances, it's highly recommended that you adorn your correlation properties with the `[Unique]` attribute. This tells NServiceBus that there can be only one instance for each property value. This also increases performance for property lockups in most cases. While there are plans for it, NServiceBus doesn't currently support mapping one message to more than one instance of the same saga.
 
-Read more about the [Unique property and concurrency](concurrency.md) .
+Read more about the [Unique property and concurrency](concurrency.md).
+
+## Ending a long-running process
+
+After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done simply by calling the `MarkAsComplete()` method.
+
+The infrastructure contacts the Timeout Manager (if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages that are handled by the saga(`IHandleMessages<T>`) arrive after the saga has completed, they are discarded. Note that a new saga will be started if a message that is configured to start a saga arrives(`IAmStartedByMessages<T>`).
+
+When a message is received that could possibly be handled by a saga, and no existing saga can be found then that is handed by the [Saga Not Found](saga-not-found.md) feature. 
 
 ## Notifying callers of status
 
@@ -84,22 +86,11 @@ To communicate status in our ongoing example:
 
 This is one of the methods on the saga base class that would be very difficult to implement yourself without tying your applicative saga code to low-level parts of the NServiceBus infrastructure.
 
-## Ending a long-running process
-
-After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done simply by calling the `MarkAsComplete()` method. 
-
-<!-- import saga-with-complete -->
-
-
-The infrastructure contacts the Timeout Manager (if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages that are handled by the saga(`IHandleMessages<T>`) arrive after the saga has completed, they are discarded. Note that a new saga will be started if a message that is configured to start a saga arrives(`IAmStartedByMessages<T>`).
-
-When a message is received that could possibly be handled by a saga, and no existing saga can be found then that is handed by the [Saga Not Found](saga-not-found.md) feature. 
-
 ## Configuring Saga persistence
 
 Make sure to configure appropriate persistence mechanism. 
 
-<!-- import saga-configure-self-hosted -->
+<!-- import saga-configure -->
 
 ## Sagas and automatic subscriptions
 

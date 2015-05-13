@@ -268,6 +268,7 @@
     <Compile Include="Pipeline\ReplacePipelineBehavior.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
+    <Compile Include="Sagas\SimpleSaga.cs" />
     <Compile Include="Sagas\Timeouts.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />
@@ -286,7 +287,7 @@
     <Compile Include="Persistence\RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
-    <Compile Include="Sagas\SagaBasics.cs" />
+    <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\CustomSecondLevelRetriesConfig.cs" />
     <Compile Include="SubscriptionSettings.cs" />

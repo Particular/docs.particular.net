@@ -358,8 +358,11 @@
     <Compile Include="RavenDB\ChangeResourceManagerID.cs" />
     <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="RegisterCustomSerializer.cs" />
+    <Compile Include="Sagas\SagaWithReply.cs" />
+    <Compile Include="Sagas\SagaFindByExpression.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
     <Compile Include="Sagas\SagaFinder.cs" />
+    <Compile Include="Sagas\SimpleSaga.cs" />
     <Compile Include="Sagas\Timeouts.cs" />
     <Compile Include="ScaleOut\IndividualizeQueues.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
@@ -395,7 +398,7 @@
     <Compile Include="Pipeline\SampleBehavior.cs" />
     <Compile Include="PurgeOnStartup.cs" />
     <Compile Include="RunCustomActionReplacement.cs" />
-    <Compile Include="Sagas\SagaBasics.cs" />
+    <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Sagas\SagaMapping.cs" />
     <Compile Include="Scheduler.cs" />
     <Compile Include="ScaleOut.cs" />
