@@ -28,9 +28,10 @@ public class InjectProvideErrorQueueConfiguration
 {
     public void Init()
     {
+        BusConfiguration busConfiguration = new BusConfiguration();
+
         #region UseCustomConfigurationSourceForErrorQueueConfig
-        Configure.With()
-            .CustomConfigurationSource(new ErrorQueueConfigurationSource());
+        busConfiguration.CustomConfigurationSource(new ErrorQueueConfigurationSource());
         #endregion
     }
 }
