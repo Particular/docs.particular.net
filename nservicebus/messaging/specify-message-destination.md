@@ -76,9 +76,7 @@ Endpoint mapping can be configured in several ways
 
 ### Using app.config
 
-You configure the destination for message types in `<unicastbusconfig>`, under `<messageendpointmappings>`.
-
-Add one of the following:
+You configure mapping in your app.config by adding `<unicastbusconfig>` and `<messageendpointmappings>` nodes.
 
 <!-- import endpoint-mapping-appconfig -->
 
