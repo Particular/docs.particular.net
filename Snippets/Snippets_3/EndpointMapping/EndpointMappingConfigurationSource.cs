@@ -11,7 +11,8 @@ public class EndpointMappingConfigurationSource : IConfigurationSource
         if (typeof(T) == typeof(UnicastBusConfig))
         {
             //read from existing config 
-            var config = (UnicastBusConfig)ConfigurationManager.GetSection(typeof(UnicastBusConfig).Name);
+            var config = (UnicastBusConfig)ConfigurationManager
+                .GetSection(typeof(UnicastBusConfig).Name);
             if (config == null)
             {
                 //create new config if it doent exist
