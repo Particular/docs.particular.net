@@ -3,7 +3,7 @@ using NServiceBus.Config.ConfigurationSource;
 using System.Configuration;
 using NServiceBus;
 
-#region endpoint-mapping-configurationprovider
+#region endpoint-mapping-configurationsource
 public class EndpointMappingConfigurationSource : IConfigurationSource
 {
     public T GetConfiguration<T>() where T : class, new()

@@ -2,7 +2,7 @@
 using NServiceBus.Config.ConfigurationSource;
 using System.Configuration;
 
-#region endpoint-mapping-configurationsource
+#region endpoint-mapping-configurationprovider
 
 public class EndpointMappingConfigurationProvider :
     IProvideConfiguration<UnicastBusConfig>
