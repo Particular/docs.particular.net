@@ -92,6 +92,7 @@
     <None Include="Encryption\encryption.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="EndpointMapping\ConfigureEndpointMapping.config" />
     <None Include="Errors\ConfigureErrorQueue.config" />
     <None Include="Errors\flr.config" />
     <None Include="Monitoring\app.config" />
@@ -116,6 +117,8 @@
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
     <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="Encryption\PropertyEncryption.cs" />
+    <Compile Include="EndpointMapping\EndpointMappingConfigurationProvider.cs" />
+    <Compile Include="EndpointMapping\EndpointMappingConfigurationSource.cs" />
     <Compile Include="EndpointName.cs" />
     <Compile Include="Errors\ErrorQueueConfigurationSource.cs" />
     <Compile Include="Errors\ProvideFLRConfiguration.cs" />

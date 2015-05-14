@@ -219,6 +219,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="Audit\App.config" />
+    <None Include="EndpointMapping\ConfigureEndpointMapping.config" />
     <None Include="Errors\configureErrorQueue.config" />
     <None Include="Errors\flr.config" />
     <None Include="Monitoring\app.config" />
@@ -248,6 +249,8 @@
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="CustomRavenConfigForVersion2_5.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="EndpointMapping\EndpointMappingConfigurationProvider.cs" />
+    <Compile Include="EndpointMapping\EndpointMappingConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueueConfigurationProvider.cs" />
     <Compile Include="Errors\ConfigureFirstLevelRetries.cs" />
     <Compile Include="Errors\ConfigureSecondLevelRetries.cs" />
