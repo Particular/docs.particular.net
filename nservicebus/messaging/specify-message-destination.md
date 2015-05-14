@@ -42,9 +42,9 @@ Note that the xml configuration version of the above settings are slightly diffe
 
 ### Resolving with Messages
 
-If the `Messages` represents a valid Type (`Type.GetType` returns a type) then that type will be mapped to the target endpoint.
+If the `Messages` represents a valid Type (ie [Type.GetType](https://msdn.microsoft.com/en-us/library/w3f99sx1.aspx) returns a Type) then that type will be mapped to the target endpoint.
 
-Otherwise it will be assumed `Messages` is an assembly name and all types in that assembly (via `Assembly.Load(Messages).GetTypes`) will be mapped to the target endpoint.
+Otherwise it will be assumed `Messages` is an assembly name and all types in that assembly will be mapped to the target endpoint.  This effectively uses [Assembly.Load(AssemblyName)](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) followed by [Assembly.GetTypes()](https://msdn.microsoft.com/en-us/library/system.reflection.assembly.gettypes.aspx).
 
 
 ### Some example mappings 
