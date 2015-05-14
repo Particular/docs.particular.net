@@ -14,7 +14,7 @@ related:
 
 Message mapping is a configurable convention that, based on some information about a message, that message can be routed to a specific endpoint without the sending code needing to be aware of the destination. A message mapping contains the following information.
 
-## The target `Endpoint`
+## The target Endpoint
 
 The target or destination endpoint can be of the form `QueueName@ServerName`, or just `QueueName` if the destination is the local machine.
 
@@ -22,7 +22,7 @@ The target or destination endpoint can be of the form `QueueName@ServerName`, or
 
 There are two, mutually exclusive approaches, to message resolution:
 
-### Resolving with the `AssemblyName`
+### Resolving with the AssemblyName
 
 If this is defined then all types in that assembly will included in the initial set. This effectively uses [Assembly.Load(AssemblyName)](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) followed by [Assembly.GetTypes()](https://msdn.microsoft.com/en-us/library/system.reflection.assembly.gettypes.aspx).
 
@@ -40,7 +40,7 @@ Note that the xml configuration version of the above settings are slightly diffe
  * `AssemblyName` is actually `Assembly` in xml.
  * `TypeFullName` is actually `Type` in xml.
 
-### Resolving with `Messages`
+### Resolving with Messages
 
 If the `Messages` represents a valid Type (`Type.GetType` returns a type) then that type will be mapped to the target endpoint.
 
