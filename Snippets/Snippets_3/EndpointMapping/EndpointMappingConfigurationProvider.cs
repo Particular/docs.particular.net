@@ -3,7 +3,8 @@ using NServiceBus.Config.ConfigurationSource;
 using System.Configuration;
 
 #region endpoint-mapping-configurationsource
-public class EndpointMappingConfigurationProvider : 
+
+public class EndpointMappingConfigurationProvider :
     IProvideConfiguration<UnicastBusConfig>
 {
     public UnicastBusConfig GetConfiguration()
@@ -24,9 +25,10 @@ public class EndpointMappingConfigurationProvider :
             new MessageEndpointMapping
             {
                 AssemblyName = "assembly",
-                Endpoint = "queue@machinename",
+                Endpoint = "queue@machinename"
             });
         return config;
     }
 }
+
 #endregion
