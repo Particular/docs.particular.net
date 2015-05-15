@@ -14,7 +14,3 @@ summary: ServiceInsight Documentation Table of Contents
 
 - [Logging in ServiceInsight](how-logging-works.md)
 - [How to install your license file in ServiceInsight](how-to-install-your-license-file-serviceinsight.md)
-
-### Related Articles
-
-- [ServiceMatrix and ServiceInsight Interaction](/servicematrix/servicematrix-serviceinsight.md)
