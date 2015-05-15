@@ -41,16 +41,14 @@ class Program
                 {
                     return ConnectionInfo.Create().UseSchema("dbo");
                 }
-                string schema = endpoint.Split(new[]
+                if (endpoint == "audit")
                 {
-                    '.'
-                }, StringSplitOptions.RemoveEmptyEntries)[0].ToLowerInvariant();
+                    return ConnectionInfo.Create().UseSchema("dbo");
+                }
+                string schema = endpoint.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries)[0].ToLowerInvariant();
                 return ConnectionInfo.Create().UseSchema(schema);
             });
-        busConfiguration.UsePersistence<NHibernatePersistence>()
-            .UseConfiguration(hibernateConfig)
-            .RegisterManagedSessionInTheContainer();
-
+        busConfiguration.UsePersistence<NHibernatePersistence>().UseConfiguration(hibernateConfig).RegisterManagedSessionInTheContainer();
         #endregion
 
         using (Bus.Create(busConfiguration).Start())

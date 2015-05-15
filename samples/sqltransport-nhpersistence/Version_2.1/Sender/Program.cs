@@ -3,6 +3,10 @@ using System.Linq;
 using NServiceBus;
 using NServiceBus.Transports.SQLServer;
 
+using NHibernate.Cfg;
+using NHibernate.Dialect;
+using NServiceBus.Persistence;
+
 class Program
 {
     static void Main()
@@ -11,11 +15,19 @@ class Program
         Random random = new Random();
         BusConfiguration busConfiguration = new BusConfiguration();
 
+        Configuration hibernateConfig = new Configuration();
+        hibernateConfig.DataBaseIntegration(x =>
+        {
+            x.ConnectionStringName = "NServiceBus/Persistence";
+            x.Dialect<MsSql2012Dialect>();
+        });
+        hibernateConfig.SetProperty("default_schema", "sender");
+
         #region SenderConfiguration
 
         busConfiguration.UseTransport<SqlServerTransport>().DefaultSchema("sender")
             .UseSpecificConnectionInformation(EndpointConnectionInfo.For("receiver").UseSchema("receiver"));
-        busConfiguration.UsePersistence<NHibernatePersistence>();
+        busConfiguration.UsePersistence<NHibernatePersistence>().UseConfiguration(hibernateConfig);
 
         #endregion
 
