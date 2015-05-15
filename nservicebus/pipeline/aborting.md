@@ -20,4 +20,4 @@ The pipeline can also be aborted by injecting a custom Behavior that, with some 
 
 <!-- import AbortPipelineWithBehaviour--> 
 
-For more information about creating and where to inject a behavior see [customising the pipeline](/nservicebus/pipeline/customising.md).
+For more information about creating and where to inject a behavior see [customizing the pipeline](/nservicebus/pipeline/customizing.md).

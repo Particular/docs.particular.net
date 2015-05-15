@@ -42,5 +42,5 @@ If a server side (incoming) mutator throws an exception, the message aborts, rol
 If a client side (outgoing) message mutator throws an exception, the exception bubbles up to the method calling `bus.Send` or `bus.Publish`.
 
 
-NOTE: `IMutateTransportMessages` are non-deterministic in terms of order of execution. If you want more fine grained control over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/customising.md).
+NOTE: `IMutateTransportMessages` are non-deterministic in terms of order of execution. If you want more fine grained control over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/customizing.md).
 
