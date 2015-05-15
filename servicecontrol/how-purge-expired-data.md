@@ -16,16 +16,18 @@ By default ServiceControl purges old data periodically, checking each minute and
 
 It is possible to control the above behavior using the following settings:
 
-* ExpirationProcessTimerInSeconds: the default is once a minute.
+* ExpirationProcessTimerInSeconds: the default is once every 10 minutes
 * HoursToKeepMessagesBeforeExpiring: the default is 30 days.
 
 To change the ServiceControl behavior, you need to update its settings (see [Customizing ServiceControl configuration](creating-config-file.md)).
 
-**Example:** check for expiration every 2 minutes and expire messages older than 10 days.
+**Example:** check for expiration every 15 minutes and expire messages older than 10 days.
 
 ```bat
-x:\Your_Installed_Path\ServiceControl.exe --restart -d=ServiceControl/ExpirationProcessTimerInSeconds==120 -d=ServiceControl/HoursToKeepMessagesBeforeExpiring==240
+x:\Your_Installed_Path\ServiceControl.exe --restart -d=ServiceControl/ExpirationProcessTimerInSeconds==900 -d=ServiceControl/HoursToKeepMessagesBeforeExpiring==240
 ```
+
+Note: It is not recommended to set ExpirationProcessTimerInSeconds to a value lower that 300 as this can have performance implicatons. 
 
 ## ServiceControl default installed location
 
