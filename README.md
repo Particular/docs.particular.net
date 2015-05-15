@@ -163,9 +163,9 @@ For editing markdown on your desktop (after cloning locally with Git) try [Markd
 
 #### Markdown flavor
 
-Ensure you enable `GitHub Flavored Markdown (Offline)` by going to 
+Ensure you enable `Markdown (Classic)` by going to 
 
-    Tools > Options > Markdown > Markdown Processor > GitHub Flavored Markdown (Offline)
+    Tools > Options > Markdown > Markdown Processor > Markdown (Classic)
 
 Or click in the bottom left no the `M` icon to "hot-switch"
 
@@ -175,7 +175,7 @@ Don't render YAML Front-Matter by going to
 
     Tools > Options > Markdown > Markdown Settings 
 
-And checking `Ignore YAML Front-matter`
+And un-check `Ignore YAML Front-matter`
 
 ## Samples
 
