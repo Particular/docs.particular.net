@@ -8,7 +8,7 @@ redirects:
 
 By default, NServiceBus scans all assemblies in the endpoint bin folder to find types implementing its interfaces so that it can configure them automatically. 
 
-Scanning is invoke when you call the following
+Scanning is invoked when you call the following
 
 <!-- import ScanningDefault -->
 
@@ -66,3 +66,7 @@ From version 6, default behaviour is not to scan nested folders for assemblies. 
 ### Specifying the directory to scan:
 
 <!-- import ScanningCustomDirectory -->
+
+NOTE: When hosting with NServiceBus Host, assembly scanning options should be provided when endpoint is configured
+
+<!-- import ScanningConfigurationInNSBHost -->

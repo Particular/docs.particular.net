@@ -55,5 +55,17 @@
 
             #endregion
         }
+
+        #region ScanningConfigurationInNSBHost
+
+        public class EndpointConfig : IConfigureThisEndpoint
+        {
+            public void Customize(BusConfiguration configuration)
+            {
+                // use 'configuration' object to configure scanning
+            }
+        }
+
+        #endregion
     }
 }

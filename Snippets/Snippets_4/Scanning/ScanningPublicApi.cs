@@ -43,7 +43,17 @@ public class ScanningPublicApi
         #region ScanningMixingIncludeAndExclude
         Configure.With(AllAssemblies.Matching("MyCompany.").Except("BadAssembly.dll"));
         #endregion
-         
-            
     }
+
+    #region ScanningConfigurationInNSBHost
+
+    public class EndpointConfig : IConfigureThisEndpoint, IWantCustomInitialization
+    {
+        public void Init()
+        {
+            // use 'Configure' to configure scanning
+        }
+    }
+
+    #endregion
 }
