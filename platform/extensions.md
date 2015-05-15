@@ -8,7 +8,7 @@ This is a curated list of all the extensions to NServiceBus developed by both th
 **<img src="particular-project.png"> Particular run project**
 
 **<img src="community-project.png"> Community run project**
-
+rab
 ## Transports 
 
 ### <img src="community-project.png" title="A Community run project"> [AmazonSQS](https://github.com/ahofman/NServiceBus.AmazonSQS)
@@ -44,7 +44,8 @@ Provides support for sending messages over [Oracle Advanced Queuing (Oracle AQ)]
 ###  <img src="particular-project.png" title="A Particular run project"> [RabbitMQ](/nservicebus/rabbitmq/)
 
 <a href="http://www.nuget.org/packages/NServiceBus.RabbitMQ/"><img src="http://img.shields.io/nuget/v/NServiceBus.RabbitMQ.svg?" title="NuGet Status"></a>
- Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) using the [RabbitMQ .net Client](http://www.nuget.org/packages/RabbitMQ.Client/).
+
+Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) using the [RabbitMQ .net Client](http://www.nuget.org/packages/RabbitMQ.Client/).
 
 ### <img src="particular-project.png" title="A Particular run project"> [SqlServer](/nservicebus/sqlserver/)
 
