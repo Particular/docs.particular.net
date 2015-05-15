@@ -73,6 +73,7 @@
         - "nservicebus/pipeline/customising"
         - "nservicebus/pipeline/message-mutators"
         - "nservicebus/pipeline/unit-of-work"
+        - "nservicebus/pipeline/aborting"
         - "nservicebus/security/encryption"
         - "nservicebus/messaging/databus"
     - 

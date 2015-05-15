@@ -136,6 +136,7 @@
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Persistence\InMemory\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
+    <Compile Include="Pipeline\AbortPipeline.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
     <Compile Include="Sagas\SimpleSaga.cs" />
