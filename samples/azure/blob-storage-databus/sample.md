@@ -11,21 +11,21 @@ related:
 - samples/databus
 ---
 
- 1. Start Azure Storage Emulator
+ 1. Start [Azure Storage Emulator](http://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/)
  1. Run the solution. Two console applications start.
- 1. Find the Sender application by looking for the one with "Sender" in its path and press Enter in the window to send a message. You have just sent a message that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment via Azure storage, allowing it to reach the Receiver application.
+ 1. Find the `Sender` application by looking for the one with `Sender` in its path and press Enter in the window to send a message. You have just sent a message that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment via Azure storage, allowing it to reach the `Receiver` application.
  
 ## Code walk-through
 
 This sample contains three projects: 
 
- * Messages - A class library containing the sample message.
+ * Shared - A class library containing shared code including the message definition.
  * Sender - A console application responsible for sending the large message.
  * Receiver - A console application responsible for receiving the large message from Sender.
 
-### Messages project
+### Shared project
  
-Let's look at the Messages project:
+Let's look at the Shared project:
 
 <!-- import MessageWithLargePayload -->
 
@@ -47,25 +47,15 @@ When sending a message using the NServiceBus Message attachments mechanism, the 
 
 `Key` represents Azure storage blob name used to store message property original value.
 
-
 The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is allowed to clean the message after three minutes if it was not received by the receiver. The message payload will be removed from Azure storage after three minutes.
-
 
 ### Configuring the DataBus location
 
 Both the `Sender` and `Receive` project need to share a common location to store large binary objects. This is done by specifying Azure storage connection string. This code instructs NServiceBus to use specified Azure storage account for the attachment. 
 
-```C#
-static void Main()
-{
-    ...
-    busConfiguration.UseDataBus<AzureDataBus>().ConnectionString("UseDevelopmentStorage=true");
-    ...
-}
-```
+<!-- import ConfiguringDataBusLocation -->
 
 Attachment blobs will be found in `databus` container.
-
  
 ### Sender project
 

@@ -1,5 +1,4 @@
 using System;
-using Messages;
 using NServiceBus;
 
 #region MessageWithLargePayloadHandler
