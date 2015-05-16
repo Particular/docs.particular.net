@@ -102,7 +102,8 @@
             - "nservicebus/msmq/network-load-balancing"
         - Title: "RabbitMQ"
           Url: "nservicebus/rabbitmq"
-          Articles: 
+          Articles: rabbitmqclient-nuget
+            - "nservicebus/rabbitmq/rabbitmqclient-nuget"
             - "nservicebus/rabbitmq/connection-strings"
             - "nservicebus/rabbitmq/configuration-api"
     - 
