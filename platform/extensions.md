@@ -243,6 +243,10 @@ Allows a more expressive way to order handlers.
 
 NES that helps you build domain models when you're doing event sourcing. It attempts to fill in the gaps between NServiceBus and NEventStore.
 
+### <img src="community-project.png" title="A Community run project"> [Rabbit Operations](http://RabbitOperations.southsidesoft.com)
+
+Operations support for RabbitMQ applications including support for NServiceBus. Reads messages from error and audit queues and indexes them for search and analysis. Supports replay of error messages.
+
 ### <img src="community-project.png" title="A Community run project"> [SignalR](https://github.com/roycornelissen/SignalR.NServiceBus)
 
 Backplane for [SignalR](http://signalr.net/)
