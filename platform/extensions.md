@@ -8,7 +8,7 @@ This is a curated list of all the extensions to NServiceBus developed by both th
 **<img src="particular-project.png"> Particular run project**
 
 **<img src="community-project.png"> Community run project**
-rab
+
 ## Transports 
 
 ### <img src="community-project.png" title="A Community run project"> [AmazonSQS](https://github.com/ahofman/NServiceBus.AmazonSQS)
