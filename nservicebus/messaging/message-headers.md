@@ -26,7 +26,7 @@ Headers can be read for an incoming message.
 
 <!-- import header-incoming-handler -->
 
-### Reading outgoing Headers
+### Writing outgoing Headers
 
 Headers can be written for an outgoing message.
 
