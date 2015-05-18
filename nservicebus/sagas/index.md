@@ -72,7 +72,7 @@ After receiving all the messages needed in a long-running process, or possibly a
 
 The infrastructure contacts the Timeout Manager (if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages that are handled by the saga(`IHandleMessages<T>`) arrive after the saga has completed, they are discarded. Note that a new saga will be started if a message that is configured to start a saga arrives(`IAmStartedByMessages<T>`).
 
-For more information about setting (requesting) the timeouts and handling them, see [Saga Timeouts](http://docs.particular.net/nservicebus/sagas/timeouts).
+For more information about setting (requesting) the timeouts and handling them, see [Saga Timeouts](timeouts.md).
 
 When a message is received that could possibly be handled by a saga, and no existing saga can be found then that is handed by the [Saga Not Found](saga-not-found.md) feature. 
 
