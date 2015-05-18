@@ -9,7 +9,7 @@ The [Platform Installer](/platform/installer) handles installing pre-requisites 
 
 ## .Net Prerequisite Version
 
-The Particualr platform products require [.Net 4.5](http://www.microsoft.com/en-au/download/details.aspx?id=40779). Before proceeding please ensure that this version of .Net is available on the system you are setting up.  
+The Particular platform products require [.Net 4.5](http://www.microsoft.com/en-au/download/details.aspx?id=40779). Before proceeding please ensure that this version of .Net is available on the system you are setting up.  
 
 Note: Windows 8.x and Windows 2012 or greater already ship with this version so no action is required on these products,
 
