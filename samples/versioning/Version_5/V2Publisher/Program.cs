@@ -11,8 +11,7 @@ class Program
         busConfiguration.EndpointName("Samples.Versioning.V2Publisher");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UsePersistence<MsmqPersistence>()
-            .For(Storage.Subscriptions);
+        busConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>();
         busConfiguration.EnableInstallers();
 
         using (IStartableBus bus = Bus.Create(busConfiguration))
