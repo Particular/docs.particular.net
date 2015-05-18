@@ -13,6 +13,7 @@ namespace Store.ECommerce
         protected void Application_Start()
         {
             var configuration = new BusConfiguration();
+            configuration.EndpointName("Store.ECommerce");
             configuration.PurgeOnStartup(true);
 
             configuration.ApplyCommonConfiguration();
