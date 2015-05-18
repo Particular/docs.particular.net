@@ -22,7 +22,7 @@ Because steps can be added into the pipeline and or replaced based on the featur
 
 - `CreateChildContainer`: NServiceBus heavily relies in IoC to work properly and requires every message to be handled in its own context, to achieve that every message that arrives to an Endpoint will at first create a new child container to generate a new dependency resolution scope; 
 * `ExecuteUnitOfWork`: the ExecuteUnitOfWork behavior is responsible to handle the creation of the Unit of Work, that wrap every message execution, whose role is to guarantee the execution of message in a transaction fashion;
-* `MutateIncomingTransportMessage`: NServiceBus has the concept of message mutators (link to docu) this behavior is responsible to execute each registered `TransportMessage` mutator;
+* `MutateIncomingTransportMessage`: NServiceBus has the concept of [message mutators](nservicebus/pipeline/message-mutators) this behavior is responsible to execute each registered `TransportMessage` mutator;
 * `DeserializeMessages`: The DeserializeMessages behavior will deserialize the incoming message from its raw form, the `TransportMessage`, to a well known `class` or `interface` instance using the configured serializer;
 * `ExecuteLogicalMessages`: This behavior is responsible to create a dedicated context for each incoming message and to determine if there is any message, other than built-in control messages, that must be executed;
 * `MutateIncomingMessages`: Once a TransportMessage has been deserialized is is passed through a new set of message mutators, this behavior is responsible to execute each registered message mutator;
