@@ -17,7 +17,7 @@ RabbitMQ.Client's current policy of allowing "breaking changes in any version" m
 
 If NServiceBus.RabbitMQ targets a specific version of RabbitMQ.Client the result is that consumers of NServiceBus.RabbitMQ are locked into the same version of RabbitMQ.Client as NServiceBus.RabbitMQ. Hence they cannot get new features or bugs fixes in  RabbitMQ.Client until an updated version of NServiceBus.RabbitMQ is shipped.
 
-## If NServiceBus.RabbitMQ targets a minor version range of RabbitMQ.Client
+## If NServiceBus.RabbitMQ targets a "current Major" version range of RabbitMQ.Client
 
 Our standard approach to targeting nuget ranges is to target "any Minor in the current Major". If this approach is used with NServiceBus.RabbitMQ it means that consumers of NServiceBus.RabbitMQ can move between versions of RabbitMQ.Client as specified in that range. Unfortunately there is a chance that RabbitMQ.Client will ship a breaking change that affects the subset of API that NServiceBus.RabbitMQ uses. If this does occur the most likely outcome is one of the following exceptions on startup:
 
@@ -27,6 +27,6 @@ Our standard approach to targeting nuget ranges is to target "any Minor in the c
 
 ## The current nuget dependency
 
-In the currently released version targets a Minor range i.e. `≥ CurrentMajor.CurrentMinor.0 && < CurrentMajor.NextMinor.0`. This is a compromise between the above two approaches. It allows some movement between RabbitMQ.Client versions while reducing the chance of breaking API changes. It also results in fewer deployments of NServiceBus.RabbitMQ to keep in sync.
+In the currently released version targets a "current Minor" range i.e. `≥ CurrentMajor.CurrentMinor.0 && < CurrentMajor.NextMinor.0`. This is a compromise between the above two approaches. It allows some movement between RabbitMQ.Client versions while reducing the chance of breaking API changes. It also results in fewer deployments of NServiceBus.RabbitMQ to keep in sync.
 
 So, after an upgrade of the RabbitMQ.Client nuget, if you have any problems with the above exceptions it is most likely a breaking API change. In that scenario please [Contact Us](http://particular.net/contactus) or raise an issue in the [NServiceBus.RabbitMQ GitHub Repository](https://github.com/Particular/NServiceBus.RabbitMQ).
