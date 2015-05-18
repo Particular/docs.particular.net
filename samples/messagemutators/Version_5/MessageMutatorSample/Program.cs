@@ -6,6 +6,7 @@ class Program
     {
         #region ComponentRegistartion
         BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.MessageMutators");
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         busConfiguration.RegisterComponents(components =>
