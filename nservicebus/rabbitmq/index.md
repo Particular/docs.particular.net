@@ -15,9 +15,3 @@ The nuget is available here http://www.nuget.org/packages/nservicebus.rabbitmq.
 <a href="http://www.nuget.org/packages/NServiceBus.RabbitMQ/"><img src="http://img.shields.io/nuget/v/NServiceBus.RabbitMQ.svg?" title="NuGet Status"></a>
 
     PM> Install-Package NServiceBus.RabbitMQ
-
-## Table of Contents
-
-- [RabbitMQ.Client Nuget version range](rabbitmqclient-nuget.md)
-- [Configuration API](configuration-api.md)
-- [Connection Strings](connection-strings.md)
