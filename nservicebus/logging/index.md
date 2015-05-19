@@ -6,7 +6,7 @@ tags:
 redirects:
 - nservicebus/logging-in-nservicebus
 related:
-- samples/logging/log4net-custom
+- samples/logging
 ---
 
 INFO: This is relevant to versions 5 and above. For earlier versions, see [Logging in version 4 and below](nservicebus4-and-below.md).
@@ -14,8 +14,6 @@ INFO: This is relevant to versions 5 and above. For earlier versions, see [Loggi
 ## Default Logging
 
 NServiceBus has some limited, and opinionated, logging built in.
-
-[See a working sample](/samples/logging/default)
 
 The default logging behavior is as follows:
 

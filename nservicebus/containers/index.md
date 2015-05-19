@@ -38,4 +38,3 @@ The following code demonstrates how to configure NServiceBus to use a container 
 If you have your own container that is not already supported by a NuGet package, you can create a plugin centering around the `IContainer` abstraction. Once this is created and registered, NServiceBus will use your custom container to look up its own dependencies.
 
 <!-- import CustomContainers -->
-

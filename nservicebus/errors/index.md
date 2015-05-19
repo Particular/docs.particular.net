@@ -7,6 +7,8 @@ tags:
 - Automatic Retries
 redirects:
  - nservicebus/how-do-i-handle-exceptions
+related:
+- nservicebus/operations/transactions-message-processing
 ---
 
 Don't.
@@ -47,5 +49,3 @@ Administrators should monitor that error queue so that they can see when problem
 Monitoring and handling of failed messages with [ServicePulse](/servicepulse) provides access to full exception details (including stack-trace, and through ServiceInsight it also enables advanced debugging with all message context. It also provides a "retry" option to send the message back to the endpoint for re-processing. For more details, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md). 
 
 If either ServicePulse or ServiceInsight is not available in your environment, you can use the  `ReturnToSourceQueue.exe` tool to send the relevant message back to its original queue so that it can be processed again. The `ReturnToSourceQueue` tool is specific to MSMQ, and can be found in the [NServiceBus GitHub repository](https://github.com/Particular/NServiceBus).
-
-For more information on this process, please read [Transactions Message Processing](/nservicebus/operations/transactions-message-processing.md).
