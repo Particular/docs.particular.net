@@ -44,11 +44,11 @@ public class AccessingData
 
         public class OrderHandler : IHandleMessages<OrderMessage>
         {
-            public NHibernateStorageContext DataContext { get; set; }
+            public ISession Session { get; set; }
 
             public void Handle(OrderMessage message)
             {
-                DataContext.Session.Save(new Order());
+                Session.Save(new Order());
             }
         }
 
