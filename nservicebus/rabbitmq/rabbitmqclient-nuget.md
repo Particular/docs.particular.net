@@ -9,7 +9,7 @@ The NServiceBus.RabbitMQ library uses the [RabbitMQ.Client](http://www.nuget.org
 
 Due to the API/nuget versioning strategy of RabbitMQ.Client there are some complexities involved when using this dll from external libraries like NServiceBus.RabbitMQ.
 
-Most libraries NServiceBus integrates with follow [SemVer](http://semver.org/). This means that those libraries do not make breaking changes in Minor or Patch releases. So the nuget range for these libraries is generally `≥ CurrentMajor.0.0 && < NextMajor.0.0`. So it is safe for the consumer of these libraries to move between any Minor of the current Major version.
+Most libraries NServiceBus integrates with follow [SemVer](http://semver.org/). This means that those libraries do not make breaking changes in Minor or Patch releases. So the nuget range for these libraries is generally `≥ CurrentMajor && < NextMajor`. So it is safe for the consumer of these libraries to move between any Minor of the current Major version.
 
 The RabbitMQ.Client library does not follow SemVer. This means they are free to make breaking changes in Major, Minor or Patch released. 
 
@@ -31,6 +31,6 @@ Our standard approach to targeting nuget ranges is to target "any Minor in the c
 
 ### The current nuget dependency
 
-To address this, starting with NServiceBus.RabbitMQ version 2.1.3, the package will target a "current Minor" range i.e. `≥ CurrentMajor.CurrentMinor.0 && < CurrentMajor.NextMinor.0`. This is a compromise between the above two approaches. It allows some movement between RabbitMQ.Client versions while reducing the chance of breaking API changes. It also results in fewer deployments of NServiceBus.RabbitMQ to keep in sync.
+To address this, starting with NServiceBus.RabbitMQ version 2.1.3, the package will target a "current Minor" range i.e. `≥ CurrentMajor.CurrentMinor && < CurrentMajor.NextMinor`. This is a compromise between the above two approaches. It allows some movement between RabbitMQ.Client versions while reducing the chance of breaking API changes. It also results in fewer deployments of NServiceBus.RabbitMQ to keep in sync.
 
 So, after an upgrade of the RabbitMQ.Client nuget, if you have any problems with the above exceptions it is most likely a breaking API change. In that scenario please [Contact Us](http://particular.net/contactus) or raise an issue in the [NServiceBus.RabbitMQ GitHub Repository](https://github.com/Particular/NServiceBus.RabbitMQ).
