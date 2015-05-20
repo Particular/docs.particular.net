@@ -14,7 +14,7 @@ public class EndpointMappingConfigurationProvider :
             .GetSection(typeof(UnicastBusConfig).Name);
         if (config == null)
         {
-            //create new config if it doent exist
+            //create new config if it doesn't exist
             config = new UnicastBusConfig
             {
                 MessageEndpointMappings = new MessageEndpointMappingCollection()
