@@ -8,7 +8,10 @@
 
         public static void DeleteQueue(SqlConnection connection, string schema, string queueName)
         {
-            string deleteScript = string.Format(@"DROP TABLE [{0}].[{1}]", schema, queueName);
+            string sql = @"
+                    IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{0}].[{1}]') AND type in (N'U'))
+                    DROP TABLE [{0}].[{1}]";
+            string deleteScript = string.Format(sql, schema, queueName);
             using (var command = new SqlCommand(deleteScript, connection))
             {
                 command.ExecuteNonQuery();
