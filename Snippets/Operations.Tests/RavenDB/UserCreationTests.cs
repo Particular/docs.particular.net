@@ -12,6 +12,8 @@ namespace Operations.RavenDB.Tests
         [Test]
         public void Foo()
         {
+            #region raven-add-user-usage
+
             using (DocumentStore documentStore = new DocumentStore
             {
                 Url = "http://localhost:8083/"
@@ -20,6 +22,8 @@ namespace Operations.RavenDB.Tests
                 documentStore.Initialize();
                 UserCreation.AddUserToDatabase(documentStore, Environment.UserName);
             }
+
+            #endregion
         }
     }
 

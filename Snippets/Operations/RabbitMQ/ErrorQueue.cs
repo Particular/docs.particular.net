@@ -6,9 +6,10 @@
     using global::RabbitMQ.Client;
     using global::RabbitMQ.Client.Events;
 
-    //using RabbitMQ.Client
     public static class ErrorQueue
     {
+        #region rabbit-return-to-source-queue
+
         public static void ReturnMessageToSourceQueue(string errorQueueMachine, string errorQueueName, string userName, string password, string messageId)
         {
             using (IModel errorQueue = OpenQueue(errorQueueMachine, userName, password))
@@ -54,5 +55,7 @@
             IConnection conn = factory.CreateConnection();
             return conn.CreateModel();
         }
+
+        #endregion
     }
 }

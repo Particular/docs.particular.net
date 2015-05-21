@@ -9,13 +9,13 @@
     using System.Transactions;
     using System.Xml.Serialization;
 
-    //using System.Transactions.dll
     public static class ErrorQueue
     {
 
+        #region msmq-return-to-source-queue
         public static void ReturnMessageToSourceQueue(string machineName, string queueName, string msmqMessageId)
         {
-            using (var errorQueue = new MessageQueue(machineName + "\\private$\\" + queueName))
+            var errorQueue = new MessageQueue(machineName + "\\private$\\" + queueName);
             {
                 var messageReadPropertyFilter = new MessagePropertyFilter
                 {
@@ -68,4 +68,5 @@
         public string Key { get; set; }
         public string Value { get; set; }
     }
+        #endregion
 }

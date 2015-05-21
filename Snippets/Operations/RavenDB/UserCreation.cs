@@ -10,6 +10,7 @@
 
     public static class UserCreation
     {
+        #region raven-add-user
         public static void AddUserToDatabase(IDocumentStore documentStore, string username)
         {
             var systemCommands = documentStore
@@ -81,5 +82,6 @@
             public bool Enabled;
             public List<ResourceAccess> Databases = new List<ResourceAccess>();
         }
+        #endregion
     }
 }

@@ -6,6 +6,7 @@
     public static class QueueCreation
     {
 
+        #region rabbit-delete-queues
         public static void DeleteQueue(string uri, string queueName)
         {
             ConnectionFactory factory = new ConnectionFactory
@@ -38,7 +39,9 @@
             //timeout dispatcher queue
             DeleteQueue(uri, endpointName + ".TimeoutsDispatcher");
         }
+        #endregion
 
+        #region rabbit-create-queues
         public static void CreateQueuesForEndpoint(string uri, string endpointName, bool durableMessages, bool createExchanges)
         {
             //main queue
@@ -86,5 +89,6 @@
             channel.ExchangeDeclare(queueName, ExchangeType.Fanout, durableMessages);
             channel.QueueBind(queueName, queueName, string.Empty);
         }
+        #endregion
     }
 }

@@ -6,6 +6,7 @@
     public static class QueueCreation
     {
 
+        #region sqlserver-delete-queues
         public static void DeleteQueue(SqlConnection connection, string schema, string queueName)
         {
             string sql = @"
@@ -35,7 +36,9 @@
             //timeout dispatcher queue
             DeleteQueue(connection, schema, endpointName + ".TimeoutsDispatcher");
         }
+        #endregion
 
+        #region sqlserver-create-queues
         public static void CreateQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
         {
             //main queue
@@ -81,5 +84,6 @@
                 command.ExecuteNonQuery();
             }
         }
+        #endregion
     }
 }

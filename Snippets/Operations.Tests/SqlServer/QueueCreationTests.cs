@@ -10,37 +10,71 @@
         [Test]
         public void CreateQueuesForEndpoint()
         {
-            string databaseName = "shared";
+            #region sqlserver-create-queues-endpoint-usage
+            string databaseName = "myDatabase";
             string connectionString = string.Format(@"Data Source=.\SQLEXPRESS;Initial Catalog={0};Integrated Security=True", databaseName);
-            SqlConnection sqlConnection = new SqlConnection(connectionString);
-            sqlConnection.Open();
-            QueueCreation.CreateQueuesForEndpoint(
-                connection: sqlConnection,
-                schema: "dbo",
-                endpointName: "myendpoint");
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                QueueCreation.CreateQueuesForEndpoint(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    endpointName: "myendpoint");
 
-            QueueCreation.CreateQueue(
-                connection: sqlConnection, 
-                schema: "dbo",
-                queueName: "error");
+                #endregion
 
-            QueueCreation.CreateQueue(
-                connection: sqlConnection,
-                schema: "dbo",
-                queueName: "audit");
+                #region sqlserver-create-queues-shared-usage
+                QueueCreation.CreateQueue(
+                    connection: sqlConnection, 
+                    schema: "dbo",
+                    queueName: "error");
+
+                QueueCreation.CreateQueue(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    queueName: "audit");
+            }
+
+            #endregion
         }
 
         [Test]
         public void DeleteQueuesForEndpoint()
         {
-            string databaseName = "shared";
+            #region sqlserver-delete-queues-endpoint-usage
+            string databaseName = "myDatabase";
             string connectionString = string.Format(@"Data Source=.\SQLEXPRESS;Initial Catalog={0};Integrated Security=True", databaseName);
-            SqlConnection sqlConnection = new SqlConnection(connectionString);
-            sqlConnection.Open();
-            QueueCreation.DeleteQueuesForEndpoint(
-                connection: sqlConnection,
-                schema: "dbo",
-                endpointName: "myendpoint");
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                QueueCreation.DeleteQueuesForEndpoint(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    endpointName: "myendpoint");
+            }
+
+            #endregion
+        }
+        [Test]
+        public void DeleteSharedQueues()
+        {
+            #region sqlserver-delete-queues-shared-usage
+            string databaseName = "myDatabase";
+            string connectionString = string.Format(@"Data Source=.\SQLEXPRESS;Initial Catalog={0};Integrated Security=True", databaseName);
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                QueueCreation.DeleteQueue(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    queueName: "audit");
+                QueueCreation.DeleteQueue(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    queueName: "error");
+            }
+
+            #endregion
         }
     }
 

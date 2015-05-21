@@ -5,9 +5,9 @@ using System.Security.Principal;
 namespace Operations.Msmq
 {
 
-    //using System.Messaging.dll
     public static class QueueCreation
     {
+        #region msmq-delete-queues
         public static void DeleteAllQueues()
         {
             var machineQueues = MessageQueue.GetPrivateQueuesByMachine(".");
@@ -40,7 +40,9 @@ namespace Operations.Msmq
             //timeout dispatcher queue
             DeleteQueue(endpointName + ".timeoutsdispatcher");
         }
+        #endregion
 
+        #region msmq-create-queues
         public static void CreateQueuesForEndpoint(string endpointName, string account)
         {
             //main queue
@@ -87,6 +89,7 @@ namespace Operations.Msmq
         static string LocalAdministratorsGroupName = new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null).Translate(typeof(NTAccount)).ToString();
         static string LocalEveryoneGroupName = new SecurityIdentifier(WellKnownSidType.WorldSid, null).Translate(typeof(NTAccount)).ToString();
         static string LocalAnonymousLogonName = new SecurityIdentifier(WellKnownSidType.AnonymousSid, null).Translate(typeof(NTAccount)).ToString();
+        #endregion
     }
 
 }
