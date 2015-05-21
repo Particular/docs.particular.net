@@ -1,4 +1,4 @@
-﻿namespace SimplSaga
+﻿namespace SimpleSaga
 {
     using System;
     using NServiceBus;
