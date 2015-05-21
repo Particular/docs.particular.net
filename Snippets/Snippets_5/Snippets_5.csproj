@@ -311,7 +311,7 @@
     <None Include="Transports\Mqmq\MessageQueueConfiguration.config" />
     <None Include="Transports\RabbitMQ\App.config" />
     <None Include="Transports\SqlServer\MultiDb.config" />
-    <None Include="Transports\Throughtput\InitialThroughtput.config">
+    <None Include="Transports\Throughtput\InitialThroughput.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -414,7 +414,7 @@
     <Compile Include="Transports\RabbitMQ\ConfigurationSettings.cs" />
     <Compile Include="Transports\SqlServer\MultiDb.cs" />
     <Compile Include="Transports\SqlServer\ConfigurationSettings.cs" />
-    <Compile Include="Transports\Throughtput\Throughtput.cs" />
+    <Compile Include="Transports\Throughtput\Throughput.cs" />
     <Compile Include="UnitTesting\AdditionalServices.cs" />
     <Compile Include="UnitTesting\HeaderManipulation.cs" />
     <Compile Include="UnitTesting\Saga.cs" />

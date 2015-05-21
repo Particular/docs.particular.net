@@ -2,10 +2,10 @@
 using NServiceBus.Config.ConfigurationSource;
 using NServiceBus.Unicast;
 
-public class Throughtput
+public class Throughput
 {
 
-    #region ThroughtputFromCode
+    #region ThroughputFromCode
 
     public class ConfigureEncryption :
         IProvideConfiguration<TransportConfig>
@@ -25,13 +25,13 @@ public class Throughtput
     {
         UnicastBus bus = null;
 
-        #region ChangeThroughtput
+        #region ChangeThroughput
         //bus is an instance of NServiceBus.Unicast.UnicastBus
         bus.Transport.ChangeMaximumMessageThroughputPerSecond(10);
         bus.Transport.ChangeMaximumConcurrencyLevel(5);
         #endregion
 
-        #region ReadThroughtput
+        #region ReadThroughput
 
         //bus is an instance of NServiceBus.Unicast.UnicastBus
         int messageThroughputPerSecond = bus.Transport.MaximumMessageThroughputPerSecond;

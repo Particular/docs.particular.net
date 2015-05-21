@@ -102,7 +102,7 @@
     <None Include="Persistence\NHibernate\nhibernate.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Transports\Throughtput\InitialThroughtput.config">
+    <None Include="Transports\Throughtput\InitialThroughput.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="Transports\Msmq\MsmqTransportConfig.config" />
@@ -145,7 +145,7 @@
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\CustomSecondLevelRetriesConfig.cs" />
     <Compile Include="SendOnly.cs" />
-    <Compile Include="Transports\Throughtput\Throughtput.cs" />
+    <Compile Include="Transports\Throughtput\Throughput.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SecondLevelRetries\app.config.xml">

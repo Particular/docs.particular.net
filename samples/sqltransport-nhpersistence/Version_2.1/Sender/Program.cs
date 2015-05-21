@@ -25,9 +25,13 @@ class Program
 
         #region SenderConfiguration
 
-        busConfiguration.UseTransport<SqlServerTransport>().DefaultSchema("sender")
-            .UseSpecificConnectionInformation(EndpointConnectionInfo.For("receiver").UseSchema("receiver"));
-        busConfiguration.UsePersistence<NHibernatePersistence>().UseConfiguration(hibernateConfig);
+        busConfiguration.UseTransport<SqlServerTransport>()
+            .DefaultSchema("sender")
+            .UseSpecificConnectionInformation(
+                EndpointConnectionInfo.For("receiver")
+                    .UseSchema("receiver"));
+        busConfiguration.UsePersistence<NHibernatePersistence>()
+            .UseConfiguration(hibernateConfig);
 
         #endregion
 

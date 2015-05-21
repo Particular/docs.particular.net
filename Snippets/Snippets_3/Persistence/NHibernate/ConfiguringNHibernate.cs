@@ -25,7 +25,7 @@ class ConfiguringNHibernate
         Configure.With()
             .DBSubcriptionStorage(nhConfiguration,true)
             .UseNHibernateTimeoutPersister(nhConfiguration, true);
-        // custom code nh configuration for sagas and gateways was not supported in verison 3.;
+        // custom code nh configuration for sagas and gateways was not supported in version 3.;
 
         #endregion
 

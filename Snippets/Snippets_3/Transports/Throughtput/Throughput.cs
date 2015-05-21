@@ -1,10 +1,10 @@
 ﻿using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
-public class Throughtput
+public class Throughput
 {
 
-    #region ThroughtputFromCode
+    #region ThroughputFromCode
 
     public class ConfigureEncryption :
         IProvideConfiguration<MsmqTransportConfig>
