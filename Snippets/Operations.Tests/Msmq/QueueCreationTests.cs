@@ -8,20 +8,31 @@ namespace Operations.Msmq.Tests
     public class QueueCreationTests
     {
         [Test]
-        public void Foo()
+        public void CreateQueuesForEndpoint()
         {
-            QueueCreation.CreateAllForEndpoint(
+            QueueCreation.CreateQueuesForEndpoint(
                 endpointName: "myendpoint",
                 account: Environment.UserName);
 
-            QueueCreation.CreateLocalQueue(
+            QueueCreation.CreateQueue(
                 queueName: "error",
                 account: Environment.UserName);
 
-            QueueCreation.CreateLocalQueue(
+            QueueCreation.CreateQueue(
                 queueName: "audit",
                 account: Environment.UserName);
+        }
 
+        [Test]
+        public void DeleteAllQueues()
+        {
+            QueueCreation.DeleteAllQueues();
+        }
+
+        [Test]
+        public void DeleteQueuesForEndpoint()
+        {
+            QueueCreation.DeleteQueuesForEndpoint("myendpoint");
         }
     }
 

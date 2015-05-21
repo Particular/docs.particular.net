@@ -33,7 +33,14 @@
     <Reference Include="RabbitMQ.Client">
       <HintPath>..\packages\RabbitMQ.Client.3.5.2\lib\net40\RabbitMQ.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\packages\RavenDB.Client.3.0.3660\lib\net45\Raven.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\packages\RavenDB.Client.3.0.3660\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Messaging" />
     <Reference Include="System.Transactions" />
@@ -45,14 +52,14 @@
   <ItemGroup>
     <Folder Include="NHibernate\" />
     <Folder Include="PerformanceCounters\" />
-    <Folder Include="RavenDB\" />
-    <Folder Include="SqlServer\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Msmq\ErrorQueue.cs" />
     <Compile Include="Msmq\QueueCreation.cs" />
     <Compile Include="RabbitMQ\ErrorQueue.cs" />
     <Compile Include="RabbitMQ\QueueCreation.cs" />
+    <Compile Include="RavenDB\UserCreation.cs" />
+    <Compile Include="SqlServer\QueueCreation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

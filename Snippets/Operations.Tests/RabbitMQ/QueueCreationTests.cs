@@ -7,26 +7,33 @@
     public class QueueCreationTests
     {
         [Test]
-        public void Foo()
+        public void CreateQueuesForEndpoint()
         {
-            QueueCreation.CreateAllForEndpoint(
+            QueueCreation.CreateQueuesForEndpoint(
                 uri: "amqp://guest:guest@localhost:5672", 
-                endpointName: "myendpoint2",
+                endpointName: "myendpoint",
                 durableMessages: true,
                 createExchanges:true);
 
-            QueueCreation.CreateLocalQueue(
+            QueueCreation.CreateQueue(
                 uri: "amqp://guest:guest@localhost:5672", 
                 queueName: "error",
                 durableMessages: true,
                 createExchange: true);
 
-            QueueCreation.CreateLocalQueue(
+            QueueCreation.CreateQueue(
                 uri: "amqp://guest:guest@localhost:5672", 
                 queueName: "audit",
                 durableMessages: true,
                 createExchange: true);
+        }
 
+        [Test]
+        public void DeleteQueuesForEndpoint()
+        {
+            QueueCreation.DeleteQueuesForEndpoint(
+                uri: "amqp://guest:guest@localhost:5672", 
+                endpointName: "myendpoint");
         }
     }
 

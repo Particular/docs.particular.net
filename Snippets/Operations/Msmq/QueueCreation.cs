@@ -4,25 +4,59 @@ using System.Security.Principal;
 
 namespace Operations.Msmq
 {
+
     //using System.Messaging.dll
     public static class QueueCreation
     {
-        public static void CreateAllForEndpoint(string endpointName, string account)
+        public static void DeleteAllQueues()
         {
-            //main queue
-            CreateLocalQueue(endpointName, account);
-
-            //retries queue
-            CreateLocalQueue(endpointName + ".retries", account);
-
-            //timeout queue
-            CreateLocalQueue(endpointName + ".timeouts", account);
-
-            //timeout dispatcher queue
-            CreateLocalQueue(endpointName + ".timeoutsdispatcher", account);
+            var machineQueues = MessageQueue.GetPrivateQueuesByMachine(".");
+            foreach (var q in machineQueues)
+            {
+                MessageQueue.Delete(q.Path);
+            }
         }
 
-        public static void CreateLocalQueue(string queueName, string account)
+        public static void DeleteQueue(string queueName)
+        {
+            string path = Environment.MachineName + "\\private$\\" + queueName;
+            if (MessageQueue.Exists(path))
+            {
+                MessageQueue.Delete(path);
+            }
+        }
+
+        public static void DeleteQueuesForEndpoint(string endpointName)
+        {
+            //main queue
+            DeleteQueue(endpointName);
+
+            //retries queue
+            DeleteQueue(endpointName + ".retries");
+
+            //timeout queue
+            DeleteQueue(endpointName + ".timeouts");
+
+            //timeout dispatcher queue
+            DeleteQueue(endpointName + ".timeoutsdispatcher");
+        }
+
+        public static void CreateQueuesForEndpoint(string endpointName, string account)
+        {
+            //main queue
+            CreateQueue(endpointName, account);
+
+            //retries queue
+            CreateQueue(endpointName + ".retries", account);
+
+            //timeout queue
+            CreateQueue(endpointName + ".timeouts", account);
+
+            //timeout dispatcher queue
+            CreateQueue(endpointName + ".timeoutsdispatcher", account);
+        }
+
+        public static void CreateQueue(string queueName, string account)
         {
             string msmqQueueName = Environment.MachineName + "\\private$\\" + queueName;
             if (MessageQueue.Exists(msmqQueueName))

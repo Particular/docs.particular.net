@@ -9,9 +9,8 @@ namespace Operations.RabbitMQ.Tests
     public class ErrorQueueTests
     {
         [Test]
-        public void Foo()
+        public void ReturnMessageToSourceQueue()
         {
-
             ErrorQueue.ReturnMessageToSourceQueue(
                 errorQueueMachine: Environment.MachineName, 
                 errorQueueName: "error",

@@ -8,7 +8,7 @@ namespace Operations.Msmq.Tests
     public class ErrorQueueTests
     {
         [Test]
-        public void Foo()
+        public void ReturnMessageToSourceQueue()
         {
             ErrorQueue.ReturnMessageToSourceQueue(
                 machineName: Environment.MachineName, 
