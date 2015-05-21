@@ -49,10 +49,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NHibernate\" />
-    <Folder Include="PerformanceCounters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="Msmq\ErrorQueue.cs" />
     <Compile Include="Msmq\QueueCreation.cs" />
