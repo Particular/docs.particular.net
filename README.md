@@ -215,7 +215,18 @@ The most common mis-use of screenshots it when capturing console output. DO NOT 
 
 ### Defining Snippets
 
-There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. All `.cs`, `.xml`, `.sql`, `.html` and `.config` files in that directory are parsed for code snippets. Any directory containing a `_excludesnippets` file will have its snippets ignored.
+There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. Any directory containing a `_excludesnippets` file will have its snippets ignored.
+
+File extensions scanned for snippets include:
+
+ * `.config`
+ * `.cs`
+ * `.cscfg`
+ * `.csdef` 
+ * `.html`
+ * `.sql`
+ * `.txt`
+ * `.xml`
 
 #### Using comments
 
