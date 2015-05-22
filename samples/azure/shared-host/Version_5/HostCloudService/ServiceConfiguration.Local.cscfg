@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="HostCloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-06.2.4">
+  <Role name="HostWorker">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="DynamicHostControllerConfig.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="DynamicHostControllerConfig.AutoUpdate" value="true" />
+      <Setting name="DynamicHostControllerConfig.UpdateInterval" value="5000" />
+      <Setting name="DynamicHostControllerConfig.Container" value="endpoints" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>
