@@ -3,20 +3,20 @@ startcode HeaderWriterSaga_Sending
 $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = c96e77f85a4a0c20d8ba00958cf28597
 $.diagnostics.originating.hostid = c96e77f85a4a0c20d8ba00958cf28597
-CorrId = aa5a2075-f969-4939-9fe2-a4a100c8678f\0
+CorrId = 01b3b462-d558-4dbd-a0db-a4a100ecd3cf\0
 NServiceBus.ContentType = text/xml
-NServiceBus.ConversationId = f121ff7a-cfde-41d4-9fab-a4a100c8678b
-NServiceBus.CorrelationId = aa5a2075-f969-4939-9fe2-a4a100c8678f
-NServiceBus.EnclosedMessageTypes = MyNamespace.SendFromSagaMessage, Snippets_5, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-NServiceBus.MessageId = aa5a2075-f969-4939-9fe2-a4a100c8678f
+NServiceBus.ConversationId = dcb6499a-e35a-43b1-b461-a4a100ecd3ca
+NServiceBus.CorrelationId = 01b3b462-d558-4dbd-a0db-a4a100ecd3cf
+NServiceBus.EnclosedMessageTypes = MyNamespace.SendFromSagaMessage, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+NServiceBus.MessageId = 01b3b462-d558-4dbd-a0db-a4a100ecd3cf
 NServiceBus.MessageIntent = Send
 NServiceBus.OriginatingEndpoint = HeaderWriterSagaV5
 NServiceBus.OriginatingMachine = MACHINENAME
-NServiceBus.OriginatingSagaId = ad803e06-72c0-4f4b-9389-a4a100c8678f
-NServiceBus.OriginatingSagaType = MyNamespace.Saga1, Snippets_5, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-NServiceBus.RelatedTo = 62d4d348-847c-4dae-a322-a4a100c8678b
+NServiceBus.OriginatingSagaId = cafb4c67-c132-48ca-bc72-a4a100ecd3cf
+NServiceBus.OriginatingSagaType = MyNamespace.Saga1, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+NServiceBus.RelatedTo = 638c0480-c9e4-4b48-b20d-a4a100ecd3ca
 NServiceBus.ReplyToAddress = HeaderWriterSagaV5@MACHINENAME
-NServiceBus.TimeSent = 2015-05-23 02:09:39:035601 Z
+NServiceBus.TimeSent = 2015-05-23 04:22:15:727151 Z
 NServiceBus.Version = 5.2.0
 WinIdName = USERNAME
 

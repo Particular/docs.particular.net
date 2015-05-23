@@ -3,18 +3,18 @@ startcode HeaderWriterReply_Replying
 $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = c96e77f85a4a0c20d8ba00958cf28597
 $.diagnostics.originating.hostid = c96e77f85a4a0c20d8ba00958cf28597
-CorrId = 9dcdc1bd-b0d3-47f8-b41c-a4a100c8632b\0
+CorrId = 38f2e0f1-e3e6-42fa-8f5d-a4a100ecceaf\0
 NServiceBus.ContentType = text/xml
-NServiceBus.ConversationId = 490921e7-6c78-492b-9713-a4a100c8632b
-NServiceBus.CorrelationId = 9dcdc1bd-b0d3-47f8-b41c-a4a100c8632b
-NServiceBus.EnclosedMessageTypes = MyNamespace.MessageToReply, Snippets_5, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-NServiceBus.MessageId = f32fb2c4-5488-43c1-8341-a4a100c86330
+NServiceBus.ConversationId = 1b742801-1de9-4629-9b78-a4a100ecceaf
+NServiceBus.CorrelationId = 38f2e0f1-e3e6-42fa-8f5d-a4a100ecceaf
+NServiceBus.EnclosedMessageTypes = MyNamespace.MessageToReply, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+NServiceBus.MessageId = 53b8300f-e1d1-4836-9cf3-a4a100ecceb3
 NServiceBus.MessageIntent = Reply
 NServiceBus.OriginatingEndpoint = HeaderWriterReplyV5
 NServiceBus.OriginatingMachine = MACHINENAME
-NServiceBus.RelatedTo = 9dcdc1bd-b0d3-47f8-b41c-a4a100c8632b
+NServiceBus.RelatedTo = 38f2e0f1-e3e6-42fa-8f5d-a4a100ecceaf
 NServiceBus.ReplyToAddress = HeaderWriterReplyV5@MACHINENAME
-NServiceBus.TimeSent = 2015-05-23 02:09:35:302321 Z
+NServiceBus.TimeSent = 2015-05-23 04:22:11:366649 Z
 NServiceBus.Version = 5.2.0
 WinIdName = USERNAME
 

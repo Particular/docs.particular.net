@@ -25,7 +25,8 @@ public static class HeaderWriter
             }
             stringBuilder.AppendFormat("{0} = {1}\r\n", header.Key, value);
         }
+        Type type = typeof(TRootTypeToReplace);
         return stringBuilder.ToString()
-            .Replace(typeof(TRootTypeToReplace).Name+"+","MyNamespace.");
+            .Replace(type.Name + "+", "MyNamespace.")
     }
 }

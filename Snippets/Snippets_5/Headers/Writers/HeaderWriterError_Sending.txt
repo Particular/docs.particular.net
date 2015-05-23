@@ -3,17 +3,17 @@ startcode HeaderWriterError_Sending
 $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = c96e77f85a4a0c20d8ba00958cf28597
 $.diagnostics.originating.hostid = c96e77f85a4a0c20d8ba00958cf28597
-CorrId = 710d33e4-8a4f-4b27-9f7e-a4a100c8590e\0
+CorrId = 0e619bf9-3d18-4469-8f68-a4a100ecc3b8\0
 NServiceBus.ContentType = text/xml
-NServiceBus.ConversationId = 5749508e-0024-40af-804b-a4a100c85911
-NServiceBus.CorrelationId = 710d33e4-8a4f-4b27-9f7e-a4a100c8590e
-NServiceBus.EnclosedMessageTypes = MyNamespace.MessageToSend, Snippets_5, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-NServiceBus.MessageId = 710d33e4-8a4f-4b27-9f7e-a4a100c8590e
+NServiceBus.ConversationId = f43a6048-bdb7-4a45-bdb1-a4a100ecc3c0
+NServiceBus.CorrelationId = 0e619bf9-3d18-4469-8f68-a4a100ecc3b8
+NServiceBus.EnclosedMessageTypes = MyNamespace.MessageToSend, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+NServiceBus.MessageId = 0e619bf9-3d18-4469-8f68-a4a100ecc3b8
 NServiceBus.MessageIntent = Send
 NServiceBus.OriginatingEndpoint = HeaderWriterErrorV5
 NServiceBus.OriginatingMachine = MACHINENAME
 NServiceBus.ReplyToAddress = HeaderWriterErrorV5@MACHINENAME
-NServiceBus.TimeSent = 2015-05-23 02:09:26:655750 Z
+NServiceBus.TimeSent = 2015-05-23 04:22:01:997728 Z
 NServiceBus.Version = 5.2.0
 WinIdName = USERNAME
 
