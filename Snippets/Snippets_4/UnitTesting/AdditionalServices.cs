@@ -5,6 +5,7 @@ using NUnit.Framework;
 namespace UnitTesting.AdditionalDependencies
 {
 
+    [Explicit]
     #region TestingAdditionalDependencies
 
     public class MyTest

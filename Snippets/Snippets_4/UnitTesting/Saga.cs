@@ -7,6 +7,7 @@ using NUnit.Framework;
 namespace UnitTesting.SagaTest
 {
 
+    [Explicit]
     #region TestingSaga
 
     public class MyTest

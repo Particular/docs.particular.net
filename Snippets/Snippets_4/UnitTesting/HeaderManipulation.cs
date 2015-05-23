@@ -5,6 +5,7 @@ using NUnit.Framework;
 namespace UnitTesting.HeaderManipulation
 {
 
+    [Explicit]
     #region TestingHeaderManipulation
 
     public class MyTest
