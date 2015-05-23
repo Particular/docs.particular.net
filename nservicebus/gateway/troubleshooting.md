@@ -21,7 +21,7 @@ Url reservation add failed, Error: 183
 Cannot create a file when that file already exists.
 ```
 
-This warning can usually be safely ignored. However when urlacls are corrupted the same behaviours occurs. This problem will manifest in that everything seems to be working correctly except that the gateway will not be listening on the port.
+This warning can usually be safely ignored. However when urlacls are corrupted the same behaviors occurs. This problem will manifest in that everything seems to be working correctly except that the gateway will not be listening on the port.
 
 To verify this problem you can navigate to the url (in this case `http://localhost:25894/MyEndpoint/`) in a browser. If the gateway is listening you will receive 
 

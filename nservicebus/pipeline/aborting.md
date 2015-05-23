@@ -18,6 +18,6 @@ Warning: Handler execution order is non-deterministic. If you require the handle
 
 The pipeline can also be aborted by injecting a custom Behavior that, with some custom logic, optionally decides to abort Behaviors nested inside it. 
 
-<!-- import AbortPipelineWithBehaviour--> 
+<!-- import AbortPipelineWithBehavior--> 
 
 For more information about creating and where to inject a behavior see [customizing the pipeline](/nservicebus/pipeline/customizing.md).

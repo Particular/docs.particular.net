@@ -8,9 +8,8 @@ using NServiceBus.Unicast.Messages;
 
 class HeaderUsage
 {
-    #region header-incoming-behaviour
-    public class SampleIncomingBehavior :
-        IBehavior<IncomingContext>
+    #region header-incoming-behavior
+    public class SampleIncomingBehavior : IBehavior<IncomingContext>
     {
         public void Invoke(IncomingContext context, Action next)
         {

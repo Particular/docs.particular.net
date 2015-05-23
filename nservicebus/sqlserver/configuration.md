@@ -29,7 +29,7 @@ The tables are created during host install time by [installers](/nservicebus/ope
 
 ## Concurrency
 
-The SQL Server transport adapts the number of receiving threads (up to `MaximumConcurrencyLevel` [set via `TransportConfig` section](/nservicebus/msmq/transportconfig.md)) to the amount of messages waiting for processing. When idle it maintains only one thread that continuously polls the table queue. A more details description of the concurrency control mechanism, as well as the description of behaviour of previous versions, can be found [here](concurrency.md).
+The SQL Server transport adapts the number of receiving threads (up to `MaximumConcurrencyLevel` [set via `TransportConfig` section](/nservicebus/msmq/transportconfig.md)) to the amount of messages waiting for processing. When idle it maintains only one thread that continuously polls the table queue. A more details description of the concurrency control mechanism, as well as the description of behavior of previous versions, can be found [here](concurrency.md).
 
 ## Transactions
 

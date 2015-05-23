@@ -23,7 +23,7 @@ related:
  10. Open SQL Server Management Studio and go to the `receiver` database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`)
  11. Go the the `shared` database. Verify that there are messages in the `dbo.audit` table and, if any message failed processing, messages in `dbo.error` table.
 
-NOTE: The handling code has built-in chaotic behaviour. There is 50% chance that a given message fails processing. This is because we want to demonstrate that errors can be send to a separate shared database which is essential for ServiceControl to be able to pick them up.
+NOTE: The handling code has built-in chaotic behavior. There is 50% chance that a given message fails processing. This is because we want to demonstrate that errors can be send to a separate shared database which is essential for ServiceControl to be able to pick them up.
 
 ## Code walk-through
 

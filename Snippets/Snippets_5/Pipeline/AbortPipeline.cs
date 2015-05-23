@@ -25,7 +25,7 @@ namespace AbortPipeline
     }
 
     #endregion
-    #region AbortPipelineWithBehaviour
+    #region AbortPipelineWithBehavior
     public class SampleBehavior : IBehavior<IncomingContext>
     {
         public void Invoke(IncomingContext context, Action next)
