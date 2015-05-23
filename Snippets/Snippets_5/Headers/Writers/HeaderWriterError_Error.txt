@@ -3,7 +3,11 @@ startcode HeaderWriterError_Error
 $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = c96e77f85a4a0c20d8ba00958cf28597
 $.diagnostics.originating.hostid = c96e77f85a4a0c20d8ba00958cf28597
+CorrId = 0e619bf9-3d18-4469-8f68-a4a100ecc3b8\0
 NServiceBus.ContentType = text/xml
+NServiceBus.ConversationId = f43a6048-bdb7-4a45-bdb1-a4a100ecc3c0
+NServiceBus.CorrelationId = 0e619bf9-3d18-4469-8f68-a4a100ecc3b8
+NServiceBus.EnclosedMessageTypes = MyNamespace.MessageToSend, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 NServiceBus.ExceptionInfo.ExceptionType = System.Exception
 NServiceBus.ExceptionInfo.HelpLink = 
 NServiceBus.ExceptionInfo.Message = The exception message from the handler.
@@ -26,10 +30,13 @@ NServiceBus.ExceptionInfo.StackTrace = System.Exception: The exception message f
       at NServiceBus.Transports.Msmq.MsmqDequeueStrategy.Action()
 NServiceBus.FailedQ = HeaderWriterErrorV5@MACHINENAME
 NServiceBus.FLRetries = 0
+NServiceBus.MessageId = 0e619bf9-3d18-4469-8f68-a4a100ecc3b8
 NServiceBus.MessageIntent = Send
 NServiceBus.OriginatingEndpoint = HeaderWriterErrorV5
 NServiceBus.OriginatingMachine = MACHINENAME
 NServiceBus.ReplyToAddress = HeaderWriterErrorV5@MACHINENAME
+NServiceBus.TimeOfFailure = 2015-05-23 04:22:04:699657 Z
+NServiceBus.TimeSent = 2015-05-23 04:22:01:997728 Z
 NServiceBus.Version = 5.2.0
 WinIdName = USERNAME
 endcode

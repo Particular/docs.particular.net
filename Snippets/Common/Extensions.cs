@@ -28,5 +28,6 @@ public static class HeaderWriter
         Type type = typeof(TRootTypeToReplace);
         return stringBuilder.ToString()
             .Replace(type.Name + "+", "MyNamespace.")
+            .Replace(", "+type.Assembly.GetName().Name + ",", ", MyAssembly,");
     }
 }
