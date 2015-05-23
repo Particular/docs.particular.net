@@ -30,6 +30,19 @@
     color: inherit;
 	white-space: nowrap;
   }
+  
+  .block.black a {
+  	font-family: 'roboto',sans-serif;
+  }
+  
+  .productcolumn a {
+  	color: rgb(0,114,156);
+	font-family: dosis, sans-serif;
+	font-weight: 600;
+	white-space: nowrap;
+	line-height: 30px;
+  }
+  
   .block{
     width: 100%;
     background-color: rgb(233,240,242);
@@ -113,9 +126,10 @@
   }
   .block h4{
     font-size: 16px !important;
-    font-family: 'Dosis', bold;
-    font-weight: bold;
+    font-family: 'roboto', sans-serif;
+    font-weight: normal;
     margin-top: 0px;
+    line-height: 24px;
   }
   .block h5{        
     color: rgb(0,114,156);
@@ -132,9 +146,12 @@
     float: left;
     margin: 0px 13px 23px 0px;
   }
+  .product.block {
+  	padding-bottom: 0;
+  }
   .productcolumn{
-    width: 32%;
-    margin-right: 2%;
+    width: 49%;
+    margin: 48px 2% 0 0;
     float: left;        
   }
   .productcolumn.header{
@@ -157,6 +174,13 @@
     margin-left: 0px;
     padding-left: 0px;
   }
+  
+  ul {
+  	margin-bottom: 20px;
+  	margin-top: 20px;
+  	padding-left: 18px;
+  }
+  
   .productcolumnc li {
     color: rgb(0,114,156) !important;
     font-size: 14px;
@@ -248,75 +272,112 @@
   </div>
   <div style="clear: both"></div>
 </div>
-<div class="productcolumn header">
-  <div class="block top">
-    <a href="/servicematrix/">
-      <img src="/home/servicematrix.png" />
-    </a>
-    <div style="clear: both"></div>
-  </div>
-</div>
-<div class="productcolumn header">
-  <div class="block top">
-    <a href="/serviceinsight/">
-      <img src="/home/serviceinsight.png" />
-    </a>
-    <div style="clear: both"></div>
-  </div>
-</div>
-<div class="productcolumn header last">
-  <div class="block top">
-    <a href="/servicepulse/">
-      <img src="/home/servicepulse.png" />
-    </a>
-    <div style="clear: both"></div>
-  </div>
-</div>
-<div class="productcolumnc">
-  <div class="productcolumn block">
-    <p><h4>Generate a fully functional distributed application skeleton in a matter of minutes</h4></p>
-    <ul>
-      <li><a href="/servicematrix/getting-started-with-servicematrix-2.0.md">Getting Started</a></li>
-      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li>
-      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md">Fault Tolerance</a></li>
-    </ul>
-    <a href="/servicematrix/"><h3>Learn more</h3></a><br/>
-   <div style="clear: both"></div>
-  </div>
-  <div class="productcolumn block">
-    <p><h4>Complete under-the-hood visualization of the your system's behavior</h4></p>
-    <ul>
-      <li><a href="/serviceinsight/getting-started-overview.md">Getting Started</a></li>
-      <li><a href="/servicematrix/servicematrix-serviceinsight.md">Interaction with ServiceMatrix</a></li>
-      <li><a href="/serviceinsight/application-invocation.md">Application invocation</a></li>
-    </ul>
-    <a href="/serviceinsight/"><h3>Learn more</h3></a><br/>
-    <div style="clear: both"></div>
-  </div>
-  <div class="productcolumn last block">
-    <p><h4>Real-time monitoring that is custom tailored to fit your distributed systems</h4></p>
-    <ul>
-      <li><a href="/servicepulse/intro-endpoints-heartbeats.md">Monitoring Endpoints</a></li>
-      <li><a href="/servicepulse/intro-failed-messages.md">Handling Failed Messages</a></li>
-      <li><a href="/servicepulse/intro-endpoints-custom-checks.md">Introduction to Custom Checks</a></li>
-    </ul>
-    <a href="/servicepulse/"><h3>Learn more</h3></a><br/>
-    <div style="clear: both"></div>
-  </div>
-</div>
+
+
+
+
+
+
 <div class="productcolumn">
-  <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceMatrix/releases"><img src="/home/release-notes.png" /> Release notes</a></span>
-  </div>
+	<div class="header">
+	  <div class="block top">
+	    <a href="/servicematrix/">
+	      <img src="/home/servicematrix.png" />
+	    </a>
+	    <div style="clear: both"></div>
+	  </div>
+	</div>
+	<div class="block">
+	  <p><h4>Generate a fully functional distributed application skeleton in a matter of minutes</h4></p>
+	  <ul>
+	    <li><a href="/servicematrix/getting-started-with-servicematrix-2.0.md">Getting Started</a></li>
+	    <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li>
+	    <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md">Fault Tolerance</a></li>
+	  </ul>
+	  <a href="/servicematrix/"><h3>More articles</h3></a><br/>
+	 <div style="clear: both"></div>
+	</div>
+	<div class="block black">
+	  <span class="blue"><a href="https://github.com/Particular/ServiceMatrix/releases"><img src="/home/release-notes.png" /> Release notes</a></span>
+	</div>
 </div>
-<div class="productcolumn">
-  <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.png" /> Release notes</a></span>
-  </div>
-</div>
+
+
 <div class="productcolumn last">
-  <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><img src="/home/release-notes.png" /> Release notes</a></span>
-  </div>
+	<div class="header">
+	  <div class="block top">
+	    <a href="/serviceinsight/">
+	      <img src="/home/serviceinsight.png" />
+	    </a>
+	    <div style="clear: both"></div>
+	  </div>
+	</div>
+	<div class="block">
+	  <p><h4>Complete under-the-hood visualization of the your system's behavior</h4></p>
+	  <ul>
+	    <li><a href="/serviceinsight/getting-started-overview.md">Getting Started</a></li>
+	    <li><a href="/servicematrix/servicematrix-serviceinsight.md">Interaction with ServiceMatrix</a></li>
+	    <li><a href="/serviceinsight/application-invocation.md">Application invocation</a></li>
+	  </ul>
+	  <a href="/serviceinsight/"><h3>More articles</h3></a><br/>
+	  <div style="clear: both"></div>
+	</div>
+	<div class="block black">
+	  <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.png" /> Release notes</a></span>
+	</div>
+</div>	
+
+
+<div class="productcolumn">
+	<div class="header">
+	  <div class="block top">
+	    <a href="/servicepulse/">
+	      <img src="/home/servicepulse.png" />
+	    </a>
+	    <div style="clear: both"></div>
+	  </div>
+	</div>
+	<div class="block">
+	  <p><h4>Real-time monitoring that is custom tailored to fit your distributed systems</h4></p>
+	  <ul>
+	    <li><a href="/servicepulse/intro-endpoints-heartbeats.md">Monitoring Endpoints</a></li>
+	    <li><a href="/servicepulse/intro-failed-messages.md">Handling Failed Messages</a></li>
+	    <li><a href="/servicepulse/intro-endpoints-custom-checks.md">Introduction to Custom Checks</a></li>
+	  </ul>
+	  <a href="/servicepulse/"><h3>More articles</h3></a><br/>
+	  <div style="clear: both"></div>
+	</div>
+	<div class="block black">
+	  <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><img src="/home/release-notes.png" /> Release notes</a></span>
+	</div>
 </div>
+
+<div class="productcolumn last">
+	<div class="header">
+	  <div class="block top">
+	    <a href="/servicecontrol/">
+	      <img src="/home/servicecontrol.png" />
+	    </a>
+	    <div style="clear: both"></div>
+	  </div>
+	</div>
+	<div class="block">
+	  <p><h4>Real-time monitoring that is custom tailored to fit your distributed systems</h4></p>
+	  <ul>
+	    <li><a href="/servicepulse/intro-endpoints-heartbeats.md">Monitoring Endpoints</a></li>
+	    <li><a href="/servicepulse/intro-failed-messages.md">Handling Failed Messages</a></li>
+	    <li><a href="/servicepulse/intro-endpoints-custom-checks.md">Introduction to Custom Checks</a></li>
+	  </ul>
+	  <a href="/servicecontrol/"><h3>More articles</h3></a><br/>
+	  <div style="clear: both"></div>
+	</div>
+	<div class="block black">
+	  <span class="blue"><a href="https://github.com/Particular/ServiceControl/releases"><img src="/home/release-notes.png" /> Release notes</a></span>
+	</div>
+</div>
+
+
+
+
+
 <div style="clear: both; padding-top: 35px"></div>
