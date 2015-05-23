@@ -19,7 +19,7 @@ class HeaderUsage
         }
     }
     #endregion
-    #region header-outgoing-in-behavior
+    #region header-outgoing-behavior
     public class SampleOutgoingBehavior : IBehavior<SendPhysicalMessageContext>
     {
         public void Invoke(SendPhysicalMessageContext context, Action next)
@@ -30,7 +30,7 @@ class HeaderUsage
         }
     }
     #endregion
-    #region header-incoming-in-mutator
+    #region header-incoming-mutator
     public class SampleIncomingMutator : IMutateIncomingTransportMessages
     {
         public void MutateIncoming(TransportMessage transportMessage)
@@ -41,7 +41,7 @@ class HeaderUsage
         }
     }
     #endregion
-    #region header-outgoing-in-mutator
+    #region header-outgoing-mutator
     public class SampleOutgoingMutator : IMutateOutgoingTransportMessages
     {
         public void MutateOutgoing(object[] messages, TransportMessage transportMessage)
@@ -51,7 +51,7 @@ class HeaderUsage
         }
     }
     #endregion
-    #region header-incoming-in-handler
+    #region header-incoming-handler
     public class SampleReadHandler : IHandleMessages<MyMessage>
     {
         public IBus Bus { get; set; }
@@ -64,7 +64,7 @@ class HeaderUsage
         }
     }
     #endregion
-    #region header-outgoing-in-handler
+    #region header-outgoing-handler
     public class SampleWriteHandler : IHandleMessages<MyMessage>
     {
         public IBus Bus { get; set; }
