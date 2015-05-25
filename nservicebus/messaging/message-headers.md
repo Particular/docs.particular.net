@@ -56,7 +56,7 @@ The above example headers are for a Send and hence the MessageIntent header is `
 When doing a Reply to a Message
 
  * The MessageIntent is `Reply`.
- * The RelatedTo will is the same as the initiating MessageID.
+ * The RelatedTo will be the same as the initiating MessageID.
  * The ConversationId will be the same as the initiating ConversationId.
  * The CorrelationId will be same as the initiating CorrelationId.
 
