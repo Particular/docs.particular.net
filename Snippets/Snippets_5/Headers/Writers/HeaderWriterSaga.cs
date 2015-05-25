@@ -10,8 +10,7 @@ using Operations.Msmq;
 [TestFixture]
 public class HeaderWriterSaga
 {
-    public static ManualResetEvent ResetEvent;
-    public static UnicastBus Bus;
+    public static CountdownEvent CountdownEvent;
     string endpointName = "HeaderWriterSagaV5";
 
     [SetUp]
@@ -24,18 +23,18 @@ public class HeaderWriterSaga
     [Test]
     public void Write()
     {
-        ResetEvent = new ManualResetEvent(false);
+        CountdownEvent = new CountdownEvent(3);
         BusConfiguration config = new BusConfiguration();
         config.EndpointName(endpointName);
         config.TypesToScan(TypeScanner.TypesFor<HeaderWriterSaga>());
         config.EnableInstallers();
         config.UsePersistence<InMemoryPersistence>();
         config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-        using (IStartableBus startableBus = NServiceBus.Bus.Create(config))
-        using (Bus = (UnicastBus) startableBus.Start())
+        using (IStartableBus startableBus = Bus.Create(config))
+        using (var bus = (UnicastBus) startableBus.Start())
         {
-            Bus.SendLocal(new StartSaga1Message());
-            ResetEvent.WaitOne();
+            bus.SendLocal(new StartSaga1Message());
+            CountdownEvent.Wait();
         }
     }
 
@@ -53,7 +52,7 @@ public class HeaderWriterSaga
     {
         public void Handle(StartSaga1Message message)
         {
-            HeaderWriterSaga.Bus.SendLocal(new SendFromSagaMessage());
+            Bus.SendLocal(new SendFromSagaMessage());
         }
 
         public class SagaData : IContainSagaData
@@ -72,11 +71,14 @@ public class HeaderWriterSaga
         }
     }
 
-    class Saga2 : Saga<Saga2.SagaData>, IAmStartedByMessages<SendFromSagaMessage>
+    class Saga2 : Saga<Saga2.SagaData>, 
+        IAmStartedByMessages<SendFromSagaMessage>,
+        IHandleTimeouts<TimeoutFromSaga>
     {
         public void Handle(SendFromSagaMessage message)
         {
-            HeaderWriterSaga.Bus.Reply(new ReplyFromSagaMessage());
+            Bus.Reply(new ReplyFromSagaMessage());
+            RequestTimeout(TimeSpan.FromMilliseconds(1), new TimeoutFromSaga());
         }
 
         public class SagaData : IContainSagaData
@@ -89,6 +91,10 @@ public class HeaderWriterSaga
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
         {
         }
+
+        public void Timeout(TimeoutFromSaga state)
+        {
+        }
     }
 
     class Mutator : IMutateIncomingTransportMessages
@@ -99,13 +105,21 @@ public class HeaderWriterSaga
             {
                 string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
                 SnippetLogger.Write(text: headerText, suffix: "Sending");
+                CountdownEvent.Signal();
                 return;
             }
             if (transportMessage.IsMessageOfTye<ReplyFromSagaMessage>())
             {
                 string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
                 SnippetLogger.Write(text: headerText, suffix: "Replying");
-                ResetEvent.Set();
+                CountdownEvent.Signal();
+                return;
+            }
+            if (transportMessage.IsMessageOfTye<TimeoutFromSaga>())
+            {
+                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
+                SnippetLogger.Write(text: headerText, suffix: "Timeout");
+                CountdownEvent.Signal();
                 return;
             }
         }
@@ -117,6 +131,10 @@ public class HeaderWriterSaga
     }
 
     class MessageToReply : IMessage
+    {
+    }
+
+    class TimeoutFromSaga
     {
     }
 

@@ -77,7 +77,9 @@ The headers of reply message will be as follows:
 When doing a Defer the message will have similar header to a Send with a few editions:
 
  * The message will have IsDeferredMessage with the value of `true`.
- * Timeout header will exist since the Defer feature uses the Timeouts feature.
+ * Since the Defer feature uses the Timeouts feature the Timeout headers will exist.
+ * The Timeout.RouteExpiredTimeoutTo header contains the queue name for where the callback for the timeout should be sent/
+ * The Timeout.Expire header contains the timestamp for when the timeout should fire.
 
 
 ### Example Message Headers
@@ -117,9 +119,9 @@ When any message is distracted from within a Saga the message will contain the f
 <!-- import HeaderWriterSaga_Sending -->
 
 
-### Replying to a Saga
+## Replying to a Saga
 
-A message Reply from a Saga will have the following headers:
+A message Reply is performed from a Saga will have the following headers:
 
  * The send headers are basically the same as a normal Reply with a few additions. 
  * Since this reply is from a secondary Saga then OriginatingSagaId and OriginatingSagaType will match the second saga
@@ -130,6 +132,19 @@ A message Reply from a Saga will have the following headers:
 
 <!-- import HeaderWriterSaga_Replying -->
 
+
+## Requesting a Timeout from a Saga
+
+When requesting a Timeout from a Saga:
+ 
+ * The OriginatingSagaId, OriginatingSagaType, SagaId and SagaType will all match the Saga that requested the Timeout.
+ * The Timeout.RouteExpiredTimeoutTo header contains the queue name for where the callback for the timeout should be sent/
+ * The Timeout.Expire header contains the timestamp for when the timeout should fire.
+
+
+### Example Message Headers
+
+<!-- import HeaderWriterSaga_Timeout -->
 
 ## Forward to Error queue 
 
