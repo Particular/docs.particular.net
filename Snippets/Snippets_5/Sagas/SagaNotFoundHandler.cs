@@ -4,11 +4,16 @@ using NServiceBus.Saga;
 
 public class SagaNotFoundHandler : IHandleSagaNotFound
 {
-    public IBus Bus { get; set; }
+    IBus bus;
+
+    public SagaNotFoundHandler(IBus bus)
+    {
+        this.bus = bus;
+    }
 
     public void Handle(object message)
     {
-        Bus.Reply(new SagaDisappearedMessage());
+        bus.Reply(new SagaDisappearedMessage());
     }
 }
 
