@@ -1,6 +1,7 @@
 ﻿namespace Receiver
 {
     using NServiceBus;
+    using Shared;
 
     public class PingHandler : IHandleMessages<Ping>
     {
@@ -8,7 +9,11 @@
 
         public void Handle(Ping message)
         {
-            Bus.Reply(new Pong { Message = "Pong for Ping with message:" + message.Message});    
+            Logger.WriteLine("Receiver got Ping and will reply with Pong");
+            Bus.Reply(new Pong
+            {
+                Message = "Pong for Ping with message:" + message.Message
+            });    
         }
     }
 }

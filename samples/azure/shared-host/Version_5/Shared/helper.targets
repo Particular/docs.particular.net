@@ -1,0 +1,46 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask TaskName="Zip" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <Location Required="true" />
+      <ZipName Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Reference Include="System.IO.Compression.FileSystem" />
+      <Using Namespace="System.IO.Compression" />
+      <Using Namespace="System.IO" />
+      <Code Type="Fragment" Language="cs">
+        Log.LogMessage("Zipping all files at location: " + Location, MessageImportance.High);
+        var destination = Path.Combine(Location, @"..\..\..\_zips\" + ZipName + ".zip");
+        Log.LogMessage(MessageImportance.High, "AZURE SAMPLE: generating project zip file: " + destination);
+        ZipFile.CreateFromDirectory(Location, destination);
+      </Code>
+    </Task>
+  </UsingTask>
+
+  <UsingTask TaskName="RemoveZip" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+    <ParameterGroup>
+      <Location Required="true" />
+      <ZipName Required="true" />
+    </ParameterGroup>
+    <Task>
+      <Reference Include="System.IO.Compression.FileSystem" />
+      <Using Namespace="System.IO.Compression" />
+      <Using Namespace="System.IO" />
+      <Code Type="Fragment" Language="cs">
+        var dir = new DirectoryInfo(Path.Combine(Location, @"..\..\..\_zips\"));
+        if (dir.Exists)
+        {
+          foreach (FileInfo file in dir.GetFiles())
+          {
+            file.Delete();
+          }
+        }
+        else
+        {
+          dir.Create();
+        }
+        Log.LogMessage(MessageImportance.High, "AZURE SAMPLE: removing zip files from " + dir);
+      </Code>
+    </Task>
+  </UsingTask>
+</Project>

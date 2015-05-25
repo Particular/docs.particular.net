@@ -1,7 +1,7 @@
 ﻿namespace Sender
 {
-    using System.Diagnostics;
     using NServiceBus;
+    using Shared;
 
     public class SendPing : IWantToRunWhenBusStartsAndStops
     {
@@ -9,7 +9,7 @@
 
         public void Start()
         {
-            Trace.WriteLine("Pinging Receiver");
+            Logger.WriteLine("Sender is pinging Receiver");
             Bus.Send(new Ping
             {
                 Message = "Originated at Sender"

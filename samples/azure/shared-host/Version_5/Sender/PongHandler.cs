@@ -1,13 +1,13 @@
 ﻿namespace Sender
 {
-    using System.Diagnostics;
     using NServiceBus;
+    using Shared;
 
     public class PongHandler : IHandleMessages<Pong>
     {
         public void Handle(Pong message)
         {
-            Trace.WriteLine("Received Pong with message: " + message.Message);
+            Logger.WriteLine("Sender got Pong from Receiver with message: " + message.Message);
         }
     }
 }

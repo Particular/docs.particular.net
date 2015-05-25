@@ -44,9 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="zip.targets" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="NServiceBusFeatures.cs" />
     <Compile Include="Ping.cs" />
     <Compile Include="Pong.cs" />
