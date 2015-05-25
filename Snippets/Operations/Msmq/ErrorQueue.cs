@@ -9,9 +9,19 @@
     using System.Transactions;
     using System.Xml.Serialization;
 
+    // ReSharper disable once ArrangeStaticMemberQualifier
     public static class ErrorQueue
     {
 
+        public static void ReturnMessageToSourceQueueUsage()
+        {
+            #region msmq-return-to-source-queue-usage
+            ErrorQueue.ReturnMessageToSourceQueue(
+                machineName: Environment.MachineName,
+                queueName: "error",
+                msmqMessageId: @"c390a6fb-4fb5-46da-927d-a156f75739eb\15386");
+            #endregion
+        }
         #region msmq-return-to-source-queue
         public static void ReturnMessageToSourceQueue(string machineName, string queueName, string msmqMessageId)
         {

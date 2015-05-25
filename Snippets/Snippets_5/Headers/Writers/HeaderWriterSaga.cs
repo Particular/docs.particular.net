@@ -11,7 +11,7 @@ using Operations.Msmq;
 [TestFixture]
 public class HeaderWriterSaga
 {
-    public static CountdownEvent CountdownEvent;
+    public static CountdownEvent CountdownEvent = new CountdownEvent(3);
     string endpointName = "HeaderWriterSagaV5";
 
     [SetUp]
@@ -24,7 +24,6 @@ public class HeaderWriterSaga
     [Test]
     public void Write()
     {
-        CountdownEvent = new CountdownEvent(3);
         BusConfiguration config = new BusConfiguration();
         config.EndpointName(endpointName);
         IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterSaga>(typeof(ConfigErrorQueue));

@@ -11,7 +11,7 @@ using Operations.Msmq;
 [TestFixture]
 public class HeaderWriterDefer
 {
-    public static ManualResetEvent ManualResetEvent;
+    public static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
     public static bool Received;
     static string EndpointName = "HeaderWriterDeferV5";
 
@@ -25,7 +25,6 @@ public class HeaderWriterDefer
     [Test]
     public void Write()
     {
-        ManualResetEvent = new ManualResetEvent(false);
         BusConfiguration config = new BusConfiguration();
         config.EndpointName(EndpointName);
         IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDefer>(typeof(ConfigErrorQueue));

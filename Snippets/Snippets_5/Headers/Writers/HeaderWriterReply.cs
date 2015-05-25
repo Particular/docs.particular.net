@@ -9,7 +9,7 @@ using Operations.Msmq;
 [TestFixture]
 public class HeaderWriterReply
 {
-    public static ManualResetEvent ManualResetEvent;
+    public static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
     static IBus Bus;
     string endpointName = "HeaderWriterReplyV5";
 
@@ -23,7 +23,6 @@ public class HeaderWriterReply
     [Test]
     public void Write()
     {
-        ManualResetEvent = new ManualResetEvent(false);
         BusConfiguration config = new BusConfiguration();
         config.EndpointName(endpointName);
         IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterReply>(typeof(ConfigErrorQueue));

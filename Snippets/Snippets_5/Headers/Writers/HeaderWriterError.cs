@@ -13,7 +13,7 @@ using Operations.Msmq;
 public class HeaderWriterError
 {
 
-    static ManualResetEvent ManualResetEvent;
+    static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
     string endpointName = "HeaderWriterErrorV5";
 
     [SetUp]
@@ -26,7 +26,6 @@ public class HeaderWriterError
     [Test]
     public void Write()
     {
-        ManualResetEvent = new ManualResetEvent(false);
         BusConfiguration config = new BusConfiguration();
         config.EndpointName(endpointName);
         IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterError>(typeof(ConfigErrorQueue));

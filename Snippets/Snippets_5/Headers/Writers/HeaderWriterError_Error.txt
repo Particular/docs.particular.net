@@ -3,10 +3,10 @@ startcode HeaderWriterError_Error
 $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = c07243ab30d6211737fc47ea5f40cd3c
 $.diagnostics.originating.hostid = c07243ab30d6211737fc47ea5f40cd3c
-CorrId = 332a0184-c06e-4cdb-a0d5-a4a300f625f0\0
+CorrId = 70f6376c-1717-487e-9fb8-a4a30159d218\0
 NServiceBus.ContentType = text/xml
-NServiceBus.ConversationId = aa156096-6b65-4316-bf12-a4a300f625f4
-NServiceBus.CorrelationId = 332a0184-c06e-4cdb-a0d5-a4a300f625f0
+NServiceBus.ConversationId = 34aea84a-2362-423e-84c1-a4a30159d219
+NServiceBus.CorrelationId = 70f6376c-1717-487e-9fb8-a4a30159d218
 NServiceBus.EnclosedMessageTypes = MyNamespace.MessageToSend, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 NServiceBus.ExceptionInfo.ExceptionType = System.Exception
 NServiceBus.ExceptionInfo.HelpLink = 
@@ -30,17 +30,17 @@ NServiceBus.ExceptionInfo.StackTrace = System.Exception: The exception message f
       at NServiceBus.Transports.Msmq.MsmqDequeueStrategy.Action()
 NServiceBus.FailedQ = HeaderWriterErrorV5@MACHINENAME
 NServiceBus.FLRetries = 0
-NServiceBus.MessageId = 332a0184-c06e-4cdb-a0d5-a4a300f625f0
+NServiceBus.MessageId = 70f6376c-1717-487e-9fb8-a4a30159d218
 NServiceBus.MessageIntent = Send
 NServiceBus.OriginatingEndpoint = HeaderWriterErrorV5
 NServiceBus.OriginatingMachine = MACHINENAME
 NServiceBus.RelatedToTimeoutId = 
 NServiceBus.ReplyToAddress = HeaderWriterErrorV5@MACHINENAME
-NServiceBus.Retries.Timestamp = 2015-05-25 04:56:13:980160 Z
-NServiceBus.TimeOfFailure = 2015-05-25 04:56:14:018216 Z
-NServiceBus.Timeout.Expire = 2015-05-25 04:56:13:981160 Z
+NServiceBus.Retries.Timestamp = 2015-05-25 10:59:05:817584 Z
+NServiceBus.TimeOfFailure = 2015-05-25 10:59:05:892725 Z
+NServiceBus.Timeout.Expire = 2015-05-25 10:59:05:818584 Z
 NServiceBus.Timeout.RouteExpiredTimeoutTo = HeaderWriterErrorV5@MACHINENAME
-NServiceBus.TimeSent = 2015-05-25 04:56:13:993702 Z
+NServiceBus.TimeSent = 2015-05-25 10:59:05:855698 Z
 NServiceBus.Version = 5.2.0
 WinIdName = USERNAME
 endcode

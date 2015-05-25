@@ -59,6 +59,7 @@
     <Compile Include="SqlServer\QueueCreation.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Msmq\MSMQReturnToSource.ps1" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
