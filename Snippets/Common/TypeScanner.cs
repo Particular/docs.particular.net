@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-static class TypeScanner
+public static class TypeScanner
 {
-    public static IEnumerable<Type> TypesFor<T>()
+    public static IEnumerable<Type> NestedTypes<T>(params Type[] extraTypes)
     {
         Type rootType = typeof(T);
         yield return rootType;
@@ -12,7 +12,10 @@ static class TypeScanner
         {
             yield return nestedType;
         }
-        yield return typeof(ConfigErrorQueue);
+        foreach (var extraType in extraTypes)
+        {
+            yield return extraType;
+        }
 
     }
 }

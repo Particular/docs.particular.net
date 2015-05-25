@@ -1,4 +1,6 @@
-﻿using System.Threading;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using NServiceBus;
 using NServiceBus.MessageMutator;
 using NUnit.Framework;
@@ -22,13 +24,14 @@ public class HeaderWriterReply
     public void Write()
     {
         ManualResetEvent = new ManualResetEvent(false);
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName(endpointName);
-        busConfiguration.TypesToScan(TypeScanner.TypesFor<HeaderWriterReply>());
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-        using (IStartableBus startableBus = NServiceBus.Bus.Create(busConfiguration))
+        BusConfiguration config = new BusConfiguration();
+        config.EndpointName(endpointName);
+        IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterReply>(typeof(ConfigErrorQueue));
+        config.TypesToScan(typesToScan);
+        config.EnableInstallers();
+        config.UsePersistence<InMemoryPersistence>();
+        config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+        using (IStartableBus startableBus = NServiceBus.Bus.Create(config))
         using (Bus = startableBus.Start())
         {
             Bus.SendLocal(new MessageToSend());

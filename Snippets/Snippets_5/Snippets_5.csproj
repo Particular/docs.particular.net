@@ -346,7 +346,6 @@
     <Compile Include="Errors\ErrorQueueConfigurationSource.cs" />
     <Compile Include="Headers\Writers\HeaderWriterSaga.cs" />
     <Compile Include="Headers\HeaderUsage.cs" />
-    <Compile Include="Headers\TypeScanner.cs" />
     <Compile Include="Headers\Writers\BehaviorCleaner.cs" />
     <Compile Include="Headers\Writers\HeaderWriterError.cs" />
     <Compile Include="Headers\Writers\HeaderWriterPublish.cs" />

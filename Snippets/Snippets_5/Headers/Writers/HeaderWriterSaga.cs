@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using NServiceBus;
 using NServiceBus.MessageMutator;
@@ -26,7 +27,8 @@ public class HeaderWriterSaga
         CountdownEvent = new CountdownEvent(3);
         BusConfiguration config = new BusConfiguration();
         config.EndpointName(endpointName);
-        config.TypesToScan(TypeScanner.TypesFor<HeaderWriterSaga>());
+        IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterSaga>(typeof(ConfigErrorQueue));
+        config.TypesToScan(typesToScan);
         config.EnableInstallers();
         config.UsePersistence<InMemoryPersistence>();
         config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));

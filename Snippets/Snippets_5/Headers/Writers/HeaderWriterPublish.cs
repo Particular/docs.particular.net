@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using NServiceBus;
 using NServiceBus.Config;
@@ -26,13 +27,14 @@ public class HeaderWriterPublish
     {
         ManualResetEvent = new ManualResetEvent(false);
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName(EndpointName);
-        busConfiguration.TypesToScan(TypeScanner.TypesFor<HeaderWriterPublish>());
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-        using (IStartableBus startableBus = Bus.Create(busConfiguration))
+        BusConfiguration config = new BusConfiguration();
+        config.EndpointName(EndpointName);
+        IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterPublish>(typeof(ConfigErrorQueue));
+        config.TypesToScan(typesToScan);
+        config.EnableInstallers();
+        config.UsePersistence<InMemoryPersistence>();
+        config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+        using (IStartableBus startableBus = Bus.Create(config))
         using (IBus bus = startableBus.Start())
         {
             //give time for the subscription to happen

@@ -42,6 +42,7 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="SnippetLogger.cs" />
     <Compile Include="StackTraceCleaner.cs" />
+    <Compile Include="TypeScanner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

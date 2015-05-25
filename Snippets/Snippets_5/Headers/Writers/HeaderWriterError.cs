@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using NServiceBus;
 using NServiceBus.Config;
@@ -26,13 +27,14 @@ public class HeaderWriterError
     public void Write()
     {
         ManualResetEvent = new ManualResetEvent(false);
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName(endpointName);
-        busConfiguration.TypesToScan(TypeScanner.TypesFor<HeaderWriterError>());
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-        using (IStartableBus startableBus = Bus.Create(busConfiguration))
+        BusConfiguration config = new BusConfiguration();
+        config.EndpointName(endpointName);
+        IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterError>(typeof(ConfigErrorQueue));
+        config.TypesToScan(typesToScan);
+        config.EnableInstallers();
+        config.UsePersistence<InMemoryPersistence>();
+        config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+        using (IStartableBus startableBus = Bus.Create(config))
         using (UnicastBus bus = (UnicastBus) startableBus.Start())
         {
             bus.Builder.Build<BusNotifications>()
