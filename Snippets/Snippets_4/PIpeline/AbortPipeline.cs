@@ -34,12 +34,12 @@ namespace AbortPipeline
             {
                 next();
             }
-            // since next is not invoke all downsstream behaviors will be skipped
+            // since next is not invoke all downstream behaviors will be skipped
         }
 
         bool ShouldPipelineContinue(HandlerInvocationContext context)
         {
-            // your custom logic to deermin if the pipeline should continue 
+            // your custom logic to determine if the pipeline should continue 
             return true;
         }
     }
