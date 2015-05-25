@@ -7,7 +7,7 @@
     {
         public void Handle(Pong message)
         {
-            Logger.WriteLine("Sender got Pong from Receiver with message: " + message.Message);
+            Logger.WriteLine("Sender", "Got Pong from Receiver");
         }
     }
 }

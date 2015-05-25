@@ -1,33 +1,42 @@
 ﻿namespace Shared
 {
     using System;
-    using System.IO;
-    using System.Threading;
+    using Microsoft.WindowsAzure.Storage;
+    using Microsoft.WindowsAzure.Storage.Table;
 
     public static class Logger
     {
-        static string outputFilePath = Path.GetFullPath(@"..\..\..\..\..\..\MultiHostedEndpointsOutput.txt");
+        static CloudTable table;
         static object locker = new object();
+
         static Logger()
         {
-            AppDomain.CurrentDomain.ProcessExit += Exit;
-            File.Delete(outputFilePath);
-            File.AppendAllText(outputFilePath, "startcode MultiHostedEndpointsOutput\r\n");
+            var storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+            var tableClient = storageAccount.CreateCloudTableClient();
+            table = tableClient.GetTableReference("MultiHostedEndpointsOutput");
+            table.CreateIfNotExists();
         }
 
-        static void Exit(object sender, EventArgs e)
+        public static void WriteLine(string endpoint, string message)
         {
-            File.AppendAllText(outputFilePath, "endcode");
-        }
-
-        public static void WriteLine(string message)
-        {
-            message = string.Format("Thread:{0} {1}\r\n", Thread.CurrentThread.ManagedThreadId, message);
             lock (locker)
             {
-                File.AppendAllText(outputFilePath, message);
+                var operation = TableOperation.Insert(new LogEntry(endpoint, message));
+                table.Execute(operation);
             }
         }
 
+    }
+
+    class LogEntry : TableEntity
+    {
+        public LogEntry(string endpoint, string message)
+        {
+            PartitionKey = endpoint;
+            RowKey = DateTime.Now.ToString();
+            Message = message;
+        }
+
+        public string Message { get; set; }
     }
 }

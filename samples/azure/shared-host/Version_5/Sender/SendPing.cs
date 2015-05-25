@@ -9,11 +9,8 @@
 
         public void Start()
         {
-            Logger.WriteLine("Sender is pinging Receiver");
-            Bus.Send(new Ping
-            {
-                Message = "Originated at Sender"
-            });
+            Logger.WriteLine("Sender", "Pinging Receiver");
+            Bus.Send(new Ping());
         }
 
         public void Stop()

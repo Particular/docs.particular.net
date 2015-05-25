@@ -9,11 +9,8 @@
 
         public void Handle(Ping message)
         {
-            Logger.WriteLine("Receiver got Ping and will reply with Pong");
-            Bus.Reply(new Pong
-            {
-                Message = "Pong for Ping with message:" + message.Message
-            });    
+            Logger.WriteLine("Receiver", "Got Ping and will reply with Pong");
+            Bus.Reply(new Pong());    
         }
     }
 }
