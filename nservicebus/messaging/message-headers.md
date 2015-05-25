@@ -206,3 +206,10 @@ Headers can be written for an outgoing message.
 ### From a Handler
 
 <!-- import header-outgoing-handler -->
+
+
+### For all outgoing messages
+
+NServiceBus allows you to register headers at configuration time that's then added to all outgoing messages for the endpoint.
+
+<!-- import header-static-endpoint -->
