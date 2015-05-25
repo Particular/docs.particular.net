@@ -10,9 +10,9 @@ redirects:
 Extra information about a message is communicated over the transport as secondary information to the message body. The mechanism for header communication is either native headers, if the transport supports that feature, or via a serialized collection of key value pairs. Message headers are very similar, in both implementation and usage, as http headers. NServiceBus uses them internally to manage messaging patters, eg pub/sub and request/response, and users of NServiceBus can use headers to implement a variety of features.
 
 
-## Standard Message headers
+## All Message headers
 
-All messages sent will have the following headers
+The possible message headers are as follows:
 
  * `$.diagnostics`: The [host details](/nservicebus/hosting/override-hostid.md) of the endpoint where the message was being processed. This header contains three parts:
 	 * `$.diagnostics.hostdisplayname`
