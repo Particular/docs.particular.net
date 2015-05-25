@@ -28,10 +28,9 @@ public class HeaderWriterError
             busConfiguration.TypesToScan(TypeScanner.TypesFor<HeaderWriterError>());
             busConfiguration.EnableInstallers();
             busConfiguration.UsePersistence<InMemoryPersistence>();
-            busConfiguration.DisableFeature<SecondLevelRetries>();
             busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
             using (IStartableBus startableBus = Bus.Create(busConfiguration))
-            using (UnicastBus bus = (UnicastBus)startableBus.Start())
+            using (UnicastBus bus = (UnicastBus) startableBus.Start())
             {
                 bus.Builder.Build<BusNotifications>()
                     .Errors
@@ -64,7 +63,20 @@ public class HeaderWriterError
         {
             return new TransportConfig
             {
-                MaxRetries = 0
+                MaxRetries = 1
+            };
+        }
+    }
+
+    class ConfigureSecondLevelRetries : IProvideConfiguration<SecondLevelRetriesConfig>
+    {
+        public SecondLevelRetriesConfig GetConfiguration()
+        {
+            return new SecondLevelRetriesConfig
+            {
+                Enabled = true,
+                NumberOfRetries = 1,
+                TimeIncrease = TimeSpan.FromMilliseconds(1)
             };
         }
     }
@@ -79,10 +91,15 @@ public class HeaderWriterError
 
     class Mutator : IMutateIncomingTransportMessages
     {
+        static bool hasCapturedMessage = false;
         public void MutateIncoming(TransportMessage transportMessage)
         {
-            string sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(transportMessage.Headers);
-            SnippetLogger.Write(text: sendingText, suffix: "Sending");
+            if (!hasCapturedMessage && transportMessage.IsMessageOfTye<MessageToSend>())
+            {
+                hasCapturedMessage = true;
+                string sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(transportMessage.Headers);
+                SnippetLogger.Write(text: sendingText, suffix: "Sending");
+            }
         }
     }
 }

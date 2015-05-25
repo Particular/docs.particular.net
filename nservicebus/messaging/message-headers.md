@@ -35,6 +35,10 @@ All messages sent will have the following headers
  * `NServiceBus.TimeSent`: The UTC time-stamp of when the message was sent.
  * `NServiceBus.Version`: The NServiceBus version number.
  * `WinIdName`: The user name of the current user.
+ * `NServiceBus.ClearTimeouts`: A marker header to indicate that the contained control message is requesting that timeouts be cleared for a give saga.
+ * `NServiceBus.Retries.Timestamp`: A UTC time-stamp used by Second Level Retries to determine if the maximum time for retrying has been reached.
+ * `NServiceBus.Timeout.Expire`: A UTC time-stamp that indicates when a timeout to be fired.
+ * `NServiceBus.Timeout.RouteExpiredTimeoutTo`: The queue name where a timeout should be routed back to when it fires.
 
 
 ### Example Message Headers
