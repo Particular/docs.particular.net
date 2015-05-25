@@ -30,8 +30,7 @@ public class HeaderWriterReturn
         config.EnableInstallers();
         config.UsePersistence<InMemoryPersistence>();
         config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-        using (IStartableBus startableBus = NServiceBus.Bus.Create(config))
-        using (Bus = startableBus.Start())
+        using (Bus = NServiceBus.Bus.Create(config).Start())
         {
             Bus.SendLocal(new MessageToSend());
             ManualResetEvent.WaitOne();
@@ -44,7 +43,6 @@ public class HeaderWriterReturn
 
     class MessageHandler : IHandleMessages<MessageToSend>
     {
-
         public void Handle(MessageToSend message)
         {
             Bus.Return(100);

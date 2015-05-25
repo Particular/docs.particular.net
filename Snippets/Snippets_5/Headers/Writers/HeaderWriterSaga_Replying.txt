@@ -3,22 +3,22 @@ startcode HeaderWriterSaga_Replying
 $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = c07243ab30d6211737fc47ea5f40cd3c
 $.diagnostics.originating.hostid = c07243ab30d6211737fc47ea5f40cd3c
-CorrId = 7de95780-bd10-4e83-885b-a4a30159df82\0
+CorrId = 286f5ef9-553b-44b3-9001-a4a3015ad30e\0
 NServiceBus.ContentType = text/xml
-NServiceBus.ConversationId = 68ce08f4-a7e9-4576-aab9-a4a30159df7d
-NServiceBus.CorrelationId = 7de95780-bd10-4e83-885b-a4a30159df82
+NServiceBus.ConversationId = bb6a3206-6fc4-499e-a5ab-a4a3015ad309
+NServiceBus.CorrelationId = 286f5ef9-553b-44b3-9001-a4a3015ad30e
 NServiceBus.EnclosedMessageTypes = MyNamespace.ReplyFromSagaMessage, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-NServiceBus.MessageId = 81845172-8410-45b9-9591-a4a30159dfc5
+NServiceBus.MessageId = 66f53fbe-8622-4114-bf80-a4a3015ad351
 NServiceBus.MessageIntent = Reply
 NServiceBus.OriginatingEndpoint = HeaderWriterSagaV5
 NServiceBus.OriginatingMachine = MACHINENAME
-NServiceBus.OriginatingSagaId = 9d7ec56c-15bf-4315-b8db-a4a30159dfc5
+NServiceBus.OriginatingSagaId = 57f1bdda-4bd9-41f0-a3b2-a4a3015ad350
 NServiceBus.OriginatingSagaType = MyNamespace.Saga2, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-NServiceBus.RelatedTo = 7de95780-bd10-4e83-885b-a4a30159df82
+NServiceBus.RelatedTo = 286f5ef9-553b-44b3-9001-a4a3015ad30e
 NServiceBus.ReplyToAddress = HeaderWriterSagaV5@MACHINENAME
-NServiceBus.SagaId = d2a1458c-12dd-431e-a1dd-a4a30159df81
+NServiceBus.SagaId = d40a43cc-41b6-4717-939c-a4a3015ad30d
 NServiceBus.SagaType = MyNamespace.Saga1, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-NServiceBus.TimeSent = 2015-05-25 10:59:17:342991 Z
+NServiceBus.TimeSent = 2015-05-25 11:02:45:170085 Z
 NServiceBus.Version = 5.2.0
 WinIdName = USERNAME
 

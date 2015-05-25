@@ -3,18 +3,18 @@ startcode HeaderWriterReturn_Returning
 $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = c07243ab30d6211737fc47ea5f40cd3c
 $.diagnostics.originating.hostid = c07243ab30d6211737fc47ea5f40cd3c
-CorrId = c8dac084-1040-425d-870b-a4a30159dcea\0
+CorrId = ee9bdcde-4301-4b0b-b0e0-a4a3015ad072\0
 NServiceBus.ControlMessage = True
-NServiceBus.ConversationId = a30321cf-6521-4d74-8d0b-a4a30159dcea
-NServiceBus.CorrelationId = c8dac084-1040-425d-870b-a4a30159dcea
-NServiceBus.MessageId = 3d60a6b4-4a58-4383-bfee-a4a30159dcf1
+NServiceBus.ConversationId = cc03fcba-f16b-4d64-b68c-a4a3015ad072
+NServiceBus.CorrelationId = ee9bdcde-4301-4b0b-b0e0-a4a3015ad072
+NServiceBus.MessageId = 5f40af3e-6f66-4f3b-b659-a4a3015ad076
 NServiceBus.MessageIntent = Reply
 NServiceBus.OriginatingEndpoint = HeaderWriterReturnV5
 NServiceBus.OriginatingMachine = MACHINENAME
-NServiceBus.RelatedTo = c8dac084-1040-425d-870b-a4a30159dcea
+NServiceBus.RelatedTo = ee9bdcde-4301-4b0b-b0e0-a4a3015ad072
 NServiceBus.ReplyToAddress = HeaderWriterReturnV5@MACHINENAME
 NServiceBus.ReturnMessage.ErrorCode = 100
-NServiceBus.TimeSent = 2015-05-25 10:59:14:930500 Z
+NServiceBus.TimeSent = 2015-05-25 11:02:42:732486 Z
 NServiceBus.Version = 5.2.0
 WinIdName = USERNAME
 

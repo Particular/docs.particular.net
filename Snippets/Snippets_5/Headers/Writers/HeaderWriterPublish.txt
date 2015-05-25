@@ -3,17 +3,17 @@ startcode HeaderWriterPublish
 $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = c07243ab30d6211737fc47ea5f40cd3c
 $.diagnostics.originating.hostid = c07243ab30d6211737fc47ea5f40cd3c
-CorrId = ec1bd024-ca5a-4905-bb47-a4a30159d803\0
+CorrId = 8b6cf7f7-d10f-43bc-be83-a4a3015acbd0\0
 NServiceBus.ContentType = text/xml
-NServiceBus.ConversationId = 348851ba-ce50-4969-90c1-a4a30159d804
-NServiceBus.CorrelationId = 4017b42d-1dff-40e0-977b-a4a30159d805
+NServiceBus.ConversationId = 11fcad1b-89d1-4bb6-b266-a4a3015acbd0
+NServiceBus.CorrelationId = 0618926c-cf9d-4f86-9bf8-a4a3015acbd4
 NServiceBus.EnclosedMessageTypes = MyNamespace.MessageToPublish, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-NServiceBus.MessageId = ec1bd024-ca5a-4905-bb47-a4a30159d803
+NServiceBus.MessageId = 8b6cf7f7-d10f-43bc-be83-a4a3015acbd0
 NServiceBus.MessageIntent = Publish
 NServiceBus.OriginatingEndpoint = HeaderWriterPublishV5
 NServiceBus.OriginatingMachine = MACHINENAME
 NServiceBus.ReplyToAddress = HeaderWriterPublishV5@MACHINENAME
-NServiceBus.TimeSent = 2015-05-25 10:59:10:725416 Z
+NServiceBus.TimeSent = 2015-05-25 11:02:38:767633 Z
 NServiceBus.Version = 5.2.0
 WinIdName = USERNAME
 

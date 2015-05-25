@@ -30,8 +30,7 @@ public class HeaderWriterSend
         config.EnableInstallers();
         config.UsePersistence<InMemoryPersistence>();
         config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-        using (IStartableBus startableBus = Bus.Create(config))
-        using (IBus bus = startableBus.Start())
+        using (IBus bus = Bus.Create(config).Start())
         {
             bus.SendLocal(new MessageToSend());
             ManualResetEvent.WaitOne();

@@ -31,8 +31,7 @@ public class HeaderWriterSaga
         config.EnableInstallers();
         config.UsePersistence<InMemoryPersistence>();
         config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-        using (IStartableBus startableBus = Bus.Create(config))
-        using (var bus = (UnicastBus) startableBus.Start())
+        using (var bus = (UnicastBus) Bus.Create(config).Start())
         {
             bus.SendLocal(new StartSaga1Message());
             CountdownEvent.Wait();

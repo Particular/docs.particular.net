@@ -3,21 +3,21 @@ startcode HeaderWriterDefer
 $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = c07243ab30d6211737fc47ea5f40cd3c
 $.diagnostics.originating.hostid = c07243ab30d6211737fc47ea5f40cd3c
-CorrId = ee06753f-56d6-4d3e-8867-a4a30159cd25\0
+CorrId = e0ecd772-9929-4405-943d-a4a3015ac0de\0
 NServiceBus.ContentType = text/xml
-NServiceBus.ConversationId = 8205e740-9b30-4772-b8db-a4a30159cd29
-NServiceBus.CorrelationId = ee06753f-56d6-4d3e-8867-a4a30159cd25
+NServiceBus.ConversationId = 5de27206-f9c9-4251-ae91-a4a3015ac0e2
+NServiceBus.CorrelationId = e0ecd772-9929-4405-943d-a4a3015ac0de
 NServiceBus.EnclosedMessageTypes = HeaderWriterDefer+MessageToSend, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 NServiceBus.IsDeferredMessage = True
-NServiceBus.MessageId = ee06753f-56d6-4d3e-8867-a4a30159cd25
+NServiceBus.MessageId = e0ecd772-9929-4405-943d-a4a3015ac0de
 NServiceBus.MessageIntent = Send
 NServiceBus.OriginatingEndpoint = HeaderWriterDeferV5
 NServiceBus.OriginatingMachine = MACHINENAME
 NServiceBus.RelatedToTimeoutId = 
 NServiceBus.ReplyToAddress = HeaderWriterDeferV5@MACHINENAME
-NServiceBus.Timeout.Expire = 2015-05-25 10:59:01:477736 Z
+NServiceBus.Timeout.Expire = 2015-05-25 11:02:29:455388 Z
 NServiceBus.Timeout.RouteExpiredTimeoutTo = HeaderWriterDeferV5@MACHINENAME
-NServiceBus.TimeSent = 2015-05-25 10:59:02:984547 Z
+NServiceBus.TimeSent = 2015-05-25 11:02:30:959490 Z
 NServiceBus.Version = 5.2.0
 WinIdName = USERNAME
 

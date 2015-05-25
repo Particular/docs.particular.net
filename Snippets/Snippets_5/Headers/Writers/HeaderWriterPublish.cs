@@ -32,8 +32,7 @@ public class HeaderWriterPublish
         config.EnableInstallers();
         config.UsePersistence<InMemoryPersistence>();
         config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-        using (IStartableBus startableBus = Bus.Create(config))
-        using (IBus bus = startableBus.Start())
+        using (IBus bus = Bus.Create(config).Start())
         {
             //give time for the subscription to happen
             Thread.Sleep(3000);

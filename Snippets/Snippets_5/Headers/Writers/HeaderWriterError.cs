@@ -33,8 +33,7 @@ public class HeaderWriterError
         config.EnableInstallers();
         config.UsePersistence<InMemoryPersistence>();
         config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-        using (IStartableBus startableBus = Bus.Create(config))
-        using (UnicastBus bus = (UnicastBus) startableBus.Start())
+        using (UnicastBus bus = (UnicastBus) Bus.Create(config).Start())
         {
             bus.Builder.Build<BusNotifications>()
                 .Errors
