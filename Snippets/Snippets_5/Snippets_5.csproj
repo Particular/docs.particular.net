@@ -272,6 +272,7 @@
     <Content Include="Gateway\AppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Headers\Writers\HeaderWriterDefer.txt" />
     <Content Include="Headers\Writers\HeaderWriterError_Error.txt" />
     <Content Include="Headers\Writers\HeaderWriterError_Sending.txt" />
     <Content Include="Headers\Writers\HeaderWriterPublish.txt" />
@@ -281,6 +282,7 @@
     <Content Include="Headers\Writers\HeaderWriterReturn_Sending.txt" />
     <Content Include="Headers\Writers\HeaderWriterSaga_Replying.txt" />
     <Content Include="Headers\Writers\HeaderWriterSaga_Sending.txt" />
+    <Content Include="Headers\Writers\HeaderWriterSaga_Timeout.txt" />
     <Content Include="Headers\Writers\HeaderWriterSend.txt" />
     <Content Include="Host\ExplicitConfigType.xml">
       <SubType>Designer</SubType>
