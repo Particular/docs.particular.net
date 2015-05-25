@@ -39,6 +39,7 @@ All messages sent will have the following headers
  * `NServiceBus.Retries.Timestamp`: A UTC time-stamp used by Second Level Retries to determine if the maximum time for retrying has been reached.
  * `NServiceBus.Timeout.Expire`: A UTC time-stamp that indicates when a timeout to be fired.
  * `NServiceBus.Timeout.RouteExpiredTimeoutTo`: The queue name where a timeout should be routed back to when it fires.
+ * `NServiceBus.IsDeferredMessage`: A marker header to indicate that this message resulted from a Defer.
 
 
 ### Example Message Headers
@@ -69,6 +70,19 @@ Given an initiating message with the following headers:
 The headers of reply message will be as follows:
 
 <!-- import HeaderWriterReply_Replying -->
+
+
+## Defer a message
+
+When doing a Defer the message will have similar header to a Send with a few editions:
+
+ * The message will have IsDeferredMessage with the value of `true`.
+ * Timeout header will exist since the Defer feature uses the Timeouts feature.
+
+
+### Example Message Headers
+
+<!-- import HeaderWriterDefer -->
 
 
 ## Return from a Handler

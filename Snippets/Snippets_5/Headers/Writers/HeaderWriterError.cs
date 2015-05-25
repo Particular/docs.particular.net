@@ -3,7 +3,6 @@ using System.Threading;
 using NServiceBus;
 using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
-using NServiceBus.Features;
 using NServiceBus.MessageMutator;
 using NServiceBus.Unicast;
 using NUnit.Framework;
@@ -16,40 +15,39 @@ public class HeaderWriterError
     static ManualResetEvent ManualResetEvent;
     string endpointName = "HeaderWriterErrorV5";
 
+    [SetUp]
+    [TearDown]
+    public void Setup()
+    {
+        QueueCreation.DeleteQueuesForEndpoint(endpointName);
+    }
+
     [Test]
     public void Write()
     {
-        QueueCreation.DeleteQueuesForEndpoint(endpointName);
-        try
+        ManualResetEvent = new ManualResetEvent(false);
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName(endpointName);
+        busConfiguration.TypesToScan(TypeScanner.TypesFor<HeaderWriterError>());
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+        using (IStartableBus startableBus = Bus.Create(busConfiguration))
+        using (UnicastBus bus = (UnicastBus) startableBus.Start())
         {
-            ManualResetEvent = new ManualResetEvent(false);
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.EndpointName(endpointName);
-            busConfiguration.TypesToScan(TypeScanner.TypesFor<HeaderWriterError>());
-            busConfiguration.EnableInstallers();
-            busConfiguration.UsePersistence<InMemoryPersistence>();
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IStartableBus startableBus = Bus.Create(busConfiguration))
-            using (UnicastBus bus = (UnicastBus) startableBus.Start())
-            {
-                bus.Builder.Build<BusNotifications>()
-                    .Errors
-                    .MessageSentToErrorQueue
-                    .Subscribe(e =>
-                    {
-                        string headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(e.Headers);
-                        headerText = BehaviorCleaner.CleanStackTrace(headerText);
-                        headerText = StackTraceCleaner.CleanStackTrace(headerText);
-                        SnippetLogger.Write(text: headerText, suffix: "Error");
-                        ManualResetEvent.Set();
-                    });
-                bus.SendLocal(new MessageToSend());
-                ManualResetEvent.WaitOne();
-            }
-        }
-        finally
-        {
-            QueueCreation.DeleteQueuesForEndpoint(endpointName);
+            bus.Builder.Build<BusNotifications>()
+                .Errors
+                .MessageSentToErrorQueue
+                .Subscribe(e =>
+                {
+                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(e.Headers);
+                    headerText = BehaviorCleaner.CleanStackTrace(headerText);
+                    headerText = StackTraceCleaner.CleanStackTrace(headerText);
+                    SnippetLogger.Write(text: headerText, suffix: "Error");
+                    ManualResetEvent.Set();
+                });
+            bus.SendLocal(new MessageToSend());
+            ManualResetEvent.WaitOne();
         }
     }
 

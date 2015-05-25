@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using NServiceBus;
 using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
@@ -11,34 +12,33 @@ public class HeaderWriterPublish
 {
     public static ManualResetEvent ManualResetEvent;
 
-    string endpointName = "HeaderWriterPublishV5";
+    public static string EndpointName = "HeaderWriterPublishV5";
+
+    [SetUp]
+    [TearDown]
+    public void Setup()
+    {
+        QueueCreation.DeleteQueuesForEndpoint(EndpointName);
+    }
 
     [Test]
     public void Write()
     {
-        QueueCreation.DeleteQueuesForEndpoint(endpointName);
-        try
-        {
-            ManualResetEvent = new ManualResetEvent(false);
+        ManualResetEvent = new ManualResetEvent(false);
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.EndpointName(endpointName);
-            busConfiguration.TypesToScan(TypeScanner.TypesFor<HeaderWriterPublish>());
-            busConfiguration.EnableInstallers();
-            busConfiguration.UsePersistence<InMemoryPersistence>();
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IStartableBus startableBus = Bus.Create(busConfiguration))
-            using (IBus bus = startableBus.Start())
-            {
-                //give time for the subscription to happen
-                Thread.Sleep(3000);
-                bus.Publish(new MessageToPublish());
-                ManualResetEvent.WaitOne();
-            }
-        }
-        finally
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName(EndpointName);
+        busConfiguration.TypesToScan(TypeScanner.TypesFor<HeaderWriterPublish>());
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+        using (IStartableBus startableBus = Bus.Create(busConfiguration))
+        using (IBus bus = startableBus.Start())
         {
-            QueueCreation.DeleteQueuesForEndpoint(endpointName);
+            //give time for the subscription to happen
+            Thread.Sleep(3000);
+            bus.Publish(new MessageToPublish());
+            ManualResetEvent.WaitOne();
         }
     }
 
@@ -61,7 +61,7 @@ public class HeaderWriterPublish
             unicastBusConfig.MessageEndpointMappings.Add(new MessageEndpointMapping
             {
                 AssemblyName = GetType().Assembly.GetName().Name,
-                Endpoint = "HeaderWriterPublishV5@retina"
+                Endpoint = EndpointName + "@" + Environment.MachineName
             });
             return unicastBusConfig;
         }

@@ -14,29 +14,28 @@ public class HeaderWriterSaga
     public static UnicastBus Bus;
     string endpointName = "HeaderWriterSagaV5";
 
+    [SetUp]
+    [TearDown]
+    public void Setup()
+    {
+        QueueCreation.DeleteQueuesForEndpoint(endpointName);
+    }
+
     [Test]
     public void Write()
     {
-        QueueCreation.DeleteQueuesForEndpoint(endpointName);
-        try
+        ResetEvent = new ManualResetEvent(false);
+        BusConfiguration config = new BusConfiguration();
+        config.EndpointName(endpointName);
+        config.TypesToScan(TypeScanner.TypesFor<HeaderWriterSaga>());
+        config.EnableInstallers();
+        config.UsePersistence<InMemoryPersistence>();
+        config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+        using (IStartableBus startableBus = NServiceBus.Bus.Create(config))
+        using (Bus = (UnicastBus) startableBus.Start())
         {
-            ResetEvent = new ManualResetEvent(false);
-            BusConfiguration config = new BusConfiguration();
-            config.EndpointName(endpointName);
-            config.TypesToScan(TypeScanner.TypesFor<HeaderWriterSaga>());
-            config.EnableInstallers();
-            config.UsePersistence<InMemoryPersistence>();
-            config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IStartableBus startableBus = NServiceBus.Bus.Create(config))
-            using (Bus = (UnicastBus) startableBus.Start())
-            {
-                Bus.SendLocal(new StartSaga1Message());
-                ResetEvent.WaitOne();
-            }
-        }
-        finally
-        {
-            QueueCreation.DeleteQueuesForEndpoint(endpointName);
+            Bus.SendLocal(new StartSaga1Message());
+            ResetEvent.WaitOne();
         }
     }
 

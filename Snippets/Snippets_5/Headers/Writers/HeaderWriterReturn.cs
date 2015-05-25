@@ -11,29 +11,28 @@ public class HeaderWriterReturn
     static IBus Bus;
     string endpointName = "HeaderWriterReturnV5";
 
+    [SetUp]
+    [TearDown]
+    public void Setup()
+    {
+        QueueCreation.DeleteQueuesForEndpoint(endpointName);
+    }
+
     [Test]
     public void Write()
     {
-        QueueCreation.DeleteQueuesForEndpoint(endpointName);
-        try
+        ManualResetEvent = new ManualResetEvent(false);
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName(endpointName);
+        busConfiguration.TypesToScan(TypeScanner.TypesFor<HeaderWriterReturn>());
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+        using (IStartableBus startableBus = NServiceBus.Bus.Create(busConfiguration))
+        using (Bus = startableBus.Start())
         {
-            ManualResetEvent = new ManualResetEvent(false);
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.EndpointName(endpointName);
-            busConfiguration.TypesToScan(TypeScanner.TypesFor<HeaderWriterReturn>());
-            busConfiguration.EnableInstallers();
-            busConfiguration.UsePersistence<InMemoryPersistence>();
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IStartableBus startableBus = NServiceBus.Bus.Create(busConfiguration))
-            using (Bus = startableBus.Start())
-            {
-                Bus.SendLocal(new MessageToSend());
-                ManualResetEvent.WaitOne();
-            }
-        }
-        finally
-        {
-            QueueCreation.DeleteQueuesForEndpoint(endpointName);
+            Bus.SendLocal(new MessageToSend());
+            ManualResetEvent.WaitOne();
         }
     }
 
