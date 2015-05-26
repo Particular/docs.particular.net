@@ -12,6 +12,7 @@ namespace Operations.Msmq
         public static void Usage()
         {
             #region msmq-create-queues-endpoint-usage
+
             CreateQueuesForEndpoint(
                 endpointName: "myendpoint",
                 account: Environment.UserName);
@@ -19,6 +20,7 @@ namespace Operations.Msmq
             #endregion
 
             #region msmq-create-queues-shared-usage
+
             CreateQueue(
                 queueName: "error",
                 account: Environment.UserName);
@@ -26,10 +28,11 @@ namespace Operations.Msmq
             CreateQueue(
                 queueName: "audit",
                 account: Environment.UserName);
+
             #endregion
         }
 
-    #region msmq-create-queues
+        #region msmq-create-queues
 
         public static void CreateQueuesForEndpoint(string endpointName, string account)
         {
@@ -48,16 +51,16 @@ namespace Operations.Msmq
 
         public static void CreateQueue(string queueName, string account)
         {
-            string msmqQueueName = Environment.MachineName + "\\private$\\" + queueName;
-            if (MessageQueue.Exists(msmqQueueName))
+            string path = string.Format(@"{0}\private$\{1}", Environment.MachineName, queueName);
+            if (MessageQueue.Exists(path))
             {
-                using (var messageQueue = new MessageQueue(msmqQueueName))
+                using (var messageQueue = new MessageQueue(path))
                 {
                     SetPermissionsForQueue(messageQueue, account);
                     return;
                 }
             }
-            using (var messageQueue = MessageQueue.Create(msmqQueueName, true))
+            using (var messageQueue = MessageQueue.Create(path, true))
             {
                 SetPermissionsForQueue(messageQueue, account);
             }
@@ -65,20 +68,28 @@ namespace Operations.Msmq
 
         static void SetPermissionsForQueue(MessageQueue queue, string account)
         {
-            queue.SetPermissions(LocalAdministratorsGroupName, MessageQueueAccessRights.FullControl, AccessControlEntryType.Allow);
-            queue.SetPermissions(LocalEveryoneGroupName, MessageQueueAccessRights.WriteMessage, AccessControlEntryType.Allow);
-            queue.SetPermissions(LocalAnonymousLogonName, MessageQueueAccessRights.WriteMessage, AccessControlEntryType.Allow);
+            queue.SetPermissions(AdminGroup, MessageQueueAccessRights.FullControl, AccessControlEntryType.Allow);
+            queue.SetPermissions(EveryoneGroup, MessageQueueAccessRights.WriteMessage, AccessControlEntryType.Allow);
+            queue.SetPermissions(AnonymousLogon, MessageQueueAccessRights.WriteMessage, AccessControlEntryType.Allow);
 
             queue.SetPermissions(account, MessageQueueAccessRights.WriteMessage, AccessControlEntryType.Allow);
             queue.SetPermissions(account, MessageQueueAccessRights.ReceiveMessage, AccessControlEntryType.Allow);
             queue.SetPermissions(account, MessageQueueAccessRights.PeekMessage, AccessControlEntryType.Allow);
         }
 
-        static string LocalAdministratorsGroupName = new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null).Translate(typeof(NTAccount)).ToString();
-        static string LocalEveryoneGroupName = new SecurityIdentifier(WellKnownSidType.WorldSid, null).Translate(typeof(NTAccount)).ToString();
-        static string LocalAnonymousLogonName = new SecurityIdentifier(WellKnownSidType.AnonymousSid, null).Translate(typeof(NTAccount)).ToString();
+        static string AdminGroup = new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null)
+            .Translate(typeof(NTAccount))
+            .ToString();
 
-    #endregion
+        static string EveryoneGroup = new SecurityIdentifier(WellKnownSidType.WorldSid, null)
+            .Translate(typeof(NTAccount))
+            .ToString();
+
+        static string AnonymousLogon = new SecurityIdentifier(WellKnownSidType.AnonymousSid, null)
+            .Translate(typeof(NTAccount))
+            .ToString();
+
+        #endregion
     }
 
 }
