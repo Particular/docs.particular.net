@@ -338,6 +338,7 @@
     <Compile Include="ContainerCustom.cs" />
     <Compile Include="Containers.cs" />
     <Compile Include="Conventions\ExpressMessages.cs" />
+    <Compile Include="Correlation\CustomCorrelationId.cs" />
     <Compile Include="CriticalError.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
