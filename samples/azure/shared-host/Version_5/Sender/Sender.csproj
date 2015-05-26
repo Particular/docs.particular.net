@@ -90,9 +90,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{07bc8092-ee47-4242-b39d-ab77d02ac67b}</Project>
       <Name>Shared</Name>
