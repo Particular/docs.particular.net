@@ -1,1 +1,1 @@
-Drop AzCopy files into this folder
+Drop AzCopy folder with its files here
