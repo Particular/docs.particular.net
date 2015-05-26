@@ -25,7 +25,7 @@ related:
 
 WARNING: When running sample, do not stop execution from Visual Studio, but instead stop cloud service from Azure Compute Emulator UI. Do to an issue with Azure Compute Emulator not invoking OnStop method, multi hosted endpoints are not terminated.
 
-NOTE: To inspect multi-host [role emulated file system](https://msdn.microsoft.com/en-us/library/azure/hh771389.aspx), navigate to c:\Users\<username>\AppData\Local\dftmp\Resources
+NOTE: To inspect multi-host [role emulated file system](https://msdn.microsoft.com/en-us/library/azure/hh771389.aspx), navigate to `C:\Users\%USERNAME%\AppData\Local\dftmp\Resources`
  
 ## Code walk-through
 
