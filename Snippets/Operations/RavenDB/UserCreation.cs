@@ -6,10 +6,29 @@
     using Raven.Abstractions.Extensions;
     using Raven.Client;
     using Raven.Client.Connection;
+    using Raven.Client.Document;
     using Raven.Json.Linq;
+
 
     public static class UserCreation
     {
+
+        static void Usage()
+        {
+            #region raven-add-user-usage
+
+            using (DocumentStore documentStore = new DocumentStore
+            {
+                Url = "http://locationOfRavenDbInstance:8083/"
+            })
+            {
+                documentStore.Initialize();
+                AddUserToDatabase(documentStore, "UserNameToAdd");
+            }
+
+            #endregion
+        }
+
         #region raven-add-user
         public static void AddUserToDatabase(IDocumentStore documentStore, string username)
         {
@@ -84,4 +103,5 @@
         }
         #endregion
     }
+
 }

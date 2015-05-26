@@ -1,8 +1,7 @@
-﻿using NUnit.Framework;
-
-namespace Operations.RavenDB.Tests
+﻿namespace Operations.RavenDB
 {
     using System;
+    using NUnit.Framework;
     using Raven.Client.Document;
 
     [TestFixture]
@@ -12,8 +11,6 @@ namespace Operations.RavenDB.Tests
         [Test]
         public void Foo()
         {
-            #region raven-add-user-usage
-
             using (DocumentStore documentStore = new DocumentStore
             {
                 Url = "http://localhost:8083/"
@@ -22,8 +19,6 @@ namespace Operations.RavenDB.Tests
                 documentStore.Initialize();
                 UserCreation.AddUserToDatabase(documentStore, Environment.UserName);
             }
-
-            #endregion
         }
     }
 

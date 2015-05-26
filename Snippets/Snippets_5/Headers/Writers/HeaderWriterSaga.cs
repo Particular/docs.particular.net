@@ -18,7 +18,7 @@ public class HeaderWriterSaga
     [TearDown]
     public void Setup()
     {
-        QueueCreation.DeleteQueuesForEndpoint(endpointName);
+        QueueDeletion.DeleteQueuesForEndpoint(endpointName);
     }
 
     [Test]

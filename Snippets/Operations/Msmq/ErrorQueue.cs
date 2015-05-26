@@ -9,23 +9,26 @@
     using System.Transactions;
     using System.Xml.Serialization;
 
-    // ReSharper disable once ArrangeStaticMemberQualifier
     public static class ErrorQueue
     {
 
-        public static void ReturnMessageToSourceQueueUsage()
+        static void Usage()
         {
             #region msmq-return-to-source-queue-usage
-            ErrorQueue.ReturnMessageToSourceQueue(
-                machineName: Environment.MachineName,
-                queueName: "error",
+
+            ReturnMessageToSourceQueue(
+                errorQueueMachine: Environment.MachineName,
+                errorQueueName: "error",
                 msmqMessageId: @"c390a6fb-4fb5-46da-927d-a156f75739eb\15386");
+
             #endregion
         }
+
         #region msmq-return-to-source-queue
-        public static void ReturnMessageToSourceQueue(string machineName, string queueName, string msmqMessageId)
+
+        public static void ReturnMessageToSourceQueue(string errorQueueMachine, string errorQueueName, string msmqMessageId)
         {
-            var errorQueue = new MessageQueue(machineName + "\\private$\\" + queueName);
+            var errorQueue = new MessageQueue(errorQueueMachine + "\\private$\\" + errorQueueName);
             {
                 var messageReadPropertyFilter = new MessagePropertyFilter
                 {
@@ -68,15 +71,17 @@
             var extension = Encoding.UTF8.GetString(message.Extension);
             using (var stringReader = new StringReader(extension))
             {
-                return (List<HeaderInfo>)serializer.Deserialize(stringReader);
+                return (List<HeaderInfo>) serializer.Deserialize(stringReader);
             }
         }
+
+        public class HeaderInfo
+        {
+            public string Key { get; set; }
+            public string Value { get; set; }
+        }
+
+        #endregion
     }
 
-    public class HeaderInfo
-    {
-        public string Key { get; set; }
-        public string Value { get; set; }
-    }
-        #endregion
 }

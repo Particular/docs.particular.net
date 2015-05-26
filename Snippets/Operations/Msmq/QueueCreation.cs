@@ -5,44 +5,32 @@ using System.Security.Principal;
 namespace Operations.Msmq
 {
 
+
     public static class QueueCreation
     {
-        #region msmq-delete-queues
-        public static void DeleteAllQueues()
+
+        public static void Usage()
         {
-            var machineQueues = MessageQueue.GetPrivateQueuesByMachine(".");
-            foreach (var q in machineQueues)
-            {
-                MessageQueue.Delete(q.Path);
-            }
+            #region msmq-create-queues-endpoint-usage
+            CreateQueuesForEndpoint(
+                endpointName: "myendpoint",
+                account: Environment.UserName);
+
+            #endregion
+
+            #region msmq-create-queues-shared-usage
+            CreateQueue(
+                queueName: "error",
+                account: Environment.UserName);
+
+            CreateQueue(
+                queueName: "audit",
+                account: Environment.UserName);
+            #endregion
         }
 
-        public static void DeleteQueue(string queueName)
-        {
-            string path = Environment.MachineName + "\\private$\\" + queueName;
-            if (MessageQueue.Exists(path))
-            {
-                MessageQueue.Delete(path);
-            }
-        }
+    #region msmq-create-queues
 
-        public static void DeleteQueuesForEndpoint(string endpointName)
-        {
-            //main queue
-            DeleteQueue(endpointName);
-
-            //retries queue
-            DeleteQueue(endpointName + ".retries");
-
-            //timeout queue
-            DeleteQueue(endpointName + ".timeouts");
-
-            //timeout dispatcher queue
-            DeleteQueue(endpointName + ".timeoutsdispatcher");
-        }
-        #endregion
-
-        #region msmq-create-queues
         public static void CreateQueuesForEndpoint(string endpointName, string account)
         {
             //main queue
@@ -89,7 +77,8 @@ namespace Operations.Msmq
         static string LocalAdministratorsGroupName = new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null).Translate(typeof(NTAccount)).ToString();
         static string LocalEveryoneGroupName = new SecurityIdentifier(WellKnownSidType.WorldSid, null).Translate(typeof(NTAccount)).ToString();
         static string LocalAnonymousLogonName = new SecurityIdentifier(WellKnownSidType.AnonymousSid, null).Translate(typeof(NTAccount)).ToString();
-        #endregion
+
+    #endregion
     }
 
 }

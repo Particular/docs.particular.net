@@ -19,7 +19,7 @@ public class HeaderWriterPublish
     [TearDown]
     public void Setup()
     {
-        QueueCreation.DeleteQueuesForEndpoint(EndpointName);
+        QueueDeletion.DeleteQueuesForEndpoint(EndpointName);
     }
 
     [Test]

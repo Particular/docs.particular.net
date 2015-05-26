@@ -1,4 +1,5 @@
-﻿Set-StrictMode -Version 2.0
+﻿# startcode msmq-return-to-source-queue-powershell
+Set-StrictMode -Version 2.0
 
 Add-Type -AssemblyName System.Messaging
 Add-Type -AssemblyName System.Transactions
@@ -60,3 +61,4 @@ Function ReadFailedQueueFromHeaders{
     $header =  $xml.ArrayOfHeaderInfo.HeaderInfo | ? Key -eq "NServiceBus.FailedQ" | Select -ExpandProperty Value
     return ('{0}\private$\{1}' -f $header.Split('@')[1], $header.Split('@')[0])
 }
+# endcode

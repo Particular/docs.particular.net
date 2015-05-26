@@ -7,7 +7,9 @@ Example code and scripts to facilitate deployment and operational actions agains
 
 NOTE: Using statements omitted from below code for simplicity
 
-These samples use the [RabbitMQ.Client](http://www.nuget.org/packages/RabbitMQ.Client/) nuget. Since RabbitMQ.Client is not [CLS Compliant](https://msdn.microsoft.com/en-us/library/system.clscompliantattribute.aspx) it is not possible to run this code within PowerShell.
+These samples use the [RabbitMQ.Client](http://www.nuget.org/packages/RabbitMQ.Client/) nuget. 
+
+Since RabbitMQ.Client is not [CLS Compliant](https://msdn.microsoft.com/en-us/library/system.clscompliantattribute.aspx) it is not possible to run this code within PowerShell.
 
 ## Return message to source queue 
 

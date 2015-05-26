@@ -3,42 +3,11 @@
     using System;
     using System.Data.SqlClient;
 
+    #region sqlserver-create-queues
+
     public static class QueueCreation
     {
 
-        #region sqlserver-delete-queues
-        public static void DeleteQueue(SqlConnection connection, string schema, string queueName)
-        {
-            string sql = @"
-                    IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{0}].[{1}]') AND type in (N'U'))
-                    DROP TABLE [{0}].[{1}]";
-            string deleteScript = string.Format(sql, schema, queueName);
-            using (var command = new SqlCommand(deleteScript, connection))
-            {
-                command.ExecuteNonQuery();
-            }
-        }
-
-        public static void DeleteQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
-        {
-            //main queue
-            DeleteQueue(connection, schema, endpointName);
-
-            //callback queue
-            DeleteQueue(connection, schema, endpointName + "." + Environment.MachineName);
-
-            //retries queue
-            DeleteQueue(connection, schema, endpointName + ".Retries");
-
-            //timeout queue
-            DeleteQueue(connection, schema, endpointName + ".Timeouts");
-
-            //timeout dispatcher queue
-            DeleteQueue(connection, schema, endpointName + ".TimeoutsDispatcher");
-        }
-        #endregion
-
-        #region sqlserver-create-queues
         public static void CreateQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
         {
             //main queue
@@ -60,7 +29,7 @@
         public static void CreateQueue(SqlConnection connection, string schema, string queueName)
         {
             string createQueueScript =
-            @"IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{0}].[{1}]') AND type in (N'U'))
+                @"IF NOT  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[{0}].[{1}]') AND type in (N'U'))
                   BEGIN
                     CREATE TABLE [{0}].[{1}](
 	                    [Id] [uniqueidentifier] NOT NULL,
@@ -76,7 +45,7 @@
                     (
 	                    [RowVersion] ASC
                     ) ON [PRIMARY]
-                  END"; 
+                  END";
 
             var sql = string.Format(createQueueScript, schema, queueName);
             using (var command = new SqlCommand(sql, connection))
@@ -84,6 +53,7 @@
                 command.ExecuteNonQuery();
             }
         }
-        #endregion
     }
+
+    #endregion
 }

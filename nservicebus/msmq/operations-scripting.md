@@ -17,7 +17,13 @@ The following code shows an example of how to perform the following actions
  * extract the failed queue from the headers.
  * forward that message to the failed queue name so it can be retried.
 
+**In C&#35;**
+
 <!-- import msmq-return-to-source-queue -->
+
+**In Powershell**
+
+<!-- import msmq-return-to-source-queue-powershell -->
 
 ### Using the retry helper methods 
 
@@ -56,7 +62,3 @@ To delete all queues for a given endpoint name.
 To delete shared queues
 
 <!-- import msmq-delete-queues-shared-usage -->
-
-To delete all queues
-
-<!-- import msmq-delete-all-queues -->

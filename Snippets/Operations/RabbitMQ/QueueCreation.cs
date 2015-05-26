@@ -6,42 +6,37 @@
     public static class QueueCreation
     {
 
-        #region rabbit-delete-queues
-        public static void DeleteQueue(string uri, string queueName)
+        public static void Usage()
         {
-            ConnectionFactory factory = new ConnectionFactory
-            {
-                Uri = uri,
-            };
-            using (IConnection conn = factory.CreateConnection())
-            using (IModel channel = conn.CreateModel())
-            {
-                channel.QueueUnbind(queueName, queueName, string.Empty, null);
-                channel.ExchangeDelete(queueName);
-                channel.QueueDelete(queueName);
-            }
+            #region rabbit-create-queues-endpoint-usage
+
+            CreateQueuesForEndpoint(
+                uri: "amqp://guest:guest@localhost:5672",
+                endpointName: "myendpoint",
+                durableMessages: true,
+                createExchanges: true);
+
+            #endregion
+
+            #region rabbit-create-queues-shared-usage
+
+            CreateQueue(
+                uri: "amqp://guest:guest@localhost:5672",
+                queueName: "error",
+                durableMessages: true,
+                createExchange: true);
+
+            CreateQueue(
+                uri: "amqp://guest:guest@localhost:5672",
+                queueName: "audit",
+                durableMessages: true,
+                createExchange: true);
+
+            #endregion
         }
-
-        public static void DeleteQueuesForEndpoint(string uri, string endpointName)
-        {
-            //main queue
-            DeleteQueue(uri, endpointName);
-
-            //callback queue
-            DeleteQueue(uri, endpointName + "." + Environment.MachineName);
-
-            //retries queue
-            DeleteQueue(uri, endpointName + ".Retries");
-
-            //timeout queue
-            DeleteQueue(uri, endpointName + ".Timeouts");
-
-            //timeout dispatcher queue
-            DeleteQueue(uri, endpointName + ".TimeoutsDispatcher");
-        }
-        #endregion
 
         #region rabbit-create-queues
+
         public static void CreateQueuesForEndpoint(string uri, string endpointName, bool durableMessages, bool createExchanges)
         {
             //main queue
@@ -89,6 +84,8 @@
             channel.ExchangeDeclare(queueName, ExchangeType.Fanout, durableMessages);
             channel.QueueBind(queueName, queueName, string.Empty);
         }
+
         #endregion
     }
+
 }
