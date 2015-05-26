@@ -11,6 +11,7 @@ related:
 - nservicebus/azure/shared-hosting-in-azure-cloud-services
 ---
 
+ 1. Download and install [AzCopy](http://azure.microsoft.com/en-us/documentation/articles/storage-use-azcopy/#download-and-install-azcopy). Copy AzCopy files to the location indicated during solution rebuild step. If you have installed AzCopy the default installation location is `%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy` (on a 64-bit machine) or `%ProgramFiles%\Microsoft SDKs\Azure\AzCopy` (on a 32-bit machine).
  1. Start [Azure Storage Emulator](http://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/)
  1. Rebuild solution (right click on `AzureSharedHosting` solution in Solution explorer, then `Rebuild Solution`)
  1. Run the solution 
