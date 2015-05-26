@@ -1,17 +1,13 @@
-﻿namespace Sender
+﻿using NServiceBus;
+
+#region AzureMultiHost_PongHandler
+
+public class PongHandler : IHandleMessages<Pong>
 {
-    using NServiceBus;
-    using Shared;
-
-    #region AzureMultiHost_PongHandler
-
-    public class PongHandler : IHandleMessages<Pong>
+    public void Handle(Pong message)
     {
-        public void Handle(Pong message)
-        {
-            VerificationLogger.Write("Sender", "Got Pong from Receiver");
-        }
+        VerificationLogger.Write("Sender", "Got Pong from Receiver");
     }
-
-    #endregion
 }
+
+#endregion

@@ -1,20 +1,21 @@
-﻿namespace Receiver
+﻿using NServiceBus;
+
+#region AzureMultiHost_PingHandler
+
+public class PingHandler : IHandleMessages<Ping>
 {
-    using NServiceBus;
-    using Shared;
+    IBus bus;
 
-    #region AzureMultiHost_PingHandler
-
-    public class PingHandler : IHandleMessages<Ping>
+    public PingHandler(IBus bus)
     {
-        public IBus Bus { get; set; }
-
-        public void Handle(Ping message)
-        {
-            VerificationLogger.Write("Receiver", "Got Ping and will reply with Pong");
-            Bus.Reply(new Pong());
-        }
+        this.bus = bus;
     }
 
-    #endregion
+    public void Handle(Ping message)
+    {
+        VerificationLogger.Write("Receiver", "Got Ping and will reply with Pong");
+        bus.Reply(new Pong());
+    }
 }
+
+#endregion

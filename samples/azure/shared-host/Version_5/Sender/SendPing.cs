@@ -1,24 +1,25 @@
-﻿namespace Sender
+﻿using NServiceBus;
+
+#region AzureMultiHost_SendPingCommand
+
+public class SendPing : IWantToRunWhenBusStartsAndStops
 {
-    using NServiceBus;
-    using Shared;
+    IBus bus;
 
-    #region AzureMultiHost_SendPingCommand
-
-    public class SendPing : IWantToRunWhenBusStartsAndStops
+    public SendPing(IBus bus)
     {
-        public IBus Bus { get; set; }
-
-        public void Start()
-        {
-            VerificationLogger.Write("Sender", "Pinging Receiver");
-            Bus.Send(new Ping());
-        }
-
-        public void Stop()
-        {
-        }
+        this.bus = bus;
     }
 
-    #endregion
+    public void Start()
+    {
+        VerificationLogger.Write("Sender", "Pinging Receiver");
+        bus.Send(new Ping());
+    }
+
+    public void Stop()
+    {
+    }
 }
+
+#endregion

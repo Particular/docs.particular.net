@@ -1,42 +1,26 @@
-﻿namespace Shared
+﻿using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Table;
+
+public static class VerificationLogger
 {
-    using System;
-    using Microsoft.WindowsAzure.Storage;
-    using Microsoft.WindowsAzure.Storage.Table;
+    static CloudTable table;
+    static object locker = new object();
 
-    public static class VerificationLogger
+    static VerificationLogger()
     {
-        static CloudTable table;
-        static object locker = new object();
-
-        static VerificationLogger()
-        {
-            var storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
-            var tableClient = storageAccount.CreateCloudTableClient();
-            table = tableClient.GetTableReference("MultiHostedEndpointsOutput");
-            table.CreateIfNotExists();
-        }
-
-        public static void Write(string endpoint, string message)
-        {
-            lock (locker)
-            {
-                var operation = TableOperation.Insert(new LogEntry(endpoint, message));
-                table.Execute(operation);
-            }
-        }
-
+        var storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+        var tableClient = storageAccount.CreateCloudTableClient();
+        table = tableClient.GetTableReference("MultiHostedEndpointsOutput");
+        table.CreateIfNotExists();
     }
 
-    class LogEntry : TableEntity
+    public static void Write(string endpoint, string message)
     {
-        public LogEntry(string endpoint, string message)
+        lock (locker)
         {
-            PartitionKey = endpoint;
-            RowKey = DateTime.Now.ToString();
-            Message = message;
+            var operation = TableOperation.Insert(new LogEntry(endpoint, message));
+            table.Execute(operation);
         }
-
-        public string Message { get; set; }
     }
+
 }

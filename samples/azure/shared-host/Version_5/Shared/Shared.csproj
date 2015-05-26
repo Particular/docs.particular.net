@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
+    <Compile Include="LogEntry.cs" />
     <Compile Include="VerificationLogger.cs" />
     <Compile Include="NServiceBusFeatures.cs" />
     <Compile Include="Ping.cs" />
