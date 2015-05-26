@@ -62,7 +62,7 @@
                 string msmqMessageId = GetMsmqMessageId();
                 state.ShouldHandlerThrow = false;
                 string currentDirectory = Path.GetDirectoryName(GetType().Assembly.CodeBase.Remove(0, 8));
-                string scriptPath = Path.Combine(currentDirectory, "msmq/ReturnToSource.ps1");
+                string scriptPath = Path.Combine(currentDirectory, "msmq/ErrorQueue.ps1");
                 using (PowerShell powerShell = PowerShell.Create())
                 {
                     powerShell.AddScript(File.ReadAllText(scriptPath));

@@ -21,27 +21,28 @@ Function ReturnMessageToSourceQueue {
 
     $queuePath = '{0}\private$\{1}'-f $ErrorQueueMachine, $ErrorQueueName
     
-    [System.Messaging.MessagePropertyFilter] $messageReadPropertyFilter = New-Object System.Messaging.MessagePropertyFilter
-    $messageReadPropertyFilter.Body = $true
-    $messageReadPropertyFilter.TimeToBeReceived =$true
-    $messageReadPropertyFilter.Recoverable = $true
-    $messageReadPropertyFilter.Id = $true
-    $messageReadPropertyFilter.ResponseQueue = $true
-    $messageReadPropertyFilter.CorrelationId = $true 
-    $messageReadPropertyFilter.Extension = $true           
-    $messageReadPropertyFilter.AppSpecific = $true         
-    $messageReadPropertyFilter.LookupId = $true  
+    $propertyFilter = New-Object System.Messaging.MessagePropertyFilter
+    $propertyFilter.Body = $true
+    $propertyFilter.TimeToBeReceived =$true
+    $propertyFilter.Recoverable = $true
+    $propertyFilter.Id = $true
+    $propertyFilter.ResponseQueue = $true
+    $propertyFilter.CorrelationId = $true 
+    $propertyFilter.Extension = $true           
+    $propertyFilter.AppSpecific = $true         
+    $propertyFilter.LookupId = $true  
          
-    [System.Messaging.MessageQueue] $errorQueue = New-Object System.Messaging.MessageQueue($queuePath)
-    $errorQueue.MessageReadPropertyFilter = $messageReadPropertyFilter
+    $errorQueue = New-Object System.Messaging.MessageQueue($queuePath)
+    $errorQueue.MessageReadPropertyFilter = $propertyFilter
     
-    [System.Transactions.TransactionScope] $scope = New-Object System.Transactions.TransactionScope
+    $scope = New-Object System.Transactions.TransactionScope
     try
     {
-        [System.Messaging.Message] $message = $errorQueue.ReceiveById($MessageId, [System.TimeSpan]::FromSeconds(5), [System.Messaging.MessageQueueTransactionType]::Automatic)
+		$transactionType = [System.Messaging.MessageQueueTransactionType]::Automatic
+        $message = $errorQueue.ReceiveById($MessageId, [System.TimeSpan]::FromSeconds(5), $transactionType)
         $failedQueuePath = ReadFailedQueueFromHeaders -Message $message
-        [System.Messaging.MessageQueue] $failedQueue = New-Object System.Messaging.MessageQueue($failedQueuePath)
-        $failedQueue.Send($message, [System.Messaging.MessageQueueTransactionType]::Automatic)
+        $failedQueue = New-Object System.Messaging.MessageQueue($failedQueuePath)
+        $failedQueue.Send($message, $transactionType)
         $scope.Complete()
     }
     finally {
@@ -56,7 +57,7 @@ Function ReadFailedQueueFromHeaders{
     )
 
     $rawheaders = [System.Text.Encoding]::UTF8.GetString($message.Extension)
-    [System.IO.StringReader] $reader = New-Object System.IO.StringReader($rawheaders)
+    $reader = New-Object System.IO.StringReader($rawheaders)
     $xml = [xml] $reader.ReadToEnd()
     $header =  $xml.ArrayOfHeaderInfo.HeaderInfo | ? Key -eq "NServiceBus.FailedQ" | Select -ExpandProperty Value
     return ('{0}\private$\{1}' -f $header.Split('@')[1], $header.Split('@')[0])
