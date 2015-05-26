@@ -46,11 +46,12 @@
                 errorQueue.MessageReadPropertyFilter = messageReadPropertyFilter;
                 using (var scope = new TransactionScope())
                 {
-                    var message = errorQueue.ReceiveById(msmqMessageId, TimeSpan.FromSeconds(5), MessageQueueTransactionType.Automatic);
+                    MessageQueueTransactionType transactionType = MessageQueueTransactionType.Automatic;
+                    var message = errorQueue.ReceiveById(msmqMessageId, TimeSpan.FromSeconds(5), transactionType);
                     string fullPath = ReadFailedQueueHeader(message);
                     using (var failedQueue = new MessageQueue(fullPath))
                     {
-                        failedQueue.Send(message, MessageQueueTransactionType.Automatic);
+                        failedQueue.Send(message, transactionType);
                     }
                     scope.Complete();
                 }
@@ -63,7 +64,7 @@
             string header = headers.Single(x => x.Key == "NServiceBus.FailedQ").Value;
             string queueName = header.Split('@')[0];
             string machineName = header.Split('@')[1];
-            return machineName + "\\private$\\" + queueName;
+            return string.Format(@"{0}\private$\{1}", machineName, queueName);
         }
 
         public static List<HeaderInfo> ExtractHeaders(Message message)

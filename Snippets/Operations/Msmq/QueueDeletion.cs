@@ -36,7 +36,7 @@ namespace Operations.Msmq
 
         public static void DeleteQueue(string queueName)
         {
-            string path = Environment.MachineName + "\\private$\\" + queueName;
+            string path = string.Format(@"{0}\private$\{1}", Environment.MachineName, queueName);
             if (MessageQueue.Exists(path))
             {
                 MessageQueue.Delete(path);
