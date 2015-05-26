@@ -9,15 +9,17 @@
         {
             return new UnicastBusConfig
             {
+                #region AzureMultiHost_MessageMapping
                 MessageEndpointMappings = new MessageEndpointMappingCollection
                 {
                     new MessageEndpointMapping
                     {
                         Endpoint = "Receiver",
-                        //AssemblyName = "Shared",
                         Messages = "Ping, Shared"
                     }
                 }
+
+                #endregion
             };
         }
     }

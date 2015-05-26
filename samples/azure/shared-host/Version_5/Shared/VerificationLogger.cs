@@ -4,12 +4,12 @@
     using Microsoft.WindowsAzure.Storage;
     using Microsoft.WindowsAzure.Storage.Table;
 
-    public static class Logger
+    public static class VerificationLogger
     {
         static CloudTable table;
         static object locker = new object();
 
-        static Logger()
+        static VerificationLogger()
         {
             var storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
             var tableClient = storageAccount.CreateCloudTableClient();
@@ -17,7 +17,7 @@
             table.CreateIfNotExists();
         }
 
-        public static void WriteLine(string endpoint, string message)
+        public static void Write(string endpoint, string message)
         {
             lock (locker)
             {

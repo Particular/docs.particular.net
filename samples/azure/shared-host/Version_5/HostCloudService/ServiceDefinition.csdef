@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ServiceDefinition name="HostCloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2014-06.2.4">
+  <!-- startcode AzureSharedHosting_CloudServiceDefinition -->
   <WorkerRole name="HostWorker" vmsize="Small">
     <ConfigurationSettings>
       <Setting name="DynamicHostControllerConfig.ConnectionString" />
@@ -11,4 +12,5 @@
       <LocalStorage name="endpoints" cleanOnRoleRecycle="true" sizeInMB="100" />
     </LocalResources>
   </WorkerRole>
+  <!-- endcode -->
 </ServiceDefinition>
