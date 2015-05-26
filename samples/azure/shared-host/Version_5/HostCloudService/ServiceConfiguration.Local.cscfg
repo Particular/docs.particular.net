@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="HostCloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-06.2.4">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="HostCloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2015-04.2.6">
   <!-- startcode AzureSharedHosting_CloudServiceConfiguration -->
   <Role name="HostWorker">
     <Instances count="1" />
@@ -8,6 +8,7 @@
       <Setting name="DynamicHostControllerConfig.AutoUpdate" value="true" />
       <Setting name="DynamicHostControllerConfig.UpdateInterval" value="5000" />
       <Setting name="DynamicHostControllerConfig.Container" value="endpoints" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
     </ConfigurationSettings>
   </Role>
   <!-- endcode -->
