@@ -104,11 +104,15 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)Shared\helper.targets" />
   <Target Name="BeforeBuild">
+	<ItemGroup>
+		<AzCopyPath Include="$(SolutionDir)tools\AzCopy\" />
+	</ItemGroup>
+	<Error Text="AZURE SAMPLE: AzCopy couldn't be found. Please install AzCopy and copy to @(AzCopyPath)" Condition="!Exists(@(AzCopyPath))" />
     <RemoveZip Location="$(TargetDir)" ZipName="$(TargetName)" />
   </Target>
   <Target Name="AfterBuild">
     <Zip Location="$(TargetDir)" ZipName="$(TargetName)" />
     <Message Text="AZURE SAMPLE: Uploading endpoint $(TargetName).zip to Azure Storage Emulator" Importance="High" />
-    <Exec Command="$(SolutionDir)tools\AzCopy\AzCopy.exe  /Source:$(SolutionDir)_zips\ /dest:http://127.0.0.1:10000/devstoreaccount1/endpoints /DestType:Blob /Pattern:$(TargetName).zip /Y /DestKey:Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==" />
+    <Exec Command="@(AzCopyPath)\AzCopy.exe  /Source:$(SolutionDir)_zips\ /dest:http://127.0.0.1:10000/devstoreaccount1/endpoints /DestType:Blob /Pattern:$(TargetName).zip /Y /DestKey:Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==" />
   </Target>
 </Project>
