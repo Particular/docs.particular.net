@@ -28,7 +28,8 @@
 
         public static void ReturnMessageToSourceQueue(string errorQueueMachine, string errorQueueName, string msmqMessageId)
         {
-            var errorQueue = new MessageQueue(errorQueueMachine + "\\private$\\" + errorQueueName);
+            string path = string.Format(@"{0}\private$\{1}", errorQueueMachine, errorQueueName);
+            var errorQueue = new MessageQueue(path);
             {
                 var messageReadPropertyFilter = new MessagePropertyFilter
                 {
