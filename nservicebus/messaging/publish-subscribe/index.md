@@ -34,6 +34,28 @@ When requested by applicative logic to publish a message, the NServiceBus infras
 
 Since one-way messaging is used to dispatch physical messages, even if one of the subscriber endpoints is offline or otherwise unavailable, this does not cause the publishing thread to block. The message is stored in the sending machine's outgoing queue (for a configurable period of time), while the messaging infrastructure attempts to deliver the message to its destination.
 
+## What is auto subscribe
+
+The default mode auto subscribe. When a subscriber endpoint is started it determines to which events it needs to subscribe. It then sends sends subscribtion messages to the dependent publishers. The publishers update their subscription data.
+
+Each time the subscriber is restarted it sends these subscription messages. When you monitor the the queing infrastructure you see these subscription messages flowing.
+
+## What happens when a subscriber stops
+
+The default mode is auto subscribe. We basically never unsubscribe. So when the subscriber endpoint stops it is still registered as the publisher to receive events. The publisher still sends events to the queue of the subscriber. When the subscriber is started it will consume these are any other message. In this mode the subscriber will never loose an event.
+
+## Can I manually subscribe/unsubscribe
+
+If auto subscribe is unwanted then this can be disabled during initialization. How this is done varies per version of NServiceBus. You then can explicitly subscribe and unsubscribe.
+
+## What happens when a subscriber uninstalls
+
+When a subscriber is uninstalled then it will not unsubscriber at the publisher. Reason for doing this is that most of the time you want to upgrade an endpoint by uninstalling the current version and then installing the new version without missing events.
+
+## How do I decommission a subscriber
+
+Currently it is required to manually update the subscription storage and delete the endpoint specific entries.
+
 ## What the distributor does
 
 All the distributor does at this point is forward the message it receives to another node.
