@@ -5,13 +5,16 @@ summary: Example code and scripts to facilitate deployment and operational actio
 
 Example code and scripts to facilitate deployment and operational actions against the SQLServer Transport.
 
+
 ## Create queues
 
-There are two use cases for creation of queues
+Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.
+
 
 ### The create queue helper methods
 
 <!-- import sqlserver-create-queues -->
+
 
 ### Using the create helper queue methods 
 
@@ -23,11 +26,14 @@ To create shared queues.
 
 <!-- import sqlserver-create-queues-shared-usage -->
 
+
 ## Delete queues
+
 
 ### The delete helper queue methods
 
 <!-- import sqlserver-delete-queues -->
+
 
 ### Using the delete queue helper methods
 
