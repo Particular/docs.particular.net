@@ -3,10 +3,45 @@
     using System;
     using System.Data.SqlClient;
 
-    #region sqlserver-create-queues
-
     public static class QueueCreation
     {
+        public static void CreateQueuesForEndpoint()
+        {
+            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=myDatabase;Integrated Security=True";
+
+            #region sqlserver-create-queues-endpoint-usage
+
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                CreateQueuesForEndpoint(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    endpointName: "myendpoint");
+            }
+
+            #endregion
+
+            #region sqlserver-create-queues-shared-usage
+
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                CreateQueue(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    queueName: "error");
+
+                CreateQueue(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    queueName: "audit");
+            }
+
+            #endregion
+        }
+
+        #region sqlserver-create-queues
 
         public static void CreateQueuesForEndpoint(SqlConnection connection, string schema, string endpointName)
         {
@@ -53,7 +88,8 @@
                 command.ExecuteNonQuery();
             }
         }
-    }
 
     #endregion
+    }
+
 }
