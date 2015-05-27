@@ -12,7 +12,7 @@ To set a custom hostname and IP port for ServiceControl:
 1. Add the `ServiceControl/Hostname` and `ServiceControl/Port` settings in the `<appSettings>` section. 
 
 
-The following example configures ServiceControl to listen to localhost + machinename + IP address on port 80:
+The following example configures ServiceControl to listen to localhost + machinename + IP address on port 33333:
 
 ```xml 
 <add key="ServiceControl/Hostname" value="*" />
