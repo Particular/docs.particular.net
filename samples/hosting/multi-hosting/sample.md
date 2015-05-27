@@ -5,6 +5,7 @@ tags:
 - Hosting
 related:
 - nservicebus/hosting
+- nservicebus/hosting/assembly-scanning
 ---
 
 ## Code walk-through
