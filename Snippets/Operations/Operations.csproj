@@ -86,6 +86,9 @@
     <Compile Include="SqlServer\QueueCreation.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Msmq\QueueCreation.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Msmq\ErrorQueue.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

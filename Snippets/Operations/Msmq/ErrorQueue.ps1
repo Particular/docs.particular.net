@@ -4,7 +4,8 @@ Set-StrictMode -Version 2.0
 Add-Type -AssemblyName System.Messaging
 Add-Type -AssemblyName System.Transactions
 
-Function ReturnMessageToSourceQueue {
+Function ReturnMessageToSourceQueue 
+{
     param(
         [Parameter(Mandatory=$true)]
         [ValidateNotNullOrEmpty()]
@@ -50,7 +51,8 @@ Function ReturnMessageToSourceQueue {
     }
 }
 
-Function ReadFailedQueueFromHeaders{
+Function ReadFailedQueueFromHeaders
+{
     param(
         [Parameter(Mandatory=$true)]
         [System.Messaging.Message] $message 

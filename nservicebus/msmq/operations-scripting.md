@@ -21,13 +21,11 @@ The following code shows an example of how to perform the following actions
 
 <!-- import msmq-return-to-source-queue -->
 
+<!-- import msmq-return-to-source-queue-usage -->
+
 **In Powershell**
 
 <!-- import msmq-return-to-source-queue-powershell -->
-
-### Using the retry helper methods 
-
-<!-- import msmq-return-to-source-queue-usage -->
 
 ## Create queues
 
@@ -35,7 +33,13 @@ There are two use cases for creation of queues
 
 ### The create queue helper methods
 
+**In C&#35;**
+
 <!-- import msmq-create-queues -->
+
+**In Powershell**
+
+<!-- import msmq-create-queues-powershell -->
 
 ### Using the create helper queue methods 
 

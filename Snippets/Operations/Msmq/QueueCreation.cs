@@ -68,26 +68,27 @@ namespace Operations.Msmq
 
         static void SetPermissionsForQueue(MessageQueue queue, string account)
         {
-            queue.SetPermissions(AdminGroup, MessageQueueAccessRights.FullControl, AccessControlEntryType.Allow);
-            queue.SetPermissions(EveryoneGroup, MessageQueueAccessRights.WriteMessage, AccessControlEntryType.Allow);
-            queue.SetPermissions(AnonymousLogon, MessageQueueAccessRights.WriteMessage, AccessControlEntryType.Allow);
+            AccessControlEntryType allow = AccessControlEntryType.Allow;
+            queue.SetPermissions(AdminGroup, MessageQueueAccessRights.FullControl, allow);
+            queue.SetPermissions(EveryoneGroup, MessageQueueAccessRights.WriteMessage, allow);
+            queue.SetPermissions(AnonymousLogon, MessageQueueAccessRights.WriteMessage, allow);
 
-            queue.SetPermissions(account, MessageQueueAccessRights.WriteMessage, AccessControlEntryType.Allow);
-            queue.SetPermissions(account, MessageQueueAccessRights.ReceiveMessage, AccessControlEntryType.Allow);
-            queue.SetPermissions(account, MessageQueueAccessRights.PeekMessage, AccessControlEntryType.Allow);
+            queue.SetPermissions(account, MessageQueueAccessRights.WriteMessage, allow);
+            queue.SetPermissions(account, MessageQueueAccessRights.ReceiveMessage, allow);
+            queue.SetPermissions(account, MessageQueueAccessRights.PeekMessage, allow);
         }
 
-        static string AdminGroup = new SecurityIdentifier(WellKnownSidType.BuiltinAdministratorsSid, null)
-            .Translate(typeof(NTAccount))
-            .ToString();
+        static string AdminGroup = GetGroupName(WellKnownSidType.BuiltinAdministratorsSid);
+        static string EveryoneGroup = GetGroupName(WellKnownSidType.AnonymousSid);
+        static string AnonymousLogon = GetGroupName(WellKnownSidType.WorldSid);
 
-        static string EveryoneGroup = new SecurityIdentifier(WellKnownSidType.WorldSid, null)
-            .Translate(typeof(NTAccount))
-            .ToString();
+        static string GetGroupName(WellKnownSidType wellKnownSidType)
+        {
+            return new SecurityIdentifier(wellKnownSidType, null)
+                .Translate(typeof(NTAccount))
+                .ToString();
+        }
 
-        static string AnonymousLogon = new SecurityIdentifier(WellKnownSidType.AnonymousSid, null)
-            .Translate(typeof(NTAccount))
-            .ToString();
 
         #endregion
     }
