@@ -11,7 +11,7 @@ tags:
 
 ### Running the sample
 
-Set both projects as start up projects and run them. This will start up two console applications, one which is the sample and one that will host a RavenDB 3.0 database server. Hit any key a few times and notice that an order will be stored for each key press. You can then browse the url presented by the sample to verify the data that gets stored in RavenDB.
+Run the Solution. This will start up two console applications, one which is the sample and one that will host a RavenDB 3.0 database server. Hit any key a few times and notice that an order will be stored for each key press. You can then browse the url presented by the sample to verify the data that gets stored in RavenDB.
 
 ### Code walkthrough
 
