@@ -97,7 +97,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigureMessageEndpointMappings.cs" />
+    <Compile Include="ConfigureEndpointMappings.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="PongHandler.cs" />
     <Compile Include="SendPing.cs" />
