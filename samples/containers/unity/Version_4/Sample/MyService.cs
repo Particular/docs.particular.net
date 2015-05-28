@@ -2,7 +2,7 @@
 
 public class MyService
 {
-    ILog log = LogManager.GetLogger(typeof(MyService));
+    static ILog log = LogManager.GetLogger(typeof(MyService));
 
     public void WriteHello()
     {
