@@ -1,0 +1,153 @@
+---
+title: NHibernate Custom mapping with hbm.xml, attributes or fluent api
+summary: Create a custom mapping to change your NHibernate creates the database schema using different techniques.
+tags:
+ - NHibernate
+ - Persistence
+ - Configuration
+ - Mapping
+related:
+ - nservicebus/nhibernate/accessing-data
+ - nservicebus/nhibernate/index
+---
+
+
+Sometimes the default schema that gets generated for your saga does work. For example, you might need to store strings with a different string length, want so use complex types or want to store DateTime values with a high precision or maybe want to tweak the eager or lazy loading to improve performance. You will need to create a custom mapping to achieve this.
+
+Custom mapping options:
+
+* Create a `*.hbm.xml` file for your saga data class
+* Use Fluent NHibernate (popular seperate fluent api)
+* Use NHibernate.Mapping.Attributes
+* Loquacious Configuration (native fluent api)
+
+There are probably even other options but these are the most frequently used.
+
+See http://docs.particular.net/nservicebus/nhibernate/configuration on how you can pass this configuration object to the NServiceBus NHibernate configuration.
+
+NOTE: When you create a custom mapping then you are responsible for the correct behavior assigning the correct primary key.
+
+NOTE: The `[Unique]` attribute will not used to generate a index. You are responsible to add this to your custom mapping. This is especially importent when using optimistic concurrency control and a transaction isolation level different from serializable.
+
+
+## Custom *.hbm.xml mapping
+
+Using NHibernate mapping files is the original way to customize your mapping. It just needs to be created and needs to be embedded as a resource in your assembly or available on the file system.
+
+Look at these pages to see how you can create these mappings:
+
+* http://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html
+
+
+### Mappings as embedded resources
+
+It is not required to create your own NHibernate configuration object and pass it to the NServiceBus NHibernate configuration.
+
+
+### Read mappings from file system instead of embedded resources
+
+If you do not want to embed the `*.hbm.xml` files then you can also load mappings from the file system. Create a custom NHibernate configuration object and use the following example to add mappings from the file system.
+
+```
+    static void AddMappingsFromFilesystem(Configuration nhConfiguration)
+    {
+    	var folder = Directory.GetCurrentDirectory();
+        var hmbFiles = Directory.GetFiles(folder, "*.hbm.xml", SearchOption.TopDirectoryOnly);
+        
+        foreach (var file in hmbFiles)
+        {
+            nhConfiguration.AddFile(file);
+        }
+    }
+```
+
+
+## Use Fluent NHibernate
+
+Fluent NHibernate gives you a type-safe mapping approach where the mapping is seperate from the classes. The benefit is that you get compile time feedback when a mapping is not valid any more when you have breaking changes in your mapping.
+
+To use it with NServiceBus:
+
+1. Install `FluentNHibernate package` via Nuget.
+2. Create a custom NHibernate configuration
+** via FluentNHibernate
+** by creating a new Configuration instance and pass it to FluentNHibernate
+4. Pass it to the NServiceBus NHibernate configuration.
+
+
+Example of a possible implementation:
+
+```
+static Configuration BuildConfiguration(Configuration nhConfiguration)
+{
+	return Fluently.Configure(nhConfiguration)
+	    .Mappings(cfg =>
+	    {
+	        cfg.FluentMappings.AddFromAssemblyOf<MySagaData>();
+	    }).BuildConfiguration();
+}
+```
+
+Its best to read the [Getting started]() article from the FluentNHibernate project to see how you create mappings.
+
+
+References:
+
+* http://www.fluentnhibernate.org
+* https://github.com/jagregory/fluent-nhibernate
+* https://github.com/jagregory/fluent-nhibernate/wiki/Getting-started
+
+
+## Use NHibernate.Mapping.Attributes
+
+With NHibernate.Attributes you can decorate your saga data classes. This keeps your classes, mapping and schema data very close. Your saga types have a dependency on the NHibernate.Attributes assembly.
+
+How NHibernate.Attributes works is that it needs to know which types it needs to scan, then it create a regular NHibernate mapping configuration that gets passed to your NHibernate configuration.
+
+1. Add the nuget package `NHibernate.Mapping.Attributes`
+2. Create a custom NHibernate configuration object.
+3. Initialite the attribute mapping (see sample below).
+3. Pass it to the NServiceBus NHibernate configuration.
+
+
+Initialize the NHibernate attribute based mappings:
+
+```
+static void AddAttributeMappings(Configuration nhConfiguration)
+{
+	var attributesSerializer = new HbmSerializer { Validate = true };
+
+	using (var stream = attributesSerializer.Serialize(typeof(MySagaData).Assembly))
+	{
+	    nhConfiguration.AddInputStream(stream);
+	}
+}
+```
+
+Take a look at the NHibernate mapping attributes documentation for an example.
+
+
+References:
+* http://nhibernate.info/doc/nhibernate-reference/mapping-attributes.html
+* https://github.com/nhibernate/NHibernate.Mapping.Attributes
+
+
+## Use the Loquacious API
+
+The Loquacious api is NHibernate its native fluent api. It not only can help you create a type-safe configuration but you can also create your custom mappings. The benefit is that this api is already available via the NHibernate package.
+
+To use it:
+
+1. Create a custom NHibernte configuration object.
+2. Use either the model mapping or convention mapping features.
+3. Pass it to the NServiceBus NHibernate configuration.
+
+
+
+References:
+
+* http://nhibernate.info/doc/howto/mapping/a-fully-working-skeleton-for-sexy-loquacious-nh.html
+* http://fabiomaulo.blogspot.nl/2011/04/nhibernate-32-mapping-by-code.html
+* http://nhibernate.info/blog/2011/01/21/loquacious-configuration-in-nhibernate-3.html
+
+
