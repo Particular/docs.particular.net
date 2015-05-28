@@ -188,6 +188,16 @@ And checking `Ignore YAML Front-matter`
  * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
  * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.  
 
+### Startup projects
+
+Startup projects are set to "all startable projects" in the solution. This is done via  https://github.com/ParticularLabs/SetStartupProjects. If you want to control the default projects start then add a file named `DefaultStartupProjects.txt` in the same directory (as the solution file) with relative paths to the project files you would like to use for startup projects.
+
+For example if the solution contains two endpoints and you only want to start `Endpoint1` the the content of `DefaultStartupProjects.txt` would be:
+
+```
+Endpoint1\Endpoint1.csproj
+```
+
 ### Recommendations
 
  * Avoid using screen shots in samples as they cause extra effort when the sample needs to be updated.
