@@ -71,7 +71,7 @@ To create shared queues.
 
 **In Powershell**
 
-<!-- msmq-delete-queues-powershell -->
+<!-- import msmq-delete-queues-powershell -->
 
 
 ### Using the delete queue helper methods
