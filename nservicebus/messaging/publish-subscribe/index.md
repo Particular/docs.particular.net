@@ -46,7 +46,8 @@ The default mode is auto subscribe. We basically never unsubscribe. So when the 
 
 ## Can I manually subscribe/unsubscribe
 
-If auto subscribe is unwanted then this can be disabled during initialization. How this is done varies per version of NServiceBus. You then can explicitly subscribe and unsubscribe.
+If auto subscribe is unwanted then this can be disabled during initialization. How this is done varies per version of NServiceBus. You then can explicitly subscribe and unsubscribe via the bus instance. See [How to Publish/Subscribe to a Message](how-to-pub-sub) for an example.
+
 
 ## What happens when a subscriber uninstalls
 
