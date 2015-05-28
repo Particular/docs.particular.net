@@ -51,11 +51,15 @@ If auto subscribe is unwanted then this can be disabled during initialization. H
 
 ## What happens when a subscriber uninstalls
 
-When a subscriber is uninstalled then it will not unsubscriber at the publisher. Reason for doing this is that most of the time you want to upgrade an endpoint by uninstalling the current version and then installing the new version without missing events.
+When a subscriber is uninstalled then it will not unsubscribe at the publisher. Reason for doing this is not to loose events when you upgrade an endpoint by uninstalling the current version and then installing the new version.
+
+If you want to unsubscribe then see: How to decommission a subscriber
+
 
 ## How do I decommission a subscriber
 
-Currently it is required to manually update the subscription storage and delete the endpoint specific entries.
+Currently it is required to manually update the subscription storage of the publisher and delete the subscriber endpoint specific entries and the restarting the publisher.
+
 
 ## What the distributor does
 
