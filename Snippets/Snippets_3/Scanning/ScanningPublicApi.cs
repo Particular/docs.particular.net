@@ -38,14 +38,5 @@ public class ScanningPublicApi
         Configure.With(AllAssemblies.Except("MyAssembly.dll").And("MyAssembly.dll"));
         #endregion
 
-        #region ScanningIncludeByPattern
-        Configure.With(AllAssemblies.Matching("NServiceBus").And("MyCompany.").And("SomethingElse"));
-        #endregion
-
-        #region ScanningMixingIncludeAndExclude
-        Configure.With(AllAssemblies.Matching("NServiceBus").And("MyCompany.").Except("BadAssembly.dll"));
-        #endregion
-         
-            
     }
 }

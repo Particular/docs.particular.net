@@ -10,6 +10,7 @@ By default, NServiceBus scans all assemblies in the endpoint bin folder to find 
 
 NOTE: During the scanning process, the core dlls for NServiceBus namely `NServiceBus.Core.dll`, `NServiceBus.dll` (in versions prior to Version 5) and if in use `NServiceBus.Host.exe` are automatically included since the endpoint needs them to function properly.
 
+
 ## Controlling the assemblies to scan
 
 There are some cases where you need fine grained control over which assemblies are loaded:
@@ -18,35 +19,46 @@ There are some cases where you need fine grained control over which assemblies a
 - If you are hosting multiple endpoints out of the same directory (made possible in Version 5) i.e. each endpoint would want to load a subset of assemblies.
 - In versions prior to Version 4.1, non .NET assemblies, e.g. COM dlls might need to be excluded. Starting with Version 4.1, non .NET assemblies are automatically excluded.
  
-NOTE: Extensions to NServiceBus (for example NServiceBus.Distributor.MSMQ.dll or NServiceBus.RavenDB) are not considered core dlls and will need to be explicitly added if you customize assembly scanning.
+NOTE: Extensions to NServiceBus (for example `NServiceBus.Distributor.MSMQ.dll` or `NServiceBus.RavenDB.dll`) are not considered core dlls and will need to be explicitly added if you customize assembly scanning.
+
+Use the `AllAssemblies` helper to easily create a list of assemblies either by creating a blacklist using the method `Except` or a whitelist by using `Matching` or a combination of both.
+
+NOTE: The `Except`, `Matching` and `And` methods behave like `string.StartsWith(string)`.
 
 ### By default all types in your bin directory are scanned if you call:
 
 <!-- import ScanningDefault -->
  
+
 ### You can pass a list of assemblies:
 
 <!-- import ScanningListOfAssemblies -->
+
 
 ### You can pass the assemblies one by one:
 
 <!-- import ScanningParamArrayOfAssemblies -->
 
+
 ###You can exclude specific assemblies by name:
 
 <!-- import ScanningExcludeByName -->
+
 
 ### You can include assemblies using pattern matching:
 
 <!-- import ScanningIncludeByPattern -->
 
+
 ### You can mix includes and excludes:
 
 <!-- import ScanningMixingIncludeAndExclude -->
 
+
 ### You can specify the directory to scan:
 
 <!-- import ScanningCustomDirectory -->
+
 
 ### And if you need to control the exact types that NServiceBus uses you can pass them in:
 

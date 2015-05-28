@@ -141,6 +141,7 @@
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
     <Compile Include="Sagas\SimpleSaga.cs" />
     <Compile Include="Sagas\Timeouts.cs" />
+    <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\CustomSecondLevelRetriesConfig.cs" />
