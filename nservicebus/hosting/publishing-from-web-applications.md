@@ -52,20 +52,19 @@ A transport that uses storage-driven publishing will act differently. When it ne
 
 While it is common to think of an event being published *from* a specific location, this doesn't always reflect the reality of the messaging mechanics. For native pub/sub brokers, there is no *from* concept. You simply publish an event and the broker figures out the rest.
 
-In the case of storage-driven transports, however, the "publish from" location actually relates to the input queue that is set up to receive subscription requests.
+In the case of storage-driven transports, however, the "publish from" location actually relates to the input queue that is set up to receive subscription requests and store them in the subscription storage database.
 
 ## Load Balancing
 
 Typically, web applications will be scaled out with a network load balancer either to handle large amounts of traffic, or for high availability, or both. This is further complicated by elastic cloud scenarios, where additional instances of a web role can be provisioned and later removed, either manually or automatically, to keep up with a changing amount of load.
 
-An important distinction of an event is that it is published from a single logical sender, and processed by one or more logical receivers. It's important not to confuse this with the physical deployment of code to multiple processes. In the case of a scaled-out web application, the individual web application instances are physical deployments; all of these together can act as a single logical publisher of events, provided the following requirements are met.
+An important distinction of an event is that it is published from a single logical sender, and processed by one or more logical receivers. It's important not to confuse this with the physical deployment of code to multiple processes. In the case of a scaled-out web application, the individual web application instances are physical deployments; all of these together can act as a single logical publisher of events.
 
-In order for a scaled-out web application to publish events as a single logical publisher:
-
-* For native pub/sub transports (Azure Service Bus, RabbitMQ), all web application instances must publish to the same topic.
-* For transports with storage-driven publishing (MSMQ, SQL, Azure Storage Queues), all web application instances must share the same subscription storage.
+In order to make this work for storage-driven transports (MSMQ, SQL, Azure Storage Queues), the nature of publishing means that all physical endpoints must share the same subscription storage. (This is probably not all that difficult, as you likely use one centralized subscription storage database for your entire system.)
 
 > **Note about Azure Service Bus**: Prior to Version 6.0, the Azure Service Bus transport did not offer native publish/subscribe capability, and used storage-driven publishing instead.
+
+Although we're discussing web applications specifically, it's worth noting that this arrangement is hardly different from scaled-out service endpoints.
 
 ## Storage-driven Transport Topology
 
