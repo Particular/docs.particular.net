@@ -70,13 +70,15 @@ Although we're discussing web applications specifically, it's worth noting that 
 
 For storage-driven transports, it is inadvisable to have one of the web applications receive subscription requests. Instead, each web application instance can be implemented as an `ISendOnlyBus`, and a back-end service endpoint can be responsible for receiving the subscription request messages and updating the subscription storage.
 
-> Need diagram here
+![Storage-driven transport publishing topology](storage-based-publish-topology.png)
 
-In the diagram above, *describe diagram*
+In the diagram above, two web servers are load balanced behind a network load balancer. The applications on both web servers cooperate by referring to the same subscription storage database.
+
+We also create an additional **Subscription Manager Endpoint**, also talking to the same subscription storage. When a subscriber is interested in an event, the **subscription request** message is routed here, not to either of the web servers. When a web server needs to publish an event, it looks up the event type in the subscription storage database, and publishes the event to the subscriber.
+
+In this way, the web servers together with the subscription manager endpoint work in concert as one logical endpoint for publishing messages.
 
 If the web applications need to also process messages from an input queue (for example, to receive notifications to drop cache entries) then a full `IBus` can be used, but none of the web servers will ever be used as the subscription endpoint for the events published by the web tier.
-
-> Another, very similar diagram. Description after may be unnecessary.
 
 In an elastic scale scenario, it's important for endpoints to unsubscribe themselves from events they receive when they shut down, since they may be decomissioned never to return.
 
