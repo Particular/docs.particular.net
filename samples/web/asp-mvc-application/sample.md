@@ -29,7 +29,7 @@ Changing the number in the text box from even to odd changes the result.
 
 Now, look at the code. This sample has three projects:
  
--   `AsyncPlagesMvc`: ASP.NET MVC application that sends messages (found in `Messages` project)
+-   `AsyncPagesMvc`: ASP.NET MVC application that sends messages (found in `Messages` project)
 -   `Shared`: Common code including declaration of messages
 -   `Server`: Destination of messages sent from the MVC  project. Hosted in a console application
 

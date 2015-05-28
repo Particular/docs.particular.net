@@ -19,7 +19,7 @@ class HeaderUsage
         }
     }
     #endregion
-    #region header-outgoing-in-behavior
+    #region header-outgoing-behavior
     public class SampleOutgoingBehavior : IBehavior<SendPhysicalMessageContext>
     {
         public void Invoke(SendPhysicalMessageContext context, Action next)
@@ -30,7 +30,7 @@ class HeaderUsage
         }
     }
     #endregion
-    #region header-incoming-in-mutator
+    #region header-incoming-mutator
     public class SampleIncomingMutator : IMutateIncomingTransportMessages
     {
         public void MutateIncoming(TransportMessage transportMessage)
@@ -41,7 +41,7 @@ class HeaderUsage
         }
     }
     #endregion
-    #region header-outgoing-in-mutator
+    #region header-outgoing-mutator
     public class SampleOutgoingMutator : IMutateOutgoingTransportMessages
     {
         public void MutateOutgoing(object[] messages, TransportMessage transportMessage)
@@ -51,33 +51,48 @@ class HeaderUsage
         }
     }
     #endregion
-    #region header-incoming-in-handler
+    #region header-incoming-handler
     public class SampleReadHandler : IHandleMessages<MyMessage>
     {
-        public IBus Bus { get; set; }
+        IBus bus;
+
+        public SampleReadHandler(IBus bus)
+        {
+            this.bus = bus;
+        }
 
         public void Handle(MyMessage message)
         {
-            IDictionary<string, string> headers = Bus.CurrentMessageContext.Headers;
+            IDictionary<string, string> headers = bus.CurrentMessageContext.Headers;
             string nsbVersion = headers[Headers.NServiceBusVersion];
             string customHeader = headers["MyCustomHeader"];
         }
     }
     #endregion
-    #region header-outgoing-in-handler
+    #region header-outgoing-handler
     public class SampleWriteHandler : IHandleMessages<MyMessage>
     {
-        public IBus Bus { get; set; }
+        IBus bus;
+
+        public SampleWriteHandler(IBus bus)
+        {
+            this.bus = bus;
+        }
 
         public void Handle(MyMessage message)
         {
-            IDictionary<string, string> headers = Bus.OutgoingHeaders;
-            headers["MyCustomHeader"] = "My custom value";
+            SomeOtherMessage someOtherMessage = new SomeOtherMessage();
+            bus.SetMessageHeader(someOtherMessage, "MyCustomHeader", "My custom value");
+            bus.Send(someOtherMessage);
         }
     }
     #endregion
+    class SomeOtherMessage
+    {
+    }
     internal class MyMessage
     {
     }
 
 }
+

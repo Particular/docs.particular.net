@@ -5,8 +5,8 @@ tags:
 - ServiceMatrix
 - Visual Studio
 - Troubleshooting
-
 ---
+
 ServiceMatrix enables developers to efficiently generate a fully functional distributed NServiceBus solution using an intuitive visual interface.  Using the drawing canvas you can create a solution composed of endpoints, services, components and messages.   The resulting Visual Studio solution contains generated code that adheres to best practices and includes developer-friendly extension points for integration with your custom code.   
 
 If you're ready to learn more, this article reviews how to download and install ServiceMatrix for use in Visual Studio.
@@ -18,6 +18,7 @@ If you're ready to learn more, this article reviews how to download and install 
 4.  [Next steps](#next-steps)
 
 ## Prerequisites
+
 ServiceMatrix is a Visual Studio extension.  Version 2.1 and beyond require that you have Visual Studio 2012 or 2013 on your system prior to installation. You will need the Professional or above edition of Visual Studio (Express editions not supported).
   
 If you are using Visual Studio 2010, ServiceMatrix 1.0 will be detected and installed. Version 1.0 builds solutions through a tree view in the solution builder interface. New features like the drawing canvas are only available in V2.X.  Version 1.0 will no longer be updated with new features.
@@ -51,9 +52,9 @@ If you have issues installing or uninstalling ServiceMatrix please see the [trou
 
 ## Next steps
 
-###Getting started examples
+### Getting started examples
 
 At the completion of the installation your default browser will open to the first of a series of ServiceMatrix [Getting Started](getting-started-with-servicematrix-2.0.md "Getting Started With ServiceMatrix") documents.  
 
-###Licensing
+### Licensing
 ServiceMatrix installs with a trial license. Read more about how the product is licensed [here](licensing-servicematrix-v2.0.md "Licensing NServiceBus").

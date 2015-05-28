@@ -57,7 +57,3 @@ Failed messages that cannot be processed successfully (or should not be retried 
 Archiving in ServicePulse means that the failed messages are marked as "Archived". Its data is still available, but it is no longer displayed in the Failed Messages list in ServicePulse and is not counted by the Failed Messages indicator in the ServicePulse dashboard.
 
 NOTE: You can search for and analyse an archived failed message in ServiceInsight.
-
-
-
-  

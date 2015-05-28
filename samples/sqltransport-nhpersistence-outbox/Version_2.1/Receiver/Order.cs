@@ -1,8 +1,5 @@
-﻿namespace Receiver
+﻿public class Order
 {
-    public class Order
-    {
-        public virtual string OrderId { get; set; }
-        public virtual decimal Value { get; set; }
-    }
+    public virtual string OrderId { get; set; }
+    public virtual decimal Value { get; set; }
 }

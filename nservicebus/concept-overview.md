@@ -58,7 +58,7 @@ Messages that fail all retires are send to a error queue for triage for either a
 
 The Pipeline refers to the series of actions taken when an incoming message is processed and an outgoing message is sent. 
 
-### [Behavior](/nservicebus/pipeline/customising.md)
+### [Behavior](/nservicebus/pipeline/customizing.md)
 
 A Behavior is a single step in the Pipeline. 
 

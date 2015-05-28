@@ -12,7 +12,7 @@ related:
 
 ## Solution Structure
 
-The solution contains two projects. Both should be set as startup project
+The solution contains two projects. 
 
 ### RavenServer
 

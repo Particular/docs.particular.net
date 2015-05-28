@@ -12,7 +12,6 @@ class Program
         configure.DefineEndpointName("Samples.Logging.Default");
 
         //Configures a ConsoleAppender with a threshold of Debug
-        //Note that log4net.dll needs to exist in the bin directory
         configure.Log4Net();
         #endregion
         configure.DefaultBuilder();

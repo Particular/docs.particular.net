@@ -215,7 +215,18 @@ The most common mis-use of screenshots it when capturing console output. DO NOT 
 
 ### Defining Snippets
 
-There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. All `.cs`, `.xml`, `.sql`, `.html` and `.config` files in that directory are parsed for code snippets. Any directory containing a `_excludesnippets` file will have its snippets ignored.
+There is a some code located here https://github.com/Particular/docs.particular.net/tree/master/Snippets. Any directory containing a `_excludesnippets` file will have its snippets ignored.
+
+File extensions scanned for snippets include:
+
+ * `.config`
+ * `.cs`
+ * `.cscfg`
+ * `.csdef` 
+ * `.html`
+ * `.sql`
+ * `.txt`
+ * `.xml`
 
 #### Using comments
 
@@ -243,7 +254,7 @@ Snippets are versioned, these versions are used to render snippets in a tabbed m
 
 <img src="tabbed_snippets.png" style='border:1px solid #000000' />
 
-Version is of the form `Major.Minor.Patch`. If either `Minor` or `Patch` is not defined they will be rendered as an `x`. So for example Version `3.3` would be rendered as `3.3.x` and Version `3` would be rendered as `3.x`.
+Versions follow the [nuget versioning convention](https://docs.nuget.org/create/versioning#specifying-version-ranges-in-.nuspec-files). If either `Minor` or `Patch` is not defined they will be rendered as an `x`. So for example Version `3.3` would be rendered as `3.3.x` and Version `3` would be rendered as `3.x`.
 
 Snippet versions are derived in two ways
 
@@ -257,12 +268,31 @@ var configure = Configure.With();
 #endregion
 ```
 
+Or version range
+
+```
+#region MySnippetName [1.0,2.0]
+My Snippet Code
+#endregion
+```
+
 #### Convention based on the directory
 
-If a snippet has no version defined then the version will be derived by walking up the directory tree until if finds a directory of the form `Name_Major.Minor.Patch`. eg
+If a snippet has no version defined then the version will be derived by walking up the directory tree until if finds a directory that is suffixed with `_Version` or `_VersionRange`. For example
 
- * Snippets extracted from `docs.particular.net\Snippets\Snippets_4\TheClass.cs` would have a default version of `4`.
- * Snippets extracted from `docs.particular.net\Snippets\Snippets_4\Special_4.3\TheClass.cs` would have a default version of `4.3`.
+ * Snippets extracted from `docs.particular.net\Snippets\Snippets_4\TheClass.cs` would have a default version of `(≥ 4.0.0 && < 5.0.0)`.
+ * Snippets extracted from `docs.particular.net\Snippets\Snippets_4\Special_4.3\TheClass.cs` would have a default version of `(≥ 4.3.0 && < 5.0.0)`.
+ * Snippets extracted from `docs.particular.net\Snippets\Special_(1.0,2.0)\TheClass.cs` would have a default version of `(> 1.0.0 && < 2.0.0)`.
+
+#### Pre-release marker file
+
+If a file named `prerelease.txt` exists in a versioned directory then a `-pre` will be added to the version.
+
+So for example if there is a directory `docs.particular.net\Snippets\Snippets_6\` and it contains a `prerelease.txt` file then the version will be `(≥ 6.0.0-pre)`
+
+If the `prerelease.txt` contains text then that text will be used for the pre-release text. 
+
+So for example if `prerelease.txt` contains `beta` then the version will be `(≥ 6.0.0-beta)`
  
 ### Using Snippets
 
@@ -345,9 +375,11 @@ This is enforced by Resharper rules.
 
 The the code used by snippets and samples is compiled on the build server. The compilation is done against the versions of the packages referenced in the snippets project. When a snippet doesn't compile the build will break so snippets are compiling properly. Samples and snippets should not reference unreleased nugets.
 
-#### Unreleased nugets
+## Unreleased nugets
 
 There are some scenarios where documentation may require unreleased or beta nugets. For example when creating a PR against documentation for a feature that is not yet released. In this case it is ok to that PR to reference an unreleased nuget and have that PR fail to build on the build server. Once the nugets have been released that PR can be merged.
+
+In some cases it may be necessary to have merged documentation for unreleased features. In this case the nuget should be pushed to [Particular feed on myget](https://www.myget.org/feed/Packages/particular). The feed is included by default in the [Snippets nuget.config](https://github.com/Particular/docs.particular.net/blob/master/Snippets/nuget.config#L14).
 
 ## Alerts
 
@@ -363,6 +395,9 @@ There are several keys each of which map to a different colored alert
 | `NOTE` or `INFO` | blue   |
 | `WARNING`        | yellow |
 | `DANGER`         | red    | 
+| `BETA`           | red    | 
+
+`BETA` notes will also be prefixed with some text about it being a pre-release API. 
 
 Keys can be used in two manners
 

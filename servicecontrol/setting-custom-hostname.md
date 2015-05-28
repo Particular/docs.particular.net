@@ -60,5 +60,3 @@ NOTE: The above sample illustrates simplified and default non-secure settings. A
 1. Update the ServicePulse configuration file to access the updated ServiceControl hostname & port number. By default, the ServicePulse configuration file is located in `[Program Files]\Particular Software\ServicePulse\app\config.js`.
 1. Update the value of the `service_control_url` parameter to the specified ServiceControl hostname and IP port number.
 1. When next accessing ServicePulse, make sure to refresh the browser cache to allow ServicePulse to access the updated configuration settings. 
-
-

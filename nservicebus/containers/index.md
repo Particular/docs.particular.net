@@ -18,7 +18,7 @@ NServiceBus has a built-in container (currently an ILMerged version of Autofac) 
 
 ## Getting other containers
 
-Other containers are available on nuget.
+Other containers are available on NuGet.
 
 - http://www.nuget.org/packages/NServiceBus.Autofac/
 - http://www.nuget.org/packages/NServiceBus.Ninject/
@@ -29,9 +29,12 @@ Other containers are available on nuget.
 
 ## Configuring NServiceBus to use other containers
 
+The following code demonstrates how to configure NServiceBus to use a container of your choosing. Each assumes you've already included the relevant NuGet package above.
+
 <!-- import Containers --> 
 
 ## Plugging in your own container
 
-<!-- import CustomContainers -->
+If you have your own container that is not already supported by a NuGet package, you can create a plugin centering around the `IContainer` abstraction. Once this is created and registered, NServiceBus will use your custom container to look up its own dependencies.
 
+<!-- import CustomContainers -->

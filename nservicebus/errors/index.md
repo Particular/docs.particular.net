@@ -7,6 +7,8 @@ tags:
 - Automatic Retries
 redirects:
  - nservicebus/how-do-i-handle-exceptions
+related:
+- nservicebus/operations/transactions-message-processing
 ---
 
 Don't.
@@ -20,11 +22,15 @@ Error queue can be configured in one of two ways.
 
 ### Configuring the error queue via Code
 
-This is only possible if you are running NServiceBus Version v4.x and above.  
+#### Via a custom configuration provider 
 
-<!-- import ErrorQueueConfiguration -->
+<!-- import ErrorQueueConfigurationProvider -->
 
-NOTE: In NServiceBus V3, it is important to configure the bus to use the configuration source when the bus is initialized. See below: 
+#### Via a custom configuration source
+
+<!-- import ErrorQueueConfigurationSource-->
+
+Then at configuration time:
 
 <!-- import UseCustomConfigurationSourceForErrorQueueConfig -->
 
@@ -43,5 +49,3 @@ Administrators should monitor that error queue so that they can see when problem
 Monitoring and handling of failed messages with [ServicePulse](/servicepulse) provides access to full exception details (including stack-trace, and through ServiceInsight it also enables advanced debugging with all message context. It also provides a "retry" option to send the message back to the endpoint for re-processing. For more details, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md). 
 
 If either ServicePulse or ServiceInsight is not available in your environment, you can use the  `ReturnToSourceQueue.exe` tool to send the relevant message back to its original queue so that it can be processed again. The `ReturnToSourceQueue` tool is specific to MSMQ, and can be found in the [NServiceBus GitHub repository](https://github.com/Particular/NServiceBus).
-
-For more information on this process, please read [Transactions Message Processing](/nservicebus/operations/transactions-message-processing.md).

@@ -24,7 +24,7 @@
                 return slrConfig as T;
             }
 
-            // To look at the app.config for other sections that's not defined in this method, otherwise return null.
+            // To in app.config for other sections not defined in this method, otherwise return null.
             return ConfigurationManager.GetSection(typeof(T).Name) as T;
         }
     }

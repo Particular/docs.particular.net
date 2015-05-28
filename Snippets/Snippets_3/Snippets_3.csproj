@@ -52,7 +52,7 @@
       <HintPath>..\packages\NHibernate.3.4.0.4000\lib\Net35\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
-      <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus, Version=3.3.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\packages\NServiceBus.Interfaces.3.3.15\lib\net40\NServiceBus.dll</HintPath>
@@ -74,6 +74,9 @@
       <HintPath>..\packages\NServiceBus.Testing.3.3.15\lib\net40\NServiceBus.Testing.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ServiceControl.Contracts">
+      <HintPath>..\packages\ServiceControl.Contracts.1.1.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -84,19 +87,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Audit\App.config" />
     <None Include="Encryption\encryption.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="EndpointMapping\ConfigureEndpointMapping.config" />
     <None Include="Errors\ConfigureErrorQueue.config" />
     <None Include="Errors\flr.config" />
+    <None Include="Monitoring\app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="Persistence\NHibernate\nhibernate.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Transports\Throughtput\InitialThroughtput.config">
+    <None Include="Transports\Throughtput\InitialThroughput.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="Transports\Msmq\MsmqTransportConfig.config" />
@@ -106,11 +112,15 @@
     <Compile Include="Callback\Callback.cs" />
     <Compile Include="Conventions\ExpressMessages.cs" />
     <Compile Include="Conventions\MessageConventions.cs" />
+    <Compile Include="CustomConfigSource.cs" />
+    <Compile Include="DataBus\DataBus.cs" />
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
     <Compile Include="Distributor\ConfiguringWorker.cs" />
     <Compile Include="Encryption\PropertyEncryption.cs" />
+    <Compile Include="EndpointMapping\EndpointMappingConfigurationProvider.cs" />
+    <Compile Include="EndpointMapping\EndpointMappingConfigurationSource.cs" />
     <Compile Include="EndpointName.cs" />
-    <Compile Include="Errors\ProvideErrorQueueConfiguration.cs" />
+    <Compile Include="Errors\ErrorQueueConfigurationSource.cs" />
     <Compile Include="Errors\ProvideFLRConfiguration.cs" />
     <Compile Include="Errors\ProvideSLRConfiguration.cs" />
     <Compile Include="Gateway\GatewayConfig.cs" />
@@ -122,14 +132,20 @@
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\OverrideViaProfile.cs" />
+    <Compile Include="Monitoring\MessageFailedHandler.cs" />
+    <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Persistence\InMemory\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
-    <Compile Include="Sagas\SagaBasics.cs" />
+    <Compile Include="Pipeline\AbortPipeline.cs" />
+    <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
+    <Compile Include="Sagas\SagaNotFoundHandler.cs" />
+    <Compile Include="Sagas\SimpleSaga.cs" />
+    <Compile Include="Sagas\Timeouts.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\CustomSecondLevelRetriesConfig.cs" />
     <Compile Include="SendOnly.cs" />
-    <Compile Include="Transports\Throughtput\Throughtput.cs" />
+    <Compile Include="Transports\Throughtput\Throughput.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SecondLevelRetries\app.config.xml">

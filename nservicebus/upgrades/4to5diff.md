@@ -1056,79 +1056,79 @@ This class was never intended to be exposed as part of the public API. Will be r
 
 ### NServiceBus.Logging.Log4NetBridge.ConfigureInternalLog4NetBridge  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
+Sensible defaults for logging are now built into NServicebus. To customize logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
 ### NServiceBus.Logging.Loggers.ConsoleLogger  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
+Sensible defaults for logging are now built into NServicebus. To customize logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
 ### NServiceBus.Logging.Loggers.ConsoleLoggerFactory  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
+Sensible defaults for logging are now built into NServicebus. To customize logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
 ### NServiceBus.Logging.Loggers.Log4NetAdapter.Log4NetAppenderFactory  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
+Sensible defaults for logging are now built into NServicebus. To customize logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
 ### NServiceBus.Logging.Loggers.Log4NetAdapter.Log4NetConfigurator  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
+Sensible defaults for logging are now built into NServicebus. To customize logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
 ### NServiceBus.Logging.Loggers.Log4NetAdapter.Log4NetLogger  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
+Sensible defaults for logging are now built into NServicebus. To customize logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
 ### NServiceBus.Logging.Loggers.Log4NetAdapter.Log4NetLoggerFactory  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
+Sensible defaults for logging are now built into NServicebus. To customize logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
 ### NServiceBus.Logging.Loggers.NLogAdapter.NLogConfigurator  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
+Sensible defaults for logging are now built into NServicebus. To customize logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
 ### NServiceBus.Logging.Loggers.NLogAdapter.NLogLogger  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
+Sensible defaults for logging are now built into NServicebus. To customize logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
 ### NServiceBus.Logging.Loggers.NLogAdapter.NLogLoggerFactory  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
+Sensible defaults for logging are now built into NServicebus. To customize logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
 ### NServiceBus.Logging.Loggers.NLogAdapter.NLogTargetFactory  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
+Sensible defaults for logging are now built into NServicebus. To customize logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
 ### NServiceBus.Logging.Loggers.NullLogger  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
+Sensible defaults for logging are now built into NServicebus. To customize logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
 ### NServiceBus.Logging.Loggers.NullLoggerFactory  
 
-Sensible defaults for logging are now built into NServicebus. To customise logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
+Sensible defaults for logging are now built into NServicebus. To customize logging there are external nuget packages available to connect NServiceBus to the various popular logging frameworks. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
@@ -1204,7 +1204,7 @@ RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Will 
 
 #### Obsolete Methods
 
-  - `NServiceBus.Configure CustomiseRavenPersistence(NServiceBus.Configure, object)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Obsoletes.cs#L413) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure CustomizeRavenPersistence(NServiceBus.Configure, object)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Obsoletes.cs#L413) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Will be removed in version 6.0.0. Obsoleted with error.
   - `NServiceBus.Configure MessageToDatabaseMappingConvention(NServiceBus.Configure, Func<NServiceBus.IMessageContext, string>)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Obsoletes.cs#L422) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetMessageToDatabaseMappingConvention(convention)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
   - `NServiceBus.Configure RavenPersistence(NServiceBus.Configure)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Obsoletes.cs#L431) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package.` Use `configuration.UsePersistence<RavenDBPersistence>()`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.
   - `NServiceBus.Configure RavenPersistence(NServiceBus.Configure, string)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Obsoletes.cs#L440) ]<br>RavenDB has been moved to its own stand alone nuget 'NServiceBus.RavenDB'. Install the nuget package. Use `configuration.UsePersistence<RavenDBPersistence>().SetDefaultDocumentStore(...)`, where `configuration` is an instance of type `BusConfiguration`. Will be removed in version 6.0.0. Obsoleted with error.

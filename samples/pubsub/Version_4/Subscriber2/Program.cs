@@ -4,7 +4,7 @@ using NServiceBus.Installation.Environments;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
         Configure.Serialization.Json();
         Configure configure = Configure.With();

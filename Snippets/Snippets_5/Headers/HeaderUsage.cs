@@ -8,9 +8,8 @@ using NServiceBus.Unicast.Messages;
 
 class HeaderUsage
 {
-    #region header-incoming-behaviour
-    public class SampleIncomingBehavior :
-        IBehavior<IncomingContext>
+    #region header-incoming-behavior
+    public class SampleIncomingBehavior : IBehavior<IncomingContext>
     {
         public void Invoke(IncomingContext context, Action next)
         {
@@ -56,11 +55,16 @@ class HeaderUsage
     #region header-incoming-handler
     public class SampleReadHandler : IHandleMessages<MyMessage>
     {
-        public IBus Bus { get; set; }
+        IBus bus;
+
+        public SampleReadHandler(IBus bus)
+        {
+            this.bus = bus;
+        }
 
         public void Handle(MyMessage message)
         {
-            IDictionary<string, string> headers = Bus.CurrentMessageContext.Headers;
+            IDictionary<string, string> headers = bus.CurrentMessageContext.Headers;
             string nsbVersion = headers[Headers.NServiceBusVersion];
             string customHeader = headers["MyCustomHeader"];
         }
@@ -69,15 +73,24 @@ class HeaderUsage
     #region header-outgoing-handler
     public class SampleWriteHandler : IHandleMessages<MyMessage>
     {
-        public IBus Bus { get; set; }
+        IBus bus;
+
+        public SampleWriteHandler(IBus bus)
+        {
+            this.bus = bus;
+        }
 
         public void Handle(MyMessage message)
         {
-            IDictionary<string, string> headers = Bus.OutgoingHeaders;
-            headers["MyCustomHeader"] = "My custom value";
+            SomeOtherMessage someOtherMessage = new SomeOtherMessage();
+            bus.SetMessageHeader(someOtherMessage, "MyCustomHeader", "My custom value");
+            bus.Send(someOtherMessage);
         }
     }
     #endregion
+    class SomeOtherMessage
+    {
+    }
     internal class MyMessage
     {
     }

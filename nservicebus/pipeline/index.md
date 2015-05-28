@@ -13,8 +13,9 @@ NServiceBus has the concept of a "pipeline" which refers to the series of action
 
 There are several ways to customize this pipeline with varying levels of complexity. 
 
- * [Custom behaviors](/nservicebus/pipeline/customising.md)
+ * [Custom behaviors](/nservicebus/pipeline/customizing.md)
  * [Message Mutators](/nservicebus/pipeline/message-mutators.md)
+ * [Aborting the Pipeline](/nservicebus/pipeline/aborting.md)
 
 ### Features build on the pipeline
 

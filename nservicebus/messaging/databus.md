@@ -16,7 +16,7 @@ Messages are intended to be small. Some scenarios require sending large binary d
 
 ## How it works
 
-The `DataBus` approach is to store a large payload in a location that both the sending and receiving parties can access. The message is sent with a reference to the location, and upon processing, the payload is brought, allowing the receiving part to access the message along with the payload. If the location is not available upon sending, the message fails the send operation. When the payload location is not available, the receive operation fails as well and results in standard NServiceBus behaviour, causing retries and eventually going into the error queue.
+The `DataBus` approach is to store a large payload in a location that both the sending and receiving parties can access. The message is sent with a reference to the location, and upon processing, the payload is brought, allowing the receiving part to access the message along with the payload. If the location is not available upon sending, the message fails the send operation. When the payload location is not available, the receive operation fails as well and results in standard NServiceBus behavior, causing retries and eventually going into the error queue.
 
 ## How to enable DataBus
 
@@ -59,7 +59,7 @@ NServiceBus `DataBus` implementations currently behave differently with regard t
 
 ## Configuring AzureDataBus
 
-The following extension methods are available for changing the behaviour of `AzureDataBus` defaults:
+The following extension methods are available for changing the behavior of `AzureDataBus` defaults:
 
 <!-- import AzureDataBusConfiguration -->
 

@@ -91,6 +91,6 @@ namespace OnlineSales.OrderProcessing
 }
 ````
 
-# Installing RavenDB 2.5
+# Installing RavenDB
 
 Refer to [Installing RavenDB](/nservicebus/ravendb/installation.md) for installation instructions.

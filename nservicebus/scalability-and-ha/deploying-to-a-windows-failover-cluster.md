@@ -13,17 +13,9 @@ NServiceBus is designed for scalability and reliability, but to take advantage o
 
 ## Planning your infrastructure
 
-A simple setup for scalability and reliability includes at least two servers in a failover cluster, and two additional servers for worker endpoints. The failover cluster servers run the following:
+A simple setup for scalability and reliability includes at least two servers in a failover cluster. The failover cluster servers run a distributor process with a timeout manager for each logical message queue.
 
--   A Distributor process for each logical message queue.
--   A `TimeoutManager`, if you require one to support Sagas.
--   Commander application(s):
-    -   A Commander application contains one or more classes that implement IWantToRunAtStartup and coordinate tasks among the other handlers, doing very little work itself but sending messages to start other processes based on timers or other stimuli.
-    -   It is important to set up these applications during the Start method and tear them down during the `Stop` method, as the `Start` method is called when the service starts, and the Stop method is called when the service stops (and is transferred to the other cluster node).
-    -   The Commander application can also have message handlers of its own, usually to subscribe to events published from other endpoints in the service as a kind of feedback loop to control overall processing flow.
-
-
-The two other servers are worker nodes, and contain only endpoints with simple message handlers. The endpoints request work from the clustered distributors, do the work, and then ask for more.
+In addition you have one or more additional servers called worker nodes. These contain endpoints with your message handlers and they are the servers you add more of when you need to scale out. The endpoints on worker nodes request work from the clustered distributors, do the work, and then ask for more.
 
 ## Setting up the clustered service
 
@@ -88,7 +80,7 @@ In this picture:
 
 NOTE: Under "DNS Name" you will find the MSMQ DNS Name, which may or may not be "MSMQ-1".
 
-## Installing the clustered services
+## Installing the clustered distributor services
 
 Before you can cluster the NServiceBus.Host.exe processes, you need to install them as services on all clustered nodes.
 
@@ -131,14 +123,12 @@ Now, add each distributor to the cluster:
 6.  Switch back to the General tab and check the "Use Network Name for computer name" checkbox. This tells the application that Environment.MachineName should return the cluster name, not the cluster node's computer name. Click Apply.
 7.  Repeat for your other distributors.
 
-With your distributors installed, you can repeat the same procedure for any Commander applications, if you have them. You may want to skip the Commander application for now, however. It's sometimes easier to get everything else installed first as a stable system that reacts to events but has no stimulus, and then add the Commander application which will get the whole system in motion.
-
 Again, try swapping the cluster back and forth, to make sure it can move freely between the cluster nodes.
 
 ## Setting up the workers
 The first thing you should do is to make sure that the worker servers have [unqiue QMIds](distributor/#worker-qmid-needs-to-be-unique).
 
-Set up your worker processes on both worker servers (not the cluster nodes!) as services, as you did for the distributors. But instead of using NServiceBus.Distributor, use NServiceBus.Worker profile instead.
+Set up your worker processes on all worker servers (not the cluster nodes!) as services, as you did for the distributors. But instead of using NServiceBus.Distributor, use NServiceBus.Worker profile instead.
 
 Configure the workers' `UnicastBusConfig` sections to point to the distributor's data and control queues as described on the Distributor Page under [Routing with the Distributor](distributor).
 
@@ -171,7 +161,7 @@ While in development, your endpoint configurations probably don't have any @ sym
 
 ## Conclusion
 
-This article shows how to set up a Windows Failover Cluster and two worker node servers to run a scalable, maintainable, and reliable NServiceBus application infrastructure.
+This article shows how to set up a Windows Failover Cluster and one or more worker node servers to run a scalable, maintainable, and reliable NServiceBus application infrastructure.
 
 -   Scaling up can be achieved by adjusting the number of threads on each worker process.
 -   Scaling out can be achieved by starting up another server to run another worker process connected to the clustered distributor.

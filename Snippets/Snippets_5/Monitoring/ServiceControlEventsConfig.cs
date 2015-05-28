@@ -6,7 +6,7 @@ public class ServiceControlEventsConfig
     {
         BusConfiguration busConfiguration = new BusConfiguration();
 
-        #region ServiceControlEventsConfig 5.0
+        #region ServiceControlEventsConfig 
 
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.Conventions()

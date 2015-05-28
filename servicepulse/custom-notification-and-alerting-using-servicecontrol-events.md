@@ -17,7 +17,7 @@ ServiceControl's endpoint plugins collect information from monitored NServiceBus
 
 ### Alerting on FailedMessages Event
 
-Once a message ends up in the error queue ServiceControl will publish a [MessageFailed](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/MessageFailed.cs) event. As you can see the message contains enough context to help identify the cause of the error, the endpoint, the time, the stack trace and more. if you need more information you can call ServiceControl's HTTP API.
+Once a message ends up in the error queue ServiceControl will publish a `MessageFailed` event. As you can see the message contains enough context to help identify the cause of the error, the endpoint, the time, the stack trace and more. if you need more information you can call ServiceControl's HTTP API.
 
 ### Subscribing to ServiceControl Events 
 
@@ -48,15 +48,15 @@ Both heartbeat and custom check events contain identifying information about the
 
 Heartbeats are used to track endpoints health see [this intro for more information](/servicepulse/intro-endpoints-heartbeats.md#active-vs-inactive-endpoints)
 
-Once an endpoint stops sending heartbeats to ServiceControl queue ServiceControl will publish a [HeartbeatStopped](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/HeartbeatStopped.cs) event. 
+Once an endpoint stops sending heartbeats to ServiceControl queue ServiceControl will publish a `HeartbeatStopped` event. 
 
 The message contains the time it was detected and the last heartbeat time.
 
-Similarly to the code above you can subscribe to the event, handle it and provide custom actions.
+Similarly to the code above you can subscribe to the event, handle it, and perform custom actions.
 
 ### Alerting on HeartbeatRestored Event
 
-Once an endpoint resumes sending heartbeats to ServiceControl queue ServiceControl will publish a [HeartbeatRestored](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/HeartbeatRestored.cs) event. 
+Once an endpoint resumes sending heartbeats to ServiceControl queue ServiceControl will publish a `HeartbeatRestored` event. 
 
 The event contains the time the heartbeat was restored.
 
@@ -66,7 +66,7 @@ Similarly to the code above you can subscribe to the event, handle it and provid
 
 Custom checks are used to alert OPS of possible issues with third parties see [this intro for more information](/servicepulse/intro-endpoints-custom-checks.md)
 
-Once a custom check fails ServiceControl will publish a [CustomCheckFailed](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/CustomCheckFailed.cs) event. 
+Once a custom check fails ServiceControl will publish a `CustomCheckFailed` event. 
 
 The message contains the time it was detected and the failure reason.
 
@@ -74,8 +74,8 @@ Similarly to the code above you can subscribe to the event, handle it and provid
 
 ### Alerting on CustomCheckSucceeded Event
 
-Once a custom check succeeds ServiceControl will publish a [CustomCheckSucceeded](https://github.com/Particular/ServiceControl.Contracts/blob/master/src/ServiceControl.Contracts/CustomCheckSucceeded.cs) event. 
+Once a custom check succeeds ServiceControl will publish a `CustomCheckSucceeded` event. 
 
 The message contains the time it was detected.
 
-Similarly to the code above you can subscribe to the event, handle it and provide custom actions.
+Similarly to the code above you can subscribe to the event, handle it, and perform custom actions.

@@ -14,11 +14,19 @@ It is recommended that you specify a central auditing queue for all related endp
 
 ## Configuring auditing
 
-<!-- import ConfigureAudit -->
+### Using app.config
+
+<!-- import configureAuditUsingXml -->
 
 * `OverrideTimeToBeReceived`: Supported in Version 4 and higher. It is optional and defaults to the value of the TimeToBeReceived on the original message message.  
 
 Note: For backwards compatibility, Version 4 still supports the attribute `ForwardReceivedMessagesTo` on `UnicastBusConfig` section, but you will receive a warning recommending that you upgrade your configuration to use `AuditConfig` section.
+
+### Using code
+
+The audit settings can also be configured using code via a  [custom configuration provider](/nservicebus/hosting/custom-configuration-providers.md)
+
+<!-- import ConfigureAuditUsingCode -->
 
 ## Machine level configuration
 

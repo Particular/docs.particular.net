@@ -17,21 +17,21 @@ The initial message Throughput of an endpoint can be configured in both code and
 
 By [overriding app.config settings](/nservicebus/hosting/custom-configuration-providers.md).
 
-<!-- import ThroughtputFromCode--->
+<!-- import ThroughputFromCode--->
 
 ### Via app.config
 
 By using raw xml.
 
-<!-- import ThroughtputFromAppConfig--->
+<!-- import ThroughputFromAppConfig--->
 
 ## Changing Throughput at run time
 
-<!-- import ChangeThroughtput--->
+<!-- import ChangeThroughput--->
 
 ## Reading Throughput at run time
 
-<!-- import ReadThroughtput--->
+<!-- import ReadThroughput--->
 
 
 

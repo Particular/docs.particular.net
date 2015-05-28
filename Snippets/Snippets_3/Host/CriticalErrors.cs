@@ -21,11 +21,11 @@ class CriticalErrors
 
     #region CustomHostErrorHandlingAction
 
-    ILog Logger = LogManager.GetLogger(typeof(CriticalErrors));
+    static ILog Logger = LogManager.GetLogger(typeof(CriticalErrors));
 
     void OnCriticalError()
     {
-        //Write log entry in version 3 since this is not done by defualt.
+        //Write log entry in version 3 since this is not done by default.
         Logger.Fatal("CRITICAL Error");
 
         // If you want the process to be active, dispose the bus. 

@@ -47,13 +47,16 @@
       Url: "nservicebus/handlers"
       Articles: 
         - "nservicebus/handlers/handler-ordering"
-        - "nservicebus/testing/unit-testing"
+        - "nservicebus/testing"
     - 
       Title: "Sagas"
       Url: "nservicebus/sagas"
       Articles: 
+        - "nservicebus/sagas/timeouts"
+        - "nservicebus/sagas/saga-finding"
+        - "nservicebus/sagas/saga-not-found"
         - "nservicebus/sagas/concurrency"
-        - "nservicebus/testing/unit-testing"
+        - "nservicebus/testing"
         - "nservicebus/persistence"
     - 
       Title: "Error Handling"
@@ -67,9 +70,10 @@
       Title: "Pipeline"
       Url: "nservicebus/pipeline"
       Articles: 
-        - "nservicebus/pipeline/customising"
+        - "nservicebus/pipeline/customizing"
         - "nservicebus/pipeline/message-mutators"
         - "nservicebus/pipeline/unit-of-work"
+        - "nservicebus/pipeline/aborting"
         - "nservicebus/security/encryption"
         - "nservicebus/messaging/databus"
     - 
@@ -89,6 +93,7 @@
             - "nservicebus/sqlserver/design"
             - "nservicebus/sqlserver/multiple-databases"
             - "nservicebus/sqlserver/usage"
+            - "nservicebus/sqlserver/operations-scripting"
         - Title: "MSMQ"
           Url: "nservicebus/msmq"
           Articles: 
@@ -96,11 +101,14 @@
             - "nservicebus/msmq/viewing-message-content-in-msmq"
             - "nservicebus/msmq/transportconfig"
             - "nservicebus/msmq/network-load-balancing"
+            - "nservicebus/msmq/operations-scripting"
         - Title: "RabbitMQ"
           Url: "nservicebus/rabbitmq"
           Articles: 
+            - "nservicebus/rabbitmq/rabbitmqclient-nuget"
             - "nservicebus/rabbitmq/connection-strings"
             - "nservicebus/rabbitmq/configuration-api"
+            - "nservicebus/rabbitmq/operations-scripting"
     - 
       Title: "Serialization"
       Url: "nservicebus/serialization"
@@ -119,6 +127,7 @@
         - Title: "RavendDB"
           Url: "nservicebus/ravendb"
           Articles: 
+            - "nservicebus/ravendb/operations-scripting"
             - "nservicebus/ravendb/connecting"
             - "nservicebus/ravendb/installation"
     - 

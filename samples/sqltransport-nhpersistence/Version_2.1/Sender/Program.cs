@@ -1,38 +1,52 @@
 ﻿using System;
 using System.Linq;
-using Messages;
 using NServiceBus;
 using NServiceBus.Transports.SQLServer;
 
-namespace Sender
+using NHibernate.Cfg;
+using NHibernate.Dialect;
+using NServiceBus.Persistence;
+
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main()
+        const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+        Random random = new Random();
+        BusConfiguration busConfiguration = new BusConfiguration();
+
+        Configuration hibernateConfig = new Configuration();
+        hibernateConfig.DataBaseIntegration(x =>
         {
-            const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-            Random random = new Random();
-            BusConfiguration busConfiguration = new BusConfiguration();
+            x.ConnectionStringName = "NServiceBus/Persistence";
+            x.Dialect<MsSql2012Dialect>();
+        });
+        hibernateConfig.SetProperty("default_schema", "sender");
 
-            #region SenderConfiguration
-            busConfiguration.UseTransport<SqlServerTransport>().DefaultSchema("sender")
-                .UseSpecificConnectionInformation(EndpointConnectionInfo.For("receiver").UseSchema("receiver"));
-            busConfiguration.UsePersistence<NHibernatePersistence>();
-            #endregion
+        #region SenderConfiguration
 
-            IBus bus = Bus.Create(busConfiguration).Start();
-            while (true)
+        busConfiguration.UseTransport<SqlServerTransport>()
+            .DefaultSchema("sender")
+            .UseSpecificConnectionInformation(
+                EndpointConnectionInfo.For("receiver")
+                    .UseSchema("receiver"));
+        busConfiguration.UsePersistence<NHibernatePersistence>()
+            .UseConfiguration(hibernateConfig);
+
+        #endregion
+
+        IBus bus = Bus.Create(busConfiguration).Start();
+        while (true)
+        {
+            Console.WriteLine("Press <enter> to send a message");
+            Console.ReadLine();
+
+            string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+            bus.Publish(new OrderSubmitted
             {
-                Console.WriteLine("Press <enter> to send a message");
-                Console.ReadLine();
-
-                string orderId = new string(Enumerable.Range(0,4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                bus.Publish(new OrderSubmitted
-                {
-                    OrderId = orderId,
-                    Value = random.Next(100)
-                });
-            }
+                OrderId = orderId,
+                Value = random.Next(100)
+            });
         }
     }
 }

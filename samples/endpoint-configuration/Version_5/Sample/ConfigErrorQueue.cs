@@ -7,9 +7,9 @@ class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultCon
     public MessageForwardingInCaseOfFaultConfig GetConfiguration()
     {
         return new MessageForwardingInCaseOfFaultConfig
-               {
-                   ErrorQueue = "error"
-               };
+        {
+            ErrorQueue = "error"
+        };
     }
 }
 #endregion

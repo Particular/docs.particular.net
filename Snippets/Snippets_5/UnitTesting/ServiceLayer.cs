@@ -5,6 +5,7 @@ using NUnit.Framework;
 namespace UnitTesting.ServiceLayer
 {
 
+    [Explicit]
     #region TestingServiceLayer
 
     public class TestHandler
