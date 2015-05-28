@@ -3,10 +3,50 @@
     using System;
     using System.Data.SqlClient;
 
-    #region sqlserver-delete-queues
 
     public static class QueueDeletion
     {
+        public static void DeleteQueuesForEndpoint()
+        {
+            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=myDatabase;Integrated Security=True";
+
+            #region sqlserver-delete-queues-endpoint-usage
+
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                DeleteQueuesForEndpoint(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    endpointName: "myendpoint");
+            }
+
+            #endregion
+        }
+
+        public static void DeleteSharedQueues()
+        {
+            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=myDatabase;Integrated Security=True";
+
+            #region sqlserver-delete-queues-shared-usage
+
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                sqlConnection.Open();
+                DeleteQueue(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    queueName: "audit");
+                DeleteQueue(
+                    connection: sqlConnection,
+                    schema: "dbo",
+                    queueName: "error");
+            }
+
+            #endregion
+        }
+
+        #region sqlserver-delete-queues
 
         public static void DeleteQueue(SqlConnection connection, string schema, string queueName)
         {
@@ -38,7 +78,6 @@
             DeleteQueue(connection, schema, endpointName + ".TimeoutsDispatcher");
         }
 
+        #endregion
     }
-
-    #endregion
 }
