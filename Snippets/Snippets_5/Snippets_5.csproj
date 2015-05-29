@@ -359,6 +359,7 @@
     <Compile Include="Headers\Writers\HeaderWriterReply.cs" />
     <Compile Include="Headers\Writers\HeaderWriterReturn.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDefer.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterAudit.cs" />
     <Compile Include="Headers\Writers\HeaderWriterSend.cs" />
     <Compile Include="Headers\Writers\TransportMessageExtension.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
