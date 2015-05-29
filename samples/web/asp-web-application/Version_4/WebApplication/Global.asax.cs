@@ -17,6 +17,9 @@ namespace WebApplication
             configure.DefineEndpointName("Samples.AsyncPages.WebApplication");
             configure.DefaultBuilder();
             configure.UseTransport<Msmq>();
+            configure.InMemorySagaPersister();
+            configure.UseInMemoryTimeoutPersister();
+            configure.InMemorySubscriptionStorage();
             IStartableBus startableBus = configure.UnicastBus().CreateBus();
             Bus = startableBus.Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
             #endregion
