@@ -19,7 +19,7 @@ class Program
 
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (IBus bus = Bus.Create(busConfiguration.Start()
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
             Run(bus);
         }
