@@ -19,7 +19,7 @@
             }
 
             Console.WriteLine("We have received an order #{0} for [{1}] products(s).", message.OrderNumber,
-                              String.Join(", ", message.ProductIds));
+                              string.Join(", ", message.ProductIds));
 
             Console.WriteLine("The credit card values will be encrypted when looking at the messages in the queues");
             Console.WriteLine("CreditCard Number is {0}", message.EncryptedCreditCardNumber);

@@ -14,9 +14,10 @@ class Program
 
         busConfiguration.ApplyCustomConventions();
 
-        IStartableBus bus = Bus.Create(busConfiguration);
-        bus.Start();
-        CommandSender.Start(bus);
+        using (IBus bus = Bus.Create(busConfiguration).Start())
+        {
+            CommandSender.Start(bus);
+        }
     }
 }
 

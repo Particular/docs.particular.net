@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigLogging.cs" />
     <Compile Include="ExtensionPoints\WantToRunBeforeConfiguration.cs" />
     <Compile Include="ExtensionPoints\NeedToInstallSomething.cs" />
     <Compile Include="ExtensionPoints\WantToRunBeforeConfigurationIsFinalized.cs" />

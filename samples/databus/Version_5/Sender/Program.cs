@@ -14,9 +14,8 @@ class Program
         busConfiguration.UseDataBus<FileShareDataBus>().BasePath(BasePath);
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (IStartableBus bus = Bus.Create(busConfiguration))
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            bus.Start();
             Run(bus);
         }
     }

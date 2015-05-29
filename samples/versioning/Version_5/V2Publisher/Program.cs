@@ -14,9 +14,8 @@ class Program
         busConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>();
         busConfiguration.EnableInstallers();
 
-        using (IStartableBus bus = Bus.Create(busConfiguration))
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            bus.Start();
             Console.WriteLine("Press 'Enter' to publish a message, Ctrl + C to exit.");
             while (Console.ReadLine() != null)
             {

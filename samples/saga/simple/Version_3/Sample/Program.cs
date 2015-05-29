@@ -7,8 +7,8 @@ class Program
     static void Main()
     {
         Configure configure = Configure.With();
-        configure.DefineEndpointName("Samples.ComplexSagaFindingLogic");
         configure.Log4Net();
+        configure.DefineEndpointName("Samples.ComplexSagaFindingLogic");
         configure.DefaultBuilder();
         configure.Sagas();
         configure.MsmqTransport();
@@ -16,20 +16,21 @@ class Program
         configure.RunTimeoutManagerWithInMemoryPersistence();
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
-        IBus bus = configure.UnicastBus()
-            .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
-
-        bus.SendLocal(new StartOrder
+        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
-            OrderId = "123"
-        });
-        bus.SendLocal(new StartOrder
-        {
-            OrderId = "456"
-        });
+            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
 
-        Console.WriteLine("\r\nPress any key to stop program\r\n");
-        Console.ReadKey();
+            bus.SendLocal(new StartOrder
+            {
+                OrderId = "123"
+            });
+            bus.SendLocal(new StartOrder
+            {
+                OrderId = "456"
+            });
+
+            Console.WriteLine("\r\nPress any key to stop program\r\n");
+            Console.ReadKey();
+        }
     }
 }

@@ -8,9 +8,9 @@ class Program
 	{
 		#region self-hosting
 
-		Configure configure = Configure.With();
-        configure.DefineEndpointName("Samples.SelfHosting");
+        Configure configure = Configure.With();
         configure.Log4Net();
+        configure.DefineEndpointName("Samples.SelfHosting");
         configure.DefaultBuilder();
         configure.Sagas();
         configure.MsmqTransport();
@@ -19,14 +19,15 @@ class Program
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
 
-        IBus bus = configure.UnicastBus()
-            .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        {
+            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
+            bus.SendLocal(new MyMessage());
+            Console.ReadKey();
+        }
 
-		#endregion
+        #endregion
 
-        Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
-        bus.SendLocal(new MyMessage());
-        Console.ReadKey();
     }
 }

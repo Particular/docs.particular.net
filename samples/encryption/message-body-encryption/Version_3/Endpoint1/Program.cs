@@ -7,6 +7,7 @@ class Program
     static void Main()
     {
         Configure configure = Configure.With();
+        configure.Log4Net();
         configure.DefineEndpointName("Samples.MessageBodyEncryption.Endpoint1");
         configure.DefaultBuilder();
         configure.RijndaelEncryptionService();
@@ -16,17 +17,18 @@ class Program
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
         configure.RegisterMessageEncryptor();
-        IBus bus = configure.UnicastBus()
-            .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
-
-        CompleteOrder completeOrder = new CompleteOrder
+        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
-            CreditCard = "123-456-789"
-        };
-        bus.Send("Samples.MessageBodyEncryption.Endpoint2", completeOrder);
+            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
 
-        Console.WriteLine("Message sent. Press any key to exit");
-        Console.ReadLine();
+            CompleteOrder completeOrder = new CompleteOrder
+            {
+                CreditCard = "123-456-789"
+            };
+            bus.Send("Samples.MessageBodyEncryption.Endpoint2", completeOrder);
+
+            Console.WriteLine("Message sent. Press any key to exit");
+            Console.ReadLine();
+        }
     }
 }

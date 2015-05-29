@@ -101,7 +101,7 @@ class ProgramService : ServiceBase
         #region start-bus
         bus = configure.UnicastBus()
             .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+            .Start(() => configure.ForInstallationOn<Windows>().Install());
         #endregion
     }
 

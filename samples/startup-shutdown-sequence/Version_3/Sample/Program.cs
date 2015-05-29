@@ -11,6 +11,7 @@ class Program
         #region Program
         Logger.WriteLine("Starting configuration");
         Configure configure = Configure.With();
+        configure.Log4Net();
         configure.DefineEndpointName("Samples.StartupShutdown");
 
         configure.DefaultBuilder();
@@ -27,7 +28,7 @@ class Program
                 .Start(() =>
                 {
                     Logger.WriteLine("Calling ForInstallationOn.Install");
-                    Configure.Instance.ForInstallationOn<Windows>().Install();
+                    configure.ForInstallationOn<Windows>().Install();
                 });
 
             //simulate some bus activity

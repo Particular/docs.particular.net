@@ -7,8 +7,8 @@ class Program
     {
         Configure.Serialization.Json();
         Configure configure = Configure.With();
-        configure.DefineEndpointName("Samples.MessageMutators");
         configure.Log4Net();
+        configure.DefineEndpointName("Samples.MessageMutators");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
@@ -21,7 +21,7 @@ class Program
 
         using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
-            IBus bus = startableBus.Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             Runner.Run(bus);
         }
     }

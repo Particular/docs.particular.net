@@ -13,7 +13,6 @@ public class EndpointConfig : IConfigureThisEndpoint, AsA_Server, IWantCustomIni
         Configure configure = Configure.With();
 
         configure.DefineEndpointName("Samples.NServiceBus.Host");
-        configure.Log4Net();
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();

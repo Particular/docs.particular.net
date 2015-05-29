@@ -3,7 +3,6 @@ using NServiceBus;
 
 class Program
 {
-    static IStartableBus bus;
 
     static void Main()
     {
@@ -11,13 +10,14 @@ class Program
         busConfiguration.EndpointName("Sample.MultiSerializer.Sender");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        bus = Bus.Create(busConfiguration);
-        bus.Start();
-        Run();
+        using (var bus = Bus.Create(busConfiguration).Start())
+        {
+            Run(bus);
+        }
     }
 
 
-    static void Run()
+    static void Run(IBus bus)
     {
         Console.WriteLine("Press 'J' to send a JSON message");
         Console.WriteLine("Press 'B' to send a Binary message");
@@ -29,17 +29,17 @@ class Program
 
             if (key.Key == ConsoleKey.B)
             {
-                SendBinaryMessage();
+                SendBinaryMessage(bus);
                 continue;
             }
             if (key.Key == ConsoleKey.J)
             {
-                SendJsonMessage();
+                SendJsonMessage(bus);
             }
         }
     }
 
-    static void SendBinaryMessage()
+    static void SendBinaryMessage(IBus bus)
     {
         MessageWithBinary message = new MessageWithBinary
         {
@@ -50,7 +50,7 @@ class Program
         Console.WriteLine("Binary message sent");
     }
 
-    static void SendJsonMessage()
+    static void SendJsonMessage(IBus bus)
     {
         MessageWithJson message = new MessageWithJson
                                   {

@@ -54,20 +54,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtensionPoints\WantToRunBeforeConfiguration.cs" />
-    <Compile Include="ExtensionPoints\NeedToInstallSomething.cs" />
-    <Compile Include="ExtensionPoints\WantToRunBeforeConfigurationIsFinalized.cs" />
-    <Compile Include="ExtensionPoints\WantToRunWhenConfigurationIsComplete.cs" />
-    <Compile Include="ExtensionPoints\WantToRunWhenTheBusStarts.cs" />
-    <Compile Include="ExtensionPoints\NeedInitialization.cs" />
     <Compile Include="ConfigErrorQueue.cs" />
+    <Compile Include="ExtensionPoints\NeedInitialization.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExtensionPoints\NeedToInstallSomething.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExtensionPoints\WantToRunBeforeConfiguration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExtensionPoints\WantToRunBeforeConfigurationIsFinalized.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExtensionPoints\WantToRunWhenConfigurationIsComplete.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ExtensionPoints\WantToRunWhenTheBusStarts.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Autofac;
@@ -8,6 +9,7 @@ using NServiceBus.Installation.Environments;
 
 public class MvcApplication : HttpApplication
 {
+    IBus bus;
 
     public static void RegisterRoutes(RouteCollection routes)
     {
@@ -24,6 +26,15 @@ public class MvcApplication : HttpApplication
             } // Parameter defaults
 
             );
+    }
+
+    public override void Dispose()
+    {
+        if (bus != null)
+        {
+            ((IDisposable)bus).Dispose();
+        }
+        base.Dispose();
     }
 
     protected void Application_Start()
@@ -49,8 +60,8 @@ public class MvcApplication : HttpApplication
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
         configure.UnicastBus();
-        configure.CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+        bus = configure.CreateBus()
+            .Start(() => configure.ForInstallationOn<Windows>().Install());
 
         AreaRegistration.RegisterAllAreas();
         RegisterRoutes(RouteTable.Routes);

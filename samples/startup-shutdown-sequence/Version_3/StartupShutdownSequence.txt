@@ -15,4 +15,3 @@ Thread:1 Inside IWantToRunWhenTheBusStarts.Run
 Thread:1 Bus is processing messages
 Thread:1 Calling IStartableBus.Dispose
 Thread:1 Finished
-endcode

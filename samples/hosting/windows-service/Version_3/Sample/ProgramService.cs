@@ -35,6 +35,7 @@ class ProgramService : ServiceBase
     protected override void OnStart(string[] args)
     {
         Configure configure = Configure.With();
+        configure.Log4Net();
         configure.DefineEndpointName("Sample.WindowsServiceAndConsole");
         configure.Log4Net();
         configure.DefaultBuilder();
@@ -47,7 +48,7 @@ class ProgramService : ServiceBase
 
         bus = configure.UnicastBus()
             .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+            .Start(() => configure.ForInstallationOn<Windows>().Install());
     }
 
     #endregion
@@ -56,7 +57,10 @@ class ProgramService : ServiceBase
 
     protected override void OnStop()
     {
-        bus = null;
+        if (bus != null)
+        {
+            ((IDisposable)bus).Dispose();
+        }
     }
 
     #endregion
