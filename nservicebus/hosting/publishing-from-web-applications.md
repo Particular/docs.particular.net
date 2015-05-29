@@ -70,7 +70,7 @@ Although we're discussing web applications specifically, it's worth noting that 
 
 For storage-driven transports, it is inadvisable to have one of the web applications receive subscription requests. Instead, each web application instance can be implemented as an `ISendOnlyBus`, and a back-end service endpoint can be responsible for receiving the subscription request messages and updating the subscription storage.
 
-![Storage-driven transport publishing topology](storage-based-publish-topology.png)
+![Storage-driven transport publishing topology](storage-based-publish-topology.png "width=400")
 
 In the diagram above, two web servers are load balanced behind a network load balancer. The applications on both web servers cooperate by referring to the same subscription storage database.
 
