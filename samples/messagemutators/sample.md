@@ -27,7 +27,6 @@ e
 2014-11-04 16:55:17.997 ERROR ValidationMessageMutator Validation failed for message CreateProductCommand: ProductId=XJ128, ProductName=Milk Milk Milk Milk Milk, ListPrice=15 Image (length)=7340032, with the following error/s:
 The Product Name value cannot exceed 20 characters.
 The field ListPrice must be between 1 and 5.
-
 ``` 
 
 Now let's look at the code.
@@ -36,11 +35,7 @@ Now let's look at the code.
 
 This sample shows how to create a custom message mutator.
 
-Take a quick look at the interfaces involved. 
-
-![Message Mutators](message-mutators.png "Message Mutators")
-
-Each interface gives access to the message so that you can mutate on the inbound and/or outbound message.
+The `IMutateTransportMessages` and `IMessageMutator` interfaces give access to the message so that you can mutate on the inbound and/or outbound message.
 
 All you have to do as a consumer is implement the desired interface and load it into the NServiceBus container.
 

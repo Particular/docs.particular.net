@@ -8,11 +8,11 @@ using NServiceBus.Unicast.Messages;
 #region TransportMessageCompressionMutator
 public class TransportMessageCompressionMutator : IMutateTransportMessages
 {
-    static ILog Logger = LogManager.GetLogger("TransportMessageCompressionMutator");
+    static ILog log = LogManager.GetLogger("TransportMessageCompressionMutator");
 
     public void MutateOutgoing(LogicalMessage message, TransportMessage transportMessage)
     {
-        Logger.Info("transportMessage.Body size before compression: " + transportMessage.Body.Length);
+        log.Info("transportMessage.Body size before compression: " + transportMessage.Body.Length);
 
         MemoryStream mStream = new MemoryStream(transportMessage.Body);
         MemoryStream outStream = new MemoryStream();
@@ -25,7 +25,7 @@ public class TransportMessageCompressionMutator : IMutateTransportMessages
         // otherwise, not all the compressed message will be copied.
         transportMessage.Body = outStream.ToArray();
         transportMessage.Headers["IWasCompressed"] = "true";
-        Logger.Info("transportMessage.Body size after compression: " + transportMessage.Body.Length);
+        log.Info("transportMessage.Body size after compression: " + transportMessage.Body.Length);
     }
 
     public void MutateIncoming(TransportMessage transportMessage)

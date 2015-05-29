@@ -34,7 +34,7 @@ public class Runner
                         bus.SendLocal(new CreateProductCommand
                                       {
                                           ProductId = "XJ128",
-                                          ProductName = "Milk Milk Milk Milk Milk",
+                                          ProductName = "Really long product name",
                                           ListPrice = 15,
                                           // 7MB. MSMQ should throw an exception, but it will not since the buffer will be compressed 
                                           // before it reaches MSMQ.
