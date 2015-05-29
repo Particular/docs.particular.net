@@ -112,6 +112,7 @@
     <Compile Include="Callback\Callback.cs" />
     <Compile Include="Conventions\ExpressMessages.cs" />
     <Compile Include="Conventions\MessageConventions.cs" />
+    <Compile Include="Correlation\CustomCorrelationId.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DataBus\DataBus.cs" />
     <Compile Include="Distributor\ConfiguringDistributor.cs" />

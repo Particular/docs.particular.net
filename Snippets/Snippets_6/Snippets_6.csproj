@@ -34,7 +34,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.6.0.0-unstable0423\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,10 +48,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BestPracticesConfiguration.cs" />
-    <Compile Include="Scanning\ScanningPublicApi.cs" />
+    <Compile Include="Correlation\CustomCorrelationId.cs" />
+    <Compile Include="Errors\ConfigureFirstLevelRetries.cs" />
+    <Compile Include="Errors\ConfigureSecondLevelRetries.cs" />
+    <Compile Include="Errors\ErrorQueueConfigurationProvider.cs" />
+    <Compile Include="Errors\ErrorQueueConfigurationSource.cs" />
+    <Compile Include="Headers\HeaderUsage.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Errors\configureErrorQueue.config" />
+    <None Include="Errors\flr.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{5f02c8a5-55e9-4b79-9c0f-8fb525ebe326}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Operations\Operations.csproj">
+      <Project>{d52a6feb-cc19-49c3-af92-475669d2ff25}</Project>
+      <Name>Operations</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

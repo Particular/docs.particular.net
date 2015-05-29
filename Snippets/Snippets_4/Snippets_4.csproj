@@ -196,6 +196,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Runtime" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Spatial">
@@ -232,6 +233,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Correlation\CustomCorrelationId.cs" />
     <Compile Include="Pipeline\AbortPipeline.cs" />
     <Compile Include="Audit\ConfigureAuditUsingCode.cs" />
     <Compile Include="BusExtensionMethodForHandler.cs" />
