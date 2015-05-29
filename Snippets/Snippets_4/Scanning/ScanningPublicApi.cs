@@ -33,7 +33,7 @@ public class ScanningPublicApi
         #endregion
 
         #region ScanningIncludeByPattern
-        Configure.With(AllAssemblies.Matching("MyCompany.").And("SomethingElse"));
+        Configure.With(AllAssemblies.Matching("NServiceBus").And("MyCompany.").And("SomethingElse"));
         #endregion
 
         #region ScanningCustomDirectory
@@ -41,7 +41,7 @@ public class ScanningPublicApi
         #endregion
 
         #region ScanningMixingIncludeAndExclude
-        Configure.With(AllAssemblies.Matching("MyCompany.").Except("BadAssembly.dll"));
+        Configure.With(AllAssemblies.Matching("NServiceBus").And("MyCompany.").Except("BadAssembly.dll"));
         #endregion
     }
 

@@ -43,7 +43,7 @@ public class ScanningPublicApi
 
         #region ScanningIncludeByPattern
 
-        busConfiguration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").And("SomethingElse"));
+        busConfiguration.AssembliesToScan(AllAssemblies.Matching("NServiceBus").And("MyCompany.").And("SomethingElse"));
 
         #endregion
 
@@ -55,7 +55,7 @@ public class ScanningPublicApi
 
         #region ScanningMixingIncludeAndExclude
 
-        busConfiguration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").Except("BadAssembly.dll"));
+        busConfiguration.AssembliesToScan(AllAssemblies.Matching("NServiceBus").And("MyCompany.").Except("BadAssembly.dll"));
 
         #endregion
 

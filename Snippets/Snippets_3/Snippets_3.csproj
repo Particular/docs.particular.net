@@ -125,6 +125,7 @@
     <Compile Include="Persistence\InMemory\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Sagas\SagaBasics.cs" />
+    <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\CustomSecondLevelRetriesConfig.cs" />
