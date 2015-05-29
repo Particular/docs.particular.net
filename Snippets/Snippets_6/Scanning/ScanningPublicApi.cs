@@ -33,27 +33,6 @@
             busConfiguration.ExcludeTypes(type1, type2);
 
             #endregion
-
-            var allTypes = new Type[] { };
-            var typesToScan = new Type[] { };
-
-            #region ScanningListOfTypes
-
-            var typesToExclude = allTypes.Except(typesToScan).ToArray();
-
-            busConfiguration.ExcludeTypes(typesToExclude);
-
-            #endregion
-
-            var allAssemblies = new string[] { };
-            var assembliesToScan = new string[] { };
-
-            #region ScanningListOfAssemblies
-
-            var assembliesToExclude = allAssemblies.Except(assembliesToScan).ToArray();
-            busConfiguration.ExcludeAssemblies(assembliesToExclude);
-
-            #endregion
         }
 
         #region ScanningConfigurationInNSBHost

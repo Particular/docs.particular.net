@@ -37,33 +37,15 @@ For version 5 and below assemblies in nested folders were automatically scanned 
 
 From version 6, default behaviour is not to scan nested folders for assemblies. You can enable nested folders assembly scanning using:
 
-<!-- ScanningNestedAssebliesEnabled -->
-
-## Excluding assemblies
-
+<!-- import ScanningNestedAssebliesEnabled -->
 
 ### You can exclude specific assemblies by name:
 
 <!-- import ScanningExcludeByName -->
 
-
 ### You can exclude specific types:
 
 <!-- import ScanningExcludeTypes -->
-
-
-## Including assemblies
-
- 
-### You can pass assemblies:
-
-<!-- import ScanningListOfAssemblies -->
-
-
-### And if you need to control the exact types that NServiceBus uses you can pass them in:
-
-<!-- import ScanningListOfTypes -->
-
 
 ## Options deprecated from version 6 and later
 
@@ -71,6 +53,13 @@ Use the `AllAssemblies` helper class to easily create a list of assemblies eithe
 
 NOTE: The `Except`, `Matching` and `And` methods behave like `string.StartsWith(string)`.
 
+### Including assemblies:
+
+<!-- import ScanningListOfAssemblies -->
+
+### Control the exact types that NServiceBus uses:
+
+<!-- import ScanningListOfTypes -->
 
 ### Include assemblies using pattern matching:
 
