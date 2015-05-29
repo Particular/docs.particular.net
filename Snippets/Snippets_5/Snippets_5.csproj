@@ -381,6 +381,7 @@
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\InMemory\ConfiguringInMemory.cs" />
     <Compile Include="Persistence\NHibernate\AccessingData.cs" />
+    <Compile Include="Persistence\NHibernate\Concurrency.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="Pipeline\AbortPipeline.cs" />
