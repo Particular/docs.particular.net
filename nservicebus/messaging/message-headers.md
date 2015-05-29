@@ -189,21 +189,6 @@ Headers added when a message is [Audited](/nservicebus/operations/auditing.md)
  * `NServiceBus.ProcessingStarted`: The timestamp the processing of this message started.
 
 
-## Audit a Message
-
-When a message is audited it will have all the headers of the initial Message as well as some  
-
-
-### Retries handling headers
-
-Headers used facilitate [Retries](/nservicebus/errors/automatic-retries.md).
-
- * `NServiceBus.FailedQ`: The queue at which the message processing failed.
- * `NServiceBus.FLRetries`: The number of first-level retries that has been performed for a message.
- * `NServiceBus.Retries`: Number of second-level retries that has been performed for a message.
- * `NServiceBus.Retries.Timestamp`: A timestamp used by Second Level Retries to determine if the maximum time for retrying has been reached.
-
-
 ### Example Audit Headers
 
 Given an initiating message with the following headers:
@@ -213,6 +198,16 @@ Given an initiating message with the following headers:
 When that message fails to be processed it will be sent to the Error queue with the following headers:
 
 <!-- import HeaderWriterAudit_Audit -->
+
+
+## Retries handling headers
+
+Headers used facilitate [Retries](/nservicebus/errors/automatic-retries.md).
+
+ * `NServiceBus.FailedQ`: The queue at which the message processing failed.
+ * `NServiceBus.FLRetries`: The number of first-level retries that has been performed for a message.
+ * `NServiceBus.Retries`: Number of second-level retries that has been performed for a message.
+ * `NServiceBus.Retries.Timestamp`: A timestamp used by Second Level Retries to determine if the maximum time for retrying has been reached.
 
 
 ## Error forwarding headers
