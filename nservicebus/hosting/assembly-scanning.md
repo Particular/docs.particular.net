@@ -42,22 +42,28 @@ From version 6, default behaviour is not to scan nested folders for assemblies. 
 ## Excluding assemblies
 
 
-###You can exclude specific assemblies by name:
+### You can exclude specific assemblies by name:
 
 <!-- import ScanningExcludeByName -->
 
-###You can exclude specific types:
+
+### You can exclude specific types:
+
 <!-- import ScanningExcludeTypes -->
 
+
 ## Including assemblies
+
  
 ### You can pass assemblies:
 
 <!-- import ScanningListOfAssemblies -->
 
+
 ### And if you need to control the exact types that NServiceBus uses you can pass them in:
 
 <!-- import ScanningListOfTypes -->
+
 
 ## Options deprecated from version 6 and later
 
@@ -65,17 +71,19 @@ Use the `AllAssemblies` helper class to easily create a list of assemblies eithe
 
 NOTE: The `Except`, `Matching` and `And` methods behave like `string.StartsWith(string)`.
 
+
 ### Include assemblies using pattern matching:
 
 <!-- import ScanningIncludeByPattern -->
+
 
 ### Mixing includes and excludes:
 
 <!-- import ScanningMixingIncludeAndExclude -->
 
+
 ### Specifying the directory to scan:
 
 <!-- import ScanningCustomDirectory -->
-
 
 NOTE: Assembly scanning options applied in `INeedInitialization` code will not be applied. Assembly scanning options need to be specified using `IConfigureThisEndpoint` when using NServiceBus.Host or when self hosting and creating `BusConfiguration` only. 
