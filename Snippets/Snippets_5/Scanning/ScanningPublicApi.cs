@@ -10,7 +10,7 @@ public class ScanningPublicApi
         IEnumerable<Assembly> myListOfAssemblies = null;
 
         Assembly assembly2 = null;
-        Assembly assembly1 = null;
+        Assembly assembly1 = null; 
 
         IEnumerable<Type> myTypes = null;
 
@@ -21,39 +21,35 @@ public class ScanningPublicApi
 
         #endregion
 
-        #region ScanningListOfAssemblies
+        #region ScanningExcludeByName
 
-        busConfiguration.AssembliesToScan(myListOfAssemblies);
-
-        #endregion
-
-        #region ScanningParamArrayOfAssemblies
-
-        busConfiguration.AssembliesToScan(assembly1, assembly2);
-
-        #endregion
-
-        #region ScanningCustomDirectory
-
-        busConfiguration.ScanAssembliesInDirectory(@"c:\my-custom-dir");
+        busConfiguration.AssembliesToScan(AllAssemblies.Except("MyAssembly1.dll").And("MyAssembly2.dll"));
 
         #endregion
 
         #region ScanningListOfTypes
 
-        busConfiguration.TypesToScan(myTypes);
+        busConfiguration.TypesToScan(myTypes); 
 
         #endregion
 
-        #region ScanningExcludeByName
+        #region ScanningListOfAssemblies
 
-        busConfiguration.AssembliesToScan(AllAssemblies.Except("MyAssembly.dll").And("MyAssembly.dll"));
+        busConfiguration.AssembliesToScan(myListOfAssemblies);
+        // or
+        busConfiguration.AssembliesToScan(assembly1, assembly2);
 
         #endregion
 
         #region ScanningIncludeByPattern
 
         busConfiguration.AssembliesToScan(AllAssemblies.Matching("NServiceBus").And("MyCompany.").And("SomethingElse"));
+
+        #endregion
+
+        #region ScanningCustomDirectory
+
+        busConfiguration.ScanAssembliesInDirectory(@"c:\my-custom-dir");
 
         #endregion
 
@@ -64,4 +60,17 @@ public class ScanningPublicApi
         #endregion
 
     }
+
+    #region ScanningConfigurationInNSBHost
+
+    public class EndpointConfig : IConfigureThisEndpoint
+    {
+        public void Customize(BusConfiguration configuration)
+        {
+            // use 'configuration' object to configure scanning
+        }
+    }
+
+    #endregion
+
 }

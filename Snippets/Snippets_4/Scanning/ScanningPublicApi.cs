@@ -18,34 +18,42 @@ public class ScanningPublicApi
         Configure.With();
         #endregion
 
-        #region ScanningListOfAssemblies
-        Configure.With(myListOfAssemblies);
-        #endregion
-
-        #region ScanningParamArrayOfAssemblies
-        Configure.With(assembly1, assembly2);
-        #endregion
-
-        #region ScanningCustomDirectory
-        Configure.With(@"c:\my-custom-dir");
+        #region ScanningExcludeByName
+        Configure.With(AllAssemblies.Except("MyAssembly1.dll").And("MyAssembly2.dll"));
         #endregion
 
         #region ScanningListOfTypes
         Configure.With(myTypes);
         #endregion
 
-        #region ScanningExcludeByName
-        Configure.With(AllAssemblies.Except("MyAssembly.dll").And("MyAssembly.dll"));
+        #region ScanningListOfAssemblies
+        Configure.With(myListOfAssemblies);
+        // or
+        Configure.With(assembly1, assembly2);
         #endregion
 
         #region ScanningIncludeByPattern
         Configure.With(AllAssemblies.Matching("NServiceBus").And("MyCompany.").And("SomethingElse"));
         #endregion
 
+        #region ScanningCustomDirectory
+        Configure.With(@"c:\my-custom-dir");
+        #endregion
+
         #region ScanningMixingIncludeAndExclude
         Configure.With(AllAssemblies.Matching("NServiceBus").And("MyCompany.").Except("BadAssembly.dll"));
         #endregion
-         
-            
     }
+
+    #region ScanningConfigurationInNSBHost
+
+    public class EndpointConfig : IConfigureThisEndpoint, IWantCustomInitialization
+    {
+        public void Init()
+        {
+            // use 'Configure' to configure scanning
+        }
+    }
+
+    #endregion
 }
