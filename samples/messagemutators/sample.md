@@ -7,6 +7,7 @@ redirects:
 - nservicebus/nservicebus-message-mutators-sample
 related:
 - nservicebus/pipeline/message-mutators
+- samples/header-manipulation
 ---
 
 1.  Run the solution.

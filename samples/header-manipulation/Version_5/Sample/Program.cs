@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Logging.Default");
+        busConfiguration.EndpointName("Samples.Headers");
 
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
@@ -26,12 +26,16 @@ class Program
         #region global-all-outgoing
 
         IStartableBus startableBus = Bus.Create(busConfiguration);
-        startableBus.OutgoingHeaders.Add("KeyForAllOutgoing", "ValueForAllOutgoing");
+        startableBus.OutgoingHeaders.Add("AllOutgoing", "ValueAllOutgoing");
         using (IBus bus = startableBus.Start())
         {
             #endregion
 
-            bus.SendLocal(new MyMessage());
+            #region sending
+            MyMessage myMessage = new MyMessage();
+            bus.SetMessageHeader(myMessage, "SendingMessage", "ValueSendingMessage");
+            bus.SendLocal(myMessage);
+            #endregion
             Console.WriteLine("\r\nPress any key to stop program\r\n");
             Console.ReadKey();
         }

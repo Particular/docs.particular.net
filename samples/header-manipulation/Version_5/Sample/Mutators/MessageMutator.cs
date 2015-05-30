@@ -12,8 +12,13 @@ public class MessageMutator : IMessageMutator
     }
     public object MutateOutgoing(object message)
     {
-        bus.OutgoingHeaders
-            .Add("KeyFromMutateOutgoing_Outgoing", "ValueFromMutateOutgoing_Outgoing");
+        IMessageContext incomingContext = bus.CurrentMessageContext;
+        if (incomingContext != null)
+        {
+            string incomingMessageId = incomingContext.Headers["NServiceBus.MessageId"];
+        }
+
+        bus.SetMessageHeader(message,"MessageMutater_Outgoing", "ValueMessageMutater_Outgoing");
         return message;
     }
 
@@ -21,7 +26,7 @@ public class MessageMutator : IMessageMutator
     {
         bus.CurrentMessageContext
             .Headers
-            .Add("KeyFromMessageMutator_Incoming", "ValueFromMessageMutator_Incoming");
+            .Add("MessageMutator_Incoming", "ValueMessageMutator_Incoming");
         return message;
     }
 }

@@ -28,13 +28,17 @@ class Program
 
         using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
-
-            startableBus.OutgoingHeaders.Add("KeyForAllOutgoing", "ValueForAllOutgoing");
+            startableBus.OutgoingHeaders.Add("AllOutgoing", "ValueAllOutgoing");
 
             #endregion
 
             IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
-            bus.SendLocal(new MyMessage());
+
+            #region sending
+            MyMessage myMessage = new MyMessage();
+            bus.SetMessageHeader(myMessage, "SendingMessage", "ValueSendingMessage");
+            bus.SendLocal(myMessage);
+            #endregion
 
             Console.WriteLine("\r\nPress any key to stop program\r\n");
             Console.ReadKey();

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using NServiceBus;
 using NServiceBus.Installation.Environments;
 using NServiceBus.ObjectBuilder;
@@ -23,10 +25,23 @@ class Program
         components.ConfigureComponent<MutateOutgoingTransportMessages>(DependencyLifecycle.InstancePerCall);
         components.ConfigureComponent<MessageMutator>(DependencyLifecycle.InstancePerCall);
         components.ConfigureComponent<MutateTransportMessages>(DependencyLifecycle.InstancePerCall);
+
+        #region global-all-outgoing
+
         using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
+            IDictionary<string, string> outgoingHeaders = ((IBus) startableBus).OutgoingHeaders;
+            outgoingHeaders.Add("AllOutgoing", "ValueAllOutgoing");
+
+            #endregion
+
             IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
-            bus.SendLocal(new MyMessage());
+
+            #region sending
+            MyMessage myMessage = new MyMessage();
+            myMessage.SetHeader("SendingMessage", "ValueSendingMessage");
+            bus.SendLocal(myMessage);
+            #endregion
 
             Console.WriteLine("\r\nPress any key to stop program\r\n");
             Console.ReadKey();

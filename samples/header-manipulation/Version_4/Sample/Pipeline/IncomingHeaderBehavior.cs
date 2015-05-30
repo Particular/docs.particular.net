@@ -12,7 +12,7 @@ public class IncomingHeaderBehavior : IBehavior<ReceivePhysicalMessageContext>
     {
         context.PhysicalMessage
             .Headers
-            .Add("KeyFromIncomingHeaderBehavior", "ValueFromIncomingHeaderBehavior");
+            .Add("IncomingHeaderBehavior", "ValueIncomingHeaderBehavior");
         next();
     }
 }

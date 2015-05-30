@@ -15,7 +15,7 @@ public class MutateIncomingMessages : IMutateIncomingMessages
     {
         bus.CurrentMessageContext
             .Headers
-            .Add("KeyFromMutateIncomingMessages", "ValueFromMutateIncomingMessages");
+            .Add("MutateIncomingMessages", "ValueMutateIncomingMessages");
         return message;
     }
 }

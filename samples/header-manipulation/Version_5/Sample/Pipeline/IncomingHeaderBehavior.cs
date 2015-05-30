@@ -9,7 +9,7 @@ class IncomingHeaderBehavior : IBehavior<IncomingContext>
     {
         context.PhysicalMessage
             .Headers
-            .Add("KeyFromIncomingHeaderBehavior", "ValueFromIncomingHeaderBehavior");
+            .Add("IncomingHeaderBehavior", "ValueIncomingHeaderBehavior");
         next();
     }
 }

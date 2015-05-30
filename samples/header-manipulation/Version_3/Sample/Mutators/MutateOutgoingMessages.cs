@@ -10,10 +10,16 @@ public class MutateOutgoingMessages : IMutateOutgoingMessages
     {
         this.bus = bus;
     }
+
     public object MutateOutgoing(object message)
     {
-        bus.OutgoingHeaders
-            .Add("KeyFromMutateOutgoingMessages", "ValueFromMutateOutgoingMessages");
+        IMessageContext incomingContext = bus.CurrentMessageContext;
+        if (incomingContext != null)
+        {
+            string incomingMessageId = incomingContext.Headers["NServiceBus.MessageId"];
+        }
+
+        message.SetHeader("MutateOutgoingMessages", "ValueMutateOutgoingMessages");
         return message;
     }
 }

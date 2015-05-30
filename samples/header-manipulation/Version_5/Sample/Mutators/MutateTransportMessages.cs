@@ -9,13 +9,13 @@ public class MutateTransportMessages : IMutateTransportMessages
     public void MutateIncoming(TransportMessage transportMessage)
     {
         transportMessage.Headers
-            .Add("KeyFromMutateTransportMessages_Incoming", "ValueFromMutateTransportMessages_Incoming");
+            .Add("MutateTransportMessages_Incoming", "ValueMutateTransportMessages_Incoming");
     }
 
     public void MutateOutgoing(LogicalMessage logicalMessage, TransportMessage transportMessage)
     {
         transportMessage.Headers
-            .Add("KeyFromMutateTransportMessages_Outgoing", "ValueFromMutateTransportMessages_Outgoing");
+            .Add("MutateTransportMessages_Outgoing", "ValueMutateTransportMessages_Outgoing");
     }
 }
 

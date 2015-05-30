@@ -19,7 +19,7 @@ public class MyHandler : IHandleMessages<MyMessage>
         logger.Info("Hello from MyHandler");
         foreach (string line in bus.CurrentMessageContext
             .Headers.OrderBy(x => x.Key)
-            .Select(x => string.Format("Key={0}, Value= {1}", x.Key, x.Value)))
+            .Select(x => string.Format("Key={0}, Value={1}", x.Key, x.Value)))
         {
             logger.Info(line);
         }
