@@ -18,7 +18,7 @@ Publishing events from a web application is something that is possible with NSer
 
 There are some good reasons to avoid publishing events from within web applications:
 
-1. **Transactions and Consistency** - [Events should announce that something has *already* happened](/nservicebus/messaging/messages-events-commands.md). Many times this involves making some changes to a database and then publishing the result. But HTTP is inherently unreliable and does not have built-in retries. If an exception occurs before the event is published, you may lose your only opportunity to publish that event. In these circumstances, it's generally better to send a command with the payload of the HTTP request, and have another endpoint process that command with the advantages of [automatic retry](/nservicebus/errors/automatic-retries.md) and an [error queue](/nservicebus/errors/index.md).
+1. **Transactions and Consistency** - [Events should announce that something has *already* happened](/nservicebus/messaging/messages-events-commands.md). Many times this involves making some changes to a database and then publishing the result. But HTTP is inherently unreliable and does not have built-in retries. If an exception occurs before the event is published, you may lose your only opportunity to publish that event. In these circumstances, it's generally better to send a command with the payload of the HTTP request, and have another endpoint process that command with the advantages of [automatic retry](/nservicebus/errors/automatic-retries.md) and an [error queue](/nservicebus/errors/).
 2. **Resource Optimization** - The most precious resource in a web server is a request processing thread. When these are exhausted, the server can no longer handle additional load and must be scaled out. Complex database updates (possibly involving the Distributed Transaction Coordinator depending on choice of transport) can block these request threads while waiting for I/O to and from the database. In these situations it's much more efficient to send a command to a back-end processor. Typically this allows for much more scalability with fewer server resources.
 3. **Web Application Scale-Out** - Because events can only be published from one logical publisher, it can be problematic to scale out a web application that is publishing events. More on this later.
 
@@ -26,13 +26,13 @@ Given these facts, conventional wisdom has suggested that when in the context of
 
 But, things change:
 
-* NServiceBus 4.0 introduced the ability to have [transports besides MSMQ](/nservicebus/transports/index.md). Not all of the transports handle Publish/Subscribe in the same way as MSMQ - some even support it natively.
+* NServiceBus 4.0 introduced the ability to have [transports besides MSMQ](/nservicebus/transports/). Not all of the transports handle Publish/Subscribe in the same way as MSMQ - some even support it natively.
 * Cloud transports generally have an associated cost per interaction. This means that requiring an unnecessary send before publish costs extra money to operate.
 * In NServiceBus 4.0 and 5.0, the process of creating a send-only endpoint (which is still capable of publishing messages, but does not have an input queue or process incoming messages) was made much easier.
 
 ## Publish/Subscribe Mechanics
 
-First it's important to understand how [publish/subscribe](/samples/pubsub/index.md) actually works, consisting of the subscription phase, and then the actual publish operation.
+First it's important to understand how [publish/subscribe](/samples/pubsub/) actually works, consisting of the subscription phase, and then the actual publish operation.
 
 ### Subscription
 
@@ -40,7 +40,7 @@ An endpoint must register its interest in a message by subscribing to a specific
 
 Some transports ([Azure Service Bus](/nservicebus/azure/azure-servicebus-transport.md), [RabbitMQ](/nservicebus/rabbitmq/configuration-api)) support publish/subscribe natively. This means that when an endpoint wants to subcribe to an event, it contacts the broker directly, and the broker keeps track of subscribers for each event.
 
-For transports that lack native pub/sub capabilities ([MSMQ](/nservicebus/msmq/index.md), [SQL](/nservicebus/sqlserver/index.md), [Azure Storage Queues](/nservicebus/azure/azure-storage-queues-transport)) NServiceBus will provide you with similar semantics by using storage-driven publishing with message-driven subscriptions. This means that each endpoint is responsible for maintaining its own subscription storage, usually in a database. When an endpoint wants to subscribe to an event, it sends a subscription request message to the owner endpoint, which will update its own subscription storage.
+For transports that lack native pub/sub capabilities ([MSMQ](/nservicebus/msmq/), [SQL](/nservicebus/sqlserver/), [Azure Storage Queues](/nservicebus/azure/azure-storage-queues-transport)) NServiceBus will provide you with similar semantics by using storage-driven publishing with message-driven subscriptions. This means that each endpoint is responsible for maintaining its own subscription storage, usually in a database. When an endpoint wants to subscribe to an event, it sends a subscription request message to the owner endpoint, which will update its own subscription storage.
 
 ### Publishing
 
