@@ -5,6 +5,8 @@ tags: []
 redirects:
 - nservicebus/how-do-i-get-technical-information-about-a-message
 - nservicebus/message-headers
+related:
+- samples/header-manipulation
 ---
 
 Extra information about a message is communicated over the transport as secondary information to the message body. The mechanism for header communication is either native headers, if the transport supports that feature, or via a serialized collection of key value pairs. Message headers are very similar, in both implementation and usage, to http headers. NServiceBus uses them internally to manage messaging patters, eg pub/sub and request/response, and users of NServiceBus can use headers to implement a variety of features.

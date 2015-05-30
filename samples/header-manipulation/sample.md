@@ -1,9 +1,9 @@
 ---
-title: Header Mutation
+title: Header Manipulation
 summary: Illustrates all the extension points for mutating messages.
 tags:
-- Headers
-- Mutators
+- Header
+- Mutator
 - Pipeline
 related:
 - samples/messagemutators
@@ -17,6 +17,7 @@ Headers can be read and manipulated at many extension points. This Sample shows 
 ## Using Mutators
 
 Headers can be manipulated by implementing any of the message mutation interfaces.
+
 
 ### IMessageMutator
 
