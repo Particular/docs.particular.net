@@ -1,7 +1,8 @@
 ---
 title: Message Headers
 summary: Access and manipulate the built in NServiceBus headers or add custom headers.
-tags: []
+tags: 
+- Header
 redirects:
 - nservicebus/how-do-i-get-technical-information-about-a-message
 - nservicebus/message-headers
