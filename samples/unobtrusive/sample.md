@@ -3,7 +3,6 @@ title: Unobtrusive
 summary: Demonstrates NServiceBus operating in unobtrusive mode.
 tags:
 - Unobtrusive
-- POCO
 - Messages
 - Commands
 - Events
