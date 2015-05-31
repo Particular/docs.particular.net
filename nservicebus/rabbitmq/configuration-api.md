@@ -12,7 +12,7 @@ To make NServiceBus use RabbitMQ as the underlying transport you need to add thi
 
 <!-- import rabbitmq-config-basic -->
 
-In order to work the transport needs to connect the the RabbitMQ broker. By default the transport will look for a connection string called `NServiceBus/Persistence` in your app.config.
+In order to work the transport needs to connect the the RabbitMQ broker. By default the transport will look for a connection string called `NServiceBus/Transport` in your app.config.
 
 A typical connection string would look like this:
 
