@@ -54,6 +54,9 @@
       <HintPath>..\packages\Common.Logging.Core.3.1.0\lib\net40\Common.Logging.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
@@ -106,6 +109,9 @@
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate.Mapping.Attributes">
+      <HintPath>..\packages\NHibernate.Mapping.Attributes.4.0.0.1\lib\net40\NHibernate.Mapping.Attributes.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -371,6 +377,7 @@
     <Compile Include="Logging\NLog\NLogFiltering.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
+    <Compile Include="NHibernate\NHibernateLoadMappingsFromFileSystem.cs" />
     <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\InMemory\ConfiguringInMemory.cs" />

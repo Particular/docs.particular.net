@@ -49,19 +49,7 @@ It is not required to create your own NHibernate configuration object and pass i
 
 If you do not want to embed the `*.hbm.xml` files then you can also load mappings from the file system. Create a custom NHibernate configuration object and use the following example to add mappings from the file system.
 
-```
-    static void AddMappingsFromFilesystem(Configuration nhConfiguration)
-    {
-    	var folder = Directory.GetCurrentDirectory();
-        var hmbFiles = Directory.GetFiles(folder, "*.hbm.xml", SearchOption.TopDirectoryOnly);
-        
-        foreach (var file in hmbFiles)
-        {
-            nhConfiguration.AddFile(file);
-        }
-    }
-```
-
+<!-- import NHibernateLoadMappingsFromFileSystem -->
 
 ## Use Fluent NHibernate
 
@@ -78,16 +66,7 @@ b. or by creating a new Configuration instance and pass it to FluentNHibernate
 
 Example of a possible implementation:
 
-```
-static Configuration BuildConfiguration(Configuration nhConfiguration)
-{
-	return Fluently.Configure(nhConfiguration)
-	    .Mappings(cfg =>
-	    {
-	        cfg.FluentMappings.AddFromAssemblyOf<MySagaData>();
-	    }).BuildConfiguration();
-}
-```
+<!-- import NHibernateInitWithFluentNHibernate
 
 Its best to read the [Getting started](https://github.com/jagregory/fluent-nhibernate/wiki/Getting-started) article from the FluentNHibernate project to see how you create mappings.
 
@@ -114,17 +93,7 @@ How NHibernate.Attributes works is that it needs to know which types it needs to
 
 Initialize the NHibernate attribute based mappings:
 
-```
-static void AddAttributeMappings(Configuration nhConfiguration)
-{
-	var attributesSerializer = new HbmSerializer { Validate = true };
-
-	using (var stream = attributesSerializer.Serialize(typeof(MySagaData).Assembly))
-	{
-	    nhConfiguration.AddInputStream(stream);
-	}
-}
-```
+<!-- NHibernateInitWithNHibernateMappingAttributes -->
 
 Take a look at the NHibernate mapping attributes documentation for an example.
 
