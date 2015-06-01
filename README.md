@@ -342,7 +342,7 @@ For example
 &lt;!-- import ConfigureWith --></code>
 </pre>
 
-The resulting markdown will be will be 
+The resulting markdown will be
 
     To configure the bus call
     ```
@@ -410,12 +410,12 @@ This is enforced by Resharper rules.
 
 ### Snippets are compiled
 
-The the code used by snippets and samples is compiled on the build server. The compilation is done against the versions of the packages referenced in the snippets project. When a snippet doesn't compile the build will break so snippets are compiling properly. Samples and snippets should not reference unreleased nugets.
+The code used by snippets and samples is compiled on the build server. The compilation is done against the versions of the packages referenced in the samples and snippets projects. When a snippet doesn't compile the build will break so make sure snippets are compiling properly. Samples and snippets should not reference unreleased nugets.
 
 
 ## Unreleased nugets
 
-There are some scenarios where documentation may require unreleased or beta nugets. For example when creating a PR against documentation for a feature that is not yet released. In this case it is ok to that PR to reference an unreleased nuget and have that PR fail to build on the build server. Once the nugets have been released that PR can be merged.
+There are some scenarios where documentation may require unreleased or beta nugets. For example when creating a PR against documentation for a feature that is not yet released. In this case it is ok for a PR to reference an unreleased nuget and have that PR fail to build on the build server. Once the nugets have been released that PR can be merged.
 
 In some cases it may be necessary to have merged documentation for unreleased features. In this case the nuget should be pushed to [Particular feed on myget](https://www.myget.org/feed/Packages/particular). The feed is included by default in the [Snippets nuget.config](https://github.com/Particular/docs.particular.net/blob/master/Snippets/nuget.config#L14).
 
