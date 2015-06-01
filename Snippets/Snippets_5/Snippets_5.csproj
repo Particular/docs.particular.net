@@ -92,8 +92,9 @@
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
       <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ServiceBus">
-      <HintPath>..\packages\WindowsAzure.ServiceBus.2.6.6\lib\net40-full\Microsoft.ServiceBus.dll</HintPath>
+    <Reference Include="Microsoft.ServiceBus, Version=2.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WindowsAzure.ServiceBus.2.6.7\lib\net40-full\Microsoft.ServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.WindowsAzure.Configuration">
       <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.2.0.3\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
@@ -164,8 +165,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.Log4Net.1.0.0\lib\net45\NServiceBus.Log4Net.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.NHibernate">
-      <HintPath>..\packages\NServiceBus.NHibernate.6.1.2\lib\net45\NServiceBus.NHibernate.dll</HintPath>
+    <Reference Include="NServiceBus.NHibernate, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.NHibernate.6.2.0\lib\net45\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NLog, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -215,17 +217,17 @@
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RabbitMQ.Client, Version=3.5.2.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+    <Reference Include="RabbitMQ.Client, Version=3.5.3.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RabbitMQ.Client.3.5.2\lib\net40\RabbitMQ.Client.dll</HintPath>
+      <HintPath>..\packages\RabbitMQ.Client.3.5.3\lib\net40\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.3.0.3660\lib\net45\Raven.Abstractions.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Client.3.0.3690\lib\net45\Raven.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight, Version=3.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.3.0.3660\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+      <HintPath>..\packages\RavenDB.Client.3.0.3690\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -281,6 +283,8 @@
     <Content Include="Gateway\AppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Headers\Writers\HeaderWriterAudit_Audit.txt" />
+    <Content Include="Headers\Writers\HeaderWriterAudit_Send.txt" />
     <Content Include="Headers\Writers\HeaderWriterDefer.txt" />
     <Content Include="Headers\Writers\HeaderWriterError_Error.txt" />
     <Content Include="Headers\Writers\HeaderWriterError_Sending.txt" />
@@ -344,6 +348,7 @@
     <Compile Include="ContainerCustom.cs" />
     <Compile Include="Containers.cs" />
     <Compile Include="Conventions\ExpressMessages.cs" />
+    <Compile Include="Correlation\CustomCorrelationId.cs" />
     <Compile Include="CriticalError.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
@@ -363,6 +368,7 @@
     <Compile Include="Headers\Writers\HeaderWriterReply.cs" />
     <Compile Include="Headers\Writers\HeaderWriterReturn.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDefer.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterAudit.cs" />
     <Compile Include="Headers\Writers\HeaderWriterSend.cs" />
     <Compile Include="Headers\Writers\TransportMessageExtension.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
@@ -382,6 +388,7 @@
     <Compile Include="Persistence\Azure\AzurePersistence.cs" />
     <Compile Include="Persistence\InMemory\ConfiguringInMemory.cs" />
     <Compile Include="Persistence\NHibernate\AccessingData.cs" />
+    <Compile Include="Persistence\NHibernate\Concurrency.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
     <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="Pipeline\AbortPipeline.cs" />

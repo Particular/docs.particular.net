@@ -7,7 +7,7 @@ using ServiceControl.Plugin.CustomChecks;
 abstract class Monitor : PeriodicCheck
 {
     Uri uri;
-    ILog logger = LogManager.GetLogger<Monitor>();
+    static ILog logger = LogManager.GetLogger<Monitor>();
 
     protected Monitor(Uri uri, TimeSpan interval)
         : base(string.Format("Monitor {0}", uri), "Monitor 3rd Party ", interval)

@@ -5,6 +5,8 @@ tags:
 - Pipeline
 redirects:
 - nservicebus/nservicebus-pipeline-intro
+related:
+- samples/header-manipulation
 ---
 
 NServiceBus has the concept of a "pipeline" which refers to the series of actions taken when an incoming message is process and an outgoing message is sent.

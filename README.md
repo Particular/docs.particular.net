@@ -123,9 +123,11 @@ redirects:
 
 ```
 
+
 ## Menu
 
 The menu is a YAML text document stored at [menu/menu.yaml](menu/menu.yaml).
+
 
 ## URLs
 
@@ -133,11 +135,13 @@ The directory structure where a `.md` exists is used to derive the URL for that 
 
 So a file existing at `nservicebus\logging\nlog.md` will have a resultant URL of `http://docs.particular.net/nservicebus/logging/nlog`.
 
+
 ### Index Pages
 
 One exception to this rule is when a page is named `index.md`. In this case the `index.md` is omitted in the resultant URL and only the directory structure is used.
 
 So a file existing at `nservicebus\logging\index.md` will have a resultant URL of `http://docs.particular.net/nservicebus/logging/`.
+
 
 ### Linking
 
@@ -153,13 +157,16 @@ To link to the file `\servicecontrol\page3.md`, use `[Page 3 Text](/servicecontr
 
 Don't link to `index.md` pages, instead link to the directory. So link to `/nservicebus/logging` and NOT `/nservicebus/logging/index.md`
 
+
 ## Markdown 
 
 The site is rendered using [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown)
 
+
 ### [MarkdownPad](http://markdownpad.com/)
 
 For editing markdown on your desktop (after cloning locally with Git) try [MarkdownPad](http://markdownpad.com/).
+
 
 #### Markdown flavor
 
@@ -169,6 +176,7 @@ Ensure you enable `GitHub Flavored Markdown (Offline)` by going to
 
 Or click in the bottom left no the `M` icon to "hot-switch"
 
+
 #### Yaml
 
 Don't render YAML Front-Matter by going to  
@@ -177,7 +185,9 @@ Don't render YAML Front-Matter by going to
 
 And checking `Ignore YAML Front-matter`
 
+
 ## Samples
+
 
 ### Conventions
 
@@ -188,17 +198,31 @@ And checking `Ignore YAML Front-matter`
  * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
  * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.  
 
+
+### Startup projects
+
+Startup projects are set to "all startable projects" in the solution. This is done via  https://github.com/ParticularLabs/SetStartupProjects. If you want to control the default projects start then add a file named `DefaultStartupProjects.txt` in the same directory (as the solution file) with relative paths to the project files you would like to use for startup projects.
+
+For example if the solution contains two endpoints and you only want to start `Endpoint1` the the content of `DefaultStartupProjects.txt` would be:
+
+```
+Endpoint1\Endpoint1.csproj
+```
+
+
 ### Recommendations
 
  * Avoid using screen shots in samples as they cause extra effort when the sample needs to be updated.
  * Samples should illustrate a feature or scenario with as few moving pieces as possible. For example if the sample is "illustrating IOC with MVC" then "adding signalr" to that sample will only cause confusion. In general the fewer nugets you need to get the point across the better.
  * Do not "document things inside a sample". A sample is "to show how something is used" not to document it. Instead update the appropriate documentation page and link to it. As a general rule if you add any content to a sample, where that guidance could possible be applicable to other samples, then that guidance should probably exist in a documentation page.
 
+
 ### Bootstrapping a sample
 
 At the moment the best way to get started on a sample is to copy an existing one. Ideally one that has similarities to what you are trying to achieve. 
 
 A good sample to start with is the [Default Logging Sample](https://github.com/Particular/docs.particular.net/tree/master/samples/logging/default), since all it does is enable logging. You can then add the various moving pieces to your copy.
+
 
 ### Screenshots
 
@@ -211,7 +235,9 @@ Avoid using screen shots in sample unless it adds significant value over what ca
 
 The most common mis-use of screenshots it when capturing console output. DO NOT DO THIS. Put the text inside a formatted code section instead. 
 
+
 ## Code Snippets
+
 
 ### Defining Snippets
 
@@ -228,6 +254,7 @@ File extensions scanned for snippets include:
  * `.txt`
  * `.xml`
 
+
 #### Using comments
 
 Any code wrapped in a convention based comment will be picked up. The comment needs to start with `startcode` which is followed by the key.
@@ -237,6 +264,7 @@ Any code wrapped in a convention based comment will be picked up. The comment ne
 var configure = Configure.With();
 // endcode
 ```
+
 
 #### Using regions 
 
@@ -248,6 +276,7 @@ var configure = Configure.With();
 #endregion
 ```
 
+
 ### Snippet versioning
 
 Snippets are versioned, these versions are used to render snippets in a tabbed manner.
@@ -257,6 +286,7 @@ Snippets are versioned, these versions are used to render snippets in a tabbed m
 Versions follow the [nuget versioning convention](https://docs.nuget.org/create/versioning#specifying-version-ranges-in-.nuspec-files). If either `Minor` or `Patch` is not defined they will be rendered as an `x`. So for example Version `3.3` would be rendered as `3.3.x` and Version `3` would be rendered as `3.x`.
 
 Snippet versions are derived in two ways
+
 
 #### Version suffix on snippets
 
@@ -276,6 +306,7 @@ My Snippet Code
 #endregion
 ```
 
+
 #### Convention based on the directory
 
 If a snippet has no version defined then the version will be derived by walking up the directory tree until if finds a directory that is suffixed with `_Version` or `_VersionRange`. For example
@@ -283,6 +314,7 @@ If a snippet has no version defined then the version will be derived by walking 
  * Snippets extracted from `docs.particular.net\Snippets\Snippets_4\TheClass.cs` would have a default version of `(≥ 4.0.0 && < 5.0.0)`.
  * Snippets extracted from `docs.particular.net\Snippets\Snippets_4\Special_4.3\TheClass.cs` would have a default version of `(≥ 4.3.0 && < 5.0.0)`.
  * Snippets extracted from `docs.particular.net\Snippets\Special_(1.0,2.0)\TheClass.cs` would have a default version of `(> 1.0.0 && < 2.0.0)`.
+
 
 #### Pre-release marker file
 
@@ -294,6 +326,7 @@ If the `prerelease.txt` contains text then that text will be used for the pre-re
 
 So for example if `prerelease.txt` contains `beta` then the version will be `(≥ 6.0.0-beta)`
  
+
 ### Using Snippets
 
 The keyed snippets can then be used in any documentation `.md` file by adding the text
@@ -316,6 +349,7 @@ The resulting markdown will be will be
     var configure = Configure.With();
     ``` 
 
+
 ### Code indentation
 
 The code snippets will do smart trimming of snippet indentation. 
@@ -337,6 +371,7 @@ var configure = Configure.With()
 ```
 
 The same behavior will apply to leading tabs.
+
 
 #### Do not mix tabs and spaces
 
@@ -362,6 +397,7 @@ var configure = Configure.With()
 
 Note none of the tabs have been trimmed.
 
+
 ### Why is explicit variable typing used instead of 'var'
 
 This is done for two reasons
@@ -371,15 +407,18 @@ This is done for two reasons
 
 This is enforced by Resharper rules.
 
+
 ### Snippets are compiled
 
 The the code used by snippets and samples is compiled on the build server. The compilation is done against the versions of the packages referenced in the snippets project. When a snippet doesn't compile the build will break so snippets are compiling properly. Samples and snippets should not reference unreleased nugets.
+
 
 ## Unreleased nugets
 
 There are some scenarios where documentation may require unreleased or beta nugets. For example when creating a PR against documentation for a feature that is not yet released. In this case it is ok to that PR to reference an unreleased nuget and have that PR fail to build on the build server. Once the nugets have been released that PR can be merged.
 
 In some cases it may be necessary to have merged documentation for unreleased features. In this case the nuget should be pushed to [Particular feed on myget](https://www.myget.org/feed/Packages/particular). The feed is included by default in the [Snippets nuget.config](https://github.com/Particular/docs.particular.net/blob/master/Snippets/nuget.config#L14).
+
 
 ## Alerts
 
@@ -401,6 +440,7 @@ There are several keys each of which map to a different colored alert
 
 Keys can be used in two manners
 
+
 ### Single-line
 
 This can be done with the following syntax
@@ -416,6 +456,7 @@ Will be rendered as
     <p class="alert alert-info">
        Some sample note text.
     </p> 
+
 
 ### Multi-line
 
@@ -439,14 +480,17 @@ Would be rendered as
     * Point Two
     </p> 
 
+
 ## Headings
 
 The first (and all top level) headers in a `.md` page should be a `h2` ie `##`. With sub-headers under it being `h2` are `h3` etc. 
+
 
 ## Space
 
 * Add an empty after a heading
 * Add an empty line between paragraphs
+
 
 ## Anchors
 
@@ -467,6 +511,7 @@ Which means elsewhere in the page you can link to it with this:
 
     [Goto My Heading](#My-Heading)
 
+
 ## Images
 
 Images can be added using the following markdown syntax 
@@ -476,6 +521,7 @@ Images can be added using the following markdown syntax
 With the minimal syntax being 
 
     ![](/path/to/img.jpg)
+
 
 ### Image sizing 
 
@@ -495,14 +541,17 @@ This will result in the image being resized with the following parameters
 
 It will also wrap the image in a clickable lightbox so the full image can be accessed. 
 
+
 ## Some Useful Characters
 
  * Ticks are done with `&#10004;` &#10004;
  * Crosses are done with `&#10006;` &#10006;
   
+
 ## More Info
  
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
+
 
 # Additional Resources
 

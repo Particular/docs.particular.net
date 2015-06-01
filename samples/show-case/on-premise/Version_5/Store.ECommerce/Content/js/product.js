@@ -5,7 +5,7 @@
     $scope.products = [
       { id: 'videos', title: 'Videos and Presentations', description: 'Learn about SOA principles, systems design and the capabilities our platform brings to your system lifecycle.', selected: false },
       { id: 'training', title: 'Get some on-site training', description: 'The fastest way to get a large team up to speed', selected: false },
-      { id: 'documentation', title: 'Community driven documentation', description: 'At Particular we linke to beuild things in a way that embraces our open source community. Documentation is no differnt and as such is hosted on GitHub for everyone to contribue.', selected: false },
+      { id: 'documentation', title: 'Community driven documentation', description: 'At Particular we like to build things in a way that embraces our open source community. Documentation is no different and as such is hosted on GitHub for everyone to contribute.', selected: false },
       { id: 'customers', title: 'In good company', description: "Companies across all industry verticals, from the smallest startups to the Global 2000, rely on our platform every day.", selected: false },
       { id: 'platform', title: 'The .NET Service Platform', description: "Build better .NET service solutions using an integrated and comprehensive platform. Focus on developing your solution's unique features, while enjoying the out-of-the-box benefits of the Particular Service Platform.", selected: false }
     ];

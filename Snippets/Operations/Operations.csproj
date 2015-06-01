@@ -80,12 +80,13 @@
     <Compile Include="RavenDB\UserCreationTests.cs" />
     <Compile Include="SqlServer\QueueDeletionTests.cs" />
     <Compile Include="SqlServer\QueueCreationTests.cs" />
-    <Compile Include="SqlServer\QueueDeletionUsage.cs" />
-    <Compile Include="SqlServer\QueueCreationUsage.cs" />
     <Compile Include="SqlServer\QueueDeletion.cs" />
     <Compile Include="SqlServer\QueueCreation.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Msmq\QueueDeletion.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Msmq\QueueCreation.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

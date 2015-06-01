@@ -39,8 +39,8 @@ class ProgramService : ServiceBase
         Configure.Features.Enable<Sagas>();
 
         Configure configure = Configure.With();
-        configure.DefineEndpointName("Samples.WindowsServiceAndConsole");
         configure.Log4Net();
+        configure.DefineEndpointName("Samples.WindowsServiceAndConsole");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
@@ -49,7 +49,7 @@ class ProgramService : ServiceBase
 
         bus = configure.UnicastBus()
             .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+            .Start(() => configure.ForInstallationOn<Windows>().Install());
     }
 
     #endregion
@@ -58,7 +58,10 @@ class ProgramService : ServiceBase
 
     protected override void OnStop()
     {
-        bus = null;
+        if (bus != null)
+        {
+            ((IDisposable)bus).Dispose();
+        }
     }
 
     #endregion

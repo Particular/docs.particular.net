@@ -8,23 +8,24 @@ class Program
     {
         Configure.Serialization.Json();
         Configure configure = Configure.With();
-        configure.DefineEndpointName("Samples.Log4Net.Appender");
 
         #region ConfigureAppender
         configure.Log4Net<MyConsoleAppender>(appender => { appender.Color = ConsoleColor.Green; });
         #endregion
+        configure.DefineEndpointName("Samples.Log4Net.Appender");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        IBus bus = configure.UnicastBus()
-            .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        {
+            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            bus.SendLocal(new MyMessage());
 
-        bus.SendLocal(new MyMessage());
+            Console.WriteLine("\r\nPress any key to stop program\r\n");
+            Console.ReadKey();
+        }
 
-        Console.WriteLine("\r\nPress any key to stop program\r\n");
-        Console.ReadKey();
     }
 }

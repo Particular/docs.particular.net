@@ -13,8 +13,7 @@ static class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        IStartableBus startableBus = Bus.Create(busConfiguration);
-        using (IBus bus = startableBus.Start())
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
             Start(bus);
         }

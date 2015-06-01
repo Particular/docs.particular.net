@@ -23,7 +23,7 @@ To discard a message when a specific time interval has elapsed:
 
 <!-- import DiscardingOldMessagesWithAnAttribute -->
 
-## Using the fluent API
+## Using your own convention
 
 <!-- import DiscardingOldMessagesWithFluent -->
 

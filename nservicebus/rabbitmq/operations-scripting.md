@@ -11,7 +11,9 @@ These samples use the [RabbitMQ.Client](http://www.nuget.org/packages/RabbitMQ.C
 
 Since RabbitMQ.Client is not [CLS Compliant](https://msdn.microsoft.com/en-us/library/system.clscompliantattribute.aspx) it is not possible to run this code within PowerShell.
 
+
 ## Return message to source queue 
+
 
 ### The retry helper methods
 
@@ -23,19 +25,23 @@ The following code shows an example of how to perform the following actions
 
 <!-- import rabbit-return-to-source-queue -->
 
+
 ### Using the retry helper methods 
 
 <!-- import rabbit-return-to-source-queue-usage -->
 
+
 ## Create queues
 
-There are two use cases for creation of queues
+Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.
+
 
 ### The create queue helper methods
 
 <!-- import rabbit-create-queues -->
 
-### Using the create hqueue elper methods 
+
+### Using the create queue helper methods 
 
 To create all queues for a given endpoint name.
 
@@ -45,11 +51,14 @@ To create shared queues.
 
 <!-- import rabbit-create-queues-shared-usage -->
 
+
 ## Delete queues
+
 
 ### The delete helper queue methods
 
 <!-- import rabbit-delete-queues -->
+
 
 ### Using the delete queue helper methods
 

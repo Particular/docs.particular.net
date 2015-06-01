@@ -21,7 +21,7 @@ class CriticalErrors
 
     #region CustomHostErrorHandlingAction
 
-    ILog Logger = LogManager.GetLogger(typeof(CriticalErrors));
+    static ILog Logger = LogManager.GetLogger(typeof(CriticalErrors));
 
     void OnCriticalError()
     {

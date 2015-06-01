@@ -1,7 +1,7 @@
 ---
 title: Exposing an NServiceBus Endpoint via WCF
 summary: Receiving and processing messages which pass through WCF
-tags: [WCF]
+tags: 
 redirects:
  - nservicebus/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service
 ---

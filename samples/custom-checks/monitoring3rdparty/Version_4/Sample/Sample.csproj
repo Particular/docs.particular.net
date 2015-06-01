@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="ConfigAuditQueue.cs" />
     <Compile Include="ConfigErrorQueue.cs" />
+    <Compile Include="ConfigLogging.cs" />
     <Compile Include="Monitor.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>

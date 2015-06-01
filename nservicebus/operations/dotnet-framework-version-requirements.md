@@ -2,7 +2,6 @@
 title: .Net Framework requirements
 summary: List of the .Net Framework requirements for NServiceBus
 tags: 
- - Net Framework
 redirects:
  - nservicebus/nservicebus-net-framework-version-requirements
 ---

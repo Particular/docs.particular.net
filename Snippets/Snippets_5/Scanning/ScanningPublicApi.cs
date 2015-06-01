@@ -10,7 +10,7 @@ public class ScanningPublicApi
         IEnumerable<Assembly> myListOfAssemblies = null;
 
         Assembly assembly2 = null;
-        Assembly assembly1 = null;
+        Assembly assembly1 = null; 
 
         IEnumerable<Type> myTypes = null;
 
@@ -21,15 +21,29 @@ public class ScanningPublicApi
 
         #endregion
 
-        #region ScanningListOfAssemblies
+        #region ScanningExcludeByName
 
-        busConfiguration.AssembliesToScan(myListOfAssemblies);
+        busConfiguration.AssembliesToScan(AllAssemblies.Except("MyAssembly1.dll").And("MyAssembly2.dll"));
 
         #endregion
 
-        #region ScanningParamArrayOfAssemblies
+        #region ScanningListOfTypes
 
+        busConfiguration.TypesToScan(myTypes); 
+
+        #endregion
+
+        #region ScanningListOfAssemblies
+
+        busConfiguration.AssembliesToScan(myListOfAssemblies);
+        // or
         busConfiguration.AssembliesToScan(assembly1, assembly2);
+
+        #endregion
+
+        #region ScanningIncludeByPattern
+
+        busConfiguration.AssembliesToScan(AllAssemblies.Matching("NServiceBus").And("MyCompany.").And("SomethingElse"));
 
         #endregion
 
@@ -39,29 +53,24 @@ public class ScanningPublicApi
 
         #endregion
 
-        #region ScanningListOfTypes
-
-        busConfiguration.TypesToScan(myTypes);
-
-        #endregion
-
-        #region ScanningExcludeByName
-
-        busConfiguration.AssembliesToScan(AllAssemblies.Except("MyAssembly.dll").And("MyAssembly.dll"));
-
-        #endregion
-
-        #region ScanningIncludeByPattern
-
-        busConfiguration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").And("SomethingElse"));
-
-        #endregion
-
         #region ScanningMixingIncludeAndExclude
 
-        busConfiguration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").Except("BadAssembly.dll"));
+        busConfiguration.AssembliesToScan(AllAssemblies.Matching("NServiceBus").And("MyCompany.").Except("BadAssembly.dll"));
 
         #endregion
 
     }
+
+    #region ScanningConfigurationInNSBHost
+
+    public class EndpointConfig : IConfigureThisEndpoint
+    {
+        public void Customize(BusConfiguration configuration)
+        {
+            // use 'configuration' object to configure scanning
+        }
+    }
+
+    #endregion
+
 }

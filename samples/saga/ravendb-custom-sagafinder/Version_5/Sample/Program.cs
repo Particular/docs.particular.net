@@ -17,8 +17,8 @@ class Program
 
         #region RavenDBSetup
 
-        IDocumentStore defaultStore = new DocumentStore()
-                                      {
+        IDocumentStore defaultStore = new DocumentStore
+        {
                                           Url = "http://localhost:32076",
                                           DefaultDatabase = "Samples.RavenDBCustomSagaFinder"
                                       }
@@ -31,9 +31,8 @@ class Program
 
         #endregion
 
-        using (IStartableBus bus = Bus.Create(busConfiguration))
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            bus.Start();
             bus.SendLocal(new StartOrder
                           {
                               OrderId = "123"

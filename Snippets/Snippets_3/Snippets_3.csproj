@@ -112,6 +112,7 @@
     <Compile Include="Callback\Callback.cs" />
     <Compile Include="Conventions\ExpressMessages.cs" />
     <Compile Include="Conventions\MessageConventions.cs" />
+    <Compile Include="Correlation\CustomCorrelationId.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DataBus\DataBus.cs" />
     <Compile Include="Distributor\ConfiguringDistributor.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
     <Compile Include="Sagas\SimpleSaga.cs" />
     <Compile Include="Sagas\Timeouts.cs" />
+    <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SecondLevelRetries\CustomSecondLevelRetriesConfig.cs" />

@@ -11,9 +11,8 @@ class Program
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Store.CustomerRelations");
         busConfiguration.ApplyCommonConfiguration();
-        using (IStartableBus bus = Bus.Create(busConfiguration))
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            bus.Start();
             Console.WriteLine("\r\nPress any key to stop program\r\n");
             Console.ReadKey();
         }

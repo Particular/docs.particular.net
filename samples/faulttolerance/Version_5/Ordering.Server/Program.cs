@@ -16,9 +16,8 @@ class Program
         // To disable second level retries(SLR), uncomment the following line. SLR is enabled by default.
         // busConfiguration.DisableFeature<SecondLevelRetries>();
         
-        using (IStartableBus bus = Bus.Create(busConfiguration))
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            bus.Start();
             bus.SendLocal(new MyMessage());
             Console.WriteLine("\r\nPress any key to stop program\r\n");
             Console.ReadKey();

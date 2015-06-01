@@ -18,18 +18,20 @@ class Program
 
         #endregion
 
-        IBus bus = Bus.Create(busConfiguration).Start();
-        while (true)
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("Press <enter> to send a message");
-            Console.ReadLine();
+            while (true)
+            {
+                Console.WriteLine("Press <enter> to send a message");
+                Console.ReadLine();
 
-            string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-            bus.Publish(new OrderSubmitted
-                        {
-                            OrderId = orderId,
-                            Value = random.Next(100)
-                        });
+                string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+                bus.Publish(new OrderSubmitted
+                {
+                    OrderId = orderId,
+                    Value = random.Next(100)
+                });
+            }
         }
     }
 }

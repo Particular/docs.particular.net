@@ -5,7 +5,6 @@ using NServiceBus;
 
 class Program
 {
-    static IStartableBus bus;
 
     static void Main()
     {
@@ -17,13 +16,14 @@ class Program
         busConfiguration.SetStreamStorageLocation("..\\..\\..\\storage");
         #endregion
         busConfiguration.EnableInstallers();
-        bus = Bus.Create(busConfiguration);
-        bus.Start();
-        Run();
+        using (var bus = Bus.Create(busConfiguration).Start())
+        {
+            Run(bus);
+        }
     }
 
 
-    static void Run()
+    static void Run(IBus bus)
     {
         Console.WriteLine("Press 'F' to send a message with a file stream");
         Console.WriteLine("Press 'H' to send a message with a http stream");
@@ -35,17 +35,17 @@ class Program
 
             if (key.Key == ConsoleKey.F)
             {
-                SendMessageWithFileStream();
+                SendMessageWithFileStream(bus);
                 continue;
             }
             if (key.Key == ConsoleKey.H)
             {
-                SendMessageWithHttpStream();
+                SendMessageWithHttpStream(bus);
             }
         }
     }
 
-    static void SendMessageWithFileStream()
+    static void SendMessageWithFileStream(IBus bus)
     {
         #region send-message-with-file-stream
 
@@ -60,7 +60,7 @@ class Program
         Console.WriteLine();
         Console.WriteLine("Message with file stream sent");
     }
-    static void SendMessageWithHttpStream()
+    static void SendMessageWithHttpStream(IBus bus)
     {
         #region send-message-with-http-stream
 

@@ -5,9 +5,9 @@ class ConfigEndpointMappings : IProvideConfiguration<UnicastBusConfig>
 {
 	public UnicastBusConfig GetConfiguration()
 	{
-		return new UnicastBusConfig()
+		return new UnicastBusConfig
 		{
-			MessageEndpointMappings = new MessageEndpointMappingCollection() 
+			MessageEndpointMappings = new MessageEndpointMappingCollection
 			{
 				new MessageEndpointMapping
 				{

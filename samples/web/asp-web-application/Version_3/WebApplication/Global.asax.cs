@@ -4,9 +4,20 @@ using NServiceBus;
 
 namespace WebApplication
 {
+    using NServiceBus.Installation.Environments;
+
     public class Global : HttpApplication
     {
         public static IBus Bus;
+
+        public override void Dispose()
+        {
+            if (Bus != null)
+            {
+                ((IDisposable)Bus).Dispose();
+            }
+            base.Dispose();
+        }
 
         protected void Application_Start(object sender, EventArgs e)
         {
@@ -17,8 +28,9 @@ namespace WebApplication
             configure.DefaultBuilder();
             configure.JsonSerializer();
             configure.MsmqTransport();
-            IStartableBus startableBus = configure.UnicastBus().CreateBus();
-            Bus = startableBus.Start(() => Configure.Instance.ForInstallationOn<NServiceBus.Installation.Environments.Windows>().Install());
+            Bus = configure.UnicastBus()
+                .CreateBus()
+                .Start(() => configure.ForInstallationOn<Windows>().Install());
             #endregion
         }
 

@@ -12,9 +12,8 @@ class Program
         busConfiguration.EnableFeature<Gateway>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IStartableBus bus = Bus.Create(busConfiguration))
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            bus.Start();
             Console.WriteLine("Press 'Enter' to send a message to RemoteSite which will reply. To exit, Ctrl + C");
 
             while (Console.ReadLine() != null)

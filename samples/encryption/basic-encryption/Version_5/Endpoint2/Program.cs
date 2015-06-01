@@ -9,8 +9,7 @@ class Program
         busConfiguration.EndpointName("Samples.Encryption.Endpoint2");
         busConfiguration.RijndaelEncryptionService();
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        IStartableBus startableBus = Bus.Create(busConfiguration);
-        using (startableBus.Start())
+        using (Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadLine();
