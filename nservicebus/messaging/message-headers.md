@@ -22,12 +22,14 @@ const string Format = "yyyy-MM-dd HH:mm:ss:ffffff Z";
 
 public static string ToWireFormattedString(DateTime dateTime)
 {
-    return dateTime.ToUniversalTime().ToString(Format, CultureInfo.InvariantCulture);
+    return dateTime.ToUniversalTime()
+        .ToString(Format, CultureInfo.InvariantCulture);
 }
 
 public static DateTime ToUtcDateTime(string wireFormattedString)
 {
-    return DateTime.ParseExact(wireFormattedString, Format, CultureInfo.InvariantCulture).ToUniversalTime();
+    return DateTime.ParseExact(wireFormattedString, Format, CultureInfo.InvariantCulture)
+       .ToUniversalTime();
 }
 ```
 

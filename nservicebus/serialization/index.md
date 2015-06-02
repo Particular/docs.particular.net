@@ -7,7 +7,7 @@ NServiceBus takes instances of .net objects (messages, events and commands) and 
 
 ## Available Serializers
 
-### Xml
+### [Xml](xml-serializer.md)
 
 A custom written XML serializer.
 

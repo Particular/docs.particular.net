@@ -114,6 +114,7 @@
       Url: "nservicebus/serialization"
       Articles: 
         - "nservicebus/serialization/custom-serializer"
+        - "nservicebus/serialization/xml-serializer"
         - "nservicebus/serialization/type-was-not-registered"
     - 
       Title: "Persistence"
