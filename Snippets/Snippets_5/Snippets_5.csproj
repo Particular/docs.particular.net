@@ -375,6 +375,7 @@
     <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\NLog\NLogFiltering.cs" />
+    <Compile Include="Logging\UsingLogging.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />

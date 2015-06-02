@@ -234,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Correlation\CustomCorrelationId.cs" />
+    <Compile Include="Logging\UsingLogging.cs" />
     <Compile Include="Pipeline\AbortPipeline.cs" />
     <Compile Include="Audit\ConfigureAuditUsingCode.cs" />
     <Compile Include="BusExtensionMethodForHandler.cs" />
