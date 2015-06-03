@@ -40,7 +40,7 @@ This means that you will get critical bugfixes without the associated risk and e
 
 Some examples:
 
- - v4.0 was released on 2013-07-11 and will be supported until 2016 -07-11 but only the minor versions released of the previous year and its latest minor.
+ - v4.0 was released on 2013-07-11 and v4 will therefor be supported until 2016-07-11 but only if you're on the latest minor or a minor version released within  the last year.
  - v4.6 was released on 2014-05-01 this means that its latest patch release will be supported till 2015-05-01. This means that we will not fix minor versions after 2015-05-01. You are required to update to at least a newer minor version that is still supported as this version will receive a patch release. 
  - A newer patch release will automatically mean that the previous patch release will be obsolete. We will apply a bugfix on the latest patch release but will not officially release a patch for a obsolete patch release. In other words, we will not patch vX.Y.3 to vX.Y.3.1 when vX.Y.4 is the latest patch. We would then release vX.Y.5
 
