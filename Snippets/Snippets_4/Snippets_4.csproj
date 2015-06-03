@@ -228,7 +228,7 @@
     <None Include="Transports\RabbitMQ\App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Transports\Throughtput\InitialThroughput.config">
+    <None Include="Transports\Throughput\InitialThroughput.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -272,7 +272,7 @@
     <Compile Include="Transactions.cs" />
     <Compile Include="Transports\Azure\Configuration.cs" />
     <Compile Include="Transports\RabbitMQ\ConfigurationSettings.cs" />
-    <Compile Include="Transports\Throughtput\Throughput.cs" />
+    <Compile Include="Transports\Throughput\Throughput.cs" />
     <Compile Include="UnitTesting\Saga.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
     <None Include="Encryption\encryption.config">
