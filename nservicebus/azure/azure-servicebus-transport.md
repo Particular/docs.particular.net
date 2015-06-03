@@ -21,11 +21,7 @@ First, reference the assembly that contains the Azure Service Bus transport defi
 
 Then, use the Fluent `Configure` API to set up NServiceBus, by specifying `.UseTransport<AzureServiceBusTransport>()` to override the default transport:
 
-	Configure.With()
-         ...
-         .UseTransport<AzureServiceBusTransport>()
-         ...
-         .CreateBus()
+<!-- import AzureServiceBusTransportWithAzure -->
 
 Alternatively, when using one of the NServiceBus provided hosting processes, you should call the `UseTransport<AzureServiceBusTransport>` on the endpoint configuration. In the Azure role entrypoint host, for example, it looks like this:
 

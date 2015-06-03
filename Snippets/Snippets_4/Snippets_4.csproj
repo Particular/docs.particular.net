@@ -270,6 +270,7 @@
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="Scheduling\SchedulerSaga.cs" />
     <Compile Include="Transactions.cs" />
+    <Compile Include="Transports\Azure\Configuration.cs" />
     <Compile Include="Transports\RabbitMQ\ConfigurationSettings.cs" />
     <Compile Include="Transports\Throughtput\Throughput.cs" />
     <Compile Include="UnitTesting\Saga.cs" />
