@@ -8,6 +8,6 @@ public class ClassUsingLogging
         //your code
         Logger.Debug("Something interesting happened.");
     }
-    static ILog Logger = LogManager.GetLogger("Name");
+    static ILog Logger = LogManager.GetLogger(typeof(ClassUsingLogging)); // Can also use a string
 }
 #endregion
