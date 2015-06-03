@@ -29,7 +29,23 @@ By following SemVer 2.0 you will be able to quickly determine the urgency, risk 
 
 While not stipulated by SemVer we've made the decision to backport important fixes to all supported versions of NServiceBus.
 
-By "supported" we mean any minor version released within the last year and all major versions released within the last 3 years. This means that you will get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version. 
+By "supported" we mean
+
+* all major versions released within the last 3 years
+* and any minor version released within the last year
+* unless it is the latest minor of a major release
+
+This means that you will get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version.
+
+
+Some examples:
+
+ - v4.0 was released on Juli 11th, 2013 and will be supported until Juli 11th 2016 but only the minor versions released of the previous year and its latest minor.
+
+ - v4.6 was released on May 1th 2014 this means that its latest patch release will be supported till May 1th 2015. This means that we will not fix minor versions after May 1th 2015. You are required to update to atleast a newer minor version that is still suppported as this version will receive a patch release. 
+
+ - A newer patch release will automatically mean that the previous patch release will be obsolete. We will apply a bugfix on the latest patch release but will not officially release a patch for a obsolete patch release. In other words, we will not patch vX.Y.3 to vX.Y.3.1 when vX.Y.4 is the latest patch. We would then release vX.Y.5
+
 
 We strongly recommend you upgrade frequently enough to stay on a supported version.
 
