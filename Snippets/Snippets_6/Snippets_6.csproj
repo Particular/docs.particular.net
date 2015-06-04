@@ -32,7 +32,7 @@
   <ItemGroup>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.6.0.0-unstable0434\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.6.0.0-unstable0435\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
@@ -60,7 +60,7 @@
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Headers\MyMessage.cs" />
     <Compile Include="Headers\ReadHandler.cs" />
-    <Compile Include="Headers\MutateOutgoingPhysicalMessages.cs" />
+    <Compile Include="Headers\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Headers\MutateIncomingTransportMessages.cs" />
     <Compile Include="Headers\OutgoingBehavior.cs" />
     <Compile Include="Headers\IncomingBehavior.cs" />
