@@ -3,9 +3,9 @@
     using NServiceBus.MessageMutator;
 
     #region header-outgoing-mutator
-    public class MutateOutgoingPhysicalMessages : IMutateOutgoingPhysicalMessages
+    public class MutateOutgoingTransportMessages : IMutateOutgoingTransportMessages
     {
-        public void MutateOutgoing(MutateOutgoingPhysicalMessageContext context)
+        public void MutateOutgoing(MutateOutgoingTransportMessagesContext context)
         {
             context.SetHeader("MyCustomHeader", "My custom value");
         }
