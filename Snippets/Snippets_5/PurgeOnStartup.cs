@@ -1,16 +1,19 @@
-﻿using NServiceBus;
-
-public class PurgeOnStartup
+﻿namespace Snippets5
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class PurgeOnStartup
     {
-        #region PurgeOnStartup
+        public void Simple()
+        {
+            #region PurgeOnStartup
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        busConfiguration.PurgeOnStartup(true);
+            busConfiguration.PurgeOnStartup(true);
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

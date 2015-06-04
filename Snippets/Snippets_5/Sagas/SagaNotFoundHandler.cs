@@ -1,23 +1,27 @@
-﻿using NServiceBus;
-using NServiceBus.Saga;
-#region saga-not-found
-
-public class SagaNotFoundHandler : IHandleSagaNotFound
+﻿namespace Snippets5.Sagas
 {
-    IBus bus;
+    using NServiceBus;
+    using NServiceBus.Saga;
 
-    public SagaNotFoundHandler(IBus bus)
+    #region saga-not-found
+
+    public class SagaNotFoundHandler : IHandleSagaNotFound
     {
-        this.bus = bus;
+        IBus bus;
+
+        public SagaNotFoundHandler(IBus bus)
+        {
+            this.bus = bus;
+        }
+
+        public void Handle(object message)
+        {
+            bus.Reply(new SagaDisappearedMessage());
+        }
     }
 
-    public void Handle(object message)
+    public class SagaDisappearedMessage
     {
-        bus.Reply(new SagaDisappearedMessage());
     }
+    #endregion
 }
-
-public class SagaDisappearedMessage
-{
-}
-#endregion

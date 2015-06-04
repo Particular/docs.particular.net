@@ -1,32 +1,35 @@
-﻿using System.IO;
-using System.Text;
-
-public static class BehaviorCleaner
+﻿namespace Snippets5.Headers.Writers
 {
+    using System.IO;
+    using System.Text;
 
-    public static string CleanStackTrace(string stackTrace)
+    public static class BehaviorCleaner
     {
-        if (stackTrace == null)
+
+        public static string CleanStackTrace(string stackTrace)
         {
-            return string.Empty;
-        }
-        using (var stringReader = new StringReader(stackTrace))
-        {
-            var stringBuilder = new StringBuilder();
-            while (true)
+            if (stackTrace == null)
             {
-                var line = stringReader.ReadLine();
-                if (line == null)
-                {
-                    break;
-                }
-                if (line.Contains("InvokeNext"))
-                {
-                    continue;
-                }
-                stringBuilder.AppendLine(line);
+                return string.Empty;
             }
-            return stringBuilder.ToString().Trim();
+            using (var stringReader = new StringReader(stackTrace))
+            {
+                var stringBuilder = new StringBuilder();
+                while (true)
+                {
+                    var line = stringReader.ReadLine();
+                    if (line == null)
+                    {
+                        break;
+                    }
+                    if (line.Contains("InvokeNext"))
+                    {
+                        continue;
+                    }
+                    stringBuilder.AppendLine(line);
+                }
+                return stringBuilder.ToString().Trim();
+            }
         }
     }
 }

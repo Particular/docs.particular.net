@@ -1,14 +1,17 @@
-﻿using NServiceBus;
-
-public static class TransportMessageExtension
+﻿namespace Snippets5.Headers.Writers
 {
-    public static bool IsMessageOfTye<T>(this TransportMessage transportMessage)
+    using NServiceBus;
+
+    public static class TransportMessageExtension
     {
-        string value;
-        if (transportMessage.Headers.TryGetValue("NServiceBus.EnclosedMessageTypes", out value))
+        public static bool IsMessageOfTye<T>(this TransportMessage transportMessage)
         {
-            return value == typeof(T).AssemblyQualifiedName;
+            string value;
+            if (transportMessage.Headers.TryGetValue("NServiceBus.EnclosedMessageTypes", out value))
+            {
+                return value == typeof(T).AssemblyQualifiedName;
+            }
+            return false;
         }
-        return false;
     }
 }

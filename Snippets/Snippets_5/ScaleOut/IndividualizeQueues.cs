@@ -1,23 +1,26 @@
-﻿using NServiceBus;
-
-class IndividualizeQueues
+﻿namespace Snippets5.ScaleOut
 {
-    public void Simple()
+    using NServiceBus;
+
+    class IndividualizeQueues
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        public void Simple()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        #region UniqueQueuePerEndpointInstance 5.2
+            #region UniqueQueuePerEndpointInstance 5.2
 
-        busConfiguration.ScaleOut()
-            .UniqueQueuePerEndpointInstance();
+            busConfiguration.ScaleOut()
+                .UniqueQueuePerEndpointInstance();
 
-        #endregion
+            #endregion
 
-        #region UniqueQueuePerEndpointInstanceWithSuffix 5.2
+            #region UniqueQueuePerEndpointInstanceWithSuffix 5.2
 
-        busConfiguration.ScaleOut()
-            .UniqueQueuePerEndpointInstance("-MyCustomSuffix");
+            busConfiguration.ScaleOut()
+                .UniqueQueuePerEndpointInstance("-MyCustomSuffix");
 
-        #endregion
+            #endregion
+        }
     }
 }

@@ -7,7 +7,7 @@
     <ProjectGuid>{EC4A0E0D-C95A-4936-BD4F-73959DE7B516}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Snippets_6</RootNamespace>
+    <RootNamespace>Snippets6</RootNamespace>
     <AssemblyName>Snippets_6</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -48,16 +48,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BestPracticesConfiguration.cs" />
-    <Compile Include="Correlation\CustomCorrelationId.cs" />
-    <Compile Include="Errors\ConfigureFirstLevelRetries.cs" />
-    <Compile Include="Errors\ConfigureSecondLevelRetries.cs" />
-    <Compile Include="Errors\ErrorQueueConfigurationProvider.cs" />
-    <Compile Include="Errors\ErrorQueueConfigurationSource.cs" />
-    <Compile Include="Headers\HeaderUsage.cs" />
+    <Compile Include="Correlation\Usage.cs" />
+    <Compile Include="Correlation\MyRequest.cs" />
+    <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
+    <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />
+    <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
+    <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
+    <Compile Include="Headers\MyMessage.cs" />
+    <Compile Include="Headers\ReadHandler.cs" />
+    <Compile Include="Headers\MutateOutgoingPhysicalContext.cs" />
+    <Compile Include="Headers\MutateIncomingTransportMessages.cs" />
+    <Compile Include="Headers\OutgoingBehavior.cs" />
+    <Compile Include="Headers\IncomingBehavior.cs" />
+    <Compile Include="Headers\WriteHandler.cs" />
+    <Compile Include="Headers\SomeOtherMessage.cs" />
+    <Compile Include="Headers\StaticHeaders.cs" />
+    <Compile Include="Scanning\ScanningPublicApi.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Errors\configureErrorQueue.config" />
-    <None Include="Errors\flr.config" />
+    <None Include="Errors\ErrorQueue\configureErrorQueue.config" />
+    <None Include="Errors\FirstLevel\flr.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

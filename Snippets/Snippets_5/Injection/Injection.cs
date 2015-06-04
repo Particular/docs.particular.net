@@ -1,4 +1,4 @@
-﻿namespace MyServer.Injection
+﻿namespace Snippets5.Injection
 {
     using System.Net.Mail;
     using NServiceBus;

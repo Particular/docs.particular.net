@@ -1,9 +1,8 @@
-﻿using System;
-using NServiceBus.Config;
-using NServiceBus.Config.ConfigurationSource;
-
-public class ConfigureAuditUsingCode
+﻿namespace Snippets5.Audit
 {
+    using System;
+    using NServiceBus.Config;
+    using NServiceBus.Config.ConfigurationSource;
 
     #region ConfigureAuditUsingCode
 

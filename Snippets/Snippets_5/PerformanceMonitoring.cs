@@ -1,19 +1,22 @@
-﻿using System;
-using NServiceBus;
-
-public class PerformanceMonitoring
+﻿namespace Snippets5
 {
-    public void Simple()
+    using System;
+    using NServiceBus;
+
+    public class PerformanceMonitoring
     {
-        #region PerformanceMonitoring
+        public void Simple()
+        {
+            #region PerformanceMonitoring
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        busConfiguration.EnableSLAPerformanceCounter();
-        //or
-        busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
+            busConfiguration.EnableSLAPerformanceCounter();
+            //or
+            busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

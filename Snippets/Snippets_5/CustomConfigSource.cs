@@ -1,57 +1,60 @@
-﻿using System.Configuration;
-using NServiceBus;
-using NServiceBus.Config;
-using NServiceBus.Config.ConfigurationSource;
-
-public class CustomConfigSource
+﻿namespace Snippets5
 {
-    public CustomConfigSource()
+    using System.Configuration;
+    using NServiceBus;
+    using NServiceBus.Config;
+    using NServiceBus.Config.ConfigurationSource;
+
+    public class CustomConfigSource
     {
+        public CustomConfigSource()
+        {
 
-        #region RegisterCustomConfigSource
+            #region RegisterCustomConfigSource
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        busConfiguration.CustomConfigurationSource(new MyCustomConfigurationSource());
+            busConfiguration.CustomConfigurationSource(new MyCustomConfigurationSource());
 
-        #endregion
+            #endregion
+        }
+
     }
 
-}
+    #region CustomConfigSource
 
-#region CustomConfigSource
-
-public class MyCustomConfigurationSource : IConfigurationSource
-{
-    public T GetConfiguration<T>() where T : class, new()
+    public class MyCustomConfigurationSource : IConfigurationSource
     {
-        // the part you are overriding
-        if (typeof(T) == typeof(RijndaelEncryptionServiceConfig))
+        public T GetConfiguration<T>() where T : class, new()
+        {
+            // the part you are overriding
+            if (typeof(T) == typeof(RijndaelEncryptionServiceConfig))
+            {
+                return new RijndaelEncryptionServiceConfig
+                {
+                    Key = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"
+                } as T;
+            }
+            // leaving the rest of the configuration as is:
+            return ConfigurationManager.GetSection(typeof(T).Name) as T;
+        }
+    }
+
+    #endregion
+
+    #region CustomConfigProvider
+
+    class CustomRijndaelEncryptionServiceConfigProvider :
+        IProvideConfiguration<RijndaelEncryptionServiceConfig>
+    {
+        public RijndaelEncryptionServiceConfig GetConfiguration()
         {
             return new RijndaelEncryptionServiceConfig
             {
                 Key = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"
-            } as T;
+            };
         }
-        // leaving the rest of the configuration as is:
-        return ConfigurationManager.GetSection(typeof(T).Name) as T;
     }
+
+    #endregion
 }
-
-#endregion
-
-#region CustomConfigProvider
-
-class CustomRijndaelEncryptionServiceConfigProvider :
-    IProvideConfiguration<RijndaelEncryptionServiceConfig>
-{
-    public RijndaelEncryptionServiceConfig GetConfiguration()
-    {
-        return new RijndaelEncryptionServiceConfig
-        {
-            Key = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"
-        };
-    }
-}
-
-#endregion

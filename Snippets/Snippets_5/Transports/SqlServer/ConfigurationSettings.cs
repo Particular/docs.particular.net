@@ -1,74 +1,77 @@
-﻿using NServiceBus;
-
-public class SqlServerConfigurationSettings
+﻿namespace Snippets5.Transports.SqlServer
 {
-    void TransactionScope()
+    using NServiceBus;
+
+    public class SqlServerConfigurationSettings
     {
-        #region sqlserver-config-transactionscope 2
+        void TransactionScope()
+        {
+            #region sqlserver-config-transactionscope 2
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.UseTransport<SqlServerTransport>();
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<SqlServerTransport>();
 
-        #endregion
-    }
+            #endregion
+        }
 
-    void NativeTransactions()
-    {
-        #region sqlserver-config-native-transactions 2
+        void NativeTransactions()
+        {
+            #region sqlserver-config-native-transactions 2
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.UseTransport<SqlServerTransport>();
-        busConfiguration.Transactions()
-            .DisableDistributedTransactions();
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<SqlServerTransport>();
+            busConfiguration.Transactions()
+                .DisableDistributedTransactions();
 
-        #endregion
-    }
+            #endregion
+        }
 
-    void NoTransactions()
-    {
-        #region sqlserver-config-no-transactions 2
+        void NoTransactions()
+        {
+            #region sqlserver-config-no-transactions 2
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.UseTransport<SqlServerTransport>();
-        busConfiguration.Transactions().Disable();
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<SqlServerTransport>();
+            busConfiguration.Transactions().Disable();
 
-        #endregion
-    }
+            #endregion
+        }
 
-    void DisableSecondaries()
-    {
-        #region sqlserver-config-disable-secondaries 2
+        void DisableSecondaries()
+        {
+            #region sqlserver-config-disable-secondaries 2
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.UseTransport<SqlServerTransport>()
-            .DisableCallbackReceiver();
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<SqlServerTransport>()
+                .DisableCallbackReceiver();
 
-        #endregion
-    }
+            #endregion
+        }
 
-    void Callbacks()
-    {
-        #region sqlserver-config-callbacks 2
+        void Callbacks()
+        {
+            #region sqlserver-config-callbacks 2
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        IStartableBus bus = Bus.Create(busConfiguration);
-        ICallback callback = bus.Send(new Request());
-        callback.Register(ProcessResponse);
-        #endregion
+            BusConfiguration busConfiguration = new BusConfiguration();
+            IStartableBus bus = Bus.Create(busConfiguration);
+            ICallback callback = bus.Send(new Request());
+            callback.Register(ProcessResponse);
+            #endregion
 
-        #region sqlserver-config-callbacks-reply 2
+            #region sqlserver-config-callbacks-reply 2
 
-        bus.Return(42);
+            bus.Return(42);
 
-        #endregion
-    }
+            #endregion
+        }
 
 
-    void ProcessResponse(CompletionResult returnCode)
-    {
-    }
+        void ProcessResponse(CompletionResult returnCode)
+        {
+        }
 
-    private class Request : IMessage
-    {
+        private class Request : IMessage
+        {
+        }
     }
 }

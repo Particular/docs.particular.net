@@ -1,18 +1,21 @@
-﻿using NServiceBus;
-
-public class License
+﻿namespace Snippets5
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class License
     {
-        #region License
+        public void Simple()
+        {
+            #region License
      
-        BusConfiguration busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        busConfiguration.LicensePath("PathToLicense");
-        //or
-        busConfiguration.License("YourCustomLicenseText");
+            busConfiguration.LicensePath("PathToLicense");
+            //or
+            busConfiguration.License("YourCustomLicenseText");
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

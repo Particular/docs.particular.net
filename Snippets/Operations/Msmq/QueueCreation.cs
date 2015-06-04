@@ -1,10 +1,8 @@
-﻿using System;
-using System.Messaging;
-using System.Security.Principal;
-
-namespace Operations.Msmq
+﻿namespace Operations.Msmq
 {
-
+    using System;
+    using System.Messaging;
+    using System.Security.Principal;
 
     public static class QueueCreation
     {

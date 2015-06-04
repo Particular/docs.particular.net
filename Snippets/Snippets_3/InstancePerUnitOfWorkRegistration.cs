@@ -1,20 +1,23 @@
-﻿using NServiceBus;
-
-public class InstancePerUnitOfWorkRegistration
+﻿namespace Snippets3
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class InstancePerUnitOfWorkRegistration
     {
-        #region InstancePerUnitOfWorkRegistration
+        public void Simple()
+        {
+            #region InstancePerUnitOfWorkRegistration
 
-        Configure configuration = Configure.With();
-        configuration.Configurer
-            .ConfigureComponent<MyService>(DependencyLifecycle.InstancePerCall);
+            Configure configuration = Configure.With();
+            configuration.Configurer
+                .ConfigureComponent<MyService>(DependencyLifecycle.InstancePerCall);
 
-        #endregion
-    }
+            #endregion
+        }
 
-    public class MyService
-    {
+        public class MyService
+        {
+        }
     }
 }
 

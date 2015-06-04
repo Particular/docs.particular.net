@@ -1,63 +1,66 @@
-﻿using NServiceBus;
-using NServiceBus.Transports.SQLServer;
-
-public class MultiDb
+﻿namespace Snippets5.Transports.SqlServer
 {
-    void CurrentEndpointSchema()
+    using NServiceBus;
+    using NServiceBus.Transports.SQLServer;
+
+    public class MultiDb
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        void CurrentEndpointSchema()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        #region sqlserver-multidb-current-endpoint-schema 2.1
+            #region sqlserver-multidb-current-endpoint-schema 2.1
 
-        busConfiguration.UseTransport<SqlServerTransport>()
-            .DefaultSchema("myschema");
+            busConfiguration.UseTransport<SqlServerTransport>()
+                .DefaultSchema("myschema");
 
-        #endregion
-    }
+            #endregion
+        }
 
-    void CurrentEndpointConnectionString()
-    {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        void CurrentEndpointConnectionString()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        #region sqlserver-multidb-current-endpoint-connection-string 2
+            #region sqlserver-multidb-current-endpoint-connection-string 2
 
-        busConfiguration.UseTransport<SqlServerTransport>()
-            .ConnectionString(@"Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
+            busConfiguration.UseTransport<SqlServerTransport>()
+                .ConnectionString(@"Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
 
-        #endregion
-    }
+            #endregion
+        }
 
-    void OtherEndpointConnectionParamsPush()
-    {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        void OtherEndpointConnectionParamsPush()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        #region sqlserver-multidb-other-endpoint-connection-push 2.1
+            #region sqlserver-multidb-other-endpoint-connection-push 2.1
 
-        busConfiguration.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
-            EndpointConnectionInfo.For("RemoteEndpoint")
-                .UseSchema("receiver1")
-                .UseConnectionString("SomeConnectionString"),
-            EndpointConnectionInfo.For("AnotherEndpoint")
-                .UseSchema("receiver2")
-                .UseConnectionString("SomeConnectionString")
-            );
+            busConfiguration.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
+                EndpointConnectionInfo.For("RemoteEndpoint")
+                    .UseSchema("receiver1")
+                    .UseConnectionString("SomeConnectionString"),
+                EndpointConnectionInfo.For("AnotherEndpoint")
+                    .UseSchema("receiver2")
+                    .UseConnectionString("SomeConnectionString")
+                );
 
-        #endregion
-    }
+            #endregion
+        }
 
-    void OtherEndpointConnectionParamsPull()
-    {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        void OtherEndpointConnectionParamsPull()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        #region sqlserver-multidb-other-endpoint-connection-pull 2.1
+            #region sqlserver-multidb-other-endpoint-connection-pull 2.1
 
-        busConfiguration.UseTransport<SqlServerTransport>()
-            .UseSpecificConnectionInformation(x => x == "RemoteEndpoint"
-                ? ConnectionInfo.Create()
-                    .UseConnectionString(@"Data Source=...")
-                    .UseSchema("nsb")
-                : null);
+            busConfiguration.UseTransport<SqlServerTransport>()
+                .UseSpecificConnectionInformation(x => x == "RemoteEndpoint"
+                    ? ConnectionInfo.Create()
+                        .UseConnectionString(@"Data Source=...")
+                        .UseSchema("nsb")
+                    : null);
 
-        #endregion
+            #endregion
+        }
     }
 }

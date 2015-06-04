@@ -1,75 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using NServiceBus;
-using NServiceBus.Config;
-using NServiceBus.Config.ConfigurationSource;
-using NServiceBus.MessageMutator;
-using NUnit.Framework;
-using Operations.Msmq;
-
-[TestFixture]
-public class HeaderWriterDefer
+﻿namespace Snippets5.Headers.Writers
 {
-    public static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-    public static bool Received;
-    static string EndpointName = "HeaderWriterDeferV5";
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using NServiceBus;
+    using NServiceBus.Config;
+    using NServiceBus.Config.ConfigurationSource;
+    using NServiceBus.MessageMutator;
+    using NUnit.Framework;
+    using Operations.Msmq;
 
-    [SetUp]
-    [TearDown]
-    public void Setup()
+    [TestFixture]
+    public class HeaderWriterDefer
     {
-        QueueDeletion.DeleteQueuesForEndpoint(EndpointName);
-    }
+        public static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
+        public static bool Received;
+        static string EndpointName = "HeaderWriterDeferV5";
 
-    [Test]
-    public void Write()
-    {
-        BusConfiguration config = new BusConfiguration();
-        config.EndpointName(EndpointName);
-        IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDefer>(typeof(ConfigErrorQueue));
-        config.TypesToScan(typesToScan);
-        config.EnableInstallers();
-        config.UsePersistence<InMemoryPersistence>();
-        config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-        using (IBus bus = Bus.Create(config).Start())
+        [SetUp]
+        [TearDown]
+        public void Setup()
         {
-            bus.Defer(TimeSpan.FromMilliseconds(10),new MessageToSend());
-            ManualResetEvent.WaitOne();
+            QueueDeletion.DeleteQueuesForEndpoint(EndpointName);
         }
-    }
 
-    class MessageToSend : IMessage
-    {
-    }
-    
-    class MessageHandler : IHandleMessages<MessageToSend>
-    {
-        public void Handle(MessageToSend message)
+        [Test]
+        public void Write()
         {
-        }
-    }
-
-    class ConfigUnicastBus : IProvideConfiguration<UnicastBusConfig>
-    {
-        public UnicastBusConfig GetConfiguration()
-        {
-            UnicastBusConfig unicastBusConfig = new UnicastBusConfig();
-            unicastBusConfig.MessageEndpointMappings.Add(new MessageEndpointMapping
+            BusConfiguration config = new BusConfiguration();
+            config.EndpointName(EndpointName);
+            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDefer>(typeof(ConfigErrorQueue));
+            config.TypesToScan(typesToScan);
+            config.EnableInstallers();
+            config.UsePersistence<InMemoryPersistence>();
+            config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            using (IBus bus = Bus.Create(config).Start())
             {
-                AssemblyName = GetType().Assembly.GetName().Name,
-                Endpoint = EndpointName +"@" + Environment.MachineName
-            });
-            return unicastBusConfig;
+                bus.Defer(TimeSpan.FromMilliseconds(10),new MessageToSend());
+                ManualResetEvent.WaitOne();
+            }
         }
-    }
-    class Mutator : IMutateIncomingTransportMessages
-    {
-        public void MutateIncoming(TransportMessage transportMessage)
+
+        class MessageToSend : IMessage
         {
-            string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSend>(transportMessage.Headers);
-            SnippetLogger.Write(headerText);
-            ManualResetEvent.Set();
+        }
+    
+        class MessageHandler : IHandleMessages<MessageToSend>
+        {
+            public void Handle(MessageToSend message)
+            {
+            }
+        }
+
+        class ConfigUnicastBus : IProvideConfiguration<UnicastBusConfig>
+        {
+            public UnicastBusConfig GetConfiguration()
+            {
+                UnicastBusConfig unicastBusConfig = new UnicastBusConfig();
+                unicastBusConfig.MessageEndpointMappings.Add(new MessageEndpointMapping
+                {
+                    AssemblyName = GetType().Assembly.GetName().Name,
+                    Endpoint = EndpointName +"@" + Environment.MachineName
+                });
+                return unicastBusConfig;
+            }
+        }
+        class Mutator : IMutateIncomingTransportMessages
+        {
+            public void MutateIncoming(TransportMessage transportMessage)
+            {
+                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSend>(transportMessage.Headers);
+                SnippetLogger.Write(headerText);
+                ManualResetEvent.Set();
+            }
         }
     }
 }

@@ -3,7 +3,6 @@
     using System;
     using global::RabbitMQ.Client;
 
-
     public static class QueueDeletion
     {
 

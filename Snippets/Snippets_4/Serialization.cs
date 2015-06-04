@@ -1,43 +1,45 @@
-﻿using NServiceBus;
-
-
-public class Serialization
+﻿namespace Snippets4
 {
-    public void AllTheSerialization()
+    using NServiceBus;
+
+    public class Serialization
     {
+        public void AllTheSerialization()
+        {
 
-        #region ConfigureSerialization
+            #region ConfigureSerialization
 
-        Configure.Serialization.Binary();
-        Configure.Serialization.Bson();
-        Configure.Serialization.Json();
-        Configure.Serialization.Xml();
+            Configure.Serialization.Binary();
+            Configure.Serialization.Bson();
+            Configure.Serialization.Json();
+            Configure.Serialization.Xml();
 
-        #endregion
+            #endregion
 
-        #region BinarySerialization
+            #region BinarySerialization
 
-        Configure.Serialization.Binary();
+            Configure.Serialization.Binary();
         
-        #endregion
+            #endregion
 
-        #region BsonSerialization
+            #region BsonSerialization
 
-        Configure.Serialization.Bson();
+            Configure.Serialization.Bson();
 
-        #endregion
+            #endregion
 
-        #region JsonSerialization
+            #region JsonSerialization
 
-        Configure.Serialization.Json();
+            Configure.Serialization.Json();
         
-        #endregion
+            #endregion
 
-        #region XmlSerialization
+            #region XmlSerialization
 
-        Configure.Serialization.Xml();
+            Configure.Serialization.Xml();
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

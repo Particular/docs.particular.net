@@ -1,7 +1,6 @@
-﻿namespace Snippets_6.Scanning
+﻿namespace Snippets6.Scanning
 {
     using System;
-    using System.Linq;
     using NServiceBus;
 
     public class ScanningPublicApi

@@ -1,18 +1,21 @@
-﻿using NServiceBus;
-
-public class CustomConfigOverrides
+﻿namespace Snippets5
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class CustomConfigOverrides
     {
-        #region CustomConfigOverrides
+        public void Simple()
+        {
+            #region CustomConfigOverrides
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        busConfiguration.AssembliesToScan(AllAssemblies.Except("NotThis.dll"));
-        busConfiguration.Conventions().DefiningEventsAs(type => type.Name.EndsWith("Event"));
-        busConfiguration.EndpointName("MyEndpointName");
+            busConfiguration.AssembliesToScan(AllAssemblies.Except("NotThis.dll"));
+            busConfiguration.Conventions().DefiningEventsAs(type => type.Name.EndsWith("Event"));
+            busConfiguration.EndpointName("MyEndpointName");
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }
