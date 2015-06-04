@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Transports.AzureServiceBus
+﻿namespace Snippets5.Azure.Transports.AzureServiceBus
 {
     using NServiceBus;
 

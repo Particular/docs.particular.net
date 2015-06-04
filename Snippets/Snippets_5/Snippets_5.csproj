@@ -314,7 +314,7 @@
     <None Include="Errors\ErrorQueue\configureErrorQueue.config" />
     <None Include="Errors\FirstLevel\flr.config" />
     <None Include="Monitoring\app.config" />
-    <None Include="Persistence\Azure\AzurePersistence.config" />
+    <None Include="Azure\Persistence\AzureStorage\AzurePersistence.config" />
     <None Include="Transports\Mqmq\TransportConfig.config" />
     <None Include="Audit\App.config" />
     <None Include="Encryption\Configuration\encryption.config">
@@ -418,7 +418,7 @@
     <Compile Include="Outbox\NHibernate\SessionAccess\OrderEntity.cs" />
     <Compile Include="Outbox\NHibernate\SessionAccess\OrderPlaced.cs" />
     <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
-    <Compile Include="Persistence\Azure\Usage.cs" />
+    <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Persistence\NHibernate\AccessingData.cs" />
     <Compile Include="Persistence\NHibernate\Concurrency\SagaDataWithRowVersion.cs" />
@@ -502,7 +502,7 @@
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Transports\Transports.cs" />
-    <Compile Include="Transports\AzureServiceBus\Usage.cs" />
+    <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />
     <Compile Include="Transports\RabbitMQ\Usage.cs" />
     <Compile Include="Transports\SqlServer\MultiDb.cs" />
     <Compile Include="Transports\SqlServer\ConfigurationSettings.cs" />

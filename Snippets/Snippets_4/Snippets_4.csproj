@@ -218,7 +218,7 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Persistence\Azure\AzurePersistence.config" />
+    <None Include="Azure\Persistence\AzureStorage\AzurePersistence.config" />
     <None Include="Persistence\NHibernate\nhibernate.config">
       <SubType>Designer</SubType>
     </None>
@@ -292,7 +292,7 @@
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\NLog\NLogFiltering.cs" />
     <Compile Include="Logging\OverrideViaProfile.cs" />
-    <Compile Include="Persistence\Azure\Usage.cs" />
+    <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Persistence\NHibernate\Usage.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
@@ -315,7 +315,7 @@
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="Scheduling\Saga\SchedulerSaga.cs" />
     <Compile Include="Transactions.cs" />
-    <Compile Include="Transports\AzureServiceBus\Usage.cs" />
+    <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />
     <Compile Include="Transports\RabbitMQ\Usage.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transports\Throughput\Usage.cs" />
