@@ -22,19 +22,19 @@
                 endpointName: "myendpoint",
                 account: Environment.UserName);
             QueueDeletion.DeleteQueuesForEndpoint("myendpoint");
-            Assert.IsFalse(MessageQueue.Exists(Environment.MachineName + "\\private$\\myendpoint"));
+            Assert.IsFalse(MessageQueue.Exists(@".\private$\myendpoint"));
 
             QueueCreation.CreateQueue(
                 queueName: "myerror",
                 account: Environment.UserName);
             QueueDeletion.DeleteQueue(queueName: "myerror");
-            Assert.IsFalse(MessageQueue.Exists(Environment.MachineName + "\\private$\\myerror"));
+            Assert.IsFalse(MessageQueue.Exists(@".\private$\myerror"));
 
             QueueCreation.CreateQueue(
                 queueName: "myaudit",
                 account: Environment.UserName);
             QueueDeletion.DeleteQueue(queueName: "myaudit");
-            Assert.IsFalse(MessageQueue.Exists(Environment.MachineName + "\\private$\\myaudit"));
+            Assert.IsFalse(MessageQueue.Exists(@".\private$\myaudit"));
         }
     }
 
