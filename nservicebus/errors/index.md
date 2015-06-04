@@ -22,17 +22,17 @@ When a message fails, NServiceBus [automatically retries](/nservicebus/errors/au
 Error queue can be configured in one of two ways. 
 
 
-### Configuring the error queue via Code
+### Using Code
 
 <!-- import ErrorWithCode -->
 
 
-#### Via a custom configuration provider 
+### Using a IConfigurationProvider 
 
 <!-- import ErrorQueueConfigurationProvider -->
 
 
-#### Via a custom configuration source
+### Using a ConfigurationSource
 
 <!-- import ErrorQueueConfigurationSource-->
 
@@ -41,7 +41,7 @@ Then at configuration time:
 <!-- import UseCustomConfigurationSourceForErrorQueueConfig -->
 
 
-### Configuring the error queue via App.Config
+### Using App.Config
 
 <!-- import configureErrorQueueViaXml -->
 
