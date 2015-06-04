@@ -60,7 +60,7 @@
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Headers\MyMessage.cs" />
     <Compile Include="Headers\ReadHandler.cs" />
-    <Compile Include="Headers\MutateOutgoingPhysicalMessages.cs" />
+    <Compile Include="Headers\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Headers\MutateIncomingTransportMessages.cs" />
     <Compile Include="Headers\OutgoingBehavior.cs" />
     <Compile Include="Headers\IncomingBehavior.cs" />

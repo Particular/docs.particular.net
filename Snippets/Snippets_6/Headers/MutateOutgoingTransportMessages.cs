@@ -3,11 +3,11 @@
     using NServiceBus.MessageMutator;
 
     #region header-outgoing-mutator
-    public class MutateOutgoingPhysicalMessages : IMutateOutgoingTransportMessages
+    public class MutateOutgoingTransportMessages : IMutateOutgoingTransportMessages
     {
         public void MutateOutgoing(MutateOutgoingTransportMessagesContext context)
         {
-            context.SetHeader("MyCustomHeader", "My custom value"); throw new System.NotImplementedException();
+            context.SetHeader("MyCustomHeader", "My custom value");
         }
     }
     #endregion
