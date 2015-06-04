@@ -19,27 +19,19 @@ Azure Service Bus is messaging infrastructure that sits between applications, al
 
 First, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a NuGet package reference to the  `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package to your project.
 
-Then, use the Fluent `Configure` API to set up NServiceBus, by specifying `.UseTransport<AzureServiceBusTransport>()` to override the default transport:
+Then, use the Fluent `Configure` API to set up NServiceBus, by specifying `.UseTransport<T>()` to override the default transport:
 
 <!-- import AzureServiceBusTransportWithAzure -->
 
-Alternatively, when using one of the NServiceBus provided hosting processes, you should call the `UseTransport<AzureServiceBusTransport>` on the endpoint configuration. In the Azure role entrypoint host, for example, it looks like this:
+Alternatively, when using one of the NServiceBus provided hosting processes, you should call the `UseTransport<T>` on the endpoint configuration. In the Azure role entrypoint host, for example, it looks like this:
 
-	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
-	{
-	   public void Customize(BusConfiguration builder)
-	   {
-		 builder.UseTransport<AzureServiceBusTransport>();
-	   }
-	}
+<!-- import AzureServiceBusTransportWithAzureHost -->
 
 ## Setting the Connection String
 
 The default way to set the connection string is using the .net provided `connectionStrings` configuration section in app.config or web.config, with the name `NServicebus\Transport`:
 
-	<connectionStrings>
-	   <add name="NServiceBus/Transport" connectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
-	</connectionStrings> 
+<!-- import AzureServiceBusConnectionStringFromAppConfig -->
 
 For more detail see [Configuration Connection Strings](https://msdn.microsoft.com/en-us/library/azure/jj149830.aspx)
 
@@ -47,10 +39,7 @@ For more detail see [Configuration Connection Strings](https://msdn.microsoft.co
 
 If you need fine grained control on how the Azure Service Bus transport behaves, you can override the default settings by adding a configuration section called `AzureServiceBusQueueConfig` to your web.config or app.config files. For example:
 
-	<configSections>
-	    <section name="AzureServiceBusQueueConfig" type="NServiceBus.Config.AzureServiceBusQueueConfig, NServiceBus.Azure.Transports.WindowsAzureServiceBus" />   
-	</configSections>
-	<AzureServiceBusQueueConfig ConnectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
+<!-- import AzureServiceBusQueueConfig -->
 
 Using this configuration setting you can change the following values. NOTE: Most of these values are applied when a queue or topic is created and cannot be changed afterwards).
 

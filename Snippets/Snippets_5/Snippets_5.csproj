@@ -502,7 +502,7 @@
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Transports\Transports.cs" />
-    <Compile Include="Transports\Azure\Usage.cs" />
+    <Compile Include="Transports\AzureServiceBus\Usage.cs" />
     <Compile Include="Transports\RabbitMQ\Usage.cs" />
     <Compile Include="Transports\SqlServer\MultiDb.cs" />
     <Compile Include="Transports\SqlServer\ConfigurationSettings.cs" />

@@ -315,7 +315,7 @@
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="Scheduling\Saga\SchedulerSaga.cs" />
     <Compile Include="Transactions.cs" />
-    <Compile Include="Transports\Azure\Usage.cs" />
+    <Compile Include="Transports\AzureServiceBus\Usage.cs" />
     <Compile Include="Transports\RabbitMQ\Usage.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transports\Throughput\Usage.cs" />
