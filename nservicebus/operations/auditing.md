@@ -16,6 +16,13 @@ It is recommended that you specify a central auditing queue for all related endp
 ## Configuring auditing
 
 
+### Using Code
+
+You can configure the target audit queue at configuration time.
+
+<!-- import AuditWithCode -->
+
+
 ### Using app.config
 
 <!-- import configureAuditUsingXml -->

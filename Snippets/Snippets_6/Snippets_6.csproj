@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Audit\ProvideConfiguration.cs" />
+    <Compile Include="Audit\Usage.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="Scanning\ScanningPublicApi.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Audit\App.config" />
     <None Include="Errors\ErrorQueue\configureErrorQueue.config" />
     <None Include="Errors\FirstLevel\flr.config" />
     <None Include="packages.config" />
