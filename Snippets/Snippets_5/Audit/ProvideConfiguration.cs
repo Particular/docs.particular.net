@@ -4,9 +4,9 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
-    #region ConfigureAuditUsingCode
+    #region AuditProvideConfiguration
 
-    class ProvideAuditConfig : IProvideConfiguration<AuditConfig>
+    class ProvideConfiguration : IProvideConfiguration<AuditConfig>
     {
         public AuditConfig GetConfiguration()
         {

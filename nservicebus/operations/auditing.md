@@ -25,11 +25,11 @@ It is recommended that you specify a central auditing queue for all related endp
 Note: For backwards compatibility, Version 4 still supports the attribute `ForwardReceivedMessagesTo` on `UnicastBusConfig` section, but you will receive a warning recommending that you upgrade your configuration to use `AuditConfig` section.
 
 
-### Using code
+### Using IProvideConfiguration
 
 The audit settings can also be configured using code via a  [custom configuration provider](/nservicebus/hosting/custom-configuration-providers.md)
 
-<!-- import ConfigureAuditUsingCode -->
+<!-- import AuditProvideConfiguration -->
 
 
 ## Machine level configuration

@@ -336,7 +336,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audit\ConfigureAuditUsingCode.cs" />
+    <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
     <Compile Include="BusNotifications\Errors.cs" />
     <Compile Include="Callback\Usage.cs" />

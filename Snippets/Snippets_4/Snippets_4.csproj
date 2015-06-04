@@ -269,7 +269,7 @@
     <Compile Include="Headers\MyMessage.cs" />
     <Compile Include="Logging\UsingLogging.cs" />
     <Compile Include="Pipeline\Abort\Behavior.cs" />
-    <Compile Include="Audit\ConfigureAuditUsingCode.cs" />
+    <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="BusExtensionMethodForHandler.cs" />
     <Compile Include="Callback\Usage.cs" />
     <Compile Include="Container\Custom\Usage.cs" />
