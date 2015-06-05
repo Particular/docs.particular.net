@@ -13,6 +13,8 @@ There are several ways to make sure that your NServiceBus endpoints pick up and 
 
 ## Using the Registry
 
+Using the registry to store your license information is preferred as all platform tools can access this information easily. This includes NServiceBus endpoints, ServiceControl, ServiceInsight, and ServiceMatrix. (ServicePulse determines licensing status by querying the ServiceControl API.) Using the registry ensures that all the platform tools can access the license status without requiring additional complexity on every deployment.
+
 ### NServiceBus 4.5 and above
 
 The standalone NServiceBus PowerShell V5.0 includes a commandlet for importing the Platform License into the `HKEY_LOCAL_MACHINE` registry. See [Managing Using PowerShell](/nservicebus/operations/management-using-powershell.md) for more details and installation instructions for the PowerShell Module.

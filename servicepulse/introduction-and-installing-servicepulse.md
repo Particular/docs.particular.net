@@ -51,3 +51,9 @@ For details on ServiceControl and ServicePulse configuration options, see:
 * [ServiceControl Guidance](/servicecontrol)
  
 NOTE: ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](/servicecontrol/how-purge-expired-data.md).
+
+### ServicePulse license
+
+ServicePulse will check your current licensing status by querying the ServiceControl API, located by default at `http://localhost:33333/api`. Therefore, if ServicePulse indicates that the license is invalid or has expired, it is ServiceControl that you must update the license for, by following the instructions at [How to install your NServiceBus license file](/nservicebus/licensing/license-management.md).
+
+Note that because of browser caching, it's possible for ServicePulse to continue reporting an expired license for a time after the license has been updated. This can be addressed by clearing your browser cache.
