@@ -1,24 +1,27 @@
-﻿using NServiceBus;
-using NServiceBus.Persistence;
-using Raven.Client.Document;
-using Raven.Client.Document.DTC;
-
-class ConfiguringTransactionRecoveryStorage
+﻿namespace Snippets5.RavenDB
 {
-    public void Foo()
+    using NServiceBus;
+    using NServiceBus.Persistence;
+    using Raven.Client.Document;
+    using Raven.Client.Document.DTC;
+
+    class ConfiguringTransactionRecoveryStorage
     {
-        #region ConfiguringTransactionRecoveryStorage
-
-        var transactionRecoveryPath = "path to transaction recovery storage";
-        var myDocumentStore = new DocumentStore
+        public void Foo()
         {
-            TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(transactionRecoveryPath)
-        };
+            #region ConfiguringTransactionRecoveryStorage
 
-        var configuration = new BusConfiguration();
-        configuration.UsePersistence<RavenDBPersistence>()
-            .SetDefaultDocumentStore(myDocumentStore);
+            string transactionRecoveryPath = "path to transaction recovery storage";
+            DocumentStore myDocumentStore = new DocumentStore
+            {
+                TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(transactionRecoveryPath)
+            };
 
-        #endregion
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UsePersistence<RavenDBPersistence>()
+                .SetDefaultDocumentStore(myDocumentStore);
+
+            #endregion
+        }
     }
 }

@@ -1,0 +1,38 @@
+﻿namespace Snippets5.UnitTesting.HeaderManipulation
+{
+    using NServiceBus;
+    using NServiceBus.Testing;
+    using NUnit.Framework;
+
+    [Explicit]
+    #region TestingHeaderManipulation
+
+    [TestFixture]
+    public class Tests
+    {
+        [Test]
+        public void Run()
+        {
+            Test.Initialize();
+
+            Test.Handler<MyMessageHandler>()
+                .SetIncomingHeader("Test", "abc")
+                .ExpectReply<ResponseMessage>(m => Test.Bus.GetMessageHeader(m, "MyHeaderKey") == "myHeaderValue")
+                .OnMessage<RequestMessage>(m => m.String = "hello");
+        }
+    }
+
+    class MyMessageHandler : IHandleMessages<RequestMessage>
+    {
+        public IBus Bus { get; set; }
+
+        public void Handle(RequestMessage message)
+        {
+            ResponseMessage responseMessage = new ResponseMessage();
+            Bus.SetMessageHeader(responseMessage, "MyHeaderKey", "myHeaderValue");
+            Bus.Reply(responseMessage);
+        }
+    }
+
+    #endregion
+}

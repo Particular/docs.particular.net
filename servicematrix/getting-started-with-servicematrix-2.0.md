@@ -5,6 +5,8 @@ tags:
 - ServiceMatrix
 - Send and Receive
 - Visual Studio
+related:
+- servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance
 ---
 
 This step-by-step guide to the Particular Service Platform walks you through the creation of a send-and-receive NServiceBus distributed application using ServiceMatrix V2.X for Visual Studio 2012 & 2013, using the following steps:
@@ -49,7 +51,7 @@ In Visual Studio, select `File\New\Project` and select 'NServiceBus v5 System' u
 
 In the Solution name, type 'OnlineSales' (or any other name) for the name of your application.
 
-NOTE: It is recommended that you use the 'NServiceBus v5 System' project template unless you need to remain on NServiceBus v4 for some particular reason. NServiceBus V5 is wire compatible with earlier versions, so you should be able to use the latest version without breaking compatibility with services that may already be deployed and running on an earlier version. [Read this document](../nservicebus/upgradeguides/4to5.md) for an overview of the differences in V5 from V4.
+NOTE: It is recommended that you use the 'NServiceBus v5 System' project template unless you need to remain on NServiceBus v4 for some particular reason. NServiceBus V5 is wire compatible with earlier versions, so you should be able to use the latest version without breaking compatibility with services that may already be deployed and running on an earlier version. [Read this document](/nservicebus/upgrades/4to5.md) for an overview of the differences in V5 from V4.
 
 ### Review The Solution
 
@@ -69,7 +71,7 @@ Look at the design environment. The [Solution Builder](images/servicematrix-solu
 
 You should see folders in Solution Builder called 'Infrastructure',  'Endpoints', and 'Services'.
 -   Infrastructure is where cross-cutting concerns like authentication and auditing are handled.
--   Endpoints are where code is deployed as executable processes. They can be MVC web applications or [NServiceBus Hosts](../nservicebus/the-nservicebus-host.md).
+-   Endpoints are where code is deployed as executable processes. They can be MVC web applications or [NServiceBus Hosts](/nservicebus/hosting/nservicebus-host/).
 -   Services are logical containers for code that provide the structure for publish/subscribe events and command-processing. 
 
 The [NServiceBus Canvas](images/servicematrix-canvas.png "NServiceBus Canvas") is in the center of the solution as shown above.   The endpoints, services, components, and messages that comprise your solution will be created and illustrated here.
@@ -124,7 +126,7 @@ To facilitate communication between the website and the backend `OrderProcessing
 
 ## Creating Services 
 
-As you create the new command message, you are prompted for the name of a service.  In NServiceBus a service contains components responsible for facilitating the communication between the website and order processing.  Name the new service `Sales` and the command `SubmitOrder` as shown. Leave 'Handled with' as '[new handler]'.
+As you create the new command message, you are prompted for the name of a service.  In NServiceBus a service contains components responsible for facilitating the communication between the website and order processing.  Name the new service `Sales` and the command `SubmitOrder` as shown. The 'Handled with' is a drop down list of all the other message handler components that belong to the selected service. By default, this is '[new handler]' and choosing this option will create a new message handler component for handling the `SubmitOrder`command. 
 
 ![Sales Service and SubmitOrder Command](images/servicematrix-sales-submitorderv2.2.0.png)
   
@@ -282,9 +284,13 @@ if (Debugger.IsAttached)
 }
 ````
 
-Right-click on your OnlineSales.ECommerce project in the Solution Explorer and select 'Manage NuGet Packages...' Search Online for the NServiceBus.RavenDB package and install it.
+Open the NuGet Package Manager Console: `Tools > NuGet Package Manager > Package Manager Console`.
 
-![NServiceBus.RavenDB NuGet Package](images/servicematrix-ravendb-nuget.png)
+Type the following command at the Package Manager Console:
+
+    PM> Install-Package NServiceBus.RavenDB
+
+NOTE: When prompted to reload the project, click reload
 
 Because `Infrastructure\WebGlobalInitialization.cs` is an auto-generated code file by ServiceMatrix, you should not edit it directly (or else your changes will be gone the next time it is rebuilt). Instead, add a new class file named `ConfigurePersistence.cs` to the Infrastructure folder of the ASP.NET project. Update it to initialize the RavenDBPersistence class as follows:
 
@@ -336,7 +342,7 @@ An NServiceBus V5 ServiceMatrix project requires RavenDB V2.5. Download the inst
 
 NOTE: If you already have RavenDB 2.0 installed, you can uninstall the service by finding the Raven.Server.exe executable on your machine and running it from the command line with /uninstall.
 
-For more information on installing RavenDB for use with NService bus, refer to [this document](/nservicebus/using-ravendb-in-nservicebus-installing.md).
+For more information on installing RavenDB for use with NService bus, refer to [this document](/nservicebus/ravendb/installation.md).
 
 ## Running the Application
 
@@ -381,5 +387,3 @@ In this article you saw how to use ServiceMatrix to connect a front end website 
 What's so exciting about that?  After all inter-process communication has been done many times before. 
 
 One answer is ***fault tolerance***.  Next, you can explore the fault tolerance and durability features NServiceBus offers.
-
-Continue with a review of the fault tolerance in the [next article](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "Getting Started with Fault Tolerance").  

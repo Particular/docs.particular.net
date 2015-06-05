@@ -1,95 +1,77 @@
-﻿using NServiceBus;
-
-public class SqlServerConfigurationSettings
+﻿namespace Snippets5.Transports.SqlServer
 {
-    void TransactionScope()
+    using NServiceBus;
+
+    public class SqlServerConfigurationSettings
     {
-        var configuration = new BusConfiguration();
+        void TransactionScope()
+        {
+            #region sqlserver-config-transactionscope 2
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<SqlServerTransport>();
+
+            #endregion
+        }
+
+        void NativeTransactions()
+        {
+            #region sqlserver-config-native-transactions 2
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<SqlServerTransport>();
+            busConfiguration.Transactions()
+                .DisableDistributedTransactions();
+
+            #endregion
+        }
+
+        void NoTransactions()
+        {
+            #region sqlserver-config-no-transactions 2
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<SqlServerTransport>();
+            busConfiguration.Transactions().Disable();
+
+            #endregion
+        }
+
+        void DisableSecondaries()
+        {
+            #region sqlserver-config-disable-secondaries 2
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<SqlServerTransport>()
+                .DisableCallbackReceiver();
+
+            #endregion
+        }
+
+        void Callbacks()
+        {
+            #region sqlserver-config-callbacks 2
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            IStartableBus bus = Bus.Create(busConfiguration);
+            ICallback callback = bus.Send(new Request());
+            callback.Register(ProcessResponse);
+            #endregion
+
+            #region sqlserver-config-callbacks-reply 2
+
+            bus.Return(42);
+
+            #endregion
+        }
 
 
-        #region sqlserver-config-transactionscope
+        void ProcessResponse(CompletionResult returnCode)
+        {
+        }
 
-        configuration.UseTransport<SqlServerTransport>();
-
-        #endregion
-    }
-
-    void NativeTransactions()
-    {
-        var configuration = new BusConfiguration();
-
-
-        #region sqlserver-config-native-transactions
-
-        configuration.UseTransport<SqlServerTransport>();
-        configuration.Transactions()
-            .DisableDistributedTransactions();
-
-        #endregion
-    }
-
-    void NoTransactions()
-    {
-        var configuration = new BusConfiguration();
-
-        #region sqlserver-config-no-transactions
-
-        configuration.UseTransport<SqlServerTransport>();
-        configuration.Transactions().Disable();
-
-        #endregion
-    }
-
-    void DisableSecondaries()
-    {
-        var configuration = new BusConfiguration();
-
-        #region sqlserver-config-disable-secondaries
-
-        configuration.UseTransport<SqlServerTransport>()
-            .DisableCallbackReceiver();
-
-        #endregion
-    }
-
-    void SetSecondaryReceiverConcurrency()
-    {
-        var configuration = new BusConfiguration();
-
-        #region sqlserver-config-set-secondary-concurrency
-
-        configuration.UseTransport<SqlServerTransport>()
-            .CallbackReceiverMaxConcurrency(16);
-
-        #endregion
-    }
-
-    void Callbacks()
-    {
-        var configuration = new BusConfiguration();
-
-        var bus = Bus.Create(configuration);
-
-        #region sqlserver-config-callbacks
-
-        var callback = bus.Send(new Request());
-        callback.Register(ProcessResponse);
-
-        #endregion
-
-        #region sqlserver-config-callbacks-reply
-
-        bus.Return(42);
-
-        #endregion
-    }
-
-
-    void ProcessResponse(CompletionResult returnCode)
-    {
-    }
-
-    private class Request : IMessage
-    {
+        private class Request : IMessage
+        {
+        }
     }
 }

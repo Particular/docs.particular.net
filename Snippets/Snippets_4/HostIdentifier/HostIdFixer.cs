@@ -1,40 +1,40 @@
-﻿using System;
-using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
-using NServiceBus;
-using NServiceBus.Hosting;
-using NServiceBus.Unicast;
-
-#region HostIdFixer
-public class HostIdFixer : IWantToRunWhenBusStartsAndStops
+﻿namespace Snippets4.HostIdentifier
 {
-    UnicastBus bus;
+    using System;
+    using System.Reflection;
+    using System.Security.Cryptography;
+    using System.Text;
+    using NServiceBus;
+    using NServiceBus.Config;
+    using NServiceBus.Hosting;
+    using NServiceBus.Unicast;
 
-    public HostIdFixer(UnicastBus bus)
-    {
-        this.bus = bus;
-    }
+    #region HostIdFixer
 
-    public void Start()
+    public class HostIdFixer : IWantToRunWhenConfigurationIsComplete
     {
-        var hostId = CreateGuid(Environment.MachineName, Configure.EndpointName);
-        var identifier = Assembly.GetExecutingAssembly().Location;
-        bus.HostInformation = new HostInformation(hostId, Environment.MachineName, identifier);
-    }
 
-    static Guid CreateGuid(params string[] data)
-    {
-        using (var provider = new MD5CryptoServiceProvider())
+        public HostIdFixer(UnicastBus bus)
         {
-            var inputBytes = Encoding.Default.GetBytes(String.Concat(data));
-            var hashBytes = provider.ComputeHash(inputBytes);
-            return new Guid(hashBytes);
+            Guid hostId = CreateGuid(Environment.MachineName, Configure.EndpointName);
+            string identifier = Assembly.GetExecutingAssembly().Location;
+            bus.HostInformation = new HostInformation(hostId, Environment.MachineName, identifier);
+        }
+
+        static Guid CreateGuid(params string[] data)
+        {
+            using (MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider())
+            {
+                byte[] inputBytes = Encoding.Default.GetBytes(string.Concat(data));
+                byte[] hashBytes = provider.ComputeHash(inputBytes);
+                return new Guid(hashBytes);
+            }
+        }
+
+        public void Run()
+        {
         }
     }
 
-    public void Stop()
-    {
-    }
+    #endregion
 }
-#endregion

@@ -1,30 +1,32 @@
-﻿using System;
-using System.Transactions;
-using NServiceBus;
-
-
-public class TransactionConfig
+﻿namespace Snippets5
 {
-    public void Simple()
+    using System;
+    using System.Transactions;
+    using NServiceBus;
+
+    public class TransactionConfig
     {
-        #region TransactionConfig
+        public void Simple()
+        {
+            #region TransactionConfig
 
-        var configuration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        //Enable
-        configuration.Transactions().Enable();
+            //Enable
+            busConfiguration.Transactions().Enable();
 
-        // Disable
-        configuration.Transactions().Disable();
+            // Disable
+            busConfiguration.Transactions().Disable();
 
-        // IsolationLevel
-        configuration.Transactions().IsolationLevel(IsolationLevel.Chaos);
+            // IsolationLevel
+            busConfiguration.Transactions().IsolationLevel(IsolationLevel.Chaos);
 
-        // DefaultTimeout
-        configuration.Transactions().DefaultTimeout(TimeSpan.FromMinutes(5));
+            // DefaultTimeout
+            busConfiguration.Transactions().DefaultTimeout(TimeSpan.FromMinutes(5));
 
-        #endregion
+            #endregion
+        }
+
+
     }
-
-
 }

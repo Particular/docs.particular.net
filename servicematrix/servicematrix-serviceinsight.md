@@ -17,6 +17,7 @@ Combining the ServiceMatrix design-time visualization, and the ServiceInsight ru
 The integration and interaction features of ServiceMatrix and ServiceInsight increase the overall development speed of a system by creating a quick and intuitive feedback loop between designing the system and writing the code (with ServiceMatrix within Visual Studio), and then, by simply clicking F5 to launch a debug session in Visual Studio, launch ServiceInsight and view in real near-time how the design behaves in runtime.
 
 ![](images/servicematrix-serviceinsight-graphic1.png 'width=800')
+
 Let's see how it works.
 
 1. [Setting Up ServiceInsight Integration](#setting-up-serviceinsight-debugging "Service Insight Debugging Setup")
@@ -28,7 +29,7 @@ Let's see how it works.
 
 ServiceMatrix is configured to integrate with ServiceInsight through the Application Properties of the  solution. To review them, open the Solution Builder window, right click the root application in the tree, and select properties.
 
-![Solution Properties](images\servicematrix-solutionproperties.png)
+![Solution Properties](images/servicematrix-solutionproperties.png)
 
 Two key properties are highlighted below:
 

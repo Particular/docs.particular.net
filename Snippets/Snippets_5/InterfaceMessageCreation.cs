@@ -1,36 +1,39 @@
-﻿using NServiceBus;
-
-// ReSharper disable PossibleNullReferenceException
-public class InterfaceMessageCreation
+﻿namespace Snippets5
 {
-    public void Simple()
+    using System;
+    using NServiceBus;
+
+    public class InterfaceMessageCreation
     {
-        IBus Bus = null;
-
-        #region InterfaceMessageCreation
-
-        Bus.Publish<MyInterfaceMessage>(o =>
+        public void Simple()
         {
-            o.OrderNumber = 1234;
-        });
+            IBus Bus = null;
 
-        #endregion
+            #region InterfaceMessageCreation
 
-        IMessageCreator messageCreator = null;
-        #region ReflectionInterfaceMessageCreation
-        //This type would be derived from some other runtime information
-        var messageType = typeof(MyInterfaceMessage);
+            Bus.Publish<MyInterfaceMessage>(o =>
+            {
+                o.OrderNumber = 1234;
+            });
 
-        var instance = messageCreator.CreateInstance(messageType);
+            #endregion
 
-        //use reflection to set properties on the constructed instance
+            IMessageCreator messageCreator = null;
+            #region ReflectionInterfaceMessageCreation
+            //This type would be derived from some other runtime information
+            Type messageType = typeof(MyInterfaceMessage);
 
-        Bus.Publish(instance);
-        #endregion
-    }
+            object instance = messageCreator.CreateInstance(messageType);
 
-    public interface MyInterfaceMessage
-    {
-        int OrderNumber { get; set; }
+            //use reflection to set properties on the constructed instance
+
+            Bus.Publish(instance);
+            #endregion
+        }
+
+        public interface MyInterfaceMessage
+        {
+            int OrderNumber { get; set; }
+        }
     }
 }

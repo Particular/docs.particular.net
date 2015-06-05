@@ -1,20 +1,23 @@
-﻿using NServiceBus;
-
-public class StartupActionReplacement
+﻿namespace Snippets5
 {
-    public void AllThePersistence()
+    using NServiceBus;
+
+    public class StartupActionReplacement
     {
-        #region StartupAction
+        public void AllThePersistence()
+        {
+            #region StartupAction
 
-        var bus = Bus.Create(new BusConfiguration());
-        MyCustomAction();
-        bus.Start();
+            IStartableBus bus = Bus.Create(new BusConfiguration());
+            MyCustomAction();
+            bus.Start();
 
-        #endregion
-    }
+            #endregion
+        }
 
-    public void MyCustomAction()
-    {
+        public void MyCustomAction()
+        {
         
+        }
     }
 }

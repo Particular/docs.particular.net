@@ -1,17 +1,18 @@
-﻿using NServiceBus;
-using NServiceBus.Features;
-
-public class SubscriptionSettings
+﻿namespace Snippets4
 {
-    public void DisableAutoSubscribe()
+    using NServiceBus;
+    using NServiceBus.Features;
+
+    public class SubscriptionSettings
     {
-        #region DisableAutoSubscribe
+        public void DisableAutoSubscribe()
+        {
+            #region DisableAutoSubscribe
 
-        Configure.Features.Disable<AutoSubscribe>();
-        Configure.With().UnicastBus()
-            .CreateBus();
+            Configure.Features.Disable<AutoSubscribe>();
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

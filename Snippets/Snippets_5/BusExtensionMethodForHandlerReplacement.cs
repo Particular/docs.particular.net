@@ -1,27 +1,30 @@
-using NServiceBus;
-
-public class BusExtensionMethodForHandler
+namespace Snippets5
 {
-    #region BusExtensionMethodForHandler
-    public class MyHandler : IHandleMessages<MyMessage>
-    {
-        IBus bus;
+    using NServiceBus;
 
-        public MyHandler(IBus bus)
+    public class BusExtensionMethodForHandler
+    {
+        #region BusExtensionMethodForHandler
+        public class MyHandler : IHandleMessages<MyMessage>
         {
-            this.bus = bus;
-        }
+            IBus bus;
 
-        public void Handle(MyMessage message)
-        {
-            bus.Reply(new OtherMessage());
+            public MyHandler(IBus bus)
+            {
+                this.bus = bus;
+            }
+
+            public void Handle(MyMessage message)
+            {
+                bus.Reply(new OtherMessage());
+            }
         }
-    }
-    #endregion
-    public class MyMessage
-    {
-    }
-    public class OtherMessage
-    {
+        #endregion
+        public class MyMessage
+        {
+        }
+        public class OtherMessage
+        {
+        }
     }
 }

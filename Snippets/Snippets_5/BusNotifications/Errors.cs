@@ -1,66 +1,90 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Mail;
-using System.Reactive.Linq;
-using NServiceBus;
-using NServiceBus.Faults;
-#region SubscribeToErrorsNotifications
-public class SubscribeToErrorsNotifications : IWantToRunWhenBusStartsAndStops
+﻿
+namespace Snippets5.BusNotifications
 {
-    BusNotifications busNotifications;
+    using System;
+    using System.Collections.Generic;
+    using System.Net.Mail;
+    using System.Reactive.Linq;
+    using NServiceBus;
+    using NServiceBus.Faults;
 
-    public SubscribeToErrorsNotifications(BusNotifications busNotifications)
+    #region SubscribeToErrorsNotifications
+
+    public class SubscribeToErrorsNotifications : IWantToRunWhenBusStartsAndStops, IDisposable
     {
-        this.busNotifications = busNotifications;
-    }
+        BusNotifications busNotifications;
+        List<IDisposable> unsubscribeStreams = new List<IDisposable>();
+        bool disposed;
 
-    public void Start()
-    {
-        unsubscribeStreams.Add(
-            busNotifications.Errors.MessageSentToErrorQueue
-                // It is very important to handle streams on another thread
-                // otherwise the system performance can be impacted
-                .SubscribeOn(System.Reactive.Concurrency.Scheduler.Default) // Uses a pool-based scheduler
-                .Subscribe(SendEmailOnFailure)
-            );
-
-
-        // You can also subscribe when messages fail FLR and/or SLR
-        // - busNotifications.Errors.MessageHasFailedAFirstLevelRetryAttempt
-        // - busNotifications.Errors.MessageHasBeenSentToSecondLevelRetries
-    }
-
-    public void Stop()
-    {
-        foreach (var unsubscribeStream in unsubscribeStreams)
+        public SubscribeToErrorsNotifications(BusNotifications busNotifications)
         {
-            unsubscribeStream.Dispose();
+            this.busNotifications = busNotifications;
         }
-    }
 
-    void SendEmailOnFailure(FailedMessage failedMessage)
-    {
-        using (var c = new SmtpClient())
+        public void Start()
         {
+            CheckIfDisposed();
 
-            using (var mailMessage = new MailMessage("from@mail.com",
-                "to@mail.com", "Message sent to error queue",
-                failedMessage.Exception.ToString()))
+            unsubscribeStreams.Add(
+                busNotifications.Errors.MessageSentToErrorQueue
+                    // It is very important to handle streams on another thread
+                    // otherwise the system performance can be impacted
+                    .ObserveOn(System.Reactive.Concurrency.Scheduler.Default) // Uses a pool-based scheduler
+                    .Subscribe(SendEmailOnFailure)
+                );
+
+
+            // You can also subscribe when messages fail FLR and/or SLR
+            // - busNotifications.Errors.MessageHasFailedAFirstLevelRetryAttempt
+            // - busNotifications.Errors.MessageHasBeenSentToSecondLevelRetries
+        }
+
+        public void Stop()
+        {
+            CheckIfDisposed();
+
+            foreach (IDisposable unsubscribeStream in unsubscribeStreams)
             {
-                try
+                unsubscribeStream.Dispose();
+            }
+            unsubscribeStreams.Clear();
+        }
+
+        void SendEmailOnFailure(FailedMessage failedMessage)
+        {
+            using (SmtpClient c = new SmtpClient())
+            {
+
+                using (MailMessage mailMessage = new MailMessage("from@mail.com",
+                    "to@mail.com", "Message sent to error queue",
+                    failedMessage.Exception.ToString()))
                 {
-                    c.Send(mailMessage);
-                }
-                catch (SmtpFailedRecipientsException)
-                {
-                    // Failed to send an email to some of its recipients
-                    // Probably you should log this as a warning!
+                    try
+                    {
+                        c.Send(mailMessage);
+                    }
+                    catch (SmtpFailedRecipientsException)
+                    {
+                        // Failed to send an email to some of its recipients
+                        // Probably you should log this as a warning!
+                    }
                 }
             }
         }
+
+        void CheckIfDisposed()
+        {
+            if (disposed)
+                throw new Exception("Object has been disposed.");
+        }
+
+        public void Dispose()
+        {
+            Stop();
+            disposed = true;
+        }
     }
 
-    List<IDisposable> unsubscribeStreams = new List<IDisposable>();
+    #endregion
 }
 
-#endregion

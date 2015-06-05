@@ -69,6 +69,9 @@ Backup*/
 UpgradeLog*.XML
 
 
+storage/
+
+
 ############
 ## Windows
 ############
@@ -85,3 +88,6 @@ Fody/.DS_Store
 .DS_Store
 
 *.userprefs
+*.jtconfig
+
+*nsb_log*

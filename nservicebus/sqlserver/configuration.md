@@ -1,9 +1,9 @@
 ---
-title: The design of SQLServer transport
-summary: Design of tables that are used as queues in thr SQLServer transport
+title: The design of SQL Server transport
+summary: Design of tables that are used as queues in thr SQL Server transport
 tags:
-- SQLServer
-- Transport
+- SQL Server
+- Transports
 ---
 
 ## Queue table structure
@@ -25,23 +25,23 @@ CREATE TABLE [dbo].[{0}](
 
 Additionally, a clustered index on a `[RowVersion]` column is created. The column are directly mapped to the properties of `NServiceBus.TransportMessage` class. Receiving messages is conducted via a `DELETE` statement from the top of the table (the oldest row according to `[RowVersion]` column).
 
-The tables are created during host install time by [installers](/nservicebus/nservicebus-installers.md). It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
+The tables are created during host install time by [installers](/nservicebus/operations/installers.md). It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
 
 ## Concurrency
 
-The SQLServer transport starts up to `MaximumConcurrencyLevel` ([set via `TransportConfig` section](../msmqtransportconfig.md) threads, each running the receive loop in which it tries to receive a single message via aforementioned `DELETE` statement and, if succeeded, passes that message into the processing pipeline. Otherwise it backs up for a while.
+The SQL Server transport adapts the number of receiving threads (up to `MaximumConcurrencyLevel` [set via `TransportConfig` section](/nservicebus/msmq/transportconfig.md)) to the amount of messages waiting for processing. When idle it maintains only one thread that continuously polls the table queue. A more details description of the concurrency control mechanism, as well as the description of behavior of previous versions, can be found [here](concurrency.md).
 
 ## Transactions
 
-The SQLServer transport can work in three modes with regards to transactions. These modes are enabled based on the bus configurations:
+The SQL Server transport can work in three modes with regards to transactions. These modes are enabled based on the bus configurations:
 
-### TransactionScope
+### Ambient transaction
 
-The `TransactionScope` mode is selected by default. It relies or `Transactions.Enabled` setting being set to `true` and `Transactions.SuppressDistributedTransactions` being set to false. One needs to only select the transport:
+The ambient transaction mode is selected by default. It relies or `Transactions.Enabled` setting being set to `true` and `Transactions.SuppressDistributedTransactions` being set to false. One needs to only select the transport:
 
 <!-- import sqlserver-config-transactionscope -->
 
-When in this mode, the receive operation is wrapped in a `TransactionScope` together with the message processing in the pipeline. This means that usage of any other persistent resource manager (e.g. RavenDB client, another `SqlConnection`) will cause escalation of the transaction to full 2-Phase Commit protocol handled via Distributed Transaction Coordinator.
+When in this mode, the receive operation is wrapped in a `TransactionScope` together with the message processing in the pipeline. This means that usage of any other persistent resource manager (e.g. RavenDB client, another `SqlConnection` with different connection string) will cause escalation of the transaction to full two-phase commit protocol handled via Distributed Transaction Coordinator (MS DTC).
 
 ### Native transaction
 
@@ -49,7 +49,7 @@ The native transaction mode requires both `Transactions.Enabled` and `Transactio
 
 <!-- import sqlserver-config-native-transactions -->
 
-When in this mode, the receive operation is wrapped in a plain ADO.NET `SqlTransaction`. Both connection and the transaction instances are attached to the pipeline context under these keys `SqlConnection-{ConnectionString}` and `SqlTransaction-{ConnectionString}`. 
+When in this mode, the receive operation is wrapped in a plain ADO.NET `SqlTransaction`. Both connection and the transaction instances are attached to the pipeline context under these keys `SqlConnection-{ConnectionString}` and `SqlTransaction-{ConnectionString}` and are available for user code so that the updates to user data can be done atomically with queue receive operation.
 
 ### No transaction
 
@@ -57,7 +57,8 @@ The no transaction mode requires `Transactions.Enabled` to be set to false which
 
 <!-- import sqlserver-config-no-transactions -->
 
-When in this mode, the receive operation is not wrapped in any transaction so it is executed in its own implicit transaction by the SQLServer. This means that as soon as the `DELETE` operation used for receiving completes, the message is gone and any exception that happens during processing of this message causes it to be permanently lost.
+When in this mode, the receive operation is not wrapped in any transaction so it is executed by the SQL Server in its own implicit transaction.
+WARNING: This means that as soon as the `DELETE` operation used for receiving completes, the message is gone and any exception that happens during processing of this message causes it to be permanently lost.
 
 ## Primary queue
 
@@ -81,10 +82,16 @@ Secondary queues are enabled by default. In order to disable them, one must use 
 
 <!-- import sqlserver-config-disable-secondaries -->
 
-Secondary queues use same concurrency model to the primary queue but use different settings for the maximum concurrency level. The default value of this setting is 1 which should be fine with most scenarios because it is small enough to not degrade the overall performance of the endpoint and large enough to cope with usually small number of callbacks. In order to change this value one should use the configuration API:
+Secondary queues use same adaptive concurrency model to the primary queue. Secondary queues (and hence callbacks) are disabled for satellite receivers.
 
-<!-- import sqlserver-config-set-secondary-concurrency -->
-
-### Satellites
-
-Secondary queues (and hence callbacks) are disabled for satellite receivers.
+## Connection strings
+   
+```xml
+<connectionStrings>
+   <!-- SQL Server -->
+   <add name="NServiceBus/Transport"
+        connectionString="Data Source=.\SQLEXPRESS;
+                                      Initial Catalog=nservicebus;
+                                      Integrated Security=True"/>
+</connectionStrings>
+```

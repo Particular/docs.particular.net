@@ -1,17 +1,19 @@
-﻿using NServiceBus;
-
-
-public class DoNotCreateQueues
+﻿namespace Snippets5
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class DoNotCreateQueues
     {
-        #region DoNotCreateQueues
+        public void Simple()
+        {
+            #region DoNotCreateQueues
 
-        var configuration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.DoNotCreateQueues();
+            busConfiguration.DoNotCreateQueues();
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

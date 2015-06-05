@@ -1,57 +1,75 @@
 ---
-title: Installing The Platform Components Manually - Offline
-summary: 'Guidance on how to install the platform components offline'
+title: Installing The Platform Components Manually without Platform Installer
+summary: 'Guidance on how to install the platform components'
 tags: [Platform, Installation, Offline]
 ---
 
-The [Platform Installer](/platform/installer) handles installing pre-requisites for NServiceBus and the Platform products, such as [ServiceInsight](/serviceinsight), [ServiceMatrix](/servicematrix), [ServicePulse](/servicepulse) and [ServiceControl](/servicepulse).
+The [Platform Installer](/platform/installer) handles installing pre-requisites for NServiceBus and the Platform products.  This guide details how to install to achieve the same results as the Platform Installer on a computer that does not have the required Internet connectivity.
 
-The Platform Installer depends on [Chocolatey](https://chocolatey.org) & Chocolatey packages, and those packages contain the URLs for the installation binaries. For this reason the Platform Installer requires an internet connection and requires access to the Chocolatey repository.
 
-## Platform Offline Installation
+## .Net Prerequisite Version
 
-It is possible to perform an offline installation of the Platform.
+The Particular platform products require [.Net 4.5](http://www.microsoft.com/en-au/download/details.aspx?id=40779). Before proceeding please ensure that this version of .Net is available on the system you are setting up.  
 
-### Pre-requisites
+Note: Windows 8.x and Windows 2012 or greater already ship with this version so no action is required on these products,
 
-Setting up NServiceBus pre-requisites offline involves the following steps
 
-#### MSMQ 
+##  Platform Installer Components
 
-Download and execute the following PowerShell script:
+The Platform Installer installs 6 component parts:
 
-* https://github.com/Particular/Packages.Msmq/blob/master/src/tools/setup.ps1
+- NServiceBus Prerequisities
+- ServiceControl
+- ServicePulse
+- ServiceInsight
+- ServiceMatrix for Visual Studio 2013 
+- ServiceMatrix for Visual Studio 2012 
 
-#### MSDTC
+Each of these will be detailed below:
 
-Download the following files:
+### NServiceBus Prerequistes
 
-* https://github.com/Particular/Packages.DTC/blob/master/src/tools/setup.ps1
-* https://github.com/Particular/Packages.DTC/blob/master/src/tools/RegHelper.cs
+The NServiceBus Prerequisites option in the Platform Install configures the system to run NServiceBus endpoints using Microsoft Message Queuing(MSMQ) by doing the following:
 
-Execute the Setup.ps1 PowerShell script.   
+- Adds, configures and starts the MSMQ service.
+- Configures and starts the Microsoft Distributed Co-ordinator Service
+- Adds NServiceBus Performance Counters
 
-#### Performance Counters
+These actions are available via [NServicebus PowerShell Module](https://github.com/Particular/NServiceBus.PowerShell/releases/latest).  This module is available as standalone installation.  Once the module is installed, open a PowerShell prompt as a Administrator and issue the following commands:
 
-Download and execute the following PowerShell script:
+```bat
+Import-Module NServiceBus.PowerShell
+Install-NServiceBusDTC
+Install-NServiceBusMSMQ
+Install-NServiceBusPerformanceCounters
+```
 
-* https://github.com/Particular/Packages.PerfCounters/blob/master/src/tools/setup.ps1
+### ServiceControl 
 
-### Platform Tools
+This MSI can be downloaded directly from here: [ServiceControl Releases](https://github.com/Particular/ServiceControl/releases/latest).
 
-Platform tools can be manually installed using their own standalone installer, available at the Particular web site [download page](http://www.particular.net/downloads).
+### ServiceInsight
 
-#### ServiceMatrix
+This MSI can be downloaded directly from here: [ServiceInsight Releases](https://github.com/Particular/ServiceInsight/releases/latest).
 
-ServiceMatrix requires to download packages from the NuGet public feed to function properly, currently ServiceMatrix can be installed offline using the stand alone installer but requires an internet connection, and access to NuGet public feed, to create and manage projects.
+### ServicePulse
 
-#### Custome Installation Notes
-To run the installer in quiet mode form commandline you can pass in the `/quiet` option 
+This MSI can be downloaded directly from here: [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases/latest).
 
-For Example: `Particular.ServiceControl-1.3.0.exe /quiet`
+### ServiceMatrix 
 
-To set the target directory you can use the property setter `APPDIR`
+This VSIX files for ServiceMatrix can be downloaded directly from here: [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases/latest).  
 
-For example: `Particular.ServiceControl-1.3.0.exe /quiet APPDIR=“C:\MyTagretDirectory”`
+The file name for the Visual Studio 2013 version is `Particular.ServiceMatrix.12.0.vsix`.
+The file name for the Visual Studio 2012 version is `Particular.ServiceMatrix.11.0.vsix`.
 
+To install ServiceMatrix the VSIXInstaller.exe is required which is shipped with commercial versions of Visual Studio ( i.e Visual Studio Professional or better).  The Express editions of Visual Studio are not supported.
+
+The VSIX file can either be double-clicked on to install it or run from the command line.  The following example shows the installation using Visual Studio 2013.
+
+```bat
+"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDEVsixinstaller.exe" Particular.ServiceMatrix.12.0.vsix  
+```
+
+Note: ServiceMatrix requires an Internet connection to download packages from the NuGet public feed. So whilst ServiceMatrix can be installed offline without a NuGet feed it will not be able to create and manage projects properly.
 

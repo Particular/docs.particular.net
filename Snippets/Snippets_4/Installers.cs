@@ -1,20 +1,23 @@
-﻿using NServiceBus;
-using NServiceBus.Installation.Environments;
-
-public class ForInstallationOn
+﻿namespace Snippets4
 {
-    public void Simple()
+    using NServiceBus;
+    using NServiceBus.Installation.Environments;
+
+    public class ForInstallationOn
     {
-        #region Installers
+        public void Simple()
+        {
+            #region Installers
 
-        Configure.With()
-            .UnicastBus()
-            .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+            Configure.With()
+                .UnicastBus()
+                .CreateBus()
+                .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 
-        #endregion
+            #endregion
+        }
+
+
+
     }
-
-
-
 }

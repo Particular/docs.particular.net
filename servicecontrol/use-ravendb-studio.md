@@ -3,9 +3,9 @@ title: Exposing Data via RavenDB Studio
 summary: How to configure ServiceControl to allow direct access to the embedded RavenDB instance.
 tags:
 - ServiceControl
-- Configuration
 - RavenDB
 ---
+
 ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If direct access to the RavenDB instance is required, ServiceControl can be configured to expose the RavenDB studio.
 
 WARNING: The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications. 

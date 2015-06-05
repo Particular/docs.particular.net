@@ -1,18 +1,21 @@
-﻿using NServiceBus;
-
-public class ForInstallationOnReplacement
+﻿namespace Snippets5
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class ForInstallationOnReplacement
     {
-        #region Installers
+        public void Simple()
+        {
+            #region Installers
 
-        var configuration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.EnableInstallers();
+            busConfiguration.EnableInstallers();
 
-        Bus.Create(configuration);//this will run the installers
+            Bus.Create(busConfiguration);//this will run the installers
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

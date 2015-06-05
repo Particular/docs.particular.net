@@ -3,7 +3,6 @@ title: Customizing ServiceControl Configuration
 summary: How ServiceControl manages configuration and how to create and customize the ServiceControl configuration file.
 tags:
 - ServiceControl
-- Configuration
 ---
 
 ServiceControl allows you to create a configuration file with settings that override default settings.
@@ -21,7 +20,6 @@ To override these default settings:
   
 * File name: `servicecontrol.exe.config`
 * File path: `C:\Program Files (x86)\Particular Software\ServiceControl` (default ServiceControl installation folder)
- 
  
 ```xml
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
@@ -77,21 +75,25 @@ You can configure ServiceControl to forward any consumed messages into alternate
 
   The period that defines whether an endpoint is considered alive or not. Default: `00:00:40` (40 secs)
 
+* `ServiceControl/MaximumMessageThroughputPerSecond`
+   This setting was introduced in version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An apropriate limit ensures that the database can cope with number of insert operations. Otherwise the query performance would drop significantly and the message expiration process would stop working when under heavy insert load. Make sure to concudct thorough performance tests on your hardware before increasing this value.  Default: `350`. 
+   
 * `ServiceControl/ForwardAuditMessages` (bool `true`/`false`)
 
-  Use this setting to configure whether processed audit messages are forwarded to another queue or not. Default `false`
+  Use this setting to configure whether processed audit messages are forwarded to another queue or not. Default `false`.  From v1.5 if this setting is not explicitly set to true of false a warning is shown in the logs at startup.
+  See [Installation](installation.md) for details on how to set this at install time.
 
 * `ServiceControl/ExpirationProcessTimerInSeconds` (int) 
 
-  The number of seconds to wait between checking for expired messages.  The default prior to version 1.4 is `60` (1 minute), the new default is `600` (10 minutes).  Settings the value to 0 will disable the expiration process, this is not recommended and it only provided for fault finding.
+  The number of seconds to wait between checking for expired messages.  The default prior to version 1.4 was `60` (1 minute), the new default is `600` (10 minutes).  Settings the value to `0` will disable the expiration process, this is not recommended and it is only provided for fault finding.  Valid Range is `0` through to `10800` (3 Hours)
 
 * `ServiceControl/ExpirationProcessBatchSize` (int) , Default `65512`  
  
-  This setting was introduced in version 1.4. This minimum allowed value for this settings is 10240, there is no hardcoded maximum as this is heavily dependent on system performance.  
+  This setting was introduced in version 1.4. This minimum allowed value for this settings is `10240`, there is no hardcoded maximum as this is heavily dependent on system performance.  
 
 * `ServiceControl/HoursToKeepMessagesBeforeExpiring` (int)
 
-  The number of hours to keep a message for before it is deleted, Default `720` (30 days)
+  The number of hours to keep a message for before it is deleted, Default `720` (30 days). Valid Range is `24` (1 day) through to `1440` (60 days)
 
 * `ServiceControl/DbPath` (string)
 
@@ -103,7 +105,7 @@ You can configure ServiceControl to forward any consumed messages into alternate
 
 * `NServiceBus/Transport` (string)
 
-  The connection string for the transport.
+  The connection string for the transport. This setting should be placed in `connectionStrings` section of configuratoin file.
 
 * `ServiceBus/AuditQueue` (string)
 

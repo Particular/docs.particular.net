@@ -1,18 +1,20 @@
-﻿using System;
-using NServiceBus;
-
-
-public class TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
+﻿namespace Snippets5
 {
-    public void Simple()
+    using System;
+    using NServiceBus;
+
+    public class TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
     {
-        #region TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
+        public void Simple()
+        {
+            #region TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
 
-        var configuration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        configuration.TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages(TimeSpan.FromMinutes(5));
+            busConfiguration.TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages(TimeSpan.FromMinutes(5));
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

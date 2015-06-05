@@ -5,8 +5,4 @@ tags:
 - RavenDB
 - Persistence
 ---
-
-## Table of Contents
-
-- [Version Compatibility](version-compatibility.md)
-- [How to change the ResourceManagerID](how-to-change-resourcemanagerid.md)
+Uses the [RavenDB document database](http://ravendb.net/) for storage.

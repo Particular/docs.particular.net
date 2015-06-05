@@ -1,20 +1,23 @@
-﻿using NServiceBus;
-
-public class RunCustomActionReplacement
+﻿namespace Snippets5
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class RunCustomActionReplacement
     {
-        #region RunCustomAction
+        public void Simple()
+        {
+            #region RunCustomAction
 
-        var bus = Bus.Create(new BusConfiguration());
-        MyCustomAction();
-        bus.Start();
+            IStartableBus bus = Bus.Create(new BusConfiguration());
+            MyCustomAction();
+            bus.Start();
 
-        #endregion
-    }
+            #endregion
+        }
 
-    public void MyCustomAction()
-    {
+        public void MyCustomAction()
+        {
         
+        }
     }
 }

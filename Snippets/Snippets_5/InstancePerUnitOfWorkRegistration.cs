@@ -1,33 +1,35 @@
-﻿using NServiceBus;
-using NServiceBus.UnitOfWork;
-
-public class InstancePerUnitOfWorkRegistration
+﻿namespace Snippets5
 {
-    public void Simple()
+    using NServiceBus;
+    using NServiceBus.UnitOfWork;
+
+    public class InstancePerUnitOfWorkRegistration
     {
-        #region InstancePerUnitOfWorkRegistration
+        public void Simple()
+        {
+            #region InstancePerUnitOfWorkRegistration
 
-        var configuration = new BusConfiguration();
-        configuration.RegisterComponents(c => c.ConfigureComponent<MyUnitOfWork>(DependencyLifecycle.InstancePerCall));
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.RegisterComponents(c => c.ConfigureComponent<MyUnitOfWork>(DependencyLifecycle.InstancePerCall));
 
-        #endregion
+            #endregion
+        }
     }
+
+
+    #region UnitOfWorkImplementation
+
+    public class MyUnitOfWork : IManageUnitsOfWork
+    {
+        public void Begin()
+        {
+            // Do your custom work here
+        }
+
+        public void End(System.Exception ex = null)
+        {
+            // Do your custom work here
+        }
+    }
+    #endregion
 }
-
-
-#region UnitOfWorkImplementation
-
-public class MyUnitOfWork : IManageUnitsOfWork
-{
-    public void Begin()
-    {
-        // Do your custom work here
-    }
-
-    public void End(System.Exception ex = null)
-    {
-        // Do your custom work here
-    }
-}
-#endregion
-

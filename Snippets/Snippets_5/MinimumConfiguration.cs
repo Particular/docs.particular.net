@@ -1,23 +1,26 @@
-﻿using NServiceBus;
-
-public class MinimumConfiguration
+﻿namespace Snippets5
 {
-    public MinimumConfiguration()
+    using NServiceBus;
+
+    public class MinimumConfiguration
     {
-        #region MinimumConfiguration
-
-        var configuration = new BusConfiguration();
-
-        #endregion MinimumConfiguration
-
-        #region BusDotCreate
-
-        using (var bus = Bus.Create(configuration))
+        public MinimumConfiguration()
         {
-            bus.Start();
+            #region MinimumConfiguration
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+
+            #endregion MinimumConfiguration
+
+            #region BusDotCreate
+
+            using (IStartableBus bus = Bus.Create(busConfiguration))
+            {
+                bus.Start();
+            }
+
+            #endregion BusDotCreate
         }
 
-        #endregion BusDotCreate
     }
-
 }

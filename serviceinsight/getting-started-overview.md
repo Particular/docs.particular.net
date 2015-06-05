@@ -7,7 +7,7 @@ tags:
 # Introduction
 
 
-The [NServiceBus](../nservicebus/overview.md ) framework provides the benefits of a distributed, messaged based, fault tolerant, and distributed architecture by allowing you to visualize and verify the functionality of such a distributed system.  
+The [NServiceBus](/nservicebus/architecture/) framework provides the benefits of a distributed, messaged based, fault tolerant, and distributed architecture by allowing you to visualize and verify the functionality of such a distributed system.  
 
 From design through to production, ServiceInsight provides concise and user-friendly insight and information about the system. 
 

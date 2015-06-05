@@ -1,26 +1,31 @@
-﻿using NServiceBus;
-using NServiceBus.Persistence;
-
-public class ShareNHibernateConfiguration
+﻿namespace Snippets5.Outbox.NHibernate
 {
-    public void Customize()
+    using global::NHibernate.Cfg;
+    using NServiceBus;
+    using NServiceBus.Persistence;
+
+    public class ShareConfiguration
     {
-        BusConfiguration configuration = null;
+        public ShareConfiguration()
+        {
+            BusConfiguration busConfiguration = null;
 
-        #region OutboxShareNHibernateConfiguration
+            #region OutboxShareNHibernateConfiguration
 
-        var hibernateConfiguration = BuildMyBusinessDataNHibernateConfiguration();
+            Configuration hibernateConfiguration = BuildMyBusinessDataNHibernateConfiguration();
 
-        configuration.UsePersistence<NHibernatePersistence>()
-            .UseConfiguration(hibernateConfiguration);
+            busConfiguration.UsePersistence<NHibernatePersistence>()
+                .UseConfiguration(hibernateConfiguration);
 
-        #endregion
+            #endregion
+        }
+
+        Configuration BuildMyBusinessDataNHibernateConfiguration()
+        {
+            // build and return your NHibernate Configuration here
+            return null;
+        }
     }
 
-    NHibernate.Cfg.Configuration BuildMyBusinessDataNHibernateConfiguration()
-    {
-        // build and return your NHibernate Configuration here
-        return null;
-    }
 }
 

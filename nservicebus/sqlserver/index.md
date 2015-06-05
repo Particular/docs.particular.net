@@ -1,9 +1,6 @@
 ---
-title: SqlServer
-summary: NServiceBus SqlServer
+title: SQL Server Transport
+summary: NServiceBus SQL Server
+tags:
+- SQL Server
 ---
-
-## Table of Contents
-
-- [Configuration API](configuration.md)
-- [Using multiple databases](multiple-databases.md)

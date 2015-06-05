@@ -1,17 +1,19 @@
-﻿using NServiceBus;
-
-
-public class SendOnly
+﻿namespace Snippets5
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class SendOnly
     {
-        #region SendOnly
+        public void Simple()
+        {
+            #region SendOnly
 
-        var configuration = new BusConfiguration();
-        
-        var bus = Bus.CreateSendOnly(configuration);
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        #endregion
+            ISendOnlyBus bus = Bus.CreateSendOnly(busConfiguration);
+
+            #endregion
+        }
+
     }
-
 }

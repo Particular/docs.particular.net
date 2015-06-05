@@ -1,30 +1,33 @@
-﻿using NServiceBus;
-
-// ReSharper disable PossibleNullReferenceException
-public class InterfaceMessageCreation
+﻿// ReSharper disable PossibleNullReferenceException
+namespace Snippets4
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class InterfaceMessageCreation
     {
-        IBus Bus = null;
-
-        #region InterfaceMessageCreation
-
-        var message = Bus.CreateInstance<MyInterfaceMessage>(o =>
+        public void Simple()
         {
-            o.OrderNumber = 1234;
-        });
-        Bus.Publish(message);
+            IBus Bus = null;
 
-        Bus.Publish<MyInterfaceMessage>(o =>
+            #region InterfaceMessageCreation
+
+            MyInterfaceMessage message = Bus.CreateInstance<MyInterfaceMessage>(o =>
+            {
+                o.OrderNumber = 1234;
+            });
+            Bus.Publish(message);
+
+            Bus.Publish<MyInterfaceMessage>(o =>
+            {
+                o.OrderNumber = 1234;
+            });
+
+            #endregion
+        }
+
+        public interface MyInterfaceMessage
         {
-            o.OrderNumber = 1234;
-        });
-
-        #endregion
-    }
-
-    public interface MyInterfaceMessage
-    {
-        int OrderNumber { get; set; }
+            int OrderNumber { get; set; }
+        }
     }
 }

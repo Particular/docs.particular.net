@@ -1,65 +1,77 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using NServiceBus;
-
-public class ScanningPublicApi
+﻿namespace Snippets5.Scanning
 {
-    public ScanningPublicApi()
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using NServiceBus;
+
+    public class ScanningPublicApi
     {
-        IEnumerable<Assembly> myListOfAssemblies = null;
+        public ScanningPublicApi()
+        {
+            IEnumerable<Assembly> myListOfAssemblies = null;
 
-        Assembly assembly2 = null;
-        Assembly assembly1 = null;
+            Assembly assembly2 = null;
+            Assembly assembly1 = null; 
 
-        IEnumerable<Type> myTypes = null;
+            IEnumerable<Type> myTypes = null;
 
 
-        #region ScanningDefault
+            #region ScanningDefault
 
-        var configuration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        #endregion
+            #endregion
 
-        #region ScanningListOfAssemblies
+            #region ScanningExcludeByName
 
-        configuration.AssembliesToScan(myListOfAssemblies);
+            busConfiguration.AssembliesToScan(AllAssemblies.Except("MyAssembly1.dll").And("MyAssembly2.dll"));
 
-        #endregion
+            #endregion
 
-        #region ScanningParamArrayOfAssemblies
+            #region ScanningListOfTypes
 
-        configuration.AssembliesToScan(assembly1, assembly2);
+            busConfiguration.TypesToScan(myTypes); 
 
-        #endregion
+            #endregion
 
-        #region ScanningCustomDirectory
+            #region ScanningListOfAssemblies
 
-        configuration.ScanAssembliesInDirectory(@"c:\my-custom-dir");
+            busConfiguration.AssembliesToScan(myListOfAssemblies);
+            // or
+            busConfiguration.AssembliesToScan(assembly1, assembly2);
 
-        #endregion
+            #endregion
 
-        #region ScanningListOfTypes
+            #region ScanningIncludeByPattern
 
-        configuration.TypesToScan(myTypes);
+            busConfiguration.AssembliesToScan(AllAssemblies.Matching("NServiceBus").And("MyCompany.").And("SomethingElse"));
 
-        #endregion
+            #endregion
 
-        #region ScanningExcludeByName
+            #region ScanningCustomDirectory
 
-        configuration.AssembliesToScan(AllAssemblies.Except("MyAssembly.dll").And("MyAssembly.dll"));
+            busConfiguration.ScanAssembliesInDirectory(@"c:\my-custom-dir");
 
-        #endregion
+            #endregion
 
-        #region ScanningIncludeByPattern
+            #region ScanningMixingIncludeAndExclude
 
-        configuration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").And("SomethingElse"));
+            busConfiguration.AssembliesToScan(AllAssemblies.Matching("NServiceBus").And("MyCompany.").Except("BadAssembly.dll"));
 
-        #endregion
+            #endregion
 
-        #region ScanningMixingIncludeAndExclude
+        }
 
-        configuration.AssembliesToScan(AllAssemblies.Matching("MyCompany.").Except("BadAssembly.dll"));
+        #region ScanningConfigurationInNSBHost
+
+        public class EndpointConfig : IConfigureThisEndpoint
+        {
+            public void Customize(BusConfiguration configuration)
+            {
+                // use 'configuration' object to configure scanning
+            }
+        }
 
         #endregion
 

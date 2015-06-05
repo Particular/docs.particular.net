@@ -1,29 +1,32 @@
-﻿using System;
-using NServiceBus;
-
-public class DiscardingOldMessages
+﻿namespace Snippets4
 {
+    using System;
+    using NServiceBus;
 
-    #region DiscardingOldMessagesWithAnAttribute
-    [TimeToBeReceived("00:01:00")] // Discard after one minute
-    public class MyMessage { }
-    #endregion
-
-    public void Simple()
+    public class DiscardingOldMessages
     {
-        #region DiscardingOldMessagesWithFluent
 
-        var configure = Configure.With()
-            .DefiningTimeToBeReceivedAs(type =>
-            {
-                if (type == typeof(MyMessage))
-                {
-                    return TimeSpan.FromHours(1);
-                }
-                return TimeSpan.MaxValue;
-            });
-
+        #region DiscardingOldMessagesWithAnAttribute
+        [TimeToBeReceived("00:01:00")] // Discard after one minute
+        public class MyMessage { }
         #endregion
-    }
 
+        public void Simple()
+        {
+            #region DiscardingOldMessagesWithFluent
+
+            Configure configure = Configure.With()
+                .DefiningTimeToBeReceivedAs(type =>
+                {
+                    if (type == typeof(MyMessage))
+                    {
+                        return TimeSpan.FromHours(1);
+                    }
+                    return TimeSpan.MaxValue;
+                });
+
+            #endregion
+        }
+
+    }
 }

@@ -6,6 +6,10 @@ tags:
 - Security
 - ServicePulse
 - ServiceInsight
+related:
+- servicecontrol/creating-config-file
+- servicecontrol/configure-ravendb-location
+- servicecontrol/backup-sc-database        
 ---
 
 ServiceControl serves as the backend service for ServicePulse and ServiceInsight, supplying these client applications with the information required for their functionality. It does so by exposing HTTP API that can be accessed by these and other third-party tools.
@@ -50,7 +54,7 @@ For more information, see [ServiceControl: Updating URLACL Settings](setting-cus
 
 For a more fine-grained limitation on message body visibility of specific properties, you can encrypt message properties that are sensitive (e.g., credit card numbers). 
 
-An example of how to set encryption per specific message property can be viewed in the [VideoStore sample](/platform/samples.md) and the [Encryption Sample](/nservicebus/encryption-sample.md).   
+An example of how to set encryption per specific message property can be viewed in the [Encryption Sample](/samples/encryption/basic-encryption/).   
 
 ### Accessing the Embedded RavenDB Database
 
@@ -59,10 +63,3 @@ ServiceControl uses an embedded RavenDB database to store its data. This databas
 Access to the location of the database files enables full access to the database contents, so take great care to ensure the database location is secure from unauthorized access and tampering.
 
 Similarly, when backing up the ServiceControl embedded database, ensure the database backup is located in a secure location.
-
-For more information:
-
-- [Customizing ServiceControl Configuration](creating-config-file.md)
-- [Customize RavenDB Embedded Path and Drive](configure-ravendb-location.md)
-- [How to Backup the ServiceControl Database](backup-sc-database.md)
-        

@@ -148,7 +148,7 @@ Adding a new `HightPriorityOrderAccepted` event to the example above causes Serv
 
 # Understanding Saga Code
 
-ServiceMatrix supports the design of [NServiceBus sagas](/nservicebus/sagas-in-nservicebus.md "Sagas in NserviceBus") and generates the necessary code to get you started.  The saga is a specialized stateful version of a ServiceMatrix component.  As we saw with the handlers, the Saga is generated with the dynamic code and user modified code in separate partial class files.  For sagas, the design has been extended to to include definitions for saga data, custom finding logic, and some convenience methods to make saga completion easier.  
+ServiceMatrix supports the design of [NServiceBus sagas](/nservicebus/sagas/) and generates the necessary code to get you started.  The saga is a specialized stateful version of a ServiceMatrix component.  As we saw with the handlers, the Saga is generated with the dynamic code and user modified code in separate partial class files.  For sagas, the design has been extended to to include definitions for saga data, custom finding logic, and some convenience methods to make saga completion easier.  
 
 The code below is based on a saga designed in ServiceMatrix that correlates the request and response with another endpoint as shown.  This saga handles the `OrderAccepted` event then publishes the `SubmitPayment` request to a payment processing service.  The saga handles and correlates the `SubmitPaymentResponse`.
 

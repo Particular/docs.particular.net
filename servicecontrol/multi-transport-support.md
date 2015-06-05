@@ -4,10 +4,9 @@ summary: How to configure ServiceControl to use non-MSMQ Transports
 tags:
 - ServiceControl
 - Transports
-- Configuration
 - RabbitMQ
 - SQL Server
-- Windows Azure
+- Azure
 - Cloud
 ---
 NOTE: This documents assumes you had already installed ServiceControl
@@ -20,10 +19,12 @@ First, download the NuGet package for the relevant transport including any depen
 
 * RabbitMQ: [NServiceBus.RabbitMQ v1.1.5](https://www.nuget.org/api/v2/package/NServiceBus.RabbitMQ/1.1.5) and [RabbitMQ.Client 3.3.5](https://www.nuget.org/api/v2/package/RabbitMQ.Client/3.3.5)
 * SQL Server: [NServiceBus.SqlServer v1.2.2](https://www.nuget.org/api/v2/package/NServiceBus.SqlServer/1.2.2)
-* Windows Azure Storage Queues: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/5.3.8) and [WindowsAzure.Storage v3.1.0.1](https://www.nuget.org/api/v2/package/WindowsAzure.Storage/3.1.0.1)
-* Windows Azure ServiceBus: [NServiceBus.Azure.Transports.WindowsAzureServiceBus v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureServiceBus/5.3.8) and [WindowsAzure.ServiceBus](https://www.nuget.org/api/v2/package/WindowsAzure.ServiceBus)
+* Azure Storage Queues: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/5.3.8) and [WindowsAzure.Storage v3.1.0.1](https://www.nuget.org/api/v2/package/WindowsAzure.Storage/3.1.0.1)
+* Azure ServiceBus: [NServiceBus.Azure.Transports.WindowsAzureServiceBus v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureServiceBus/5.3.8) and [WindowsAzure.ServiceBus v2.2](https://www.nuget.org/api/v2/package/WindowsAzure.ServiceBus/2.2.0)
 
-NOTE: ServiceControl is built using NServiceBus version 4. Version 5 transport DLLs should not be used.
+WARNING: Only transport DLLs targetting NServiceBus V4 should be used.
+
+NOTE: If you are configuring ServiceControl for use with Azure ServiceBus and want to use a newer version that 2.2 refer to the troubleshooting section 
 
 The NuGet packages you just downloaded are in fact zip files. Rename the nupkg files to have a zip extension, and take the dlls from the `/lib` folder and put them in the ServiceControl bin folder: (`[Program Files]\Particular Software\ServiceControl`).
 
@@ -51,18 +52,16 @@ Example, for RabbitMQ these settings would look like:
 x:\Your_Installed_Path\ServiceControl.exe --install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl" -d="ServiceControl/TransportType==NServiceBus.RabbitMQ, NServiceBus.Transports.RabbitMQ" -d="NServiceBus/Transport==host=localhost"
 ```
 
-Or for Windows Azure ServiceBus:
+Or for Azure ServiceBus:
 
 ```bat
 x:\Your_Installed_Path\ServiceControl.exe --install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl" -d="ServiceControl/TransportType==NServiceBus.AzureServiceBus, NServiceBus.Azure.Transports.WindowsAzureServiceBus" -d="NServiceBus/Transport==Endpoint=sb://[endpoint-name].servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue=[your-shared-secret]"
 ```
-Or for Windows Azure StorageQueues:
+Or for Azure Storage Queues:
 
 ```bat
-x:\Your_Installed_Path\ServiceControl.exe —install -serviceName=“Particular.ServiceControl” -displayName=“Particular ServiceControl” -d=“ServiceControl/TransportType==NServiceBus.AzureStorageQueue, NServiceBus.Azure.Transports.WindowsAzureStorageQueues” -d="NServiceBus/Transport==Endpoint=sb://[endpoint-name].servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue=[your-shared-secret]"
+x:\Your_Installed_Path\ServiceControl.exe --install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl" -d="ServiceControl/TransportType==NServiceBus.AzureStorageQueue, NServiceBus.Azure.Transports.WindowsAzureStorageQueues" -d="NServiceBus/Transport==DefaultEndpointsProtocol=https;AccountName=[account-name];AccountKey=[account-key];"
 ```
-
-
 
 Example, for SqlServer these settings would look like:
 
@@ -80,9 +79,9 @@ Ensure Particular.ServiceControl windows service has started and is functioning 
 
 Make sure all assemblies copied are unblocked, otherwise the .NET runtime will refuse to load them.
 
-When deploying using a packaging technology, like Windows Azure Cloud Services projects, make sure that the ServiceControl plugins become part of the package before executing the deployement. For example, this can be done by referencing the assemblies in a worker role project and setting "copy local" to true.
+When deploying using a packaging technology, like Azure Cloud Services projects, make sure that the ServiceControl plugins become part of the package before executing the deployement. For example, this can be done by referencing the assemblies in a worker role project and setting "copy local" to true.
 
-If you are configuring ServiceControl for use with Windows Azure ServiceBus, you may encounter an error during the above commands because `NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll` has a reference to Microsoft.ServiceBus version 2.2.0.0, but you may be using a later version (via NuGet). The attempted installation will have created a `ServiceControl.exe.config` file, which you can modify, and add an assembly binding redirect section (exactly as NuGet would have done in your main project config file). Once the config file has been updated you can run `ServiceControl.exe --install`
+If you are configuring ServiceControl for use with Azure ServiceBus, you may encounter an error during the above commands because `NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll` has a reference to Microsoft.ServiceBus version 2.2.0.0, but you may be using a later version (via NuGet). The attempted installation will have created a `ServiceControl.exe.config` file, which you can modify, and add an assembly binding redirect section (exactly as NuGet would have done in your main project config file). Once the config file has been updated you can run `ServiceControl.exe --install`
 
 ```xml
 <configuration>

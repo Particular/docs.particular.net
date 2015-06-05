@@ -1,0 +1,36 @@
+﻿namespace Snippets4.Logging.Log4Net
+{
+    using log4net.Appender;
+    using log4net.Config;
+    using log4net.Core;
+    using log4net.Filter;
+    using log4net.Layout;
+    using NServiceBus;
+
+    public class Log4NetFiltering
+    {
+        public Log4NetFiltering()
+        {
+            #region Log4NetFiltering
+
+            ColoredConsoleAppender appender = new ColoredConsoleAppender
+            {
+                Threshold = Level.Debug,
+                Layout = new SimpleLayout(),
+            };
+
+            appender.AddFilter(new LoggerMatchFilter
+            {
+                LoggerToMatch = "MyNamespace"
+            });
+            appender.AddFilter(new DenyAllFilter());
+            appender.ActivateOptions();
+
+            BasicConfigurator.Configure(appender);
+
+            SetLoggingLibrary.Log4Net();
+
+            #endregion
+        }
+    }
+}

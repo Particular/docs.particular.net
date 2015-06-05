@@ -3,7 +3,6 @@ title: Name and Description Properties for the API
 summary: How to configure the default values for the Name and Description properties of the ServiceControl API
 tags:
 - ServiceControl
-- Configuration
 ---
 The ServiceControl HTTP API exposes two properties that describe the ServiceControl installation:
 
@@ -19,13 +18,12 @@ You can customize the two values in several ways:
   x:\Your_Installed_Path\ServiceControl.exe --restart -d="ServiceControl/Name==YourFavoriteName" -d="ServiceControl/Description==ServiceControl service description"
   ```
 
-  <p class="alert alert-info">
-  <strong>ServiceControl default installed location</strong><br/>
-  By default ServiceControl is installed in [Program Files]\Particular Software\ServiceControl.
-  </p>
-
 * Change the registry settings in the `HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceControl` node, editing the `Name` and `Description` keys.
 * Change the regstry settings in the `HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ParticularSoftware\ServiceControl` node, editing the `Name` and `Description` keys.
+
+### ServiceControl default installed location</strong
+
+By default ServiceControl is installed in `[Program Files]\Particular Software\ServiceControl`
 
 To apply the new configuration, restart the ServiceControl service.
 
