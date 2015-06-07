@@ -10,11 +10,6 @@ NServiceBus requires a persistence store. By default, ServiceMatrix provisions y
 
 NServiceBus offers multiple options for different persistence technologies. Please read [Persistence In NServiceBus](/nservicebus/persistence/) for an overview. The example below shows how to setup the RavenDB persistence store, but a similar process can be used for the other stores. 
 
-1.  [Installing the RavenDB NuGet Package](#installing-the-ravendb-nuget-package)  
-2.  [Selecting Persistence for an ASP.NET MVC Endpoint](#selecting-persistence-for-an-asp-net-mvc-endpoint)
-3.  [Selecting Persistence for an NSB Host Endpoint](#selecting-persistence-for-an-nsb-host-endpoint)
-4.  [Installing RavenDB 2.5](#installing-ravendb-2-5)
-
 # Installing the RavenDB NuGet Package
 
 Regardless of what type of endpoint you have, you will need to install the NuGet package containing the classes for the persistence store you are planning to use.
