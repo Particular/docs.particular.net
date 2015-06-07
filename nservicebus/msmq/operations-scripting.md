@@ -19,11 +19,11 @@ The following code shows an example of how to perform the following actions
  * extract the failed queue from the headers.
  * forward that message to the failed queue name so it can be retried.
 
-**In C&#35;**
+#### In C&#35;
 
 <!-- import msmq-return-to-source-queue -->
 
-**In Powershell**
+#### In Powershell
 
 <!-- import msmq-return-to-source-queue-powershell -->
 
@@ -40,11 +40,11 @@ Queue creation can be done for a specific endpoint or queues shared between mult
 
 ### The create queue helper methods
 
-**In C&#35;**
+#### In C&#35;
 
 <!-- import msmq-create-queues -->
 
-**In Powershell**
+#### In Powershell
 
 <!-- import msmq-create-queues-powershell -->
 
@@ -65,11 +65,11 @@ To create shared queues.
 
 ### The delete helper queue methods
 
-**In C&#35;**
+#### In C&#35;
 
 <!-- import msmq-delete-queues -->
 
-**In Powershell**
+#### In Powershell
 
 <!-- import msmq-delete-queues-powershell -->
 
