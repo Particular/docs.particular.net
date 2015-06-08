@@ -36,7 +36,7 @@ public static DateTime ToUtcDateTime(string wireFormattedString)
 
 ## Serialization Headers
 
- * `NServiceBus.ContentType`: The type of [serialization](/nservicebus/serialization/) used for the message. For example ` text/xml` or `text/json`.
+ * `NServiceBus.ContentType`: The type of [serialization](/nservicebus/serialization/) used for the message. For example ` text/xml` or `text/json`. The `NServiceBus.ContentType` header was added in version 4.0. In some cases it may be useful to use the `NServiceBus.Version` header to detemine when to use the `NServiceBus.ContentType` header. 
  * `NServiceBus.EnclosedMessageTypes`: The fully qualified type name of the enclosed message(s).
 
 
