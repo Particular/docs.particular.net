@@ -35,8 +35,9 @@ public static DateTime ToUtcDateTime(string wireFormattedString)
 
 
 ## Serialization Headers
+This set of headers contains information to control how messages are [de-serialized](/nservicebus/serialization/) by the receiving endpoint.
 
- * `NServiceBus.ContentType`: The type of [serialization](/nservicebus/serialization/) used for the message. For example ` text/xml` or `text/json`. The `NServiceBus.ContentType` header was added in version 4.0. In some cases it may be useful to use the `NServiceBus.Version` header to detemine when to use the `NServiceBus.ContentType` header. 
+ * `NServiceBus.ContentType`: The type of serialization used for the message. For example ` text/xml` or `text/json`. The `NServiceBus.ContentType` header was added in version 4.0. In some cases it may be useful to use the `NServiceBus.Version` header to determine when to use the `NServiceBus.ContentType` header. 
  * `NServiceBus.EnclosedMessageTypes`: The fully qualified type name of the enclosed message(s).
 
 
@@ -44,9 +45,10 @@ public static DateTime ToUtcDateTime(string wireFormattedString)
 
 Several headers are used to enable messaging interaction patters
 
- * `NServiceBus.ConversationId`: The conversation that this message is part of
- * `NServiceBus.CorrelationId`: A GUID used to correlate between handlers and/or Sagas when doing a Reply or a Return. 
  * `NServiceBus.MessageId`: A unique id for the current message.
+ * `NServiceBus.CorrelationId`: A string used to [correlate](./message-correlation.md) reply messages to their corresponding request message. 
+ * `NServiceBus.ConversationId`: The conversation that this message is part of
+ * `NServiceBus.RelatedTo`: The `MessageId` that caused this message to be sent
  * `NServiceBus.MessageIntent`: Can be one of the following:
 	* `Send`: Regular point-to-point send. Note that messages sent to Error queue will also have a `Send` intent.
 	* `Publish`: The message is an event that has been published and will be sent to all subscribers.
