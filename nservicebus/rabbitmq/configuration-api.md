@@ -18,9 +18,7 @@ A typical connection string would look like this:
 
 <!-- import rabbitmqconnectionstring -->
 
-In the above sample we tell the transport to connect to the RabbitMQ broker running at the machine `broker1`. If have a cluster of brokers you can separate them with a `,` like this `broker1,broker2,broker3`. When multiple brokers are available the transport will connect to the first one by default and should the connection be lost try to reconnect to one of them in a round robin fashion.
-
-NOTE: When using multiple brokers and they are running on a port other than the default. The port for each broker can be specified as follows `broker1:port1,broker2:port2,broker3:port3`.
+In the above sample we tell the transport to connect to the RabbitMQ broker running at the machine `broker1`.
 
 Below is the full list of connection string options. Note that you needs to separate them with a `;`.
 
