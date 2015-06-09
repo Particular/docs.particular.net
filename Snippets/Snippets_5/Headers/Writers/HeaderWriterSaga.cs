@@ -106,21 +106,21 @@
                 if (transportMessage.IsMessageOfTye<SendFromSagaMessage>())
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Sending");
+                    SnippetLogger.Write(text: headerText, suffix: "Sending", version: "All");
                     CountdownEvent.Signal();
                     return;
                 }
                 if (transportMessage.IsMessageOfTye<ReplyFromSagaMessage>())
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Replying");
+                    SnippetLogger.Write(text: headerText, suffix: "Replying", version: "All");
                     CountdownEvent.Signal();
                     return;
                 }
                 if (transportMessage.IsMessageOfTye<TimeoutFromSaga>())
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Timeout");
+                    SnippetLogger.Write(text: headerText, suffix: "Timeout", version: "All");
                     CountdownEvent.Signal();
                     return;
                 }

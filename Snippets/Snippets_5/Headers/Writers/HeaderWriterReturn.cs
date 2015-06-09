@@ -58,12 +58,12 @@
                 if (transportMessage.IsMessageOfTye<MessageToSend>())
                 {
                     string sendingText = HeaderWriter.ToFriendlyString < HeaderWriterReturn>(transportMessage.Headers);
-                    SnippetLogger.Write(text: sendingText, suffix: "Sending");
+                    SnippetLogger.Write(text: sendingText, suffix: "Sending", version: "All");
                 }
                 else
                 {
                     string returnText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(transportMessage.Headers);
-                    SnippetLogger.Write(text: returnText, suffix: "Returning");
+                    SnippetLogger.Write(text: returnText, suffix: "Returning", version: "All");
                     ManualResetEvent.Set();
                 }
 

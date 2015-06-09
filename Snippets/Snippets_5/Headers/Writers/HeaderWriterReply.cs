@@ -63,13 +63,13 @@
                 if (transportMessage.IsMessageOfTye<MessageToReply>())
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Replying");
+                    SnippetLogger.Write(text: headerText, suffix: "Replying", version: "All");
                     ManualResetEvent.Set();
                 }
                 if (transportMessage.IsMessageOfTye<MessageToSend>())
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterReply>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Sending");
+                    SnippetLogger.Write(text: headerText, suffix: "Sending", version: "All");
                 }
             }
         }
