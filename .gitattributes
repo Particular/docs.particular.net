@@ -60,7 +60,7 @@
 *.ps1 text
 *.md text
 *.txt text eol=crlf
-*.bat text eol=crlf
+*.DotSettings text
 
 # Custom for Visual Studio
 *.csproj merge=union
