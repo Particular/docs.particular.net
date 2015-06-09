@@ -26,6 +26,6 @@ For remote host provide username and password because remote hosts don't accept 
    <add name="NServiceBus/Transport"
         connectionString="host=myremoteserver;
                           username=myusername;
-                          password=mypassowrd"/>
+                          password=mypassword"/>
 </connectionStrings>
 ```
