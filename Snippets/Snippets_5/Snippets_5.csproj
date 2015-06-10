@@ -288,6 +288,7 @@
     <Content Include="Headers\Writers\HeaderWriterReturn_Returning.txt" />
     <Content Include="Headers\Writers\HeaderWriterReturn_Sending.txt" />
     <Content Include="Headers\Writers\HeaderWriterSaga_Replying.txt" />
+    <Content Include="Headers\Writers\HeaderWriterSaga_ReplyingToOriginator.txt" />
     <Content Include="Headers\Writers\HeaderWriterSaga_Sending.txt" />
     <Content Include="Headers\Writers\HeaderWriterSaga_Timeout.txt" />
     <Content Include="Headers\Writers\HeaderWriterSend.txt" />
