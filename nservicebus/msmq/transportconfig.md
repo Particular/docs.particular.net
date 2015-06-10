@@ -12,15 +12,18 @@ redirects:
 
 Historically MSMQ is the first transport supported by NServiceBus. In version 5 it still is by far the most commonly used one. Because of these and also the fact that MSMQ client libraries are included in .NET Base Class Library (`System.Messaging` assembly), MSMQ transport is built into the core of NServiceBus.
 
+
 ### Receiving algorithm
 
 Because of the way MSMQ API has been designed i.e. polling receive that throws an exception when timeout is reached the receive algorithm is more complex than for other polling-driven transports (such as [SQLServer](/nservicebus/sqlserver/)).
 
 The main loops starts by subscribing to `PeekCompleted` event and calling the `BeginPeek` method. When a message arrives the event is raised by the MSMQ client API. The handler for this event starts a new receiving task and waits till this new task has completed its `Receive` call. After that is calls `BeginPeek` again to wait for more messages. 
 
+
 ## Configuration
 
 Because of historic reasons, the configuration for MSMQ transport has been coupled to general bus configuration in the previous versions of NServiceBus.
+
 
 ### MSMQ-specific
 
@@ -34,6 +37,16 @@ Following settings are purely related to the MSMQ:
 From version 4 onwards these settings are configured via a transport connection string (named `nservicebus/transport` for all transports). Before V4 some of these properties could be set via `MsmqMessageQueueConfig` configuration section while other (namely the connectionCache and the ability to use non-transactional queues) were not available prior to V4.
 
 <!-- import MessageQueueConfiguration -->
+
+
+### MSMQ Label
+
+WARNING: This feature was added in Version 6 and can be used to communicate with Version 5 endpoints. However it should not be used when communicating to earlier versions (2,3 or 4) since in those versions the MSMQ Label was used to communicate certain NServiceBus implementation details.
+
+The text used to apply to [Message.Label](https://msdn.microsoft.com/en-us/library/vstudio/system.messaging.message.label.aspx) can be controlled at configuration time using the `ApplyLabelToMessages` extension method. This method takes a delegate which will be passed the header collection and should return a string to use for the label. It will be called for all standard messages as well as Audits, Errors and all control messages. The only exception to this rule is received messages with corrupted headers. In some cases it may be useful to use the `Headers.ControlMessageHeader` key to determine if a message is a control message.  These messages will be forwarded to the error queue with no label applied. The returned string can be `String.Empty` for no label and must be at most 240 characters.
+
+<!-- import ApplyLabelToMessages -->
+
 
 ### Failure handling & throttling
 
@@ -52,4 +65,3 @@ In V3 some of these setting were available via `MsqmTransportConfig` section wit
 
  * In V3 the `ErrorQueue` (the queue where messages that fail a configured number of times) settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
  * In V3 the `MaxRetries` as well as the throttling  (`NumberOfWorkerThreads`) settings can be set only via `MsmqTransportConfig` section.
-
