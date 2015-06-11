@@ -103,6 +103,7 @@
     <Compile Include="OrderSagaData.cs" />
     <Compile Include="PaymentTransactionCompleted.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="SagaNotFoundHandler.cs" />
     <Compile Include="StartOrder.cs" />
     <Compile Include="StartOrderSagaFinder.cs" />
   </ItemGroup>
