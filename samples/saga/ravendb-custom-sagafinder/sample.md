@@ -10,10 +10,6 @@ related:
 - nservicebus/ravendb
 ---
 
-## Solution Structure
-
-The solution contains one project. 
-
 
 ### Sample
 
