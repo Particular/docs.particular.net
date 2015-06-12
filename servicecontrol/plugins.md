@@ -127,7 +127,7 @@ Unlike the Heartbeat and the CustomChecks plugin, which specifically reports inf
 #### Should I deploy the SagaAudit plugin to Production?
 Depending on the saga's update frequency, it may result in a large number of messages, and a higher load on both the sending endpoint and on the receiving ServiceControl instance.  Therefore, please ensure that you **do not** deploy the Saga Audit plugin to your production systems as it would unnecessarily increase the message load to your production system. 
 
-#### How do I debug a view the SagaState view for an endpoint in Production?
+#### How do I debug/view the saga state in Production?
 If you wish to visualize your saga in Production and the plugin is not already deployed, then simply add the Saga Audit plugin in the same location where your saga is running and restart your service. Use ServiceInsight to view the visualization and when done, remove the plugin and restart your service. This approach is very similar for example, when you need to use Journaling to debug a message based system, where you turn it on when needed to collect the information you wish to see and then turn it back off. 
 
 **Related articles**
