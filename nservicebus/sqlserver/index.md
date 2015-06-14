@@ -5,6 +5,10 @@ tags:
 - SQL Server
 redirects:
 - nservicebus/sqlserver/configuration
+related:
+- samples/sqltransport-nhpersistence
+- samples/sqltransport-nhpersistence-outbox
+- samples/sqltransport-nhpersistence-outbox-ef
 ---
 
 ## Queue table structure
