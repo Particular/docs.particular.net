@@ -1,5 +1,5 @@
 ---
-title: SQL Server Transport
+title: SQL Server Transport Design
 summary: The design of SQL Server transport
 tags:
 - SQL Server
