@@ -19,9 +19,11 @@ The following code shows an example of how to perform the following actions
  * extract the failed queue from the headers.
  * forward that message to the failed queue name so it can be retried.
 
+
 #### In C&#35;
 
 <!-- import msmq-return-to-source-queue -->
+
 
 #### In Powershell
 
@@ -37,12 +39,27 @@ The following code shows an example of how to perform the following actions
 
 Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.
 
+### Default permissions
+
+| Group | Permissions |
+|---|---|
+| Owning account | Write, Receive, Peek |
+| Administrators | Full |
+| Anonymous | Write  |
+| Everyone | Write | 
+
+To retrieve the group names the [WellKnownSidType](https://msdn.microsoft.com/en-us/library/system.security.principal.wellknownsidtype.aspx) enumeration is used.
+
+MSMQ permissions are defined in the [MessageQueueAccessRights](https://msdn.microsoft.com/en-us/library/system.messaging.messagequeueaccessrights.aspx) enumeration.
+
+NOTE: Write access is granted to both `Everyone` and `Anonymous`. The reason for this is so that a given endpoint can receive messages from other endpoints running under different accounts. If you want to further lock down MSMQ write permissions you can remove `Everyone` and `Anonymous` and instead grant specific access to a know subset of account.
 
 ### The create queue helper methods
 
 #### In C&#35;
 
 <!-- import msmq-create-queues -->
+
 
 #### In Powershell
 
@@ -65,9 +82,11 @@ To create shared queues.
 
 ### The delete helper queue methods
 
+
 #### In C&#35;
 
 <!-- import msmq-delete-queues -->
+
 
 #### In Powershell
 
