@@ -577,3 +577,4 @@ It will also wrap the image in a clickable lightbox so the full image can be acc
 * [GitHub pull request documentation](https://help.github.com/send-pull-requests/)
 * [Forking a Repo](https://help.github.com/articles/fork-a-repo)
 * [Using Pull Requests](https://help.github.com/articles/using-pull-requests)
+* [Markdown Table generator](http://www.tablesgenerator.com/markdown_tables)
