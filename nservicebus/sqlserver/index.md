@@ -104,6 +104,7 @@ Secondary queues use same adaptive concurrency model to the primary queue. Secon
 
 Connection string can be configured in several ways
 
+
 ### Via the App.Config
 
 By adding a connection named `NServiceBus/Transport` in the `connectionStrings` node.
@@ -117,6 +118,7 @@ By adding a connection named `NServiceBus/Transport` in the `connectionStrings` 
                                       Integrated Security=True"/>
 </connectionStrings>
 ```
+
 
 ### Via the configuration API
 
@@ -134,4 +136,3 @@ By using the `ConnectionStringName` extension method.
 Combined with a named connection in the `connectionStrings` node of you app.config.
 
 <!-- import sqlserver-named-connection-string-xml -->
-
