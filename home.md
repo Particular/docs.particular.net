@@ -277,8 +277,8 @@
     <p><h4>Validate your distributed system design in a matter of minutes</h4></p>
     <ul>
       <li><a href="/servicematrix/getting-started-with-servicematrix-2.0.md">Getting Started</a></li>
-      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li>
-      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md">Fault Tolerance</a></li>
+      <li><a href="/servicematrix/servicematrix-serviceinsight.md">Interaction with ServiceInsight</a></li>
+      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li>      
     </ul>
     <a href="/servicematrix/"><h3>Learn more</h3></a><br/>
    <div style="clear: both"></div>
@@ -287,8 +287,8 @@
     <p><h4>Complete under-the-hood visualization of the your system's behavior</h4></p>
     <ul>
       <li><a href="/serviceinsight/getting-started-overview.md">Getting Started</a></li>
-      <li><a href="/servicematrix/servicematrix-serviceinsight.md">Interaction with ServiceMatrix</a></li>
       <li><a href="/serviceinsight/application-invocation.md">Application invocation</a></li>
+      <li><a href="/serviceinsight/how-logging-works.md">Logging in ServiceInsight</a></li>
     </ul>
     <a href="/serviceinsight/"><h3>Learn more</h3></a><br/>
     <div style="clear: both"></div>
