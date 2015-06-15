@@ -9,12 +9,6 @@ SignalR is a library that is part of ASP.NET. It allows a persistent, bi-directi
 
 When you build an ASP.NET MVC 4 endpoint in ServiceMatrix, it allows you to leverage SignalR v1.x to have event and reply messages to be propagated to the front-end user interface.
 
-1.  [Getting Started](#introducing-signalr-and-servicematrix)
-2.  [Adding a BillingCompleted Event](#adding-a-billingcompleted-event)
-3.  [Subscribe ASP.NET MVC to BillingCompleted](#subscribe-aspnet-mvc-to-billingcompleted)
-4.  [Summary](#summary)
-5.  [Next Steps](#next-steps)
-
 # Introducing SignalR and ServiceMatrix
 
 To demonstrate the SignalR integration you will extend your Online Sales sample.  Before proceeding, please verify that your solution has the ECommerce website, and the OrderProcessing, Billing, and PaymentProcessing endpoints, as shown. 

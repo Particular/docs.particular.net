@@ -7,6 +7,7 @@ Before you start ensure you have
 
 There are two approaches to contributing.
 
+
 ## Via the GitHub Web UI  
 
 For simple changes the GitHub web UI should suffice.
@@ -16,6 +17,7 @@ For simple changes the GitHub web UI should suffice.
  1. Make the changes you require. Ensure you verify your changes in the `Preview` tab.
  1. Add a description of your changes.
  1. Click `Propose File Changes`.
+
 
 ## By Forking and Submitting a Pull Request
 
@@ -29,7 +31,9 @@ For more complex changes you should fork and then submit a pull request. This is
 
 For more information see [Collaborating on GitHub](https://help.github.com/categories/63/articles) especially [using GitHub pull requests](https://help.github.com/articles/using-pull-requests). 
 
+
 # Conventions
+
 
 ## Lower case  and `-` delimited
 
@@ -38,6 +42,7 @@ All content files (`.md`,`.png`,`.jpg` etc) and directories must be lower case.
 All links pointing to them must be lower case.
 
 To delimiter file names use a dash (`-`).
+
 
 ## Headers
 
@@ -62,13 +67,16 @@ redirects:
 ---
 ```
 
+
 ### Title
 
 Required. Used for the web page title tag `<head><title>`, displayed in the page content, and displayed in search results.
 
+
 ### Summary
 
 Required. Used for the meta description tag (`<meta name="description"`) and displaying on the search results.
+
 
 ### Tags
 
@@ -85,9 +93,11 @@ Tags are interpreted in two ways.
    * Tags are lower case
    * Dashes (`-`) are replaced with dashes spaces 
 
+
 ### Related
 
 A list of related pages for this page. These links will be rendered at the bottom of the page. Can include both samples and articles and they will be grouped as such when rendered in html. 
+
 
 ### Redirects
 
@@ -97,9 +107,11 @@ When renaming an existing article to a new name, please add the `redirects:` sec
 * Multiple values can be specified for the redirects, same as `tags`.
 * Values are fully qualified
 
+
 ### Url format for Redirects and Related
 
 Should be the url relative to the root with no beginning or trailing slash padding and no .md.
+
 
 ## An example header for an article
 
@@ -141,6 +153,11 @@ So a file existing at `nservicebus\logging\nlog.md` will have a resultant URL of
 One exception to this rule is when a page is named `index.md`. In this case the `index.md` is omitted in the resultant URL and only the directory structure is used.
 
 So a file existing at `nservicebus\logging\index.md` will have a resultant URL of `http://docs.particular.net/nservicebus/logging/`.
+
+
+#### Related Pages on Index Pages
+
+Like any page an Index page can include [Related pages](#related). However Index pages will, by default, have all sibling and child pages included in the the list of Related pages. This is effectively a recursive walk of the file system for the directory the given index.md exists in.
 
 
 ### Linking
@@ -555,7 +572,9 @@ It will also wrap the image in a clickable lightbox so the full image can be acc
 
 # Additional Resources
 
+* [GitHub Flow in the Browser](https://help.github.com/articles/github-flow-in-the-browser/)
 * [General GitHub documentation](https://help.github.com/)
 * [GitHub pull request documentation](https://help.github.com/send-pull-requests/)
 * [Forking a Repo](https://help.github.com/articles/fork-a-repo)
 * [Using Pull Requests](https://help.github.com/articles/using-pull-requests)
+* [Markdown Table generator](http://www.tablesgenerator.com/markdown_tables)

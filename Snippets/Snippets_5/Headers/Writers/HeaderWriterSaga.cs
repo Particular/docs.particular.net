@@ -13,7 +13,7 @@
     [TestFixture]
     public class HeaderWriterSaga
     {
-        public static CountdownEvent CountdownEvent = new CountdownEvent(3);
+        public static CountdownEvent CountdownEvent = new CountdownEvent(4);
         string endpointName = "HeaderWriterSagaV5";
 
         [SetUp]
@@ -50,7 +50,8 @@
 
         class Saga1 : Saga<Saga1.SagaData>,
             IAmStartedByMessages<StartSaga1Message>,
-            IHandleMessages<ReplyFromSagaMessage>
+            IHandleMessages<ReplyFromSagaMessage>,
+            IHandleMessages<ReplyToOriginatorFromSagaMessage>
         {
             public void Handle(StartSaga1Message message)
             {
@@ -71,6 +72,11 @@
             public void Handle(ReplyFromSagaMessage message)
             {
             }
+
+            public void Handle(ReplyToOriginatorFromSagaMessage message)
+            {
+                
+            }
         }
 
         class Saga2 : Saga<Saga2.SagaData>, 
@@ -80,6 +86,7 @@
             public void Handle(SendFromSagaMessage message)
             {
                 Bus.Reply(new ReplyFromSagaMessage());
+                ReplyToOriginator(new ReplyToOriginatorFromSagaMessage());
                 RequestTimeout(TimeSpan.FromMilliseconds(1), new TimeoutFromSaga());
             }
 
@@ -106,21 +113,29 @@
                 if (transportMessage.IsMessageOfTye<SendFromSagaMessage>())
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Sending");
+                    SnippetLogger.Write(text: headerText, suffix: "Sending", version: "All");
                     CountdownEvent.Signal();
                     return;
                 }
                 if (transportMessage.IsMessageOfTye<ReplyFromSagaMessage>())
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Replying");
+                    SnippetLogger.Write(text: headerText, suffix: "Replying", version: "All");
                     CountdownEvent.Signal();
                     return;
                 }
+                if (transportMessage.IsMessageOfTye<ReplyToOriginatorFromSagaMessage>())
+                {
+                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
+                    SnippetLogger.Write(text: headerText, suffix: "ReplyingToOriginator", version: "All");
+                    CountdownEvent.Signal();
+                    return;
+                }
+                
                 if (transportMessage.IsMessageOfTye<TimeoutFromSaga>())
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Timeout");
+                    SnippetLogger.Write(text: headerText, suffix: "Timeout", version: "All");
                     CountdownEvent.Signal();
                     return;
                 }
@@ -128,6 +143,9 @@
         }
 
 
+        class ReplyToOriginatorFromSagaMessage : IMessage
+        {
+        }
         class ReplyFromSagaMessage : IMessage
         {
         }

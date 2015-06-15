@@ -10,18 +10,6 @@ ServiceMatrix accelerates the creation of a distributed NServiceBus solution.  A
 
 This article explores how to customize the ServiceMatrix solution and add your own code.
 
-1. [Introduction](#introduction)
-2. [Message Definitions](#message-definitions)
-3. [NServiceBus Components](#customizing-components)
-4. [Partial Classes and Methods](#the-dynamic-partial-class)
-5. [Reviewing Generated Code](#reviewing-the-generated-code)
-6. [Sagas](#understanding-saga-code)
-7. [Saga Data](#saga-data)
-8. [Saga Message Handlers](#saga-message-handlers)
-9. [Custom Saga Finding](#custom-saga-finding-logic)
-10. [SignalR Integration](#signalr-integration)
-11. [Summary](#summary)
-
 # Introduction
 
 ServiceMatrix is a visual design tool that accelerates the design and coding of an NServiceBus system.  It generates code and automates the creation of classes, projects and configurations that would take much longer if done manually.  The generated code is designed in a way that allows for user modification and extension. This article reviews this high level design and demonstrates the extension points.    

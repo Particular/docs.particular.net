@@ -26,18 +26,6 @@ For remote host provide username and password because remote hosts don't accept 
    <add name="NServiceBus/Transport"
         connectionString="host=myremoteserver;
                           username=myusername;
-                          password=mypassowrd"/>
-</connectionStrings>
-```
-
-### For clustered 
-
-```xml
-<connectionStrings>
-   <!-- RabbitMQ -->
-   <add name="NServiceBus/Transport" 
-			connectionString="host=rabbitNode1,rabbitNode2,rabbitNode3;
-				username=myuser;
-				password=password" />
+                          password=mypassword"/>
 </connectionStrings>
 ```

@@ -275,7 +275,6 @@
     <Compile Include="Container\Custom\Usage.cs" />
     <Compile Include="Conventions\ExpressMessages\Usage.cs" />
     <Compile Include="CustomConfigSource.cs" />
-    <Compile Include="RavenDB\CustomRavenConfigForVersion2_5.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="EndpointMapping\ProvideConfiguration.cs" />
     <Compile Include="EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />

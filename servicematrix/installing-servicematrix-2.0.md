@@ -11,12 +11,6 @@ ServiceMatrix enables developers to efficiently generate a fully functional dist
 
 If you're ready to learn more, this article reviews how to download and install ServiceMatrix for use in Visual Studio.
 
-1.  [Prerequisites](#prerequisites)
-2.  [Installing ServiceMatrix](#installing-servicematrix)
-3.  [The Visual Studio extension](#visual-studio-extension)
-3.  [Troubleshooting](#troubleshooting)
-4.  [Next steps](#next-steps)
-
 ## Prerequisites
 
 ServiceMatrix is a Visual Studio extension.  Version 2.1 and beyond require that you have Visual Studio 2012 or 2013 on your system prior to installation. You will need the Professional or above edition of Visual Studio (Express editions not supported).

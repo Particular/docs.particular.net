@@ -77,8 +77,8 @@
         }
 
         static string AdminGroup = GetGroupName(WellKnownSidType.BuiltinAdministratorsSid);
-        static string EveryoneGroup = GetGroupName(WellKnownSidType.AnonymousSid);
-        static string AnonymousLogon = GetGroupName(WellKnownSidType.WorldSid);
+        static string EveryoneGroup = GetGroupName(WellKnownSidType.WorldSid);
+        static string AnonymousLogon = GetGroupName(WellKnownSidType.AnonymousSid);
 
         static string GetGroupName(WellKnownSidType wellKnownSidType)
         {

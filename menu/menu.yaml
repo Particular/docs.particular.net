@@ -88,11 +88,10 @@
         - Title: "Sql Server"
           Url: "nservicebus/sqlserver"
           Articles: 
-            - "nservicebus/sqlserver/concurrency"
-            - "nservicebus/sqlserver/configuration"
-            - "nservicebus/sqlserver/design"
-            - "nservicebus/sqlserver/multiple-databases"
             - "nservicebus/sqlserver/usage"
+            - "nservicebus/sqlserver/design"
+            - "nservicebus/sqlserver/concurrency"
+            - "nservicebus/sqlserver/multiple-databases"
             - "nservicebus/sqlserver/operations-scripting"
         - Title: "MSMQ"
           Url: "nservicebus/msmq"
@@ -108,6 +107,7 @@
             - "nservicebus/rabbitmq/rabbitmqclient-nuget"
             - "nservicebus/rabbitmq/connection-strings"
             - "nservicebus/rabbitmq/configuration-api"
+            - "nservicebus/rabbitmq/cluster"
             - "nservicebus/rabbitmq/operations-scripting"
     - 
       Title: "Serialization"
