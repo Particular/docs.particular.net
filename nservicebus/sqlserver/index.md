@@ -102,7 +102,7 @@ Secondary queues use same adaptive concurrency model to the primary queue. Secon
 
 ## Connection strings
 
-Connectiosn string can be configured in several ways
+Connection string can be configured in several ways
 
 ### Via the App.Config
 
