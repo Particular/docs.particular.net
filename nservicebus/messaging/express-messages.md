@@ -15,7 +15,7 @@ To use express messages, decorate messages with the `[Express]` attribute:
 
 <!-- import ExpressMessageAttribute -->
 
-## Using conventions
+## Using the configuration API
 
 <!-- import ExpressMessageConvention -->
 
