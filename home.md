@@ -274,7 +274,7 @@
 </div>
 <div class="productcolumnc">
   <div class="productcolumn block">
-    <p><h4>Generate a fully functional distributed application skeleton in a matter of minutes</h4></p>
+    <p><h4>Validate your distributed system design in a matter of minutes</h4></p>
     <ul>
       <li><a href="/servicematrix/getting-started-with-servicematrix-2.0.md">Getting Started</a></li>
       <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li>
