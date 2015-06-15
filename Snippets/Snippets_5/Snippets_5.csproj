@@ -108,6 +108,9 @@
       <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NHibernate.SqlAzure">
+      <HintPath>..\packages\NHibernate.SqlAzure.2.1.2\lib\NET45\NHibernate.SqlAzure.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
@@ -422,6 +425,7 @@
     <Compile Include="Outbox\NHibernate\SessionAccess\OrderPlaced.cs" />
     <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
     <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
+    <Compile Include="Persistence\NHibernate\ConfiguringNHibernateSqlAzure.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Persistence\NHibernate\AccessingData.cs" />
     <Compile Include="Persistence\NHibernate\Concurrency\SagaDataWithRowVersion.cs" />
