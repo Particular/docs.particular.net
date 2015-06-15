@@ -24,7 +24,7 @@
             #region sqlserver-multidb-current-endpoint-connection-string 2
 
             busConfiguration.UseTransport<SqlServerTransport>()
-                .ConnectionString(@"Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
+                .ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
 
             #endregion
         }
@@ -56,7 +56,7 @@
             busConfiguration.UseTransport<SqlServerTransport>()
                 .UseSpecificConnectionInformation(x => x == "RemoteEndpoint"
                     ? ConnectionInfo.Create()
-                        .UseConnectionString(@"Data Source=...")
+                        .UseConnectionString("Data Source=...")
                         .UseSchema("nsb")
                     : null);
 

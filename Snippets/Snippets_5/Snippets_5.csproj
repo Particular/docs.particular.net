@@ -332,6 +332,7 @@
     <None Include="RavenDB\SpecificDocumentStoreViaConnectionString.config" />
     <None Include="Transports\Mqmq\MessageQueueConfiguration.config" />
     <None Include="Transports\RabbitMQ\App.config" />
+    <None Include="Transports\SqlServer\NamedConnectionString.config" />
     <None Include="Transports\SqlServer\MultiDb.config" />
     <None Include="Transports\Throughput\InitialThroughput.config">
       <SubType>Designer</SubType>
@@ -503,6 +504,7 @@
     <Compile Include="Errors\SecondLevel\CustomPolicy\Usage.cs" />
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="Transactions.cs" />
+    <Compile Include="Transports\SqlServer\NamedConnectionString.cs" />
     <Compile Include="Transports\Transports.cs" />
     <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />
     <Compile Include="Transports\RabbitMQ\Usage.cs" />
