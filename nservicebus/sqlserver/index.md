@@ -104,7 +104,7 @@ Secondary queues use same adaptive concurrency model to the primary queue. Secon
 
 Connectiosn string can be configured in several ways
 
-### App.Config
+### Via the App.Config
 
 By adding a connection named `NServiceBus/Transport` in the `connectionStrings` node.
    
