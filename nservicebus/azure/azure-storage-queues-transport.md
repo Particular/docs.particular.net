@@ -25,7 +25,7 @@ Once you've done that you can use the fluent `Configure` API to setup NServiceBu
 
 Alternatively, when using one of the NServiceBus provided hosting processes, you should supply the `UsingTransport<T>` on the endpoint configuration. In the Azure role entrypoint host, for example, it would look like this.
 
-<!-- import AzureServiceBusTransportWithAzureHost -->
+<!-- import AzureStorageQueueTransportWithAzureHost -->
 
 ## Setting the connection string
 
@@ -41,7 +41,7 @@ For more information see [Configuring Azure Connection Strings](https://msdn.mic
 
 If you need more fine grained control on how the azure storage queue transport behaves, you can override the default settings by adding a configuration section called `AzureQueueConfig` to your web.config or app.config. For example:
 
-<!-- import AzureStorageBusQueueConfig -->
+<!-- import AzureStorageQueueConfig -->
 
 Using this configuration setting you can change the following values.
 
