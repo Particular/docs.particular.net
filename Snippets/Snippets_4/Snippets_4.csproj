@@ -234,6 +234,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
     <Compile Include="Callback\PlaceOrder.cs" />
     <Compile Include="Callback\PlaceOrderResponse.cs" />
     <Compile Include="Callback\Status.cs" />
