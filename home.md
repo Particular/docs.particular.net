@@ -274,7 +274,7 @@
 </div>
 <div class="productcolumnc">
   <div class="productcolumn block">
-    <p><h4>Validate your distributed system design in a matter of minutes</h4></p>
+    <p><h4>Prototype your distributed system design in a matter of minutes</h4></p>
     <ul>
       <li><a href="/servicematrix/getting-started-with-servicematrix-2.0.md">Getting Started</a></li>
       <li><a href="/servicematrix/servicematrix-serviceinsight.md">Interaction with ServiceInsight</a></li>
