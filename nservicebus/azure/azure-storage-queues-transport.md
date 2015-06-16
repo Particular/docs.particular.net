@@ -23,7 +23,7 @@ Once you've done that you can use the fluent `Configure` API to setup NServiceBu
 
 <!-- import AzureStorageQueueTransportWithAzure -->
 
-Alternatively, when using one of the NServiceBus provided hosting processes, you should supply the `UsingTransport<T>` on the endpoint configuration. In the Azure role entrypoint host, for example, it would look like this.
+Alternatively, when using one of the NServiceBus provided hosting processes, you should call `UseTransport<T>` on the existing configuration. In the Azure role entrypoint host, for example, it would look something like this.
 
 <!-- import AzureStorageQueueTransportWithAzureHost -->
 
