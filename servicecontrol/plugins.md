@@ -78,7 +78,7 @@ NOTE: Audit and error queues must be defined for each endpoint monitored by Serv
 
 ## Understanding Plugin Functionality and Behavior
 
-### ServiceControl Heartbeat Plugin
+### Heartbeat Plugin for Endpoint Health Monitoring
 
 The heartbeat plugin sends heartbeat messages from the endpoint to the ServiceControl queue. These messages are sent every 10 seconds (by default).
 
@@ -89,15 +89,13 @@ Note that even if an endpoint is able to send heartbeat messages and it is marke
 If a heartbeat message is not received by ServiceControl from an endpoint, that endpoint is marked as "inactive". 
 An inactive endpoint indicates that there is a failure in the communication path between ServiceControl and the monitored endpoint. For example, such failures may be caused by a failure of the endpoint itself, a communication failure in the transport, or when ServiceControl is unable to receive and process the heartbeat messages sent by the endpoint.
 
-
-#### Should I deploy the Heartbeat plugin to Production?
-Please ensure that you **do deploy** this plugin to your endpoint in production. The information sent by this plugin is vital for monitoring. ServicePulse will not be able to indicate if your endpoint is active or not without this information.
+NOTE: It is essential that you deploy this plugin to your endpoint in production for ServicePulse to be able to monitor your endpoint.
 
 **Related articles**
 
 - [Introduction to Endpoints and Heartbeats in ServicePulse](/servicepulse/intro-endpoints-heartbeats.md)
 
-### ServiceControl CustomChecks Plugin 
+### CustomChecks Plugin for Endpoint Monitoring
 
 The custom checks plugin allows the developer of an NServiceBus endpoint to define a set of conditions that are checked on endpoint startup or periodically.
 
@@ -116,33 +114,29 @@ The result of a custom check is either success or a failure (with a detailed des
 
 - [How to Develop Custom Checks for ServicePulse](/servicepulse/how-to-develop-custom-checks.md)
 
-#### Should I deploy the CustomChecks plugin to Production?
-Please ensure that you **do deploy** this plugin to your endpoint in production, as it sends relevant information that the developers have specifically coded to highlight as problems to the Ops department to take notice of and act when something fails. This information is displayed in the ServicePulse dashboard.
+NOTE: It is essential that you deploy this plugin to your endpoint in production in order to receive error notifications about the custom check failures in the ServicePulse dashboard.
 
 
-### ServiceControl SagaAudit Plugin
+### SagaAudit Plugin for Saga Visualization in ServiceInsight
 
-Unlike the Heartbeat and the CustomChecks plugin, which specifically reports information targeted for Ops in ServicePulse, the SagaAudit plugin is built specifically for developers to help debug Sagas by capturing every state change that the saga undergoes.  It is optimized for capturing and recording large amounts of data in regards to each saga message.  This information enables the display of detailed saga data, behavior, and current status in the ServiceInsight Saga View. The plugin sends the relevant saga state information as messages to the ServiceControl queue whenever a saga state changes. This enables the Saga View to be highly detailed and up-to-date.
+Unlike the Heartbeat and the CustomChecks plugin, which specifically reports information targeted for Ops in ServicePulse, this plugin is built specifically for developers to help debug Sagas by capturing every state change that the saga undergoes.  It is optimized for capturing and recording large amounts of data in regards to each saga message.  This information enables the display of detailed saga data, behavior, and current status in the ServiceInsight Saga View. The plugin sends the relevant saga state information as messages to the ServiceControl queue whenever a saga state changes. This enables the Saga View to be highly detailed and up-to-date.
 
-#### Should I deploy the SagaAudit plugin to Production?
-Depending on the saga's update frequency, it may result in a large number of messages, and a higher load on both the sending endpoint and on the receiving ServiceControl instance.  Therefore, please ensure that you **do not** deploy the Saga Audit plugin to your production systems as it would unnecessarily increase the message load on your production system. 
+NOTE: Depending on the saga's update frequency, adding this plugin to your endpoint may result in a large number of messages, and a higher load on both the sending endpoint and on the receiving ServiceControl instance.  Therefore, it may not be advisable to deploy this plugin to your production systems as it would unnecessarily increase the message load on your production system. 
 
-#### How do I debug/view the saga state in Production?
+#### How do I debug/view the saga state in Production when the plugin is not deployed?
 If you wish to visualize your saga in Production and the plugin is not already deployed, then simply add the Saga Audit plugin in the same location where your saga is running and restart your service. Use ServiceInsight to view the visualization and when done, remove the plugin and restart your service. This approach is very similar for example, when you need to use Journaling to debug a message based system, where you turn it on when needed to collect the information you wish to see and then turn it back off. 
 
 **Related articles**
 
 * [ServiceInsight Overview - The Saga View](/serviceinsight/getting-started-overview.md#the-saga-view)
 
-### ServiceControl DebugSession Plugin
+### DebugSession Plugin for Integrated Debugging
 
 Similar to the SagaAudit plugin, the DebugSession is a dedicated plugin targeted for the developer that enables integration between ServiceMatrix and ServiceInsight. It helps to filter out older messages in ServiceInsight that are not part of the current debug session in Visual Studio.
 
 When deployed, the debug session plugin adds a specified debug session identifier to the header of each message sent by the endpoint. This allows messages sent by a debugging or test run within Visual Studio to be correlated, filtered, and highlighted within ServiceInsight.
 
-
-#### Should I deploy the DebugSession plugin to Production?
-Please ensure that you **do not** deploy the DebugSession plugin to your production systems as it adds no value. 
+NOTE: Since this is meant only for development use, it adds no value to deploy this plugin to production. 
 
 **Related articles**
 
