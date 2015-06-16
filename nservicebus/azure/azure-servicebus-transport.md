@@ -19,6 +19,10 @@ Azure Service Bus is messaging infrastructure that sits between applications, al
 
 First, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a NuGet package reference to the  `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package to your project.
 
+```
+PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureServiceBus
+```
+
 Then, use the Fluent `Configure` API to set up NServiceBus, by specifying `.UseTransport<T>()` to override the default transport:
 
 <!-- import AzureServiceBusTransportWithAzure -->
