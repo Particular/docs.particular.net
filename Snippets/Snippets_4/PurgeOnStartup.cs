@@ -1,15 +1,18 @@
-﻿using NServiceBus;
-
-public class PurgeOnStartup
+﻿namespace Snippets4
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class PurgeOnStartup
     {
-        #region PurgeOnStartup
+        public void Simple()
+        {
+            #region PurgeOnStartup
 
-        Configure.With()
-            .PurgeOnStartup(true);
+            Configure.With()
+                .PurgeOnStartup(true);
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

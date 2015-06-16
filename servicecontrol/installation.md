@@ -9,6 +9,7 @@ tags:
 The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI.  This installation can be executed standalone or via the Particular Software Platform Installer.
  
 ### Prerequisites
+
 The ServiceControl Installation has the following prerequisites:
 
 1. The Microsoft .Net 4.5 Runtime 
@@ -17,8 +18,8 @@ The ServiceControl Installation has the following prerequisites:
 
 If ServiceControl is installed via the Particular Software Platform Installer then the installation and configuration of these pre-requisites are managed for you. 
 
-
-#### MSMQ 
+#### MSMQ
+ 
 ServiceControl is configured to use MSMQ as the out of the box transport. Even if you intend to use an alternative transport as detailed in [Multi Transport Support](multi-transport-support.md) you must have the MSMQ service running for the installation to succeed.    
       
 To enabling and configuring MSMQ without the Platform Installer refer to the MSMQ section off [Installing The Platform Components Manually](/platform/installer/offline.md#msmq)
@@ -28,6 +29,7 @@ Alternatively, if [Chocolatey](https://chocolatey.org) is installed you can inst
 	cinst NServicebus.Msmq.install
 
 #### Performance Counter 
+
 ServiceControl reports metrics via the NServiceBus Performance Counters.     
       
 For instructions on how to install the Performance Counters without the Platform Installer refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
@@ -68,7 +70,7 @@ wmic product where (name like '%servicecontrol%') call uninstall
 
 The installer will pass any [MSIEXEC command line switches](https://technet.microsoft.com/en-us/library/cc759262%28v=ws.10%29.aspx) through when it is launched. 
 
-A typical command line for enabling verbose MSI logging when running interactivly would be: 
+A typical command line for enabling verbose MSI logging when running interactively would be: 
 
 ```bat
 Particular.ServiceControl.1.5.0.exe /LV* install.log  
@@ -79,5 +81,3 @@ A typical command line for enabling verbose MSI logging when running silently wo
 ```bat
 Particular.ServiceControl.1.5.0.exe /quiet /LV* install.log ForwardAuditMessages=true 
 ```
-
-    

@@ -14,9 +14,11 @@ related:
 
 Messages are intended to be small. Some scenarios require sending large binary data along with a message. For this purpose, NServiceBus has a DataBus feature to allow you to overcome the message size limitations imposed by underlying transport.
 
+
 ## How it works
 
-The `DataBus` approach is to store a large payload in a location that both the sending and receiving parties can access. The message is sent with a reference to the location, and upon processing, the payload is brought, allowing the receiving part to access the message along with the payload. If the location is not available upon sending, the message fails the send operation. When the payload location is not available, the receive operation fails as well and results in standard NServiceBus behaviour, causing retries and eventually going into the error queue.
+The `DataBus` approach is to store a large payload in a location that both the sending and receiving parties can access. The message is sent with a reference to the location, and upon processing, the payload is brought, allowing the receiving part to access the message along with the payload. If the location is not available upon sending, the message fails the send operation. When the payload location is not available, the receive operation fails as well and results in standard NServiceBus behavior, causing retries and eventually going into the error queue.
+
 
 ## How to enable DataBus
 
@@ -33,17 +35,20 @@ For Azure (storage blobs) based DataBus:
 
 NOTE: The `AzureDataBus` implementation is part of the Azure transport package.
 
+
 ## Specifying message properties for DataBus
 
 There are two ways to specify the message properties to be sent using DataBus
 1. Using `DataBusProperty<T>` type
 2. Message conventions
 
+
 ### Using DataBusProperty<T>
 
 Properties defined using the `DataBusProperty<T>` type provided by NServiceBus are not treated as part of a message, but persist externally based on the type of `DataBus` used, and are linked to the original message using a unique key. 
 
 <!-- import MessageWithLargePayload -->
+
 
 ### Using message conventions
 
@@ -53,13 +58,15 @@ NServiceBus supports defining DataBus properties via convention. This allows def
 
 <!-- import MessageWithLargePayloadUsingConvention -->
 
-##DataBus attachments cleanup
+
+## DataBus attachments cleanup
 
 NServiceBus `DataBus` implementations currently behave differently with regard to cleanup of physical attachments used to transfer data properties. `FileShareDataBus` **does not** remove physical attachments once the message is gone. `AzureDataBus` **does** remove Azure storage blobs used for physical attachments once the message is gone.
 
+
 ## Configuring AzureDataBus
 
-The following extension methods are available for changing the behaviour of `AzureDataBus` defaults:
+The following extension methods are available for changing the behavior of `AzureDataBus` defaults:
 
 <!-- import AzureDataBusConfiguration -->
 

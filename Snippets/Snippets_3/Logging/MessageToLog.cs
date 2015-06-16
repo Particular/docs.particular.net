@@ -1,21 +1,24 @@
-﻿using System;
-using NServiceBus;
-
-#region MessageWithToStringLogged
-
-public class MessageToLog : IMessage
+﻿namespace Snippets3.Logging
 {
-    public Guid EventId { get; set; }
-    public DateTime? Time { get; set; }
-    public TimeSpan Duration { get; set; }
+    using System;
+    using NServiceBus;
 
-    public override string ToString()
+    #region MessageWithToStringLogged
+
+    public class MessageToLog : IMessage
     {
-        return string.Format(
-            "MyMessage: EventId={0}, Time={1}, Duration={2}",
-            EventId, Time, Duration
-            );
-    }
-}
+        public Guid EventId { get; set; }
+        public DateTime? Time { get; set; }
+        public TimeSpan Duration { get; set; }
 
-#endregion
+        public override string ToString()
+        {
+            return string.Format(
+                "MyMessage: EventId={0}, Time={1}, Duration={2}",
+                EventId, Time, Duration
+                );
+        }
+    }
+
+    #endregion
+}

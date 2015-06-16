@@ -1,37 +1,33 @@
 using System;
-using Messages;
 using NServiceBus;
-using NServiceBus.Persistence.NHibernate;
+using NHibernate;
 
-namespace Receiver
+public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 {
-    public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
+    public IBus Bus { get; set; }
+    public ISession Session { get; set; }
+
+    public void Handle(OrderSubmitted message)
     {
-        public IBus Bus { get; set; }
-        public NHibernateStorageContext StorageContext { get; set; }
+        Console.WriteLine("Order {0} worth {1} submitted", message.OrderId, message.Value);
 
-        public void Handle(OrderSubmitted message)
+        #region StoreUserData
+
+        Session.Save(new Order
         {
-            Console.WriteLine("Order {0} worth {1} submitted", message.OrderId, message.Value);
+            OrderId = message.OrderId,
+            Value = message.Value
+        });
 
-            #region StoreUserData
+        #endregion
 
-            StorageContext.Session.Save(new Order
-                                        {
-                                            OrderId = message.OrderId,
-                                            Value = message.Value
-                                        });
+        #region Reply
 
-            #endregion
+        Bus.Reply(new OrderAccepted
+        {
+            OrderId = message.OrderId,
+        });
 
-            #region Reply
-
-            Bus.Reply(new OrderAccepted
-                      {
-                          OrderId = message.OrderId,
-                      });
-
-            #endregion
-        }
+        #endregion
     }
 }

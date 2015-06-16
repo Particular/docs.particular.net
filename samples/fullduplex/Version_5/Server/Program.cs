@@ -12,9 +12,8 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
-        using (IStartableBus bus = Bus.Create(busConfiguration))
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            bus.Start();
             Console.WriteLine("To exit, Ctrl + C");
             Console.ReadLine();
         }

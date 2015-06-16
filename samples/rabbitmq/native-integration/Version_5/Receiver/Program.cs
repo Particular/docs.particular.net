@@ -16,10 +16,8 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IStartableBus bus = Bus.Create(busConfiguration))
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            bus.Start();
-
             Console.WriteLine("\r\nPress any key to stop program\r\n");
             Console.ReadKey();
         }

@@ -10,7 +10,7 @@ redirects:
 ---
 
 
-Run the solution. Two console applications should start up, `Client` and `Server`.
+Run the solution. Two console applications start up, `Client` and `Server`.
 
 ## Code walk-through
 

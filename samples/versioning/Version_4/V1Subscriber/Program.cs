@@ -16,7 +16,7 @@ class Program
         configure.InMemorySubscriptionStorage();
         configure.UnicastBus()
             .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+            .Start(() => configure.ForInstallationOn<Windows>().Install());
 
         Console.WriteLine("\r\nPress any key to stop program\r\n");
         Console.ReadKey();

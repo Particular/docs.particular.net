@@ -1,42 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Security.Cryptography;
-using System.Text;
-using NServiceBus;
-using NServiceBus.Config;
-using NServiceBus.Hosting;
-using NServiceBus.Settings;
-using NServiceBus.Unicast;
-#pragma warning disable 618
+﻿#pragma warning disable 618
 
-#region HostIdFixer
-public class HostIdFixer : IWantToRunWhenConfigurationIsComplete
+namespace Snippets5.HostIdentifier
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Reflection;
+    using System.Security.Cryptography;
+    using System.Text;
+    using NServiceBus;
+    using NServiceBus.Config;
+    using NServiceBus.Hosting;
+    using NServiceBus.Settings;
+    using NServiceBus.Unicast;
 
-    public HostIdFixer(UnicastBus bus, ReadOnlySettings settings)
-    {
-        Guid hostId = CreateGuid(Environment.MachineName, settings.EndpointName());
-        string location = Assembly.GetExecutingAssembly().Location;
-        Dictionary<string, string> properties = new Dictionary<string, string>
-                                {
-                                    {"Location",location}
-                                };
-        bus.HostInformation = new HostInformation(hostId, Environment.MachineName, properties);
-    }
+    #region HostIdFixer
 
-    static Guid CreateGuid(params string[] data)
+    public class HostIdFixer : IWantToRunWhenConfigurationIsComplete
     {
-        using (MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider())
+
+        public HostIdFixer(UnicastBus bus, ReadOnlySettings settings)
         {
-            byte[] inputBytes = Encoding.Default.GetBytes(String.Concat(data));
-            byte[] hashBytes = provider.ComputeHash(inputBytes);
-            return new Guid(hashBytes);
+            Guid hostId = CreateGuid(Environment.MachineName, settings.EndpointName());
+            string location = Assembly.GetExecutingAssembly().Location;
+            Dictionary<string, string> properties = new Dictionary<string, string>
+            {
+                {"Location", location}
+            };
+            bus.HostInformation = new HostInformation(hostId, Environment.MachineName, properties);
+        }
+
+        static Guid CreateGuid(params string[] data)
+        {
+            using (MD5CryptoServiceProvider provider = new MD5CryptoServiceProvider())
+            {
+                byte[] inputBytes = Encoding.Default.GetBytes(string.Concat(data));
+                byte[] hashBytes = provider.ComputeHash(inputBytes);
+                return new Guid(hashBytes);
+            }
+        }
+
+        public void Run(Configure config)
+        {
         }
     }
 
-    public void Run(Configure config)
-    {
-    }
+    #endregion
+
 }
-#endregion

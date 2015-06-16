@@ -9,22 +9,21 @@ class Program
 
     static void Main()
     {
-
         Configure.Serialization.Json();
         Configure configure = Configure.With();
-        configure.DefineEndpointName("Sample.DataBus.Sender");
         configure.Log4Net();
+        configure.DefineEndpointName("Sample.DataBus.Sender");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
         configure.FileShareDataBus(BasePath);
-        IBus bus = configure.UnicastBus()
-            .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
-
-        Run(bus);
+        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        {
+            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            Run(bus);
+        }
     }
 
 

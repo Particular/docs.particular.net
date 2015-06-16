@@ -13,9 +13,11 @@ Prior to 2.0 there was no support for callbacks in the SQLServer transport. Ther
 
 The disadvantage of this simple model is the fact that satellites (e.g. Second-Level Retries, Timeout Manager) share the same concurrency settings but usually have much lower throughput requirements. If both SLR and TM are enabled, setting `MaximumConcurrencyLevel` to 10 results in 40 threads in total, each polling the database even if there are no messages to be processed.
 
+
 ### 2.0
 
-In released 2.0 we added support for callbacks. Callbacks are implemented by each endpoint instance having a unique [secondary queue](configuration.md#secondary-queues). The receive for the secondary queue does not use the `MaximumConcurrencyLevel` and defaults to 1 thread. This value can be adjusted via the config API.
+In released 2.0 we added support for callbacks. Callbacks are implemented by each endpoint instance having a unique [secondary queue](./#secondary-queues). The receive for the secondary queue does not use the `MaximumConcurrencyLevel` and defaults to 1 thread. This value can be adjusted via the config API.
+
 
 ### 2.1
 

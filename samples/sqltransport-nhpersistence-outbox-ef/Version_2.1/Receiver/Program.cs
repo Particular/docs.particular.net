@@ -1,35 +1,33 @@
 ﻿using System;
 using NServiceBus;
 using NServiceBus.Transports.SQLServer;
+using NServiceBus.Persistence;
 
-namespace Receiver
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main()
+        using (ReceiverDataContext ctx = new ReceiverDataContext())
         {
-            using (ReceiverDataContext ctx = new ReceiverDataContext())
-            {
-                ctx.Database.Initialize(true);
-            }
+            ctx.Database.Initialize(true);
+        }
 
-            #region ReceiverConfiguration
+        #region ReceiverConfiguration
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
-                EndpointConnectionInfo.For("sender")
-                    .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True"));
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
+            EndpointConnectionInfo.For("sender")
+                .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True"));
 
-            busConfiguration.UsePersistence<NHibernatePersistence>();
-            busConfiguration.EnableOutbox();
+        busConfiguration.UsePersistence<NHibernatePersistence>().RegisterManagedSessionInTheContainer();
+        busConfiguration.EnableOutbox();
 
-            #endregion
+        #endregion
 
-            using (Bus.Create(busConfiguration).Start())
-            {
-                Console.WriteLine("Press <enter> to exit");
-                Console.ReadLine();
-            }
+        using (Bus.Create(busConfiguration).Start())
+        {
+            Console.WriteLine("Press <enter> to exit");
+            Console.ReadLine();
         }
     }
 }

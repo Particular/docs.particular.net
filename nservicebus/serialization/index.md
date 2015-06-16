@@ -7,37 +7,46 @@ NServiceBus takes instances of .net objects (messages, events and commands) and 
 
 ## Available Serializers
 
-### Xml
+
+### [Xml](xml-serializer.md)
 
 A custom written XML serializer.
+
 
 #### Usage
 
 <!-- import XmlSerialization --> 
 
+
 ### Json
 
-Using [Json](http://en.wikipedia.org/wiki/Json) via an ILMeged copy of Json.NET.
+Using [Json](http://en.wikipedia.org/wiki/Json) via an ILMerged copy of Json.NET.
+
 
 #### Usage
 
 <!-- import JsonSerialization -->
 
+
 ### Bson
 
-Using [Bson](http://en.wikipedia.org/wiki/BSON) via an ILMeged copy of Json.NET.
+Using [Bson](http://en.wikipedia.org/wiki/BSON) via an ILMerged copy of Json.NET.
+
 
 #### Usage
 
 <!-- import BsonSerialization -->
 
+
 ### Binary
 
 Uses the .net [BinaryFormatter](https://msdn.microsoft.com/en-us/library/system.runtime.serialization.formatters.binary.binaryformatter.aspx).
 
+
 #### Usage
 
 <!-- import BinarySerialization -->
+
 
 ### Community run Serializers
 

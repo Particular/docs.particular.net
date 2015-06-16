@@ -68,7 +68,7 @@ Details on how to install and manage NServiceBus performance counters are in the
 
 If the role of performance counters is to monitor the time required by the system to handle messages, the role of the auditing infrastructure is to inspect the content of messages that flows into the system.
 
-Each endpoint can be [configured](/nservicebus/operations/auditing.md)——machine-wide or per endpoint——to forward each received message to a dedicated audit queue where a monitoring process such as ServiceControl can handle all the messages, tracking them in a database to allow further processing and analysis.
+Each endpoint can be [configured](/nservicebus/operations/auditing.md) machine-wide or per endpoint to forward each received message to a dedicated audit queue where a monitoring process such as ServiceControl can handle all the messages, tracking them in a database to allow further processing and analysis.
 
 ### Error Queues
 
@@ -76,7 +76,7 @@ When a system is based on a messaging infrastructure it automatically benefits f
 
 It is obvious that a failing message cannot be retried forever without leading to SLA violations or performance penalties to the entire system. For this reason, after a configurable number of retries, NServiceBus stops retrying the message and moves it to the configured error queue, which, as an audit queue, can be defined machine-wide or per endpoint.
 
-Error queues can then be monitored——for example, using ServiceControl as for audit queues——by administrators who are notified when something goes wrong and can react accordingly.
+Error queues can then be monitored by administrators who are notified when something goes wrong and can react accordingly.
 
 ## Best Practices
 

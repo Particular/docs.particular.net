@@ -64,7 +64,7 @@ Now let's consider scenarios where the processing of an order fails.  This could
 
 ### Second-level retry
 
-If the problem is something more protracted, like a third-party web service going down or a database being unavailable, it might make sense to wait a longer period of time before trying again. This is also built-in in NServiceBus and referred to as "[second-level retries](/nservicebus/errors/second-level-retries.md) ". Configure its behavior by selecting the OrderProcessing endpoint in Solution Builder and opening its properties by right mouse clicking or pressing `F4`. 
+If the problem is something more protracted, like a third-party web service going down or a database being unavailable, it might make sense to wait a longer period of time before trying again. This is also built-in in NServiceBus and referred to as "[second-level retries](/nservicebus/errors/automatic-retries.md) ". Configure its behavior by selecting the OrderProcessing endpoint in Solution Builder and opening its properties by right mouse clicking or pressing `F4`. 
 
 ![Endpoint Properties](images/servicematrix-endpointproperties.png) 
 
@@ -128,7 +128,7 @@ NOTE: If you specify an error queue for a specific endpoint in the config file o
 
 The second value, ForwardReceivedMessagesTo, defines the queue to which all messages will be audited. Any message that is processed by an endpoint is forwarded to this queue. This too can be overridden per endpoint.
 
-The audit and error queues can be on a remote machine by simply appending `@machinename` on the end of the queue.  In production it is considered best practice to set both of these queues on a central machine by setting a value like "error@machine" or "error@IP-Address". Read about how to [configure retries](/nservicebus/errors/second-level-retries.md).
+The audit and error queues can be on a remote machine by simply appending `@machinename` on the end of the queue.  In production it is considered best practice to set both of these queues on a central machine by setting a value like "error@machine" or "error@IP-Address". Read about how to [configure retries](/nservicebus/errors/automatic-retries.md).
 
 ## Monitoring the errors and audits
 

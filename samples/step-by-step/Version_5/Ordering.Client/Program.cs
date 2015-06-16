@@ -12,9 +12,8 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IStartableBus startableBus = Bus.Create(busConfiguration))
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-           var bus = startableBus.Start();
            SendOrder(bus);
         }
     }

@@ -14,8 +14,7 @@ static class Program
         busConfiguration.DisableFeature<AutoSubscribe>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        IStartableBus startableBus = Bus.Create(busConfiguration);
-        using (IBus bus = startableBus.Start())
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
             bus.Subscribe<IMyEvent>();
             Console.WriteLine("To exit, Ctrl + C");

@@ -1,26 +1,20 @@
 ---
-title: SQL Server Transport
+title: SQL Server Transport Design
 summary: The design of SQL Server transport
 tags:
 - SQL Server
-related:
-- nservicebus/outbox
-- nservicebus/sqlserver/usage
-- nservicebus/sqlserver/multiple-databases
-- nservicebus/sqlserver/configuration
-- nservicebus/sqlserver/concurrency
-- samples/sqltransport-nhpersistence
-- samples/sqltransport-nhpersistence-outbox
-- samples/sqltransport-nhpersistence-outbox-ef
 ---
 
 The SQL Server transport implements a message queueing mechanism on top of a Microsoft SQL Server database. It uses tables to model queues. It does not make any use of ServiceBroker, a messaging technology built into the SQL Server, mainly due to cumbersome API and difficult maintenance. 
+
 
 ## How it works?
 
 The SQL Server transport is a hybrid queueing system which is neither store-and-forward (like MSMQ) nor a broker (like RabbitMQ). It treats the SQL Server only as a storage infrastructure for the queues. The queueing logic itself is implemented and executed as part of the transport code running in an NServiceBus endpoint. 
 
+
 ## Pros & cons
+
 
 ### Pros
 
@@ -30,49 +24,26 @@ The SQL Server transport is a hybrid queueing system which is neither store-and-
  * Maximum throughput for any given endpoint is on par with MSMQ
  * Queues support competing consumers (multiple instances of same endpoint feeding off of same queue) so there is no need for distributor in order to scale out the processing
 
+
 ### Cons
 
  * No local store-and-forward mechanism meaning if SQL Server instance is down, endpoint cannot send nor receive messages
  * In centralized deployment maximum throughput applies for whole system, not individual endpoints, so if SQL Server on a given hardware can handle 2000 msg/s, each one of 10 endpoints can only receive 200 msg/s (on average).
 
+
 ## Single database
 
-In the simplest form, SQL Server transport uses a single instance of the SQL Server to maintain all the queues for all endpoints of a system. In order to send a message, an endpoint needs to connect to the (usually remote) database server and execute a SQL command. The message is delivered directly to the destination queue without any store-and-forward mechanism. Such a simplistic approach can only be only used for small-to-medium size systems because of the need to store everything in a single database. Using schemas to distinguish logical data stores might be a good compromise for mid-size projects. The upside is it does not require Distributed Transaction Coordinator (MS DTC). Another advantage is the ability to take a snapshot of entire system state (all the queues) by backing up a database. This is even more useful if the business data are stored in the same database.
+In the simplest form, SQL Server transport uses a single instance of the SQL Server to maintain all the queues for all endpoints of a system. In order to send a message, an endpoint needs to connect to the (usually remote) database server and execute a SQL command. The message is delivered directly to the destination queue without any store-and-forward mechanism. Such a simplistic approach can only be only used for small-to-medium size systems because of the need to store everything in a single database. Using schemas to distingiush logical data stores might be a good compromise for mid-size projects. The upside is it does not require Distributed Transaction Coordinator (MS DTC). Another advantage is the ability to take a snapshot of entire system state (all the queues) by backing up a database. This is even more useful if the business data are stored in the same database.
+
 
 ## Database-per-endpoint
 
 In a more complex scenario endpoints use separate databases and DTC is involved. Due to lack of store-and-forward mechanism, if a remote endpoint's database or DTC infrastructure is down, our endpoint cannot send messages to it. This potentially renders our endpoint (and all endpoints transitively depending on it) unavailable. 
 
+
 ## Database-per-endpoint with store-and-forward
 
 In order to overcome this limitation a higher level store-and-forward mechanism needs to be used. The Outbox feature can be used to effectively implement a distributed decoupled architecture where:
-
  * Each endpoint has its own database where it stores both the queues and the user data
  * Messages are not sent immediately when calling `Bus.Send()` but are added to the *outbox* that is stored in the endpoint's own database. After completing the handling logic the messages in the *outbox* are forwarded to their destination databases
  * Should one of the forward operations fail, it will be retried by means of standard NServiceBus retry mechanism (both first-level and second-level). This might result in some messages being sent more than once but it is not a problem because the outbox automatically handles the deduplication of incoming messages based on their ID.
-
-## Sql Server Transport, the Outbox and user data: disabling the DTC
-
-When dealing with database connections in an environment where we do not want to use DTC it is important to prevent a local transaction from escalating to a distributed one.
-
-The following are required:
-
-* the business specific data and the `Outbox` storage must be in the same database;
-* the user code accessing business related data must use the same `connection string` as the `Outbox` storage;
-
-### [Entity Framework](https://msdn.microsoft.com/en-us/data/ef.aspx) caveats
-
-Sharing the same connection string is easy when you have full control over the creation of the underlying `SQL connection`, but it can be problematic when dealing with entities based on the [Entity Framework ADO.Net Data Model (EDMX)](https://msdn.microsoft.com/en-us/library/vstudio/cc716685.aspx).
-
-The `DbContext` generated by Entity Framework does not expose a way to inject a simple database connection string; the underlying problem is that Entity Framework requires an `Entity Connection String` that has much more information than a simple connection string.
-
-It is possible to generate a custom a custom `EntityConnection` and inject it into the Entity Framework `DbContext` instance:
-
-<!-- import EntityConnectionCreationAndUsage -->
-
-In the above snippet you are using `EntityConnectionStringBuilder` class to create a valid `Entity Connection String`, once you have that you can create a new `EntityConnection` instance.
-The `DbContext` generated by default by Entity Framework does not have a constructor that accepts an `EntityConnection` as a parameter but since it is a partial class you can easily add one:
-
-<!-- import DbContextPartialWithEntityConnection -->
-
-NOTE: The above snippets assumes that the created entity data model is named `MySample`, change all the reference to match your project conventions.

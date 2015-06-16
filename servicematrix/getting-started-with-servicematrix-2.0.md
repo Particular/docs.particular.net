@@ -5,21 +5,11 @@ tags:
 - ServiceMatrix
 - Send and Receive
 - Visual Studio
+related:
+- servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance
 ---
 
-This step-by-step guide to the Particular Service Platform walks you through the creation of a send-and-receive NServiceBus distributed application using ServiceMatrix V2.X for Visual Studio 2012 & 2013, using the following steps:
-
-1.  [Installing ServiceMatrix](#installing-servicematrix-for-visual-studio-2012)
-2.  [Creating a New Project](#creating-a-new-project)
-3.  [Creating Endpoints](#creating-endpoints)
-4.  [Creating a Message](#creating-a-message)
-5.  [Creating Services](#creating-services)
-5.  [Deploying Components](#deploying-components)
-6.  [Selecting a Persistence Store](#selecting-a-persistence-store)
-6.  [Handling a Message](#handling-a-message)
-6.  [Running the Application](#running-the-application)
-7.  [Using ServiceInsight](#using-serviceinsight)
-9.  [Next Steps](#next-steps)
+This step-by-step guide to the Particular Service Platform walks you through the creation of a send-and-receive NServiceBus distributed application using ServiceMatrix V2.X for Visual Studio 2012 & 2013.
 
 The example demonstrates the integration of an online sales web store with a backend system using the request-response pattern and NServiceBus.
 
@@ -385,5 +375,3 @@ In this article you saw how to use ServiceMatrix to connect a front end website 
 What's so exciting about that?  After all inter-process communication has been done many times before. 
 
 One answer is ***fault tolerance***.  Next, you can explore the fault tolerance and durability features NServiceBus offers.
-
-Continue with a review of the fault tolerance in the [next article](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "Getting Started with Fault Tolerance").  

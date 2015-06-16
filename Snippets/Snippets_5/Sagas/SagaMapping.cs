@@ -1,45 +1,48 @@
-﻿using System;
-using NServiceBus;
-using NServiceBus.Saga;
-
-public class SagaMapping
+﻿namespace Snippets5.Sagas
 {
+    using System;
+    using NServiceBus;
+    using NServiceBus.Saga;
 
-    // startcode ConfigureHowToFindSaga
-    public class MySaga : Saga<MySagaData>,
-        IAmStartedByMessages<Message1>,
-        IHandleMessages<Message2>
+    public class SagaMapping
     {
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
+
+        // startcode ConfigureHowToFindSaga
+        public class MySaga : Saga<MySagaData>,
+            IAmStartedByMessages<Message1>,
+            IHandleMessages<Message2>
         {
-            mapper.ConfigureMapping<Message2>(s => s.SomeID)
-                .ToSaga(m => m.SomeID);
+            protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
+            {
+                mapper.ConfigureMapping<Message2>(s => s.SomeID)
+                    .ToSaga(m => m.SomeID);
+            }
+
+            // endcode
+            public void Handle(Message1 message)
+            {
+            }
+
+            public void Handle(Message2 message)
+            {
+            }
         }
 
-        // endcode
-        public void Handle(Message1 message)
+        public class Message1
         {
         }
 
-        public void Handle(Message2 message)
+        public class Message2
         {
+            public Guid SomeID { get; set; }
         }
-    }
 
-    public class Message1
-    {
-    }
-
-    public class Message2
-    {
-        public Guid SomeID { get; set; }
-    }
-
-    public class MySagaData : IContainSagaData
-    {
-        public Guid Id { get; set; }
-        public string Originator { get; set; }
-        public string OriginalMessageId { get; set; }
-        public Guid SomeID { get; set; }
+        public class MySagaData : IContainSagaData
+        {
+            public Guid Id { get; set; }
+            public string Originator { get; set; }
+            public string OriginalMessageId { get; set; }
+            public Guid SomeID { get; set; }
+        }
     }
 }

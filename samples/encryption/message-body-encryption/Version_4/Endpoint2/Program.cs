@@ -8,6 +8,7 @@ class Program
     {
         Configure.Serialization.Json();
         Configure configure = Configure.With();
+        configure.Log4Net();
         configure.DefineEndpointName("Samples.MessageBodyEncryption.Endpoint2");
         configure.DefaultBuilder();
         configure.UseTransport<Msmq>();
@@ -15,10 +16,11 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.RegisterMessageEncryptor();
-        configure.UnicastBus()
-            .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
-        Console.WriteLine("Press any key to exit");
-        Console.ReadLine();
+        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        {
+            startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            Console.WriteLine("Press any key to exit");
+            Console.ReadLine();
+        }
     }
 }

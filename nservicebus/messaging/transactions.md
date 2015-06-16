@@ -39,7 +39,7 @@ Ambient transaction mode is enabled by default. It can be enabled explicitly via
 
 ## Handlers
 
-In the ambient transaction mode NServiceBus executes all message handlers in a single `TransactionScope` in order to ensure that all the data manipulations are either executed as a whole or rolled back as a whole. This behaviour can be disabled
+In the ambient transaction mode NServiceBus executes all message handlers in a single `TransactionScope` in order to ensure that all the data manipulations are either executed as a whole or rolled back as a whole. This behavior can be disabled
 
 <!-- import TransactionsDoNotWrapHandlersExecutionInATransactionScope --> 
 

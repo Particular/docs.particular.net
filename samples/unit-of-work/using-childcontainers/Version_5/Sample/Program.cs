@@ -35,10 +35,8 @@ static class Program
 
         int orderNumber = 1;
 
-        using (IStartableBus bus = Bus.Create(busConfiguration))
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            bus.Start();
-
             Console.Out.WriteLine("Press any key to send a message. Press `q` to quit");
 
             Console.Out.WriteLine("After storing a few orders you can open a browser and view them at http://localhost:32076/studio/index.html#databases/documents?collection=Orders&database=Samples.UoWWithChildContainers");

@@ -1,15 +1,18 @@
-﻿using System;
-using NServiceBus.Pipeline;
-using NServiceBus.Pipeline.Contexts;
-
-#region SamplePipelineBehavior 4.5
-
-public class SampleBehavior : IBehavior<HandlerInvocationContext>
+﻿namespace Snippets4.Pipeline
 {
-    public void Invoke(HandlerInvocationContext context, Action next)
-    {
-        next();
-    }
-}
+    using System;
+    using NServiceBus.Pipeline;
+    using NServiceBus.Pipeline.Contexts;
 
-#endregion
+    #region SamplePipelineBehavior 4.5
+
+    public class SampleBehavior : IBehavior<HandlerInvocationContext>
+    {
+        public void Invoke(HandlerInvocationContext context, Action next)
+        {
+            next();
+        }
+    }
+    #endregion
+
+}

@@ -1,19 +1,22 @@
-﻿using NServiceBus;
-
-public class ServiceControlEventsConfig
+﻿namespace Snippets5.Monitoring
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class ServiceControlEventsConfig
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        public void Simple()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        #region ServiceControlEventsConfig 5.0
+            #region ServiceControlEventsConfig 
 
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.Conventions()
-            .DefiningEventsAs(t => typeof(IEvent).IsAssignableFrom(t) ||
-                                   //include ServiceControl events
-                                   t.Namespace != null && t.Namespace.StartsWith("ServiceControl.Contracts"));
+            busConfiguration.UseSerialization<JsonSerializer>();
+            busConfiguration.Conventions()
+                .DefiningEventsAs(t => typeof(IEvent).IsAssignableFrom(t) ||
+                                       //include ServiceControl events
+                                       t.Namespace != null && t.Namespace.StartsWith("ServiceControl.Contracts"));
 
-        #endregion
+            #endregion
+        }
     }
 }

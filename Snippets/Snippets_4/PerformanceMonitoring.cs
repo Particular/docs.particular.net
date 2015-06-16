@@ -1,19 +1,22 @@
-﻿using System;
-using NServiceBus;
-
-public class PerformanceMonitoring
+﻿namespace Snippets4
 {
-    public void Simple()
+    using System;
+    using NServiceBus;
+
+    public class PerformanceMonitoring
     {
-        #region PerformanceMonitoring
+        public void Simple()
+        {
+            #region PerformanceMonitoring
 
-        Configure.With()
-            .EnablePerformanceCounters();
+            Configure.With()
+                .EnablePerformanceCounters();
 
-        Configure.With()
-            .SetEndpointSLA(TimeSpan.FromMinutes(3));
+            Configure.With()
+                .SetEndpointSLA(TimeSpan.FromMinutes(3));
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

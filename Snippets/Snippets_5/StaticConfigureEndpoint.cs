@@ -1,28 +1,31 @@
-﻿using NServiceBus;
-
-public class StaticConfigureEndpoint
+﻿namespace Snippets5
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class StaticConfigureEndpoint
     {
-        #region StaticConfigureEndpoint
+        public void Simple()
+        {
+            #region StaticConfigureEndpoint
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        // SendOnly
-        Bus.CreateSendOnly(busConfiguration);
+            // SendOnly
+            Bus.CreateSendOnly(busConfiguration);
 
-        // AsVolatile
-        busConfiguration.Transactions().Disable();
-        busConfiguration.DisableDurableMessages();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
+            // AsVolatile
+            busConfiguration.Transactions().Disable();
+            busConfiguration.DisableDurableMessages();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        // DisableDurableMessages
-        busConfiguration.DisableDurableMessages();
+            // DisableDurableMessages
+            busConfiguration.DisableDurableMessages();
 
-        // EnableDurableMessages
-        busConfiguration.EnableDurableMessages();
+            // EnableDurableMessages
+            busConfiguration.EnableDurableMessages();
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

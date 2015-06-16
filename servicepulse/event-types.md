@@ -4,11 +4,13 @@ summary: 'Introduction to ServicePulse monitoring events'
 tags: 
 - ServicePulse 
 - Monitoring Events
+related:
+- servicepulse/intro-endpoints-custom-checks
 ---
 
 ServicePulse gives you an overview of the system health, based on endpoints heartbeats and custom checks, and a detailed view of all the failed messages.
 
-Note: You can consume the same information not only via the ServicePulse web interface but also subscribing to [ServicePulse events broadcasted by the ServiceControl endpoint](custom-notification-and-alerting-using-servicecontrol-events.md).
+Note: You can consume the same information not only via the ServicePulse web interface but also subscribing to [custom notifications and alerts from ServiceControl](custom-notification-and-alerting-using-servicecontrol-events.md).
 
 ### Heartbeats
 
@@ -35,5 +37,3 @@ More details on [Failed Message Monitoring in ServicePulse](intro-failed-message
 ### Custom Check / Periodic Check
 
 Custom checks allow an endpoint to notify ServicePulse if a business related condition is not met. The endpoint heartbeat signals that the endpoint is running, a custom check can add more information, such as the endpoint is running and can access the external resources required to operate correctly.
-
-More details on [Custom Check Monitoring in ServicePulse](intro-endpoints-custom-checks.md).

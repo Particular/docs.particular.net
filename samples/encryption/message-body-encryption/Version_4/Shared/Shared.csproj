@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusConfigExtensions.cs" />
+    <Compile Include="ConfigLogging.cs" />
     <Compile Include="MessageEncryptor.cs" />
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="CreditCardDetails.cs" />

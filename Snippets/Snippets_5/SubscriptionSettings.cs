@@ -1,17 +1,20 @@
-﻿using NServiceBus;
-using NServiceBus.Features;
-
-public class SubscriptionSettings
+﻿namespace Snippets5
 {
-    public void DisableAutoSubscribe()
+    using NServiceBus;
+    using NServiceBus.Features;
+
+    public class SubscriptionSettings
     {
-        #region DisableAutoSubscribe
+        public void DisableAutoSubscribe()
+        {
+            #region DisableAutoSubscribe
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        busConfiguration.DisableFeature<AutoSubscribe>();
+            busConfiguration.DisableFeature<AutoSubscribe>();
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

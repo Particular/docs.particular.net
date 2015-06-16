@@ -1,20 +1,23 @@
-﻿using NServiceBus;
-using NServiceBus.Features;
-
-public class AsAClientEquivalent
+﻿namespace Snippets5.Host
 {
-    public AsAClientEquivalent()
+    using NServiceBus;
+    using NServiceBus.Features;
+
+    public class AsAClientEquivalent
     {
-        #region AsAClientEquivalent
+        public AsAClientEquivalent()
+        {
+            #region AsAClientEquivalent
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        busConfiguration.PurgeOnStartup(true);
-        busConfiguration.Transactions().Disable();
-        busConfiguration.DisableFeature<SecondLevelRetries>();
-        busConfiguration.DisableFeature<StorageDrivenPublishing>();
-        busConfiguration.DisableFeature<TimeoutManager>();
+            busConfiguration.PurgeOnStartup(true);
+            busConfiguration.Transactions().Disable();
+            busConfiguration.DisableFeature<SecondLevelRetries>();
+            busConfiguration.DisableFeature<StorageDrivenPublishing>();
+            busConfiguration.DisableFeature<TimeoutManager>();
 
-        #endregion
+            #endregion
+        }
     }
 }

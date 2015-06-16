@@ -1,6 +1,6 @@
 ---
-title: Property injection in handlers
-summary: How to configure property injection for handlers
+title: Property injection
+summary: How to configure property injection
 tags: 
 - Dependency Injection
 - IOC
@@ -8,21 +8,20 @@ redirects:
  - nservicebus/property-injection-in-handlers
 ---
 
-INFO: This is relevant to versions 5.2 and above.
+When using the NServiceBus built-in container it is possible to control property injection.
 
-In previous versions of NServiceBus, to inject property values into a handler type you could do the following:
-
-<!-- import ConfigurePropertyInjectionForHandlerBefore --> 
-
-This is no longer supported.
-
-From v5.2 and above a new and more explicit API has been introduced.
-
-### Here is how to use the new API
-Given the following handler class:
+So given the following class that is constructed by the container.
 
 <!-- import PropertyInjectionWithHandler --> 
 
-To inject a value into both `SmtpAddress` and `SmtpPort` you need to at configuration time call `InitializeHandlerProperty<THandler>` with the handler and values you intend to inject, here is an example:
+The inject property values you could do the following:
+
+<!-- import ConfigurePropertyInjectionForHandlerBefore --> 
+
+At construction time both `SmtpAddress` and `SmtpPort` will be injected.
+
+## A Handler/Saga specific API
+
+From v5.2 and above a new, more explicit, API has been introduced that specifically targets Handlers and Sagas.
 
 <!-- import ConfigurePropertyInjectionForHandler --> 

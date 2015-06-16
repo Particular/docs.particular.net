@@ -8,15 +8,7 @@ tags:
 
 In the [previous article](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "ServiceMatrix Fault Tolerance") introducing ServiceMatrix, you explored some of the fault tolerance features of NServiceBus. 
 
-In this article you will expand the Online Sales system and introduce the Publish/Subscribe pattern using ServiceMatrix.  You will proceed through the following steps:
-
-1. [Introduction to Publish/Subscribe](#introduction-to-publish-subscribe)
-2. [Create the OrderAccepted Event](#create-the-orderaccepted-event)
-3. [Add A Subscriber](#adding-the-subscriber)
-4. [Deploy the Event Processor](#deploy-the-orderacceptedprocessor)
-5. [Review the Code](#review-the-code)
-6. [Build and Run the Solution](#build-and-run-the-solution)
-7. [Additional Exercises](#additional-exercises)
+In this article you will expand the Online Sales system and introduce the Publish/Subscribe pattern using ServiceMatrix. 
 
 # Introduction to Publish/Subscribe
 

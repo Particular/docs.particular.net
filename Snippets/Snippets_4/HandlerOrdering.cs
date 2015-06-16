@@ -1,48 +1,51 @@
-﻿using NServiceBus;
-
-public class HandlerOrdering
+﻿namespace Snippets4
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class HandlerOrdering
     {
-        #region HandlerOrderingWithFluent
+        public void Simple()
+        {
+            #region HandlerOrderingWithFluent
 
-        Configure.With()
-            .UnicastBus()
-            .LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>());
+            Configure.With()
+                .UnicastBus()
+                .LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>());
 
+            #endregion
+        }
+
+        #region HandlerOrderingWithFirst
+        public class MySpecifyingFirst : ISpecifyMessageHandlerOrdering
+        {
+            public void SpecifyOrder(Order order)
+            {
+                order.SpecifyFirst<HandlerB>();
+            }
+        }
         #endregion
-    }
 
-    #region HandlerOrderingWithFirst
-    public class MySpecifyingFirst : ISpecifyMessageHandlerOrdering
-    {
-        public void SpecifyOrder(Order order)
+        #region HandlerOrderingWithMultiple
+        public class MySpecifyingOrder : ISpecifyMessageHandlerOrdering
         {
-            order.SpecifyFirst<HandlerB>();
+            public void SpecifyOrder(Order order)
+            {
+                order.Specify(typeof(HandlerB),typeof(HandlerA),typeof(HandlerC));
+            }
         }
-    }
-    #endregion
+        #endregion
 
-    #region HandlerOrderingWithMultiple
-    public class MySpecifyingOrder : ISpecifyMessageHandlerOrdering
-    {
-        public void SpecifyOrder(Order order)
+        public class HandlerA
         {
-            order.Specify(typeof(HandlerB),typeof(HandlerA),typeof(HandlerC));
+        
         }
-    }
-    #endregion
-
-    public class HandlerA
-    {
+        public class HandlerB
+        {
         
-    }
-    public class HandlerB
-    {
+        }
+        public class HandlerC
+        {
         
-    }
-    public class HandlerC
-    {
-        
+        }
     }
 }

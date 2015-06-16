@@ -11,6 +11,7 @@ class Program
     static void Main()
     {
         #region ConfigureLog4Net
+
         PatternLayout layout = new PatternLayout
         {
             ConversionPattern = "%d [%t] %-5p %c [%x] - %m%n"
@@ -27,7 +28,7 @@ class Program
         {
             DatePattern = "yyyy-MM-dd'.txt'",
             RollingStyle = RollingFileAppender.RollingMode.Composite,
-            MaxFileSize = 10 * 1024 * 1024,
+            MaxFileSize = 10*1024*1024,
             MaxSizeRollBackups = 10,
             LockingModel = new FileAppender.MinimalLock(),
             StaticLogFileName = false,
@@ -38,30 +39,34 @@ class Program
         };
         // Note that no fileAppender.ActivateOptions(); is required since NSB 4 does this internally
         BasicConfigurator.Configure(fileAppender, consoleAppender);
+
         #endregion
 
         Configure.Serialization.Json();
 
         #region UseConfig
+
         Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Logging.Log4NetCustom");
 
         //Pass the appenders to NServiceBus
         configure.Log4Net(consoleAppender);
         configure.Log4Net(fileAppender);
+
         #endregion
+
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        IBus bus = configure.UnicastBus()
-            .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        {
+            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            bus.SendLocal(new MyMessage());
 
-        bus.SendLocal(new MyMessage());
-
-        Console.WriteLine("\r\nPress any key to stop program\r\n");
-        Console.ReadKey();
+            Console.WriteLine("\r\nPress any key to stop program\r\n");
+            Console.ReadKey();
+        }
     }
 }

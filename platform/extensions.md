@@ -3,7 +3,7 @@ title: Extensions
 summary: A list of all extensions to NServiceBus including all community contributions and external integrations
 ---
 
-This is a curated list of all the extensions to NServiceBus developed by both the community and Particular. To add an extension see [How to Contribute](https://github.com/Particular/docs.particular.net#how-to-contribute). If any extension has been abandoned and no longer maintained please [let us know](https://github.com/Particular/docs.particular.net/issues).
+This is a curated list of all the extensions to NServiceBus developed by both the community and Particular. If any extension has been abandoned and no longer maintained please [let us know](https://github.com/Particular/docs.particular.net/issues).
 
 **<img src="particular-project.png"> Particular run project**
 
@@ -44,7 +44,8 @@ Provides support for sending messages over [Oracle Advanced Queuing (Oracle AQ)]
 ###  <img src="particular-project.png" title="A Particular run project"> [RabbitMQ](/nservicebus/rabbitmq/)
 
 <a href="http://www.nuget.org/packages/NServiceBus.RabbitMQ/"><img src="http://img.shields.io/nuget/v/NServiceBus.RabbitMQ.svg?" title="NuGet Status"></a>
- Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) using the [RabbitMQ .net Client](http://www.nuget.org/packages/RabbitMQ.Client/).
+
+Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) using the [RabbitMQ .net Client](http://www.nuget.org/packages/RabbitMQ.Client/).
 
 ### <img src="particular-project.png" title="A Particular run project"> [SqlServer](/nservicebus/sqlserver/)
 
@@ -241,6 +242,10 @@ Allows a more expressive way to order handlers.
 <a href="http://www.nuget.org/packages/NES.NServiceBus/"><img src="http://img.shields.io/nuget/v/NES.NServiceBus.svg?" title="NuGet Status"></a>
 
 NES that helps you build domain models when you're doing event sourcing. It attempts to fill in the gaps between NServiceBus and NEventStore.
+
+### <img src="community-project.png" title="A Community run project"> [Rabbit Operations](http://RabbitOperations.southsidesoft.com)
+
+Operations support for RabbitMQ applications including support for NServiceBus. Reads messages from error and audit queues and indexes them for search and analysis. Supports replay of error messages.
 
 ### <img src="community-project.png" title="A Community run project"> [SignalR](https://github.com/roycornelissen/SignalR.NServiceBus)
 

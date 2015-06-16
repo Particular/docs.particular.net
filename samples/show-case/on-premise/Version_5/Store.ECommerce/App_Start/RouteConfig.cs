@@ -1,6 +1,5 @@
 ﻿namespace Store.ECommerce
 {
-    using System;
     using System.Web.Mvc;
     using System.Web.Routing;
 
@@ -10,7 +9,7 @@
         {
             routes.MapHubs();
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.MapRoute("Default", String.Empty, new { controller = "Home", action = "Index" });
+            routes.MapRoute("Default", string.Empty, new { controller = "Home", action = "Index" });
         }
     }
 }

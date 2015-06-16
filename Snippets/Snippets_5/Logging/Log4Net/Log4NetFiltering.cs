@@ -1,33 +1,36 @@
-﻿using log4net.Appender;
-using log4net.Config;
-using log4net.Core;
-using log4net.Filter;
-using log4net.Layout;
-using NServiceBus.Log4Net;
-
-public class Log4NetFiltering
+﻿namespace Snippets5.Logging.Log4Net
 {
-    public void Filtering()
+    using log4net.Appender;
+    using log4net.Config;
+    using log4net.Core;
+    using log4net.Filter;
+    using log4net.Layout;
+    using NServiceBus.Log4Net;
+
+    public class Log4NetFiltering
     {
-        #region Log4NetFiltering
-
-        ColoredConsoleAppender appender = new ColoredConsoleAppender
+        public Log4NetFiltering()
         {
-            Threshold = Level.Debug,
-            Layout = new SimpleLayout(),
-        };
+            #region Log4NetFiltering
 
-        appender.AddFilter(new LoggerMatchFilter
-                           {
-                               LoggerToMatch = "MyNamespace"
-                           });
-        appender.AddFilter(new DenyAllFilter());
-        appender.ActivateOptions();
+            ColoredConsoleAppender appender = new ColoredConsoleAppender
+            {
+                Threshold = Level.Debug,
+                Layout = new SimpleLayout(),
+            };
 
-        BasicConfigurator.Configure(appender);
+            appender.AddFilter(new LoggerMatchFilter
+            {
+                LoggerToMatch = "MyNamespace"
+            });
+            appender.AddFilter(new DenyAllFilter());
+            appender.ActivateOptions();
 
-        NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
+            BasicConfigurator.Configure(appender);
 
-        #endregion
+            NServiceBus.Logging.LogManager.Use<Log4NetFactory>();
+
+            #endregion
+        }
     }
 }

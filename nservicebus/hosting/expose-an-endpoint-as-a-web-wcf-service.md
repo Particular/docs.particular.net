@@ -1,7 +1,7 @@
 ---
 title: Exposing an NServiceBus Endpoint via WCF
 summary: Receiving and processing messages which pass through WCF
-tags: [WCF]
+tags: 
 redirects:
  - nservicebus/how-do-i-expose-an-nservicebus-endpoint-as-a-web-wcf-service
 ---
@@ -9,6 +9,8 @@ redirects:
 Inherited from `NServiceBus.WcfService<TCommand, TErrorCode>`, as shown below. `TCommand` is the message type of the request. `TErrorCode` must be an enumerated type, and should represent the result of processing the command. Example:
 
 <!-- import ExposeWCFService -->
+
+NOTE: After version 4 of NServiceBus `WcfService<TCommand, TErrorCode>` has been moved to [NServiceBus.Host nuget package](http://www.nuget.org/packages/NServiceBus.Host), so you need to reference this package.
 
 And finally you need to expose the wcf service via the config file, for the example above the xml would look something like:
 
@@ -36,8 +38,6 @@ And finally you need to expose the wcf service via the config file, for the exam
 ```
 
 The service name in `<service name="XXX"` needs to match the [type fullname](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx) that derives from `NServiceBus.WcfService<TCommand, TErrorCode>`
-
-NOTE: In v5 of NServiceBus `WcfService<TCommand, TErrorCode>` has been moved to [NServiceBus.Host nuget package](http://www.nuget.org/packages/NServiceBus.Host), so you need to reference this package.
 
 ## Queries and other return values
 

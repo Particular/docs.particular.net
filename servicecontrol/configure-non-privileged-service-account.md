@@ -68,10 +68,13 @@ To run the service this way the user account must have rights to log on interact
 e.g.   runas /user:MyDomain\MyTestUser cmd.exe
 
 ```
+
 If the command returns the error below then you cannot test the user account this way without adjusting the logon rights.  Normally this only occurs if the computer is configured as a domain controller or the System Administrator has restricted login access using group policies. 
+
 ``` 
 1385: Logon failure: the user has not been granted the requested logon type at this computer.
 ```
+
 Once logon rights are granted you can proceed: 
 3. Ensure that the Particular.ServiceControl service is stopped. 
 3. From the command prompt running as the service account, change to the ServiceControl installation directory and run ServiceControl.exe. 
@@ -80,6 +83,7 @@ Once logon rights are granted you can proceed:
 cd "C:\Program Files (x86)\Particular Software\ServiceControl"
 ServiceControl.exe 
 ```
+
 3. Examine the output and confirm that there are no critical errors.
 3. Shut down the console session. 
 3. Start the service.

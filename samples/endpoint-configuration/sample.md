@@ -18,7 +18,7 @@ When a message fails processing it will be forwarded here.
 
 <!-- import error -->
 
-Note that this approach uses the [IProvideConfiguration](/nservicebus/hosting/custom-configuration-providers.md) approach to problematically override the error queue.
+Note that this approach uses the [IProvideConfiguration](/nservicebus/hosting/custom-configuration-providers.md) approach to programmatically override the error queue.
 
 ## Configure an [Audit](/nservicebus/operations/auditing.md) queue
 
@@ -73,3 +73,8 @@ Enable installers and start the bus.
 The bus implements `IDisposable` and should be shut down when the process is shut down.
 
 <!-- import stop-bus -->
+
+## Handling [Critical Errors](/nservicebus/hosting/critical-errors.md)
+Since this sample is configured to run as a windows service, the action defined when a critical error occurs is to shut down the process. 
+
+<!-- import critical-errors -->

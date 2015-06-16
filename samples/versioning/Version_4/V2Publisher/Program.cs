@@ -16,7 +16,7 @@ class Program
         configure.InMemorySubscriptionStorage();
         IBus bus = configure.UnicastBus()
             .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+            .Start(() => configure.ForInstallationOn<Windows>().Install());
 
         Console.WriteLine("Press 'Enter' to publish a message, Ctrl + C to exit.");
 

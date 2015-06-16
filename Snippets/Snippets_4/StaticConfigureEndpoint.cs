@@ -1,17 +1,20 @@
-﻿using NServiceBus;
-
-public class StaticConfigureEndpoint
+﻿namespace Snippets4
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class StaticConfigureEndpoint
     {
-        #region StaticConfigureEndpoint
+        public void Simple()
+        {
+            #region StaticConfigureEndpoint
 
-        Configure.Endpoint.AsSendOnly();
-        Configure.Endpoint.AsVolatile();
-        Configure.Endpoint.Advanced(settings => settings.DisableDurableMessages());
-        Configure.Endpoint.Advanced(settings => settings.EnableDurableMessages());
+            Configure.Endpoint.AsSendOnly();
+            Configure.Endpoint.AsVolatile();
+            Configure.Endpoint.Advanced(settings => settings.DisableDurableMessages());
+            Configure.Endpoint.Advanced(settings => settings.EnableDurableMessages());
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

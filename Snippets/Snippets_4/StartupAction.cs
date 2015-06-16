@@ -1,20 +1,23 @@
-﻿using NServiceBus;
-
-public class StartupAction
+﻿namespace Snippets4
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class StartupAction
     {
-        #region StartupAction
+        public void Simple()
+        {
+            #region StartupAction
 
-        Configure.With().UnicastBus()
-            .CreateBus()
-            .Start(MyStartupAction);
+            Configure.With().UnicastBus()
+                .CreateBus()
+                .Start(MyStartupAction);
 
-        #endregion
-    }
+            #endregion
+        }
 
-    public void MyStartupAction()
-    {
+        public void MyStartupAction()
+        {
         
+        }
     }
 }

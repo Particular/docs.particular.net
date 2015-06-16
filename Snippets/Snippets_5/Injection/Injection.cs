@@ -1,4 +1,4 @@
-﻿namespace MyServer.Injection
+﻿namespace Snippets5.Injection
 {
     using System.Net.Mail;
     using NServiceBus;
@@ -9,6 +9,16 @@
         {
             BusConfiguration busConfiguration = new BusConfiguration();
 
+            #region ConfigurePropertyInjectionForHandlerBefore 
+
+            busConfiguration.RegisterComponents(c =>
+                c.ConfigureComponent<EmailHandler>(DependencyLifecycle.InstancePerUnitOfWork)
+                    .ConfigureProperty(x => x.SmtpAddress, "10.0.1.233")
+                    .ConfigureProperty(x => x.SmtpPort, 25)
+                );
+
+            #endregion
+
             #region ConfigurePropertyInjectionForHandler 5.2
 
             busConfiguration.InitializeHandlerProperty<EmailHandler>("SmtpAddress", "10.0.1.233");
@@ -17,7 +27,7 @@
             #endregion
         }
 
-        #region PropertyInjectionWithHandler 5.2
+        #region PropertyInjectionWithHandler 
 
         public class EmailHandler : IHandleMessages<EmailMessage>
         {

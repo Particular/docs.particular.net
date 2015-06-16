@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.ServiceProcess;
 using Autofac;
 using log4net.Appender;
@@ -14,6 +13,7 @@ using NServiceBus.Persistence;
 class ProgramService : ServiceBase
 {
     IBus bus;
+    static ILog logger = LogManager.GetLogger("ProgramService");
 
     static void Main()
     {
@@ -33,7 +33,6 @@ class ProgramService : ServiceBase
             Run(service);
         }
     }
-
 
     protected override void OnStart(string[] args)
     {
@@ -62,7 +61,7 @@ class ProgramService : ServiceBase
         #region endpoint-name
         busConfiguration.EndpointName("Sample.FirstEndpoint");
         #endregion
-        
+
         #region container
         ContainerBuilder builder = new ContainerBuilder();
         //configure your custom services
@@ -87,6 +86,17 @@ class ProgramService : ServiceBase
         busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
         busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
         busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
+        #endregion
+
+        #region critical-errors
+        busConfiguration.DefineCriticalErrorAction((errorMessage, exception) =>
+        {
+            // Log the critical error
+            logger.Fatal(string.Format("CRITICAL: {0}", errorMessage), exception);
+
+            // Kill the process on a critical error
+            Environment.FailFast(string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
+        });
         #endregion
 
         #region start-bus

@@ -1,16 +1,19 @@
-﻿using System;
-using NServiceBus;
-using NServiceBus.RavenDB.Outbox;
-
-public class TimeToKeep
+﻿namespace Snippets5.Outbox.RavenDB
 {
-    public void Customize()
-    {
-        BusConfiguration configuration = null;
+    using System;
+    using NServiceBus;
+    using NServiceBus.RavenDB.Outbox;
 
-        #region OutboxRavendBTimeToKeep
-        configuration.SetTimeToKeepDeduplicationData(TimeSpan.FromDays(7));
-        configuration.SetFrequencyToRunDeduplicationDataCleanup(TimeSpan.FromMinutes(1));
-        #endregion
+    public class TimeToKeep
+    {
+        public TimeToKeep()
+        {
+            BusConfiguration configuration = null;
+
+            #region OutboxRavendBTimeToKeep
+            configuration.SetTimeToKeepDeduplicationData(TimeSpan.FromDays(7));
+            configuration.SetFrequencyToRunDeduplicationDataCleanup(TimeSpan.FromMinutes(1));
+            #endregion
+        }
     }
 }

@@ -1,30 +1,33 @@
-﻿using NServiceBus;
-
-public class Transactions
+﻿namespace Snippets4
 {
-    public void Unreliable()
+    using NServiceBus;
+
+    public class Transactions
     {
-        #region TransactionsDisable
-        Configure.Transactions.Disable();
-        #endregion
-    }
+        public void Unreliable()
+        {
+            #region TransactionsDisable
+            Configure.Transactions.Disable();
+            #endregion
+        }
 
-    public void TransportTransactions()
-    {
-        #region TransactionsDisableDistributedTransactions
-        Configure.Transactions.Advanced(x => x.DisableDistributedTransactions());
-        #endregion
+        public void TransportTransactions()
+        {
+            #region TransactionsDisableDistributedTransactions
+            Configure.Transactions.Advanced(x => x.DisableDistributedTransactions());
+            #endregion
 
-    }
+        }
 
-    public void AmbientTransactions()
-    {
-        #region TransactionsEnable
-        Configure.Transactions.Enable().Advanced(x => x.EnableDistributedTransactions());
-        #endregion
+        public void AmbientTransactions()
+        {
+            #region TransactionsEnable
+            Configure.Transactions.Enable().Advanced(x => x.EnableDistributedTransactions());
+            #endregion
 
-        #region TransactionsDoNotWrapHandlersExecutionInATransactionScope
-        Configure.Transactions.Advanced(x => x.DoNotWrapHandlersExecutionInATransactionScope());
-        #endregion
+            #region TransactionsDoNotWrapHandlersExecutionInATransactionScope
+            Configure.Transactions.Advanced(x => x.DoNotWrapHandlersExecutionInATransactionScope());
+            #endregion
+        }
     }
 }

@@ -8,18 +8,18 @@ class Program
     {
         Configure.Serialization.Json();
         Configure configure = Configure.With();
-        configure.DefineEndpointName("Samples.PubSub.MyPublisher");
         configure.Log4Net();
+        configure.DefineEndpointName("Samples.PubSub.MyPublisher");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.UseTransport<Msmq>();
-        IBus bus = configure.UnicastBus()
-            .CreateBus()
-            .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
-
-        Start(bus);
+        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        {
+            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            Start(bus);
+        }
     }
 
     static void Start(IBus bus)

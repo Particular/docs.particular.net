@@ -13,8 +13,7 @@ static class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        IStartableBus startableBus = Bus.Create(busConfiguration);
-        using (startableBus.Start())
+        using (Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("To exit, Ctrl + C");
             Console.ReadLine();

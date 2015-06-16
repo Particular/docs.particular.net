@@ -1,4 +1,4 @@
-﻿namespace MyServer.Injection
+﻿namespace Snippets3.Injection
 {
     using System.Net.Mail;
     using NServiceBus;
@@ -18,6 +18,8 @@
             #endregion
         }
 
+        #region PropertyInjectionWithHandler
+
         public class EmailHandler : IHandleMessages<EmailMessage>
         {
             public string SmtpAddress { get; set; }
@@ -29,6 +31,8 @@
                 // ...
             }
         }
+
+        #endregion
     }
 
     public class EmailMessage
