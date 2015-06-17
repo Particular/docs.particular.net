@@ -68,7 +68,7 @@ Using this configuration setting you can change the following values. NOTE: Most
 - `EnableDeadLetteringOnMessageExpiration`: Specifies whether messages should be moved to a dead letter queue upon expiration. Defaults to false (TTL is so large it wouldn't matter anyway). This assumes there have been no attempts to deliver. Errors on delivery will still put the message on the dead letter queue.
 - `EnableDeadLetteringOnFilterEvaluationExceptions`: Specifies whether messages should be moved to a dead letter queue upon filter evaluation exceptions. Defaults to false.
 - `EnablePartitioning`: Increase overall throughput by allowing to use multiple brokers/stores to handle queues and topics to overcome limitations of a single broker/store at increased cost. Partitioning does reduce number of queues or topics per namespace. Defaults to false.
-- `SupportOrdering`: Specifies whether queues and topics should enable support for message ordering. Default set to true.
+- `SupportOrdering`: Specifies whether queues and topics should enable support for message ordering. Defaults to true.
 
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.
 
