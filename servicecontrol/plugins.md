@@ -7,11 +7,11 @@ related:
 - samples/custom-checks/monitoring3rdparty
 ---
 
-ServiceControl is the activity information backend service for ServiceInsight, ServicePulse, and third-party developments. It collects information from monitored NServiceBus endpoints, stores this information in a dedicated database, and exposes this information for consumption by various clients via HTTP API.
+ServiceControl is the backend service for ServiceInsight, ServicePulse, and third-party integrations. It collects and stores information from monitored NServiceBus endpoints and exposes this information for consumption by various clients via a HTTP API.
 
-NOTE: When ServiceControl is introduced into an existing environment the standard behavior of error and audit queues will change. When ServiceControl is not monitoring the environment failed messages will remain in the configured error queue and audit messages in the configured audit queue, as soon as ServiceControl is installed and configured messages, in both queues, will be moved into the ServiceControl database.
+NOTE: When ServiceControl is introduced into an existing environment the standard behavior of error and audit queues will change. When ServiceControl is not monitoring the environment failed messages will remain in the configured error queue and audit messages in the configured audit queue, as soon as ServiceControl is installed and configured messages, in both queues, will be imported by ServiceControl.
 
-Plugins collect information from NServiceBus and can be deployed with each NServiceBus endpoint. 
+Plugins collect information from NServiceBus and are deployed together with each NServiceBus endpoint. 
 These plugins are optional from the perspective of the NServiceBus framework itself (they are not required by the endpoint), but they are required in order to collect the information that enables ServiceControl (and its clients) to provide the relevant functionality for each plugin.
 
 ## Installing and Deploying
@@ -44,8 +44,7 @@ WARNING: Endpoint with plugins installed that cannot communicate to ServiceContr
 
 The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl.  
 
-NOTE: Audit and error queues must be defined for each endpoint monitored by ServiceControl and should be in the same location where ServiceControl is installed.
-
+NOTE: If you're using MSMQ and have configured ServiceControl to import audit and error queues those queues most be present on the same machine as ServiceControl is installed on.
 
 ## Understanding Plugin Functionality and Behavior
 
@@ -90,7 +89,7 @@ As mentioned above, there are two types of custom checks:
 * Custom check that runs once, when the endpoint host starts
 * Periodic check that runs at defined intervals
  
-The result of a custom check is either success or a failure (with a detailed description defined by the developer). This result is sent as a message to the ServiceControl queue.   
+The result of a custom check is either success or a failure (with a detailed description defined by the developer). This result is sent as a message to the ServiceControl queue and status will be shown in the ServicePulse UI.   
 
 **Related articles**
 
