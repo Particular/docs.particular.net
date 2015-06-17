@@ -4,6 +4,10 @@ summary: NServiceBus automatically registers components, user-implemented handle
 tags: 
 - Dependency Injection
 - IOC
+- ObjectBuilder
+- Customization
+- Disposing
+- Container
 redirects:
 - nservicebus/containers
 related:
@@ -15,6 +19,38 @@ NServiceBus relies heavily on Containers and Dependency Injection to manage serv
 NServiceBus automatically registers all its components as well as user-implemented handlers and sagas so that all instancing modes and wiring are done correctly by default and without errors.
 
 NServiceBus has a built-in container (currently an ILMerged version of Autofac) but it can be replaced by any other container.
+
+Using an external container is usefull when:
+
+* A external container is already present and you want types that are registered in that container to be injected in your messages handlers or other types that NServiceBus creates internally.
+* Have lifetime requirements on the created instances that are not supported by the  NServiceBus object builder.
+* Not want to use the NServiceBus object builder because you are already familiar with other dependency injection frameworks.
+
+
+## Registration behavior
+
+When you pass an external container in the `busConfiguration.UseContainer<>` method NServiceBus will register the `IBus` instance in the container.
+
+There is no need to register the `IBus` instance after the bus has been created.
+
+
+## Disposing
+
+### Bus instance
+
+When using an external container you would normally not dispose the bus instance manually. If you would call `IBus.Dispose()` then you will indirectly trigger the container to dispose lifetime scope
+
+NOTE: Do NOT call `IBus.Dispose` when using an external container.
+
+
+### Container
+
+When the injected container is disposed then the registered bus instance will be disposed too. This means that when the container is disposed the bus will be stopped and will not process messages.
+
+### NServiceBus.Host
+
+When using the NServiceBus host and injecting an external container then this container will be disposed when the host stops the bus
+
 
 ## Getting other containers
 
