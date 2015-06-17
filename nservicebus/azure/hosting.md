@@ -1,7 +1,8 @@
 ---
 title: Hosting in Azure
 summary: Overview on using Azure Cloud Services, websites, and virtual machines to host NServiceBus, with links to detailed articles.
-tags: 
+tags:
+- Hosting
 - Azure
 - Cloud
 redirects:

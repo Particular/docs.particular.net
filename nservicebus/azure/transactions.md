@@ -4,6 +4,10 @@ summary: Understanding what kind of transactions are supported in Azure and how 
 tags: 
 - Azure
 - Cloud
+- Transactions
+- Idempotency
+- DTC
+- Patterns
 redirects:
  - nservicebus/understanding-transactions-in-windows-azure
 ---

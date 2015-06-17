@@ -4,6 +4,11 @@ summary: NServiceBus can use Azure Service Bus to take advantage of its peek-loc
 tags: 
 - Azure
 - Cloud
+- Transport
+- Configuration
+- Concurrency
+- Performance
+- Batching
 redirects:
  - nservicebus/using-azure-servicebus-as-transport-in-nservicebus
 ---

@@ -4,6 +4,8 @@ summary: Using Azure Cloud Services to host multiple NServiceBus endpoints on a 
 tags: 
 - Azure
 - Cloud
+- Hosting
+- Worker Roles
 redirects:
  - nservicebus/shared-hosting-nservicebus-in-windows-azure-cloud-services
 ---

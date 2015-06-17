@@ -4,6 +4,10 @@ summary: Using Azure Storage for persistence features of NServiceBus including t
 tags: 
 - Azure
 - Cloud
+- Persistence
+- Configuration
+- Performance
+- Hosting
 redirects:
  - nservicebus/using-azure-storage-persistence-in-nservicebus
 ---

@@ -3,8 +3,12 @@ title: Azure Transports
 summary: Azure transports enable Azure Storage Queues and Azure Service Bus as underlying NServiceBus transports, in cloud-hosting and hybrid scenarios.
 tags:
 - Cloud
+- On-Premise
 - Azure
 - Transports
+- Azure Service Bus
+- Azure Storage Queues
+- Configuration
 redirects:
  - nservicebus/windows-azure-transport
 ---

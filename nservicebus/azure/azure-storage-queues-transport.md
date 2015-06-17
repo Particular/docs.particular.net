@@ -4,6 +4,9 @@ summary: NServiceBus can use Azure storage queues to take advantage of their pee
 tags: 
 - Azure
 - Cloud
+- Azure Storage Queues
+- Transport
+- Configuration 
 redirects:
  - nservicebus/using-azure-storage-queues-as-transport-in-nservicebus
 ---
