@@ -77,10 +77,13 @@ Ensure Particular.ServiceControl windows service has started and is functioning 
 
 ## Troubleshooting
 
+### General Tips
+
 Make sure all assemblies copied are unblocked, otherwise the .NET runtime will refuse to load them.
 
 When deploying using a packaging technology, like Azure Cloud Services projects, make sure that the ServiceControl plugins become part of the package before executing the deployement. For example, this can be done by referencing the assemblies in a worker role project and setting "copy local" to true.
 
+### Azure ServiceBus
 If you are configuring ServiceControl for use with Azure ServiceBus, you may encounter an error during the above commands because `NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll` has a reference to Microsoft.ServiceBus version 2.2.0.0, but you may be using a later version (via NuGet). The attempted installation will have created a `ServiceControl.exe.config` file, which you can modify, and add an assembly binding redirect section (exactly as NuGet would have done in your main project config file). Once the config file has been updated you can run `ServiceControl.exe --install`
 
 ```xml
@@ -96,3 +99,27 @@ If you are configuring ServiceControl for use with Azure ServiceBus, you may enc
 	</runtime>
 </configuration>
 ```
+### Azure Storage Queues
+There is a known issue with the ServiceControl version 1.5.1 though to 1.5.3 when used with Azure Storage Queues. 
+These versions of ServiceControl shipped with version 5.6.3 of the `Microsoft.Data.Services.Client.DLL`,  however the 
+`NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll` expects a reference to version 5.6.0.0 of that DLL. To correct this add the follwoing binding redirect to `ServiceControl.exe.config` file.
+
+```
+<configuration>
+  ...
+    	<runtime>
+        	<assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+			<dependentAssembly>
+                		<assemblyIdentity name="Microsoft.Data.Services.Client" publicKeyToken="31bf3856ad364e35"
+culture="neutral" />
+                		<bindingRedirect oldVersion="0.0.0.0-5.6.3.0" newVersion="5.6.3.0" />
+            		</dependentAssembly>
+		</assemblyBinding>
+    	</runtime>
+</configuration>
+```
+
+
+
+
+
