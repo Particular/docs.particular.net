@@ -1,11 +1,11 @@
-﻿namespace Snippets4.Conventions.ExpressMessages
+﻿namespace Snippets3.NonDurable.ExpressMessages
 {
     using NServiceBus;
 
     #region ExpressMessageAttribute
 
     [Express]
-    public class MyMessage : IMessage
+    public class MessageWithExpress : IMessage
     {
     }
 

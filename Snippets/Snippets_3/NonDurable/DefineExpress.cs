@@ -1,12 +1,12 @@
-﻿namespace Snippets4.Conventions.ExpressMessages
+﻿namespace Snippets3.NonDurable.ExpressMessages
 {
     using NServiceBus;
 
-    public class Usage
+    public class DefineExpress
     {
-        public Usage()
+        public DefineExpress()
         {
-            #region ExpressMEssageConvention
+            #region ExpressMessageConvention
 
             Configure configure = Configure.With()
                 .DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));

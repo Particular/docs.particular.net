@@ -20,7 +20,7 @@
         - "nservicebus/messaging/databus"
         - "nservicebus/messaging/custom-databus"
         - "nservicebus/messaging/discard-old-messages"
-        - "nservicebus/messaging/express-messages"
+        - "nservicebus/messaging/non-durable-messaging"
         - "nservicebus/messaging/handling-responses-on-the-client-side"
         - "nservicebus/messaging/message-headers"
         - "nservicebus/messaging/messages-as-interfaces"

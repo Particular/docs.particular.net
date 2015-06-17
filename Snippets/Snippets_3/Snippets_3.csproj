@@ -113,8 +113,8 @@
     <Compile Include="Callback\PlaceOrder.cs" />
     <Compile Include="Callback\PlaceOrderResponse.cs" />
     <Compile Include="Callback\Status.cs" />
-    <Compile Include="Conventions\ExpressMessages\Usage.cs" />
-    <Compile Include="Conventions\ExpressMessages\MyMessage.cs" />
+    <Compile Include="NonDurable\DefineExpress.cs" />
+    <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />

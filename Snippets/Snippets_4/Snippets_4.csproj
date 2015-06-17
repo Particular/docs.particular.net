@@ -240,7 +240,7 @@
     <Compile Include="Callback\PlaceOrderResponse.cs" />
     <Compile Include="Callback\Status.cs" />
     <Compile Include="Container\Custom\MyCustomObjectBuilder.cs" />
-    <Compile Include="Conventions\ExpressMessages\MyMessage.cs" />
+    <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="DataBus\Azure\Usage.cs" />
@@ -275,7 +275,7 @@
     <Compile Include="BusExtensionMethodForHandler.cs" />
     <Compile Include="Callback\Usage.cs" />
     <Compile Include="Container\Custom\Usage.cs" />
-    <Compile Include="Conventions\ExpressMessages\Usage.cs" />
+    <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="EndpointMapping\ProvideConfiguration.cs" />

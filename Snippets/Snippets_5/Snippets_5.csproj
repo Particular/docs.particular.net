@@ -353,8 +353,8 @@
     <Compile Include="Container\Custom\ContainerCustom.cs" />
     <Compile Include="Container\Containers.cs" />
     <Compile Include="Container\Custom\MyObjectBuilder.cs" />
-    <Compile Include="Conventions\ExpressMessages\MyMessage.cs" />
-    <Compile Include="Conventions\ExpressMessages\Usage.cs" />
+    <Compile Include="NonDurable\MessageWithExpress.cs" />
+    <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
     <Compile Include="CriticalError.cs" />
@@ -422,6 +422,7 @@
     <Compile Include="Logging\UsingLogging.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
+    <Compile Include="NonDurable\DisableDurable.cs" />
     <Compile Include="Outbox\NHibernate\SessionAccess\OrderEntity.cs" />
     <Compile Include="Outbox\NHibernate\SessionAccess\OrderPlaced.cs" />
     <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
