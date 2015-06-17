@@ -100,9 +100,9 @@ If you are configuring ServiceControl for use with Azure ServiceBus, you may enc
 </configuration>
 ```
 ### Azure Storage Queues
-There is a known issue with the ServiceControl version 1.5.1 though to 1.5.3 when used with Azure Storage Queues. 
+There is a known issue with the ServiceControl 1.5.1 though to 1.5.3 when used with Azure Storage Queues. 
 These versions of ServiceControl shipped with version 5.6.3 of the `Microsoft.Data.Services.Client.DLL`,  however the 
-`NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll` expects a reference to version 5.6.0.0 of that DLL. To correct this add the follwoing binding redirect to `ServiceControl.exe.config` file.
+`NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll` expects a reference to version 5.6.0.0 of that DLL. To correct this add the following binding redirect to `ServiceControl.exe.config` file.
 
 ```
 <configuration>
