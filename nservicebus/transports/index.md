@@ -6,7 +6,7 @@ redirects:
  - nservicebus/nservicebus-and-websphere-sonic
 ---
 
-NServiceBus is built on top of exiting queuing technologies. In NServicebus the choice of queuing technology is referred to as a "Transport".
+NServiceBus is built on top of existing queuing technologies. In NServicebus the choice of queuing technology is referred to as a "Transport".
 
 ## Avaliable transports
 
