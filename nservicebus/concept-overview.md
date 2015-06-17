@@ -52,7 +52,7 @@ NServiceBus has retry logic which surrounds all calls to user code. This allows 
 
 ### [Error Queue](/nservicebus/errors/)
 
-Messages that fail all retires are send to a error queue for triage for either a retry or discarding.
+Messages that fail all retries are send to a error queue for triage for either a retry or discarding.
 
 ### [Pipeline](/nservicebus/pipeline/)
 
@@ -74,7 +74,7 @@ The Transport is the mechanism that NServiceBus Endpoints use to communicate wit
 
 Allows the forwarding of every message received by an endpoint to a configured queue.
 
-### [Serilization](/nservicebus/serialization/)
+### [Serialization](/nservicebus/serialization/)
 
 Serialization is the process of converting an in memory .net object (in our case a message) into a stream of bytes in order to transmit it via the Transport. For Endpoints to communicate they need to share a common serilization language.
 
