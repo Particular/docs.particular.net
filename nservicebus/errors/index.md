@@ -24,6 +24,8 @@ Error queue can be configured in one of two ways.
 
 ### Using Code
 
+You can configure the target error queue at configuration time.
+
 <!-- import ErrorWithCode -->
 
 
