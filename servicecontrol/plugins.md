@@ -125,9 +125,17 @@ NOTE: Depending on the saga's update frequency, adding this plugin to your endpo
 #### Deprecated Nuget
 If you are using the older version of the plugin, namely **ServiceControl.Plugin.SagaAudit** please remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
 
+#### How do I remove the plugin for an endpoint already in Production?
+If you are currently running your endpoint with the SagaAudit plugin in Production, do the following to remove it:
+
+1. Stop your endpoint
+2. Simply delete the SagaAudit plugin dll from the endpoint's bin directory. (Either `ServiceControl.Plugin.Nsb5.SagaAudit.dll or ServiceControl.Plugin.Nsb4.SagaAudit.dll). In addition to that, if you have automated deployment processes in place, please ensure that this dll is no longer included. 
+3. Restart your endpoint
+
+Doing so will stop sending the saga state change messages to ServiceControl reducing message load to ServiceControl. You can always turn it back on if or when needed. 
 
 #### How do I debug/view the saga state in Production when the plugin is not deployed?
-If you wish to visualize your saga in Production and the plugin is not already deployed, then simply add the Saga Audit plugin in the same location where your saga is running and restart your service. Use ServiceInsight to view the visualization and when done, remove the plugin and restart your service. This approach is very similar for example, when you need to use Journaling to debug a message based system, where you turn it on when needed to collect the information you wish to see and then turn it back off. 
+If you wish to visualize your saga in Production and the plugin is not already deployed, then simply add the Saga Audit plugin in the same location where your saga is running and restart your endpoint. Use ServiceInsight to view the visualization and when done, follow the steps above to remove the plugin and restart your service. This approach is very similar for example, when you need to use Journaling to debug a message based system, where you turn it on when needed to collect the information you wish to see and then turn it back off. 
 
 **Related articles**
 
