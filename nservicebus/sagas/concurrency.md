@@ -22,11 +22,9 @@ Sagas are started by the message types you handle as `IAmStartedByMessages<T>`. 
 
 In this case only one thread is allowed to commit. The others roll back and the built-in retries in NServiceBus kick in. On the next retry, the saga instance is found, the race condition is solved, and that saga instance is updated instead. Of course this can result in concurrency problems but they are solved, as mentioned below.
 
-NServiceBus solves this by requiring you to create a unique constraint in your database for the property on which you are correlating.
+NServiceBus solves this by automatically creating a unique constraint in your database for the property on which you are correlating. With this constraint in place, only one thread is allowed to create a new saga instance.
 
-In NServiceBus V2.X you had to create the constraint yourself but V3.X has the [Unique] attribute. When you put that attribute on one of your saga data properties, NServiceBus creates the constraint for you. This works for both the NHibernate and the RavenDB saga persister.
-
-With this constraint in place, only one thread is allowed to create a new saga instance.
+NOTE: In NServiceBus V2 you had to create the constraint yourself in the selected data store. V3 - V5 provided a `[Unique]` attribute. When you put that attribute on one of your saga data properties, NServiceBus creates the constraint for you. This works for both the NHibernate and the RavenDB saga persister.
 
 ## Concurrent access to existing saga instances
 
@@ -42,12 +40,12 @@ Another option is to use a [transaction isolation level](https://msdn.microsoft.
 
 NOTE: "Serializable" is the default isolation level for TransactionScopes.
 
-In NServiceBus V4.0 the default isolation level is
+In NServiceBus V4 the default isolation level is
 "ReadCommitted", which is a more sensible default.
 
 ### High load scenarios
 
-Under extreme high load like batch processing, trying to access the same Saga's data could lead to a situation where after FLR and SLR the messages will end up in the error queue.
+Under extreme high load like batch processing, trying to access the same Saga's data could lead to a situation where messages ends up in the error queue even though you have both first and second level retries enabled.
 
 In that scenario you may need to look at re-designing your process.
 
