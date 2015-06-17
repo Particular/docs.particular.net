@@ -129,7 +129,7 @@ If you are using the older version of the plugin, namely **ServiceControl.Plugin
 If you are currently running your endpoint with the SagaAudit plugin in Production, do the following to remove it:
 
 1. Stop your endpoint
-2. Simply delete the SagaAudit plugin dll from the endpoint's bin directory. (Either `ServiceControl.Plugin.Nsb5.SagaAudit.dll or ServiceControl.Plugin.Nsb4.SagaAudit.dll). In addition to that, if you have automated deployment processes in place, please ensure that this dll is no longer included. 
+2. Simply delete the SagaAudit plugin dll from the endpoint's bin directory. (Either `ServiceControl.Plugin.Nsb5.SagaAudit.dll` or `ServiceControl.Plugin.Nsb4.SagaAudit.dll`). In addition to that, if you have automated deployment processes in place, please ensure that this dll is no longer included. 
 3. Restart your endpoint
 
 Doing so will stop sending the saga state change messages to ServiceControl reducing message load to ServiceControl. You can always turn it back on if or when needed. 
