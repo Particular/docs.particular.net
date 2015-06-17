@@ -1,7 +1,12 @@
 ---
 title: NServiceBus Host
 summary: Avoid writing repeat configuration code, host your endpoints in a Windows Service, and change technologies without code.
-tags: []
+tags:
+- Hosting
+- Configuration
+- Logging
+- Installation
+- NServiceBus.Host
 redirects:
  - nservicebus/the-nservicebus-host
 related:

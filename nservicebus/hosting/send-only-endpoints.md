@@ -2,7 +2,10 @@
 title: One Way/Send Only Endpoints
 summary: Use "Send only mode" for endpoints whose only purpose is sending messages
 tags:
+- Hosting
 - SendOnly
+- Web
+- Initialization
 redirects:
 - nservicebus/one-way-send-only-endpoints
 ---

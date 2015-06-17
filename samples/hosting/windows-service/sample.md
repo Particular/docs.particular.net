@@ -3,6 +3,8 @@ title: Hosting in a Windows Service
 summary: This sample shows how to host NServiceBus as a Windows Service in your own process with support for streamlined debugging experience from Visual Studio.
 tags:
 - Hosting
+- Windows Service
+- Sample
 related:
 - nservicebus/hosting
 ---

@@ -1,7 +1,15 @@
 ---
 title: Hosting NServiceBus v4.x in-process 
 summary: Fluent configuration API to get transactional one-way messaging, referencing only three assemblies.
-tags: []
+tags:
+- Hosting
+- Initialization
+- Dependencies
+- ASP.NET
+- MVC
+- Configuration
+- Routing
+- MSMQ
 redirects:
 - nservicebus/hosting-nservicebus-in-your-own-process-v4.x
 related:
