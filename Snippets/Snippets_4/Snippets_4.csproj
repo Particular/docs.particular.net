@@ -229,6 +229,7 @@
     <None Include="Transports\RabbitMQ\App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Transports\SqlServer\MultiDb.config" />
     <None Include="Transports\Throughput\InitialThroughput.config">
       <SubType>Designer</SubType>
     </None>
