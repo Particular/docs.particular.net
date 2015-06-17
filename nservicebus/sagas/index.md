@@ -57,6 +57,11 @@ Since V5 it is possible to specify the mapping to the message using expressions 
 
 Underneath the covers, when `CompleteOrder` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `OrderSagaData` that has a property `OrderId` whose value is the same as the `OrderId` property of the message.
 
+### Auto correlation
+A common usage of sagas is to have them send out a request message to get some work done and receive a response message back when the work is complete. To make this easier NServiceBus will auto correlate those response messages back to the correct saga instance without any need for mappings.
+
+NOTE: A caveat of this feature is that it currently doesn't support auto correlation between sagas. So if the request is handled by a another saga you must add relevant message properties and map them to the requesting saga using the syntax described above.
+
 ## Uniqueness
 
 NServiceBus will make sure that all properties used for correlation is unique across all instances of the given saga type. How this is enforced is up to each persister but will most likely translate to a unique key constraint in the database.
