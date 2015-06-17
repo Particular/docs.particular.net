@@ -7,42 +7,12 @@ related:
 - samples/custom-checks/monitoring3rdparty
 ---
 
-ServiceControl is the activity information backend service for ServiceInsight, ServicePulse, and third-party developments. It collects information from monitored NServiceBus endpoints, stores this information in a dedicated database, and exposes this information for consumption by various clients via HTTP API.
+ServiceControl is the backend service for ServiceInsight, ServicePulse, and third-party integrations. It collects and stores information from monitored NServiceBus endpoints and exposes this information for consumption by various clients via a HTTP API.
 
-NOTE: When ServiceControl is introduced into an existing environment the standard behavior of error and audit queues will change. When ServiceControl is not monitoring the environment failed messages will remain in the configured error queue and audit messages in the configured audit queue, as soon as ServiceControl is installed and configured messages, in both queues, will be moved into the ServiceControl database.
+NOTE: When ServiceControl is introduced into an existing environment the standard behavior of error and audit queues will change. When ServiceControl is not monitoring the environment failed messages will remain in the configured error queue and audit messages in the configured audit queue, as soon as ServiceControl is installed and configured messages, in both queues, will be imported by ServiceControl.
 
-Plugins collect information from NServiceBus and can be deployed with each NServiceBus endpoint. 
+Plugins collect information from NServiceBus and are deployed together with each NServiceBus endpoint. 
 These plugins are optional from the perspective of the NServiceBus framework itself (they are not required by the endpoint), but they are required in order to collect the information that enables ServiceControl (and its clients) to provide the relevant functionality for each plugin.
-
-
-## Getting the Plugins
-
-The ServiceControl plugins can be downloaded and installed from the NuGet gallery. 
-
-### For NserviceBus Version 5 
-
-| **Plugin** | **NuGet** | 
-|:----- |:----- |
-|Heartbeat|[ServiceControl.Plugin.Nsb5.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat)|
-|Custom Checks|[ServiceControl.Plugin.Nsb5.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks)|
-|Saga Audit|[ServiceControl.Plugin.Nsb5.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.SagaAudit)|
-|Debug Session|[ServiceControl.Plugin.Nsb5.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.DebugSession)|
-
-### For NserviceBus Version 4 
-
-| **Plugin** | **NuGet** | 
-|:----- |:----- |
-|Heartbeat|[ServiceControl.Plugin.Nsb4.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat)|
-|Custom Checks|[ServiceControl.Plugin.Nsb4.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks)|
-|Saga Audit|[ServiceControl.Plugin.Nsb4.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit)|
-|Debug Session|[ServiceControl.Plugin.Nsb4.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.DebugSession)|
-
-### For NserviceBus Version 3 
-
-| **Plugin** | **NuGet** | 
-|:----- |:----- |
-|Heartbeat|[ServiceControl.Plugin.Nsb3.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat)|
-|Custom Checks|[ServiceControl.Plugin.Nsb3.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks)|
 
 ## Installing and Deploying
 
@@ -74,11 +44,11 @@ WARNING: Endpoint with plugins installed that cannot communicate to ServiceContr
 
 The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl.  
 
-NOTE: Audit and error queues must be defined for each endpoint monitored by ServiceControl and should be in the same location where ServiceControl is installed.
+NOTE: If you're using MSMQ and have configured ServiceControl to import audit and error queues those queues most be present on the same machine as ServiceControl is installed on.
 
 ## Understanding Plugin Functionality and Behavior
 
-### ServiceControl Heartbeat Plugin
+### Heartbeat Plugin for Endpoint Health Monitoring
 
 The heartbeat plugin sends heartbeat messages from the endpoint to the ServiceControl queue. These messages are sent every 10 seconds (by default).
 
@@ -89,11 +59,24 @@ Note that even if an endpoint is able to send heartbeat messages and it is marke
 If a heartbeat message is not received by ServiceControl from an endpoint, that endpoint is marked as "inactive". 
 An inactive endpoint indicates that there is a failure in the communication path between ServiceControl and the monitored endpoint. For example, such failures may be caused by a failure of the endpoint itself, a communication failure in the transport, or when ServiceControl is unable to receive and process the heartbeat messages sent by the endpoint.
 
+NOTE: It is essential that you deploy this plugin to your endpoint in production for ServicePulse to be able to monitor your endpoint.
+
+#### Relevant Nuget packages for the Heartbeat Plugin
+
+| **Endpoint NSB Version** | **NuGet** | 
+|:----- |:----- |
+|NSB v5.x|[ServiceControl.Plugin.Nsb5.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat)|
+|NSB v4.x|[ServiceControl.Plugin.Nsb4.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat)|
+|NSB v3.x|[ServiceControl.Plugin.Nsb3.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat)|
+
+#### Deprecated Nuget
+If you are using the older version of the plugin, namely **ServiceControl.Plugin.Heartbeat** please remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
+
 **Related articles**
 
 - [Introduction to Endpoints and Heartbeats in ServicePulse](/servicepulse/intro-endpoints-heartbeats.md)
 
-### ServiceControl CustomChecks Plugin 
+### CustomChecks Plugin for Endpoint Monitoring
 
 The custom checks plugin allows the developer of an NServiceBus endpoint to define a set of conditions that are checked on endpoint startup or periodically.
 
@@ -106,43 +89,69 @@ As mentioned above, there are two types of custom checks:
 * Custom check that runs once, when the endpoint host starts
 * Periodic check that runs at defined intervals
  
-The result of a custom check is either success or a failure (with a detailed description defined by the developer). This result is sent as a message to the ServiceControl queue.   
+The result of a custom check is either success or a failure (with a detailed description defined by the developer). This result is sent as a message to the ServiceControl queue and status will be shown in the ServicePulse UI.   
 
 **Related articles**
 
 - [How to Develop Custom Checks for ServicePulse](/servicepulse/how-to-develop-custom-checks.md)
 
-### ServiceControl SagaAudit Plugin
+NOTE: It is essential that you deploy this plugin to your endpoint in production in order to receive error notifications about the custom check failures in the ServicePulse dashboard.
 
-The Saga Audit plugin collects saga runtime activity information. This information enables the display of detailed saga data, behavior, and current status in the ServiceInsight Saga View. The plugin sends the relevant saga state information as messages to the ServiceControl queue whenever a saga state changes. This enables the Saga View to be highly detailed and up-to-date.
+#### Relevant Nuget packages for the CustomChecks Plugin
 
-However, depending on the saga's update frequency, it may also result in a large number of messages, and a higher load on both the sending endpoint and on the receiving ServiceControl instance. As a result, prior to deploying the Saga Audit plugin, you should test to verify that the Saga Audit plugin communication overhead does not interfere with your expected endpoint performance.   
+| **Endpoint NSB Version** | **NuGet** | 
+|:----- |:----- |
+|NSB v5.x|[ServiceControl.Plugin.Nsb5.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks)|
+|NSB v4.x|[ServiceControl.Plugin.Nsb4.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks)|
+|NSB v3.x|[ServiceControl.Plugin.Nsb3.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks)|
+
+#### Deprecated Nuget
+If you are using the older version of the plugin, namely **ServiceControl.Plugin.CustomChecks** please remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
+
+### SagaAudit Plugin for Saga Visualization in ServiceInsight
+
+Unlike the Heartbeat and the CustomChecks plugin, which specifically reports information targeted for Ops in ServicePulse, this plugin is built specifically for developers to help debug Sagas by capturing every state change that the saga undergoes.  It is optimized for capturing and recording large amounts of data in regards to each saga message.  This information enables the display of detailed saga data, behavior, and current status in the ServiceInsight Saga View. The plugin sends the relevant saga state information as messages to the ServiceControl queue whenever a saga state changes. This enables the Saga View to be highly detailed and up-to-date.
+
+NOTE: Depending on the saga's update frequency, adding this plugin to your endpoint may result in a large number of messages, and a higher load on both the sending endpoint and on the receiving ServiceControl instance.  Therefore, it may not be advisable to deploy this plugin to your production systems as it would unnecessarily increase the message load. 
+
+#### Relevant Nuget packages for the SagaAudit Plugin
+
+| **Endpoint NSB Version** | **NuGet** | 
+|:----- |:----- |
+|NSB v5.x|[ServiceControl.Plugin.Nsb5.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.SagaAudit)|
+|NSB v4.x|[ServiceControl.Plugin.Nsb4.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit)|
+|NSB v3.x| Not Available |
+
+#### Deprecated Nuget
+If you are using the older version of the plugin, namely **ServiceControl.Plugin.SagaAudit** please remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
+
+
+#### How do I debug/view the saga state in Production when the plugin is not deployed?
+If you wish to visualize your saga in Production and the plugin is not already deployed, then simply add the Saga Audit plugin in the same location where your saga is running and restart your service. Use ServiceInsight to view the visualization and when done, remove the plugin and restart your service. This approach is very similar for example, when you need to use Journaling to debug a message based system, where you turn it on when needed to collect the information you wish to see and then turn it back off. 
 
 **Related articles**
 
 * [ServiceInsight Overview - The Saga View](/serviceinsight/getting-started-overview.md#the-saga-view)
 
-### ServiceControl DebugSession Plugin
+### DebugSession Plugin for Integrated Debugging
 
-Debug session is a dedicated plugin that enables integration between ServiceMatrix and ServiceInsight.
+Similar to the SagaAudit plugin, the DebugSession is a dedicated plugin targeted for the developer that enables integration between ServiceMatrix and ServiceInsight. It helps to filter out older messages in ServiceInsight that are not part of the current debug session in Visual Studio.
 
 When deployed, the debug session plugin adds a specified debug session identifier to the header of each message sent by the endpoint. This allows messages sent by a debugging or test run within Visual Studio to be correlated, filtered, and highlighted within ServiceInsight.
+
+NOTE: Since this is meant only for development use, it adds no value to deploy this plugin to production. 
 
 **Related articles**
 
 * [ServiceMatrix and ServiceInsight Interaction](/servicematrix/servicematrix-serviceinsight.md)
-  
 
+#### Relevant Nuget packages for the DebugSession Plugin
 
-## Deprecated Packages
-
-Early versions of the plugins were incorrectly named, they did not specify the target version as NServiceBus 4. These packages have been deprecated and unlisted.
-
-Usage of these packages should be removed and replaced with the new packages.
-
-| **Plugin** | ** Old Package ** | **Replacement Package** | 
+| **Endpoint NSB Version** | **NuGet** | 
 |:----- |:----- |
-|Heartbeat|ServiceControl.Plugin.Heartbeat|[ServiceControl.Plugin.Nsb4.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat)|
-|Custom Checks|ServiceControl.Plugin.CustomChecks|[ServiceControl.Plugin.Nsb4.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks)|
-|Saga Audit|ServiceControl.Plugin.SagaAudit|[ServiceControl.Plugin.Nsb4.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit)|
-|Debug Session|ServiceControl.Plugin.DebugSession|[ServiceControl.Plugin.Nsb4.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.DebugSession)|
+|NSB v5.x|[ServiceControl.Plugin.Nsb5.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.DebugSession)|
+|NSB v4.x|[ServiceControl.Plugin.Nsb4.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.DebugSession)|
+|NSB v3.x| Not Available |
+
+#### Deprecated Nuget
+If you are using the older version of the plugin, namely **ServiceControl.Plugin.DebugSession** please remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
