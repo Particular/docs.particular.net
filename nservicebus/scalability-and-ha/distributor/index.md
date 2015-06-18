@@ -180,7 +180,7 @@ It is very important that all your machines have their own unique QMId. If two o
 
 The primary reason for machines ending up with duplicate QMIds is cloning of virtual machines from a common Windows image without running the recommended [Sysprep](https://technet.microsoft.com/en-us/library/cc766049.aspx) tool. 
 
-Should you have two or more machines with the same QMId, simply reinstall the MSMQ feature to generate a new QMId.
+Should you have two or more machines with the same QMId reinstall the MSMQ feature to generate a new QMId.
 
 Check out [John Brakewells blog](http://blogs.msdn.com/b/johnbreakwell/archive/2007/02/06/msmq-prefers-to-be-unique.aspx) for more details.
 

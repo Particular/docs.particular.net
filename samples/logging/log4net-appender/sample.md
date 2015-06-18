@@ -11,7 +11,7 @@ This sample shows how to configure a custom Log4net appender.
 
 ### The Appender
 
-The appender simply outputs to the console with a given color.
+The appender outputs to the console with a given color.
 
 <!-- import Appender -->
 

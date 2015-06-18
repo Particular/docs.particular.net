@@ -32,7 +32,7 @@ To see a detailed display of the failed messages, click the Failed Messages indi
 
 After addressing the root cause of the message's processing failure, you can resend the failed message for reprocessing by the endpoint(s). This is referred to as a "retry" (or a manual retry, in contrast to the automated and configurable FLRs and SLRs).
 
-To retry a failed message, select the failed message(s) in the failed messages list and click the "Retry Selected" button (or simply click "Retry All Messages").
+To retry a failed message, select the failed message(s) in the failed messages list and click the "Retry Selected" button (or click "Retry All Messages").
 
 A message that is sent for retry is marked as such, and is not displayed in the failed message list, unless the reprocessing fails again.
 

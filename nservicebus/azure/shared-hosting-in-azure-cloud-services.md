@@ -100,7 +100,7 @@ Other configuration settings are available as well if you need more fine grained
 
 The Azure configuration system applies to all instances of all roles. It has a built in way to separate role types, but not role instance and definitely no separation for processes on those instances. This means that a configuration override put in the service configuration file will automatically apply to all endpoints hosted on those roles. This is obviously not desirable, and can be dealt with in 2 ways. 
 
-* Put your configuration settings in the app.config. As autoupdate is available you can easily manage it this way as changing a config simply means uploading a new zip to your azure storage account and the hosts will update themselves automatically. (This is the default)
+* Put your configuration settings in the app.config. As autoupdate is available you can easily manage it this way as changing a config means uploading a new zip to your azure storage account and the hosts will update themselves automatically. (This is the default)
 * Alternatively you can separate the configuration settings in the service configuration file by convention. The `.AzureConfigurationSource(prefix)` overload allows you to set a prefix in every endpoint that will be prepended to it's configuration settings. Call this configuration method with a prefix of your choice and you can still use the configuration settings file for your hosted endpoints.
 
 ## Sample

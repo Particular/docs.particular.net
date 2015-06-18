@@ -38,7 +38,7 @@ ServicePulse is the front end of ServiceControl. Through ServicePulse, administr
 
 To allow endpoints to communicate their status to the ServiceControl and ServicePulse monitoring tools, the concepts of [heartbeat and checks](/servicepulse/how-to-configure-endpoints-for-monitoring.md) are introduced:
 
-* **Heartbeat**: each endpoint can send a [heartbeat message](/servicepulse/intro-endpoints-heartbeats.md) to the monitoring infrastructure, signaling that it is alive. Simply deploy a plugin to the endpoint and restart it.
+* **Heartbeat**: each endpoint can send a [heartbeat message](/servicepulse/intro-endpoints-heartbeats.md) to the monitoring infrastructure, signaling that it is alive. Deploy a plugin to the endpoint and restart it.
 * **Checks**: you can develop and deploy [custom checks](/servicepulse/intro-endpoints-custom-checks.md) to the endpoint, as plugins, to enrich the information that the endpoint sends to the monitoring infrastructure.
 
 ## Service Level Agreement (SLA)

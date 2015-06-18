@@ -128,7 +128,7 @@ NOTE: If you specify an error queue for a specific endpoint in the config file o
 
 The second value, ForwardReceivedMessagesTo, defines the queue to which all messages will be audited. Any message that is processed by an endpoint is forwarded to this queue. This too can be overridden per endpoint.
 
-The audit and error queues can be on a remote machine by simply appending `@machinename` on the end of the queue.  In production it is considered best practice to set both of these queues on a central machine by setting a value like "error@machine" or "error@IP-Address". Read about how to [configure retries](/nservicebus/errors/automatic-retries.md).
+The audit and error queues can be on a remote machine by appending `@machinename` on the end of the queue.  In production it is considered best practice to set both of these queues on a central machine by setting a value like "error@machine" or "error@IP-Address". Read about how to [configure retries](/nservicebus/errors/automatic-retries.md).
 
 ## Monitoring the errors and audits
 

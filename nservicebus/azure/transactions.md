@@ -150,7 +150,7 @@ Depending on your business needs you can go for one of these:
 
 ### Message deduplication
 
-This is probably the easiest way to detect if a message has been executed already. You simply store every message that has been processed so far and when a new message comes in, you compare it to the set of already processed messages. If you find it in the list, you have processed it before.
+This is probably the easiest way to detect if a message has been executed already. You store every message that has been processed so far and when a new message comes in, you compare it to the set of already processed messages. If you find it in the list, you have processed it before.
 
 The approach has obvious downsides as well. As every message needs to be stored and searched for, it can reduce message throughput because of the lookup requirement, potentially causing contention on the message store as well at high volumes.
 

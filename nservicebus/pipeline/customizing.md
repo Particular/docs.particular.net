@@ -48,7 +48,7 @@ A message behavior is a class that implements the `IBehavior<TContext>` interfac
 
 In the above code snippet the `SampleBehavior` class implements the `IBehavior<IncomingContext>` interface. This tells the framework to execute this behavior against the incoming pipeline. If you want to create a behavior that needs to be applied to the outgoing pipeline, implement the `IBehavior<OutgoingContext>` instead. 
 
-Sometimes a parent behavior might need to pass in some information relating to a child behavior and vice versa. The context facilitates this passing of data between behaviors in the pipeline steps. The context is simply a dictionary. You can add information to this dictionary in a parent behavior and retrieve this value from a child behavior and vice versa. 
+Sometimes a parent behavior might need to pass in some information relating to a child behavior and vice versa. The context facilitates this passing of data between behaviors in the pipeline steps. The context is a dictionary. You can add information to this dictionary in a parent behavior and retrieve this value from a child behavior and vice versa. 
 
 An important fact that the above sample outlines is that each behavior is responsible to call the `next` behavior in the chain and it is also interesting to note that a behavior can perform some actions before calling the next behavior in the chain and some other action after the chain has been executed.
 
@@ -91,4 +91,4 @@ The implementation of `DeserializeLogicalMessagesBehavior` handles deserializati
 
 #### When to handle
 
-The implementation of `UnitOfWorkBehavior` handles aggregating multiple exceptions that can occur in a unit of work. However `MessageDeserializationException` is simply re-thrown (not aggregated). So any behavior that replaces  `UnitOfWorkBehavior` should duplicate this functionality.   
+The implementation of `UnitOfWorkBehavior` handles aggregating multiple exceptions that can occur in a unit of work. However `MessageDeserializationException` is re-thrown (not aggregated). So any behavior that replaces  `UnitOfWorkBehavior` should duplicate this functionality.   

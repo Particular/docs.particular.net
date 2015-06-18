@@ -36,7 +36,7 @@ Open `Default.aspx.cs` in `WebApplication` to see the `Button1Click` method:
 
 <!-- import ActionHandling -->
 
-The first line of code simply parses the text passed in by the user. The second line creates a new NServiceBus message of the type `Command`, and initializes its `Id` property with the value from the text box.
+The first line of code parses the text passed in by the user. The second line creates a new NServiceBus message of the type `Command`, and initializes its `Id` property with the value from the text box.
 
 Open the class definition for the `Command` type in the `Shared` project:
 

@@ -53,7 +53,7 @@ NOTE: Anyone who can access the ServiceControl URL has complete access to the me
 
 It is important to understand that URLACLs do not restrict access to the URL based on the identity of the requestor, what they do is to restrict which user or security group can start to listen for incoming requests on the configured URL. 
 
-In the above sample `everyone` is simply for demonstration purpose. Be sure to configure your URLACL based on security policies defined in your environment.
+In the above sample `everyone` is for demonstration purpose. Be sure to configure your URLACL based on security policies defined in your environment.
 
 ServiceControl will not start if the service account does not have access to listen on the URL specified in the configuration file.
 

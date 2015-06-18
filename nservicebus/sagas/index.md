@@ -45,7 +45,7 @@ The important part of a long-running process is its behavior. Just like regular 
 
 ## Starting and correlating sagas
 
-Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sometimes it's simply the arrival of a given message type. In our previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives `IAmStartedByMessages<StartOrder>`
+Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sometimes it's the arrival of a given message type. In our previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives `IAmStartedByMessages<StartOrder>`
 
 Please note that `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that. This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it.
 
@@ -65,7 +65,7 @@ Read more about the [Unique property and concurrency](concurrency.md).
 
 ## Ending a long-running process
 
-After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done simply by calling the `MarkAsComplete()` method.
+After receiving all the messages needed in a long-running process, or possibly after a timeout (or two, or more) you will want to clean up the state that was stored for the saga. This is done by calling the `MarkAsComplete()` method.
 
 The infrastructure contacts the Timeout Manager (if an entry for it exists) telling it that timeouts for the given saga ID can be cleared. If any messages that are handled by the saga(`IHandleMessages<T>`) arrive after the saga has completed, they are discarded. Note that a new saga will be started if a message that is configured to start a saga arrives(`IAmStartedByMessages<T>`).
 

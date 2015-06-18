@@ -50,7 +50,7 @@ A transport that supports native publish/subscribe (Azure Service Bus, RabbitMQ)
 
 A transport that uses storage-driven publishing will act differently. When it needs to publish, it will first consult its subscription storage to determine the interested parties. It will then send an independent copy of the event message to each subscriber.
 
-While it is common to think of an event being published *from* a specific location, this doesn't always reflect the reality of the messaging mechanics. For native pub/sub brokers, there is no *from* concept. You simply publish an event and the broker figures out the rest.
+While it is common to think of an event being published *from* a specific location, this doesn't always reflect the reality of the messaging mechanics. For native pub/sub brokers, there is no *from* concept. You publish an event and the broker figures out the rest.
 
 In the case of storage-driven transports, however, the "publish from" location actually relates to the input queue that is set up to receive subscription requests and store them in the subscription storage database.
 
