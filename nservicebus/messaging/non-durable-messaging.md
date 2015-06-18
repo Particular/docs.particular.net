@@ -58,7 +58,7 @@ The underlying setting that is used to achieve this is to set [Message.Recoverab
 
 There are some extra configurations required for MSMQ
 
- * The target`useTransactionalQueues` needs to be `false` in the [MSMQ connection strings](/nservicebus/msmq/connection-strings.md)
+ * The target `useTransactionalQueues` needs to be `false` in the [MSMQ connection strings](/nservicebus/msmq/connection-strings.md)
  * The endpoint needs to be non-transactional.
 
 
