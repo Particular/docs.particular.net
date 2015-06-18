@@ -114,7 +114,7 @@ If you are using the older version of the plugin, namely **ServiceControl.Plugin
 
 ## SagaAudit Plugin (for Development ONLY)
 
-DANGER: Depending on a saga's update frequency adding this plugin to your endpoint may result in a large number of messages and a higher load on both the sending endpoint and on the receiving ServiceControl instance. To avoid unnecessarily increase in both the number of messages and an increase in ServiceControl load it is recommended to only deploy this plugin to production for short periods of time when debugging issues with Sagas. 
+DANGER: This Plugin will result in a significant increase in the load placed on ServiceControl. As such it should not be used in production. 
 
 The SagaAudit plugin enabled Saga Visualization in ServiceInsight. It is built specifically for developers to help debug Sagas by capturing every state change that the saga undergoes.  It is optimized for capturing and recording large amounts of data in regards to each saga message.  This information enables the display of detailed saga data, behavior, and current status in the ServiceInsight Saga View. The plugin sends the relevant saga state information as messages to the ServiceControl queue whenever a saga state changes. This enables the Saga View to be highly detailed and up-to-date.
 
