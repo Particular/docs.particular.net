@@ -11,7 +11,7 @@ related:
 
 Relaxes message delivery guarantees in order to achieve better performance. 
 
-WARN: This makes you sustainable to message loss during server crashes and restarts. 
+WARNING: This makes you sustainable to message loss during server crashes and restarts. 
 
 
 ## Enabling non-durable messaging
