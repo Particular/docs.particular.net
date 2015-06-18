@@ -28,7 +28,7 @@ See [NHibernate configuration](configuration) on how you can pass this configura
 NOTE: When you create a custom mapping then you are responsible for mapping the primary key and unique indexes correctly.
 
 
-NOTE: The `[Unique]` attribute will not be used to generate a unique index. You are responsible to add this to your custom mapping. This is especially important when using both optimistic concurrency and a transaction isolation level different from serializable and allow concurrent processing of messages. Not adding this can result in multiple saga entities be persisted as the second insert will not fail when inserting a duplicate saga key (different from the primary key column) when multiple message  are processed concurrently that target the same saga instance.
+NOTE: When using custom mappings you are responsible for creating unique indexes for all mapped saga properties. This is especially important when using both optimistic concurrency and a transaction isolation level different from serializable and allow concurrent processing of messages. Not adding this can result in multiple saga entities be persisted as the second insert will not fail when inserting a duplicate saga key (different from the primary key column) when multiple message  are processed concurrently that target the same saga instance.
 
 
 ## Custom .hbm.xml mapping
