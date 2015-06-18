@@ -112,7 +112,7 @@ NOTE: It is essential that you deploy this plugin to your endpoint in production
 If you are using the older version of the plugin, namely **ServiceControl.Plugin.CustomChecks** please remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
 
 
-## SagaAudit Plugin
+## SagaAudit Plugin (for Development ONLY)
 
 DANGER: Depending on the saga's update frequency adding this plugin to your endpoint may result in a large number of messages and a higher load on both the sending endpoint and on the receiving ServiceControl instance.  To avoid unnecessarily increase the message load it is recommended to only deploy this plugin to production for short periods of time when debugging issues with Sagas. 
 
