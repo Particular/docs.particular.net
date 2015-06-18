@@ -7,7 +7,7 @@ tags:
 
 ServiceControl is a monitoring tool for production environments. As with other production monitoring tools, you must plan for and maintain the deployment over time.
 
-The primary job of ServiceControl is to collect information on system behavior in production. It does so by collecting error, audit and health messages from dedicated queues. ServiceControl reads the messages flowing into those queues and stores them in its embedded database. Therefore, in a production environment (and to a lesser degree in development, staging and testing environments), ServiceControl has an impact on the disk space where its data is stored, and its throughput capacity needs to be considered with regard to the overall system load and throughput.
+The primary job of ServiceControl is to collect information on system behavior in production. It does so by collecting error, audit and health messages from dedicated queues. ServiceControl reads the messages flowing into those queues and stores them in its embedded database. In a production environment (and to a lesser degree in development, staging and testing environments), ServiceControl has an impact on the disk space where its data is stored, and its throughput capacity needs to be considered with regard to the overall system load and throughput.
 
 ### Storage
 

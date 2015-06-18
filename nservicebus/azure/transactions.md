@@ -16,6 +16,7 @@ The Azure Platform and NServiceBus make a perfect fit. On the one hand the Azure
 
 To better understand why this feature is lacking, let's examine the implications of these technologies.
 
+
 ## Understanding transactions
 
 Transaction processing is designed to maintain systems integrity (typically a database or some modern filesystems and services) in a known, consistent state, by ensuring that interdependent operations on the system are either all completed successfully or all canceled successfully. This article mostly considers database technology and storage services.
@@ -32,6 +33,7 @@ For example:
 * The Azure database supports local transactions, but only grants locks on resources, when required by a system task for 20 seconds, and 24 hours otherwise. See [this msdn article](https://msdn.microsoft.com/library/azure/dn338081.aspx#TransactionDurationLimit) for more details.
 
 When both the database management system and client are under the same ownership, imagine you just deployed SQL Server to your own virtual machine, so locks are no longer an issue and you can control the lock duration. But even in this case, you need to be careful when it comes to distributed transactions. 
+
 
 ## Understanding distributed transactions and the two-phase commit protocol
 
@@ -50,6 +52,7 @@ This is the reason why none of the Azure services supports distributed transacti
 
 Side note: The .net framework promotes to a distributed transaction rather quickly; for example, two open connections to the same resource (exact same connectionstring), will still promote to a distributed transaction, and there is no option to disable promotion. 
 
+
 ## How to use NServiceBus in this environment
 
 By default, NServiceBus relies on the DTC to make distributed system development really easy. But in the Azure environment, you cannot use the DTC. So you have to configure/use it a bit differently. 
@@ -64,6 +67,7 @@ The options:
 * Sagas and compensation logic
 * Routing slips and compensation logic
 
+
 ### Share local transactions
 
 Prevent transaction promotion by reusing a single local transaction. The idea is to inject the outermost local transaction/unit of work, started by the receiving transport, into the rest of the application (like your orm, etc.) so that only a single transaction is used for both receiving and handling a message and its result.
@@ -77,11 +81,12 @@ Prevent transaction promotion by reusing a single local transaction. The idea is
 * You are limited to a single transactional resource for your entire system. The technique can only be applied if your application fits the limits of this transactional resource. As some Azure services throttle quite aggressively, sometimes on behavior of other tenants, capacity planning might become an issue.
 * Must be able and willing to inject the transaction, which may be a challenge when using third-party libraries, for example.
 
+
 ### Atomic operations and transport retries
 
 This technique is used when a resource does not support transactions at all. The idea is that every single operation is 'transactional' by default, in the sense that the operation either succeeds or fails as a single unit. And if you limit yourself to single operations only, you don't need transactions anymore. A unit of work pattern with batching is a single operation as well and can therefore be used to emulate a transaction, but with big restrictions. Azure storage services allow you to group a number of operations into a single batch, to make the set atomic, but only on Azure storage tables and only when the partition key for all operations is exactly the same.
 
-However, regular transactions also imply 'rollback' semantics that will make the receive infrastructure retry the original message again later. Therefore, you need to combine this technique with a transport that supports retry semantics.
+However, regular transactions also imply 'rollback' semantics that will make the receive infrastructure retry the original message again later. You need to combine this technique with a transport that supports retry semantics.
 
 **Advantages**
 
@@ -93,6 +98,7 @@ However, regular transactions also imply 'rollback' semantics that will make the
 * You need to change the way you program your business logic to become atomic; just one insert, update, or delete at a time isn't always easy.
 * You need to change your business logic to become idempotent. As message retry is added to the equation, but outside of the scope of the atomic operation, you need to make sure that the same operation can be repeatedly executed without changing the end result. See 'the need for idempotency' on techniques to achieve this.
 * Retry behavior is typically combined with timeouts that will kick in not only if your operation failed, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel.
+
 
 ### Sagas and compensation logic
 
@@ -108,6 +114,7 @@ Sagas in NServiceBus are a stateful set of message handlers that can be used to 
 * To consider and implement all possible variations and error conditions in a transaction, involves quite a lot of work.
 * To implement effectively, requires a good understanding of the business.
 * If applied in conjunction with atomic operations that cannot be batched, you need to keep in mind that the saga is stateful as well and therefore breaks the atomicity of the operation. This needs to be taken into account when designing the saga. You should never execute operations against a store inside the saga itself, but always use another message handler and a queue in between and cater for idempotency at all levels.
+
 
 ### Routing slips and compensation logic
 
@@ -140,15 +147,18 @@ Depending on your business needs you can go for one of these:
 * Partner state machines
 * Accept uncertainty
 
+
 ### Message deduplication
 
 This is probably the easiest way to detect if a message has been executed already. You simply store every message that has been processed so far and when a new message comes in, you compare it to the set of already processed messages. If you find it in the list, you have processed it before.
 
 The approach has obvious downsides as well. As every message needs to be stored and searched for, it can reduce message throughput because of the lookup requirement, potentially causing contention on the message store as well at high volumes.
 
+
 ### Natural idempotency
 
 Many operations can be designed in a naturally idempotent way. `TurnOntheLights` is by default an idempotent operation; it will have the same effect no matter if the lights were on or off to begin with and no matter how often you execute it. `FlipTheLightSwitch` however is not naturally idempotent; the results may vary on the start condition and the number of times you execute it. Try to make use of natural idempotency as much as possible.
+
 
 ### Entities and messages with version information
 
@@ -156,13 +166,16 @@ Another technique is to add versioning information to your entities (timestamp o
 
 The downside of this approach is that the version of the entity can change for different commands, and may therefore cause unexpected outcomes when unrelated commands arrive in a different order than logically sent.
 
+
 ### Partner state machines
 
 A better approach is to organize the state inside an entity on a per partner basis, as a miniature state machine. Ultimately the only non-idempotent messages occur when one entity issues a command to another, and if you follow the `one master` rule, there should only be one such logical endpoint sending that command. Therefore if you organize your state internally in the entity according to that relationship, and keep track of the progression of that relationship as a state machine, it's impossible to have versioning conflicts.
 
+
 ### Side effect checks
 
 Arguably a dangerous approach, but often very useful in the real world, is to check for indirect side effects of a command to determine if it needs to be processed. When `TheFireIsHot` there is no need to `TurnOnTheFire` anymore.
+
 
 ### Accept uncertainty
 

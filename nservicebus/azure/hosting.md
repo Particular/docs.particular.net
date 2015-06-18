@@ -15,7 +15,7 @@ Azure offers various ways to host applications. Each of these hosting options ca
 
 ## General Considerations
 
-Because of the size and service nature of the Azure platform, you cannot rely on distributed transactions in this environment. Therefore, you cannot rely on any setup that would require distributed transactions, including the MSMQ transport. For details, refer to ['Understanding transactions in Azure'](transactions.md).
+Because of the size and service nature of the Azure platform, you cannot rely on distributed transactions in this environment. You cannot rely on any setup that would require distributed transactions, including the MSMQ transport. For details, refer to ['Understanding transactions in Azure'](transactions.md).
 
 ## Azure Virtual Machines
 

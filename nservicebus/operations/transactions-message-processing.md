@@ -82,7 +82,7 @@ In all of the above, administrative action is needed, from things as simple as b
 
 SLRs also aids in the [resolution of more permanent errors](/nservicebus/errors/automatic-retries.md).
 
-There is nothing necessarily wrong with the message itself. It might contain valuable information that shouldn't get lost under these conditions. Therefore, after the administrator finishes resolving the issue, they should return the message to the queue it came from. Luckily, NServiceBus comes with a tool that does exactly that.
+There is nothing necessarily wrong with the message itself. It might contain valuable information that shouldn't get lost under these conditions. After the administrator finishes resolving the issue, they should return the message to the queue it came from. NServiceBus comes with a tool that does this.
 
 ## ReturnToSourceQueue.exe
 
