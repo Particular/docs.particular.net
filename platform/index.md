@@ -60,7 +60,7 @@ There you will get notified when the endpoint is down or when a message fails. Y
 
 # ServiceMatrix - faster prototyping
 
-ServiceMatrix is a VisualStudio extension, that allows for creating messaging system with NServiceBus using visual tools. With a few simple clicks you can visually create a prototype on canvas. You can also extend the generated code to customize your prototype.
+ServiceMatrix is a Visual Studio extension available with VS2012 and VS2013. As an Architect or a Systems Design Engineer, you can quickly design your system on the design canvas and also generate the prototype based off your design. You can customize the generated code to suit your needs for the prototype.
 
 ServiceMatrix is perfect for Proof of Concept, prototyping and discussing project design with a team of developers. Having a working prototype with visualization helps to clarify the design better in terms of how the system works. Combined with the run time visualization from ServiceInsight, the team can see how information and messages flow through the various endpoints using message flow and sequence diagrams.
 
