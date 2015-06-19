@@ -1,7 +1,8 @@
 ---
 title: Monitoring NServiceBus Endpoints
 summary: Monitoring in NServiceBus is easier than in regular three-tier systems due to queuing and message-based communication.
-tags: []
+tags:
+- Performance Counters
 redirects:
 - nservicebus/monitoring-nservicebus-endpoints
 ---
