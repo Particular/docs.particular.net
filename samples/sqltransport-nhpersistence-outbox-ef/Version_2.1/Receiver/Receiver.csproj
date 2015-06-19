@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbContextBehaviorRegistration.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderLifecycleSaga.cs" />
     <Compile Include="OrderLifecycleSagaData.cs" />

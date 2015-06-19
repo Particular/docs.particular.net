@@ -6,6 +6,8 @@ class Program
 {
     static void Main()
     {
+        Console.Title = "Sender";
+
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
         BusConfiguration busConfiguration = new BusConfiguration();
@@ -20,10 +22,12 @@ class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            while (true)
+            while(true)
             {
-                Console.WriteLine("Press <enter> to send a message");
-                Console.ReadLine();
+                Console.WriteLine("Press any key to send a message, press <esc> to quit ");
+                var key = Console.ReadKey();
+
+                if (key.Key == ConsoleKey.Escape) return;
 
                 string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
                 bus.Publish(new OrderSubmitted
