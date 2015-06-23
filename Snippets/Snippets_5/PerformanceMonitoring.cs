@@ -18,5 +18,40 @@
             #endregion
         }
 
+        public void EnablingCriticalTime()
+        {
+            #region enable-criticaltime
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.EnableCriticalTimePerformanceCounter();
+
+            #endregion
+        }
+
+        public void EnablingSla()
+        {
+            #region enable-sla
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            //with the default
+            busConfiguration.EnableSLAPerformanceCounter();
+            //or with a defined SLA
+            busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
+
+            #endregion
+        }
+
+        #region enable-sla-host-attribute
+
+        [EndpointSLA("00:03:00")]
+        public class EndpointConfig : IConfigureThisEndpoint
+        {
+            #endregion
+
+            public void Customize(BusConfiguration busConfiguration)
+            {
+            }
+        }
+
     }
 }

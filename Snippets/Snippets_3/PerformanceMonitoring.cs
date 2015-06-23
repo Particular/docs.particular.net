@@ -1,22 +1,10 @@
-﻿namespace Snippets4
+﻿namespace Snippets3
 {
     using System;
     using NServiceBus;
 
     public class PerformanceMonitoring
     {
-        public void V5Upgrade()
-        {
-            #region PerformanceMonitoring-v5-upgrade-guide
-
-            Configure.With()
-                .EnablePerformanceCounters();
-
-            Configure.With()
-                .SetEndpointSLA(TimeSpan.FromMinutes(3));
-
-            #endregion
-        }
         public void EnablingCriticalTime()
         {
             #region enable-criticaltime
@@ -35,6 +23,7 @@
             configure.SetEndpointSLA(TimeSpan.FromMinutes(3));
             #endregion
         }
+
         #region enable-sla-host-attribute
 
         [EndpointSLA("00:03:00")]
