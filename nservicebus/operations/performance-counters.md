@@ -13,6 +13,7 @@ related:
 - nservicebus/errors
 - nservicebus/operations/auditing
 - nservicebus/operations/management-using-powershell
+- samples/performance-counters
 ---
 
 When a system is broken down into multiple processes, each with its own queue, you can identify which process is the bottleneck by examining how many messages (on average) are in each queue. The only issue is that without knowing the rate of messages coming into each queue, and the rate at which messages are being processed from each queue, you can't know how long messages are waiting in each queue, which is the primary indicator of a bottleneck.
