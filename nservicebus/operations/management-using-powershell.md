@@ -98,7 +98,7 @@ To use it promptly inside visual studio, you can do run the following from the P
 
 and then use the commandlet you want. 
 
-NOTE: there will be less feedback from the script if you run the commandlet inside Visual Studio. If you get warnings it might be a good idea to run the commandlet from a real PowerShell Console.
+NOTE: There will be less feedback from the script if you run the commandlet inside Visual Studio. If you get warnings it might be a good idea to run the commandlet from a real PowerShell Console.
 
 Or you can follow the instructions to load them into PowerShell using the Import-Module commandlet:
 
