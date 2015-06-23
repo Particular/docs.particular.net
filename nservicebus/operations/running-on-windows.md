@@ -28,6 +28,7 @@ As they cause the addressing used in NServiceBus to not function properly
 
 To read more about MSMQ go [here](/nservicebus/msmq/).
 
+
 ## Distributed Transaction Coordinator
 
 In order to support guaranteed once delivery of messages NServiceBus makes use of the Distributed Transaction Coordinator(DTC) to synchronize transaction between the queuing system and your database. For this to work correctly the MSDTC needs to be started and configured correctly. 
@@ -36,17 +37,20 @@ You can read more on transactions [here](/nservicebus/operations/transactions-me
 
 Since version 5 of NServiceBus there is a _non-DTC_ mode of operation available. In this mode NServiceBus uses a concept of outbox, a message store backed by same DB as the user code, to temporarily store messages that need to be send as a result of processing an incoming message. To read more about this subject see [Outbox](/nservicebus/outbox/).
 
+
 ## Storage
 
 In order to durably handle things like subscriptions, timeouts, sagas, etc, NServiceBus needs a storage mechanism that supports the MSDTC (or when in _non-DTC_ mode, uses the same DB as the user code). The default storage for NServiceBus 3 and 4 was RavenDB with an option of using relational databases via [NHibernate](/nservicebus/nhibernate/). Since version 5 there is no default storage and a user has to explicitly choose either RavenDB, NHibernate or non durable. 
 
 You can read more on the persistence needs of NServiceBus [here](/nservicebus/persistence/).
 
+
 ## Performance counters
 
 To better help you monitoring your system NServiceBus will update a set of performance counters. In order for this to work a they need to be setup on the local machine. 
 
 More info on the monitoring support in NServiceBus can be found [here](/nservicebus/operations/monitoring-endpoints.md).
+
 
 ## Using PowerShell to setup the infrastructure manually
 

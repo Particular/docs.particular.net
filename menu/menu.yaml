@@ -223,7 +223,6 @@
       Title: "Introduction"
       Articles: 
         - "servicepulse/introduction-and-installing-servicepulse"
-        - "servicepulse/monitoring-nservicebus-endpoints"
         - "servicepulse/intro-endpoints-heartbeats"
         - "servicepulse/intro-failed-messages"
         - "servicepulse/intro-endpoints-custom-checks"
