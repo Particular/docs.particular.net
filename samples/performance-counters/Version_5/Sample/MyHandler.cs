@@ -13,10 +13,6 @@ public class MyHandler : IHandleMessages<MyMessage>
     {
         int sleepTime = random.Next(1, 1000);
         Thread.Sleep(sleepTime);
-        if (sleepTime%2 != 0)
-        {
-            throw new Exception();
-        }
         logger.InfoFormat("Hello from MyHandler. Slept for {0}ms", sleepTime);
     }
 }
