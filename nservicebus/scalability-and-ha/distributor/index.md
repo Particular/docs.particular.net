@@ -14,7 +14,7 @@ As a standard NServiceBus process, the Distributor maintains all the fault-toler
 
 ## When to use it?
 
-Scaling out (with or without a Distributor) is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](/nservicebus/operations/monitoring-endpoints.md) on the endpoint and when you have the need, add in the Distributor. Scaling out using the Distributor when needed is made easy by not having to change code, just starting the same endpoint in Distributor and Worker profiles and this article explains how.
+Scaling out (with or without a Distributor) is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](/nservicebus/operations/performance-counters.md) on the endpoint and when you have the need, add in the Distributor. Scaling out using the Distributor when needed is made easy by not having to change code, just starting the same endpoint in Distributor and Worker profiles and this article explains how.
 
 The Distributor is applicable only when using MSMQ as the transport for exchanging messages. NServiceBus uses MSMQ as the default transport. The Distributor is not required when using other brokered transports like SqlServer and RabbitMQ, since they share the same queue, even if there are multiple instances of the endpoints running. NServiceBus will ensure that only one of these instances of that endpoint will process that message in this case.
 
@@ -59,7 +59,7 @@ The distributor stores this information. When a message arrives at the Distribut
 
 All pending work stays in the Distributor's queue (rather than building up in each of the Workers' queues), giving visibility of how long messages are actually waiting. This is important for complying with time-based service level agreements (SLAs).
 
-For more information on monitoring, see [Monitoring NServiceBus Endpoints](/nservicebus/operations/monitoring-endpoints.md).
+For more information on monitoring, see [Performance Counters](/nservicebus/operations/performance-counters.md).
 
 For more information about Pub/Sub in a distributor scenario see [What the distributor does](/nservicebus/messaging/publish-subscribe/#what-the-distributor-does) and [The same for any publisher node](/nservicebus/messaging/publish-subscribe/#the-same-for-any-publisher-node)
 

@@ -180,7 +180,7 @@ Headers used to give visibility into "where", "when" and "by whom" Of a message.
 	 * `$.diagnostics.hostdisplayname`
 	 * `$.diagnostics.hostid` 
 	 * `$.diagnostics.originating.hostid` 
- * `NServiceBus.TimeSent`: The timestamp of when the message was sent. Used by the [Performance Counters](/nservicebus/operations/monitoring-endpoints.md).
+ * `NServiceBus.TimeSent`: The timestamp of when the message was sent. Used by the [Performance Counters](/nservicebus/operations/performance-counters.md).
  * `NServiceBus.OriginatingEndpoint`: The endpoint name where the message was sent from. 
  * `NServiceBus.OriginatingMachine`: The machine name where the message was sent from.
  * `NServiceBus.Version`: The NServiceBus version number.
