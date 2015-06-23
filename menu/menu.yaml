@@ -3,8 +3,9 @@
   Topics: 
     - 
       Title: "Getting Started"
-      Url: "nservicebus/concept-overview"
+      Url: "platform"
       Articles: 
+        - "platform"
         - "nservicebus/concept-overview"
         - "samples/endpoint-configuration"
         - "samples/step-by-step"
