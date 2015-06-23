@@ -5,7 +5,6 @@ tags:
 - ServicePulse
 related:
 - samples/custom-checks/monitoring3rdparty
-- servicepulse/how-to-develop-custom-checks
 - servicepulse/how-to-configure-endpoints-for-monitoring
 - servicecontrol/plugins
 ---

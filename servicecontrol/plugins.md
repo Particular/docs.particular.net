@@ -95,7 +95,7 @@ The result of a custom check is either success or a failure (with a detailed des
 
 **Related articles**
 
-- [How to Develop Custom Checks for ServicePulse](/servicepulse/how-to-develop-custom-checks.md)
+- [How to Develop Custom Checks for ServicePulse](/samples/custom-checks/monitoring3rdparty)
 
 NOTE: It is essential that you deploy this plugin to your endpoint in production in order to receive error notifications about the custom check failures in the ServicePulse dashboard.
 

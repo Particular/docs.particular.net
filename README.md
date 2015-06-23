@@ -61,7 +61,6 @@ tags:
 - Forwarding Messages
 related:
 - samples/custom-checks/monitoring3rdparty
-- servicepulse/how-to-develop-custom-checks
 redirects:
 - nservicebus/overview
 ---
