@@ -21,7 +21,7 @@ In this mode the transport in use does not attempt to wrap the receive operation
 
 ### Transport transaction
 
-In this mode, if supported by the transport, the receive operation is wrapped in a native transaction. The same transaction is used when processing of the message results in sending out other messages. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is not finished successfully.
+In this mode, if supported by the transport, the receive operation is wrapped in a native transaction. The same transaction is used when processing of the message results in sending out other messages. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is finished successfully.
 
 NOTE: In this mode messages on the wire can get duplicated at each endpoint so the handler logic has to be designed to be idempotent.
 
