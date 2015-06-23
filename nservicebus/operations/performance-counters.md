@@ -1,5 +1,5 @@
 ---
-title: NServiceBus Performance Counters
+title: Performance Counters
 summary: Monitoring NServiceBus through the use of performance counters.
 tags:
 - Performance Counters
