@@ -46,7 +46,7 @@ This set of headers contains information to control how messages are [de-seriali
 
 Several headers are used to enable messaging interaction patters
 
- * `NServiceBus.MessageId`: A unique id for the current message. Note that the value used for an out message can be controled by the enxpoint by using a `IMutateOutgoingTransportMessages`. 
+ * `NServiceBus.MessageId`: A unique id for the current message. Note that the value used for an outgoing message can be controled by the endpoint, using an `IMutateOutgoingTransportMessages`. 
  * `NServiceBus.CorrelationId`: A string used to [correlate](./message-correlation.md) reply messages to their corresponding request message. 
  * `NServiceBus.ConversationId`: The conversation that this message is part of
  * `NServiceBus.RelatedTo`: The `MessageId` that caused this message to be sent
