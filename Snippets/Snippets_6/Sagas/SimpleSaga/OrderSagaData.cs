@@ -1,5 +1,4 @@
-﻿using System;
-using NServiceBus.Saga;
+﻿using NServiceBus.Saga;
 
 namespace Snippets6.Sagas.SimpleSaga
 {

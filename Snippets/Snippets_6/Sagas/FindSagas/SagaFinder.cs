@@ -1,5 +1,4 @@
-﻿using NServiceBus.Saga;
-
+﻿
 namespace Snippets6.Sagas.FindSagas
 {
     public class SagaFinder

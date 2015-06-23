@@ -5,9 +5,9 @@
 
     public class PerformanceMonitoring
     {
-        public void Simple()
+        public void V5Upgrade()
         {
-            #region PerformanceMonitoring
+            #region PerformanceMonitoring-v5-upgrade-guide
 
             Configure.With()
                 .EnablePerformanceCounters();

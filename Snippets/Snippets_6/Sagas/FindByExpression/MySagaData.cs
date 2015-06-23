@@ -1,4 +1,3 @@
-using System;
 using NServiceBus.Saga;
 
 namespace Snippets6.Sagas.FindByExpression
