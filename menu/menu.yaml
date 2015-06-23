@@ -231,7 +231,6 @@
       Title: "Configuration"
       Articles: 
         - "servicepulse/how-to-configure-endpoints-for-monitoring"
-        - "servicepulse/how-to-develop-custom-checks"
         - "servicepulse/install-servicepulse-in-iis"
         - "servicepulse/troubleshooting"
 - 
