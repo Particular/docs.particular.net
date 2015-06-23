@@ -6,12 +6,6 @@ redirects:
  - nservicebus/preparing-your-machine-to-run-nservicebus
 ---
 
-# Particular Service Platform
-
-- [Getting started with the Particular Service Platform](getting-started-with-particular-service-platform.md)
-- [Releases and Release Notes](release-notes.md)
-- [Platform Installer](installer)
-
 Messaging is fantastic for building loosely coupled, scalable and reliable systems. However, it also has challenges. The most common difficulty is having visibility of what is happening in the system. This is one of the problems that Particular Service Platform was built to solve.
 
 The goal of the Platform is to provide a set of tools that make building and maintenance of messaging systems easier. The tools are tailored to common needs of a messaging system and 'just work' out of the box, thus enabling developers to focus on other important challenges, such as understanding their business domain better. At the moment, Particular Service Platform consists of [NServiceBus](/nservicebus), [ServiceMatrix](/servicematrix), [ServiceControl](/servicecontrol), [ServiceInsight](/serviceinsight) and [ServicePulse](/servicepulse).
