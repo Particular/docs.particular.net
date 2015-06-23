@@ -35,6 +35,7 @@ public static DateTime ToUtcDateTime(string wireFormattedString)
 
 
 ## Serialization Headers
+
 This set of headers contains information to control how messages are [de-serialized](/nservicebus/serialization/) by the receiving endpoint.
 
  * `NServiceBus.ContentType`: The type of serialization used for the message. For example ` text/xml` or `text/json`. The `NServiceBus.ContentType` header was added in version 4.0. In some cases it may be useful to use the `NServiceBus.Version` header to determine when to use the `NServiceBus.ContentType` header. 
@@ -45,7 +46,7 @@ This set of headers contains information to control how messages are [de-seriali
 
 Several headers are used to enable messaging interaction patters
 
- * `NServiceBus.MessageId`: A unique id for the current message.
+ * `NServiceBus.MessageId`: A unique id for the current message. Note that the value used for an out message can be controled by the enxpoint by using a `IMutateOutgoingTransportMessages`. 
  * `NServiceBus.CorrelationId`: A string used to [correlate](./message-correlation.md) reply messages to their corresponding request message. 
  * `NServiceBus.ConversationId`: The conversation that this message is part of
  * `NServiceBus.RelatedTo`: The `MessageId` that caused this message to be sent
