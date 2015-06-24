@@ -9,7 +9,17 @@ redirects:
 - nservicebus/managing-nservicebus-using-powershell
 ---
 
-Particular provides a PowerShell Module to make it easy to setup a computer to run NServiceBus.
+Particular provides a PowerShell module to make it easy to setup a computer to run NServiceBus.
+
+The PowerShell module provides cmdlets to assist with:
+
+- Installing Microsoft Message Queuing Service (MSMQ)
+- Configuring Microsoft Distributed Transaction Coordinator (MSDTC)
+- Installing performance counters for NServiceBus 
+- Setting the addresses of the default Error and Audit queues for use by deployed Endpoints 
+- Importing a Particular Platform license into the Registry
+- Removing a worker from a [Distributor](/nservicebus/scalability-and-ha/distributor/)
+
 
 ## Prerequisites
 
@@ -31,14 +41,15 @@ After installation the module can be loaded into a PowerShell session by issuing
 
 The installation adds the NServiceBus.PowerShell module location to the `PSModulePath` environment variable. If the module isn't available you may need to restart your Windows session for this change to to take effect.
 
+As most of the cmdlets require elevated privileges it is recommended that a PowerShell session be run as an administrator. 
 
 ## Help  
   
-A list of available commandlet can be found by issuing the following PowerShell command
+A list of available cmdlet can be found by issuing the following PowerShell command
 
 	Get-Command -Module NServiceBus.PowerShell
 
-Help for each commandlet incorporated within the module and can be accessed via the standard [PowerShell Get-Help Command](https://technet.microsoft.com/en-us/library/ee176848.aspx). For example `Get-Help Set-NServiceBusLocalMachineSettings` returns the following information
+Help for each cmdlet incorporated within the module and can be accessed via the standard [PowerShell Get-Help Command](https://technet.microsoft.com/en-us/library/ee176848.aspx). For example `Get-Help Set-NServiceBusLocalMachineSettings` returns the following information
 
 	NAME
 	    Set-NServiceBusLocalMachineSettings
@@ -60,7 +71,7 @@ Help for each commandlet incorporated within the module and can be accessed via 
 ## Upgrade information
 
 
-### RavenDB commandlet
+### RavenDB cmdlets
 
 NServiceBus now supports multiple versions of the [RavenDB](/nservicebus/ravendb/version-compatibility.md) client.  Previous versions of the PowerShell module included cmdlets to install and test  RavenDB V2.0.2375. To avoid confusion we have removed these cmdlets in V5.0:
 
