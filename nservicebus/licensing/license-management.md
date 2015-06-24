@@ -47,6 +47,9 @@ These following instructions cover installing the license file without using NSe
 $content = Get-Content license.xml | Out-String
 Set-ItemProperty -Path HKLM:\Software\ParticularSoftware -Name License -Force -Value $content
 ```
+
+If modifying the registry directly using Regedit or a PowerShell script to update the license for ServiceControl, you will need to restart the ServiceControl service, as it only checks for its license information once at startup.
+
 NOTE: On a 64 bit operating system this script should not be run through the PowerShell(x86) console prompt, doing so will result in the license being imported into the 32 registry key. Please use a 64bit PowerShell session. 
 
 NOTE: As of version 4.5, both the `LicenseInstaller.exe` tool and the `install-NServiceBusLicense` PowerShell commandlet has been deprecated. 
