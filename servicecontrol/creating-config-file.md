@@ -48,10 +48,40 @@ ServiceControl uses RavenDB as an embedded database. The database location has s
 
 ServiceControl consumes messages from the Audit and Error queues and stores these messages temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](how-purge-expired-data.md).
 
-#### Consuming messages from Audit & Error queues
+#### Audit and Error queues
 
 ServiceControl consumes messages from the audit and error queues, and stores these messages locally in its own embedded database.
-You can configure ServiceControl to forward any consumed messages into alternate queues, so that a copy of any message consumed by ServiceControl is available from these alternate queues. To do so, set the `ServiceBus/ErrorLogQueue` and `ServiceBus/AuditLogQueue` settings.
+
+The error and audit queues ServiceControl uses by customized via `ServiceBus/ErrorQueue` and `ServiceBus/AuditQueue` settings.  
+
+You can also configure ServiceControl to forward any consumed messages into alternate queues, so that a copy of any message consumed by ServiceControl is available from these alternate queues. To do so,
+set the `ServiceBus/ErrorLogQueue` and `ServiceBus/AuditLogQueue` settings.
+
+The default forwarding queues names are based on the error and audit queue names. So when changing the error or audit queue it is important to consider the impact on the forwarding queue name.
+
+For example, in the configuration below only `ServiceBus/ErrorQueue` has been set but this cause  ServiceControl to expect a queue named "CustomErrorQueue.log" to exist as well    
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <appSettings>
+        <add key="ServiceBus/ErrorQueue" value="CustomErrorQueue" />
+    </appSettings>
+</configuration>
+```
+
+If the corresponding forwarding queue does not exist then the ServiceControl service will not start.
+
+The recommended way to manipulate the input and forwarding queues is to use the command line options of ServiceControl as follows:
+ 
+```bat
+net stop particular.servicecontrol
+ServiceControl.exe --install --d="ServiceBus/ErrorQueue==CustomErrorQueue" --d="ServiceBus/AuditQueue==CustomAuditQueue" --d="ServiceBus/ErrorLogQueue==CustomErrorQueue.Log" --d="ServiceBus/AuditLogQueue==CustomAuditQueue.Log"
+net stop particular.servicecontrol
+```
+
+This will explicitly set and create any of the queues that are required.
+
 
 ### Configuration Options
 
