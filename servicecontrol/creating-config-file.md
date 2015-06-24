@@ -50,16 +50,11 @@ ServiceControl consumes messages from the Audit and Error queues and stores thes
 
 #### Audit and Error queues
 
-ServiceControl consumes messages from the audit and error queues, and stores these messages locally in its own embedded database.
+ServiceControl consumes messages from the audit and error queues and stores these messages locally in its own embedded database.  These input queues name can be  customized via `ServiceBus/ErrorQueue` and `ServiceBus/AuditQueue` settings.  
 
-The error and audit queues ServiceControl uses by customized via `ServiceBus/ErrorQueue` and `ServiceBus/AuditQueue` settings.  
+ServiceControl can also forward these messages to two forwarding queues.  All error messages received will be forward to `<ErrorQueue>.log`.  Audit message can optionally be configured to be forwarded to  `<AuditQueue>.log` by enabling the `ServiceControl/ForwardAuditMessages` setting.
 
-You can also configure ServiceControl to forward any consumed messages into alternate queues, so that a copy of any message consumed by ServiceControl is available from these alternate queues. To do so,
-set the `ServiceBus/ErrorLogQueue` and `ServiceBus/AuditLogQueue` settings.
-
-The default forwarding queues names are based on the error and audit queue names. So when changing the error or audit queue it is important to consider the impact on the forwarding queue name.
-
-For example, in the configuration below only `ServiceBus/ErrorQueue` has been set but this cause  ServiceControl to expect a queue named "CustomErrorQueue.log" to exist as well    
+Changing the input queue names via the configuration file without considering the forwarding queues can cause issues.  For example, in the configuration below `ServiceBus/ErrorQueue` has been set to  `CustomErrorQueue`.  This will cause ServiceControl to expect a queue named `CustomErrorQueue.log` to exist as well. If the corresponding forwarding queue does not exist then the ServiceControl service will not start.
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -70,18 +65,14 @@ For example, in the configuration below only `ServiceBus/ErrorQueue` has been se
 </configuration>
 ```
 
-If the corresponding forwarding queue does not exist then the ServiceControl service will not start.
+To avoid this confusion it is recommended the names of the output queues be explicitly configured using the `ServiceBus/ErrorLogQueue` and `ServiceBus/AuditLogQueue`settings. The recommended way to change the input and forwarding queues names is to use the command line options as detailed below. In this example all four queue names are being explicitly set and if any of the queues do not exist they will be created.
 
-The recommended way to manipulate the input and forwarding queues is to use the command line options of ServiceControl as follows:
  
 ```bat
 net stop particular.servicecontrol
-ServiceControl.exe --install --d="ServiceBus/ErrorQueue==CustomErrorQueue" --d="ServiceBus/AuditQueue==CustomAuditQueue" --d="ServiceBus/ErrorLogQueue==CustomErrorQueue.Log" --d="ServiceBus/AuditLogQueue==CustomAuditQueue.Log"
+servicecontrol.exe --install --d="ServiceBus/ErrorQueue==CustomErrorQueue" --d="ServiceBus/AuditQueue==CustomAuditQueue" --d="ServiceBus/ErrorLogQueue==CustomErrorQueue.Log" --d="ServiceBus/AuditLogQueue==CustomAuditQueue.Log"
 net stop particular.servicecontrol
 ```
-
-This will explicitly set and create any of the queues that are required.
-
 
 ### Configuration Options
 
@@ -99,7 +90,7 @@ This will explicitly set and create any of the queues that are required.
 
 * `ServiceControl/VirtualDirectory` (string)
 
-  The virtual directory to bind the embedded http server to, modify if you want to bind to a specific virtual directiory. Default: `empty`
+  The virtual directory to bind the embedded http server to, modify if you want to bind to a specific virtual directory. Default: `empty`
 
 * `ServiceControl/HeartbeatGracePeriod` (timespan)
 
