@@ -353,6 +353,7 @@
     <Compile Include="Container\Custom\ContainerCustom.cs" />
     <Compile Include="Container\Containers.cs" />
     <Compile Include="Container\Custom\MyObjectBuilder.cs" />
+    <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="Correlation\Usage.cs" />

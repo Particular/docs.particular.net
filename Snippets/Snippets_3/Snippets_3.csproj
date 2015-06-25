@@ -113,6 +113,8 @@
     <Compile Include="Callback\PlaceOrder.cs" />
     <Compile Include="Callback\PlaceOrderResponse.cs" />
     <Compile Include="Callback\Status.cs" />
+    <Compile Include="Logging\Log4Net\Usage.cs" />
+    <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="Conventions\Usage.cs" />
@@ -188,6 +190,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Errors\SecondLevel\app.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

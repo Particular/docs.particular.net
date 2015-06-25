@@ -1,5 +1,5 @@
-﻿using NServiceBus;
-using NServiceBus.Logging;
+﻿using log4net;
+using NServiceBus;
 
 public class MyHandler : IHandleMessages<MyMessage>
 {
@@ -7,6 +7,6 @@ public class MyHandler : IHandleMessages<MyMessage>
 
     public void Handle(MyMessage message)
     {
-        logger.Info("Hello from MyHandler");
+        logger.Error("Hello from MyHandler");
     }
 }

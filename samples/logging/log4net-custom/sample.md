@@ -1,6 +1,6 @@
 ---
-title: Custom Log4Net configuration
-summary: Illustrates customizing NLog usage by configuring NLog targets and rules.
+title: Custom Log4Net appender
+summary: Illustrates customizing Log4Net by passing in a custom Appender.
 tags:
 - Logging
 - Log4Net
@@ -10,7 +10,7 @@ related:
 
 ## Code walk-through
 
-Illustrates customizing Log4Net usage by configuring Log4Net targets and rules.
+Illustrates customizing Log4Net by passing in a custom Appender.
 
 ### Configure Log4Net
 

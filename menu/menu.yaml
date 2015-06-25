@@ -161,8 +161,10 @@
       Articles: 
         - "nservicebus/logging/filtering"
         - "nservicebus/logging/message-contents"
-        - "nservicebus/logging/nservicebus4-and-below"
         - "nservicebus/logging/usage"
+        - "nservicebus/logging/log4net"
+        - "nservicebus/logging/nlog"
+        - "nservicebus/logging/common-logging"
         - "nservicebus/hosting/nservicebus-host/logging-profiles"
         - "nservicebus/operations/auditing"
         - Title: "Samples"
