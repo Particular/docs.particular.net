@@ -63,7 +63,7 @@ You can add the logging API calls as mentioned in the above article directly in 
 
 #### NServiceBus v4 and v3
 
-To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure your custom setup. To make NServiceBus use your logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](/nservicebus/logging/nservicebus4-and-below.md) and shown below:
+To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure your custom setup. To make NServiceBus use your logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](/nservicebus/logging) and shown below:
 
 <!-- import CustomHostLogging -->
 
