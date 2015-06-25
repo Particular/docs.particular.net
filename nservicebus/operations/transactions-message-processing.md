@@ -6,6 +6,7 @@ redirects:
 - nservicebus/transactions-message-processing
 related:
 - nservicebus/outbox
+- nservicebus/errors
 ---
 
 As a part of the NServiceBus "Fault-Tolerant by Default" design, the infrastructure manages transactions automatically so you don't have to remember the configuration of all threading and state management elements.
@@ -84,11 +85,4 @@ SLRs also aids in the [resolution of more permanent errors](/nservicebus/errors/
 
 There is nothing necessarily wrong with the message itself. It might contain valuable information that shouldn't get lost under these conditions. After the administrator finishes resolving the issue, they should return the message to the queue it came from. NServiceBus comes with a tool that does this.
 
-## ReturnToSourceQueue.exe
-
-![Return to source queue tool](return-to-source-queue.png)
-
-You can find this tool in the "Tools" directory in your NServiceBus download.
-
-Administrators provide the name of the error queue they'd like to use, and either specify a specific message ID to return to its source queue, or 'all' to return all messages in the given error queue each to its respective source queue.
 
