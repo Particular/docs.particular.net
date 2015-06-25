@@ -18,7 +18,7 @@ Various features of NServiceBus require persistence. Among them are subscription
 
 First you need to reference the assembly that contains the azure storage persisters. The recommended way of doing this is by adding a NuGet package reference to the  `NServiceBus.Azure` package to your project.
 
-If self hosting, you can configure the persistence technology using the fluent configuration API and the extension method found in the `NServiceBus.Azure` assembly
+If self hosting, you can configure the persistence technology using the configuration API and the extension method found in the `NServiceBus.Azure` assembly
 
 <!-- import PersistanceWithAzure -->
 

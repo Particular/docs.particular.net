@@ -6,7 +6,7 @@
     {
         public Usage()
         {
-            #region EndpointNameFluent
+            #region EndpointNameCode
 
             BusConfiguration busConfiguration = new BusConfiguration();
 

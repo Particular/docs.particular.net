@@ -1,6 +1,6 @@
 ---
 title: Hosting NServiceBus in-process
-summary: Fluent configuration API to get transnational one-way messaging
+summary: Configuration API to get transnational one-way messaging
 tags:
 - Hosting
 - Initialization

@@ -16,7 +16,7 @@ Out of the box RabbitMQ is the only transport that is enabled automatically by d
 SqlServer is also supported but in a different way (for details, see [SqlServer Transport](#sql-server-transport) section below).
 All other transports need to be enabled explicitly using both of the following configuration settings when configuring the endpoint:
 
-<!-- import OutboxEnablineInFluent -->  
+<!-- import OutboxEnablineInCode -->  
 
 and also the following configuration in the config file:
 

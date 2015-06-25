@@ -26,7 +26,7 @@ First you need to reference the assembly that contains the azure storage queue t
 PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureStorageQueues
 ```
 
-Once you've done that you can use the fluent `Configure` API to setup NServiceBus, all you need to do is specify `.UseTransport<T>()` to override the default transport.
+Once you've done that you can use the configuration API to setup NServiceBus, all you need to do is specify `.UseTransport<T>()` to override the default transport.
 
 <!-- import AzureStorageQueueTransportWithAzure -->
 

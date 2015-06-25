@@ -1,6 +1,6 @@
 ---
 title: How to install your NServiceBus license file
-summary: 'Make sure your NServiceBus endpoints use your license: Fluent API, app.config, subfolder in your BIN directory, or registry.'
+summary: 'Make sure your NServiceBus endpoints use your license: Configuration API, app.config, subfolder in your BIN directory, or registry.'
 tags:
 - license
 redirects:
@@ -104,7 +104,7 @@ license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;201
 ```
 
 
-## Using the Fluent API
+## Using the configuration API
 
 As a developer you can specify the license to use in your configuration code:
 

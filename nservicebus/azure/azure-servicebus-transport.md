@@ -20,6 +20,7 @@ Azure Service Bus is messaging infrastructure that sits between applications, al
 - The main advantage of this service is that it offers a highly reliable and (relatively) low latency remote messaging infrastructure. A single queue message can be up to 256 KB in size, and a queue can contain many messages, up to 5GB in total. Furthermore it is capable of emulating local transactions using its queue peek-lock mechanism and has many built-in features that you (and NServiceBus) can take advantage of, such as message deduplication and deferred messages.
 - The main disadvantage of this service is its dependency on TCP (if you want low latency), which may require you to open some outbound ports on your firewall. Additionally, the price may be steep, depending on your scenario ($1 per million messages).
 
+
 ## Enabling the Transport
 
 First, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a NuGet package reference to the  `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package to your project.
@@ -28,7 +29,7 @@ First, reference the assembly that contains the Azure Service Bus transport defi
 PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureServiceBus
 ```
 
-Then, use the Fluent `Configure` API to set up NServiceBus, by specifying `.UseTransport<T>()` to override the default transport:
+Then, use the Configuration API to set up NServiceBus, by specifying `.UseTransport<T>()` to override the default transport:
 
 <!-- import AzureServiceBusTransportWithAzure -->
 
@@ -43,6 +44,7 @@ The default way to set the connection string is using the .net provided `connect
 <!-- import AzureServiceBusConnectionStringFromAppConfig -->
 
 For more detail see [Configuration Connection Strings](https://msdn.microsoft.com/en-us/library/azure/jj149830.aspx)
+
 
 ## Configuring in Detail
 
@@ -74,9 +76,11 @@ NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configu
 
 Defaults are just starting values. You should always measure and test these values against your solution and adjust those accordingly.
 
+
 ## Scenarios
 
 For any scenario provided in this document, you should always test it in environment as close to production as possible.
+
 
 ### CPU vs IO bound processing
 
@@ -88,6 +92,7 @@ There are several things to consider:
 In scenario where handlers are CPU intense and have very little IO, it is advised to lower number of threads to one and have a bigger `BatchSize`. `LockDuration` and `MaxDeliveryCount` might require an adjustment to match the batch size taking in account number of messages that end up in the dead letter queue.
 
 In scenario where handlers are IO intense, it is advised to set number of threads ([`MaximumConcurrencyLevel`](/nservicebus/operations/throughput.md) in NServiceBus) to 12 threads per logical core and `BatchSize` to a number of messages that takes to process, taking in account possible/measured single message processing time and IO latency. Try to start with a small `BatchSize` and through adjustment and measurement bring it up, adjusting accordingly `LockDuration` and `MaxDeliveryCount`.
+
 
 ## Sample
 

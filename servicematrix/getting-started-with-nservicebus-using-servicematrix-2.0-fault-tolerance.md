@@ -122,7 +122,7 @@ Since administrators must monitor these error queues, this can be made much more
 
 ![Online Sales Properties](images/servicematrix-onlinesales-properties.png)
 
-NOTE: If you specify an error queue for a specific endpoint in the config file or through the Fluent config, it won't change when you change the top level error queue. Changing the top-level error queue only sets the value for endpoints for which you haven't modified the error queue.
+NOTE: If you specify an error queue for a specific endpoint in the config file or through the configuration api, it won't change when you change the top level error queue. Changing the top-level error queue only sets the value for endpoints for which you haven't modified the error queue.
 
 ## Designating the audit queue
 

@@ -6,7 +6,7 @@
     {
         public Usage()
         {
-            #region OutboxEnablineInFluent
+            #region OutboxEnablineInCode
 
             BusConfiguration busConfiguration = new BusConfiguration();
 

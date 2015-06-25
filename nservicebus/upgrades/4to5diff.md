@@ -1749,7 +1749,7 @@ Will be removed in version 6.0.0. Obsoleted with error.
 
 #### Obsolete Methods
 
-  - `NServiceBus.Configure DefineLocalAddressNameFunc(NServiceBus.Configure, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Config/Advanced/ConfigureSettingLocalAddressNameAction_Obsolete.cs#L18) ]<br>Queue name is controlled by the endpoint name. The endpoint name can be configured using a `EndpointNameAttribute`, by passing a serviceName parameter to the host or calling `BusConfiguration.EndpointName` in the fluent API. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DefineLocalAddressNameFunc(NServiceBus.Configure, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Config/Advanced/ConfigureSettingLocalAddressNameAction_Obsolete.cs#L18) ]<br>Queue name is controlled by the endpoint name. The endpoint name can be configured using a `EndpointNameAttribute`, by passing a serviceName parameter to the host or calling `BusConfiguration.EndpointName` in the configuration API. Will be removed in version 6.0.0. Obsoleted with error.
 
 ### NServiceBus.ConfigureExtensions  [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Config/ConfigureExtensions.cs) ]
 

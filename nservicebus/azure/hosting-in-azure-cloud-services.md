@@ -24,7 +24,7 @@ NOTE: if you don't need the scale offered by cloud services, there are [other ho
 
 First you need to reference the assembly that contains the Azure role entry point integration. The recommended way of doing this is by adding a nuget package reference to the `NServiceBus.Hosting.Azure` package to your project.
 
-NOTE: If self hosting, like we'll do later in this article for Web Roles, you can configure everything using the fluent configuration API and the extension methods found in the `NServiceBus.Azure` package, no need to reference the hosting package in that case.
+NOTE: If self hosting, like we'll do later in this article for Web Roles, you can configure everything using the configuration API and the extension methods found in the `NServiceBus.Azure` package, no need to reference the hosting package in that case.
 
 To integrate the NServiceBus generic host into the worker role entry point, all you need to do is create a new instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override.
 
@@ -144,9 +144,9 @@ Logging settings can than be controlled by configuring the Azure diagnostics ser
 
 Next to worker roles, cloud services also has a role type called 'Web Roles'. These are worker roles which have IIS configured properly, this means that they run a worker role process (the entry point is in webrole.cs) and an IIS process on the same codebase.
 
-Usually you will want to run NServiceBus as a client in the IIS process though. This needs to be approached in the same way as any other website, by means of self hosting. When  selfhosting you can configure everything using the fluent configuration API and the extension methods found in the `NServiceBus.Azure` package, no need to reference the hosting package in that case.
+Usually you will want to run NServiceBus as a client in the IIS process though. This needs to be approached in the same way as any other website, by means of self hosting. When  selfhosting you can configure everything using the configuration API and the extension methods found in the `NServiceBus.Azure` package, no need to reference the hosting package in that case.
 
-The fluent API is used with the following extension methods to achieve the same behavior as the generic `AsA_worker`:
+The configuration API is used with the following extension methods to achieve the same behavior as the generic `AsA_worker`:
 
 	Configure.With()
             ...
