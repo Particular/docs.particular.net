@@ -116,7 +116,7 @@ If you are experiencing an issue with licensing, it can be helpful to know where
 
 In order to find the license, NServiceBus will examine:
 
-* File path configured through `NServiceBus/License` appSetting
+* License XML defined by `NServiceBus/License` appSetting
 * File path configured through `NServiceBus/LicensePath` appSetting
 * File located at `<BaseDirectory>\NServiceBus\License.xml`
 * **DEPRECATED** File located at `<BaseDirectory>\License\License.xml`
