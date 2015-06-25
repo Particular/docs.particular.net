@@ -121,7 +121,11 @@ In order to find the license file, NServiceBus will look:
 * File located at `<BaseDirectory>\NServiceBus\License.xml`
 * **DEPRECATED** File located at `<BaseDirectory>\License\License.xml`
 * Registry key `HKEY_CURRENT_USER\Software\ParticularSoftware\NServiceBus\License`
+* *If 32-bit host on 64-bit OS*: Registry key `HKEY_CURRENT_USER\Software\Wow6432Node\ParticularSoftware\NServiceBus\License`
 * Registry key `HKEY_LOCAL_MACHINE\Software\ParticularSoftware\NServiceBus\License`
+* *If 32-bit host on 64-bit OS*: Registry key `HKEY_LOCAL_MACHINE\Software\Wow6432Node\ParticularSoftware\NServiceBus\License`
 * Registry keys based on previous versions
   * `HKEY_CURRENT_USER\Software\NServiceBus\{Version}\License`
+  * *If 32-bit host on 64-bit OS*: `HKEY_CURRENT_USER\Software\Wow6432Node\NServiceBus\{Version}\License`
   * `HKEY_LOCAL_MACHINE\Software\NServiceBus\{Version}\License`
+  * *If 32-bit host on 64-bit OS*: `HKEY_LOCAL_MACHINE\Software\Wow6432Node\NServiceBus\{Version}\License`
