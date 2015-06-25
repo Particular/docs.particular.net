@@ -110,3 +110,18 @@ As a developer you can specify the license to use in your configuration code:
 
 <!-- import License -->
 
+## Where does NServiceBus look for a license?
+
+If you are experiencing an issue with licensing, it can be helpful to know where NServiceBus is looking, and in what order. An expired license in `HKEY_CURRENT_USER`, for example, will overrule a valid license in `HKEY_LOCAL_MACHINE`. Note that these vary somewhat in older versions.
+
+In order to find the license file, NServiceBus will look:
+
+* File path configured through `NServiceBus/License` appSetting
+* File path configured through `NServiceBus/LicensePath` appSetting
+* File located at `<BaseDirectory>\NServiceBus\License.xml`
+* **DEPRECATED** File located at `<BaseDirectory>\License\License.xml`
+* Registry key `HKEY_CURRENT_USER\Software\ParticularSoftware\NServiceBus\License`
+* Registry key `HKEY_LOCAL_MACHINE\Software\ParticularSoftware\NServiceBus\License`
+* Registry keys based on previous versions
+  * `HKEY_CURRENT_USER\Software\NServiceBus\{Version}\License`
+  * `HKEY_LOCAL_MACHINE\Software\NServiceBus\{Version}\License`
