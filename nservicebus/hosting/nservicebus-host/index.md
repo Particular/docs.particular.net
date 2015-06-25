@@ -25,6 +25,7 @@ install-package NServiceBus.Host
 
 That's it, the package will create an example endpoint configuration and setup the NServiceBus.Host.exe to run your endpoint.
 
+
 ## Configuring your endpoint
 
 The `NServiceBus.Host.exe` scans the runtime directory for assemblies containing a class that implements the `IConfigureThisEndpoint` interface. This class will contain the configuration for this endpoint. You can read more on how NServiceBus does assembly scanning [here](/nservicebus/hosting/assembly-scanning.md)
@@ -33,11 +34,13 @@ If you want to avoid the scanning process you can explicitly configure the type 
 
 <!-- import ExplicitHostConfigType -->
 
+
 ## Custom initialization and startup
 
 As of NServiceBus v5 you customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on your endpoint configuration class. Just call the appropriate methods on the `BusConfiguration` parameter passed to the method.
 
 <!-- import customize_nsb_host -->
+
 
 #### NServiceBus v4 and v3
 
@@ -55,11 +58,13 @@ After the custom initalization is done the regular core `INeedInitalization` imp
 
 Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in v3.x) should kick off things such as web crawling, data mining, and batch processes.
 
+
 ## Logging
 
 As of NServiceBus v5 logging for the host is controlled with the same API as the core. This is documented [here](/nservicebus/logging/).
 
 You can add the logging API calls as mentioned in the above article directly in your implementation of `IConfigureThisEndoint.Customize` method.
+
 
 #### NServiceBus v4 and v3
 
@@ -69,11 +74,13 @@ To change the host's logging infrastructure, implement the `IWantCustomLogging` 
 
 You may want to specify different logging levels (`DEBUG`, `WARN`, etc.) and possibly different targets `(CONSOLE`, `FILE`, etc.). The host provides a mechanism for changing these permutations with no code or configuration changes, via [profiles](/nservicebus/hosting/nservicebus-host/profiles.md).
 
+
 ## Roles - Built-in configurations
 
 As of version 5 roles are obsoleted and should not be used. Most of the functionality of `AsA_Server`, and `AsA_Publisher` has been made defaults in the core and can be safely removed. If you still need the `AsA_Client` behavior please add the following to your configuration.
 
 <!-- import AsAClientEquivalent -->
+
 
 #### NServiceBus v4 and v3
 
@@ -85,7 +92,9 @@ While NServiceBus allows you to pick and choose which technologies to use and ho
 -   `AsA_Server` sets `MsmqTransport` as transactional and does not purge messages from its queue on startup. This makes it fault-tolerant.
 -   `AsA_Publisher` extends `AsA_Server` and indicates to the infrastructure to set up storage for subscription requests, described in the [profiles page](/nservicebus/hosting/nservicebus-host/profiles.md).
 
+
 ## Installation
+
 When running the endpoint within the context of Visual Studio debugger, when the endpoint starts, the needed queues are created on startup to facilitate development. However, when deploying this endpoint to a server, starting the endpoint from the command prompt will not create the needed queues if the queues aren't already present. Creation of queues is a one time cost that will happen during installation only.
 
 To install your process as a Windows Service, you need to pass `/install` on the command line to the host. By default, the name of the service is the name of your endpoint and the endpoint name is the namespace of your endpoint configuration class. To enable side-by-side operations, use the `/sideBySide` switch to add the SemVer version to the service name. Passing /install also causes the host to invoke the [installers](/nservicebus/operations/installers.md) .
