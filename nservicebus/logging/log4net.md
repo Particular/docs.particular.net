@@ -5,7 +5,6 @@ tags:
 - log4net
 related:
 - samples/logging/log4net-custom
-- samples/logging/log4net-appender
 ---
 
 Support for routing log entries to [Log4Net](http://logging.apache.org/log4net/) is compatible with NServiceBus 3 and higher.
