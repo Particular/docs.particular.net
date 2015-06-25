@@ -159,7 +159,6 @@
       Title: "Logging"
       Url: "nservicebus/logging"
       Articles: 
-        - "nservicebus/logging/filtering"
         - "nservicebus/logging/message-contents"
         - "nservicebus/logging/usage"
         - "nservicebus/logging/log4net"
