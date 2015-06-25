@@ -114,7 +114,7 @@ As a developer you can specify the license to use in your configuration code:
 
 If you are experiencing an issue with licensing, it can be helpful to know where NServiceBus is looking, and in what order. An expired license in `HKEY_CURRENT_USER`, for example, will overrule a valid license in `HKEY_LOCAL_MACHINE`. Note that these vary somewhat in older versions.
 
-In order to find the license file, NServiceBus will look:
+In order to find the license, NServiceBus will examine:
 
 * File path configured through `NServiceBus/License` appSetting
 * File path configured through `NServiceBus/LicensePath` appSetting
