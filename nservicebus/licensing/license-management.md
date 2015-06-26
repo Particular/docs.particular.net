@@ -112,20 +112,26 @@ As a developer you can specify the license to use in your configuration code:
 
 ## Where does NServiceBus look for a license?
 
-If you are experiencing an issue with licensing, it can be helpful to know where NServiceBus is looking, and in what order. An expired license in `HKEY_CURRENT_USER`, for example, will overrule a valid license in `HKEY_LOCAL_MACHINE`. Note that these vary somewhat in older versions.
+This section details where NServiceBus will look for license information, and in what order. For example, an expired license in `HKEY_CURRENT_USER` would overrule a valid license in `HKEY_LOCAL_MACHINE`. Note that these vary somewhat in older versions.
 
 In order to find the license, NServiceBus will examine:
 
-* License XML defined by `NServiceBus/License` appSetting
-* File path configured through `NServiceBus/LicensePath` appSetting
-* File located at `<BaseDirectory>\NServiceBus\License.xml`
-* **DEPRECATED** File located at `<BaseDirectory>\License\License.xml`
-* Registry key `HKEY_CURRENT_USER\Software\ParticularSoftware\NServiceBus\License`
-* *If 32-bit host on 64-bit OS*: Registry key `HKEY_CURRENT_USER\Software\Wow6432Node\ParticularSoftware\NServiceBus\License`
-* Registry key `HKEY_LOCAL_MACHINE\Software\ParticularSoftware\NServiceBus\License`
-* *If 32-bit host on 64-bit OS*: Registry key `HKEY_LOCAL_MACHINE\Software\Wow6432Node\ParticularSoftware\NServiceBus\License`
-* Registry keys based on previous versions
-  * `HKEY_CURRENT_USER\Software\NServiceBus\{Version}\License`
-  * *If 32-bit host on 64-bit OS*: `HKEY_CURRENT_USER\Software\Wow6432Node\NServiceBus\{Version}\License`
-  * `HKEY_LOCAL_MACHINE\Software\NServiceBus\{Version}\License`
-  * *If 32-bit host on 64-bit OS*: `HKEY_LOCAL_MACHINE\Software\Wow6432Node\NServiceBus\{Version}\License`
+| Version | Location                                                                          | Notes |
+|:-------:|-----------------------------------------------------------------------------------|:-----:|
+|   4.0+  | License XML defined by `NServiceBus/License` appSetting                           |       |
+|   4.0+  | File path configured through `NServiceBus/LicensePath` appSetting                 |       |
+|   4.0+  | File located at `{AppDomain.CurrentDomain.BaseDirectory}\NServiceBus\License.xml` |       |
+|   3.0+  | File located at `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml`     |       |
+|   4.3+  | `HKEY_CURRENT_USER\Software\ParticularSoftware\NServiceBus\License`               |       |
+|   4.3+  | `HKEY_CURRENT_USER\Software\Wow6432Node\ParticularSoftware\NServiceBus\License`   |   1   |
+|   4.3+  | `HKEY_LOCAL_MACHINE\Software\ParticularSoftware\NServiceBus\License`              |       |
+|   4.3+  | `HKEY_LOCAL_MACHINE\Software\Wow6432Node\ParticularSoftware\NServiceBus\License`  |   1   |
+|   4.0+  | `HKEY_CURRENT_USER\Software\NServiceBus\{Version}\License`                        |   2   |
+|   4.0+  | `HKEY_CURRENT_USER\Software\Wow6432Node\NServiceBus\{Version}\License`            |  1,2  |
+|   4.0+  | `HKEY_LOCAL_MACHINE\Software\NServiceBus\{Version}\License`                       |   2   |
+|   4.0+  | `HKEY_LOCAL_MACHINE\Software\Wow6432Node\NServiceBus\{Version}\License`           |  1,2  |
+
+###### Notes
+
+1. The `Wow6432Node` registry keys are only accessed if running a 32-bit host on a 64-bit OS.
+2. Storing licenses in the registry by NServiceBus version was abandoned in NServiceBus 4.3. For backwards compatibility, newer versions of NServiceBus will still check this pattern for versions `4.0`, `4.1`, `4.2`, and `4.3`.
