@@ -9,15 +9,18 @@ tags:
 
 This article covers various levels of guarantees NServiceBus provides with regards to coordination of receiving messages, updating user data and sending out other messages. It does not discuss the transaction isolation aspect which only applies to the process of updating the user data and does not affect the overall coordination and failure handling.
 
+
 ## Transactions
 
 Based on transaction handling mode, NServiceBus offers three levels of guarantees with regards to message processing
+
 
 ### Unreliable
 
 In this mode the transport in use does not attempt to wrap the receive operation in any kind of transaction. Once the message has been received, it can't be put back into the queue. Should the message processing fail for any reason (including system crash), the message is **permanently lost**. 
 
 <!-- import TransactionsDisable -->
+
 
 ### Transport transaction
 
@@ -26,6 +29,7 @@ In this mode, if supported by the transport, the receive operation is wrapped in
 NOTE: In this mode messages on the wire can get duplicated at each endpoint so the handler logic has to be designed to be idempotent.
 
 <!-- import TransactionsDisableDistributedTransactions -->
+
 
 ### Ambient transaction
 
@@ -37,13 +41,15 @@ Ambient transaction mode is enabled by default. It can be enabled explicitly via
 
 <!-- import TransactionsEnable -->
 
+
 ## Handlers
 
-In the ambient transaction mode NServiceBus executes all message handlers in a single `TransactionScope` in order to ensure that all the data manipulations are either executed as a whole or rolled back as a whole. This behavior can be disabled
+In the ambient transaction mode NServiceBus executes all message handlers in a single `TransactionScope` in order to ensure that all the data manipulations are either executed as a whole or rolled back as a whole. This behavior can be disabled using the following
 
 <!-- import TransactionsDoNotWrapHandlersExecutionInATransactionScope --> 
 
-resulting in suppressing any ambient transaction if existed. This effectively turns the *ambient transaction* mode into *transport transaction* mode with regards to handler behariour (the only difference is the type of transaction used by the transport). Some (or all) handlers might get invoked multipe times and partial results might be visible: 
+This results in suppressing any ambient transaction that exist. This effectively turns the *ambient transaction* mode into *transport transaction* mode with regards to handler behavior (the only difference is the type of transaction used by the transport). Some (or all) handlers might get invoked multiple times and partial results might be visible: 
+
  * partial updates (where one handler succeeded updating its data but the other didn't), 
  * partial sends (where some of the messages has been sent but others not),
  * sends without matching updates (where messages has already been sent but the update failed).
@@ -52,6 +58,7 @@ resulting in suppressing any ambient transaction if existed. This effectively tu
 NOTE: Starting with version 5, in the *transport transaction* and *unreliable* modes this behavior is the default. Wrapping the message handlers with `TransactionScope` has to be enabled explicitly.
 
 <!-- import TransactionsWrapHandlersExecutionInATransactionScope -->
+
 
 ## Outbox
 
