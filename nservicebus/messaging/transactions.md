@@ -7,7 +7,13 @@ tags:
 - Retry
 ---
 
-This article covers various levels of guarantees NServiceBus provides with regards to coordination of receiving messages, updating user data and sending out other messages. It does not discuss the transaction isolation aspect which only applies to the process of updating the user data and does not affect the overall coordination and failure handling.
+This article covers various levels of guarantees NServiceBus provides with regards to
+
+* coordination of receiving messages
+* updating user data 
+* sending out other messages
+
+It does not discuss the transaction isolation aspect which only applies to the process of updating the user data and does not affect the overall coordination and failure handling.
 
 
 ## Transactions
@@ -35,7 +41,7 @@ NOTE: In this mode messages on the wire can get duplicated at each endpoint so t
 
 In this mode, if supported by the transport, the receive transaction is wrapped in `TransactionScope`. All the operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole. There is no atomicity guarantee as changes to the database might be visible *before* the messages on the queue or vice-versa. Specific configurations might provide stronger guarantees, but not weaker.
 
-That **does not** mean that a distributed transaction is started right away. The transaction is only escalated to the distributed one (following two-phase commit protocol) when it is required. An example when it is not required to do so is using SQL Server transport with NHibernate persistence, both in the same database. Since in this case ADO.NET driver guarantees that everything happens inside a single database transaction, ACID guarantees are held for the whole processing.
+That **does not** mean that a distributed transaction is started right away. The transaction is only escalated to the distributed one (following two-phase commit protocol) when it is required. For example is not required when using SQL Server transport with NHibernate persistence and both in the same database. Since in this case ADO.NET driver guarantees that everything happens inside a single database transaction, ACID guarantees are held for the whole processing.
 
 Ambient transaction mode is enabled by default. It can be enabled explicitly via
 
@@ -62,8 +68,10 @@ NOTE: Starting with version 5, in the *transport transaction* and *unreliable* m
 
 ## Outbox
 
-Outbox is a [feature](/nservicebus/outbox) (enabled by default only for RabbitMQ transport, requires explicit enabling when using other transports) that enhances the *transport transaction* mode guarantees. 
+Outbox is a [feature](/nservicebus/outbox)  that enhances the *transport transaction* mode guarantees. 
 
 <!-- import TransactionsOutbox -->
+
+Enabled by default only for RabbitMQ transport, requires explicit enabling when using other transports.
 
 When using the outbox, the messages resulting from processing a given received message are not being sent immediately but rather and stored in the persistence database and pushed out after handling logic is done. This mechanism ensures that the handling logic can only succeed once so there is no need to design for idempotence.
