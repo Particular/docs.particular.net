@@ -135,7 +135,7 @@ In order to find the license, NServiceBus will examine:
 
 It is important to note that:
 
-1. The `Wow6432Node` registry keys are only accessed if running a 32-bit host on a 64-bit OS.
-2. Storing licenses in the registry by NServiceBus version was abandoned in NServiceBus 4.3. For backwards compatibility, newer versions of NServiceBus will still check this pattern for versions `4.0`, `4.1`, `4.2`, and `4.3`.
+ 1. The `Wow6432Node` registry keys are only accessed if running a 32-bit host on a 64-bit OS.
+ 2. Storing licenses in the registry by NServiceBus version was abandoned in NServiceBus 4.3. For backwards compatibility, newer versions of NServiceBus will still check this pattern for versions `4.0`, `4.1`, `4.2`, and `4.3`.
 
 }}
