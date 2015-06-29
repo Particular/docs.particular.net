@@ -11,6 +11,13 @@ A custom written XML serializer.
 <!-- import XmlSerialization --> 
 
 
+## Raw XML
+In certain integration scenarios you might want to bypass NServiceBus opinionated serialization format (essentially key/value pairs) and directly send custom XML structures over messaging. If you do need to do so you can bypass serialization on an endpoint-per-endpoint base by configuring the XML serializer like the following
+
+<!-- import ConfigureRawXmlSerialization --> 
+
+TODO: continue explain message definition and sending messages
+
 ## Caveats
 
 
