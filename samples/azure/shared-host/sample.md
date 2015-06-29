@@ -27,7 +27,8 @@ Results sorted by Timestamp
 
 ## Deploying endpoints
 
-Execute `PackageAndDeploy.ps1` PowerShell script to package and deploy multi-hosted endpoints to local emulator storage.
+1. Open PowerShell console at the `shared-host\Version_5` location. This location should contain `PackageAndDeploy.ps1`. 
+1. Execute `PackageAndDeploy.ps1` PowerShell script to package and deploy multi-hosted endpoints to local emulator storage
 
 ## Running multi-host in emulated Cloud Service
 
