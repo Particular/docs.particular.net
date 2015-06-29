@@ -31,25 +31,6 @@ namespace Snippets4
             Configure.Serialization.Xml(c => c.DontWrapRawXml()).DontWrapSingleMessages();
 
             #endregion
-
-            IBus bus = default(IBus);
-            #region SendingRawXmlWithXDocument
-
-            bus.SendLocal(new MessageWithXDocument
-            {
-                nutrition = XDocument.Load(new StringReader(Document)),
-            });
-
-            #endregion
-
-            #region SendingRawXmlWithXElement
-
-            bus.SendLocal(new MessageWithXElement
-            {
-                nutrition = XElement.Load(new StringReader(Element)),
-            });
-
-            #endregion
         }
 
         #region MessageWithXDocument

@@ -34,25 +34,6 @@ namespace Snippets5
             // DontWrapSingleMessages() is not required since this has been removed.
 
             #endregion
-
-            IBus bus = default(IBus);
-            #region SendingRawXmlWithXDocument
-
-            bus.SendLocal(new MessageWithXDocument
-            {
-                nutrition = XDocument.Load(new StringReader(Document)),
-            });
-
-            #endregion
-
-            #region SendingRawXmlWithXElement
-
-            bus.SendLocal(new MessageWithXElement
-            {
-                nutrition = XElement.Load(new StringReader(Element)),
-            });
-
-            #endregion
         }
 
         #region MessageWithXDocument
