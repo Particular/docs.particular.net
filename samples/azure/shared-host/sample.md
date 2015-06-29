@@ -11,6 +11,8 @@ related:
 - nservicebus/azure/shared-hosting-in-azure-cloud-services
 ---
 
+## Running in development mode
+
  1. Start [Azure Storage Emulator](http://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/)
  1. Run the solution
  1. Inspect Azure Storage Emulator Tables for `MultiHostedEndpointsOutput` table and its content for something like the following:
@@ -21,12 +23,17 @@ related:
 |Receiver	|2015-05-25 14:58:34	|5/25/2015 8:58:34 PM	|Got Ping and will reply with Pong |
 |Sender	|2015-05-25 14:58:35	|5/25/2015 8:58:35 PM	|Got Pong from Receiver |
 
-## Deploying endpoints into Cloud Service emulator
+Results sorted by Timestamp
 
-1. Download and install [AzCopy](http://azure.microsoft.com/en-us/documentation/articles/storage-use-azcopy/#download-and-install-azcopy). Copy AzCopy files to the location indicated during solution rebuild step. If you have installed AzCopy the default installation location is `%ProgramFiles(x86)%\Microsoft SDKs\Azure\AzCopy` (on a 64-bit machine) or `%ProgramFiles%\Microsoft SDKs\Azure\AzCopy` (on a 32-bit machine)
-1. Execute deployment script
-1. Run `HostCloudService` by right clicking project name in Visual Studio Solution Explorer, then selecting Debug, and Start new instance.
-1. Inspect Azure Storage Emulator Tables for `MultiHostedEndpointsOutput` table
+## Deploying endpoints
+
+Execute `PackageAndDeploy.ps1` PowerShell script to package and deploy multi-hosted endpoints to local emulator storage.
+
+## Running multi-host in emulated Cloud Service
+
+1. Set `HostCloudService` to be the start-up project by right clicking the project name in Visual Studio Solution Explorer, and selecting `Set as StartUp Project` option
+1. Run the solution
+1. Inspect Azure Storage Emulator Tables for `MultiHostedEndpointsOutput` table and its content
 
 NOTE: To inspect multi-host [role emulated file system](https://msdn.microsoft.com/en-us/library/azure/hh771389.aspx), navigate to `C:\Users\%USERNAME%\AppData\Local\dftmp\Resources`
  
