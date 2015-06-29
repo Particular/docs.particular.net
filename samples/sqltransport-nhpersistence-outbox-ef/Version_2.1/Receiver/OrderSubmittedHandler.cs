@@ -1,12 +1,15 @@
 using System;
 using NServiceBus;
-using System.Data.Common;
-using NServiceBus.Persistence.NHibernate;
 
 public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 {
     public IBus Bus { get; set; }
-    public NHibernateStorageContext StorageContext { get; set; }
+    private readonly ReceiverDataContext ctx;
+
+    public OrderSubmittedHandler(ReceiverDataContext ctx)
+    {
+        this.ctx = ctx;
+    }
 
     public void Handle(OrderSubmitted message)
     {
@@ -14,25 +17,20 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
         #region StoreUserData
 
-        using (ReceiverDataContext ctx = new ReceiverDataContext(StorageContext.Connection))
+        ctx.Orders.Add(new Order
         {
-            ctx.Database.UseTransaction((DbTransaction) StorageContext.DatabaseTransaction);
-            ctx.Orders.Add(new Order
-                            {
-                                OrderId = message.OrderId,
-                                Value = message.Value
-                            });
-            ctx.SaveChanges();
-        }
+            OrderId = message.OrderId,
+            Value = message.Value
+        });
 
         #endregion
 
         #region Reply
 
         Bus.Reply(new OrderAccepted
-                    {
-                        OrderId = message.OrderId,
-                    });
+        {
+            OrderId = message.OrderId,
+        });
 
         #endregion
     }

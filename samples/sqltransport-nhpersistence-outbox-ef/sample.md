@@ -6,6 +6,11 @@ tags:
 - NHibernate
 - EntityFramework
 - Outbox
+- Pipeline
+- Behavior
+- Database
+- DependencyLifecycle
+- Sample
 related:
 - nservicebus/nhibernate
 - nservicebus/sqlserver
@@ -13,6 +18,7 @@ related:
 ---
 
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create two databases: `sender` and `receiver`.
+  * You can also use localdb by replacing `SQLEXPRESS` with `(localdb)\v11.0`.
  2. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option). 
  3. Start the Receiver project.
  4. If you see `DtcRunningWarning` log message in the console, it means you have a Distributed Transaction Coordinator (DTC) service running. The Outbox feature is designed to provide *exactly once* delivery guarantees without DTC. We believe it is better to disable the DTC service to avoid confusion when you use Outbox.
@@ -46,7 +52,7 @@ addressed to the Receiver should be sent
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence  and Outbox but uses V2.1 code-based connection information API. It uses EntityFramework to store business data (orders).
+The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence and Outbox but uses V2.1 code-based connection information API. It uses EntityFramework to store business data (orders)in a seperate handler.
 
 <!-- import ReceiverConfiguration -->
 
@@ -55,7 +61,7 @@ In order for the Outbox to work, the business data has to reuse the same connect
 <!-- import EntityFramework -->
 
 When the message arrives at the Receiver, it is dequeued using a native SQL Server transaction. Then a `TransactionScope` is created that encompasses
- * persisting business data,
+ * persisting business data via a Entity Framework DbContext,
 
 <!-- import StoreUserData -->
 
@@ -70,4 +76,51 @@ Finally the messages in the outbox are pushed to their destinations. The timeout
 
 ### How it works?
 
-All the data manipulations happen atomically because SQL Server 2008 and later allows multiple (but not overlapping) instances of `SqlConnection` to enlist in one `TransactionScope` without the need to escalate to DTC. The SQL Server manages these transactions like they were one `SqlTransaction`.
+### Database connection sharing
+
+All the data manipulations happen atomically because SQL Server 2008 and later allows multiple (but not overlapping) instances of `SqlConnection` to enlist in one `TransactionScope` without the need to escalate to DTC. The SQL Server manages these transactions like they were one `SqlTransaction`. This does not work for all databases. This implementation shares the same `IDbConnection` between the dependencies that require the connection resulting on all dependencies to read and write to the same database.
+
+### NHibernateStorageContext
+
+NServiceBus.NHibernate has an `NHibernateStorageContext` which has a `IDbConnection` when it is available. This is used internally to share the connection to all persisters.
+
+We configure the container how it can obtain an `IDbConnection` and specify that this instance needs to be shared within the unit of work.
+
+<!-- import NHibernateStorageContextConnection -->
+
+
+### Custom DbContext pipeline behavior
+
+We cannot use `IManageUnitsOfWork` as this is to early in the pipeline as `NHibernateStorageContext` is initialized after the pipeline behavior responsible for managing `IManageUnitsOfWork`, so the connection to share is not yet available. 
+
+### Sharing the `IDbConnection`
+
+To get an initialized connection we create a custom pipeline behavior  which creates a configured `DbContext` via its generic argument.
+
+<!-- import DbContextBehavior -->
+
+### Behavior implementation
+
+When the behavior is called it simply create the `DbContext` and when the pipeline is finished it calls `DbContext.SaveChanges()`.
+
+<!-- import DbContextBehaviorSaveChanges -->
+
+The behavior itself is actually easier to implement that an `IManageUnitsOfWork`. The only drawback is that it needs additional code to register this behavior in the pipeline.
+
+### Configure bus to include `DbContext` behavior
+
+The only thing left is getting the behavior hooked in the pipeline. This is done by configuring the bus in a `INeedInitialization` created specific for our dbcontext behavior as we need to configure it to use `ReceiverDataContext` but also need to configure the container how it can resolve both the `DbContextBehavior<ReceiverDataContext>` behavior and `ReceiverDataContext` DbContext.
+
+<!-- import DbContextBehaviorContainerRegistration -->
+
+Register behavior in pipeline:
+
+<!-- import DbContextBehaviorPipelineRegistration -->
+
+## Alternatives
+
+An alternative of sharing the `IDbConnection` instance is instructing the container how to create the `ReceiverDataContext` by first resolving the `NHibernateStorageContext` and use that to build it.
+
+<!-- import ReceiverDataContextAlternative -->
+
+The current implementation is usefull when you would like to use the `IDbConnection` with, for example, the [Dapper](https://github.com/StackExchange/dapper-dot-net) micro orm framework.
