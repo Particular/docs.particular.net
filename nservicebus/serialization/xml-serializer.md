@@ -11,6 +11,29 @@ A custom written XML serializer.
 <!-- import XmlSerialization --> 
 
 
+## Raw XML
+In certain integration scenarios you might want to bypass NServiceBus opinionated serialization format (essentially key/value pairs) and directly send custom XML structures over messaging. In order to do that you can simply declare one or multiple properties on your message contract as `XDocument` or `XElement`.
+
+<!-- import MessageWithXDocument -->
+
+<!-- import MessageWithXElement -->
+
+The caveat of this approach is that the serializer will wrap your data in an outer node being named after the name of the property. So in the example above the structure would look like
+
+```
+<nutrition>
+   <nutrition>
+     ...
+   </nutrition>
+</nutrition>
+``` 
+
+If you would like to avoid that for interoperability reasons you need to instruct the serializer to not wrap raw xml structures like the following
+
+<!-- import ConfigureRawXmlSerialization --> 
+
+INFO: The name of the property on the message must exactly match the name of the root node in the xml structure in order to be able to correctly deserialize the no longer wrapped content.
+
 ## Caveats
 
 

@@ -535,6 +535,7 @@
     <Compile Include="UnitTesting\ServiceLayer\ResponseMessage.cs" />
     <Compile Include="UnitTesting\ServiceLayer\Tests.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
+    <Compile Include="XmlSerializationIntegration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
