@@ -12,6 +12,7 @@ A custom written XML serializer.
 
 
 ## Raw XML
+
 In certain integration scenarios you might want to bypass NServiceBus opinionated serialization format (essentially key/value pairs) and directly send custom XML structures over messaging. In order to do that you can simply declare one or multiple properties on your message contract as `XDocument` or `XElement`.
 
 <!-- import MessageWithXDocument -->
@@ -34,6 +35,7 @@ If you would like to avoid that for interoperability reasons you need to instruc
 
 INFO: The name of the property on the message must exactly match the name of the root node in the xml structure in order to be able to correctly deserialize the no longer wrapped content.
 
+
 ## Caveats
 
 
@@ -44,6 +46,6 @@ The XML serializer in NServiceBus is a custom implementation. As such it does no
 
 ### Unsupported Types
 
- * HashTable
+ * [HashTable](https://msdn.microsoft.com/en-us/library/system.collections.hashtable.aspx)
  * Types with non-default constructors. So types must have a public constructor with no parameters.
- * ArrayList
+ * [ArrayList](https://msdn.microsoft.com/en-us/library/system.collections.arraylist.aspx)
