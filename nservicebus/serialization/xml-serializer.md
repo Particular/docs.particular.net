@@ -19,15 +19,7 @@ In certain integration scenarios you might want to bypass NServiceBus opinionate
 
 <!-- import MessageWithXElement -->
 
-The caveat of this approach is that the serializer will wrap your data in an outer node being named after the name of the property. So in the example above the structure would look like
-
-```
-<nutrition>
-   <nutrition>
-     ...
-   </nutrition>
-</nutrition>
-``` 
+The caveat of this approach is that the serializer will wrap your data in an outer node being named after the name of the property. So in the examples above you can see the associated expected payloads.
 
 If you would like to avoid that for interoperability reasons you need to instruct the serializer to not wrap raw xml structures like the following
 
