@@ -24,6 +24,7 @@
 *.ico	-text -diff
 *.ttf	-text -diff
 *.otf	-text -diff
+*.DotSettings -text -diff
 
 *.cs text diff=csharp
 *.config text diff=csharp
@@ -60,7 +61,6 @@
 *.ps1 text
 *.md text
 *.txt text eol=crlf
-*.DotSettings text
 
 # Custom for Visual Studio
 *.csproj merge=union
