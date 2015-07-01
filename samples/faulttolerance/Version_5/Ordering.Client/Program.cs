@@ -14,10 +14,16 @@ class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("Press 'Enter' to send a message.To exit, Ctrl + C");
+            Console.WriteLine("Press enter to send a message");
+            Console.WriteLine("Press any key to exit");
 
-            while (Console.ReadLine() != null)
+            while (true)
             {
+                ConsoleKeyInfo key = Console.ReadKey();
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
                 Guid id = Guid.NewGuid();
 
                 bus.Send("Samples.FaultTolerance.Server", new MyMessage
@@ -27,7 +33,6 @@ class Program
 
                 Console.WriteLine("Sent a new message with id: {0}", id.ToString("N"));
             }
-
         }
     }
 }
