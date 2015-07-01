@@ -63,7 +63,7 @@ By default NServiceBus uses the `message-id` property of the AMQP standard to re
 
 <!-- import rabbitmq-config-custom-id-strategy -->
 
-WARN: It is extremely important to use a uniquely identifying property of the message in a custom message id strategy. If the value for a message were to change (for example, if attempting to use `Guid.NewGuid().ToString()`) then message retries would break, as the infrastructure would be unable to determine that it was processing the same message repeatedly.
+WARNING: It is extremely important to use a uniquely identifying property of the message in a custom message id strategy. If the value for a message were to change (for example, if attempting to use `Guid.NewGuid().ToString()`) then message retries would break, as the infrastructure would be unable to determine that it was processing the same message repeatedly.
 
 ### Getting full control over the broker connection
 
