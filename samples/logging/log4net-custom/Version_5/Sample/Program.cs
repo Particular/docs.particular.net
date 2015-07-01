@@ -46,7 +46,7 @@ class Program
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
             bus.SendLocal(new MyMessage());
-            Console.WriteLine("\r\nPress any key to stop program\r\n");
+            Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
     }
