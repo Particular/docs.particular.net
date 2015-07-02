@@ -24,4 +24,3 @@ The cause of this exception is that the MSMQ has run out of space for holding on
 WARNING: On production servers uninstalling MSMQ will delete all queues and messages. Do not attempt MSMQ uninstall unless message loss is acceptable.
 
 You can find more details about this exception in [this blog post](http://blogs.msdn.com/b/johnbreakwell/archive/2006/09/18/insufficient-resources-run-away-run-away.aspx).
-
