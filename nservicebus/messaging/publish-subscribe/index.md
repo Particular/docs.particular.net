@@ -54,6 +54,28 @@ If auto subscribe is unwanted then this can be disabled during initialization. H
 When a subscriber is uninstalled then it will not unsubscribe at the publisher. The reason for doing this is not to loose events when you upgrade an endpoint by uninstalling the current version and then installing the new version.
 
 
+## Manually removing subscription entries
+
+Manually removing a subscription entry is sometimes needed when you want to decommission or migrate an endpoint that is subscribed to a publisher. 
+
+There are different subscription storage providers but all store a list of subscription items where each item contain the following values:
+
+- SubscriberEndpoint
+- MessageType
+- Version
+- TypeName
+
+
+Perform these tasks to manually remove subscription entries:
+
+- Stop the publisher endpoint
+- Open the subscription storage of the publisher
+- Open each subscription item and delete it when its **SubscriberEndpoint** value matches
+- Start the publisher endpoint
+
+NOTE: When you start the subscriber endpoint then it will automatically subscribe again.
+
+
 ## How do I decommission a subscriber
 
 Currently it is required to manually update the subscription storage of the publisher by deleting the subscriber endpoint specific entries first and then restarting the publisher. You can then remove the queue from the subscriber.
