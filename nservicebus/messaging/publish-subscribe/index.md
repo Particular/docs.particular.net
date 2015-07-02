@@ -38,27 +38,25 @@ Since one-way messaging is used to dispatch physical messages, even if one of th
 
 The default mode auto subscribe. When a subscriber endpoint is started it determines to which events it needs to subscribe. It then sends sends subscribtion messages to the dependent publishers. The publishers update their subscription data.
 
-Each time the subscriber is restarted it sends these subscription messages. When you monitor the the queing infrastructure you see these subscription messages flowing.
+Each time the subscriber is restarted it sends these subscription messages. When you monitor the queing infrastructure you see these subscription messages flowing.
 
 ## What happens when a subscriber stops
 
-The default mode is auto subscribe. We basically never unsubscribe. So when the subscriber endpoint stops it is still registered as the publisher to receive events. The publisher still sends events to the queue of the subscriber. When the subscriber is started it will consume these are any other message. In this mode the subscriber will never loose an event.
+The default mode is auto subscribe. The subscriber endpoint will never unsubscribe. When the subscriber endpoint stops, it is still registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started it will consume the messages from its queue. The subscriber will never loose an event.
 
 ## Can I manually subscribe/unsubscribe
 
-If auto subscribe is unwanted then this can be disabled during initialization. How this is done varies per version of NServiceBus. You then can explicitly subscribe and unsubscribe via the bus instance. See [How to Publish/Subscribe to a Message](how-to-pub-sub) for an example.
+If auto subscribe is unwanted then this can be disabled during initialization. How this is done varies per NServiceBus version. You can explicitly subscribe and unsubscribe via the bus instance. See [How to Publish/Subscribe to a Message](how-to-pub-sub.md) for an example.
 
 
 ## What happens when a subscriber uninstalls
 
-When a subscriber is uninstalled then it will not unsubscribe at the publisher. Reason for doing this is not to loose events when you upgrade an endpoint by uninstalling the current version and then installing the new version.
-
-If you want to unsubscribe then see: How to decommission a subscriber
+When a subscriber is uninstalled then it will not unsubscribe at the publisher. The reason for doing this is not to loose events when you upgrade an endpoint by uninstalling the current version and then installing the new version.
 
 
 ## How do I decommission a subscriber
 
-Currently it is required to manually update the subscription storage of the publisher and delete the subscriber endpoint specific entries and the restarting the publisher.
+Currently it is required to manually update the subscription storage of the publisher by deleting the subscriber endpoint specific entries first and then restarting the publisher. You can then remove the queue from the subscriber.
 
 
 ## What the distributor does
