@@ -105,4 +105,4 @@ The Azure configuration system applies to all instances of all roles. It has a b
 
 ## Sample
 
-Want to see the dynamic host in action? Checkout the [Video store sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud.DynamicHost).
+Want to see the dynamic host in action? Checkout the [Shared Hosting in Azure Cloud Services Sample](http://docs.particular.net/samples/azure/shared-host/).
