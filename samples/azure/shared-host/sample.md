@@ -85,7 +85,7 @@ HostWorker project is the multi-host project. To enable multi-hosting, endpoint 
 
 <!-- import AzureSharedHosting_HostConfiguration -->
 
-NOTE: multi-host project is used solely as a host for other endpoints
+NOTE: Multi-host project is used solely as a host for other endpoints
 
 ### HostCloudService project
 
