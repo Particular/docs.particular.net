@@ -81,6 +81,25 @@ NOTE: When you start the subscriber endpoint then it will automatically subscrib
 Currently it is required to manually update the subscription storage of the publisher by deleting the subscriber endpoint specific entries first and then restarting the publisher. You can then remove the queue from the subscriber.
 
 
+## Migrating an endpoint to a different machine
+
+Moving an endpoint to a different machine is complex when you do not use a central queue infrastructure.
+
+NOTE: Do NOT install the endpoint yet on the new machine as this will subscribe it to publishers and start receiving events.
+
+1. Stop all endpoints that send messages to this endpoint including the publishers.
+2. Let the endpoint process all messages in its queues.
+3. Stop the endpoint
+4. Install the endpoint on the new machine
+5. Update the configuration files so that message are send to the queue on the new machine.
+6. Update the subscription storage of the dependant publishers so that they will be sending messages to the new machine.
+7. Start the migrated endpoint on the new machine
+8. Start the endpoints
+
+All message should now be send correctly except replies.
+
+NOTE: If the endpoints receives messages from other endpoints via `Bus.Reply` then these messages are send to the previous queue. This is because the reply address is included in the message if that message was sent from the previous machine.
+
 ## What the distributor does
 
 All the distributor does at this point is forward the message it receives to another node.
