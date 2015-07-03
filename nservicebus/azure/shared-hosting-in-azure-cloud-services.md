@@ -6,7 +6,7 @@ tags:
 - Cloud
 - Hosting
 - Worker Roles
-related;
+related:
  - samples/azure/shared-host
 redirects:
  - nservicebus/shared-hosting-nservicebus-in-windows-azure-cloud-services
