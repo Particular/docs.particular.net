@@ -6,6 +6,8 @@ tags:
 - Cloud
 - Hosting
 - Worker Roles
+related;
+ - samples/azure/shared-host
 redirects:
  - nservicebus/shared-hosting-nservicebus-in-windows-azure-cloud-services
 ---
@@ -102,7 +104,3 @@ The Azure configuration system applies to all instances of all roles. It has a b
 
 * Put your configuration settings in the app.config. As autoupdate is available you can easily manage it this way as changing a config means uploading a new zip to your azure storage account and the hosts will update themselves automatically. (This is the default)
 * Alternatively you can separate the configuration settings in the service configuration file by convention. The `.AzureConfigurationSource(prefix)` overload allows you to set a prefix in every endpoint that will be prepended to it's configuration settings. Call this configuration method with a prefix of your choice and you can still use the configuration settings file for your hosted endpoints.
-
-## Sample
-
-Want to see the dynamic host in action? Checkout the [Shared Hosting in Azure Cloud Services Sample](http://docs.particular.net/samples/azure/shared-host/).
