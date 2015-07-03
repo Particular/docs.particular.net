@@ -141,7 +141,7 @@ If you are self-hosting your endpoint here is the code required to enlist the en
 
 <!-- import ConfiguringWorker --> 
 
-NOTE: In versions 4 and up use the using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
+NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
 Similar to self hosting, ensure the `app.config` of the Worker contains the `MasterNodeConfig` section to point to the host name where the master node (and a Distributor) are running.
 
