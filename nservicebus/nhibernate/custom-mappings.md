@@ -37,7 +37,7 @@ Using NHibernate mapping files is the original way to customize your mapping. It
 
 Look at these pages to see how you can create these mappings:
 
-* http://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html
+* [Your first NHibernate based application](http://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html) (nhibernate.info)
 
 
 ### Mappings as embedded resources
@@ -73,10 +73,10 @@ Its best to read the [Getting started](https://github.com/jagregory/fluent-nhibe
 
 References:
 
-* http://www.fluentnhibernate.org
-* http://www.nuget.org/packages/FluentNHibernate/
-* https://github.com/jagregory/fluent-nhibernate
-* https://github.com/jagregory/fluent-nhibernate/wiki/Getting-started
+* [Fluent NHibernate - Website](http://www.fluentnhibernate.org)
+* [Fluent NHibernate - Nuget package](http://www.nuget.org/packages/FluentNHibernate/)
+* [Fluent NHibernate - GitHub Repository](https://github.com/jagregory/fluent-nhibernate)
+* [Fluent NHibernate - Getting Started](https://github.com/jagregory/fluent-nhibernate/wiki/Getting-started)
 
 
 ## Use NHibernate.Mapping.Attributes
@@ -99,9 +99,9 @@ Take a look at the NHibernate mapping attributes documentation for an example.
 
 
 References:
-* http://nhibernate.info/doc/nhibernate-reference/mapping-attributes.html
-* https://github.com/nhibernate/NHibernate.Mapping.Attributes
-* http://www.nuget.org/packages/NHibernate.Mapping.Attributes/
+* [NHibernate Mapping attributes - Documentation](http://nhibernate.info/doc/nhibernate-reference/mapping-attributes.html)
+* [NHibernate Mapping attributes - GitHub repository](https://github.com/nhibernate/NHibernate.Mapping.Attributes)
+* [NHibernate Mapping attributes - NuGet package](http://www.nuget.org/packages/NHibernate.Mapping.Attributes/)
 
 
 ## Use the Loquacious API
@@ -118,8 +118,8 @@ To use it:
 
 References:
 
-* http://nhibernate.info/doc/howto/mapping/a-fully-working-skeleton-for-sexy-loquacious-nh.html
-* http://fabiomaulo.blogspot.nl/2011/04/nhibernate-32-mapping-by-code.html
-* http://nhibernate.info/blog/2011/01/21/loquacious-configuration-in-nhibernate-3.html
+* [NHibernate Loquacious API - Howto](http://nhibernate.info/doc/howto/mapping/a-fully-working-skeleton-for-sexy-loquacious-nh.html)
+* [NHibernate Loquacious API - Mapping by code](http://fabiomaulo.blogspot.nl/2011/04/nhibernate-32-mapping-by-code.html)
+* [NHibernate Loquacious API - Configuration](http://nhibernate.info/blog/2011/01/21/loquacious-configuration-in-nhibernate-3.html)
 
 
