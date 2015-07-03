@@ -3,8 +3,6 @@ title: NHibernate Custom mapping with hbm.xml, attributes or fluent api
 summary: Create a custom mapping to change how NHibernate creates the database schema using different techniques.
 tags:
  - NHibernate
- - Persistence
- - Configuration
  - Mapping
 related:
  - nservicebus/nhibernate/accessing-data
