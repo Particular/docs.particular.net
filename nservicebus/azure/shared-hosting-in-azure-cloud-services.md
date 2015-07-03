@@ -12,13 +12,13 @@ redirects:
  - nservicebus/shared-hosting-nservicebus-in-windows-azure-cloud-services
 ---
 
-If real scale is what you're looking for, as in tens, hundreds or even thousands of machines hosting each endpoint, than cloud services is the deployment model you'll need. But very often, you only want this scale when you are eventually successful, not when you are just starting out. To support this scenario, we've created the AsA_Host endpoint role for Azure cloud services.
+If real scale is what you're looking for, as in tens, hundreds or even thousands of machines hosting each endpoint, than cloud services is the deployment model you'll need. But very often, you only want this scale when you are eventually successful, not when you are just starting out. To support this scenario, we've created the `AsA_Hos`t endpoint role for Azure cloud services.
 
 This role allows you to co-locate multiple endpoints on the same set of machines, while preserving the regular worker role programming model so that you can easily put each endpoint on it's own role again when required later.
 
 ## How it works
 
-**Prerequisites** This approach assumes you already have your endpoints hosted in worker roles, as per the [documentation on this topic](hosting-in-azure-cloud-services.md). The rest of this article will focus on how to transition from a multi worker environment to a shared hosting environment.
+**Prerequisites** This approach assumes you already have your endpoints [hosted in worker roles](hosting-in-azure-cloud-services.md). The rest of this article will focus on how to transition from a multi worker environment to a shared hosting environment.
 
 Instead of having our endpoints packaged & deployed by the Azure infrastructure, we will package them ourselves (as zip files), and put them in a well known location (in azure blob storage).
 
@@ -34,9 +34,9 @@ The role entry point also doubles as a host process for our endpoint, one that i
 
 You'll notice that an NServiceBus.Hosting.Azure.HostProcess.exe is now referenced. The beauty of this exe is that it can also run on your machine, so outside the context of a service runtime, aka you can debug your endpoint locally without starting the Azure emulator by adding this exe to the debug path in the project properties.
 
-Next, you need to pack the build output as a zip file so that the NServiceBus.Hosting.Azure.HostProcess.exe is in the root of the archive. (Just zip the debug or release folder)
+Next you need to pack the build output as a zip file so that the NServiceBus.Hosting.Azure.HostProcess.exe is in the root of the archive. (Just zip the debug or release folder)
 
-Finally, go to your Azure storage account and create a private container called `endpoints` and put the zip file in there. We'll configure the host role entry point to download endpoints from this container later.
+Finally go to your Azure storage account and create a private container called `endpoints` and put the zip file in there. We'll configure the host role entry point to download endpoints from this container later.
 
 ## Creating the host
 
