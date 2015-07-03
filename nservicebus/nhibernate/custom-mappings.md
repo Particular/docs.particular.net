@@ -66,7 +66,7 @@ b. or by creating a new Configuration instance and pass it to FluentNHibernate
 
 Example of a possible implementation:
 
-<!-- import NHibernateInitWithFluentNHibernate
+<!-- import NHibernateInitWithFluentNHibernate -->
 
 Its best to read the [Getting started](https://github.com/jagregory/fluent-nhibernate/wiki/Getting-started) article from the FluentNHibernate project to see how you create mappings.
 
