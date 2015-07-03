@@ -20,7 +20,7 @@ Custom mapping options:
 
 There are probably even other options but these are the most frequently used.
 
-See [NHibernate configuration](configuration) on how you can pass this configuration object to the NServiceBus NHibernate configuration.
+See [NHibernate configuration](configuration.md) on how you can pass this configuration object to the NServiceBus NHibernate configuration.
 
 NOTE: When you create a custom mapping then you are responsible for mapping the primary key and unique indexes correctly.
 
