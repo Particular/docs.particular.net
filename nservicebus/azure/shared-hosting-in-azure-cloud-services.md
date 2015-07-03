@@ -46,24 +46,26 @@ In this worker role you need to reference the assembly that contains the Azure r
 
 To integrate the NServiceBus dynamic host into the worker role entry point, all you need to do is create a new instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override. 
 
-        public class WorkerRole : RoleEntryPoint
-	    {
-	        private NServiceBusRoleEntrypoint nsb = new NServiceBusRoleEntrypoint();
+```
+public class WorkerRole : RoleEntryPoint
+{
+	NServiceBusRoleEntrypoint nsb = new NServiceBusRoleEntrypoint();
 	
-	        public override bool OnStart()
-	        {
-	            nsb.Start();
+	public override bool OnStart()
+	{
+	    nsb.Start();
 	
-	            return base.OnStart();
-	        }
+	    return base.OnStart();
+	}
 	
-	        public override void OnStop()
-	        {
-	            nsb.Stop();
+	public override void OnStop()
+	{
+	    nsb.Stop();
 	
-	            base.OnStop();
-	        }
-	    }
+	    base.OnStop();
+	}
+}
+```
 
 Next to starting the role entry point, you also need to define how you want your endpoint to behave. In this case we want hosting behavior, so that it will not run an endpoint itself but instead host other endpoints. To do so just specify the `AsA_Host` role. 
 
@@ -91,12 +93,12 @@ And specify a local storage resource with the name endpoints as well.
 
 Other configuration settings are available as well if you need more fine grained control on how the host works:
 
-* DynamicHostControllerConfig.Container: The container where the endpoint packages are stored in the storage account, defaults to `endpoints`
-* DynamicHostControllerConfig.AutoUpdate: Turn auto update on or off, defaults to true. Note that if you set it to false you need to reboot for the host to pick new endpoints or versions of endpoints.
-* DynamicHostControllerConfig.UpdateInterval: The time between checks if updates are available, in milliseconds, defaults to 600000
-* DynamicHostControllerConfig.LocalResource: The name of the local storage resource where the zip archives will be extracted, defaults to `endpoints`
-* DynamicHostControllerConfig.TimeToWaitUntilProcessIsKilled: When updating an endpoint to a new version, the host will kill the current process. Sometimes this fails or takes a very long time. This property specifies how long the host should wait, if this time elapses without the process going down, the host will reboot the machine (by throwing an exception). Default value: 10000.
-* DynamicHostControllerConfig.RecycleRoleOnError: By default Azure role instances will reboot when an exception is thrown from the role entrypoint, but not when thrown from a child process. If you want the role instance to reboot in this case as well, set RecycleRoleOnError on true. Then the host will start monitoring the child process for errors and request a recycle when it throws.
+* `DynamicHostControllerConfig.Container`: The container where the endpoint packages are stored in the storage account, defaults to `endpoints`
+* `DynamicHostControllerConfig.AutoUpdate`: Turn auto update on or off, defaults to true. Note that if you set it to false you need to reboot for the host to pick new endpoints or versions of endpoints.
+* `DynamicHostControllerConfig.UpdateInterval`: The time between checks if updates are available, in milliseconds, defaults to 600000
+* `DynamicHostControllerConfig.LocalResource`: The name of the local storage resource where the zip archives will be extracted, defaults to `endpoints`
+* `DynamicHostControllerConfig.TimeToWaitUntilProcessIsKilled`: When updating an endpoint to a new version, the host will kill the current process. Sometimes this fails or takes a very long time. This property specifies how long the host should wait, if this time elapses without the process going down, the host will reboot the machine (by throwing an exception). Default value: 10000.
+* `DynamicHostControllerConfig.RecycleRoleOnError`: By default Azure role instances will reboot when an exception is thrown from the role entrypoint, but not when thrown from a child process. If you want the role instance to reboot in this case as well, set RecycleRoleOnError on true. Then the host will start monitoring the child process for errors and request a recycle when it throws.
 
 ## Configuration concerns
 
