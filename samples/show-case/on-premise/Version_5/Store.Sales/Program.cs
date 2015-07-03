@@ -12,7 +12,7 @@ class Program
         busConfiguration.ApplyCommonConfiguration();
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("\r\nPress any key to stop program\r\n");
+            Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
     }

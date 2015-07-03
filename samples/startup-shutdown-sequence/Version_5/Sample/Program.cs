@@ -28,8 +28,8 @@ class Program
             Logger.WriteLine("Calling IStartableBus.Dispose");
         }
         Logger.WriteLine("Finished");
-#endregion
-        Console.WriteLine("\r\nPress any key to stop program\r\n");
+        #endregion
+        Console.WriteLine("Press any key to exit");
         Console.ReadKey();
     }
 }

@@ -7,6 +7,7 @@ class Program
     static void Main()
     {
         Configure configure = Configure.With();
+        configure.Log4Net();
         configure.DefineEndpointName("Samples.Versioning.V2Subscriber");
         configure.DefaultBuilder();
         configure.JsonSerializer();
@@ -14,11 +15,12 @@ class Program
         configure.InMemorySagaPersister();
         configure.RunTimeoutManagerWithInMemoryPersistence();
         configure.InMemorySubscriptionStorage();
-        configure.UnicastBus()
-            .CreateBus()
-            .Start(() => configure.ForInstallationOn<Windows>().Install());
+        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
+        {
+            startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
 
-        Console.WriteLine("\r\nPress any key to stop program\r\n");
-        Console.ReadKey();
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
+        }
     }
 }

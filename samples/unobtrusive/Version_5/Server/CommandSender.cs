@@ -10,21 +10,23 @@ class CommandSender
     {
         Console.WriteLine("Press 'E' to publish an event");
         Console.WriteLine("Press 'D' to send a deferred message");
-        Console.WriteLine("To exit, press Ctrl + C");
+        Console.WriteLine("Press any key to exit");
 
         while (true)
         {
-            string cmd = Console.ReadKey().Key.ToString().ToLower();
+            ConsoleKeyInfo key = Console.ReadKey();
+            Console.WriteLine();
 
-            switch (cmd)
+            switch (key.Key)
             {
-                case "e":
+                case ConsoleKey.E:
                     PublishEvent(bus);
-                    break;
-                case "d":
+                    continue;
+                case ConsoleKey.D:
                     DeferMessage(bus);
-                    break;
+                    continue;
             }
+            return;
         }
     }
 

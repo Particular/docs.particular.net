@@ -37,12 +37,19 @@ static class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            Console.Out.WriteLine("Press any key to send a message. Press `q` to quit");
+            Console.WriteLine("Press enter to send a message");
+            Console.WriteLine("Press any key to exit");
+            Console.WriteLine("After storing a few orders you can open a browser and view them at http://localhost:32076/studio/index.html#databases/documents?collection=Orders&database=Samples.UoWWithChildContainers");
 
-            Console.Out.WriteLine("After storing a few orders you can open a browser and view them at http://localhost:32076/studio/index.html#databases/documents?collection=Orders&database=Samples.UoWWithChildContainers");
-
-            while (Console.ReadKey().ToString() != "q")
+            while (true)
             {
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
+
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
                 bus.SendLocal(new PlaceOrder
                 {
                     OrderNumber = string.Format("Order-{0}", orderNumber),

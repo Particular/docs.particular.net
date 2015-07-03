@@ -12,10 +12,17 @@
 
             using (IConnection connection = connectionFactory.CreateConnection())
             {
-                Console.Out.WriteLine("Press any key to send a message. Press `q` to quit");
+                Console.WriteLine("Press enter to send a message");
+                Console.WriteLine("Press any key to exit");
 
-                while (Console.ReadKey().ToString() != "q")
+                while (true)
                 {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    Console.WriteLine();
+                    if (key.Key != ConsoleKey.Enter)
+                    {
+                        return;
+                    }
                     using (IModel channel = connection.CreateModel())
                     {
                         IBasicProperties properties = channel.CreateBasicProperties();

@@ -17,8 +17,8 @@ static class Program
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
             bus.Subscribe<IMyEvent>();
-            Console.WriteLine("To exit, Ctrl + C");
-            Console.ReadLine();
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
             bus.Unsubscribe<IMyEvent>();
         }
     }

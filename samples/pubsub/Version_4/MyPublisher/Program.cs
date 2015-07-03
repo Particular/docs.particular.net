@@ -24,25 +24,29 @@ class Program
 
     static void Start(IBus bus)
     {
-        Console.WriteLine("This will publish IEvent, EventMessage, and AnotherEventMessage alternately.");
+        Console.WriteLine("Press '1' to publish IEvent");
+        Console.WriteLine("Press '2' to publish EventMessage");
+        Console.WriteLine("Press '3' to publish AnotherEventMessage");
         Console.WriteLine("Press 'Enter' to publish a message.To exit, Ctrl + C");
         #region PublishLoop
-        int nextEventToPublish = 0;
-        while (Console.ReadLine() != null)
+        while (true)
         {
+            ConsoleKeyInfo key = Console.ReadKey();
+            Console.WriteLine();
+
             Guid eventId = Guid.NewGuid();
-            switch (nextEventToPublish)
+            switch (key.Key)
             {
-                case 0:
+                case ConsoleKey.D1:
                     bus.Publish<IMyEvent>(m =>
                     {
                         m.EventId = eventId;
                         m.Time = DateTime.Now.Second > 30 ? (DateTime?)DateTime.Now : null;
                         m.Duration = TimeSpan.FromSeconds(99999D);
                     });
-                    nextEventToPublish = 1;
-                    break;
-                case 1:
+                    Console.WriteLine("Published IMyEvent with Id {0}.", eventId);
+                    continue;
+                case ConsoleKey.D2:
                     EventMessage eventMessage = new EventMessage
                     {
                         EventId = eventId,
@@ -50,9 +54,9 @@ class Program
                         Duration = TimeSpan.FromSeconds(99999D)
                     };
                     bus.Publish(eventMessage);
-                    nextEventToPublish = 2;
-                    break;
-                default:
+                    Console.WriteLine("Published EventMessage with Id {0}.", eventId);
+                    continue;
+                case ConsoleKey.D3:
                     AnotherEventMessage anotherEventMessage = new AnotherEventMessage
                     {
                         EventId = eventId,
@@ -60,11 +64,11 @@ class Program
                         Duration = TimeSpan.FromSeconds(99999D)
                     };
                     bus.Publish(anotherEventMessage);
-                    nextEventToPublish = 0;
-                    break;
+                    Console.WriteLine("Published AnotherEventMessage with Id {0}.", eventId);
+                    continue;
+                default:
+                    return;
             }
-
-            Console.WriteLine("Published event with Id {0}.", eventId);
         }
         #endregion
     }

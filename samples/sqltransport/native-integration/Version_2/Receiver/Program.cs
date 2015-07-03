@@ -20,12 +20,23 @@ class Program
 
         using (Bus.Create(busConfiguration).Start())
         {
-            Console.Out.WriteLine("Press any key to send a message. Press `q` to quit");
 
-            while (Console.ReadKey().ToString() != "q")
+            Console.WriteLine("Press enter to send a message");
+            Console.WriteLine("Press any key to exit");
+
+            while (true)
             {
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
+
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
                 PlaceOrder();
+
             }
+
         }
     }
 

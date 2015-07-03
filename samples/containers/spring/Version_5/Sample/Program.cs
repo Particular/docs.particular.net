@@ -22,7 +22,7 @@ static class Program
         {
             bus.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");
-            Console.Read();
+            Console.ReadKey();
         }
     }
 }

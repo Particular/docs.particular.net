@@ -19,11 +19,19 @@ class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("Press any key to send 10 messages with random sleep");
 
-            Console.WriteLine("To exit, press Escape");
-            while (Console.ReadKey().Key != ConsoleKey.Escape)
+            Console.WriteLine("Press enter to send 10 messages with random sleep");
+            Console.WriteLine("Press any key to exit");
+
+            while (true)
             {
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
+
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
                 for (int i = 0; i < 10; i++)
                 {
                     bus.SendLocal(new MyMessage());

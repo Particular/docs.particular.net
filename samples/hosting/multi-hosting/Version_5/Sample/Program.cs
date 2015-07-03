@@ -13,7 +13,7 @@ class Program
         {
             Console.WriteLine("Press '1' to send a message from Instance1 to Instance2");
             Console.WriteLine("Press '2' to send a message from Instance2 to Instance1");
-            Console.WriteLine("To exit, press Ctrl + C");
+            Console.WriteLine("Press any key to exit");
 
             while (true)
             {
@@ -22,11 +22,14 @@ class Program
                 if (key.Key == ConsoleKey.D1)
                 {
                     bus1.Send("Samples.MultiHosting.Instance2", new MyMessage());
-                } 
-                else if (key.Key == ConsoleKey.D2)
+                    continue;
+                }
+                if (key.Key == ConsoleKey.D2)
                 {
                     bus2.Send("Samples.MultiHosting.Instance1", new MyMessage());
+                    continue;
                 }
+                return;
             }
         }
 
