@@ -1,6 +1,6 @@
 ---
 title: NHibernate Custom mapping with hbm.xml, attributes or fluent api
-summary: Create a custom mapping to change your NHibernate creates the database schema using different techniques.
+summary: Create a custom mapping to change how NHibernate creates the database schema using different techniques.
 tags:
  - NHibernate
  - Persistence
