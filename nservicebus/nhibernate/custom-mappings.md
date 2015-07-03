@@ -8,7 +8,6 @@ tags:
  - Mapping
 related:
  - nservicebus/nhibernate/accessing-data
- - nservicebus/nhibernate/index
 ---
 
 
