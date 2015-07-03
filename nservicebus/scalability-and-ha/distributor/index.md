@@ -97,7 +97,7 @@ When you [self host](/nservicebus/hosting/self-hosting.md) your endpoint, use th
  
 <!-- import ConfiguringDistributor -->
 
-NOTE: In versions 4 and up use the using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
+NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
 ## Worker Configuration
 
