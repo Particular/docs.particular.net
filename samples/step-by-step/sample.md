@@ -9,7 +9,7 @@ redirects:
 In this sample shows a very simple ordering system that 
 
  * sends a command from a client to a server 
- * that server handles the command and publishes a new even about the success
+ * that server handles the command and publishes a new event about the success
  * a subscriber listens to, and handles, the event
 
 ## The Shared Project
