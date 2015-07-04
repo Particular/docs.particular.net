@@ -36,6 +36,7 @@ Here is a diagram how it all works:
 ## Caveats
 
 - Both the business data and dedupplication data need to share the same database
+- If you're forwarding processed messages to other endpoints they need to use a different datastore since outbox records are keyed on the `MessageId`
 
 ## Using outbox with NHibernate persistence
 
