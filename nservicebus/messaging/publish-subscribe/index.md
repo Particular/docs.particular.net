@@ -36,11 +36,11 @@ Since one-way messaging is used to dispatch physical messages, even if one of th
 
 ## What the distributor does
 
-All the distributor does at this point is forward the message it receives to another node.
+All the Distributor does at this point is forward the message it receives to another node.
 
 ![logical pub/sub and physical distribution 3](nservicebus-pubsub-3.png)
 
-You can think of the distributor as something like a load balancer it distributes the messages coming to it to a number of other machines. This kind of physical one-to-many communication is needed for scaling out the number of machines running for a given subscriber, but doesn't actually entail any pub/sub. Each subscriber gets its own distributor and each of them decides independently to which machine it passes its messages.
+You can think of the Distributor as something like a load balancer. It distributes the received messages to a number of other machines. This kind of physical one-to-many communication is needed for scaling out the number of machines running for a given subscriber, but doesn't actually entail any pub/sub. Each subscriber gets its own Distributor and each of them decides independently to which machine it passes its messages.
 
 See [more information on the distributor](/nservicebus/scalability-and-ha/distributor/).
 
