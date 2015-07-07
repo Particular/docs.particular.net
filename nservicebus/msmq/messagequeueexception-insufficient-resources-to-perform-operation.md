@@ -13,10 +13,10 @@ System.Messaging.MessageQueueException (0x80004005): Insufficient resources to p
 at System.Messaging.MessageQueue.SendInternal(Object obj, MessageQueueTransaction internalTransaction, MessageQueueTransactionType transactionType)
 ```
 
-The cause of this exception is that the MSMQ has run out of space for holding on to messages. This could be due to messages sent that could not be delivered, or messages received that have not been processed.
+The cause of this exception is that the MSMQ has run out of space for holding on to messages. This could be due to messages sent that could not be delivered, or messages received that have not been processed. 
 
 ## Things to try when running into this problem
-
+1. Make sure that the hard disk drive has sufficient space.
 1. Purge transactional dead-letter queue (TDLQ) under System Queues. If you purge other transactional queues, make sure to purge TDLQ as well. 
 1. If journaling is turned on, purge messages found in journaling queue under System Queues. Ensure that journaling is disabled on each queue level, and only turn it on if needed for debugging purposes.
 1. Increase MSMQ storage quota ([MSDN article](https://support.microsoft.com/en-us/kb/899612))
