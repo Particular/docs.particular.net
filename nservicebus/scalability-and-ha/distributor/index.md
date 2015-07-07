@@ -34,11 +34,11 @@ In short, the scale-out benefits of MSMQ V4 by itself are quite limited.
 
 ## Performance?
 
-The Distributor is doing multiple operations for each message, it is processing (receives a ready message form a Worker, sends the work message to the Worker, receives a ready message post processing) so its performance is limited although it is doing very little work, therefore the benefit of using a Distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short lived units of work (a quick read from the database and dispatching a message using `Bus.Send` or  `Bus.Publish`)
+For each message being processed, the Distributor performs a few additional operations: it receives a ready message from a Worker, sends the work message to the Worker and receives a ready message post processing. That means that using Distributor introduces a certain processing overhead, that is independent of how much actual work is done. Therefore the Distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short lived units of work (a quick read from the database and dispatching a message using `Bus.Send` or  `Bus.Publish`).
 
-To get a sense of the expected performance you can divide your regular endpoint performance and divide it by 4.
+To get a sense of the expected performance take your regular endpoint performance and divide it by 4.
 
-If you need to scale out small units of work you might want to consider slicing your handlers to smaller vertical slices of functionality and deploying them on their own end points.
+If you need to scale out small units of work you might consider splitting your handlers into smaller vertical slices of functionality and deploying them on their own endpoints.
 
 ## How does it work?
 
@@ -97,7 +97,7 @@ When you [self host](/nservicebus/hosting/self-hosting.md) your endpoint, use th
  
 <!-- import ConfiguringDistributor -->
 
-NOTE: In versions 4 and up use the using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
+NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
 ## Worker Configuration
 
@@ -141,7 +141,7 @@ If you are self-hosting your endpoint here is the code required to enlist the en
 
 <!-- import ConfiguringWorker --> 
 
-NOTE: In versions 4 and up use the using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
+NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
 Similar to self hosting, ensure the `app.config` of the Worker contains the `MasterNodeConfig` section to point to the host name where the master node (and a Distributor) are running.
 
