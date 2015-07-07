@@ -8,7 +8,7 @@ redirects:
 
 A high level overview of the concepts, features and vernacular of NServiceBus.
 
-### [Message](/nservicebus/messaging/)
+### [Message](http://docs.particular.net/nservicebus/messaging/)
 
 A Message is the unit of communication for NServiceBus. Types of messages:
 
