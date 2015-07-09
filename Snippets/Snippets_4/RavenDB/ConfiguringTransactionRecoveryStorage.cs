@@ -10,7 +10,7 @@
         {
             #region ConfiguringTransactionRecoveryStorage
 
-            string transactionRecoveryPath = "path to transaction recovery storage";
+            string transactionRecoveryPath = "path to transaction recovery storage unique per endpoint";
             
             Configure.With()
                 .CustomiseRavenPersistence(store =>
