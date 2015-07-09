@@ -303,6 +303,7 @@
     <Compile Include="Pipeline\NewStep\NewPipelineStep.cs" />
     <Compile Include="Pipeline\Replace\ReplacePipelineBehavior.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
+    <Compile Include="Sagas\SagaMappingForUpgradeV4toV5.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
     <Compile Include="Sagas\SimpleSaga\OrderSagaData.cs" />
     <Compile Include="Sagas\SimpleSaga\CompleteOrder.cs" />

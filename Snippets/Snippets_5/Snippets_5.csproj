@@ -450,6 +450,7 @@
     <Compile Include="Sagas\Reply\MySaga.cs" />
     <Compile Include="Sagas\Reply\StartMessage.cs" />
     <Compile Include="Sagas\FindByExpression\MySaga.cs" />
+    <Compile Include="Sagas\SagaMappingForUpgradeV4toV5.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
     <Compile Include="Sagas\FindSagas\SagaFinder.cs" />
     <Compile Include="Sagas\SimpleSaga\OrderSagaData.cs" />
