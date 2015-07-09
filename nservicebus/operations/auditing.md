@@ -8,7 +8,7 @@ redirects:
 - nservicebus/auditing-with-nservicebus
 ---
 
-The distributed nature of parallel message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Just tell NServiceBus that you want auditing and it will capture a copy of every received message and forward it to a specified audit queue. 
+The distributed nature of parallel message-driven systems makes them more difficult to debug than their sequential, synchronous, and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Just tell NServiceBus that you want auditing and it will capture a copy of every received message and forward it to a specified audit queue.
 
 It is recommended that you specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). By doing so you can take advantage of central auditing within a distributed system. This is also required by the Particular Service Platform and especially [ServiceControl](/servicecontrol), which consumes messages from these auditing queues. For more information, see [ServicePulse documentation](/servicepulse/).
 
@@ -59,7 +59,7 @@ If the machine level auditing is turned on, clear the value for the string value
 
     HKEYLOCALMACHINE\\SOFTWARE\\ParticularSoftware\\ServiceBus
 
-If running 64 bit, in addition to the above, also clear the value for `AuditQueue` under 
+If running 64 bit, in addition to the above, also clear the value for `AuditQueue` under
 
     HKEYLOCALMACHINE\\SOFTWARE\\Wow6432Node\\ParticularSoftware\\ServiceBus
 
