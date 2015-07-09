@@ -27,9 +27,7 @@ You can configure the target audit queue using the configuration API.
 
 <!-- import configureAuditUsingXml -->
 
-* `OverrideTimeToBeReceived`: Supported in Version 4 and higher. It is optional and defaults to the value of the TimeToBeReceived on the original message message.  
-
-Note: For backwards compatibility, Version 4 still supports the attribute `ForwardReceivedMessagesTo` on `UnicastBusConfig` section, but you will receive a warning recommending that you upgrade your configuration to use `AuditConfig` section.
+* `OverrideTimeToBeReceived`: Supported in Version 4 and higher. It is optional and defaults to the value of the TimeToBeReceived on the original message message.
 
 
 ### Using IProvideConfiguration
