@@ -32,6 +32,12 @@ This test says that when a message of the type `RequestMessage` is processed by 
 
 <!-- import TestingSaga -->
 
+## Configuring unobtrusive message conventions
+
+If you are using [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md) you need to configure the unit test support with those conventions as shown below.
+
+<!-- import SetupConventionsForUnitTests -->s
+
 ### Testing interface messages
 To support testing of interface messages v5 introduces a `.WhenHandling<T>()` method where T is the interface type.
 
