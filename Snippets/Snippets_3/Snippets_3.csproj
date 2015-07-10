@@ -187,6 +187,7 @@
     <Compile Include="Errors\SecondLevel\CustomPolicy\Usage.cs" />
     <Compile Include="SendOnly.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
+    <Compile Include="UnitTesting\Unobtrusive.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Errors\SecondLevel\app.config.xml">
