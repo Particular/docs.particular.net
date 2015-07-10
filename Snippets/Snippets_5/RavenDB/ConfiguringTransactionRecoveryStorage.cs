@@ -11,7 +11,7 @@
         {
             #region ConfiguringTransactionRecoveryStorage
 
-            string transactionRecoveryPath = "path to transaction recovery storage";
+            string transactionRecoveryPath = "path to transaction recovery storage unique per endpoint";
             DocumentStore myDocumentStore = new DocumentStore
             {
                 TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(transactionRecoveryPath)
