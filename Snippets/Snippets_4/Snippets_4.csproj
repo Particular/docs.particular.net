@@ -229,6 +229,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Azure\Transports\AzureStorageQueues\QueueConfig.config.xml" />
+    <None Include="Audit\App.config" />
+    <None Include="Errors\ErrorQueue\configureErrorQueue.config" />
+    <None Include="Errors\FirstLevel\flr.config" />
+    <None Include="Monitoring\app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -289,7 +293,7 @@
     <Compile Include="Encryption\EncryptionService\Usage.cs" />
     <Compile Include="Encryption\EncryptionService\EncryptionService.cs" />
     <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
-    <Compile Include="EndpointMapping\ConfigurationSource\Usage.cs" />
+    <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
     <Compile Include="EndpointName\EndpointConfigWithAttribute.cs" />
     <Compile Include="EndpointName\EndpointConfigByNamespace.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
@@ -312,8 +316,8 @@
     <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
-    <Compile Include="EndpointMapping\ProvideConfiguration.cs" />
-    <Compile Include="EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Routing\EndpointMapping\ProvideConfiguration.cs" />
+    <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
     <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
     <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />
@@ -339,6 +343,8 @@
     <Compile Include="Serialization\BinarySerialization.cs" />
     <Compile Include="Serialization\JsonSerialization.cs" />
     <Compile Include="UpgradeGuides\4to5\SagaMappingForUpgrade.cs" />
+    <Compile Include="Routing\AutomaticSubscriptions\AutoSubscribeSettings.cs" />
+    <Compile Include="Routing\BasicOperations.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
     <Compile Include="Sagas\SimpleSaga\OrderSagaData.cs" />
     <Compile Include="Sagas\SimpleSaga\CompleteOrder.cs" />
@@ -387,7 +393,6 @@
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Errors\SecondLevel\SecondLevelRetries\Usage.cs" />
-    <Compile Include="SubscriptionSettings.cs" />
     <Compile Include="Container\Containers_Spring.cs" />
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />

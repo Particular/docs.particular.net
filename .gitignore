@@ -95,3 +95,7 @@ Fody/.DS_Store
 
 samples/azure/shared-host/Version_5/tools/AzCopy
 samples/azure/shared-host/Version_5/_zips
+
+
+*.orig
+UpgradeLog.htm

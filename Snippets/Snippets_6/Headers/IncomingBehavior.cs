@@ -1,6 +1,4 @@
-﻿using NServiceBus.Pipeline;
-
-namespace Snippets6.Headers
+﻿namespace Snippets6.Headers
 {
     using System;
     using System.Collections.Generic;

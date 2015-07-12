@@ -1,4 +1,4 @@
-﻿namespace Snippets3.EndpointMapping.ConfigurationSource
+﻿namespace Snippets4.Routing.EndpointMapping.ConfigurationSource
 {
     using NServiceBus;
 

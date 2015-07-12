@@ -45,8 +45,5 @@
         }
 
         #endregion
-
-        interface IConfigureThisEndpoint
-        {}
     }
 }

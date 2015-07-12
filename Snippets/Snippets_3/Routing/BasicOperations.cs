@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Routing
+﻿namespace Snippets3.Routing
 {
     using NServiceBus;
 
@@ -20,7 +20,6 @@
             #region InterfacePublish
             bus.Publish<IMyEvent>(m => { m.SomeProperty = "Hello world"; });
             #endregion
-
         }
 
         public void Subscribe()

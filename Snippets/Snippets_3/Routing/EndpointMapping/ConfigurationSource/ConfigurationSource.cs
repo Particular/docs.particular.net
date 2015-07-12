@@ -1,10 +1,11 @@
-﻿namespace Snippets5.EndpointMapping.ConfigurationSource
+namespace Snippets3.Routing.EndpointMapping.ConfigurationSource
 {
     using System.Configuration;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
     #region endpoint-mapping-configurationsource
+
     public class ConfigurationSource : IConfigurationSource
     {
         public T GetConfiguration<T>() where T : class, new()

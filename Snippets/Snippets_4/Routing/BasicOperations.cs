@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Routing
+﻿namespace Snippets4.Routing
 {
     using NServiceBus;
 

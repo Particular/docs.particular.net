@@ -1,4 +1,4 @@
-namespace Snippets3.EndpointMapping.ConfigurationSource
+﻿namespace Snippets4.Routing.EndpointMapping.ConfigurationSource
 {
     using System.Configuration;
     using NServiceBus.Config;
@@ -13,7 +13,7 @@ namespace Snippets3.EndpointMapping.ConfigurationSource
             if (typeof(T) == typeof(UnicastBusConfig))
             {
                 //read from existing config 
-                var config = (UnicastBusConfig)ConfigurationManager
+                var config = (UnicastBusConfig) ConfigurationManager
                     .GetSection(typeof(UnicastBusConfig).Name);
                 if (config == null)
                 {
@@ -37,5 +37,6 @@ namespace Snippets3.EndpointMapping.ConfigurationSource
             return ConfigurationManager.GetSection(typeof(T).Name) as T;
         }
     }
+
     #endregion
 }
