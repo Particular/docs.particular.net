@@ -43,6 +43,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.Host.7.0.0-pullrequest0040\lib\net451\NServiceBus.Host.exe</HintPath>
     </Reference>
+    <Reference Include="NServiceBus.Host">
+      <HintPath>..\packages\NServiceBus.Host.6.0.0\lib\net45\NServiceBus.Host.exe</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -125,6 +128,10 @@
     </Content>
     <Content Include="Errors\ErrorQueue\configureErrorQueue.config.xml" />
     <Content Include="Errors\FirstLevel\flr.config.xml" />
+    <None Include="App.config" />
+    <None Include="Audit\App.config" />
+    <None Include="Errors\ErrorQueue\configureErrorQueue.config" />
+    <None Include="Errors\FirstLevel\flr.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -140,4 +147,8 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <StartAction>Program</StartAction>
+    <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
+  </PropertyGroup>
 </Project>
