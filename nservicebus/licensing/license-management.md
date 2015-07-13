@@ -29,13 +29,14 @@ For 64-bit operating systems the license is written to both the 32-bit and 64-bi
 These following instructions cover installing the license file without using NServiceBus PowerShell Module.  These options give a bit more flexibility as they allow you to store the the license in `HKEY_CURRENT_USER` if you wish.  IF the licenses is stored in `HKEY_CURRENT_USER` it is only accessible to the current user.   
 
 
-##### Using Regedit.exe  
+##### Using Registry Editor
 
-- Open the `Regedit.exe` tool 
-- Goto `HKEY_LOCAL_MACHINE\Software\ParticularSoftware` or `HKEY_CURRENT_USER\Software\ParticularSoftware` 
-- Create a `REG_MULTI_SZ` value called `License` 
-- Paste the contents of the license file you've received from Particular software. 
+- Run `regedit.exe` (usually located in `%windir%`, e.g. `C:\Windows`)
+- Go to `HKEY_LOCAL_MACHINE\Software\ParticularSoftware` or `HKEY_CURRENT_USER\Software\ParticularSoftware`
+- Create a new Multi-String Value (`REG_MULTI_SZ`) named `License`
+- Paste the contents of the license file you received from Particular software.
 
+(You can safely ignore any warnings regarding empty strings.)
 
 ##### Using PowerShell Script  
 
@@ -48,7 +49,7 @@ $content = Get-Content license.xml | Out-String
 Set-ItemProperty -Path HKLM:\Software\ParticularSoftware -Name License -Force -Value $content
 ```
 
-If modifying the registry directly using Regedit or a PowerShell script to update the license for ServiceControl, you will need to restart the ServiceControl service, as it only checks for its license information once at startup.
+If modifying the registry directly using Registry Editor or a PowerShell script to update the license for ServiceControl, you will need to restart the ServiceControl service, as it only checks for its license information once at startup.
 
 NOTE: On a 64 bit operating system this script should not be run through the PowerShell(x86) console prompt, doing so will result in the license being imported into the 32 registry key. Please use a 64bit PowerShell session. 
 
