@@ -21,7 +21,7 @@ Using the registry to store your license information is a way that all platform 
 
 The standalone NServiceBus PowerShell V5.0 includes a commandlet for importing the Platform License into the `HKEY_LOCAL_MACHINE` registry. See [Managing Using PowerShell](/nservicebus/operations/management-using-powershell.md) for more details and installation instructions for the PowerShell Module.
 
-On a 64 bit OS the license will be imported into both the For 64-bit operating systems the license is written to both the 32-bit and 64-bit registry.  The license is stored is `HKEY_LOCAL_MACHINE\Software\ParticularSoftware\License`. 
+For 64-bit operating systems the license is written to both the 32-bit and 64-bit registry.  The license is stored is `HKEY_LOCAL_MACHINE\Software\ParticularSoftware\License`. 
 
 
 #### Advanced Registry Options
