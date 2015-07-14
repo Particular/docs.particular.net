@@ -70,9 +70,6 @@ Example of a possible implementation:
 
 <!-- import NHibernateInitWithFluentNHibernate -->
 
-Its best to read the [Getting started](https://github.com/jagregory/fluent-nhibernate/wiki/Getting-started) article from the FluentNHibernate project to see how you create mappings.
-
-
 References:
 
 * [Fluent NHibernate - Website](http://www.fluentnhibernate.org)
