@@ -105,7 +105,9 @@ References:
 
 ## Use the Loquacious API
 
-The Loquacious api is NHibernate its native fluent mapping ability. You declare your mapping in code just like FluentNHibernate but using a different syntax. It can help you create a type-safe configuration but you can also create your custom mappings. The benefit is that this api is already available via the NHibernate package so requires no additional downloads. Its API
+The Loquacious api is NHibernate its native fluent mapping ability. You declare your mapping in code just like FluentNHibernate but using a different syntax. It can help you create a type-safe configuration but you can also create your custom mappings. The benefit is that this api is already available via the NHibernate package so requires no additional downloads.
+
+Creating mappings with this API is very similar to its native xml mapping. Meaning that for each entity a mappings needs to be created.
 
 To use it:
 
