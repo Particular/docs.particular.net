@@ -42,7 +42,7 @@ Look at these pages to see how you can create these mappings:
 
 ### Mappings as embedded resources
 
-It is not required to create your own NHibernate configuration object and pass it to the NServiceBus NHibernate configuration.
+It is not required to create your own NHibernate configuration object and pass it to the NServiceBus NHibernate configuration when using embedded resources. All other custom mapping options require the NHibernate configuration to be customized and passed to NServiceBus.
 
 
 ### Read mappings from file system instead of embedded resources
