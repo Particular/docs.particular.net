@@ -35,6 +35,8 @@ NOTE: When using custom mappings you are responsible for creating unique indexes
 
 Using NHibernate mapping files is the original way to customize your mapping. It needs to be created and then either embedded as a resource in your assembly or available on the file system.
 
+NOTE: Using xml mappings is the default approach for NHibernate.
+
 Look at these pages to see how you can create these mappings:
 
 * [Your first NHibernate based application](http://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html) (nhibernate.info)
