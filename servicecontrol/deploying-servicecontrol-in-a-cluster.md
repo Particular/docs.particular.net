@@ -1,47 +1,61 @@
 ---
 title: Deploying ServiceControl in a cluster
 summary: How to deploy ServiceControl in a Windows Cluster
-originalUrl: 
 tags:
 - ServiceControl
 - Cluster
 - Windows Cluster
-
 ---
+
 ## Deploying ServiceControl in a cluster
 
-###Basic Setup
-- Set up an active/passive Windows cluster. 
+ServiceControl supports high availability and fault tolerance through Windows clusters and Network Load Balancing (NLB) services.
 
-- Install ServiceControl on each node and then added as a "Generic service" in cluster manager. 
-This means ServiceControl fails over automatically with the cluster. 
+### Basic Setup
 
-NOTE: Because ServiceControl is running in the context of the cluster, you need to have a clustered MSMQ resource if you want a resilient ServiceControl instance because you have to have a single queue address. 
+* Set up a Failover (active/passive) Windows cluster:
+	* More information on Windows Server 2008 cluster: http://blogs.msdn.com/b/clustering/archive/2008/01/18/7151154.aspx
+	* More information on Windows Server 2012 cluster: https://technet.microsoft.com/en-us/library/dn505754.aspx
+* Install ServiceControl on each node adding it as a "Generic service" using the cluster manager. This means that ServiceControl will fail over automatically with the cluster. 
+* Set up a MSMQ Cluster Group. Cluster group is a group of resources that have a unique DNS name and can be addressed externally like a computer. 
+* Add the ServiceControl generic clustered service to the MSMQ cluster group:
+	* Make it depend on MSMQ and MSMQ network name;
+	* Check “use network name as computer name” in the service configuration;
 
-NOTE: A single queue address needs to be a clustered queue (transactional MSMQ does not work behind a load balancer).
+Once set up ServiceControl queues will be available on the cluster. The server name will be the MSMQ network name, not to be confused with the cluster name.
 
-- Put the ServiceControl service in the MSMQ group, make it depend on MSMQ and MSMQ network name, and check “use network name as computer name” in the service configuration. 
+More information on MSMQ clustering: https://technet.microsoft.com/en-us/library/cc753575.aspx 
 
-- Once you complete the steps above you can have “local” queues on the cluster, using the MSMQ network name as the server name (note that this is NOT the cluster name).
+### Database high availability
 
-###Things to consider...
-#### RavenDB
-The RavenDB database need to be located in shared storage. See [Customize RavenDB Embedded Location](configure-ravendb-location.md)
+The RavenDB database needs to be located in shared storage, highly available and fault tolerant. See [Customize RavenDB Embedded Location](configure-ravendb-location.md) for more information on how to change the ServiceControl database location.
 
-#### ServiceControl ACLs
-You need to set the URL ACLs on each cluster node [as advised here:](/servicecontrol/troubleshooting.md)
-The URL needs to be the cluster name and the ACL is set to whatever service account is running service control.
+### ServiceControl detailed configuration
 
-NOTE: Default install of SC locks down access to localhost only. Once the URLACL is changed from localhost to the cluster name as instructed here it is now accessible from the network which I realize is partially the point but I do think it worth prompting the user to consider securing this access (Firewall or VPN perhaps).
+Once the Failover cluster is created and ServiceControl is installed, the next step is to configure ServiceControl to run in a clustered environment.
 
-You need to create a ServiceControl configuration file (ServiceControl.exe.Config), setting the following:
-- `DbPath` to the shared Database path
-- Setting the `Hostname` and `port` to the cluster name and port
--  `audit` and `error` queues on the cluster
+NOTE: The following steps needs to be applied to all the ServiceControl installation on every node in the cluster.
+
+#### URL ACL(s)
+
+ServiceControl exposes an HTTP API that is used by ServicePulse and ServiceInsight. URL ACL(s) need to be [defined on each cluster node](/servicecontrol/setting-custom-hostname.md#updating-urlacl-settings). The URL needs to be the `cluster name` and the ACL is set to give permissions to the `Service Account` running ServiceControl.
+
+NOTE: The default installation of ServiceControl locks down access to `localhost` only. Once the URL ACL is changed from `localhost` to the `cluster name` ServiceControl is accessible from the network.
+
+#### Configuration
+
+ServiceControl configuration needs to be customized changing the following settings:
+
+* `DbPath` to define the path to the shared location where the database will be stored;
+* `Hostname` and `port` need to be updated to reflect `cluster name` and `port`
+*  `audit` and `error` queues need to be updated to include the `cluster name`;
+
+The following is a sample ServiceControl configuration file (ServiceControl.exe.config):
 
 <!-- import SCClusterAppSettings -->
 
-#### ServiceControl's Logs
-If you look at ServiceControl's [Troubleshooting URL](/servicecontrol/troubleshooting.md) it tells you
-where the ServiceControl log file is in case you have any problems starting
-the service.
+See [Customizing ServiceControl Configuration](/servicecontrol/creating-config-file.md) for more information. 
+
+#### Troubleshooting
+
+See the [ServiceControl Troubleshooting](/servicecontrol/troubleshooting.md) to diagnose any issue that a clustered ServiceControl instance may face.
