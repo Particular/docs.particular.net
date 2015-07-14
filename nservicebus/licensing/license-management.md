@@ -34,7 +34,7 @@ These following instructions cover installing the license file without using NSe
 - Run `regedit.exe` (usually located in `%windir%`, e.g. `C:\Windows`)
 - Go to `HKEY_LOCAL_MACHINE\Software\ParticularSoftware` or `HKEY_CURRENT_USER\Software\ParticularSoftware`
 - Create a new Multi-String Value (`REG_MULTI_SZ`) named `License`
-- Paste the contents of the license file you received from Particular software.
+- Paste the contents of the license file you received from Particular Software.
 
 (You can safely ignore any warnings regarding empty strings.)
 
