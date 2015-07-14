@@ -8,27 +8,36 @@ class Program
     {
         Configure.Serialization.Json();
         Configure configure = Configure.With();
+        configure.Log4Net();
         configure.DefineEndpointName("Samples.Versioning.V2Publisher");
         configure.DefaultBuilder();
         configure.UseTransport<Msmq>();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
-        IBus bus = configure.UnicastBus()
-            .CreateBus()
-            .Start(() => configure.ForInstallationOn<Windows>().Install());
-
-        Console.WriteLine("Press 'Enter' to publish a message, Ctrl + C to exit.");
-
-        while (Console.ReadLine() != null)
+        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
-            bus.Publish<V2.Messages.ISomethingHappened>(sh =>
+            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
+            
+            Console.WriteLine("Press enter to publish a message");
+            Console.WriteLine("Press any key to exit");
+            while (true)
             {
-                sh.SomeData = 1;
-                sh.MoreInfo = "It's a secret.";
-            });
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
 
-            Console.WriteLine("Published event.");
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
+                bus.Publish<V2.Messages.ISomethingHappened>(sh =>
+                {
+                    sh.SomeData = 1;
+                    sh.MoreInfo = "It's a secret.";
+                });
+
+                Console.WriteLine("Published event.");
+            }
         }
     }
 }

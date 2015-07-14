@@ -14,20 +14,28 @@ class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("Press 'Enter' to send a message.To exit, Ctrl + C");
+            Console.WriteLine("Press enter to send a message");
+            Console.WriteLine("Press any key to exit");
 
             #region ClientLoop
 
-            while (Console.ReadLine() != null)
+            while (true)
             {
-                Guid g = Guid.NewGuid();
-                Console.WriteLine("Requesting to get data by id: {0}", g.ToString("N"));
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
+
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
+                Guid guid = Guid.NewGuid();
+                Console.WriteLine("Requesting to get data by id: {0}", guid.ToString("N"));
 
                 RequestDataMessage message = new RequestDataMessage
-                                             {
-                                                 DataId = g,
-                                                 String = "<node>it's my \"node\" & i like it<node>"
-                                             };
+                {
+                    DataId = guid,
+                    String = "<node>it's my \"node\" & i like it<node>"
+                };
                 bus.Send("Samples.FullDuplex.Server", message);
             }
 

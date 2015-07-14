@@ -4,49 +4,43 @@ using System.Net;
 
 class Program3rdParty
 {
-    static HttpListener listener;
     static bool isReturningOk = true;
+    static HttpListener listener;
 
     static void Main()
     {
-        StartListener();
-        Console.WriteLine("Press any key to toggle the server to return a error or success");
-        Console.WriteLine("Ctrl+C to shut down the server");
-        Console.CancelKeyPress += Shutdown;
-        StartUserInputLoop();
-    }
+        Console.WriteLine("Press enter key to toggle the server to return a error or success");
+        Console.WriteLine("Press any key to exit");
 
-    static void Shutdown(object sender, ConsoleCancelEventArgs e)
-    {
-        Console.WriteLine("Closing HttpListener");
-        listener.Close();
-        Environment.Exit(0);
-    }
-
-    static void StartUserInputLoop()
-    {
-        while (true)
+        using (listener = new HttpListener())
         {
-            if (isReturningOk)
+            listener.Prefixes.Add("http://localhost:57789/");
+            listener.Start();
+            listener.BeginGetContext(ListenerCallback, listener);
+
+            while (true)
             {
-                Console.WriteLine("Currently returning success");
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
+
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
+                listener.Close();
+                if (isReturningOk)
+                {
+                    Console.WriteLine("\r\nCurrently returning success");
+                }
+                else
+                {
+                    Console.WriteLine("\r\nCurrently returning error");
+                }
+                isReturningOk = !isReturningOk;
             }
-            else
-            {
-                Console.WriteLine("Currently returning error");
-            }
-            Console.ReadKey();
-            isReturningOk = !isReturningOk;
         }
     }
 
-    static void StartListener()
-    {
-        listener = new HttpListener();
-        listener.Prefixes.Add("http://localhost:57789/");
-        listener.Start();
-        listener.BeginGetContext(ListenerCallback, listener);
-    }
 
     static void ListenerCallback(IAsyncResult result)
     {

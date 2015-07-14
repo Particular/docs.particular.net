@@ -19,16 +19,20 @@ static class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("Press any key to send a message that will throw an exception.");
-            Console.WriteLine("To exit, press Ctrl + C");
+            Console.WriteLine("Press enter to send a message that will throw an exception.");
+            Console.WriteLine("Press any key to exit");
 
             while (true)
             {
-                Console.ReadLine();
+                ConsoleKeyInfo key = Console.ReadKey();
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
                 MyMessage m = new MyMessage
-                              {
-                                  Id = Guid.NewGuid()
-                              };
+                {
+                    Id = Guid.NewGuid()
+                };
                 bus.SendLocal(m);
             }
         }

@@ -13,40 +13,39 @@ public class CommandSender
         Console.WriteLine("Press 'E' to send a message that is marked as Express");
         Console.WriteLine("Press 'D' to send a large message that is marked to be sent using Data Bus");
         Console.WriteLine("Press 'X' to send a message that is marked with expiration time.");
-        Console.WriteLine("To exit, press Ctrl + C");
+        Console.WriteLine("Press any key to exit");
+
 
         while (true)
         {
-            string cmd = Console.ReadKey().Key.ToString().ToLower();
-            switch (cmd)
+            ConsoleKeyInfo key = Console.ReadKey();
+            Console.WriteLine();
+
+            switch (key.Key)
             {
-                case "c":
+                case ConsoleKey.C:
                     SendCommand(bus);
-                    break;
-
-                case "r":
+                    continue;
+                case ConsoleKey.R:
                     SendRequest(bus);
-                    break;
-
-                case "e":
+                    continue;
+                case ConsoleKey.E:
                     Express(bus);
-                    break;
-
-                case "d":
+                    continue;
+                case ConsoleKey.D:
                     Data(bus);
-                    break;
-
-                case "x":
+                    continue;
+                case ConsoleKey.X:
                     Expiration(bus);
-                    break;
+                    continue;
             }
+            return;
+
         }
     }
 
 
-    /// <summary>
-    /// Shut down server before sending this message, after 30 seconds, the message will be moved to Transactional dead-letter messages queue.
-    /// </summary>
+    // Shut down server before sending this message, after 30 seconds, the message will be moved to Transactional dead-letter messages queue.
     static void Expiration(IBus bus)
     {
         bus.Send(new MessageThatExpires

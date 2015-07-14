@@ -64,8 +64,8 @@ Function SetPermissionsForQueue
 }
 
 $AdminGroup=GetGroupName("BuiltinAdministratorsSid")
-$EveryoneGroup=GetGroupName("AnonymousSid")
-$AnonymousLogon=GetGroupName("WorldSid")
+$EveryoneGroup=GetGroupName("WorldSid")
+$AnonymousLogon=GetGroupName("AnonymousSid")
 
 Function GetGroupName
 {

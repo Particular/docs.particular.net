@@ -1,19 +1,57 @@
-﻿using System;
-using NServiceBus;
-
-public class PerformanceMonitoring
+﻿namespace Snippets5
 {
-    public void Simple()
+    using System;
+    using NServiceBus;
+
+    public class PerformanceMonitoring
     {
-        #region PerformanceMonitoring
+        public void V5Upgrade()
+        {
+            #region PerformanceMonitoring-v5-upgrade-guide
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
-        busConfiguration.EnableSLAPerformanceCounter();
-        //or
-        busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
+            busConfiguration.EnableSLAPerformanceCounter();
+            //or
+            busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
 
-        #endregion
+            #endregion
+        }
+
+        public void EnablingCriticalTime()
+        {
+            #region enable-criticaltime
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.EnableCriticalTimePerformanceCounter();
+
+            #endregion
+        }
+
+        public void EnablingSla()
+        {
+            #region enable-sla
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            //with the default
+            busConfiguration.EnableSLAPerformanceCounter();
+            //or with a defined SLA
+            busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
+
+            #endregion
+        }
+
+        #region enable-sla-host-attribute
+
+        [EndpointSLA("00:03:00")]
+        public class EndpointConfig : IConfigureThisEndpoint
+        {
+            #endregion
+
+            public void Customize(BusConfiguration busConfiguration)
+            {
+            }
+        }
+
     }
-
 }

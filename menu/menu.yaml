@@ -3,8 +3,9 @@
   Topics: 
     - 
       Title: "Getting Started"
-      Url: "nservicebus/concept-overview"
+      Url: "platform"
       Articles: 
+        - "platform"
         - "nservicebus/concept-overview"
         - "samples/endpoint-configuration"
         - "samples/step-by-step"
@@ -20,7 +21,7 @@
         - "nservicebus/messaging/databus"
         - "nservicebus/messaging/custom-databus"
         - "nservicebus/messaging/discard-old-messages"
-        - "nservicebus/messaging/express-messages"
+        - "nservicebus/messaging/non-durable-messaging"
         - "nservicebus/messaging/handling-responses-on-the-client-side"
         - "nservicebus/messaging/message-headers"
         - "nservicebus/messaging/messages-as-interfaces"
@@ -56,6 +57,7 @@
         - "nservicebus/sagas/saga-finding"
         - "nservicebus/sagas/saga-not-found"
         - "nservicebus/sagas/concurrency"
+        - "nservicebus/sagas/reply-replaytooriginator-differences"
         - "nservicebus/testing"
         - "nservicebus/persistence"
     - 
@@ -88,11 +90,10 @@
         - Title: "Sql Server"
           Url: "nservicebus/sqlserver"
           Articles: 
-            - "nservicebus/sqlserver/concurrency"
-            - "nservicebus/sqlserver/configuration"
-            - "nservicebus/sqlserver/design"
-            - "nservicebus/sqlserver/multiple-databases"
             - "nservicebus/sqlserver/usage"
+            - "nservicebus/sqlserver/design"
+            - "nservicebus/sqlserver/concurrency"
+            - "nservicebus/sqlserver/multiple-databases"
             - "nservicebus/sqlserver/operations-scripting"
         - Title: "MSMQ"
           Url: "nservicebus/msmq"
@@ -108,12 +109,14 @@
             - "nservicebus/rabbitmq/rabbitmqclient-nuget"
             - "nservicebus/rabbitmq/connection-strings"
             - "nservicebus/rabbitmq/configuration-api"
+            - "nservicebus/rabbitmq/cluster"
             - "nservicebus/rabbitmq/operations-scripting"
     - 
       Title: "Serialization"
       Url: "nservicebus/serialization"
       Articles: 
         - "nservicebus/serialization/custom-serializer"
+        - "nservicebus/serialization/xml-serializer"
         - "nservicebus/serialization/type-was-not-registered"
     - 
       Title: "Persistence"
@@ -156,10 +159,11 @@
       Title: "Logging"
       Url: "nservicebus/logging"
       Articles: 
-        - "nservicebus/logging/filtering"
         - "nservicebus/logging/message-contents"
-        - "nservicebus/logging/nservicebus4-and-below"
         - "nservicebus/logging/usage"
+        - "nservicebus/logging/log4net"
+        - "nservicebus/logging/nlog"
+        - "nservicebus/logging/common-logging"
         - "nservicebus/hosting/nservicebus-host/logging-profiles"
         - "nservicebus/operations/auditing"
         - Title: "Samples"
@@ -185,10 +189,9 @@
         - "nservicebus/security/encryption"
         - "nservicebus/operations/configuring-aws"
         - "nservicebus/operations/dotnet-framework-version-requirements"
-        - "nservicebus/operations/fail-or-hang-during-performance-counter-setup"
         - "nservicebus/operations/installers"
         - "nservicebus/operations/management-using-powershell"
-        - "nservicebus/operations/monitoring-endpoints"
+        - "nservicebus/operations/performance-counters"
         - "nservicebus/operations/throughput"
         - "nservicebus/operations/running-on-windows"
         - "nservicebus/operations/transactions-message-processing"
@@ -221,7 +224,6 @@
       Title: "Introduction"
       Articles: 
         - "servicepulse/introduction-and-installing-servicepulse"
-        - "servicepulse/monitoring-nservicebus-endpoints"
         - "servicepulse/intro-endpoints-heartbeats"
         - "servicepulse/intro-failed-messages"
         - "servicepulse/intro-endpoints-custom-checks"
@@ -230,7 +232,6 @@
       Title: "Configuration"
       Articles: 
         - "servicepulse/how-to-configure-endpoints-for-monitoring"
-        - "servicepulse/how-to-develop-custom-checks"
         - "servicepulse/install-servicepulse-in-iis"
         - "servicepulse/troubleshooting"
 - 
@@ -259,6 +260,7 @@
         - "servicecontrol/backup-sc-database"
         - "servicecontrol/configure-non-privileged-service-account"
         - "servicecontrol/multi-instances-on-one-host"
+        - "servicecontrol/db-compaction"        
     - 
       Title: "Troubleshooting"
       Articles: 

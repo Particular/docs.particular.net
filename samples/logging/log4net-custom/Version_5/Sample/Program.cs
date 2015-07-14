@@ -24,29 +24,16 @@ class Program
             Threshold = Level.Info,
             Layout = layout
         };
+        // Note that ActivateOptions is required in NSB 5 and above
         consoleAppender.ActivateOptions();
-        RollingFileAppender fileAppender = new RollingFileAppender
-        {
-            DatePattern = "yyyy-MM-dd'.txt'",
-            RollingStyle = RollingFileAppender.RollingMode.Composite,
-            MaxFileSize = 10 * 1024 * 1024,
-            MaxSizeRollBackups = 10,
-            LockingModel = new FileAppender.MinimalLock(),
-            StaticLogFileName = false,
-            File = @"nsblog",
-            Layout = layout,
-            AppendToFile = true,
-            Threshold = Level.Debug,
-        };
-        fileAppender.ActivateOptions();
-
-        BasicConfigurator.Configure(fileAppender, consoleAppender);
+        BasicConfigurator.Configure(consoleAppender);
         #endregion
+
         #region UseConfig
 
         LogManager.Use<Log4NetFactory>();
 
-        // Then continue with your BusConfiguration
+        // Then continue with your bus configuration
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Logging.Log4NetCustom");
 
@@ -59,7 +46,7 @@ class Program
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
             bus.SendLocal(new MyMessage());
-            Console.WriteLine("\r\nPress any key to stop program\r\n");
+            Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
     }

@@ -7,7 +7,7 @@
     <ProjectGuid>{07F27696-5C5E-42E9-A8B0-6837946A5C00}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Snippets_4</RootNamespace>
+    <RootNamespace>Snippets4</RootNamespace>
     <AssemblyName>Snippets_4</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -212,12 +212,13 @@
     <None Include="app.config" />
     <None Include="Audit\App.config" />
     <None Include="EndpointMapping\ConfigureEndpointMapping.config" />
-    <None Include="Errors\configureErrorQueue.config" />
-    <None Include="Errors\flr.config" />
+    <None Include="Errors\ErrorQueue\configureErrorQueue.config" />
+    <None Include="Errors\FirstLevel\flr.config" />
     <None Include="Monitoring\app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Azure\Persistence\AzureStorage\AzurePersistence.config" />
     <None Include="Persistence\NHibernate\nhibernate.config">
       <SubType>Designer</SubType>
     </None>
@@ -228,28 +229,64 @@
     <None Include="Transports\RabbitMQ\App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Transports\Throughtput\InitialThroughput.config">
+    <None Include="Transports\SqlServer\MultiDb.config" />
+    <None Include="Transports\Throughput\InitialThroughput.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Correlation\CustomCorrelationId.cs" />
-    <Compile Include="Pipeline\AbortPipeline.cs" />
-    <Compile Include="Audit\ConfigureAuditUsingCode.cs" />
+    <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
+    <Compile Include="Callback\PlaceOrder.cs" />
+    <Compile Include="Callback\PlaceOrderResponse.cs" />
+    <Compile Include="Callback\Status.cs" />
+    <Compile Include="Container\Custom\MyCustomObjectBuilder.cs" />
+    <Compile Include="Logging\Log4Net\Usage.cs" />
+    <Compile Include="Logging\ProvideConfiguration.cs" />
+    <Compile Include="NonDurable\MessageWithExpress.cs" />
+    <Compile Include="Correlation\MyRequest.cs" />
+    <Compile Include="Correlation\Usage.cs" />
+    <Compile Include="DataBus\Azure\Usage.cs" />
+    <Compile Include="DataBus\Conventions\MessageConventions.cs" />
+    <Compile Include="DataBus\Conventions\MessageWithLargePayload.cs" />
+    <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />
+    <Compile Include="Encryption\Configuration\ProvideConfiguration.cs" />
+    <Compile Include="Encryption\Conventions\Message.cs" />
+    <Compile Include="Encryption\Conventions\Usage.cs" />
+    <Compile Include="Encryption\EncryptionService\Usage.cs" />
+    <Compile Include="Encryption\EncryptionService\EncryptionService.cs" />
+    <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
+    <Compile Include="EndpointMapping\ConfigurationSource\Usage.cs" />
+    <Compile Include="EndpointName\EndpointConfigWithAttribute.cs" />
+    <Compile Include="EndpointName\EndpointConfigByNamespace.cs" />
+    <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
+    <Compile Include="Errors\FirstLevel\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />
+    <Compile Include="Errors\SecondLevel\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\SecondLevel\ConfigurationSource\Usage.cs" />
+    <Compile Include="Gateway\MyMessage.cs" />
+    <Compile Include="Headers\IncomingBehavior.cs" />
+    <Compile Include="Headers\OutgoingBehavior.cs" />
+    <Compile Include="Headers\MutateIncomingTransportMessages.cs" />
+    <Compile Include="Headers\MutateOutgoingTransportMessages.cs" />
+    <Compile Include="Headers\ReadHandler.cs" />
+    <Compile Include="Headers\WriteHandler.cs" />
+    <Compile Include="Headers\MyMessage.cs" />
+    <Compile Include="Logging\UsingLogging.cs" />
+    <Compile Include="Pipeline\Abort\Behavior.cs" />
+    <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="BusExtensionMethodForHandler.cs" />
-    <Compile Include="Callback\Callback.cs" />
-    <Compile Include="ContainerCustom.cs" />
-    <Compile Include="Conventions\ExpressMessages.cs" />
+    <Compile Include="Callback\Usage.cs" />
+    <Compile Include="Container\Custom\Usage.cs" />
+    <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="CustomConfigSource.cs" />
-    <Compile Include="CustomRavenConfigForVersion2_5.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
-    <Compile Include="EndpointMapping\EndpointMappingConfigurationProvider.cs" />
-    <Compile Include="EndpointMapping\EndpointMappingConfigurationSource.cs" />
-    <Compile Include="Errors\ErrorQueueConfigurationProvider.cs" />
-    <Compile Include="Errors\ConfigureFirstLevelRetries.cs" />
-    <Compile Include="Errors\ConfigureSecondLevelRetries.cs" />
-    <Compile Include="Errors\ErrorQueueConfigurationSource.cs" />
-    <Compile Include="Headers\HeaderUsage.cs" />
+    <Compile Include="EndpointMapping\ProvideConfiguration.cs" />
+    <Compile Include="EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
+    <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
+    <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />
+    <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Headers\SomeOtherMessage.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="Host\CustomLogging.cs" />
     <Compile Include="Host\CriticalErrors.cs" />
@@ -258,38 +295,64 @@
     <Compile Include="Logging\MessageToLog.cs" />
     <Compile Include="Logging\NLog\NLogFiltering.cs" />
     <Compile Include="Logging\OverrideViaProfile.cs" />
-    <Compile Include="Persistence\Azure\AzurePersistence.cs" />
-    <Compile Include="Persistence\InMemory\ConfiguringInMemory.cs" />
-    <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
-    <Compile Include="Pipeline\NewPipelineStep.cs" />
-    <Compile Include="Pipeline\ReplacePipelineBehavior.cs" />
+    <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
+    <Compile Include="Persistence\InMemory\Usage.cs" />
+    <Compile Include="Persistence\NHibernate\Usage.cs" />
+    <Compile Include="Pipeline\Abort\Handler.cs" />
+    <Compile Include="Pipeline\Abort\MyMessage.cs" />
+    <Compile Include="Pipeline\NewStep\NewPipelineStep.cs" />
+    <Compile Include="Pipeline\Replace\ReplacePipelineBehavior.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
+    <Compile Include="Sagas\SagaMappingForUpgradeV4toV5.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
-    <Compile Include="Sagas\SimpleSaga.cs" />
-    <Compile Include="Sagas\Timeouts.cs" />
+    <Compile Include="Sagas\SimpleSaga\OrderSagaData.cs" />
+    <Compile Include="Sagas\SimpleSaga\CompleteOrder.cs" />
+    <Compile Include="Sagas\SimpleSaga\OrderSaga.cs" />
+    <Compile Include="Sagas\SimpleSaga\StartOrder.cs" />
+    <Compile Include="Sagas\Timeouts\AlmostDoneMessage.cs" />
+    <Compile Include="Sagas\Timeouts\Message1.cs" />
+    <Compile Include="Sagas\Timeouts\Message2.cs" />
+    <Compile Include="Sagas\Timeouts\MyCustomTimeout.cs" />
+    <Compile Include="Sagas\Timeouts\MySagaData.cs" />
+    <Compile Include="Sagas\Timeouts\MySaga.cs" />
+    <Compile Include="Sagas\Timeouts\TiredOfWaitingForMessage2.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
-    <Compile Include="Scheduling\SchedulerSaga.cs" />
+    <Compile Include="Scheduling\Saga\SchedulerSaga.cs" />
     <Compile Include="Transactions.cs" />
-    <Compile Include="Transports\RabbitMQ\ConfigurationSettings.cs" />
-    <Compile Include="Transports\Throughtput\Throughput.cs" />
-    <Compile Include="UnitTesting\Saga.cs" />
+    <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />
+    <Compile Include="Transports\RabbitMQ\Usage.cs" />
+    <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
+    <Compile Include="Transports\Throughput\Usage.cs" />
+    <Compile Include="UnitTesting\AdditionalServices\MyMessage.cs" />
+    <Compile Include="UnitTesting\AdditionalServices\MyService.cs" />
+    <Compile Include="UnitTesting\HeaderManipulation\RequestMessage.cs" />
+    <Compile Include="UnitTesting\HeaderManipulation\ResponseMessage.cs" />
+    <Compile Include="UnitTesting\Saga\MyCommand.cs" />
+    <Compile Include="UnitTesting\Saga\MyEvent.cs" />
+    <Compile Include="UnitTesting\Saga\MyResponse.cs" />
+    <Compile Include="UnitTesting\Saga\MySagaData.cs" />
+    <Compile Include="UnitTesting\Saga\StartsSaga.cs" />
+    <Compile Include="UnitTesting\Saga\Tests.cs" />
+    <Compile Include="UnitTesting\ServiceLayer\RequestMessage.cs" />
+    <Compile Include="UnitTesting\ServiceLayer\ResponseMessage.cs" />
+    <Compile Include="UnitTesting\Unobtrusive.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
-    <None Include="Encryption\encryption.config">
+    <Compile Include="XmlSerializationIntegration.cs" />
+    <None Include="Encryption\Configuration\encryption.config">
       <SubType>Designer</SubType>
     </None>
-    <Compile Include="Distributor\ConfiguringDistributor.cs" />
-    <Compile Include="Distributor\ConfiguringWorker.cs" />
-    <Compile Include="Gateway\GatewayConfig.cs" />
+    <Compile Include="Distributor\Usage.cs" />
+    <Compile Include="Gateway\Usage.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
-    <Compile Include="Persistence\RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
+    <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
-    <Compile Include="SecondLevelRetries\CustomSecondLevelRetriesConfig.cs" />
+    <Compile Include="Errors\SecondLevel\SecondLevelRetries\Usage.cs" />
     <Compile Include="SubscriptionSettings.cs" />
-    <Compile Include="Containers.cs" />
-    <Compile Include="EndpointName.cs" />
+    <Compile Include="Container\Containers.cs" />
+    <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="CriticalError.cs" />
@@ -299,26 +362,29 @@
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DoNotCreateQueues.cs" />
-    <Compile Include="DataBus\DataBus.cs" />
+    <Compile Include="DataBus\FileShare\DataBus.cs" />
     <Compile Include="CustomConfigOverrides.cs" />
-    <Compile Include="CustomRavenConfig.cs" />
-    <Compile Include="Encryption\PropertyEncryption.cs" />
+    <Compile Include="RavenDB\CustomRavenConfig.cs" />
+    <Compile Include="Encryption\Usage.cs" />
     <Compile Include="PurgeOnStartup.cs" />
     <Compile Include="InterfaceMessageCreation.cs" />
-    <Compile Include="Conventions\MessageConventions.cs" />
-    <Compile Include="Transports.cs" />
+    <Compile Include="Conventions\Usage.cs" />
+    <Compile Include="Transports\Transports.cs" />
     <Compile Include="RunCustomAction.cs" />
     <Compile Include="Installers.cs" />
     <Compile Include="StartupAction.cs" />
-    <Compile Include="SagaMapping.cs" />
-    <Compile Include="Persistence.cs" />
-    <Compile Include="Scheduler.cs" />
-    <Compile Include="UnitTesting\AdditionalServices.cs" />
-    <Compile Include="UnitTesting\ServiceLayer.cs" />
-    <Compile Include="UnitTesting\HeaderManipulation.cs" />
+    <Compile Include="Sagas\SagaMapping.cs" />
+    <Compile Include="Persistence\Persistence.cs" />
+    <Compile Include="Scheduling\Scheduler.cs" />
+    <Compile Include="UnitTesting\AdditionalServices\Tests.cs" />
+    <Compile Include="UnitTesting\ServiceLayer\Tests.cs" />
+    <Compile Include="UnitTesting\HeaderManipulation\Tests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SecondLevelRetries\app.config.xml">
+    <Content Include="Errors\SecondLevel\app.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

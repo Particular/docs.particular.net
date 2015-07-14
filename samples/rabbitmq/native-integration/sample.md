@@ -9,7 +9,7 @@ related:
 
 ## Code walk-through
 
-The sample consists of 2 console apps. A simple NServiceBus receiver and a native sender.
+The sample consists of 2 console apps. A simple NServiceBus receiver and a native sender demonstrating how to have senders on other platforms send messages to your NServiceBus endpoints using the native RabbitMQ Clients available. This could be java clients, Node.js etc.
 
 #### Putting the message in the correct queue
 

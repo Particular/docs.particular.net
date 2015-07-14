@@ -1,13 +1,15 @@
-﻿using NServiceBus;
-
-
-public class DoNotCreateQueues
+﻿namespace Snippets4
 {
-    public void Simple()
-    {
-        #region DoNotCreateQueues
-        Configure.With().DoNotCreateQueues();
-        #endregion
-    }
+    using NServiceBus;
 
+    public class DoNotCreateQueues
+    {
+        public void Simple()
+        {
+            #region DoNotCreateQueues
+            Configure.With().DoNotCreateQueues();
+            #endregion
+        }
+
+    }
 }

@@ -51,6 +51,9 @@ To create shared queues.
 
 <!-- import rabbit-create-queues-shared-usage -->
 
+## Create HA policy
+
+To configure HA policy, please refer to RabbitMQ [official documentation](https://www.rabbitmq.com/ha.html)
 
 ## Delete queues
 

@@ -21,9 +21,11 @@ For situations like these, NServiceBus offers two levels of retries:
 
 NOTE: When a message cannot be deserialized, it will bypass all retry mechanisms both the FLR and SLR and the message will be moved directly to the error queue.
 
+
 ## First Level Retries
 
 NServiceBus automatically retries the message when an exception is thrown during message processing up to five successive times by default. This value can be configured through `app.config` or code.
+
 
 ### Configuring FLR using app.config
 
@@ -33,14 +35,18 @@ From V4 onward the configuration for this mechanism is implemented in the `Trans
 
 <!-- import configureFlrViaXml -->
 
-### Configuring FLR through code
 
-<!-- import FlrConfiguration -->
+### Configuring FLR through IProvideConfiguration
+
+<!-- import FlrProvideConfiguration -->
 
 
-NOTE: In NServiceBus V3, it is important to configure the bus to use the configuration source when the bus is initialized. See below: 
+### Configuring FLR through ConfigurationSource
 
-<!-- import UseCustomConfigurationSourceForFLR -->
+<!-- import FLRConfigurationSource -->
+
+<!-- import FLRConfigurationSourceUsage -->
+
 
 ## Second Level Retries
 
@@ -52,6 +58,7 @@ For example, if there is a call to an web service in your handler, but the servi
 
 SLR can be configured either via code or through `app.config`.
 
+
 ### Configuring SLR using app.config
 
 To configure SLR, enable its configuration section:
@@ -62,20 +69,20 @@ To configure SLR, enable its configuration section:
  *  `TimeIncrease`: A time span after which the time between retries increases. Default: 10 seconds (`00:00:10`).
  *  `NumberOfRetries`: Number of times SLR kicks in. Default: 3.
 
-### Configuration SLR using code
 
-You can disable the SLR feature or configure other SLR properties in one of two ways: 
+### Configuration SLR through IProvideConfiguration
 
-#### By overriding the Configuration Section
-
-<!-- import SlrConfiguration -->
-
-NOTE: In NServiceBus V3, it is important to configure the bus to use the configuration source when the bus is initialized. See below: 
-
-<!-- import UseCustomConfigurationSourceForSLR -->
+<!-- import SlrProvideConfiguration -->
 
 
-#### By Providing Custom Retry Policy in the API
+### Configuring FLR through ConfigurationSource
+
+<!-- import SlrConfigurationSource -->
+
+<!-- import SLRConfigurationSourceUsage -->
+
+
+### Custom Retry Policy
 
 You can change the time between retries or the number of retries in code.
 

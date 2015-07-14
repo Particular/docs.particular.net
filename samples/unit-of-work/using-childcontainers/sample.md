@@ -1,5 +1,5 @@
 ---
-title: Unit of work with using Child Containers
+title: Unit of work using Child Containers
 summary: How to create a unit of work that relies on child container support to store the session
 tags:
 - Container

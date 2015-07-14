@@ -6,9 +6,9 @@ redirects:
  - nservicebus/nservicebus-and-websphere-sonic
 ---
 
-NServiceBus is built on top of exiting queuing technologies. In NServicebus the choice of queuing technology is referred to as a "Transport".
+NServiceBus is built on top of existing queuing technologies. In NServicebus the choice of queuing technology is referred to as a "Transport".
 
-## Avaliable transports
+## Available transports
 
 ### [MSMQ](/nservicebus/msmq)
 
@@ -21,6 +21,10 @@ Uses Sql Server tables as a queuing mechanism.
 ### [Azure](/nservicebus/azure)
 
 Uses either Azure Servicebus or Azure Storage Queues as a transport.
+
+### [RabbitMQ](/nservicebus/rabbitmq)
+
+Uses [RabbitMQ](https://www.rabbitmq.com/) as a transport
 
 ### Community run transports
 

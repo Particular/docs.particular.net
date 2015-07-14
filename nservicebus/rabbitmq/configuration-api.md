@@ -18,9 +18,7 @@ A typical connection string would look like this:
 
 <!-- import rabbitmqconnectionstring -->
 
-In the above sample we tell the transport to connect to the RabbitMQ broker running at the machine `broker1`. If have a cluster of brokers you can separate them with a `,` like this `broker1,broker2,broker3`. When multiple brokers are available the transport will connect to the first one by default and should the connection be lost try to reconnect to one of them in a round robin fashion.
-
-NOTE: When using multiple brokers and they are running on a port other than the default. The port for each broker can be specified as follows `broker1:port1,broker2:port2,broker3:port3`.
+In the above sample we tell the transport to connect to the RabbitMQ broker running at the machine `broker1`.
 
 Below is the full list of connection string options. Note that you needs to separate them with a `;`.
 
@@ -64,6 +62,8 @@ By default 1 dedicated thread is used for the callbacks but if you want to add m
 By default NServiceBus uses the `message-id` property of the AMQP standard to relay the message id. If this header isn't set the transport will throw an exception since NServiceBus needs a message id in order to perform retries, de-duplication etc. in a safe way. In integration scenarios where you don't control the sender you might want to use your own custom scheme that extracts the message id from e.g.a custom header or some data contained in the actual message body. In these cases you can plug in your own strategy by calling: 
 
 <!-- import rabbitmq-config-custom-id-strategy -->
+
+WARNING: It is extremely important to use a uniquely identifying property of the message in a custom message id strategy. If the value for a message were to change (for example, if attempting to use `Guid.NewGuid().ToString()`) then message retries would break, as the infrastructure would be unable to determine that it was processing the same message repeatedly.
 
 ### Getting full control over the broker connection
 

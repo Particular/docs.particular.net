@@ -1,21 +1,24 @@
-﻿using NServiceBus;
-
-public class ConfigureSagaPersistence
+﻿namespace Snippets3.Sagas
 {
+    using NServiceBus;
 
-    public void Simple()
+    public class ConfigureSagaPersistence
     {
-        #region saga-configure
-        IStartableBus bus = Configure.With()
-                                .DefaultBuilder()
-                                .MsmqTransport()
-                                .Sagas()
-                                .UnicastBus()
-                                .RavenSagaPersister()
-                                .CreateBus();
 
-        #endregion
+        public void Simple()
+        {
+            #region saga-configure
+            IStartableBus bus = Configure.With()
+                .DefaultBuilder()
+                .MsmqTransport()
+                .Sagas()
+                .UnicastBus()
+                .RavenSagaPersister()
+                .CreateBus();
+
+            #endregion
+        }
+
+
     }
-
-
 }

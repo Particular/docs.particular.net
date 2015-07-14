@@ -9,11 +9,6 @@ The Endpoints indicator in the ServicePulse dashboard displays the current statu
 
 This article explains how this is done, and defines the meaning of each of the terms used in describing the status of an endpoint (terms like "active", "monitored" and "heartbeat").  
 
-
-* [Monitored vs. Unmonitored Endpoints](#monitored-vs-un-monitored-endpoints)
-* [Active vs. Inactive Endpoints](#active-vs-inactive-endpoints)
-* [Detecting new Endpoints](#detecting-new-endpoints)
-
 <!--![ServicePulse Dashboard Indicators (all green)](images/indicators-green.JPG)-->
 
 ### Monitored vs. Unmonitored Endpoints
@@ -38,7 +33,7 @@ Unmonitoring an endpoint via the ServicePulse Configuration page is useful when 
 
 ServicePulse relies on heartbeat messages sent from the monitored endpoints to indicate whether an endpoint is active or inactive.
 
-An endpoint that is marked for monitoring (by ServicePulse) is expected to periodically send a heartbeat message. As long as a monitored endpoint sends heartbeat messages, it is marked as "active". Therefore, marking an endpoint as active means it is able to properly and periodically send messages using the endpoint-defined transport.
+An endpoint that is marked for monitoring (by ServicePulse) is expected to periodically send a heartbeat message. As long as a monitored endpoint sends heartbeat messages, it is marked as "active". Marking an endpoint as active means it is able to properly and periodically send messages using the endpoint-defined transport.
 
 If a heartbeat message is not received by ServiceControl from an endpoint within the specified timespan, that endpoint is marked as "inactive". An inactive endpoint indicates that there is a failure in the communication path between ServiceControl and the monitored endpoint. For example, such failures may be caused by a failure of the endpoint itself, a communication failure in the transport, or when ServiceControl is unable to receive and process the heartbeat messages sent by the endpoint.
 

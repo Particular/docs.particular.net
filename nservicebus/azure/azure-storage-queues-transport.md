@@ -4,6 +4,9 @@ summary: NServiceBus can use Azure storage queues to take advantage of their pee
 tags: 
 - Azure
 - Cloud
+- Azure Storage Queues
+- Transport
+- Configuration 
 redirects:
  - nservicebus/using-azure-storage-queues-as-transport-in-nservicebus
 ---
@@ -19,33 +22,23 @@ Azure Queue storage is a service, hosted on the Azure platform, for storing larg
 
 First you need to reference the assembly that contains the azure storage queue transport definition. The recommended way of doing this is by adding a nuget package reference to the  `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` package to your project.
 
-Once you've done that you can use the fluent `Configure` API to setup NServiceBus, all you need to do is specify `.UseTransport<AzureStorageQueueTransport>()` to override the default transport.
+```
+PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureStorageQueues
+```
 
-	Configure.With()
-         ...
-         .UseTransport<AzureStorageQueueTransport>()
-         ...
-         .CreateBus()
+Once you've done that you can use the configuration API to setup NServiceBus, all you need to do is specify `.UseTransport<T>()` to override the default transport.
 
-Alternatively, when using one of the NServiceBus provided hosting processes, you should supply the `UsingTransport<AzureStorageQueueTransport>` on the endpoint configuration. In the Azure role entrypoint host, for example, it would look like this.
+<!-- import AzureStorageQueueTransportWithAzure -->
 
-	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
-	{
-	    public void Customize(BusConfiguration builder)
-	    {
-	        builder.UseTransport<AzureStorageQueueTransport>();
-	    }
-	}
+Alternatively, when using one of the NServiceBus provided hosting processes, you should call `UseTransport<T>` on the existing configuration. In the Azure role entrypoint host, for example, it would look something like this.
+
+<!-- import AzureStorageQueueTransportWithAzureHost -->
 
 ## Setting the connection string
 
 The default way of setting the connection string is using the .net provided connectionstrings configuration section in app.config or web.config, with the name `NServicebus\Transport`
 
-```
-<connectionStrings>
-   <add name="NServiceBus/Transport" connectionString="UseDevelopmentStorage=true" />
-</connectionStrings> 
-```
+<!-- import AzureStorageQueueConnectionStringFromAppConfig -->
 
 Note that multiple connection string formats apply when working with Azure storage services. When you're running against the emulated environment the format is `UseDevelopmentStorage=true`, but when running against a cloud hosted storage account the format is `DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;` 
 
@@ -55,10 +48,7 @@ For more information see [Configuring Azure Connection Strings](https://msdn.mic
 
 If you need more fine grained control on how the azure storage queue transport behaves, you can override the default settings by adding a configuration section called `AzureQueueConfig` to your web.config or app.config. For example:
 
-	<configSections>
-	    <section name="AzureQueueConfig" type="NServiceBus.Config.AzureQueueConfig, NServiceBus.Azure.Transports.WindowsAzureStorageQueues" />   
-	</configSections>
-	<AzureQueueConfig ConnectionString="UseDevelopmentStorage=true" />
+<!-- import AzureStorageQueueConfig -->
 
 Using this configuration setting you can change the following values.
 

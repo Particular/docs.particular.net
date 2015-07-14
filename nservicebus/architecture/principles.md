@@ -34,7 +34,7 @@ Since the amount of time it can take to communicate with another machine across 
 
 ![Store and Forward Messaging](store-and-forward.png)
 
-In this model, when the client process calls an API to send a message to the server process, the API returns control to the calling thread before the message is sent. At that point, the transfer of the message across the network becomes the responsibility of the messaging technology. There may be various kinds of communications interference, the server machine may simply be down, or a firewall may be slowing down the transfer. Also, even though the message may have reached the target machine, the target process may currently be down.
+In this model, when the client process calls an API to send a message to the server process, the API returns control to the calling thread before the message is sent. At that point, the transfer of the message across the network becomes the responsibility of the messaging technology. There may be various kinds of communications interference, the server machine may be down, or a firewall may be slowing down the transfer. Also, even though the message may have reached the target machine, the target process may currently be down.
 
 While all of this is going on, the client process is oblivious. Critical resources like threads (and it's allocated memory) are not held waiting for the call to complete. This prevents the client process from losing stability as a result of having many threads and all their memory used up waiting for a response from the other machine or process.
 

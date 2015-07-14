@@ -13,17 +13,21 @@ This sample shows how to setup a sql subscriber so it can subscribe to events fr
 
 NOTE: This sample uses NHibernate persistence. It uses a database called, `PersistenceForMsmqTransport` for MSMQ transport endpoints and a different database called, `PersistenceForSqlTransport` for SQL Transport endpoints.
 
+
 ## Shared 
 
 The event that will be published by `MsmqPublisher`
 
 <!-- import event -->
 
+
 ## MsmqPublisher 
+
 
 ### The publisher configuration.
 
 <!-- import publisher-config -->
+
 
 ### The publish loop
 
@@ -57,27 +61,33 @@ GO
 
 Subscribes to the events from the `MsmqPublisher`
 
+
 ### The Msmq Subscriber configuration.
 
 <!-- import msmqsubscriber-config -->
+
 
 ### The Msmq Subscriber handler.
 
 <!-- import msmqsubscriber-handler -->
 
+
 ## SqlBridge 
 
 This endpoint is setup to read messages that arrive in MSMQ via an `IAdvancedSatellite`. 
 
+
 ### The bridge configuration
 
 <!-- import bridge-config -->
+
 
 ### The Satellite
 
 <!-- import satellite -->
 
 Note: Since `SqlBridge` is not using native msmq transport you will need to manually create the `SqlMsmqTransportBridge` queue.
+
 
 ## How does the advanced satellite work
 
@@ -88,9 +98,11 @@ Note: Since `SqlBridge` is not using native msmq transport you will need to manu
 - The satellite will automatically process any message that is received in that queue (MSMQ).
 - The satellite will publish the received event. Since this endpoint uses SqlTransport, it will publish to its Sql queues. 
 
+
 ## SqlSubscriber
 
 Receives events from the SqlBridge. The endpoint address is the sql bridge address and not the original publisher's address.
+
 
 ### The Sql Subscriber configuration
 
@@ -100,6 +112,7 @@ Receives events from the SqlBridge. The endpoint address is the sql bridge addre
 ### The event handler
 
 <!-- import sqlsubscriber-handler -->
+
 
 ## Summary
 

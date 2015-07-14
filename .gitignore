@@ -7,6 +7,7 @@
 
 # User-specific files
 *.suo
+*.vs
 *.user
 *.sln.docstates
 *.pidb
@@ -91,3 +92,6 @@ Fody/.DS_Store
 *.jtconfig
 
 *nsb_log*
+
+samples/azure/shared-host/Version_5/tools/AzCopy
+samples/azure/shared-host/Version_5/_zips

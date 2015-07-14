@@ -19,11 +19,13 @@ If a message cannot be received by the target process in the given time frame, i
 
 To discard a message when a specific time interval has elapsed:
 
+
 ## Using an Attribute
 
 <!-- import DiscardingOldMessagesWithAnAttribute -->
 
+
 ## Using your own convention
 
-<!-- import DiscardingOldMessagesWithFluent -->
+<!-- import DiscardingOldMessagesWithCode -->
 

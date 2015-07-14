@@ -1,26 +1,29 @@
-﻿using System;
-using NServiceBus;
-
-public class HostIdFixer_5_1
+﻿namespace Snippets5.HostIdentifier
 {
-    public void Start()
-    {
-        #region HostIdFixer 5.1
+    using System;
+    using NServiceBus;
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.UniquelyIdentifyRunningInstance()
+    public class HostIdFixer_5_1
+    {
+        public void Start()
+        {
+            #region HostIdFixer 5.1
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UniquelyIdentifyRunningInstance()
                 .UsingNames("endpointName", Environment.MachineName);
-        // or
-        Guid hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
-        busConfiguration.UniquelyIdentifyRunningInstance()
-            .UsingCustomIdentifier(hostId);
+            // or
+            Guid hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
+            busConfiguration.UniquelyIdentifyRunningInstance()
+                .UsingCustomIdentifier(hostId);
             
-        #endregion
-    }
+            #endregion
+        }
 
-    Guid CreateMyUniqueIdThatIsTheSameAcrossRestarts()
-    {
-        throw new NotImplementedException();
+        Guid CreateMyUniqueIdThatIsTheSameAcrossRestarts()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
     

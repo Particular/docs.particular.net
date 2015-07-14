@@ -1,23 +1,29 @@
-﻿using NServiceBus;
+﻿using System;
 
-public class MinimumConfiguration
+namespace Snippets5
 {
-    public MinimumConfiguration()
+    using NServiceBus;
+
+    public class MinimumConfiguration
     {
-        #region MinimumConfiguration
-
-        BusConfiguration busConfiguration = new BusConfiguration();
-
-        #endregion MinimumConfiguration
-
-        #region BusDotCreate
-
-        using (IStartableBus bus = Bus.Create(busConfiguration))
+        public MinimumConfiguration()
         {
-            bus.Start();
+            #region MinimumConfiguration
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+
+            #endregion MinimumConfiguration
+
+            #region BusDotCreate
+
+            using (IStartableBus bus = Bus.Create(busConfiguration))
+            {
+                bus.Start();
+                Console.ReadKey();
+            } // Leaving this scope will stop the bus and dispose it.
+
+            #endregion BusDotCreate
         }
 
-        #endregion BusDotCreate
     }
-
 }

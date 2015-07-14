@@ -9,12 +9,6 @@ SignalR is a library that is part of ASP.NET. It allows a persistent, bi-directi
 
 When you build an ASP.NET MVC 4 endpoint in ServiceMatrix, it allows you to leverage SignalR v1.x to have event and reply messages to be propagated to the front-end user interface.
 
-1.  [Getting Started](#introducing-signalr-and-servicematrix)
-2.  [Adding a BillingCompleted Event](#adding-a-billingcompleted-event)
-3.  [Subscribe ASP.NET MVC to BillingCompleted](#subscribe-aspnet-mvc-to-billingcompleted)
-4.  [Summary](#summary)
-5.  [Next Steps](#next-steps)
-
 # Introducing SignalR and ServiceMatrix
 
 To demonstrate the SignalR integration you will extend your Online Sales sample.  Before proceeding, please verify that your solution has the ECommerce website, and the OrderProcessing, Billing, and PaymentProcessing endpoints, as shown. 
@@ -52,11 +46,11 @@ Select the Sales service and you will be given a new, undeployed `BillingComplet
 
 ![Broadcast via SignalR?](images/servicematrix-signalr-broadcast.png)
 
-Click **Yes** here to enable the SignalR broadcast. If you do not receive the message, you can simply click on the BillingCompletedHandler to open its context menu and select "Broadcast via SignalR."
+Click **Yes** here to enable the SignalR broadcast. If you do not receive the message, you can click on the BillingCompletedHandler to open its context menu and select "Broadcast via SignalR."
 
 ![Broadcast via SignalR Menu Option](images/servicematrix-signalr-broadcast-menu.png)
 
-NOTE: If at any time you wish to remove the SignalR broadcast from your handler, simply open the context menu again and select "Remove Broadcast via SignalR."
+NOTE: If at any time you wish to remove the SignalR broadcast from your handler open the context menu again and select "Remove Broadcast via SignalR."
 
 Now run the solution with **F5** and send a test SubmitOrder message using the web browser. You should now see a new 'SignalR Broadcasts' section on the web page.
 

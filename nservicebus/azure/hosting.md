@@ -1,7 +1,8 @@
 ---
 title: Hosting in Azure
 summary: Overview on using Azure Cloud Services, websites, and virtual machines to host NServiceBus, with links to detailed articles.
-tags: 
+tags:
+- Hosting
 - Azure
 - Cloud
 redirects:
@@ -14,7 +15,7 @@ Azure offers various ways to host applications. Each of these hosting options ca
 
 ## General Considerations
 
-Because of the size and service nature of the Azure platform, you cannot rely on distributed transactions in this environment. Therefore, you cannot rely on any setup that would require distributed transactions, including the MSMQ transport. For details, refer to ['Understanding transactions in Azure'](transactions.md).
+Because of the size and service nature of the Azure platform, you cannot rely on distributed transactions in this environment. You cannot rely on any setup that would require distributed transactions, including the MSMQ transport. For details, refer to ['Understanding transactions in Azure'](transactions.md).
 
 ## Azure Virtual Machines
 
@@ -50,7 +51,7 @@ The third hosting model available on the Azure platform is 'Cloud Services'. In 
 
 This layout is based on a concept called `Roles`. Roles define what a specific set of machines should look like, where all should be identical to what is defined in the role. By default, one NServiceBus endpoint translates to a role, meaning that it will be hosted by multiple identical machines at the same time. You specify how many machines should be in each role when deployed (we advise at least two), but the Azure platform will manage them for you, automatically monitoring and updating the machines.
 
-But it does this in a very particular way! To ensure an identical set of machines (i.e., identical to the role template) it will simply destroy a machine and install a new one. This means that anything that was on the disk of a machine will be lost! This fact makes any transport or persistence option that relies on a disk unsuitable for this environment, including MSMQ, RabbitMQ, ActiveMQ, SQL Server, RavenDB, and so on.
+But it does this in a very particular way! To ensure an identical set of machines (i.e., identical to the role template) it will destroy a machine and install a new one. This means that anything that was on the disk of a machine will be lost! This fact makes any transport or persistence option that relies on a disk unsuitable for this environment, including MSMQ, RabbitMQ, ActiveMQ, SQL Server, RavenDB, and so on.
 
 The advised transports in this environment are `AzureStorageQueuesTransport` or `AzureServiceBusTransport`, and the Azure storage persisters for persistence purposes.
 

@@ -36,7 +36,7 @@ class Program
             bus.Send("Samples.Encryption.Endpoint2", message);
 
             Console.WriteLine("MessageWithSecretData sent. Press any key to exit");
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }

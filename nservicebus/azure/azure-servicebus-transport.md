@@ -4,6 +4,11 @@ summary: NServiceBus can use Azure Service Bus to take advantage of its peek-loc
 tags: 
 - Azure
 - Cloud
+- Transport
+- Configuration
+- Concurrency
+- Performance
+- Batching
 redirects:
  - nservicebus/using-azure-servicebus-as-transport-in-nservicebus
 ---
@@ -15,46 +20,37 @@ Azure Service Bus is messaging infrastructure that sits between applications, al
 - The main advantage of this service is that it offers a highly reliable and (relatively) low latency remote messaging infrastructure. A single queue message can be up to 256 KB in size, and a queue can contain many messages, up to 5GB in total. Furthermore it is capable of emulating local transactions using its queue peek-lock mechanism and has many built-in features that you (and NServiceBus) can take advantage of, such as message deduplication and deferred messages.
 - The main disadvantage of this service is its dependency on TCP (if you want low latency), which may require you to open some outbound ports on your firewall. Additionally, the price may be steep, depending on your scenario ($1 per million messages).
 
+
 ## Enabling the Transport
 
 First, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a NuGet package reference to the  `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package to your project.
 
-Then, use the Fluent `Configure` API to set up NServiceBus, by specifying `.UseTransport<AzureServiceBusTransport>()` to override the default transport:
+```
+PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureServiceBus
+```
 
-	Configure.With()
-         ...
-         .UseTransport<AzureServiceBusTransport>()
-         ...
-         .CreateBus()
+Then, use the Configuration API to set up NServiceBus, by specifying `.UseTransport<T>()` to override the default transport:
 
-Alternatively, when using one of the NServiceBus provided hosting processes, you should call the `UseTransport<AzureServiceBusTransport>` on the endpoint configuration. In the Azure role entrypoint host, for example, it looks like this:
+<!-- import AzureServiceBusTransportWithAzure -->
 
-	public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
-	{
-	   public void Customize(BusConfiguration builder)
-	   {
-		 builder.UseTransport<AzureServiceBusTransport>();
-	   }
-	}
+Alternatively, when using one of the NServiceBus provided hosting processes, you should call the `UseTransport<T>` on the endpoint configuration. In the Azure role entrypoint host, for example, it looks like this:
+
+<!-- import AzureServiceBusTransportWithAzureHost -->
 
 ## Setting the Connection String
 
 The default way to set the connection string is using the .net provided `connectionStrings` configuration section in app.config or web.config, with the name `NServicebus\Transport`:
 
-	<connectionStrings>
-	   <add name="NServiceBus/Transport" connectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
-	</connectionStrings> 
+<!-- import AzureServiceBusConnectionStringFromAppConfig -->
 
 For more detail see [Configuration Connection Strings](https://msdn.microsoft.com/en-us/library/azure/jj149830.aspx)
+
 
 ## Configuring in Detail
 
 If you need fine grained control on how the Azure Service Bus transport behaves, you can override the default settings by adding a configuration section called `AzureServiceBusQueueConfig` to your web.config or app.config files. For example:
 
-	<configSections>
-	    <section name="AzureServiceBusQueueConfig" type="NServiceBus.Config.AzureServiceBusQueueConfig, NServiceBus.Azure.Transports.WindowsAzureServiceBus" />   
-	</configSections>
-	<AzureServiceBusQueueConfig ConnectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
+<!-- import AzureServiceBusQueueConfig -->
 
 Using this configuration setting you can change the following values. NOTE: Most of these values are applied when a queue or topic is created and cannot be changed afterwards).
 
@@ -73,8 +69,30 @@ Using this configuration setting you can change the following values. NOTE: Most
 - `DefaultMessageTimeToLive`: Specifies the time that a message can stay in the queue without being delivered. Defaults to int64.MaxValue, which is roughly 10.000 days.
 - `EnableDeadLetteringOnMessageExpiration`: Specifies whether messages should be moved to a dead letter queue upon expiration. Defaults to false (TTL is so large it wouldn't matter anyway). This assumes there have been no attempts to deliver. Errors on delivery will still put the message on the dead letter queue.
 - `EnableDeadLetteringOnFilterEvaluationExceptions`: Specifies whether messages should be moved to a dead letter queue upon filter evaluation exceptions. Defaults to false.
+- `EnablePartitioning`: Increase overall throughput by allowing to use multiple brokers/stores to handle queues and topics to overcome limitations of a single broker/store at increased cost. Partitioning does reduce number of queues or topics per namespace. Defaults to false.
+- `SupportOrdering`: Specifies whether queues and topics should enable support for message ordering. Defaults to true.
 
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.
+
+Defaults are just starting values. You should always measure and test these values against your solution and adjust those accordingly.
+
+
+## Scenarios
+
+For any scenario provided in this document, you should always test it in environment as close to production as possible.
+
+
+### CPU vs IO bound processing
+
+There are several things to consider:
+- `BatchSize`
+- `LockDuration`
+- `MaxDeliveryCount`
+
+In scenario where handlers are CPU intense and have very little IO, it is advised to lower number of threads to one and have a bigger `BatchSize`. `LockDuration` and `MaxDeliveryCount` might require an adjustment to match the batch size taking in account number of messages that end up in the dead letter queue.
+
+In scenario where handlers are IO intense, it is advised to set number of threads ([`MaximumConcurrencyLevel`](/nservicebus/operations/throughput.md) in NServiceBus) to 12 threads per logical core and `BatchSize` to a number of messages that takes to process, taking in account possible/measured single message processing time and IO latency. Try to start with a small `BatchSize` and through adjustment and measurement bring it up, adjusting accordingly `LockDuration` and `MaxDeliveryCount`.
+
 
 ## Sample
 

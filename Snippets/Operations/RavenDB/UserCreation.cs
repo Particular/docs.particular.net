@@ -9,7 +9,6 @@
     using Raven.Client.Document;
     using Raven.Json.Linq;
 
-
     public static class UserCreation
     {
 

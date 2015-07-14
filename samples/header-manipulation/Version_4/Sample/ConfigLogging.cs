@@ -7,7 +7,7 @@ class ConfigLogging : IProvideConfiguration<Logging>
     {
         return new Logging
                {
-                   Threshold = "INFO"
+                   Threshold = "Info"
                };
     }
 }

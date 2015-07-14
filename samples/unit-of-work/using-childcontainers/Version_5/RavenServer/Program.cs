@@ -20,8 +20,9 @@ class Program
                                    })
         {
             documentStore.Initialize();
-            Console.WriteLine("Raven server started on http://localhost:{0}/. Press enter to stop.", port);
-            Console.ReadLine();
+            Console.WriteLine("Raven server started on http://localhost:{0}/", port);
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
         }
     }
 }

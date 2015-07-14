@@ -1,7 +1,15 @@
 ---
 title: Hosting NServiceBus v4.x in-process 
-summary: Fluent configuration API to get transactional one-way messaging, referencing only three assemblies.
-tags: []
+summary: Configuration API to get transactional one-way messaging, referencing only three assemblies.
+tags:
+- Hosting
+- Initialization
+- Dependencies
+- ASP.NET
+- MVC
+- Configuration
+- Routing
+- MSMQ
 redirects:
 - nservicebus/hosting-nservicebus-in-your-own-process-v4.x
 related:
@@ -10,7 +18,7 @@ related:
 
 Lighter-weight than BizTalk and more powerful than WCF, NServiceBus comes with its own host process and allows you to host it in your own process.
 
-Requiring as few as three assemblies to be referenced, the Fluent configuration API can get you up and running with transactional one-way messaging in a snap.
+Requiring as few as three assemblies to be referenced, the configuration API can get you up and running with transactional one-way messaging in a snap.
 
 ## Assembly references
 

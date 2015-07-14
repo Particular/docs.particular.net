@@ -6,7 +6,6 @@
     using global::RabbitMQ.Client;
     using global::RabbitMQ.Client.Events;
 
-
     public static class ErrorQueue
     {
 

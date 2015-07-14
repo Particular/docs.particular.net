@@ -1,19 +1,50 @@
-﻿using System;
-using NServiceBus;
-
-public class PerformanceMonitoring
+﻿namespace Snippets4
 {
-    public void Simple()
+    using System;
+    using NServiceBus;
+
+    public class PerformanceMonitoring
     {
-        #region PerformanceMonitoring
+        public void V5Upgrade()
+        {
+            #region PerformanceMonitoring-v5-upgrade-guide
 
-        Configure.With()
-            .EnablePerformanceCounters();
+            Configure.With()
+                .EnablePerformanceCounters();
 
-        Configure.With()
-            .SetEndpointSLA(TimeSpan.FromMinutes(3));
+            Configure.With()
+                .SetEndpointSLA(TimeSpan.FromMinutes(3));
 
+            #endregion
+        }
+        public void EnablingCriticalTime()
+        {
+            #region enable-criticaltime
+            Configure configure = Configure.With();
+            // in this version there was no granular control over individual counters
+            configure.EnablePerformanceCounters();
+            #endregion
+        }
+
+        public void EnablingSla()
+        {
+            #region enable-sla
+            Configure configure = Configure.With();
+            // in this version there was no granular control over individual counters
+            configure.EnablePerformanceCounters();
+            configure.SetEndpointSLA(TimeSpan.FromMinutes(3));
+            #endregion
+        }
+        #region enable-sla-host-attribute
+
+        [EndpointSLA("00:03:00")]
+        public class EndpointConfig : IConfigureThisEndpoint
+        {
         #endregion
-    }
 
+            public void Customize(Configure configure)
+            {
+            }
+        }
+    }
 }

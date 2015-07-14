@@ -1,13 +1,19 @@
-﻿#region UsingLogging
-using log4net;
-
-public class ClassUsingLogging
+﻿namespace Snippets3.Logging
 {
-    public void SomeMethod()
+    using log4net;
+
+    #region UsingLogging
+
+    public class ClassUsingLogging
     {
-        //your code
-        Logger.Debug("Something interesting happened.");
+        public void SomeMethod()
+        {
+            //your code
+            Logger.Debug("Something interesting happened.");
+        }
+
+        static ILog Logger = LogManager.GetLogger(typeof(ClassUsingLogging));
     }
-    static ILog Logger = LogManager.GetLogger("Name");
+
+    #endregion
 }
-#endregion

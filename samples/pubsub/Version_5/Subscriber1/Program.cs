@@ -15,8 +15,8 @@ static class Program
         busConfiguration.EnableInstallers();
         using (Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("To exit, Ctrl + C");
-            Console.ReadLine();
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
         }
     }
 

@@ -16,9 +16,17 @@ class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("Press 'Enter' to publish a message, Ctrl + C to exit.");
-            while (Console.ReadLine() != null)
+            Console.WriteLine("Press enter to publish a message");
+            Console.WriteLine("Press any key to exit");
+            while (true)
             {
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
+
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
                 bus.Publish<V2.Messages.ISomethingHappened>(sh =>
                 {
                     sh.SomeData = 1;

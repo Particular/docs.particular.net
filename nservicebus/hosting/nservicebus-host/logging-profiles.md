@@ -3,6 +3,9 @@ title: Logging Profiles
 summary: How to configure logging using profiles
 tags: 
 - Logging
+- Profiles
+- NServiceBus.Host
+- Configuration
 redirects:
 - nservicebus/logging-profiles
 ---

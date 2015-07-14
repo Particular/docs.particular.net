@@ -1,15 +1,17 @@
-﻿using NServiceBus;
-
-
-public class CustomLicense
+﻿namespace Snippets4
 {
-    public void Simple()
-    {
-        #region License
-        Configure.With().LicensePath("PathToLicense");
-        //or
-        Configure.With().License("YourCustomLicenseText");
-        #endregion
-    }
+    using NServiceBus;
 
+    public class CustomLicense
+    {
+        public void Simple()
+        {
+            #region License
+            Configure.With().LicensePath("PathToLicense");
+            //or
+            Configure.With().License("YourCustomLicenseText");
+            #endregion
+        }
+
+    }
 }

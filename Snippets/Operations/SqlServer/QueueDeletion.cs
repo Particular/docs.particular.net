@@ -3,7 +3,6 @@
     using System;
     using System.Data.SqlClient;
 
-
     public static class QueueDeletion
     {
         public static void DeleteQueuesForEndpoint()

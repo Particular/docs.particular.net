@@ -39,7 +39,7 @@ class Program
         }
         Logger.WriteLine("Finished");
         #endregion
-        Console.WriteLine("Press any key to stop program\r\n");
+        Console.WriteLine("Press any key to exit");
         Console.ReadKey();
     }
 }

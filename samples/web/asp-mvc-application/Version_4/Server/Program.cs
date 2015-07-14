@@ -18,7 +18,7 @@ class Program
         {
             IBus bus = startableBus
                 .Start(() => configure.ForInstallationOn<Windows>().Install());
-            Console.WriteLine("\r\nPress any key to stop program\r\n");
+            Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
 

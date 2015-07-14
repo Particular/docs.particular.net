@@ -1,78 +1,81 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using NServiceBus;
-using NServiceBus.Config;
-using NServiceBus.Config.ConfigurationSource;
-using NServiceBus.MessageMutator;
-using NUnit.Framework;
-using Operations.Msmq;
-
-[TestFixture]
-public class HeaderWriterPublish
+﻿namespace Snippets5.Headers.Writers
 {
-    public static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
+    using NServiceBus;
+    using NServiceBus.Config;
+    using NServiceBus.Config.ConfigurationSource;
+    using NServiceBus.MessageMutator;
+    using NUnit.Framework;
+    using Operations.Msmq;
 
-    public static string EndpointName = "HeaderWriterPublishV5";
-
-    [SetUp]
-    [TearDown]
-    public void Setup()
+    [TestFixture]
+    public class HeaderWriterPublish
     {
-        QueueDeletion.DeleteQueuesForEndpoint(EndpointName);
-    }
+        public static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-    [Test]
-    public void Write()
-    {
-        BusConfiguration config = new BusConfiguration();
-        config.EndpointName(EndpointName);
-        IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterPublish>(typeof(ConfigErrorQueue));
-        config.TypesToScan(typesToScan);
-        config.EnableInstallers();
-        config.UsePersistence<InMemoryPersistence>();
-        config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-        using (IBus bus = Bus.Create(config).Start())
+        public static string EndpointName = "HeaderWriterPublishV5";
+
+        [SetUp]
+        [TearDown]
+        public void Setup()
         {
-            //give time for the subscription to happen
-            Thread.Sleep(3000);
-            bus.Publish(new MessageToPublish());
-            ManualResetEvent.WaitOne();
+            QueueDeletion.DeleteQueuesForEndpoint(EndpointName);
         }
-    }
 
-    class MessageToPublish : IEvent
-    {
-    }
-
-    class MessageHandler : IHandleMessages<MessageToPublish>
-    {
-        public void Handle(MessageToPublish message)
+        [Test]
+        public void Write()
         {
-        }
-    }
-
-    class ConfigUnicastBus : IProvideConfiguration<UnicastBusConfig>
-    {
-        public UnicastBusConfig GetConfiguration()
-        {
-            UnicastBusConfig unicastBusConfig = new UnicastBusConfig();
-            unicastBusConfig.MessageEndpointMappings.Add(new MessageEndpointMapping
+            BusConfiguration config = new BusConfiguration();
+            config.EndpointName(EndpointName);
+            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterPublish>(typeof(ConfigErrorQueue));
+            config.TypesToScan(typesToScan);
+            config.EnableInstallers();
+            config.UsePersistence<InMemoryPersistence>();
+            config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
+            using (IBus bus = Bus.Create(config).Start())
             {
-                AssemblyName = GetType().Assembly.GetName().Name,
-                Endpoint = EndpointName + "@" + Environment.MachineName
-            });
-            return unicastBusConfig;
+                //give time for the subscription to happen
+                Thread.Sleep(3000);
+                bus.Publish(new MessageToPublish());
+                ManualResetEvent.WaitOne();
+            }
         }
-    }
 
-    class Mutator : IMutateIncomingTransportMessages
-    {
-        public void MutateIncoming(TransportMessage transportMessage)
+        class MessageToPublish : IEvent
         {
-            string headerText = HeaderWriter.ToFriendlyString<HeaderWriterPublish>(transportMessage.Headers);
-            SnippetLogger.Write(headerText);
-            ManualResetEvent.Set();
+        }
+
+        class MessageHandler : IHandleMessages<MessageToPublish>
+        {
+            public void Handle(MessageToPublish message)
+            {
+            }
+        }
+
+        class ConfigUnicastBus : IProvideConfiguration<UnicastBusConfig>
+        {
+            public UnicastBusConfig GetConfiguration()
+            {
+                UnicastBusConfig unicastBusConfig = new UnicastBusConfig();
+                unicastBusConfig.MessageEndpointMappings.Add(new MessageEndpointMapping
+                {
+                    AssemblyName = GetType().Assembly.GetName().Name,
+                    Endpoint = EndpointName + "@" + Environment.MachineName
+                });
+                return unicastBusConfig;
+            }
+        }
+
+        class Mutator : IMutateIncomingTransportMessages
+        {
+            public void MutateIncoming(TransportMessage transportMessage)
+            {
+                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterPublish>(transportMessage.Headers);
+                SnippetLogger.Write(headerText, version: "All");
+                ManualResetEvent.Set();
+            }
         }
     }
 }

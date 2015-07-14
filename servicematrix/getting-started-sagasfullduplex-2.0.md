@@ -9,16 +9,7 @@ tags:
 
 A series of articles discusses the [advantages of NServiceBus](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "Fault Tolerance in NServiceBus").  The series also explores two patterns: [request-response](getting-started-with-servicematrix-2.0.md "ServiceMatrix Request Response ") and [publish-subscribe](getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md "ServiceMatrix and PubSub"). 
 
-Business processes usually involve multiple steps and require coordination of multiple systems. You can use the saga pattern when dealing with this situation with message-based and event-driven architecture.  NServiceBus has built-in [support for sagas](/nservicebus/sagas/).  This article introduces how to use sagas in ServiceMatrix.
-
-1.  [Introduction to Sagas for Request-Response](#introduction-to-sagas-for-request-response "Intro to Sagas")
-2.  [Adding a Payment Processing Service](#adding-a-payment-processing-service)
-3.  [Correlating the Payment Response using a Saga](#correlating-the-payment-response-using-a-saga)
-4.  [Modifying the Saga Code](#modifying-the-saga-code)
-5.  [Running The Solution](#running-the-solution)
-6.  [Using ServiceInsight](#using-serviceinsight)
-6.  [Next Steps](#next-steps)
-
+Business processes usually involve multiple steps and require coordination of multiple systems. You can use the saga pattern when dealing with this situation with message-based and event-driven architecture.  NServiceBus has built-in [support for sagas](/nservicebus/sagas/). 
 
 # Introducing Sagas for Request-Response
 
@@ -67,12 +58,12 @@ This canvas will illustrate the new `SubmitPayment` command along with an undepl
 
 ![Billing and PaymentProcessing Endpoints](images/servicematrix-billingandpaymentprocessing.png)
 
-You created a new `PaymentProcessing` endpoint and a new command message that billing can use to submit payments for processing.  View the code in the `SubmitPaymentHandler` to see that it simply handles the `SubmitPayment` request. This component still needs to be modified to send a response message.  In a real-life scenario, it could invoke a web service that processes credit cards or other payments. This web service would likely return an authorization code that would be need to be packaged in a response message and returned to the requester.  The next step is to create a response.
+You created a new `PaymentProcessing` endpoint and a new command message that billing can use to submit payments for processing.  View the code in the `SubmitPaymentHandler` to see that it handles the `SubmitPayment` request. This component still needs to be modified to send a response message.  In a real-life scenario it could invoke a web service that processes credit cards or other payments. This web service would likely return an authorization code that would be need to be packaged in a response message and returned to the requester.  The next step is to create a response.
  
 
 ## Correlating the Payment Response Using a Saga
 
-To send a response from the `SubmitPaymentHandler` component, select `Reply with Message` from the drop-down menu.
+To send a response from the `SubmitPaymentHandler` component select `Reply with Message` from the drop-down menu.
 
 ![Reply with Message](images/servicematrix-replywithmessage.png)
 

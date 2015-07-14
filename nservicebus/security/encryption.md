@@ -39,7 +39,7 @@ You can also use the `WireEncryptedString` type to flag that a property should b
 
 ### Enabling property encryption
 
-Property encryption is enabled via the fluent API.
+Property encryption is enabled via the configuration API.
 
 <!-- import EncryptionServiceSimple -->
 
@@ -61,11 +61,11 @@ The encryption key can be defined in the `app.config`.
 
 For more info on `IProvideConfiguration` see [Customizing NServiceBus Configuration](/nservicebus/hosting/custom-configuration-providers.md)
 
-#### Fluent API
+#### Configuration API
 
-NOTE: Defining encryption keys via the fluent API is only supported in V5 and up. 
+NOTE: Defining encryption keys via the configuration API is only supported in V5 and up. 
 
-<!-- import EncryptionFromFluentAPI -->
+<!-- import EncryptionFromCode -->
 
 ### Multi-Key decryption 
 

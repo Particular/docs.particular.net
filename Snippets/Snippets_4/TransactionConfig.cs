@@ -1,19 +1,21 @@
-﻿using NServiceBus;
-
-
-public class TransactionConfig
+﻿namespace Snippets4
 {
-    public void Simple()
+    using NServiceBus;
+
+    public class TransactionConfig
     {
-        #region TransactionConfig
+        public void Simple()
+        {
+            #region TransactionConfig
 
-        //Enable
-        Configure.Transactions.Enable();
+            //Enable
+            Configure.Transactions.Enable();
 
-        // Disable
-        Configure.Transactions.Disable();
+            // Disable
+            Configure.Transactions.Disable();
 
-        #endregion
+            #endregion
+        }
+
     }
-
 }

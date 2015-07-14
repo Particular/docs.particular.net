@@ -11,17 +11,6 @@ The [NServiceBus](/nservicebus/architecture/) framework provides the benefits of
 
 From design through to production, ServiceInsight provides concise and user-friendly insight and information about the system. 
 
-1.  [ServiceInsight and the NServiceBus Framework](#the-nservicebus-framework "The NServiceBus Framework")
-2.  [Visualizing The System](#visualizing-the-system "Visualizing your system in ServiceInsight")
-3.  [The Message Window](#the-message-window "The Message Window")
-4.  [Endpoint Explorer](#endpoint-explorer "Endpoint Explorer")
-5.  [Flow Diagram](#flow-diagram "The graphical flow diagram")
-6.  [Message Properties](#message-properties "The Message Properties Window")
-7.  [Saga View](#the-saga-view "The Saga View")
-8.  [Body and Log Views](#body-and-log-views "The Body and Log Tabs")
-9.  [Errors and Retries](#errors-and-retries "Visualizing and Dealing with Errors")
-10. [Next Steps](#next-steps "Next Steps")
-
 ## The NServiceBus Framework
 
 The NServiceBus Framework is part of the Particular Service Platform which includes these tools:

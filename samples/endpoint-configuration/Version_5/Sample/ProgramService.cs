@@ -24,7 +24,7 @@ class ProgramService : ServiceBase
                 service.OnStart(null);
 
                 Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
-                Console.Read();
+                Console.ReadKey();
 
                 service.OnStop();
 

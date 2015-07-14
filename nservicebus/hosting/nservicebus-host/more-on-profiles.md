@@ -1,7 +1,14 @@
 ---
 title: More On Profiles
 summary: 'Two types of profiles in NServiceBus: environment and feature.'
-tags: []
+tags:
+- Profiles
+- NServiceBus.Host
+- Defaults
+- Installers
+- Features
+- Distributor
+- Performance Counters
 redirects:
  - nservicebus/more-on-profiles
 ---
@@ -71,7 +78,7 @@ Feature-related profiles that come out of the box :
 -   `Distributor` starts the endpoint as a distributor only. This means that the endpoint does no actual work and only distributes the load among its enlisted workers. It cannot be combined with the Master and Worker profiles.
 -   `PerformanceCounters` turns on the NServiceBus-specific performance counters. Performance counters are installed by default when running in Production profile.
 
-##Telling the host which profiles to run
+## Telling the host which profiles to run
 
 To activate a specific profile, when you start the host, pass in the full name of the profile on the command line. Type names are case insensitive. Profiles can be combined by separating them with white space.
 

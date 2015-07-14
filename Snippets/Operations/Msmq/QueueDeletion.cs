@@ -1,8 +1,7 @@
-﻿using System;
-using System.Messaging;
-
-namespace Operations.Msmq
+﻿namespace Operations.Msmq
 {
+    using System;
+    using System.Messaging;
 
     public static class QueueDeletion
     {

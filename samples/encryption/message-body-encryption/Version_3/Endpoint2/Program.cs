@@ -21,7 +21,7 @@ class Program
         {
             startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             Console.WriteLine("Press any key to exit");
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }

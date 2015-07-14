@@ -2,7 +2,6 @@
 using System.Linq;
 using NServiceBus;
 using NServiceBus.Transports.SQLServer;
-
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus.Persistence;
@@ -37,10 +36,19 @@ class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
+
+            Console.WriteLine("Press enter to send a message");
+            Console.WriteLine("Press any key to exit");
+
             while (true)
             {
-                Console.WriteLine("Press <enter> to send a message");
-                Console.ReadLine();
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
+
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
 
                 string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
                 bus.Publish(new OrderSubmitted
@@ -48,6 +56,7 @@ class Program
                     OrderId = orderId,
                     Value = random.Next(100)
                 });
+
             }
         }
     }

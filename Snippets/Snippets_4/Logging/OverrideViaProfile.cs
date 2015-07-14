@@ -1,22 +1,25 @@
-﻿using NServiceBus;
-
-public class OverrideViaProfile
+﻿namespace Snippets4.Logging
 {
-    #region LoggingConfigWithProfile
+    using NServiceBus;
 
-    public class YourProfileLoggingHandler : 
-        IConfigureLoggingForProfile<YourProfile>
+    public class OverrideViaProfile
     {
-        public void Configure(IConfigureThisEndpoint specifier)
+        #region LoggingConfigWithProfile
+
+        public class YourProfileLoggingHandler : 
+            IConfigureLoggingForProfile<YourProfile>
         {
-            // setup your logging infrastructure then call
-            SetLoggingLibrary.Log4Net();
+            public void Configure(IConfigureThisEndpoint specifier)
+            {
+                // setup your logging infrastructure then call
+                SetLoggingLibrary.Log4Net();
+            }
         }
-    }
 
-    #endregion
+        #endregion
 
-    class YourProfile : IProfile
-    {
+        class YourProfile : IProfile
+        {
+        }
     }
 }

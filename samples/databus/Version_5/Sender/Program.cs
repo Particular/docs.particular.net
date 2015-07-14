@@ -16,33 +16,31 @@ class Program
         busConfiguration.EnableInstallers();
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            Run(bus);
-        }
-    }
+            Console.WriteLine("Press 'D' to send a databus large message");
+            Console.WriteLine("Press 'N' to send a normal large message exceed the size limit and throw");
+            Console.WriteLine("Press any other key to exit");
 
-
-    static void Run(IBus bus)
-    {
-        Console.WriteLine("Press 'Enter' to send a large message (>4MB)");
-        Console.WriteLine("Press 'E' to send a message that will exceed the limit and throw");
-        Console.WriteLine("To exit, press Ctrl + C");
-
-        while (true)
-        {
-            ConsoleKeyInfo key = Console.ReadKey();
-
-            if (key.Key == ConsoleKey.E)
+            while (true)
             {
-                SendMessageTooLargePayload(bus);
-                continue;
-            }
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
 
-            if (key.Key == ConsoleKey.Enter)
-            {
-                SendMessageLargePayload(bus);
+                if (key.Key == ConsoleKey.N)
+                {
+                    SendMessageTooLargePayload(bus);
+                    continue;
+                }
+
+                if (key.Key == ConsoleKey.D)
+                {
+                    SendMessageLargePayload(bus);
+                    continue;
+                }
+                return;
             }
         }
     }
+
 
     static void SendMessageLargePayload(IBus bus)
     {

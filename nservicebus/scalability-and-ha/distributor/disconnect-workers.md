@@ -16,11 +16,12 @@ If the Worker is configured using the [NServiceBus.Distributor.MSMQ NuGet](https
 
 1. Load the [NServiceBus PowerShell CmdLet](/nservicebus/operations/management-using-powershell.md) and execute
 ```ps
-Remove-NServiceBusMSMQWorker WorkerAddress DistributorAddress
+Remove-NServiceBusMSMQWorker WorkerAddress DistributorAddress TransactionalDistributorQueue
 ```
 {{NOTE:
    * `WorkerAddress` is the Worker queue name, eg Worker@localhost
-   * `DistributorAddress` is the Distributor queue name eg MyDistributor@localhost, Note: you just pass the Distributor queue name, the PowerShell cmdlet will automatically appends ".distributor.control" to the end of the Distributor queue.
+   * `DistributorAddress` is the Distributor queue name eg MyDistributor@localhost, **Note:** you just pass the Distributor queue name, the PowerShell cmdlet will automatically appends ".distributor.control" to the end of the Distributor queue.
+   * `TransactionalDistributorQueue` is the Distributor queue transactional or not ?
 }} 
 2. Wait for Worker to drain all queued messages from its input queue.
 3. Shutdown the endpoint.

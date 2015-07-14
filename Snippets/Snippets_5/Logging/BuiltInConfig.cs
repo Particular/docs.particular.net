@@ -1,17 +1,31 @@
-﻿using NServiceBus.Logging;
-
-public class BuiltInConfig
+﻿namespace Snippets5.Logging
 {
+    using NServiceBus.Logging;
 
-    public void ChangingDefaults()
+    public class BuiltInConfig
     {
 
-        #region OverrideLoggingDefaultsInCode
+        public void ChangingDefaults()
+        {
 
-        DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
-        defaultFactory.Directory("pathToLoggingDirectory");
-        defaultFactory.Level(LogLevel.Debug);
+            #region OverrideLoggingDefaultsInCode
 
-        #endregion
+            DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
+            defaultFactory.Directory("pathToLoggingDirectory");
+            defaultFactory.Level(LogLevel.Debug);
+
+            #endregion
+        }
+        public void ChangingLevel()
+        {
+
+            #region OverrideLoggingLevelInCode
+
+            DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
+            defaultFactory.Level(LogLevel.Debug);
+
+            #endregion
+        }
+
     }
 }
