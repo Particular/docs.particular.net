@@ -80,13 +80,13 @@ References:
 
 ## Use NHibernate.Mapping.Attributes
 
-With NHibernate.Attributes you can decorate your saga data classes. This keeps your classes, mapping and schema data very close. Your saga types have a dependency on the NHibernate.Attributes assembly.
+With NHibernate.Mapping.Attributes you can decorate your saga data classes. This keeps your classes, mapping and schema data very close. Your saga types have a dependency on the NHibernate.Mapping.Attributes assembly.
 
-How NHibernate.Attributes works is that it needs to know which types it needs to scan, then it create a regular NHibernate mapping configuration that gets passed to your NHibernate configuration.
+How NHibernate.Mapping.Attributes works is that it needs to know which types it needs to scan, then it create a regular NHibernate mapping configuration that gets passed to your NHibernate configuration.
 
 1. Add the nuget package `NHibernate.Mapping.Attributes`
 2. Create a custom NHibernate configuration object.
-3. Initialite the attribute mapping (see sample below).
+3. Initialize the attribute mapping (see sample below).
 4. Pass it to the NServiceBus NHibernate configuration.
 
 
@@ -98,9 +98,9 @@ Take a look at the NHibernate mapping attributes documentation for an example.
 
 
 References:
-* [NHibernate Mapping attributes - Documentation](http://nhibernate.info/doc/nhibernate-reference/mapping-attributes.html)
-* [NHibernate Mapping attributes - GitHub repository](https://github.com/nhibernate/NHibernate.Mapping.Attributes)
-* [NHibernate Mapping attributes - NuGet package](http://www.nuget.org/packages/NHibernate.Mapping.Attributes/)
+* [NHibernate.Mapping.Attributes - Documentation](http://nhibernate.info/doc/nhibernate-reference/mapping-attributes.html)
+* [NHibernate.Mapping.Attributes - GitHub repository](https://github.com/nhibernate/NHibernate.Mapping.Attributes)
+* [NHibernate.Mapping.Attributes - NuGet package](http://www.nuget.org/packages/NHibernate.Mapping.Attributes/)
 
 
 ## Use the Loquacious API
