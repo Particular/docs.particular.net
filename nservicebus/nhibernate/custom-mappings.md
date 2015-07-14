@@ -20,6 +20,9 @@ Custom mapping options:
 
 There are probably even other options but these are the most frequently used.
 
+NOTE: **Mention here if it is required to add custom mappings for all sagas**
+
+
 See [NHibernate configuration](configuration.md) on how you can pass this configuration object to the NServiceBus NHibernate configuration.
 
 NOTE: When you create a custom mapping then you are responsible for mapping the primary key and unique indexes correctly.
@@ -103,7 +106,7 @@ References:
 
 ## Use the Loquacious API
 
-The Loquacious api is NHibernate its native fluent mapping ability. You declare your mapping in code just like FluentNHibernate but using a different syntax. It can help you create a type-safe configuration but you can also create your custom mappings. The benefit is that this api is already available via the NHibernate package so requires no additional downloads.
+The Loquacious api is NHibernate its native fluent mapping ability. You declare your mapping in code just like FluentNHibernate but using a different syntax. It can help you create a type-safe configuration but you can also create your custom mappings. The benefit is that this api is already available via the NHibernate package so requires no additional downloads. Its API
 
 To use it:
 
