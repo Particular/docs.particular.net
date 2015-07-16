@@ -25,10 +25,10 @@ NOTE: **Mention here if it is required to add custom mappings for all sagas**
 
 See [NHibernate configuration](configuration.md) on how you can pass this configuration object to the NServiceBus NHibernate configuration.
 
-NOTE: When you create a custom mapping then you are responsible for mapping the primary key and unique indexes correctly.
+NOTE: When you create a custom mapping then you are responsible for mapping the **primary key** and **unique indexes** correctly.
 
 
-NOTE: When using custom mappings you are responsible for creating unique indexes for all mapped saga properties. This is especially important when using both optimistic concurrency and a transaction isolation level different from serializable and allow concurrent processing of messages. Not adding this can result in multiple saga entities be persisted as the second insert will not fail when inserting a duplicate saga key (different from the primary key column) when multiple message  are processed concurrently that target the same saga instance.
+NOTE: When using custom mappings you are responsible for creating unique indexes for all mapped saga properties. This is especially important when using both optimistic concurrency and a transaction isolation level different from serializable and allow concurrent processing of messages. Not adding this can result in multiple saga entities be persisted as the second insert will **not** fail when inserting a duplicate saga key (different from the primary key column) when multiple message  are processed concurrently that target the same saga instance.
 
 
 ## Custom .hbm.xml mapping
