@@ -20,7 +20,7 @@ Custom mapping options:
 
 There are probably even other options but these are the most frequently used.
 
-NOTE: **Mention here if it is required to add custom mappings for all sagas**
+NOTE: It is not required to create a custom mapping for all sagas. Look at the samples on how to both load the auto mapped classes and the custom mappings. 
 
 
 See [NHibernate configuration](configuration.md) on how you can pass this configuration object to the NServiceBus NHibernate configuration.
