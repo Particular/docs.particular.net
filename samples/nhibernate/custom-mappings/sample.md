@@ -23,7 +23,7 @@ There are probably even other options but these are the most frequently used.
 NOTE: It is not required to create a custom mapping for all sagas. Look at the samples on how to both load the auto mapped classes and the custom mappings. 
 
 
-See [NHibernate configuration](configuration.md) on how you can pass this configuration object to the NServiceBus NHibernate configuration.
+See [NHibernate configuration](configuration.md) on how you can pass a configuration object to the NServiceBus NHibernate configuration.
 
 NOTE: When you create a custom mapping then you are responsible for mapping the **primary key** and **unique indexes** correctly.
 
@@ -44,9 +44,11 @@ The samples rely on SQL LocalDB and need the database `Sample.CustomMappings` to
 
 ## Custom .hbm.xml mapping
 
-Using NHibernate mapping files is the original way to customize your mapping. It needs to be created and then either embedded as a resource in your assembly or available on the file system.
+Using NHibernate mapping files is the native way to customize your mappings. The mapping files are xml files that are either embedded as a resource in your assembly or available on the file system.
 
-Look at these pages to see how you can create these mappings:
+Visit the official NHibernate websites for more information.
+
+References:
 
 * [Your first NHibernate based application](http://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html) (nhibernate.info)
 
@@ -92,7 +94,7 @@ References:
 
 With NHibernate.Mapping.Attributes you can decorate your saga data classes. This keeps your classes, mapping and schema data very close. Your saga types have a dependency on the NHibernate.Mapping.Attributes assembly.
 
-How NHibernate.Mapping.Attributes works is that it needs to know which types it needs to scan, then it create a regular NHibernate mapping configuration that gets passed to your NHibernate configuration.
+NHibernate.Mapping.Attributes needs to know what types to scan to generate an NHibernate mapping configuration that gets passed to your NHibernate configuration.
 
 1. Add the nuget package `NHibernate.Mapping.Attributes`
 2. Create a custom NHibernate configuration object.
@@ -117,11 +119,11 @@ References:
 
 The Loquacious api is NHibernate its native fluent mapping ability. You declare your mapping in code just like FluentNHibernate but using a different syntax. It can help you create a type-safe configuration but you can also create your custom mappings. The benefit is that this api is already available via the NHibernate package so requires no additional downloads.
 
-Creating mappings with this API is very similar to its native xml mapping. Meaning that for each entity a mappings needs to be created.
+Creating mappings with the Loquacious API is similar to its native xml mapping but then in code. 
 
 To use it:
 
-1. Create a custom NHibernte configuration object.
+1. Create a custom NHibernate configuration object.
 2. Use either the model mapping or convention mapping features.
 3. Pass it to the NServiceBus NHibernate configuration.
 
