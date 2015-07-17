@@ -115,11 +115,9 @@ References:
 * [NHibernate.Mapping.Attributes - NuGet package](http://www.nuget.org/packages/NHibernate.Mapping.Attributes/)
 
 
-## Use the Loquacious API
+## Use the Loquacious mapping by code API
 
-The Loquacious api is NHibernate its native fluent mapping ability. You declare your mapping in code just like FluentNHibernate but using a different syntax. It can help you create a type-safe configuration but you can also create your custom mappings. The benefit is that this api is already available via the NHibernate package so requires no additional downloads.
-
-Creating mappings with the Loquacious API is similar to its native xml mapping but then in code. 
+The Loquacious api is NHibernate its native mapping by codeability. You declare your mapping in code just like FluentNHibernate but using a different syntax more close to its xml schema. It can help you create a type-safe configuration but you can also create your custom mappings. The benefit is that this api is already available via the NHibernate package so requires no additional downloads.
 
 To use it:
 
@@ -138,5 +136,6 @@ References:
 * [NHibernate Loquacious API - Howto](http://nhibernate.info/doc/howto/mapping/a-fully-working-skeleton-for-sexy-loquacious-nh.html)
 * [NHibernate Loquacious API - Mapping by code](http://fabiomaulo.blogspot.nl/2011/04/nhibernate-32-mapping-by-code.html)
 * [NHibernate Loquacious API - Configuration](http://nhibernate.info/blog/2011/01/21/loquacious-configuration-in-nhibernate-3.html)
+* [NHibernate's mapping-by-code series](http://notherdev.blogspot.nl/2012/02/nhibernates-mapping-by-code-summary.html) (NOtherDev)
 
 
