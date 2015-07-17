@@ -21,10 +21,12 @@ The inference here is that the remaining handlers (not specified in the order) a
 
 <!-- import HandlerOrderingWithCode -->
 
-### Specifying First with ISpecifyMessageHandlerOrdering
+If you have been using `ISpecifyMessageHandlerOrdering` in a separate assembly scanned by NServiceBus we suggest to use `INeedInitialization`
+
+#### Specifying one to run first
 
 <!-- import HandlerOrderingWithFirst -->
 
-### Specifying multiple to run ordered with ISpecifyMessageHandlerOrdering
+#### Specifying multiple to run ordered
 
 <!-- import HandlerOrderingWithMultiple -->
