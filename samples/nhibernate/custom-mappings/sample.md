@@ -35,8 +35,6 @@ Not adding a unique contraint can result in duplicate saga entities as the secon
 
 Using NHibernate mapping files is the original way to customize your mapping. It needs to be created and then either embedded as a resource in your assembly or available on the file system.
 
-NOTE: Using xml mappings is the default approach for NHibernate.
-
 Look at these pages to see how you can create these mappings:
 
 * [Your first NHibernate based application](http://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html) (nhibernate.info)
