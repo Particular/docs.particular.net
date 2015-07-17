@@ -10,18 +10,14 @@ class Program
 {
     static void Main()
     {
-        var nhConfiguration = new Configuration();//.Configure();
-        //nhConfiguration.SetProperty(Environment.GenerateStatistics, "true");
-        //nhConfiguration.SetProperty(Environment.BatchSize, "10");
+        var nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
         nhConfiguration.SetProperty(Environment.ConnectionDriver, "NHibernate.Driver.Sql2008ClientDriver");
         nhConfiguration.SetProperty(Environment.Dialect, "NHibernate.Dialect.MsSql2008Dialect");
         nhConfiguration.SetProperty(Environment.ConnectionStringName, "NServiceBus/Persistence");
 
-
         AddAttributeMappings(nhConfiguration);
-        //nhConfiguration.Configure();
 
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.CustomMappings");

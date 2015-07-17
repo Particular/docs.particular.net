@@ -63,7 +63,7 @@
     <Compile Include="CompleteOrder.cs" />
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="OrderSagaDataLoquaciousMap.cs" />
-    <Compile Include="OrderSagaFluent.cs" />
+    <Compile Include="OrderSagaLoquacious.cs" />
     <Compile Include="OrderSaga.cs" />
     <Compile Include="OrderSagaDataLoquacious.cs" />
     <Compile Include="OrderSagaData.cs" />
