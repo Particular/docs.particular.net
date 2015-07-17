@@ -59,6 +59,7 @@ class Program
         }
     }
 
+    #region AttributesConfiguration
     static void AddAttributeMappings(Configuration nhConfiguration)
     {
         var attributesSerializer = new HbmSerializer { Validate = true };
@@ -68,4 +69,5 @@ class Program
             nhConfiguration.AddInputStream(stream);
         }
     }
+    #endregion
 }

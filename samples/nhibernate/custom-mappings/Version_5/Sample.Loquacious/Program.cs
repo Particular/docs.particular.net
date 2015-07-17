@@ -58,6 +58,7 @@ class Program
         }
     }
 
+    #region LoquaciousConfiguration
     private static Configuration AddLoquaciousMappings(Configuration nhConfiguration)
     {
 
@@ -68,4 +69,5 @@ class Program
 
         return nhConfiguration;
     }
+    #endregion
 }

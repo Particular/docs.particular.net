@@ -59,6 +59,7 @@ class Program
         }
     }
 
+    #region FluentConfiguration
     static Configuration AddFluentMappings(Configuration nhConfiguration)
     {
         return Fluently
@@ -69,4 +70,5 @@ class Program
             })
             .BuildConfiguration();
     }
+    #endregion
 }

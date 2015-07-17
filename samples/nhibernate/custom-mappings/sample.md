@@ -30,6 +30,17 @@ NOTE: When you create a custom mapping then you are responsible for mapping the 
 When using custom mappings you are responsible for creating unique indexes for all mapped saga properties. Especially when using optimistic concurrency, a transaction isolation level different from serializable and allow concurrent processing of messages.
 Not adding a unique contraint can result in duplicate saga entities as the second insert will **not** fail when inserting the same value when multiple messages are processed concurrently referencing the same saga instance.
 
+## Sample prerequisites
+
+The supplied samples demo the usage of the mentioned customization options. Each project had an automapped `OrderSaga` and a saga with a customized mapping to demonstrate that both work side by side.
+
+The samples rely on SQL LocalDB and need the database `Sample.CustomMappings` to run properly. To create this:
+
+- Open the SQL Server Object Explorer in Visual Studio
+- Add a SQL Server: `(localdb)\v11.0`
+- Open this server, right click `Databases` and select *Add New Database*
+- Enter the name `Sample.CustomMappings` and choose a different location for the files if you desire.
+
 
 ## Custom .hbm.xml mapping
 
@@ -49,18 +60,7 @@ It is not required to create your own NHibernate configuration object and pass i
 
 If you do not want to embed the `*.hbm.xml` files then you can also load mappings from the file system. Create a custom NHibernate configuration object and use the following example to add mappings from the file system.
 
-```
-    static void AddMappingsFromFilesystem(Configuration nhConfiguration)
-    {
-    	var folder = Directory.GetCurrentDirectory();
-        var hmbFiles = Directory.GetFiles(folder, "*.hbm.xml", SearchOption.TopDirectoryOnly);
-        
-        foreach (var file in hmbFiles)
-        {
-            nhConfiguration.AddFile(file);
-        }
-    }
-```
+<!-- import AddMappingsFromFilesystem -->
 
 
 ## Use Fluent NHibernate
@@ -78,16 +78,7 @@ b. or by creating a new Configuration instance and pass it to FluentNHibernate
 
 Example of a possible implementation:
 
-```
-static Configuration BuildConfiguration(Configuration nhConfiguration)
-{
-	return Fluently.Configure(nhConfiguration)
-	    .Mappings(cfg =>
-	    {
-	        cfg.FluentMappings.AddFromAssemblyOf<MySagaData>();
-	    }).BuildConfiguration();
-}
-```
+<!-- import FluentConfiguration -->
 
 References:
 
@@ -111,17 +102,7 @@ How NHibernate.Mapping.Attributes works is that it needs to know which types it 
 
 Initialize the NHibernate attribute based mappings:
 
-```
-static void AddAttributeMappings(Configuration nhConfiguration)
-{
-	var attributesSerializer = new HbmSerializer { Validate = true };
-
-	using (var stream = attributesSerializer.Serialize(typeof(MySagaData).Assembly))
-	{
-	    nhConfiguration.AddInputStream(stream);
-	}
-}
-```
+<!-- import AttributesConfiguration -->
 
 Take a look at the NHibernate mapping attributes documentation for an example.
 
@@ -144,6 +125,10 @@ To use it:
 2. Use either the model mapping or convention mapping features.
 3. Pass it to the NServiceBus NHibernate configuration.
 
+
+Initialize NHibernate Loquacious configuration
+
+<!-- import LoquaciousConfiguration -->
 
 
 References:
