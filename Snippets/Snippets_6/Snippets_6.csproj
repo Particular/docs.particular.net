@@ -50,6 +50,10 @@
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
+    <Compile Include="Callback\PlaceOrder.cs" />
+    <Compile Include="Callback\PlaceOrderResponse.cs" />
+    <Compile Include="Callback\Status.cs" />
+    <Compile Include="Callback\Usage.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
     <Compile Include="Errors\ErrorQueue\Usage.cs" />
