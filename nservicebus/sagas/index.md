@@ -115,10 +115,9 @@ The usual way is to correlate on some kind of ID and let the user tell you how t
 ## Querying Saga Data
 Sagas manage state of potentially long-running business processes. When we are building User interfaces which represent those business processes we suddenly feel the urge to query the saga data directly. This can be done, but we generally recommend to avoid it because it has the following implications:
 
-* The way a given persistence chooses to store the saga data is an implementation details to the specific persistence that can potentially change over time. By directly querying for the saga data you are coupling that query to this implementation and risk being affected by format changes.
-* By exposing the data outside of the safeguards of the business logic in the saga you risk the data is not treated as read-only. Eventually a component tries to bypass the saga and directly modify the data. 
-* Querying the data might require additional indexes, resources etc. which need to be managed by the component issuing the query. This can influence saga performance and lead in high-contention scenarios to more concurrency conflicts.
-* The saga data may not contain all the required data, from the UI point of view, a saga handling the order process may keep track of the “payment id” and the status of the payment but it is not interested in keeping track of the amount payed. On the other hand the UI may want to view the payed amount along with other data
+* The way a given persistence chooses to store the saga data is an implementation detail to the specific persistence that can potentially change over time. By directly querying for the saga data you are coupling that query to this implementation and risk being affected by format changes.
+* By exposing the data outside of the safeguards of the business logic in the saga you risk the data is not treated as read-only. Eventually, a component tries to bypass the saga and directly modify the data. 
+* Querying the data might require additional indexes, resources etc. which need to be managed by the component issuing the query. This can influence saga performance and lead in high contention scenarios to more concurrency conflicts.
+* The saga data may not contain all the required data, from the UI point of view, a saga handling the order process may keep track of the “payment id” and the status of the payment but it is not interested in keeping track of the amount paid. On the other hand the UI may want to view the paid amount along with other data
 
-The recommended approach is to setup handlers that react to saga state changes and update one or more read model(s) for querying purposes. This reduces coupling to the internals of the specific saga persistence, removes contention and doesn't bypass the safeguard of the existing saga logic.
-
+The recommended approach is to set up handlers that react to saga state changes and update one or more read model(s) for querying purposes. This reduces coupling to the internals of the specific saga persistence, removes contention and doesn't bypass the safeguard of the existing saga logic.
