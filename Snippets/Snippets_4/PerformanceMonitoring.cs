@@ -5,18 +5,6 @@
 
     public class PerformanceMonitoring
     {
-        public void V5Upgrade()
-        {
-            #region PerformanceMonitoring-v5-upgrade-guide
-
-            Configure.With()
-                .EnablePerformanceCounters();
-
-            Configure.With()
-                .SetEndpointSLA(TimeSpan.FromMinutes(3));
-
-            #endregion
-        }
         public void EnablingCriticalTime()
         {
             #region enable-criticaltime

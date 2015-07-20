@@ -450,7 +450,7 @@
     <Compile Include="Sagas\Reply\MySaga.cs" />
     <Compile Include="Sagas\Reply\StartMessage.cs" />
     <Compile Include="Sagas\FindByExpression\MySaga.cs" />
-    <Compile Include="Sagas\SagaMappingForUpgradeV4toV5.cs" />
+    <Compile Include="UpgradeGuides\From4\SagaMappingForUpgrade.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
     <Compile Include="Sagas\FindSagas\SagaFinder.cs" />
     <Compile Include="Sagas\SimpleSaga\OrderSagaData.cs" />
@@ -536,6 +536,8 @@
     <Compile Include="UnitTesting\ServiceLayer\ResponseMessage.cs" />
     <Compile Include="UnitTesting\ServiceLayer\Tests.cs" />
     <Compile Include="UnitTesting\Unobtrusive.cs" />
+    <Compile Include="UpgradeGuides\From4\Scheduler.cs" />
+    <Compile Include="UpgradeGuides\From4\Upgrade.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
     <Compile Include="XmlSerializationIntegration.cs" />
   </ItemGroup>
