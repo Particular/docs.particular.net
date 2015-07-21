@@ -37,7 +37,27 @@ To access the response message through callbacks, the following code can be used
 DANGER: If the server process returns multiple responses, NServiceBus cannot know which response message will be the last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a process restart (common scenarios are a crash or an IIS recycle) as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](/nservicebus/sagas/).
 
 ## NServiceBus 6: Handling responses in the context of the request
+To get the callback support you need to install [NServiceBus.Callbacks](https://www.nuget.org/packages/NServiceBus.Callbacks/). In contrast to previous versions this API allows you to easily access the response message and is asynchronous by default. 
 
+DANGER: Like the name of the callback API indicates Callbacks won't survive a process restart. So the same caveats from previous Callbacks APIs still apply here.
+
+<!-- import CallbackWithMessageAsResponse -->
+
+To trigger a callback a simple `Reply` is enough.
+
+<!-- import TriggerCallbackWithMessageAsResponse -->
+
+For legacy reasons it is still possible to directly received an `enum` value.
+
+<!-- import CallbackWithEnumAsResponse -->
+
+To trigger a callback you need to `Reply` with and instance of the provided `LegacyEnumResponse<TEnum>` type.
+
+<!-- import TriggerCallbackWithEnumAsResponse -->
+
+The asynchronous callback can be canceled by registering a `CancellationToken` provided by a `CancellationTokenSource`. The token needs to be registered on the `SendOptions` as shown below.
+
+<!-- import CancelCallback -->
 
 ## When should you use callbacks?
 
