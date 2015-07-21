@@ -1,6 +1,7 @@
 ﻿namespace Snippets6.Callback
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using NServiceBus;
 
@@ -9,10 +10,11 @@
         public async Task Describe()
         {
             IBus bus = null;
+            PlaceOrderResponse responseMessage;
             var options = new SendOptions();
 
             #region CallbackWithMessageAsResponse
-            var responseMessage = await bus.RequestWithTransientlyHandledResponseAsync<PlaceOrderResponse>(new PlaceOrder(), options);
+            responseMessage = await bus.RequestWithTransientlyHandledResponseAsync<PlaceOrderResponse>(new PlaceOrder(), options);
             #endregion
 
             #region TriggerCallbackWithMessageAsResponse
@@ -26,6 +28,18 @@
 
             #region TriggerCallbackWithEnumAsResponse
             bus.Reply(new LegacyEnumResponse<Status>(Status.OK));
+            #endregion
+
+            #region CancelCallback
+            var cs = new CancellationTokenSource();
+            options.RegisterCancellationToken(cs.Token);
+            try
+            {
+                responseMessage = await bus.RequestWithTransientlyHandledResponseAsync<PlaceOrderResponse>(new PlaceOrder(), options);
+            }
+            catch (OperationCanceledException ex)
+            {
+            }
             #endregion
         }
     }
