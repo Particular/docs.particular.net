@@ -39,7 +39,7 @@ For example, the following command line (with the appropriate adjustments for yo
 
 Listing the current URLACLs can be done using the following command:    
 
-`Netsh http list urlacl`
+`Netsh http show urlacl`
 
 Ensure that there are no overlapping URLACLs as this can cause ServiceControl to fail on service startup.  For example, if the list command yielded results for `http://localhost:33333/api/` and `http://*:33333/api/` then it is not clear which URL ServiceControl should use.
 
