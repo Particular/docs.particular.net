@@ -117,7 +117,7 @@ Sagas manage state of potentially long-running business processes. When we want 
 
 * The way a given persistence chooses to store the saga data is an implementation detail to the specific persistence that can potentially change over time. By directly querying for the saga data you are coupling that query to this implementation and risk being affected by format changes.
 * By exposing the data outside of the safeguards of the business logic in the saga you risk the data is not treated as read-only. Eventually, a component tries to bypass the saga and directly modify the data. 
-* Querying the data might require additional indexes, resources etc. which need to be managed by the component issuing the query. Those additional resources can influence saga performance
+* Querying the data might require additional indexes, resources etc. which need to be managed by the component issuing the query. Those additional resources can influence saga performance.
 * The saga data may not contain all the required data. A saga handling the order process may keep track of the "payment id" and the status of the payment, but it is not interested in keeping track of the amount paid. On the other hand, for querying we may want to query the paid amount along with other data.
 
 The recommended approach is for the saga to publish events, containing the required data, and have handlers that process these events and store the data in one or more read model(s) for querying purposes. It reduces coupling to the internals of the specific saga persistence, removes contention and doesn't bypass the safeguard of the existing saga logic.
