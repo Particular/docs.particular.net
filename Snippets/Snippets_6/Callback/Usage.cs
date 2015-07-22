@@ -39,6 +39,7 @@
             }
             catch (OperationCanceledException ex)
             {
+                // Exception that is raised when the CancellationTokenSource is canceled
             }
             #endregion
         }
