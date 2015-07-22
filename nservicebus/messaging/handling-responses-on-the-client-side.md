@@ -21,6 +21,8 @@ public class MyHandler : IHandleMessages<MyMessage>
 
 ## Handling responses in the context of the request
 
+### In NServiceBus v5 and lower callbacks are built in
+
 When sending a message/request, you can register a callback that is invoked when a response arrives. This callback is invoked before any message handler as it is registered like this:
 
 ```C#
@@ -36,7 +38,7 @@ To access the response message through callbacks, the following code can be used
 
 DANGER: If the server process returns multiple responses, NServiceBus cannot know which response message will be the last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a process restart (common scenarios are a crash or an IIS recycle) as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](/nservicebus/sagas/).
 
-## NServiceBus 6: Handling responses in the context of the request
+### In NServiceBus v6 callbacks are shipped as NServiceBus.Callbacks nuget package
 To get the callback support you need to install [NServiceBus.Callbacks](https://www.nuget.org/packages/NServiceBus.Callbacks/). In contrast to previous versions this API allows you to easily access the response message and is asynchronous by default. 
 
 DANGER: Like the name of the callback API indicates Callbacks won't survive a process restart. So the same caveats from previous Callbacks APIs still apply here.
