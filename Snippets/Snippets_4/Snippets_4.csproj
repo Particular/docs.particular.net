@@ -303,7 +303,7 @@
     <Compile Include="Pipeline\NewStep\NewPipelineStep.cs" />
     <Compile Include="Pipeline\Replace\ReplacePipelineBehavior.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
-    <Compile Include="Sagas\SagaMappingForUpgradeV4toV5.cs" />
+    <Compile Include="UpgradeGuides\To5\SagaMappingForUpgrade.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
     <Compile Include="Sagas\SimpleSaga\OrderSagaData.cs" />
     <Compile Include="Sagas\SimpleSaga\CompleteOrder.cs" />
@@ -336,6 +336,8 @@
     <Compile Include="UnitTesting\ServiceLayer\RequestMessage.cs" />
     <Compile Include="UnitTesting\ServiceLayer\ResponseMessage.cs" />
     <Compile Include="UnitTesting\Unobtrusive.cs" />
+    <Compile Include="UpgradeGuides\To5\Scheduler.cs" />
+    <Compile Include="UpgradeGuides\To5\Upgrade.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
     <Compile Include="XmlSerializationIntegration.cs" />
     <None Include="Encryption\Configuration\encryption.config">

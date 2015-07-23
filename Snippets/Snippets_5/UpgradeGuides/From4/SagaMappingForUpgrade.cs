@@ -1,20 +1,20 @@
-﻿namespace Snippets5.Sagas
+﻿namespace Snippets5.UpgradeGuides.From4
 {
     using System;
     using NServiceBus;
     using NServiceBus.Saga;
 
-    public class SagaMappingForUpgradeV4toV5
+    public class SagaMappingForUpgrade
     {
-        // startcode ConfigureHowToFindSagaForUpgradeV4toV5
+        // startcode 4to5ConfigureHowToFindSagaForUpgrade
         public class MySaga : Saga<MySagaData>,
             IAmStartedByMessages<Message1>,
             IHandleMessages<Message2>
         {
-            public override void ConfigureHowToFindSaga()
+            protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
             {
-                ConfigureMapping<Message2>(m => m.SomeID)
-                    .ToSaga(s => s.SomeID);
+                mapper.ConfigureMapping<Message2>(s => s.SomeID)
+                    .ToSaga(m => m.SomeID);
             }
 
             // endcode

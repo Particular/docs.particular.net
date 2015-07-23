@@ -34,6 +34,8 @@ If you need some special behavior in the `ISession` object managed by NServiceBu
 
 <!-- import CustomSessionCreation -->
 
+NOTE: Customizing the way session is opened works only for the 'shared' session that is used to access business/user, Saga and Outbox data. It does not work for other persistence concerns such as Timeouts or Subscriptions.
+
 ## Known limitations
 
 Because of the way NServiceBus opens sessions by passing an existing instance of a database connection, it is  currently impossible to use NHibernate's second-level cache. Such behavior of NServiceBus is caused by still-unresolved [bug](https://nhibernate.jira.com/browse/NH-3023) in NHibernate. 
