@@ -278,7 +278,7 @@
     <ul>
       <li><a href="/servicematrix/getting-started-with-servicematrix-2.0.md">Getting Started</a></li>
       <li><a href="/servicematrix/servicematrix-serviceinsight.md">Interaction with ServiceInsight</a></li>
-      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li>      
+      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li>   
     </ul>
     <a href="/servicematrix/"><h3>All ServiceMatrix articles</h3></a><br/>
    <div style="clear: both"></div>
