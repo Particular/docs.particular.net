@@ -11,6 +11,7 @@ tags:
 
 ServiceControl supports high availability and fault tolerance through Windows clusters and Network Load Balancing (NLB) services.
 
+
 ### Basic Setup
 
 * Set up a Failover (active/passive) Windows cluster:
@@ -20,15 +21,17 @@ ServiceControl supports high availability and fault tolerance through Windows cl
 * Set up a MSMQ Cluster Group. Cluster group is a group of resources that have a unique DNS name and can be addressed externally like a computer. 
 * Add the ServiceControl generic clustered service to the MSMQ cluster group:
 	* Make it depend on MSMQ and MSMQ network name;
-	* Check “use network name as computer name” in the service configuration;
+	* Check "use network name as computer name" in the service configuration;
 
 Once set up ServiceControl queues will be available on the cluster. The server name will be the MSMQ network name, not to be confused with the cluster name.
 
 More information on MSMQ clustering: https://technet.microsoft.com/en-us/library/cc753575.aspx 
 
+
 ### Database high availability
 
 The RavenDB database needs to be located in shared storage, highly available and fault tolerant. See [Customize RavenDB Embedded Location](configure-ravendb-location.md) for more information on how to change the ServiceControl database location.
+
 
 ### ServiceControl detailed configuration
 
@@ -36,11 +39,13 @@ Once the Failover cluster is created and ServiceControl is installed, the next s
 
 NOTE: The following steps needs to be applied to all the ServiceControl installation on every node in the cluster.
 
+
 #### URL ACL(s)
 
 ServiceControl exposes an HTTP API that is used by ServicePulse and ServiceInsight. URL ACL(s) need to be [defined on each cluster node](/servicecontrol/setting-custom-hostname.md#updating-urlacl-settings). The URL needs to be the `cluster name` and the ACL is set to give permissions to the `Service Account` running ServiceControl.
 
 NOTE: The default installation of ServiceControl locks down access to `localhost` only. Once the URL ACL is changed from `localhost` to the `cluster name` ServiceControl is accessible from the network.
+
 
 #### Configuration
 
@@ -55,6 +60,7 @@ The following is a sample ServiceControl configuration file (ServiceControl.exe.
 <!-- import SCClusterAppSettings -->
 
 See [Customizing ServiceControl Configuration](/servicecontrol/creating-config-file.md) for more information. 
+
 
 #### Troubleshooting
 
