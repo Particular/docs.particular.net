@@ -12,9 +12,11 @@ In this sample shows a very simple ordering system that
  * that server handles the command and publishes a new event about the success
  * a subscriber listens to, and handles, the event
 
+
 ## The Shared Project
 
 The `Ordering.Shared` project is the container for shared classes including message definitions. This project will be shared between the client and server so both sides agree on the typed message descriptions. It is referenced by all projects in the solution. These messages in include
+
 
 ### PlaceOrder Command
 
@@ -22,11 +24,13 @@ Used to initiate an order
 
 <!--import PlaceOrder-->
 
+
 ### OrderPlaced Event
 
 Used to indicate that an order has been received and processed.
 
 <!--import OrderPlaced-->
+
 
 ## The Client
 
@@ -36,15 +40,18 @@ The `Ordering.Client` is the initiate for the ordering process. The sending code
 
 This is a console blocking loop that is called the the console starts.
 
+
 ## The Server 
 
 The `Ordering.Server` project processes an Order. It receives `PlaceOrder` sent from `Ordering.Client` and then publishes `OrderPlaced` on success.
 
 <!-- import PlaceOrderHandler -->
 
+
 ## The Subscriber
 
 The `Ordering.Subscriber` project needs notification of a successful order. Hence it subscribes to `OrderPlaced` events from `Ordering.Server`.
+
 
 ### Subscription Configuration
 
@@ -52,15 +59,18 @@ The subscription is done in the `app.config` of the project
 
 <!-- import subscriptionConfig--> 
 
+
 ### Handling the event
 
 When the event is received it will be passed to `OrderCreatedHandler` for processing.
 
 <!-- import OrderCreatedHandler -->
 
+
 ## Running the solution
 
 Run the solution.
+
 
 ### Client Output
 
@@ -71,6 +81,7 @@ The output will be
 If you hit enter you will see
 
     Sent a new PlaceOrder message with id: 5e906f84397e4205ae486f0aa79935e2
+
 
 ### Server Output
 
