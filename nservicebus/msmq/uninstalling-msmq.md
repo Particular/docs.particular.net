@@ -14,9 +14,7 @@ The removal instructions vary depend on the operating system and are detailed be
 
 ## Before you proceed 
 
-### Warning
-
-WARNING: Removing the MSMQ Service is a destructive operation which can result in data loss
+DANGER: Removing the MSMQ Service is a destructive operation which can result in data loss
 
 When the MSMQ service is uninstalled the following actions are also carried out:
  
