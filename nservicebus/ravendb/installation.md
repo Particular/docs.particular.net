@@ -32,11 +32,11 @@ To use the default storage, ensure you have a RavenDB server running to which yo
 
 \*When a master node is defined, NServiceBus understands that all data will be stored on that designated server  instead. This means that the RavenDB server runs on that remote machine and not the local machine where you run the install.
 
-For instructions on how to administrate and operate a RavenDB server, refer to the [documentation for RavenDB](http://ravendb.net/docs/article-page/2.5/csharp/server/administration).
+For instructions on how to administrate and operate a RavenDB server, refer to the [documentation for RavenDB](http://ravendb.net/search?q=server-administration).
 
 ## Upgrading RavenDB
 
-To upgrade an existing RavenDB installation refer to the [RavenDB website article describing the upgrade process](http://ravendb.net/docs/article-page/2.0/csharp/server/administration/upgrade).
+To upgrade an existing RavenDB installation refer to the [RavenDB website article describing the upgrade process](http://ravendb.net/search?q=server-administration%20upgrade).
 
 Note it is highly recommended that you backup your Raven database prior to upgrading.
 
@@ -54,4 +54,4 @@ NServiceBus V4.0 is tested and compatible with RavenDB version 2261 and RavenDB 
 
 NServiceBus V3.X is tested and compatible with all RavenDB versions from 616 through 992 and RavenDB v1. We strongly recommend using 992 since it has better support for transaction recovery. Download v992 here: [RavenDB Server - 992](http://hibernatingrhinos.com/builds/ravendb-stable-v1.0/992).
 
-For more information regarding RavenDB compatibility, please refer to [this article](version-compatibility.md) and the [RavenDB website](http://ravendb.net/docs/article-page/2.0/csharp/client-api/backward-compatibility).
+For more information regarding RavenDB compatibility, please refer to [this article](version-compatibility.md) and the [RavenDB website](http://ravendb.net/search?q=client-api%20backward-compatibility).
