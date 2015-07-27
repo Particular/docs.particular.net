@@ -2,7 +2,6 @@ using System.Diagnostics;
 using Microsoft.WindowsAzure.ServiceRuntime;
 using NServiceBus.Hosting.Azure;
 
-#region AzureSharedHosting_RoleEntryPoint
 
 public class WorkerRole : RoleEntryPoint
 {
@@ -27,5 +26,3 @@ public class WorkerRole : RoleEntryPoint
         Trace.TraceInformation("HostWorker has stopped");
     }
 }
-
-#endregion

@@ -11,6 +11,7 @@ related:
 - nservicebus/azure/shared-hosting-in-azure-cloud-services
 ---
 
+
 ## Running in development mode
 
  1. Start [Azure Storage Emulator](http://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/)
@@ -25,10 +26,12 @@ related:
 
 Results sorted by Timestamp
 
+
 ## Deploying endpoints
 
 1. Open PowerShell console at the `shared-host\Version_5` location. This location should contain `PackageAndDeploy.ps1`. 
 1. Execute `PackageAndDeploy.ps1` PowerShell script to package and deploy multi-hosted endpoints to local emulator storage
+
 
 ## Running multi-host in emulated Cloud Service
 
@@ -42,6 +45,7 @@ Azure Compute Emulator leaves any processes spawned at run time in memory. You s
 
 Alternatively, you can stop Cloud Service emulator from Compute Emulator UI. Compute Emulator UI can be accessed via try icon on your taskbar. Within Compute Emulator UI, under `Service Deployments` tree select a deployment, right click and select `Remove` option. This will cleanly stop Cloud Service without leaving any processes in memory.
  
+
 ## Code walk-through
 
 This sample contains five projects: 
@@ -51,6 +55,7 @@ This sample contains five projects:
  * Receiver - An NServiceBus endpoint that receives `Ping` command and responds back to originator with `Pong` message.
  * HostWorker - Multi-host endpoint deployed as worker role.
  * HostCloudService - Azure Cloud Service project to define and execute cloud service.
+
 
 ### Sender project
 
@@ -66,11 +71,13 @@ Sender also defines a handler for messages of type `Pong` and writes into verifi
 
 <!-- import AzureMultiHost_PongHandler -->
 
+
 ### Receiver project
 
 Receiver project has a handler for `Ping` commands and it writes into verification log when such arrives and replies back to originator with `Pong` message.
 
 <!-- import AzureMultiHost_PingHandler -->
+
 
 ### Shared project
 
@@ -78,6 +85,7 @@ Shared project defines all the messages used in the sample
 
 <!-- import AzureMultiHost_PingMessage -->
 <!-- import AzureMultiHost_PongMessage -->
+
 
 ### HostWorker project
 
@@ -87,7 +95,8 @@ HostWorker project is the multi-host project. To enable multi-hosting, endpoint 
 
 NOTE: Multi-host project is used solely as a host for other endpoints
 
-### HostCloudService project
+
+### HostCloudService project 
 
 HostCloudService project defines multi-host parameters for all environment (`Local` and `Cloud` in this sample)
 
