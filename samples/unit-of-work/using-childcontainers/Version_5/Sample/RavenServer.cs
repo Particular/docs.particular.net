@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using Raven.Client.Embedded;
 
-#region RavenDBSetup
 // In process RavenServer
 class RavenServer : IDisposable
 {
@@ -46,4 +45,3 @@ class RavenServer : IDisposable
         }
     }
 }
-#endregion
