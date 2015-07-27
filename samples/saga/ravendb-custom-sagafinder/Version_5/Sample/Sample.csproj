@@ -49,8 +49,8 @@
       <HintPath>..\packages\WindowsAzure.Storage.2.1.0.4\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NServiceBus.5.2.0\lib\net45\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.5.2.3\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
       <HintPath>..\packages\NServiceBus.RavenDB.2.2.0\lib\net45\NServiceBus.RavenDB.dll</HintPath>
@@ -118,5 +118,5 @@
     <PostBuildEvent>mkdir $(TargetDir)Plugins
 del $(TargetDir)Plugins\Raven.Bundles.UniqueConstraints.*
 copy $(TargetDir)Raven.Bundles.UniqueConstraints.* $(TargetDir)\Plugins</PostBuildEvent>
-  </PropertyGroup>  
+  </PropertyGroup>
 </Project>
