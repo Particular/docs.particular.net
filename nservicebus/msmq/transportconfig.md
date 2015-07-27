@@ -1,7 +1,7 @@
 ---
 title: MSMQ transport
 summary: 'Explains the mechanics of MSMQ transport, its configuration options and various other configuration settings that were at some point coupled to this transport'
-tags:
+tags: 
 - Transports
 - MSMQ
 redirects:
@@ -27,7 +27,7 @@ Because of historic reasons, the configuration for MSMQ transport has been coupl
 
 ### Queue permissions
 
-By default, queues are created with with the `Everyone` and `Anonymous Logon` permissions, in order to be able to send and receive messages without any additional configuration. This, however, means that anyone could send a message to a queue, leaving a potential security concern. If your organization requires it, set the appropriate permissions on a queue after its creation.
+By default, queues are created with `Everyone` and `Anonymous Logon` permissions to allow messages to be sent and received without additional configuration. Whilst initially convenient, this unrestricted access may be a security concern. If your organization requires it, you should set appropriate permissions on a queue after its creation.
 
 
 ### MSMQ-specific
@@ -57,7 +57,7 @@ Often when debugging MSMQ using [native tools](viewing-message-content-in-msmq.m
 
 NServiceBus is designed in such a way that a user does not have to care about exception handling. All the heavy lifting is done by the framework via a [two-level retries mechanism](/nservicebus/errors/).
 
-From V4 onwards the configuration for this mechanism is implemented in the `TransportConfig` section.
+From V4 onwards the configuration for this mechanism is implemented in the `TransportConfig` section. 
 
 <!-- import TransportConfig -->
 
@@ -66,7 +66,7 @@ From V4 onwards the configuration for this mechanism is implemented in the `Tran
  * `MaxRetries` (default: `5`) defines how many times a message is tried to be processed before is is moved to the *error queue* or passed to the [Second-Level Retries, SLR](/nservicebus/errors/automatic-retries.md) mechanism.
  * `ErrorQueue` (default: `error`) sets the name of the queue where poison messages are sent to (including messages that failed *MaxRerties* number of times with SLR disabled and messages which cannot be processed at all, e.g. having unparsable or missing headers)
 
-In V3 some of these setting were available via `MsqmTransportConfig` section with following
+In V3 some of these setting were available via `MsqmTransportConfig` section with following 
 
  * In V3 the `ErrorQueue` (the queue where messages that fail a configured number of times) settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
  * In V3 the `MaxRetries` as well as the throttling  (`NumberOfWorkerThreads`) settings can be set only via `MsmqTransportConfig` section.
