@@ -8,7 +8,7 @@ tags:
 ---
 
 
-The Platform Installer and the NServiceBus.PowerShell modules provide a simple mechanism for installing and configuring the MSMQ service to suit NServiceBus.  Particular do not provide an uninstall for this as there are inbuilt removal options within the Windows Operating system.
+The Platform Installer and the NServiceBus.PowerShell modules provide a simple mechanism for installing and configuring the MSMQ service to suit NServiceBus.  Particular does not provide an uninstall for this as there are inbuilt removal options within the Windows Operating system.
 
 The removal instructions vary depend on the operating system and are detailed below.
 
@@ -35,7 +35,6 @@ Alternatively this can be done from PowerShell via the following command:
 
 ```
 (Get-Service MSMQ).DependentServices
-
 ```
 
 ## Removal Instructions
@@ -120,6 +119,3 @@ Get-WindowsOptionalFeature -Online |
 ```
 The script is suppressing restarts to stop a prompt being shown for each feature as it is removed.
 Once the script has completed the system should be restarted to finalize the changes.
-   
-
- 
