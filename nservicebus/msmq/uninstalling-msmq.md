@@ -21,7 +21,7 @@ WARNING: Removing the MSMQ Service is a destructive operation which can result i
 When the MSMQ service is uninstalled the following actions are also carried out:
  
 - All existing queues and queue configuration information is deleted 
-- All messages contained in those queue and the system dead letter queue (DLQ) are deleted
+- All messages contained in those queue and the system dead letter queue (DLQ) is deleted
 
 ### Dependent Services
 
@@ -51,12 +51,17 @@ Alternatively this can be done from PowerShell via the following command:
 - Scroll down and deselect the `Message Queuing` option and then click `Next`
 - Click the `Remove` Button to complete the removal.
 
-You may need to reboot to finalize the changes,
+You may need to reboot to finalize the changes.
 
 #### Windows 2008 R2
 
 - Open Server Manager
-- 
+- Select `Features` entry in the left hand pane
+- Click `Remove Features` in the right hand pane or from choose it from the right click context menu
+- Scroll down and deselect the `Message Queuing` option and then click `Next`
+- Click the `Remove` Button to complete the removal.
+
+You may need to reboot to finalize the changes.
 
 #### Windows  7 and 8  
 
@@ -64,11 +69,11 @@ You may need to reboot to finalize the changes,
 - Under Programs and Features click on `Turn Windows features on or off`
 - Scroll down and deselect the `Microsoft Message Queue (MSMQ) Server` option and then click `OK` 
 
-You may need to reboot to finalize the changes,
+You may need to reboot to finalize the changes.
  
 ### Removal using DISM.exe  
 
-`DISM.exe` is the command line tool Microsoft provides for enabling and disabling Windows Features such as the MSMQ subsystem on Windows 7, 8 
+`DISM.exe` is the command line tool Microsoft provides for enabling and disabling Windows Features such as the MSMQ subsystem on Windows 7, 8 and Windows Server 2008 and 2012. 
 
 `DISM.exe` requires admin privileges so all the commands listed should be run from an admin command prompt. 
 
@@ -97,13 +102,13 @@ To disable a feature execute the following:
 ```
 DISM /Online /Disable-Feature /FeatureName:<FeatureName>
 ```
-Once you have removed finished remove feature reboot the system to finalise the changes. 
+Once you have removed finished remove feature reboot the system to finalize the changes. 
  
 #### Removal using PowerShell Prompt
 
-For Windows 8.x and Windows 2012 Microsoft provides a PowerShell module for managing installed features that mirrors the DISM.exe command line.
+Windows 8.x and Windows Server 2012 ship with a PowerShell module for managing installed features that mirrors the DISM.exe command line functionality.
 
-The following PowerShell script uses the DISM Module to  disable all Windows features where the feature name starting with `MSMQ` from the list of enabled features.  Once the script has completed the system should be restarted. 
+The following PowerShell script uses the DISM Module to remove any `MSMQ` features form the system.  
 
 ```
 Import-Module DISM
@@ -113,6 +118,8 @@ Get-WindowsOptionalFeature -Online |
 	 Disable-WindowsOptionalFeature -Online -FeatureName $_.FeatureName -NoRestart  
 }
 ```
-
+The script is suppressing restarts to stop a prompt being shown for each feature as it is removed.
+Once the script has completed the system should be restarted to finalize the changes.
+   
 
  
