@@ -18,13 +18,13 @@ NOTE: This documents assumes you had already installed ServiceControl
 First, download the NuGet package for the relevant transport including any dependencies.    
 
 * RabbitMQ: [NServiceBus.RabbitMQ v1.1.5](https://www.nuget.org/api/v2/package/NServiceBus.RabbitMQ/1.1.5) and [RabbitMQ.Client 3.3.5](https://www.nuget.org/api/v2/package/RabbitMQ.Client/3.3.5)
-* SQL Server: [NServiceBus.SqlServer v1.2.2](https://www.nuget.org/api/v2/package/NServiceBus.SqlServer/1.2.2)
+* SQL Server: [NServiceBus.SqlServer v1.2.3](https://www.nuget.org/api/v2/package/NServiceBus.SqlServer/1.2.3)
 * Azure Storage Queues: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/5.3.8) and [WindowsAzure.Storage v3.1.0.1](https://www.nuget.org/api/v2/package/WindowsAzure.Storage/3.1.0.1)
 * Azure ServiceBus: [NServiceBus.Azure.Transports.WindowsAzureServiceBus v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureServiceBus/5.3.8) and [WindowsAzure.ServiceBus v2.2](https://www.nuget.org/api/v2/package/WindowsAzure.ServiceBus/2.2.0)
 
 WARNING: Only transport DLLs targetting NServiceBus V4 should be used.
 
-NOTE: If you are configuring ServiceControl for use with Azure ServiceBus and want to use a newer version that 2.2 refer to the troubleshooting section 
+NOTE: If you are configuring ServiceControl for use with Azure ServiceBus and want to use a newer version than 2.2 refer to the troubleshooting section 
 
 The NuGet packages you just downloaded are in fact zip files. Rename the nupkg files to have a zip extension, and take the dlls from the `/lib` folder and put them in the ServiceControl bin folder: (`[Program Files]\Particular Software\ServiceControl`).
 
@@ -63,11 +63,13 @@ Or for Azure Storage Queues:
 x:\Your_Installed_Path\ServiceControl.exe --install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl" -d="ServiceControl/TransportType==NServiceBus.AzureStorageQueue, NServiceBus.Azure.Transports.WindowsAzureStorageQueues" -d="NServiceBus/Transport==DefaultEndpointsProtocol=https;AccountName=[account-name];AccountKey=[account-key];"
 ```
 
-Example, for SqlServer these settings would look like:
+Example, for SQL Server these settings would look like:
 
 ```bat
 x:\Your_Installed_Path\ServiceControl.exe --install -serviceName="Particular.ServiceControl" -displayName="Particular ServiceControl" -d="ServiceControl/TransportType==NServiceBus.SqlServer, NServiceBus.Transports.SQLServer" -d="NServiceBus/Transport==Data Source=(local);Initial Catalog=NServiceBus;Integrated Security=True"
 ```
+
+NOTE: As of `V1.2.3` the `SQL Server Transport` supports the `Queue Schema` connection string parameter, enabling ServiceControl to be used in environments where endpoints are not using the default `dbo` schema. More information: [Multi-database support](/nservicebus/sqlserver/multiple-databases.md).
 
 ### Start and Verify  
 
