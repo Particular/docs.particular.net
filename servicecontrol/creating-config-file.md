@@ -143,3 +143,8 @@ net stop particular.servicecontrol
 * `ServiceBus/AuditLogQueue` (string)
 
   The audit queue name to use for forwarding audit messages. This only works if `ServiceControl/ForwardAuditMessages` is true. Default `<AuditQueue>.log`
+
+
+* `ServiceControl/MaxBodySizeToStore` (int)
+
+  By default we only store bodies of audit messages that are smaller than 100Kb. Increase this number to store messages with larger bodies.  Default `102400`
