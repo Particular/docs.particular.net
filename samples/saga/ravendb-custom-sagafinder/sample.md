@@ -11,8 +11,6 @@ related:
 ---
 
 
-### Sample
-
 The console app that starts a Raven Embedded server. This only exists so the sample can run without needing a RavenDB instance installed on your machine. This project also includes the `RavenDB.Bundles.UniqueConstraints` [bundle](http://ravendb.net/search?q=extending%20bundles%20unique-constraints).
 
 
@@ -28,9 +26,7 @@ This sample shows:
 
 ### RavenDB setup
 
-This sample requires [RavenDB persistence](http://www.nuget.org/packages/NServiceBus.RavenDB/) package and a running RavenDB instance configured accordingly. The sample RavenDB setup can be configured according to your environment:
-
-<!-- import RavenDBSetup --> 
+This sample requires [RavenDB persistence](/nservicebus/ravendb/) package and a running RavenDB instance configured accordingly. 
 
 NServiceBus out of the box does not support saga data with multiple `Unique` attributes, in order to achieve that it is possible to utilize the default RavenDB `UniqueConstraint` Bundle. Follow the [instructions on the RavenDB site](http://ravendb.net/search?q=extending%20bundles%20unique-constraints) to correctly install the bundle in your RavenDB server. You also need to configure the client side of the bundle by registering the `UniqueConstraintsStoreListener` as shown above.
 

@@ -1,47 +1,41 @@
 ﻿using System;
 using System.Diagnostics;
 using Raven.Client.Embedded;
+using Raven.Client.UniqueConstraints;
 
 // In process RavenServer
-class RavenServer : IDisposable
+class RavenHost : IDisposable
 {
 
-    public RavenServer(Action<EmbeddableDocumentStore> initialization = null)
+    public RavenHost()
     {
-        int port = 32076;
-        DocumentStore = new EmbeddableDocumentStore
+        documentStore = new EmbeddableDocumentStore
         {
             DataDirectory = "Data",
             UseEmbeddedHttpServer = true,
             DefaultDatabase = "NServiceBus",
             Configuration =
             {
-                Port = port,
+                Port = 32076,
                 PluginsDirectory = Environment.CurrentDirectory,
                 HostName = "localhost"
             }
         };
-        if (initialization != null)
-        {
-            initialization(DocumentStore);
-        }
-        DocumentStore.Initialize();
+        documentStore.RegisterListener(new UniqueConstraintsStoreListener());
+        documentStore.Initialize();
         //since we are hosting a fake raven server in process we need to remove it from the logging pipeline
         Trace.Listeners.Clear();
         Trace.Listeners.Add(new DefaultTraceListener());
-        ManagementUrl = string.Format("http://localhost:{0}/", port);
-        Console.WriteLine("Raven server started on {0}" + ManagementUrl);
+        Console.WriteLine("Raven server started on http://localhost:32076/");
     }
 
-    public string ManagementUrl;
-
-    public EmbeddableDocumentStore DocumentStore;
+    EmbeddableDocumentStore documentStore;
 
     public void Dispose()
     {
-        if (DocumentStore != null)
+        if (documentStore != null)
         {
-            DocumentStore.Dispose();
+            documentStore.Dispose();
         }
     }
 }

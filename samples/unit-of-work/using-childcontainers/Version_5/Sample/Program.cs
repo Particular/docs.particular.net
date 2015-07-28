@@ -1,22 +1,30 @@
 ﻿using System;
 using NServiceBus;
 using Raven.Client;
+using Raven.Client.Document;
 using StructureMap;
 
 static class Program
 {
     static void Main()
     {
-        using (var ravenServer = new RavenServer())
+        using (new RavenHost())
         {
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName("Samples.UoWWithChildContainers");
 
             #region ContainerConfiguration
 
+            DocumentStore documentStore = new DocumentStore
+            {
+                Url = "http://localhost:32076",
+                DefaultDatabase = "NServiceBus"
+            };
+            documentStore.Initialize();
+
             Container container = new Container(x =>
             {
-                x.For<IDocumentStore>().Use(ravenServer.DocumentStore);
+                x.For<IDocumentStore>().Use(documentStore);
                 x.For<IDocumentSession>().Use(c => c.GetInstance<IDocumentStore>().OpenSession());
             });
 
@@ -39,7 +47,7 @@ static class Program
             {
                 Console.WriteLine("Press enter to send a message");
                 Console.WriteLine("Press any key to exit");
-                Console.WriteLine("After storing a few orders you can open a browser and view them at " + ravenServer.ManagementUrl);
+                Console.WriteLine("After storing a few orders you can open a browser and view them at http://localhost:32076");
 
                 while (true)
                 {
