@@ -3,7 +3,6 @@ using NServiceBus.Saga;
 using Raven.Client;
 using Raven.Client.UniqueConstraints;
 
-#region PaymentTransactionCompletedSagaFinderRavenDB
 
 class PaymentTransactionCompletedSagaFinder : IFindSagas<OrderSagaData>.Using<PaymentTransactionCompleted>
 {
@@ -20,5 +19,3 @@ class PaymentTransactionCompletedSagaFinder : IFindSagas<OrderSagaData>.Using<Pa
         return session.LoadByUniqueConstraint<OrderSagaData>(d => d.PaymentTransactionId, message.PaymentTransactionId);
     }
 }
-
-#endregion

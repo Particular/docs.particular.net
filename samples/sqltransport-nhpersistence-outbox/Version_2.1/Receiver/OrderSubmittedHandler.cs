@@ -32,13 +32,10 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
         #endregion
 
-        #region Chaos
-
         if (ChaosGenerator.Next(2) == 0)
         {
             throw new Exception("Boom!");
         }
 
-        #endregion
     }
 }

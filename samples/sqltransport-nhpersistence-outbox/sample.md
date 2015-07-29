@@ -25,6 +25,7 @@ related:
 
 NOTE: The handling code has built-in chaotic behavior. There is 50% chance that a given message fails processing. This is because we want to demonstrate that errors can be send to a separate shared database which is essential for ServiceControl to be able to pick them up.
 
+
 ## Code walk-through
 
 This sample contains three projects: 
@@ -34,6 +35,7 @@ This sample contains three projects:
  * Receiver - A console application responsible for processing the order message.
 
 Sender and Receiver use different databases, just like in a production scenario where two systems are integrated using NServiceBus. Each database contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence.
+
 
 ### Sender project
  
@@ -45,6 +47,7 @@ The Sender uses a configuration file to tell NServiceBus where the messages
 addressed to the Receiver should be sent
 
 <!-- import SenderConnectionStrings -->
+
 
 ### Receiver project
 
@@ -70,6 +73,7 @@ When the message arrives at the Receiver, it is dequeued using a native SQL Serv
 
 Finally the messages in the outbox are pushed to their destinations. The timeout message gets stored in NServiceBus timeout store and is sent back to the saga after requested delay of five seconds.
 
-### How it works?
+
+### How it works
 
 All the data manipulations happen atomically because SQL Server 2008 and later allows multiple (but not overlapping) instances of `SqlConnection` to enlist in one `TransactionScope` without the need to escalate to DTC. The SQL Server manages these transactions like they were one `SqlTransaction`.

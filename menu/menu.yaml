@@ -103,6 +103,7 @@
             - "nservicebus/msmq/transportconfig"
             - "nservicebus/msmq/network-load-balancing"
             - "nservicebus/msmq/operations-scripting"
+            - "nservicebus/msmq/uninstalling-msmq"            
         - Title: "RabbitMQ"
           Url: "nservicebus/rabbitmq"
           Articles: 

@@ -5,7 +5,7 @@ using Raven.Client;
 #region PlaceOrderHandler
 public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 {
-    readonly IDocumentSession session;
+    IDocumentSession session;
 
     public PlaceOrderHandler(IDocumentSession session)
     {
@@ -14,7 +14,12 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 
     public void Handle(PlaceOrder message)
     {
-        session.Store(new Order { OrderNumber = message.OrderNumber, OrderValue = message.OrderValue });
+        Order order = new Order
+        {
+            OrderNumber = message.OrderNumber, 
+            OrderValue = message.OrderValue
+        };
+        session.Store(order);
 
         Console.Out.WriteLine("Order {0} stored",message.OrderNumber);
     }

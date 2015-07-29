@@ -1,7 +1,7 @@
 ﻿using System;
 using NServiceBus;
 using NServiceBus.Persistence;
-using Raven.Client.Embedded;
+using Raven.Client.Document;
 using Raven.Client.UniqueConstraints;
 
 class Program
@@ -9,32 +9,24 @@ class Program
 
     static void Main()
     {
-        using (var documentStore = new EmbeddableDocumentStore
-            {
-                DataDirectory = "Data",
-                Configuration =
-                {
-                    PluginsDirectory = Environment.CurrentDirectory,
-                }
-            })
+        using (new RavenHost())
         {
-            #region RavenDBSetup
-
-            documentStore
-                .RegisterListener(new UniqueConstraintsStoreListener())
-                .Initialize();
-
-            #endregion
-
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName("Samples.RavenDBCustomSagaFinder");
             busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.EnableInstallers();
 
+            DocumentStore documentStore = new DocumentStore
+            {
+                Url = "http://localhost:32076",
+                DefaultDatabase = "NServiceBus"
+            };
+            documentStore.RegisterListener(new UniqueConstraintsStoreListener());
+            documentStore.Initialize();
+
             busConfiguration.UsePersistence<RavenDBPersistence>()
                 .DoNotSetupDatabasePermissions() //Only required to simplify the sample setup
                 .SetDefaultDocumentStore(documentStore);
-
 
             using (IBus bus = Bus.Create(busConfiguration).Start())
             {
@@ -49,3 +41,4 @@ class Program
         }
     }
 }
+

@@ -3,7 +3,7 @@ using NServiceBus;
 
 class Program
 {
-    #region ClientMain
+
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
@@ -17,7 +17,7 @@ class Program
            SendOrder(bus);
         }
     }
-    #endregion
+
 
     #region SendOrder
     static void SendOrder(IBus bus)
