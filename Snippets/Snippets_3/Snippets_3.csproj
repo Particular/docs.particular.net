@@ -109,10 +109,18 @@
     <None Include="Transports\Msmq\MessageQueueConfiguration.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Callback\Usage.cs" />
-    <Compile Include="Callback\PlaceOrder.cs" />
-    <Compile Include="Callback\PlaceOrderResponse.cs" />
-    <Compile Include="Callback\Status.cs" />
+    <Compile Include="Callback\Enum\Handler.cs" />
+    <Compile Include="Callback\Enum\Message.cs" />
+    <Compile Include="Callback\Enum\Status.cs" />
+    <Compile Include="Callback\Enum\Usage.cs" />
+    <Compile Include="Callback\Int\Handler.cs" />
+    <Compile Include="Callback\Int\Message.cs" />
+    <Compile Include="Callback\Int\Usage.cs" />
+    <Compile Include="Callback\Object\Handler.cs" />
+    <Compile Include="Callback\Object\Message.cs" />
+    <Compile Include="Callback\Object\ObjectResponseMessageHandler.cs" />
+    <Compile Include="Callback\Object\ResponseMessage.cs" />
+    <Compile Include="Callback\Object\Usage.cs" />
     <Compile Include="Logging\Log4Net\Usage.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />

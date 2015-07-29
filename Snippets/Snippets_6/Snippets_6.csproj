@@ -31,8 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NServiceBus.Callbacks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.Callbacks.1.0.0-unstable0004\lib\net451\NServiceBus.Callbacks.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NServiceBus.6.0.0-unstable0516\lib\net451\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.6.0.0-unstable0519\lib\net451\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Host, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
@@ -55,10 +59,19 @@
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
-    <Compile Include="Callback\PlaceOrder.cs" />
-    <Compile Include="Callback\PlaceOrderResponse.cs" />
-    <Compile Include="Callback\Status.cs" />
-    <Compile Include="Callback\Usage.cs" />
+    <Compile Include="Callback\Cancellation\Message.cs" />
+    <Compile Include="Callback\Cancellation\Usage.cs" />
+    <Compile Include="Callback\Enum\Handler.cs" />
+    <Compile Include="Callback\Enum\Message.cs" />
+    <Compile Include="Callback\Enum\Status.cs" />
+    <Compile Include="Callback\Enum\Usage.cs" />
+    <Compile Include="Callback\Int\Handler.cs" />
+    <Compile Include="Callback\Int\Message.cs" />
+    <Compile Include="Callback\Int\Usage.cs" />
+    <Compile Include="Callback\Object\Handler.cs" />
+    <Compile Include="Callback\Object\Message.cs" />
+    <Compile Include="Callback\Object\ResponseMessage.cs" />
+    <Compile Include="Callback\Object\Usage.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
     <Compile Include="Errors\ErrorQueue\Usage.cs" />
@@ -105,6 +118,7 @@
     <Compile Include="MsmqMessageLabel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Audit\App.config" />
     <None Include="Errors\ErrorQueue\configureErrorQueue.config" />
     <None Include="Errors\FirstLevel\flr.config" />
