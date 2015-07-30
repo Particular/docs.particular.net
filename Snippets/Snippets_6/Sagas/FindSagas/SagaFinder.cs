@@ -3,7 +3,7 @@ namespace Snippets6.Sagas.FindSagas
 {
     public class SagaFinder
     {
-        #region TODOsaga-finder
+        #TODOregion saga-finder
 
         //todo: update when we have versions of NH + raven for v6 (also remove TODO from region name
         //// NHibernate example:
