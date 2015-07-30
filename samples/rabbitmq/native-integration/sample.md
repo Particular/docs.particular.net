@@ -25,6 +25,8 @@ With this in place we can just have the native sender put a message in this queu
 
 In this sample we use XML to format our payload since NServiceBus is able to automatically detect the message type based on the root node of the xml. Our native sender will send a `MyMessage` xml string as the message payload. 
 
+It is important to take note that on the receiver `MyMessage` is not in a namespace.  This is intentional in order to correctly resolve the type from the root node name.  If the message was in the `Reciever` namespace then the SimpleMessageMapper would be unable to resolve the type. Without including the correct namespace, it is unable to resolve the type and that information is not included in the XML message.
+
 <!-- import CreateNativePayload -->
 
 The next step is to define a message contract in our receiver that matches this format. This contract looks like this (Notice the `SomeProperty`)
