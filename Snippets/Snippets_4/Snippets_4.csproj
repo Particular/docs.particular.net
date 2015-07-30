@@ -370,7 +370,6 @@
     <Compile Include="DataBus\FileShare\DataBus.cs" />
     <Compile Include="RavenDB\CustomRavenConfig.cs" />
     <Compile Include="Encryption\Usage.cs" />
-    <Compile Include="PurgeOnStartup.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Installers.cs" />
     <Compile Include="UnitTesting\AdditionalServices\Tests.cs" />

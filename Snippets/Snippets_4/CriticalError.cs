@@ -7,17 +7,6 @@
     public class CriticalError
     {
 
-        public void RaiseCriticalErrorAction()
-        {
-            Exception theException = null;
-            #region RaiseCriticalError
-
-            // Configuring how NServicebus handles critical errors
-            Configure.With().RaiseCriticalError("The message", theException);
-
-            #endregion
-        }
-
         public void DefineCriticalErrorActionForAzureHost()
         {
 

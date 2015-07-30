@@ -6,28 +6,6 @@
 
     public class CriticalErrorConfig
     {
-        #region RaiseCriticalError
-
-        //This could be a handler, a saga or some other service injected into the container
-        public class MyService
-        {
-            CriticalError criticalError;
-
-            // the CriticalError instance will be injected at runtime
-            public MyService(CriticalError criticalError)
-            {
-                this.criticalError = criticalError;
-            }
-
-            // this would be called in some case where you want the CriticalErrorAction executed
-            public void RaiseCriticalErrorAction(Exception theException)
-            {
-                criticalError.Raise("The message", theException);
-            }
-        }
-
-        #endregion
-
         public void DefineCriticalErrorActionForAzureHost()
         {
             BusConfiguration busConfiguration = new BusConfiguration();

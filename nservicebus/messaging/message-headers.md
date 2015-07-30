@@ -59,13 +59,13 @@ Several headers are used to enable messaging interaction patters
  * `NServiceBus.ReplyToAddress`: The queue address that instructs downstream handlers or sagas where to send to when doing a Reply or Return.
 
 
-### Send Headers
+## Send Headers
 
 When a message is sent the headers will be as follows:
 
 <!-- import HeaderWriterSend -->
 
-The above example headers are for a Send and hence the MessageIntent header is `Send`. If this was a Publish the MessageIntent header would be `Publish`.
+The above example headers are for a Send and hence the `MessageIntent` header is `Send`. If this was a Publish the `MessageIntent` header would be `Publish`.
 
 
 ## Reply Headers
@@ -88,6 +88,12 @@ The headers of reply message will be as follows:
 
 <!-- import HeaderWriterReply_Replying -->
 
+
+## Publish Headers
+
+When a message is published the headers will be as follows:
+
+<!-- import HeaderWriterPublish -->
 
 
 ## Return from a Handler
@@ -133,7 +139,15 @@ A message Reply is performed from a Saga will have the following headers:
 
 ### Example "Replying to a Saga" Headers
 
+
+#### Via calling Bus.Reply
+
 <!-- import HeaderWriterSaga_Replying -->
+
+
+#### Via calling Saga.ReplyToOriginator
+
+<!-- import HeaderWriterSaga_ReplyingToOriginator -->
 
 
 ## Timeout Headers
