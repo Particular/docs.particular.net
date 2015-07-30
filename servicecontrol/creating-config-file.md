@@ -76,110 +76,110 @@ net stop particular.servicecontrol
 
 ### Configuration Options
 
-##### ServiceControl/LogPath (string)
+#### ServiceControl/LogPath (string)
 The path for the ServiceControl logs. 
 
 Default: `%LOCALAPPDATA%\Particular\ServiceControl\logs`
 ___
 
-##### ServiceControl/Port  (int)
+#### ServiceControl/Port  (int)
 
 The port to bind the embedded http server. 
 
 Default: `33333`.
 ___
-##### ServiceControl/Hostname  (string)
+#### ServiceControl/Hostname  (string)
 
 The hostname to bind the embedded http server to, modify if you want to bind to a specific hostname, eg. sc.mydomain.com. 
 
 Default: `localhost`
 ___
-##### ServiceControl/VirtualDirectory  (string)
+#### ServiceControl/VirtualDirectory  (string)
 
 The virtual directory to bind the embedded http server to, modify if you want to bind to a specific virtual directory.
  
 Default: `empty`
 ___
-##### ServiceControl/HeartbeatGracePeriod  (timespan)
+#### ServiceControl/HeartbeatGracePeriod  (timespan)
 
 The period that defines whether an endpoint is considered alive or not. 
 
 Default: `00:00:40` (40 secs)
 ___
-##### ServiceControl/MaximumMessageThroughputPerSecond (int)
+#### ServiceControl/MaximumMessageThroughputPerSecond (int)
 
 This setting was introduced in version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An apropriate limit ensures that the database can cope with number of insert operations. Otherwise the query performance would drop significantly and the message expiration process would stop working when under heavy insert load. Make sure to concudct thorough performance tests on your hardware before increasing this value.  
 
 Default: `350`. 
 ___
-##### ServiceControl/ForwardAuditMessages (bool `true`/`false`)
+#### ServiceControl/ForwardAuditMessages (bool `true`/`false`)
 
 Use this setting to configure whether processed audit messages are forwarded to another queue or not.   
 
 Default: `false`. From v1.5 if this setting is not explicitly set to true of false a warning is shown in the logs at startup.
 See [Installation](installation.md) for details on how to set this at install time.
 ___
-##### ServiceControl/ExpirationProcessTimerInSeconds (int) 
+#### ServiceControl/ExpirationProcessTimerInSeconds (int) 
 
 The number of seconds to wait between checking for expired messages.  
 
 Default: `600` (10 minutes). The default prior to version 1.4 was `60` (1 minute), the new default is `600` (10 minutes).  Settings the value to `0` will disable the expiration process, this is not recommended and it is only provided for fault finding.  Valid Range is `0` through to `10800` (3 Hours)
 ___
-##### ServiceControl/ExpirationProcessBatchSize  (int)  
+#### ServiceControl/ExpirationProcessBatchSize  (int)  
 
 This setting was introduced in version 1.4. This minimum allowed value for this settings is `10240`, there is no hardcoded maximum as this is heavily dependent on system performance.  
 
 Default: `65512`.
 ___
-##### ServiceControl/HoursToKeepMessagesBeforeExpiring (int)
+#### ServiceControl/HoursToKeepMessagesBeforeExpiring (int)
 
 The number of hours to keep a message for before it is deleted, 
 
 Default: `720` (30 days). Valid Range is `24` (1 day) through to `1440` (60 days)
 ___
-##### ServiceControl/DbPath (string)
+#### ServiceControl/DbPath (string)
 
 The path where the internal RavenDB is located. 
 
 Default: `%SystemDrive%\ProgramData\Particular\ServiceControl\`
 ___
-##### ServiceControl/TransportType (string)
+#### ServiceControl/TransportType (string)
 
 The transport type to run ServiceControl with. 
 
 Default: `NServiceBus.Msmq, NServiceBus.Core`
 ___
-##### NServiceBus/Transport  (string)
+#### NServiceBus/Transport  (string)
 
 The connection string for the transport. This setting should be placed in `connectionStrings` section of configuratoin file.
 ___
-##### ServiceBus/AuditQueue (string)
+#### ServiceBus/AuditQueue (string)
 
 The audit queue name. 
 
 Default: `audit`
 ___
-##### ServiceBus/ErrorQueue (string)
+#### ServiceBus/ErrorQueue (string)
 
 The error queue name. 
 
 Default: `error`
 ___
-##### ServiceBus/ErrorLogQueue (string)
+#### ServiceBus/ErrorLogQueue (string)
 
 The error queue name to use for forwarding error messages. 
 
 Default: `<ErrorQueue>.log`
 ___
-##### ServiceBus/AuditLogQueue (string)
+#### ServiceBus/AuditLogQueue (string)
 
 The audit queue name to use for forwarding audit messages. This only works if `ServiceControl/ForwardAuditMessages` is true. 
 
 Default: `<AuditQueue>.log`
 ___
-##### ServiceControl/MaxBodySizeToStore (int) 
+#### ServiceControl/MaxBodySizeToStore (int) 
 
-Up until version _1.6_ ServiceControl only stores bodies of audit messages that are smaller than 100Kb by default. After version _1.6_ Increase this number to store messages with larger bodies. Messages that have a larger message body in bytes than MaxBodySizeToStore are not stored for audit. This is to ensure that the majority of our users enjoy the best level of performance. For users with special analysis needs, edit MaxBodySizeToStore in ServiceControl.exe.config to increase the size of storeable audit messages.
+Up until version 1.6 ServiceControl only stores bodies of audit messages that are smaller than 100Kb by default. After version 1.6 Increase this number to store messages with larger bodies. Messages that have a larger message body in bytes than MaxBodySizeToStore are not stored for audit. This is to ensure that the majority of our users enjoy the best level of performance. For users with special analysis needs, edit MaxBodySizeToStore in ServiceControl.exe.config to increase the size of storeable audit messages.
 
 Default: `102400` (100Kb).
 ___
