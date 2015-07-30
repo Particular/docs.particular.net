@@ -1,6 +1,5 @@
 ﻿namespace Snippets3
 {
-    using System;
     using NServiceBus;
 
     public class PerformanceMonitoring
@@ -11,16 +10,6 @@
             Configure configure = Configure.With();
             // in this version there was no granular control over individual counters
             configure.EnablePerformanceCounters();
-            #endregion
-        }
-
-        public void EnablingSla()
-        {
-            #region enable-sla
-            Configure configure = Configure.With();
-            // in this version there was no granular control over individual counters
-            configure.EnablePerformanceCounters();
-            configure.SetEndpointSLA(TimeSpan.FromMinutes(3));
             #endregion
         }
 

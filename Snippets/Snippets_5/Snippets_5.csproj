@@ -508,7 +508,6 @@
     <Compile Include="SendOnly.cs" />
     <Compile Include="Serialization.cs" />
     <Compile Include="StartupActionReplacement.cs" />
-    <Compile Include="StaticConfigureEndpoint.cs" />
     <Compile Include="SubscriptionSettings.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicy\Usage.cs" />
     <Compile Include="TransactionConfig.cs" />

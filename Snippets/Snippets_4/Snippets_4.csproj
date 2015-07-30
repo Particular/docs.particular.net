@@ -367,7 +367,6 @@
     <Compile Include="CriticalError.cs" />
     <Compile Include="SendOnly.cs" />
     <Compile Include="Serialization.cs" />
-    <Compile Include="StaticConfigureEndpoint.cs" />
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DataBus\FileShare\DataBus.cs" />
