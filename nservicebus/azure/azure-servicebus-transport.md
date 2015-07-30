@@ -76,6 +76,14 @@ NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configu
 
 Defaults are just starting values. You should always measure and test these values against your solution and adjust those accordingly.
 
+## Transactions
+
+Azure Service Bus only supports the `Serializable` isolation scope, therefore the transport's configuration is hard coded to `Serializable`  so users won't be able and override it.
+
+(https://github.com/Particular/NServiceBus.AzureServiceBus/blob/support-6.3/src/Transport/AzureServiceBusTransport.cs#L31)
+(NServiceBus's default isolation level is ReadCommit).
+
+Read more about [Two Phase commit in azure here](http://blogs.msdn.com/b/clemensv/archive/2011/10/06/achieving-transactional-behavior-with-messaging.aspx)
 
 ## Scenarios
 
