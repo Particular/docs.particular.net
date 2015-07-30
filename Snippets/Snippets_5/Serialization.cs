@@ -4,20 +4,6 @@
 
     public class Serialization
     {
-        public void AllTheSerialization()
-        {
-
-            #region ConfigureSerialization
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-
-            busConfiguration.UseSerialization<BinarySerializer>();
-            busConfiguration.UseSerialization<BsonSerializer>();
-            busConfiguration.UseSerialization<JsonSerializer>();
-            busConfiguration.UseSerialization<XmlSerializer>();
-
-            #endregion
-        }
         public void JsonSerialization()
         {
 

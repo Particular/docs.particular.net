@@ -282,7 +282,6 @@
     <Compile Include="Logging\UsingLogging.cs" />
     <Compile Include="Pipeline\Abort\Behavior.cs" />
     <Compile Include="Audit\ProvideConfiguration.cs" />
-    <Compile Include="BusExtensionMethodForHandler.cs" />
     <Compile Include="Container\Custom\Usage.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="CustomConfigSource.cs" />
@@ -370,16 +369,11 @@
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DataBus\FileShare\DataBus.cs" />
-    <Compile Include="CustomConfigOverrides.cs" />
     <Compile Include="RavenDB\CustomRavenConfig.cs" />
     <Compile Include="Encryption\Usage.cs" />
     <Compile Include="PurgeOnStartup.cs" />
     <Compile Include="Conventions\Usage.cs" />
-    <Compile Include="Transports\Transports.cs" />
     <Compile Include="Installers.cs" />
-    <Compile Include="StartupAction.cs" />
-    <Compile Include="Sagas\SagaMapping.cs" />
-    <Compile Include="Scheduling\Scheduler.cs" />
     <Compile Include="UnitTesting\AdditionalServices\Tests.cs" />
     <Compile Include="UnitTesting\ServiceLayer\Tests.cs" />
     <Compile Include="UnitTesting\HeaderManipulation\Tests.cs" />

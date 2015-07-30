@@ -342,7 +342,6 @@
   <ItemGroup>
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
-    <Compile Include="BusExtensionMethodForHandlerReplacement.cs" />
     <Compile Include="BusNotifications\Errors.cs" />
     <Compile Include="Callback\Enum\Handler.cs" />
     <Compile Include="Callback\Enum\Message.cs" />
@@ -486,8 +485,6 @@
     <Compile Include="Logging\Log4Net\Usage.cs" />
     <Compile Include="Logging\NLog\Usage.cs" />
     <Compile Include="Logging\BuiltInConfig.cs" />
-    <Compile Include="CustomConfigOverrides.cs" />
-    <Compile Include="RavenDB\CustomRavenConfig.cs" />
     <Compile Include="Installers.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="MinimumConfiguration.cs" />
@@ -501,19 +498,15 @@
     <Compile Include="Pipeline\SampleBehavior.cs" />
     <Compile Include="PurgeOnStartup.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
-    <Compile Include="Sagas\SagaMapping.cs" />
-    <Compile Include="Scheduling\Scheduler.cs" />
     <Compile Include="ScaleOut\Usage.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SendOnly.cs" />
     <Compile Include="Serialization.cs" />
-    <Compile Include="StartupActionReplacement.cs" />
     <Compile Include="SubscriptionSettings.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicy\Usage.cs" />
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Transports\SqlServer\NamedConnectionString.cs" />
-    <Compile Include="Transports\Transports.cs" />
     <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />
     <Compile Include="Transports\RabbitMQ\Usage.cs" />
     <Compile Include="Transports\SqlServer\MultiDb.cs" />

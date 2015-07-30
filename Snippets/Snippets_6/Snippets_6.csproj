@@ -103,7 +103,6 @@
     <Compile Include="Sagas\Reply\MySagaData.cs" />
     <Compile Include="Sagas\Reply\StartMessage.cs" />
     <Compile Include="Sagas\FindSagas\SagaFinder.cs" />
-    <Compile Include="Sagas\SagaMapping.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
     <Compile Include="Sagas\SimpleSaga\CompleteOrder.cs" />
     <Compile Include="Sagas\SimpleSaga\OrderSaga.cs" />
