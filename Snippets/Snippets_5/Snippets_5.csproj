@@ -331,7 +331,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="RavenDB\SharedDocumentStoreViaConnectionString.config" />
-    <None Include="RavenDB\SpecificDocumentStoreViaConnectionString.config" />
     <None Include="Transports\Mqmq\MessageQueueConfiguration.config" />
     <None Include="Transports\RabbitMQ\App.config" />
     <None Include="Transports\SqlServer\NamedConnectionString.config" />
@@ -479,7 +478,6 @@
     <Compile Include="Gateway\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="License.cs" />
-    <Compile Include="DoNotCreateQueues.cs" />
     <Compile Include="Encryption\Usage.cs" />
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="DataBus\Azure\Usage.cs" />
@@ -503,7 +501,6 @@
     <Compile Include="Pipeline\Replace\ReplacePipelineBehavior.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
     <Compile Include="PurgeOnStartup.cs" />
-    <Compile Include="RunCustomActionReplacement.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Sagas\SagaMapping.cs" />
     <Compile Include="Scheduling\Scheduler.cs" />

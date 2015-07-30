@@ -370,7 +370,6 @@
     <Compile Include="StaticConfigureEndpoint.cs" />
     <Compile Include="TransactionConfig.cs" />
     <Compile Include="License.cs" />
-    <Compile Include="DoNotCreateQueues.cs" />
     <Compile Include="DataBus\FileShare\DataBus.cs" />
     <Compile Include="CustomConfigOverrides.cs" />
     <Compile Include="RavenDB\CustomRavenConfig.cs" />
@@ -378,7 +377,6 @@
     <Compile Include="PurgeOnStartup.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Transports\Transports.cs" />
-    <Compile Include="RunCustomAction.cs" />
     <Compile Include="Installers.cs" />
     <Compile Include="StartupAction.cs" />
     <Compile Include="Sagas\SagaMapping.cs" />
