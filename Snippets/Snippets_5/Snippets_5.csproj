@@ -491,7 +491,6 @@
     <Compile Include="CustomConfigOverrides.cs" />
     <Compile Include="RavenDB\CustomRavenConfig.cs" />
     <Compile Include="Installers.cs" />
-    <Compile Include="InterfaceMessageCreation.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="MinimumConfiguration.cs" />
     <Compile Include="Outbox\Usage.cs" />
