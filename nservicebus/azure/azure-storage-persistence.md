@@ -14,6 +14,7 @@ redirects:
 
 Various features of NServiceBus require persistence. Among them are subscription storage, sagas, and timeouts. Various storage options are available including, Azure Storage Services.
 
+
 ## How To enable persistence with Azure storage services
 
 First you need to reference the assembly that contains the azure storage persisters. The recommended way of doing this is by adding a NuGet package reference to the  `NServiceBus.Azure` package to your project.
@@ -22,18 +23,20 @@ If self hosting, you can configure the persistence technology using the configur
 
 <!-- import PersistanceWithAzure -->
 
+
 ## Hosting
 
 When hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, or any other NServiceBus provided host, the azure storage persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config.
-
 
 <!-- import PersistenceWithAzureHost -->
 
 NOTE: In version 4, when hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
+
 ## Detailed Configuration
 
 You can get more control on the behavior of each persister by specifying one of the respective configuration sections in your app.config and changing one of the available properties, or through code.
+
 
 ### Detailed Configuration with Configuration Section
 
@@ -52,13 +55,14 @@ The following settings are available for changing the behavior of subscription p
 
 The following settings are available for changing the behavior of timeout persistence through the `AzureTimeoutPersisterConfig` section:
 
-- `ConnectionString`: Allows you to set the connectionstring to the storage account for storing tiemout information, defaults to `UseDevelopmentStorage=true`
+- `ConnectionString`: Allows you to set the connectionstring to the storage account for storing timeout information, defaults to `UseDevelopmentStorage=true`
 - `TimeoutManagerDataTableName`: Allows you to set the name of the table where the timeout manager stores it's internal state, defaults to `TimeoutManagerDataTable`
 - `TimeoutDataTableName`: Allows you to set the name of the table where the timeouts themselves are stored, defaults to `TimeoutDataTableName`
 - `CatchUpInterval`: When a node hosting a timeout manager would go down, it needs to catch up with missed timeouts faster than it normally would (1 sec), this value allows you to set the catchup interval in seconds. Defaults to 3600, meaning it will process one hour at a time.
-- `PartitionKeyScope`: The time range used as partitionkey value for all timeouts. For optimal performance, this should be in line with the catchup interval so it should come to no surprise that the default value also represents an hour: yyyyMMddHH.
+- `PartitionKeyScope`: The time range used as partition key value for all timeouts. For optimal performance, this should be in line with the catchup interval so it should come to no surprise that the default value also represents an hour: `yyyyMMddHH`.
 
 For more information see [Configuring Azure Connection Strings](https://msdn.microsoft.com/en-us/library/azure/ee758697.aspx)
+
 
 ## Additional performance tips
 
@@ -74,18 +78,23 @@ You can drastically improve performance by overriding these settings. You can le
 	ServicePointManager.Expect100Continue = false; // reduces number of http calls
 	ServicePointManager.CheckCertificateRevocationList = false; // optional, only if you trust all your dependencies	
 
+
 ### Detailed Configuration with Code
 
 For Sagas:
+
 <!-- import AzurePersistenceSagasCustomization -->
 
 For Subscriptions:
+
 <!-- import AzurePersistenceSubscriptionsCustomization -->
 
 For Timeouts:
+
 <!-- import AzurePersistenceTimeoutsCustomization -->
 
-NOTE: Subscriptions and Timeouts persistence configuration only has an effect when used with Azure Storage Queues transport from NServiceBus Azure V6 and later.
+NOTE: Subscriptions and Timeouts persistence configuration only has an effect when used with Azure Storage Queues transport from NServiceBus Azure version 6 and later.
+
 
 ## Sample
 

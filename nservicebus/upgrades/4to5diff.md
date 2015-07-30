@@ -1,6 +1,6 @@
 ---
-title: API differences between V4 and V5
-summary: Detailed binary level API differences between the NServiceBus V4 and V5 assemblies
+title: API differences between version 4 and version 5
+summary: Detailed binary level API differences between the NServiceBus version 4 and version 5 assemblies
 tags:
  - upgrade
  - migration
@@ -961,9 +961,9 @@ Placeholder for obsoletes. Will be removed in version 6.0.0. Obsoleted with erro
 
 #### Obsolete Methods
 
-  - `T CreateInstance<T>(NServiceBus.IBus)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L21) ]<br>Since multi message sends is obsoleted in v5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
-  - `T CreateInstance<T>(NServiceBus.IBus, Action<T>)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L34) ]<br>Since multi message sends is obsoleted in v5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
-  - `object CreateInstance(NServiceBus.IBus, Type)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L46) ]<br>Since multi message sends is obsoleted in v5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `T CreateInstance<T>(NServiceBus.IBus)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L21) ]<br>Since multi message sends is obsoleted in version 5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `T CreateInstance<T>(NServiceBus.IBus, Action<T>)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L34) ]<br>Since multi message sends is obsoleted in version 5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `object CreateInstance(NServiceBus.IBus, Type)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L46) ]<br>Since multi message sends is obsoleted in version 5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 ### NServiceBus.InstallConfigExtensions  [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Installation/InstallConfigExtensions_obsolete.cs) ]
 

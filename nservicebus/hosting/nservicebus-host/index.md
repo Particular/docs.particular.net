@@ -37,12 +37,12 @@ If you want to avoid the scanning process you can explicitly configure the type 
 
 ## Custom initialization and startup
 
-As of NServiceBus v5 you customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on your endpoint configuration class. Just call the appropriate methods on the `BusConfiguration` parameter passed to the method.
+As of NServiceBus version 5 you customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on your endpoint configuration class. Just call the appropriate methods on the `BusConfiguration` parameter passed to the method.
 
 <!-- import customize_nsb_host -->
 
 
-#### NServiceBus v4 and v3
+#### NServiceBus version 4 and version 3
 
 To change core settings such as assembly scanning, container, and serialization format, implement
 `IWantCustomInitialization` on the endpoint configuration class (the same class that implements
@@ -54,19 +54,19 @@ Configure.With()
 
 NOTE: Do not perform any startup behaviors in the `Init` method.
 
-After the custom initalization is done the regular core `INeedInitalization` implementations found will be called in the same way as when you're self hosting. 
+After the custom initialization is done the regular core `INeedInitalization` implementations found will be called in the same way as when you're self hosting. 
 
-Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in v3.x) should kick off things such as web crawling, data mining, and batch processes.
+Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in version 3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in version 3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in version 3.x) should kick off things such as web crawling, data mining, and batch processes.
 
 
 ## Logging
 
-As of NServiceBus v5 logging for the host is controlled with the same API as the core. This is documented [here](/nservicebus/logging/).
+As of NServiceBus version 5 logging for the host is controlled with the same API as the core. This is documented [here](/nservicebus/logging/).
 
 You can add the logging API calls as mentioned in the above article directly in your implementation of `IConfigureThisEndoint.Customize` method.
 
 
-#### NServiceBus v4 and v3
+### NServiceBus version 4 and version 3
 
 To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure your custom setup. To make NServiceBus use your logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](/nservicebus/logging) and shown below:
 
@@ -82,7 +82,7 @@ As of version 5 roles are obsoleted and should not be used. Most of the function
 <!-- import AsAClientEquivalent -->
 
 
-#### NServiceBus v4 and v3
+#### NServiceBus version 4 and version 3
 
 The rest of the code specifying transport, subscription storage, and other technologies isn't here, because of the `AsA_Server` built-in configuration described next.
 

@@ -17,9 +17,9 @@ There are several ways to make sure that your NServiceBus endpoints pick up and 
 Using the registry to store your license information is a way that all platform tools can access this information easily. This includes NServiceBus endpoints, ServiceControl, ServiceInsight, and ServiceMatrix. (ServicePulse determines licensing status by querying the ServiceControl API.) Using the registry ensures that all the platform tools can access the license status without requiring additional complexity on every deployment.
 
 
-### NServiceBus 4.5 and above
+### NServiceBus version  4.5 and above
 
-The standalone NServiceBus PowerShell V5.0 includes a commandlet for importing the Platform License into the `HKEY_LOCAL_MACHINE` registry. See [Managing Using PowerShell](/nservicebus/operations/management-using-powershell.md) for more details and installation instructions for the PowerShell Module.
+The standalone NServiceBus PowerShell version 5.0 includes a commandlet for importing the Platform License into the `HKEY_LOCAL_MACHINE` registry. See [Managing Using PowerShell](/nservicebus/operations/management-using-powershell.md) for more details and installation instructions for the PowerShell Module.
 
 For 64-bit operating systems the license is written to both the 32-bit and 64-bit registry.  The license is stored is `HKEY_LOCAL_MACHINE\Software\ParticularSoftware\License`. 
 
@@ -56,9 +56,9 @@ NOTE: On a 64 bit operating system this script should not be run through the Pow
 NOTE: As of version 4.5, both the `LicenseInstaller.exe` tool and the `install-NServiceBusLicense` PowerShell commandlet has been deprecated. 
 
 
-### NServiceBus 3.3
+### NServiceBus version 3.3
 
-NServiceBus V3.3 supports storing the license in a registry key called `[HKEYCURRENTUSER\Software\NServiceBus\{Major.Minor}\License]`.
+NServiceBus version 3.3 supports storing the license in a registry key called `[HKEYCURRENTUSER\Software\NServiceBus\{Major.Minor}\License]`.
 
 To install the license in the registry, use one of these options:
 
@@ -67,9 +67,9 @@ To install the license in the registry, use one of these options:
 -   If your trial license has expired and you are running in debug mode, the endpoint shows you a dialog that enables you to install the license.
 
 
-### NServiceBus 4.x versions prior to 4.5
+### NServiceBus 4.x versions prior to version 4.5
 
-When installed using the [Install-NServiceBusLicense](/nservicebus/operations/management-using-powershell.md) PowerShell commandlet and the `LicenseInstaller.exe` tool that comes with the NServiceBus install, in NServiceBus V4.0, the license file was stored under `HKLM\Software\NServiceBus\{Major.Minor}\License` and in version v4.3, this location was moved to `HKLM\Software\ParticularSoftware\NServiceBus\License`. 
+When installed using the [Install-NServiceBusLicense](/nservicebus/operations/management-using-powershell.md) PowerShell commandlet and the `LicenseInstaller.exe` tool that comes with the NServiceBus install, in NServiceBus version 4.0, the license file was stored under `HKLM\Software\NServiceBus\{Major.Minor}\License` and in version version 4.3, this location was moved to `HKLM\Software\ParticularSoftware\NServiceBus\License`. 
 
 In order to install the license file under HKCU (same location in version 3.3), please use the `-c` option on the `LicenseInstaller.exe`
 

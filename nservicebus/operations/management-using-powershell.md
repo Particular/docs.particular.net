@@ -23,9 +23,9 @@ The PowerShell module provides cmdlets to assist with:
 
 ## Prerequisites
 
-Prior to installation ensure that PowerShell V2 or greater is installed. 
+Prior to installation ensure that PowerShell version 2 or greater is installed. 
 
-From Version 5.0 the module is compatible with .NET 2 so there is no longer a requirement to upgrade PowerShell to version V3.0+ or modify the `Powershell.exe.config` to force .NET 4 to be used.
+From Version 5.0 the module is compatible with .NET 2 so there is no longer a requirement to upgrade PowerShell to version version 3.0+ or modify the `Powershell.exe.config` to force .NET 4 to be used.
 
 
 ## Installation
@@ -73,7 +73,7 @@ Help for each cmdlet incorporated within the module and can be accessed via the 
 
 ### RavenDB cmdlets
 
-NServiceBus now supports multiple versions of the [RavenDB](/nservicebus/ravendb/version-compatibility.md) client.  Previous versions of the PowerShell module included cmdlets to install and test  RavenDB V2.0.2375. To avoid confusion we have removed these cmdlets in V5.0:
+NServiceBus now supports multiple versions of the [RavenDB](/nservicebus/ravendb/version-compatibility.md) client.  Previous versions of the PowerShell module included cmdlets to install and test  RavenDB V2.0.2375. To avoid confusion we have removed these cmdlets in version 5.0:
 
 	Install-NServiceBusRavenDB
 	Test-NServiceBusRavenDBInstallation
@@ -83,7 +83,7 @@ For RavenDB installation instructions please review [Installing RavenDB](/nservi
 
 ### Licensing 
    
-Version 5 of the PowerShell module includes a commandlet for importing a Particular Platform License. This will work for NServiceBus versions 4. If you which to to install a license for versions prior to NServiceBus v4.5 then an alternative method should be used. See  [License Management](/nservicebus/licensing/license-management.md) for
+Version 5 of the PowerShell module includes a commandlet for importing a Particular Platform License. This will work for NServiceBus versions 4. If you which to to install a license for versions prior to NServiceBus version 4.5 then an alternative method should be used. See  [License Management](/nservicebus/licensing/license-management.md) for
 
 ## Older versions of NServiceBus PowerShell
 

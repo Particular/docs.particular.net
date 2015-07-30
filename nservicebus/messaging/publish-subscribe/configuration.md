@@ -94,16 +94,16 @@ public class ConfigureNHibernateSubscriptionStorage : INeedInitialization
 {
     public void Init()
     {
-        //Usage for V3
+        //Usage for version 3
         Configure.Instance.DBSubcriptionStorage(); 
         
-        //Usage for V4
+        //Usage for version 4
         Configure.Instance.UseNHibernateSubscriptionPersister();
     }
 }
 ```
 
-This option requires the following to be present in your config, for V3:
+This option requires the following to be present in your config, for version 3:
 
 
 ```XML
@@ -125,7 +125,7 @@ This option requires the following to be present in your config, for V3:
 </configuration>
 ```
 
-And for V4:
+And for version 4:
 
 
 ```XML
@@ -187,9 +187,9 @@ The class implements the `IAuthorizeSubscriptions` interface, which requires the
 
 ## Versioning subscriptions
 
-In NServiceBus V3.0 and onwards subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
+In NServiceBus version 3.0 and onwards subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
 
-NOTE: V2.X required a perfect match. This should make it easier to upgrade your publishers without affecting the subscribers.
+NOTE: Version 2.X required a perfect match. This should make it easier to upgrade your publishers without affecting the subscribers.
 
 ## Best practices
 

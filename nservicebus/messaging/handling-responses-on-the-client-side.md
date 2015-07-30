@@ -31,9 +31,9 @@ DANGER: If the server process returns multiple responses, NServiceBus cannot kno
 
 ## Acquiring callback functionality
 
-In NServiceBus v5 and lower callbacks are built into the core nuget.
+In NServiceBus version 5 and lower callbacks are built into the core nuget.
 
-In NServiceBus v6 and higher callbacks are shipped as `NServiceBus.Callbacks` nuget package. 
+In NServiceBus version 6 and higher callbacks are shipped as `NServiceBus.Callbacks` nuget package. 
 
 
 ## Using Callbacks 

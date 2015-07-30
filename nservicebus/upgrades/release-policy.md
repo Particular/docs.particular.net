@@ -40,11 +40,11 @@ This means that you will get critical bugfixes without the associated risk and e
 
 Some examples:
 
- - v4.0 was released on 2013-07-11 and v4 will therefor be supported until 2016-07-11 but only if you're on the latest minor or a minor version released within  the last year.
- - v4.6 was released on 2014-05-01 this means that its latest patch release will be supported till 2015-05-01. This means that we will not fix minor versions after 2015-05-01. You are required to update to at least a newer minor version that is still supported as this version will receive a patch release. 
- - A newer patch release will automatically mean that the previous patch release will be obsolete. We will apply a bugfix on the latest patch release but will not officially release a patch for a obsolete patch release. In other words, we will not patch vX.Y.3 to vX.Y.3.1 when vX.Y.4 is the latest patch. We would then release vX.Y.5
+ - version 4.0 was released on 2013-07-11 and version 4 will therefor be supported until 2016-07-11 but only if you're on the latest minor or a minor version released within  the last year.
+ - version 4.6 was released on 2014-05-01 this means that its latest patch release will be supported till 2015-05-01. This means that we will not fix minor versions after 2015-05-01. You are required to update to at least a newer minor version that is still supported as this version will receive a patch release. 
+ - A newer patch release will automatically mean that the previous patch release will be obsolete. We will apply a bugfix on the latest patch release but will not officially release a patch for a obsolete patch release. In other words, we will not patch version X.Y.3 to version X.Y.3.1 when version X.Y.4 is the latest patch. We would then release version X.Y.5
 
-We strongly recommend you upgrade frequently enough to stay on a supported version. For a best upgrade experience we recommend to upgrade from major version to major version. For example if you are on NServiceBus v3.3.15 and want to upgrade to NServiceBus v5.2.3. First upgrade to the latest NServiceBus v4.x release (i.ex. v4.7.6). Follow the suggested API upgrade guides and obsoletion messages and then upgrade to NServiceBus v5.2.3.
+We strongly recommend you upgrade frequently enough to stay on a supported version. For a best upgrade experience we recommend to upgrade from major version to major version. For example if you are on NServiceBus version 3.3.15 and want to upgrade to NServiceBus version 5.2.3. First upgrade to the latest NServiceBus version 4.x release (i.ex. version 4.7.6). Follow the suggested API upgrade guides and obsoletion messages and then upgrade to NServiceBus version 5.2.3.
 
 Please let us know if there are any bugfixes that you believe should be back-ported to your current version by emailing [support@particular.net](mailto:support@particular.net).
 

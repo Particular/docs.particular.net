@@ -16,7 +16,7 @@
         {
             Test.Initialize();
             Test.Saga<MySaga>()
-                    .ExpectReplyToOriginator<MyResponse>() // In v4 the typo in Originator was fixed.
+                    .ExpectReplyToOriginator<MyResponse>() // In version 4 the typo in Originator was fixed.
                     .ExpectTimeoutToBeSetIn<StartsSaga>((state, span) => span == TimeSpan.FromDays(7))
                     .ExpectPublish<MyEvent>()
                     .ExpectSend<MyCommand>()

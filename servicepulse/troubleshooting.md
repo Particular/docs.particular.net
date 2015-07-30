@@ -6,20 +6,24 @@ tags:
 - Troubleshooting
 ---
 
+
 ### ServicePulse is unable to connect to ServiceControl
 
 * See [ServiceControl release notes](https://github.com/Particular/ServiceControl/releases/) Troubleshooting section for guidance on detecting ServiceControl HTTP API accessibility
 * Verify that ServicePulse is trying to access the correct ServiceControl URI (based on ServiceControl instance URI defined in ServicePulse installation settings)
 * Check that ServicePulse is not blocked from accessing the ServiceControl URI by firewall settings
 
+
 ### ServicePulse reports that 0 endpoints are active, although Endpoint plugins were deployed
 
 * Make sure you follow the guidance in [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md)
 * Restart the endpoint after copying the Endpoint Plugin files into the endpoint's Bin directory
-* Make sure that the endpoint references NServiceBus 4.0.0 or later
+* Make sure that the endpoint references NServiceBus version 4.0.0 or later
 * Make sure auditing is turned on for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl
 
+
 ### ASP.NET applications heartbeat failure
+
 
 #### Scenario
 	
@@ -29,6 +33,7 @@ After a period of inactivity, a web application (or web role in Azure) endpoint 
 	
 When accessed, the web application is working fine. Shortly after accessing the web application, the Heartbeat message is restored and indicates the endpoint status as active.
 	
+
 #### Causes and solutions
 	
 The issue is due to the way IIS handles application pools. By default after a certain period of inactivity the application pools is stopped, or, under certain configurable conditions, the application pool is recycled. In both cases the ServicePulse heartbeat is not sent anymore until a new web request comes in waking up the web application.
@@ -40,6 +45,7 @@ There are two ways to avoid the issue:
 
 In some cases configuring IIS to avoid recycling is not possible (for example, when using Azure WebSites or other scenarios in which the IIS is not fully configurable). In these cases, the recommended approach is the second one. It also has the side benefit of avoiding the "first user after idle time" wake-up response-time hit.
 
+
 ### Duplicate Endpoints appear in ServicePulse after re-deployment
 
 This may occur when an endpoint is re-deployed or updated to a different installation path (a common procedure by various deployment managers like Octopus etc.)
@@ -48,27 +54,29 @@ The installation path of an endpoint is used by ServiceControl and ServicePulse 
 
 To workaround this issue see [Override host identifier](/nservicebus/hosting/override-hostid.md)
 
-### How do I monitor my NSB V3.x endpoints using ServicePulse?
 
-1. Upgrade your NSB V3 endpoint to the latest service pack for version 3
-2. To turn on monitoring, add the heartbeat plugin to your existing v3 endpoints and restart your endpoint and ServiceControl
+### How do I monitor my NServiceBus version 3.x endpoints using ServicePulse?
+
+1. Upgrade your NSB version 3 endpoint to the latest service pack for version 3
+2. To turn on monitoring, add the heartbeat plugin to your existing version 3 endpoints and restart your endpoint and ServiceControl
 ```
 install-package ServiceControl.Plugin.Nsb3.Heartbeat
 ```
 
-### How do I enable CustomChecks for my NSB V3.x endpoints?
 
-1. Upgrade your NSB V3 endpoint to the latest service pack for version 3
-2. Add the CustomChecks plugin to your existing v3 endpoints and restart your endpoint and ServiceControl
+### How do I enable CustomChecks for my NSB version 3.x endpoints?
+
+1. Upgrade your NSB version 3 endpoint to the latest service pack for version 3
+2. Add the CustomChecks plugin to your existing version 3 endpoints and restart your endpoint and ServiceControl
 ```
 install-package ServiceControl.Plugin.Nsb3.CustomChecks
 ```
 
-### After enabling Heartbeat plugins for V3 endpoints, ServicePulse reports that endpoints are inactive
+### After enabling Heartbeat plugins for version 3 endpoints, ServicePulse reports that endpoints are inactive
 
-Messages that were forwarded to the audit queue by NSB v3.x version of the endpoints did not have the `HostId` header available which uniquely identifies the endpoint. Adding the heartbeat plugin for V3 endpoints automatically enriches the headers with this `HostId` information using a message mutator. Since the original message that was processed from the audit/error queue did not have this identifier, it is hard to correlate the messages received via the heartbeat that these belong to the same endpoint. Therefore there appears to be a discrepancy in the Endpoints Indicator. 
+Messages that were forwarded to the audit queue by NSB version 3.x version of the endpoints did not have the `HostId` header available which uniquely identifies the endpoint. Adding the heartbeat plugin for version 3 endpoints automatically enriches the headers with this `HostId` information using a message mutator. Since the original message that was processed from the audit/error queue did not have this identifier, it is hard to correlate the messages received via the heartbeat that these belong to the same endpoint. Therefore there appears to be a discrepancy in the Endpoints Indicator. 
 
-To workaround this issue in order to monitor V3 endpoints:
+To workaround this issue in order to monitor version 3 endpoints:
 
-- Add the heartbeat plugin to all V3 endpoints, which will add the requisite header with the host information, which ServiceControl can then process.
+- Add the heartbeat plugin to all version 3 endpoints, which will add the requisite header with the host information, which ServiceControl can then process.
 - Restart ServiceControl to clear the endpoint counter.

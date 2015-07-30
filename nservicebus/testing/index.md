@@ -45,7 +45,7 @@ If you are using [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md) 
 
 ### Testing interface messages
 
-To support testing of interface messages v5 introduces a `.WhenHandling<T>()` method where T is the interface type.
+To support testing of interface messages version 5 introduces a `.WhenHandling<T>()` method where T is the interface type.
 
 
 ## Testing header manipulation

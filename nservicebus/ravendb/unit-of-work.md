@@ -12,7 +12,7 @@ When using a framework like NServiceBus you usually need to create your own unit
 
 Share the session between the message handler(s) and the actual unit of work implementation. Do not use thread static, which has issues mentioned by [Andreas Öhlund](http://andreasohlund.net/) in a [blog post](http://andreasohlund.net/2010/03/25/thread-static-caching-in-nservicebus/).
 
-Instead, beginning with NServiceBus V3, use the new [support for child containers](/nservicebus/containers/child-containers.md). This means that all dependencies configured as a single call effectively become static within the context of one transport message.
+Instead, beginning with NServiceBus version 3, use the new [support for child containers](/nservicebus/containers/child-containers.md). This means that all dependencies configured as a single call effectively become static within the context of one transport message.
 
 To resolve a RavenDB document session from the container, add the following configuration (StructureMap is used but any of the other containers except Spring and Unity would work):
 

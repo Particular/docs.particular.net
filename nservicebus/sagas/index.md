@@ -19,11 +19,13 @@ Design processes with more than one remote call to use sagas.
 
 While it may seem excessive at first, the business implications of your system getting out of sync with the other systems it interacts with can be substantial. It's not just about exceptions that end up in your log files.
 
+
 ## A simple Saga
 
 A minimal Saga implementation. With NServiceBus, you specify behavior by writing a class that inherits from `Saga<T>` where `T` is the saga data class. There is also a base class for sagas that contains many features required for implementing long-running processes. 
 
 <!-- import simple-saga --> 
+
 
 ## Long-running means stateful  
 
@@ -33,15 +35,17 @@ Using NServiceBus, you can explicitly define the data used for this state by inh
 
 <!-- import simple-saga-data --> 
 
-There are two production-supported storage mechanisms for saga data in NServiceBus, namely RavenDB and NHibernate. Prior to V5, RavenDB was a default implementation. Since NServiceBus 5, both implementations are equal and the user needs to explicitly chose one.
+There are two production-supported storage mechanisms for saga data in NServiceBus, namely RavenDB and NHibernate. Prior to version 5, RavenDB was a default implementation. Since NServiceBus 5, both implementations are equal and the user needs to explicitly chose one.
 
 Both implementations have their strong points. While the schema-less nature of document databases makes them a perfect fit for saga storage where each saga instance is persisted as a single document, NHibernate allows using almost any relational database engine existing. 
 
-You can, as always, swap out these technologies, by implementing the `ISagaPersister` interface (`IPersistSagas` prior to V5).
+You can, as always, swap out these technologies, by implementing the `ISagaPersister` interface (`IPersistSagas` prior to version 5).
+
 
 ## Adding behavior
 
 The important part of a long-running process is its behavior. Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled. 
+
 
 ## Starting and correlating sagas
 
@@ -51,16 +55,19 @@ Please note that `IHandleMessages<StartOrder>` is redundant since `IAmStartedByM
 
 How to correlate a `CompleteOrder` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. You only need to store this in the saga data, and tell NServiceBus about the connection. This is done in the `ConfigureHowToFindSaga` in the above saga.
 
-Since V5 it is possible to specify the mapping to the message using expressions if the correlation information is split between multiple fields
+Since version 5 it is possible to specify the mapping to the message using expressions if the correlation information is split between multiple fields
 
 <!-- import saga-find-by-expression -->
 
 Underneath the covers, when `CompleteOrder` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `OrderSagaData` that has a property `OrderId` whose value is the same as the `OrderId` property of the message.
 
+
 ### Auto correlation
+
 A common usage of sagas is to have them send out a request message to get some work done and receive a response message back when the work is complete. To make this easier NServiceBus will auto correlate those response messages back to the correct saga instance without any need for mappings.
 
 NOTE: A caveat of this feature is that it currently doesn't support auto correlation between sagas. So if the request is handled by a another saga you must add relevant message properties and map them to the requesting saga using the syntax described above.
+
 
 ## Uniqueness
 
@@ -68,9 +75,10 @@ NServiceBus will make sure that all properties used for correlation is unique ac
 
 Mapping a single message to multiple saga instances is not supported. Should you need this you can simulate this by using a message handler that looks up all saga instance affected and send a separate message targeting each of those instances using the regular correlation described above.
 
-NOTE: Versions prior to V6 required you to put a `[Unique]` attribute on the saga properties used for correlation to enforce uniqueness
+NOTE: Versions prior to version 6 required you to put a `[Unique]` attribute on the saga properties used for correlation to enforce uniqueness
 
 Read more about the [concurrency](concurrency.md).
+
 
 ## Ending a long-running process
 
@@ -81,6 +89,7 @@ The infrastructure contacts the Timeout Manager (if an entry for it exists) tell
 For more information about setting (requesting) the timeouts and handling them, see [Saga Timeouts](timeouts.md).
 
 When a message is received that could possibly be handled by a saga, and no existing saga can be found then that is handed by the [Saga Not Found](saga-not-found.md) feature. 
+
 
 ## Notifying callers of status
 
@@ -94,15 +103,18 @@ To communicate status in our ongoing example:
 
 This is one of the methods on the saga base class that would be very difficult to implement yourself without tying your applicative saga code to low-level parts of the NServiceBus infrastructure.
 
+
 ## Configuring Saga persistence
 
 Make sure to configure appropriate persistence mechanism. 
 
 <!-- import saga-configure -->
 
+
 ## Sagas and automatic subscriptions
 
 The auto subscription feature applies to sagas as well as your regular message handlers. This is a change compared to earlier versions of NServiceBus.
+
 
 ## Sagas and request/response
 
@@ -110,9 +122,11 @@ Sagas often play the role of coordinator, especially when used in integration sc
 
 A typical scenario is a saga controlling the process of billing a customer through Visa or MasterCard. In this case you probably have separate endpoints for making the web service/rest-calls to each payment provider and a saga coordinating retries and fallback rules. Each payment request would be a separate saga instance, so how would we know which instance to hydrate and invoke when the response returns?
 
-The usual way is to correlate on some kind of ID and let the user tell you how to find the correct saga instance using that ID. While this is easily done we decided that this was common enough to warrant native support in NServiceBus for these type of interactions. In V3.0, NServiceBus handles all this for you without getting in your way. If you do `IBus.Reply` in response to a message coming from a saga, NServiceBus will detect it and automatically set the correct headers so that you can correlate the reply back to the saga instance that issued the request. The exception to this rule is the request/response message exchange between two sagas. In such case the automatic correlation won't work and the reply message needs to be explicitly mapped using `ConfigureHowToFindSaga`.
+The usual way is to correlate on some kind of ID and let the user tell you how to find the correct saga instance using that ID. While this is easily done we decided that this was common enough to warrant native support in NServiceBus for these type of interactions. In version 3.0, NServiceBus handles all this for you without getting in your way. If you do `IBus.Reply` in response to a message coming from a saga, NServiceBus will detect it and automatically set the correct headers so that you can correlate the reply back to the saga instance that issued the request. The exception to this rule is the request/response message exchange between two sagas. In such case the automatic correlation won't work and the reply message needs to be explicitly mapped using `ConfigureHowToFindSaga`.
+
 
 ## Querying Saga Data
+
 Sagas manage state of potentially long-running business processes. When we want to access the current state of a business process we may feel the urge to query the saga data directly. It can be done, but we recommend against it. While this can be appropriate for very simple administrative or support functionality, we don't recommend it as a general-purpose approach for these reasons:
 
 * The way a given persistence chooses to store the saga data is an implementation detail to the specific persistence that can potentially change over time. By directly querying for the saga data you are coupling that query to this implementation and risk being affected by format changes.

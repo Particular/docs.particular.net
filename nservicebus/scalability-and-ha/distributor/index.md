@@ -24,13 +24,13 @@ When starting to use NServiceBus, you'll see that you can easily run multiple in
 
 The Distributor gets around this limitation.
 
-## What about MSMQ V4?
+## What about MSMQ version 4?
 
 Version 4 of MSMQ, made available with Vista and Server 2008, can perform [remote transactional receive](https://msdn.microsoft.com/en-us/library/ms700128.aspx). This means that processes on other machines can transactionally pull work from a queue on a different machine. If the machine processing the message crashes, the message roll back to the queue and other machines could then process it.
 
 Even though the Distributor provided similar functionality even before Vista was released, there are other reasons to use it even on the newer operating systems. The problem with 'remote transactional receive' is that it gets proportionally slower as more worker nodes are added. This is due to the overhead of managing more transactions, as well as the longer period of time that these transactions are open.
 
-In short, the scale-out benefits of MSMQ V4 by itself are quite limited.
+In short, the scale-out benefits of MSMQ version 4 by itself are quite limited.
 
 ## Performance?
 
@@ -74,7 +74,7 @@ To start your endpoint as a Distributor ensure you install the [NServiceBus.Dist
 ```cmd
 NServiceBus.Host.exe NServiceBus.MSMQDistributor
 ```
-or if using a version of NServiceBus that is earlier than v4.3:
+or if using a version of NServiceBus that is earlier than version 4.3:
 ```cmd
 NServiceBus.Host.exe NServiceBus.Distributor
 ```
@@ -86,7 +86,7 @@ To start your endpoint as a Master ensure you install the [NServiceBus.Distribut
 ```cmd
 NServiceBus.Host.exe NServiceBus.MSMQMaster
 ```
-or if using a version of NServiceBus that is earlier than v4.3:
+or if using a version of NServiceBus that is earlier than version 4.3:
 ```cmd
 NServiceBus.Host.exe NServiceBus.Master
 ```
@@ -113,7 +113,7 @@ If you are hosting your endpoint with NServiceBus.Host.exe, to run as a Worker, 
 NServiceBus.Host.exe NServiceBus.MSMQWorker
 ```
 
-or if using a version of NServiceBus that is earlier than v4.3:
+or if using a version of NServiceBus that is earlier than version 4.3:
 
 ```cmd
 NServiceBus.Host.exe NServiceBus.Worker

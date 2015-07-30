@@ -17,12 +17,12 @@ NOTE: This documents assumes you had already installed ServiceControl
 
 First, download the NuGet package for the relevant transport including any dependencies.    
 
-* RabbitMQ: [NServiceBus.RabbitMQ v1.1.5](https://www.nuget.org/api/v2/package/NServiceBus.RabbitMQ/1.1.5) and [RabbitMQ.Client 3.3.5](https://www.nuget.org/api/v2/package/RabbitMQ.Client/3.3.5)
-* SQL Server: [NServiceBus.SqlServer v1.2.3](https://www.nuget.org/api/v2/package/NServiceBus.SqlServer/1.2.3)
-* Azure Storage Queues: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/5.3.8) and [WindowsAzure.Storage v3.1.0.1](https://www.nuget.org/api/v2/package/WindowsAzure.Storage/3.1.0.1)
-* Azure ServiceBus: [NServiceBus.Azure.Transports.WindowsAzureServiceBus v5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureServiceBus/5.3.8) and [WindowsAzure.ServiceBus v2.2](https://www.nuget.org/api/v2/package/WindowsAzure.ServiceBus/2.2.0)
+* RabbitMQ: [NServiceBus.RabbitMQ version 1.1.5](https://www.nuget.org/api/v2/package/NServiceBus.RabbitMQ/1.1.5) and [RabbitMQ.Client 3.3.5](https://www.nuget.org/api/v2/package/RabbitMQ.Client/3.3.5)
+* SQL Server: [NServiceBus.SqlServer version 1.2.3](https://www.nuget.org/api/v2/package/NServiceBus.SqlServer/1.2.3)
+* Azure Storage Queues: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues version 5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/5.3.8) and [WindowsAzure.Storage version 3.1.0.1](https://www.nuget.org/api/v2/package/WindowsAzure.Storage/3.1.0.1)
+* Azure ServiceBus: [NServiceBus.Azure.Transports.WindowsAzureServiceBus version 5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureServiceBus/5.3.8) and [WindowsAzure.ServiceBus version 2.2](https://www.nuget.org/api/v2/package/WindowsAzure.ServiceBus/2.2.0)
 
-WARNING: Only transport DLLs targetting NServiceBus V4 should be used.
+WARNING: Only transport DLLs targetting NServiceBus version 4 should be used.
 
 NOTE: If you are configuring ServiceControl for use with Azure ServiceBus and want to use a newer version than 2.2 refer to the troubleshooting section 
 

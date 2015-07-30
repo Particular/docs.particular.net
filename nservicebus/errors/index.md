@@ -48,7 +48,7 @@ Then at configuration time:
 
 <!-- import configureErrorQueueViaXml -->
 
-NOTE: In NServiceBus V3.x the `ErrorQueue` settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
+NOTE: In NServiceBus version 3.x the `ErrorQueue` settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
 
 For more details on `MsmqTransportConfig` [read this article](/nservicebus/msmq/transportconfig.md).
 

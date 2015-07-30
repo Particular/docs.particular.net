@@ -1,6 +1,6 @@
 ---
 title: Authoring a custom persistence
-summary: How to author a custom NServiceBus persistence in NServiceBus v5
+summary: How to author a custom NServiceBus persistence in NServiceBus version 5
 tags: []
 redirects:
  - nservicebus/authoring-custom-nservicebus-persistence
@@ -58,6 +58,7 @@ As a general comment that is also valid to the other persisters in this guide, i
 
 An in-memory implementation of the `ISubscriptionStorage` interface can be seen [here](https://github.com/Particular/NServiceBus/blob/4.6.5/src/NServiceBus.Core/Persistence/InMemory/SubscriptionStorage/InMemorySubscriptionStorage.cs)
 
+
 ## Saga persister
 
 Another obvious piece of data that needs to be persisted by NServiceBus is Saga data. Every class implementing `IContainSagaData` is going to be persisted by the Saga persister once the Saga it is associated with was initialized:
@@ -107,6 +108,7 @@ Another important aspect of Saga persistence is concurrency. By design, it is po
 
 The in-memory implementation of `ISagaPersister` can be found [here](https://github.com/Particular/NServiceBus/blob/4.6.5/src/NServiceBus.Core/Persistence/InMemory/SagaPersister/InMemorySagaPersister.cs). Note how the Get by property method is implemented inefficiently, iterating through all Sagas instead of using indexes. For production worthy persisters this should not be the case.
 
+
 ## Timeout persister
 
 Another type of data being persisted by NServiceBus is timeouts. Because NServiceBus is not a scheduling framework there is no hard guarantee of timeouts firing at the exact moment they are scheduled for. However, timeouts should definitely not be missed or fired in a serious delay. This can get tricky with some persistence technologies, so this is definitely something you should consider and plan for.
@@ -155,9 +157,10 @@ NServiceBus polls the persister for timeouts by calling `GetNextChunk`, and prov
 
 The in-memory implementation of `IPersistTimeouts` can be seen [here](https://github.com/Particular/NServiceBus/blob/4.6.5/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersistence.cs).
 
+
 ## Outbox persister
 
-The Outbox functionality, new in NServiceBus v5, is a feature providing reliable messaging on top of various transports without using MSDTC. You can read more about the Outbox feature in [Reliable messaging without MSDTC](/nservicebus/outbox/).
+The Outbox functionality, new in NServiceBus version 5, is a feature providing reliable messaging on top of various transports without using MSDTC. You can read more about the Outbox feature in [Reliable messaging without MSDTC](/nservicebus/outbox/).
 
 An Outbox persister is implementing the following interface:
 
@@ -187,6 +190,7 @@ public interface IOutboxStorage
 
 The Store method has to use the same persistence session as the user's code - the same one that is used for persisting his business data as well as any Sagas. Sharing the session is the only way NServiceBus can support the Outbox feature properly and with transactions.
 
+
 ## Enabling persisters via Features
 
 You can implement any of the persisters based on your requirements. None of them are mandatory, and you can even use different persistence technologies for different persistence concerns (like SQL Server for timeouts and RavenDB for Sagas). Once the persisters you need have been written and properly tested, you need to enable them using Features.
@@ -201,4 +205,4 @@ configure.UseSerialization<JsonSerializer>(); // Some more global configurations
 configure.EnableInstallers();
 ```
 
-You could write extension methods to add more configuraitons specific to your custom persistence (for example, to allow fine tuning of various aspects of it from the calling endpoint).
+You could write extension methods to add more configurations specific to your custom persistence (for example, to allow fine tuning of various aspects of it from the calling endpoint).
