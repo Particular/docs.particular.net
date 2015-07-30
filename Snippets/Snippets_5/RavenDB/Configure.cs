@@ -119,16 +119,6 @@
             //See the config file
         }
 
-        public void Default()
-        {
-            //Connects to http://localhost:8080 by default
 
-            #region ravendb-persistence-default
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UsePersistence<RavenDBPersistence>();
-
-            #endregion
-        }
     }
 }

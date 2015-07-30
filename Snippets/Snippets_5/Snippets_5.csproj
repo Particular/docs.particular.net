@@ -428,8 +428,6 @@
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="NonDurable\DisableDurable.cs" />
-    <Compile Include="Outbox\NHibernate\SessionAccess\OrderEntity.cs" />
-    <Compile Include="Outbox\NHibernate\SessionAccess\OrderPlaced.cs" />
     <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
     <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernateSqlAzure.cs" />
@@ -489,8 +487,6 @@
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="MinimumConfiguration.cs" />
     <Compile Include="Outbox\Usage.cs" />
-    <Compile Include="Outbox\NHibernate\SessionAccess\OrderPlacedHandler.cs" />
-    <Compile Include="Outbox\NHibernate\ShareConfiguration.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="RavenDB\Configure.cs" />
     <Compile Include="Pipeline\NewStep\NewPipelineStep.cs" />
@@ -498,13 +494,11 @@
     <Compile Include="Pipeline\SampleBehavior.cs" />
     <Compile Include="PurgeOnStartup.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
-    <Compile Include="ScaleOut\Usage.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SendOnly.cs" />
     <Compile Include="Serialization.cs" />
     <Compile Include="SubscriptionSettings.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicy\Usage.cs" />
-    <Compile Include="TransactionConfig.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Transports\SqlServer\NamedConnectionString.cs" />
     <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />

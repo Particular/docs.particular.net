@@ -6,24 +6,6 @@
 
     public class CriticalErrorConfig
     {
-        public void DefineCriticalErrorAction()
-        {
-
-            #region DefineCriticalErrorAction
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-
-            // Configuring how NServicebus handles critical errors
-            busConfiguration.DefineCriticalErrorAction((message, exception) =>
-            {
-                string output = string.Format("We got a critical exception: '{0}'\r\n{1}", message, exception);
-                Console.WriteLine(output);
-                // Perhaps end the process??
-            });
-
-            #endregion
-        }
-
         #region RaiseCriticalError
 
         //This could be a handler, a saga or some other service injected into the container
