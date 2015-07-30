@@ -380,7 +380,6 @@
     <Compile Include="Installers.cs" />
     <Compile Include="StartupAction.cs" />
     <Compile Include="Sagas\SagaMapping.cs" />
-    <Compile Include="Persistence\Persistence.cs" />
     <Compile Include="Scheduling\Scheduler.cs" />
     <Compile Include="UnitTesting\AdditionalServices\Tests.cs" />
     <Compile Include="UnitTesting\ServiceLayer\Tests.cs" />
