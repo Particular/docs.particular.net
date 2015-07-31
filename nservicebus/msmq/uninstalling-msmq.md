@@ -58,7 +58,7 @@ You may need to reboot to finalize the changes.
 - Scroll down and deselect the `Message Queuing` option and then click `Next`
 - Click the `Remove` Button to complete the removal.
 
-You may need to reboot to finalize the changes.
+Reboot to finalize the changes.
 
 #### Windows  7 and 8  
 
@@ -66,7 +66,7 @@ You may need to reboot to finalize the changes.
 - Under Programs and Features click on `Turn Windows features on or off`
 - Scroll down and deselect the `Microsoft Message Queue (MSMQ) Server` option and then click `OK` 
 
-You may need to reboot to finalize the changes.
+Reboot to finalize the changes.
  
 ### Removal using DISM.exe  
 
@@ -83,7 +83,7 @@ DISM /Online /Get-Features /Format:Table | FINDSTR "^MSMQ-"
 ```
 The output will be similar to this:
 
-```
+```txt
 MSMQ-Container                                        | Enabled
 MSMQ-Server                                           | Enabled
 MSMQ-Triggers                                         | Disabled
@@ -99,11 +99,11 @@ To disable a feature execute the following:
 ```
 DISM /Online /Disable-Feature /FeatureName:<FeatureName>
 ```
-Once you have removed finished remove feature reboot the system to finalize the changes. 
+Once you have removed a feature reboot the system to finalize the changes. 
  
 #### Removal using PowerShell Prompt
 
-Windows 8.x and Windows Server 2012 ship with a PowerShell module for managing installed features that mirrors the DISM.exe command line functionality.
+Windows 8.x and Windows Server 2012 ship with a PowerShell module for managing installed features that mirrors the DISM.exe command line functions.
 
 The following PowerShell script uses the DISM Module to remove any `MSMQ` features form the system.  
 
