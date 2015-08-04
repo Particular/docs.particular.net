@@ -36,7 +36,7 @@ When accessed, the web application is working fine. Shortly after accessing the 
 
 #### Causes and solutions
 
-The issue is due to the way IIS handles application pools. By default after a certain period of inactivity the application pools is stopped, or, under certain configurable conditions, the application pool is recycled. In both cases the ServicePulse heartbeat is not sent anymore until a new web request comes in waking up the web application.
+The issue is due to the way IIS handles application pools. By default after a certain period of inactivity the application pool is stopped, or, under certain configurable conditions, the application pool is recycled. In both cases the ServicePulse heartbeat is not sent anymore until a new web request comes in waking up the web application.
 
 There are two ways to avoid the issue:
 
