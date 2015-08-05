@@ -78,11 +78,9 @@ Defaults are just starting values. You should always measure and test these valu
 
 ## Transactions
 
-Azure Service Bus transport configuration is hard coded to `Serializable`  so users won't be able and override it. This is due to Azure's reistriction, If we try and set the isolation level to readCommit, Azure will throw an exception.
-`The only supported IsolationLevel is 'IsolationLevel.Serializable'`
-(NServiceBus's default isolation level is ReadCommit).
+NServiceBus AzureServiceBus transport relies on the underlying Azure ServiceBus library which requires the use of the `Serializable` isolation level (the most restrictive isolation level that does not permit `dirty reads`, `phantom reads` and `non repeatable reads`; will block any reader until the writer is committed [see this link](http://dotnetspeak.com/2013/04/transaction-isolation-levels-explained-in-details) for more information)
 
-Read more about [Two Phase commit in azure](http://blogs.msdn.com/b/clemensv/archive/2011/10/06/achieving-transactional-behavior-with-messaging.aspx)
+NserviceBus AzureServiceBus transport configuration is hard coded to `Serializable` isolation level to prevent users from overriding it.
 
 ## Scenarios
 
