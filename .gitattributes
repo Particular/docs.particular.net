@@ -25,6 +25,8 @@
 *.ttf	-text -diff
 *.otf	-text -diff
 *.DotSettings -text -diff
+*.psm1 -text -diff
+*.ps1 -text -diff
 
 *.cs text diff=csharp
 *.config text diff=csharp
@@ -57,8 +59,6 @@
 *.fsx text
 *.hs text
 *.targets text
-*.psm1 text
-*.ps1 text
 *.md text
 *.txt text eol=crlf
 
