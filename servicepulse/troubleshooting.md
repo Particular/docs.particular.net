@@ -40,7 +40,7 @@ The issue is due to the way IIS handles application pools. By default after a ce
 
 There are two ways to avoid the issue:
 
-1. Configuring IIS to avoid recycling (see possible method [here](http://blogs.msdn.com/b/lucascan/archive/2011/09/30/using-a-windows-azure-startup-script-to-prevent-your-site-from-being-shutdown.aspx));
+1. Configuring IIS to avoid recycling
 2. Use a periodic warm-up HTTP GET to make sure the website is not brought down due to inactivity (the frequency needs to be less than 20 minutes, which is the default IIS recycle-on-idle time)
 
 Starting from IIS 7.5 and higher the above steps can be combined into one by following these steps:
