@@ -27,7 +27,7 @@ tags:
 
 #### Scenario
 
-After a period of inactivity, a web application (or web role in Azure) endpoint is failing with the message:
+After a period of inactivity, a web application endpoint is failing with the message:
 
 	`Endpoint has failed to send expected heartbeat to ServiceControl. It is possible that the endpoint could be down or is unresponsive. If this condition persists, you might want to restart your endpoint`
 
@@ -56,7 +56,7 @@ Starting from IIS 7.5 and higher the above steps can be combined into one by fol
 </applicationInitialization>
 ```
 
-In some cases configuring IIS to avoid recycling is not possible (for example, when using Azure WebSites or other scenarios in which the IIS is not fully configurable). In these cases, the recommended approach is the second one. It also has the side benefit of avoiding the "first user after idle time" wake-up response-time hit.
+In some cases configuring IIS to avoid recycling is not possible. In these cases, the recommended approach is the second one. It also has the side benefit of avoiding the "first user after idle time" wake-up response-time hit.
 
 ### Duplicate Endpoints appear in ServicePulse after re-deployment
 
