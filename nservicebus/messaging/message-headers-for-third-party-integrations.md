@@ -10,27 +10,27 @@ related:
 - nservicebus/messaging/message-headers
 ---
 
-# Integrating with external systems? How to get more out of your monitoring?
+# How to integrate external systems with NServiceBus?
 
-When an NServiceBus endpoint receives messages from external systems such as BizTalk, TIBCO, etc directly, the message itself will not contain regular NServiceBus headers. Without these headers, ServiceControl cannot provide sufficient information to ensure effective monitoring of these endpoints. 
+When an NServiceBus endpoint receives messages from external systems such as BizTalk, TIBCO, etc directly, the message itself will not contain regular NServiceBus headers. Some headers are required by NServiceBus to handle those messages (i.e. enable deserialization of the message). Others are essential to provide effective monitoring and troubleshooting experience. 
 
-To ensure that your Ops team is able to monitor your endpoints and have valuable meta data from ServiceControl, it becomes important as to how you integrate these messages. 
-
-When NServiceBus endpoints send messages, it includes a certain set of headers such as the name of the endpoint sending the message, the machine name etc, which is quite useful when analyzing this information from an Ops point of view in ServicePulse or when debugging situations using ServiceInsight. Therefore to get the best use of your monitoring and debugging tools, please ensure that the following headers are being added to the actual message by the third party endpoints when sending a message. 
+When NServiceBus endpoints send messages, they include a certain set of headers such as the type of message, the name of the sending endpoint, the machine name etc. To get the best use of your monitoring and debugging tools, please ensure that the following headers are being added to the actual message by the third party endpoints when sending a message. 
 
 ### Mandatory Headers
 
+Required for deserializing the message:
+
 Key  | Value
 ------------- | -------------
-NServiceBus.EnclosedMessageTypes  | Fully Qualified Message type including the assembly name, For e.g. IntegrationSample.Messages.Commands.ProcessOrder, IntegrationSample.Messages
+NServiceBus.EnclosedMessageTypes  | Fully Qualified Message type including the assembly name, for e.g. IntegrationSample.Messages.Commands.ProcessOrder, IntegrationSample.Messages
 
 
 ### Additional Headers 
 
-Adding the following headers will make the diagrams in ServiceInsight much more meaningful and for Ops when these messages fail and show up in FailedMessages in ServicePulse.
+Enable better monitoring in ServicePulse and debugging in ServiceInsight by providing additional data:
 
 Key  | Value
 ------------- | -------------
 NServiceBus.ConversationId  | Valid Guid, useful to tie in the whole message flow to get a much accurate view in ServiceInsight, for example in message flow diagram
 NServiceBus.OriginatingEndpoint  | Name of the third party endpoint sending the message, for e.g. BizTalk.ProcessOrder
-NServiceBus.OriginatingMachine  | Server where the third party endpoint is located for e.g. BizTalkServer
+NServiceBus.OriginatingMachine  | Server where the third party endpoint is located, for e.g. BizTalkServer
