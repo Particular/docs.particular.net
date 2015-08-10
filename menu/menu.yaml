@@ -141,7 +141,7 @@
         - "nservicebus/containers/child-containers"
         - "nservicebus/containers/injecting-ibus"
         - "nservicebus/containers/property-injection"
-        - "nservicebus/containers/using-ninject"
+        - "nservicebus/containers/ninject"
     -
       Title: "Hosting"
       Url: "nservicebus/hosting"
