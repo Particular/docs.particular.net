@@ -314,6 +314,9 @@
     <Compile Include="Pipeline\NewStep\NewPipelineStep.cs" />
     <Compile Include="Pipeline\Replace\ReplacePipelineBehavior.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
+    <Compile Include="Serialization\BsonSerialization.cs" />
+    <Compile Include="Serialization\BinarySerialization.cs" />
+    <Compile Include="Serialization\JsonSerialization.cs" />
     <Compile Include="UpgradeGuides\4to5\SagaMappingForUpgrade.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
     <Compile Include="Sagas\SimpleSaga\OrderSagaData.cs" />
@@ -370,7 +373,7 @@
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="CriticalError.cs" />
     <Compile Include="SendOnly.cs" />
-    <Compile Include="Serialization.cs" />
+    <Compile Include="Serialization\XmlSerialization.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DataBus\FileShare\DataBus.cs" />
     <Compile Include="RavenDB\CustomRavenConfig.cs" />
@@ -386,6 +389,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SCClusterAppSettings.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

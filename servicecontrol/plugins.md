@@ -127,7 +127,7 @@ The SagaAudit plugin captures the following information:
  * The outgoing messages that the saga sends.
  * A snapshot of the current saga data.
 
-All this information is sent to and stored in ServiceControl.
+All this information is sent to and stored in ServiceControl. Note that the saga data transmitted to ServiceControl is serialized via the built in Json Serializer of NServiceBus.
 
 This results in an increase in load in several areas 
 

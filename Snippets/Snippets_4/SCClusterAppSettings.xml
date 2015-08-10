@@ -1,8 +1,8 @@
-<!-- startcode SCClusterAppSettings 1.0 -->
 <?xml version="1.0" encoding="utf-8"?>
+<!-- startcode SCClusterAppSettings 1.0 -->
 <configuration>
 	<appSettings>
-		<add key="ServiceControl/DbPath" value="<drive>:\SomeDir\" />
+		<add key="ServiceControl/DbPath" value="drive:\SomeDir\" />
 		<add key="ServiceControl/Hostname" value="clusterName" />
 		<add key="ServiceControl/Port" value="33333" />
 		<add key="ServiceBus/AuditQueue" value="audit@clusterName" />
