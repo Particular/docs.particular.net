@@ -179,9 +179,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.CastleWindsor.5.0.0\lib\net45\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Ninject, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Ninject.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
+    <Reference Include="NServiceBus.ObjectBuilder.Ninject, Version=5.1.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NServiceBus.Ninject.5.1.0\lib\net45\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Spring">
       <HintPath>..\packages\NServiceBus.Spring.6.0.0\lib\net45\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
@@ -357,6 +357,7 @@
     <Compile Include="Container\Custom\ContainerCustom.cs" />
     <Compile Include="Container\Containers.cs" />
     <Compile Include="Container\Custom\MyObjectBuilder.cs" />
+    <Compile Include="Container\UsingNinject.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />
