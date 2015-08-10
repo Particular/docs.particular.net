@@ -1,6 +1,5 @@
 using System;
 using NServiceBus;
-using NServiceBus.Features;
 
 class Program
 {
