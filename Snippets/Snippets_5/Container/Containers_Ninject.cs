@@ -1,10 +1,33 @@
 ﻿namespace Snippets5.Container
 {
     using Ninject;
+    using NServiceBus;
     using NServiceBus.ObjectBuilder.Ninject;
 
-    public class UsingNinject
+    public class Containers_Ninject
     {
+        public void Simple()
+        {
+            #region Ninject
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseContainer<NinjectBuilder>();
+
+            #endregion
+        }
+
+        public void Existing()
+        {
+            IKernel ninjectKernel = null;
+
+            #region Ninject_Existing
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(ninjectKernel));
+
+            #endregion
+        }
+
         public void UseUnitOfWorkScope()
         {
             #region NinjectUnitOfWork [4.0,5.0]

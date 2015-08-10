@@ -10,6 +10,7 @@ Child containers are essentially a snapshot of the main container where transien
 
 INFO: As of [NServiceBus.Spring](https://www.nuget.org/packages/NServiceBus.Spring) version 6.0.0 Child containers are now supported as well. Previous versions don't support Child containers, so if you plan to take advantage of it, use one of the other containers supported by NServiceBus.
 
+
 ## Deterministic disposal
 
 Instance lifetime is usually not tracked by the container (Windsor is an exception) and that means that you have to manually call dispose any instance that needs deterministic disposal. Child containers solve this issue by automatically disposing all transient objects created within each specific child container.

@@ -16,22 +16,18 @@ NServiceBus automatically registers all its components as well as user-implement
 
 NServiceBus has a built-in container (currently an ILMerged version of Autofac) but it can be replaced by any other container.
 
-## Getting other containers
 
-Other containers are available on NuGet.
+## Supported Containers
 
-- http://www.nuget.org/packages/NServiceBus.Autofac/
-- http://www.nuget.org/packages/NServiceBus.Ninject/
-- http://www.nuget.org/packages/NServiceBus.CastleWindsor/
-- http://www.nuget.org/packages/NServiceBus.StructureMap/
-- http://www.nuget.org/packages/NServiceBus.Spring/
-- http://www.nuget.org/packages/NServiceBus.Unity/
+Support for other containers is provided via custom integrations.
 
-## Configuring NServiceBus to use other containers
+- [Autofac](autofac.md)
+- [Ninject](ninject.md)
+- [CastleWindsor](castlewindsor.md)
+- [StructureMap](structuremap.md)
+- [Spring](spring.md)
+- [Unity](unity.md)
 
-The following code demonstrates how to configure NServiceBus to use a container of your choosing. Each assumes you've already included the relevant NuGet package above.
-
-<!-- import Containers --> 
 
 ## Plugging in your own container
 
