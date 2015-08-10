@@ -116,8 +116,10 @@
       Title: "Serialization"
       Url: "nservicebus/serialization"
       Articles:
+        - "nservicebus/serialization/xml"
+        - "nservicebus/serialization/json"
+        - "nservicebus/serialization/binary"
         - "nservicebus/serialization/custom-serializer"
-        - "nservicebus/serialization/xml-serializer"
         - "nservicebus/serialization/type-was-not-registered"
     -
       Title: "Persistence"

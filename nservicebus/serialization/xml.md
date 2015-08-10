@@ -1,6 +1,8 @@
 ---
 title: Xml Serializer
 summary: A custom written XML serializer.
+redirects:
+ - nservicebus/serialization/xml-serializer
 ---
 
 A custom written XML serializer.
