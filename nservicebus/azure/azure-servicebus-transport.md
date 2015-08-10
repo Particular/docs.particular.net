@@ -76,6 +76,11 @@ NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configu
 
 Defaults are just starting values. You should always measure and test these values against your solution and adjust those accordingly.
 
+## Transactions
+
+NServiceBus AzureServiceBus transport relies on the underlying Azure ServiceBus library which requires the use of the `Serializable` isolation level (the most restrictive isolation level that does not permit `dirty reads`, `phantom reads` and `non repeatable reads`; will block any reader until the writer is committed [see this link](http://dotnetspeak.com/2013/04/transaction-isolation-levels-explained-in-details) for more information)
+
+NserviceBus AzureServiceBus transport configuration is hard coded to `Serializable` isolation level to prevent users from overriding it.
 
 ## Scenarios
 
