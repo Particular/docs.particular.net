@@ -132,8 +132,8 @@
       <HintPath>..\packages\NServiceBus.Azure.6.2.1\lib\net45\NServiceBus.Azure.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.6.3.1\lib\net45\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.6.3.2\lib\net45\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.6.2.1\lib\net45\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
@@ -144,8 +144,8 @@
       <HintPath>..\packages\NServiceBus.CommonLogging.2.1.0\lib\net45\NServiceBus.CommonLogging.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.5.2.3\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.5.2.4\lib\net45\NServiceBus.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Distributor.MSMQ, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\packages\NServiceBus.Distributor.MSMQ.5.0.3\lib\net45\NServiceBus.Distributor.MSMQ.dll</HintPath>
@@ -164,8 +164,8 @@
       <HintPath>..\packages\NServiceBus.Log4Net.1.0.0\lib\net45\NServiceBus.Log4Net.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NHibernate, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.NHibernate.6.2.0\lib\net45\NServiceBus.NHibernate.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.NHibernate.6.2.1\lib\net45\NServiceBus.NHibernate.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.NLog, Version=1.1.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
