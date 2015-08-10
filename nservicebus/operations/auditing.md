@@ -32,7 +32,7 @@ The queue name to forward audit messages to
 
 By default messages are forwarded to the audit queue with the [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) of the original message. If a different TimeToBeReceived is required it have be achieved by setting OverrideTimeToBeReceived. This setting takes a [TimeSpan](https://msdn.microsoft.com/en-us/library/system.timespan.aspx).
 
-Note that while the phrasing if "forwarding a message" in the implementation it is actually "cloning and sending a new message". This is important when considering TimeToBeReceived since the time taken to receive and process the original message is not part of the TimeToBeReceived of the new audit message. So in effect the audit message receives the full time allotment of whatever TimeToBeReceived is used. 
+Note that while the phrasing is "forwarding a message" in the implementation it is actually "cloning and sending a new message". This is important when considering TimeToBeReceived since the time taken to receive and process the original message is not part of the TimeToBeReceived of the new audit message. So in effect the audit message receives the full time allotment of whatever TimeToBeReceived is used. 
 
 
 ## Configuring auditing
