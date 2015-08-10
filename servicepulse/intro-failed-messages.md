@@ -16,15 +16,28 @@ ServicePulse (via ServiceControl) monitors the central error queue and displays 
 
 ### Failed Messages Page
 
-To see a detailed display of the failed messages, click the Failed Messages indicator (or the "Failed Messages" link in the navigation bar).
+To see a detailed display of the failed messages, click the Failed Messages indicator (or the "Failed Messages" link in the navigation bar). This page is split into two tabs.
 
 
-![Failed Messages Page](images/failed-messages.page.jpg)
+![Failed Message Groups Page](intro-failed-messages-failed-groups-page.jpg)
 
-* **Summary statistics:** A breakdown of the current number of failed messages per machine, endpoint, and message type.
-* **Messages List:** One entry for each failed message.
+
+The first tab shows error groups. A group is a set of failed messages where the same **Exception Type** has been thrown from the method in your solution. Each group has:
+
+* a **Title** made up of the **Exception Type** and **Call Site** where the failure occurred.
+* a **Count** of how many unresolved messages there are in the group.
+* the **First Fail** time and the **Last Fail** time indicating when the first and most recent unresolved errors occurred respectively.
+* **Actions** which can be used to Archive or Retry an entire group of messages (see below).
+
+Click the title of a group to open the second tab which shows a list of all of the errors within the group.
+
+![Failed Messages Page](intro-failed-messages-failed-messages-page.jpg)
+
+
 * **Message Details:** For each failed message, displays the message type, exception description, endpoint name and location, and failure timestamp.    
 * **StackTrace:** Displays the full .NET exception stacktrace when you click the "Show stacktrace" link.
+* **Headers:** Displays a complete set of message headers when you click the "Show Headers" link.
+* **Body:** Displays the serialized message body when you click the "Show Body" link.
 * **Copy Message Id:** Copies the failed message unique identifier to the clipboard, for future reference, when you click "Copy ID to clipboard". 
 * **Open in ServiceInsight:** Launches ServiceInsight, focusing on the failed message for in-depth analysis of the failure causes. (For more details, see [ServiceInsight Overview](/serviceinsight/getting-started-overview.md).) Only works if ServiceInsight is installed on the local machine.   
 
@@ -34,7 +47,7 @@ After addressing the root cause of the message's processing failure, you can res
 
 To retry a failed message, select the failed message(s) in the failed messages list and click the "Retry Selected" button (or click "Retry All Messages").
 
-A message that is sent for retry is marked as such, and is not displayed in the failed message list, unless the reprocessing fails again.
+A message that is sent for retry is marked as such, and is not displayed in the failed message list or included in failed message groups, unless the reprocessing fails again.
 
 If a message fails repeated retry attempts, an indication is added, including the number of times it has failed. 
    
@@ -54,6 +67,6 @@ Failed messages that cannot be processed successfully (or should not be retried 
 
 ![Failed Message Archive](images/failed-messages-archive.jpg)
 
-Archiving in ServicePulse means that the failed messages are marked as "Archived". Its data is still available, but it is no longer displayed in the Failed Messages list in ServicePulse and is not counted by the Failed Messages indicator in the ServicePulse dashboard.
+Archiving in ServicePulse means that the failed messages are marked as "Archived". Its data is still available, but it is no longer displayed in the Failed Messages list in ServicePulse and is not counted by the Failed Messages indicator in the ServicePulse dashboard. It also will not appear in any failed message groups.
 
 NOTE: You can search for and analyse an archived failed message in ServiceInsight.
