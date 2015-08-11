@@ -1884,7 +1884,7 @@ The NServiceBus Distributor was moved into its own assembly (NServiceBus.Distrib
 
 ### NServiceBus.MultiSite  
 
-Please use `MultiSite Profile is now obsolete. Gateway has been moved to its own stand alone nuget 'NServiceBus.Gateway'. To enable Gateway, install the nuget package and then call `configuration.EnableFeature<Gateway>()`, where `configuration` is an instance of type `BusConfiguration`.` instead. Will be removed in version 6.0.0. Obsoleted with error.
+MultiSite Profile is now obsolete. Gateway has been moved to its own stand alone nuget 'NServiceBus.Gateway'. To enable Gateway, install the nuget package and then call `configuration.EnableFeature<Gateway>()`, where `configuration` is an instance of type `BusConfiguration`.` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 
