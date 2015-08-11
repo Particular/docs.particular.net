@@ -36,9 +36,9 @@ Click the title of a group to open the second tab which shows a list of all of t
 
 * **Message Details:** For each failed message, displays the message type, exception description, endpoint name and location, and failure timestamp.    
 * **StackTrace:** Displays the full .NET exception stacktrace when you click the "Show stacktrace" link.
-* **Headers:** Displays a complete set of message headers when you click the "Show Headers" link.
-* **Body:** Displays the serialized message body when you click the "Show Body" link.
-* **Copy Message Id:** Copies the failed message unique identifier to the clipboard, for future reference, when you click "Copy ID to clipboard". 
+* **Headers:** Displays a complete set of message headers when you click the "Show headers" link.
+* **Body:** Displays the serialized message body when you click the "Show body" link.
+* **Copy Message Id:** Copies the failed message unique identifier to the clipboard, for future reference, when you click "Copy Id to clipboard". 
 * **Open in ServiceInsight:** Launches ServiceInsight, focusing on the failed message for in-depth analysis of the failure causes. (For more details, see [ServiceInsight Overview](/serviceinsight/getting-started-overview.md).) Only works if ServiceInsight is installed on the local machine.   
 
 
