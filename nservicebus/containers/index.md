@@ -29,6 +29,16 @@ Support for other containers is provided via custom integrations.
 - [Unity](unity.md)
 
 
+## Using an existing container
+
+The above pages all have examples of how to pass in an instance of an existing container. This is useful when you want to make use of the full features of your container and share the DI behavior with NServiceBus.
+
+
+### IBus resolution
+
+Not that the instance of `IBus` is scoped for the lifetime of the container. Hence if you resolve `IBus` and then dispose of it the endpoint will stop processing messages.
+
+
 ## Plugging in your own container
 
 If you have your own container that is not already supported by a NuGet package, you can create a plugin centering around the `IContainer` abstraction. Once this is created and registered, NServiceBus will use your custom container to look up its own dependencies.
