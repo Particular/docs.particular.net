@@ -1,5 +1,5 @@
 ---
-title: Required Headers For Third Party Integration
+title: Third Party Integration
 summary: Lists the necessary headers when receiving messages from non-NSB endpoints for better monitoring.
 tags:
 - Monitoring
