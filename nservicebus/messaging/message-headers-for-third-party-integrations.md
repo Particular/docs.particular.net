@@ -18,7 +18,7 @@ To get the best use of your monitoring and debugging tools, please ensure that t
 
 ### Required metadata
 
-In order to enable NServiceBus to deserialize a message coming from a third party system, the message must contain its **full type name**. It can either be provided in the message body by ensuring appropriate serialization or by adding an additional header.
+In order to enable NServiceBus to deserialize a message coming from a third party system, the message must contain its **full type name**. It can either be provided in the message body by ensuring appropriate serialization or by adding an additional header (in NServiceBus v3 and above).
 
 Header key  | Value
 ------------- | -------------
@@ -29,7 +29,7 @@ For more information refer to integration samples for [RabbitMQ](/samples/rabbit
 
 ### Additional metadata 
 
-By providing the following additional headers you will gain a better debugging experience in ServiceInsight. This information is required for including third party message in a flow diagram.
+For NServericeBus v4 and above by providing the following additional headers you will gain a better debugging experience in ServiceInsight. This information is required for including the external message in a flow diagram.
 
 Header key  | Value
 ------------- | -------------
