@@ -11,7 +11,7 @@ If the FLR and SLR processing attempts also fail, the endpoint forwards the fail
 
 ServicePulse (via ServiceControl) monitors the central error queue and displays the current status and details of failed messages as an indicator in the ServicePulse dashboard.
 
-![Failed Messages indicator](images/indicators-failed-message.jpg)
+![Failed Messages indicator](images/indicators-failed-message.png)
     
 
 ### Failed Messages Page
@@ -19,7 +19,7 @@ ServicePulse (via ServiceControl) monitors the central error queue and displays 
 To see a detailed display of the failed messages, click the Failed Messages indicator (or the "Failed Messages" link in the navigation bar). This page is split into two tabs.
 
 
-![Failed Message Groups Page](intro-failed-messages-failed-groups-page.jpg)
+![Failed Message Groups Page](intro-failed-messages-failed-groups-page.png)
 
 
 The first tab shows error groups. A group is a set of failed messages where the same **Exception Type** has been thrown from the method in your solution. Each group has:
@@ -31,7 +31,7 @@ The first tab shows error groups. A group is a set of failed messages where the 
 
 Click the title of a group to open the second tab which shows a list of all of the errors within the group.
 
-![Failed Messages Page](intro-failed-messages-failed-messages-page.jpg)
+![Failed Messages Page](intro-failed-messages-failed-messages-page.png)
 
 
 * **Message Details:** For each failed message, displays the message type, exception description, endpoint name and location, and failure timestamp.    
@@ -40,6 +40,7 @@ Click the title of a group to open the second tab which shows a list of all of t
 * **Body:** Displays the serialized message body when you click the "Show Body" link.
 * **Copy Message Id:** Copies the failed message unique identifier to the clipboard, for future reference, when you click "Copy ID to clipboard". 
 * **Open in ServiceInsight:** Launches ServiceInsight, focusing on the failed message for in-depth analysis of the failure causes. (For more details, see [ServiceInsight Overview](/serviceinsight/getting-started-overview.md).) Only works if ServiceInsight is installed on the local machine.   
+
 
 ### Failed Message Retry
 
@@ -52,7 +53,7 @@ A message that is sent for retry is marked as such, and is not displayed in the 
 If a message fails repeated retry attempts, an indication is added, including the number of times it has failed. 
    
    
-![Repeated failure indication](images/failed-messages-repeated-failure.jpg)
+![Repeated failure indication](images/failed-messages-repeated-failure.png)
 
 NOTE: Tracking the number of repeated retry attempts may be significant to your specific solution implementation, since each retry may invoke custom and/or third party logic that may not participate in the NServiceBus endpoint transactional  processing (and is therefore not rolled back on processing failure). 
 
@@ -61,11 +62,12 @@ NOTE: Tracking the number of repeated retry attempts may be significant to your 
 
 * [Failed Messages display and Retry in ServiceInsight](/serviceinsight/getting-started-overview.md#errors-and-retries)
 
+
 ### Archiving Failed Messages
 
 Failed messages that cannot be processed successfully (or should not be retried due to various application-specific reasons) can be archived.
 
-![Failed Message Archive](images/failed-messages-archive.jpg)
+![Failed Message Archive](images/failed-messages-archive.png)
 
 Archiving in ServicePulse means that the failed messages are marked as "Archived". Its data is still available, but it is no longer displayed in the Failed Messages list in ServicePulse and is not counted by the Failed Messages indicator in the ServicePulse dashboard. It also will not appear in any failed message groups.
 
