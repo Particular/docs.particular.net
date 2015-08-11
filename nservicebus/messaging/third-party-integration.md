@@ -18,16 +18,17 @@ To get the best use of your tools ensure that the following information is inclu
 
 ### Required information
 
-In order to enable NServiceBus to deserialize a message coming from a third party system, the message must contain its **full type name**. Depending on serializer, that information might be either provided in the message body (e.g. for Json.NET or NServiceBus custom XmlSerializer) or by adding the additional header (in ServiceBus v3 and above).
+In order for NServiceBus to deserialize a message coming from a third party system, the message needs to contain information to allow NServiceBus to map the message to a message type. Depending on the serializer used by the receiving endpoint that information might be either provided in the message body or in a NServiceBus specific header.
 
-Refer to integration samples for [RabbitMQ](/samples/rabbitmq/native-integration/) and [SQL](/samples/sqltransport/native-integration/) transports, in order to see how full type name can be included in the payload.
+Embedding type info in the message body is currently supported by the default XmlSerializer and also the Json.NET seriliazer. The [RabbitMQ](/samples/rabbitmq/native-integration/) and [SQL](/samples/sqltransport/native-integration/) integration samples demonstrates this.
 
-Alternatively, include the following header in your message:
+If using a different serilizer or if you want to avoid embedding type info in your message bodies you can include the following header in your message:
 
 Header key  | Value
 ------------- | -------------
-NServiceBus.EnclosedMessageTypes  | Fully Qualified Message type including the assembly name, for e.g. IntegrationSample.Messages.Commands.ProcessOrder, IntegrationSample.Messages
+NServiceBus.EnclosedMessageTypes  | [FullName](https://msdn.microsoft.com/en-us/library/system.type.fullname) of your message type, e.g. `IntegrationSample.Messages.Commands.ProcessOrder`
 
+If set NServiceBus will instruct the serializer to deserialize the payload into the type specified.
 
 ### Additional information 
 
