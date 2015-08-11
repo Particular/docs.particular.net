@@ -5,6 +5,9 @@ tags:
 - MSDTC
 redirects:
  - nservicebus/no-dtc
+related:
+ - samples/sqltransport-nhpersistence-outbox
+ - samples/sqltransport-nhpersistence-outbox-ef
 ---
 
 NServiceBus Version 5 brings the option of running endpoints with the same reliability we all got accustomed to while running under DTC, but now without it. 
