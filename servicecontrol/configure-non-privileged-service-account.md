@@ -27,7 +27,7 @@ At a minimum, you should modify the rights to these queues:
 
 - `particular.servicecontrol`
 - `particular.servicecontrol.errors`
-- `particular.servicecontrol.staging`
+- `particular.servicecontrol.staging` (only created from v1.6+)
 - `particular.servicecontrol.timeouts`
 - `particular.servicecontrol.timeoutsdispatcher`
 - `audit`
