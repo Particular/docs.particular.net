@@ -20,6 +20,7 @@ The web page renders synchronously; from the user's perspective, the interaction
 
 This sample has three projects: `Shared`, `Server`, and `WebApplication`. `WebApplication` is a web application that sends messages (found in the `Shared` project) to the Server project, which is hosted as a console application. 
 
+
 ## Initializing the bus
 
 In `WebApplication`, open `Global.asax.cs` and look at the code in the `ApplicationStart` method:
@@ -29,6 +30,7 @@ In `WebApplication`, open `Global.asax.cs` and look at the code in the `Applicat
 The rest of the code is typical for hosting NServiceBus in your own process. Read more about [the other lines](/nservicebus/hosting/self-hosting.md).
 
 The code holds a reference to the bus, which is used later for sending messages. This isn't the only option available; if the classes for sending messages are managed by Dependency Injection, then they can get a reference to the bus by declaring a dependency on IBus. [See an example](/nservicebus/containers/injecting-ibus.md).
+
 
 ## Sending a message
 
@@ -48,6 +50,7 @@ The "bus" isn't anything special in code; it is just an object for calling metho
 
 Skip the rest of the code and see what happens to the message you just sent.
 
+
 ## Handling the message
 
 In the Server project, find this code in the CommandMessageHandler class:
@@ -57,6 +60,7 @@ In the Server project, find this code in the CommandMessageHandler class:
 This class implements the NServiceBus interface `IHandleMessages<T>` where `T` is the specific message type being handled; in this case, the Command message. NServiceBus manages classes that implement this interface. When a message arrives in the input queue, it is deserialized and then, based on its type, NServiceBus instantiates the relevant classes and calls their `Handle` method, passing in the message object.
 
 The `IBus` property of the class is how it gets a reference to the bus. In the method body you can see it calling the Return method on the bus, which results in a message being returned to `WebApplication`, specifically putting a message in its input queue `MyWebClient`.
+
 
 ## Handling the response
 

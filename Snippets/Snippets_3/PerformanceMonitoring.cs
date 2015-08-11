@@ -12,6 +12,14 @@
             configure.EnablePerformanceCounters();
             #endregion
         }
+        public void EnablingSla()
+        {
+            #region enable-sla
+            Configure configure = Configure.With();
+            // in this version there was no granular control over individual counters
+            configure.EnablePerformanceCounters();
+            #endregion
+        }
 
         #region enable-sla-host-attribute
 

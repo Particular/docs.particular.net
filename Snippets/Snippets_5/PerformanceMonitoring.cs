@@ -1,5 +1,6 @@
 ﻿namespace Snippets5
 {
+    using System;
     using NServiceBus;
 
     public class PerformanceMonitoring
@@ -11,6 +12,15 @@
 
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EnableCriticalTimePerformanceCounter();
+
+            #endregion
+        }
+        public void EnablingSla()
+        {
+            #region enable-sla
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
 
             #endregion
         }

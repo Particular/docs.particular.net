@@ -14,7 +14,7 @@ NServiceBus Version 5 brings the option of running endpoints with the same relia
 
 Out of the box RabbitMQ is the only transport that is enabled automatically by default.
 
-SqlServer is also supported but in a different way (for details, see [SqlServer Transport](#sql-server-transport) section below).
+SqlServer is also supported but in a different way (for details, see SqlServer Transport section below).
 All other transports need to be enabled explicitly using both of the following configuration settings when configuring the endpoint:
 
 <!-- import OutboxEnablineInCode -->  
@@ -29,6 +29,7 @@ NOTE: It may seem extreme to require double opt-in configuration for all other t
 ## How does it work
 
 These feature has been implemented using both the [Outbox pattern](http://gistlabs.com/2014/05/the-outbox/) and the [Deduplication pattern](http://en.wikipedia.org/wiki/Data_deduplication#In-line_deduplication).
+
 As a message is dequeued we check to see if we have previously processed it. If so, we then deliver any messages in the outbox for that message but do not invoke message-processing logic again. If the message wasn't previously processed, then we invoke the regular handler logic, storing all outgoing message in a durable storage in the same transaction as the users own database changes. Finally we send out all outgoing messages and update the deduplication storage.
 
 Here is a diagram how it all works:
@@ -75,6 +76,7 @@ To keep track duplicate messages, the RavenDB implementation of Outbox creates a
 ### How long are the deduplication records kept
 
 The RavenDB implementation by default keeps deduplication records for 7 days and runs the purge every 1 minute.
+
 These default settings can be changed by specifying new defaults in the settings dictionary, here is how to do it:
 
 <!-- import OutboxRavendBTimeToKeep -->
