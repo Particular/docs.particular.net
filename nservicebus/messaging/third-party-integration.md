@@ -26,7 +26,7 @@ If using a different serilizer or if you want to avoid embedding type info in yo
 
 Header key  | Value
 ------------- | -------------
-NServiceBus.EnclosedMessageTypes  | [FullName](https://msdn.microsoft.com/en-us/library/system.type.fullname) of your message type, e.g. IntegrationSample.Messages.Commands.ProcessOrder
+NServiceBus.EnclosedMessageTypes  | [FullName](https://msdn.microsoft.com/en-us/library/system.type.fullname) of your message type, e.g. `IntegrationSample.Messages.Commands.ProcessOrder`
 
 If set NServiceBus will instruct the serializer to deserialize the payload into the type specified.
 
