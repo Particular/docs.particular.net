@@ -67,9 +67,9 @@
 
         public class EndpointConfig : IConfigureThisEndpoint
         {
-            public void Customize(BusConfiguration configuration)
+            public void Customize(BusConfiguration busConfiguration)
             {
-                // use 'configuration' object to configure scanning
+                // use 'busConfiguration' object to configure scanning
             }
         }
 
