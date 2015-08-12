@@ -68,6 +68,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Msmq\NativeSendTests.cs" />
+    <Compile Include="Msmq\NativeSend.cs" />
     <Compile Include="Msmq\ErrorQueueTests.cs" />
     <Compile Include="Msmq\QueueCreationTests.cs" />
     <Compile Include="Msmq\QueueDeletion.cs" />

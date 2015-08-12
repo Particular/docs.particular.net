@@ -8,6 +8,27 @@ Example code and scripts to facilitate deployment and operational actions agains
 These examples use the [System.Messaging.dll](https://msdn.microsoft.com/en-us/library/System.Messaging.aspx) and [System.Transactions.dll](https://msdn.microsoft.com/en-us/library/system.transactions.aspx) assemblies.
 
 
+## Native Send
+
+
+### The native send helper methods
+
+The following code shows an example of how to perform the following actions
+
+ * create and serialize headers.
+ * write a message body directly to MSMQ.
+
+
+#### In C&#35;
+
+<!-- import msmq-nativesend -->
+
+
+### Using the native send helper methods
+
+<!-- import msmq-nativesend-usage -->
+
+
 ## Return message to source queue 
 
 
