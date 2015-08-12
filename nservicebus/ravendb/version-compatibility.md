@@ -28,8 +28,7 @@ The current approach moving forward for the RavenDB integration is to ship outsi
 ### Supported NServiceBus versions
 
  * Version 1 of NServiceBus.RavenDB targets NServiceBus 4.1 or higher minor;
- * Version 2 of NServiceBus.RavenDB targets NServiceBus 5.0 and higher minor;
-
+ * Version 2 & 3 of NServiceBus.RavenDB targets NServiceBus 5.0 and higher minor;
 
 ## NServiceBus 4: Resource Merged into the core
 
