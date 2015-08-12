@@ -32,10 +32,12 @@ If set NServiceBus will instruct the serializer to deserialize the payload into 
 
 ### Additional information 
 
-For NServericeBus v4 and above by providing the following additional headers you will gain a better debugging experience in ServiceInsight. This information is required for including the external message in a flow diagram.
+For NServericeBus v4 and above you will gain a better debugging experience in ServiceInsight by providing the following additional headers. This information is necessary for including the external message in the diagrams.
 
 Header key  | Value
 ------------- | -------------
 NServiceBus.ConversationId  | Valid Guid, useful to tie in the whole message flow to get an accurate view in ServiceInsight, for example in a message flow or sequence diagrams. If not provided, then the external message won't be included in the conversation it started. ConversationId will be generated though for all the following messages sent using NServiceBus.
 NServiceBus.OriginatingEndpoint  | Name of the third party endpoint sending the message, for e.g. BizTalk.ProcessOrder
 NServiceBus.OriginatingMachine  | Server where the third party endpoint is located, for e.g. BizTalkServer
+
+The concept of conversation was introduced in NServiceBus v4, so it's not possible to include ConversationId header if you use earlier version. As a consequence, ServiceInsight won't be able to produce flow and sequence diagrams. However, it will display all the other information (messages list, message headers, body, etc.).
