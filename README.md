@@ -263,6 +263,7 @@ File extensions scanned for snippets include:
 
  * `.config`
  * `.cs`
+ * `.ps`
  * `.cscfg`
  * `.csdef` 
  * `.html`

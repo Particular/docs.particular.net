@@ -90,13 +90,13 @@
     <Compile Include="SqlServer\QueueCreation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Msmq\QueueDeletion.ps1">
+    <None Include="Msmq\QueueDeletion.ps">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Msmq\QueueCreation.ps1">
+    <None Include="Msmq\QueueCreation.ps">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Msmq\ErrorQueue.ps1">
+    <None Include="Msmq\ErrorQueue.ps">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
