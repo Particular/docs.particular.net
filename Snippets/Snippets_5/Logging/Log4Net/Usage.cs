@@ -18,28 +18,15 @@
                 ConversionPattern = "%d [%t] %-5p %c [%x] - %m%n"
             };
             layout.ActivateOptions();
-            ColoredConsoleAppender consoleAppender = new ColoredConsoleAppender
+            ConsoleAppender consoleAppender = new ConsoleAppender
             {
                 Threshold = Level.Debug,
                 Layout = layout
             };
+            // Note that ActivateOptions is required in NSB 5 and above
             consoleAppender.ActivateOptions();
-            RollingFileAppender fileAppender = new RollingFileAppender
-            {
-                DatePattern = "yyyy-MM-dd'.txt'",
-                RollingStyle = RollingFileAppender.RollingMode.Composite,
-                MaxFileSize = 10 * 1024 * 1024,
-                MaxSizeRollBackups = 10,
-                LockingModel = new FileAppender.MinimalLock(),
-                StaticLogFileName = false,
-                File = @"nsb_log_",
-                Layout = layout,
-                AppendToFile = true,
-                Threshold = Level.Debug,
-            };
-            fileAppender.ActivateOptions();
 
-            BasicConfigurator.Configure(fileAppender, consoleAppender);
+            BasicConfigurator.Configure(consoleAppender);
 
             LogManager.Use<Log4NetFactory>();
 

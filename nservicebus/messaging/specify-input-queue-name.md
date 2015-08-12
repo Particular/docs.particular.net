@@ -8,13 +8,13 @@ redirects:
 - nservicebus/how-to-specify-your-input-queue-name
 ---
 
-## When using the fluent API
+## When using the configuration API
 
 NOTE: these approaches can also be used from NServiceBus Host via the use of `IConfigureThisEndpoint`. 
 
 You can define your own convention in the endpoint initialization code using this
 
-<!-- import EndpointNameFluent -->
+<!-- import EndpointNameCode -->
 
 ## When using the NServiceBus.Host.exe  
 

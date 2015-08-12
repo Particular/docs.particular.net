@@ -1,7 +1,15 @@
 ---
 title: Profiles For NServiceBus Host
 summary: 'Profiles ease the configuration process. Three profiles straight from the box: Lite, Integration, and Production.'
-tags: []
+tags:
+- Profiles
+- Hosting
+- NServiceBus.Host
+- Customization
+- Configuration
+- Logging
+- Initialization
+- Persistence
 redirects:
  - nservicebus/profiles-for-nservicebus-host
 ---

@@ -1,7 +1,6 @@
 using System;
 using NServiceBus;
 
-#region message-handler
 public class MessageHandler :
     IHandleMessages<MessageWithJson>,
     IHandleMessages<MessageWithBinary>
@@ -15,4 +14,3 @@ public class MessageHandler :
         Console.WriteLine("Received Binary message with property '{0}'", message.SomeProperty);
     }
 }
-#endregion

@@ -13,7 +13,7 @@ class Program
         using (startableBus.Start())
         {
             Console.WriteLine("Press any key to exit");
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }

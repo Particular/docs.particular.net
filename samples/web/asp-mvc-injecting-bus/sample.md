@@ -9,15 +9,13 @@ related:
 - nservicebus/hosting
 ---
 
-### Packages
-
-Aside from MVC and NServiceBus this solution also leverages both Autofac and Autofac.Mvc packages.
 
 ### Wire up Autofac
 
 Open `Global.asax.cs` and look at the `ApplicationStart` method.
 
 <!-- import ApplicationStart -->
+
 
 ### Injection into the Controller
 

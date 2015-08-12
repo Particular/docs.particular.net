@@ -16,5 +16,16 @@
 
             #endregion
         }
+        public void ChangingLevel()
+        {
+
+            #region OverrideLoggingLevelInCode
+
+            DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
+            defaultFactory.Level(LogLevel.Debug);
+
+            #endregion
+        }
+
     }
 }

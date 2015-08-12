@@ -36,7 +36,7 @@ class Program
             bus.SetMessageHeader(myMessage, "SendingMessage", "ValueSendingMessage");
             bus.SendLocal(myMessage);
             #endregion
-            Console.WriteLine("\r\nPress any key to stop program\r\n");
+            Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
     }

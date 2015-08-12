@@ -17,14 +17,14 @@ Handler ordering allows you which handlers are grouped first and the order withi
 
 The inference here is that the remaining handlers (not specified in the order) are executed in a non-deterministic order.   
 
-### With the fluent API
+### With the configuration API
 
-<!-- import HandlerOrderingWithFluent -->
+<!-- import HandlerOrderingWithCode -->
 
-### Specifying First with ISpecifyMessageHandlerOrdering
+#### Specifying one to run first
 
 <!-- import HandlerOrderingWithFirst -->
 
-### Specifying multiple to run ordered with ISpecifyMessageHandlerOrdering
+#### Specifying multiple to run ordered
 
 <!-- import HandlerOrderingWithMultiple -->

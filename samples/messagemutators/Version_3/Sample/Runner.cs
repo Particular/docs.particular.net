@@ -5,16 +5,18 @@ public class Runner
 {
     public static void Run(IBus bus)
     {
-        Console.WriteLine("Press 's' to send a valid message, press 'e' to send a failed message. To exit, 'q'\n");
+        Console.WriteLine("Press 's' to send a valid message");
+        Console.WriteLine("Press 'e' to send a failed message");
+        Console.WriteLine("Press any key to exit");
 
-        string cmd;
-
-        while ((cmd = Console.ReadKey().Key.ToString().ToLower()) != "q")
+        while (true)
         {
+            ConsoleKeyInfo key = Console.ReadKey();
             Console.WriteLine();
-            switch (cmd)
+            Console.WriteLine();
+            switch (key.Key)
             {
-                case "s":
+                case ConsoleKey.S:
                     #region SendingSmall
                     bus.SendLocal(new CreateProductCommand
                     {
@@ -27,7 +29,7 @@ public class Runner
                     });
                     #endregion
                     break;
-                case "e":
+                case ConsoleKey.E:
                     try
                     {
                         #region SendingLarge
@@ -47,6 +49,10 @@ public class Runner
                         //so the console keeps on running   
                     }
                     break;
+                default:
+                {
+                    return;
+                }
             }
         }
     }

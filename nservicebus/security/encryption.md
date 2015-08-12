@@ -17,9 +17,11 @@ The encryption algorithm used is [Rijndael](https://msdn.microsoft.com/en-us/lib
 
 Keep in mind that the security is only as strong as the keys; if the key is exposed, then an attacker can decipher the information. As such, you may not want to have your encryption keys stored on the client (if deployed remotely) or even on a web server in the DMZ. 
 
+
 ### Defining encrypted properties
 
 There are two ways of telling NServiceBus what properties to encrypt.
+
 
 #### Convention 
 
@@ -31,17 +33,20 @@ You can encrypt `MyEncryptedProperty` using `DefiningEncryptedPropertiesAs`.
 
 <!-- import DefiningEncryptedPropertiesAs -->
 
+
 #### Property type
 
 You can also use the `WireEncryptedString` type to flag that a property should be encrypted.
 
 <!-- import MessageWithEncryptedProperty --> 
 
+
 ### Enabling property encryption
 
-Property encryption is enabled via the fluent API.
+Property encryption is enabled via the configuration API.
 
 <!-- import EncryptionServiceSimple -->
+
 
 ### Defining the encryption key
 
@@ -49,23 +54,27 @@ In conjunction with enabling encryption you need to configure the encryption and
 
 Note: The key specified must be the same in the configuration of all processes that are communicating encrypted information, both on the sending and on the receiving sides.
 
+
 #### App.config
 
 The encryption key can be defined in the `app.config`.
 
 <!-- import EncryptionFromAppConfig --> 
  
+
 #### IProvideConfiguration
 
 <!-- import EncryptionFromIProvideConfiguration -->
 
 For more info on `IProvideConfiguration` see [Customizing NServiceBus Configuration](/nservicebus/hosting/custom-configuration-providers.md)
 
-#### Fluent API
 
-NOTE: Defining encryption keys via the fluent API is only supported in V5 and up. 
+#### Configuration API
 
-<!-- import EncryptionFromFluentAPI -->
+NOTE: Defining encryption keys via the configuration API is only supported in version 5 and up. 
+
+<!-- import EncryptionFromCode -->
+
 
 ### Multi-Key decryption 
 
@@ -75,6 +84,7 @@ This feature allows a phased approach of managing encryption keys. So that diffe
 
 When the original encryption key is replaced by a new encryption key, in-flight messages that were encrypted with the original key will fail decryption unless the original encryption key is added to a list of expired keys. 
 
+
 ### Custom handling of property encryption
 
 To take full control over how properties are encrypted you can replace the `IEncryptionService` instance.
@@ -82,6 +92,7 @@ To take full control over how properties are encrypted you can replace the `IEnc
 This allows you to explicitly handled the encryption and decryption of each value. So for example if you want to use an algorithm other than Rijndael.
 
 <!-- import EncryptionFromIEncryptionService -->
+
 
 ## Message Encryption
 

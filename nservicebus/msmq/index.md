@@ -18,7 +18,7 @@ Technologies such as BizTalk and SQL Server Service Broker still do not have a .
 
 ## Virtual Private Networks (VPN)
 
-MSMQ isn't smart enough to dynamically detect network interfaces. Therefore, if you connect a VPN after the MSMQ service starts, you have to restart the MSMQ service for it to detect the VPN. Once it starts with the interface, the VPN is free to disconnect/reconnect whenever it wants.
+MSMQ isn't smart enough to dynamically detect network interfaces. If you connect a VPN after the MSMQ service starts, you have to restart the MSMQ service for it to detect the VPN. Once it starts with the interface, the VPN is free to disconnect/reconnect whenever it wants.
 
 It is recommended to have batch setup scripts that run on server startups to connect the VPN, which then restarts the MSMQ service automatically.
 

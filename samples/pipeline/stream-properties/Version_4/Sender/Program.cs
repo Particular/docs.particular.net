@@ -34,7 +34,7 @@ class Program
     {
         Console.WriteLine("Press 'F' to send a message with a file stream");
         Console.WriteLine("Press 'H' to send a message with a http stream");
-        Console.WriteLine("To exit, press Ctrl + C");
+        Console.WriteLine("Press any key to exit");
 
         while (true)
         {
@@ -48,7 +48,9 @@ class Program
             if (key.Key == ConsoleKey.H)
             {
                 SendMessageWithHttpStream(bus);
+                continue;
             }
+            return;
         }
     }
 

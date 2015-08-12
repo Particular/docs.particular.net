@@ -6,8 +6,8 @@
     {
         public void Simple()
         {
-            #region HandlerOrderingWithFluent
-        
+            #region HandlerOrderingWithCode
+
             BusConfiguration busConfiguration = new BusConfiguration();
 
             busConfiguration.LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>());

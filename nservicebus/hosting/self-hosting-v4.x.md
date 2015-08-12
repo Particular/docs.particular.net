@@ -1,7 +1,15 @@
 ---
-title: Hosting NServiceBus v4.x in-process 
-summary: Fluent configuration API to get transactional one-way messaging, referencing only three assemblies.
-tags: []
+title: Hosting NServiceBus version 4.x in-process 
+summary: Configuration API to get transactional one-way messaging, referencing only three assemblies.
+tags:
+- Hosting
+- Initialization
+- Dependencies
+- ASP.NET
+- MVC
+- Configuration
+- Routing
+- MSMQ
 redirects:
 - nservicebus/hosting-nservicebus-in-your-own-process-v4.x
 related:
@@ -10,7 +18,7 @@ related:
 
 Lighter-weight than BizTalk and more powerful than WCF, NServiceBus comes with its own host process and allows you to host it in your own process.
 
-Requiring as few as three assemblies to be referenced, the Fluent configuration API can get you up and running with transactional one-way messaging in a snap.
+Requiring as few as three assemblies to be referenced, the configuration API can get you up and running with transactional one-way messaging in a snap.
 
 ## Assembly references
 
@@ -26,7 +34,7 @@ To host NServiceBus in your own process, the assemblies shown on the left need t
 
 In the `ApplicationStart` method of your `Global.asax` file in a web application, or in the `Main` method of your `Program` file for console or Windows Forms applications, include the following initialization code:
 
-For NServiceBus v4.x:
+For NServiceBus version 4.x:
 
 ```C#
 Configure.Serialization.Xml();
@@ -45,7 +53,7 @@ Configure.With()
 
 Here are some usage samples:
 
-NServiceBus v4.x in ASP.Net MVC:
+NServiceBus version 4.x in ASP.Net MVC:
 
 ```C#
 public class MvcApplication : System.Web.HttpApplication
@@ -80,6 +88,7 @@ public class MvcApplication : System.Web.HttpApplication
     }
 ```
 
+
 ## Configuration Code
 
 Most of the methods are extensions for the
@@ -91,7 +100,7 @@ Most of the methods are extensions for the
 -   `CreateBus()` takes all the previous options and wires up a bus object for you to use. You can store the reference returned from this call for sending messages.
 -   `Start()` tells the bus object created by `CreateBus()` to start its threads for listening and processing messages.
 
-For NServiceBus v4.x:
+For NServiceBus version 4.x:
 
 -   `Configure.Serialization` tells NServiceBus to serialize messages as XML. Additional option is to specify BinarySerializer(), which does binary serialization of messages.
 -   `UseTransport<msmq>()` tells NServiceBus to use MSMQ as its transactional messaging transport. 
@@ -105,7 +114,7 @@ To use the initialization code above, provide configuration for the MsmqTranspor
 
 Include these configuration sections:
 
-For NServiceBus v4.x:
+For NServiceBus version 4.x:
 
 ```XML
 <section name="MessageForwardingInCaseOfFaultConfig" 
@@ -117,7 +126,8 @@ type="NServiceBus.Config.MessageForwardingInCaseOfFaultConfig, NServiceBus.Core"
 <MessageForwardingInCaseOfFaultConfig ErrorQueue="error"/>
 ```
 
- If an exception is thrown during the processing of a message, NServiceBus automatically retries the message (as it might have failed due to something transient like a database deadlock). MaxRetries specifies the maximum number of times this is done before the message is moved to the ErrorQueue.
+If an exception is thrown during the processing of a message, NServiceBus automatically retries the message (as it might have failed due to something transient like a database deadlock). MaxRetries specifies the maximum number of times this is done before the message is moved to the ErrorQueue.
+
 
 ## Routing configuration
 

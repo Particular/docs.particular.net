@@ -15,6 +15,7 @@ Don't.
 
 NServiceBus has exception catching and handling logic of its own which surrounds all calls to user code. When an exception bubbles through to the NServiceBus infrastructure, it rolls back the transaction on a transactional endpoint, causing the message to be returned to the queue, and any messages that the user code tried to send or publish to be undone as well.
 
+
 ## Configure your error queue
 
 When a message fails, NServiceBus [automatically retries](/nservicebus/errors/automatic-retries.md) the message. On repeated failure, NServiceBus forwards that message to a designated error queue. 
@@ -23,6 +24,8 @@ Error queue can be configured in one of two ways.
 
 
 ### Using Code
+
+You can configure the target error queue at configuration time.
 
 <!-- import ErrorWithCode -->
 
@@ -45,7 +48,7 @@ Then at configuration time:
 
 <!-- import configureErrorQueueViaXml -->
 
-NOTE: In NServiceBus V3.x the `ErrorQueue` settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
+NOTE: In NServiceBus version 3.x the `ErrorQueue` settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
 
 For more details on `MsmqTransportConfig` [read this article](/nservicebus/msmq/transportconfig.md).
 
@@ -56,4 +59,12 @@ Administrators should monitor that error queue so that they can see when problem
 
 Monitoring and handling of failed messages with [ServicePulse](/servicepulse) provides access to full exception details (including stack-trace, and through ServiceInsight it also enables advanced debugging with all message context. It also provides a "retry" option to send the message back to the endpoint for re-processing. For more details, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md). 
 
-If either ServicePulse or ServiceInsight is not available in your environment, you can use the  `ReturnToSourceQueue.exe` tool to send the relevant message back to its original queue so that it can be processed again. The `ReturnToSourceQueue` tool is specific to MSMQ, and can be found in the [NServiceBus GitHub repository](https://github.com/Particular/NServiceBus).
+If either ServicePulse or ServiceInsight is not available in your environment you can perform this operation using the native management tools of your selected transport of by code or powershell:
+
+ * [Msmq Scripting](/nservicebus/msmq/operations-scripting.md)
+ * [RabbitMq Scripting](/nservicebus/rabbitmq/operations-scripting.md)
+ * [SqlServer Scripting](/nservicebus/sqlserver/operations-scripting.md)
+
+### ReturnToSourceQueue.exe
+
+The MSMQ command line tool ReturnToSourceQueue has been deprecated and moved to [ParticularLabs/MsmqReturnToSourceQueue](https://github.com/ParticularLabs/MsmqReturnToSourceQueue/).

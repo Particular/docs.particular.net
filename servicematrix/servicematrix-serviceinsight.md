@@ -14,7 +14,7 @@ ServiceInsight provides the ability to visualize the behavior of your system at 
 
 Combining the ServiceMatrix design-time visualization, and the ServiceInsight runtime visualizations, provides a comprehensive and easy to understand view of your system behavior, and the effect of your development decisions on the system's at runtime. 
 
-The integration and interaction features of ServiceMatrix and ServiceInsight increase the overall development speed of a system by creating a quick and intuitive feedback loop between designing the system and writing the code (with ServiceMatrix within Visual Studio), and then, by simply clicking F5 to launch a debug session in Visual Studio, launch ServiceInsight and view in real near-time how the design behaves in runtime.
+The integration and interaction features of ServiceMatrix and ServiceInsight increase the overall development speed of a system by creating a quick and intuitive feedback loop between designing the system and writing the code (with ServiceMatrix within Visual Studio), and then, by clicking F5 to launch a debug session in Visual Studio, launch ServiceInsight and view in real near-time how the design behaves in runtime.
 
 ![](images/servicematrix-serviceinsight-graphic1.png 'width=800')
 

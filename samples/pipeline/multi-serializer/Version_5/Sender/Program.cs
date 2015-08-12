@@ -21,11 +21,12 @@ class Program
     {
         Console.WriteLine("Press 'J' to send a JSON message");
         Console.WriteLine("Press 'B' to send a Binary message");
-        Console.WriteLine("To exit, press Ctrl + C");
+        Console.WriteLine("Press any key to exit");
 
         while (true)
         {
             ConsoleKeyInfo key = Console.ReadKey();
+            Console.WriteLine();
 
             if (key.Key == ConsoleKey.B)
             {
@@ -35,7 +36,9 @@ class Program
             if (key.Key == ConsoleKey.J)
             {
                 SendJsonMessage(bus);
+                continue;
             }
+            return;
         }
     }
 
@@ -46,7 +49,6 @@ class Program
             SomeProperty = "Some content in a binary message",
         };
         bus.Send("Sample.MultiSerializer.Receiver", message);
-        Console.WriteLine();
         Console.WriteLine("Binary message sent");
     }
 
@@ -57,7 +59,6 @@ class Program
                                       SomeProperty = "Some content in a json message",
                                   };
         bus.Send("Sample.MultiSerializer.Receiver", message);
-        Console.WriteLine();
         Console.WriteLine("Json Message sent");
     }
 }

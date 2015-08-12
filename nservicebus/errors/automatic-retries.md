@@ -29,9 +29,9 @@ NServiceBus automatically retries the message when an exception is thrown during
 
 ### Configuring FLR using app.config
 
-In NServiceBus V3, this configuration was available via `MsmqTransportConfig`.
+In NServiceBus version 3, this configuration was available via `MsmqTransportConfig`.
 
-From V4 onward the configuration for this mechanism is implemented in the `TransportConfig` section. For more details on `MsmqTransportConfig` and `TransportConfig` [read this article](/nservicebus/msmq/transportconfig.md).
+From version 4 onward the configuration for this mechanism is implemented in the `TransportConfig` section. For more details on `MsmqTransportConfig` and `TransportConfig` [read this article](/nservicebus/msmq/transportconfig.md).
 
 <!-- import configureFlrViaXml -->
 

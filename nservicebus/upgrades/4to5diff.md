@@ -1,6 +1,6 @@
 ---
-title: API differences between V4 and V5
-summary: Detailed binary level API differences between the NServiceBus V4 and V5 assemblies
+title: API differences between version 4 and version 5
+summary: Detailed binary level API differences between the NServiceBus version 4 and version 5 assemblies
 tags:
  - upgrade
  - migration
@@ -961,9 +961,9 @@ Placeholder for obsoletes. Will be removed in version 6.0.0. Obsoleted with erro
 
 #### Obsolete Methods
 
-  - `T CreateInstance<T>(NServiceBus.IBus)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L21) ]<br>Since multi message sends is obsoleted in v5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
-  - `T CreateInstance<T>(NServiceBus.IBus, Action<T>)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L34) ]<br>Since multi message sends is obsoleted in v5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
-  - `object CreateInstance(NServiceBus.IBus, Type)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L46) ]<br>Since multi message sends is obsoleted in v5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `T CreateInstance<T>(NServiceBus.IBus)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L21) ]<br>Since multi message sends is obsoleted in version 5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `T CreateInstance<T>(NServiceBus.IBus, Action<T>)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L34) ]<br>Since multi message sends is obsoleted in version 5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
+  - `object CreateInstance(NServiceBus.IBus, Type)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/IBus_Obsoletes.cs#L46) ]<br>Since multi message sends is obsoleted in version 5 use `IBus.Send<T>()` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 ### NServiceBus.InstallConfigExtensions  [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Installation/InstallConfigExtensions_obsolete.cs) ]
 
@@ -1749,7 +1749,7 @@ Will be removed in version 6.0.0. Obsoleted with error.
 
 #### Obsolete Methods
 
-  - `NServiceBus.Configure DefineLocalAddressNameFunc(NServiceBus.Configure, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Config/Advanced/ConfigureSettingLocalAddressNameAction_Obsolete.cs#L18) ]<br>Queue name is controlled by the endpoint name. The endpoint name can be configured using a `EndpointNameAttribute`, by passing a serviceName parameter to the host or calling `BusConfiguration.EndpointName` in the fluent API. Will be removed in version 6.0.0. Obsoleted with error.
+  - `NServiceBus.Configure DefineLocalAddressNameFunc(NServiceBus.Configure, Func<string>)` [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Config/Advanced/ConfigureSettingLocalAddressNameAction_Obsolete.cs#L18) ]<br>Queue name is controlled by the endpoint name. The endpoint name can be configured using a `EndpointNameAttribute`, by passing a serviceName parameter to the host or calling `BusConfiguration.EndpointName` in the configuration API. Will be removed in version 6.0.0. Obsoleted with error.
 
 ### NServiceBus.ConfigureExtensions  [ [link](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Config/ConfigureExtensions.cs) ]
 
@@ -1884,7 +1884,7 @@ The NServiceBus Distributor was moved into its own assembly (NServiceBus.Distrib
 
 ### NServiceBus.MultiSite  
 
-Please use `MultiSite Profile is now obsolete. Gateway has been moved to its own stand alone nuget 'NServiceBus.Gateway'. To enable Gateway, install the nuget package and then call `configuration.EnableFeature<Gateway>()`, where `configuration` is an instance of type `BusConfiguration`.` instead. Will be removed in version 6.0.0. Obsoleted with error.
+MultiSite Profile is now obsolete. Gateway has been moved to its own stand alone nuget 'NServiceBus.Gateway'. To enable Gateway, install the nuget package and then call `configuration.EnableFeature<Gateway>()`, where `configuration` is an instance of type `BusConfiguration`.` instead. Will be removed in version 6.0.0. Obsoleted with error.
 
 
 

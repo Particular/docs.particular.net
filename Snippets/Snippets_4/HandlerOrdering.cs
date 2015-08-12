@@ -6,7 +6,7 @@
     {
         public void Simple()
         {
-            #region HandlerOrderingWithFluent
+            #region HandlerOrderingWithCode
 
             Configure.With()
                 .UnicastBus()

@@ -1,5 +1,5 @@
 ---
-title: Using IBus in a Message Handler?
+title: Using IBus in a Message Handler
 summary: Use setter injection or constructor injection.
 tags: []
 redirects:

@@ -16,7 +16,7 @@ ServiceControl serves as the backend service for ServicePulse and ServiceInsight
 
 The information gathered, stored, and exposed by ServiceControl contains all the messages audited and forwarded to the Audit and Error queues (including their metadata, headers, and body). This means unlimited access to the ServiceControl embedded database, and to all the information contained within all the system's audited messages.
 
-Therefore, it is critical to limit access to the ServiceControl instance, including accessing its data through its clients (ServiceInsight and ServicePulse), and accessing directly through the HTTP API. 
+It is critical to limit access to the ServiceControl instance, including accessing its data through its clients (ServiceInsight and ServicePulse), and accessing directly through the HTTP API. 
 
 ### Post-Installation: Secure and Limited Access by Default  
 

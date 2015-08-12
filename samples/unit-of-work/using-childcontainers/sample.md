@@ -9,11 +9,13 @@ tags:
 - StructureMap
 ---
 
-### Running the sample
 
-Run the Solution. This will start up two console applications, one which is the sample and one that will host a RavenDB 3.0 database server. Hit any key a few times and notice that an order will be stored for each key press. You can then browse the url presented by the sample to verify the data that gets stored in RavenDB.
+## Running the sample
 
-### Code walkthrough
+Run the Solution.  Hit enter a few times and notice that an order will be stored for each key press. You can then browse the url presented by the sample to verify the data that gets stored in RavenDB.
+
+
+## Code walkthrough
 
 This sample shows how to share a RavenDB `IDocumentSession` between multiple handlers and finally call `.SaveChanges` once per message. This has the following benefits:
 
@@ -26,7 +28,8 @@ With the UoW in place our handlers can focus solely on the business problem we'r
 
 Notice how we inject the `IDocumentSession` and then call `.Store` on it.
 
-#### Saving the changes
+
+### Saving the changes
 
 With RavenDB you need to call `.SaveChanges` explicitly. We'll add a pipeline step that does this once after all our handlers have been called.
 
@@ -36,13 +39,15 @@ In this sample we'll use a incoming pipeline behavior to handler this.
 
 Notice how we first call `next()` to invoke the pipeline and if no exception is thrown we'll call `.SaveChanges()` to apply the changes to our database.
 
-#### Registering the UoW in the pipeline
+
+### Registering the UoW in the pipeline
 
 This is a easy as
 
 <!-- import PipelineRegistration -->
 
-#### Sharing the session between handlers and behavior
+
+### Sharing the session between handlers and behavior
 
 For this we're leaning on the child container support of our container. This sample is using StructureMap but it would work on most other containers as well. (please check the documentation for your chosen container to make sure)
 

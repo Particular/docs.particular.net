@@ -26,8 +26,9 @@ class Program
             };
             bus.Send("Samples.MessageBodyEncryption.Endpoint2", completeOrder);
 
-            Console.WriteLine("Message sent. Press any key to exit");
-            Console.ReadLine();
+            Console.WriteLine("Message sent");
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
         }
     }
 }

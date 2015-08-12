@@ -64,6 +64,6 @@ When subscribing to a message, you will probably have a [message handler](/nserv
 
 ## Disabling auto-subscription
 
-You can also choose to **not** have the infrastructure automatically subscribe using the fluent API
+You can also choose to **not** have the infrastructure automatically subscribe using the configuration API
 
 <!-- import DisableAutoSubscribe -->

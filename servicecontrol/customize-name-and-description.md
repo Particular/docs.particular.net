@@ -21,7 +21,7 @@ You can customize the two values in several ways:
 * Change the registry settings in the `HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceControl` node, editing the `Name` and `Description` keys.
 * Change the regstry settings in the `HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\ParticularSoftware\ServiceControl` node, editing the `Name` and `Description` keys.
 
-### ServiceControl default installed location</strong
+### ServiceControl default installed location
 
 By default ServiceControl is installed in `[Program Files]\Particular Software\ServiceControl`
 

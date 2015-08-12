@@ -11,9 +11,7 @@ related:
 ---
 
 
-### Sample
-
-The console app that starts a Raven Embedded server. This only exists so the sample can run without needing a RavenDB instance installed on your machine. This project also includes the `RavenDB.Bundles.UniqueConstraints` [bundle](http://ravendb.net/docs/article-page/2.5/csharp/server/extending/bundles/unique-constraints).
+The console app that starts a Raven Embedded server. This only exists so the sample can run without needing a RavenDB instance installed on your machine. This project also includes the `RavenDB.Bundles.UniqueConstraints` [bundle](http://ravendb.net/search?q=extending%20bundles%20unique-constraints).
 
 
 ## Code walk-through
@@ -23,18 +21,16 @@ When the default Saga message mappings do not satisfy our needs custom logic can
 This sample shows:
 
 * how to perform custom saga finding logic based on custom query logic;
-* how to use multiple Unique attributes using the default [RavenDB Unique Constraint bundle](http://ravendb.net/docs/article-page/2.5/csharp/server/extending/bundles/unique-constraints).
+* how to use multiple Unique attributes using the default [RavenDB Unique Constraint bundle](http://ravendb.net/search?q=extending%20bundles%20unique-constraints).
 
 
 ### RavenDB setup
 
-This sample requires [RavenDB persistence](http://www.nuget.org/packages/NServiceBus.RavenDB/) package and a running RavenDB instance configured accordingly. The sample RavenDB setup can be configured according to your environment:
+This sample requires [RavenDB persistence](/nservicebus/ravendb/) package and a running RavenDB instance configured accordingly. 
 
-<!-- import RavenDBSetup --> 
+NServiceBus out of the box does not support saga data with multiple `Unique` attributes, in order to achieve that it is possible to utilize the default RavenDB `UniqueConstraint` Bundle. Follow the [instructions on the RavenDB site](http://ravendb.net/search?q=extending%20bundles%20unique-constraints) to correctly install the bundle in your RavenDB server. You also need to configure the client side of the bundle by registering the `UniqueConstraintsStoreListener` as shown above.
 
-NServiceBus out of the box does not support saga data with multiple `Unique` attributes, in order to achieve that it is possible to utilize the default RavenDB `UniqueConstraint` Bundle. Follow the [instructions on the RavenDB site](http://ravendb.net/docs/article-page/2.5/csharp/server/extending/bundles/unique-constraints) to correctly install the bundle in your RavenDB server. You also need to configure the client side of the bundle by registering the `UniqueConstraintsStoreListener` as shown above.
-
-INFO: If you are running this sample against an external RavenDB server you need to make sure that the `RavenDB.Bundles.UniqueConstraints` [bundle](http://ravendb.net/docs/article-page/2.5/csharp/server/extending/bundles/unique-constraints) is currently installed according to the [extending RavenDB](http://ravendb.net/docs/article-page/2.5/csharp/server/extending/plugins) documentation. If the server side of the plugin is not correctly loaded, you'll notice that the [`SagaNotFoundHandler`](/nservicebus/sagas/saga-not-found.md) will be invoked.
+INFO: If you are running this sample against an external RavenDB server you need to make sure that the `RavenDB.Bundles.UniqueConstraints` [bundle](http://ravendb.net/search?q=extending%20bundles%20unique-constraints) is currently installed according to the [extending RavenDB](http://ravendb.net/search?q=server%20extending%20plugins) documentation. If the server side of the plugin is not correctly loaded, you'll notice that the [`SagaNotFoundHandler`](/nservicebus/sagas/saga-not-found.md) will be invoked.
 
 
 ### The Saga

@@ -1,4 +1,5 @@
 ﻿using System;
+using MyNamespace;
 using NServiceBus;
 
 public class MyHandler : IHandleMessages<MyMessage>

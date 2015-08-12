@@ -1,6 +1,6 @@
 ---
 title: Installing ServicePulse
-summary: Describes how ServicePulse is installed - indepdendently or via the PlatformInstaller - and its basic requirements 
+summary: Describes how ServicePulse is installed - independently or via the PlatformInstaller - and its basic requirements 
 tags:
 - ServicePulse
 - Installation
@@ -8,11 +8,13 @@ related:
 - servicepulse/troubleshooting
 ---
 
+
 ### Introduction
 
 Particular Software ServicePulse is the operational monitoring tool for distributed applications developed using NServiceBus. 
 
 [An Introduction to ServicePulse for NServiceBus](http://particular.net/blog/an-introduction-to-servicepulse-for-nservicebus) provides a short ~7 minute introductory video and demo of ServicePulse capabilities and main features for this release.
+
 
 ### Prerequisites
 
@@ -21,6 +23,7 @@ Particular Software ServicePulse is the operational monitoring tool for distribu
 * Particular Software ServiceControl 
 * Monitored NServiceBus endpoints must use NServiceBus 4.0.0 or higher
    * Support for NServiceBus 3.3.x can be obtained by contacting the [Particular Software support](http://particular.net/support) 
+
 
 ### Installation
 
@@ -42,6 +45,7 @@ You can install ServicePulse using the [Particular Service Platform Installer](/
    * Open the ServicePulse web application using the default browser
 6. After installing ServicePulse, see the following sections to configure your existing endpoints to be monitored via ServicePulse. 
 
+
 ### Configuring ServicePulse
 
 ServicePulse connects to and relies on ServiceControl as its data source.  
@@ -51,3 +55,8 @@ For details on ServiceControl and ServicePulse configuration options, see:
 * [ServiceControl Guidance](/servicecontrol)
  
 NOTE: ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](/servicecontrol/how-purge-expired-data.md).
+
+
+### ServicePulse license
+
+ServicePulse will check your current licensing status by querying the ServiceControl API, located by default at `http://localhost:33333/api`. Therefore, if ServicePulse indicates that the license is invalid or has expired, it is ServiceControl that you must update the license for, by following the instructions at [How to install your NServiceBus license file](/nservicebus/licensing/license-management.md).

@@ -1,6 +1,5 @@
 ﻿using System;
 using log4net.Appender;
-using log4net.Config;
 using log4net.Core;
 using log4net.Layout;
 using NServiceBus;
@@ -11,48 +10,27 @@ class Program
     static void Main()
     {
         #region ConfigureLog4Net
-
         PatternLayout layout = new PatternLayout
         {
             ConversionPattern = "%d [%t] %-5p %c [%x] - %m%n"
         };
         layout.ActivateOptions();
-        ColoredConsoleAppender consoleAppender = new ColoredConsoleAppender
+        ConsoleAppender appender = new ConsoleAppender
         {
             Threshold = Level.Info,
             Layout = layout
         };
-        // Note that no consoleAppender.ActivateOptions(); is required since NSB 4 does this internally
-
-        RollingFileAppender fileAppender = new RollingFileAppender
-        {
-            DatePattern = "yyyy-MM-dd'.txt'",
-            RollingStyle = RollingFileAppender.RollingMode.Composite,
-            MaxFileSize = 10*1024*1024,
-            MaxSizeRollBackups = 10,
-            LockingModel = new FileAppender.MinimalLock(),
-            StaticLogFileName = false,
-            File = @"nsblog2",
-            Layout = layout,
-            AppendToFile = true,
-            Threshold = Level.Info,
-        };
-        // Note that no fileAppender.ActivateOptions(); is required since NSB 4 does this internally
-        BasicConfigurator.Configure(fileAppender, consoleAppender);
-
+        // Note that no ActivateOptions is required since NSB 4 does this internally
         #endregion
 
-        Configure.Serialization.Json();
-
         #region UseConfig
+        //Pass the appenders to NServiceBus
+        SetLoggingLibrary.Log4Net(null, appender);
 
+        // Then continue with your bus configuration
+        Configure.Serialization.Json();
         Configure configure = Configure.With();
         configure.DefineEndpointName("Samples.Logging.Log4NetCustom");
-
-        //Pass the appenders to NServiceBus
-        configure.Log4Net(consoleAppender);
-        configure.Log4Net(fileAppender);
-
         #endregion
 
         configure.DefaultBuilder();
@@ -65,7 +43,7 @@ class Program
             IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             bus.SendLocal(new MyMessage());
 
-            Console.WriteLine("\r\nPress any key to stop program\r\n");
+            Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
     }

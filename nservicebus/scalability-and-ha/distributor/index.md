@@ -14,7 +14,7 @@ As a standard NServiceBus process, the Distributor maintains all the fault-toler
 
 ## When to use it?
 
-Scaling out (with or without a Distributor) is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](/nservicebus/operations/monitoring-endpoints.md) on the endpoint and when you have the need, add in the Distributor. Scaling out using the Distributor when needed is made easy by not having to change code, just starting the same endpoint in Distributor and Worker profiles and this article explains how.
+Scaling out (with or without a Distributor) is only useful for where the work being done by a single machine takes time and therefore more computing resources helps. To help with this, monitor the [CriticalTime performance counter](/nservicebus/operations/performance-counters.md) on the endpoint and when you have the need, add in the Distributor. Scaling out using the Distributor when needed is made easy by not having to change code, just starting the same endpoint in Distributor and Worker profiles and this article explains how.
 
 The Distributor is applicable only when using MSMQ as the transport for exchanging messages. NServiceBus uses MSMQ as the default transport. The Distributor is not required when using other brokered transports like SqlServer and RabbitMQ, since they share the same queue, even if there are multiple instances of the endpoints running. NServiceBus will ensure that only one of these instances of that endpoint will process that message in this case.
 
@@ -24,21 +24,21 @@ When starting to use NServiceBus, you'll see that you can easily run multiple in
 
 The Distributor gets around this limitation.
 
-## What about MSMQ V4?
+## What about MSMQ version 4?
 
 Version 4 of MSMQ, made available with Vista and Server 2008, can perform [remote transactional receive](https://msdn.microsoft.com/en-us/library/ms700128.aspx). This means that processes on other machines can transactionally pull work from a queue on a different machine. If the machine processing the message crashes, the message roll back to the queue and other machines could then process it.
 
 Even though the Distributor provided similar functionality even before Vista was released, there are other reasons to use it even on the newer operating systems. The problem with 'remote transactional receive' is that it gets proportionally slower as more worker nodes are added. This is due to the overhead of managing more transactions, as well as the longer period of time that these transactions are open.
 
-In short, the scale-out benefits of MSMQ V4 by itself are quite limited.
+In short, the scale-out benefits of MSMQ version 4 by itself are quite limited.
 
 ## Performance?
 
-The Distributor is doing multiple operations for each message, it is processing (receives a ready message form a Worker, sends the work message to the Worker, receives a ready message post processing) so its performance is limited although it is doing very little work, therefore the benefit of using a Distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short lived units of work (a quick read from the database and dispatching a message using `Bus.Send` or  `Bus.Publish`)
+For each message being processed, the Distributor performs a few additional operations: it receives a ready message from a Worker, sends the work message to the Worker and receives a ready message post processing. That means that using Distributor introduces a certain processing overhead, that is independent of how much actual work is done. Therefore the Distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short lived units of work (a quick read from the database and dispatching a message using `Bus.Send` or  `Bus.Publish`).
 
-To get a sense of the expected performance you can divide your regular endpoint performance and divide it by 4.
+To get a sense of the expected performance take your regular endpoint performance and divide it by 4.
 
-If you need to scale out small units of work you might want to consider slicing your handlers to smaller vertical slices of functionality and deploying them on their own end points.
+If you need to scale out small units of work you might consider splitting your handlers into smaller vertical slices of functionality and deploying them on their own endpoints.
 
 ## How does it work?
 
@@ -59,7 +59,7 @@ The distributor stores this information. When a message arrives at the Distribut
 
 All pending work stays in the Distributor's queue (rather than building up in each of the Workers' queues), giving visibility of how long messages are actually waiting. This is important for complying with time-based service level agreements (SLAs).
 
-For more information on monitoring, see [Monitoring NServiceBus Endpoints](/nservicebus/operations/monitoring-endpoints.md).
+For more information on monitoring, see [Performance Counters](/nservicebus/operations/performance-counters.md).
 
 For more information about Pub/Sub in a distributor scenario see [What the distributor does](/nservicebus/messaging/publish-subscribe/#what-the-distributor-does) and [The same for any publisher node](/nservicebus/messaging/publish-subscribe/#the-same-for-any-publisher-node)
 
@@ -74,7 +74,7 @@ To start your endpoint as a Distributor ensure you install the [NServiceBus.Dist
 ```cmd
 NServiceBus.Host.exe NServiceBus.MSMQDistributor
 ```
-or if using a version of NServiceBus that is earlier than v4.3:
+or if using a version of NServiceBus that is earlier than version 4.3:
 ```cmd
 NServiceBus.Host.exe NServiceBus.Distributor
 ```
@@ -86,7 +86,7 @@ To start your endpoint as a Master ensure you install the [NServiceBus.Distribut
 ```cmd
 NServiceBus.Host.exe NServiceBus.MSMQMaster
 ```
-or if using a version of NServiceBus that is earlier than v4.3:
+or if using a version of NServiceBus that is earlier than version 4.3:
 ```cmd
 NServiceBus.Host.exe NServiceBus.Master
 ```
@@ -97,7 +97,7 @@ When you [self host](/nservicebus/hosting/self-hosting.md) your endpoint, use th
  
 <!-- import ConfiguringDistributor -->
 
-NOTE: In versions 4 and up use the using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
+NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
 ## Worker Configuration
 
@@ -113,7 +113,7 @@ If you are hosting your endpoint with NServiceBus.Host.exe, to run as a Worker, 
 NServiceBus.Host.exe NServiceBus.MSMQWorker
 ```
 
-or if using a version of NServiceBus that is earlier than v4.3:
+or if using a version of NServiceBus that is earlier than version 4.3:
 
 ```cmd
 NServiceBus.Host.exe NServiceBus.Worker
@@ -141,7 +141,7 @@ If you are self-hosting your endpoint here is the code required to enlist the en
 
 <!-- import ConfiguringWorker --> 
 
-NOTE: In versions 4 and up use the using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
+NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
 Similar to self hosting, ensure the `app.config` of the Worker contains the `MasterNodeConfig` section to point to the host name where the master node (and a Distributor) are running.
 
@@ -180,12 +180,12 @@ It is very important that all your machines have their own unique QMId. If two o
 
 The primary reason for machines ending up with duplicate QMIds is cloning of virtual machines from a common Windows image without running the recommended [Sysprep](https://technet.microsoft.com/en-us/library/cc766049.aspx) tool. 
 
-Should you have two or more machines with the same QMId, simply reinstall the MSMQ feature to generate a new QMId.
+Should you have two or more machines with the same QMId reinstall the MSMQ feature to generate a new QMId.
 
 Check out [John Brakewells blog](http://blogs.msdn.com/b/johnbreakwell/archive/2007/02/06/msmq-prefers-to-be-unique.aspx) for more details.
 
 ## High availability
 
-If the Distributor goes down, even if its worker nodes remain running, they do not receive any messages. Therefore, it is important to run the Distributor on a cluster that has its its queues configured as clustered resources.
+If the Distributor goes down, even if its worker nodes remain running, they do not receive any messages. It is important to run the Distributor on a cluster that has its its queues configured as clustered resources.
 
 Since the Distributor does not do CPU or memory intensive work, you can often put several Distributor processes on the same clustered server. Be aware that the network IO may end up being the bottleneck for the Distributor, so take into account message sizes and throughput when sizing your infrastructure.

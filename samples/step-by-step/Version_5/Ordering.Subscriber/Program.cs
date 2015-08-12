@@ -15,8 +15,8 @@ class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("To exit press 'Ctrl + C'");
-            Console.ReadLine();
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
         }
     }
 }

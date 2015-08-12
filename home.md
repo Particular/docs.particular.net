@@ -210,19 +210,19 @@
 </div>
 <div class="block middle">
 <div class="left2">
-    <a href="http://www.pluralsight.com/courses/table-of-contents/nservicebus" class="img">
-      <img src="/home/videos-small.png" />
-      <img src="/home/videos-small-hover.png" class="hover"/>
-      <h3>Pluralsight Introduction to NServiceBus</h3>
+    <a href="/platform/" class="img">
+      <img src="/home/platform-small.png" />
+      <img src="/home/platform-small-hover.png" class="hover"/>
+      <h3>Particular Service Platform Overview</h3>
     </a>
-    <p>6hrs with Andreas Öhlund, Lead developer of NServiceBus</p>
+    <p>A short and high level overview of the Platform</p>
     <div style="clear: both"></div>
-    <a href="https://www.packtpub.com/application-development/learning-nservicebus" class="img">
+    <a href="https://www.packtpub.com/application-development/learning-nservicebus-second-edition" class="img">
       <img src="/home/book.png" />
       <img src="/home/book-hover.png" class="hover"/>
-      <h3>Learn NServiceBus</h3>
+      <h3>Learning NServiceBus - Second Edition</h3>
     </a>
-    <p>Book by David Boike. Register and get the first 3 chapters free</p>
+    <p>Book by David Boike on building reliable and scalable software with NServiceBus.</p>
     <div style="clear: both"></div>
     <a href="/platform/extensions.md" class="img">
       <img src="/home/extensions-small.png" />
@@ -278,9 +278,7 @@
     <ul>
       <li><a href="/servicematrix/getting-started-with-servicematrix-2.0.md">Getting Started</a></li>
       <li><a href="/servicematrix/servicematrix-serviceinsight.md">Interaction with ServiceInsight</a></li>
-      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li>      
-    </ul>
-    <a href="/servicematrix/"><h3>Learn more</h3></a><br/>
+      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li></ul><a href="/servicematrix/"><h3>All ServiceMatrix articles</h3></a><br/>
    <div style="clear: both"></div>
   </div>
   <div class="productcolumn block">
@@ -288,9 +286,8 @@
     <ul>
       <li><a href="/serviceinsight/getting-started-overview.md">Getting Started</a></li>
       <li><a href="/serviceinsight/application-invocation.md">Application invocation</a></li>
-      <li><a href="/serviceinsight/how-logging-works.md">Logging in ServiceInsight</a></li>
-    </ul>
-    <a href="/serviceinsight/"><h3>Learn more</h3></a><br/>
+      <li><a href="/serviceinsight/how-logging-works.md">Logging in ServiceInsight</a></li></ul>
+      <a href="/serviceinsight/"><h3>All ServiceInsight articles</h3></a><br/>
     <div style="clear: both"></div>
   </div>
   <div class="productcolumn last block">
@@ -298,25 +295,24 @@
     <ul>
       <li><a href="/servicepulse/intro-endpoints-heartbeats.md">Monitoring Endpoints</a></li>
       <li><a href="/servicepulse/intro-failed-messages.md">Handling Failed Messages</a></li>
-      <li><a href="/servicepulse/intro-endpoints-custom-checks.md">Introduction to Custom Checks</a></li>
-    </ul>
-    <a href="/servicepulse/"><h3>Learn more</h3></a><br/>
+      <li><a href="/servicepulse/intro-endpoints-custom-checks.md">Introduction to Custom Checks</a></li></ul>
+      <a href="/servicepulse/"><h3>All ServicePulse articles</h3></a><br/>
     <div style="clear: both"></div>
   </div>
 </div>
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceMatrix/releases"><img src="/home/release-notes.png" /> Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceMatrix/releases"><img src="/home/release-notes.png" />All Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.png" /> Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.png" />Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn last">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><img src="/home/release-notes.png" /> Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServicePulse/releases"><img src="/home/release-notes.png" />Release notes</a></span>
   </div>
 </div>
 <div style="clear: both; padding-top: 35px"></div>

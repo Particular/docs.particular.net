@@ -3,8 +3,12 @@ title: Azure Transports
 summary: Azure transports enable Azure Storage Queues and Azure Service Bus as underlying NServiceBus transports, in cloud-hosting and hybrid scenarios.
 tags:
 - Cloud
+- On-Premise
 - Azure
 - Transports
+- Azure Service Bus
+- Azure Storage Queues
+- Configuration
 redirects:
  - nservicebus/windows-azure-transport
 ---
@@ -40,8 +44,8 @@ The Azure transport for NServiceBus are available from nuget. You can download t
 
 The Azure transport for NServiceBus and its samples require the following:
 
--   [NServiceBus V4.0 or later](http://particular.net/downloads)
-    -   Note that Azure transport for NServiceBus is supported by NServiceBus V3 and later. It is, however, recommended that you use it with NServiceBus V4, and the samples require NServiceBus V4.
+-   [NServiceBus version 4.0 or later](http://particular.net/downloads)
+    -   Note that Azure transport for NServiceBus is supported by NServiceBus version 3 and later. It is, however, recommended that you use it with NServiceBus version 4, and the samples require NServiceBus version 4.
 
 -   [Microsoft Azure SDK version 2.0](http://azure.microsoft.com/en-us/downloads/)
 

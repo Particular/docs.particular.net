@@ -1,8 +1,13 @@
 ﻿using NServiceBus;
 
 #region DefineNSBMessage
-public class MyMessage : IMessage
+
+namespace MyNamespace
 {
-    public string SomeProperty { get; set; }
+    public class MyMessage : IMessage
+    {
+        public string SomeProperty { get; set; }
+    }
 }
+
 #endregion

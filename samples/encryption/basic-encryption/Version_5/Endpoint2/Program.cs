@@ -12,7 +12,7 @@ class Program
         using (Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press any key to exit");
-            Console.ReadLine();
+            Console.ReadKey();
         }
     }
 }

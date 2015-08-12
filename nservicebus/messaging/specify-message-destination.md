@@ -68,7 +68,7 @@ To register a specific type in an assembly:
 
 ### Conventions
 
-Note that any types resolved as message from the above process are then further filtered by passing them through the [Message conventions](/nservicebus/messaging/messages-events-commands.md#conventions).
+Note that any types resolved as message from the above process are then further filtered by passing them through the [Message conventions](/nservicebus/messaging/messages-events-commands.md#defining-messages-conventions).
 
 ## Configuring Endpoint Mapping
 

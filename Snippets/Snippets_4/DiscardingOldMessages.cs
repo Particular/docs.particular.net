@@ -13,7 +13,7 @@
 
         public void Simple()
         {
-            #region DiscardingOldMessagesWithFluent
+            #region DiscardingOldMessagesWithCode
 
             Configure configure = Configure.With()
                 .DefiningTimeToBeReceivedAs(type =>

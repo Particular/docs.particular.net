@@ -12,7 +12,7 @@ related:
 
 Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out your existing message processing by adding more workers on different machines.
 
-Scaling out workers does not require code changes. It requires a few configuration changes in the `app.config` file, to make your worker point to the distributor and simply use the `NServiceBus.Worker` profile at the command line when the endpoint starts up.
+Scaling out workers does not require code changes. It requires a few configuration changes in the `app.config` file, to make your worker point to the distributor and use the `NServiceBus.Worker` profile at the command line when the endpoint starts up.
 
 Run the `ScaleOut` sample in Visual Studio. The sample starts with `Orders.Sender` (an endpoint which simulates message load), Orders.Handler
 (an endpoint which processes the message and configured to the distributor), `Orders.Handler.Worker1` and `Orders.Handler.Worker2`

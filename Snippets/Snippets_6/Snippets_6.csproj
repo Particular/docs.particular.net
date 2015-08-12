@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Snippets6</RootNamespace>
     <AssemblyName>Snippets_6</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,9 +31,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.Callbacks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.6.0.0-unstable0451\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\packages\NServiceBus.Callbacks.1.0.0-unstable0004\lib\net451\NServiceBus.Callbacks.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NServiceBus.6.0.0-unstable0519\lib\net451\NServiceBus.Core.dll</HintPath>
+      <Private>True</Private>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.6.0.0-unstable0519\lib\net451\NServiceBus.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NServiceBus.Host, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NServiceBus.Host.7.0.0-pullrequest0040\lib\net451\NServiceBus.Host.exe</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
@@ -50,6 +61,19 @@
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
+    <Compile Include="Callback\Cancellation\Message.cs" />
+    <Compile Include="Callback\Cancellation\Usage.cs" />
+    <Compile Include="Callback\Enum\Handler.cs" />
+    <Compile Include="Callback\Enum\Message.cs" />
+    <Compile Include="Callback\Enum\Status.cs" />
+    <Compile Include="Callback\Enum\Usage.cs" />
+    <Compile Include="Callback\Int\Handler.cs" />
+    <Compile Include="Callback\Int\Message.cs" />
+    <Compile Include="Callback\Int\Usage.cs" />
+    <Compile Include="Callback\Object\Handler.cs" />
+    <Compile Include="Callback\Object\Message.cs" />
+    <Compile Include="Callback\Object\ResponseMessage.cs" />
+    <Compile Include="Callback\Object\Usage.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
     <Compile Include="Errors\ErrorQueue\Usage.cs" />
@@ -58,6 +82,7 @@
     <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
+    <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Headers\MyMessage.cs" />
     <Compile Include="Headers\ReadHandler.cs" />
     <Compile Include="Headers\MutateOutgoingTransportMessages.cs" />
@@ -67,14 +92,42 @@
     <Compile Include="Headers\WriteHandler.cs" />
     <Compile Include="Headers\SomeOtherMessage.cs" />
     <Compile Include="Headers\StaticHeaders.cs" />
+    <Compile Include="Sagas\FindByExpression\Message1.cs" />
+    <Compile Include="Sagas\FindByExpression\Message2.cs" />
+    <Compile Include="Sagas\FindByExpression\MySaga.cs" />
+    <Compile Include="Sagas\FindByExpression\MySagaData.cs" />
+    <Compile Include="Sagas\FindSagas\MyMessage.cs" />
+    <Compile Include="Sagas\FindSagas\MySagaData.cs" />
+    <Compile Include="Sagas\Reply\AlmostDoneMessage.cs" />
+    <Compile Include="Sagas\Reply\MySaga.cs" />
+    <Compile Include="Sagas\Reply\MySagaData.cs" />
+    <Compile Include="Sagas\Reply\StartMessage.cs" />
+    <Compile Include="Sagas\FindSagas\SagaFinder.cs" />
+    <Compile Include="Sagas\SagaNotFoundHandler.cs" />
+    <Compile Include="Sagas\SimpleSaga\CompleteOrder.cs" />
+    <Compile Include="Sagas\SimpleSaga\OrderSaga.cs" />
+    <Compile Include="Sagas\SimpleSaga\OrderSagaData.cs" />
+    <Compile Include="Sagas\SimpleSaga\StartOrder.cs" />
+    <Compile Include="Sagas\Timeouts\AlmostDoneMessage.cs" />
+    <Compile Include="Sagas\Timeouts\Message1.cs" />
+    <Compile Include="Sagas\Timeouts\Message2.cs" />
+    <Compile Include="Sagas\Timeouts\MyCustomTimeout.cs" />
+    <Compile Include="Sagas\Timeouts\MySaga.cs" />
+    <Compile Include="Sagas\Timeouts\MySagaData.cs" />
+    <Compile Include="Sagas\Timeouts\TiredOfWaitingForMessage2.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="MsmqMessageLabel.cs" />
+    <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
+    <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Audit\App.config" />
     <None Include="Errors\ErrorQueue\configureErrorQueue.config" />
     <None Include="Errors\FirstLevel\flr.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

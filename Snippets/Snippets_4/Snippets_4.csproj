@@ -229,16 +229,33 @@
     <None Include="Transports\RabbitMQ\App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Transports\SqlServer\MultiDb.config" />
     <None Include="Transports\Throughput\InitialThroughput.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Callback\PlaceOrder.cs" />
-    <Compile Include="Callback\PlaceOrderResponse.cs" />
-    <Compile Include="Callback\Status.cs" />
+    <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
+    <Compile Include="Callback\Enum\Message.cs" />
+    <Compile Include="Callback\Enum\Handler.cs" />
+    <Compile Include="Callback\Int\Message.cs" />
+    <Compile Include="Callback\Object\Message.cs" />
+    <Compile Include="Callback\Object\ResponseMessage.cs" />
+    <Compile Include="Callback\Enum\Usage.cs" />
+    <Compile Include="Callback\Enum\Status.cs" />
+    <Compile Include="Callback\Int\Handler.cs" />
+    <Compile Include="Callback\Int\Usage.cs" />
+    <Compile Include="Callback\Object\Handler.cs" />
+    <Compile Include="Callback\Object\Usage.cs" />
+    <Compile Include="Container\Containers_StructureMap.cs" />
+    <Compile Include="Container\Containers_Autofac.cs" />
+    <Compile Include="Container\Containers_CastleWindsor.cs" />
+    <Compile Include="Container\Containers_Ninject.cs" />
+    <Compile Include="Container\Containers_Unity.cs" />
     <Compile Include="Container\Custom\MyCustomObjectBuilder.cs" />
-    <Compile Include="Conventions\ExpressMessages\MyMessage.cs" />
+    <Compile Include="Logging\Log4Net\Usage.cs" />
+    <Compile Include="Logging\ProvideConfiguration.cs" />
+    <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="DataBus\Azure\Usage.cs" />
@@ -270,10 +287,8 @@
     <Compile Include="Logging\UsingLogging.cs" />
     <Compile Include="Pipeline\Abort\Behavior.cs" />
     <Compile Include="Audit\ProvideConfiguration.cs" />
-    <Compile Include="BusExtensionMethodForHandler.cs" />
-    <Compile Include="Callback\Usage.cs" />
     <Compile Include="Container\Custom\Usage.cs" />
-    <Compile Include="Conventions\ExpressMessages\Usage.cs" />
+    <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="EndpointMapping\ProvideConfiguration.cs" />
@@ -299,6 +314,10 @@
     <Compile Include="Pipeline\NewStep\NewPipelineStep.cs" />
     <Compile Include="Pipeline\Replace\ReplacePipelineBehavior.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
+    <Compile Include="Serialization\BsonSerialization.cs" />
+    <Compile Include="Serialization\BinarySerialization.cs" />
+    <Compile Include="Serialization\JsonSerialization.cs" />
+    <Compile Include="UpgradeGuides\4to5\SagaMappingForUpgrade.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
     <Compile Include="Sagas\SimpleSaga\OrderSagaData.cs" />
     <Compile Include="Sagas\SimpleSaga\CompleteOrder.cs" />
@@ -330,7 +349,11 @@
     <Compile Include="UnitTesting\Saga\Tests.cs" />
     <Compile Include="UnitTesting\ServiceLayer\RequestMessage.cs" />
     <Compile Include="UnitTesting\ServiceLayer\ResponseMessage.cs" />
+    <Compile Include="UnitTesting\Unobtrusive.cs" />
+    <Compile Include="UpgradeGuides\4to5\Scheduler.cs" />
+    <Compile Include="UpgradeGuides\4to5\Upgrade.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
+    <Compile Include="XmlSerializationIntegration.cs" />
     <None Include="Encryption\Configuration\encryption.config">
       <SubType>Designer</SubType>
     </None>
@@ -344,37 +367,31 @@
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Errors\SecondLevel\SecondLevelRetries\Usage.cs" />
     <Compile Include="SubscriptionSettings.cs" />
-    <Compile Include="Container\Containers.cs" />
+    <Compile Include="Container\Containers_Spring.cs" />
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="CriticalError.cs" />
     <Compile Include="SendOnly.cs" />
-    <Compile Include="Serialization.cs" />
-    <Compile Include="StaticConfigureEndpoint.cs" />
-    <Compile Include="TransactionConfig.cs" />
+    <Compile Include="Serialization\XmlSerialization.cs" />
     <Compile Include="License.cs" />
-    <Compile Include="DoNotCreateQueues.cs" />
     <Compile Include="DataBus\FileShare\DataBus.cs" />
-    <Compile Include="CustomConfigOverrides.cs" />
     <Compile Include="RavenDB\CustomRavenConfig.cs" />
     <Compile Include="Encryption\Usage.cs" />
-    <Compile Include="PurgeOnStartup.cs" />
-    <Compile Include="InterfaceMessageCreation.cs" />
     <Compile Include="Conventions\Usage.cs" />
-    <Compile Include="Transports\Transports.cs" />
-    <Compile Include="RunCustomAction.cs" />
     <Compile Include="Installers.cs" />
-    <Compile Include="StartupAction.cs" />
-    <Compile Include="Sagas\SagaMapping.cs" />
-    <Compile Include="Persistence\Persistence.cs" />
-    <Compile Include="Scheduling\Scheduler.cs" />
     <Compile Include="UnitTesting\AdditionalServices\Tests.cs" />
     <Compile Include="UnitTesting\ServiceLayer\Tests.cs" />
     <Compile Include="UnitTesting\HeaderManipulation\Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Errors\SecondLevel\app.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Logging\OverrideInAppConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="SCClusterAppSettings.xml">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>

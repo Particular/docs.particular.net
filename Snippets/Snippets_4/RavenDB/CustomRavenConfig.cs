@@ -8,11 +8,6 @@ namespace Snippets4.RavenDB
     {
         public void Simple()
         {
-            #region CustomRavenConfig
-            Configure.With()
-                .RavenPersistence("http://localhost:8080", "MyDatabase");
-            #endregion
-
             #region OldRavenDBPersistenceInitialization
 
             Configure.With()

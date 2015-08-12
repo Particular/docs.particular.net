@@ -16,38 +16,39 @@ Concurrent access to saga instances is divided into two scenarios;
 
 Let's look at both scenarios in detail and see your options.
 
+
 ## Concurrent access to non-existing saga instances
 
 Sagas are started by the message types you handle as `IAmStartedByMessages<T>`. If more than one are processed concurrently and are mapped to the same saga instance there is a risk that more than one thread tries to create a new saga instance.
 
 In this case only one thread is allowed to commit. The others roll back and the built-in retries in NServiceBus kick in. On the next retry, the saga instance is found, the race condition is solved, and that saga instance is updated instead. Of course this can result in concurrency problems but they are solved, as mentioned below.
 
-NServiceBus solves this by requiring you to create a unique constraint in your database for the property on which you are correlating.
+NServiceBus solves this by automatically creating a unique constraint in your database for the property on which you are correlating. With this constraint in place, only one thread is allowed to create a new saga instance.
 
-In NServiceBus V2.X you had to create the constraint yourself but V3.X has the [Unique] attribute. When you put that attribute on one of your saga data properties, NServiceBus creates the constraint for you. This works for both the NHibernate and the RavenDB saga persister.
+NOTE: In NServiceBus version 2 you had to create the constraint yourself in the selected data store. Version 3 to 5 provided a `[Unique]` attribute. When you put that attribute on one of your saga data properties, NServiceBus creates the constraint for you. This works for both the NHibernate and the RavenDB saga persister.
 
-With this constraint in place, only one thread is allowed to create a new saga instance.
 
 ## Concurrent access to existing saga instances
 
 This works predictably due to reliance on the underlying database providing optimistic concurrency support. When more than one thread tries to update the same saga instance, the database detects it and only allows one of them to commit. If this happens the retries will occur and the race condition be solved.
 
-When you use the RavenDB saga persister, you don't have to do anything since the NServiceBus framework (on RavenDB) turns on [UseOptimisticConcurrency](http://ravendb.net/docs/article-page/3.0/csharp/client-api/session/configuration/how-to-enable-optimistic-concurrency).
+When you use the RavenDB saga persister, you don't have to do anything since the NServiceBus framework (on RavenDB) turns on [UseOptimisticConcurrency](http://ravendb.net/search?q=how-to%20enable-optimistic-concurrency).
 
 When running using the NHibernate saga persister, the NServiceBus framework requires you to add a ["Version" property to your saga data](http://ayende.com/blog/3946/nhibernate-mapping-concurrency) so that NHibernate can work its magic.
 
-NServiceBus V4.0 makes this even easier by enabling the optimistic-all option if no Version property is found.
+NServiceBus version 4 makes this even easier by enabling the optimistic-all option if no Version property is found.
 
 Another option is to use a [transaction isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel.aspx) of serializable but that causes [excessive locking](https://msdn.microsoft.com/en-us/library/ms173763.aspx) with considerable performance degradation.
 
 NOTE: "Serializable" is the default isolation level for TransactionScopes.
 
-In NServiceBus V4.0 the default isolation level is
+In NServiceBus version 4 the default isolation level is
 "ReadCommitted", which is a more sensible default.
+
 
 ### High load scenarios
 
-Under extreme high load like batch processing, trying to access the same Saga's data could lead to a situation where after FLR and SLR the messages will end up in the error queue.
+Under extreme high load like batch processing, trying to access the same Saga's data could lead to a situation where messages ends up in the error queue even though you have both first and second level retries enabled.
 
 In that scenario you may need to look at re-designing your process.
 

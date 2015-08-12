@@ -4,5 +4,5 @@ summary: ServicePulse Documentation Table of Contents
 related:
 - servicecontrol/setting-custom-hostname
 - servicecontrol/plugins
-- nservicebus/operations/monitoring-endpoints
+- nservicebus/operations/performance-counters
 ---

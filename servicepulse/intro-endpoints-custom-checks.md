@@ -5,7 +5,6 @@ tags:
 - ServicePulse
 related:
 - samples/custom-checks/monitoring3rdparty
-- servicepulse/how-to-develop-custom-checks
 - servicepulse/how-to-configure-endpoints-for-monitoring
 - servicecontrol/plugins
 ---
@@ -16,9 +15,11 @@ However, an endpoint and its hosting process may be fully functional (in the sen
 
 These external conditions and services are specific for each solution and/or endpoint. ServicePulse Custom Checks can be programmed to monitor such failures by developing Custom and Periodic Checks: customized logic that verifies that these conditions are met and that all services your endpoint and solution rely on are functioning as expected, and raises alerts whenever they are not.
 
+
 ### Common Scenarios
 
 While the specific needs and dependencies of solutions and endpoints may vary significantly, there are common scenarios of required external conditions and services.
+
 
 #### Connectivity
 
@@ -34,30 +35,35 @@ It is recommended that you identify and periodically check that the endpoint (an
 * If required by the endpoint, can the endpoint connect to the internet?  
 * If required by the endpoint, can the endpoint connect with the required security settings, credentials, and VPN software?  
 
+
 #### Storage
 
 * When local or remote storage is required by the endpoint, is that storage location available, accessible, and properly configured (security, permissions, quota, etc.)?
 * When local or remote storage is required by the endpoint, is there enough available storage left for required operations? If there is a requirement for a minimum free space available, is that requirement met?
 
+
 #### External Services
 
 * When an endpoint needs to communicate with external services (credit card validation, identity and authentication service, CRM, etc.), is that service available, accessible, and responsive? 
 
+
 ### Custom Checks in ServicePulse
+
 
 #### Custom Check Indicator
 
 The custom check indicator in the ServicePulse dashboard indicates when one or more custom checks fails. The number of failed custom checks is presented on the upper right of the indicator, and a descriptive event is displayed in the Recent Events list.
 
-![Custom Checks](images/custom-checks.jpg)
+![Custom Checks](images/custom-checks.png)
 
 For example, in the image above, the number 4 indicates that there are four failing custom checks. These custom checks may be all located on the same endpoint or on four separate endpoints. Use the Custom Checks details page to drill down into the details of the failures and their location. 
+
 
 #### Custom Checks Details Page
 
 For a detailed display of the currently failed and failing custom checks per endpoint, click the custom checks indicator in the ServicePulse dashboard, or the related link in the navigation bar.
 
-![Custom Checks Details page](images/custom-checks-details.jpg)
+![Custom Checks Details page](images/custom-checks-details.png)
 
 As you can see, there are four failing custom checks located on two endpoints (two failures per endpoint). 
 

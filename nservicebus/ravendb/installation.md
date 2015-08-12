@@ -32,11 +32,11 @@ To use the default storage, ensure you have a RavenDB server running to which yo
 
 \*When a master node is defined, NServiceBus understands that all data will be stored on that designated server  instead. This means that the RavenDB server runs on that remote machine and not the local machine where you run the install.
 
-For instructions on how to administrate and operate a RavenDB server, refer to the [documentation for RavenDB](http://ravendb.net/docs/article-page/2.5/csharp/server/administration).
+For instructions on how to administrate and operate a RavenDB server, refer to the [documentation for RavenDB](http://ravendb.net/search?q=server-administration).
 
 ## Upgrading RavenDB
 
-To upgrade an existing RavenDB installation refer to the [RavenDB website article describing the upgrade process](http://ravendb.net/docs/article-page/2.0/csharp/server/administration/upgrade).
+To upgrade an existing RavenDB installation refer to the [RavenDB website article describing the upgrade process](http://ravendb.net/search?q=server-administration%20upgrade).
 
 Note it is highly recommended that you backup your Raven database prior to upgrading.
 
@@ -44,14 +44,14 @@ Note it is highly recommended that you backup your Raven database prior to upgra
 
 For a more detailed overview over the compatibility to RavenDB see also the [version compatibility](/nservicebus/ravendb/version-compatibility.md) documentation.
 
-[NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) greater or equal V3.0.0 requires RavenDB V3.0 build 3660 or higher build number for version 3.0.
+[NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) greater or equal version 3.0.0 requires RavenDB version 3.0 build 3660 or higher build number for version 3.0.
 
-[NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) smaller than V3.0.0 requires RavenDB v2.5 build 2908 or higher build number for version 2.5.
+[NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB) smaller than version 3.0.0 requires RavenDB version 2.5 build 2908 or higher build number for version 2.5.
 
-NOTE: If you already have RavenDB 2.0 installed from a previous NServiceBus V4.0 or prior version and want to run v2.5, you can uninstall the service by finding the Raven.Server.exe executable on your machine and running it from the command line with /uninstall. [Read this document](uninstalling-v4.md) for full removal instructions. Note that the v2.5 download will be unlicensed, so you will need to either copy the license.xml file from the v2.0 installation folder to the v2.5 installation folder, contact Particular Software and request a v2.5 license file, or use your own license file.  
+NOTE: If you already have RavenDB 2.0 installed from a previous NServiceBus version 4.0 or prior version and want to run version 2.5, you can uninstall the service by finding the Raven.Server.exe executable on your machine and running it from the command line with /uninstall. [Read this document](uninstalling-v4.md) for full removal instructions. Note that the version 2.5 download will be unlicensed, so you will need to either copy the license.xml file from the version 2.0 installation folder to the version 2.5 installation folder, contact Particular Software and request a version 2.5 license file, or use your own license file.  
 
-NServiceBus V4.0 is tested and compatible with RavenDB version 2261 and RavenDB v2.
+NServiceBus version 4.0 is tested and compatible with RavenDB version 2261 and RavenDB version 2.
 
-NServiceBus V3.X is tested and compatible with all RavenDB versions from 616 through 992 and RavenDB v1. We strongly recommend using 992 since it has better support for transaction recovery. Download v992 here: [RavenDB Server - 992](http://hibernatingrhinos.com/builds/ravendb-stable-v1.0/992).
+NServiceBus version 3.X is tested and compatible with all RavenDB versions from version 616 through version 992 and RavenDB version 1. We strongly recommend using version 992 since it has better support for transaction recovery. Download version 992 here: [RavenDB Server - 992](http://hibernatingrhinos.com/builds/ravendb-stable-v1.0/992).
 
-For more information regarding RavenDB compatibility, please refer to [this article](version-compatibility.md) and the [RavenDB website](http://ravendb.net/docs/article-page/2.0/csharp/client-api/backward-compatibility).
+For more information regarding RavenDB compatibility, please refer to [this article](version-compatibility.md) and the [RavenDB website](http://ravendb.net/search?q=client-api%20backward-compatibility).

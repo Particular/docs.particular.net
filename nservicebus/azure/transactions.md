@@ -4,6 +4,10 @@ summary: Understanding what kind of transactions are supported in Azure and how 
 tags: 
 - Azure
 - Cloud
+- Transactions
+- Idempotency
+- DTC
+- Patterns
 redirects:
  - nservicebus/understanding-transactions-in-windows-azure
 ---
@@ -11,6 +15,7 @@ redirects:
 The Azure Platform and NServiceBus make a perfect fit. On the one hand the Azure platform offers the scalable and flexible platform that you are looking for in your designs, and on the other hand NServiceBus makes development on this highly distributed environment a breeze. However, there are a few things to keep in mind when developing for this platform, the most important being the lack of (distributed) transactions. 
 
 To better understand why this feature is lacking, let's examine the implications of these technologies.
+
 
 ## Understanding transactions
 
@@ -29,13 +34,14 @@ For example:
 
 When both the database management system and client are under the same ownership, imagine you just deployed SQL Server to your own virtual machine, so locks are no longer an issue and you can control the lock duration. But even in this case, you need to be careful when it comes to distributed transactions. 
 
+
 ## Understanding distributed transactions and the two-phase commit protocol
 
 When multiple transaction-aware resources are involved in a single transaction, then this transaction automatically promotes to a distributed transaction. That means that handling the unit of work is now performed outside the database system by the so-called Global Transaction Manager, or Distributed Transaction Coordinator (DTC). This coordinator, the DTC service on the machine where the transaction started, communicates with similar services on the machines involved by means of the two-phase commit protocol, called resource managers.
 
 As illustrated in the diagram below, the two-phase commit protocol consists of two phases where the global transaction manager communicates with all other resource managers to coordinate the transaction. During the preparation phase it instructs all resource managers to get ready to commit and when all resource managers approve (or not), it instructs all resource managers again to complete the commit (or rollback).
 
-![Two Phase Commit](two-phase-commit.jpg)
+![Two Phase Commit](two-phase-commit.png)
 
 Note that this protocol requires two communication steps for each resource manager added to the transaction and requires a response from each of them to be able to continue. Both of these conditions are problematic in a huge datacenter such as Azure.
 
@@ -45,6 +51,7 @@ Note that this protocol requires two communication steps for each resource manag
 This is the reason why none of the Azure services supports distributed transactions, and so you are encouraged not to use distributed transactions even if you technically could.
 
 Side note: The .net framework promotes to a distributed transaction rather quickly; for example, two open connections to the same resource (exact same connectionstring), will still promote to a distributed transaction, and there is no option to disable promotion. 
+
 
 ## How to use NServiceBus in this environment
 
@@ -60,6 +67,7 @@ The options:
 * Sagas and compensation logic
 * Routing slips and compensation logic
 
+
 ### Share local transactions
 
 Prevent transaction promotion by reusing a single local transaction. The idea is to inject the outermost local transaction/unit of work, started by the receiving transport, into the rest of the application (like your orm, etc.) so that only a single transaction is used for both receiving and handling a message and its result.
@@ -73,11 +81,12 @@ Prevent transaction promotion by reusing a single local transaction. The idea is
 * You are limited to a single transactional resource for your entire system. The technique can only be applied if your application fits the limits of this transactional resource. As some Azure services throttle quite aggressively, sometimes on behavior of other tenants, capacity planning might become an issue.
 * Must be able and willing to inject the transaction, which may be a challenge when using third-party libraries, for example.
 
+
 ### Atomic operations and transport retries
 
 This technique is used when a resource does not support transactions at all. The idea is that every single operation is 'transactional' by default, in the sense that the operation either succeeds or fails as a single unit. And if you limit yourself to single operations only, you don't need transactions anymore. A unit of work pattern with batching is a single operation as well and can therefore be used to emulate a transaction, but with big restrictions. Azure storage services allow you to group a number of operations into a single batch, to make the set atomic, but only on Azure storage tables and only when the partition key for all operations is exactly the same.
 
-However, regular transactions also imply 'rollback' semantics that will make the receive infrastructure retry the original message again later. Therefore, you need to combine this technique with a transport that supports retry semantics.
+However, regular transactions also imply 'rollback' semantics that will make the receive infrastructure retry the original message again later. You need to combine this technique with a transport that supports retry semantics.
 
 **Advantages**
 
@@ -89,6 +98,7 @@ However, regular transactions also imply 'rollback' semantics that will make the
 * You need to change the way you program your business logic to become atomic; just one insert, update, or delete at a time isn't always easy.
 * You need to change your business logic to become idempotent. As message retry is added to the equation, but outside of the scope of the atomic operation, you need to make sure that the same operation can be repeatedly executed without changing the end result. See 'the need for idempotency' on techniques to achieve this.
 * Retry behavior is typically combined with timeouts that will kick in not only if your operation failed, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel.
+
 
 ### Sagas and compensation logic
 
@@ -104,6 +114,7 @@ Sagas in NServiceBus are a stateful set of message handlers that can be used to 
 * To consider and implement all possible variations and error conditions in a transaction, involves quite a lot of work.
 * To implement effectively, requires a good understanding of the business.
 * If applied in conjunction with atomic operations that cannot be batched, you need to keep in mind that the saga is stateful as well and therefore breaks the atomicity of the operation. This needs to be taken into account when designing the saga. You should never execute operations against a store inside the saga itself, but always use another message handler and a queue in between and cater for idempotency at all levels.
+
 
 ### Routing slips and compensation logic
 
@@ -136,15 +147,18 @@ Depending on your business needs you can go for one of these:
 * Partner state machines
 * Accept uncertainty
 
+
 ### Message deduplication
 
-This is probably the easiest way to detect if a message has been executed already. You simply store every message that has been processed so far and when a new message comes in, you compare it to the set of already processed messages. If you find it in the list, you have processed it before.
+This is probably the easiest way to detect if a message has been executed already. You store every message that has been processed so far and when a new message comes in, you compare it to the set of already processed messages. If you find it in the list, you have processed it before.
 
 The approach has obvious downsides as well. As every message needs to be stored and searched for, it can reduce message throughput because of the lookup requirement, potentially causing contention on the message store as well at high volumes.
+
 
 ### Natural idempotency
 
 Many operations can be designed in a naturally idempotent way. `TurnOntheLights` is by default an idempotent operation; it will have the same effect no matter if the lights were on or off to begin with and no matter how often you execute it. `FlipTheLightSwitch` however is not naturally idempotent; the results may vary on the start condition and the number of times you execute it. Try to make use of natural idempotency as much as possible.
+
 
 ### Entities and messages with version information
 
@@ -152,13 +166,16 @@ Another technique is to add versioning information to your entities (timestamp o
 
 The downside of this approach is that the version of the entity can change for different commands, and may therefore cause unexpected outcomes when unrelated commands arrive in a different order than logically sent.
 
+
 ### Partner state machines
 
 A better approach is to organize the state inside an entity on a per partner basis, as a miniature state machine. Ultimately the only non-idempotent messages occur when one entity issues a command to another, and if you follow the `one master` rule, there should only be one such logical endpoint sending that command. Therefore if you organize your state internally in the entity according to that relationship, and keep track of the progression of that relationship as a state machine, it's impossible to have versioning conflicts.
 
+
 ### Side effect checks
 
 Arguably a dangerous approach, but often very useful in the real world, is to check for indirect side effects of a command to determine if it needs to be processed. When `TheFireIsHot` there is no need to `TurnOnTheFire` anymore.
+
 
 ### Accept uncertainty
 

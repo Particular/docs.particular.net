@@ -35,6 +35,7 @@ public static DateTime ToUtcDateTime(string wireFormattedString)
 
 
 ## Serialization Headers
+
 This set of headers contains information to control how messages are [de-serialized](/nservicebus/serialization/) by the receiving endpoint.
 
  * `NServiceBus.ContentType`: The type of serialization used for the message. For example ` text/xml` or `text/json`. The `NServiceBus.ContentType` header was added in version 4.0. In some cases it may be useful to use the `NServiceBus.Version` header to determine when to use the `NServiceBus.ContentType` header. 
@@ -45,7 +46,7 @@ This set of headers contains information to control how messages are [de-seriali
 
 Several headers are used to enable messaging interaction patters
 
- * `NServiceBus.MessageId`: A unique id for the current message.
+ * `NServiceBus.MessageId`: A unique id for the current message. Note that the value used for an outgoing message can be controled by the endpoint, using an `IMutateOutgoingTransportMessages`. 
  * `NServiceBus.CorrelationId`: A string used to [correlate](./message-correlation.md) reply messages to their corresponding request message. 
  * `NServiceBus.ConversationId`: The conversation that this message is part of
  * `NServiceBus.RelatedTo`: The `MessageId` that caused this message to be sent
@@ -58,13 +59,13 @@ Several headers are used to enable messaging interaction patters
  * `NServiceBus.ReplyToAddress`: The queue address that instructs downstream handlers or sagas where to send to when doing a Reply or Return.
 
 
-### Send Headers
+## Send Headers
 
 When a message is sent the headers will be as follows:
 
 <!-- import HeaderWriterSend -->
 
-The above example headers are for a Send and hence the MessageIntent header is `Send`. If this was a Publish the MessageIntent header would be `Publish`.
+The above example headers are for a Send and hence the `MessageIntent` header is `Send`. If this was a Publish the `MessageIntent` header would be `Publish`.
 
 
 ## Reply Headers
@@ -87,6 +88,12 @@ The headers of reply message will be as follows:
 
 <!-- import HeaderWriterReply_Replying -->
 
+
+## Publish Headers
+
+When a message is published the headers will be as follows:
+
+<!-- import HeaderWriterPublish -->
 
 
 ## Return from a Handler
@@ -132,7 +139,15 @@ A message Reply is performed from a Saga will have the following headers:
 
 ### Example "Replying to a Saga" Headers
 
+
+#### Via calling Bus.Reply
+
 <!-- import HeaderWriterSaga_Replying -->
+
+
+#### Via calling Saga.ReplyToOriginator
+
+<!-- import HeaderWriterSaga_ReplyingToOriginator -->
 
 
 ## Timeout Headers
@@ -180,7 +195,7 @@ Headers used to give visibility into "where", "when" and "by whom" Of a message.
 	 * `$.diagnostics.hostdisplayname`
 	 * `$.diagnostics.hostid` 
 	 * `$.diagnostics.originating.hostid` 
- * `NServiceBus.TimeSent`: The timestamp of when the message was sent. Used by the [Performance Counters](/nservicebus/operations/monitoring-endpoints.md).
+ * `NServiceBus.TimeSent`: The timestamp of when the message was sent. Used by the [Performance Counters](/nservicebus/operations/performance-counters.md).
  * `NServiceBus.OriginatingEndpoint`: The endpoint name where the message was sent from. 
  * `NServiceBus.OriginatingMachine`: The machine name where the message was sent from.
  * `NServiceBus.Version`: The NServiceBus version number.

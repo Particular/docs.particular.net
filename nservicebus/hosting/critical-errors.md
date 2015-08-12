@@ -2,8 +2,10 @@
 title: Critical Errors 
 summary: How to handle critical errors which adversely affect messaging in your endpoint.
 tags:
+- Hosting
 - NServiceBus Host
 - Self Hosting
+- Logging
 ---
 
 For many scenarios NServiceBus has built-in error and exception management, for example message retrying, however certain scenarios are not possible to handle in a graceful way. The reason for this is that NServiceBus does not have enough context to make a sensible decision on how to proceed after these error have occurred. Some of these **Critical Errors** include:
@@ -19,7 +21,7 @@ And hence the default behavior that will be taken in any kind of self hosting sc
 
 <!-- import DefaultCriticalErrorAction -->
 
-NOTE:  In Version 4 and Version 3 the bus stops procssing messages but is not disposed. This means sending of messages is allowed but no processing of messages will occur.
+NOTE:  In Version 4 and Version 3 the bus stops processing messages but is not disposed. This means sending of messages is allowed but no processing of messages will occur.
 
 ### Default action handling in NServiceBus.Host
 

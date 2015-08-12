@@ -58,12 +58,12 @@ This canvas will illustrate the new `SubmitPayment` command along with an undepl
 
 ![Billing and PaymentProcessing Endpoints](images/servicematrix-billingandpaymentprocessing.png)
 
-You created a new `PaymentProcessing` endpoint and a new command message that billing can use to submit payments for processing.  View the code in the `SubmitPaymentHandler` to see that it simply handles the `SubmitPayment` request. This component still needs to be modified to send a response message.  In a real-life scenario, it could invoke a web service that processes credit cards or other payments. This web service would likely return an authorization code that would be need to be packaged in a response message and returned to the requester.  The next step is to create a response.
+You created a new `PaymentProcessing` endpoint and a new command message that billing can use to submit payments for processing.  View the code in the `SubmitPaymentHandler` to see that it handles the `SubmitPayment` request. This component still needs to be modified to send a response message.  In a real-life scenario it could invoke a web service that processes credit cards or other payments. This web service would likely return an authorization code that would be need to be packaged in a response message and returned to the requester.  The next step is to create a response.
  
 
 ## Correlating the Payment Response Using a Saga
 
-To send a response from the `SubmitPaymentHandler` component, select `Reply with Message` from the drop-down menu.
+To send a response from the `SubmitPaymentHandler` component select `Reply with Message` from the drop-down menu.
 
 ![Reply with Message](images/servicematrix-replywithmessage.png)
 

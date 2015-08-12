@@ -7,7 +7,7 @@
     {
         public FromCode()
         {
-            #region EncryptionFromFluentAPI
+            #region EncryptionFromCode
 
             BusConfiguration busConfiguration = new BusConfiguration();
             string encryptionKey = "gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6";

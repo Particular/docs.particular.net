@@ -32,6 +32,8 @@ The other parameters (database and instance name/address) can be changed in code
 
 NOTE: `Queue Schema` parameter can also be used in the connection string provided via code.
 
+NOTE: Starting with `V1.2.3` of the `SQL Server Transport` the `Queue Schema` parameter is supported only when used used in the connection string provided via code or via configuration.
+
 NOTE: Unlike in the SQL Server transport, the connection string configuration API in NServiceBus core favors code over config which means that if you configure connection string both in `app.config` and via the `ConnectionString()` method, the latter will win.
 
 ## Other endpoints

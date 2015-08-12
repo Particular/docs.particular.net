@@ -1,4 +1,6 @@
-﻿namespace Snippets5
+﻿using System;
+
+namespace Snippets5
 {
     using NServiceBus;
 
@@ -17,7 +19,8 @@
             using (IStartableBus bus = Bus.Create(busConfiguration))
             {
                 bus.Start();
-            }
+                Console.ReadKey();
+            } // Leaving this scope will stop the bus and dispose it.
 
             #endregion BusDotCreate
         }
