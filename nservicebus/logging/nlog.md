@@ -28,7 +28,7 @@ This has a dependency on the `NLog` nuget so that will automatically be pulled i
 <!-- import NLogInCode -->
 
 
-### Filtering 
+## Filtering 
 
 If NServiceBus writes a significant amount of information to the log. To limit this information you can use the filtering features of your underlying logging framework. 
 
