@@ -30,7 +30,9 @@ The queue name to forward audit messages to
  
 ### OverrideTimeToBeReceived
 
-By default messages are forwarded to the audit queue with the [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) of the original message. If a different TimeToBeReceived is required it have be achieved by setting OverrideTimeToBeReceived. This setting takes a [TimeSpan](https://msdn.microsoft.com/en-us/library/system.timespan.aspx).
+Version 5 and below will default TimeToBeReceived on the message forwarded to the audit queue to the [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) of the original message. Starting with V6 no TimeToBeReceived will be set by default.
+
+You can force a TimeToBeReceived on audit messages by setting `OverrideTimeToBeReceived` using the configuration syntax below. 
 
 Note that while the phrasing is "forwarding a message" in the implementation it is actually "cloning and sending a new message". This is important when considering TimeToBeReceived since the time taken to receive and process the original message is not part of the TimeToBeReceived of the new audit message. So in effect the audit message receives the full time allotment of whatever TimeToBeReceived is used. 
 
@@ -49,7 +51,7 @@ You can configure the target audit queue using the configuration API.
 
 <!-- import configureAuditUsingXml -->
 
-
+Note: `OverrideTimeToBeReceived` needs to be a valid [TimeSpan](https://msdn.microsoft.com/en-us/library/system.timespan.aspx).
 ### Using IProvideConfiguration
 
 The audit settings can also be configured using code via a  [custom configuration provider](/nservicebus/hosting/custom-configuration-providers.md)
