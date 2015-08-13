@@ -12,7 +12,7 @@ related:
 
 # How to integrate external systems with NServiceBus?
 
-When an NServiceBus endpoint receives messages from external systems such as BizTalk, TIBCO, etc. directly, the message itself might not contain regular all information that NServiceBus provides. That information is necessary for proper serialization of the message, as well as better monitoring and troubleshooting experience.
+When an NServiceBus endpoint receives messages from external systems (such as BizTalk, TIBCO, etc) the message itself might not contain regular all information that NServiceBus provides. That information is necessary for proper serialization of the message, as well as better monitoring and troubleshooting experience.
 
 To get the best use of your tools ensure that the following information is included in the message sent by the third party endpoints. 
 
