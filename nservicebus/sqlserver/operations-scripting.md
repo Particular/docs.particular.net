@@ -3,7 +3,7 @@ title: Scripting SQLServer Transport
 summary: Example code and scripts to facilitate deployment and operational actions against the SQLServer Transport.
 ---
 
-Example code and scripts to facilitate deployment and operational actions against the SQLServer Transport.
+The followings are example codes and scripts to facilitate deployment and operations against the SQLServer Transport.
 
 
 ## Create queues

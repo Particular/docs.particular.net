@@ -12,6 +12,7 @@ The SQL Server transport allows you to select, on per-endpoint basis, where the 
  * different SQL Server instances
 
 The transport will route messages to destination endpoints based on the configuration. If no specific configuration has been provided for a particular destination endpoint, the transport assumes the destination has the same configuration (schema, database and instance name/address) as the sending endpoint. If this assumption turns out to be false (the transport cannot connect to destination queue), an exception is thrown immediately. There is no store-and-forward mechanism on the transport level (and hence -- no dead-letter queue). 
+
 NOTE: If the destination endpoint uses different database or server instance, sending a message to it might cause the transaction to escalate to a distributed transaction. Usually it is not a desired effect and one can use NServiceBus Outbox to avoid it.
 
 ## Current endpoint

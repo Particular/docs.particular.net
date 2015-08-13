@@ -71,6 +71,7 @@ The no transaction mode requires `Transactions.Enabled` to be set to false which
 <!-- import sqlserver-config-no-transactions -->
 
 When in this mode, the receive operation is not wrapped in any transaction so it is executed by the SQL Server in its own implicit transaction.
+
 WARNING: This means that as soon as the `DELETE` operation used for receiving completes, the message is gone and any exception that happens during processing of this message causes it to be permanently lost.
 
 
@@ -85,7 +86,7 @@ In order for callbacks e.g.
 
 <!-- import sqlserver-config-callbacks -->
 
-to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is necessary because callback handlers are stored in-memory in the node that did the send. The reply sent via
+to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is necessary because callback handlers are stored in-memory in the node that did the send. The reply is sent via:
 
 <!-- import sqlserver-config-callbacks-reply -->
 
