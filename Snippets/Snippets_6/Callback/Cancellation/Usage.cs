@@ -19,7 +19,7 @@
             Message message = new Message();
             try
             {
-                int response = await bus.RequestWithTransientlyHandledResponse<int>(message, sendOptions);
+                int response = await bus.Request<int>(message, sendOptions);
             }
             catch (OperationCanceledException ex)
             {

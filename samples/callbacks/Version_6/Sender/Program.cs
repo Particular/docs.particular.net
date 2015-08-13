@@ -51,7 +51,7 @@ class Program
         SendOptions sendOptions = new SendOptions();
         sendOptions.SetDestination("Sample.Callbacks.Receiver");
         EnumMessage message = new EnumMessage();
-        Status status = await bus.RequestWithTransientlyHandledResponse<Status>(message, sendOptions);
+        Status status = await bus.Request<Status>(message, sendOptions);
         Console.WriteLine("Callback received with status:" + status);
 
         #endregion
@@ -67,7 +67,7 @@ class Program
 
         SendOptions sendOptions = new SendOptions();
         sendOptions.SetDestination("Sample.Callbacks.Receiver");
-        int response = await bus.RequestWithTransientlyHandledResponse<int>(message, sendOptions);
+        int response = await bus.Request<int>(message, sendOptions);
         Console.WriteLine("Callback received with response:" + response);
 
         #endregion
@@ -83,7 +83,7 @@ class Program
         SendOptions sendOptions = new SendOptions();
         sendOptions.SetDestination("Sample.Callbacks.Receiver");
 
-        ObjectResponseMessage response = await bus.RequestWithTransientlyHandledResponse<ObjectResponseMessage>(message, sendOptions);
+        ObjectResponseMessage response = await bus.Request<ObjectResponseMessage>(message, sendOptions);
         Console.WriteLine("Callback received with response property value:" + response.Property);
         #endregion
 

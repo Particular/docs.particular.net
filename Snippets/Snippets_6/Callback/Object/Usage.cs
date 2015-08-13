@@ -12,7 +12,7 @@
             #region ObjectCallback
 
             Message message = new Message();
-            ResponseMessage response = await bus.RequestWithTransientlyHandledResponse<ResponseMessage>(message, sendOptions);
+            ResponseMessage response = await bus.Request<ResponseMessage>(message, sendOptions);
             Console.WriteLine("Callback received with response:" + response.Property);
 
             #endregion
