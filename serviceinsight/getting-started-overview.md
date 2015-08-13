@@ -47,8 +47,6 @@ You can use the performance-related information in the message header to sort th
 
 The message timing measurements include the following:
 
-- Critical Time: the end-to-end amount of time that elapsed from when the messages was sent by the sending endpoint, until its processing was completed by the processing endpoint
-- Delivery Time: the amount of time the message spent in transition from the sending to the processing endpoint (including awaiting delivery and processing in the queues)
 - Processing Time: the amount of time it took to actually process the message, within the processing endpoint, by the message processing handler method
 
 Using the messages window column headers you can sort the messages in ascending or descending order (the sorting operation applies on all the relevant messages in the underlying ServiceControl instance, and is not limited to the currently displayed messages).
