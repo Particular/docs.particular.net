@@ -8,7 +8,7 @@ namespace Snippets_Misc.EfEdmx
         {
             #region EntityConnectionCreationAndUsage
 
-            var entityBuilder = new EntityConnectionStringBuilder()
+            var entityBuilder = new EntityConnectionStringBuilder
             {
                 Provider = "System.Data.SqlClient",
                 ProviderConnectionString = "the database connection string",
