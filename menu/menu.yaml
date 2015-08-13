@@ -24,7 +24,7 @@
         - "nservicebus/messaging/non-durable-messaging"
         - "nservicebus/messaging/handling-responses-on-the-client-side"
         - "nservicebus/messaging/message-headers"
-        - "nservicebus/messaging/message-headers-for-third-party-integrations"
+        - "nservicebus/messaging/third-party-integration"
         - "nservicebus/messaging/messages-as-interfaces"
         - "nservicebus/messaging/reply-to-a-message"
         - "nservicebus/messaging/send-a-message"
