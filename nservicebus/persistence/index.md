@@ -36,7 +36,7 @@ A subscription only storage.
 
 NOTE: Storing your subscriptions in MSMQ is not suitable for scenarios where you need to scale the endpoint out. The reason is that the subscription queue cannot be shared among multiple endpoints. 
 
-### [Azure Storage](/nservicebus/azure/azure-storage-persistence)
+### [Azure Storage](/nservicebus/azure/azure-storage-persistence.md)
 
 Uses Azure Tables Storage for storage
 
