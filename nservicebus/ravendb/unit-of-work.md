@@ -6,21 +6,22 @@ redirects:
  - nservicebus/unit-of-work-implementation-for-ravendb
 ---
 
-When using a framework like NServiceBus you usually need to create your own unit of work to avoid repeating code in your message handlers. Following is one approach on how to implement the NServiceBus Unit of Work for RavenDB.
+When using a framework like NServiceBus many times you may need to create your own unit of work to avoid repeating code in your message handlers. Following is one approach on how to implement the NServiceBus Unit of Work for RavenDB.
 
 ## Sharing the session
 
-Share the session between the message handler(s) and the actual unit of work implementation. Do not use thread static, which has issues mentioned by [Andreas Öhlund](http://andreasohlund.net/) in a [blog post](http://andreasohlund.net/2010/03/25/thread-static-caching-in-nservicebus/).
+In order to share the RavenDB session between the message handler(s), it is best to share it through a 'unit of work' implementation. It is recommended NOT to use thread static variables, which are not cleared when the request ends, and may cause various connectivity or corrupted data problems in the next request, for example if another type of message was handled between the handling of two handlers for a subscribed event. 
 
-Instead, beginning with NServiceBus version 3, use the new [support for child containers](/nservicebus/containers/child-containers.md). This means that all dependencies configured as a single call effectively become static within the context of one transport message.
+Instead, beginning with NServiceBus version 3, use the new [support for child containers](/nservicebus/containers/child-containers.md). This means that all dependencies configured as a single call effectively become static within the context of one transport message, and thus can be shared by that message's handlers, but the next message will have cleared and renewed the information.
 
 To resolve a RavenDB document session from the container, add the following configuration (StructureMap is used but any of the other containers except Spring and Unity would work):  
 
 ```C#
+// Note: The 'store' variable's contents will become statically available to message hanlers
+// through injection by the container and the 'Unit of Work' mechanism 
 var store = new DocumentStore {Url = "http://localhost:8080", DefaultDatabase = "MyDatabase"};
 store.Initialize();
  
-//ObjectFactory.Configure(c =>  // objectFactory has been deprecated in structureMap
 Container container = new Container( c => 
                     {
                         c.For<IDocumentStore>().Singleton()
@@ -34,12 +35,7 @@ Container container = new Container( c =>
 configuration.UseContainer<StructureMapBuilder>(c =>
                        c.ExistingContainer(container));
 
-// old version: 
-// Configure.With()
-//            .StructureMapBuilder(ObjectFactory.Container);
-                       
-// rest of contiguration goes here...
-// configuration.UseSerialization<JsonSerializer>(); // default is XmlSerializer...
+// rest of contiguration goes here... for example:
 configuration.UsePersistence<RavenDBPersistence>();
 
 
@@ -47,18 +43,8 @@ configuration.UsePersistence<RavenDBPersistence>();
 
 The above code tells the container to create a new `IDocumentSession` using the specified lambda. The fact that all message processing is done using a child container means that all message handlers processing the message get the same session instance.
 
-If using the NServiceBus host via Nuget, you can add the above code inside the Customize() method in the EnpointConfig. In the case of StructureMap, you'll need get NServiceBus.StructureMap through Nuget, and add at the top of the class:
+If using the NServiceBus host via Nuget, you can add the above code inside the Customize() method in the EnpointConfig. You must use Nuget for the relevant container (i.e. NServiceBus.StructureMap in this example). See the updated sample code for a full implementation. 
 
-```C#
-    using NServiceBus;
-    using NServiceBus.Persistence;
-    using NServiceBus.UnitOfWork;
-    using StructureMap;
-    using Raven.Client.Document;
-    using Raven.Client;
-
-
-```
 
 ***IMPORTANT: When using the Unit-of-Work NServiceBus detects that you are using the RavenDB license for work other than the NServiceBus persistance and requires a separate license.***
 In order to overcome this, either ask for the license from support at Particular, or use without a unit-of-work, as explained at the bottom of this article.
