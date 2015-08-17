@@ -108,8 +108,6 @@
       <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NHibernate.Mapping.Attributes">
-      <HintPath>..\packages\NHibernate.Mapping.Attributes.4.0.0.1\lib\net40\NHibernate.Mapping.Attributes.dll</HintPath>
     <Reference Include="NHibernate.SqlAzure">
       <HintPath>..\packages\NHibernate.SqlAzure.2.1.2\lib\NET45\NHibernate.SqlAzure.dll</HintPath>
     </Reference>
@@ -424,7 +422,6 @@
     <Compile Include="Logging\UsingLogging.cs" />
     <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
-    <Compile Include="NHibernate\NHibernateLoadMappingsFromFileSystem.cs" />
     <Compile Include="NonDurable\DisableDurable.cs" />
     <Compile Include="Outbox\NHibernate\SessionAccess\OrderEntity.cs" />
     <Compile Include="Outbox\NHibernate\SessionAccess\OrderPlaced.cs" />
