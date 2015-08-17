@@ -9,10 +9,12 @@ tags:
 - scale out
 - publish subscribe
 - persistence
-redirects:
+related:
+- samples/web
 ---
 
 Publishing events from a web application is something that is possible with NServiceBus, but should be carefully considered before implemented. This article will describe the guidelines for publishing messages within web applications under different circumstances.
+
 
 ## Why/Why Not?
 
@@ -30,9 +32,11 @@ But, things change:
 * Cloud transports generally have an associated cost per interaction. This means that requiring an unnecessary send before publish costs extra money to operate.
 * In NServiceBus 4.0 and 5.0, the process of creating a send-only endpoint (which is still capable of publishing messages, but does not have an input queue or process incoming messages) was made much easier.
 
+
 ## Publish/Subscribe Mechanics
 
-First it's important to understand how [publish/subscribe](/samples/pubsub/) actually works, consisting of the subscription phase, and then the actual publish operation.
+First it's important to understand how [publish/subscribe](/nservicebus/messaging/publish-subscribe/) actually works, consisting of the subscription phase, and then the actual publish operation.
+
 
 ### Subscription
 
@@ -41,6 +45,7 @@ An endpoint must register its interest in a message by subscribing to a specific
 Some transports ([Azure Service Bus](/nservicebus/azure/azure-servicebus-transport.md), [RabbitMQ](/nservicebus/rabbitmq/configuration-api.md)) support publish/subscribe natively. This means that when an endpoint wants to subcribe to an event, it contacts the broker directly, and the broker keeps track of subscribers for each event.
 
 For transports that lack native pub/sub capabilities ([MSMQ](/nservicebus/msmq/), [SQL](/nservicebus/sqlserver/), [Azure Storage Queues](/nservicebus/azure/azure-storage-queues-transport.md)) NServiceBus will provide you with similar semantics by using storage-driven publishing with message-driven subscriptions. This means that each endpoint is responsible for maintaining its own subscription storage, usually in a database. When an endpoint wants to subscribe to an event, it sends a subscription request message to the owner endpoint, which will update its own subscription storage.
+
 
 ### Publishing
 
@@ -54,6 +59,7 @@ While it is common to think of an event being published *from* a specific locati
 
 In the case of storage-driven transports, however, the "publish from" location actually relates to the input queue that is set up to receive subscription requests and store them in the subscription storage database.
 
+
 ## Load Balancing
 
 Typically, web applications will be scaled out with a network load balancer either to handle large amounts of traffic, or for high availability, or both. This is further complicated by elastic cloud scenarios, where additional instances of a web role can be provisioned and later removed, either manually or automatically, to keep up with a changing amount of load.
@@ -65,6 +71,7 @@ In order to make this work for storage-driven transports (MSMQ, SQL, Azure Stora
 > **Note about Azure Service Bus**: Prior to Version 6.0, the Azure Service Bus transport did not offer native publish/subscribe capability, and used storage-driven publishing instead.
 
 Although we're discussing web applications specifically, it's worth noting that this arrangement is hardly different from scaled-out service endpoints.
+
 
 ## Storage-driven Transport Topology
 
@@ -81,6 +88,7 @@ In this way, the web servers together with the subscription manager endpoint wor
 If the web applications need to also process messages from an input queue (for example, to receive notifications to drop cache entries) then a full `IBus` can be used, but none of the web servers will ever be used as the subscription endpoint for the events published by the web tier.
 
 In an elastic scale scenario, it's important for endpoints to unsubscribe themselves from events they receive when they shut down, since they may be decomissioned never to return.
+
 
 ## Summary
 
