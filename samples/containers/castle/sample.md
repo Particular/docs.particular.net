@@ -5,6 +5,7 @@ tags:
 - Container
 related:
 - nservicebus/containers
+- nservicebus/containers/castlewindsor
 ---
 
 ### Configuring NServiceBus to use the container 
