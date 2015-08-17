@@ -156,31 +156,10 @@
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs">
     </Compile>
-    <Content Include="Content\css\bootstrap-responsive.min.css">
-    </Content>
-    <Content Include="Content\css\bootstrap.min.css">
-    </Content>
-    <Content Include="Content\img\glyphicons-halflings-white.png">
-    </Content>
-    <Content Include="Content\img\glyphicons-halflings.png">
-    </Content>
-    <Content Include="Content\js\angular.min.js">
-    </Content>
-    <Content Include="Content\js\bootstrap.min.js">
-    </Content>
-    <Content Include="Content\js\html5.js">
-    </Content>
-    <Content Include="Content\js\jquery-1.8.3.min.js">
-    </Content>
     <Content Include="Content\js\product.js">
     </Content>
     <Content Include="Global.asax">
     </Content>
-    <Content Include="Content\js\jquery.signalR-2.2.0.js" />
-    <Content Include="Content\js\jquery.signalR-2.2.0.min.js" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -217,14 +196,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\js\jquery.signalR-2.2.0.min.js.map">
-      <DependentUpon>jquery.signalR-2.2.0.min.js</DependentUpon>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-2.1.4.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
