@@ -23,12 +23,14 @@ There are probably even other options but these are the most frequently used.
 NOTE: It is not required to create a custom mapping for all sagas. Look at the samples on how to both load the auto mapped classes and the custom mappings. 
 
 
-See [NHibernate configuration](configuration.md) on how you can pass a configuration object to the NServiceBus NHibernate configuration.
+See [NHibernate configuration](/nservicebus/nhibernate/configuration.md) on how you can pass a configuration object to the NServiceBus NHibernate configuration.
 
 NOTE: When you create a custom mapping then you are responsible for mapping the **primary key** and **unique indexes** correctly.
 
 When using custom mappings you are responsible for creating unique indexes for all mapped saga properties. Especially when using optimistic concurrency, a transaction isolation level different from serializable and allow concurrent processing of messages.
-Not adding a unique contraint can result in duplicate saga entities as the second insert will **not** fail when inserting the same value when multiple messages are processed concurrently referencing the same saga instance.
+
+Not adding a unique constraint can result in duplicate saga entities as the second insert will **not** fail when inserting the same value when multiple messages are processed concurrently referencing the same saga instance.
+
 
 ## Sample prerequisites
 
@@ -67,7 +69,7 @@ If you do not want to embed the `*.hbm.xml` files then you can also load mapping
 
 ## Use Fluent NHibernate
 
-Fluent NHibernate gives you a type-safe mapping approach where the mapping is specified as c# code and not as xml but still seperate from the classes. The benefit is that you get compile time feedback when a mapping is not valid any more when you have breaking changes in your mapping but also that your classes and mappings are not part of the same .net type.
+Fluent NHibernate gives you a type-safe mapping approach where the mapping is specified as c# code and not as xml but still separate from the classes. The benefit is that you get compile time feedback when a mapping is not valid any more when you have breaking changes in your mapping but also that your classes and mappings are not part of the same .net type.
 
 To use it with NServiceBus:
 
@@ -117,7 +119,7 @@ References:
 
 ## Use the Loquacious mapping by code API
 
-The Loquacious api is NHibernate its native mapping by codeability. You declare your mapping in code just like FluentNHibernate but using a different syntax more close to its xml schema. It can help you create a type-safe configuration but you can also create your custom mappings. The benefit is that this api is already available via the NHibernate package so requires no additional downloads.
+The Loquacious api is NHibernate its native mapping by code. You declare your mapping in code just like FluentNHibernate but using a different syntax more close to its xml schema. It can help you create a type-safe configuration but you can also create your custom mappings. The benefit is that this api is already available via the NHibernate package so requires no additional downloads.
 
 To use it:
 
