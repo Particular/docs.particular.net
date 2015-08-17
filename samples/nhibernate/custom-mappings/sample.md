@@ -36,12 +36,7 @@ Not adding a unique constraint can result in duplicate saga entities as the seco
 
 The supplied samples demo the usage of the mentioned customization options. Each project had an automapped `OrderSaga` and a saga with a customized mapping to demonstrate that both work side by side.
 
-The samples rely on SQL LocalDB and need the database `Sample.CustomMappings` to run properly. To create this:
-
-- Open the SQL Server Object Explorer in Visual Studio
-- Add a SQL Server: `(localdb)\v11.0`
-- Open this server, right click `Databases` and select *Add New Database*
-- Enter the name `Sample.CustomMappings` and choose a different location for the files if you desire.
+The samples rely on `.\SQLEXPRESS` and need the database `Sample.CustomMappings` to run properly. To create this:
 
 
 ## Custom .hbm.xml mapping
@@ -139,5 +134,3 @@ References:
 * [NHibernate Loquacious API - Mapping by code](http://fabiomaulo.blogspot.nl/2011/04/nhibernate-32-mapping-by-code.html)
 * [NHibernate Loquacious API - Configuration](http://nhibernate.info/blog/2011/01/21/loquacious-configuration-in-nhibernate-3.html)
 * [NHibernate's mapping-by-code series](http://notherdev.blogspot.nl/2012/02/nhibernates-mapping-by-code-summary.html) (NOtherDev)
-
-
