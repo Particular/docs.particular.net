@@ -27,6 +27,8 @@ In `WebApplication`, open `Global.asax.cs` and look at the code in the `Applicat
 
 <!-- import ApplicationStart --> 
 
+Note that setting the JSonSerializer will change the default behavior of NServiceBus. In order for this to work you must have all your message handling and message sending projects with the same method of serialization. So either set them all to use this serializer, or remove that line of code so they all use the default (XmlSerializer). 
+
 The rest of the code is typical for hosting NServiceBus in your own process. Read more about [the other lines](/nservicebus/hosting/self-hosting.md).
 
 The code holds a reference to the bus, which is used later for sending messages. This isn't the only option available; if the classes for sending messages are managed by Dependency Injection, then they can get a reference to the bus by declaring a dependency on IBus. [See an example](/nservicebus/containers/injecting-ibus.md).
