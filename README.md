@@ -130,6 +130,9 @@ redirects:
 - servicematrix/sm-si
 - servicematrix/debugging-servicematrix
 
+related:
+- samples/azure/shared-host
+
 ---
 
 ```
