@@ -73,7 +73,7 @@
     <Compile Include="StartOrder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app2.config" />
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
