@@ -8,6 +8,9 @@ related:
 - nservicebus/hosting
 ---
 
+See [this article about publishing events from web applications](http://docs.particular.net/nservicebus/hosting/publishing-from-web-applications) for understanding when to use the NServiceBus messaging from a web application. 
+
+
 Run the solution, a new browser window/tab opens, as well as a console application.
 
 Enter the number "1" into the text box in the browser, and click "Go". You should see the result "None" appear, as shown:
