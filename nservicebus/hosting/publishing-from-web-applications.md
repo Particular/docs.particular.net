@@ -89,3 +89,8 @@ It can be useful, at times, to publish events from a web application. Always kee
 * Don't publish from the web tier if an exception before the event is published could lead to data loss.
 * For storage-driven transports, all web application instances must share the same subscription storage.
 * Never use an individual web server name to identify the source of an event being published, which would interfere with effective scale-out.
+
+## Further reading
+* [ASP Web Application](http://docs.particular.net/samples/web/asp-web-application/) - step by step tutorial for creating an NServiceBus enabled web application, with ASP.Net. 
+
+* [Hosting NServiceBus in-process](http://docs.particular.net/nservicebus/hosting/self-hosting) - explanation of the parts needed for creating an NServiceBus enabled web application. (The examples are from an ASP.Net web application with a global.asax file. )
