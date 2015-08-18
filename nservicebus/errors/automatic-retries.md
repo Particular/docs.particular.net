@@ -2,7 +2,7 @@
 title: Automatic Retries
 summary: With retries, the message causing the exception is instantly retried configured number of times before forwarding to the error queue.
 tags:
-- Second Level Retry 
+- Second Level Retry
 - Error Handling
 - Exceptions
 - Automatic retries
@@ -12,12 +12,12 @@ related:
 - samples/faulttolerance
 ---
 
-Sometimes processing of a message can fail. This could be due to a transient problem like a deadlock in the database, in which case retrying the message a few times might overcome this problem. Or, if the problem is more protracted, like a third party web service going down or a database being unavailable, where it might be useful to wait a little longer before retrying the message again. 
+Sometimes processing of a message can fail. This could be due to a transient problem like a deadlock in the database, in which case retrying the message a few times might overcome this problem. Or, if the problem is more protracted, like a third party web service going down or a database being unavailable, where it might be useful to wait a little longer before retrying the message again.
 
-For situations like these, NServiceBus offers two levels of retries: 
+For situations like these, NServiceBus offers two levels of retries:
 
 - First Level Retry(FLR) is for the transient errors where quick successive retries could solve the problem.
-- Second Level Retry(SLR) is when a small delay is needed between retries. 
+- Second Level Retry(SLR) is when a small delay is needed between retries.
 
 NOTE: When a message cannot be deserialized, it will bypass all retry mechanisms both the FLR and SLR and the message will be moved directly to the error queue.
 
@@ -25,6 +25,8 @@ NOTE: When a message cannot be deserialized, it will bypass all retry mechanisms
 ## First Level Retries
 
 NServiceBus automatically retries the message when an exception is thrown during message processing up to five successive times by default. This value can be configured through `app.config` or code.
+
+Note: The configured value describes the minimum number of times a message will be retried. Especially in environments with competing consumers on the same queue there is an increased chance of retrying a failing message more often across the endpoints.
 
 
 ### Configuring FLR using app.config
