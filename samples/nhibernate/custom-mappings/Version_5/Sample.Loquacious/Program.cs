@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Transactions;
 using NHibernate.Cfg;
 using NServiceBus;
 using NServiceBus.Persistence;
@@ -19,7 +18,7 @@ class Program
         nhConfiguration = AddLoquaciousMappings(nhConfiguration);
 
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.CustomMappings");
+        busConfiguration.EndpointName("Samples.CustomNhMappings.Loquacious");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
@@ -29,29 +28,15 @@ class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            using (var tx = new TransactionScope())
+            bus.SendLocal(new StartOrder
             {
-                const int SendsNr = 15;
+                OrderId = "123"
+            });
 
-                for (int x = 0; x < SendsNr; x++)
-                    bus.SendLocal(new StartOrder
-                    {
-                        OrderId = "123"
-                    });
-
-                for (int x = 0; x < SendsNr; x++)
-                    bus.SendLocal(new StartOrder
-                    {
-                        OrderId = "456"
-                    });
-
-                bus.SendLocal(new CompleteOrder
-                {
-                    OrderId = "123"
-                });
-
-                tx.Complete();
-            }
+            bus.SendLocal(new CompleteOrder
+            {
+                OrderId = "123"
+            });
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
@@ -59,14 +44,11 @@ class Program
     }
 
     #region LoquaciousConfiguration
-    private static Configuration AddLoquaciousMappings(Configuration nhConfiguration)
+    static Configuration AddLoquaciousMappings(Configuration nhConfiguration)
     {
-
         var mapper = new NHibernate.Mapping.ByCode.ModelMapper();
         mapper.AddMappings(typeof(OrderSagaDataLoquacious).Assembly.GetTypes());
-
         nhConfiguration.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
-
         return nhConfiguration;
     }
     #endregion

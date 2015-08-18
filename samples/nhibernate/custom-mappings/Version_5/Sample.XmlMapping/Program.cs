@@ -20,7 +20,7 @@ class Program
         AddMappingsFromFilesystem(nhConfiguration);
 
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.CustomMappings");
+        busConfiguration.EndpointName("Samples.CustomNhMappings.XmlMapping");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
@@ -33,21 +33,6 @@ class Program
             bus.SendLocal(new StartOrder
             {
                 OrderId = "123"
-            });
-
-            bus.SendLocal(new StartOrder
-            {
-                OrderId = "123"
-            });
-
-            bus.SendLocal(new StartOrder
-            {
-                OrderId = "123"
-            });
-
-            bus.SendLocal(new StartOrder
-            {
-                OrderId = "456"
             });
 
             bus.SendLocal(new CompleteOrder

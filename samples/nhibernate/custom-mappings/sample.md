@@ -32,11 +32,11 @@ When using custom mappings you are responsible for creating unique indexes for a
 Not adding a unique constraint can result in duplicate saga entities as the second insert will **not** fail when inserting the same value when multiple messages are processed concurrently referencing the same saga instance.
 
 
-## Sample prerequisites
+## Prerequisites
 
 The supplied samples demo the usage of the mentioned customization options. Each project had an automapped `OrderSaga` and a saga with a customized mapping to demonstrate that both work side by side.
 
-The samples rely on `.\SQLEXPRESS` and need the database `Sample.CustomMappings` to run properly. To create this:
+The samples rely on `.\SQLEXPRESS` and need the database `Samples.CustomNhMappings` to run properly. 
 
 
 ## Custom .hbm.xml mapping
@@ -47,7 +47,7 @@ Visit the official NHibernate websites for more information.
 
 References:
 
-* [Your first NHibernate based application](http://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html) (nhibernate.info)
+* [Your first NHibernate based application](http://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html)
 
 
 ### Mappings as embedded resources
@@ -64,7 +64,7 @@ If you do not want to embed the `*.hbm.xml` files then you can also load mapping
 
 ## Use Fluent NHibernate
 
-Fluent NHibernate gives you a type-safe mapping approach where the mapping is specified as c# code and not as xml but still separate from the classes. The benefit is that you get compile time feedback when a mapping is not valid any more when you have breaking changes in your mapping but also that your classes and mappings are not part of the same .net type.
+[Fluent NHibernate](http://www.fluentnhibernate.org) gives you a type-safe mapping approach where the mapping is specified as c# code and not as xml but still separate from the classes. The benefit is that you get compile time feedback when a mapping is not valid any more when you have breaking changes in your mapping but also that your classes and mappings are not part of the same .net type.
 
 To use it with NServiceBus:
 
@@ -79,17 +79,10 @@ Example of a possible implementation:
 
 <!-- import FluentConfiguration -->
 
-References:
-
-* [Fluent NHibernate - Website](http://www.fluentnhibernate.org)
-* [Fluent NHibernate - Nuget package](http://www.nuget.org/packages/FluentNHibernate/)
-* [Fluent NHibernate - GitHub Repository](https://github.com/jagregory/fluent-nhibernate)
-* [Fluent NHibernate - Getting Started](https://github.com/jagregory/fluent-nhibernate/wiki/Getting-started)
-
 
 ## Use NHibernate.Mapping.Attributes
 
-With NHibernate.Mapping.Attributes you can decorate your saga data classes. This keeps your classes, mapping and schema data very close. Your saga types have a dependency on the NHibernate.Mapping.Attributes assembly.
+With [NHibernate.Mapping.Attributes](http://nhibernate.info/doc/nhibernate-reference/mapping-attributes.html) you can decorate your saga data classes. This keeps your classes, mapping and schema data very close. Your saga types have a dependency on the NHibernate.Mapping.Attributes assembly.
 
 NHibernate.Mapping.Attributes needs to know what types to scan to generate an NHibernate mapping configuration that gets passed to your NHibernate configuration.
 
@@ -106,15 +99,9 @@ Initialize the NHibernate attribute based mappings:
 Take a look at the NHibernate mapping attributes documentation for an example.
 
 
-References:
-* [NHibernate.Mapping.Attributes - Documentation](http://nhibernate.info/doc/nhibernate-reference/mapping-attributes.html)
-* [NHibernate.Mapping.Attributes - GitHub repository](https://github.com/nhibernate/NHibernate.Mapping.Attributes)
-* [NHibernate.Mapping.Attributes - NuGet package](http://www.nuget.org/packages/NHibernate.Mapping.Attributes/)
-
-
 ## Use the Loquacious mapping by code API
 
-The Loquacious api is NHibernate its native mapping by code. You declare your mapping in code just like FluentNHibernate but using a different syntax more close to its xml schema. It can help you create a type-safe configuration but you can also create your custom mappings. The benefit is that this api is already available via the NHibernate package so requires no additional downloads.
+The [NHibernate Loquacious api](http://nhibernate.info/doc/howto/mapping/a-fully-working-skeleton-for-sexy-loquacious-nh.html) is its native mapping by code. You declare your mapping in code just like FluentNHibernate but using a different syntax more close to its xml schema. It can help you create a type-safe configuration but you can also create your custom mappings. The benefit is that this api is already available via the NHibernate package so requires no additional downloads.
 
 To use it:
 
@@ -126,11 +113,3 @@ To use it:
 Initialize NHibernate Loquacious configuration
 
 <!-- import LoquaciousConfiguration -->
-
-
-References:
-
-* [NHibernate Loquacious API - Howto](http://nhibernate.info/doc/howto/mapping/a-fully-working-skeleton-for-sexy-loquacious-nh.html)
-* [NHibernate Loquacious API - Mapping by code](http://fabiomaulo.blogspot.nl/2011/04/nhibernate-32-mapping-by-code.html)
-* [NHibernate Loquacious API - Configuration](http://nhibernate.info/blog/2011/01/21/loquacious-configuration-in-nhibernate-3.html)
-* [NHibernate's mapping-by-code series](http://notherdev.blogspot.nl/2012/02/nhibernates-mapping-by-code-summary.html) (NOtherDev)

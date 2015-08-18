@@ -1,12 +1,10 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Saga;
 
 public class OrderSagaFluent : Saga<OrderSagaDataFluent>,
     IAmStartedByMessages<StartOrder>,
-    IHandleMessages<CompleteOrder>,
-    IHandleTimeouts<CancelOrder>
+    IHandleMessages<CompleteOrder>
 {
     static ILog logger = LogManager.GetLogger(typeof(OrderSagaFluent));
 
@@ -22,7 +20,6 @@ public class OrderSagaFluent : Saga<OrderSagaDataFluent>,
     {
         Data.OrderId = message.OrderId;
         logger.Info(string.Format("Saga with OrderId {0} received StartOrder with OrderId {1} (Saga version: {2})", Data.OrderId, message.OrderId, Data.Version));
-        RequestTimeout<CancelOrder>(TimeSpan.FromSeconds(10));
 
         if (Data.From == null) Data.From = new OrderSagaDataFluent.Location();
         if (Data.To == null) Data.To = new OrderSagaDataFluent.Location();
@@ -40,10 +37,5 @@ public class OrderSagaFluent : Saga<OrderSagaDataFluent>,
         MarkAsComplete();
     }
 
-    public void Timeout(CancelOrder state)
-    {
-        logger.Info(string.Format("Complete not received soon enough OrderId {0}", Data.OrderId));
-        MarkAsComplete();
-    }
 
 }

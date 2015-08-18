@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Transactions;
 using NHibernate.Cfg;
 using NHibernate.Mapping.Attributes;
 using NServiceBus;
@@ -20,7 +19,7 @@ class Program
         AddAttributeMappings(nhConfiguration);
 
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.CustomMappings");
+        busConfiguration.EndpointName("Samples.CustomNhMappings.Attributes");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
@@ -30,29 +29,15 @@ class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            using (var tx = new TransactionScope())
+            bus.SendLocal(new StartOrder
             {
-                const int SendsNr = 15;
+                OrderId = "123"
+            });
 
-                for (int x = 0; x < SendsNr; x++)
-                    bus.SendLocal(new StartOrder
-                    {
-                        OrderId = "123"
-                    });
-
-                for (int x = 0; x < SendsNr; x++)
-                    bus.SendLocal(new StartOrder
-                    {
-                        OrderId = "456"
-                    });
-
-                bus.SendLocal(new CompleteOrder
-                {
-                    OrderId = "123"
-                });
-
-                tx.Complete();
-            }
+            bus.SendLocal(new CompleteOrder
+            {
+                OrderId = "123"
+            });
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
@@ -60,14 +45,19 @@ class Program
     }
 
     #region AttributesConfiguration
+
     static void AddAttributeMappings(Configuration nhConfiguration)
     {
-        var attributesSerializer = new HbmSerializer { Validate = true };
+        var hbmSerializer = new HbmSerializer
+        {
+            Validate = true
+        };
 
-        using (var stream = attributesSerializer.Serialize(typeof(OrderSagaData).Assembly))
+        using (var stream = hbmSerializer.Serialize(typeof(Program).Assembly))
         {
             nhConfiguration.AddInputStream(stream);
         }
     }
+
     #endregion
 }

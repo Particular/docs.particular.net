@@ -1,5 +1,4 @@
 ﻿using System;
-using FluentNHibernate.Cfg;
 using NHibernate.Cfg;
 using NServiceBus;
 using NServiceBus.Persistence;
@@ -16,10 +15,8 @@ class Program
         nhConfiguration.SetProperty(Environment.Dialect, "NHibernate.Dialect.MsSql2008Dialect");
         nhConfiguration.SetProperty(Environment.ConnectionStringName, "NServiceBus/Persistence");
 
-        nhConfiguration = AddFluentMappings(nhConfiguration);
-
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.CustomNhMappings.Loquacious");
+        busConfiguration.EndpointName("Samples.CustomNhMappings.Default");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 
@@ -44,18 +41,4 @@ class Program
         }
     }
 
-    #region FluentConfiguration
-
-    static Configuration AddFluentMappings(Configuration nhConfiguration)
-    {
-        return Fluently
-            .Configure(nhConfiguration)
-            .Mappings(cfg =>
-            {
-                cfg.FluentMappings.AddFromAssemblyOf<OrderSagaDataFluent>();
-            })
-            .BuildConfiguration();
-    }
-
-    #endregion
 }

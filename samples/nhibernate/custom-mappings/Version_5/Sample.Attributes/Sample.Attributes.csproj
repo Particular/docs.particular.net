@@ -62,19 +62,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CancelOrder.cs" />
-    <Compile Include="CompleteOrder.cs" />
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="OrderSagaAttributes.cs" />
-    <Compile Include="OrderSaga.cs" />
     <Compile Include="OrderSagaDataAttributes.cs" />
-    <Compile Include="OrderSagaData.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="StartOrder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{5544a0e8-00cd-4d09-aeba-fe37c8ff3b2d}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
