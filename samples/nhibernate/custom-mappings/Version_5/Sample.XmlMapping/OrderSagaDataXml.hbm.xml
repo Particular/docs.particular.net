@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Sample">
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Sample.XmlMapping">
 
   <class name="OrderSagaDataXml">
     <id name="Id" type="Guid" column="Id">
