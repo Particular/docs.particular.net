@@ -34,8 +34,6 @@ Not adding a unique constraint can result in duplicate saga entities as the seco
 
 ## Prerequisites
 
-The supplied samples demo the usage of the mentioned customization options. Each project had an automapped `OrderSaga` and a saga with a customized mapping to demonstrate that both work side by side.
-
 The samples rely on `.\SQLEXPRESS` and need the database `Samples.CustomNhMappings` to run properly. 
 
 
@@ -43,28 +41,26 @@ The samples rely on `.\SQLEXPRESS` and need the database `Samples.CustomNhMappin
 
 Using NHibernate mapping files is the native way to customize your mappings. The mapping files are xml files that are either embedded as a resource in your assembly or available on the file system.
 
-Visit the official NHibernate websites for more information.
-
-References:
-
-* [Your first NHibernate based application](http://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html)
+See [Your first NHibernate based application](http://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html) for more information.
 
 
-### Mappings as embedded resources
+### The Mapping
 
-It is not required to create your own NHibernate configuration object and pass it to the NServiceBus NHibernate configuration when using embedded resources. All other custom mapping options require the NHibernate configuration to be customized and passed to NServiceBus.
+The `.hbm.xml` contents is as follows
+
+<!-- import hmlxml -->
 
 
-### Read mappings from file system instead of embedded resources
+### Reading the mapping mappings 
 
-If you do not want to embed the `*.hbm.xml` files then you can also load mappings from the file system. Create a custom NHibernate configuration object and use the following example to add mappings from the file system.
+Create a custom NHibernate configuration object and use the following example to add mappings from the file system.
 
 <!-- import AddMappingsFromFilesystem -->
 
 
 ## Use Fluent NHibernate
 
-[Fluent NHibernate](http://www.fluentnhibernate.org) gives you a type-safe mapping approach where the mapping is specified as c# code and not as xml but still separate from the classes. The benefit is that you get compile time feedback when a mapping is not valid any more when you have breaking changes in your mapping but also that your classes and mappings are not part of the same .net type.
+[Fluent NHibernate](http://www.fluentnhibernate.org) gives you a type-safe mapping approach where the mapping is specified as code (is not as `.hbm.xml`) but still separate from the classes. The benefit is that you get compile time feedback when a mapping is not valid any more when you have breaking changes in your mapping but also that your classes and mappings are not part of the same .net type.
 
 To use it with NServiceBus:
 
@@ -95,8 +91,6 @@ NHibernate.Mapping.Attributes needs to know what types to scan to generate an NH
 Initialize the NHibernate attribute based mappings:
 
 <!-- import AttributesConfiguration -->
-
-Take a look at the NHibernate mapping attributes documentation for an example.
 
 
 ## Use the Loquacious mapping by code API

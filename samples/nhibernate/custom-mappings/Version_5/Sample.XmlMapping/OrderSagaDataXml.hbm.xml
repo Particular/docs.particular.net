@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!--startcode hmlxml-->
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" assembly="Sample.XmlMapping">
 
   <class name="OrderSagaDataXml">
@@ -26,3 +27,4 @@
   </class>
 
 </hibernate-mapping>
+<!--endcode-->
