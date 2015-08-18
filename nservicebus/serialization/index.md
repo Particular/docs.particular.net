@@ -7,20 +7,20 @@ NServiceBus takes instances of .NET objects (messages, events and commands) and 
 
 ### Supported Serializers
 - [XmlSerializer](xml.md)
-- [JsonSerializer](json.md)
+- [JsonSerializer/BsonSerializer](json.md)
 - [BinarySerializer](binary.md)
 
-### Using an existing Serializer
+### Using an existing serializer
 
-The default Serializer used in NServiceBus projects is the custom [XmlSerializer](xml.md). 
- 
+The default serializer used in NServiceBus projects is the custom [XmlSerializer](xml.md).
+
 The pages dedicated to particular Serializers show how to configure the endpoint to use each of them. Unless explicitly configured otherwise, NServiceBus will use XmlSerializer for serializing and deserializing all messages.
 
-Note that the same Serializer must be used by the sending endpoint to serialize messages and by receiving endpoint to deserialize them. 
+NOTE: The same Serializer must be used by the sending endpoint to serialize messages and by receiving endpoint to deserialize them, unless additional deserializers are specified.
 
 ### Specifying additional deserializers
 
-When registering a default serializer to be used when serializing messages, additional deserializers may be specified, in order to support deserializing incoming messages, sent from endpoints using different serialization.
+Starting from NServiceBus v6 it's possible to use different serialization capabilities between sending and receiving endpoints. This requires specifying additional deserializers, to process  incoming messages.
 
 <!-- import AdditionalDeserializers -->
 
