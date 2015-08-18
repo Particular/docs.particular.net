@@ -1,5 +1,6 @@
 ﻿namespace Snippets5.Container
 {
+    using Castle.MicroKernel.Registration;
     using Castle.Windsor;
     using NServiceBus;
 
@@ -17,13 +18,14 @@
 
         public void Existing()
         {
-            IWindsorContainer windsorContainer = null;
 
             #region CastleWindsor_Existing
 
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(windsorContainer));
+            WindsorContainer container = new WindsorContainer();
+            container.Register(Component.For<MyService>().Instance(new MyService()));
 
+            busConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
             #endregion
         }
 

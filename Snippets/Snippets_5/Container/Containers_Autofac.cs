@@ -17,12 +17,13 @@
 
         public void Existing()
         {
-            ILifetimeScope lifetimeScope = null;
-
             #region Autofac_Existing
 
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(lifetimeScope));
+            ContainerBuilder builder = new ContainerBuilder();
+            builder.RegisterInstance(new MyService());
+            IContainer container = builder.Build();
+            busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
 
             #endregion
         }

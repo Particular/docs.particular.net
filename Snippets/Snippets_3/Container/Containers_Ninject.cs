@@ -2,8 +2,6 @@
 {
     using Ninject;
     using NServiceBus;
-    using NServiceBus.ObjectBuilder.Common.Config;
-    using NServiceBus.ObjectBuilder.Ninject;
 
     public class Containers_Ninject
     {
@@ -11,20 +9,21 @@
         {
             #region Ninject
 
-            Configure.With()
-                .UsingContainer<NinjectObjectBuilder>();
+            Configure configure = Configure.With();
+            configure.NinjectBuilder();
 
             #endregion
         }
 
         public void Existing()
         {
-            IKernel ninjectKernel = null;
-
             #region Ninject_Existing
-
-            Configure.With()
-                .UsingContainer(new NinjectObjectBuilder(ninjectKernel));
+            Configure configure = Configure.With();
+            configure.Log4Net();
+            configure.DefineEndpointName("Samples.Ninject");
+            StandardKernel kernel = new StandardKernel();
+            kernel.Bind<MyService>().ToConstant(new MyService());
+            configure.NinjectBuilder(kernel);
 
             #endregion
         }

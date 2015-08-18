@@ -1,6 +1,7 @@
 ﻿namespace Snippets5.Container
 {
     using NServiceBus;
+    using StructureMap;
 
     public class Containers_StructureMap
     {
@@ -16,12 +17,12 @@
 
         public void Existing()
         {
-            StructureMap.IContainer structureMapContainer = null;
-
             #region StructureMap_Existing
 
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(structureMapContainer));
+
+            Container container = new Container(x => x.For<MyService>().Use(new MyService()));
+            busConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
 
             #endregion
         }

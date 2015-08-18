@@ -17,12 +17,12 @@
 
         public void Existing()
         {
-            UnityContainer unityContainer = null;
-
             #region Unity_Existing
 
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(unityContainer));
+            UnityContainer container = new UnityContainer();
+            container.RegisterInstance(new MyService());
+            busConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
 
             #endregion
         }

@@ -18,12 +18,12 @@
 
         public void Existing()
         {
-            IKernel ninjectKernel = null;
-
             #region Ninject_Existing
 
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(ninjectKernel));
+            StandardKernel kernel = new StandardKernel();
+            kernel.Bind<MyService>().ToConstant(new MyService());
+            busConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
 
             #endregion
         }

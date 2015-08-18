@@ -1,9 +1,8 @@
 ﻿namespace Snippets4.Container
 {
+    using Castle.MicroKernel.Registration;
     using Castle.Windsor;
     using NServiceBus;
-    using NServiceBus.ObjectBuilder.CastleWindsor;
-    using NServiceBus.ObjectBuilder.Common.Config;
 
     public class Containers_CastleWindsor
     {
@@ -11,20 +10,20 @@
         {
             #region CastleWindsor
 
-            Configure.With()
-                .UsingContainer<WindsorObjectBuilder>();
+            Configure configure = Configure.With();
+            configure.CastleWindsorBuilder();
 
             #endregion
         }
 
         public void Existing()
         {
-            IWindsorContainer windsorContainer = null;
 
             #region CastleWindsor_Existing
-
-            Configure.With()
-                .UsingContainer(new WindsorObjectBuilder(windsorContainer));
+            Configure configure = Configure.With();
+            WindsorContainer container = new WindsorContainer();
+            container.Register(Component.For<MyService>().Instance(new MyService()));
+            configure.CastleWindsorBuilder(container);
 
             #endregion
         }

@@ -2,8 +2,6 @@
 {
     using Microsoft.Practices.Unity;
     using NServiceBus;
-    using NServiceBus.ObjectBuilder.Common.Config;
-    using NServiceBus.ObjectBuilder.Unity;
 
     public class Containers_Unity
     {
@@ -11,20 +9,21 @@
         {
             #region Unity
 
-            Configure.With()
-                .UsingContainer<UnityObjectBuilder>();
+            Configure configure = Configure.With();
+            configure.UnityBuilder();
 
             #endregion
         }
 
         public void Existing()
         {
-            UnityContainer unityContainer = null;
 
             #region Unity_Existing
 
-            Configure.With()
-                .UsingContainer(new UnityObjectBuilder(unityContainer));
+            Configure configure = Configure.With();
+            UnityContainer container = new UnityContainer();
+            container.RegisterInstance(new MyService());
+            configure.UnityBuilder(container);
 
             #endregion
         }

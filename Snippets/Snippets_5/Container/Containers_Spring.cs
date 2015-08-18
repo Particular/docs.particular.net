@@ -17,12 +17,13 @@
 
         public void Existing()
         {
-            GenericApplicationContext springApplicationContext = null;
 
             #region Spring_Existing
 
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(springApplicationContext));
+            GenericApplicationContext applicationContext = new GenericApplicationContext();
+            applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
+            busConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));
 
             #endregion
         }

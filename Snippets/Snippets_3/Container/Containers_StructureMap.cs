@@ -1,8 +1,6 @@
 ﻿namespace Snippets3.Container
 {
     using NServiceBus;
-    using NServiceBus.ObjectBuilder.Common.Config;
-    using NServiceBus.ObjectBuilder.StructureMap;
     using StructureMap;
 
     public class Containers_StructureMap
@@ -11,20 +9,19 @@
         {
             #region StructureMap
 
-            Configure.With()
-                .UsingContainer<StructureMapObjectBuilder>();
+            Configure configure = Configure.With();
+            configure.StructureMapBuilder();
 
             #endregion
         }
 
         public void Existing()
         {
-            IContainer structureMapContainer = null;
-
             #region StructureMap_Existing
 
-            Configure.With()
-                .UsingContainer(new StructureMapObjectBuilder(structureMapContainer));
+            Configure configure = Configure.With();
+            Container container = new Container(x => x.For<MyService>().Use(new MyService()));
+            configure.StructureMapBuilder(container);
 
             #endregion
         }

@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Container
+﻿namespace Snippets3.Container
 {
     using Autofac;
     using NServiceBus;
