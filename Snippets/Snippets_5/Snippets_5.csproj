@@ -179,9 +179,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NServiceBus.CastleWindsor.5.0.0\lib\net45\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.ObjectBuilder.Ninject, Version=5.1.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.ObjectBuilder.Ninject">
       <HintPath>..\packages\NServiceBus.Ninject.5.1.0\lib\net45\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Spring">
       <HintPath>..\packages\NServiceBus.Spring.6.0.0\lib\net45\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
