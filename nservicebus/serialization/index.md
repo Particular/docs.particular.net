@@ -5,14 +5,20 @@ summary: How instances of .net classes are serialized onto the transport.
 
 NServiceBus takes instances of .net objects (messages, events and commands) and then sens/receives them over a specified [Transport](/nservicebus/transports/). As part of this the object need to be serialized and deserialized. To achieve this NServiceBus uses "Serializers".
 
-The default serializer is XmlSerializer. In order to use another one configure the endpoint accordingly, e.g.
-```
-configuration.UseSerialization<JsonSerializer>();
-```
+## Supported Serializers
 
-Note that the same serializer must be used on both sending and receiving endpoints, otherwise the receiving endpoint won't be able to deserialize the message correctly.
-
+- [XmlSerializer](xml.md)
+- [JsonSerializer](json.md)
+- [BinarySerializer](binary.md)
 
 ### Community run Serializers
 
 There are several community run Serializers that can be seen on the full list of [Extensions](/platform/extensions.md#serializers).
+
+## Using an existing Serializer
+
+The default Serializer used in NServiceBus projects is the custom [XmlSerializer](xml.md). 
+ 
+The pages dedicated to particular Serializers show how to configure the endpoint to use each of them. Unless explicitly configured otherwise, NServiceBus will use XmlSerializer for serializing and deserializing all messages.
+
+Note that the same Serializer must be used by the sending endpoint to serialize messages and by receiving endpoint to deserialize them. 
