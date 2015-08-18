@@ -26,6 +26,8 @@ NOTE: When a message cannot be deserialized, it will bypass all retry mechanisms
 
 NServiceBus automatically retries the message when an exception is thrown during message processing up to five successive times by default. This value can be configured through `app.config` or code.
 
+Note: The configured value describes the minimum number of times a message will be retried. Especially in environments with competing consumers on the same queue there is an increased chance of retrying a failing message more often across the endpoints.
+
 
 ### Configuring FLR using app.config
 
