@@ -4,7 +4,7 @@ summary: 'Helps you to visualize and debug Sagas with ServiceInsight.'
 tags:
 - ServiceControl
 related:
-- serviceinsight/getting-started-overview#the-saga-view
+- serviceinsight/getting-started-overview
 ---
 
 DANGER: **For Development only**. This plugin will result in a significant increase in the load placed on ServiceControl. As such it should not be used in production.
