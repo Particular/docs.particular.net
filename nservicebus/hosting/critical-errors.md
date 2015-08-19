@@ -56,7 +56,7 @@ Next you define what action you want to take when this scenario occurs:
 The default action should be overridden whenever that default does not meet your specific hosting requirements. For example 
 
 - If you are using NServiceBus Host, and you wish to take a custom action before the endpoint process is killed.
-- If you are self hosting you can call shut down the process, via `Environment.FailFast`, and re-start the process one the root cause has been diagnosed. 
+- If you are self hosting you can call shut down the process, via `Environment.FailFast`, and re-start the process once the root cause has been diagnosed. 
 
 NOTE: If you choose to not kill the process and just dispose the bus, please be aware that any `bus.Send` operations will result in `ObjectDisposedException` being thrown.
 
