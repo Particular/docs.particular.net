@@ -1,7 +1,6 @@
 ﻿using System;
 using NServiceBus;
 using Orders.Commands;
-using Orders.Messages;
 
 class Program
 {
@@ -41,8 +40,7 @@ class Program
         {
             OrderId = Guid.NewGuid()
         };
-        bus.Send("Orders.Handler", placeOrder)
-            .Register(completionResult => { Console.WriteLine("Received [{0}] Return code for Placing Order.", Enum.GetName(typeof(PlaceOrderStatus), completionResult.ErrorCode)); });
+        bus.Send(placeOrder);
         Console.WriteLine("Sent PlacedOrder command with order id [{0}].", placeOrder.OrderId);
 
         #endregion

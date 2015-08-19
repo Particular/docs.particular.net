@@ -121,15 +121,22 @@ Read about [profiles](/nservicebus/hosting/nservicebus-host/profiles.md) too.
 
 Nothing has to be done to the Sender; NServiceBus does all the distribution work, leaving the sender agnostic to the fact that it is sending messages to a bunch of workers. As far as the sender is concerned, it sends the message to a single endpoint. It is configured to send a `PlaceOrder` command to the `Orders.Handler` endpoint. If the Distributor runs on a different machine than the Sender, then use the `queue@machine` notation.
 
+
+#### The sending code
+
 <!-- import sender -->
 
+
+#### The event handling code 
+
+<!-- import sender-event-handler -->
+
+
+## What is going on here?
 
 Once Orders.Handler is set up as a distributor and the `Orders.Handler` starts as a worker on another machine, the following diagram demonstrates the flow of messages and the queues that exist on both machines:
 
 ![Scale out diagram with one worker on another machine](scaleout-one-worker.png "Scale out diagram with one worker on another machine")
-
-
-## What is going on here?
 
 As can be seen from the diagram, nothing changes for the `Orders.Sender`. It still sends messages to the `Orders.Handler` endpoint.
 

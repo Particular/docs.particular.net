@@ -1,22 +1,15 @@
-﻿
-
-namespace Orders.Handler
+﻿namespace Orders.Handler
 {
     using NServiceBus;
     using System;
     using Orders.Commands;
     using Orders.Events;
-    using Orders.Messages;
 
     public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
     {
         public IBus Bus { get; set; }
         public void Handle(PlaceOrder placeOrder)
         {
-            Console.Out.WriteLine("Received ProcessOrder command, order Id: " + placeOrder.OrderId);
-            Bus.Return(PlaceOrderStatus.Ok);
-            Console.Out.WriteLine("Sent Ok status for orderId [{0}].", placeOrder.OrderId);
-
             // Process Order...
             Console.Out.WriteLine("Processing received order....");
             
