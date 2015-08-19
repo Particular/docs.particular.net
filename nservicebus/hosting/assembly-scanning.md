@@ -51,10 +51,6 @@ From version 6, default behaviour is not to scan nested folders for assemblies. 
 
 ## Options deprecated from version 6 and later
 
-Use the `AllAssemblies` helper class to easily create a list of assemblies either by creating a blacklist using the method Except or a whitelist by using Matching or a combination of both.
-
-NOTE: The `Except`, `Matching` and `And` methods behave like `string.StartsWith(string)`.
-
 ### Including assemblies:
 
 <!-- import ScanningListOfAssemblies -->
@@ -67,6 +63,9 @@ NOTE: The `Except`, `Matching` and `And` methods behave like `string.StartsWith(
 
 <!-- import ScanningIncludeByPattern -->
 
+`AllAssemblies` helper class can be used to create a list of assemblies either by creating a blacklist using the method Except or a whitelist by using Matching or a combination of both.
+
+NOTE: The `Except`, `Matching` and `And` methods behave like `string.StartsWith(string)`.
 
 ### Mixing includes and excludes:
 
