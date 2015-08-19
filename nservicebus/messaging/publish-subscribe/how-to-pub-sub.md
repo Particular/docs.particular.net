@@ -8,62 +8,47 @@ redirects:
 
 ## How to publish a message?
 
-```C#
-var message = new MyMessage
-              { 
-                 Prop1 = v1; 
-                 Prop2 = v2; 
-              };
-Bus.Publish(message);
-```
 
- OR instantiate and publish all at once:
+<!-- import InstancePublish -->
 
-```C#
-Bus.Publish<IMyMessage>( m => { 
-                                m.Prop1 = v1; 
-                                m.Prop2 = v2; 
-                              });
-```
+If you are using interfaces to define your event contracts you need to set the message properties by passing in a lambda. NServiceBus will then generate a proxy and set those properties. 
 
-## How to subscribe to a message?
+<!-- import InterfacePublish -->
 
-To manually subscribe and unsubscribe from a message:
+## Automatic subscriptions
 
-```C#
-Bus.Subscribe<MyMessage>();    
-Bus.Unsubscribe<MyMessage>();
-```
+NServiceBus will automatically setup subscriptions for you. Messages matching the following criteria will be auto subscribed at startup.
 
-To subscribe to a message, you must have a `UnicastBusConfig` entry, as follows:
+1. Defined as a event either using `IEvent` or by the `.DefiningEventsAs` convention.
+2. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given message
+3. Has routing specified. Note that this only applies to transports that don't support Pub/Sub natively. Examples are Msmq, Sqlserver and Azure Storage Queues. See below for more details.
 
-```XML
-<UnicastBusConfig>
-  <MessageEndpointMappings>
-    <!-- To register all message types defined in an assembly: -->
-    <add Assembly="assembly" Endpoint="queue@machinename" />
-    
-    <!-- To register all message types defined in an assembly with a specific namespace (it does not include sub namespaces): -->
-    <add Assembly="assembly" Namespace="namespace" Endpoint="queue@machinename" />
-    
-    <!-- To register a specific type in an assembly: -->
-    <add Assembly="assembly" Type="type fullname" Endpoint="queue@machinename" />
-  </MessageEndpointMappings>
-</UnicastBusConfig>
-```
+### Routing configuration needed
 
-And a `UnicastBusConfig` config section.  
+If your selected transport doesn't natively supports pub/sub you need to specify the address of the publisher for each event. This is done using the message endpoint mappings as shown below.
 
-```XML
-<configuration>
-  <configSections>
-    <section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core" />
-```
+<!-- import endpoint-mapping-appconfig -->
 
-When subscribing to a message, you will probably have a [message handler](/nservicebus/handlers/) for it. If you do, and have the `UnicastBusConfig` section mentioned above, you do not have to write `Bus.Subscribe`, as NServiceBus invokes it automatically for you.
+#### Exclude sagas from auto subscribe
 
-## Disabling auto-subscription
+Before Version 4 events that where only handled by sagas where not subscribed to by default. You can opt-in to the old behavior using:
+
+<!-- import DoNotAutoSubscribeSagas -->
+
+#### Auto subscribe to plain messages
+
+Before Version 4 all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention where automatically subscribed. You can opt-in to the old behavior using:
+
+<!-- import AutoSubscribePlainMessages -->
+
+### Disabling auto-subscription
 
 You can also choose to **not** have the infrastructure automatically subscribe using the configuration API
 
 <!-- import DisableAutoSubscribe -->
+
+## How to manually subscribe to a message?
+
+To manually subscribe and unsubscribe from a message:
+
+<!-- import ExplicitSubscribe -->
