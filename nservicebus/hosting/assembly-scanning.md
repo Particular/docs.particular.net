@@ -55,11 +55,11 @@ From version 6, default behaviour is not to scan nested folders for assemblies. 
 
 <!-- import ScanningListOfAssemblies -->
 
-### Control the exact types that NServiceBus uses:
+### Controling the exact types that NServiceBus uses:
 
 <!-- import ScanningListOfTypes -->
 
-### Include assemblies using pattern matching:
+### Including assemblies using pattern matching:
 
 <!-- import ScanningIncludeByPattern -->
 
@@ -70,7 +70,6 @@ NOTE: The `Except`, `Matching` and `And` methods behave like `string.StartsWith(
 ### Mixing includes and excludes:
 
 <!-- import ScanningMixingIncludeAndExclude -->
-
 
 ### Specifying the directory to scan:
 
