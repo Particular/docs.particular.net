@@ -2,8 +2,10 @@
 
 namespace Orders.Commands
 {
+    using System;
+
     public class PlaceOrder:IMessage
     {
-        public string OrderId { get; set; }
+        public Guid OrderId { get; set; }
     }
 }

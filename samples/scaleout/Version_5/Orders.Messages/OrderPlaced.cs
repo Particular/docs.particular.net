@@ -2,8 +2,10 @@
 
 namespace Orders.Events
 {
+    using System;
+
     public class OrderPlaced :IEvent
     {
-        public string OrderId { get; set; }
+        public Guid OrderId { get; set; }
     }
 }

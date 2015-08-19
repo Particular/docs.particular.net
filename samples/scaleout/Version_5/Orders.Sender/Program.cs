@@ -18,7 +18,6 @@ class Program
         {
             Console.WriteLine("Press 'Enter' to send a message.");
             Console.WriteLine("Press any other key to exit.");
-            int counter = 0;
             while (true)
             {
                 ConsoleKeyInfo key = Console.ReadKey();
@@ -28,20 +27,24 @@ class Program
                 {
                     return;
                 }
-                counter++;
-                PlaceOrder placeOrder = new PlaceOrder
-                {
-                    OrderId = "order" + counter
-                };
-                bus.Send(placeOrder).Register(PlaceOrderReturnCodeHandler);
-                Console.WriteLine("Sent PlacedOrder command with order id [{0}].", placeOrder.OrderId);
+
+                SendMessage(bus);
             }
         }
     }
 
-    static void PlaceOrderReturnCodeHandler(CompletionResult completionResult)
+    static void SendMessage(IBus bus)
     {
-        Console.WriteLine("Received [{0}] Return code for Placing Order.", Enum.GetName(typeof(PlaceOrderStatus), completionResult.ErrorCode));
-    }
+        #region sender
 
+        PlaceOrder placeOrder = new PlaceOrder
+        {
+            OrderId = Guid.NewGuid()
+        };
+        bus.Send("Orders.Handler", placeOrder)
+            .Register(completionResult => { Console.WriteLine("Received [{0}] Return code for Placing Order.", Enum.GetName(typeof(PlaceOrderStatus), completionResult.ErrorCode)); });
+        Console.WriteLine("Sent PlacedOrder command with order id [{0}].", placeOrder.OrderId);
+
+        #endregion
+    }
 }

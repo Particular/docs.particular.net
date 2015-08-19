@@ -28,6 +28,7 @@ NOTE: Either the distributor or one of the workers could process the messages fr
 
 Now let's look at the code.
 
+
 ## Code walk-through
 
 There are five projects in the solution.
@@ -37,6 +38,7 @@ There are five projects in the solution.
 -   `Orders.Messages` contains the `PlaceOrder` command, the error codes enumeration, and the `OrderPlaced` event.
 -   `Orders.Handler.Worker1` contains the exact same code as the Orders.Handler. The only change is in the `app.config` and is setup to run using the Worker profile.
 -   `Orders.Handler.Worker2` contains the exact same code as the Orders.Handler. The only change is in the `app.config` and is setup to run using the Worker profile.
+
 
 ## Scaling out
 
@@ -57,9 +59,11 @@ Otherwise, you can start Orders.Handler from the command line, as follows:
 
 ### Profiles:
 
+
 #### NServiceBus.Master
 
 Turns on the Distributor within the Orders.Handler endpoint and starts a worker on that same endpoint.
+
 
 ### NServiceBus.Integration
 
@@ -68,6 +72,7 @@ The production and integration profiles configure NServiceBus to use RavenDB for
 If running from Visual Studio, when configuring the `NServiceBus.Production` profile, NServiceBus creates the queues for you. If running from the command line, use `NServiceBus.Integration` to create the queues.
 
 For the Master node to function, the machine needs to be accessible to RavenDB from where the Worker is deployed. By default, RavenDB accepts calls on port 8080, so you can check access to this machine by getting to the RavenDB management console on `http://<ip-of-masternode>:8080`. If the management page does not load, open the port in your incoming firewall.
+
 
 ### 2. Setting up an additional Worker
 
@@ -111,22 +116,18 @@ By specifying the `NServiceBus.Integration` and `NServiceBus.Worker` profiles al
 
 Read about [profiles](/nservicebus/hosting/nservicebus-host/profiles.md) too.
 
+
 ### 3. Setting up the Sender
 
 Nothing has to be done to the Sender; NServiceBus does all the distribution work, leaving the sender agnostic to the fact that it is sending messages to a bunch of workers. As far as the sender is concerned, it sends the message to a single endpoint. It is configured to send a `PlaceOrder` command to the `Orders.Handler` endpoint. If the Distributor runs on a different machine than the Sender, then use the `queue@machine` notation.
 
+<!-- import sender -->
 
-```XML
-<UnicastBusConfig>
-    <MessageEndpointMappings>
-      <add Messages="Orders.Messages" Endpoint="Orders.Handler" />
-    </MessageEndpointMappings>
-</UnicastBusConfig>
-```
 
 Once Orders.Handler is set up as a distributor and the `Orders.Handler` starts as a worker on another machine, the following diagram demonstrates the flow of messages and the queues that exist on both machines:
 
 ![Scale out diagram with one worker on another machine](scaleout-one-worker.png "Scale out diagram with one worker on another machine")
+
 
 ## What is going on here?
 
@@ -138,6 +139,7 @@ As can be seen from the diagram, nothing changes for the `Orders.Sender`. It sti
 
 When the workers finish handling the `ProcessOrder` command, they re-send "I'm ready to process messages" to the Distributor control endpoint: Orders.Handler.Control. The workers share the subscription storage so they can both publish the `OrderPlaces` event. NServiceBus is responsible for informing the workers to which database to connect. The database should be accessible to the workers.
 
+
 ## Worker at work
  
 The following snapshot shows the Worker console window at work (the worker is running from a different machine than the Distributor).
@@ -145,4 +147,3 @@ The following snapshot shows the Worker console window at work (the worker is ru
 ![The Worker console window while running on another machine than the distributor](scaleoutworkeronremotemachine.png)
 
 You can see from the Worker console window (above) that the worker receives the Process Order (order2) and replies with 'OK', processes the order, and publishes an Order Placed event.
- 
