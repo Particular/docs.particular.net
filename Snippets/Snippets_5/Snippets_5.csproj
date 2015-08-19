@@ -331,6 +331,12 @@
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Azure\Transports\AzureServiceBus\ConnectionString.config" />
+    <None Include="Azure\Transports\AzureServiceBus\QueueConfig.config" />
+    <Content Include="Azure\Transports\AzureStorageQueues\ConnectionString.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Azure\Transports\AzureStorageQueues\QueueConfig.config.xml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

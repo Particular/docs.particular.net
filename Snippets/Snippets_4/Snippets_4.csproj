@@ -223,6 +223,12 @@
     <Content Include="Monitoring\app.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Azure\Transports\AzureServiceBus\ConnectionString.config.xml" />
+    <Content Include="Azure\Transports\AzureServiceBus\QueueConfig.config.xml" />
+    <Content Include="Azure\Transports\AzureStorageQueues\ConnectionString.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Azure\Transports\AzureStorageQueues\QueueConfig.config.xml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
