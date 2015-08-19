@@ -5,13 +5,18 @@ using NServiceBus;
 
 public class RequestMessageHandler : IHandleMessages<Request>
 {
-    public IBus Bus { get; set; }
+    IBus bus;
+
+    public RequestMessageHandler(IBus bus)
+    {
+        this.bus = bus;
+    }
 
     public void Handle(Request message)
     {
         Console.WriteLine("Request received with id:" + message.RequestId);
 
-        Bus.Reply(new Response
+        bus.Reply(new Response
                         {
                             ResponseId = message.RequestId
                         });

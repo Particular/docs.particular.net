@@ -5,7 +5,12 @@ using NServiceBus;
 // Bootstrapper that facilitates testing by publishing an event every time Enter is pressed
 public class PublishEvent : IWantToRunWhenBusStartsAndStops
 {
-    public IBus Bus { get; set; }
+    IBus bus;
+
+    public PublishEvent(IBus bus)
+    {
+        this.bus = bus;
+    }
 
     public void Start()
     {
@@ -14,7 +19,7 @@ public class PublishEvent : IWantToRunWhenBusStartsAndStops
         while (Console.ReadLine() != null)
         {
             Console.WriteLine("Event published");
-            Bus.Publish(new SomethingHappened());
+            bus.Publish(new SomethingHappened());
         }
         #endregion
     }
