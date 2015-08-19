@@ -328,9 +328,9 @@
     <Content Include="Audit\Audit.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Encryption\Configuration\encryption.config">
+    <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
-    </None>
+    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
