@@ -150,25 +150,31 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Audit\App.config" />
-    <None Include="Encryption\Configuration\encryption.config">
+    <Content Include="Audit\Audit.config.xml">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="EndpointMapping\ConfigureEndpointMapping.config" />
-    <None Include="Errors\ErrorQueue\ConfigureErrorQueue.config" />
-    <None Include="Errors\FirstLevel\flr.config" />
-    <None Include="Monitoring\app.config" />
+    </Content>
+    <Content Include="Encryption\Configuration\encryption.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="EndpointMapping\EndpointMapping.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
+    <Content Include="Errors\FirstLevel\flr.config.xml" />
+    <Content Include="Monitoring\ServiceControlEvents.config.xml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Persistence\NHibernate\nhibernate.config">
+    <Content Include="Persistence\NHibernate\nhibernate.config.xml">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Transports\Throughput\InitialThroughput.config">
+    </Content>
+    <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Transports\Msmq\MsmqTransportConfig.config" />
-    <None Include="Transports\Msmq\MessageQueueConfiguration.config" />
+    </Content>
+    <Content Include="Transports\Msmq\MsmqTransportConfig.config.xml" />
+    <Content Include="Transports\Msmq\MessageQueueConfiguration.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Callback\Enum\Handler.cs" />
@@ -269,7 +275,7 @@
     <Compile Include="UnitTesting\Unobtrusive.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Errors\SecondLevel\app.config.xml">
+    <Content Include="Errors\SecondLevel\slr.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">

@@ -120,9 +120,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Audit\App.config" />
-    <None Include="Errors\ErrorQueue\configureErrorQueue.config" />
-    <None Include="Errors\FirstLevel\flr.config" />
+    <Content Include="Audit\Audit.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Errors\ErrorQueue\configureErrorQueue.config.xml" />
+    <Content Include="Errors\FirstLevel\flr.config.xml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

@@ -5,8 +5,7 @@
     <section name="MsmqMessageQueueConfig" 
              type="NServiceBus.Config.MsmqMessageQueueConfig, NServiceBus.Core" />
   </configSections>
-  <MsmqMessageQueueConfig 
-    UseDeadLetterQueue="true" 
-    UseJournalQueue="false" />
+  <MsmqMessageQueueConfig UseDeadLetterQueue="true" 
+                          UseJournalQueue="false" />
 </configuration>
 <!--endcode -->

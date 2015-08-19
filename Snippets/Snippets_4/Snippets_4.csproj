@@ -210,29 +210,43 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Audit\App.config" />
-    <None Include="EndpointMapping\ConfigureEndpointMapping.config" />
-    <None Include="Errors\ErrorQueue\configureErrorQueue.config" />
-    <None Include="Errors\FirstLevel\flr.config" />
-    <None Include="Monitoring\app.config" />
+    <Content Include="Audit\audit.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="EndpointMapping\EndpointMapping.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
+    <Content Include="Errors\FirstLevel\flr.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Monitoring\app.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Azure\Persistence\AzureStorage\AzurePersistence.config" />
-    <None Include="Persistence\NHibernate\nhibernate.config">
+    <Content Include="Azure\Persistence\AzureStorage\AzurePersistence.config.xml">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Transports\Msmq\TransportConfig.config" />
-    <None Include="Transports\Msmq\MessageQueueConfiguration.config">
+    </Content>
+    <Content Include="Persistence\NHibernate\nhibernate.config.xml">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Transports\RabbitMQ\App.config">
+    </Content>
+    <Content Include="Transports\Msmq\TransportConfig.config.xml">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Transports\SqlServer\MultiDb.config" />
-    <None Include="Transports\Throughput\InitialThroughput.config">
+    </Content>
+    <Content Include="Transports\Msmq\MessageQueue.config.xml">
       <SubType>Designer</SubType>
-    </None>
+    </Content>
+    <Content Include="Transports\RabbitMQ\connection.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Transports\SqlServer\MultiDb.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Transports\Throughput\InitialThroughput.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
@@ -355,9 +369,9 @@
     <Compile Include="UpgradeGuides\4to5\Upgrade.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
     <Compile Include="XmlSerializationIntegration.cs" />
-    <None Include="Encryption\Configuration\encryption.config">
+    <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
-    </None>
+    </Content>
     <Compile Include="Distributor\Usage.cs" />
     <Compile Include="Gateway\Usage.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
@@ -386,7 +400,7 @@
     <Compile Include="UnitTesting\HeaderManipulation\Tests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Errors\SecondLevel\app.config.xml">
+    <Content Include="Errors\SecondLevel\SecondLevelReties.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">

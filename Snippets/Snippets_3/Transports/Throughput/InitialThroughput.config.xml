@@ -2,12 +2,9 @@
 <configuration>
   <!-- startcode ThroughputFromAppConfig-->
   <configSections>
-    <section
-      name="MsmqTransportConfig"
-      type="NServiceBus.Config.TransportConfig, NServiceBus.Core"/>
+    <section name="MsmqTransportConfig"
+             type="NServiceBus.Config.TransportConfig, NServiceBus.Core"/>
   </configSections>
-
-  <MsmqTransportConfig 
-    NumberOfWorkerThreads="5" />
+  <MsmqTransportConfig NumberOfWorkerThreads="5" />
   <!--endcode -->
 </configuration>

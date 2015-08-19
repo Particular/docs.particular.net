@@ -276,7 +276,7 @@
     <Content Include="Gateway\Channels.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Gateway\AppConfig.xml">
+    <Content Include="Gateway\Gateway.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Headers\Writers\HeaderWriterAudit_Audit.txt" />
@@ -309,34 +309,44 @@
     <Content Include="Outbox\EnablingInConfig.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Errors\SecondLevel\app.config.xml">
+    <Content Include="Errors\SecondLevel\SecondLevelReties.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <None Include="app.config" />
-    <None Include="EndpointMapping\ConfigureEndpointMapping.config" />
-    <None Include="Errors\ErrorQueue\configureErrorQueue.config" />
-    <None Include="Errors\FirstLevel\flr.config" />
-    <None Include="Monitoring\app.config" />
-    <None Include="Azure\Persistence\AzureStorage\AzurePersistence.config" />
-    <None Include="Transports\Mqmq\TransportConfig.config" />
-    <None Include="Audit\App.config" />
+    <Content Include="EndpointMapping\EndpointMapping.config.xml" />
+    <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
+    <Content Include="Errors\FirstLevel\flr.config.xml" />
+    <Content Include="Monitoring\ServiceControlEvents.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Azure\Persistence\AzureStorage\AzurePersistence.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Transports\Mqmq\TransportConfig.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Audit\Audit.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Encryption\Configuration\encryption.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Persistence\NHibernate\nhibernate.config">
+    <Content Include="Persistence\NHibernate\nhibernate.config.xml">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="RavenDB\SharedDocumentStoreViaConnectionString.config" />
-    <None Include="Transports\Mqmq\MessageQueueConfiguration.config" />
-    <None Include="Transports\RabbitMQ\App.config" />
+    </Content>
+    <Content Include="RavenDB\SharedDocumentStoreViaConnectionString.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
+    <Content Include="Transports\RabbitMQ\rabbitmqconnection.config.xml" />
     <None Include="Transports\SqlServer\NamedConnectionString.config" />
     <None Include="Transports\SqlServer\MultiDb.config" />
-    <None Include="Transports\Throughput\InitialThroughput.config">
+    <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audit\ProvideConfiguration.cs" />

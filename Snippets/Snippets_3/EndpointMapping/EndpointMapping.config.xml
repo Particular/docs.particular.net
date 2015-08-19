@@ -3,11 +3,12 @@
 <configuration>
   <configSections>
     <section name="UnicastBusConfig"
-        type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
+             type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
   </configSections>
   <UnicastBusConfig >
     <MessageEndpointMappings>
-      <add Assembly="assembly" Endpoint="queue@machinename" />
+      <add Assembly="assembly" 
+           Endpoint="queue@machinename" />
     </MessageEndpointMappings>
   </UnicastBusConfig>
 </configuration>
