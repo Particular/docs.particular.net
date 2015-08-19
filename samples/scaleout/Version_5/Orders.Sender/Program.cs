@@ -16,10 +16,18 @@ class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("Press 'Enter' to send a message. To exit, Ctrl + C");
+            Console.WriteLine("Press 'Enter' to send a message.");
+            Console.WriteLine("Press any other key to exit.");
             int counter = 0;
-            while (Console.ReadLine() != null)
+            while (true)
             {
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
+
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
                 counter++;
                 PlaceOrder placeOrder = new PlaceOrder
                 {
