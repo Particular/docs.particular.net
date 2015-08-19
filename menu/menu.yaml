@@ -261,10 +261,10 @@
         - Title: "Endpoint Plugins"
           Url: "servicecontrol/plugins"
           Articles:
-            - "servicecontrol/plugins/heartbeat-plugin"
-            - "servicecontrol/plugins/custom-checks-plugin"
-            - "servicecontrol/plugins/saga-audit-plugin"
-            - "servicecontrol/plugins/debug-session-plugin"
+            - "servicecontrol/plugins/heartbeat"
+            - "servicecontrol/plugins/custom-checks"
+            - "servicecontrol/plugins/saga-audit"
+            - "servicecontrol/plugins/debug-session"
     -
       Title: "Management"
       Articles:

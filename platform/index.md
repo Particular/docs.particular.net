@@ -30,9 +30,10 @@ To enable ServiceControl to gather this information, you need to configure your 
 
 * [enable auditing](/nservicebus/operations/auditing.md) to collect data on individual messages;
 * configure the [error queue](/nservicebus/errors) to store information on messages failures;
-* [install plugins on your endpoints](/servicecontrol/plugins.md) to monitor their health and sagas and use custom checks.
+* [install plugins on your endpoints](/servicecontrol/plugins/) to monitor their health and sagas and use custom checks.
 
 By default ServiceControl stores information for 30 days, but you can easily [customize this](/servicecontrol/creating-config-file.md).
+
 
 ## [ServiceInsight](/serviceinsight) - invaluable developer tool
 
@@ -57,6 +58,6 @@ ServiceMatrix is perfect for Proof of Concept, prototyping and discussing projec
 
 ## How do you work with the platform?
 
-Having ServiceControl and ServiceInsight installed locally on your machine gives you significant benefits during development, especially when you investigate failures and defects. Additionally, if you develop a [custom check](/servicecontrol/plugins.md#customchecks-plugin) it is useful to have the full platform installed on your development machine.
+Having ServiceControl and ServiceInsight installed locally on your machine gives you significant benefits during development, especially when you investigate failures and defects. Additionally, if you develop a [custom check](/servicecontrol/plugins/custom-checks.md) it is useful to have the full platform installed on your development machine.
 
 After your solution is deployed, you should have ServiceControl and ServicePulse in each environment it was deployed to (e.g. one instance per INTEGRATION, another one for TEST and one more for PROD). ServiceInsight is a client install, so you can have it on your local machine only and point it to the specific environment or local instance URL.

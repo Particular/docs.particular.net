@@ -41,7 +41,7 @@ If a heartbeat message is not received by ServiceControl from an endpoint within
 
 NOTE: Even if an endpoint is able to send heartbeat messages and it is marked as "active", other failures may occur within the endpoint and its host that prevent it from performing as expected. For example, the endpoint may not be able to process incoming messages, or it may be able to send messages to the ServiceControl queue but not to another queue. To monitor and get alerts for such cases, develop a custom check using the CustomChecks plugin.
 
-For more details on how heartbeats are sent by an endpoint, see [ServiceControl Heartbeat Plugin](/servicecontrol/plugins.md#servicecontrol-plugin-heartbeat).
+For more details on how heartbeats are sent by an endpoint, see [ServiceControl Heartbeat Plugin](/servicecontrol/plugins/heartbeat.md).
 
 Only monitored endpoints are expected by ServicePulse to send heartbeat messages periodically. Unmonitored endpoints (i.e., endpoints marked in the ServicePulse configuration page as "unmonitored") may be sending heartbeats (depending on their specific configuration and whether the relevant plugins were installed for that endpoint) but these heartbeats messages are ignored by ServiceControl and ServicePulse as long as the endpoint is marked as an unmonitored endpoint in the ServicePulse configuration page.
 

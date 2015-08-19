@@ -4,10 +4,10 @@ summary: 'Describes the purpose and internal behavior of the endpoint plugins us
 tags:
 - ServiceControl
 related:
-- servicecontrol/plugins/heartbeat-plugin
-- servicecontrol/plugins/custom-checks-plugin
-- servicecontrol/plugins/saga-audit-plugin
-- servicecontrol/plugins/debug-session-plugin
+- servicecontrol/plugins/heartbeat
+- servicecontrol/plugins/custom-checks
+- servicecontrol/plugins/saga-audit
+- servicecontrol/plugins/debug-session
 - samples/custom-checks/monitoring3rdparty
 ---
 

@@ -9,15 +9,18 @@ redirects:
 - servicepulse/custom-notification-and-alerting-using-servicecontol-events
 ---
 
+
 ## Custom notification and alerting using ServiceControl events
 
 ServiceControl events allow to build notifications/integrations that will alert of something going wrong in your system.
 
-ServiceControl's endpoint plugins collect information from monitored NServiceBus endpoints. For more information see [ServiceControl Endpoint Plugins](/servicecontrol/plugins.md).
+ServiceControl's endpoint plugins collect information from monitored NServiceBus endpoints. For more information see [ServiceControl Endpoint Plugins](/servicecontrol/plugins/).
+
 
 ### Alerting on FailedMessages Event
 
 Once a message ends up in the error queue ServiceControl will publish a `MessageFailed` event. As you can see the message contains enough context to help identify the cause of the error, the endpoint, the time, the stack trace and more. if you need more information you can call ServiceControl's HTTP API.
+
 
 ### Subscribing to ServiceControl Events 
 
@@ -40,9 +43,11 @@ The code sample to do both customizations is as shown below:
 
 <!-- import MessageFailedHandler -->
 
+
 ### Common information contained in events
 
 Both heartbeat and custom check events contain identifying information about the host and the endpoint.
+
 
 ### Alerting on HeartbeatStopped Event
 
@@ -54,6 +59,7 @@ The message contains the time it was detected and the last heartbeat time.
 
 Similarly to the code above you can subscribe to the event, handle it, and perform custom actions.
 
+
 ### Alerting on HeartbeatRestored Event
 
 Once an endpoint resumes sending heartbeats to ServiceControl queue ServiceControl will publish a `HeartbeatRestored` event. 
@@ -61,6 +67,7 @@ Once an endpoint resumes sending heartbeats to ServiceControl queue ServiceContr
 The event contains the time the heartbeat was restored.
 
 Similarly to the code above you can subscribe to the event, handle it and provide custom actions.
+
 
 ### Alerting on CustomCheckFailed Event
 
@@ -71,6 +78,7 @@ Once a custom check fails ServiceControl will publish a `CustomCheckFailed` even
 The message contains the time it was detected and the failure reason.
 
 Similarly to the code above you can subscribe to the event, handle it and provide custom actions.
+
 
 ### Alerting on CustomCheckSucceeded Event
 
