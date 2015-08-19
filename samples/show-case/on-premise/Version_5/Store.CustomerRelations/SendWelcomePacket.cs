@@ -8,7 +8,6 @@
 
     class SendWelcomePacket : IHandleMessages<ClientBecamePreferred>
     {
-        public IBus Bus { get; set; }
 
         public void Handle(ClientBecamePreferred message)
         {

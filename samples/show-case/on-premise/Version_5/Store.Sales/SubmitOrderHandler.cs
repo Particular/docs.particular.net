@@ -9,7 +9,12 @@
 
     public class SubmitOrderHandler : IHandleMessages<SubmitOrder>
     {
-        public IBus Bus { get; set; }
+        IBus bus;
+
+        public SubmitOrderHandler(IBus bus)
+        {
+            this.bus = bus;
+        }
 
         public void Handle(SubmitOrder message)
         {
@@ -26,7 +31,7 @@
             Console.WriteLine("CreditCard Expiration Date is {0}", message.EncryptedExpirationDate);
 
             //tell the client that we received the order
-            Bus.Publish<OrderPlaced>(o =>
+            bus.Publish<OrderPlaced>(o =>
                 {
                     o.ClientId = message.ClientId;
                     o.OrderNumber = message.OrderNumber;

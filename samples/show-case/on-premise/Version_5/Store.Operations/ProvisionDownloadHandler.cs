@@ -8,7 +8,12 @@
 
     public class ProvisionDownloadHandler : IHandleMessages<ProvisionDownloadRequest>
     {
-        public IBus Bus { get; set; }
+        IBus bus;
+
+        public ProvisionDownloadHandler(IBus bus)
+        {
+            this.bus = bus;
+        }
 
         public void Handle(ProvisionDownloadRequest message)
         {
@@ -19,7 +24,7 @@
 
             Console.WriteLine("Provision the products and make the Urls available to the Content management for download ...[{0}] product(s) to provision", string.Join(", ", message.ProductIds));
 
-            Bus.Reply(new ProvisionDownloadResponse
+            bus.Reply(new ProvisionDownloadResponse
                 {
                     OrderNumber = message.OrderNumber,
                     ProductIds = message.ProductIds,

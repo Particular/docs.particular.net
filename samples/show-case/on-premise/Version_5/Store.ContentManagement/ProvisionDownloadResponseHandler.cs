@@ -10,7 +10,13 @@
 
     public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloadResponse>
     {
-        public IBus Bus { get; set; }
+        IBus bus;
+
+        public ProvisionDownloadResponseHandler(IBus bus)
+        {
+            this.bus = bus;
+        }
+
         private readonly IDictionary<string, string> productIdToUrlMap = new Dictionary<string, string>
             {
                 {"videos", "http://particular.net/videos-and-presentations"},
@@ -29,7 +35,7 @@
 
             Console.WriteLine("Download for Order # {0} has been provisioned, Publishing Download ready event", message.OrderNumber);
          
-            Bus.Publish<DownloadIsReady>(e =>
+            bus.Publish<DownloadIsReady>(e =>
             {
                 e.OrderNumber = message.OrderNumber;
                 e.ClientId = message.ClientId;

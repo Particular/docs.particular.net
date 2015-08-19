@@ -10,7 +10,12 @@
     public class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
     {
 
-        public IBus Bus { get; set; }
+        IBus bus;
+
+        public OrderAcceptedHandler(IBus bus)
+        {
+            this.bus = bus;
+        }
 
         public void Handle(OrderAccepted message)
         {
@@ -22,7 +27,7 @@
             Console.WriteLine("Order # {0} has been accepted, Let's provision the download -- Sending ProvisionDownloadRequest to the Store.Operations endpoint", message.OrderNumber);
             
             //send out a request (a event will be published when the response comes back)
-            Bus.Send<ProvisionDownloadRequest>(r =>
+            bus.Send<ProvisionDownloadRequest>(r =>
             {
                 r.ClientId = message.ClientId;
                 r.OrderNumber = message.OrderNumber;
