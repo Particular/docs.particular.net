@@ -55,7 +55,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
+    <None Include="app1.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
