@@ -257,9 +257,14 @@
         - "servicecontrol/customize-name-and-description"
         - "servicecontrol/setting-custom-hostname"
         - "servicecontrol/logging"
-        - "servicecontrol/plugins"
-        - "servicecontrol/heartbeat-configuration"
         - "servicecontrol/errorlog-auditlog-behavior"
+        - Title: "Endpoint Plugins"
+          Url: "servicecontrol/plugins"
+          Articles:
+            - "servicecontrol/plugins/heartbeat-plugin"
+            - "servicecontrol/plugins/custom-checks-plugin"
+            - "servicecontrol/plugins/saga-audit-plugin"
+            - "servicecontrol/plugins/debug-session-plugin"
     -
       Title: "Management"
       Articles:
