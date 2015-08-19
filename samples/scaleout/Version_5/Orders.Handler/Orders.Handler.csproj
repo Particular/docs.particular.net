@@ -50,7 +50,7 @@
     <Compile Include="ProcessOrderCommandHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
+    <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
