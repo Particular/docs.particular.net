@@ -1,5 +1,4 @@
-﻿
-namespace Snippets3.EndpointMapping
+﻿namespace Snippets4.Routing.EndpointMapping
 {
     using System.Configuration;
     using NServiceBus.Config;
@@ -35,6 +34,4 @@ namespace Snippets3.EndpointMapping
     }
 
     #endregion
-
 }
-

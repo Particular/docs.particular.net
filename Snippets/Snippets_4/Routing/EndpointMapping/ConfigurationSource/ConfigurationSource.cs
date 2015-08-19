@@ -1,10 +1,11 @@
-﻿namespace Snippets5.EndpointMapping.ConfigurationSource
+﻿namespace Snippets4.Routing.EndpointMapping.ConfigurationSource
 {
     using System.Configuration;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
     #region endpoint-mapping-configurationsource
+
     public class ConfigurationSource : IConfigurationSource
     {
         public T GetConfiguration<T>() where T : class, new()
@@ -12,7 +13,7 @@
             if (typeof(T) == typeof(UnicastBusConfig))
             {
                 //read from existing config 
-                var config = (UnicastBusConfig)ConfigurationManager
+                var config = (UnicastBusConfig) ConfigurationManager
                     .GetSection(typeof(UnicastBusConfig).Name);
                 if (config == null)
                 {
@@ -36,5 +37,6 @@
             return ConfigurationManager.GetSection(typeof(T).Name) as T;
         }
     }
+
     #endregion
 }

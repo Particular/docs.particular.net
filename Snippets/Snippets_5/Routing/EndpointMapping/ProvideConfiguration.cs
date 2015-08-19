@@ -1,11 +1,10 @@
-﻿namespace Snippets4.EndpointMapping
+﻿namespace Snippets5.Routing.EndpointMapping
 {
     using System.Configuration;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
     #region endpoint-mapping-configurationprovider
-
     public class ProvideConfiguration :
         IProvideConfiguration<UnicastBusConfig>
     {
@@ -32,6 +31,5 @@
             return config;
         }
     }
-
     #endregion
 }
