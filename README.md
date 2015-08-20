@@ -285,6 +285,14 @@ var configure = Configure.With();
 // endcode
 ```
 
+For non-code snippets apply simillar approach as in code, using comments appropreate for a given file type. For plain-text files an extra empty line is required before `endcode` tag.
+
+|Tag        |XML-based                    |PowerShell            |SQL script             |Plain text          |
+|-----------|-----------------------------|----------------------|-----------------------|--------------------|
+|**Open**   |```<!-- startcode name -->```|```# startcode name```|```-- startcode name```|```startcode name```|
+|Content    |                             |                      |                       |                    |
+|**Close**  |```<!-- endcode -->```       |```# endcode```       |```-- endcode```       |```endcode```       |
+
 
 #### Using regions 
 
