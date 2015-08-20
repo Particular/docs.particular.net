@@ -1,6 +1,6 @@
 ---
 title: Throughput limitations when running without a license
-summary: As of version 4.5 no limitations are enforced
+summary: As of version NServiceBus Version 4.5 no limitations are enforced
 tags: []
 redirects:
  - nservicebus/licensing-limitations
