@@ -47,6 +47,8 @@ Contains one handler.
 
 <!-- import WorkerHandler -->  
 
+WARNING: If you are doing publish from a handler inside a worker then all workers mush share the same [subscription persistence](/nservicebus/persistence/).
+
 
 ### Server
 
