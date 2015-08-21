@@ -8,6 +8,12 @@ redirects:
 
 MSMQ is the default transport used by NServiceBus.
 
+
+## NServiceBus Configuration
+
+NServiceBus requires a specific MSMQ configuration to run. To enable this configuration either use "NServiceBus Prerequisites" in the [Platform Installer](/platform/installer/) or using the [Powershell Module](/nservicebus/operations/management-using-powershell.md).
+
+
 ## History
 
 Microsoft Message Queuing (MSMQ) is available on almost all Windows machines from Windows 2000 onwards (though not the Win2K home edition). With Windows XP and Server 2003, Microsoft introduced MSMQ 3.0, and Service Pack 2 brought MSMQ to version 3.1, with an enterprise-ready feature set.
