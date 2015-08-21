@@ -9,9 +9,11 @@ related:
 - nservicebus/licensing/licensing-limitations
 ---
 
+
 ## Initial Configuration
 
 The initial message Throughput of an endpoint can be configured in both code and app.config.
+
 
 ### Via Code  
 
@@ -19,15 +21,18 @@ By [overriding app.config settings](/nservicebus/hosting/custom-configuration-pr
 
 <!-- import ThroughputFromCode--->
 
+
 ### Via app.config
 
 By using raw xml.
 
 <!-- import ThroughputFromAppConfig--->
 
+
 ## Changing Throughput at run time
 
 <!-- import ChangeThroughput--->
+
 
 ## Reading Throughput at run time
 
