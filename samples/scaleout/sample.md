@@ -123,7 +123,6 @@ Press any key to exit
 ### Worker1 Output
 
 ```
-
 2015-08-21 17:07:18.906 INFO  NServiceBus.Unicast.Transport.TransportReceiver Worker started, failures will be redirected to Sample.Scaleout.Server@RETINA
 Press any key to exit
 Processing received order....
@@ -134,7 +133,6 @@ Sent Order placed event for orderId [40585dff-3749-4db1-b21a-25694468f042].
 ### Worker2 Output
 
 ```
-
 2015-08-21 17:07:18.818 INFO  NServiceBus.Unicast.Transport.TransportReceiver Worker started, failures will be redirected to Sample.Scaleout.Server@RETINA
 Press any key to exit
 Processing received order....
