@@ -24,7 +24,7 @@ Since the endpoints projects in samples have to chose specific technologies (tra
 All samples have a download link that allows the sample solution to be downloaded as a zip. Once opened in Visual Studio the samples are then runnable. Note some samples may have certain infrastructure requirement, for example a database existing in a local SQL Server.
 
 
-## The full Github Repo
+## The full GitHub Repository
 
 The samples are located in GitHub at [Particular/docs.particular.net/samples](https://github.com/Particular/docs.particular.net/tree/master/samples) and we accept both [issues](https://github.com/Particular/docs.particular.net/issues) and [Pull Requests](https://help.github.com/articles/using-pull-requests/).
 
