@@ -161,8 +161,6 @@
     <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Errors\FirstLevel\flr.config.xml" />
     <Content Include="Monitoring\ServiceControlEvents.config.xml" />
-    <None Include="Errors\ErrorQueue\ConfigureErrorQueue.config" />
-    <None Include="Errors\FirstLevel\flr.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

@@ -229,10 +229,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Azure\Transports\AzureStorageQueues\QueueConfig.config.xml" />
-    <None Include="Audit\App.config" />
-    <None Include="Errors\ErrorQueue\configureErrorQueue.config" />
-    <None Include="Errors\FirstLevel\flr.config" />
-    <None Include="Monitoring\app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
