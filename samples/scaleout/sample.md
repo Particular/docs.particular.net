@@ -143,7 +143,7 @@ Sent Order placed event for orderId [1320cfdc-f5cc-42a7-9157-251756694069].
 
 ## Scaling out in a real environment
 
-This sample has two workers which are hard coded as projects for the sake of simplicity. So this manifests in several ways
+This sample has two workers which are hard coded as projects for the sake of keeping the sample easy to use. This manifests in several ways
 
 1. Both `Worker1` and `Worker2` are different projects so that the solution automatically starts with two workers.
 2. Both `Worker1` and `Worker2` have different endpoint names so they have distinct queue names when running in your development environment. 
