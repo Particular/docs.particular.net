@@ -9,6 +9,31 @@ summary: All samples for the Particular Platform
 The samples are designed to be highlighting how various features of NServiceBus work and how the extension points plug into other libraries and tooling.
 
 
+## Not Production Ready
+
+With the above in mind it is clear samples are not production ready code.
+
+ * The logging writes to the console instead of a file
+ * The hosting is in a console instead of a windows service or a web application
+
+The challenge is "Production Ready" can only be defined by the person writing the code to be deployed to production. There is no way samples can be written in a way that is applicable to every production situation
+
+
+## Not "Endpoint drop in" projects 
+
+Since the endpoints projects in samples have to chose specific technologies (transport, serializer, persistence etc) before using this code in production you need to ensure the code conforms with your specific technology choices.
+
+
+## Downloadable and runnable
+
+All samples have a download link that allows the sample solution to be downloaded as a zip. Once opened in Visual Studio the samples are then runnable. Note some samples may have certain infrastructure requirement, for example a database existing in a local SQL Server.
+
+
+## The full Github Repo
+
+The samples are located in GitHub at [Particular/docs.particular.net/samples](https://github.com/Particular/docs.particular.net/tree/master/samples) and we accept both [issues](https://github.com/Particular/docs.particular.net/issues) and [Pull Requests](https://help.github.com/articles/using-pull-requests/).
+
+
 ## Technology Choices
 
 Unless otherwise specified (by an individual sample) the following are the default technology choices.
@@ -21,7 +46,7 @@ Samples default to using the using [MSMQ](/nservicebus/msmq/). **See [MSMQ NServ
 
 ### Console Hosting
 
-Samples default to [Self Hosting](/nservicebus/hosting/self-hosting.md) in a console. since it is more explicit and less moving pieces. Obviously this would not be a real chocie for a production system so you should read up on the other [Hosting Options](/nservicebus/hosting/).
+Samples default to [Self Hosting](/nservicebus/hosting/self-hosting.md) in a console since it is more explicit and less moving pieces. Obviously this would not be a real choice for a production system so you should read up on the other [Hosting Options](/nservicebus/hosting/).
 
 
 ### [Logging](/nservicebus/logging/)
@@ -53,27 +78,3 @@ Many samples make use of `SendLocal` and sending to an endpoint directly by spec
 
 Samples default to using the built-in container since it does not require pulling in any external nugets. You most likely want to switch to an external container since this will give you greater flexibility in you DI customizations.
 
-
-## Not Production Ready
-
-With the above in mind it is clear samples are not production ready code.
-
- * The logging writes to the console instead of a file
- * The hosting is in a console instead of a windows service or a web application
-
-The challenge is "Production Ready" can only be defined by the person writing the code to be deployed to production. There is no way samples can be written in a way that is applicable to every production situation
-
-
-## Not "Endpoint drop in" projects 
-
-Since the endpoints projects in samples have to chose specific technologies (transport, serializer, persistence etc) before using this code in production you need to ensure the code conforms with your specific technology choices.
-
-
-## Downloadable and runnable
-
-All samples have a download link that allows the sample solution to be downloaded as a zip. Once opened in Visual Studio the samples are then runnable. Note some samples may have certain infrastructure requirement, for example a database existing in a local SQL Server.
-
-
-## The full Github Repo
-
-The samples are located in GitHub at [Particular/docs.particular.net/samples](https://github.com/Particular/docs.particular.net/tree/master/samples) and we accept both [issues](https://github.com/Particular/docs.particular.net/issues) and [Pull Requests](https://help.github.com/articles/using-pull-requests/).
