@@ -9,7 +9,7 @@ summary: All samples for the Particular Platform
 The samples are designed to be highlighting how various features of NServiceBus work and how the extension points plug into other libraries and tooling.
 
 
-## Sample default technology choices
+## Technology Choices
 
 Unless otherwise specified (by an individual sample) the following are the default technology choices.
 
