@@ -11,12 +11,7 @@ The samples are designed to be highlighting how various features of NServiceBus 
 
 ## Not Production Ready
 
-With the above in mind it is clear samples are not production ready code.
-
- * The logging writes to the console instead of a file
- * The hosting is in a console instead of a windows service or a web application
-
-The challenge is "Production Ready" can only be defined by the person writing the code to be deployed to production. There is no way samples can be written in a way that is applicable to every production situation
+Samples are not meant to be production ready code. They are meant to illustrate the use of the API in the simplest way possible. For this reason, these samples make certain assumptions on transport, hosting, etc. Please see the [Technology choices section](#technology-choices) for more details.
 
 
 ## Not "Endpoint drop in" projects 
