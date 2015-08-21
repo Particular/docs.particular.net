@@ -3,6 +3,8 @@ title: Samples
 summary: All samples for the Particular Platform
 ---
 
+[Skip to the list of samples](#related-samples)
+
 
 The samples are designed to be highlighting how various features of NServiceBus work and how the extension points plug into other libraries and tooling.
 
