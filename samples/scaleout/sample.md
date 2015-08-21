@@ -20,9 +20,18 @@ There are several projects in the solution.
 
 ### Sender
 
-A simple project that sends a message to the  
+A simple project that sends a message to `Server` and handles the message back from the `Worker`.
+
+#### Sending code
 
 <!-- import sender -->
+
+
+#### Handling code
+
+
+<!-- import sender-event-handler -->
+
 
 
 ### Shared
@@ -32,9 +41,9 @@ Common message definitions shared between all projects.
 
 ### Worker.Handlers
 
-A library for sharing handlers between workers
+A library for sharing handlers between workers.
 
-Contains one Handler 
+Contains one handler.
 
 <!-- import WorkerHandler -->  
 
