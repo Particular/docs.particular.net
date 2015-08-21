@@ -15,10 +15,10 @@ NServiceBus Version 5 brings the option of running endpoints with the same relia
 
 ## Supported Transports
 
-Out of the box RabbitMQ is the only transport that is enabled automatically by default.
+Out of the box RabbitMQ is the only transport that enables the outbox feature by default.
 
 SqlServer is also supported but in a different way (for details, see SqlServer Transport section below).
-All other transports need to be enabled explicitly using both of the following configuration settings when configuring the endpoint:
+All other transports need to enable the Outbox explicitly using both of the following configuration settings when configuring the endpoint:
 
 <!-- import OutboxEnablineInCode -->  
 
@@ -26,7 +26,7 @@ and also the following configuration in the config file:
 
 <!-- import OutboxEnablingInAppConfig --> 
 
-NOTE: It may seem extreme to require double opt-in configuration for all other transports, but this is because we want users to be very aware that this new feature should not be used with existing endpoints that currently use DTC, unless those endpoints are [idempotent](http://en.wikipedia.org/wiki/Idempotence). Otherwise, problems could arise from double-processing messages sent (via an at-least-once guarantee) more than once.
+NOTE: It may seem extreme to require double opt-in configuration of the Outbox for all other transports, but this is because we want users to be very aware that this new feature should not be used with existing endpoints that currently use DTC, unless those endpoints are [idempotent](http://en.wikipedia.org/wiki/Idempotence). Otherwise, problems could arise from double-processing messages sent (via an at-least-once guarantee) more than once.
 
 
 ## How does it work
