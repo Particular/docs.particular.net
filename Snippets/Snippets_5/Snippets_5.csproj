@@ -382,6 +382,7 @@
     <Compile Include="Container\Containers_StructureMap.cs" />
     <Compile Include="Container\Custom\MyObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
+    <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />

@@ -77,11 +77,18 @@ To configure SLR, enable its configuration section:
 <!-- import SlrProvideConfiguration -->
 
 
-### Configuring FLR through ConfigurationSource
+### Configuring SLR through ConfigurationSource
 
 <!-- import SlrConfigurationSource -->
 
 <!-- import SLRConfigurationSourceUsage -->
+
+
+### Disabling SLR through code
+
+To completely disable SLR through code:
+
+<!-- import DisableSlrWithCode -->
 
 
 ### Custom Retry Policy
