@@ -6,18 +6,15 @@ class Program
 {
     static void Main()
     {
-        #region DisableSLR
-        Configure.Features.Disable<NServiceBus.Features.SecondLevelRetries>();
-        #endregion
-        Configure.Serialization.Json();
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Samples.ErrorHandling.WithoutSLR");
+        configure.DefineEndpointName("Samples.ErrorHandling.WithSLR");
         configure.DefaultBuilder();
+        configure.MsmqTransport();
         configure.InMemorySagaPersister();
-        configure.UseInMemoryTimeoutPersister();
+        configure.RunTimeoutManagerWithInMemoryPersistence();
         configure.InMemorySubscriptionStorage();
-        configure.UseTransport<Msmq>();
+        configure.JsonSerializer();
         using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
             IBus bus = startableBus

@@ -17,6 +17,13 @@ Both endpoints execute the same code.
 <!-- import handler -->  
 
 
+The "With SLR" endpoint uses the standard SLR settings.
+
+The "Disable SLR" endpoint disables SLR with the following
+
+<!-- import DisableSLR -->
+
+
 ## The output
 
 

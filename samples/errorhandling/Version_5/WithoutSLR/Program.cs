@@ -10,11 +10,13 @@ static class Program
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Warn);
 
+        #region DisableSLR
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.ErrorHandling.WithoutSLR");
+        busConfiguration.DisableFeature<SecondLevelRetries>();
+        #endregion
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.DisableFeature<SecondLevelRetries>();
         busConfiguration.EnableInstallers();
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
