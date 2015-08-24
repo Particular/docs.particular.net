@@ -38,6 +38,8 @@ Unless otherwise specified (by an individual sample) the following are the defau
 
 Samples default to using the using [MSMQ](/nservicebus/msmq/). **See [MSMQ NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) to configure MSMQ in a way that is compatible with NServiceBus.**
 
+On startup each sample will create the required queues. However there is no process to clean up these queues. You can perform this task manual by using a [MSMQ management tool](/nservicebus/msmq/viewing-message-content-in-msmq.md) or [programmatically using the native MSMQ API](/nservicebus/msmq/operations-scripting.md#delete-queues)
+
 
 ### Console Hosting
 
