@@ -7,15 +7,17 @@ tags:
 - IIS
 ---
 
-## Install ServicePulse in IIS
 
-### Prerequisites
+## Prerequisites
+
 These instructions assume the following:
 
 * ServiceControl has installed and is  listening on `http://localhost:33333/api`
 * ServicePulse has been installed
 
-### Basic Setup
+
+## Basic Setup
+
 [ServicePulse](introduction-and-installing-servicepulse.md), by default, is installed as a Windows Service that will self-host the ServicePulse web application.
 
 It is possible to manually install ServicePulse using IIS following these steps:
@@ -32,7 +34,9 @@ Once all the ServicePulse files are successfully extracted you can configure a n
 
 When using IIS to host ServicePulse the ServicePulse.Host service is not used.  To remove the service uninstall ServicePulse from Add/Remove programs.
 
-### Advanced Configuration
+
+## Advanced Configuration
+
 ServicePulse relies on the ServiceControl REST API.  It is possible to add a reverse proxy to the web site using  the Microsoft [Application Request Routing](http://www.iis.net/downloads/microsoft/application-request-routing) IIS extension.
 This is useful if you which to lock down access to ServicePulse or if wish to expose the web site over a single port.
 
@@ -69,13 +73,17 @@ The procedure above should result in a web.config file in the newly created /api
 
 ```
 
-:WARNING The default configuration for ServiceControl allows access to REST API via localhost only. By exposing the REST API via the reverse proxy configuration this protection is no longer in place. To address this it is recommended that the IIS Web site be configured with one of the IIS authentication providers. It is also recommended that the IIS web site be configured to use SSL if an authorization provider is used.
+WARNING: The default configuration for ServiceControl allows access to REST API via localhost only. By exposing the REST API via the reverse proxy configuration this protection is no longer in place. To address this it is recommended that the IIS Web site be configured with one of the IIS authentication providers. It is also recommended that the IIS web site be configured to use SSL if an authorization provider is used.
 
-#### Limitations
+
+### Limitations
+
 ServiceInsight cannot use the REST API via the IIS Web site if it has been locked down using an authentication mechanism.
 ServiceInsight will however still work locally on the server using the `http://localhost:33333/api` URL.  
 
-### Upgrades
+
+## Upgrades
+
 When ServicePulse is hosted in IIS the upgrade process is as follows:
 
 1. Go to the root directory of the IIS web site,

@@ -5,9 +5,8 @@ tags:
 - ServicePulse
 ---
 
-### Changing ServicePulse port
-
 To modify the port used by ServicePulse the commandline specified in the registry must be updated.  
+
 To change it:
 
 1. Open Regedit.exe
@@ -20,7 +19,8 @@ The default value for ImagePath is:
 
 Change the value after `--url=` and restart the service.
 
-### Changing the ServiceControl URL
+
+## Changing the ServiceControl URL
 
 ServicePulse is configured to connect to the ServiceControl REST API.  To specify the URL to connect do  the following
 
