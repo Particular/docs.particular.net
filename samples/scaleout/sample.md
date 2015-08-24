@@ -22,6 +22,7 @@ There are several projects in the solution.
 
 A simple project that sends a message to `Server` and handles the message back from the `Worker`.
 
+
 #### Sending code
 
 <!-- import sender -->
@@ -31,7 +32,6 @@ A simple project that sends a message to `Server` and handles the message back f
 
 
 <!-- import sender-event-handler -->
-
 
 
 ### Shared
@@ -113,6 +113,7 @@ Sent PlacedOrder command with order id [40585dff-3749-4db1-b21a-25694468f042].
 Received OrderPlaced. OrderId: 40585dff-3749-4db1-b21a-25694468f042. Worker: Worker1
 ```
 
+
 ### Server Output
 
 ```
@@ -141,6 +142,7 @@ Processing received order....
 Sent Order placed event for orderId [1320cfdc-f5cc-42a7-9157-251756694069].
 ```
 
+
 ## Scaling out in a real environment
 
 This sample has two workers which are hard coded as projects for the sake of keeping the sample easy to use. This manifests in several ways
@@ -153,3 +155,22 @@ In a real solution you would do the following
 
 1. Have one Worker in the project (or even have the `Server` double up as a worker)
 2. In deployment the same `Worker` endpoint would be deployed to multiple machines and only differ by their app.config.
+
+
+### Worker Input queue
+
+Normally workers are deployed to different machines. When deployed to the same machine a GUID will be added to the end of the worker input queue name. This allows the distributor to properly route messages and prevents workers from competing on the same queue. Since, in this project, we are "faking different machines" by using different projects we can override the GUID behavior to prevent a proliferation of queue names.
+ 
+
+#### Version 4 and lower
+
+You need to hack the Local Address
+
+<!-- import WorkerNameToUseWhileTestingCode -->
+
+
+#### Version 5 and higher
+
+You can use configuration 
+
+<!-- import WorkerNameToUseWhileTestingConfig -->

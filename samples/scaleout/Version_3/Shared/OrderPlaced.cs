@@ -1,5 +1,5 @@
-﻿using NServiceBus;
-using System;
+﻿using System;
+using NServiceBus;
 
 public class OrderPlaced : IMessage
 {
