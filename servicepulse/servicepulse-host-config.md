@@ -10,8 +10,8 @@ To modify the port used by ServicePulse the commandline specified in the registr
 To change it:
 
 1. Open Regedit.exe
--  Goto `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Particular.ServicePulse`
--  Edit the value of `ImagePath`. The value contains the full path to the ServicePulse.exe and a commandline of the URL to use:  
+2. Goto `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Particular.ServicePulse`
+3. Edit the value of `ImagePath`. The value contains the full path to the ServicePulse.exe and a commandline of the URL to use:  
 
 The default value for ImagePath is:
 
