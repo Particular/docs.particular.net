@@ -7,7 +7,6 @@ tags:
 - Web Roles
 - Azure
 - Cloud
-- Configuration
 - Logging
 redirects:
  - nservicebus/hosting-nservicebus-in-windows-azure-cloud-services

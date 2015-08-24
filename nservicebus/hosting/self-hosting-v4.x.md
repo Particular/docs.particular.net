@@ -3,12 +3,8 @@ title: Hosting NServiceBus version 4.x in-process
 summary: Configuration API to get transactional one-way messaging, referencing only three assemblies.
 tags:
 - Hosting
-- Initialization
-- Dependencies
 - ASP.NET
 - MVC
-- Configuration
-- Routing
 - MSMQ
 redirects:
 - nservicebus/hosting-nservicebus-in-your-own-process-v4.x

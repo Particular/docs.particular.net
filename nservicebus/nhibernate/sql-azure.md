@@ -4,7 +4,6 @@ summary: How to configure the NHibernate-based persistence for NServiceBus when 
 tags:
  - NHibernate
  - Persistence
- - Configuration
  - Sql Azure
 related:
  - nservicebus/nhibernate/accessing-data

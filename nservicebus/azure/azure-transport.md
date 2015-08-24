@@ -8,7 +8,6 @@ tags:
 - Transports
 - Azure Service Bus
 - Azure Storage Queues
-- Configuration
 redirects:
  - nservicebus/windows-azure-transport
 ---

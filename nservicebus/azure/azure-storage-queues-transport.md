@@ -6,7 +6,6 @@ tags:
 - Cloud
 - Azure Storage Queues
 - Transport
-- Configuration 
 redirects:
  - nservicebus/using-azure-storage-queues-as-transport-in-nservicebus
 ---

@@ -5,7 +5,6 @@ tags:
 - Azure
 - Cloud
 - Persistence
-- Configuration
 - Performance
 - Hosting
 redirects:

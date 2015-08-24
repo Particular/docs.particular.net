@@ -5,7 +5,6 @@ tags:
 - Logging
 - Profiles
 - NServiceBus.Host
-- Configuration
 redirects:
 - nservicebus/logging-profiles
 ---

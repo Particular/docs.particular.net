@@ -3,10 +3,6 @@ title: Hosting NServiceBus in-process
 summary: Configuration API to get transnational one-way messaging
 tags:
 - Hosting
-- Initialization
-- Dependencies
-- Configuration
-- Routing
 redirects:
  - nservicebus/hosting-nservicebus-in-your-own-process
 ---

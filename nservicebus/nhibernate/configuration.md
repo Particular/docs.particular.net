@@ -4,7 +4,6 @@ summary: How to install and configure the NHibernate-based persistence for NServ
 tags:
  - NHibernate
  - Persistence
- - Configuration
 related:
  - nservicebus/nhibernate/accessing-data
 ---

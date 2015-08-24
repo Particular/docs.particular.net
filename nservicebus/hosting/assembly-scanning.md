@@ -2,7 +2,6 @@
 title: Assembly scanning
 summary: To enable automatic detection of various features NServiceBus scans your assemblies for well known types
 tags:
-- Configuration
 - Assembly scanning
 redirects:
  - nservicebus/assembly-scanning

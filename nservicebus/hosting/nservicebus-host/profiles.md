@@ -5,10 +5,7 @@ tags:
 - Profiles
 - Hosting
 - NServiceBus.Host
-- Customization
-- Configuration
 - Logging
-- Initialization
 - Persistence
 redirects:
  - nservicebus/profiles-for-nservicebus-host

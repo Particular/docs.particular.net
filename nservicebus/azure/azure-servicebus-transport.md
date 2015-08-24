@@ -5,7 +5,6 @@ tags:
 - Azure
 - Cloud
 - Transport
-- Configuration
 - Concurrency
 - Performance
 - Batching
