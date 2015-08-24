@@ -4,7 +4,6 @@ summary: 'Using ServiceMatrix and ServiceInsight Together'
 tags:
 - ServiceMatrix
 - ServiceInsight
-- Invocation
 - Debugging
 ---
 
