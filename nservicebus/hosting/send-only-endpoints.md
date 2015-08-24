@@ -5,7 +5,6 @@ tags:
 - Hosting
 - SendOnly
 - Web
-- Initialization
 redirects:
 - nservicebus/one-way-send-only-endpoints
 ---
