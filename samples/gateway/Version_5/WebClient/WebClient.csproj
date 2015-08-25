@@ -59,7 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Index.html" />
-    <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\Math.uuid.js" />
     <Content Include="Scripts\md5.js" />
     <Content Include="Web.config" />
