@@ -142,7 +142,6 @@ And for version 4:
     <!-- other optional settings examples -->
     <add key="NServiceBus/Persistence/NHibernate/connection.provider" value="NHibernate.Connection.DriverConnectionProvider"/>
     <add key="NServiceBus/Persistence/NHibernate/connection.driver_class" value="NHibernate.Driver.Sql2008ClientDriver"/>
-    <!-- For more setting see http://www.nhforge.org/doc/nh/en/#configuration-hibernatejdbc and http://www.nhforge.org/doc/nh/en/#configuration-optional -->
   </appSettings>
   
   <connectionStrings>
@@ -155,7 +154,7 @@ If you don't want all this information in your config, you can specify it in cod
 
 The additional `autoUpdateSchema'` parameter, if set to 'true', tells NServiceBus to create the necessary tables in the configured database to store the subscription information. This table is called 'Subscriptions' and has two columns, 'SubscriberEndpoint' and 'MessageType'; both of them varchars.
 
-Read more information on [NHibernate configuration](http://nhforge.org/doc/nh/en/index.html#session-configuration), specifically Table 3.1 and the optional configuration options in section 3.5. Table 3.3 can help you configure other databases like Oracle and MySQL.
+Read more information on [NHibernate configuration](http://nhibernate.info/doc/index.html), specifically Table 3.1 and the optional configuration options in section 3.5. Table 3.3 can help you configure other databases like Oracle and MySQL.
 
 
 ## How to publish?
