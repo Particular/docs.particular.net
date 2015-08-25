@@ -5,7 +5,6 @@ tags:
 - Message Mapping
 - Message destination
 - Mapping
-- Send
 redirects:
 - nservicebus/how-do-i-specify-to-which-destination-a-message-will-be-sent
 related:
