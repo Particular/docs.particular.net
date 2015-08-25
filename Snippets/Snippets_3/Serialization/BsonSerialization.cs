@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Serialization
+﻿namespace Snippets3.Serialization
 {
     using NServiceBus;
 
@@ -6,10 +6,12 @@
     {
         public void Simple()
         {
+
             #region BsonSerialization
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseSerialization<BsonSerializer>();
+            Configure configure = Configure.With();
+            configure.BsonSerializer();
+
             #endregion
         }
 

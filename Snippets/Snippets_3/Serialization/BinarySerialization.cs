@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Serialization
+﻿namespace Snippets3.Serialization
 {
     using NServiceBus;
 
@@ -9,7 +9,8 @@
 
             #region BinarySerialization
 
-            Configure.Serialization.Binary();
+            Configure configure = Configure.With();
+            configure.BinarySerializer();
 
             #endregion
 

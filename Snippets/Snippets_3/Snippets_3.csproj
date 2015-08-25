@@ -272,6 +272,10 @@
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicy\Usage.cs" />
     <Compile Include="SendOnly.cs" />
+    <Compile Include="Serialization\BinarySerialization.cs" />
+    <Compile Include="Serialization\BsonSerialization.cs" />
+    <Compile Include="Serialization\JsonSerialization.cs" />
+    <Compile Include="Serialization\XmlSerialization.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="UnitTesting\Unobtrusive.cs" />
   </ItemGroup>

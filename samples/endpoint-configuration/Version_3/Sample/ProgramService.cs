@@ -1,14 +1,13 @@
-using System;
+﻿using System;
+using NServiceBus;
+using NServiceBus.Installation.Environments;
 using System.ServiceProcess;
 using Autofac;
+using log4net;
 using log4net.Appender;
 using log4net.Config;
 using log4net.Core;
 using log4net.Layout;
-using NServiceBus;
-using NServiceBus.Log4Net;
-using NServiceBus.Logging;
-using NServiceBus.Persistence;
 
 class ProgramService : ServiceBase
 {
@@ -51,15 +50,14 @@ class ProgramService : ServiceBase
 
         BasicConfigurator.Configure(appender);
 
-        LogManager.Use<Log4NetFactory>();
+        SetLoggingLibrary.Log4Net();
         #endregion
 
         #region create-config
-        BusConfiguration busConfiguration = new BusConfiguration();
+        Configure configure = Configure.With();
         #endregion
-
         #region endpoint-name
-        busConfiguration.EndpointName("Sample.FirstEndpoint");
+        configure.DefineEndpointName("Samples.FirstEndpoint");
         #endregion
 
         #region container
@@ -67,42 +65,43 @@ class ProgramService : ServiceBase
         //configure your custom services
         //builder.RegisterInstance(new MyService());
         IContainer container = builder.Build();
-        busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+        configure.AutofacBuilder(container);
         #endregion
 
         #region serialization
-        busConfiguration.UseSerialization<JsonSerializer>();
+        configure.JsonSerializer();
         #endregion
 
         #region transport
-        busConfiguration.UseTransport<MsmqTransport>();
+        configure.MsmqTransport();
         #endregion
 
-        #region sagas 
-        //Not required since Sagas are enabled by default in Version 5
+        #region sagas
+        configure.Sagas();
         #endregion
 
         #region persistence
-        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
-        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
-        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
+        configure.InMemorySagaPersister();
+        configure.UseInMemoryTimeoutPersister();
+        configure.InMemorySubscriptionStorage();
         #endregion
 
         #region critical-errors
-        busConfiguration.DefineCriticalErrorAction((errorMessage, exception) =>
+        Configure.Instance.DefineCriticalErrorAction(() =>
         {
-            // Log the critical error
-            logger.Fatal(string.Format("CRITICAL: {0}", errorMessage), exception);
+            //Write log entry in version 3 since this is not done by default.
+            logger.Fatal("CRITICAL Error");
 
             // Kill the process on a critical error
-            string output = string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage);
-            Environment.FailFast(output, exception);
+            string output = "Critical error was encountered by NServiceBus:\nNServiceBus is shutting down.";
+            Environment.FailFast(output);
         });
         #endregion
 
         #region start-bus
-        busConfiguration.EnableInstallers();
-        bus = Bus.Create(busConfiguration).Start();
+        bus = configure.UnicastBus()
+            .CreateBus()
+            .Start(() => configure.ForInstallationOn<Windows>().Install());
         #endregion
     }
 
@@ -112,7 +111,8 @@ class ProgramService : ServiceBase
         #region stop-bus
         if (bus != null)
         {
-            bus.Dispose();
+            IDisposable disposable = (IDisposable) bus;
+            disposable.Dispose();
         }
         #endregion
     }

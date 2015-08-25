@@ -1,6 +1,7 @@
 ﻿#pragma warning disable 649
 namespace Snippets3.Host
 {
+    using System;
     using System.Diagnostics;
     using System.Threading;
     using log4net;
@@ -10,7 +11,7 @@ namespace Snippets3.Host
     class CriticalErrors
     {
 
-        IStartableBus bus;
+        IBus bus;
 
         CriticalErrors()
         {
@@ -32,11 +33,11 @@ namespace Snippets3.Host
 
             // If you want the process to be active, dispose the bus. 
             // Note that when the bus is disposed sending messages will throw with an ObjectDisposedException.
-            bus.Dispose();
+            ((IDisposable)bus).Dispose();
 
             // If you want to kill the process, raise a fail fast error as shown below. 
             //string failMessage = string.Format("Critical error shutting down:'{0}'.", errorMessage);
-            //Environment.FailFast(failMessage, exception);
+            //Environment.FailFast("Fatal bus exception");
         }
 
         #endregion

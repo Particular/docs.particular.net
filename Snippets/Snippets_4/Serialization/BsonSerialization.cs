@@ -1,4 +1,4 @@
-﻿namespace Snippets4
+﻿namespace Snippets4.Serialization
 {
     using NServiceBus;
 
