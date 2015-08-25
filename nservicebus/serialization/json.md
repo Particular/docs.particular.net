@@ -3,7 +3,7 @@ title: JSON Serializer
 summary: A json serializer that uses Json.NET.
 ---
 
-Using [Json](http://en.wikipedia.org/wiki/Json) via an ILMerged copy of [Json.NET](http://www.newtonsoft.com/json).
+Using [Json](https://en.wikipedia.org/wiki/Json) via an ILMerged copy of [Json.NET](http://www.newtonsoft.com/json).
 
 
 ## Usage
@@ -64,7 +64,7 @@ The result will be
 
 ## Bson
 
-Using [Bson](http://en.wikipedia.org/wiki/BSON) via the same ILMerged copy of Json.NET as above.
+Using [Bson](https://en.wikipedia.org/wiki/BSON) via the same ILMerged copy of Json.NET as above.
 
 
 ### Usage

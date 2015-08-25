@@ -21,13 +21,13 @@ Provides support for sending messages over [Amazon SQS](http://aws.amazon.com/sq
 
 <a href="http://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/"><img src="http://img.shields.io/nuget/v/NServiceBus.Azure.Transports.WindowsAzureServiceBus.svg?" title="NuGet Status"></a>
 
-Provides support for sending messages over [Azure Service Bus](http://azure.microsoft.com/en-us/services/service-bus/).
+Provides support for sending messages over [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/).
 
 ### <img src="particular-project.png" title="A Particular run project"> [Azure Storage Queues](/nservicebus/azure/azure-storage-queues-transport.md)
 
 <a href="http://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/"><img src="http://img.shields.io/nuget/v/NServiceBus.Azure.Transports.WindowsAzureStorageQueues.svg?" title="NuGet Status"></a>
 
-Provides support for sending messages over [Azure Storage Queue](http://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-how-to-use-queues/).
+Provides support for sending messages over [Azure Storage Queue](https://azure.microsoft.com/en-us/documentation/articles/storage-dotnet-how-to-use-queues/).
 
 ### <img src="particular-project.png" title="A Particular run project"> [MSMQ](/nservicebus/msmq/)
 
@@ -123,7 +123,7 @@ Leverages the [JSONB](http://www.postgresql.org/docs/devel/static/datatype-json.
 
 ### <img src="community-project.png" title="A Community run project"> [DocumentDB](https://github.com/synhershko/NServiceBus.DocumentDB)
 
-A proof-of-concept project that shows the possibility of support for [Azure DocumentDB](http://azure.microsoft.com/en-us/services/documentdb/)
+A proof-of-concept project that shows the possibility of support for [Azure DocumentDB](https://azure.microsoft.com/en-us/services/documentdb/)
 
 ### <img src="particular-project.png" title="A Particular run project"> [Azure Storage](/nservicebus/azure/azure-storage-persistence.md)
 
@@ -187,13 +187,13 @@ Support for logging NServiceBus information to [Serilog](http://serilog.net/) lo
 
 <a href="http://www.nuget.org/packages/NServiceBus.Hosting.Azure/"><img src="http://img.shields.io/nuget/v/NServiceBus.Hosting.Azure.svg?" title="NuGet Status"></a>
 
-The process used when hosting an endpoint on [Azure](http://azure.microsoft.com/en-us/).
+The process used when hosting an endpoint on [Azure](https://azure.microsoft.com/en-us/).
 
 ### <img src="particular-project.png" title="A Particular run project"> [Multi Endpoint Azure Host](/nservicebus/azure/hosting.md)
 
 <a href="http://www.nuget.org/packages/NServiceBus.Hosting.Azure.HostProcess/"><img src="http://img.shields.io/nuget/v/NServiceBus.Hosting.Azure.HostProcess.svg?" title="NuGet Status"></a>
 
-The process used when sharing an [Azure](http://azure.microsoft.com/en-us/) instance between multiple endpoints.
+The process used when sharing an [Azure](https://azure.microsoft.com/en-us/) instance between multiple endpoints.
 
 ### <img src="community-project.png" title="A Community run project"> [Distributed Event Broker](https://github.com/appccelerate/distributedeventbroker.nservicebus)
 

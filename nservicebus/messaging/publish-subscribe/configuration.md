@@ -18,6 +18,7 @@ However, the input queue of each process does need to be on the same machine as 
 
 At this point, the bus in the subscriber process knows about the message schema and the endpoint on which the publisher is willing to accept subscription requests. The bus object then sees that there is application code in the subscriber that wants to handle those messages, and sends a subscription request to that endpoint.
 
+
 ## Subscription intent
 
 Application code in the subscriber handles the messages published by the publisher by implementing the (`IHandleMessages<T>`) NServiceBus interface, as shown:
@@ -28,6 +29,7 @@ This interface requires the single 'Handle' method to accept a parameter of the 
 
 Since the message being handled (`EventMessage`) belongs to the message assembly previously described (Messages.dll), and the subscriber's bus knows those messages belong to the publisher (from the app.config above), and the only way that a process can handle messages belonging to someone else is for them to be a subscriber, the bus automatically subscribes. Here's how it works.
 
+
 ## Messaging mechanics
 
 ![Subscribing](subscribe.png)
@@ -37,6 +39,7 @@ The bus at the subscriber subscribes to the publisher by sending a message to th
 It is important to understand that each publisher is responsible for its own information. There isn't necessarily some logically central broker which stores everything, although NServiceBus does allow for configuring all publishers to store their information in a physically central location, such as a database.
 
 A subscriber can also be a publisher. It is simple to state that a given process is a publisher.
+
 
 ## How to be a publisher
 
@@ -49,6 +52,7 @@ On top of the three NServiceBus assemblies referenced, reference
 ![Setting up a publisher](nservicebus-publisher.png)
 
 Ignore the interface ISpecifyMessageHandlerOrdering for now.
+
 
 ## Subscription Storage
 
@@ -153,6 +157,7 @@ The additional `autoUpdateSchema'` parameter, if set to 'true', tells NServiceBu
 
 Read more information on [NHibernate configuration](http://nhforge.org/doc/nh/en/index.html#session-configuration), specifically Table 3.1 and the optional configuration options in section 3.5. Table 3.3 can help you configure other databases like Oracle and MySQL.
 
+
 ## How to publish?
 
 To publish a message, you need a reference to the bus object in your code. In the pub/sub sample, this code is in the `ServerEndpoint` class in the Server project, as shown:
@@ -173,11 +178,12 @@ public class HandlerThatPublishedEvent : IHandleMessages<MyMessage>
 }
 ```
 
- The 'Bus' property is automatically filled by the infrastructure. This is known as 'Dependency Injection'. All development done with NServiceBus makes use of [these patterns](http://en.wikipedia.org/wiki/Dependency_injection) . The technology used as the dependency injection container by NServiceBus is pluggable, with five options available out of the box, Autofac is the default.
+The 'Bus' property is automatically filled by the infrastructure. This is known as 'Dependency Injection'. All development done with NServiceBus makes use of [these patterns](https://en.wikipedia.org/wiki/Dependency_injection) . The technology used as the dependency injection container by NServiceBus is pluggable, with five options available out of the box, Autofac is the default.
 
 In the 'Run' method, you see the creation of the event message. This can be as simple as instantiating the relevant class or using the bus object to instantiate messages defined as interfaces. Read more information on [whether to use interfaces or classes to represent messages](/nservicebus/messaging/messages-as-interfaces.md) .
 
 Once the event message object has been created, the call to `Bus.Publish(eventMessage);` tells the bus object to have the given message sent to all subscribers who expressed interest in that type of message. As we saw in the walk-through, if a subscriber is unavailable, their messages aren't lost they're stored until the subscriber comes back on-line. See the 'store and forward messaging' section of the [architectural principles](/nservicebus/architecture/) of NServiceBus for more information.
+
 
 ## Security and authorizations
 
@@ -185,11 +191,13 @@ You may not want to allow any endpoints to subscribe to a given publisher or eve
 
 The class implements the `IAuthorizeSubscriptions` interface, which requires the `AuthorizeSubscribe` and `AuthorizeUnsubscribe` methods. The implementation that comes in the sample doesn't do very much, returning true for both. In a real project, you may access some Access Control System, Active Directory, or maybe just a database to decide if the action should be allowed.
 
+
 ## Versioning subscriptions
 
 In NServiceBus version 3.0 and onwards subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
 
 NOTE: Version 2.X required a perfect match. This should make it easier to upgrade your publishers without affecting the subscribers.
+
 
 ## Best practices
 

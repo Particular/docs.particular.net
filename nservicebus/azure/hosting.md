@@ -41,7 +41,7 @@ As for an NServiceBus programming model, this is roughly the same as any other s
 The only quirk in this model is that Azure website is built with cheap hosting in mind. By default, its technology puts your website in suspended mode when there is no traffic. This also implies that if you have an NServiceBus endpoint hosted here, it is also suspended and stops processing messages. However, the 'Always on' feature periodically sends requests to your website to keep it active. This feature requires standard mode and is not available in the free edition. 
 
 The advised transports in this environment are `AzureStorageQueuesTransport` and `AzureServiceBusTransport`. 
-As it is now also possible to include Azure websites in the same virtual network as Azure virtual machines, [made available in Q4 2014](http://azure.microsoft.com/blog/2014/09/15/azure-websites-virtual-network-integration/), it is also possible to use any other hosted transport that does not rely on distributed transactions, such as RabbitMQ .
+As it is now also possible to include Azure websites in the same virtual network as Azure virtual machines, [made available in Q4 2014](https://azure.microsoft.com/blog/2014/09/15/azure-websites-virtual-network-integration/), it is also possible to use any other hosted transport that does not rely on distributed transactions, such as RabbitMQ .
 
 To learn more about enabling persistence with Azure storage, refer to [Azure storage persisters](azure-storage-persistence.md).
 
