@@ -1,6 +1,7 @@
 ﻿using System;
 using NServiceBus;
 using NServiceBus.Features;
+using Shared;
 
 class Program
 {
@@ -14,19 +15,28 @@ class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("Press 'Enter' to send a message to RemoteSite which will reply. To exit, Ctrl + C");
+            Console.WriteLine("Press 'Enter' to send a message to RemoteSite which will reply.");
+            Console.WriteLine("Press any other key to exit");
 
-            while (Console.ReadLine() != null)
+            while (true)
             {
-                string[] siteKeys = {
-                                        "RemoteSite"
-                                    };
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
+
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
+                string[] siteKeys =
+                {
+                    "RemoteSite"
+                };
                 PriceUpdated priceUpdated = new PriceUpdated
-                                            {
-                                                ProductId = 2,
-                                                NewPrice = 100.0,
-                                                ValidFrom = DateTime.Today,
-                                            };
+                {
+                    ProductId = 2,
+                    NewPrice = 100.0,
+                    ValidFrom = DateTime.Today,
+                };
                 bus.SendToSites(siteKeys, priceUpdated);
 
                 Console.WriteLine("Message sent, check the output in RemoteSite");

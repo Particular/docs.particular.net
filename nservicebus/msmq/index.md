@@ -40,7 +40,6 @@ For scenarios where you want to use a Broker Bus style architecture you can use 
 
 ## Useful links
 
--   [MSMQ Forums](https://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/home?forum=msmq)
 -   [MSMQ on Windows Server 2003](https://technet.microsoft.com/en-gb/library/cc757108%28WS.10%29.aspx)
 -   [MSMQ on Windows Server 2008](https://technet.microsoft.com/en-gb/library/cc753070%28WS.10%29.aspx)
 -   [List of MSMQ articles](http://blogs.msdn.com/b/johnbreakwell/)(very helpful)

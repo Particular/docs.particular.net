@@ -15,6 +15,3 @@ It is possible to turn off this server name change feature, using a tool install
 In this tool, uncheck "Set Computer Name" in the General tab and click OK:
 
 ![](ec2-service-properties.png)
-
-Read more information on [troubleshooting this issue](http://christer.dk/post/NServiceBus-on-Amazon-EC2-voodoo.aspx).
-

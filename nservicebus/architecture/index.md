@@ -38,7 +38,7 @@ In this presentation, Udi Dahan explains the relationship between reliability, a
 
 Although the recording missed the first 5-10 minutes, the core message has not been lost.
 
-<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="http://player.vimeo.com/video/6222577" webkitallowfullscreen width="400"></iframe>
+<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/6222577" webkitallowfullscreen width="400"></iframe>
 
 ## Adoption and climbing the learning curve
 

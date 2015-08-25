@@ -63,7 +63,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Headquarters.Shared\Shared.csproj">
+    <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{5849DBD1-CBA9-4792-90AA-80F9476E526F}</Project>
       <Name>Shared</Name>
     </ProjectReference>

@@ -8,9 +8,10 @@ redirects:
  - nservicebus/load-balancing-with-the-distributor
 ---
 
-The NServiceBus Distributor is similar in behavior to standard [load balancers](http://en.wikipedia.org/wiki/Load_balancing_%28computing%29). It is the key to transparently scaling out message processing over many machines.
+The NServiceBus Distributor is similar in behavior to standard [load balancers](https://en.wikipedia.org/wiki/Load_balancing_%28computing%29). It is the key to transparently scaling out message processing over many machines.
 
 As a standard NServiceBus process, the Distributor maintains all the fault-tolerant and performance characteristics of NServiceBus but is designed never to overwhelm any of the worker nodes configured to receive work from it.
+
 
 ## When to use it?
 
@@ -18,11 +19,13 @@ Scaling out (with or without a Distributor) is only useful for where the work be
 
 The Distributor is applicable only when using MSMQ as the transport for exchanging messages. NServiceBus uses MSMQ as the default transport. The Distributor is not required when using other brokered transports like SqlServer and RabbitMQ, since they share the same queue, even if there are multiple instances of the endpoints running. NServiceBus will ensure that only one of these instances of that endpoint will process that message in this case.
 
+
 ## Why use it?
 
 When starting to use NServiceBus, you'll see that you can easily run multiple instances of the same process with the same input queue. This may look like scaling-out at first, but is really no different from running multiple threads within the same process. You'll see that you can't share a single input queue across multiple machines.
 
 The Distributor gets around this limitation.
+
 
 ## What about MSMQ version 4?
 
@@ -32,6 +35,7 @@ Even though the Distributor provided similar functionality even before Vista was
 
 In short, the scale-out benefits of MSMQ version 4 by itself are quite limited.
 
+
 ## Performance?
 
 For each message being processed, the Distributor performs a few additional operations: it receives a ready message from a Worker, sends the work message to the Worker and receives a ready message post processing. That means that using Distributor introduces a certain processing overhead, that is independent of how much actual work is done. Therefore the Distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short lived units of work (a quick read from the database and dispatching a message using `Bus.Send` or  `Bus.Publish`).
@@ -39,6 +43,7 @@ For each message being processed, the Distributor performs a few additional oper
 To get a sense of the expected performance take your regular endpoint performance and divide it by 4.
 
 If you need to scale out small units of work you might consider splitting your handlers into smaller vertical slices of functionality and deploying them on their own endpoints.
+
 
 ## How does it work?
 
@@ -63,7 +68,9 @@ For more information on monitoring, see [Performance Counters](/nservicebus/oper
 
 For more information about Pub/Sub in a distributor scenario see [What the distributor does](/nservicebus/messaging/publish-subscribe/#what-the-distributor-does) and [The same for any publisher node](/nservicebus/messaging/publish-subscribe/#the-same-for-any-publisher-node)
 
+
 ## Distributor configuration
+
 
 ### When hosting endpoints in NServiceBus.Host.exe
 
@@ -91,6 +98,7 @@ or if using a version of NServiceBus that is earlier than version 4.3:
 NServiceBus.Host.exe NServiceBus.Master
 ```
 
+
 ### When self-hosting
 
 When you [self host](/nservicebus/hosting/self-hosting.md) your endpoint, use this configuration:
@@ -99,10 +107,10 @@ When you [self host](/nservicebus/hosting/self-hosting.md) your endpoint, use th
 
 NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
+
 ## Worker Configuration
 
 Any NServiceBus endpoint can run as a Worker node. To activate it, create a handler for the relevant messages and ensure that the `app.config` file contains routing information for the Distributor.
-
 
 
 ### When hosting in NServiceBus.Host.exe
@@ -135,6 +143,7 @@ Configure the name of the master node server as shown in this `app.config` examp
 
 Read about the `DistributorControlAddress` and the `DistributorDataAddress` in the [Routing with the Distributor](#routing-with-the-distributor) section.
 
+
 ### When self-hosting
 
 If you are self-hosting your endpoint here is the code required to enlist the endpoint with a Distributor.
@@ -144,6 +153,7 @@ If you are self-hosting your endpoint here is the code required to enlist the en
 NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
 Similar to self hosting, ensure the `app.config` of the Worker contains the `MasterNodeConfig` section to point to the host name where the master node (and a Distributor) are running.
+
 
 ## Routing with the Distributor
 
@@ -172,6 +182,7 @@ When using the Distributor in a full publish/subscribe deployment, you see is a 
 
 Keep in mind that the Distributor is designed for load balancing within a single site, so do not use it between sites. In the image above, all publishers and subscribers are within a single physical site. For information on using NServiceBus across multiple physical sites, see [the gateway](/nservicebus/gateway/multi-site-deployments.md).
 
+
 ## Worker QMId needs to be unique 
 
 Every installation of MSMQ on a Windows machine is represented uniquely by a Queue Manager id (QMId). The QMId is stored as a key in the registry, ```HKLM\Software\Microsoft\MSMQ\Parameters\Machine Cache```. MSMQ uses the QMId to know where is should send acks and replies for incoming messages. 
@@ -183,6 +194,7 @@ The primary reason for machines ending up with duplicate QMIds is cloning of vir
 Should you have two or more machines with the same QMId reinstall the MSMQ feature to generate a new QMId.
 
 Check out [John Brakewells blog](http://blogs.msdn.com/b/johnbreakwell/archive/2007/02/06/msmq-prefers-to-be-unique.aspx) for more details.
+
 
 ## High availability
 

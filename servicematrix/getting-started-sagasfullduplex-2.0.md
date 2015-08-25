@@ -11,6 +11,7 @@ A series of articles discusses the [advantages of NServiceBus](getting-started-w
 
 Business processes usually involve multiple steps and require coordination of multiple systems. You can use the saga pattern when dealing with this situation with message-based and event-driven architecture.  NServiceBus has built-in [support for sagas](/nservicebus/sagas/). 
 
+
 # Introducing Sagas for Request-Response
 
 To demonstrate a saga you will extend your Online Sales sample.  Before proceeding, please verify that your solution has the ECommerce website, and both the OrderProcessing and Billing endpoints, as shown. 
@@ -19,6 +20,7 @@ To demonstrate a saga you will extend your Online Sales sample.  Before proceedi
 
 As you may recall, in your example the ECommerce website sends the `SubmitOrder` message to the `OrderProcessing` system.  The backend `OrderProcessing` component processes the `SubmitOrder` message and raises an `OrderAccepted` event.  The `Billing` service has subscribed to this event.
 
+
 ## Adding a Payment Processing Service
 
 In an e-commerce scenario you might expect the billing process to involve interaction with a payment processing gateway.  This involves submitting payment information and getting a response that includes an authorization code.  In this message-based example, the billing service uses a command message to submit the payment for processing and receives an asynchronous response message.  This type of communication is called the request-response or full-duplex pattern. 
@@ -26,6 +28,7 @@ In an e-commerce scenario you might expect the billing process to involve intera
 Add a payment processing component to your system. Using the drop-down menu on the `OrderAcceptedHandler` component in the `Billing` service, add a new command called `SubmitPayment`.
 
 ![New SubmitPayment Command](images/servicematrix-newbillingcommand.png)
+
 
 ## Modifying the OrderAcceptedHandler
 
@@ -83,11 +86,11 @@ When you select  **OK**, ServiceMatrix creates the `SubmitPaymentResponse` messa
 
 Since the `OrderAcceptedHandler` is now a saga, notice the icon has changed slightly. ServiceMatrix has also generated the code needed to support a saga implementation.  The framework takes care of persisting the message data from each message processed by the saga.  The generated code provides ways to safely integrate your own custom code.
 
+
 ## Modifying the Saga Code
 
-[Earlier in this article](#modifying-the-orderacceptedhandler "Modifying the handler to send a message"), we modified the `OrderAcceptedHandler` code so it would send the `SubmitPayment` command. 
-
 In addition to the original `OrderAccepted` event from the previous example we will need to supplement this code in a few key ways.  We'll show where to add saga data for persistence.  We'll also implement a way of handling of the `SubmitPaymentResponse` and finally mark the saga as complete.  
+
 
 ## Adding Saga Data
 
@@ -104,10 +107,14 @@ namespace OnlineSales.Billing
 
 Saga data properties can be accessed or mutated using the `Data` object from any of the Sagas `Handle` methods.
 
+
 ## Creating the Payment Request
 
+
 ## Adding the Response Handler
+
 ServiceMatrix has implemented handlers that call partial methods on your `OrderAcceptedHandler` class that you can implement for handling the `SubmitPaymentResponse`.  Modify the partial class in `Billing\OrderAcceptedHandler.cs` to include the new partial method as shown:  
+
 ```C#
 partial void HandleImplementation(Internal.Messages.Billing.SubmitPaymentResponse message)
 {
@@ -118,6 +125,7 @@ partial void HandleImplementation(Internal.Messages.Billing.SubmitPaymentRespons
 	//Data.AuthCode = message.AuthorizationCode;
 }
 ```
+
 
 ## Completing the Saga
 
@@ -130,6 +138,7 @@ partial void AllMessagesReceived()
     MarkAsComplete();
 }
 ```
+
 
 ## Reviewing the SubmitPaymentProcessor Code
 
@@ -153,6 +162,7 @@ namespace OnlineSales.Billing
 }
 ```
 
+
 # Running the Solution
 
 Press `F5` to build and run the solution.  Arrange the consoles for OrderProcessing, Billing, and the new PaymentProcessing endpoints so you can see them all simultaneously.  When the ECommerce website launches, use it to send a test message.  Notice the interaction between the Billing and PaymentProcessing endpoints.  
@@ -160,6 +170,7 @@ Press `F5` to build and run the solution.  Arrange the consoles for OrderProcess
 ![Billing and PaymentProcessing Endpoint Consoles](images/servicematrix-billingandpaymentprocessingconsoles.png)
 
 The `Billing` service receives the `Orderaccepted` event and handles it in the `OrderAcceptedHandler` component, now running as a saga.  It handles the event and sends the `SubmitPayment`command to the `SubmitPaymentHandler` component running in the `OrderProcessing` endpoint.  The `SubmitPaymentResponse` reply is sent back to the `OrderAcceptedHandler` saga.  Once both the `OrderAccepted` event and the `SubmitPaymentResponse` messages have been received, the saga is complete.
+
 
 ## Using ServiceInsight
 
@@ -169,15 +180,18 @@ Read about [using ServiceInsight and ServiceMatrix](servicematrix-serviceinsight
 
 ![ServiceInsight Flow Diagram](images/servicematrix-flowdiagram.png) 
 
+
 ### Saga View
 
 When clicking on a message involved in the saga, a saga view windows will open.  It clearly illustrates which messages the saga interacted with and what they did.
  
 ![The Saga View in ServiceInsight](images/servicematrix-orderacceptedsagaview.png)
 
+
 # Summary
 
 Sagas allow NServiceBus to manage long running processes and to persist data between messages.  ServiceMatrix supports the saga pattern.  It recognizes the need for a saga in the request-response implementation and efficiently generates the code to make it work. 
+
 
 # Next Steps
 

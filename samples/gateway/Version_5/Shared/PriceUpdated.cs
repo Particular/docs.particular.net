@@ -1,9 +1,12 @@
 ﻿using System;
 using NServiceBus;
 
-public class PriceUpdated : IMessage
+namespace Shared
 {
-    public int ProductId { get; set; }
-    public double NewPrice { get; set; }
-    public DateTime ValidFrom { get; set; }
+    public class PriceUpdated : IMessage
+    {
+        public int ProductId { get; set; }
+        public double NewPrice { get; set; }
+        public DateTime ValidFrom { get; set; }
+    }
 }
