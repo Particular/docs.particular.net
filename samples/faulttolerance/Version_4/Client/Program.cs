@@ -39,6 +39,5 @@ class Program
                 Console.WriteLine("Sent a new message with id: {0}", id.ToString("N"));
             }
         }
-        }
     }
 }
