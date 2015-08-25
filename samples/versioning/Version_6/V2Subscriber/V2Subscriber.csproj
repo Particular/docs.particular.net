@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CCC62E59-19DD-44B7-B565-CEA7AE8A83EC}</ProjectGuid>
+    <ProjectGuid>{DCFE28B5-245F-4C28-869B-C42C73E816E5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>V2Publisher</RootNamespace>
-    <AssemblyName>V2Publisher</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>V2Subscriber</RootNamespace>
+    <AssemblyName>V2Subscriber</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -54,8 +54,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="SomethingHappenedHandler.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{b5cd0590-4e86-4ac9-9670-e58063fac80a}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\V1.Messages\V1.Messages.csproj">
       <Project>{9D27D517-B938-4594-8836-CE06A2955FFD}</Project>
       <Name>V1.Messages</Name>
@@ -64,9 +75,6 @@
       <Project>{D22F0CFF-D47F-4541-BD6D-3F07808EE468}</Project>
       <Name>V2.Messages</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
