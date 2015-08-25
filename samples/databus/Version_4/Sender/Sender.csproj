@@ -59,7 +59,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj">
+    <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{7dd4e9d3-a628-49e2-9bba-e78570ca0b57}</Project>
       <Name>Messages</Name>
     </ProjectReference>

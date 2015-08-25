@@ -56,7 +56,7 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj">
+    <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{E4A4B35E-AFD3-456C-A5AC-4A88AAD77156}</Project>
       <Name>Messages</Name>
     </ProjectReference>

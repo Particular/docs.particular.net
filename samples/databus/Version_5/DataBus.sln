@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sender", "Sender\Sender.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver", "Receiver\Receiver.csproj", "{6987F415-B4D5-4380-ADED-EED5AF170608}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Messages", "Messages\Messages.csproj", "{E4A4B35E-AFD3-456C-A5AC-4A88AAD77156}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{E4A4B35E-AFD3-456C-A5AC-4A88AAD77156}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
