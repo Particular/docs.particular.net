@@ -18,9 +18,12 @@ Custom mapping options:
 * Use NHibernate.Mapping.Attributes
 * Loquacious Configuration (native fluent api)
 
-There are probably even other options but these are the most frequently used.
+There are probably even other options, but these are the most frequently used.
 
-NOTE: It is not required to create a custom mapping for all sagas. Look at the samples on how to both load the auto mapped classes and the custom mappings. 
+Which method to use depends on if you want to specify the mapping as xml, fluent code or code attributes. There can be small performance differences during startup but not when processing messages.
+
+
+NOTE: It is not required to create a custom mapping for all sagas if only one saga needs one. The NHibernate configuration in each sample type demonstrate how both generated and custom mappings can work simultaneously.
 
 
 See [NHibernate configuration](/nservicebus/nhibernate/configuration.md) on how you can pass a configuration object to the NServiceBus NHibernate configuration.
@@ -60,7 +63,7 @@ Create a custom NHibernate configuration object and use the following example to
 
 ## Use Fluent NHibernate
 
-[Fluent NHibernate](http://www.fluentnhibernate.org) gives you a type-safe mapping approach where the mapping is specified as code (is not as `.hbm.xml`) but still separate from the classes. The benefit is that you get compile time feedback when a mapping is not valid any more when you have breaking changes in your mapping but also that your classes and mappings are not part of the same .net type.
+[Fluent NHibernate](http://www.fluentnhibernate.org) gives you a type-safe mapping approach where the mapping is specified as code (is not as `.hbm.xml`) but still separate from the classes. The benefit is that you get compile time feedback when a mapping is not valid anymore when you have breaking changes in your mapping but also that your classes and mappings are not part of the same .net type.
 
 To use it with NServiceBus:
 
