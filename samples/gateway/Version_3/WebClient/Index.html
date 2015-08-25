@@ -11,7 +11,8 @@
     $(document).ready(function () {
         $('#go').click(function () {
 
-            var message = "<?xml version=\"1.0\" ?><Messages xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><UpdatePrice><ProductId>23</ProductId></UpdatePrice></Messages>";
+            var message = "<?xml version=\"1.0\" ?><Messages xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://tempuri.net/Shared\"><UpdatePrice><ProductId>23</ProductId></UpdatePrice></Messages>";
+
             var md5 = b64_md5(message) + "==";
             var clientId = Math.uuid() + "\\123456";
 
@@ -19,12 +20,11 @@
                 url: $('#gatewayaddress').val(),
                 data: {
                     Message: message,
-                    "NServiceBus.CallType": "SingleCallSubmit",
+                    "NServiceBus.CallType": "Submit",
                     "NServiceBus.AutoAck": "true",
                     "Content-MD5": md5,
                     "NServiceBus.Id": clientId,
-                    "NServiceBus.TimeToBeReceived": "00:10:00",
-                    "NServiceBus.EnclosedMessageTypes": "Shared.UpdatePrice, Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null"
+                    "NServiceBus.TimeToBeReceived": "00:10:00"
                 },
                 dataType: 'jsonp',
                 success: function (data) {

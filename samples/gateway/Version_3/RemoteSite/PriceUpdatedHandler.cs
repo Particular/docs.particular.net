@@ -14,7 +14,7 @@ public class PriceUpdatedHandler : IHandleMessages<PriceUpdated>
 
     public void Handle(PriceUpdated message)
     {
-        string messageHeader = bus.GetMessageHeader(message, Headers.OriginatingSite);
+        string messageHeader = bus.CurrentMessageContext.Headers[Headers.OriginatingSite];
         Console.WriteLine("Price update for product: {0} received. Going to reply over channel: {1}", message.ProductId, messageHeader);
 
         bus.Reply(new PriceUpdateAcknowledged

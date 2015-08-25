@@ -1,21 +1,25 @@
 ﻿using System;
 using NServiceBus;
-using NServiceBus.Features;
+using NServiceBus.Installation.Environments;
 using Shared;
 
 class Program
 {
     static void Main()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Gateway.Headquarters");
-        busConfiguration.EnableInstallers();
-        busConfiguration.EnableFeature<Gateway>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        Configure configure = Configure.With();
+        configure.Log4Net();
+        configure.DefineEndpointName("Samples.Gateway.Headquarters");
+        configure.DefaultBuilder();
+        configure.RunGatewayWithInMemoryPersistence();
+        configure.MsmqTransport();
+        configure.InMemorySagaPersister();
+        configure.RunTimeoutManagerWithInMemoryPersistence();
+        configure.InMemorySubscriptionStorage();
+        using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
-            Console.WriteLine("Press 'Enter' to send a message to RemoteSite which will reply.");
+            IBus bus = startableBus
+                .Start(() => configure.ForInstallationOn<Windows>().Install()); Console.WriteLine("Press 'Enter' to send a message to RemoteSite which will reply.");
             Console.WriteLine("Press any other key to exit");
 
             while (true)

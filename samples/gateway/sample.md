@@ -7,17 +7,21 @@ related:
 - nservicebus/gateway
 ---
 
+
 ## Code walk-through
 
 This sample demonstrates how logically different sites (such as a headquarters and a remote site) communicate using the NServiceBus Gateway feature. 
+
 
 ## Headquarters.Shared
 
 A shared class library for common code including message definitions.
 
+
 ## Headquarters
 
 The central endpoint of the Sample.
+
 
 ### Gateway configuration
 
@@ -26,11 +30,13 @@ The central endpoint of the Sample.
 
 <!-- import HeadquatersGatewayConfig-->
 
+
 ## AcknowledgedHandler
 
 Handles `PriceUpdateAcknowledged` from `RemoteSite`.
 
 <!-- import AcknowledgedHandler -->
+
 
 ## UpdatePriceHandler
 
@@ -38,7 +44,9 @@ Handles `UpdatePrice` from `WebClient`.
 
 <!-- import UpdatePriceHandler -->
 
+
 ## RemoteSite
+
 
 ### Gateway configuration
 
@@ -46,9 +54,11 @@ Receives incoming messages on `http://localhost:25899/RemoteSite/`
 
 <!-- import RemoteSiteGatewayConfig-->
 
+
 ### PriceUpdatedHandler
      
 <!-- import PriceUpdatedHandler -->
+
 
 ## WebClient
 

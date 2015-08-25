@@ -58,8 +58,9 @@
   <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="ConfigLogging.cs" />
-    <Compile Include="DataResponseMessage.cs" />
-    <Compile Include="RequestDataMessage.cs" />
+    <Compile Include="PriceUpdateAcknowledged.cs" />
+    <Compile Include="PriceUpdated.cs" />
+    <Compile Include="UpdatePrice.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

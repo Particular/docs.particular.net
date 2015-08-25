@@ -1,3 +1,4 @@
+﻿
 using System;
 using NServiceBus;
 using Shared;
@@ -19,11 +20,11 @@ public class UpdatePriceHandler : IHandleMessages<UpdatePrice>
                                 "RemoteSite",
                             };
         PriceUpdated priceUpdated = new PriceUpdated
-                                    {
-                                        ProductId = message.ProductId,
-                                        NewPrice = message.NewPrice,
-                                        ValidFrom = message.ValidFrom,
-                                    };
+        {
+            ProductId = message.ProductId,
+            NewPrice = message.NewPrice,
+            ValidFrom = message.ValidFrom,
+        };
         bus.SendToSites(siteKeys, priceUpdated);
     }
 }

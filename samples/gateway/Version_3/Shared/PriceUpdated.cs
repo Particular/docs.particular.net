@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using NServiceBus;
 
 namespace Shared
 {
-    public class UpdatePrice : IMessage
+    public class PriceUpdated : IMessage
     {
         public int ProductId { get; set; }
         public double NewPrice { get; set; }
