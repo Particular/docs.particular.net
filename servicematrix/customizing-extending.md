@@ -23,7 +23,7 @@ NOTE: In ServiceMatrix, to view the code for any of the components, use the drop
 
 # Message Definitions
 
-NServiceBus messages are plain old CLR classes in C#. As you send commands or publish events in ServiceMatrix, you are prompted only for a name. When you build your solution, the messages are generated.  The generated message classes don't contain any properties but you can easily add them. To modify a message class, [view the code](#viewing-the-code) and add whatever properties you wish.
+NServiceBus messages are plain old CLR classes in C#. As you send commands or publish events in ServiceMatrix, you are prompted only for a name. When you build your solution, the messages are generated.  The generated message classes don't contain any properties but you can easily add them. To modify a message class, view the code and add whatever properties you wish.
 
 ```C#
 namespace OnlineSales.InternalMessages.Commands.Sales
@@ -211,7 +211,7 @@ namespace OnlineSales.Billing
 
 ## Saga Message Handlers
 
-The message handling code of the Saga is implemented very much like the [handler component code above](#nservicebus-component-code).  The code will implement a message handler in the saga for each of the messages handled in the ServiceMatrix design.   Similarly, for each handled message a virtual method is created in the form `HandleImplementation(<messagetype>)`.   These virtual methods are invoked and should be implememented and customized in the custom code partial class.   View the Saga code by select the `View Code` option on the component in the canvas. 
+The message handling code of the Saga is implemented very much like the handler component code.  The code will implement a message handler in the saga for each of the messages handled in the ServiceMatrix design.   Similarly, for each handled message a virtual method is created in the form `HandleImplementation(<messagetype>)`.   These virtual methods are invoked and should be implememented and customized in the custom code partial class.   View the Saga code by select the `View Code` option on the component in the canvas. 
 
 
 ### Example Saga Code

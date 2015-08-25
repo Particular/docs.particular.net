@@ -10,11 +10,13 @@ In the [previous article](getting-started-with-nservicebus-using-servicematrix-2
 
 In this article you will expand the Online Sales system and introduce the Publish/Subscribe pattern using ServiceMatrix. 
 
+
 # Introduction to Publish/Subscribe
 
 Before you move on, please confirm that the `OnlineSales` solution you created previously is still working correctly.  Picking up where you left off, your `OnlineSales` solution ServiceMatrix Canvas should look like this:
 
 ![OnlineSales Canvas](images/servicematrix-canvaswiredup.png)
+
 
 ## Expanding the OnlineSales Example
 
@@ -26,7 +28,8 @@ In your example the `SubmitOrderHandler` component handles the `SubmitOrder` mes
 
 Name the new event `OrderAccepted`.
 
-##Adding the Code to Publish the Event
+
+## Adding the Code to Publish the Event
 
 When you create the `OrderAccepted` event you will be prompted by a dialog informing you of code changes that should be made.
 
@@ -53,6 +56,7 @@ namespace OnlineSales.Sales
 ```
 This code will publish the `OrderAccepted` event immediately upon receipt of the `SubmitOrder` message.
 
+
 ## Adding the Subscriber
 
 To create a subscriber for this new event, select the dropdown of the `OrderAccepted` event and choose 'Add Subscriber' as shown here:
@@ -62,6 +66,7 @@ To create a subscriber for this new event, select the dropdown of the `OrderAcce
 In the 'Add Event Subscriber' window use the 'Add new Service' text box to add a [new service called Billing](images/servicematrix-addeventsubscriber.png "New Billing Service").  You should notice that `OrderAcceptedHandler` has been created in a new Billing Service. The dashed container indicates that the component has yet to be deployed. Also notice that the lines representing the `OrderAccepted` event messages are dashed.  This is because they are events. The `SubmitOrder' messages are commands and are illustrated with a solid line. 
 
 ![Undeployed Billing Service](images/servicematrix-undeployedbilling.png). 
+
 
 ## Deploy the OrderAcceptedHandler
 
@@ -79,13 +84,16 @@ The `SubmitOrderHandler` raises the `OrderAccepted` event, to which `OrderAccept
 
 As you would expect, the ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilderv2.2.0.png "SolutionBuilder") reflects the new endpoint, service, component, and event you added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
 
+
 ## Review the Code
 
 ServiceMatrix generates the initial code for publishing and processing the event and both the publishing and subscribing end. 
 
+
 ### Event Publisher Code 
 
-When we created the `OrderAccepted` event ServiceMatrix generated the code to publish the event and modify the `SubmitOrderHandler` component.  The [section above](#adding-the-code-to-publish-the-event "Event Publishing Code") illustrates the code. 
+When we created the `OrderAccepted` event ServiceMatrix generated the code to publish the event and modify the `SubmitOrderHandler` component.  
+
 
 ### Subscriber Code
 
@@ -108,13 +116,15 @@ namespace OnlineSales.Billing
 
 There is nothing new here!  Notice that this generated `OrderAcceptedHandler` code is the exactly the same as was generated for the  `SubmitOrderHandler`.
 
-#Build and Run the Solution
+
+# Build and Run the Solution
 
 Go ahead and run the solution. This time, in addition to the [sales web site](images/servicematrix-demowebsite.png "Demo Website") and [`OrderProcessing` endpoint console](images/servicematrix-reqresp-orderprocessor.png "Order Processing"), you should see another console window for `Billing`.
 
 Send a few test messages from the website.  You should see them handled by the `OrderProcessing` console as before.  You should almost immediately see that the `Billing` endpoint has received your new `OrderAccepted` event as shown below:
 
 ![Billing Console](images/servicematrix-billingconsole.png)  
+
  
 ## You Did It!##
 
@@ -125,9 +135,11 @@ As you see, it's very easy to get started with NServiceBus and ServiceMatrix.
 
 ## Additional Exercises
 
+
 ### Explore the use of Sagas
 
 Continue on and integrate a payment component into the billing service.  [The next article](getting-started-sagasfullduplex-2.0.md "Sagas in ServiceMatrix Request Response") will continue on with the creation of the OnlineSales solution. 
+
 
 ### Explore the ServiceMatrix Solution Views
 
