@@ -8,7 +8,7 @@
 
     public class OrdersHub : Hub
     {
-        private static int orderNumber;
+        static int orderNumber;
 
         public void CancelOrder(int orderNumber)
         {
@@ -18,14 +18,16 @@
                 OrderNumber = orderNumber
             };
 
-            MvcApplication.Bus.SetMessageHeader(command, "Debug", ((bool)Clients.Caller.debug).ToString());
+            bool isDebug = (bool)Clients.Caller.debug;
+            MvcApplication.Bus.SetMessageHeader(command, "Debug", isDebug.ToString());
 
             MvcApplication.Bus.Send(command);
         }
 
         public void PlaceOrder(string[] productIds)
         {
-            if (((bool)Clients.Caller.debug))
+            bool isDebug = (bool)Clients.Caller.debug;
+            if (isDebug)
             {
                 Debugger.Break();
             }
@@ -35,11 +37,13 @@
                 ClientId = Context.ConnectionId,
                 OrderNumber = Interlocked.Increment(ref orderNumber),
                 ProductIds = productIds,
-                EncryptedCreditCardNumber = "4000 0000 0000 0008", // This property will be encrypted. Therefore when viewing the message in the queue, the actual values will not be shown. 
-                EncryptedExpirationDate = "10/13" // This property will be encrypted.
+                // This property will be encrypted. Therefore when viewing the message in the queue, the actual values will not be shown. 
+                EncryptedCreditCardNumber = "4000 0000 0000 0008",
+                // This property will be encrypted.
+                EncryptedExpirationDate = "10/13" 
             };
 
-            MvcApplication.Bus.SetMessageHeader(command, "Debug", ((bool)Clients.Caller.debug).ToString());
+            MvcApplication.Bus.SetMessageHeader(command, "Debug", isDebug.ToString());
 
             MvcApplication.Bus.Send(command);
         }

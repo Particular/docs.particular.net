@@ -6,7 +6,9 @@
     using NServiceBus.MessageMutator;
     using NServiceBus.Unicast.Messages;
 
-    public class DebugFlagMutator : IMutateTransportMessages, INeedInitialization
+    public class DebugFlagMutator :
+        IMutateTransportMessages, 
+        INeedInitialization
     {
         public static bool Debug { get { return debug.Value; } }
 
@@ -28,7 +30,7 @@
             transportMessage.Headers["Debug"] = Debug.ToString();
         }
 
-        static readonly ThreadLocal<bool> debug = new ThreadLocal<bool>();
+        static ThreadLocal<bool> debug = new ThreadLocal<bool>();
 
 
         public void Customize(BusConfiguration configuration)
