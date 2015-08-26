@@ -124,8 +124,8 @@ As mentioned above in some circumstances Click-Once can be problematic.  The fol
 
 ## Chocolatey   
 
-Early version of the Platform Installer relied on [Chocolatey](https://chocolatey.org) to deploy and update products.
+Early versions of the Platform Installer relied on [Chocolatey](https://chocolatey.org) to deploy and update products.
 
-The current Platform installer no longer has this dependency.  If you installed Chocolatey solely to accommodate the Platform Installer then you can safely remove it by following these [instructions](https://github.com/chocolatey/choco/wiki/Uninstallation)
+The current Platform installer no longer has this dependency.  If you installed Chocolatey solely to accommodate the Platform Installer then [you can safely remove it](https://github.com/chocolatey/choco/wiki/Uninstallation).
 
-Note: While Platform Installer no longer uses Chocolatey this does not mean that Particular will discontinue publishing updates via the  platform Chocolatey. We understand some user would prefer to install the packages this way and we will continue to make the Chocolatey packages available.  
+Note: While the Platform Installer no longer uses Chocolatey, this does not mean that Particular will discontinue publishing updates via the Chocolatey platform. We understand some users would prefer to install the packages this way and we will continue to make the Chocolatey packages available.  
