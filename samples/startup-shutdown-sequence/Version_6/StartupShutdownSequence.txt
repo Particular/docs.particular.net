@@ -1,0 +1,15 @@
+startcode StartupShutdownSequence
+Thread:1 Starting configuration
+Thread:1 Calling Bus.Create
+Thread:1 Inside INeedInitialization.Customize
+Thread:1 Inside IWantToRunBeforeConfigurationIsFinalized.Run
+Thread:1 Inside Feature.Setup
+Thread:1 Inside INeedToInstallSomething.Install
+Thread:1 Inside FeatureStartupTask.OnStart
+Thread:1 Calling IStartableBus.Create
+Thread:6 Inside IWantToRunWhenBusStartsAndStops.Start
+Thread:1 Bus is processing messages
+Thread:1 Calling IStartableBus.Dispose
+Thread:7 Inside IWantToRunWhenBusStartsAndStops.Stop
+Thread:1 Finished
+endcode

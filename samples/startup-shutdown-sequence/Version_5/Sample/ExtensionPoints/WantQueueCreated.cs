@@ -6,7 +6,7 @@ public class WantQueueCreated :
 {
     public bool ShouldCreateQueue()
     {
-        Logger.WriteLine("Inside WantQueueCreated");
+        Logger.WriteLine("Inside IWantQueueCreated");
         return false;
     }
 

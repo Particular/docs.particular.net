@@ -22,6 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +32,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
@@ -46,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtensionPoints\MyFeatureStartupTask.cs" />
     <Compile Include="ExtensionPoints\WantToRunBeforeConfigurationIsFinalized.cs" />
     <Compile Include="ExtensionPoints\WantQueueCreated.cs" />
     <Compile Include="ExtensionPoints\WantToRunWhenBusStartsAndStops.cs" />
@@ -54,6 +58,7 @@
     <Compile Include="ExtensionPoints\NeedToInstallSomething.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="ConfigErrorQueue.cs" />
+    <Compile Include="ExtensionPoints\MyFeature.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

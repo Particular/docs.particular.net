@@ -9,6 +9,8 @@ class Program
     static void Main()
     {
         #region Program
+
+        Configure.Features.Enable<MyFeature>();
         Logger.WriteLine("Starting configuration");
         Configure configure = Configure.With();
         configure.Log4Net();

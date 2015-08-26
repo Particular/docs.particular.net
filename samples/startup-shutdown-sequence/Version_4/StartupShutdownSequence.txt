@@ -5,6 +5,7 @@ Thread:1 Calling Configure.UnicastBus
 Thread:1 Calling ConfigUnicastBus.CreateBus
 Thread:1 Inside INeedInitialization.Init
 Thread:1 Inside IWantToRunBeforeConfigurationIsFinalized.Run
+Thread:1 Inside Feature.Setup
 Thread:1 Inside IWantToRunWhenConfigurationIsComplete.Run
 Thread:1 Inside INeedToInstallSomething.Install
 Thread:1 Inside IWantQueueCreated

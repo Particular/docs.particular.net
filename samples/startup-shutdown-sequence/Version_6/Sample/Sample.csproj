@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FAA2FC1D-4554-4AA7-8D5A-334DC8AB601C}</ProjectGuid>
+    <ProjectGuid>{48F718EE-6C45-41BA-80EC-81BF34D4A623}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Sample</RootNamespace>
     <AssemblyName>Sample</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,14 +37,9 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus">
-      <HintPath>..\packages\NServiceBus.Interfaces.4.7.6\lib\net40\NServiceBus.dll</HintPath>
-    </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\packages\NServiceBus.4.7.6\lib\net40\NServiceBus.Core.dll</HintPath>
+    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NServiceBus.6.0.0-unstable0653\lib\net451\NServiceBus.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -55,20 +51,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigLogging.cs" />
-    <Compile Include="ExtensionPoints\MyFeature.cs" />
-    <Compile Include="ExtensionPoints\WantToRunBeforeConfiguration.cs" />
-    <Compile Include="ExtensionPoints\NeedToInstallSomething.cs" />
+    <Compile Include="ExtensionPoints\MyFeatureStartupTask.cs" />
     <Compile Include="ExtensionPoints\WantToRunBeforeConfigurationIsFinalized.cs" />
-    <Compile Include="ExtensionPoints\WantToRunWhenConfigurationIsComplete.cs" />
     <Compile Include="ExtensionPoints\WantToRunWhenBusStartsAndStops.cs" />
+    <Compile Include="ExtensionPoints\MyFeature.cs" />
     <Compile Include="ExtensionPoints\NeedInitialization.cs" />
-    <Compile Include="ExtensionPoints\WantQueueCreated.cs" />
-    <Compile Include="ConfigErrorQueue.cs" />
+    <Compile Include="ExtensionPoints\NeedToInstallSomething.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
