@@ -29,7 +29,7 @@ When sending a message, you can register a callback that is invoked when a respo
 DANGER: If the server process returns multiple responses, NServiceBus cannot know which response message will be the last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a process restart (common scenarios are a crash or an IIS recycle) as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](/nservicebus/sagas/).
 
 
-## Acquiring callback functionality
+## Prerequisites for callback functionality
 
 In NServiceBus version 5 and lower callbacks are built into the core nuget.
 
