@@ -4,11 +4,10 @@ using NServiceBus.Installation.Environments;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        Configure configure = Configure.With();
         Configure.Serialization.Json();
-
+        Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Unobtrusive.Server");
         configure.DefaultBuilder();
