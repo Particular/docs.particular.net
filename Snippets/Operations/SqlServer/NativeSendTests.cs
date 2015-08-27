@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading;
-    using System.Collections.Generic;
     using System.Data.SqlClient;
     using NServiceBus;
     using NServiceBus.Config;
@@ -41,15 +40,14 @@
             State state = new State();
             using (IBus bus = StartBus(state))
             {
-                var headers = new List<NativeSend.HeaderInfo>
-                {
-                    new NativeSend.HeaderInfo
-                    {
-                        Key = "NServiceBus.EnclosedMessageTypes",
-                        Value = "Operations.SqlServer.NativeSendTests+MessageToSend"
-                    }
-                };
-                NativeSend.SendMessage(connectionString, endpointName, @"{""Property"": ""Value"",}", headers);
+                
+                string message = @"{
+                       $type: 'Operations.SqlServer.NativeSendTests+MessageToSend',
+                       Property: 'Value'
+                    }";
+
+
+                NativeSend.SendMessage(connectionString, endpointName, message);
                 state.ResetEvent.WaitOne();
             }
         }
