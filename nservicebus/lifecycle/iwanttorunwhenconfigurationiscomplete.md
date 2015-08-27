@@ -1,6 +1,8 @@
 ---
 title: IWantToRunWhenConfigurationIsComplete
 summary: An interface that allows you to hook into the configuration sequence of NServiceBus
+tags:
+ - life cycle
 related:
  - samples/startup-shutdown-sequence
 ---

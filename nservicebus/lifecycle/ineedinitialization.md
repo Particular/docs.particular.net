@@ -2,7 +2,7 @@
 title: INeedInitialization
 summary: An interface that allows you to hook into the very beginning of the bus creation sequence of NServiceBus
 tags:
- - lifecycle
+ - life cycle
 related:
  - samples/startup-shutdown-sequence
 ---
