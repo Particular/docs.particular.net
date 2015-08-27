@@ -5,7 +5,7 @@ class Program
     public static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-
+        busConfiguration.EndpointName("Samples.Unobtrusive.Client");
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseDataBus<FileShareDataBus>()

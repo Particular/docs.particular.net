@@ -1,5 +1,6 @@
 using System;
 using Events;
+using Messages;
 using NServiceBus;
 
 class CommandSender
@@ -29,9 +30,13 @@ class CommandSender
         }
     }
 
-    static async void DeferMessage(IBus bus)
+    static void DeferMessage(IBus bus)
     {
-        //bus.Defer(TimeSpan.FromSeconds(10), new DeferredMessage());
+        DeferredMessage message = new DeferredMessage();
+        SendOptions sendOptions = new SendOptions();
+        sendOptions.RouteToLocalEndpointInstance();
+        sendOptions.DelayDeliveryWith(TimeSpan.FromSeconds(10));
+        bus.Send(message, sendOptions);
         Console.WriteLine();
         Console.WriteLine("{0} - {1}", DateTime.Now.ToLongTimeString(), "Sent a message that is deferred for 10 seconds");
     }

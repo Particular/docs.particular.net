@@ -15,7 +15,6 @@ public class CommandSender
         Console.WriteLine("Press 'X' to send a message that is marked with expiration time.");
         Console.WriteLine("Press any key to exit");
 
-
         while (true)
         {
             ConsoleKeyInfo key = Console.ReadKey();
@@ -98,8 +97,6 @@ public class CommandSender
 
         SendOptions sendOptions = new SendOptions();
         sendOptions.SetCorrelationId(commandId.ToString());
-        sendOptions.SetDestination("Samples.Unobtrusive.Server");
-
         MyCommand message = new MyCommand();
         var response =  await bus.Request<CommandStatus>(new MyCommand
         {
