@@ -32,6 +32,7 @@ The field ListPrice must be between 1 and 5.
 
 Now let's look at the code.
 
+
 ## Code walk-through
 
 This sample shows how to create a custom message mutator.
@@ -43,6 +44,7 @@ All you have to do as a consumer is implement the desired interface and load it 
 Similar interfaces exist for `IMessageMutator`, i.e., `IMutateTransportMessages`, which mutates transport messages. The main difference from `IMessageMutator` is that the transport message may have several messages in a single transport message.
 
 This sample implements two mutators:
+
 
 ### ValidationMessageMutator
 
@@ -58,7 +60,8 @@ This means that both the outgoing message and incoming message will be validated
 
 It is possible to examine the message type and mutate only certain types of messages by checking the type of the message object received as a parameter to the method.
 
-Browse the code. It shows a standard way to test data annotations. In this sample, if one of the validation fails, an exception is thrown, detailing the 'broken' validation.
+Browse the code. In this sample, if one of the validation fails, an exception is thrown, detailing the 'broken' validation.
+
 
 ### TransportMessageCompressionMutator
 
@@ -91,6 +94,8 @@ Now all we have to do it hook those two mutators into the NServiceBus message fl
 To hook the sample message mutators into NServiceBus messaging flow:
 
 <!-- import ComponentRegistartion -->
+
+
 ## The Sending code
 
 <!-- import SendingSmall --> 

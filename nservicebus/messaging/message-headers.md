@@ -294,8 +294,12 @@ Headers can be written for an outgoing message.
 
 <!-- import header-outgoing-handler -->
 
+
 ### For all outgoing messages
 
 NServiceBus allows you to register headers at configuration time that's then added to all outgoing messages for the endpoint.
 
 <!-- import header-static-endpoint --> 
+
+
+WARNING: In Versions 3 through Version 5 the global outgoing headers are not thread safe. It is recommended that you manipulate them at startup. This has been limited to a configuration time only API in Version 6 .
