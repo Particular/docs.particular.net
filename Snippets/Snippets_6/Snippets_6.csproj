@@ -129,6 +129,7 @@
     </Content>
     <Content Include="Errors\ErrorQueue\configureErrorQueue.config.xml" />
     <Content Include="Errors\FirstLevel\flr.config.xml" />
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
