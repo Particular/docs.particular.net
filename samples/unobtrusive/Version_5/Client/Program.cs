@@ -12,8 +12,6 @@ class Program
             .BasePath(@"..\..\..\DataBusShare\");
         busConfiguration.RijndaelEncryptionService("gdDbqRpqdRbTs3mhdZh8qCaDaxJXl+e7");
 
-        busConfiguration.ApplyCustomConventions();
-
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
             CommandSender.Start(bus);
