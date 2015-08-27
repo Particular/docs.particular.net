@@ -41,9 +41,6 @@
             State state = new State();
             using (IBus bus = StartBus(state))
             {
-
-               // string message = @"{  $type: 'Operations.SqlServer.NativeSendTests+MessageToSend',  Property: 'Value'  }";
-
                 string message = @"{  Property: 'Value'  }";
 
                 var headers = new Dictionary<string, string>
