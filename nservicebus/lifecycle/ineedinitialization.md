@@ -9,19 +9,19 @@ related:
 
 Classes that implement `NServiceBus.INeedInitialization` are created and called as one of the first steps in the bus creation lifecycle. Use `INeedInitialization` to register components that will be used later in the bus creation lifecycle. 
 
-NOTE: In V3 of NServiceBus, this interface is found in the `NServiceBus.Config` namespace. In V4 both interfaces are available but the old one is marked as obsolete. As of V5 use of the `NServiceBus.Config.INeedInitialization` interface will cause a compile-time error. In V4 (which has both interfaces), all instances of `NServiceBus.Config.INeedInitialization` are created and called and then all instances of `NServiceBus.INeedInitialization` are created and called.
+NOTE: In Version 3 of NServiceBus, this interface is found in the `NServiceBus.Config` namespace. In Version 4 both interfaces are available but the old one is marked as obsolete. As of Version 5 use of the `NServiceBus.Config.INeedInitialization` interface will cause a compile-time error. In Version 4 (which has both interfaces), all instances of `NServiceBus.Config.INeedInitialization` are created and called and then all instances of `NServiceBus.INeedInitialization` are created and called.
 
 Instances are:
 
-* located by type scanning. 
+* located by [assembly scanning](/nservicebus/hosting/assembly-scanning). 
 * created as one of the very first steps when the bus is created.
-* created on the same thread that is creating the bus. 
-* created with `Activator.CreateInstance(...)` which means they
+* created on the same thread that is creating the bus. Instances are created in the order they appear in the scanned types list as a result of the assembly scan.
+* created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they
   * are not resolved out of an IoC container (even if they are registered there).
   * will not have any dependencies injected.
   * must have a default constructor.  
 
-In V3 and V4, as instances are created `Init()` is called. In V5 this was changed to `Customize(BusConfiguration)`. All calls to either method are made in sequence on the thread that is creating the bus.
+In Version 3 and Version 4, as instances are created `Init()` is called. In Version 5 this was changed to `Customize(BusConfiguration)`. All calls to either method are made in sequence on the thread that is creating the bus.
  
 Exceptions thrown by instances of `INeedInitialization` are unhandled by NServiceBus. These will bubble up to the caller creating the bus.
 
