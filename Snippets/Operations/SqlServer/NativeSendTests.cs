@@ -1,6 +1,7 @@
 ﻿namespace Operations.SqlServer
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using System.Data.SqlClient;
     using NServiceBus;
@@ -23,12 +24,12 @@
         [TearDown]
         public void Setup()
         {
-            
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                QueueDeletion.DeleteQueuesForEndpoint(connection,schema, endpointName);
+                QueueDeletion.DeleteQueuesForEndpoint(connection, schema, endpointName);
                 QueueDeletion.DeleteQueuesForEndpoint(connection, schema, errorQueueName);
 
             }
@@ -40,14 +41,21 @@
             State state = new State();
             using (IBus bus = StartBus(state))
             {
-                
-                string message = @"{
-                       $type: 'Operations.SqlServer.NativeSendTests+MessageToSend',
-                       Property: 'Value'
-                    }";
 
+               // string message = @"{  $type: 'Operations.SqlServer.NativeSendTests+MessageToSend',  Property: 'Value'  }";
 
-                NativeSend.SendMessage(connectionString, endpointName, message);
+                string message = @"{  Property: 'Value'  }";
+
+                var headers = new Dictionary<string, string>
+                {
+
+                    {
+                        "NServiceBus.EnclosedMessageTypes",
+                       "Operations.SqlServer.NativeSendTests+MessageToSend"
+                    }
+                };
+
+                NativeSend.SendMessage(connectionString, endpointName, message, headers);
                 state.ResetEvent.WaitOne();
             }
         }
@@ -59,7 +67,7 @@
             config.EndpointName(endpointName);
             config.UseSerialization<JsonSerializer>();
             config.UseTransport<SqlServerTransport>().ConnectionString(connectionString);
-            
+
             // Following line solves {"The given key (NServiceBus.LocalAddress) was not present in the dictionary."}
             Type[] sqlTypes = typeof(SqlServerTransport).Assembly.GetTypes();
 
@@ -81,7 +89,7 @@
                 this.state = state;
             }
 
-       
+
             public void Handle(MessageToSend message)
             {
                 Assert.AreEqual("Value", message.Property);
