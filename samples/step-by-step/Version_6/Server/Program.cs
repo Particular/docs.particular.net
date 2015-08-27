@@ -1,6 +1,5 @@
-    using System;
-    using NServiceBus;
-
+using System;
+using NServiceBus;
 
 class Program
 {
@@ -8,7 +7,7 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("StepByStep.Ordering.Subscriber");
+        busConfiguration.EndpointName("StepByStep.Server");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();

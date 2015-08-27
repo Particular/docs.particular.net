@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("StepByStep.Ordering.Server");
+        busConfiguration.EndpointName("StepByStep.Server");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();

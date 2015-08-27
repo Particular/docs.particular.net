@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("StepByStep.Ordering.Client");
+        busConfiguration.EndpointName("StepByStep.Client");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
@@ -42,7 +42,7 @@ class Program
                 Product = "New shoes",
                 Id = id
             };
-            bus.Send("StepByStep.Ordering.Server", placeOrder);
+            bus.Send("StepByStep.Server", placeOrder);
 
             Console.WriteLine("Sent a new PlaceOrder message with id: {0}", id.ToString("N"));
 
