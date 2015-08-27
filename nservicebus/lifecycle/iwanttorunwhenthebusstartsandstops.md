@@ -10,13 +10,13 @@ related:
 Classes that implement `IWantToRunWhenTheBusStartsAndStops` are invoked just after the bus has been started and just before it is stopped.
 
 Instances are added to the Builder during bus creation using an Instance Per Call lifecyle.
-Instances are all created on the thread responsible for starting the bus. Instances are created with the `Builder` instance and do not require a default constuctor. Instances will have any dependencies injected. 
+Instances are all created on the thread responsible for starting the bus. Instances are created with the `Builder` instance and do not require a default constructor. Instances will have any dependencies injected. 
 Exceptions thrown in the constructors of instances of `IWantToRunWhenTheBusStartsAndStops` are unhandled by NServiceBus. These will bubble up to the code that starts the the bus.
 
 NOTE: The transport is started before any instances of `IWantToRunWhenTheBusStartsAndStops` are created. You cannot rely on all instances of `IWantToRunWhenTheBusStartsAndStops` being created or started before messages start to be processed. 
 
 Once created `Start()` is called on each instance in parallel. Each `Start()` call is made different background thread. Instances of `IWantToRunWhenTheBusStartsAndStops` are kept internally to be stopped when the bus is disposed.
-Exceptions raised from the `Start()` method will cause a [Critical Error](/nservicebus/hosting/critical-errors). As they are run on separate threads, an exception on one `Start()` call will not interfere with any others.
+Exceptions raised from the `Start()` method will cause a [Critical Error](/nservicebus/hosting/critical-errors.md). As they are run on separate threads, an exception on one `Start()` call will not interfere with any others.
 
 NOTE: The call to `IStartable.Start()` may return before all instances of `IWantToRunWhenTheBusStartsAndStops.Start()` are completed.
 
