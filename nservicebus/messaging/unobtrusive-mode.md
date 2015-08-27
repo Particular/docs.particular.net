@@ -21,6 +21,6 @@ There are a couple of ways you can solve this.
 
 ## Unobtrusive mode
 
-NServiceBus allows you define to own [message conventions](messages-events-commands.md) instead of using the `IMessage`, `ICommand` or `IEvent` interfaces and attributes like `TimeToBeReceivedAttribute` and `ExpressAttribute`. NServiceBus also supports conventions for encrypted properties, express messages, databus properties and time to be received. So with these conventions combined you can avoid a reference to NServiceBus in you messages assembly.
+NServiceBus allows you to define your own [message conventions](messages-events-commands.md) instead of using the `IMessage`, `ICommand` or `IEvent` interfaces and attributes like `TimeToBeReceivedAttribute` and `ExpressAttribute`. NServiceBus also supports conventions for encrypted properties, express messages, databus properties and time to be received. So with these conventions combined you can avoid a reference to NServiceBus in you messages assembly.
 
 <!-- import MessageConventions -->  
