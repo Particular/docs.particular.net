@@ -7,7 +7,7 @@
     {
         public static void CreateQueuesForEndpoint()
         {
-            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=myDatabase;Integrated Security=True";
+            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
 
             #region sqlserver-create-queues-endpoint-usage
 

@@ -6,6 +6,27 @@ summary: Example code and scripts to facilitate deployment and operational actio
 The followings are example codes and scripts to facilitate deployment and operations against the SQLServer Transport.
 
 
+## Native Send  
+
+
+### The native send helper methods
+
+The following code shows an example of how to perform the following actions
+
+ * create and serialize headers.
+ * write a message body directly to SQL Server Transport.
+
+
+#### In C&#35;
+
+<!-- import sqlserver-nativesend -->
+
+
+### Using the native send helper methods
+
+<!-- import sqlserver-nativesend-usage -->
+
+
 ## Create queues
 
 Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.
