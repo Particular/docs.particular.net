@@ -36,7 +36,7 @@ The above pages all have examples of how to pass in an instance of an existing c
 
 ### IBus resolution
 
-Not that the instance of `IBus` is scoped for the lifetime of the container. Hence if you resolve `IBus` and then dispose of it the endpoint will stop processing messages.
+Note that the instance of `IBus` is scoped for the lifetime of the container. Hence if you resolve `IBus` and then dispose of it the endpoint will stop processing messages.
 
 
 ## Plugging in your own container
