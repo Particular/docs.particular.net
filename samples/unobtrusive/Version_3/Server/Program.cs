@@ -4,12 +4,13 @@ using NServiceBus.Installation.Environments;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
         Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Unobtrusive.Server");
         configure.DefaultBuilder();
+        configure.ApplyCustomConventions();
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
@@ -17,7 +18,6 @@ class Program
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
         configure.RijndaelEncryptionService();
-        configure.ApplyCustomConventions();
 
         using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
