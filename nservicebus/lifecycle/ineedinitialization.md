@@ -26,3 +26,5 @@ In V3 and V4, as instances are created `Init()` is called. In V5 this was change
 Exceptions thrown by instances of `INeedInitialization` are unhandled by NServiceBus. These will bubble up to the caller creating the bus.
 
 NOTE: Instances of `INeedInitialization` are created after type-scanning has occurred. You should not attempt to alter the types to be scanned from an instance of `INeedInitialization`.
+
+<!-- import lifecycle-ineedinitialization -->

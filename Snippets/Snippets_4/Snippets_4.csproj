@@ -275,6 +275,7 @@
     <Compile Include="Container\Custom\MyCustomObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
+    <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Logging\Log4Net\Usage.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
