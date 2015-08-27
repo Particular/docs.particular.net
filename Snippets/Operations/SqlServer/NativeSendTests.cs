@@ -16,7 +16,6 @@
     {
         string endpointName = "sqlserverNativeSendTests";
         static string errorQueueName = "sqlserverNativeSendTestsError";
-
         static string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
         static string schema = @"dbo";
 
@@ -31,7 +30,6 @@
 
                 QueueDeletion.DeleteQueuesForEndpoint(connection, schema, endpointName);
                 QueueDeletion.DeleteQueuesForEndpoint(connection, schema, errorQueueName);
-
             }
         }
 
@@ -43,13 +41,8 @@
             {
                 string message = @"{  Property: 'Value'  }";
 
-                var headers = new Dictionary<string, string>
-                {
-
-                    {
-                        "NServiceBus.EnclosedMessageTypes",
-                       "Operations.SqlServer.NativeSendTests+MessageToSend"
-                    }
+                var headers = new Dictionary<string, string> {
+                    {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
                 };
 
                 NativeSend.SendMessage(connectionString, endpointName, message, headers);

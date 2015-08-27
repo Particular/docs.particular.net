@@ -18,19 +18,11 @@ namespace Operations.SqlServer
         {
             #region sqlserver-nativesend-usage
 
-
-
             SendMessage(
               connectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
               queuePath: @"Samples.SqlServer.NativeIntegration",
-              messageBody: @"{
-                       $type: 'MessageToSend',
-                       Property: 'Value'
-                    }",
-              headers: new Dictionary<string, string>
-                        {
-                            {"NServiceBus.EnclosedMessageTypes", "MessageToSend"}
-                        }
+              messageBody: @"{ Property: 'Value' }",
+              headers: new Dictionary<string, string>{{"NServiceBus.EnclosedMessageTypes", "MessageToSend"}}
               );
 
             #endregion
@@ -52,7 +44,7 @@ namespace Operations.SqlServer
                         command.CommandType = CommandType.Text;
 
                         command.Parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
-                        command.Parameters.Add("Headers", SqlDbType.VarChar).Value = CreateHeaders(headers);
+                        command.Parameters.Add("Headers", SqlDbType.VarChar).Value = new JsonMessageSerializer(null).SerializeObject(headers);
                         command.Parameters.Add("Body", SqlDbType.VarBinary).Value = Encoding.UTF8.GetBytes(messageBody);
                         command.Parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
 
@@ -61,11 +53,6 @@ namespace Operations.SqlServer
                 }
                 scope.Complete();
             }
-        }
-
-        static string CreateHeaders(Dictionary<string, string> headerInfos)
-        {
-            return new JsonMessageSerializer(null).SerializeObject(headerInfos);
         }
 
         #endregion
