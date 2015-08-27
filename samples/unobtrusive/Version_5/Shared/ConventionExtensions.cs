@@ -1,7 +1,7 @@
 ﻿using System;
 using NServiceBus;
 
-public static class ConventionExtensions
+static class ConventionExtensions
 {
     #region CustomConvention
     public static void ApplyCustomConventions(this BusConfiguration busConfiguration)

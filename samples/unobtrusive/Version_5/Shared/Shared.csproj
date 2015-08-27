@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConfigErrorQueue.cs" />
+    <Compile Include="ConfigureMessageConventions.cs" />
     <Compile Include="ConventionExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
