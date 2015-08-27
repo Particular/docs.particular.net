@@ -12,7 +12,7 @@ related:
 
 ## Code walk-through
 
-Illustrates customizing NLog usage by configuring Serilog targets and rules.
+Illustrates customizing [NServiceBus.Serilog](https://github.com/SimonCropp/NServiceBus.Serilog) usage by configuring Serilog targets and rules.
 
 
 ### Configure Serilog
