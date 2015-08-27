@@ -3,6 +3,8 @@ title: Host Default Logging
 summary: Illustrates the default logging capability of the NServiceBus host.
 tags:
 - Logging
+related:
+- nservicebus/logging
 ---
 
 ## Code walk-through
@@ -14,7 +16,3 @@ Open the app.config file. See the Logging configuration section at the top as we
 <!-- import ThresholdConfig -->
 
 This code instructs NServiceBus to only output logs at a level of INFO or higher.
-
-## More Info
-
- * [Logging in NServiceBus](/nservicebus/logging/)

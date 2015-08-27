@@ -576,7 +576,7 @@ It will also wrap the image in a clickable lightbox so the full image can be acc
  * Crosses are done with `&#10006;` &#10006;
   
 
-## More Info
+## More Information
  
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
