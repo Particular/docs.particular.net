@@ -68,18 +68,12 @@ Go to the server queue (called `EncryptionSampleEndpoint1`) and examine the mess
 
 Your message will look like this:
 
-```XML
-<?xml version="1.0" ?>
-<Messages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-          xmlns="http://tempuri.net/Messages">
-  <MessageWithSecretData>
-    <Secret>
-      <EncryptedValue>
-         <EncryptedBase64Value>+eeBont5Lzlre4cxDi8QT/M6EbAGxTerniqywbpLBVA=</EncryptedBase64Value>
-         <Base64Iv>u8n8ds0Ssf/AdJCxpOG7AQ==</Base64Iv>
-      </EncryptedValue>
-    </Secret>
-  </MessageWithSecretData>
-</Messages>
+```JSON
+"MessageWithSecretData": {
+  "Secret": {
+    "EncryptedValue": {
+      "EncryptedBase64Value": "+eeBont5Lzlre4cxDi8QT/M6EbAGxTerniqywbpLBVA=",
+      "Base64Iv": "u8n8ds0Ssf/AdJCxpOG7AQ=="
+  }
+}
 ```

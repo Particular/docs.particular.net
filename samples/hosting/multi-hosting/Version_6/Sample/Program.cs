@@ -43,6 +43,7 @@ class Program
         BusConfiguration busConfiguration = new BusConfiguration();
 
         busConfiguration.EndpointName("Samples.MultiHosting.Instance1");
+        //Exclude Instance2.dll and, by inference, include all other assemblies
         busConfiguration.ExcludeAssemblies("Instance2");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
