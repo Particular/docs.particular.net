@@ -19,34 +19,37 @@ namespace Operations.SqlServer
             #region sqlserver-nativesend-usage
 
             SendMessage(
-              connectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
-              queuePath: @"Samples.SqlServer.NativeIntegration",
-              messageBody: @"{ Property: 'Value' }",
-              headers: new Dictionary<string, string>{{"NServiceBus.EnclosedMessageTypes", "MessageToSend"}}
-              );
+                connectionString: @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True",
+                queue: @"Samples.SqlServer.NativeIntegration",
+                messageBody: "{\"Property\":\"PropertyValue\"}",
+                headers: new Dictionary<string, string>
+                {
+                    {"NServiceBus.EnclosedMessageTypes", "MessageToSend"}
+                }
+                );
 
             #endregion
         }
 
         #region sqlserver-nativesend
 
-        public static void SendMessage(string connectionString, string queuePath, string messageBody, Dictionary<string, string> headers)
+        public static void SendMessage(string connectionString, string queue, string messageBody, Dictionary<string, string> headers)
         {
+            string insertSql = @"INSERT INTO [" + queue + "] ([Id],[Recoverable],[Headers],[Body]) VALUES (@Id,@Recoverable,@Headers,@Body)";
             using (var scope = new TransactionScope())
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-
-                    string insertSql = @"INSERT INTO [" + queuePath + "] ([Id],[Recoverable],[Headers],[Body]) VALUES (@Id,@Recoverable,@Headers,@Body)";
                     using (SqlCommand command = new SqlCommand(insertSql, connection))
                     {
+                        SqlParameterCollection parameters = command.Parameters;
                         command.CommandType = CommandType.Text;
-
-                        command.Parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
-                        command.Parameters.Add("Headers", SqlDbType.VarChar).Value = new JsonMessageSerializer(null).SerializeObject(headers);
-                        command.Parameters.Add("Body", SqlDbType.VarBinary).Value = Encoding.UTF8.GetBytes(messageBody);
-                        command.Parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
+                        parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
+                        string serializeHeaders = new JsonMessageSerializer(null).SerializeObject(headers);
+                        parameters.Add("Headers", SqlDbType.VarChar).Value = serializeHeaders;
+                        parameters.Add("Body", SqlDbType.VarBinary).Value = Encoding.UTF8.GetBytes(messageBody);
+                        parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
 
                         command.ExecuteNonQuery();
                     }

@@ -23,11 +23,9 @@
         [TearDown]
         public void Setup()
         {
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-
                 QueueDeletion.DeleteQueuesForEndpoint(connection, schema, endpointName);
                 QueueDeletion.DeleteQueuesForEndpoint(connection, schema, errorQueueName);
             }
@@ -39,9 +37,10 @@
             State state = new State();
             using (IBus bus = StartBus(state))
             {
-                string message = @"{  Property: 'Value'  }";
+                string message = @"{ Property: 'Value' }";
 
-                var headers = new Dictionary<string, string> {
+                var headers = new Dictionary<string, string>
+                {
                     {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
                 };
 
@@ -57,12 +56,8 @@
             config.EndpointName(endpointName);
             config.UseSerialization<JsonSerializer>();
             config.UseTransport<SqlServerTransport>().ConnectionString(connectionString);
-
-            // Following line solves {"The given key (NServiceBus.LocalAddress) was not present in the dictionary."}
             Type[] sqlTypes = typeof(SqlServerTransport).Assembly.GetTypes();
-
             config.TypesToScan(TypeScanner.NestedTypes<NativeSendTests>(sqlTypes));
-
             config.EnableInstallers();
             config.UsePersistence<InMemoryPersistence>();
             config.DisableFeature<SecondLevelRetries>();
@@ -96,6 +91,7 @@
         {
             public string Property { get; set; }
         }
+
         class ConfigTransport : IProvideConfiguration<TransportConfig>
         {
             public TransportConfig GetConfiguration()
