@@ -7,9 +7,9 @@ class Program
 
     static void Main()
     {
-        Configure configure = Configure.With();
         Configure.Serialization.Json();
-
+        Configure configure = Configure.With();
+        configure.DefineEndpointName("Samples.Unobtrusive.Client");
         configure.Log4Net();
         configure.DefaultBuilder();
         configure.UseTransport<Msmq>();
