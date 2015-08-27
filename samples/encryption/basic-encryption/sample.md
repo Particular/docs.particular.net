@@ -9,9 +9,11 @@ related:
 - nservicebus/security/encryption
 ---
 
+
 ## Run the solution.
 
 You will see two console applications start up.
+
 
 ### Endpoint1 
 
@@ -20,6 +22,7 @@ Which outputs
 ```
 MessageWithSecretData sent. 
 ```
+
 
 ### Endpoint2 
 
@@ -32,13 +35,16 @@ CreditCard: 312312312312312 is valid to 3/11/2015 5:21:59 AM
 CreditCard: 543645546546456 is valid to 3/11/2016 5:21:59 AM
 ```
 
+
 ## Code walk-through
+
 
 ### The message contract
 
 Starting with the Shared project, open the `MessageWithSecretData.cs` file and look at the following code:
 
 <!-- import Message -->
+
 
 ### How is encryption configured. 
 
