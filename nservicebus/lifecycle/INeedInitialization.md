@@ -1,18 +1,28 @@
 ---
 title: INeedInitialization
-summary: An interface that allows you to hook into the configuration sequence of NServiceBus
+summary: An interface that allows you to hook into the very beginning of the bus creation sequence of NServiceBus
+tags:
+ - lifecycle
 related:
  - samples/startup-shutdown-sequence
 ---
 
-Classes that implement `INeedInitialization` are used to adjust the `BusConfiguration` instance which is used to construct the Bus.
+Classes that implement `NServiceBus.INeedInitialization` are created and called as one of the first steps in the bus creation lifecycle. Use `INeedInitialization` to register components that will be used later in the bus creation lifecycle. 
 
-Instances are located during Type Scanning. 
-Instances are created as one of the very first steps when `Bus.Create()` or `Bus.CreateSendOnly()` is called.
-Instances are all created on the calling thread. Instances are created with `Activator.CreateInstance(...)` and require a default constructor. Instances will not have any dependencies injected. 
-As instances are created `Customize(BusConfiguration)` is called on each one in series. 
-Exceptions thrown by instances of `INeedInitialization` are unhandled by NServiceBus. These will bubble up to the caller of `Bus.Create()` or `Bus.CreateSendOnly()`.
+NOTE: In V3 of NServiceBus, this interface is found in the `NServiceBus.Config` namespace. In V4 both interfaces are available but the old one is marked as obsolete. As of V5 use of the `NServiceBus.Config.INeedInitialization` interface will cause a compile-time error. In V4 (which has both interfaces), all instances of `NServiceBus.Config.INeedInitialization` are created and called and then all instances of `NServiceBus.INeedInitialization` are created and called.
 
-NOTE: Instances of `INeedInitialization` are created after immediately after type-scanning has occurred. You should not call `TypesToScan`, `AssembliesToScan`, or `ScanAssembliesInDirectory` from an instance of `INeedInitialization`.
+Instances are:
 
-Use `INeedInitialization` to alter the `BusConfiguration` instance as early as possible in the bus lifecyce process. Frequently this is used to register components that will be used later in the lifecycle. 
+* located by type scanning. 
+* created as one of the very first steps when the bus is created.
+* created on the same thread that is creating the bus. 
+* created with `Activator.CreateInstance(...)` which means they
+  * are not resolved out of an IoC container (even if they are registered there).
+  * will not have any dependencies injected.
+  * must have a default constructor.  
+
+In V3 and V4, as instances are created `Init()` is called. In V5 this was changed to `Customize(BusConfiguration)`. All calls to either method are made in sequence on the thread that is creating the bus.
+ 
+Exceptions thrown by instances of `INeedInitialization` are unhandled by NServiceBus. These will bubble up to the caller creating the bus.
+
+NOTE: Instances of `INeedInitialization` are created after type-scanning has occurred. You should not attempt to alter the types to be scanned from an instance of `INeedInitialization`.
