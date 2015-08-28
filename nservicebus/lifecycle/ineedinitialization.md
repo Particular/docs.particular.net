@@ -15,13 +15,13 @@ Instances are:
 
 * located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md). 
 * created as one of the very first steps when the bus is created.
-* created on the same thread that is creating the bus. Instances are created in the order they appear in the scanned types list as a result of the assembly scan.
+* created on the same thread that is creating the bus.
 * created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they
   * are not resolved out of an IoC container (even if they are registered there).
   * will not have any dependencies injected.
   * must have a default constructor.  
 
-In Version 3 and Version 4, as instances are created `Init()` is called. In Version 5 this was changed to `Customize(BusConfiguration)`. All calls to either method are made in sequence on the thread that is creating the bus.
+In Version 3 and Version 4, as instances are created `Init()` is called. In Version 5 this was changed to `Customize(BusConfiguration)`. All calls to either method are made in sequence on the thread that is creating the bus. The order of these calls is determined by the order of the scanned types list as a result of the assembly scan.
  
 Exceptions thrown by instances of `INeedInitialization` are unhandled by NServiceBus. These will bubble up to the caller creating the bus.
 

@@ -200,6 +200,7 @@
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
+    <Compile Include="Lifecycle\IWantToRunWhenConfigurationIsComplete.cs" />
     <Compile Include="Logging\Log4Net\Usage.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />

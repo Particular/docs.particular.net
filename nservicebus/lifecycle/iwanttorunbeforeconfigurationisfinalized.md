@@ -12,13 +12,13 @@ During bus creation the configuration object used to construct the bus becomes f
 Instances are:
 * located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md).
 * created just before the configuration is frozen.
-* created on the same thread that is creating the bus. Instances are created in the order they appear in the scanned types list as a result of the assembly scan.
+* created on the same thread that is creating the bus.
 * created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they:
   * are not resolved out of an IoC container (even if they are registered there).
   * will not have any dependencies injected.
   * must have a default constructor.
 
-As instances are created `Run(...)` is called. These calls are made in sequence on the thread that is creating the bus.
+Once created `Run(...)` is called on each instance. These calls are made sequentialy on the thread that is creating the bus. The order of these calls is determined by the order of the scanned types list as a result of the assembly scan.
 
 Exceptions thrown by instances of `IWantToRunBeforeConfigurationIsFinalized` are unhandled by NServiceBus. These will bubble up to the caller creating the bus.
 
