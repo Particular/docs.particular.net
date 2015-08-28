@@ -17,9 +17,9 @@
   <!--startcode sqlserver-multidb-messagemapping 2 -->
   <UnicastBusConfig>
     <MessageEndpointMappings>
-      <add Messages="Billing.Contract"
+      <add AssemblyName="Billing.Contract"
            Endpoint="billing"/>
-      <add Messages="Sales.Contract"
+      <add AssemblyName="Sales.Contract"
            Endpoint="sales"/>
     </MessageEndpointMappings>
   </UnicastBusConfig>
