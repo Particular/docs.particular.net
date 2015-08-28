@@ -13,7 +13,7 @@ NOTE: In Version 3 of NServiceBus, this interface is found in the `NServiceBus.C
 
 Instances are:
 
-* located by [assembly scanning](/nservicebus/hosting/assembly-scanning). 
+* located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md). 
 * created as one of the very first steps when the bus is created.
 * created on the same thread that is creating the bus. Instances are created in the order they appear in the scanned types list as a result of the assembly scan.
 * created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they
