@@ -278,6 +278,7 @@
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
     <Compile Include="Lifecycle\IWantToRunWhenConfigurationIsComplete.cs" />
+    <Compile Include="Lifecycle\IWantToRunWhenTheBusStartsAndStops.cs" />
     <Compile Include="Logging\Log4Net\Usage.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
