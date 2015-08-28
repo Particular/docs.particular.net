@@ -7,14 +7,19 @@ related:
  - samples/startup-shutdown-sequence
 ---
 
-Classes that implement `IWantToRunBeforeConfigurationIsFinalized` are used to adjust the `Configure` instance which is used to construct the Bus. This occurs just before Feature Activation.
+During bus creation the configuration object used to construct the bus becomes frozen and locked. Classes that implement `IWantToRunBeforeConfigurationIsFinalized` are created and called just before this happens. Use `IWantToRunBeforeConfigurationIsFinalized` for any last minute alterations to the configuration that may rely on other configuration settings. 
 
-Instances are located during via Type Scanning just before they are invoked. This means that they may be 
-Instances are created as one of the very last steps of Bus creation.
-Instances are all created on the calling thread. Instances are created with `Activator.CreateInstance(...)` and require a default constructor. Instances will not have any dependencies injected. 
-As instances are created `Run(Configure)` is called on each one in series. 
-Exceptions thrown by instances of `IWantToRunBeforeConfigurationIsFinalized` are unhandled by NServiceBus. These will bubble up to the creator of the bus.
+Instances are:
+* located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md).
+* created just before the configuration is frozen.
+* created on the same thread that is creating the bus. Instances are created in the order they appear in the scanned types list as a result of the assembly scan.
+* created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they:
+  * are not resolved out of an IoC container (even if they are registered there).
+  * will not have any dependencies injected.
+  * must have a default constructor.
 
-NOTE: After all instances of `IWantToRunBeforeConfigurationIsFinalized` are executed Features activation begins. During Feature activation the `Settings` object becomes readonly. Downstream components should only rely on the `NServiceBus.Settings.ReadOnlySettings` interface. 
+As instances are created `Run(...)` is called. These calls are made in sequence on the thread that is creating the bus.
 
-Use `IWantToRunBeforeConfigurationIsFinalized` for any last minute alterations to `Configure.Settings` that are required for downstream components. This can include enabling features, setting or overriding default settings used by features. 
+Exceptions thrown by instances of `IWantToRunBeforeConfigurationIsFinalized` are unhandled by NServiceBus. These will bubble up to the caller creating the bus.
+
+<!-- import lifecycle-iwanttorunbeforeconfigurationisfinalized -->
