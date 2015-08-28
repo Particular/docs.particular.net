@@ -1,6 +1,6 @@
 ---
-title: Multi Transport Support
-summary: How to configure ServiceControl to use non-MSMQ Transports
+title: Multi Transport Support for v1.6 and below
+summary: How to configure ServiceControl v1.6 and below to use a non-MSMQ transport
 tags:
 - ServiceControl
 - Transports
@@ -9,9 +9,11 @@ tags:
 - Azure
 - Cloud
 ---
-NOTE: This documents assumes you had already installed ServiceControl
+WARNING: This documents is only relevant to ServiceControl v1.6 and below. For newer versions see [Greg link].
 
-## Configuring ServiceControl to use non-MSMQ Transports:
+**This documents assumes you have already installed ServiceControl.**
+
+## Configuring ServiceControl to use a non-MSMQ transport:
 
 ### Download Nugets
 
@@ -24,7 +26,7 @@ First, download the NuGet package for the relevant transport including any depen
 
 WARNING: Only transport DLLs targetting NServiceBus version 4 should be used.
 
-NOTE: If you are configuring ServiceControl for use with Azure ServiceBus and want to use a newer version than 2.2 refer to the troubleshooting section 
+NOTE: If you are configuring ServiceControl for use with Azure ServiceBus and want to use a newer version than 2.2 refer to the troubleshooting section. 
 
 The NuGet packages you just downloaded are in fact zip files. Rename the nupkg files to have a zip extension, and take the dlls from the `/lib` folder and put them in the ServiceControl bin folder: (`[Program Files]\Particular Software\ServiceControl`).
 
@@ -120,8 +122,3 @@ culture="neutral" />
     	</runtime>
 </configuration>
 ```
-
-
-
-
-
