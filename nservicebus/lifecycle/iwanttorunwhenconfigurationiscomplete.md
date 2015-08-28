@@ -12,7 +12,7 @@ Classes that implement `IWantToRunWhenConfigurationIsComplete` are executed when
 NOTE: This interface is deprecated in Version 6.
 
 Instances are:
-* located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/index.md) during bus creation. These are registered as Instance Per Call. This takes place before any `INeedInitialization` instances are created.
+* located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/index.md) during bus creation. These are registered as Instance Per Call.
 * created as the last step before the bus is created. 
 * created on the same thread that is creating the bus.
 * created by the configured container which means they:
