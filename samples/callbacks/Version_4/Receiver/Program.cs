@@ -10,7 +10,7 @@ class Program
         Configure.Serialization.Json();
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Sample.Callbacks.Receiver");
+        configure.DefineEndpointName("Samples.Callbacks.Receiver");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();

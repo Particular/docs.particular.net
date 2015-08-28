@@ -9,7 +9,7 @@ class Program
         Configure.Serialization.Json();
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Sample.Scaleout.Sender");
+        configure.DefineEndpointName("Samples.Scaleout.Sender");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
@@ -43,7 +43,7 @@ class Program
         {
             OrderId = Guid.NewGuid()
         };
-        bus.Send("Sample.Scaleout.Server", placeOrder);
+        bus.Send("Samples.Scaleout.Server", placeOrder);
         Console.WriteLine("Sent PlacedOrder command with order id [{0}].", placeOrder.OrderId);
 
         #endregion

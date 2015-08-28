@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Sample.Callbacks.Sender");
+        busConfiguration.EndpointName("Samples.Callbacks.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
@@ -49,7 +49,7 @@ class Program
         #region SendEnumMessage
 
         EnumMessage message = new EnumMessage();
-        bus.Send("Sample.Callbacks.Receiver", message)
+        bus.Send("Samples.Callbacks.Receiver", message)
             .Register<Status>(status =>
             {
                 Console.WriteLine("Callback received with status:" + status);
@@ -65,7 +65,7 @@ class Program
         #region SendIntMessage
 
         IntMessage message = new IntMessage();
-        bus.Send("Sample.Callbacks.Receiver", message)
+        bus.Send("Samples.Callbacks.Receiver", message)
             .Register<int>(response =>
             {
                 Console.WriteLine("Callback received with response:" + response);
@@ -81,7 +81,7 @@ class Program
         #region SendObjectMessage
 
         ObjectMessage message = new ObjectMessage();
-        bus.Send("Sample.Callbacks.Receiver", message)
+        bus.Send("Samples.Callbacks.Receiver", message)
             .Register(ar =>
             {
                 CompletionResult localResult = (CompletionResult) ar.AsyncState;

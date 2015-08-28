@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Sample.AzureBlobStorageDataBus.Sender");
+        busConfiguration.EndpointName("Samples.AzureBlobStorageDataBus.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
 
         #region ConfiguringDataBusLocation
@@ -52,7 +52,7 @@ class Program
             Description = "This message contains a large payload that will be sent on the Azure data bus",
             LargePayload = new DataBusProperty<byte[]>(new byte[1024*1024*5]) // 5MB
         };
-        bus.Send("Sample.AzureBlobStorageDataBus.Receiver", message);
+        bus.Send("Samples.AzureBlobStorageDataBus.Receiver", message);
 
         #endregion
 

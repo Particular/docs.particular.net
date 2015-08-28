@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Sample.Callbacks.Sender");
+        busConfiguration.EndpointName("Samples.Callbacks.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
@@ -49,7 +49,7 @@ class Program
         #region SendEnumMessage
 
         SendOptions sendOptions = new SendOptions();
-        sendOptions.SetDestination("Sample.Callbacks.Receiver");
+        sendOptions.SetDestination("Samples.Callbacks.Receiver");
         EnumMessage message = new EnumMessage();
         Status status = await bus.Request<Status>(message, sendOptions);
         Console.WriteLine("Callback received with status:" + status);
@@ -66,7 +66,7 @@ class Program
         IntMessage message = new IntMessage();
 
         SendOptions sendOptions = new SendOptions();
-        sendOptions.SetDestination("Sample.Callbacks.Receiver");
+        sendOptions.SetDestination("Samples.Callbacks.Receiver");
         int response = await bus.Request<int>(message, sendOptions);
         Console.WriteLine("Callback received with response:" + response);
 
@@ -81,7 +81,7 @@ class Program
 
         ObjectMessage message = new ObjectMessage();
         SendOptions sendOptions = new SendOptions();
-        sendOptions.SetDestination("Sample.Callbacks.Receiver");
+        sendOptions.SetDestination("Samples.Callbacks.Receiver");
 
         ObjectResponseMessage response = await bus.Request<ObjectResponseMessage>(message, sendOptions);
         Console.WriteLine("Callback received with response property value:" + response.Property);

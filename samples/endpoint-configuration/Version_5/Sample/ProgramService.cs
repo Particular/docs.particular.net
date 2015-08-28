@@ -59,7 +59,7 @@ class ProgramService : ServiceBase
         #endregion
 
         #region endpoint-name
-        busConfiguration.EndpointName("Sample.FirstEndpoint");
+        busConfiguration.EndpointName("Samples.FirstEndpoint");
         #endregion
 
         #region container
