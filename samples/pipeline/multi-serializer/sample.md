@@ -1,5 +1,5 @@
 ---
-title: Taking control of serialization via the pipeline 
+title: Taking control of serialization via the pipeline
 summary: Add support attribute based message serialization
 tags:
 - Pipeline
@@ -9,10 +9,11 @@ related:
 - nservicebus/serialization
 ---
 
+NOTE: The functionality described in this sample was made a part of NServiceBus v6 core. Please consult [Serialization in NServiceBus](/nservicebus/serialization/) for more information.
 
 ## Introduction
 
-This sample leverages the pipeline to provide an attribute based message serialization feature. 
+This sample leverages the pipeline to provide an attribute based message serialization feature.
 
 It is currently hard coded to only support binary and json serialization. It uses attributes, defined at the message level, to switch messages between different serializations but any code could be substituted here to control the choice of serialization.
 
@@ -27,9 +28,9 @@ The solution contains 3 projects
  * `Sender` and `Receiver` are the actual endpoint using the behaviors.
 
 
-### The attribute definitions 
+### The attribute definitions
 
-These can be used to decorate messages. 
+These can be used to decorate messages.
 
 <!-- import attributes -->
 
@@ -84,18 +85,18 @@ This replaces the existing serialization behavior and also injects the Serializa
 ### The message on the wire
 
  * Start only the `Sender`.
- * Send both json and binary. 
+ * Send both json and binary.
 
-Now have a look in msmq and there will be two messages in the 
+Now have a look in msmq and there will be two messages in the
 `Receiver` queue.
 
-**A binary message with the content** 
+**A binary message with the content**
 
 ```
 System.Collections.Generic.List`1[[System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]
 _items _size _version=Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 MessageWithBinary
-<SomeProperty>k__BackingField           Some content in a binary message 
+<SomeProperty>k__BackingField           Some content in a binary message
 ```
 
 **And a Json message with the content**
