@@ -7,10 +7,10 @@
 </head>
 <body>
 <script type="text/javascript">
-    // startcode SendUpdatePrice
     $(document).ready(function () {
         $('#go').click(function () {
 
+            // startcode SendUpdatePrice
             var message = "<?xml version=\"1.0\" ?><Messages xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"http://tempuri.net/Shared\"><UpdatePrice><ProductId>23</ProductId></UpdatePrice></Messages>";
 
             var md5 = b64_md5(message) + "==";
@@ -39,9 +39,9 @@
                 }
             }); //ajax
 
+            // endcode
         });
     });
-    // endcode
 </script>
     <h1>Click the button below to make a JSONP request to the nservicebus gateway</h1>
     <p>Gateway address:</p>
