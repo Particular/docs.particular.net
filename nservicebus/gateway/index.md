@@ -12,11 +12,13 @@ The purpose of the gateway is to allow you to do the same durable fire-and-forge
 
 The gateway only comes into play where you can't use the regular queued transports for communication i.e. when setting up a VPN-connection is not an option. The reason for not using a VPN could be security concerns, bandwidth limitation, latency problems, high availability constraints, etc.
 
+
 ## When not to use the gateway
 
 The gateway should not be used when the reason for running separate sites is disaster recovery. Under those circumstances all your sites are exact replicas and are not logically different from each other, so you're better off using whatever support your infrastructure provides to keep your sites in sync. Examples are SAN snapshots, SQL server log shipping, and RavenDB replication.
 
 So if your sites are logically similar, use one of the approaches above; if they are logically different, the gateway may come in handy.
+
 
 ## What are logically different sites?
 
@@ -41,6 +43,7 @@ Going across sites usually means radically different transport characteristics l
 
 RPC completely hides the fact that you are now going out of your data center and will meet all the fallacies of distributed computing head on.
 
+
 ## Using the gateway
 
 In order to send message to other sites you need to call the `IBus.SendToSites` method shown below.
@@ -51,9 +54,6 @@ In order to send message to other sites you need to call the `IBus.SendToSites` 
 /// site keys registered with the gateway.
 /// The gateway is assumed to be located at the master node. 
 /// </summary>
-/// <param name="siteKeys"></param>
-/// <param name="messages"></param>
-/// <returns></returns>
 ICallback SendToSites(IEnumerable<string> siteKeys, params object[] messages);
 ```
 
@@ -73,13 +73,15 @@ A gateway runs inside each host process. The gateway gets its input from a regul
 - Included in every endpoint
 - Easily extensible with other channels
 
+
 ### Configuring the gateway
 
-In version  5 the gateway is provided by the `NServiceBus.Gateway` NuGet. In version  3 and version 4 the gateway is included in the core assembly, meaning that every endpoint is capable of running a gateway.
+In version 5 the gateway is provided by the `NServiceBus.Gateway` NuGet. In version  3 and version 4 the gateway is included in the core assembly, meaning that every endpoint is capable of running a gateway.
 
 To turn on the gateway, add the following to your configuration:
 
 <!-- import GatewayConfiguration -->
+
 
 ## Key messages
 
