@@ -1,5 +1,5 @@
 ---
-title: IWantToRunWhenTheBusStartsAndStops
+title: When Configuration Start and Stop
 summary: An interface that allows you to hook into the startup and shutdown sequence of NServiceBus
 tags:
  - life-cycle

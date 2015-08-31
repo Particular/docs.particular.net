@@ -1,5 +1,5 @@
 ---
-title: IWantToRunWhenConfigurationIsComplete
+title: When Configuration Ends
 summary: An interface that allows you to hook into the configuration sequence of NServiceBus
 tags:
  - life-cycle
