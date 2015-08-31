@@ -4,6 +4,8 @@ summary: NServiceBus enables durable fire-and-forget messaging across physically
 tags: []
 redirects:
  - nservicebus/introduction-to-the-gateway
+related:
+ - samples/gateway
 ---
 
 The purpose of the gateway is to allow you to do the same durable fire-and-forget messaging that you are accustomed to with NServiceBus across physically separated sites, where "sites " are locations where you run IT infrastructure and not web sites.
