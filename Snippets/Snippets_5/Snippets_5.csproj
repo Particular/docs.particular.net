@@ -383,6 +383,8 @@
     <Compile Include="Container\Custom\MyObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
+    <Compile Include="Features\FeatureConfiguration.cs" />
+    <Compile Include="Features\MyFeature.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
     <Compile Include="Lifecycle\IWantToRunWhenConfigurationIsComplete.cs" />

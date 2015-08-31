@@ -26,13 +26,14 @@ Define startup conditions and dependencies in the constructor of your feature us
 * `DependsOn` requires another feature to be enabled in order to start this one
 * `Prerequisite` allows you to configure some custom conditions required by that feature to be enabled
 
-TODO: add code snippet
+<!-- import FeatureConfiguration -->
+
 
 ### Enable / Disable features explicitly
 
 You can manually activate or deactivate your features and most of the internal NServiceBus features on the `BusConfiguration`:
 
-TODO: add code snippet
+<!-- import EnableDisableFeatures -->
 
 
 ### Feature setup
@@ -41,7 +42,7 @@ TODO: add code snippet
 * Container: register services with the dependency injection container which can be injected to other components
 * Pipeline: register your own behavior into the message processing pipeline or replace/remove existing ones
 
-TODO: add code snippet
+<!-- import FeatureSetup -->
 
 
 Note: Features are automatically detected and registered by NServiceBus when the assembly is scanned.
@@ -51,8 +52,10 @@ Note: Features are automatically detected and registered by NServiceBus when the
 
 If you need to execute some logic after the feature has been started or stopped you can do that by providing a `FeatureStartupTask` which comes with an `OnStart` and `OnStop` method. Also, the task will always be disposed after stopping the feature if it implements `IDisposable`.
 
+<!-- import FeatureSartupTaskDefinition -->
+
 To associate a `FeatureStartupTask` with your feature, register it in the constructor of your feature using `RegisterStartupTask`. The task will only be created and called if the feature is enabled.
 
-// TODO: code snippet
+<!-- import FeatureStartupTaskRegistration -->
 
 Note: `FeatureStartupTask` are executed synchronously. Avoid long running operations which will delay the bus startup time.
