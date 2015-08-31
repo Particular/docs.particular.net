@@ -2,24 +2,24 @@
 title: INeedInitialization
 summary: An interface that allows you to hook into the very beginning of the bus creation sequence of NServiceBus
 tags:
- - life cycle
+ - life-cycle
 related:
  - samples/startup-shutdown-sequence
 ---
 
-Classes that implement `NServiceBus.INeedInitialization` are created and called as one of the first steps in the bus creation lifecycle. Use `INeedInitialization` to register components that will be used later in the bus creation lifecycle. 
+Classes that implement `NServiceBus.INeedInitialization` are created and called as one of the first steps in the bus creation life-cycle. Use `INeedInitialization` to register components that will be used later in the bus creation life-cycle. 
 
 NOTE: In Version 3 of NServiceBus, this interface is found in the `NServiceBus.Config` namespace. In Version 4 both interfaces are available but the old one is marked as obsolete. As of Version 5 use of the `NServiceBus.Config.INeedInitialization` interface will cause a compile-time error. In Version 4 (which has both interfaces), all instances of `NServiceBus.Config.INeedInitialization` are created and called and then all instances of `NServiceBus.INeedInitialization` are created and called.
 
 Instances are:
 
-* located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md). 
-* created as one of the very first steps when the bus is created.
-* created on the same thread that is creating the bus.
-* created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they
-  * are not resolved out of an IoC container (even if they are registered there).
-  * will not have any dependencies injected.
-  * must have a default constructor.  
+* Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md). 
+* Created as one of the very first steps when the bus is created.
+* Created on the same thread that is creating the bus.
+* Created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they
+  * Are not resolved out of an IoC container (even if they are registered there).
+  * Will not have any dependencies injected.
+  * Must have a default constructor.  
 
 In Version 3 and Version 4, as instances are created `Init()` is called. In Version 5 this was changed to `Customize(BusConfiguration)`. All calls to either method are made in sequence on the thread that is creating the bus. The order of these calls is determined by the order of the scanned types list as a result of the assembly scan.
  

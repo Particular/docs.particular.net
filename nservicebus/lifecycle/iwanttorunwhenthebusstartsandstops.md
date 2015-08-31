@@ -2,7 +2,7 @@
 title: IWantToRunWhenTheBusStartsAndStops
 summary: An interface that allows you to hook into the startup and shutdown sequence of NServiceBus
 tags:
- - life cycle
+ - life-cycle
 related:
  - samples/startup-shutdown-sequence
 ---
@@ -10,17 +10,18 @@ related:
 Classes that implement `IWantToRunWhenTheBusStartsAndStops` are invoked just after the bus has been started and just before it is stopped. Use `IWantToRunWhenTheBusStartsAndStops` for any tasks that need to execute with the same lifecycle as the bus.
 
 Instances are:
-* located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/index.md) during bus creation. These are registered as Instance Per Call. 
-* created and started as the last step when the bus is started.
-* started after the Transport and any Satellites have started. You cannot rely on all instances of `IWantToRunWhenTheBusStartsAndStops` being created or started before messages start to be processed by your endpoint.
-* created on the same thread that is starting the bus.
-* created by the configured container which means they:
-  * will have dependencies injected.
-  * do not require a default constructor.
+* Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/) during bus creation. These are registered as Instance Per Call. 
+* Created and started as the last step when the bus is started.
+* Started after the Transport and any Satellites have started. You cannot rely on all instances of `IWantToRunWhenTheBusStartsAndStops` being created or started before messages start to be processed by your endpoint.
+* Created on the same thread that is starting the bus.
+* Created by the configured container which means they:
+  * Will have dependencies injected.
+  * Do not require a default constructor.
 
 Exceptions thrown in the constructors of instances of `IWantToRunWhenTheBusStartsAndStops` are unhandled by NServiceBus. These will bubble up to the code that starts the the bus.
 
 Once created `Start()` is called on each instance in parallel. Each `Start()` call is made on a different background thread. Instances of `IWantToRunWhenTheBusStartsAndStops` are kept internally to be stopped when the bus is disposed.
+
 Exceptions raised from the `Start()` method will cause a [Critical Error](/nservicebus/hosting/critical-errors.md). As they are run on separate threads, an exception on one `Start()` call will not interfere with any others.
 
 NOTE: The call to `IStartableBus.Start()` may return before all instances of `IWantToRunWhenTheBusStartsAndStops.Start()` are completed.

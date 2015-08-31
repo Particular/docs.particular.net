@@ -8,9 +8,9 @@
     {
         public void Run(Configure config)
         {
-            // update `config` instance
+            // update config instance
             config.Settings.Set("key", "value");
-            // after this `config.Settings` will be frozen
+            // after this config.Settings will be frozen
         }
     }
     
