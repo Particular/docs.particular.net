@@ -10,14 +10,14 @@ This is a curated list of all the extensions to NServiceBus developed by both th
 **<img src="community-project.png"> Community run project**
 
 
-## Transports 
+## Transports
 
 
 ### <img src="community-project.png" title="A Community run project"> [AmazonSQS](https://github.com/ahofman/NServiceBus.AmazonSQS)
 
 <a href="http://www.nuget.org/packages/NServiceBus.AmazonSQS/"><img src="http://img.shields.io/nuget/v/NServiceBus.AmazonSQS.svg?" title="NuGet Status"></a>
 
-Provides support for sending messages over [Amazon SQS](http://aws.amazon.com/sqs/). 
+Provides support for sending messages over [Amazon SQS](http://aws.amazon.com/sqs/).
 
 
 ### <img src="particular-project.png" title="A Particular run project"> [Azure Service Bus](/nservicebus/azure/azure-transport.md)
@@ -83,6 +83,12 @@ Using an external copy of [Json.NET](http://www.newtonsoft.com/json) so the full
 <a href="http://www.nuget.org/packages/NServiceBus.Jil/"><img src="http://img.shields.io/nuget/v/NServiceBus.Jil.svg?" title="NuGet Status"></a>
 
 The [Jil Project](https://github.com/kevin-montrose/Jil) is a fast JSON serializer built on [Sigil](https://github.com/kevin-montrose/Sigil) with a number of somewhat crazy optimization tricks.
+
+### <img src="community-project.png" title="A Community run project"> [Wire](https://github.com/hmemcpy/NServiceBus.Wire)
+
+<a href="http://www.nuget.org/packages/NServiceBus.Wire/"><img src="http://img.shields.io/nuget/v/NServiceBus.Wire.svg?" title="NuGet Status"></a>
+
+[Wire](https://github.com/rogeralsing/Wire) is a high performance polymorphic serializer for the .NET framework, built by Roger Johansson of [Akka.NET](https://github.com/akkadotnet/akka.net).
 
 
 ### <img src="community-project.png" title="A Community run project"> [ProtoBuf](https://github.com/SimonCropp/NServiceBus.ProtoBuf)
@@ -156,7 +162,7 @@ A proof-of-concept project that shows the possibility of support for [Azure Docu
 ## Logging
 
 
-### <img src="particular-project.png" title="A Particular run project"> [Log4Net](/nservicebus/logging/#log4net) 
+### <img src="particular-project.png" title="A Particular run project"> [Log4Net](/nservicebus/logging/#log4net)
 
 <a href="http://www.nuget.org/packages/NServiceBus.Log4Net/"><img src="http://img.shields.io/nuget/v/NServiceBus.Log4Net.svg?" title="NuGet Status"></a>
 
@@ -168,7 +174,7 @@ A proof-of-concept project that shows the possibility of support for [Azure Docu
 
 ### <img src="particular-project.png" title="A Particular run project"> [CommonLogging](/nservicebus/logging/#commonlogging)
 
-<a href="http://www.nuget.org/packages/NServiceBus.CommonLogging/"><img src="http://img.shields.io/nuget/v/NServiceBus.CommonLogging.svg?" title="NuGet Status"></a> 
+<a href="http://www.nuget.org/packages/NServiceBus.CommonLogging/"><img src="http://img.shields.io/nuget/v/NServiceBus.CommonLogging.svg?" title="NuGet Status"></a>
 
 
 ### <img src="community-project.png" title="A Community run project"> [Serilog](https://github.com/SimonCropp/NServiceBus.Serilog)
@@ -198,7 +204,7 @@ Support for logging NServiceBus information to [Serilog](http://serilog.net/) lo
 
 ### <img src="particular-project.png" title="A Particular run project"> [StructureMap](/nservicebus/containers/)
 
-<a href="http://www.nuget.org/packages/NServiceBus.StructureMap/"><img src="http://img.shields.io/nuget/v/NServiceBus.StructureMap.svg?" title="NuGet Status"></a> 
+<a href="http://www.nuget.org/packages/NServiceBus.StructureMap/"><img src="http://img.shields.io/nuget/v/NServiceBus.StructureMap.svg?" title="NuGet Status"></a>
 
 
 ### <img src="particular-project.png" title="A Particular run project"> [Spring](/nservicebus/containers/)
@@ -237,12 +243,12 @@ The process used when sharing an [Azure](https://azure.microsoft.com/en-us/) ins
 
 ### <img src="community-project.png" title="A Community run project"> [Distributed Event Broker](https://github.com/appccelerate/distributedeventbroker.nservicebus)
 
-<a href="http://www.nuget.org/packages/Appccelerate.DistributedEventBroker.NServiceBus/"><img src="http://img.shields.io/nuget/v/Appccelerate.DistributedEventBroker.NServiceBus.svg?" title="NuGet Status"></a> 
+<a href="http://www.nuget.org/packages/Appccelerate.DistributedEventBroker.NServiceBus/"><img src="http://img.shields.io/nuget/v/Appccelerate.DistributedEventBroker.NServiceBus.svg?" title="NuGet Status"></a>
 
 Allows sending events over the [Appccelerate.EventBroker](http://www.appccelerate.com/distributedeventbroker.html) infrastructure.
 
 
-### <img src="particular-project.png" title="A Particular run project"> [Distributor](/nservicebus/scalability-and-ha/distributor/) 
+### <img src="particular-project.png" title="A Particular run project"> [Distributor](/nservicebus/scalability-and-ha/distributor/)
 
 <a href="http://www.nuget.org/packages/NServiceBus.Distributor.MSMQ/"><img src="http://img.shields.io/nuget/v/NServiceBus.Distributor.MSMQ.svg?" title="NuGet Status"></a>
 
@@ -251,7 +257,7 @@ Distributor for the MSMQ transport.
 
 ### <img src="particular-project.png" title="A Particular run project">  [Gateway](/nservicebus/gateway/)
 
-<a href="http://www.nuget.org/packages/NServiceBus.Gateway/"><img src="http://img.shields.io/nuget/v/NServiceBus.Gateway.svg?" title="NuGet Status"></a> 
+<a href="http://www.nuget.org/packages/NServiceBus.Gateway/"><img src="http://img.shields.io/nuget/v/NServiceBus.Gateway.svg?" title="NuGet Status"></a>
 
 
 ### <img src="community-project.png" title="A Community run project"> [Mandrill](https://github.com/feinoujc/NServiceBus.Mandrill)
