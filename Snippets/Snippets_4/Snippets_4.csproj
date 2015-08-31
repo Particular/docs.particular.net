@@ -202,6 +202,7 @@
     <Reference Include="System.Spatial">
       <HintPath>..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -209,6 +210,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="UpgradeGuides\3to4\TransportConfig.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="app.config" />
     <Content Include="Audit\audit.config.xml">
       <SubType>Designer</SubType>
@@ -344,6 +348,7 @@
     <Compile Include="Serialization\BsonSerialization.cs" />
     <Compile Include="Serialization\BinarySerialization.cs" />
     <Compile Include="Serialization\JsonSerialization.cs" />
+    <Compile Include="UpgradeGuides\3to4\Upgrade.cs" />
     <Compile Include="UpgradeGuides\4to5\SagaMappingForUpgrade.cs" />
     <Compile Include="Routing\AutomaticSubscriptions\AutoSubscribeSettings.cs" />
     <Compile Include="Routing\BasicOperations.cs" />

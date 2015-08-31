@@ -161,6 +161,7 @@
     <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Errors\FirstLevel\flr.config.xml" />
     <Content Include="Monitoring\ServiceControlEvents.config.xml" />
+    <Content Include="UpgradeGuides\4to5\MsmqTransportConfig.config.xml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
