@@ -151,6 +151,14 @@
         - "nservicebus/containers/structuremap"
         - "nservicebus/containers/unity"
     -
+      Title: "Interface life-cycles"
+      Url: "nservicebus/lifecycle"
+      Articles:
+        - "nservicebus/lifecycle/ineedinitialization"
+        - "nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized"
+        - "nservicebus/lifecycle/iwanttorunwhenconfigurationiscomplete"
+        - "nservicebus/lifecycle/iwanttorunwhenthebusstartsandstops"
+    -
       Title: "Hosting"
       Url: "nservicebus/hosting"
       Articles:
