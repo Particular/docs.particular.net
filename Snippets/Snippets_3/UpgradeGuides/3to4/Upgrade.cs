@@ -12,5 +12,13 @@
             #endregion
         }
 
+        public void EnableSagas()
+        {
+            #region 3to4EnableSagas
+            Configure configure = Configure.With();
+            configure.Sagas();
+            #endregion
+        }
+
     }
 }
