@@ -9,7 +9,7 @@ class Program
     {
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Sample.Callbacks.Receiver");
+        configure.DefineEndpointName("Samples.Callbacks.Receiver");
         configure.DefaultBuilder();
         configure.MsmqTransport();
         configure.InMemorySagaPersister();

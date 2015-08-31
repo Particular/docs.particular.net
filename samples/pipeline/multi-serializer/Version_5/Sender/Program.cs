@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Sample.MultiSerializer.Sender");
+        busConfiguration.EndpointName("Samples.MultiSerializer.Sender");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         using (var bus = Bus.Create(busConfiguration).Start())
@@ -48,7 +48,7 @@ class Program
         {
             SomeProperty = "Some content in a binary message",
         };
-        bus.Send("Sample.MultiSerializer.Receiver", message);
+        bus.Send("Samples.MultiSerializer.Receiver", message);
         Console.WriteLine("Binary message sent");
     }
 
@@ -58,7 +58,7 @@ class Program
                                   {
                                       SomeProperty = "Some content in a json message",
                                   };
-        bus.Send("Sample.MultiSerializer.Receiver", message);
+        bus.Send("Samples.MultiSerializer.Receiver", message);
         Console.WriteLine("Json Message sent");
     }
 }

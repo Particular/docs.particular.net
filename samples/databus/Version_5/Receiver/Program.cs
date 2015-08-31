@@ -8,7 +8,7 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Sample.DataBus.Receiver");
+        busConfiguration.EndpointName("Samples.DataBus.Receiver");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UseDataBus<FileShareDataBus>().BasePath(BasePath);
         busConfiguration.UsePersistence<InMemoryPersistence>();

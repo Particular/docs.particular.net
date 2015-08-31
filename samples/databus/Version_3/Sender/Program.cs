@@ -11,7 +11,7 @@ class Program
     {
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Sample.DataBus.Sender");
+        configure.DefineEndpointName("Samples.DataBus.Sender");
         configure.DefaultBuilder();
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
@@ -56,7 +56,7 @@ class Program
             SomeProperty = "This message contains a large blob that will be sent on the data bus",
             LargeBlob = new DataBusProperty<byte[]>(new byte[1024 * 1024 * 5]) //5MB
         };
-        bus.Send("Sample.DataBus.Receiver", message);
+        bus.Send("Samples.DataBus.Receiver", message);
 
         #endregion
         Console.WriteLine("Message sent, the payload is stored in: " + BasePath);
@@ -69,7 +69,7 @@ class Program
         {
             LargeBlob = new byte[1024 * 1024 * 5] //5MB
         };
-        bus.Send("Sample.DataBus.Receiver", message);
+        bus.Send("Samples.DataBus.Receiver", message);
         #endregion
     }
 }

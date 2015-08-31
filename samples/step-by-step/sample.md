@@ -15,7 +15,7 @@ In this sample shows a very simple ordering system that
 
 ## The Shared Project
 
-The `Ordering.Shared` project is the container for shared classes including message definitions. This project will be shared between the client and server so both sides agree on the typed message descriptions. It is referenced by all projects in the solution. These messages in include
+The `Shared` project is the container for shared classes including message definitions. This project will be shared between the client and server so both sides agree on the typed message descriptions. It is referenced by all projects in the solution. These messages in include
 
 
 ### PlaceOrder Command
@@ -34,7 +34,7 @@ Used to indicate that an order has been received and processed.
 
 ## The Client
 
-The `Ordering.Client` is the initiate for the ordering process. The sending code in the client is as follows.
+The `Client` is the initiate for the ordering process. The sending code in the client is as follows.
 
 <!-- import SendOrder -->
 
@@ -43,14 +43,14 @@ This is a console blocking loop that is called the the console starts.
 
 ## The Server 
 
-The `Ordering.Server` project processes an Order. It receives `PlaceOrder` sent from `Ordering.Client` and then publishes `OrderPlaced` on success.
+The `Server` project processes an Order. It receives `PlaceOrder` sent from `Client` and then publishes `OrderPlaced` on success.
 
 <!-- import PlaceOrderHandler -->
 
 
 ## The Subscriber
 
-The `Ordering.Subscriber` project needs notification of a successful order. Hence it subscribes to `OrderPlaced` events from `Ordering.Server`.
+The `Subscriber` project needs notification of a successful order. Hence it subscribes to `OrderPlaced` events from `Server`.
 
 
 ### Subscription Configuration
@@ -85,10 +85,10 @@ If you hit enter you will see
 
 ### Server Output
 
-`Ordering.Server` will receive that message, process it and then publish it.
+`Server` will receive that message, process it and then publish it.
 
 ```
-2015-04-23 11:45:22.088 INFO Subscribing StepByStep.Ordering.Subscriber to message type OrderPlaced
+2015-04-23 11:45:22.088 INFO Subscribing StepByStep.Subscriber to message type OrderPlaced
 To exit press 'Ctrl + C'
 Order for Product:New shoes placed with id: ef5b77ba-192e-451b-ad4a-94c4acbbd8ed
 Publishing: OrderPlaced for Order Id: ef5b77ba-192e-451b-ad4a-94c4acbbd8ed
@@ -96,10 +96,10 @@ Publishing: OrderPlaced for Order Id: ef5b77ba-192e-451b-ad4a-94c4acbbd8ed
 
 ### Subscriber Output
 
-`Ordering.Subscriber` will receive the message that is published from `Ordering.Server`
+`Subscriber` will receive the message that is published from `Server`
 
 ```
 To exit press 'Ctrl + C'
-2015-04-23 11:45:19.972 INFO Subscribing to OrderPlaced publisher queue StepByStep.Ordering.Server
+2015-04-23 11:45:19.972 INFO Subscribing to OrderPlaced publisher queue StepByStep.Server
 Handling: OrderPlaceed for Order Id: ef5b77ba-192e-451b-ad4a-94c4acbbd8ed
 ```

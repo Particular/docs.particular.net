@@ -118,15 +118,15 @@ Received OrderPlaced. OrderId: 40585dff-3749-4db1-b21a-25694468f042. Worker: Wor
 
 ```
 Press any key to exit
-2015-08-21 17:07:19.775 INFO  NServiceBus.Distributor.MSMQ.MsmqWorkerAvailabilityManager Worker at 'Sample.Scaleout.Worker2@RETINA' has been registered with 1 capacity.
-2015-08-21 17:07:19.802 INFO  NServiceBus.Distributor.MSMQ.MsmqWorkerAvailabilityManager Worker at 'Sample.Scaleout.Worker1@RETINA' has been registered with 1 capacity.
+2015-08-21 17:07:19.775 INFO  NServiceBus.Distributor.MSMQ.MsmqWorkerAvailabilityManager Worker at 'Sample.Scaleout.Worker2' has been registered with 1 capacity.
+2015-08-21 17:07:19.802 INFO  NServiceBus.Distributor.MSMQ.MsmqWorkerAvailabilityManager Worker at 'Sample.Scaleout.Worker1' has been registered with 1 capacity.
 ```
 
 
 ### Worker1 Output
 
 ```
-2015-08-21 17:07:18.906 INFO  NServiceBus.Unicast.Transport.TransportReceiver Worker started, failures will be redirected to Sample.Scaleout.Server@RETINA
+2015-08-21 17:07:18.906 INFO  NServiceBus.Unicast.Transport.TransportReceiver Worker started, failures will be redirected to Sample.Scaleout.Server
 Press any key to exit
 Processing received order....
 Sent Order placed event for orderId [40585dff-3749-4db1-b21a-25694468f042].
@@ -136,7 +136,7 @@ Sent Order placed event for orderId [40585dff-3749-4db1-b21a-25694468f042].
 ### Worker2 Output
 
 ```
-2015-08-21 17:07:18.818 INFO  NServiceBus.Unicast.Transport.TransportReceiver Worker started, failures will be redirected to Sample.Scaleout.Server@RETINA
+2015-08-21 17:07:18.818 INFO  NServiceBus.Unicast.Transport.TransportReceiver Worker started, failures will be redirected to Sample.Scaleout.Server
 Press any key to exit
 Processing received order....
 Sent Order placed event for orderId [1320cfdc-f5cc-42a7-9157-251756694069].

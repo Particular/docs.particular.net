@@ -88,8 +88,6 @@ We can also replace existing behaviors using the `Replace` method and passing as
 
 ## Exception Handling
 
-In general
-
 
 ### MessageDeserializationException (Version 5.1 and up)
 

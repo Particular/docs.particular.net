@@ -8,7 +8,7 @@ class Program
     {
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Sample.Callbacks.Sender");
+        configure.DefineEndpointName("Samples.Callbacks.Sender");
         configure.DefaultBuilder();
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
@@ -56,7 +56,7 @@ class Program
         #region SendEnumMessage
 
         EnumMessage message = new EnumMessage();
-        bus.Send("Sample.Callbacks.Receiver", message)
+        bus.Send("Samples.Callbacks.Receiver", message)
             .Register<Status>(status =>
             {
                 Console.WriteLine("Callback received with status:" + status);
@@ -72,7 +72,7 @@ class Program
         #region SendIntMessage
 
         IntMessage message = new IntMessage();
-        bus.Send("Sample.Callbacks.Receiver", message)
+        bus.Send("Samples.Callbacks.Receiver", message)
             .Register<int>(response =>
             {
                 Console.WriteLine("Callback received with response:" + response);
@@ -89,7 +89,7 @@ class Program
         #region SendObjectMessage
 
         ObjectMessage message = new ObjectMessage();
-        bus.Send("Sample.Callbacks.Receiver", message)
+        bus.Send("Samples.Callbacks.Receiver", message)
             .Register(ar =>
             {
                 CompletionResult localResult = (CompletionResult)ar.AsyncState;

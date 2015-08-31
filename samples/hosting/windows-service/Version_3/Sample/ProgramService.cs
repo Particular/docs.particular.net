@@ -37,7 +37,7 @@ class ProgramService : ServiceBase
     {
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Sample.WindowsServiceAndConsole");
+        configure.DefineEndpointName("Samples.WindowsServiceAndConsole");
         configure.Log4Net();
         configure.DefaultBuilder();
         configure.Sagas();

@@ -8,7 +8,7 @@ class Program
     {
         #region Workerstartup
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Sample.Scaleout.Worker1");
+        busConfiguration.EndpointName("Samples.Scaleout.Worker1");
         busConfiguration.EnlistWithMSMQDistributor();
         #endregion
         busConfiguration.UseSerialization<JsonSerializer>();

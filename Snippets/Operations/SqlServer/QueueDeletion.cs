@@ -7,7 +7,7 @@
     {
         public static void DeleteQueuesForEndpoint()
         {
-            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=myDatabase;Integrated Security=True";
+            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
 
             #region sqlserver-delete-queues-endpoint-usage
 
@@ -25,7 +25,7 @@
 
         public static void DeleteSharedQueues()
         {
-            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=myDatabase;Integrated Security=True";
+            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
 
             #region sqlserver-delete-queues-shared-usage
 

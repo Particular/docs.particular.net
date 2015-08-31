@@ -8,10 +8,10 @@ class Program
     {
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Sample.Scaleout.Worker2");
+        configure.DefineEndpointName("Samples.Scaleout.Worker2");
         configure.DefaultBuilder();
         configure.EnlistWithDistributor();
-        Address.InitializeLocalAddress("Sample.Scaleout.Worker2");
+        Address.InitializeLocalAddress("Samples.Scaleout.Worker2");
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
         configure.RunTimeoutManagerWithInMemoryPersistence();

@@ -11,7 +11,7 @@ class Program
         Configure.Serialization.Json();
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Sample.DataBus.Receiver");
+        configure.DefineEndpointName("Samples.DataBus.Receiver");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();

@@ -17,6 +17,7 @@
             QueueDeletion.DeleteQueue("myerror");
             QueueDeletion.DeleteQueue("myaudit");
         }
+
         [Test]
         public void CreateQueuesForEndpoint()
         {
@@ -37,5 +38,4 @@
             Assert.IsTrue(MessageQueue.Exists(@".\private$\myaudit"));
         }
     }
-
 }

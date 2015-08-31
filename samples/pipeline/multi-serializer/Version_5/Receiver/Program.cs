@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Sample.MultiSerializer.Receiver");
+        busConfiguration.EndpointName("Samples.MultiSerializer.Receiver");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         using (IBus bus = Bus.Create(busConfiguration).Start())

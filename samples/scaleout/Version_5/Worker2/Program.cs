@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Sample.Scaleout.Worker2");
+        busConfiguration.EndpointName("Samples.Scaleout.Worker2");
         busConfiguration.EnlistWithMSMQDistributor();
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();

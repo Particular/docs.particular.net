@@ -79,6 +79,8 @@ You configure mapping in your app.config by adding `<unicastbusconfig>` and `<me
 
 <!-- import endpoint-mapping-appconfig -->
 
+WARNING: In versions prior to v3.3 there was an attribute named `Messages` that was used to configure mappings, this attribute is still supported for backwards compatibility but the new `Assembly`, `Type` and `Namespace` attributes are the recommended way forward.      
+
 ### Using a ConfigurationSource
 
 #### The IConfigurationSource

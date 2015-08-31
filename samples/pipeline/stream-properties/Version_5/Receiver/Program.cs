@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Sample.PipelineStream.Receiver");
+        busConfiguration.EndpointName("Samples.PipelineStream.Receiver");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.SetStreamStorageLocation("..\\..\\..\\storage");

@@ -9,7 +9,7 @@ class Program
         #region server
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Sample.Scaleout.Server");
+        configure.DefineEndpointName("Samples.Scaleout.Server");
         configure.DefaultBuilder();
         configure.RunDistributor(withWorker: false);
         #endregion

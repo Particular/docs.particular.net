@@ -9,14 +9,14 @@ class Program
         #region Workerstartup
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Sample.Scaleout.Worker1");
+        configure.DefineEndpointName("Samples.Scaleout.Worker1");
         configure.DefaultBuilder();
         configure.EnlistWithDistributor();
 
         #endregion
         #region WorkerNameToUseWhileTestingCode
         //called after EnlistWithDistributor
-        Address.InitializeLocalAddress("Sample.Scaleout.Worker1");
+        Address.InitializeLocalAddress("Samples.Scaleout.Worker1");
         #endregion
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
