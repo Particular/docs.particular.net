@@ -13,5 +13,12 @@
             #endregion
         }
 
+        public void DisableSecondLevelRetries()
+        {
+            #region 3to4DisableSecondLevelRetries
+            Configure.Features.Disable<NServiceBus.Features.SecondLevelRetries>();
+            #endregion
+        }
+
     }
 }

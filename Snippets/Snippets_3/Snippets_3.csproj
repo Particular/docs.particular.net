@@ -161,7 +161,7 @@
     <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Errors\FirstLevel\flr.config.xml" />
     <Content Include="Monitoring\ServiceControlEvents.config.xml" />
-    <Content Include="UpgradeGuides\4to5\MsmqTransportConfig.config.xml" />
+    <Content Include="UpgradeGuides\3to4\MsmqTransportConfig.config.xml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -283,6 +283,7 @@
     <Compile Include="Serialization\XmlSerialization.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="UnitTesting\Unobtrusive.cs" />
+    <Compile Include="UpgradeGuides\3to4\Upgrade.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Errors\SecondLevel\slr.config.xml">
