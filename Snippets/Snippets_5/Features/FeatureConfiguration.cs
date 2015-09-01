@@ -47,7 +47,7 @@
             // this is not required if the feature uses EnableByDefault()
             configuration.EnableFeature<MyMagicFeature>();
 
-            // magical endpoints obviously need no Second Level Retries
+            // it's best practice for magical endpoints to disable Second Level Retries
             configuration.DisableFeature<SecondLevelRetries>();
 
             var bus = Bus.Create(configuration);
