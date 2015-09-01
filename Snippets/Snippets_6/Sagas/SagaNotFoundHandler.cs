@@ -24,5 +24,6 @@ namespace Snippets6.Sagas
     public class SagaDisappearedMessage
     {
     }
+
     #endregion
 }
