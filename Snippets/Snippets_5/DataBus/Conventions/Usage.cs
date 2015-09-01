@@ -9,8 +9,8 @@
             BusConfiguration busConfiguration = null;
             #region DefineMessageWithLargePayloadUsingConvention
 
-            busConfiguration.Conventions()
-                .DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
+            ConventionsBuilder conventions = busConfiguration.Conventions();
+            conventions.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
 
             #endregion
 

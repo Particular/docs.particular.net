@@ -31,15 +31,15 @@
 
             #region AzureDataBusConfiguration
 
-            busConfiguration.UseDataBus<AzureDataBus>()
-                .ConnectionString(azureStorageConnectionString)
-                .Container(containerName)
-                .BasePath(basePathWithinContainer)
-                .BlockSize(blockSize)
-                .DefaultTTL(timeToLiveInSeconds)
-                .MaxRetries(maxNumberOfRetryAttempts)
-                .NumberOfIOThreads(numberOfIoThreads)
-                .BackOffInterval(backOffIntervalBetweenRetriesInSecs);
+            DataBusExtentions<AzureDataBus> dataBus = busConfiguration.UseDataBus<AzureDataBus>();
+            dataBus.ConnectionString(azureStorageConnectionString);
+            dataBus.Container(containerName);
+            dataBus.BasePath(basePathWithinContainer);
+            dataBus.BlockSize(blockSize);
+            dataBus.DefaultTTL(timeToLiveInSeconds);
+            dataBus.MaxRetries(maxNumberOfRetryAttempts);
+            dataBus.NumberOfIOThreads(numberOfIoThreads);
+            dataBus.BackOffInterval(backOffIntervalBetweenRetriesInSecs);
 
             #endregion
 
