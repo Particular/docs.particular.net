@@ -8,8 +8,8 @@
         {
             #region DefiningEncryptedPropertiesAs
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Conventions()
-                .DefiningEncryptedPropertiesAs(info => info.Name.EndsWith("EncryptedProperty"));
+            ConventionsBuilder conventions = busConfiguration.Conventions();
+            conventions.DefiningEncryptedPropertiesAs(info => info.Name.EndsWith("EncryptedProperty"));
             #endregion
         }
     }

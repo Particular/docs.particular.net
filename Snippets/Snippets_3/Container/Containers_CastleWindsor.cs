@@ -21,8 +21,6 @@
             #region CastleWindsor_Existing
 
             Configure configure = Configure.With();
-            configure.Log4Net();
-            configure.DefineEndpointName("Samples.Castle");
             WindsorContainer container = new WindsorContainer();
             container.Register(Component.For<MyService>().Instance(new MyService()));
             configure.CastleWindsorBuilder(container);

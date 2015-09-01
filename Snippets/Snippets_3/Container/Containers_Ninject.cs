@@ -19,8 +19,6 @@
         {
             #region Ninject_Existing
             Configure configure = Configure.With();
-            configure.Log4Net();
-            configure.DefineEndpointName("Samples.Ninject");
             StandardKernel kernel = new StandardKernel();
             kernel.Bind<MyService>().ToConstant(new MyService());
             configure.NinjectBuilder(kernel);

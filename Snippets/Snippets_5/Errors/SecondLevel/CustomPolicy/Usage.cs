@@ -3,6 +3,7 @@
     using System;
     using NServiceBus;
     using NServiceBus.Features;
+    using NServiceBus.SecondLevelRetries.Config;
 
     public class Usage
     {
@@ -19,8 +20,8 @@
 
             #region SecondLevelRetriesCustomPolicy
 
-            busConfiguration.SecondLevelRetries()
-                .CustomRetryPolicy(MyCustomRetryPolicy);
+            SecondLevelRetriesSettings retriesSettings = busConfiguration.SecondLevelRetries();
+            retriesSettings.CustomRetryPolicy(MyCustomRetryPolicy);
 
             #endregion
         }

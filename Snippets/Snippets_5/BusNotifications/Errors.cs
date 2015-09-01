@@ -52,22 +52,19 @@ namespace Snippets5.BusNotifications
 
         void SendEmailOnFailure(FailedMessage failedMessage)
         {
+            string body = failedMessage.Exception.ToString();
             using (SmtpClient c = new SmtpClient())
+            using (MailMessage mailMessage = new MailMessage("from@mail.com",
+                "to@mail.com", "Message sent to error queue", body))
             {
-
-                using (MailMessage mailMessage = new MailMessage("from@mail.com",
-                    "to@mail.com", "Message sent to error queue",
-                    failedMessage.Exception.ToString()))
+                try
                 {
-                    try
-                    {
-                        c.Send(mailMessage);
-                    }
-                    catch (SmtpFailedRecipientsException)
-                    {
-                        // Failed to send an email to some of its recipients
-                        // Probably you should log this as a warning!
-                    }
+                    c.Send(mailMessage);
+                }
+                catch (SmtpFailedRecipientsException)
+                {
+                    // Failed to send an email to some of its recipients
+                    // Probably you should log this as a warning!
                 }
             }
         }
@@ -75,7 +72,9 @@ namespace Snippets5.BusNotifications
         void CheckIfDisposed()
         {
             if (disposed)
+            {
                 throw new Exception("Object has been disposed.");
+            }
         }
 
         public void Dispose()
