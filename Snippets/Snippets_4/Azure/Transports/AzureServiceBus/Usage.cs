@@ -8,8 +8,8 @@
         {
             #region AzureServiceBusTransportWithAzure 5
 
-            Configure.With()
-                .UseTransport<AzureServiceBus>();
+            Configure configure = Configure.With();
+            configure.UseTransport<AzureServiceBus>();
 
             #endregion
         }

@@ -54,7 +54,7 @@
 
         public void SetMessageHeader()
         {
-            IBus bus;
+            IBus bus = null;
 
             #region 3to4SetMessageHeader
 

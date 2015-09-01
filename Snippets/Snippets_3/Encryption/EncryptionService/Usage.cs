@@ -10,8 +10,8 @@ namespace Snippets3.Encryption.EncryptionService
             #region EncryptionFromIEncryptionService
 
             //where MyCustomEncryptionService implements IEncryptionService 
-            Configure.With()
-                .Configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
+            Configure configure = Configure.With();
+            configure.Configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
 
             #endregion
         }

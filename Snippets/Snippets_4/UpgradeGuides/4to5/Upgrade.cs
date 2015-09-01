@@ -14,16 +14,15 @@
 
             // NOTE: When you're self hosting, '.DefiningXXXAs()' has to be before '.UnicastBus()', 
             // otherwise you'll get: 'System.InvalidOperationException: "No destination specified for message(s): MessageTypeName"
-
-            Configure configure = Configure.With()
-                .DefaultBuilder()
-                .DefiningCommandsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"))
-                .DefiningEventsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"))
-                .DefiningMessagesAs(t => t.Namespace == "Messages")
-                .DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"))
-                .DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"))
-                .DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"))
-                .DefiningTimeToBeReceivedAs(t => t.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
+            Configure configure = Configure.With();
+            configure.DefaultBuilder();
+            configure.DefiningCommandsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"));
+            configure.DefiningEventsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"));
+            configure.DefiningMessagesAs(t => t.Namespace == "Messages");
+            configure.DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"));
+            configure.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
+            configure.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
+            configure.DefiningTimeToBeReceivedAs(t => t.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
 
             #endregion
         }
@@ -32,8 +31,8 @@
         {
             #region 4to5CustomConfigOverrides
 
-            Configure configure = Configure.With(AllAssemblies.Except("NotThis.dll"))
-                .DefaultBuilder();
+            Configure configure = Configure.With(AllAssemblies.Except("NotThis.dll"));
+            configure.DefaultBuilder();
             configure.DefineEndpointName("MyEndpointName");
             configure.DefiningEventsAs(type => type.Name.EndsWith("Event"));
 
@@ -70,20 +69,20 @@
         {
             #region 4to5CustomRavenConfig
 
-            Configure.With()
-                .RavenPersistence("http://localhost:8080", "MyDatabase");
+            Configure configure = Configure.With();
+            configure.RavenPersistence("http://localhost:8080", "MyDatabase");
 
             #endregion
-
         }
 
         public void StartupAction()
         {
             #region 4to5StartupAction
 
-            Configure.With().UnicastBus()
-                .CreateBus()
-                .Start(MyCustomAction);
+            Configure configure = Configure.With();
+            configure.UnicastBus();
+            IStartableBus startableBus = configure.CreateBus();
+            startableBus.Start(MyCustomAction);
 
             #endregion
         }
@@ -97,10 +96,10 @@
         {
             #region 4to5Installers
 
-            Configure.With()
-                .UnicastBus()
-                .CreateBus()
-                .Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
+            Configure configure = Configure.With();
+            configure.UnicastBus();
+            IStartableBus startableBus = configure.CreateBus();
+            startableBus.Start(() => Configure.Instance.ForInstallationOn<Windows>().Install());
 
             #endregion
         }
@@ -109,31 +108,32 @@
         public void Persistence()
         {
 
+            Configure configure = Configure.With();
             #region 4to5ConfigurePersistence
 
             // Configure to use InMemory 
-            Configure.With().InMemorySagaPersister();
-            Configure.With().UseInMemoryTimeoutPersister();
-            Configure.With().InMemorySubscriptionStorage();
-            Configure.With().RunGatewayWithInMemoryPersistence();
-            Configure.With().UseInMemoryGatewayDeduplication();
+            configure.InMemorySagaPersister();
+            configure.UseInMemoryTimeoutPersister();
+            configure.InMemorySubscriptionStorage();
+            configure.RunGatewayWithInMemoryPersistence();
+            configure.UseInMemoryGatewayDeduplication();
 
             // Configure to use NHibernate
-            Configure.With().UseNHibernateSagaPersister();
-            Configure.With().UseNHibernateTimeoutPersister();
-            Configure.With().UseNHibernateSubscriptionPersister();
-            Configure.With().UseNHibernateGatewayPersister();
-            Configure.With().UseNHibernateGatewayDeduplication();
+            configure.UseNHibernateSagaPersister();
+            configure.UseNHibernateTimeoutPersister();
+            configure.UseNHibernateSubscriptionPersister();
+            configure.UseNHibernateGatewayPersister();
+            configure.UseNHibernateGatewayDeduplication();
 
             // Configure to use RavenDB for everything
-            Configure.With().RavenPersistence();
+            configure.RavenPersistence();
 
             // Configure to use RavenDB
-            Configure.With().RavenSagaPersister();
-            Configure.With().UseRavenTimeoutPersister();
-            Configure.With().RavenSubscriptionStorage();
-            Configure.With().RunGatewayWithRavenPersistence();
-            Configure.With().UseNHibernateGatewayDeduplication();
+            configure.RavenSagaPersister();
+            configure.UseRavenTimeoutPersister();
+            configure.RavenSubscriptionStorage();
+            configure.RunGatewayWithRavenPersistence();
+            configure.UseNHibernateGatewayDeduplication();
 
             #endregion
         }
@@ -162,21 +162,22 @@
         {
             #region 4to5RunCustomAction
 
-            Configure.With().UnicastBus()
-                .RunCustomAction(MyCustomAction)
-                .CreateBus()
-                .Start();
+            Configure configure = Configure.With();
+            configure.UnicastBus();
+            configure.RunCustomAction(MyCustomAction);
+            IStartableBus startableBus = configure.CreateBus();
+            startableBus.Start();
 
             #endregion
         }
 
         public void DefineCriticalErrorAction()
         {
-
             #region 4to5DefineCriticalErrorAction
 
             // Configuring how NServicebus handles critical errors
-            Configure.With().DefineCriticalErrorAction((message, exception) =>
+            Configure configure = Configure.With();
+            configure.DefineCriticalErrorAction((message, exception) =>
             {
                 string output = string.Format("We got a critical exception: '{0}'\r\n{1}", message, exception);
                 Console.WriteLine(output);
@@ -192,8 +193,8 @@
 
             #region 4to5FileShareDataBus
 
-            Configure configure = Configure.With()
-                .FileShareDataBus(databusPath);
+            Configure configure = Configure.With();
+            configure.FileShareDataBus(databusPath);
 
             #endregion
         }
@@ -202,8 +203,8 @@
         {
             #region 4to5PurgeOnStartup
 
-            Configure.With()
-                .PurgeOnStartup(true);
+            Configure configure = Configure.With();
+            configure.PurgeOnStartup(true);
 
             #endregion
         }
@@ -212,8 +213,8 @@
         {
             #region 4to5EncryptionServiceSimple
 
-            Configure.With()
-                .RijndaelEncryptionService();
+            Configure configure = Configure.With();
+            configure.RijndaelEncryptionService();
 
             #endregion
         }
@@ -223,19 +224,20 @@
             #region 4to5EncryptionFromIEncryptionService
 
             //where EncryptionService implements IEncryptionService 
-            Configure.With()
-                .Configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
+            Configure configure = Configure.With();
+            configure.Configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
 
             #endregion
         }
 
         public void License()
         {
+            Configure configure = Configure.With();
             #region 4to5License
 
-            Configure.With().LicensePath("PathToLicense");
+            configure.LicensePath("PathToLicense");
             //or
-            Configure.With().License("YourCustomLicenseText");
+            configure.License("YourCustomLicenseText");
 
             #endregion
         }
@@ -269,11 +271,9 @@
         {
             #region 4to5PerformanceMonitoring
 
-            Configure.With()
-                .EnablePerformanceCounters();
-
-            Configure.With()
-                .SetEndpointSLA(TimeSpan.FromMinutes(3));
+            Configure configure = Configure.With();
+            configure.EnablePerformanceCounters();
+            configure.SetEndpointSLA(TimeSpan.FromMinutes(3));
 
             #endregion
         }
@@ -282,7 +282,8 @@
         {
             #region 4to5DoNotCreateQueues
 
-            Configure.With().DoNotCreateQueues();
+            Configure configure = Configure.With();
+            configure.DoNotCreateQueues();
 
             #endregion
         }
@@ -291,27 +292,25 @@
         {
             #region 4to5EndpointName
 
-            Configure.With()
-                // If you need to customize the endpoint name via code using the DefineEndpointName method, 
-                // it is important to call it first, right after the With() configuration entry point.
-                .DefineEndpointName("MyEndpoint");
+            Configure configure = Configure.With();
+            // If you need to customize the endpoint name via code using the DefineEndpointName method, 
+            // it is important to call it first, right after the With() configuration entry point.
+            configure.DefineEndpointName("MyEndpoint");
 
             #endregion
         }
 
         public void SendOnly()
         {
-
             #region 4to5SendOnly
 
-            IBus bus = Configure.With()
-                .DefaultBuilder()
-                //Other config
-                .UnicastBus()
-                .SendOnly();
+            Configure configure = Configure.With();
+            configure.DefaultBuilder();
+            //Other config
+            configure.UnicastBus();
+            IBus bus = configure.SendOnly();
 
             #endregion
         }
-
     }
 }

@@ -6,28 +6,27 @@
     {
         public Usage()
         {
+            Configure configure = Configure.With();
+
             #region ConfiguringDistributor
 
             // --------------------------------------
             // Running the Distributor and a Worker
-            Configure.With()
-                .AsMSMQMasterNode();
+            configure.AsMSMQMasterNode();
             //or 
-            Configure.With()
-                .RunMSMQDistributor();
+            configure.RunMSMQDistributor();
             // --------------------------------------
 
             // --------------------------------------
             // Running the Distributor only
-            Configure.With()
-                .RunMSMQDistributor(false);
+            configure.RunMSMQDistributor(false);
             // --------------------------------------
 
             #endregion
+
             #region ConfiguringWorker
 
-            Configure.With()
-                .EnlistWithMSMQDistributor();
+            configure.EnlistWithMSMQDistributor();
 
             #endregion
         }

@@ -11,13 +11,13 @@
             #region ConfiguringTransactionRecoveryStorage
 
             string transactionRecoveryPath = "path to transaction recovery storage unique per endpoint";
-            
-            Configure.With()
-                .CustomiseRavenPersistence(store =>
-                {
-                    DocumentStore documentStore = ((DocumentStore) store);
-                    documentStore.TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(transactionRecoveryPath);
-                });
+
+            Configure configure = Configure.With();
+            configure.CustomiseRavenPersistence(store =>
+            {
+                DocumentStore documentStore = ((DocumentStore) store);
+                documentStore.TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(transactionRecoveryPath);
+            });
 
             #endregion
         }

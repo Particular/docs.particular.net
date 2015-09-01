@@ -8,11 +8,12 @@
         public Usage()
         {
             #region CustomContainers
-            Configure.With()
-                //Create a class that implements 'IContainer'
-                .UsingContainer<MyCustomObjectBuilder>();
+
+            Configure configure = Configure.With();
+            //Create a class that implements 'IContainer'
+            configure.UsingContainer<MyCustomObjectBuilder>();
+
             #endregion
         }
-
     }
 }

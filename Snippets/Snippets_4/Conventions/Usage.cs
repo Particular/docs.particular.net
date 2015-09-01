@@ -12,16 +12,15 @@
             // NOTE: When you're self hosting, '.DefiningXXXAs()' has to be before '.UnicastBus()', 
             // otherwise you'll get: 'System.InvalidOperationException: "No destination specified for message(s): MessageTypeName"
 
-            Configure configure = Configure.With()
-                .DefaultBuilder()
-                .DefiningCommandsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"))
-                .DefiningEventsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"))
-                .DefiningMessagesAs(t => t.Namespace == "Messages")
-                .DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"))
-                .DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"))
-                .DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"))
-                .DefiningTimeToBeReceivedAs(t => t.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
-       
+            Configure configure = Configure.With();
+            configure.DefiningCommandsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Commands"));
+            configure.DefiningEventsAs(t => t.Namespace == "MyNamespace" && t.Namespace.EndsWith("Events"));
+            configure.DefiningMessagesAs(t => t.Namespace == "Messages");
+            configure.DefiningEncryptedPropertiesAs(p => p.Name.StartsWith("Encrypted"));
+            configure.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
+            configure.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
+            configure.DefiningTimeToBeReceivedAs(t => t.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
+
             #endregion
         }
 

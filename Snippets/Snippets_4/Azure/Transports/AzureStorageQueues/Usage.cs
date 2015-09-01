@@ -8,8 +8,8 @@
         {
             #region AzureStorageQueueTransportWithAzure 5
 
-            Configure.With()
-                .UseTransport<AzureStorageQueue>();
+            Configure configure = Configure.With();
+            configure.UseTransport<AzureStorageQueue>();
 
             #endregion
         }

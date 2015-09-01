@@ -8,13 +8,12 @@
         {
             #region ConfiguringInMemory
 
-            Configure.With()
-                .DefaultBuilder()
-                .InMemoryFaultManagement()
-                .InMemorySagaPersister()
-                .InMemorySubscriptionStorage()
-                .RunGatewayWithInMemoryPersistence()
-                .UseInMemoryTimeoutPersister();
+            Configure configure = Configure.With();
+            configure.InMemoryFaultManagement();
+            configure.InMemorySagaPersister();
+            configure.InMemorySubscriptionStorage();
+            configure.RunGatewayWithInMemoryPersistence();
+            configure.UseInMemoryTimeoutPersister();
 
             #endregion
         }

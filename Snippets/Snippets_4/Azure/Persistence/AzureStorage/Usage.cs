@@ -8,10 +8,10 @@
         {
             #region PersistanceWithAzure 5
 
-            Configure.With()
-                .AzureSubscriptionStorage()
-                .AzureSagaPersister()
-                .UseAzureTimeoutPersister();
+            Configure configure = Configure.With();
+            configure.AzureSubscriptionStorage();
+            configure.AzureSagaPersister();
+            configure.UseAzureTimeoutPersister();
 
             #endregion
         }

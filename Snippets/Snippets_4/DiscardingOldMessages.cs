@@ -15,8 +15,8 @@
         {
             #region DiscardingOldMessagesWithCode
 
-            Configure configure = Configure.With()
-                .DefiningTimeToBeReceivedAs(type =>
+            Configure configure = Configure.With();
+            configure.DefiningTimeToBeReceivedAs(type =>
                 {
                     if (type == typeof(MyMessage))
                     {

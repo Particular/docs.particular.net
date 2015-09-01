@@ -8,8 +8,8 @@
         {
             #region ExpressMessageConvention
 
-            Configure configure = Configure.With()
-                .DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
+            Configure configure = Configure.With();
+            configure.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
 
             #endregion
         }

@@ -11,7 +11,6 @@
             #region AzureDataBus
 
             BusConfiguration busConfiguration = new BusConfiguration();
-
             busConfiguration.UseDataBus<AzureDataBus>();
 
             #endregion

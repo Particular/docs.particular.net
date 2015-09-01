@@ -1,6 +1,7 @@
 ﻿namespace Snippets3
 {
     using NServiceBus;
+    using NServiceBus.Unicast.Config;
 
     public class HandlerOrdering
     {
@@ -8,9 +9,9 @@
         {
             #region HandlerOrderingWithCode
 
-            Configure.With()
-                .UnicastBus()
-                .LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>());
+            Configure configure = Configure.With();
+            ConfigUnicastBus configUnicastBus = configure.UnicastBus();
+            configUnicastBus.LoadMessageHandlers(First<HandlerB>.Then<HandlerA>().AndThen<HandlerC>());
 
             #endregion
         }
