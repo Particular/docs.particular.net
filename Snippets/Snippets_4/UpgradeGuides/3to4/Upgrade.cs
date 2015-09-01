@@ -26,6 +26,18 @@
             Configure.Features.Enable<NServiceBus.Features.Sagas>();
             #endregion
         }
-
+        public void SetMessageHeader()
+        {
+            IBus bus;
+            #region 3to4SetMessageHeader
+            MyMessage myMessage = new MyMessage();
+            bus.SetMessageHeader(myMessage, "SendingMessage", "ValueSendingMessage");
+            bus.SendLocal(myMessage);
+            #endregion
+        }
+        public class MyMessage
+        {
+             
+        }
     }
 }

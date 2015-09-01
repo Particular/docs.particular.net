@@ -19,6 +19,19 @@
             configure.Sagas();
             #endregion
         }
+        public void SetMessageHeader()
+        {
+            IBus bus;
+            #region 3to4SetMessageHeader
+            MyMessage myMessage = new MyMessage();
+            myMessage.SetHeader("SendingMessage", "ValueSendingMessage");
+            bus.SendLocal(myMessage);
+            #endregion
+        }
+        public class MyMessage
+        {
+
+        }
 
     }
 }
