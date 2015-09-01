@@ -9,12 +9,12 @@ related:
 
 Classes that implement `IWantToRunWhenConfigurationIsComplete` are executed when configuration is completed, right before the bus is created. Use `IWantToRunWhenConfigurationIsComplete` for any tasks that need to be run at the end of bus creation life-cycle. This might include logging diagnostic information about configuration or initialization logic that downstream components depend on.
 
-NOTE: This interface is deprecated in Version 6.
+NOTE: This interface is deprecated in Version 6 and has been replaced with [Features](/nservicebus/pipeline/features.md).
 
 Instances are:
 
 * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/) during bus creation. These are registered as Instance Per Call.
-* Created as the last step before the bus is created. 
+* Created as the last step before the bus is created.
 * Created on the same thread that is creating the bus.
 * Created by the configured container which means they:
   * Will have dependencies injected.
