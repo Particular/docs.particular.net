@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--startcode TransportConfig -->
+<!--startcode 3to4TransportConfig -->
 <configuration>
   <configSections>
     <section name="TransportConfig" 
