@@ -15,7 +15,7 @@ In this sample shows a very simple ordering system that
 
 ## The Shared Project
 
-The `Shared` project is the container for shared classes including message definitions. This project will be shared between the client and server so both sides agree on the typed message descriptions. It is referenced by all projects in the solution. These messages in include
+The `Shared` project is the container for shared classes including message definitions. This project will be shared between the client and server so both sides agree on the typed message descriptions. It is referenced by all projects in the solution. 
 
 
 ### PlaceOrder Command
