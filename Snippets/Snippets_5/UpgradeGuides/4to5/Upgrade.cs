@@ -217,7 +217,6 @@ namespace Snippets5.UpgradeGuides._4to5
             #region 4to5FileShareDataBus
 
             BusConfiguration busConfiguration = new BusConfiguration();
-
             busConfiguration.UseDataBus<FileShareDataBus>()
                 .BasePath(databusPath);
 
@@ -229,7 +228,6 @@ namespace Snippets5.UpgradeGuides._4to5
             #region 4to5PurgeOnStartup
 
             BusConfiguration busConfiguration = new BusConfiguration();
-
             busConfiguration.PurgeOnStartup(true);
 
             #endregion
