@@ -1,9 +1,9 @@
-﻿namespace Snippets3.Sagas.SimpleSaga
+﻿namespace Snippets3.UpgradeGuides._3to4.SimpleSaga
 {
     using NServiceBus;
     using NServiceBus.Saga;
 
-    #region 3to4ConfigureHowToFindSaga
+    #region simple-saga
 
     public class OrderSaga : Saga<OrderSagaData>,
                             IAmStartedByMessages<StartOrder>,
@@ -14,7 +14,6 @@
             ConfigureMapping<CompleteOrder>(s => s.OrderId, m => m.OrderId);
         }
 
-    #endregion
         public void Handle(StartOrder message)
         {
             Data.OrderId = message.OrderId;
@@ -27,5 +26,6 @@
         }
     }
 
+    #endregion
 
 }

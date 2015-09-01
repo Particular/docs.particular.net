@@ -9,17 +9,17 @@
         public void Simple()
         {
             #region saga-configure
+
             Feature.Enable<Sagas>();
-            IStartableBus bus = Configure.With()
-                .DefaultBuilder()
-                .UseTransport<Msmq>()
-                .UnicastBus()
-                .RavenSagaPersister()
-                .CreateBus();
+            Configure configure = Configure.With();
+            configure.DefaultBuilder();
+            configure.UseTransport<Msmq>();
+            configure.UnicastBus();
+            configure.RavenSagaPersister();
+            IStartableBus bus = configure.CreateBus();
 
             #endregion
         }
-
 
     }
 }

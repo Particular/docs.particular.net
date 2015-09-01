@@ -6,7 +6,7 @@ public class MutateOutgoingMessages : IMutateOutgoingMessages
 {
     IBus bus;
 
-    public MutateOutgoingMessages(IBus  bus)
+    public MutateOutgoingMessages(IBus bus)
     {
         this.bus = bus;
     }

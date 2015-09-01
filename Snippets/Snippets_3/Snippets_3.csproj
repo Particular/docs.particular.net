@@ -283,6 +283,10 @@
     <Compile Include="Serialization\XmlSerialization.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="UnitTesting\Unobtrusive.cs" />
+    <Compile Include="UpgradeGuides\3to4\SimpleSaga\CompleteOrder.cs" />
+    <Compile Include="UpgradeGuides\3to4\SimpleSaga\OrderSaga.cs" />
+    <Compile Include="UpgradeGuides\3to4\SimpleSaga\OrderSagaData.cs" />
+    <Compile Include="UpgradeGuides\3to4\SimpleSaga\StartOrder.cs" />
     <Compile Include="UpgradeGuides\3to4\Upgrade.cs" />
   </ItemGroup>
   <ItemGroup>

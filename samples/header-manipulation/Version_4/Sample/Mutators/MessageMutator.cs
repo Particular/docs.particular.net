@@ -6,7 +6,7 @@ public class MessageMutator : IMessageMutator
 {
     IBus bus;
 
-    public MessageMutator(IBus  bus)
+    public MessageMutator(IBus bus)
     {
         this.bus = bus;
     }
