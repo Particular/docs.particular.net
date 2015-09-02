@@ -9,7 +9,8 @@ related:
 - nservicebus/serialization
 ---
 
-NOTE: The functionality described in this sample was made a part of NServiceBus v6 core. Please consult [Serialization in NServiceBus](/nservicebus/serialization/) for more information.
+NOTE: A subset of the functionality described in this sample was made a part of NServiceBus version 6. Please consult [Serialization in NServiceBus](/nservicebus/serialization/) for more information.
+
 
 ## Introduction
 
@@ -68,7 +69,7 @@ This replaces the existing serialization behavior and also injects the Serializa
 
 #### Deserialization Behavior
 
-<!-- import deserialize-behavor -->
+<!-- import deserialize-behavior -->
 
 
 ## Running the Code

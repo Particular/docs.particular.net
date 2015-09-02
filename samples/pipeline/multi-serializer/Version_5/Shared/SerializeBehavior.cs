@@ -24,13 +24,11 @@ class SerializeBehavior : IBehavior<OutgoingContext>
         if (!transportMessage.IsControlMessage())
         {
             LogicalMessage logicalMessage = context.OutgoingLogicalMessage;
-            Type messageType = logicalMessage.Instance.GetType();
+            object messageInstance = logicalMessage.Instance;
+            Type messageType = messageInstance.GetType();
+            
             IMessageSerializer messageSerializer = serializationMapper.GetSerializer(messageType);
-            using (MemoryStream ms = new MemoryStream())
-            {
-                messageSerializer.Serialize(logicalMessage.Instance, ms);
-                transportMessage.Body = ms.ToArray();
-            }
+            transportMessage.Body = Serialize(messageSerializer, messageInstance);
 
             Dictionary<string, string> transportHeaders = transportMessage.Headers;
             transportHeaders[Headers.ContentType] = messageSerializer.ContentType;
@@ -43,6 +41,17 @@ class SerializeBehavior : IBehavior<OutgoingContext>
         }
 
         next();
+    }
+
+    static byte[] Serialize(IMessageSerializer messageSerializer, object messageInstance)
+    {
+        byte[] array;
+        using (MemoryStream ms = new MemoryStream())
+        {
+            messageSerializer.Serialize(messageInstance, ms);
+            array = ms.ToArray();
+        }
+        return array;
     }
 
     string SerializeEnclosedMessageTypes(LogicalMessage message)
