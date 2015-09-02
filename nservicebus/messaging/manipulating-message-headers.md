@@ -1,16 +1,15 @@
 ---
-title: Message Headers
-summary: List of built-in NServiceBus message headers.
+title: Manipulating message headers
+summary: Access and manipulate the built in NServiceBus headers or add custom headers.
 tags: 
 - Header
 redirects:
-- nservicebus/message-headers
+- nservicebus/how-do-i-get-technical-information-about-a-message
 related:
 - samples/header-manipulation
-- nservicebus/messaging/manipulating-message-headers
 ---
 
-Extra information about a message is communicated over the transport as secondary information to the message body. Message headers are very similar, in both implementation and usage, to http headers. This article covers all the headers that are used internally by NServiceBus. To learn more on how to use custom headers, see the [header manipulation](/nservicebus/messaging/manipulating-message-headers.md) article.
+Extra information about a message is communicated over the transport as secondary information to the message body. The mechanism for header communication is either native headers, if the transport supports that feature, or via a serialized collection of key value pairs. Message headers are very similar, in both implementation and usage, to http headers. NServiceBus uses them internally to manage messaging patters, eg pub/sub and request/response, and users of NServiceBus can use headers to implement a variety of features.
 
 
 ## Timestamp format
@@ -253,3 +252,53 @@ Given an initiating message with the following headers:
 When that message fails to be processed it will be sent to the Error queue with the following headers:
 
 <!-- import HeaderWriterError_Error -->
+
+
+## Reading incoming Headers
+
+Headers can be read for an incoming message.
+
+
+### From a Behavior
+
+<!-- import header-incoming-behavior -->
+
+
+### From a Mutator
+
+<!-- import header-incoming-mutator -->
+
+
+### From a Handler
+
+<!-- import header-incoming-handler -->
+
+
+## Writing outgoing Headers
+
+Headers can be written for an outgoing message.
+
+
+### From a Behavior
+
+<!-- import header-outgoing-behavior -->
+
+
+### From a Mutator
+
+<!-- import header-outgoing-mutator -->
+
+
+### From a Handler
+
+<!-- import header-outgoing-handler -->
+
+
+### For all outgoing messages
+
+NServiceBus allows you to register headers at configuration time that's then added to all outgoing messages for the endpoint.
+
+<!-- import header-static-endpoint --> 
+
+
+WARNING: In Versions 3 through Version 5 the global outgoing headers are not thread safe. It is recommended that you manipulate them at startup. This has been limited to a configuration time only API in Version 6 .

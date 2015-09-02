@@ -8,7 +8,7 @@ tags:
 related:
 - samples/messagemutators
 - samples/pipeline
-- nservicebus/messaging/message-headers
+- nservicebus/messaging/manipulating-message-headers
 - nservicebus/pipeline
 ---
 
