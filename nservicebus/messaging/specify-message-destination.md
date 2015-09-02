@@ -13,19 +13,23 @@ related:
 
 Message mapping is a configurable convention that, based on some information about a message, that message can be routed to a specific endpoint without the sending code needing to be aware of the destination. A message mapping contains the following information.
 
+
 ## The target Endpoint
 
 The target or destination endpoint can be of the form `QueueName@ServerName`, or just `QueueName` if the destination is the local machine.
 
+
 ## Resolving the Messages to map 
 
 There are two, mutually exclusive approaches, to message resolution:
+
 
 ### Resolving with the AssemblyName
 
 If this is defined then all types in that assembly will included in the initial set. This effectively uses [Assembly.Load(AssemblyName)](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) followed by [Assembly.GetTypes()](https://msdn.microsoft.com/en-us/library/system.reflection.assembly.gettypes.aspx).
 
 Note: This value is the [AssemblyName](https://msdn.microsoft.com/en-us/library/k8xx4k69.aspx) not the file name.
+
 
 #### Filtering
 
@@ -39,11 +43,14 @@ Note that the xml configuration version of the above settings are slightly diffe
  * `AssemblyName` is actually `Assembly` in xml.
  * `TypeFullName` is actually `Type` in xml.
 
+
 ### Resolving with Messages
 
 If the `Messages` represents a valid Type (ie [Type.GetType](https://msdn.microsoft.com/en-us/library/w3f99sx1.aspx) returns a Type) then that type will be mapped to the target endpoint.
 
 Otherwise it will be assumed `Messages` is an assembly name and all types in that assembly will be mapped to the target endpoint.  This effectively uses [Assembly.Load(AssemblyName)](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) followed by [Assembly.GetTypes()](https://msdn.microsoft.com/en-us/library/system.reflection.assembly.gettypes.aspx).
+
+WARNING: Since `Messages` is ambiguous in its usage the `Assembly`, `Type` and `Namespace` attributes are the recommended way approach for mapping types. The `Messages` attribute is still supported for backwards comparability. 
 
 
 ### Some example mappings 
@@ -65,35 +72,41 @@ To register a specific type in an assembly:
  * `TypeFullName` = `YourMessageFullTypeName`
  * `Endpoint` = `queue@machinename`
 
+
 ### Conventions
 
 Note that any types resolved as message from the above process are then further filtered by passing them through the [Message conventions](/nservicebus/messaging/messages-events-commands.md#defining-messages-conventions).
+
 
 ## Configuring Endpoint Mapping
 
 Endpoint mapping can be configured in several ways
 
+
 ### Using app.config
 
-You configure mapping in your app.config by adding `<unicastbusconfig>` and `<messageendpointmappings>` nodes.
+You configure mapping in your app.config by adding `<UnicastBusConfig>` and `<MessageEndpointMappings>` nodes.
 
 <!-- import endpoint-mapping-appconfig -->
 
-WARNING: In versions prior to v3.3 there was an attribute named `Messages` that was used to configure mappings, this attribute is still supported for backwards compatibility but the new `Assembly`, `Type` and `Namespace` attributes are the recommended way forward.      
 
 ### Using a ConfigurationSource
+
 
 #### The IConfigurationSource
 
 <!-- import endpoint-mapping-configurationsource -->
 
+
 #### Injecting the IConfigurationSource
 
 <!-- import inject-endpoint-mapping-configuration-source -->
 
+
 ### Using a configuration provider
 
 <!-- import endpoint-mapping-configurationprovider -->
+
 
 ## Bypassing mappings
 
