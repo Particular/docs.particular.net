@@ -9,6 +9,7 @@ using NServiceBus.Pipeline.Contexts;
 using NServiceBus.Serialization;
 using NServiceBus.Unicast.Messages;
 
+#region deserialize-behavior
 class DeserializeBehavior : IBehavior<IncomingContext>
 {
     SerializationMapper serializationMapper;
@@ -51,45 +52,41 @@ class DeserializeBehavior : IBehavior<IncomingContext>
             return new List<LogicalMessage>();
         }
 
-        string messageTypeIdentifier;
-        List<MessageMetadata> messageMetadata = new List<MessageMetadata>();
-
-        if (physicalMessage.Headers.TryGetValue(Headers.EnclosedMessageTypes, out messageTypeIdentifier))
+        string typeIdentifier;
+        if (!physicalMessage.Headers.TryGetValue(Headers.EnclosedMessageTypes, out typeIdentifier))
         {
-            foreach (string messageTypeString in messageTypeIdentifier.Split(';'))
-            {
-                string typeString = messageTypeString;
-                MessageMetadata metadata = messageMetadataRegistry.GetMessageMetadata(typeString);
-                if (metadata == null)
-                {
-                    continue;
-                }
-                messageMetadata.Add(metadata);
-            }
-
-            if (messageMetadata.Count == 0 && physicalMessage.MessageIntent != MessageIntentEnum.Publish)
-            {
-                log.WarnFormat("Could not determine message type from message header '{0}'. MessageId: {1}", messageTypeIdentifier, physicalMessage.Id);
-            }
+            return Deserialize(physicalMessage, new List<MessageMetadata>());
         }
-
+        List<MessageMetadata> messageMetadata = GetMessageMetadata(typeIdentifier)
+            .ToList();
+        if (messageMetadata.Count == 0 && physicalMessage.MessageIntent != MessageIntentEnum.Publish)
+        {
+            log.WarnFormat("Could not determine message type from message header '{0}'. MessageId: {1}", typeIdentifier, physicalMessage.Id);
+        }
         return Deserialize(physicalMessage, messageMetadata);
     }
 
-    #region deserialize-behavor
+    IEnumerable<MessageMetadata> GetMessageMetadata(string messageTypeIdentifier)
+    {
+        return messageTypeIdentifier
+            .Split(';')
+            .Select(type => messageMetadataRegistry.GetMessageMetadata(type))
+            .Where(metadata => metadata != null);
+    }
+
     List<LogicalMessage> Deserialize(TransportMessage physicalMessage, List<MessageMetadata> messageMetadata)
     {
+        IMessageSerializer messageSerializer = serializationMapper.GetSerializer(physicalMessage.Headers);
+        List<Type> messageTypesToDeserialize = messageMetadata.Select(x => x.MessageType).ToList();
         using (MemoryStream stream = new MemoryStream(physicalMessage.Body))
         {
-            IMessageSerializer messageSerializer = serializationMapper.GetSerializer(physicalMessage.Headers);
-            List<Type> messageTypesToDeserialize = messageMetadata.Select(metadata => metadata.MessageType).ToList();
             return messageSerializer.Deserialize(stream, messageTypesToDeserialize)
                 .Select(x => logicalMessageFactory.Create(x.GetType(), x, physicalMessage.Headers))
                 .ToList();
         }
     }
-    #endregion
 
 
     static ILog log = LogManager.GetLogger(typeof(DeserializeBehavior));
 }
+    #endregion

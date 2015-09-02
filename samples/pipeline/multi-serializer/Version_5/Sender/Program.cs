@@ -55,11 +55,10 @@ class Program
     static void SendJsonMessage(IBus bus)
     {
         MessageWithJson message = new MessageWithJson
-                                  {
-                                      SomeProperty = "Some content in a json message",
-                                  };
+        {
+            SomeProperty = "Some content in a json message",
+        };
         bus.Send("Samples.MultiSerializer.Receiver", message);
         Console.WriteLine("Json Message sent");
     }
 }
-
