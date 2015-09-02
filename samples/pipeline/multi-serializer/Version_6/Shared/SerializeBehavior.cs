@@ -10,28 +10,31 @@ using NServiceBus.TransportDispatch;
 using NServiceBus.Unicast.Messages;
 
 #region serialize-behavior
-class SerializeBehavior : StageConnector<OutgoingContext, PhysicalOutgoingContextStageBehavior.Context>
+using ToContext = NServiceBus.OutgoingPipeline.PhysicalOutgoingContextStageBehavior.Context;
+class SerializeBehavior : StageConnector<OutgoingContext, ToContext>
 {
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;
 
-    public SerializeBehavior(SerializationMapper serializationMapper, MessageMetadataRegistry messageMetadataRegistry)
+    public SerializeBehavior(
+        SerializationMapper serializationMapper, 
+        MessageMetadataRegistry messageMetadataRegistry)
     {
         this.serializationMapper = serializationMapper;
         this.messageMetadataRegistry = messageMetadataRegistry;
     }
 
-    public override void Invoke(OutgoingContext context, Action<PhysicalOutgoingContextStageBehavior.Context> next)
+    public override void Invoke(OutgoingContext context, Action<ToContext> next)
     {
         object messageInstance = context.GetMessageInstance();
         Type messageType = messageInstance.GetType();
         IMessageSerializer messageSerializer = serializationMapper.GetSerializer(messageType);
 
         context.SetHeader(Headers.ContentType, messageSerializer.ContentType);
-        context.SetHeader(Headers.EnclosedMessageTypes, SerializeEnclosedMessageTypes(messageType));
+        context.SetHeader(Headers.EnclosedMessageTypes, SerializeMessageTypes(messageType));
 
         byte[] array = Serialize(messageSerializer, messageInstance);
-        next(new PhysicalOutgoingContextStageBehavior.Context(array, context));
+        next(new ToContext(array, context));
     }
 
     static byte[] Serialize(IMessageSerializer messageSerializer, object messageInstance)
@@ -43,7 +46,7 @@ class SerializeBehavior : StageConnector<OutgoingContext, PhysicalOutgoingContex
         }
     }
 
-    string SerializeEnclosedMessageTypes(Type messageType)
+    string SerializeMessageTypes(Type messageType)
     {
         var metadata = messageMetadataRegistry.GetMessageMetadata(messageType);
         var distinctTypes = metadata.MessageHierarchy.Distinct();

@@ -10,13 +10,19 @@ using NServiceBus.Serialization;
 using NServiceBus.Unicast.Messages;
 
 #region deserialize-behavior
-class DeserializeBehavior : StageConnector<PhysicalMessageProcessingStageBehavior.Context, LogicalMessagesProcessingStageBehavior.Context>
+using ToContext = NServiceBus.Pipeline.Contexts.LogicalMessagesProcessingStageBehavior.Context;
+using FromContext = NServiceBus.PhysicalMessageProcessingStageBehavior.Context;
+
+class DeserializeBehavior : StageConnector<FromContext, ToContext>
 {
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;
     LogicalMessageFactory logicalMessageFactory;
 
-    public DeserializeBehavior(SerializationMapper serializationMapper, MessageMetadataRegistry messageMetadataRegistry, LogicalMessageFactory logicalMessageFactory)
+    public DeserializeBehavior(
+        SerializationMapper serializationMapper,
+        MessageMetadataRegistry messageMetadataRegistry,
+        LogicalMessageFactory logicalMessageFactory)
     {
         this.serializationMapper = serializationMapper;
         this.messageMetadataRegistry = messageMetadataRegistry;
@@ -24,7 +30,7 @@ class DeserializeBehavior : StageConnector<PhysicalMessageProcessingStageBehavio
     }
 
 
-    public override void Invoke(PhysicalMessageProcessingStageBehavior.Context context, Action<LogicalMessagesProcessingStageBehavior.Context> next)
+    public override void Invoke(FromContext context, Action<ToContext> next)
     {
         var transportMessage = context.GetPhysicalMessage();
 
@@ -32,11 +38,11 @@ class DeserializeBehavior : StageConnector<PhysicalMessageProcessingStageBehavio
         {
             log.Info("Received a control message. Skipping deserialization as control message data is contained in the header.");
 
-            next(new LogicalMessagesProcessingStageBehavior.Context(Enumerable.Empty<LogicalMessage>(), context));
+            next(new ToContext(Enumerable.Empty<LogicalMessage>(), context));
             return;
         }
         var messages = ExtractWithExceptionHandling(transportMessage);
-        next(new LogicalMessagesProcessingStageBehavior.Context(messages, context));
+        next(new ToContext(messages, context));
     }
 
     List<LogicalMessage> ExtractWithExceptionHandling(TransportMessage transportMessage)
@@ -95,4 +101,5 @@ class DeserializeBehavior : StageConnector<PhysicalMessageProcessingStageBehavio
 
     static ILog log = LogManager.GetLogger(typeof(DeserializeBehavior));
 }
+
 #endregion
