@@ -8,6 +8,7 @@ using NServiceBus.Pipeline.Contexts;
 using NServiceBus.Serialization;
 using NServiceBus.Unicast.Messages;
 
+#region serialize-behavior
 class SerializeBehavior : IBehavior<OutgoingContext>
 {
     SerializationMapper serializationMapper;
@@ -19,33 +20,30 @@ class SerializeBehavior : IBehavior<OutgoingContext>
 
     public void Invoke(OutgoingContext context, Action next)
     {
-        if (!context.OutgoingMessage.IsControlMessage())
+        TransportMessage transportMessage = context.OutgoingMessage;
+        if (!transportMessage.IsControlMessage())
         {
-            Serialize(context);
-
-                context.OutgoingMessage.Headers[Headers.EnclosedMessageTypes] = SerializeEnclosedMessageTypes(context.OutgoingLogicalMessage);
-
-            foreach (KeyValuePair<string, string> headerEntry in context.OutgoingLogicalMessage.Headers)
+            LogicalMessage logicalMessage = context.OutgoingLogicalMessage;
+            Type messageType = logicalMessage.Instance.GetType();
+            IMessageSerializer messageSerializer = serializationMapper.GetSerializer(messageType);
+            using (MemoryStream ms = new MemoryStream())
             {
-                context.OutgoingMessage.Headers[headerEntry.Key] = headerEntry.Value;
+                messageSerializer.Serialize(logicalMessage.Instance, ms);
+                transportMessage.Body = ms.ToArray();
+            }
+
+            Dictionary<string, string> transportHeaders = transportMessage.Headers;
+            transportHeaders[Headers.ContentType] = messageSerializer.ContentType;
+            transportHeaders[Headers.EnclosedMessageTypes] = SerializeEnclosedMessageTypes(logicalMessage);
+
+            foreach (KeyValuePair<string, string> headerEntry in logicalMessage.Headers)
+            {
+                transportHeaders[headerEntry.Key] = headerEntry.Value;
             }
         }
 
         next();
     }
-    #region serialize-behavior
-    void Serialize(OutgoingContext context)
-    {
-        using (MemoryStream ms = new MemoryStream())
-        {
-            Type messageType = context.OutgoingLogicalMessage.Instance.GetType();
-            IMessageSerializer messageSerializer = serializationMapper.GetSerializer(messageType);
-            messageSerializer.Serialize(context.OutgoingLogicalMessage.Instance, ms);
-            context.OutgoingMessage.Headers[Headers.ContentType] = messageSerializer.ContentType;
-            context.OutgoingMessage.Body = ms.ToArray();
-        }
-    }
-    #endregion
 
     string SerializeEnclosedMessageTypes(LogicalMessage message)
     {
@@ -55,3 +53,4 @@ class SerializeBehavior : IBehavior<OutgoingContext>
     }
 
 }
+#endregion
