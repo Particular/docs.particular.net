@@ -6,7 +6,8 @@ using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 #pragma warning disable 618
 
-public class StreamReceiveBehavior : IBehavior<ReceiveLogicalMessageContext>
+#region ReceiveBehaviorDefinition
+class StreamReceiveBehavior : IBehavior<ReceiveLogicalMessageContext>
 {
     string location;
 
@@ -16,6 +17,7 @@ public class StreamReceiveBehavior : IBehavior<ReceiveLogicalMessageContext>
     }
     public void Invoke(ReceiveLogicalMessageContext context, Action next)
     {
+#endregion
         #region write-stream-properties-back
         object message = context.LogicalMessage.Instance;
         List<FileStream> streamsToCleanUp = new List<FileStream>();

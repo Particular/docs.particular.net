@@ -6,7 +6,7 @@ using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
 #region ReceiveBehaviorDefinition
-class StreamReceiveBehavior : IBehavior<IncomingContext>
+class StreamReceiveBehavior : LogicalMessageProcessingStageBehavior
 {
     string location;
 
@@ -15,11 +15,11 @@ class StreamReceiveBehavior : IBehavior<IncomingContext>
         location = Path.GetFullPath(storageSettings.Location);
     }
 
-    public void Invoke(IncomingContext context, Action next)
+    public override void Invoke(Context context, Action next)
     {
 #endregion
         #region write-stream-properties-back
-        object message = context.IncomingLogicalMessage.Instance;
+        object message = context.GetLogicalMessage().Instance;
         List<FileStream> streamsToCleanUp = new List<FileStream>();
         foreach (PropertyInfo property in StreamStorageHelper
             .GetStreamProperties(message))
@@ -28,7 +28,7 @@ class StreamReceiveBehavior : IBehavior<IncomingContext>
             string dataBusKey;
             //only attempt to process properties that have an associated header
             string key = "NServiceBus.PropertyStream." + headerKey;
-            if (!context.IncomingLogicalMessage.Headers.TryGetValue(key, out dataBusKey))
+            if (!context.GetPhysicalMessage().Headers.TryGetValue(key, out dataBusKey))
             {
                 continue;
             }

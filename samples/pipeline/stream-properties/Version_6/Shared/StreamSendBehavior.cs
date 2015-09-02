@@ -1,14 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using NServiceBus.DeliveryConstraints;
+using NServiceBus.OutgoingPipeline;
+using NServiceBus.Performance.TimeToBeReceived;
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
-using NServiceBus.Unicast.Messages;
-
-#pragma warning disable 618
+using NServiceBus.TransportDispatch;
 
 #region SendBehaviorDefinition
-class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
+class StreamSendBehavior : Behavior<OutgoingContext>
 {
     TimeSpan MaxMessageTimeToLive = TimeSpan.FromDays(14);
     string location;
@@ -17,15 +18,19 @@ class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
     {
         location = Path.GetFullPath(storageSettings.Location);
     }
-
-    public void Invoke(SendLogicalMessageContext context, Action next)
+    public override void Invoke(OutgoingContext context, Action next)
     {
 #endregion
         #region copy-stream-properties-to-disk
-        LogicalMessage logicalMessage = context.MessageToSend;
-        TimeSpan timeToBeReceived = logicalMessage.Metadata.TimeToBeReceived;
+        var timeToBeReceived = TimeSpan.MaxValue;
+        DiscardIfNotReceivedBefore constraint;
 
-        object message = logicalMessage.Instance;
+        if (context.TryGetDeliveryConstraint(out constraint))
+        {
+            timeToBeReceived = constraint.MaxTime;
+        }
+
+        object message = context.GetMessageInstance();
 
         foreach (PropertyInfo property in StreamStorageHelper.GetStreamProperties(message))
         {
@@ -54,7 +59,7 @@ class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
 
             //Store the header so on the receiving endpoint the file name is known
             string headerKey = StreamStorageHelper.GetHeaderKey(message, property);
-            logicalMessage.Headers["NServiceBus.PropertyStream." + headerKey] = fileKey;
+            context.SetHeader("NServiceBus.PropertyStream." + headerKey, fileKey);
         }
 
         next();
@@ -74,6 +79,5 @@ class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
         return Path.Combine(keepMessageUntil.ToString("yyyy-MM-dd_HH"), Guid.NewGuid().ToString());
     }
     #endregion
-
 
 }
