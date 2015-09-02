@@ -2,71 +2,78 @@
 {
     using System;
     using NServiceBus;
+    using NServiceBus.Config;
     using NServiceBus.Features;
     using NServiceBus.Pipeline;
 
-    class MyMagicFeature : Feature
+    class SecondLevelRetries : Feature
     {
 
 #region FeatureConfiguration
-        public MyMagicFeature()
+        public SecondLevelRetries()
         {
             EnableByDefault();
 
-            DependsOn<Sagas>();
+            DependsOn<DelayedDeliveryFeature>();
 
-            Prerequisite(c => c.Settings.EndpointName().StartsWith("Magical"), "This feature only works on magical endpoints");
+            Prerequisite(context => !context.Settings.GetOrDefault<bool>("Endpoint.SendOnly"), "Send only endpoints can't use SLR since it requires receive capabilities");
         }
 #endregion
 
 #region FeatureSetup
         protected override void Setup(FeatureConfigurationContext context)
         {
-            // retrieve some global settings
-            var supervised = context.Settings.Get<bool>("SupervisorActive");
+            var retriesConfig = context.Settings.GetConfigSection<SecondLevelRetriesConfig>();
 
-            if (!supervised)
-            {
-                // register a more performant cleanup process with the container
-                context.Container.ConfigureComponent<UnsafeCleanupComponent>(DependencyLifecycle.InstancePerCall);
-            }
+            var retryPolicy = new SecondLevelRetryPolicy(retriesConfig.NumberOfRetries, retriesConfig.TimeIncrease);
+            context.Container.RegisterSingleton(typeof(SecondLevelRetryPolicy), retryPolicy);
 
-            // add a custom behavior to the message processing pipeline which does our cleanup.
-            context.Pipeline.Register<CleanupBehaviorRegistration>();
+            context.Pipeline.Register<SecondLevelRetriesBehavior.Registration>();
         }
 #endregion
 
-        void ConfigureFeatures()
+        void EndpointConfiguration()
         {
 #region EnableDisableFeatures
             var configuration = new BusConfiguration();
             
             // enable Saga feature since our custom feature relies on it
-            configuration.EnableFeature<Sagas>();
+            configuration.EnableFeature<DelayedDeliveryFeature>();
 
             // this is not required if the feature uses EnableByDefault()
-            configuration.EnableFeature<MyMagicFeature>();
+            configuration.EnableFeature<SecondLevelRetries>();
 
-            // it's best practice for magical endpoints to disable Second Level Retries
-            configuration.DisableFeature<SecondLevelRetries>();
+            // we can disable features we won't use
+            configuration.DisableFeature<Sagas>();
 
             var bus = Bus.Create(configuration);
-        }
 #endregion
-    }
-
-    class UnsafeCleanupComponent
-    {
-    }
-
-    class CleanupBehaviorRegistration : RegisterStep
-    {
-        public CleanupBehaviorRegistration(string stepId, Type behavior, string description) : base(stepId, behavior, description)
-        {
         }
 
-        public CleanupBehaviorRegistration() : base(string.Empty, typeof(object), "does some custom cleanup tasks")
+        class SecondLevelRetriesBehavior
         {
+            public class Registration : RegisterStep
+            {
+                public Registration()
+                    : base(string.Empty, typeof(object), null)
+                {
+                }
+            }
+        }
+
+        class SecondLevelRetryPolicy
+        {
+            public SecondLevelRetryPolicy(int numberOfRetries, TimeSpan timeIncrease)
+            {
+            }
+        }
+
+        class DelayedDeliveryFeature : Feature
+        {
+            protected override void Setup(FeatureConfigurationContext context)
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
