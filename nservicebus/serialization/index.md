@@ -1,6 +1,8 @@
 ---
 title: Serialization In NServiceBus
 summary: How instances of .NET classes are serialized onto the transport.
+related:
+ - samples/pipeline/multi-serializer
 ---
 
 NServiceBus takes instances of .NET objects (messages, events and commands) and then sends/receives them over a specified [Transport](/nservicebus/transports/). As part of this the object need to be serialized and deserialized. To achieve this NServiceBus uses **Serializers**.
