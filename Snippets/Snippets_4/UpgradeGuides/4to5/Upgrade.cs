@@ -39,6 +39,25 @@
             #endregion
         }
 
+        public void UseTransport()
+        {
+            Configure configure = Configure.With();
+            #region 4to5UseTransport
+            //Choose one of the following
+
+            configure.UseTransport<Msmq>();
+
+            configure.UseTransport<RabbitMQ>();
+
+            configure.UseTransport<SqlServer>();
+
+            configure.UseTransport<AzureStorageQueue>();
+
+            configure.UseTransport<AzureServiceBus>();
+
+            #endregion
+        }
+
         public void InterfaceMessageCreation()
         {
             IBus Bus = null;

@@ -37,6 +37,24 @@ namespace Snippets5.UpgradeGuides._4to5
             #endregion
         }
 
+        public void UseTransport()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
+            #region 4to5UseTransport
+            //Choose one of the following
+
+            busConfiguration.UseTransport<MsmqTransport>();
+
+            busConfiguration.UseTransport<RabbitMQTransport>();
+
+            busConfiguration.UseTransport<SqlServerTransport>();
+
+            busConfiguration.UseTransport<AzureStorageQueueTransport>();
+
+            busConfiguration.UseTransport<AzureServiceBusTransport>();
+
+            #endregion
+        }
         public void InterfaceMessageCreation()
         {
             IBus Bus = null;
