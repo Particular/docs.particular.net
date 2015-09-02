@@ -34,7 +34,7 @@ Note: Features are not activated by the container and therefore can't use depend
 
 ### Enable / Disable features explicitly
 
-You can manually activate or deactivate your features and most of the internal NServiceBus features on the `BusConfiguration`:
+You can manually activate or deactivate your features and most of the internal NServiceBus features in your endpoint configuration with the `BusConfiguration`:
 
 <!-- import EnableDisableFeatures -->
 
@@ -57,7 +57,7 @@ If you need to execute some feature related logic after the feature has been sta
 
 <!-- import FeatureSartupTaskDefinition -->
 
-To associate a `FeatureStartupTask` with your feature, register it in the constructor of your feature using `RegisterStartupTask`. The task will only be created and called if the feature is enabled.
+To associate a `FeatureStartupTask` with your feature, register it in the constructor of your feature using `RegisterStartupTask`. The task will only be created and called if the feature is enabled. The `FeatureStartupTask`s are activated and started in random order.
 
 <!-- import FeatureStartupTaskRegistration -->
 
