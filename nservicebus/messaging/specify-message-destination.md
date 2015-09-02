@@ -50,7 +50,7 @@ If the `Messages` represents a valid Type (ie [Type.GetType](https://msdn.micros
 
 Otherwise it will be assumed `Messages` is an assembly name and all types in that assembly will be mapped to the target endpoint.  This effectively uses [Assembly.Load(AssemblyName)](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) followed by [Assembly.GetTypes()](https://msdn.microsoft.com/en-us/library/system.reflection.assembly.gettypes.aspx).
 
-WARNING: Since `Messages` is ambiguous in its usage the `Assembly`, `Type` and `Namespace` attributes are the recommended way approach for mapping types. The `Messages` attribute is still supported for backwards comparability. 
+WARNING: Since `Messages` is ambiguous in its usage the `Assembly`, `Type` and `Namespace` attributes are the recommended approach for mapping types. The `Messages` attribute is still supported for backwards comparability. 
 
 
 ### Some example mappings 
