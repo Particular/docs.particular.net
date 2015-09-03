@@ -16,7 +16,7 @@ redirects:
 - nservicebus/messaging/invalidoperationexception-in-unobtrusive-mode
 ---
 
-A *Message* is the unit of communication for NServiceBus. There are two sub-types of messages that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default unless disabled in [configuration](configure-best-practice-enforcement.md). 
+A *Message* is the unit of communication for NServiceBus. There are two sub-types of messages that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default unless disabled in [configuration](best-practice-enforcement.md). 
 
 ### Command
 
