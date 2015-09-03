@@ -9,13 +9,13 @@
         {
             UnicastBus bus = null;
 
-            #region ChangeThroughput
+            #region ChangeTuning
             //bus is an instance of NServiceBus.Unicast.UnicastBus
             bus.Transport.ChangeMaximumMessageThroughputPerSecond(10);
             bus.Transport.ChangeMaximumConcurrencyLevel(5);
             #endregion
 
-            #region ReadThroughput
+            #region ReadTuning
 
             //bus is an instance of NServiceBus.Unicast.UnicastBus
             int messageThroughputPerSecond = bus.Transport.MaximumMessageThroughputPerSecond;
