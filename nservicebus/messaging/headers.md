@@ -5,12 +5,13 @@ tags:
 - Header
 redirects:
 - nservicebus/message-headers
+- nservicebus/messaging/headers
 related:
 - samples/header-manipulation
-- nservicebus/messaging/manipulating-message-headers
+- nservicebus/messaging/header-manipulation
 ---
 
-Extra information about a message is communicated over the transport as secondary information to the message body. Message headers are very similar, in both implementation and usage, to http headers. This article covers all the headers that are used internally by NServiceBus. To learn more on how to use custom headers, see the [header manipulation](/nservicebus/messaging/manipulating-message-headers.md) article.
+Extra information about a message is communicated over the transport as secondary information to the message body. Message headers are very similar, in both implementation and usage, to http headers. This article covers all the headers that are used internally by NServiceBus. To learn more on how to use custom headers, see the [header manipulation](/nservicebus/messaging/header-manipulation.md) article.
 
 
 ## Timestamp format
