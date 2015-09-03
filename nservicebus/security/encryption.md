@@ -9,6 +9,11 @@ related:
 - samples/encryption
 ---
 
+## Encryption options
+
+Encryption can be applied via *property*, *message* or *transport* encryption.
+
+
 ## Property Encryption
 
 Property encryption operates on specific properties of a message. The data in the property is encrypted, but the rest of the message is clear text. This keeps the performance impact of encryption as low as possible. 
@@ -47,8 +52,15 @@ Property encryption is enabled via the configuration API.
 
 <!-- import EncryptionServiceSimple -->
 
+### Generating encryption keys
 
-### Defining the encryption key
+In order to use the RijndaelEncryptionService a primary and secondary keys need to be generated. An option is to use `RijndaelManaged.GenerateKey`, please refer to the following article to generate new keys:
+
+- https://msdn.microsoft.com/en-us/library/system.security.cryptography.rijndaelmanaged.generatekey(v=vs.110).aspx
+
+Using a secure key generator makes sure that your encryption keys are really randomized.
+
+### Configuring the encryption key
 
 In conjunction with enabling encryption you need to configure the encryption and decryption keys.
 
@@ -96,12 +108,17 @@ This allows you to explicitly handled the encryption and decryption of each valu
 
 ## Message Encryption
 
-Message encryption leverages the pipeline to apply encryption to the whole message body.
+Message encryption encrypts the complete message body. It can even include the message headers if these would contain sensitive data.
 
-Once way of achieving this is using a `IMutateTransportMessages`.
+We currently do not offer this feature but it can be achieved by creating a transport message mutator using `IMutateTransportMessages`
 
 <!-- import MessageBodyEncryptor -->
 
-The this class can be then injected into the container using the following
+This class can be then injected into the container using the following:
 
 <!-- import UsingMessageBodyEncryptor -->
+
+
+## Transport Encryption
+
+However, using message encryption is often used to prevent intercepting data during transport. If this is the requirement then you can maybe on the transport for encryption. RabbitMQ, SQL Server, Azure Storage Queues and Azure Service Bus support SSL. NServiceBus currently does not support MSMQ over HTTP/HTTPS, meaning transport encryption is unsupported.
