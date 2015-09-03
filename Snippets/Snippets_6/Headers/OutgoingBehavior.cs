@@ -1,10 +1,7 @@
-﻿using NServiceBus.OutgoingPipeline;
-
-namespace Snippets6.Headers
+﻿namespace Snippets6.Headers
 {
     using System;
-    using NServiceBus.Pipeline;
-    using NServiceBus.Pipeline.Contexts;
+    using NServiceBus.OutgoingPipeline;
     using NServiceBus.TransportDispatch;
 
     #region header-outgoing-behavior

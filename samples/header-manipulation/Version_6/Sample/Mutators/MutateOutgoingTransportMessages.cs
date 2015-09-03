@@ -1,6 +1,5 @@
 ﻿using NServiceBus;
 using NServiceBus.MessageMutator;
-using NServiceBus.Unicast.Messages;
 
 #region mutate-outgoing-transport-messages
 public class MutateOutgoingTransportMessages : IMutateOutgoingTransportMessages
