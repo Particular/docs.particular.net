@@ -57,7 +57,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SubscriptionAuthorizer.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
