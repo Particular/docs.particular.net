@@ -121,4 +121,6 @@ This class can be then injected into the container using the following:
 
 ## Transport Encryption
 
-However, using message encryption is often used to prevent intercepting data during transport. If this is the requirement then you can maybe on the transport for encryption. RabbitMQ, SQL Server, Azure Storage Queues and Azure Service Bus support SSL. NServiceBus currently does not support MSMQ over HTTP/HTTPS, meaning transport encryption is unsupported.
+However, using message encryption is often used to prevent intercepting data during transport. If this is the requirement then you can maybe on the transport for encryption. RabbitMQ, SQL Server, Azure Storage Queues and Azure Service Bus support SSL.
+
+NServiceBus currently does not support MSMQ over HTTP/HTTPS, meaning transport encryption is unsupported. In some environments an alternative could be to use the [NServiceBus Gateway](/nservicebus/gateway) which does support SSL.
