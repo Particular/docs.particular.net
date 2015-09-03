@@ -1,9 +1,10 @@
 ---
 title: SQL Server / Outbox / Store-and-forward
-summary: 'How to add store-and-forward functionality via the Outbox for external-facing endpoints'
+summary: 'How to add store-and-forward functionality for external-facing endpoints'
 tags:
 - SQL Server
 - Outbox
+- Store-and-forward
 related:
 - nservicebus/outbox
 - nservicebus/sqlserver
@@ -17,31 +18,31 @@ related:
  6. Hit <enter>.
  7. On the Receiver console you should see that order was submitted.
  8. On the Sender console you should see that the order was accepted.
- 9. Hit <enter> in the Receiver's console to shut it down.
+ 9. Hit <enter> in the Receiver console to shut it down.
  10. Go to the SQL Server Management Studio and delete the `receiver` database.
- 11. Hit <enter> again in the Sender's console
+ 11. Hit <enter> again in the Sender console
  12. You should see the retry mechanism kicking in, doing some number of first-level retries and then forwarding the message to the SLR.
 
 ## Code walk-through
 
-This sample show how to add store-and-forward functionality to a transport that does not have it. In this case we are using SQL Server transport with each endpoint using its own database (server). 
+This sample show how to add store-and-forward functionality to a transport that does not have it. In this case we are using SQL Server transport with each endpoint using its own database (server).
 
-In such scenario if the receiver (back-end) endpoint's database is down (e.g. for maintenance), the sender (front-end, user facing) endpoint can't send messages. This is because even when the Outbox is enabled, the messages that are send directly via the `IBus` instance returned when starting the bus (which is the case e.g. in web applications) bypass the outbox.
+In such scenario if the receiver (back-end) endpoint's database is down (e.g. for maintenance), the sender (front-end, user facing) endpoint can't send messages to it. This happens because even when the Outbox is enabled, the messages that are send from outside of a handler bypass the Outbox and are immediately dispatched to the transport (which in this case means inserting into the destination table in the destination database). The exception is thrown from the `Send`/`Publish` method which inevitably results in a bad user experience (UX).
 
-In order to provide a better user experience, a store-and-forward functionality using local sender's database is required. 
+In order to provide a better UX, a store-and-forward functionality using local sender's database is required. 
 
 This sample contains three projects: 
 
  * Shared - A class library containing common code including the message definitions.
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
- * Receiver - A console application responsible for processing the order message. It mimics a back-end system.
+ * Receiver - A console application responsible for processing the order message.
 
 Sender and Receiver use different databases, just like in a production scenario where two systems are integrated using NServiceBus. Each database contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence.
 
 
 ### Sender project
  
-The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQLServer transport with NHibernate persistence and Outbox.
+The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport with NHibernate persistence and Outbox.
 
 <!-- import SenderConfiguration -->
 
@@ -49,22 +50,21 @@ It also registers two custom behaviours, one for the send pipeline and the other
 
 ### Send pipeline
 
-The new behaviour is added at the beginning of the send pipeline
+The new behaviour is added at the beginning of the send pipeline.
 
 <!-- import OutboxLoopbackSendBehavior -->
 
-It checks if the message comes from a handler and in such case it does nothing. Otherwise it captures the destination of the message in a header and modifies it so that it is actually send to the local endpoint (put in the end of the endpoint's incoming queue).
+It checks if the message comes from a handler and in such case it does nothing. Otherwise it captures the destination of the message in a header and overrides the original value so that the message is actually send to the local endpoint (put in the end of the endpoint's incoming queue).
 
-NOTICE: Other properties of a message (such as defer time) are not captured here hence are not supported by this simple mechanism.
+NOTICE: Other properties of a message (such as defer time) are not captured in this example. In order to use similar feature in production, make sure to capture all relevant information (e.g. defer time).
 
 ### Receive pipeline
 
-In the receive pipeline the new behaviour is placed just before the message handlers are loaded.
+In the receive pipeline the new behaviour is placed just before loading the message handlers.
 
 <!-- import OutboxLoopbackReceiveBehavior -->
 
-If the message contains the headers used by the send-side behaviour it is routed to the ultimate destination (this time via the outbox) instead of being processed locally. This is the first time the remote database of Receiver endpoint is contacted. Should it be down, the retry mechanism will kick in and ensure the message is eventually dispatched to the destination.
-
+If the message contains the headers used by the send-side behaviour, it is routed to the ultimate destination (this time via the Outbox) instead of being processed locally. This is the first time the remote database of Receiver endpoint is contacted. Should it be down, the retry mechanism will kick in and ensure the message is eventually dispatched to the destination.
 
 ### Receiver project
 
