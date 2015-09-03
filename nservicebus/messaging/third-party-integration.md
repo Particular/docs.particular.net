@@ -7,7 +7,7 @@ tags:
 - ServiceInsight
 - ServicePulse
 related:
-- nservicebus/messaging/message-headers
+- nservicebus/messaging/headers
 ---
 
 When an NServiceBus endpoint receives messages from external systems (such as BizTalk, TIBCO, etc) the message itself might not contain regular all information that NServiceBus provides. That information is necessary for proper serialization of the message, as well as better monitoring and troubleshooting experience.
