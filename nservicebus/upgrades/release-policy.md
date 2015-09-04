@@ -30,13 +30,9 @@ By following SemVer 2.0 you will be able to quickly determine the urgency, risk 
 
 While not stipulated by SemVer we've made the decision to backport important fixes to all supported versions of NServiceBus.
 
-By "supported" we mean
+By "supported" we mean the latest major version, or any major version released within the last 3 years. Within a supported major version, we support the latest minor version, or any minor version released within the last year.
 
-* All major versions released within the last 3 years
-* And any minor version released within the last year
-* Unless it is the latest minor of a major release
-
-This means that you will get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version.
+This means that, by using a supported version, you will get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version.
 
 Some examples:
 
