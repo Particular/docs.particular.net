@@ -9,18 +9,18 @@ redirects:
  - nservicebus/msmq/messagequeueexception-insufficient-resources-to-perform-operation
 ---
 
-This article details common problems sometimes encountered with the MSMQ Transport and how to resolve them.
+This article details common problems encountered with the MSMQ Transport and how to resolve them.
 
 
 ## Messages stuck or not arriving
 
-MSMQ uses store-and-forward to communicate with remote machines. Messages are stored locally and then the MSMQ service repeatedly attempts to deliver them to the destination queue on the remote machine.
+MSMQ uses store-and-forward to communicate with remote machines. Messages are stored locally and then the MSMQ service repeatedly attempts to deliver them to the destination queue on the remote machine. 
 
-Messages can get stuck for various reasons.
+Approaches for diagnosing messages stuck in the outgoing queue.
 
- 1. Check the **Outgoing Queues** on each server involved, while the problem is occurring. Each item represents a connection to a remote server. Items stuck here represent an inability to transfer messages to the remote server. The **State** and **Connection History** columns may point to a connectivity issue between servers.
- 1. Check the Microsoft support article [MSMQ service might not send or receive messages after you restart a computer that is running Windows 7, Windows Server 2008 R2, Windows Vista or Windows Server 2008](https://support.microsoft.com/en-us/kb/2554746). This details how an error in how MSMQ binds to IP addresses and ports can cause one server to be unable to validate messages coming from another, causing them to be rejected.
- 1. If servers are cloned from the same virtual machine image, this will cause them to have the same `QMId` in the registry key `HKLM\Software\Microsoft\MSMQ\Parameters\Machine Cache`, which will interfere with message delivery. You can [use a workaround](http://blogs.msdn.com/b/johnbreakwell/archive/2007/02/06/msmq-prefers-to-be-unique.aspx) to reset the `QMId` on an existing machine, but it is preferable to use [Microsoft's Sysprep tool](https://support.microsoft.com/en-us/kb/314828) before capturing the virtual machine image.
+ * Check the **Outgoing Queues** on each server involved, while the problem is occurring. Each item represents a connection to a remote server. Items stuck here represent an inability to transfer messages to the remote server. The **State** and **Connection History** columns may point to a connectivity issue between servers.
+ * Check the Microsoft support article [MSMQ service might not send or receive messages after you restart a computer that is running Windows 7, Windows Server 2008 R2, Windows Vista or Windows Server 2008](https://support.microsoft.com/en-us/kb/2554746). This details how an error in how MSMQ binds to IP addresses and ports can cause one server to be unable to validate messages coming from another, causing them to be rejected.
+ * If servers are cloned from the same virtual machine image, this will cause them to have the same `QMId` in the registry key `HKLM\Software\Microsoft\MSMQ\Parameters\Machine Cache`, which will interfere with message delivery. You can [use a workaround](http://blogs.msdn.com/b/johnbreakwell/archive/2007/02/06/msmq-prefers-to-be-unique.aspx) to reset the `QMId` on an existing machine, but it is preferable to use [Microsoft's Sysprep tool](https://support.microsoft.com/en-us/kb/314828) before capturing the virtual machine image.
  
 
 ### Note on MSMQ Distributor
