@@ -103,6 +103,7 @@
             - "nservicebus/msmq/connection-strings"
             - "nservicebus/msmq/viewing-message-content-in-msmq"
             - "nservicebus/msmq/transportconfig"
+            - "nservicebus/msmq/troubleshooting"
             - "nservicebus/msmq/network-load-balancing"
             - "nservicebus/msmq/operations-scripting"
             - "nservicebus/msmq/uninstalling-msmq"
