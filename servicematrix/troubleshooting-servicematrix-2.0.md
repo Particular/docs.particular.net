@@ -70,7 +70,7 @@ The Microsoft FixIt tool can help troubleshoot general installation issues inclu
 
 ## Disconnecting a solution from ServiceMatrix
 
-One of the primary goals of ServiceMatrix is to dramatically improve the speed of solution development with NServiceBus, without limiting the developer's options in any way (i.e. no lock-in of developers to ServiceMatrix).
+One of the primary goals of ServiceMatrix is to dramatically improve the speed of prototype development with NServiceBus to validate the message flow design, without limiting the developer's options in any way (i.e. no lock-in of developers to ServiceMatrix).
 
 To disconnect a solution developed with ServiceMatrix from ServiceMatrix (and continue developing the solution without ServiceMatrix) rename the file `*.slnbldr` that is located under the `Solution Items` folder in the Solution Explorer.
 
