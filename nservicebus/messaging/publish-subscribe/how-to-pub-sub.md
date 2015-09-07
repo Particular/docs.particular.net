@@ -33,7 +33,7 @@ If your selected transport doesn't natively supports pub/sub you need to specify
 
 #### Exclude sagas from auto subscribe
 
-Before Version 4 events that where only handled by sagas where not subscribed to by default. You can opt-in to the old behavior using:
+Before Version 4 events that were only handled by sagas were not subscribed to by default. You can opt-in to the old behavior using:
 
 <!-- import DoNotAutoSubscribeSagas -->
 
