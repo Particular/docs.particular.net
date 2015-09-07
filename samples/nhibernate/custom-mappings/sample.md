@@ -5,7 +5,7 @@ tags:
  - NHibernate
  - Mapping
 related:
- - nservicebus/nhibernate/accessing-data
+ - nservicebus/nhibernate
 ---
 
 
@@ -22,11 +22,7 @@ There are probably even other options, but these are the most frequently used.
 
 Which method to use depends on if you want to specify the mapping as xml, fluent code or code attributes. There can be small performance differences during startup but not when processing messages.
 
-
 NOTE: It is not required to create a custom mapping for all sagas if only one saga needs one. The NHibernate configuration in each sample type demonstrate how both generated and custom mappings can work simultaneously.
-
-
-See [NHibernate configuration](/nservicebus/nhibernate/configuration.md) on how you can pass a configuration object to the NServiceBus NHibernate configuration.
 
 NOTE: When you create a custom mapping then you are responsible for mapping the **primary key** and **unique indexes** correctly.
 
