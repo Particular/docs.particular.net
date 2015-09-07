@@ -29,6 +29,7 @@ NOTE: It is essential that you deploy this plugin to your endpoint in production
  * NServiceBus version 4.x: [ServiceControl.Plugin.Nsb4.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat)
  * NServiceBus version 3.x: [ServiceControl.Plugin.Nsb3.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat)
 
+WARN: The Heartbeat plugin version 2 for NServiceBus 5 is currently not supporting Send-Only endpoints.
 
 ### Deprecated Nuget
 
