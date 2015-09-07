@@ -14,14 +14,4 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.CommonLogging/) pa
 
 ## Usage
 
-
-### Pull in the nugets
-
-    Install-Package NServiceBus.CommonLogging
-
-This has a dependency on the `Common.Logging` nuget so that will automatically be pulled in.
-
-
-### The code
-
 <!-- import CommonLoggingInCode -->

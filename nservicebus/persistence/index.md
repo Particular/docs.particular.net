@@ -8,6 +8,7 @@ redirects:
 
 Various features of NServiceBus require persistence. 
 
+
 ## Storage Types
 
  * [Gateway Deduplication](/nservicebus/gateway/)
@@ -16,11 +17,14 @@ Various features of NServiceBus require persistence.
  * [Timeouts](/nservicebus/sagas/#timeouts)
  * [Outbox](/nservicebus/outbox/)
 
+
 ## Available Persistences
+
 
 ### [In-Memory](in-memory.md)
 
 A volatile RAM based () storage mainly used for development purposes. Can also be used where the storage is not required to persist between process restarts.
+
 
 ### [RavenDB](/nservicebus/ravendb/)
 
@@ -30,15 +34,18 @@ Uses the [RavenDB document database](http://ravendb.net/) for storage.
 
 Uses custom [NHibernate](http://nhibernate.info/) to persister data to an ADO.net data store (eg SQL Server).
 
+
 ### [MSMQ](/nservicebus/msmq)
 
 A subscription only storage.
 
 NOTE: Storing your subscriptions in MSMQ is not suitable for scenarios where you need to scale the endpoint out. The reason is that the subscription queue cannot be shared among multiple endpoints. 
 
+
 ### [Azure Storage](/nservicebus/azure/azure-storage-persistence.md)
 
 Uses Azure Tables Storage for storage
+
 
 ### Community run Persistences
 

@@ -15,16 +15,6 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) package ava
 
 ## Usage
 
-
-### Pull in the nugets
-
-    Install-Package NServiceBus.NLog
-
-This has a dependency on the `NLog` nuget so that will automatically be pulled in.
-
-
-### The code
-
 <!-- import NLogInCode -->
 
 

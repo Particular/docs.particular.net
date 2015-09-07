@@ -20,25 +20,7 @@ In Version 3 and 4 of NServiceBus Log4Net support was built in.
 In NServiceBus Version 5 Log4Net was externalized to its own [nuget](https://www.nuget.org/packages/NServiceBus.Log4Net/) package available that allows for simple integration of NServiceBus.
 
 
-## Usage
-
-
-### Pull in the nugets
-
-
-#### NServiceBus Version 3 and 4 
-
-    Install-Package log4net
-
-
-#### NServiceBus Version 5 and higher 
-
-    Install-Package NServiceBus.Log4Net
-
-This has a dependency on the `log4net` nuget so that will automatically be pulled in.
-
-
-### The code 
+## Usage 
 
 <!-- import Log4netInCode -->
 

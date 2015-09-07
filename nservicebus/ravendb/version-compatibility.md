@@ -10,8 +10,6 @@ tags:
 
 RavenDB persistence is available as a separate nuget [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB)
 
-    Install-Package NServiceBus.RavenDB
-
 The current approach moving forward for the RavenDB integration is to ship outside the core in a stand alone assembly NServiceBus.RavenDB.dll. This has the following advantages
 
  * Allow us to evolve the implementation more closely instep with the RavenDB release schedule;
