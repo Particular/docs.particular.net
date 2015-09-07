@@ -19,7 +19,7 @@ If you are using interfaces to define your event contracts you need to set the m
 
 NServiceBus will automatically setup subscriptions for you. Messages matching the following criteria will be auto subscribed at startup.
 
-1. Defined as a event either using `IEvent` or by the `.DefiningEventsAs` convention.
+1. Defined as an event either using `IEvent` or by the `.DefiningEventsAs` convention.
 2. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given message
 3. Has routing specified. Note that this only applies to transports that don't support Pub/Sub natively. Examples are Msmq, Sqlserver and Azure Storage Queues. See below for more details.
 
@@ -40,7 +40,7 @@ Before Version 4 events that where only handled by sagas where not subscribed to
 
 #### Auto subscribe to plain messages
 
-Before Version 4 all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention where automatically subscribed. You can opt-in to the old behavior using:
+Before Version 4 all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention were automatically subscribed. You can opt-in to the old behavior using:
 
 <!-- import AutoSubscribePlainMessages -->
 
