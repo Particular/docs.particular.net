@@ -12,19 +12,23 @@ related:
 - nservicebus/messaging/publish-subscribe
 --- 
 
+
 ## Reviewing the solution
 
 Before running the sample, look over the solution structure, the projects, and the classes. The projects `MyPublisher`, `Subscriber1`, and `Subscriber2` are Console Applications that each host an instance of NServiceBus. 
 
+
 ### Defining messages
 
 The "Shared" project contains the definition of the messages that are sent between the processes. Note that there are no project references to NServiceBus. Open "Messages.cs" to see that it contains a standard `IMyEvent` interface and two different class definitions.
+
 
 ### Creating and publishing messages
 
 As the name implies, the "MyPublisher" project is a publisher of event messages. It uses the bus framework to send alternatively three different types of messages every time you click Enter in its console window. The created message is populated and [published](/nservicebus/messaging/publish-subscribe/) using `Bus.Publish`.
 
 <!--import PublishLoop -->
+
 
 ### Implementing subscribers
 
@@ -38,6 +42,7 @@ The handlers in each project are in files that end in with the word `Handler` fo
  * `Subscriber1` uses the default auto-subscription feature of the bus where the the bus automatically sends subscription messages to the configured publisher.
  * `Subscriber2` explicitly disables the auto-subscribe feature in the `Program.cs` file. The subscriptions are therefore done explicitly at startup.
 
+
 ## Run the sample
 
 When running the sample, you'll see three open console applications and many log messages on each. Almost none of these logs represent messages sent between the processes.
@@ -48,6 +53,7 @@ Click Enter repeatedly in the `MyPublisher` processes console window, and see ho
 
 Now let's see some of the other features of NServiceBus.
 
+
 ## Fault-tolerant messaging
 
 Shut down `Subscriber1` by closing its console window. Return to the `MyPublisher` process and publish a few more messages by clicking Enter several more times. Notice how the publishing process does not change and there are no errors even though one of the subscribers is no longer running.
@@ -55,9 +61,3 @@ Shut down `Subscriber1` by closing its console window. Return to the `MyPublishe
 In Visual Studio, right click the project of the closed subscriber, and restart it by right clicking the `Subscriber1` project and selecting `Debug` and then `Start new instance`. 
 
 Note how `Subscriber1` immediately receives the messages that were published while it was not running. The publisher safely places the message into the transport in this case MSMQ without knowledge of the running status of any subscriber. MSMQ safely places the message in the inbound queue of the subscriber where it awaits handling, so you can be sure that even when processes or machines restart, NServiceBus protects your messages so they won't get lost.
-
-## Subscriber authorization
-
-A publisher has control over the subscriptions it receives. By implementing the authorization methods of the `IAuthorizeSubscriptions` interface the publisher can return a Boolean operator indicating to the framework whether a subscription should be accepted.
-
-<!-- import SubscriptionAuthorizer -->
