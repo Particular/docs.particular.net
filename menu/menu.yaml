@@ -132,7 +132,6 @@
         - "nservicebus/persistence/authoring-custom"
         - "nservicebus/azure/azure-storage-persistence"
         - "nservicebus/persistence/in-memory"
-        - "nservicebus/nhibernate/"
         - Title: "NHibernate"
           Url: "nservicebus/nhibernate"
           Articles:
