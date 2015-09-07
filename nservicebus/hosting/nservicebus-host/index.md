@@ -15,11 +15,7 @@ To avoid re-writing the same configuration code, or to host your endpoints in a 
 
 The NServiceBus host streamlines service development and deployment, allows you to change technologies without code, and is administrator-friendly when setting permissions and accounts.
 
-To use the host just create a new C# class library and reference the NServiceBus.Host NuGet package
-
-```
-install-package NServiceBus.Host
-```
+To use the host just create a new C# class library and reference the [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host/).
 
 That's it, the package will create an example endpoint configuration and setup the NServiceBus.Host.exe to run your endpoint.
 

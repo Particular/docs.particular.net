@@ -70,19 +70,13 @@ To workaround this issue see [Override host identifier](/nservicebus/hosting/ove
 ### How do I monitor my NServiceBus version 3.x endpoints using ServicePulse?
 
 1. Upgrade your NSB version 3 endpoint to the latest service pack for version 3
-2. To turn on monitoring, add the heartbeat plugin to your existing version 3 endpoints and restart your endpoint and ServiceControl
-```
-install-package ServiceControl.Plugin.Nsb3.Heartbeat
-```
+2. To turn on monitoring install the [ServiceControl.Plugin.Nsb3.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat/) nuget  to your  endpoints and restart your endpoint and ServiceControl
 
 
 ### How do I enable CustomChecks for my NSB version 3.x endpoints?
 
 1. Upgrade your NSB version 3 endpoint to the latest service pack for version 3
-2. Add the CustomChecks plugin to your existing version 3 endpoints and restart your endpoint and ServiceControl
-```
-install-package ServiceControl.Plugin.Nsb3.CustomChecks
-```
+2. Add the [ServiceControl.Plugin.Nsb3.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks/) nuget to your endpoints and restart your endpoint and ServiceControl
 
 ### After enabling Heartbeat plugins for version 3 endpoints, ServicePulse reports that endpoints are inactive
 
