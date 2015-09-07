@@ -67,17 +67,6 @@ The installation path of an endpoint is used by ServiceControl and ServicePulse 
 To workaround this issue see [Override host identifier](/nservicebus/hosting/override-hostid.md)
 
 
-### How do I monitor my NServiceBus version 3.x endpoints using ServicePulse?
-
-1. Upgrade your NSB version 3 endpoint to the latest service pack for version 3
-2. To turn on monitoring install the [ServiceControl.Plugin.Nsb3.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat/) nuget  to your  endpoints and restart your endpoint and ServiceControl
-
-
-### How do I enable CustomChecks for my NSB version 3.x endpoints?
-
-1. Upgrade your NSB version 3 endpoint to the latest service pack for version 3
-2. Add the [ServiceControl.Plugin.Nsb3.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks/) nuget to your endpoints and restart your endpoint and ServiceControl
-
 ### After enabling Heartbeat plugins for version 3 endpoints, ServicePulse reports that endpoints are inactive
 
 Messages that were forwarded to the audit queue by NSB version 3.x version of the endpoints did not have the `HostId` header available which uniquely identifies the endpoint. Adding the heartbeat plugin for version 3 endpoints automatically enriches the headers with this `HostId` information using a message mutator. Since the original message that was processed from the audit/error queue did not have this identifier, it is hard to correlate the messages received via the heartbeat that these belong to the same endpoint. Therefore there appears to be a discrepancy in the Endpoints Indicator.
