@@ -1,6 +1,6 @@
 ---
-title: NHibernate Persistence settings for Sql Azure 
-summary: How to configure the NHibernate-based persistence for NServiceBus when running on Sql Azure
+title: NHibernate in SQL Azure 
+summary: How to configure the NHibernate-based persistence for NServiceBus when running on SQL Azure
 tags:
  - NHibernate
  - Persistence
