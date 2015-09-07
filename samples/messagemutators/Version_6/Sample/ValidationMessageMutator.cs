@@ -5,26 +5,21 @@ using System.Text;
 using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 #region ValidationMessageMutator
-public class ValidationMessageMutator :   IMutateIncomingMessages, IMutateOutgoingMessages
+public class ValidationMessageMutator : IMutateIncomingMessages, IMutateOutgoingMessages
 {
     static ILog log = LogManager.GetLogger("ValidationMessageMutator");
 
-
-    public void MutateOutgoing(MutateOutgoingMessagesContext context)
+    public void MutateOutgoing(MutateOutgoingMessageContext context)
     {
-        object messageInstance = context.MessageInstance;
-        ValidateDataAnnotations(ref messageInstance);
-        context.MessageInstance = messageInstance;
+        ValidateDataAnnotations(context.OutgoingMessage);
     }
 
-
-    public object MutateIncoming(object message)
+    public void MutateIncoming(MutateIncomingMessageContext context)
     {
-        ValidateDataAnnotations(ref message);
-        return message;
+        ValidateDataAnnotations(context.Message);
     }
 
-    static void ValidateDataAnnotations(ref object message)
+    static void ValidateDataAnnotations(object message)
     {
         ValidationContext context = new ValidationContext(message, null, null);
         List<ValidationResult> results = new List<ValidationResult>();
@@ -49,7 +44,5 @@ public class ValidationMessageMutator :   IMutateIncomingMessages, IMutateOutgoi
         log.Error(errorMessage.ToString());
         throw new Exception(errorMessage.ToString());
     }
-
-
 }
 #endregion

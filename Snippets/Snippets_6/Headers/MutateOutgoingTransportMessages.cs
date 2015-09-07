@@ -3,12 +3,14 @@
     using NServiceBus.MessageMutator;
 
     #region header-outgoing-mutator
+
     public class MutateOutgoingTransportMessages : IMutateOutgoingTransportMessages
     {
-        public void MutateOutgoing(MutateOutgoingTransportMessagesContext context)
+        public void MutateOutgoing(MutateOutgoingTransportMessageContext context)
         {
-            context.SetHeader("MyCustomHeader", "My custom value");
+            context.OutgoingHeaders["MyCustomHeader"] = "My custom value";
         }
     }
+
     #endregion
 }

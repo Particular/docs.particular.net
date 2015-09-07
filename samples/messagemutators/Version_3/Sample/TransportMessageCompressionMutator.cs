@@ -40,6 +40,5 @@ public class TransportMessageCompressionMutator : IMutateTransportMessages
             transportMessage.Body = bigStreamOut.ToArray();
         }
     }
-
 }
 #endregion

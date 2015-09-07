@@ -7,9 +7,9 @@
     #region header-incoming-mutator
     public class MutateIncomingTransportMessages : IMutateIncomingTransportMessages
     {
-        public void MutateIncoming(TransportMessage transportMessage)
+        public void MutateIncoming(MutateIncomingTransportMessageContext context)
         {
-            Dictionary<string, string> headers = transportMessage.Headers;
+            IDictionary<string, string> headers = context.Headers;
             string nsbVersion = headers[Headers.NServiceBusVersion];
             string customHeader = headers["MyCustomHeader"];
         }

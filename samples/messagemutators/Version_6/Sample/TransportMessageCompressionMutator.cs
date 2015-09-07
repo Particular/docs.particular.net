@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.IO.Compression;
-using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 
@@ -9,14 +8,11 @@ public class TransportMessageCompressionMutator : IMutateIncomingTransportMessag
 {
     static ILog log = LogManager.GetLogger("TransportMessageCompressionMutator");
 
- 
-    public void MutateOutgoing(MutateOutgoingTransportMessagesContext context)
+    public void MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {
-        
+        log.Info("transportMessage.Body size before compression: " + context.OutgoingBody.Length);
 
-        log.Info("transportMessage.Body size before compression: " + context.Body.Length);
-
-        MemoryStream mStream = new MemoryStream(context.Body);
+        MemoryStream mStream = new MemoryStream(context.OutgoingBody);
         MemoryStream outStream = new MemoryStream();
 
         using (GZipStream tinyStream = new GZipStream(outStream, CompressionMode.Compress))
@@ -25,24 +21,23 @@ public class TransportMessageCompressionMutator : IMutateIncomingTransportMessag
         }
         // copy the compressed buffer only after the GZipStream is disposed, 
         // otherwise, not all the compressed message will be copied.
-        context.Body = outStream.ToArray();
-        context.SetHeader("IWasCompressed", "true");
-        log.Info("transportMessage.Body size after compression: " + context.Body.Length);
+        context.OutgoingBody = outStream.ToArray();
+        context.OutgoingHeaders["IWasCompressed"]= "true";
+        log.Info("transportMessage.Body size after compression: " + context.OutgoingBody.Length);
     }
 
-    public void MutateIncoming(TransportMessage transportMessage)
+    public void MutateIncoming(MutateIncomingTransportMessageContext context)
     {
-        if (!transportMessage.Headers.ContainsKey("IWasCompressed"))
+        if (!context.Headers.ContainsKey("IWasCompressed"))
         {
             return;
         }
-        using (GZipStream bigStream = new GZipStream(new MemoryStream(transportMessage.Body), CompressionMode.Decompress))
+        using (GZipStream bigStream = new GZipStream(new MemoryStream(context.Body), CompressionMode.Decompress))
         {
             MemoryStream bigStreamOut = new MemoryStream();
             bigStream.CopyTo(bigStreamOut);
-            transportMessage.Body = bigStreamOut.ToArray();
+            context.Body = bigStreamOut.ToArray();
         }
     }
-
 }
 #endregion
