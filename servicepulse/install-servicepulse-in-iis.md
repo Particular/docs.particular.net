@@ -73,14 +73,15 @@ The procedure above should result in a web.config file in the newly created /api
 
 ```
 
-WARNING: The default configuration for ServiceControl allows access to REST API via localhost only. By exposing the REST API via the reverse proxy configuration this protection is no longer in place. To address this it is recommended that the IIS Web site be configured with one of the IIS authentication providers. It is also recommended that the IIS web site be configured to use SSL if an authorization provider is used.
+WARNING: The default configuration for ServiceControl allows access to REST API via localhost only. By exposing the REST API via the reverse proxy configuration this protection is no longer in place. To address this it is recommended that the IIS Web site be configured with one of the IIS authentication providers such as Windows integration authentication.
+It is also recommended that the IIS web site be configured to use SSL if an authorization provider is used.
 
 
 ### Limitations
 
-ServiceInsight cannot use the REST API via the IIS Web site if it has been locked down using an authentication mechanism.
-ServiceInsight will however still work locally on the server using the `http://localhost:33333/api` URL.  
+If ServiceControl is secured with an authentication module other that Windows Authentication  ServiceInsight will not be able to connect to the REST API exposed via IIS. ServiceInsight V1.4 or greater will is required to use Windows authentication.
 
+Older version of ServiceInsight can still be used locally, bypassing the security by connecting to the ServiceControl port directly using the `http://localhost:33333/api` URL.  
 
 ## Upgrades
 
