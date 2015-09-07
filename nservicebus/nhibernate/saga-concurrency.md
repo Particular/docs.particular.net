@@ -11,7 +11,7 @@ One of the most critical things about persistence of sagas is proper concurrency
 
 ## Default behaviour
 
-As stated [here](/nservicebus/sagas/concurrency), the saga persistence system depends on the data access providing an optimistic approach to concurrency. With NHibernate this results in appending a `WHERE` clause containing all known values of saga data fields when doing `UPDATE`s in order to ensure the saga data is still in the same state as we read it.
+As stated [here](/nservicebus/sagas/concurrency.md), the saga persistence system depends on the data access providing an optimistic approach to concurrency. With NHibernate this results in appending a `WHERE` clause containing all known values of saga data fields when doing `UPDATE`s in order to ensure the saga data is still in the same state as we read it.
 
 This approach has a dowside of very poor performance in high-contention scenarios where a single saga is accessed by multiple message-processing threads. In order to overcome this starting from version 4.1.0 the NHibernate saga perister uses **additional** pessimistic concurrency control using `UPDLOCK` hint. A lock is created when fetching the saga instance from the database and the lock is held till the end of the transaction preventing other threads from fetching that particular saga. The advantage of this approach that it minimizes the number of retries that would be caused should only the optimistic concurrency was emplyed. Multiple saga instances can still be processed in parallel.
 
