@@ -6,13 +6,13 @@ tags:
 - Messaging Patterns
 redirects:
 - nservicebus/how-pub-sub-works
+related:
+- samples/pubsub
+- samples/step-by-step
 ---
 
-Now that you've seen publish/subscribe in action, let's take a look behind the curtains and see what's going on.
+The primary concept is **subscribers let the publisher know they're interested, and the publisher stores their addresses so that it knows where to send which message**.
 
-If you haven't seen the [publish/subscribe sample](/samples/pubsub/) yet take a minute to walk through or start by [creating a new project using NServiceBus](/samples/step-by-step/).
-
-The main thing to understand is this: subscribers let the publisher know they're interested, and the publisher stores their addresses so that it knows where to send which message. It's fairly straight-forward, once you know how it all works.
 
 ## Before we get started...
 
@@ -24,6 +24,7 @@ NServiceBus' infrastructure pieces handle the physical distribution and one-to-m
 
 The above diagram shows us one logical publisher P1, and two logical subscribers SA and SB. Each has a number of physical nodes (colored in blue) and some NServiceBus infrastructure (colored in orange). For now, we're going to assume that both SA and SB are already subscribed, each specifying the left port of its distributor as its public endpoint.
 
+
 ## What happens when we publish
 
 When a node in the logical publisher P1 goes to publish a message, here's what happens:
@@ -33,6 +34,7 @@ When a node in the logical publisher P1 goes to publish a message, here's what h
 When requested by applicative logic to publish a message, the NServiceBus infrastructure contacts its configured subscriptions database, finds all the subscriber endpoints registered for the given message type, and dispatches a physical message to each one.
 
 Since one-way messaging is used to dispatch physical messages, even if one of the subscriber endpoints is offline or otherwise unavailable, this does not cause the publishing thread to block. The message is stored in the sending machine's outgoing queue (for a configurable period of time), while the messaging infrastructure attempts to deliver the message to its destination.
+
 
 ## What the distributor does
 
@@ -44,6 +46,7 @@ You can think of the Distributor as something like a load balancer. It distribut
 
 See [more information on the distributor](/nservicebus/scalability-and-ha/distributor/).
 
+
 ## The same for any publisher node
 
 It doesn't matter which node in the publisher is publishing a message, the same process happens.
@@ -51,4 +54,3 @@ It doesn't matter which node in the publisher is publishing a message, the same 
 ![logical pub/sub and physical distribution 4](nservicebus-pubsub-4.png)
 
 What this means is that you can scale out the number of publishing nodes just by making use of a database for storing subscriptions, with no need for a distributor. When using the generic NServiceBus Host process you get this by default in its production profile.
-
