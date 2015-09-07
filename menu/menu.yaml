@@ -133,6 +133,12 @@
         - "nservicebus/azure/azure-storage-persistence"
         - "nservicebus/persistence/in-memory"
         - "nservicebus/nhibernate/"
+        - Title: "NHibernate"
+          Url: "nservicebus/nhibernate"
+          Articles:
+            - "nservicebus/nhibernate/accessing-data"
+            - "nservicebus/nhibernate/saga-concurrency"
+            - "nservicebus/nhibernate/sql-azure"
         - Title: "RavendDB"
           Url: "nservicebus/ravendb"
           Articles:

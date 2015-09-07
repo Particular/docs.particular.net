@@ -8,9 +8,9 @@ related:
 - samples/logging/nlog-custom
 ---
 
-Support for routing log entries to NLog is compatible with NServiceBus 5 and higher.
+Support for routing log entries to [NLog](http://nlog-project.org/) is compatible with NServiceBus 5 and higher.
 
-There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) package available that allows for simple integration of NServiceBus and [NLog](http://nlog-project.org/).
+There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) package available that allows for simple integration of NServiceBus and NLog.
 
 
 ## Usage

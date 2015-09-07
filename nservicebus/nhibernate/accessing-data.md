@@ -7,10 +7,12 @@ tags:
 ---
 
 Most of the time message handlers are meant to modify the internal state of you application. This usually boils down to accessing some kind of a data store. Since in NServiceBus messages are durable (unless transactions are explicitly disabled in very rare cases), there are two possible synchronization options between consuming messages and accessing the data:
+
  * have an illusion of *exactly-once* message processing either through a distributed transaction or the [outbox](/nservicebus/outbox/)
  * implement data access code in an *idempotent* way
 
 The second is much simpler in theory but much harder in practice. In theory all you need to do is create your own connection in the handler and execute the *idempotent* data access code. The practice shows that making that code idempotent is a non-trivial task. That is why NServiceBus offers APIs that allow you to work on top of *exactly-once* processing illusion. We'll focus on these APIs.
+
 
 ## Accessing data in the handler
 
@@ -28,6 +30,7 @@ As shown above, you can use the `NHibernateStorageContext` directly but we recom
 
 The first part tell NServiceBus to inject the `ISession` instance into the handlers. This way your handlers are less coupled NServiceBus APIs and won't need to change should the API change in future. This `ISession` object is fully managed by NServiceBus according to the best practices defined by NServiceBus documentation with regards to transactions.
 
+
 ## Customizing the session
 
 If you need some special behavior in the `ISession` object managed by NServiceBus, you can hook-up to the session creation process by providing your own delegate.
@@ -36,6 +39,7 @@ If you need some special behavior in the `ISession` object managed by NServiceBu
 
 NOTE: Customizing the way session is opened works only for the 'shared' session that is used to access business/user, Saga and Outbox data. It does not work for other persistence concerns such as Timeouts or Subscriptions.
 
+
 ## Known limitations
 
-Because of the way NServiceBus opens sessions by passing an existing instance of a database connection, it is  currently impossible to use NHibernate's second-level cache. Such behavior of NServiceBus is caused by still-unresolved [bug](https://nhibernate.jira.com/browse/NH-3023) in NHibernate. 
+Because of the way NServiceBus opens sessions by passing an existing instance of a database connection, it is currently not possible to use NHibernate's second-level cache. Such behavior of NServiceBus is caused by still-unresolved [bug](https://nhibernate.jira.com/browse/NH-3023) in NHibernate. 
