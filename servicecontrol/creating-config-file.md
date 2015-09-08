@@ -185,6 +185,6 @@ Default: `102400` (100Kb)
 
 #### ServiceControl/HttpDefaultConnectionLimit (int) 
 
-The maximum number of concurrent connections allowed by ServiceControl. When working with transports that operate over HTTP, number of concurrent connections can be increased to meet transport concurrency settings.
+This setting for version 1.7 and up. The maximum number of concurrent connections allowed by ServiceControl. When working with transports that operate over HTTP, number of concurrent connections can be increased to meet transport concurrency settings.
 
 Default: `100`
