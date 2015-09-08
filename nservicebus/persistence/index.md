@@ -35,11 +35,9 @@ Uses the [RavenDB document database](http://ravendb.net/) for storage.
 Uses custom [NHibernate](http://nhibernate.info/) to persister data to an ADO.net data store (eg SQL Server).
 
 
-### [MSMQ](/nservicebus/msmq)
+### [MSMQ](/nservicebus/msmq/subscription-persistence.md)
 
-A subscription only storage.
-
-NOTE: Storing your subscriptions in MSMQ is not suitable for scenarios where you need to scale the endpoint out. The reason is that the subscription queue cannot be shared among multiple endpoints. 
+A subscription only storage on top of MSMQ.
 
 
 ### [Azure Storage](/nservicebus/azure/azure-storage-persistence.md)

@@ -8,7 +8,7 @@ tags:
 - Event
 ---
 
-By default NServiceBus will make sure that you are following [messaging best practices](messages-events-commands.md) for the messages you define as either Commands or Events.  While this worked it caused other features like [auto subscribe](publish-subscribe/how-to-pub-sub.md) to stop working since only `Events` are auto subscribed.
+By default NServiceBus will make sure that you are following [messaging best practices](messages-events-commands.md) for the messages you define as either Commands or Events.  While this worked it caused other features like [auto subscribe](publish-subscribe/controlling-what-is-subscribed.md) to stop working since only `Events` are auto subscribed.
 
 You can bypass these enforcements by defining all your messages as plain messages.
 
@@ -21,4 +21,3 @@ You can now turn this feature on and off on the endpoint level using:
 or at the message level using:
 
 <!-- import DisableBestPracticeEnforcementPerMessage -->
-

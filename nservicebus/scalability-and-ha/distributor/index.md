@@ -19,6 +19,8 @@ Scaling out (with or without a Distributor) is only useful for where the work be
 
 The Distributor is applicable only when using MSMQ as the transport for exchanging messages. NServiceBus uses MSMQ as the default transport. The Distributor is not required when using other brokered transports like SqlServer and RabbitMQ, since they share the same queue, even if there are multiple instances of the endpoints running. NServiceBus will ensure that only one of these instances of that endpoint will process that message in this case.
 
+WARNING: Keep in mind that the Distributor is designed for load balancing within a single site, so do not use it between sites. In the image above, all publishers and subscribers are within a single physical site. For information on using NServiceBus across multiple physical sites, see [the gateway](/nservicebus/gateway/multi-site-deployments.md).
+
 
 ## Why use it?
 
@@ -36,7 +38,7 @@ Even though the Distributor provided similar functionality even before Vista was
 In short, the scale-out benefits of MSMQ version 4 by itself are quite limited.
 
 
-## Performance?
+## Performance
 
 For each message being processed, the Distributor performs a few additional operations: it receives a ready message from a Worker, sends the work message to the Worker and receives a ready message post processing. That means that using Distributor introduces a certain processing overhead, that is independent of how much actual work is done. Therefore the Distributor is more suitable for relatively long running units of work (high I/O like http calls, writing to disk) as opposed to very short lived units of work (a quick read from the database and dispatching a message using `Bus.Send` or  `Bus.Publish`).
 
@@ -173,19 +175,12 @@ If those settings do not exist, the control queue is assumed as the endpoint nam
 
 Similar to standard NServiceBus routing, you do not want high priority messages to get stuck behind lower priority messages, so just as you have separate NServiceBus processes for different message types, you also set up different Distributor instances (with separate queues) for different message types.
 
-In this case, name the queues just like the messages. For example, `SubmitPurchaseOrder.StrategicCustomers.Sales`. This is the name of the distributor's data queue and the input queues of each of the workers. The distributor's control queue is best named with a prefix of
-'control', as follows: `Control.SubmitPurchaseOrder.StrategicCustomers.Sales`.
-
-When using the Distributor in a full publish/subscribe deployment, you see is a Distributor within each subscriber balancing the load of events being published, as follows:
-
-![logical pub/sub and physical distribution 3](/nservicebus/messaging/publish-subscribe/nservicebus-pubsub-3.png)
-
-Keep in mind that the Distributor is designed for load balancing within a single site, so do not use it between sites. In the image above, all publishers and subscribers are within a single physical site. For information on using NServiceBus across multiple physical sites, see [the gateway](/nservicebus/gateway/multi-site-deployments.md).
+In this case, name the queues just like the messages. For example, `SubmitPurchaseOrder.StrategicCustomers.Sales`. This is the name of the distributor's data queue and the input queues of each of the workers. The distributor's control queue is best named with a prefix of 'control', as follows: `Control.SubmitPurchaseOrder.StrategicCustomers.Sales`.
 
 
 ## Worker QMId needs to be unique 
 
-Every installation of MSMQ on a Windows machine is represented uniquely by a Queue Manager id (QMId). The QMId is stored as a key in the registry, ```HKLM\Software\Microsoft\MSMQ\Parameters\Machine Cache```. MSMQ uses the QMId to know where is should send acks and replies for incoming messages. 
+Every installation of MSMQ on a Windows machine is represented uniquely by a Queue Manager id (QMId). The QMId is stored as a key in the registry, `HKLM\Software\Microsoft\MSMQ\Parameters\Machine Cache`. MSMQ uses the QMId to know where is should send acks and replies for incoming messages. 
 
 It is very important that all your machines have their own unique QMId. If two or more machines share the same QMId, only one of those machines are able so successfully send and receive messages with MSMQ. Exactly which machine works changes in a seemingly random fashion.
 

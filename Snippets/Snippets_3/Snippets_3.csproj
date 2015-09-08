@@ -161,6 +161,9 @@
     <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Errors\FirstLevel\flr.config.xml" />
     <Content Include="Monitoring\ServiceControlEvents.config.xml" />
+    <Content Include="Persistence\Msmq\msmq.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="UpgradeGuides\3to4\MsmqTransportConfig.config.xml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
@@ -198,6 +201,14 @@
     <Compile Include="Container\Custom\MyCustomObjectBuilder.cs" />
     <Compile Include="Container\Custom\Usage.cs" />
     <Compile Include="Container\MyService.cs" />
+    <Compile Include="Persistence\Msmq\Usage.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />
+    <Compile Include="PubSub\Publishing\PublishAtStartup.cs" />
+    <Compile Include="PubSub\Publishing\UserCreatedEvent.cs" />
+    <Compile Include="PubSub\WithConvention\MessageToPublish.cs" />
+    <Compile Include="PubSub\WithConvention\Usage.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />
@@ -224,6 +235,7 @@
     <Compile Include="Encryption\EncryptionService\Usage.cs" />
     <Compile Include="Encryption\Usage.cs" />
     <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
+    <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Routing\EndpointMapping\ProvideConfiguration.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />

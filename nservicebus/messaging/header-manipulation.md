@@ -1,5 +1,5 @@
 ---
-title: Manipulating headers
+title: Manipulating message headers
 summary: Access and manipulate the built in NServiceBus headers or add custom headers.
 tags: 
 - Header

@@ -322,6 +322,9 @@
     <Content Include="Azure\Persistence\AzureStorage\AzurePersistence.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Persistence\Msmq\msmq.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Transports\Mqmq\TransportConfig.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -458,6 +461,7 @@
     <Compile Include="NonDurable\DisableDurable.cs" />
     <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
     <Compile Include="Azure\Persistence\AzureStorage\Usage.cs" />
+    <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="Persistence\NHibernate\ConfiguringNHibernateSqlAzure.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Persistence\NHibernate\AccessingData.cs" />
@@ -468,6 +472,14 @@
     <Compile Include="Pipeline\Abort\Behavior.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\MyMessage.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />
+    <Compile Include="PubSub\Publishing\PublishAtStartup.cs" />
+    <Compile Include="PubSub\Publishing\UserCreatedEvent.cs" />
+    <Compile Include="PubSub\WithConvention\MessageToPublish.cs" />
+    <Compile Include="PubSub\WithConvention\Usage.cs" />
+    <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
     <Compile Include="RavenDB\ChangeResourceManagerID.cs" />
     <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="RegisterCustomSerializer.cs" />

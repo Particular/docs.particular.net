@@ -30,14 +30,14 @@
         - "nservicebus/messaging/reply-to-a-message"
         - "nservicebus/messaging/send-a-message"
         - "nservicebus/messaging/specify-input-queue-name"
-        - "nservicebus/messaging/specify-message-destination"
+        - "nservicebus/messaging/message-owner"
         - "nservicebus/messaging/unobtrusive-mode"
         - "nservicebus/scheduling"
         - Title: "Publish Subscribe"
           Url: "nservicebus/messaging/publish-subscribe"
           Articles:
-            - "nservicebus/messaging/publish-subscribe/configuration"
-            - "nservicebus/messaging/publish-subscribe/how-to-pub-sub"
+            - "nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed"
+            - "nservicebus/messaging/publish-subscribe/publish-handle-event"
         - Title: "Gateway"
           Url: "nservicebus/gateway"
           Articles:
@@ -132,6 +132,7 @@
         - "nservicebus/persistence/authoring-custom"
         - "nservicebus/azure/azure-storage-persistence"
         - "nservicebus/persistence/in-memory"
+        - "nservicebus/msmq/subscription-persistence"
         - Title: "NHibernate"
           Url: "nservicebus/nhibernate"
           Articles:
@@ -231,6 +232,7 @@
           Articles:
             - "nservicebus/scalability-and-ha/distributor/when-worker-goes-down"
             - "nservicebus/scalability-and-ha/distributor/disconnect-workers"
+            - "nservicebus/scalability-and-ha/distributor/publish-subscribe"
             - "nservicebus/scalability-and-ha/distributor/upgrading-the-distributor"
 -
   Name: "ServiceInsight"

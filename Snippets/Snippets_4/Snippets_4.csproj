@@ -210,6 +210,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Persistence\Msmq\msmq.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="UpgradeGuides\3to4\TransportConfig.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -278,6 +281,14 @@
     <Compile Include="Container\Containers_Unity.cs" />
     <Compile Include="Container\Custom\MyCustomObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
+    <Compile Include="Persistence\Msmq\Usage.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />
+    <Compile Include="PubSub\Publishing\PublishAtStartup.cs" />
+    <Compile Include="PubSub\Publishing\UserCreatedEvent.cs" />
+    <Compile Include="PubSub\WithConvention\MessageToPublish.cs" />
+    <Compile Include="PubSub\WithConvention\Usage.cs" />
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
@@ -299,6 +310,7 @@
     <Compile Include="Encryption\EncryptionService\Usage.cs" />
     <Compile Include="Encryption\EncryptionService\EncryptionService.cs" />
     <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
+    <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
     <Compile Include="EndpointName\EndpointConfigWithAttribute.cs" />
     <Compile Include="EndpointName\EndpointConfigByNamespace.cs" />

@@ -51,7 +51,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Compile Include="Program.cs" />
-    <Compile Include="SubscriptionAuthorizer.cs" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

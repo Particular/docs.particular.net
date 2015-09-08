@@ -13,4 +13,4 @@ You would use this for endpoints whose only purpose is sending messages, such as
  
 <!-- import SendOnly -->
 
-The only configuration when running in this mode is the destination of the messages you're sending. You can configure it [inline or through configuration](/nservicebus/messaging/specify-message-destination.md).
+The only configuration when running in this mode is the destination when [Sending a message](/nservicebus/messaging/send-a-message.md).

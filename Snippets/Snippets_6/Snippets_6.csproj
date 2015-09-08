@@ -94,6 +94,15 @@
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
     <Compile Include="Lifecycle\IWantToRunWhenTheBusStartsAndStops.cs" />
+    <Compile Include="Persistence\Msmq\Usage.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />
+    <Compile Include="PubSub\Publishing\PublishAtStartup.cs" />
+    <Compile Include="PubSub\Publishing\UserCreatedEvent.cs" />
+    <Compile Include="PubSub\WithConvention\MessageToPublish.cs" />
+    <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
+    <Compile Include="PubSub\WithConvention\Usage.cs" />
     <Compile Include="Routing\BasicOperations.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
@@ -133,6 +142,9 @@
     </Content>
     <Content Include="Errors\ErrorQueue\configureErrorQueue.config.xml" />
     <Content Include="Errors\FirstLevel\flr.config.xml" />
+    <Content Include="Persistence\Msmq\msmq.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
@@ -146,5 +158,6 @@
       <Name>Operations</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
