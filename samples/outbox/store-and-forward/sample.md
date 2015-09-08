@@ -1,6 +1,6 @@
 ---
-title: SQL Server / Outbox / Store-and-forward
-summary: 'How to add store-and-forward functionality for external-facing endpoints'
+title: Outbox Store-and-forward
+summary: How to add store-and-forward functionality for external-facing endpoints
 tags:
 - SQL Server
 - Outbox
@@ -8,6 +8,8 @@ tags:
 related:
 - nservicebus/outbox
 - nservicebus/sqlserver
+redirects:
+- samples/sqltransport-outbox-store-and-forward
 ---
 
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create three databases: `sender`, `receiver` and `shared`.
@@ -22,6 +24,7 @@ related:
  10. Go to the SQL Server Management Studio and delete the `receiver` database.
  11. Hit <enter> again in the Sender console
  12. You should see the retry mechanism kicking in, doing some number of first-level retries and then forwarding the message to the SLR.
+
 
 ## Code walk-through
 
@@ -48,6 +51,7 @@ The Sender does not store any data. It mimics the front-end system where orders 
 
 It also registers two custom behaviors, one for the send pipeline and the other for the receive pipeline.
 
+
 ### Send pipeline
 
 The new behavior is added at the beginning of the send pipeline.
@@ -58,6 +62,7 @@ It checks if the message comes from a handler and in such case it does nothing. 
 
 NOTICE: Other properties of a message (such as defer time) are not captured in this example. In order to use similar feature in production, make sure to capture all relevant information (e.g. defer time).
 
+
 ### Receive pipeline
 
 In the receive pipeline the new behavior is placed just before loading the message handlers.
@@ -65,6 +70,7 @@ In the receive pipeline the new behavior is placed just before loading the messa
 <!-- import OutboxLoopbackReceiveBehavior -->
 
 If the message contains the headers used by the send-side behavior, it is routed to the ultimate destination (this time via the Outbox) instead of being processed locally. This is the first time the remote database of Receiver endpoint is contacted. Should it be down, the retry mechanism will kick in and ensure the message is eventually dispatched to the destination.
+
 
 ### Receiver project
 

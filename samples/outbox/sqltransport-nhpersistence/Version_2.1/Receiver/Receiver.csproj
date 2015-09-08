@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B58159EB-9EFD-443F-A80E-8C90B0AF1907}</ProjectGuid>
+    <ProjectGuid>{1EEC6A8C-DB3C-4F20-93CE-5004BF16AD7F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Sender</RootNamespace>
-    <AssemblyName>Sender</AssemblyName>
+    <RootNamespace>Receiver</RootNamespace>
+    <AssemblyName>Receiver</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,27 +34,26 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.Core">
       <HintPath>..\packages\NServiceBus.5.2.4\lib\net45\NServiceBus.Core.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.NHibernate, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\packages\NServiceBus.NHibernate.6.2.2\lib\net45\NServiceBus.NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Transports.SQLServer, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+    <Reference Include="NServiceBus.Transports.SQLServer">
       <HintPath>..\packages\NServiceBus.SqlServer.2.1.3\lib\net45\NServiceBus.Transports.SQLServer.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,11 +61,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrderAcceptedHandler.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderLifecycleSaga.cs" />
+    <Compile Include="OrderLifecycleSagaData.cs" />
+    <Compile Include="OrderMap.cs" />
+    <Compile Include="OrderSubmittedHandler.cs" />
+    <Compile Include="OrderTimeout.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

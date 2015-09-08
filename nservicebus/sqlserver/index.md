@@ -6,9 +6,9 @@ tags:
 redirects:
 - nservicebus/sqlserver/configuration
 related:
+- samples/outbox/sqltransport-nhpersistence
 - samples/sqltransport-nhpersistence
-- samples/sqltransport-nhpersistence-outbox
-- samples/sqltransport-nhpersistence-outbox-ef
+- samples/outbox/sqltransport-nhpersistence-ef
 ---
 
 Provides support for sending messages over [SQL Server](http://www.microsoft.com/en-au/server-cloud/products/sql-server/) tables.
