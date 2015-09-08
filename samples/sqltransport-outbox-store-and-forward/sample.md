@@ -46,11 +46,11 @@ The Sender does not store any data. It mimics the front-end system where orders 
 
 <!-- import SenderConfiguration -->
 
-It also registers two custom behaviours, one for the send pipeline and the other for the receive pipeline.
+It also registers two custom behaviors, one for the send pipeline and the other for the receive pipeline.
 
 ### Send pipeline
 
-The new behaviour is added at the beginning of the send pipeline.
+The new behavior is added at the beginning of the send pipeline.
 
 <!-- import OutboxLoopbackSendBehavior -->
 
@@ -60,11 +60,11 @@ NOTICE: Other properties of a message (such as defer time) are not captured in t
 
 ### Receive pipeline
 
-In the receive pipeline the new behaviour is placed just before loading the message handlers.
+In the receive pipeline the new behavior is placed just before loading the message handlers.
 
 <!-- import OutboxLoopbackReceiveBehavior -->
 
-If the message contains the headers used by the send-side behaviour, it is routed to the ultimate destination (this time via the Outbox) instead of being processed locally. This is the first time the remote database of Receiver endpoint is contacted. Should it be down, the retry mechanism will kick in and ensure the message is eventually dispatched to the destination.
+If the message contains the headers used by the send-side behavior, it is routed to the ultimate destination (this time via the Outbox) instead of being processed locally. This is the first time the remote database of Receiver endpoint is contacted. Should it be down, the retry mechanism will kick in and ensure the message is eventually dispatched to the destination.
 
 ### Receiver project
 
