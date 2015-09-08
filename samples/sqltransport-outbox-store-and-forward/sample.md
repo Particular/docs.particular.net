@@ -25,7 +25,7 @@ related:
 
 ## Code walk-through
 
-This sample show how to add store-and-forward functionality to a transport that does not have it. In this case we are using SQL Server transport with each endpoint using its own database (server).
+This sample show how to add store-and-forward functionality to any a transport that does not have it. In this case we are using SQL Server transport with each endpoint using its own database (server) but the solution is not dependent on the SQL Server transport in any way.
 
 In such scenario if the receiver (back-end) endpoint's database is down (e.g. for maintenance), the sender (front-end, user facing) endpoint can't send messages to it. This happens because even when the Outbox is enabled, the messages that are send from outside of a handler bypass the Outbox and are immediately dispatched to the transport (which in this case means inserting into the destination table in the destination database). The exception is thrown from the `Send`/`Publish` method which inevitably results in a bad user experience (UX).
 
