@@ -37,7 +37,7 @@
 #region EnableDisableFeatures
             var configuration = new BusConfiguration();
             
-            // enable Saga feature since our custom feature relies on it
+            // enable delayed delivery feature since SLR relies on it
             configuration.EnableFeature<DelayedDeliveryFeature>();
 
             // this is not required if the feature uses EnableByDefault()
