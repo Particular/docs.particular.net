@@ -181,4 +181,10 @@ Default: `<AuditQueue>.log`
 
 Up until version 1.6 ServiceControl only stores bodies of audit messages that are smaller than 100Kb by default. After version 1.6 Increase this number to store messages with larger bodies. Messages that have a larger message body in bytes than MaxBodySizeToStore are not stored for audit. This is to ensure that the majority of our users enjoy the best level of performance. For users with special analysis needs, edit MaxBodySizeToStore in ServiceControl.exe.config to increase the size of storeable audit messages.
 
-Default: `102400` (100Kb).
+Default: `102400` (100Kb)
+
+#### ServiceControl/HttpDefaultConnectionLimit (int) 
+
+This setting for version 1.7 and up. The maximum number of concurrent connections allowed by ServiceControl. When working with transports that operate over HTTP, number of concurrent connections can be increased to meet transport concurrency settings.
+
+Default: `100`
