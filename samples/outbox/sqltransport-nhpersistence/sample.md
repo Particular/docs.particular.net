@@ -9,7 +9,7 @@ related:
 - nservicebus/outbox
 - nservicebus/sqlserver
 - nservicebus/nhibernate
-related:
+redirects:
 - samples/sqltransport-nhpersistence-outbox
 ---
 
