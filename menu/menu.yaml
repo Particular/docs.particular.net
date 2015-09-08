@@ -107,6 +107,7 @@
             - "nservicebus/msmq/network-load-balancing"
             - "nservicebus/msmq/operations-scripting"
             - "nservicebus/msmq/uninstalling-msmq"
+            - "nservicebus/msmq/subscription-persistence"
         - Title: "RabbitMQ"
           Url: "nservicebus/rabbitmq"
           Articles:

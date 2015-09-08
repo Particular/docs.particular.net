@@ -151,29 +151,11 @@ Transport->Subscriber2: Send Message1
 ![](mechanics-native-publish.svg)
 
 
-## Controlling Subscriptions
-
-### Native transport support
-
-Azure Rabbit
-
-### Defining the owning endpoint
-
-#### Disabling auto-subscription
-
-### Legacy subscription options
-
-### Subscribe using code
-
-
-
-
 ## Versioning subscriptions
 
 In NServiceBus version 3.0 and onwards subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
 
 NOTE: Version 2.X required a perfect match. This should make it easier to upgrade your publishers without affecting the subscribers.
-
 
 
 ## Authorizations
