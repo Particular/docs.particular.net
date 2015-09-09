@@ -55,8 +55,8 @@ public class AzureHelper
         Debug.WriteLine(string.Format("'{0}' table contents", tableName));
         foreach (var entity in entities)
         {
-            Debug.WriteLine("  PartitionKey:= " + entity.PartitionKey);
-            Debug.WriteLine("    RowKey:= " + entity.RowKey);
+            Debug.WriteLine(string.Format("  PartitionKey:= " + entity.PartitionKey));
+            Debug.WriteLine(string.Format("    RowKey:= " + entity.RowKey));
             if (decodeRowKey)
             {
                 string decodedRowKey = entity.RowKey.DecodeFromKey();

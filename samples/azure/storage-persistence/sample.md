@@ -16,7 +16,7 @@ related:
 Ensure you have an instance of the [Azure Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/) running. 
 
 
-### Azure Storage Persistence
+## Azure Storage Persistence
 
 This sample utilizes the [Azure Storage Persistence](/nservicebus/azure/azure-storage-persistence.md).
 
