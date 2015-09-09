@@ -7,7 +7,7 @@ redirects:
 - nservicebus/handler-ordering
 ---
 
-Handler ordering allows you which handlers are grouped first and the order withing that group. 
+You can have several classes that implement `IHandleMessages<T>` for the same message. In that scenario, all the handlers will execute in the same trasaction scope. These handlers can be invoked by NServiceBus in any order. Handler ordering allows you to specify the order of execution of these handlers.  
 
 ### How it is actually implemented
 
