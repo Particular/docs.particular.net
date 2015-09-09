@@ -81,6 +81,7 @@
         - "nservicebus/pipeline/aborting"
         - "nservicebus/security/encryption"
         - "nservicebus/messaging/databus"
+        - "nservicebus/pipeline/features"
     -
       Title: "Transports"
       Url: "nservicebus/transports"
