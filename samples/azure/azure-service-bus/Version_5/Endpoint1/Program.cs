@@ -10,6 +10,7 @@ class Program
 
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Azure.ServiceBus.Endpoint1");
+        busConfiguration.ScaleOut().UseSingleBrokerQueue();
         busConfiguration.UseTransport<AzureServiceBusTransport>()
             .ConnectionString(Environment.GetEnvironmentVariable("SamplesAzureServiceBusConnection"));
 
@@ -39,8 +40,7 @@ class Program
                 {
                     Property = "Hello from Endpoint1"
                 };
-                string destination = "Samples.Azure.ServiceBus.Endpoint2-" + Environment.MachineName;
-                bus.Send(destination, message);
+                bus.Send("Samples.Azure.ServiceBus.Endpoint2", message);
                 Console.WriteLine("Message1 sent");
             }
         }
