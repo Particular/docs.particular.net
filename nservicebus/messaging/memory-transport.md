@@ -10,7 +10,7 @@ NOTE: Bus.InMemory feature has been deprecated starting from version 4.6 and rem
 
 Prior to version 4.0, NServiceBus provided an asynchronous method of communication between parts of the system using `Send`, `Reply`, and `Publish` API. Asynchronous forms of communication are great for ensuring reliable and durable communication between parts of the system. NServiceBus version 4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.
 
-This is the same concept as for the [domain events pattern](http://www.udidahan.com/2009/06/14/domain-events-salvation/).
+This is the same concept as for the [domain events pattern](http://udidahan.com/2009/06/14/domain-events-salvation/).
 
 
 ## Events

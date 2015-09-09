@@ -118,8 +118,8 @@ Unfortunately Microsoft does not provide a mechanism for setting the logging loc
 
 As mentioned above in some circumstances Click-Once can be problematic.  The following links provide some useful tips on troubleshooting issues with Click-Once.
 
+* [Click-Once Deployment](https://msdn.microsoft.com/en-us/library/t71a733d.aspx)
 * [Troubleshooting Click-Once Deployments](https://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
-* [Click-Once forum](https://social.msdn.microsoft.com/Forums/windows/en-US/home?forum=winformssetup)
 
 
 ## Chocolatey   

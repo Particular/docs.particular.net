@@ -278,7 +278,7 @@ Extension to enable sending SMTP emails as messages.
 
 <a href="http://www.nuget.org/packages/NServiceBus.MessageRouting/"><img src="http://img.shields.io/nuget/v/NServiceBus.MessageRouting.svg?" title="NuGet Status"></a>
 
-An implementation the [Routing Slip](http://www.enterpriseintegrationpatterns.com/RoutingTable.html) pattern that enables you to route a message to one or more destinations
+An implementation the [Routing Slip](http://www.enterpriseintegrationpatterns.com/patterns/messaging/RoutingTable.html) pattern that enables you to route a message to one or more destinations
 
 
 ### <img src="community-project.png" title="A Community run project"> [HandlerOrdering](https://github.com/SimonCropp/HandlerOrdering)

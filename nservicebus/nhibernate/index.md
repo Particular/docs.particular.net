@@ -65,6 +65,6 @@ NServiceBus then picks up the connection setting from your `app.config` from `co
 
 NOTE: When using SQL 2012 you need to change the dialect to `MsSql2012Dialect`.
 
-NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhforge.org/doc/nh/en/index.html#configuration-xmlconfig) 
+NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhibernate.info/doc/) 
  
 <!-- import NHibernateAppConfig -->
