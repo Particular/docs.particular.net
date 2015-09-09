@@ -25,9 +25,9 @@ To create a new feature create a class which inherits from `Feature`. This offer
 
 Define startup conditions and dependencies in the constructor of your feature using the following methods. Note that a feature is disabled by default unless configured otherwise.
 
-* `EnableByDefault` Enables the feature if no other condition is violated or the configuration disables the feature explicitly
+* `EnableByDefault` Enables the feature if no other condition is violated or the configuration disables the feature explicitly.
 * `DependsOn` requires another feature to be enabled in order to start this one. If the dependency isn't enabled, the dependent one isn't loaded either.
-* `Prerequisite` allows you to configure some custom conditions required by that feature to be enabled
+* `Prerequisite` allows you to configure some custom conditions required by that feature to be enabled.
 
 <!-- import FeatureConfiguration -->
 
@@ -45,9 +45,9 @@ You can manually activate or deactivate your features and most of the internal N
 
 `Setup` has to be implemented in your feature and will be called if the feature is enabled. It allows you to complete configuration of your feature, hook into the pipeline or registering services on the container. The `FeatureConfigurationContext` parameter on the method contains:
 
-* Settings: read or write settings which should be available to other components or read access settings provided by NServiceBus
-* Container: register services with the dependency injection container which can be injected to other components
-* Pipeline: register your own behavior into the message processing pipeline or replace/remove existing ones
+* Settings: read or write settings which should be available to other components or read access settings provided by NServiceBus.
+* Container: register services with the dependency injection container which can be injected to other components.
+* Pipeline: register your own behavior into the message processing pipeline or replace/remove existing ones.
 
 <!-- import FeatureSetup -->
 
