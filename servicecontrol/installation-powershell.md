@@ -100,8 +100,9 @@ It is also possible to apply a license to an individual instance rather than glo
 Adding a license this way is not supported via the ServiceControl Management Utility or the PowerShell module.
 
 #### Building an unattended install file
-Since ServiceControl 1.7 the installation exe has a commandline argument to enable the installation of a ServiceControl service instance during installation.  This is intended to assist with [unattended installation](Add link to unattened install)
-The commandline argument requires an XML file which detail the instance options.  The file can be produced by running the following cmdlet.
+Since ServiceControl 1.7 the installation executable has a command line argument to enable the installation of a ServiceControl service instance during installation.  This is intended to assist with [unattended installation](installation-silent.md)
+
+The command line argument requires an XML file which detail the instance options.  The file can be produced by running the following cmdlet or by manually creating the XML file.
 
 ```bat
 New-ServiceControlUnattendedFile -OutputFile c:\temp\unattended.xml  -Name Test -InstallPath c:\servicecontrol\test\bin -DBPath c:\servicecontrol\test\db -LogPath  c:\servicecontrol\test\logs -Port 33335 -ErrorQueue error-test -AuditQueue audit-test
@@ -136,7 +137,7 @@ New-ServiceControlInstanceFromUnattendedFile -UnattendFile  c:\temp\unattended.x
 
 ### Troubleshooting via PowerShell
 
-The ServiceControl Management Powershell offers some cmdlets to assist with troubleshooting the install of ServiceControl instances.
+The ServiceControl Management PowerShell offers some cmdlets to assist with troubleshooting the install of ServiceControl instances.
 
 #### Check if a Port is already in use
 
