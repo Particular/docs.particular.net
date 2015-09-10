@@ -28,12 +28,11 @@ If ServiceControl is installed via the Particular Software Platform Installer th
 
 #### MSMQ
 
-From ServiceControl V1.7 the installation utility also allows a choice of transport.  For older version of the installer the MSMQ service was a mandatory prerequisite, without it initial installation and upgrades would fail.
+From ServiceControl V1.7 the installation also allows a choice of transport.  For older version of the installer the MSMQ service was a mandatory prerequisite, without it initial installation and upgrades would fail.
 
 If MSMQ is the transport you are using ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#msmq)
 
 To enabling and configuring MSMQ without the Platform Installer refer to the MSMQ section of [Installing The Platform Components Manually](/platform/installer/offline.md#msmq)
-
 
 #### Performance Counter
 
@@ -43,14 +42,20 @@ For instructions on how to install the Performance Counters without the Platform
 
 The installation of the NServiceBus Performance counters is optional for ServiceControl 1.7 or higher.
 
+#### Using the ServiceControl Management Utility
 
-### Using the ServiceControl Management Utility
+The ServiceControl Management Utility provides a simple means of setting up one or more instances of the ServiceControl service.  For production systems it is highly recommended to limit the number of instances per machine to one. The ability to add multiple instances is primarily intended to assist development and test environments.
 
-The ServiceControl Management Utility provides a simple means of setting up one or more instances of the ServiceControl service. 
-For production systems it is advisable to limit the number of instances per machine to one, the ability to add multiple instances is intended to assist with  
+The ServiceControl Management Utility will be automatically launched at the end of the installation process to enable adding or upgrading ServiceControl instances. The ServiceControl Management Utility can also be launched via the Start Menu.
 
+If you had a previous version of  ServiceControl installed the Management utility will display the instances of ServiceControl and the current version. If the version of the binaries used by the instance are older that those shipped with the ServiceControl Management Utility you an upgrade link will be shown.  
 
+![](managementutil-upgradelink.png)
 
-
- 
-
+Clicking the upgrade link will
+ * Stop the Service
+ * Remove the old binaries for ServiceControl and the configured Transport 
+ * Run the new binaries to create any required queues
+ * Start the Service
+  
+If this is a new installation of ServiceControl click on the `Add New Instance` button in the center of the screen or the "New Instance" link at the top of the screen,  both options launch the the new instance form to register a new ServiceControl service.
