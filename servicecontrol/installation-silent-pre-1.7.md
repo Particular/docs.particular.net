@@ -35,7 +35,7 @@ Passing the `ForwardAuditMessages` property has no affect when the installer is 
 NOTE: It is recommended to enable logging when running in silent mode as error messages are suppressed. See Troubleshooting
 
 
-#### Silent UnInstallation 1.0 through to 1.6.x
+#### Silent Uninstall 1.0 through to 1.6.x
 
 The following command can be used to uninstall ServiceControl silently:
 

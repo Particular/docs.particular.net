@@ -96,7 +96,7 @@ Adding the license file to the registry can be done by running the following cmd
 ```bat
 Import-ServiceControlLicense <License-File>
 ```
-It is also possible to apply a license to an individual instance rather than globally.  This can be done by by creating a license file under the installation path of an instance and copying the license.xml to that directory.
+It is also possible to apply a license to an individual instance rather than globally.  This can be done by by creating a license file under the installation path of an instance and copying the `license.xml` to that directory.
 Adding a license this way is not supported via the ServiceControl Management Utility or the PowerShell module.
 
 #### Building an unattended install file
@@ -110,7 +110,7 @@ New-ServiceControlUnattendedFile -OutputFile c:\temp\unattended.xml  -Name Test 
 ```
 
 This sample produces the following Files
-```XML
+```xml
 <?xml version="1.0"?>
 <ServiceControlInstanceMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <LogPath>C:\servicecontrol\test\db</LogPath>
@@ -161,18 +161,18 @@ For example `netsh.exe http show urlacl`  will list all of the available.  This 
 
 For example the following command lists all of the UrlAcls assigned to any URI for port 33333
 
-```posh
+```bat
 Get-UrlAcls | ? Port -eq 33333
 ```
 
 In this example any UrlAcl on port 33335 is remove
 
-```posh
+```bat
 Get-UrlAcls | ? Port -eq 33335 | Remove-UrlAcl
 ```
 
 The following example shows how to add UrlAcl for a ServiceControl service that should only respond to a specific DNS name.  This would require an update of the ServiceControl config file as well. Refer to [setting a custom host name and port number](setting-custom-hostname.md)
 
-```posh
+```bat
 Add-UrlAcl -Url http://servicecontrol.mycompany.com:33333/api/ -Users Users
 ```

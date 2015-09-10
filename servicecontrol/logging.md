@@ -45,7 +45,7 @@ To change the location ServiceControl stores its logs:
  
 When Save is clicked the the service with be restarted to apply the change. 
 
-#### Changing logging location by editing the config file
+#### Changing logging location by editing the configuration file
     
 
 To change the location where ServiceControl stores its log:
