@@ -142,6 +142,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -294,6 +295,7 @@
     <Compile Include="Serialization\BsonSerialization.cs" />
     <Compile Include="Serialization\JsonSerialization.cs" />
     <Compile Include="Serialization\XmlSerialization.cs" />
+    <Compile Include="Transactions.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="UnitTesting\Unobtrusive.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\CompleteOrder.cs" />

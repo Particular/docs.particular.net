@@ -1,5 +1,7 @@
 ﻿namespace Snippets4
 {
+    using System;
+    using System.Transactions;
     using NServiceBus;
 
     public class Transactions
@@ -27,6 +29,20 @@
 
             #region TransactionsDoNotWrapHandlersExecutionInATransactionScope
             Configure.Transactions.Advanced(x => x.DoNotWrapHandlersExecutionInATransactionScope());
+            #endregion
+        }
+
+        public void CustomTransactionTimeout()
+        {
+            #region CustomTransactionTimeout
+            Configure.Transactions.Advanced(x => x.DefaultTimeout(TimeSpan.FromSeconds(30)));
+            #endregion
+        }
+
+        public void CustomTransactionIsolationLevel()
+        {
+            #region CustomTransactionIsolationLevel
+            Configure.Transactions.Advanced(x => x.IsolationLevel(IsolationLevel.RepeatableRead));
             #endregion
         }
     }
