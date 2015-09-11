@@ -1,8 +1,8 @@
-﻿using NServiceBus;
-using NServiceBus.Saga;
-
-namespace Snippets6.Sagas
+﻿namespace Snippets6.Sagas
 {
+    using System.Threading.Tasks;
+    using NServiceBus;
+    using NServiceBus.Sagas;
 
     #region saga-not-found
 
@@ -15,9 +15,10 @@ namespace Snippets6.Sagas
             this.bus = bus;
         }
 
-        public void Handle(object message)
+        public Task Handle(object message)
         {
             bus.Reply(new SagaDisappearedMessage());
+            return Task.FromResult(0);
         }
     }
 

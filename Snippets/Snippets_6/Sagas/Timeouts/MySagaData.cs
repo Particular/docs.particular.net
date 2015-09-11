@@ -1,8 +1,8 @@
-﻿using System;
-using NServiceBus.Saga;
-
-namespace Snippets6.Sagas.Timeouts
+﻿namespace Snippets6.Sagas.Timeouts
 {
+    using System;
+    using NServiceBus;
+
     public class MySagaData : IContainSagaData
     {
         public Guid Id { get; set; }

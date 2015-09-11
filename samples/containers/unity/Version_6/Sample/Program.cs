@@ -1,19 +1,18 @@
 ﻿using System;
+using Microsoft.Practices.Unity;
 using NServiceBus;
-using NServiceBus.Logging;
-using StructureMap;
 
 static class Program
 {
     static void Main()
     {
-        LogManager.Use<DefaultFactory>().Level(LogLevel.Error);
         #region ContainerConfiguration
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.StructureMap");
+        busConfiguration.EndpointName("Samples.Unity");
 
-        Container container = new Container(x => x.For<MyService>().Use(new MyService()));
-        busConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
+        UnityContainer container = new UnityContainer();
+        container.RegisterInstance(new MyService());
+        busConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
         #endregion
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
@@ -24,7 +23,6 @@ static class Program
             bus.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
-
         }
     }
 }

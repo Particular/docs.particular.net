@@ -216,7 +216,6 @@ namespace Snippets5.UpgradeGuides._4to5
             #region 4to5DefineCriticalErrorAction
 
             BusConfiguration busConfiguration = new BusConfiguration();
-
             // Configuring how NServicebus handles critical errors
             busConfiguration.DefineCriticalErrorAction((message, exception) =>
             {
@@ -330,7 +329,6 @@ namespace Snippets5.UpgradeGuides._4to5
             #region 4to5DoNotCreateQueues
 
             BusConfiguration busConfiguration = new BusConfiguration();
-
             busConfiguration.DoNotCreateQueues();
 
             #endregion
@@ -341,7 +339,6 @@ namespace Snippets5.UpgradeGuides._4to5
             #region 4to5EndpointName
 
             BusConfiguration busConfiguration = new BusConfiguration();
-
             busConfiguration.EndpointName("MyEndpoint");
 
             #endregion
@@ -352,7 +349,6 @@ namespace Snippets5.UpgradeGuides._4to5
             #region 4to5SendOnly
 
             BusConfiguration busConfiguration = new BusConfiguration();
-
             ISendOnlyBus bus = Bus.CreateSendOnly(busConfiguration);
 
             #endregion

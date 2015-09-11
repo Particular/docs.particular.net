@@ -1,9 +1,7 @@
-﻿using System;
-using NServiceBus;
-using NServiceBus.Saga;
-
-namespace Snippets6.Sagas.Timeouts
+﻿namespace Snippets6.Sagas.Timeouts
 {
+    using System;
+    using NServiceBus;
 
     #region saga-with-timeout
 

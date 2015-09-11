@@ -1,7 +1,6 @@
-﻿using NServiceBus.Saga;
-
-namespace Snippets6.Sagas.Reply
+﻿namespace Snippets6.Sagas.Reply
 {
+    using NServiceBus;
 
     #region saga-with-reply
 

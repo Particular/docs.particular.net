@@ -2,7 +2,6 @@ namespace Snippets6.PubSub.Publishing
 {
     using System;
     using NServiceBus;
-    using NServiceBus.Saga;
 
     #region publishFromSaga
     public class CreateUserSaga : Saga<CreateUserSaga.SagaData>,
