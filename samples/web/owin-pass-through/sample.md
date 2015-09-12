@@ -9,7 +9,7 @@ related:
 
 > OWIN defines a standard interface between .NET web servers and web applications. The goal of the OWIN interface is to decouple server and application, encourage the development of simple modules for .NET web development, and, by being an open standard, stimulate the open source ecosystem of .NET web development tools.
 
-So extensions to NServiceBus that plug into OWIN can be easily applied to [many .net web server technologies](http://owin.org/#projects)
+So extensions to NServiceBus that plug into OWIN can be easily applied to [many .net web server technologies](http://owin.org/#projects).
 
 
 ## WebServer/OWIN Hosting
@@ -26,7 +26,7 @@ The endpoint configuration is fairly standard. The one exception is that the ins
 
 ## HTTP Hosting and OWIN middleware
 
-A self-hosted instance of Katana is started and then different middleware are injected into the OWIN pipeline. Note that they are wired to map to specific URL suffixes 
+A self-hosted instance of Katana is started and then different middleware are injected into the OWIN pipeline. Note that they are wired to map to specific URL suffixes.
 
  * `/to-bus` for the Bus based interception
  * `/to-msmq` for the direct to MSMQ interception
