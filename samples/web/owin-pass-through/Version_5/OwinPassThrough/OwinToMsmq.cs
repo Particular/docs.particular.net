@@ -8,9 +8,10 @@ using System.Transactions;
 
 namespace OwinPassThrough
 {
-    using AppFunc = Func<IDictionary<string, object>, Task>;
 
     #region OwinToMsmq
+
+    using AppFunc = Func<IDictionary<string, object>, Task>;
 
     public class OwinToMsmq
     {
@@ -28,11 +29,11 @@ namespace OwinPassThrough
 
         public async Task Invoke(IDictionary<string, object> environment)
         {
-            using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            using (var memoryStream = await RequestAsMemoryStream(environment))
+            using (var scope = new TransactionScope())
             {
                 using (var queue = new MessageQueue(queuePath))
                 using (var message = new Message())
-                using (var memoryStream = await RequestAsMemoryStream(environment))
                 {
                     message.BodyStream = memoryStream;
                     var requestHeaders = (IDictionary<string, string[]>) environment["owin.RequestHeaders"];

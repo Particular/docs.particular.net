@@ -6,6 +6,7 @@ using NServiceBus.Transports.Msmq;
 #region MsmqHeaderSerializer
 static class MsmqHeaderSerializer
 {
+    static XmlSerializer serializer = new XmlSerializer(typeof(List<HeaderInfo>));
     public static byte[] CreateHeaders(string messageType)
     {
         var headerInfos = new List<HeaderInfo>
@@ -16,7 +17,6 @@ static class MsmqHeaderSerializer
                     Value = messageType
                 }
             };
-        var serializer = new XmlSerializer(typeof (List<HeaderInfo>));
         using (var stream = new MemoryStream())
         {
             serializer.Serialize(stream, headerInfos);

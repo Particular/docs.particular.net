@@ -7,9 +7,10 @@ using NServiceBus;
 
 namespace OwinPassThrough
 {
-    using AppFunc = Func<IDictionary<string, object>, Task>;
 
     #region OwinToBus
+
+    using AppFunc = Func<IDictionary<string, object>, Task>;
 
     public class OwinToBus
     {
