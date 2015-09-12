@@ -4,6 +4,8 @@ summary: Explanation of how NServiceBus handles multi-site communication.
 tags: []
 redirects:
  - nservicebus/the-gateway-and-multi-site-distribution
+related:
+ - samples/gateway
 ---
 
 The number of multi-site deployments of enterprise .NET systems are increasing due to the challenges of high availability and the requirement for faster response times for users, as the servers and data they access is closer. 
@@ -11,6 +13,7 @@ The number of multi-site deployments of enterprise .NET systems are increasing d
 RPC technologies quickly run into trouble in these environments as they make machines in the same site and those in remote sites look the same.
 
 In these cases, messaging is better than RPC, but many developers mistakenly represent physical site boundaries as logical boundaries, resulting in problems. NServiceBus prevents developers from going down the wrong path but may leave them wondering how NServiceBus handles multi-site communication.
+
 
 ## Disaster recovery and physical sites
 
@@ -21,6 +24,7 @@ In some cases, physical sites are replicas of one other. This is a common config
 NServiceBus provides no special facilities for disaster recovery other than to enable developers to plug in their own specific technologies. This can take the form of database replication of subscription information, configuring MSMQ to store its message data on a SAN, etc. The difference in price and performance of the various options is quite large and is not covered here.
 
 The next section describes the use of NServiceBus in logically significant, physical sites.
+
 
 ## Logically significant physical sites
 
@@ -36,23 +40,26 @@ For example, you expect the Sales service in a store to talk to the pricing serv
 
 This approach is not only common but is recommended for use in situations where physical sites have logical significance, keeping all inter-site communication within logical service boundaries.
 
+
 ## Intra-service cross-site messaging
 
 When sites have logical significance, the messages passed between them are different from the messages sent within the site.
 
 For example, the act of publishing prices from the headquarters has logical significance. The manager of a store explicitly performs an end-of-day operation after collecting and counting all cash in the tills. Therefore, you design separate classes for the messages passed between sites.
 
+
 ## Cross-site data transfer
 
 Depending on your network technology, you can set up a virtual private network (VPN) between your sites. This provides Windows networking visibility of queues in the target site from the sending site. You can use standard NServiceBus APIs to direct messages to their relevant targets, in the form of `Bus.Send(toDestination, msg);`.
 
-This model is recommended as it provides all the benefits of durable messaging between unreliably connecting machines; at several sites, the same as within a single site. You can read a great deal of information on [setting up and managing a Windows VPN](https://technet.microsoft.com/en-US/network/dd420463) .
+This model is recommended as it provides all the benefits of durable messaging between unreliably connecting machines; at several sites, the same as within a single site. You can read a great deal of information on [setting up and managing a Windows VPN](https://technet.microsoft.com/en-US/network/dd420463).
 
 In cases where you only have access to HTTP for connection between sites, you can enable the NServiceBus Gateway on each site so it transmits messages from a queue in one site to a queue in another site, including the hash of the messages to ensure that the message is transmitted correctly. The following diagram shows how it works:
 
 ![Gateway Headquarter to Site A](gateway-headquarter-to-site-a.png)  
 
-The sending process in site A sends a message to the gateway's input queue. The gateway then initiates an HTTP connection to its configured target site. The gateway in site B accepts HTTP connections, takes the message transmitted, hashes it, and returns the hash to site A. If the hashes match, the gateway in site B transmits the message it receives to a configured queue. If the hashes don't match, the gateway in site A retransmits.
+The sending process in site A sends a message to the gateway's input queue. The gateway then initiates an HTTP connection to its configured target site. The gateway in site B accepts HTTP connections, takes the message transmitted, hashes it, and returns the hash to site A. If the hashes match, the gateway in site B transmits the message it receives to a configured queue. If the hashes don't match, the gateway in site A re-transmits.
+
 
 ## Configuration and code
 
@@ -70,7 +77,6 @@ NServiceBus automatically sets the required headers that enable you to send mess
 
 NOTE: All cross-site interactions are performed internally to a service, so publish and subscribe are not supported across gateways.
 
-Read more on how to enable it in our [introduction to the gateway](/nservicebus/gateway/)
 
 ## Securing the gateway with SSL
 
@@ -78,17 +84,21 @@ To provide data encryption for messages transmitted between sites, configure SSL
 
 Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/ms733768.aspx) and make sure to configure the gateway to listen on the appropriate port, as well as to contact the remote gateway on the same port.
 
+
 ## Automatic de-duplication
 
-Going across alternate channels like HTTP means that you lose the MSMQ safety guarantee of exactly one message. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid burdening you with de-duplication, the NServiceBus gateway supports this out of the box. You just need to store the message IDs of all received messages so it can detect potential duplicates. 
+Going across alternate channels like HTTP means that you lose the MSMQ safety guarantee of exactly one message. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid burdening you with de-duplication, the NServiceBus gateway supports this out of the box. You just need to store the message IDs of all received messages so it can detect potential duplicates. Read more on persistence options and how to configure them [here](/nservicebus/persistence/)
 
-#### Version 5
 
-The gateway will use the storage type you configure. At this stage InMemory, NHibernate and RavenDB is supported. Read more on persitence options and how to configure them [here](/nservicebus/persistence/)
+### Version 5
 
-#### Version 4
+The gateway will use the storage type you configure. At this stage InMemory, NHibernate and RavenDB is supported. 
 
-By default, NServiceBus uses RavenDB to store the IDs but InMemory and SqlServer storages are supported as well. To use storage other than RavenDB, add `Configure.RunGatewayWithInMemoryPersistence()` or `Configure.RunGateway(typeof(SqlPersistence))` to your configuration.
+
+### Version 4
+
+By default, NServiceBus uses RavenDB to store the IDs but InMemory and SqlServer persistences are supported as well.
+
 
 ## Incoming channels
 
@@ -99,7 +109,3 @@ When you enable the gateway, it automatically sets up an HTTP channel to listen 
 The "Default" on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels. Currently, HTTP/HTTPS is the only supported channel but there are plans for Azure, FTP, and Amazon SQS to help you bridge both on-site and cloud sites.
 
 Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/ms733768.aspx) and make sure to configure the gateway to listen on the appropriate port, as well as to contact the remote gateway on the same port.
-
-## The Gateway in action
-
-If you want to take the gateway for a spin, look at the [Gateway sample](https://github.com/Particular/NServiceBus.Msmq.Samples/tree/master/Gateway)

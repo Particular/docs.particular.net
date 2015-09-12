@@ -10,7 +10,7 @@ related:
 
 The purpose of the gateway is to allow you to do the same durable fire-and-forget messaging that you are accustomed to with NServiceBus across physically separated sites, where "sites " are locations where you run IT infrastructure and not web sites.
 
-The gateway only comes into play where you can't use the regular queued transports for communication i.e. when setting up a VPN-connection is not an option. The reason for not using a VPN could be security concerns, bandwidth limitation, latency problems, high availability constraints, etc.
+The gateway only comes into play where you can't use the regular queued transports for communication i.e. when setting up a VPN connection is not an option. The reason for not using a VPN could be security concerns, bandwidth limitation, latency problems, high availability constraints, etc.
 
 
 ## When not to use the gateway
@@ -46,16 +46,7 @@ RPC completely hides the fact that you are now going out of your data center and
 
 ## Using the gateway
 
-In order to send message to other sites you need to call the `IBus.SendToSites` method shown below.
-
-```C#
-/// <summary>
-/// Sends the messages to all sites with matching 
-/// site keys registered with the gateway.
-/// The gateway is assumed to be located at the master node. 
-/// </summary>
-ICallback SendToSites(IEnumerable<string> siteKeys, params object[] messages);
-```
+In order to send message to other sites you need to call the `IBus.SendToSites`.
 
 This allows you to pass in a list of sites to where you want to send your messages. You can configure each site with a different transport mechanism. Currently the supported channels are HTTP/HTTPS but you can easily extend the gateway with your own implementation.
 
