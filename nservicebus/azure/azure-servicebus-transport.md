@@ -36,6 +36,7 @@ Alternatively, when using one of the NServiceBus provided hosting processes, you
 
 <!-- import AzureServiceBusTransportWithAzureHost -->
 
+
 ## Setting the Connection String
 
 The default way to set the connection string is using the .net provided `connectionStrings` configuration section in app.config or web.config, with the name `NServicebus\Transport`:
@@ -75,11 +76,13 @@ NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configu
 
 Defaults are just starting values. You should always measure and test these values against your solution and adjust those accordingly.
 
+
 ## Transactions
 
 NServiceBus AzureServiceBus transport relies on the underlying Azure ServiceBus library which requires the use of the `Serializable` isolation level (the most restrictive isolation level that does not permit `dirty reads`, `phantom reads` and `non repeatable reads`; will block any reader until the writer is committed [see this link](http://dotnetspeak.com/2013/04/transaction-isolation-levels-explained-in-details) for more information)
 
-NserviceBus AzureServiceBus transport configuration is hard coded to `Serializable` isolation level to prevent users from overriding it.
+NServiceBus AzureServiceBus transport configuration is hard coded to `Serializable` isolation level to prevent users from overriding it.
+
 
 ## Scenarios
 
@@ -95,7 +98,7 @@ There are several things to consider:
 
 In scenario where handlers are CPU intense and have very little IO, it is advised to lower number of threads to one and have a bigger `BatchSize`. `LockDuration` and `MaxDeliveryCount` might require an adjustment to match the batch size taking in account number of messages that end up in the dead letter queue.
 
-In scenario where handlers are IO intense, it is advised to set number of threads ([`MaximumConcurrencyLevel`](/nservicebus/operations/throughput.md) in NServiceBus) to 12 threads per logical core and `BatchSize` to a number of messages that takes to process, taking in account possible/measured single message processing time and IO latency. Try to start with a small `BatchSize` and through adjustment and measurement bring it up, adjusting accordingly `LockDuration` and `MaxDeliveryCount`.
+In scenario where handlers are IO intense, it is advised to set number of threads ([`MaximumConcurrencyLevel`](/nservicebus/operations/tuning.md) in NServiceBus) to 12 threads per logical core and `BatchSize` to a number of messages that takes to process, taking in account possible/measured single message processing time and IO latency. Try to start with a small `BatchSize` and through adjustment and measurement bring it up, adjusting accordingly `LockDuration` and `MaxDeliveryCount`.
 
 
 ## Sample
