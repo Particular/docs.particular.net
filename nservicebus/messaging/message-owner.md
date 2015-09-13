@@ -65,10 +65,9 @@ The type list from `Assembly` can be further filtered via one of the following:
 
 {{Note: The xml configuration version (`app.config`) the the code based API differ slightly.
 
-|app.config|Code API|
-|-|-|
-|`Assembly` attribute|`AssemblyName` property|
-|`Type` attribute|`TypeFullName` property| 
+In `app.config` the attributes are `Assembly` and `Type`.
+
+In the code API the properties are `AssemblyName` and `TypeFullName`. 
 }}
 
 ### Resolving with Messages
