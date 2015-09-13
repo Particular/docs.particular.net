@@ -1,4 +1,4 @@
-﻿namespace Snippets4.Transports.Throughput
+﻿namespace Snippets6.Transports.Throughput
 {
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;

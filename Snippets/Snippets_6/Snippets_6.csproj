@@ -132,6 +132,7 @@
     <Compile Include="Sagas\Timeouts\TiredOfWaitingForMessage2.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="MsmqMessageLabel.cs" />
+    <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="Routing\AutomaticSubscriptions\AutoSubscribeSettings.cs" />
@@ -143,6 +144,7 @@
     <Content Include="Errors\ErrorQueue\configureErrorQueue.config.xml" />
     <Content Include="Errors\FirstLevel\flr.config.xml" />
     <Content Include="Persistence\Msmq\msmq.config.xml">
+    <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <None Include="app.config" />
