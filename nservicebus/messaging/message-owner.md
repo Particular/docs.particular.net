@@ -49,31 +49,33 @@ This allows the mapping to know which message types to include in the mapping.
 There are two, mutually exclusive approaches, to message resolution:
 
 
-### Resolving with the AssemblyName
+### Resolving with the Assembly
 
-If this is defined then all types in that assembly will included in the initial set. This effectively uses [Assembly.Load(AssemblyName)](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) followed by [Assembly.GetTypes()](https://msdn.microsoft.com/en-us/library/system.reflection.assembly.gettypes.aspx).
+If this is defined then all types in that assembly will included in the initial set. This effectively uses [Assembly.Load(Assembly)](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) followed by [Assembly.GetTypes()](https://msdn.microsoft.com/en-us/library/system.reflection.assembly.gettypes.aspx).
 
 Note: This value is the [AssemblyName](https://msdn.microsoft.com/en-us/library/k8xx4k69.aspx) not the file name.
 
 
 #### Filtering
 
-The type list from `AssemblyName` can be further filtered via one of the following:
+The type list from `Assembly` can be further filtered via one of the following:
 
- * **TypeFullName**: If `TypeFullName` is defined then only that type will be included in the mapping. This effectively calls [Assembly.GetType](https://msdn.microsoft.com/en-us/library/y0cd10tb.aspx) on the Assembly resolved via `AssemblyName`. 
+ * **Type**: If `Type` is defined then only that type will be included in the mapping. This effectively calls [Assembly.GetType](https://msdn.microsoft.com/en-us/library/y0cd10tb.aspx) on the Assembly resolved via `Assembly`. 
  * **Namespace**: If `Namespace` is defined then only the types that have that namespace will be included in the mapping. It does not include sub namespaces.
 
-Note that the xml configuration version of the above settings are slightly different:
+Note that the xml configuration version (`app.config`) the the code based API differ slightly.
 
- * `AssemblyName` is actually `Assembly`  when referenced in `app.config`.
- * `TypeFullName` is actually `Type` when referenced in `app.config`.
+|app.config|Code API|
+|-|-|
+|`Assembly` attribute|`AssemblyName` property|
+|`Type` attribute|`TypeFullName` property| 
 
 
 ### Resolving with Messages
 
-If the `Messages` represents a valid Type (ie [Type.GetType](https://msdn.microsoft.com/en-us/library/w3f99sx1.aspx) returns a Type) then that type will be mapped to the target endpoint.
+If the `Messages` represents a valid Type (i.e. [Type.GetType](https://msdn.microsoft.com/en-us/library/w3f99sx1.aspx) returns a Type) then that type will be mapped to the target endpoint.
 
-Otherwise it will be assumed `Messages` is an assembly name and all types in that assembly will be mapped to the target endpoint.  This effectively uses [Assembly.Load(AssemblyName)](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) followed by [Assembly.GetTypes()](https://msdn.microsoft.com/en-us/library/system.reflection.assembly.gettypes.aspx).
+Otherwise it will be assumed `Messages` is an assembly name and all types in that assembly will be mapped to the target endpoint.  This effectively uses [Assembly.Load(Assembly)](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) followed by [Assembly.GetTypes()](https://msdn.microsoft.com/en-us/library/system.reflection.assembly.gettypes.aspx).
 
 WARNING: Since `Messages` is ambiguous in its usage the `Assembly`, `Type` and `Namespace` attributes are the recommended approach for mapping types. The `Messages` attribute is still supported for backwards comparability. 
 
@@ -82,19 +84,19 @@ WARNING: Since `Messages` is ambiguous in its usage the `Assembly`, `Type` and `
 
 To register all message types defined in an assembly:
 
- * `AssemblyName` = `YourMessagesAssemblyName` 
+ * `Assembly` = `YourMessagesAssemblyName` 
  * `Endpoint` = `queue@machinename`
 
 To register all message types defined in an assembly with a specific namespace: 
 
- * `AssemblyName` = `YourMessagesAssemblyName` 
+ * `Assembly` = `YourMessagesAssemblyName` 
  * `Namespace` = `YourMessageNamesapce`
  * `Endpoint` = `queue@machinename`
   
 To register a specific type in an assembly:
 
- * `AssemblyName` = `YourMessagesAssemblyName` 
- * `TypeFullName` = `YourMessageFullTypeName`
+ * `Assembly` = `YourMessagesAssemblyName` 
+ * `Type` = `YourMessageFullTypeName`
  * `Endpoint` = `queue@machinename`
 
 
