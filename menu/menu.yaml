@@ -220,7 +220,7 @@
         - "nservicebus/operations/installers"
         - "nservicebus/operations/management-using-powershell"
         - "nservicebus/operations/performance-counters"
-        - "nservicebus/operations/throughput"
+        - "nservicebus/operations/tuning"
         - "nservicebus/operations/running-on-windows"
         - "nservicebus/operations/transactions-message-processing"
         - "nservicebus/operations/warning-for-cid-values"
