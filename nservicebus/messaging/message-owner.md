@@ -63,13 +63,13 @@ The type list from `Assembly` can be further filtered via one of the following:
  * **Type**: If `Type` is defined then only that type will be included in the mapping. This effectively calls [Assembly.GetType](https://msdn.microsoft.com/en-us/library/y0cd10tb.aspx) on the Assembly resolved via `Assembly`. 
  * **Namespace**: If `Namespace` is defined then only the types that have that namespace will be included in the mapping. It does not include sub namespaces.
 
-Note that the xml configuration version (`app.config`) the the code based API differ slightly.
+{{Note: The xml configuration version (`app.config`) the the code based API differ slightly.
 
 |app.config|Code API|
 |-|-|
 |`Assembly` attribute|`AssemblyName` property|
 |`Type` attribute|`TypeFullName` property| 
-
+}}
 
 ### Resolving with Messages
 
