@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.IO.Compression;
+using System.Threading.Tasks;
 using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 
@@ -8,7 +9,7 @@ public class TransportMessageCompressionMutator : IMutateIncomingTransportMessag
 {
     static ILog log = LogManager.GetLogger("TransportMessageCompressionMutator");
 
-    public void MutateOutgoing(MutateOutgoingTransportMessageContext context)
+    public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {
         log.Info("transportMessage.Body size before compression: " + context.OutgoingBody.Length);
 
@@ -24,13 +25,14 @@ public class TransportMessageCompressionMutator : IMutateIncomingTransportMessag
         context.OutgoingBody = outStream.ToArray();
         context.OutgoingHeaders["IWasCompressed"]= "true";
         log.Info("transportMessage.Body size after compression: " + context.OutgoingBody.Length);
+        return Task.FromResult(0);
     }
 
-    public void MutateIncoming(MutateIncomingTransportMessageContext context)
+    public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
         if (!context.Headers.ContainsKey("IWasCompressed"))
         {
-            return;
+            return Task.FromResult(0);
         }
         using (GZipStream bigStream = new GZipStream(new MemoryStream(context.Body), CompressionMode.Decompress))
         {
@@ -38,6 +40,7 @@ public class TransportMessageCompressionMutator : IMutateIncomingTransportMessag
             bigStream.CopyTo(bigStreamOut);
             context.Body = bigStreamOut.ToArray();
         }
+        return Task.FromResult(0);
     }
 }
 #endregion

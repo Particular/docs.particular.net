@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using System.Threading.Tasks;
 using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 #region ValidationMessageMutator
@@ -9,14 +10,16 @@ public class ValidationMessageMutator : IMutateIncomingMessages, IMutateOutgoing
 {
     static ILog log = LogManager.GetLogger("ValidationMessageMutator");
 
-    public void MutateOutgoing(MutateOutgoingMessageContext context)
+    public Task MutateOutgoing(MutateOutgoingMessageContext context)
     {
         ValidateDataAnnotations(context.OutgoingMessage);
+        return Task.FromResult(0);
     }
 
-    public void MutateIncoming(MutateIncomingMessageContext context)
+    public Task MutateIncoming(MutateIncomingMessageContext context)
     {
         ValidateDataAnnotations(context.Message);
+        return Task.FromResult(0);
     }
 
     static void ValidateDataAnnotations(object message)
