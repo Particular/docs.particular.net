@@ -1,13 +1,11 @@
 ﻿using System;
 using NServiceBus;
-using NServiceBus.Logging;
 using StructureMap;
 
 static class Program
 {
     static void Main()
     {
-        LogManager.Use<DefaultFactory>().Level(LogLevel.Error);
         #region ContainerConfiguration
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.StructureMap");
