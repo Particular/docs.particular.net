@@ -1,13 +1,14 @@
-using NServiceBus;
+using System.Threading.Tasks;
 using NServiceBus.MessageMutator;
 
 #region mutate-incoming-transport-messages
 public class MutateIncomingTransportMessages : IMutateIncomingTransportMessages
 {
-    public void MutateIncoming(TransportMessage transportMessage)
+    public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
-        transportMessage.Headers
+        context.Headers
             .Add("MutateIncomingTransportMessages", "ValueMutateIncomingTransportMessages");
+        return Task.FromResult(0);
     }
 }
 #endregion

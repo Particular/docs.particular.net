@@ -1,22 +1,15 @@
-﻿using NServiceBus;
+﻿using System.Threading.Tasks;
 using NServiceBus.MessageMutator;
 
 #region mutate-incoming-messages
 public class MutateIncomingMessages : IMutateIncomingMessages
 {
-    IBus bus;
-
-    public MutateIncomingMessages(IBus bus)
+    public Task MutateIncoming(MutateIncomingMessageContext context)
     {
-        this.bus = bus;
-    }
-
-    public object MutateIncoming(object message)
-    {
-        bus.CurrentMessageContext
+        context
             .Headers
             .Add("MutateIncomingMessages", "ValueMutateIncomingMessages");
-        return message;
+        return Task.FromResult(0);
     }
 }
 #endregion

@@ -1,19 +1,13 @@
-﻿using NServiceBus;
+﻿using System.Threading.Tasks;
 using NServiceBus.MessageMutator;
 
 #region mutate-outgoing-transport-messages
 public class MutateOutgoingTransportMessages : IMutateOutgoingTransportMessages
 {
-    IBus bus;
-
-    public MutateOutgoingTransportMessages(IBus bus)
+    public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {
-        this.bus = bus;
-    }
-
-    public void MutateOutgoing(MutateOutgoingTransportMessagesContext context)
-    {
-        context.SetHeader("MutateOutgoingTransportMessages", "ValueMutateOutgoingTransportMessages");
+        context.OutgoingHeaders["MutateOutgoingTransportMessages"]= "ValueMutateOutgoingTransportMessages";
+        return Task.FromResult(0);
     }
 }
 #endregion
