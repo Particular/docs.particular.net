@@ -1,7 +1,6 @@
 ﻿using System;
 using NServiceBus;
 using NServiceBus.Logging;
-using NServiceBus.Saga;
 
 #region thesaga
 public class OrderSaga : Saga<OrderSagaData>,
