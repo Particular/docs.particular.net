@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading;
+    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.MessageMutator;
 
@@ -12,10 +13,18 @@
     {
         public static bool Debug { get { return debug.Value; } }
 
-        public void MutateIncoming(TransportMessage transportMessage)
+        static ThreadLocal<bool> debug = new ThreadLocal<bool>();
+
+        public void Customize(BusConfiguration configuration)
         {
-            var debugFlag = transportMessage.Headers.ContainsKey("Debug") ? transportMessage.Headers["Debug"] : "false";
-            if (debugFlag !=null && debugFlag.Equals("true", StringComparison.OrdinalIgnoreCase))
+            configuration.RegisterComponents(c => c.ConfigureComponent<DebugFlagMutator>(DependencyLifecycle.InstancePerCall));
+        }
+
+
+        public Task MutateIncoming(MutateIncomingTransportMessageContext context)
+        {
+            var debugFlag = context.Headers.ContainsKey("Debug") ? context.Headers["Debug"] : "false";
+            if (debugFlag != null && debugFlag.Equals("true", StringComparison.OrdinalIgnoreCase))
             {
                 debug.Value = true;
             }
@@ -23,19 +32,13 @@
             {
                 debug.Value = false;
             }
+            return Task.FromResult(0);
         }
 
-        static ThreadLocal<bool> debug = new ThreadLocal<bool>();
-
-
-        public void Customize(BusConfiguration configuration)
+        public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
         {
-            configuration.RegisterComponents(c => c.ConfigureComponent<DebugFlagMutator>(DependencyLifecycle.InstancePerCall));
-        }
-
-        public void MutateOutgoing(MutateOutgoingTransportMessagesContext context)
-        {
-            context.SetHeader("Debug", Debug.ToString());
+            context.OutgoingHeaders["Debug"]= Debug.ToString();
+            return Task.FromResult(0);
         }
     }
 }

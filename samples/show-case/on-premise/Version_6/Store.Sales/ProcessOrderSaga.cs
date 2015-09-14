@@ -6,7 +6,6 @@
     using Messages.Commands;
     using Messages.Events;
     using NServiceBus;
-    using NServiceBus.Saga;
 
     public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
                                     IAmStartedByMessages<SubmitOrder>,
