@@ -45,6 +45,12 @@
             #region ScanningMixingIncludeAndExclude
             Configure.With(AllAssemblies.Matching("NServiceBus").And("MyCompany.").Except("BadAssembly.dll"));
             #endregion
+
+            #region 5to6ScanningUpgrade
+
+            Configure.With(AllAssemblies.Matching("NServiceBus").And("MyCompany.").Except("BadAssembly1.dll").And("BadAssembly2.dll"));
+
+            #endregion
         }
 
         #region ScanningConfigurationInNSBHost

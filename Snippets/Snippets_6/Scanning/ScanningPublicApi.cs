@@ -32,6 +32,12 @@
             busConfiguration.ExcludeTypes(type1, type2);
 
             #endregion
+
+            #region 5to6ScanningUpgrade
+
+            busConfiguration.ExcludeAssemblies("BadAssembly1.dll", "BadAssembly2.dll");
+
+            #endregion
         }
 
         #region ScanningConfigurationInNSBHost

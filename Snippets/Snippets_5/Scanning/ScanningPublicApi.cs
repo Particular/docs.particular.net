@@ -61,6 +61,12 @@
 
             #endregion
 
+
+            #region 5to6ScanningUpgrade
+
+            busConfiguration.AssembliesToScan(AllAssemblies.Matching("NServiceBus").And("MyCompany.").Except("BadAssembly1.dll").And("BadAssembly2.dll"));
+
+            #endregion
         }
 
         #region ScanningConfigurationInNSBHost
