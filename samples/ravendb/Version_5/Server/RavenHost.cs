@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using Raven.Client.Embedded;
-#region ravenhost
+using Raven.Client.UniqueConstraints;
 
+#region ravenhost
 class RavenHost : IDisposable
 {
 
@@ -20,6 +21,7 @@ class RavenHost : IDisposable
                 HostName = "localhost"
             }
         };
+        documentStore.RegisterListener(new UniqueConstraintsStoreListener());
         documentStore.Initialize();
         //since we are hosting a fake raven server in process we need to remove it from the logging pipeline
         Trace.Listeners.Clear();
@@ -37,5 +39,4 @@ class RavenHost : IDisposable
         }
     }
 }
-
 #endregion
