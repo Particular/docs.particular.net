@@ -4,6 +4,7 @@ using log4net;
 using ServiceControl.Plugin.CustomChecks;
 
 #region thecustomcheck
+
 abstract class Monitor : PeriodicCheck
 {
     Uri uri;
@@ -17,28 +18,29 @@ abstract class Monitor : PeriodicCheck
 
     public override CheckResult PerformCheck()
     {
-        using (HttpClient client = new HttpClient { Timeout = TimeSpan.FromSeconds(3), })
+        try
         {
-            try
+            using (HttpClient client = new HttpClient
             {
-                using (HttpResponseMessage response = client.GetAsync(uri).Result)
+                Timeout = TimeSpan.FromSeconds(3),
+            })
+            using (HttpResponseMessage response = client.GetAsync(uri).Result)
+            {
+                if (response.IsSuccessStatusCode)
                 {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        logger.Info("Succeeded in contacting " + uri);
-                        return CheckResult.Pass;
-                    }
-                    string error = string.Format("Failed to contact '{0}'. HttpStatusCode: {1}", uri, response.StatusCode);
-                    logger.Info(error);
-                    return CheckResult.Failed(error);
+                    logger.Info("Succeeded in contacting " + uri);
+                    return CheckResult.Pass;
                 }
-            }
-            catch (Exception exception)
-            {
-                string error = string.Format("Failed to contact '{0}'. Error: {1}", uri, exception.Message);
+                string error = string.Format("Failed to contact '{0}'. HttpStatusCode: {1}", uri, response.StatusCode);
                 logger.Info(error);
                 return CheckResult.Failed(error);
             }
+        }
+        catch (Exception exception)
+        {
+            string error = string.Format("Failed to contact '{0}'. Error: {1}", uri, exception.Message);
+            logger.Info(error);
+            return CheckResult.Failed(error);
         }
     }
 }
