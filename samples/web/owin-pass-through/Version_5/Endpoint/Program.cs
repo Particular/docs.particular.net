@@ -20,7 +20,7 @@ static class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         using (var bus = Bus.Create(busConfiguration).Start())
-        using (StartGateway(bus))
+        using (StartOwinHost(bus))
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
@@ -28,7 +28,7 @@ static class Program
 #endregion
     }
 #region startowin
-    static IDisposable StartGateway(IBus bus)
+    static IDisposable StartOwinHost(IBus bus)
     {
         var baseUrl = "http://localhost:12345/";
         var startOptions = new StartOptions(baseUrl)

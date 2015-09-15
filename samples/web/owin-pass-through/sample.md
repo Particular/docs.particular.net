@@ -39,7 +39,7 @@ A self-hosted instance of Katana is started and then different middleware are in
 The Bus based approach takes the following steps
 
  * Reads text for the message body from the HTTP request
- * Reads the message type name from the requires headers
+ * Reads the message type name from the required headers
  * Converts the message type name to a .net Type
  * Uses Type and message body, in conjunction with Json.net, to deserialize an instance of the real message
  * Places that message on the bus via a `SendLocal` 
@@ -52,7 +52,7 @@ The Bus based approach takes the following steps
 The MSMQ based approach takes the following steps
 
  * Reads text for the message body from the HTTP request
- * Reads the message type name from the requires headers
+ * Reads the message type name from the required headers
  * Uses the message type name to create a MSMQ transport compatible header string.
  * Places that body and header directly onto MSMQ
  
