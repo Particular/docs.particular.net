@@ -6,7 +6,10 @@ tags:
 - Installation
 ---
 
-The ServiceControl MSI does not provide an option to install additional instances. Instead, do it manually once you have installed an initial copy of ServiceControl.
+NOTE: This documentation is for older versions of ServiceControl. Setting up multiple instances is now supported by the   
+ServiceControl Management Utility and via the ServiceControl Management cmdlets.
+
+Prior to ServiceControl 1.7 the installation did not provide an option to install additional instances. Instead, do it manually once you have installed an initial copy of ServiceControl.  These instructions guide you through the setup process. 
 
 
 ## Assumptions
