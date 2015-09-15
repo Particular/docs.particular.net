@@ -12,13 +12,13 @@ related:
 NServiceBus Version 5 brings the option of running endpoints with the same reliability we all got accustomed to while running under DTC, but now without it. 
 
 
-## Supported Transports
+## Enabling the outbox
 
-RabbitMQ and SQL Server transport are fully supported. In order to enable the Outbox for them, use the following API
+In order to enable the Outbox, use the following API:
 
 <!-- import OutboxEnablineInCode --> 
 
-MSMQ users who wish to enable the Outbox, apart from using the mentioned code API, need to explicitly set the following configuration settings when configuring the endpoint:
+This is enough for the RabbitMQ trnasport. For SQL Server and MSMQ transports, to enable the outbox users need to also explicitly set the following configuration settings when configuring the endpoint:
 
 <!-- import OutboxEnablingInAppConfig --> 
 
