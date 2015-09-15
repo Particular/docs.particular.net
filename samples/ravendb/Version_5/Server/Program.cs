@@ -2,7 +2,6 @@
 using NServiceBus;
 using NServiceBus.Persistence;
 using Raven.Client.Document;
-using Raven.Client.UniqueConstraints;
 
 class Program
 {
@@ -20,7 +19,6 @@ class Program
                 Url = "http://localhost:32076",
                 DefaultDatabase = "NServiceBus"
             };
-            documentStore.RegisterListener(new UniqueConstraintsStoreListener());
             documentStore.Initialize();
 
             busConfiguration.UsePersistence<RavenDBPersistence>()

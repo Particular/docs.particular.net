@@ -34,7 +34,7 @@ public class OrderSaga : Saga<OrderSagaData>,
         {
             OrderDescription = orderDescription
         };
-        RequestTimeout(TimeSpan.FromSeconds(5999), timeoutData);
+        RequestTimeout(TimeSpan.FromSeconds(5), timeoutData);
     }
 
     public void Timeout(CompleteOrder state)
