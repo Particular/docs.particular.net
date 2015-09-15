@@ -44,13 +44,13 @@
       <HintPath>..\..\..\..\..\packages\NServiceBus.StructureMap.5.0.1\lib\net45\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
-      <HintPath>..\..\..\..\..\packages\RavenDB.Database.3.0.3785\lib\net45\Raven.Abstractions.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\RavenDB.Database.3.0.3690\lib\net45\Raven.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight">
-      <HintPath>..\..\..\..\..\packages\RavenDB.Client.3.0.3785\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\RavenDB.Client.3.0.3690\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Database">
-      <HintPath>..\..\..\..\..\packages\RavenDB.Database.3.0.3785\lib\net45\Raven.Database.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\RavenDB.Database.3.0.3690\lib\net45\Raven.Database.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\..\..\..\packages\structuremap.3.1.6.186\lib\net40\StructureMap.dll</HintPath>
@@ -78,7 +78,7 @@
     <Compile Include="RavenUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\..\packages\RavenDB.Database.3.0.3785\content\Raven.Studio.Html5.zip">
+    <None Include="..\..\..\..\..\packages\RavenDB.Database.3.0.3690\content\Raven.Studio.Html5.zip">
       <Link>Raven.Studio.Html5.zip</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
