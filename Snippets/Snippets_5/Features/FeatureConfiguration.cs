@@ -10,17 +10,6 @@ namespace Snippets5.Features
     class SecondLevelRetries : Feature
     {
 
-#region FeatureConfiguration
-        public SecondLevelRetries()
-        {
-            EnableByDefault();
-
-            DependsOn<DelayedDeliveryFeature>();
-
-            Prerequisite(context => !context.Settings.GetOrDefault<bool>("Endpoint.SendOnly"), "Send only endpoints can't use SLR since it requires receive capabilities");
-        }
-#endregion
-
 #region FeatureSetup
         protected override void Setup(FeatureConfigurationContext context)
         {
