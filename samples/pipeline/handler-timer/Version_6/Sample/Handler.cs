@@ -6,6 +6,7 @@ using NServiceBus;
 public class Handler : IHandleMessages<Message>
 {
     static Random random = new Random();
+
     public void Handle(Message message)
     {
         int milliseconds = random.Next(100, 1000);

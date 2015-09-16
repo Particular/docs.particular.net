@@ -7,6 +7,7 @@ using NServiceBus.Pipeline.Contexts;
 class HandlerTimerBehavior : HandlingStageBehavior
 {
     static ILog log = LogManager.GetLogger(typeof(HandlerTimerBehavior));
+
     public override void Invoke(Context context, Action next)
     {
         var stopwatch = Stopwatch.StartNew();
