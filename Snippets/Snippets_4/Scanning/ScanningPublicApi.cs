@@ -7,48 +7,102 @@
 
     public class ScanningPublicApi
     {
-        public ScanningPublicApi()
+        public void ScanningDefault()
+        {
+            #region ScanningDefault
+
+            Configure.With();
+
+            #endregion
+
+        }
+
+        public void ScanningExcludeByName()
+        {
+            #region ScanningExcludeByName
+
+            IExcludesBuilder excludesBuilder = AllAssemblies
+                .Except("MyAssembly1.dll")
+                .And("MyAssembly2.dll");
+            Configure.With(excludesBuilder);
+
+            #endregion
+        }
+
+        public void ScanningListOfTypes()
+        {
+            IEnumerable<Type> myTypes = null;
+
+            #region ScanningListOfTypes
+
+            Configure.With(myTypes);
+
+            #endregion
+
+        }
+
+        public void ScanningListOfAssemblies()
         {
             IEnumerable<Assembly> myListOfAssemblies = null;
-
             Assembly assembly2 = null;
             Assembly assembly1 = null;
 
-            IEnumerable<Type> myTypes = null;
-
-            #region ScanningDefault
-            Configure.With();
-            #endregion
-
-            #region ScanningExcludeByName
-            Configure.With(AllAssemblies.Except("MyAssembly1.dll").And("MyAssembly2.dll"));
-            #endregion
-
-            #region ScanningListOfTypes
-            Configure.With(myTypes);
-            #endregion
-
             #region ScanningListOfAssemblies
+
             Configure.With(myListOfAssemblies);
             // or
             Configure.With(assembly1, assembly2);
+
             #endregion
 
+        }
+
+        public void ScanningIncludeByPattern()
+        {
             #region ScanningIncludeByPattern
-            Configure.With(AllAssemblies.Matching("NServiceBus").And("MyCompany.").And("SomethingElse"));
-            #endregion
 
+            IIncludesBuilder includesBuilder = AllAssemblies
+                .Matching("NServiceBus")
+                .And("MyCompany.")
+                .And("SomethingElse");
+            Configure.With(includesBuilder);
+
+            #endregion
+        }
+
+        public void ScanningCustomDirectory()
+        {
             #region ScanningCustomDirectory
+
             Configure.With(@"c:\my-custom-dir");
+
             #endregion
 
+        }
+
+        public void ScanningMixingIncludeAndExclude()
+        {
             #region ScanningMixingIncludeAndExclude
-            Configure.With(AllAssemblies.Matching("NServiceBus").And("MyCompany.").Except("BadAssembly.dll"));
-            #endregion
 
+            IExcludesBuilder excludesBuilder = AllAssemblies
+                .Matching("NServiceBus")
+                .And("MyCompany.")
+                .Except("BadAssembly.dll");
+            Configure.With(excludesBuilder);
+
+            #endregion
+        }
+
+        public void ScanningUpgrade()
+        {
             #region 5to6ScanningUpgrade
 
-            Configure.With(AllAssemblies.Matching("NServiceBus").And("MyCompany.").Except("BadAssembly1.dll").And("BadAssembly2.dll"));
+            IExcludesBuilder excludesBuilder = AllAssemblies
+                .Matching("NServiceBus")
+                .And("MyCompany.")
+                .Except("BadAssembly1.dll")
+                .And("BadAssembly2.dll");
+            Configure.With(excludesBuilder);
 
             #endregion
         }
