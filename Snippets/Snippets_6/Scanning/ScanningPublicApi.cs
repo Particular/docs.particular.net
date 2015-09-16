@@ -5,31 +5,57 @@
 
     public class ScanningPublicApi
     {
-        public ScanningPublicApi()
+        public void ScanningDefault()
         {
-            Type type1 = null, type2 = null;
-
             #region ScanningDefault
 
             BusConfiguration busConfiguration = new BusConfiguration();
 
             #endregion
+        }
+
+        public void ScanningNestedAssebliesEnabled()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
 
             #region ScanningNestedAssebliesEnabled
 
             busConfiguration.ScanAssembliesInNestedDirectories();
 
             #endregion
+        }
+
+        public void ScanningExcludeByName()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
 
             #region ScanningExcludeByName
 
             busConfiguration.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
 
             #endregion
+        }
+
+        public void ScanningExcludeTypes()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
+            Type type1 = null;
+            Type type2 = null;
 
             #region ScanningExcludeTypes
 
             busConfiguration.ExcludeTypes(type1, type2);
+
+            #endregion
+        }
+
+        public void ScanningUpgrade()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
+
+            #region 5to6ScanningUpgrade
+
+            busConfiguration.ExcludeAssemblies("BadAssembly1.dll", "BadAssembly2.dll");
 
             #endregion
         }
