@@ -14,12 +14,12 @@ static class Program
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
 #region startbus
-        var busConfiguration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.OwinPassThrough");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (var bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         using (StartOwinHost(bus))
         {
             Console.WriteLine("Press any key to exit");
@@ -30,8 +30,8 @@ static class Program
 #region startowin
     static IDisposable StartOwinHost(IBus bus)
     {
-        var baseUrl = "http://localhost:12345/";
-        var startOptions = new StartOptions(baseUrl)
+        string baseUrl = "http://localhost:12345/";
+        StartOptions startOptions = new StartOptions(baseUrl)
         {
             ServerFactory = "Microsoft.Owin.Host.HttpListener",
         };
@@ -46,14 +46,14 @@ static class Program
 
     static void MapToBus(IAppBuilder builder, IBus bus)
     {
-        var owinToBus = new OwinToBus(bus);
+        OwinToBus owinToBus = new OwinToBus(bus);
         builder.Map("/to-bus", app => { app.Use(owinToBus.Middleware()); });
     }
 
     static void MapToMsmq(IAppBuilder builder)
     {
-        var queue = Environment.MachineName + @"\private$\Samples.OwinPassThrough";
-        var owinToMsmq = new OwinToMsmq(queue);
+        string queue = Environment.MachineName + @"\private$\Samples.OwinPassThrough";
+        OwinToMsmq owinToMsmq = new OwinToMsmq(queue);
         builder.Map("/to-msmq", app => { app.Use(owinToMsmq.Middleware()); });
     }
 #endregion

@@ -30,17 +30,17 @@ namespace OwinPassThrough
 
         public async Task Invoke(IDictionary<string, object> environment)
         {
-            var messageBody = await GetMessageBody(environment);
-            var requestHeaders = (IDictionary<string, string[]>) environment["owin.RequestHeaders"];
-            var typeName = requestHeaders["MessageType"].Single();
-            var objectType = Type.GetType(typeName);
-            var deserialize = Deserialize(messageBody, objectType);
+            string messageBody = await GetMessageBody(environment);
+            IDictionary<string, string[]> requestHeaders = (IDictionary<string, string[]>) environment["owin.RequestHeaders"];
+            string typeName = requestHeaders["MessageType"].Single();
+            Type objectType = Type.GetType(typeName);
+            object deserialize = Deserialize(messageBody, objectType);
             bus.SendLocal(deserialize);
         }
 
         object Deserialize(string messageBody, Type objectType)
         {
-            using (var textReader = new StringReader(messageBody))
+            using (StringReader textReader = new StringReader(messageBody))
             {
                 return serializer.Deserialize(textReader, objectType);
             }
@@ -48,8 +48,8 @@ namespace OwinPassThrough
 
         async Task<string> GetMessageBody(IDictionary<string, object> environment)
         {
-            using (var requestStream = (Stream) environment["owin.RequestBody"])
-            using (var streamReader = new StreamReader(requestStream))
+            using (Stream requestStream = (Stream) environment["owin.RequestBody"])
+            using (StreamReader streamReader = new StreamReader(requestStream))
             {
                 return await streamReader.ReadToEndAsync();
             }

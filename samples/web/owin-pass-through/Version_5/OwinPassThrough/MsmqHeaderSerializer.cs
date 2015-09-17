@@ -9,7 +9,7 @@ static class MsmqHeaderSerializer
     static XmlSerializer serializer = new XmlSerializer(typeof(List<HeaderInfo>));
     public static byte[] CreateHeaders(string messageType)
     {
-        var headerInfos = new List<HeaderInfo>
+        List<HeaderInfo> headerInfos = new List<HeaderInfo>
             {
                 new HeaderInfo
                 {
@@ -17,7 +17,7 @@ static class MsmqHeaderSerializer
                     Value = messageType
                 }
             };
-        using (var stream = new MemoryStream())
+        using (MemoryStream stream = new MemoryStream())
         {
             serializer.Serialize(stream, headerInfos);
             return stream.ToArray();

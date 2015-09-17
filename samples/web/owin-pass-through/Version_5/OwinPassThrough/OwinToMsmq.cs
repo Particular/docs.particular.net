@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Messaging;
 using System.Threading.Tasks;
-using System.Transactions;
 
 namespace OwinPassThrough
 {
 
     #region OwinToMsmq
 
+    using System.IO;
     using AppFunc = Func<IDictionary<string, object>, Task>;
 
     public class OwinToMsmq
@@ -29,32 +28,17 @@ namespace OwinPassThrough
 
         public async Task Invoke(IDictionary<string, object> environment)
         {
-            using (var memoryStream = await RequestAsMemoryStream(environment))
-            using (var scope = new TransactionScope())
+            using (Stream memoryStream = await OwinToMsmsStreamHelper.RequestAsStream(environment))
+            using (MessageQueue queue = new MessageQueue(queuePath))
+            using (Message message = new Message())
             {
-                using (var queue = new MessageQueue(queuePath))
-                using (var message = new Message())
-                {
-                    message.BodyStream = memoryStream;
-                    var requestHeaders = (IDictionary<string, string[]>) environment["owin.RequestHeaders"];
-                    var messageType = requestHeaders["MessageType"].Single();
-                    message.Extension = MsmqHeaderSerializer.CreateHeaders(messageType);
-                    queue.Send(message, MessageQueueTransactionType.Automatic);
-                }
-                scope.Complete();
+                message.BodyStream = memoryStream;
+                IDictionary<string, string[]> requestHeaders = (IDictionary<string, string[]>) environment["owin.RequestHeaders"];
+                string messageType = requestHeaders["MessageType"].Single();
+                message.Extension = MsmqHeaderSerializer.CreateHeaders(messageType);
+                queue.Send(message, MessageQueueTransactionType.Single);
             }
         }
-
-        async Task<MemoryStream> RequestAsMemoryStream(IDictionary<string, object> environment)
-        {
-            var memoryStream = new MemoryStream();
-            using (var requestStream = (Stream) environment["owin.RequestBody"])
-            {
-                await requestStream.CopyToAsync(memoryStream);
-            }
-            return memoryStream;
-        }
-
     }
 
     #endregion

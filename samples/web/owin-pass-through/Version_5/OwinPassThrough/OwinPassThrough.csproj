@@ -55,7 +55,9 @@
   <ItemGroup>
     <Compile Include="OwinToBus.cs" />
     <Compile Include="MsmqHeaderSerializer.cs" />
+    <Compile Include="StreamWrapper.cs" />
     <Compile Include="OwinToMsmq.cs" />
+    <Compile Include="OwinToMsmsStreamHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
