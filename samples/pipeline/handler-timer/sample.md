@@ -1,5 +1,5 @@
 ---
-title: Adds handler timing pipeline 
+title: Add handler timing pipeline 
 summary: Wraps handlers in a Stopwatch and logs a warning if a handler exceeds a given threshold
 tags:
 - Pipeline
