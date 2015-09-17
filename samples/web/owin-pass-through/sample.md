@@ -55,6 +55,20 @@ This sample allow you to customize the http-to-message handling code that places
 The gateway is designed to run inside a NServiceBus endpoint. This sample code can run with your selection of technologies e.g. it will work with IIS, self-hosted, asp.mvc, NancyFX or within a NServiceBus endpoint in the same way as the Gateway.
 
 
+### Cross Site effects
+
+When using the gateway to perform a HTTP pass through the call will most likely be hosted on a different domain. As such a normal HTTP request will be blocked. To work around this you will need to do a [JSONP request](https://en.wikipedia.org/wiki/JSONP).
+
+With the OWIN approach you have full control over the HTTP pipeline and hence can leverage CORS to avoid the need for JSONP.
+
+
+## CORS
+
+For layout and simplicity reasons this sample hosts the client side HTML/JavaScript parts in their own WebApplication. This means [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) need to be enabled on the HTTP server hosted in the endpoint. This is done using another OWIN Middleware from the Katana project called [Microsoft.Owin.Cors](https://www.nuget.org/packages/Microsoft.Owin.Cors/).
+
+Note: CORS is enabled for all via `builder.UseCors(CorsOptions.AllowAll);`. You most likely want to change this in any real world usage.
+
+
 ## WebServer/OWIN Hosting
 
 This sample uses a [Self Hosted](http://katanaproject.codeplex.com/wikipage?title=Selfhosting) instance of [Katana](http://www.asp.net/aspnet/overview/owin-and-katana) to serve up HTTP and provide an OWIN pipeline.
@@ -143,8 +157,3 @@ So to address these the samples does the following
 <!-- import PostMessage -->
 
 
-## CORS
-
-For layout and simplicity reasons this sample hosts the client side HTML/JavaScript parts in their own WebApplication. This means [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) need to be enabled on the HTTP server hosted in the endpoint. This is done using another OWIN Middleware from the Katana project called [Microsoft.Owin.Cors](https://www.nuget.org/packages/Microsoft.Owin.Cors/).
-
-Note: CORS is enabled for all via `builder.UseCors(CorsOptions.AllowAll);`. You most likely want to change this in any real world usage.
