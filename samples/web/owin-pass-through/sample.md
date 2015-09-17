@@ -3,13 +3,56 @@ title: OWIN Pass Through
 summary: Illustrates how to hook into the low level OWIN pipeline to place message onto the bus or directly onto the queue
 tags:
 related:
+ - samples/gateway
+ - nservicebus/gateway
 ---
+
+## Introduction
+
+This sample leverages OWIN (Open Web Interface for .NET) to add light weight HTTP message pass through middleware (general term for an extension to OWIN) that can be re-used in a variety of web technologies. This middleware provides the bridge between a HTTP stream (via JavaScript on a web page) and the queue used by NServiceBus. 
+
+The flow of this samples is as follows
+
+ * User performs some action on a webpage that triggers some JavaScript
+ * JavaScript posts the message body to a specific URL
+ * OWIN intercepts that past and passes to the bus middleware
+ * The middleware takes the HTTP request, optionally deserializes it, and places it on the queue  
+
 
 ## What is [OWIN](http://owin.org/)
 
 > OWIN defines a standard interface between .NET web servers and web applications. The goal of the OWIN interface is to decouple server and application, encourage the development of simple modules for .NET web development, and, by being an open standard, stimulate the open source ecosystem of .NET web development tools.
 
 So extensions to NServiceBus that plug into OWIN can be easily applied to [many .net web server technologies](http://owin.org/#projects).
+
+
+## The purpose of this sample 
+
+The primary purpose of this sample is to illustrate how simple it is to bridge the world of HTTP with the world of a service bus.  The secondary purpose is to illustrate, as well as compare and contrast, two ways of communicating with the NServiceBus. i.e. using the Bus api and using the native queue. 
+
+
+## Comparisons with the [NServiceBus Gateway](/nservicebus/gateway)
+
+
+### Performance
+
+ * The Gateway uses a [HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx) while this sample allows you to leverage the full power of your choice of webserver.
+ * The Gateway is limited to run in a single endpoint while this samples allows you to use any well known web scale out technologies. 
+
+
+### Full Control of the incoming message
+
+This sample allow you to customize the http-to-message handling code that places the message on the queue. As such this allows you to 
+
+ * Write custom validation rules on the message 
+ * Return custom errors to the HTTP client
+ * Apply custom authentication and authorization
+ * Perform custom serialization
+
+
+### Hosting 
+
+The gateway is designed to run inside a NServiceBus endpoint. This sample code can run with your selection of technologies e.g. it will work with IIS, self-hosted, asp.mvc, NancyFX or within a NServiceBus endpoint in the same way as the Gateway.
 
 
 ## WebServer/OWIN Hosting
@@ -63,11 +106,29 @@ The MSMQ based approach takes the following steps
 
 A helper method for creating an header string that is compatible with the NServiceBus MSMQ transport
 
-<!-- import MsmqHeaderSerializer -->
+<!-- import OwinToMsmsStreamHelper -->
+
+
+### MSMQ stream workarounds
+
+The internal behavior of the MSMQ API has some qwerks with regards to its usage of streams.
+
+While it has a [BodyStream](https://msdn.microsoft.com/en-us/library/system.messaging.message.bodystream.aspx) property it doesn't actually use it in a streaming manner. It instead does a full in memory copy of the stream to a byte array before sending.
+
+The in memory copy also incorrectly relies `Stream.Length` (to create a single large array) rather than appropriate use of chunking through the stream using [Stream.Read](https://msdn.microsoft.com/en-us/library/system.io.stream.read.aspx). This use of `Stream.Length` is problematic in this case since the length of an incoming HTTP request stream cannot be known and hence that property throws an exception. 
+
+Also while doing a send the BodyStream is only required to be read from. However MSMQ strangely calls `Stream.Position = 0` before reading from the stream. For many types of streams this is invalid operation since they are readonly. So in this sample if the stream received from the request was passed directly to BodyStream we would get an exception with `This stream does not support seek operations`.
+
+So to address these the samples does the following
+
+ * Uses a custom `StreamWrapper` class to swallow the `Stream.Position = 0`.
+ * Optionally use the HTTP header `Content-Length` to provide MSMQ with a stream length.
+ * If `Content-Length` is not available fall back to duplicating the request in a MemoryStream and passing that to MSMQ.
+
+<!-- import OwinToMsmsStreamHelper -->
 
 
 ## Comparing the two approaches
-
 
 || Bus Based | Native MSMQ                                                                                                                                                          
 |-|-|-|
