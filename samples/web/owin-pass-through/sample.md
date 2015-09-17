@@ -1,5 +1,5 @@
 ---
-title: OWIN Pass Through
+title: OWIN HTTP Message Pass Through
 summary: Illustrates how to hook into the low level OWIN pipeline to place message onto the bus or directly onto the queue
 tags:
 related:
@@ -155,5 +155,3 @@ So to address these the samples does the following
 ## JavaScript HTTP Post
 
 <!-- import PostMessage -->
-
-
