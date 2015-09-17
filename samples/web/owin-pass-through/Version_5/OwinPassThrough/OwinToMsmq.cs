@@ -28,7 +28,7 @@ namespace OwinPassThrough
 
         public async Task Invoke(IDictionary<string, object> environment)
         {
-            using (Stream memoryStream = await OwinToMsmsStreamHelper.RequestAsStream(environment))
+            using (Stream memoryStream = await OwinToMsmqStreamHelper.RequestAsStream(environment))
             using (MessageQueue queue = new MessageQueue(queuePath))
             using (Message message = new Message())
             {

@@ -106,7 +106,7 @@ The MSMQ based approach takes the following steps
 
 A helper method for creating an header string that is compatible with the NServiceBus MSMQ transport
 
-<!-- import OwinToMsmsStreamHelper -->
+<!-- import msmqheaderserializer -->
 
 
 ### MSMQ stream workarounds
@@ -125,7 +125,7 @@ So to address these the samples does the following
  * Optionally use the HTTP header `Content-Length` to provide MSMQ with a stream length.
  * If `Content-Length` is not available fall back to duplicating the request in a MemoryStream and passing that to MSMQ.
 
-<!-- import OwinToMsmsStreamHelper -->
+<!-- import OwinToMsmqStreamHelper -->
 
 
 ## Comparing the two approaches
