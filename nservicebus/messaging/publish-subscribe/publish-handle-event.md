@@ -42,7 +42,7 @@ An event can be handled by use of the `IHandleMessages` interface on any [Handle
 
 ## Publishing an event
 
-An event can be published via any instance of `IBus`. However there are sever common locations where publishing occurs.
+An event can be published via any instance of `IBus`. However there are several common locations where publishing occurs.
 
 
 ### From a Handler
