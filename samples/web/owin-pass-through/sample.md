@@ -15,7 +15,7 @@ The flow of this samples is as follows
 
  * User performs some action on a webpage that triggers some JavaScript
  * JavaScript posts the message body to a specific URL
- * OWIN intercepts that past and passes to the bus middleware
+ * OWIN intercepts that post and passes to the bus middleware
  * The middleware takes the HTTP request, optionally deserializes it, and places it on the queue  
 
 
