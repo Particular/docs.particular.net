@@ -123,25 +123,6 @@ A helper method for creating an header string that is compatible with the NServi
 <!-- import msmqheaderserializer -->
 
 
-### MSMQ stream workarounds
-
-The internal behavior of the MSMQ API has some qwerks with regards to its usage of streams.
-
-While it has a [BodyStream](https://msdn.microsoft.com/en-us/library/system.messaging.message.bodystream.aspx) property it doesn't actually use it in a streaming manner. It instead does a full in memory copy of the stream to a byte array before sending.
-
-The in memory copy also incorrectly relies `Stream.Length` (to create a single large array) rather than appropriate use of chunking through the stream using [Stream.Read](https://msdn.microsoft.com/en-us/library/system.io.stream.read.aspx). This use of `Stream.Length` is problematic in this case since the length of an incoming HTTP request stream cannot be known and hence that property throws an exception. 
-
-Also while doing a send the BodyStream is only required to be read from. However MSMQ strangely calls `Stream.Position = 0` before reading from the stream. For many types of streams this is invalid operation since they are readonly. So in this sample if the stream received from the request was passed directly to BodyStream we would get an exception with `This stream does not support seek operations`.
-
-So to address these the samples does the following
-
- * Uses a custom `StreamWrapper` class to swallow the `Stream.Position = 0`.
- * Optionally use the HTTP header `Content-Length` to provide MSMQ with a stream length.
- * If `Content-Length` is not available fall back to duplicating the request in a MemoryStream and passing that to MSMQ.
-
-<!-- import OwinToMsmqStreamHelper -->
-
-
 ## Comparing the two approaches
 
 || Bus Based | Native MSMQ                                                                                                                                                          

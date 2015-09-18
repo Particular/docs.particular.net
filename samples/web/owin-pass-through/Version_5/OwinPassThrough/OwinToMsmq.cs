@@ -28,7 +28,7 @@ namespace OwinPassThrough
 
         public async Task Invoke(IDictionary<string, object> environment)
         {
-            using (Stream memoryStream = await OwinToMsmqStreamHelper.RequestAsStream(environment))
+            using (Stream memoryStream = await RequestAsStream(environment))
             using (MessageQueue queue = new MessageQueue(queuePath))
             using (Message message = new Message())
             {
@@ -38,6 +38,16 @@ namespace OwinPassThrough
                 message.Extension = MsmqHeaderSerializer.CreateHeaders(messageType);
                 queue.Send(message, MessageQueueTransactionType.Single);
             }
+        }
+
+        async Task<Stream> RequestAsStream(IDictionary<string, object> environment)
+        {
+            MemoryStream memoryStream = new MemoryStream();
+            using (Stream requestStream = (Stream)environment["owin.RequestBody"])
+            {
+                await requestStream.CopyToAsync(memoryStream);
+            }
+            return memoryStream;
         }
     }
 

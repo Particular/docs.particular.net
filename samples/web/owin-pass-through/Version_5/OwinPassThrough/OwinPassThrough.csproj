@@ -57,7 +57,6 @@
     <Compile Include="MsmqHeaderSerializer.cs" />
     <Compile Include="StreamWrapper.cs" />
     <Compile Include="OwinToMsmq.cs" />
-    <Compile Include="OwinToMsmqStreamHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
