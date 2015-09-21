@@ -1,5 +1,6 @@
 namespace Snippets5.Callback.Enum
 {
+    using System.Threading.Tasks;
     using NServiceBus;
 
     #region EnumCallbackResponse
@@ -13,9 +14,9 @@ namespace Snippets5.Callback.Enum
             this.bus = bus;
         }
 
-        public void Handle(Message message)
+        public async Task Handle(Message message)
         {
-            bus.Reply(Status.OK);
+            await bus.ReplyAsync(Status.OK);
         }
     }
 

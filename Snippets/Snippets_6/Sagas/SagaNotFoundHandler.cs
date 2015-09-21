@@ -15,10 +15,9 @@
             this.bus = bus;
         }
 
-        public Task Handle(object message)
+        public async Task Handle(object message)
         {
-            bus.Reply(new SagaDisappearedMessage());
-            return Task.FromResult(0);
+            await bus.ReplyAsync(new SagaDisappearedMessage());
         }
     }
 

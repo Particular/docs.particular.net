@@ -1,6 +1,7 @@
 namespace Snippets6.PubSub.Publishing
 {
     using System;
+    using System.Threading.Tasks;
     using NServiceBus;
 
     #region publishFromSaga
@@ -14,9 +15,9 @@ namespace Snippets6.PubSub.Publishing
             this.bus = bus;
         }
 
-        public void Handle(CreateUserCommand message)
+        public async Task Handle(CreateUserCommand message)
         {
-            bus.Publish<UserCreatedEvent>(e =>
+            await bus.PublishAsync<UserCreatedEvent>(e =>
             {
                 e.Name = message.Name;
             });

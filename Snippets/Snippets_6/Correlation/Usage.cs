@@ -1,10 +1,11 @@
 ﻿namespace Snippets6.Correlation
 {
+    using System.Threading.Tasks;
     using NServiceBus;
 
     public class Usage
     {
-        public Usage()
+        public async Task Correlation()
         {
             IBus bus = null;
 
@@ -13,7 +14,7 @@
 
             options.SetCorrelationId("My custom correlation id");
 
-            bus.Send(new MyRequest(),options);
+            await bus.SendAsync(new MyRequest(),options);
 
             #endregion
         }

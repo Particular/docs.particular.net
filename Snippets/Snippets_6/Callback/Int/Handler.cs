@@ -1,5 +1,6 @@
 namespace Snippets5.Callback.Int
 {
+    using System.Threading.Tasks;
     using NServiceBus;
 
     #region IntCallbackResponse
@@ -13,9 +14,9 @@ namespace Snippets5.Callback.Int
             this.bus = bus;
         }
 
-        public void Handle(Message message)
+        public async Task Handle(Message message)
         {
-            bus.Reply(10);
+            await bus.ReplyAsync(10);
         }
     }
 

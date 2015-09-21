@@ -1,10 +1,11 @@
 ﻿namespace Snippets5.PubSub.Publishing
 {
+    using System.Threading.Tasks;
     using NServiceBus;
 
     class PublishAtStartup
     {
-        public void Publish()
+        public async Task Publish()
         {
             #region publishAtStartup
 
@@ -12,7 +13,7 @@
             //Other config
             using (IBus bus = Bus.Create(busConfiguration).Start())
             {
-                bus.Publish(new MyEvent());
+                await bus.PublishAsync(new MyEvent());
 
                 #endregion
             }

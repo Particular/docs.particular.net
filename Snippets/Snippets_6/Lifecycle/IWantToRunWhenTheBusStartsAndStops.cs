@@ -1,19 +1,22 @@
 ﻿namespace Snippets6.Lifecycle
 {
+    using System.Threading.Tasks;
     using NServiceBus;
 
     #region lifecycle-iwanttorunwhenthebusstartsandstops
 
     class RunWhenTheBusStartsAndStops : IWantToRunWhenBusStartsAndStops
     {
-        public void Start()
+        public Task StartAsync()
         {
             // perform startup logic
+            return Task.FromResult(0);
         }
 
-        public void Stop()
+        public Task StopAsync()
         {
             // perform shutdown logic
+            return Task.FromResult(0);
         }
     }
 

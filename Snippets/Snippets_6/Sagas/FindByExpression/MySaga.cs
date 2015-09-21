@@ -2,6 +2,8 @@
 
 namespace Snippets6.Sagas.FindByExpression
 {
+    using System.Threading.Tasks;
+
     public class MySaga : Saga<MySagaData>,
         IAmStartedByMessages<Message1>,
         IHandleMessages<Message2>
@@ -16,14 +18,16 @@ namespace Snippets6.Sagas.FindByExpression
 
         #endregion
 
-        public void Handle(Message1 message)
+        public Task Handle(Message1 message)
         {
             // code to handle Message1
+            return Task.FromResult(0);
         }
 
-        public void Handle(Message2 message)
+        public Task Handle(Message2 message)
         {
             // code to handle Message2
+            return Task.FromResult(0);
         }
     }
 
