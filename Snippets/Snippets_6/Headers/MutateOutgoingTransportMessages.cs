@@ -7,10 +7,10 @@
 
     public class MutateOutgoingTransportMessages : IMutateOutgoingTransportMessages
     {
-        public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
+        public async Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
         {
             context.OutgoingHeaders["MyCustomHeader"] = "My custom value";
-            return Task.FromResult(0);
+            
         }
     }
 
