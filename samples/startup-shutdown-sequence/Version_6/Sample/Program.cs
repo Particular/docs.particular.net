@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Threading;
 using NServiceBus;
+using NServiceBus.Config;
+using NServiceBus.Config.ConfigurationSource;
 using NServiceBus.Logging;
 
 class Program
@@ -32,5 +34,14 @@ class Program
         #endregion
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
+    }
+
+    // TODO: Remove when https://github.com/Particular/NServiceBus/issues/2913 is fixed
+    class Provide : IProvideConfiguration<UnicastBusConfig>
+    {
+        public UnicastBusConfig GetConfiguration()
+        {
+            return new UnicastBusConfig();
+        }
     }
 }
