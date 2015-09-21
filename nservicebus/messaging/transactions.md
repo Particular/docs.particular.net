@@ -25,6 +25,8 @@ Based on transaction handling mode, NServiceBus offers three levels of guarantee
 
 In this mode the transport in use does not attempt to wrap the receive operation in any kind of transaction. Once the message has been received, it can't be put back into the queue. Should the message processing fail for any reason (including system crash), the message is **permanently lost**. 
 
+NOTE: No retries will be performed in this mode and messages will not be forwarded to the error queue in case of failures
+
 <!-- import TransactionsDisable -->
 
 
