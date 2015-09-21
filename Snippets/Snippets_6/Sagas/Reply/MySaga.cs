@@ -1,5 +1,6 @@
 ﻿namespace Snippets6.Sagas.Reply
 {
+    using System.Threading.Tasks;
     using NServiceBus;
 
     #region saga-with-reply
@@ -8,7 +9,7 @@
         IAmStartedByMessages<StartMessage>
     {
 
-        public void Handle(StartMessage message)
+        public async Task Handle(StartMessage message)
         {
             Data.SomeID = message.SomeID;
             ReplyToOriginator(new AlmostDoneMessage

@@ -1,35 +1,36 @@
 ﻿namespace Snippets6.Routing
 {
+    using System.Threading.Tasks;
     using NServiceBus;
 
     public class BasicOperations
     {
-        public void ConcreteMessage()
+        public async Task ConcreteMessage()
         {
             IBus bus = null;
             #region InstancePublish
             var message = new MyEvent { SomeProperty = "Hello world" };
-            bus.Publish(message);
+            await bus.PublishAsync(message);
             #endregion
 
         }
 
-        public void InterfaceMessage()
+        public async Task InterfaceMessage()
         {
             IBus bus = null;
             #region InterfacePublish
-            bus.Publish<IMyEvent>(m => { m.SomeProperty = "Hello world"; });
+            await bus.PublishAsync<IMyEvent>(m => { m.SomeProperty = "Hello world"; });
             #endregion
 
         }
 
-        public void Subscribe()
+        public async Task Subscribe()
         {
             IBus bus = null;
             #region ExplicitSubscribe
-            bus.Subscribe<MyEvent>();
+            await bus.SubscribeAsync<MyEvent>();
 
-            bus.Unsubscribe<MyEvent>();
+            await bus.UnsubscribeAsync<MyEvent>();
             #endregion
 
         }

@@ -8,12 +8,11 @@
     #region header-incoming-mutator
     public class MutateIncomingTransportMessages : IMutateIncomingTransportMessages
     {
-        public Task MutateIncoming(MutateIncomingTransportMessageContext context)
+        public async Task MutateIncoming(MutateIncomingTransportMessageContext context)
         {
             IDictionary<string, string> headers = context.Headers;
             string nsbVersion = headers[Headers.NServiceBusVersion];
             string customHeader = headers["MyCustomHeader"];
-            return Task.FromResult(0);
         }
     }
     #endregion

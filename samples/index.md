@@ -88,3 +88,6 @@ Many samples make use of `SendLocal` and sending to an endpoint directly by spec
 
 Samples default to using the built-in container since it does not require pulling in any external nugets. You most likely want to switch to an external container since this will give you greater flexibility in you DI customizations.
 
+### Async/await
+
+Samples by default use `await` and declare the surrounding method `async` everywhere, even if we could just return the task returned by the called API. Furthermore, we are not using `ConfigureAwait(false)` when we `await` an asynchronous method execution. We've taken this conscious choice, although it is not following the best practices around async/await, to simplify readability for our samples.  

@@ -1,6 +1,7 @@
 ﻿namespace Snippets6.Headers
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using NServiceBus;
 
     #region header-incoming-handler
@@ -13,7 +14,7 @@
             this.bus = bus;
         }
 
-        public void Handle(MyMessage message)
+        public async Task Handle(MyMessage message)
         {
             IDictionary<string, string> headers = bus.CurrentMessageContext.Headers;
             string nsbVersion = headers[Headers.NServiceBusVersion];

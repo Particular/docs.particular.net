@@ -1,6 +1,7 @@
 ﻿namespace Snippets6.Sagas.Timeouts
 {
     using System;
+    using System.Threading.Tasks;
     using NServiceBus;
 
     #region saga-with-timeout
@@ -16,13 +17,13 @@
                 .ToSaga(m => m.SomeID);
         }
 
-        public void Handle(Message1 message)
+        public async Task Handle(Message1 message)
         {
             Data.SomeID = message.SomeID;
             RequestTimeout<MyCustomTimeout>(TimeSpan.FromHours(1));
         }
 
-        public void Handle(Message2 message)
+        public async Task Handle(Message2 message)
         {
             Data.Message2Arrived = true;
             ReplyToOriginator(new AlmostDoneMessage
@@ -31,7 +32,7 @@
             });
         }
 
-        public void Timeout(MyCustomTimeout state)
+        public async Task Timeout(MyCustomTimeout state)
         {
             if (!Data.Message2Arrived)
             {

@@ -1,5 +1,6 @@
 namespace Snippets5.Callback.Object
 {
+    using System.Threading.Tasks;
     using NServiceBus;
 
     #region ObjectCallbackResponse
@@ -13,9 +14,9 @@ namespace Snippets5.Callback.Object
             this.bus = bus;
         }
 
-        public void Handle(Message message)
+        public async Task Handle(Message message)
         {
-            bus.Reply(new ResponseMessage
+            await bus.ReplyAsync(new ResponseMessage
             {
                 Property = "PropertyValue"
             });

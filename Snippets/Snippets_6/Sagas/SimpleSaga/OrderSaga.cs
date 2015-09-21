@@ -2,6 +2,7 @@
 
 namespace Snippets6.Sagas.SimpleSaga
 {
+    using System.Threading.Tasks;
 
     #region simple-saga
 
@@ -15,12 +16,12 @@ namespace Snippets6.Sagas.SimpleSaga
                     .ToSaga(m => m.OrderId);
         }
 
-        public void Handle(StartOrder message)
+        public async Task Handle(StartOrder message)
         {
             Data.OrderId = message.OrderId;
         }
 
-        public void Handle(CompleteOrder message)
+        public async Task Handle(CompleteOrder message)
         {
             // code to handle order completion
             MarkAsComplete();
