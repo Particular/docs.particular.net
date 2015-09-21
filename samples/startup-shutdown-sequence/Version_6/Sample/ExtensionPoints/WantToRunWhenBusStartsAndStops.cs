@@ -1,16 +1,18 @@
-﻿using NServiceBus;
+﻿using System.Threading.Tasks;
+using NServiceBus;
 
 public class WantToRunWhenBusStartsAndStops :
     IWantToRunWhenBusStartsAndStops
 {
-    public void Start()
+    public Task StartAsync()
     {
         Logger.WriteLine("Inside IWantToRunWhenBusStartsAndStops.Start");
+        return Task.FromResult(0);
     }
 
-    public void Stop()
+    public Task StopAsync()
     {
         Logger.WriteLine("Inside IWantToRunWhenBusStartsAndStops.Stop");
+        return Task.FromResult(0);
     }
-
 }
