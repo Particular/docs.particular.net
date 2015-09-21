@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -133,6 +134,7 @@
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="MsmqMessageLabel.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
+    <Compile Include="Transactions.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="Routing\AutomaticSubscriptions\AutoSubscribeSettings.cs" />

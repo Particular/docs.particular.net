@@ -49,6 +49,23 @@ Ambient transaction mode is enabled by default. It can be enabled explicitly via
 
 <!-- import TransactionsEnable -->
 
+#### Isolation level
+
+NServiceBus will by default use the `ReadCommited` [isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel). 
+
+NOTE: Version 3 and below used the default isolation level of .Net which is `Serializable`.
+
+You can change the isolation level using
+
+<!-- import CustomTransactionIsolationLevel -->
+
+#### Transaction timeout
+
+NServiceBus will use the [default transaction timeout](https://msdn.microsoft.com/en-us/library/system.transactions.transactionmanager.defaulttimeout) of the machine the enpoint is running on.
+
+You can change the transaction timeout using
+
+<!-- import CustomTransactionTimeout -->
 
 ## Handlers
 
@@ -66,7 +83,6 @@ This results in suppressing any ambient transaction that exist. This effectively
 NOTE: Starting with version 5, in the *transport transaction* and *unreliable* modes this behavior is the default. Wrapping the message handlers with `TransactionScope` has to be enabled explicitly.
 
 <!-- import TransactionsWrapHandlersExecutionInATransactionScope -->
-
 
 ## Outbox
 
