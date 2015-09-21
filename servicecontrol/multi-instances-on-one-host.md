@@ -67,7 +67,7 @@ You can override this logging location in the configuration file. See [ServiceCo
 
 ### Upgrading Multiple Instances 
 
-When upgrading any host machine with multiple instances of Service Control to V1.2.3 or greater, you need to uninstall and re-install any manually installed instances of ServiceControl.
+When upgrading any host machine with multiple instances of ServiceControl to V1.2.3 or greater, you need to uninstall and re-install any manually installed instances of ServiceControl.
 
 First, uninstall the instance using this:
 
