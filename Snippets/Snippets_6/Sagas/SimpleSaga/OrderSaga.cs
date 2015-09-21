@@ -16,17 +16,15 @@ namespace Snippets6.Sagas.SimpleSaga
                     .ToSaga(m => m.OrderId);
         }
 
-        public Task Handle(StartOrder message)
+        public async Task Handle(StartOrder message)
         {
             Data.OrderId = message.OrderId;
-            return Task.FromResult(0);
         }
 
-        public Task Handle(CompleteOrder message)
+        public async Task Handle(CompleteOrder message)
         {
             // code to handle order completion
             MarkAsComplete();
-            return Task.FromResult(0);
         }
     }
 

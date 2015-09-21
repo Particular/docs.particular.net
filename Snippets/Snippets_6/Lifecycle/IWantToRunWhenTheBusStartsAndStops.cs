@@ -7,16 +7,14 @@
 
     class RunWhenTheBusStartsAndStops : IWantToRunWhenBusStartsAndStops
     {
-        public Task StartAsync()
+        public async Task StartAsync()
         {
             // perform startup logic
-            return Task.FromResult(0);
         }
 
-        public Task StopAsync()
+        public async Task StopAsync()
         {
             // perform shutdown logic
-            return Task.FromResult(0);
         }
     }
 

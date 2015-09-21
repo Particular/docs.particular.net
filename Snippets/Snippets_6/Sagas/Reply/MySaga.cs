@@ -9,14 +9,13 @@
         IAmStartedByMessages<StartMessage>
     {
 
-        public Task Handle(StartMessage message)
+        public async Task Handle(StartMessage message)
         {
             Data.SomeID = message.SomeID;
             ReplyToOriginator(new AlmostDoneMessage
             {
                 SomeID = Data.SomeID
             });
-            return Task.FromResult(0);
         }
 
         #endregion

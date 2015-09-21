@@ -10,7 +10,6 @@
         public async Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
         {
             context.OutgoingHeaders["MyCustomHeader"] = "My custom value";
-            
         }
     }
 

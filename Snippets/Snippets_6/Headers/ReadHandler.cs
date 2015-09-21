@@ -14,12 +14,11 @@
             this.bus = bus;
         }
 
-        public Task Handle(MyMessage message)
+        public async Task Handle(MyMessage message)
         {
             IDictionary<string, string> headers = bus.CurrentMessageContext.Headers;
             string nsbVersion = headers[Headers.NServiceBusVersion];
             string customHeader = headers["MyCustomHeader"];
-            return Task.FromResult(0);
         }
     }
     #endregion
