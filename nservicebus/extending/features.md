@@ -17,7 +17,7 @@ All the actual logic of the bus is implemented in form of features. Features tak
 
 ## Definition
 
-A feature is defined in a class inheriting from `Feature`. This is a minimal feature that does nothing
+A feature is defined in a class inheriting from `NServiceBus.Features.Feature`. This is a minimal feature that does nothing
 
 <!-- import MinimalFeature -->
 
