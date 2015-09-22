@@ -3,8 +3,6 @@ title: Feature-based extensibility system
 summary: Explains the concept of feature
 tags:
  - feature
- - extensibility
- - extending
 ---
 
 NServiceBus code base consists of two parts.
