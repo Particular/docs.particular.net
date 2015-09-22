@@ -24,7 +24,7 @@ A feature is defined in a class inheriting from `NServiceBus.Features.Feature`. 
 
 ## Dependencies
 
-Features are so powerful because they can depend on each other to form more complex behaviours.
+Features can depend on each other to form more complex behaviours.
 
 <!-- import DependentFeature -->
 
