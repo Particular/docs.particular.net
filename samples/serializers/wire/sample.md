@@ -18,3 +18,10 @@ This samples uses the community run serializer [NServiceBus.Wire](https://github
 ## The message send
 
 <!-- import message -->
+
+
+## The Output
+
+Since Wire is a binary format there is not much human readable in the message body.
+
+![](wirebinary.png)
