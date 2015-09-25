@@ -2,18 +2,19 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Pipeline;
 
     #region header-incoming-behavior
     public class IncomingBehavior : PhysicalMessageProcessingStageBehavior
     {
-        public override void Invoke(Context context, Action next)
+        public override async Task Invoke(Context context, Func<Task> next)
         {
             Dictionary<string, string> headers = context.GetPhysicalMessage().Headers;
             string nsbVersion = headers[Headers.NServiceBusVersion];
             string customHeader = headers["MyCustomHeader"];
-            next();
+            await next();
         }
     }
     #endregion
