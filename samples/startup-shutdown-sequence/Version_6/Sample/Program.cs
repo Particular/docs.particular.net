@@ -35,13 +35,4 @@ class Program
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
     }
-
-    // TODO: Remove when https://github.com/Particular/NServiceBus/issues/2913 is fixed
-    class Provide : IProvideConfiguration<UnicastBusConfig>
-    {
-        public UnicastBusConfig GetConfiguration()
-        {
-            return new UnicastBusConfig();
-        }
-    }
 }
