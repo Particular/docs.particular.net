@@ -12,7 +12,7 @@
         public async Task Handle(StartMessage message)
         {
             Data.SomeID = message.SomeID;
-            ReplyToOriginator(new AlmostDoneMessage
+            await ReplyToOriginatorAsync(new AlmostDoneMessage
             {
                 SomeID = Data.SomeID
             });
