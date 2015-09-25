@@ -1,5 +1,5 @@
 ---
-title: Scale Out
+title: Scale Out with the Distributor
 summary: Scale out your existing message processing by adding workers on different machines.
 tags:
 - Distributor
