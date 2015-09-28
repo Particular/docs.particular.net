@@ -12,7 +12,7 @@ related:
 
 ## Code walk-through 
 
-When integrating with 3rd party systems, we often end up having many messages that fail when those systems are down. We then usually end up looking for external monitoring services. Why looking elsewhere when the Particular Platform already has the extensibility to enable you to monitor 3rd party systems which are exposed as HTTP endpoints. This sample shows how to achieve this with custom checks. 
+When integrating with 3rd party systems, we often end up having many messages that fail when those systems are down. We then usually end up looking for external monitoring services. Why look elsewhere when the Particular Platform already has the extensibility to enable you to monitor 3rd party systems which are exposed as HTTP endpoints. This sample shows how to achieve this with custom checks. 
 
 Run the solution with elevated permissions.
 
