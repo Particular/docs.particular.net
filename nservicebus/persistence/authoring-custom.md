@@ -113,50 +113,22 @@ The in-memory implementation of `ISagaPersister` can be found [here](https://git
 
 Another type of data being persisted by NServiceBus is timeouts. Because NServiceBus is not a scheduling framework there is no hard guarantee of timeouts firing at the exact moment they are scheduled for. However, timeouts should definitely not be missed or fired in a serious delay. This can get tricky with some persistence technologies, so this is definitely something you should consider and plan for.
 
-Writing a timeout persister can be done by implementing the `IPersistTimeouts` interface shown below:
+Writing a timeout persister can be done by implementing the interfaces shown below:
 
-```csharp
-/// <summary>
-/// Timeout persister contract.
-/// </summary>
-public interface IPersistTimeouts
-{
-    /// <summary>
-    /// Retrieves the next range of timeouts that are due.
-    /// </summary>
-    /// <param name="startSlice">The time where to start retrieving the next slice, the slice should exclude this date.</param>
-    /// <param name="nextTimeToRunQuery">Returns the next time we should query again.</param>
-    /// <returns>Returns the next range of timeouts that are due.</returns>
-    IEnumerable<Tuple<string, DateTime>> GetNextChunk(DateTime startSlice, out DateTime nextTimeToRunQuery);
-
-    /// <summary>
-    /// Adds a new timeout.
-    /// </summary>
-    /// <param name="timeout">Timeout data.</param>
-    void Add(TimeoutData timeout);
-
-    /// <summary>
-    /// Removes the timeout if it hasn't been previously removed.
-    /// </summary>
-    /// <param name="timeoutId">The timeout id to remove.</param>
-    /// <param name="timeoutData">The timeout data of the removed timeout.</param>
-    /// <returns><c>true</c> it the timeout was successfully removed.</returns>
-    bool TryRemove(string timeoutId, out TimeoutData timeoutData);
-
-    /// <summary>
-    /// Removes the time by saga id.
-    /// </summary>
-    /// <param name="sagaId">The saga id of the timeouts to remove.</param>
-    void RemoveTimeoutBy(Guid sagaId);
-}
-```
+<!-- import PersistTimeoutsInterfaces -->
 
 The `TimeoutData` class holds timeout related data, like the `Time` it needs to fire at and the `SagaId` it is associated with. As a general rule, you should not use this class directly for persistence, but use another persistence class when possible and use the unique ID generation offered by the persistence you use.
 
 NServiceBus polls the persister for timeouts by calling `GetNextChunk`, and providing it with `DateTime startSlice` which specifies what is the last timeout it recieved in the previous call to this method, and then the persister should provide all timeouts that are due, meaning from that value to the current point in time. Some eventually consistent storages may require you to be innovative to make sure no timeouts are missed. Finally, the `nextTimeToRunQuery` needs to be set to tell NServiceBus when to next poll the persister for timeouts - usually this is set for the next known timeout after the current time. NServiceBus will automatically poll for timeouts again if it has reason to suspect new timeouts are available.
 
-The in-memory implementation of `IPersistTimeouts` can be seen [here](https://github.com/Particular/NServiceBus/blob/4.6.5/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersistence.cs).
-
+In order to provide a custom timeout persister implementation: 
+- In versions 4.x and 5.x you need to implement interfaces `IPersistTimeouts` and `IPersistTimeoutsV2`. 
+    - The reference in-memory implementation of timeouts persistence for NServiceBus v4.x can be seen [here](...) and [here](...). 
+    - The reference in-memory implementation of timeouts persistence for NServiceBus v5.x can be seen [here](...) and [here](...). .
+- In version 6.x  you need to implement `IPersistTimeouts` interface. 
+    - The reference in-memory implementation of timeouts persistence for NServiceBus v6.x can be seen [here](...).
+ 
+The differences in interfaces definitions across versions are related to a patch fix preventing a potential message loss. You can find more details in the [issue description](https://github.com/Particular/NServiceBus/issues/2885).
 
 ## Outbox persister
 
