@@ -49,7 +49,7 @@ In version 5 and earlier the API for assembly scanning took an "Include a list" 
 In version 6 the API has been changes to an "Exclude a list" approach. This supports that the common scenario removing specific assemblies from scanning without the common side effect of accidentally excluding required assemblies.
 
 
-## Include a list approach
+## Exclude a list approach
 
 
 ### You can exclude specific assemblies by name:
@@ -62,7 +62,7 @@ In version 6 the API has been changes to an "Exclude a list" approach. This supp
 <!-- import ScanningExcludeTypes -->
 
 
-## Exclude a list approach
+## Include a list approach
 
 Note: these options are deprecated from version 6 and later.
 
