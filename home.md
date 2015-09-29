@@ -269,7 +269,9 @@
     <ul>
       <li><a href="/servicematrix/getting-started-with-servicematrix-2.0.md">Getting Started</a></li>
       <li><a href="/servicematrix/servicematrix-serviceinsight.md">Interaction with ServiceInsight</a></li>
-      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li></ul><a href="/servicematrix/"><h3>All ServiceMatrix articles</h3></a><br/>
+      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li>
+    </ul>
+    <a href="/servicematrix/"><h3>All ServiceMatrix articles</h3></a><br/>
    <div style="clear: both"></div>
   </div>
   <div class="productcolumn block">
@@ -277,8 +279,9 @@
     <ul>
       <li><a href="/serviceinsight/getting-started-overview.md">Getting Started</a></li>
       <li><a href="/serviceinsight/application-invocation.md">Application invocation</a></li>
-      <li><a href="/serviceinsight/how-logging-works.md">Logging in ServiceInsight</a></li></ul>
-      <a href="/serviceinsight/"><h3>All ServiceInsight articles</h3></a><br/>
+      <li><a href="/serviceinsight/how-logging-works.md">Logging in ServiceInsight</a></li>
+    </ul>
+    <a href="/serviceinsight/"><h3>All ServiceInsight articles</h3></a><br/>
     <div style="clear: both"></div>
   </div>
   <div class="productcolumn last block">
@@ -286,8 +289,9 @@
     <ul>
       <li><a href="/servicepulse/intro-endpoints-heartbeats.md">Monitoring Endpoints</a></li>
       <li><a href="/servicepulse/intro-failed-messages.md">Handling Failed Messages</a></li>
-      <li><a href="/servicepulse/intro-endpoints-custom-checks.md">Introduction to Custom Checks</a></li></ul>
-      <a href="/servicepulse/"><h3>All ServicePulse articles</h3></a><br/>
+      <li><a href="/servicepulse/intro-endpoints-custom-checks.md">Introduction to Custom Checks</a></li>
+    </ul>
+    <a href="/servicepulse/"><h3>All ServicePulse articles</h3></a><br/>
     <div style="clear: both"></div>
   </div>
 </div>
