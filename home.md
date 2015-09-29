@@ -249,8 +249,8 @@
 </div>
 <div class="productcolumn header">
   <div class="block top">
-    <a href="/servicematrix/">
-      <img src="/home/servicematrix.png" />
+    <a href="/servicecontrol/">
+      <img src="/home/servicecontrol.png" />
     </a>
     <div style="clear: both"></div>
   </div>
@@ -275,13 +275,13 @@
     <div style="clear: both"></div>
   </div>
   <div class="productcolumn block">
-    <p><h4>Prototype your distributed system design in a matter of minutes</h4></p>
+    <p><h4>Gather all the data</h4></p>
     <ul>
-      <li><a href="/servicematrix/getting-started-with-servicematrix-2.0.md">Getting Started</a></li>
-      <li><a href="/servicematrix/servicematrix-serviceinsight.md">Interaction with ServiceInsight</a></li>
-      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li>
+      <li><a href="/servicecontrol/installation.md">Installing ServiceControl</a></li>
+      <li><a href="/servicecontrol/multi-transport-support.md">Multi Transport Support</a></li>
+      <li><a href="/servicecontrol/plugins/">Endpoint Plugins</a></li>
     </ul>
-    <a href="/servicematrix/"><h3>All ServiceMatrix articles</h3></a><br/>
+    <a href="/servicecontrol/"><h3>All ServiceControl articles</h3></a><br/>
    <div style="clear: both"></div>
   </div>
   <div class="productcolumn last block">
