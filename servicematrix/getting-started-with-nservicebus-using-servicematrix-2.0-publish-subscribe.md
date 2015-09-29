@@ -85,6 +85,17 @@ The `SubmitOrderHandler` raises the `OrderAccepted` event, to which `OrderAccept
 As you would expect, the ServiceMatrix [Solution Builder](images/servicematrix-pubsubsolutionbuilderv2.2.0.png "SolutionBuilder") reflects the new endpoint, service, component, and event you added using the ServiceMatrix canvas.  Of course the [`OnlineSales` solution](images/servicematrix-pubsubsolution.png "Visual Studio Solution") in Visual Studio has the new project for `Billing` as well as the new 'OrderAccepted' event. 
 
 
+### Explore the ServiceMatrix Solution Views
+
+The Solution Builder of ServiceMatrix provides various views into the solution you have created. Look at the [toolbar](images/servicematrix-solutionbuilder-final.png "Solution Builder Toolbar") and review some of the other buttons. In addition to the Default View represented by the hammer, note the ServiceMatrix View icon. 
+
+Select an endpoint in the SolutionBuilder then press the 'ServiceMatrix View' icon. A new 'ServiceMatrix Details' window is displayed as shown here:
+
+![Endpoint View in SolutionBuilder](images/servicematrix-endpointsview.png)
+
+This view provides a convenient look into the properties and components of the endpoint. 
+
+
 ## Review the Code
 
 ServiceMatrix generates the initial code for publishing and processing the event and both the publishing and subscribing end. 
@@ -133,20 +144,7 @@ Congratulations! You have created a complete working solution for communicating 
 As you see, it's very easy to get started with NServiceBus and ServiceMatrix.  
 
 
-## Additional Exercises
-
-
 ### Explore the use of Sagas
 
 Continue on and integrate a payment component into the billing service.  [The next article](getting-started-sagasfullduplex-2.0.md "Sagas in ServiceMatrix Request Response") will continue on with the creation of the OnlineSales solution. 
 
-
-### Explore the ServiceMatrix Solution Views
-
-The Solution Builder of ServiceMatrix provides various views into the solution you have created. Look at the [toolbar](images/servicematrix-solutionbuilder-final.png "Solution Builder Toolbar") and review some of the other buttons. In addition to the Default View represented by the hammer, note the ServiceMatrix View icon. 
-
-Select an endpoint in the SolutionBuilder then press the 'ServiceMatrix View' icon. A new 'ServiceMatrix Details' window is displayed as shown here:
-
-![Endpoint View in SolutionBuilder](images/servicematrix-endpointsview.png)
-
-This view provides a convenient look into the properties and components of the endpoint. 
