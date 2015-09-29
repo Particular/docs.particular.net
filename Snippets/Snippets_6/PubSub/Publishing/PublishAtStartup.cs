@@ -11,7 +11,7 @@
 
             BusConfiguration busConfiguration = new BusConfiguration();
             //Other config
-            using (IBus bus = Bus.Create(busConfiguration).Start())
+            using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
             {
                 await bus.PublishAsync(new MyEvent());
 
