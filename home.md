@@ -275,7 +275,7 @@
     <div style="clear: both"></div>
   </div>
   <div class="productcolumn block">
-    <p><h4>Gather all the data</h4></p>
+    <p><h4>Gather all the data and monitor multiple endpoints from a single location</h4></p>
     <ul>
       <li><a href="/servicecontrol/installation.md">Installing ServiceControl</a></li>
       <li><a href="/servicecontrol/multi-transport-support.md">Multi Transport Support</a></li>
