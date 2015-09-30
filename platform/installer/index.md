@@ -69,15 +69,8 @@ There is no harm in running these on multiple times. Each run will check the sta
 Note: The NServiceBus prerequisites do not have a version number and do not toggle to a disabled state after installation.
 
 
-#### ServiceMatrix for Visual Studio 2013
-
-Installs the ServiceMatrix for Visual Studio 2013 Package. This VSIX can be downloaded directly from here: [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases).  The file name for the Visual Studio 2013 version is `Particular.ServiceMatrix.12.0.vsix`.
-
-
-#### ServiceMatrix for Visual Studio 2012
-
-Installs the ServiceMatrix for Visual Studio 2012. This VSIX can be downloaded directly from here: [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases). The file name for the Visual Studio 2012 version is `Particular.ServiceMatrix.11.0.vsix`.
-
+#### ServiceMatrix 
+The PlatformInstaller will no longer install ServiceMatrix. ServiceMatrix is available as an extension on the Visual Studio Gallery. Read this article on [how to install ServiceMatrix](/servicematrix/installing-servicematrix-2.0.md). 
  
 #### ServiceInsight
 
