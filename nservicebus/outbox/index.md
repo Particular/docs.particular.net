@@ -18,7 +18,7 @@ In order to enable the Outbox, use the following API:
 
 <!-- import OutboxEnablineInCode --> 
 
-This is enough for the RabbitMQ trnasport. For SQL Server and MSMQ transports, to enable the outbox users need to also explicitly set the following configuration settings when configuring the endpoint:
+This is enough for the RabbitMQ transport. For SQL Server and MSMQ transports, to enable the outbox users need to also explicitly set the following configuration settings when configuring the endpoint:
 
 <!-- import OutboxEnablingInAppConfig --> 
 
