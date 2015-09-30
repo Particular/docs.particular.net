@@ -49,13 +49,6 @@ ServicePulse is a web application aimed mainly at administrators. It gives you a
 You will get notified when the endpoint is down or when a message fails. You can also specify your own custom checks and get alerts. The interface allows you to perform the common operations for failure recovery, such as retrying failed messages. You can also [subscribe to publicly exposed events](/servicepulse/custom-notification-and-alerting-using-servicecontrol-events.md), in order to display and handle them in a custom way.
 
 
-## [ServiceMatrix](/servicematrix) - faster prototyping
-
-ServiceMatrix is a Visual Studio extension for VS2012 and VS2013. As an Architect or a Systems Design Engineer, you can quickly design your system on the design canvas and generate a prototype based on your design. You can customize the generated code to suit your prototyping needs.
-
-ServiceMatrix is perfect for Proof of Concept, prototyping and discussing project design with a team of developers. Having a working prototype with visualization helps to clarify the design better in terms of how the system works. Combined with the run time visualization from ServiceInsight, the team can see how information and messages flow through the various endpoints using message flow and sequence diagrams.
-
-
 ## How do you work with the platform?
 
 Having ServiceControl and ServiceInsight installed locally on your machine gives you significant benefits during development, especially when you investigate failures and defects. Additionally, if you develop a [custom check](/servicecontrol/plugins/custom-checks.md) it is useful to have the full platform installed on your development machine.
