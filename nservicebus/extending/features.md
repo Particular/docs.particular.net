@@ -62,7 +62,7 @@ When the enabling algorithm can't find any more feature that should be enabled, 
 
 <!-- import FeatureWithPrerequisites -->
 
-NOTE: The differentiation between *explicit* settings and *default* settings comes useful when determining if a given feature should be activated.
+NOTE: The differentiation between *explicit* settings and *default* settings becomes useful when determining if a given feature should be activated.
 
 ### Activation 
 
