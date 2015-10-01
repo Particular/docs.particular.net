@@ -56,8 +56,72 @@ In Visual Studio add a new Empty ASP.NET MVC Project called `ECommerce`
 Open up Package Manager Console making sure that the highlighted project is `OrderProcessing` and run this command 
 
 `Install-Package NServiceBus`
+`Install-Package Autofac`
+`Install-Package Autofac.Mvc5`
+`Install-Package NServiceBus.Autofac `
 
 Also reference `System.Configuration` and `OnlineSales.Internal`
+
+Replace the code in `Global.asax` with this
+
+```C#
+using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Routing;
+using Autofac;
+using Autofac.Integration.Mvc;
+using NServiceBus;
+
+namespace ECommerce
+{
+    public class MvcApplication : System.Web.HttpApplication
+    {
+        private ISendOnlyBus _bus;
+
+        protected void Application_Start()
+        {
+         
+
+            ContainerBuilder builder = new ContainerBuilder();
+
+            // Register your MVC controllers.
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+
+            // Set the dependency resolver to be Autofac.
+            IContainer container = builder.Build();
+
+            var busConfiguration = new BusConfiguration();
+            busConfiguration.EndpointName("Samples.MvcInjection.WebApplication");
+            // ExistingLifetimeScope() ensures that IBus is added to the container as well,
+            // allowing you to resolve IBus from your own components.
+            busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+            busConfiguration.UseSerialization<JsonSerializer>();
+            busConfiguration.UsePersistence<InMemoryPersistence>();
+            busConfiguration.EnableInstallers();
+
+            _bus = Bus.CreateSendOnly(busConfiguration);
+
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+
+        public override void Dispose()
+        {
+            _bus?.Dispose();
+            base.Dispose();
+        }
+    }
+}
+```
+
+
+
+
 
 ### Create OrderProcessing endpoint
 
@@ -156,61 +220,47 @@ public class SubmitOrderHandler : IHandleMessages<SubmitOrder>
 
 ## Sending a Message 
 
-The last thing to do is for the `ECommerce` website sends a message. 
+The last thing to do is get the `ECommerce` website to send a message. 
 
-### Review MVC code
+You'll remember that we added an IoC container to the `ECommerce` site. This will inject the bus into your controller so you can use it to send your message to your handler. 
 
-Find the `TestMessagesController.generated.cs` file in the Controllers folder in the `ECommerce` project.  This file is generated as part of the MVC application by ServiceMatrix. Notice the `SubmitOrderSender.Send` method that sends the command message `SubmitOrder`.  This method was generated in a different partial class file located in the `Infrastructure\Sales\SubmitOrderSender.cs` file.  
-
-```C#
-namespace OnlineSales.ECommerce.Controllers
-{
-    public partial class TestMessagesController : Controller
-    {
-        // GET: /TestMessages/
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        // POST: /TestMessages/SendMessageSubmitOrder
-          
-        public ISubmitOrderSender SubmitOrderSender { get; set; }
-          
-        [HttpPost]
-        public ActionResult SendMessageSubmitOrder(SubmitOrder SubmitOrder)
-        {
-            ConfigureSubmitOrder(SubmitOrder);
-            SubmitOrderSender.Send(SubmitOrder);
-
-            ViewBag.MessageSent = "SubmitOrder";
-
-            return View("Index");
-        }
-        partial void ConfigureSubmitOrder(SubmitOrder message);
-    }
-}
-```  
-
-This is a demonstration site that provides an initial reference application in MVC.  Any modifications to this file will be overwritten by subsequent regeneration of the demonstration site.  To accomodate any changes you wish to make, just before the `SubmitOrderSender.Send` is called the code invokes a partial method called `ConfigureSubmitOrder` that accepts your `SubmitOrder` message as a parameter.  This can be implemented by you inside the `SubmitOrderSender.cs` file in the `\Sales` directory of the `OnlinesSales.ECommerce` project.  The following code snippet illustrates how that can be done.  
+Add these lines of code to the IndexController.
 
 ```C#
-namespace OnlineSales.Sales
+
+readonly IBus _bus;
+
+public HomeController(IBus bus)
 {
-    public partial class SubmitOrderSender
-    {
-        //You can add the partial method to change the submit order message.
-        partial void ConfigureSubmitOrder(SubmitOrder message)
-        {
-            message.CustomerName="John Doe";
-        }
-    }
+    this._bus = bus;
 }
+
+
+[AllowAnonymous]
+public ActionResult Send()
+{
+    _bus.Send("OrderProcessing", new SubmitOrder());
+    return RedirectToAction("Index", "Home");
+}
+
 ```
 
+Add a send button on the index view `Index.cshtml`
+
+```HTML
+
+<div class="row">
+    <div class="col-md-12">
+    	<h2>Send a Message</h2>
+        <p><a class="btn btn-default" href="@Url.Action( "Send", "Home")">Send!</a></p>
+    </div>
+</div>
+
+```
 
 ## Running the Application
+
+Right click on the solution and goto `Properties`. Edit the startup project to be multiple projects and set  action to Start for `ECommerce` and `OrderProcessing` so that they with both run when you hit `F5`.
 
 Now press `F5` or press the 'Play' button in Visual Studio to debug the application. You should see both the eCommerce website launched in your default browser and a console window for the NServiceBus host that is running your OrderProcessing endpoint.  
 
