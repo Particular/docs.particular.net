@@ -45,89 +45,122 @@ Our online sales example involves a website that collects online orders and a ba
 
 To build the solution you will define and endpoint for the website and another endpoint for the order processing system.  A new 'Sales' service will define components for submitting and processing orders as well as a command message to represent the order submission.  
 
-
 ## Creating Endpoints
 
 First you will create the endpoints for selling and processing.
 
-
-### New endpoint
+### New Endpoint
 
 In Visual Studio add a new Empty ASP.NET MVC Project called `ECommerce`
  
+Open up Package Manager Console making sure that the highlighted project is `OrderProcessing` and run this command 
+
+`Install-Package NServiceBus`
+
+Also reference `System.Configuration` and `OnlineSales.Internal`
 
 ### Create OrderProcessing endpoint
 
-In Visual Studio add a new Class Library Project called `OnlineSales.Sales`.  
+In Visual Studio add a new Console Application Project called `OrderProcessing`.  
 
-Open up Package Manager Console making sure that the highlighted project is `OnlineSales.Sales` and run this command 
+Open up Package Manager Console making sure that the highlighted project is `OrderProcessing` and run this command 
 
 `Install-Package NServiceBus`
 
 This will install nServiceBus into your project.
+
+Also reference `System.Configuration` and `OnlineSales.Internal`
+
+Add a class called `ConfigErrorQueue` with this code.
+
+```C#
+using NServiceBus.Config;
+using NServiceBus.Config.ConfigurationSource;
+
+class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
+{
+    public MessageForwardingInCaseOfFaultConfig GetConfiguration()
+    {
+        return new MessageForwardingInCaseOfFaultConfig
+        {
+            ErrorQueue = "error"
+        };
+    }
+}
+```
+
+And replace the contents of `Program.cs` with this code
+
+```C#
+using System;
+using NServiceBus;
+
+class Program
+{
+    static void Main()
+    {
+        var busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("OrderProcessing");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+
+        using (var bus = Bus.Create(busConfiguration).Start())
+        {
+            Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
+            Console.ReadKey();
+        }
+    }
+}
+```
+
+With `OrderProcessing` Set as your Startup project hit `F5` it should compile and run with a bunch of info flashing by as the Endpoint prepares to receive messages. `Hit a key` to Quit.
+
+You'll note that we are using `InMemoryPersistence` here. It is really handy for developing your ideas and testing but it is not what you would want to use in production.
 
 
 ## Creating a Message
 
 Communication between the website and the back-end `OrderProcessing` endpoint will be done with a command message. 
 
-## Creating Services 
-
-#PLACEHOLDER
-
-## Deploying Components
-
-#PLACEHOLDER
-
-## Create a Message
-
 In the `OnlineSales.Internal` project add a class with this code.
 
 ```C#
-namespace OnlineSales.Internal
+public class SubmitOrder
 {
-    public class SubmitOrder
-    {
-		//Put your properties in the class.
-		//public string CustomerName { get; set; }
-    }
+	//Put your properties in the class.
+	public string CustomerName { get; set; }
 }
-```
 
+```
 
 ## Handling a Message
 
-In the `OnlineSales.Sales` project add a class with this code. You will have to reference `OnlineSales.Internal` to get `SubmitOrder`.
+In the `OrderProcessing` project add a class with this code. You will have to reference `OnlineSales.Internal` to get `SubmitOrder`.
 
 ```C#
 using System;
 using NServiceBus;
-using OnlineSales.Internal;
 
-namespace OnlineSales.Sales
+public class SubmitOrderHandler : IHandleMessages<SubmitOrder>
 {
-    public class SubmitOrderHandler : IHandleMessages<SubmitOrder>
+    public void Handle(SubmitOrder message)
     {
-        public void Handle(SubmitOrder message)
-        {
-             Console.WriteLine("Sales received " + message.GetType().Name);
-        }
-		
-		public IBus Bus { get; set; }
+         Console.WriteLine("Sales received " + message.GetType().Name);
     }
+	
+	public IBus Bus { get; set; }
 }
+
 ```
-
-
 
 ## Sending a Message 
 
-The last thing to do is for the 'ECommerce' website sends a message. 
-
+The last thing to do is for the `ECommerce` website sends a message. 
 
 ### Review MVC code
 
-Find the `TestMessagesController.generated.cs` file in the Controllers folder in the OnlineSales.ECommerce project.  This file is generated as part of the MVC application by ServiceMatrix. Notice the `SubmitOrderSender.Send` method that sends the command message `SubmitOrder`.  This method was generated in a different partial class file located in the `Infrastructure\Sales\SubmitOrderSender.cs` file.  
+Find the `TestMessagesController.generated.cs` file in the Controllers folder in the `ECommerce` project.  This file is generated as part of the MVC application by ServiceMatrix. Notice the `SubmitOrderSender.Send` method that sends the command message `SubmitOrder`.  This method was generated in a different partial class file located in the `Infrastructure\Sales\SubmitOrderSender.cs` file.  
 
 ```C#
 namespace OnlineSales.ECommerce.Controllers
