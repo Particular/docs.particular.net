@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 using NServiceBus;
-using NServiceBus.Outbox;
-
 
 class Program
 {

@@ -1,13 +1,7 @@
 ﻿using System;
-using NHibernate.Cfg;
-using NHibernate.Dialect;
-using NHibernate.Mapping.ByCode;
-using NHibernate.Tool.hbm2ddl;
 using NServiceBus;
 using NServiceBus.Features;
-using NServiceBus.Persistence;
 using NServiceBus.Transports.SQLServer;
-using Configuration = NHibernate.Cfg.Configuration;
 
 class Program
 {
