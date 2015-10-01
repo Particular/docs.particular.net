@@ -71,9 +71,9 @@ This effectively means the blocking call to [WaitForConfirmsOrDie](http://www.ra
 
 ### SQL Server
 
-The SQL Server transport has no support for this setting an it is ignored.
+The SQL Server transport has no support for this setting and it is ignored.
 
 
 ### Azure
 
-The Azure transports have no support for this setting an it is ignored.
+The Azure transports have no support for this setting and it is ignored.
