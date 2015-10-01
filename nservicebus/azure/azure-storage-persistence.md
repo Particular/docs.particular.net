@@ -9,6 +9,8 @@ tags:
 - Hosting
 redirects:
  - nservicebus/using-azure-storage-persistence-in-nservicebus
+related:
+ - samples/azure/storage-queues
 ---
 
 Various features of NServiceBus require persistence. Among them are subscription storage, sagas, and timeouts. Various storage options are available including, Azure Storage Services.
@@ -93,8 +95,3 @@ For Timeouts:
 <!-- import AzurePersistenceTimeoutsCustomization -->
 
 NOTE: Subscriptions and Timeouts persistence configuration only has an effect when used with Azure Storage Queues transport from NServiceBus Azure version 6 and later.
-
-
-## Sample
-
-Want to see these persisters in action? Checkout the [Video store sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud) and more specifically, the `VideoStore.Sales` endpoint

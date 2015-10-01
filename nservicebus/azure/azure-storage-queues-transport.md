@@ -8,6 +8,8 @@ tags:
 - Transport
 redirects:
  - nservicebus/using-azure-storage-queues-as-transport-in-nservicebus
+related:
+ - samples/azure/storage-queues
 ---
 
 In some environments, like very large cloud networks or hybrid network scenarios, it's not possible or recommended to rely heavily on the DTC, and thus on msmq, to ensure transactional behavior and retry in case of failures. A good alternative to using msmq in this case might be to use Azure Storage queues instead.
@@ -17,13 +19,10 @@ Azure Queue storage is a service, hosted on the Azure platform, for storing larg
 - The main advantage of this service is that it offers a highly reliable and very cheap queuing service ($0.1 per million messages). A single queue message can be up to 64 KB in size, and a queue can contain millions of messages, up to the total capacity limit of a storage account (200 TB). Furthermore it is capable to emulate local transactions using it's queue peek lock mechanism.
 - The main disadvantage of this service is latency introduced by it's remoteness and the fact that it only supports HTTP based communication.
 
+
 ## How to enable the transport
 
-First you need to reference the assembly that contains the azure storage queue transport definition. The recommended way of doing this is by adding a nuget package reference to the  `NServiceBus.Azure.Transports.WindowsAzureStorageQueues` package to your project.
-
-```
-PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureStorageQueues
-```
+First you need to reference the assembly that contains the azure storage queue transport definition. The recommended way of doing this is by adding a nuget package reference to the  [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/) package to your project.
 
 Once you've done that you can use the configuration API to setup NServiceBus, all you need to do is specify `.UseTransport<T>()` to override the default transport.
 
@@ -32,6 +31,7 @@ Once you've done that you can use the configuration API to setup NServiceBus, al
 Alternatively, when using one of the NServiceBus provided hosting processes, you should call `UseTransport<T>` on the existing configuration. In the Azure role entrypoint host, for example, it would look something like this.
 
 <!-- import AzureStorageQueueTransportWithAzureHost -->
+
 
 ## Setting the connection string
 
@@ -42,6 +42,7 @@ The default way of setting the connection string is using the .net provided conn
 Note that multiple connection string formats apply when working with Azure storage services. When you're running against the emulated environment the format is `UseDevelopmentStorage=true`, but when running against a cloud hosted storage account the format is `DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;` 
 
 For more information see [Configuring Azure Connection Strings](https://msdn.microsoft.com/en-us/library/azure/ee758697.aspx)
+
 
 ## Detailed configuration
 
@@ -59,8 +60,3 @@ Using this configuration setting you can change the following values.
 - `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. Defaults to 10. Depending on the load you expect, I would vary this value between 1 and 1000 (which is the limit)
 
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.
-
-## Sample
-
-Want to see this transport in action? Checkout the [Video storage sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud)
-

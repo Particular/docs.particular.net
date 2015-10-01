@@ -66,7 +66,4 @@ An example of a partitioned application with a different number of deployed scal
 
 ![Scale units](azure04.png "width=50%")
 
-To see this in action, look at the [video storage sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud)
-
 NOTE: You must use real Azure storage accounts because the Azure storage emulator only supports a single fixed account named `devstoreaccount1`.
-

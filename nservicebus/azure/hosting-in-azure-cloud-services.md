@@ -10,6 +10,8 @@ tags:
 - Logging
 redirects:
  - nservicebus/hosting-nservicebus-in-windows-azure-cloud-services
+related:
+ - samples/azure/shared-host
 ---
 
 The Azure Platform and NServiceBus make a perfect fit. On the one hand the azure platform offers us the scalable and flexible platform that we are looking for in our designs, on the other hand NServiceBus makes development on this highly distributed environment a breeze.
@@ -66,6 +68,7 @@ This will integrate and configure the default infrastructure for you, being:
 * Saga's are enabled by default and persisted in the chosen persistence store.
 * Timeouts are enabled by default and persisted in the chosen persistence store.
 
+
 ## Configuration override convention
 
 Because Azure cloud services has it's own configuration model, but nservicebus is typically used with it's configuration in app.config, we've decided to go for a convention based override model. Where most of the configuration is in app.config, but you can add any setting 'by convention' to the service configuration file to override the original value in app.config. This makes it easy to develop locally (without the service runtime), but still make use of this feature in production.
@@ -120,6 +123,7 @@ The name to be used for the property override is always structured like this: `T
 
 The override order used in this example applies, lowest priority is the default value, then the app.config value is applied, and than the service configuration value is applied.
 
+
 ## Logging
 
 The NServiceBus logging integrates with the Azure Diagnostics service through a simple trace logger. In the past it would itself setup azure diagnostics service and integrate with it directly, but this is no longer the case today. The primary reason for this is that Visual Studio tooling now sets everything up for you anyway.
@@ -138,6 +142,7 @@ If the following trace listener is added to your app.config, all nservicebus log
 	</system.diagnostics>
 
 Logging settings can than be controlled by configuring the Azure diagnostics service itself using a .wadcfg file. Check out the (msdn documentation)[https://msdn.microsoft.com/library/azure/hh411551.aspx] for more information on this topic.
+
 
 ## Cloud Services - Web Roles
 
@@ -164,11 +169,14 @@ a short explanation of each:
 * UseTransport<AzureStorageQueueTransport>: Sets azure storage queues as the transport
 * UsePersistence: Configures azure storage for persistence of enabled features (like subscriptions, saga's & timeouts).
 
+
 ## Handling critical errors
+
 
 ### Azure Host version 6.2.2 and up
 
 Azure host is terminated on critical errors by default. When host is terminated, Azure Fabric will restart the host automatically.
+
 
 ### Azure Host version 6.2.1 and lower
 
@@ -176,7 +184,3 @@ Azure host is not terminated on critical errors by default and only shuts down t
 To address this, implement critical errors handling code that shuts down the host.
 
 <!-- import DefineCriticalErrorActionForAzureHost -->
-
-## Sample
-
-Want to see these persisters in action? Checkout the [Video store sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud) and more specifically, the `VideoStore.Sales` endpoint

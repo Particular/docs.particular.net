@@ -10,6 +10,9 @@ tags:
 - Azure Storage Queues
 redirects:
  - nservicebus/windows-azure-transport
+related:
+ - samples/azure/storage-queues
+ - samples/azure/azure-service-bus
 ---
 
 The Azure transports for NServiceBus enable the use of Azure Queues and Azure Service Bus as the underlying transports used by NServiceBus. It can be used in multiple scenarios:
@@ -23,21 +26,6 @@ As part of the Azure support for NServiceBus, you can choose between two options
 -   Azure Service Bus
 
 Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits your application's needs, review the MSDN article "[Azure Queues and Azure Service Bus Queues - Compared and Contrasted](https://msdn.microsoft.com/library/azure/hh767287.aspx)".
-
-
-## Samples
-
-Samples for various scenario's are available on Github
-
--   [Azure Service Bus transport hosted in cloud services](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureServiceBus.Cloud)
--   [Azure Service Bus transport hosted in an on-premises host](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureServiceBus.OnPremises)
--   [Azure Queues transport hosted in cloud services](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud)
--   [Azure Queues transport hosted in cloud services with multiple endpoints hosted on the same role instances](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureStorageQueues.Cloud.DynamicHost)
-
-To run these samples, update the configuration connection strings and queue names settings in the relevant configuration files (as described below).
-
-The Azure transport for NServiceBus are available from nuget. You can download the latest (and previous) release from the
-[nuget website](https://www.nuget.org/profiles/nservicebus/).
 
 
 ## Prerequisites
