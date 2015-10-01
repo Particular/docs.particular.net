@@ -30,7 +30,7 @@ Features can depend on each other to form more complex behaviours.
 
 A feature might use either strongly or loosely typed API when declaring dependencies (the latter can be useful if a dependency is declared in an external assembly).
 
-NOTICE: The feature name is derived from the name of the type but the suffix `Feature`, if present in the type name, is removed from the name of the feature.
+NOTE: The feature name is derived from the name of the type but the suffix `Feature`, if present in the type name, is removed from the name of the feature.
 
 The API also allows to declare optional dependencies on one or more of listed features.
 
