@@ -21,14 +21,14 @@ In the OO world, nouns identify objects. In the event-driven world, the word "wh
 In .NET 4.0, to define an event, use the event keyword in the signature of your event field, and specify the type of delegate for the event and its arguments. For example:
 
 
-### Define an event:
+### Define an event
     
 ```C#
 public event EventHandler<ClientBecamePreferredEventArgs> RaiseClientBecamePreferredEvent;
 ```
 
 
-### Define the event arguments:
+### Define the event arguments
     
 ```C#
 public class ClientBecamePreferredArgs : EventArgs
@@ -39,7 +39,7 @@ public class ClientBecamePreferredArgs : EventArgs
 ```
 
 
-### Raise the event:
+### Raise the event
     
 ```C#
 public void DoSomething()
@@ -125,7 +125,7 @@ private class CustomerBecamePreferredHandler: IHandleMessages<ClientBecamePrefer
 ```
 
 
-### How is an in-memory event different from `Bus.Publish<T>`?
+### How is an in-memory event different from Bus.Publish<T>?
 
 
 When an event is published via Bus.Publish, a message is delivered asynchronously to all of the subscribers via the queue/transport of your choice, taking into account all the messaging constraints such as the receiving party could be down. Subscribers of this event can be in different machines or different endpoints on the same machine.
