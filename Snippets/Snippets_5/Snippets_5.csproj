@@ -357,6 +357,7 @@
   <ItemGroup>
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
+    <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BusNotifications\Errors.cs" />
     <Compile Include="Callback\Enum\Handler.cs" />
     <Compile Include="Callback\Enum\Message.cs" />
@@ -381,6 +382,7 @@
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Features\FeatureConfiguration.cs" />
     <Compile Include="Features\MyFeature.cs" />
+    <Compile Include="ImmediateDispatch\Usage.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
     <Compile Include="Lifecycle\IWantToRunWhenConfigurationIsComplete.cs" />

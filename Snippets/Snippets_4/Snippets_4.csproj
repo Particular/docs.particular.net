@@ -262,6 +262,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
+    <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="Callback\Enum\Message.cs" />
     <Compile Include="Callback\Enum\Handler.cs" />
     <Compile Include="Callback\Int\Message.cs" />
@@ -280,6 +281,7 @@
     <Compile Include="Container\Containers_Unity.cs" />
     <Compile Include="Container\Custom\MyCustomObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
+    <Compile Include="ImmediateDispatch\Usage.cs" />
     <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
     <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
