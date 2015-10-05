@@ -162,6 +162,6 @@ NOTE: Version 2.X required a perfect match. This should make it easier to upgrad
 
 You may not want to allow any endpoints to subscribe to a given publisher or event. NServiceBus provides a way for you to intervene in the subscription process and decide whether a given client should be allowed to subscribe to a given message. 
 
-NOTE: subscription authorization is only possible with transports that require persistence based publish-subscribe
+NOTE: Subscription authorization is only available when using transports that require persistence based publish-subscribe.
 
 The class implements the `IAuthorizeSubscriptions` interface, which requires the `AuthorizeSubscribe` and `AuthorizeUnsubscribe` methods. The implementation that comes in the sample doesn't do very much, returning true for both. In a real project, you may access some Access Control System, Active Directory, or maybe just a database to decide if the action should be allowed.
