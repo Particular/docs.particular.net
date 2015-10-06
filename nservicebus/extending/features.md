@@ -13,7 +13,7 @@ The bootstrapping code is responsible for taking the configuration values from t
 
 ### Message processing code
 
-All the actual logic of the bus is implemented in form of features. Features take part in configuring the underlying dependency injection container with all the services required by the bus to be operational.
+NServiceBus in its core provides an extensible framework for processing messages. Most of the higher-level functionality (such as auditing, retries etc.) is packaged in form of features. Features take part in configuring the underlying dependency injection container with all the services required by the bus to be operational.
 
 ## Definition
 
@@ -36,7 +36,7 @@ The API also allows to declare optional dependencies on one or more of listed fe
 
 ## Enabling, disabling and activation
 
-In order for a feature to take part in the bus construction it has to first become *enabled* and then, only if it has been enabled, quality for *activation*.
+In order for a feature to take part in the bus construction it has to first become *enabled* and then, only if it has been enabled, qualify for *activation*.
 
 A feature can be enabled by default (like most of the core features are):
 
