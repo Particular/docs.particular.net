@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Pipeline;
 
 #region incoming-header-behavior
-class IncomingHeaderBehavior : PhysicalMessageProcessingStageBehavior
+class IncomingHeaderBehavior : Behavior<PhysicalMessageProcessingContext>
 {
-    public override void Invoke(Context context, Action next)
+    public override async Task Invoke(PhysicalMessageProcessingContext context, Func<Task> next)
     {
-        context.Get<TransportMessage>()
+        context.Message
             .Headers
             .Add("IncomingHeaderBehavior", "ValueIncomingHeaderBehavior");
-        next();
+        await next();
     }
 }
 

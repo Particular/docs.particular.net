@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -14,7 +15,7 @@ public class MyHandler : IHandleMessages<MyMessage>
         this.bus = bus;
     }
 
-    public void Handle(MyMessage message)
+    public Task Handle(MyMessage message)
     {
         logger.Info("Hello from MyHandler");
         foreach (string line in bus.CurrentMessageContext
@@ -23,6 +24,7 @@ public class MyHandler : IHandleMessages<MyMessage>
         {
             logger.Info(line);
         }
+        return Task.FromResult(0);
     }
 }
 

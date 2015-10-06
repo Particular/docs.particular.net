@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
 {
 
     static void Main()
+    {
+        AsyncRun().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncRun()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Headers");
@@ -22,16 +28,20 @@ class Program
         });
 
         #region global-all-outgoing
+
         busConfiguration.AddHeaderToAllOutgoingMessages("AllOutgoing", "ValueAllOutgoing");
         IStartableBus startableBus = Bus.Create(busConfiguration);
-        using (IBus bus = startableBus.Start())
+        using (IBus bus = await startableBus.StartAsync())
         {
             #endregion
 
             #region sending
+
             MyMessage myMessage = new MyMessage();
-            bus.SendLocal(myMessage);
+            await bus.SendLocalAsync(myMessage);
+
             #endregion
+
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

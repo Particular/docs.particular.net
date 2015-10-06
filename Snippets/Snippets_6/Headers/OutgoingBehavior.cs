@@ -3,12 +3,13 @@
     using System;
     using System.Threading.Tasks;
     using NServiceBus.OutgoingPipeline;
+    using NServiceBus.Pipeline;
     using NServiceBus.TransportDispatch;
 
     #region header-outgoing-behavior
-    public class OutgoingBehavior : PhysicalOutgoingContextStageBehavior
+    public class OutgoingBehavior : Behavior<OutgoingPhysicalMessageContext>
     {
-        public override async Task Invoke(Context context, Func<Task> next)
+        public override async Task Invoke(OutgoingPhysicalMessageContext context, Func<Task> next)
         {
             context.SetHeader("MyCustomHeader", "My custom value");
             await next();
