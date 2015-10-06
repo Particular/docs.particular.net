@@ -1,16 +1,22 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
 {
     static void Main()
     {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MessageBodyEncryption.Endpoint2");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.RegisterMessageEncryptor();
         IStartableBus startableBus = Bus.Create(busConfiguration);
-        using (startableBus.Start())
+        using (await startableBus.StartAsync())
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

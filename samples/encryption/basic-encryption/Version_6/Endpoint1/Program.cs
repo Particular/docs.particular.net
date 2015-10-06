@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
 {
     static void Main()
     {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Encryption.Endpoint1");
         busConfiguration.RijndaelEncryptionService();
         busConfiguration.UsePersistence<InMemoryPersistence>();
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
             MessageWithSecretData message = new MessageWithSecretData
             {
@@ -33,7 +39,7 @@ class Program
                     }
                 }
             };
-            bus.Send("Samples.Encryption.Endpoint2", message);
+            await bus.SendAsync("Samples.Encryption.Endpoint2", message);
 
             Console.WriteLine("MessageWithSecretData sent. Press any key to exit");
             Console.ReadKey();
