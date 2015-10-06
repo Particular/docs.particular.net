@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
 static class Program
 {
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Warn);
@@ -14,7 +20,7 @@ static class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
             Console.WriteLine("Press enter to send a message that will throw an exception.");
             Console.WriteLine("Press any key to exit");
@@ -30,7 +36,7 @@ static class Program
                 {
                     Id = Guid.NewGuid()
                 };
-                bus.SendLocal(m);
+                await bus.SendLocalAsync(m);
             }
         }
     }

@@ -1,10 +1,16 @@
 using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
 {
 
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.FaultTolerance.Server");
@@ -15,9 +21,8 @@ class Program
         // To disable second level retries(SLR), uncomment the following line. SLR is enabled by default.
         // busConfiguration.DisableFeature<SecondLevelRetries>();
         
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
-            bus.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

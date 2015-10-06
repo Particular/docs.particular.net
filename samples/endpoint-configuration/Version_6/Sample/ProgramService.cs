@@ -1,5 +1,6 @@
 using System;
 using System.ServiceProcess;
+using System.Threading.Tasks;
 using Autofac;
 using log4net.Appender;
 using log4net.Config;
@@ -36,7 +37,13 @@ class ProgramService : ServiceBase
 
     protected override void OnStart(string[] args)
     {
+        AsyncOnStart().GetAwaiter().GetResult();
+    }
+
+    async Task AsyncOnStart()
+    {
         #region logging
+
         PatternLayout layout = new PatternLayout
         {
             ConversionPattern = "%d %-5p %c - %m%n"
@@ -52,43 +59,59 @@ class ProgramService : ServiceBase
         BasicConfigurator.Configure(appender);
 
         LogManager.Use<Log4NetFactory>();
+
         #endregion
 
         #region create-config
+
         BusConfiguration busConfiguration = new BusConfiguration();
+
         #endregion
 
         #region endpoint-name
+
         busConfiguration.EndpointName("Samples.FirstEndpoint");
+
         #endregion
 
         #region container
+
         ContainerBuilder builder = new ContainerBuilder();
         //configure your custom services
         //builder.RegisterInstance(new MyService());
         IContainer container = builder.Build();
         busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+
         #endregion
 
         #region serialization
+
         busConfiguration.UseSerialization<JsonSerializer>();
+
         #endregion
 
         #region transport
+
         busConfiguration.UseTransport<MsmqTransport>();
+
         #endregion
 
         #region sagas 
+
         //Not required since Sagas are enabled by default in Version 5
+
         #endregion
 
         #region persistence
+
         busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
         busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
         busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
+
         #endregion
 
         #region critical-errors
+
         busConfiguration.DefineCriticalErrorAction((errorMessage, exception) =>
         {
             // Log the critical error
@@ -98,11 +121,14 @@ class ProgramService : ServiceBase
             string output = string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage);
             Environment.FailFast(output, exception);
         });
+
         #endregion
 
         #region start-bus
+
         busConfiguration.EnableInstallers();
-        bus = Bus.Create(busConfiguration).Start();
+        bus = await Bus.Create(busConfiguration).StartAsync();
+
         #endregion
     }
 

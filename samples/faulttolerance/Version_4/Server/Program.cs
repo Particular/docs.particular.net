@@ -23,7 +23,6 @@ class Program
         {
             IBus bus = startableBus
                 .Start(() => configure.ForInstallationOn<Windows>().Install());
-            bus.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

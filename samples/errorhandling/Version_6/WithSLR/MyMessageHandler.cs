@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Threading.Tasks;
 using NServiceBus;
 
 public class MyMessageHandler : IHandleMessages<MyMessage>
@@ -12,7 +13,7 @@ public class MyMessageHandler : IHandleMessages<MyMessage>
         this.bus = bus;
     }
 
-    public void Handle(MyMessage message)
+    public Task Handle(MyMessage message)
     {
         IMessageContext context = bus.CurrentMessageContext;
         Console.WriteLine("ReplyToAddress: {0} MessageId:{1}", context.ReplyToAddress, context.Id);
