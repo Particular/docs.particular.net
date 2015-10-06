@@ -157,6 +157,21 @@ NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MS
 Similar to self hosting, ensure the `app.config` of the Worker contains the `MasterNodeConfig` section to point to the host name where the master node (and a Distributor) are running.
 
 
+### Is enabled in endpoint
+
+For some exensisbily scenarios it may be helpful to check if the endpoint is running as either a worker, a distributor, or both.
+
+
+#### Is running as a Distributor
+
+<!-- import IsDistributorEnabled --> 
+ 
+
+#### Is running as a Worker
+
+<!-- import IsWorkerEnabled -->
+ 
+
 ## Routing with the Distributor
 
 The Distributor uses two queues for its runtime operation. The `DataInputQueue` is the queue where the client processes send their applicable messages. The `ControlInputQueue` is the queue where the worker nodes send their control messages.

@@ -28,5 +28,15 @@
             configure.EnlistWithDistributor();
             #endregion
         }
+        public void IsEnabled()
+        {
+            Configure configure = Configure.With();
+            #region IsDistributorEnabled
+            bool isDistributorEnabled = configure.DistributorEnabled();
+            #endregion
+            #region IsWorkerEnabled
+            bool isWorkerEnabled = configure.WorkerRunsOnThisEndpoint();
+            #endregion
+        }
     }
 }
