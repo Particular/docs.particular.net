@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
 {
 
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         #region self-hosting
 
@@ -14,10 +20,10 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
             Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
-            bus.SendLocal(new MyMessage());
+            await bus.SendLocalAsync(new MyMessage());
             Console.ReadKey();
         }
 

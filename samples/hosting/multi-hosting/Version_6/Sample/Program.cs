@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
@@ -6,10 +7,15 @@ class Program
 
     static void Main()
     {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
         #region multi-hosting
 
-        using (IBus bus1 = StartInstance1())
-        using (IBus bus2 = StartInstance2())
+        using (IBus bus1 = await StartInstance1())
+        using (IBus bus2 = await StartInstance2())
         {
             Console.WriteLine("Press '1' to send a message from Instance1 to Instance2");
             Console.WriteLine("Press '2' to send a message from Instance2 to Instance1");
@@ -21,12 +27,12 @@ class Program
                 Console.WriteLine();
                 if (key.Key == ConsoleKey.D1)
                 {
-                    bus1.Send("Samples.MultiHosting.Instance2", new MyMessage());
+                    await bus1.SendAsync("Samples.MultiHosting.Instance2", new MyMessage());
                     continue;
                 }
                 if (key.Key == ConsoleKey.D2)
                 {
-                    bus2.Send("Samples.MultiHosting.Instance1", new MyMessage());
+                    await bus2.SendAsync("Samples.MultiHosting.Instance1", new MyMessage());
                     continue;
                 }
                 return;
@@ -36,7 +42,7 @@ class Program
         #endregion
     }
 
-    static IBus StartInstance1()
+    static async Task<IBus> StartInstance1()
     {
         #region multi-hosting-assembly-scan
 
@@ -49,12 +55,12 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        return Bus.Create(busConfiguration).Start();
+        return await Bus.Create(busConfiguration).StartAsync();
 
         #endregion
     }
 
-    static IBus StartInstance2()
+    static async Task<IBus> StartInstance2()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
 
@@ -64,6 +70,6 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        return Bus.Create(busConfiguration).Start();
+        return await Bus.Create(busConfiguration).StartAsync();
     }
 }

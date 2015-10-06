@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -6,6 +7,11 @@ class Program
 {
 
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
@@ -15,7 +21,7 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
@@ -39,7 +45,7 @@ class Program
                     DataId = guid,
                     String = "<node>it's my \"node\" & i like it<node>"
                 };
-                bus.Send("Samples.FullDuplex.Server", message);
+                await bus.SendAsync("Samples.FullDuplex.Server", message);
             }
 
             #endregion

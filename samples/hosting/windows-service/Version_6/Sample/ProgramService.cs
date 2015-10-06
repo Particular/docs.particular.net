@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.ServiceProcess;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class ProgramService : ServiceBase
@@ -35,6 +36,11 @@ class ProgramService : ServiceBase
 
     protected override void OnStart(string[] args)
     {
+        AsyncOnStart().GetAwaiter().GetResult();
+    }
+
+    async Task AsyncOnStart()
+    {
         BusConfiguration busConfiguration = new BusConfiguration();
 
         busConfiguration.EndpointName("Samples.WindowsServiceAndConsole");
@@ -46,7 +52,7 @@ class ProgramService : ServiceBase
             busConfiguration.EnableInstallers();
         }
 
-        bus = Bus.Create(busConfiguration).Start();
+        bus = await Bus.Create(busConfiguration).StartAsync();
     }
 
     #endregion

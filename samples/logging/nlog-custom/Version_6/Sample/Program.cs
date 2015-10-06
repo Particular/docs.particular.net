@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -8,6 +9,11 @@ class Program
 {
 
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
 
         #region ConfigureNLog
@@ -37,9 +43,9 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
-            bus.SendLocal(new MyMessage());
+            await bus.SendLocalAsync(new MyMessage());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

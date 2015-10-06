@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Common.Logging;
 using NServiceBus;
 using Common.Logging.Simple;
@@ -9,12 +10,17 @@ class Program
 
     static void Main()
     {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
         #region ConfigureLogging
 
         Common.Logging.LogManager.Adapter = new ConsoleOutLoggerFactoryAdapter
-                                            {
-                                                Level = LogLevel.Info
-                                            };
+        {
+            Level = LogLevel.Info
+        };
 
         NServiceBus.Logging.LogManager.Use<CommonLoggingFactory>();
 
@@ -27,9 +33,9 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
-            bus.SendLocal(new MyMessage());
+            await bus.SendLocalAsync(new MyMessage());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

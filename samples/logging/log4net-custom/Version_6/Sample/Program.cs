@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using log4net.Appender;
 using log4net.Config;
 using log4net.Core;
@@ -12,7 +13,11 @@ class Program
 
     static void Main()
     {
+        AsyncMain().GetAwaiter().GetResult();
+    }
 
+    static async Task AsyncMain()
+    {
         #region ConfigureLog4Net
         PatternLayout layout = new PatternLayout
         {
@@ -43,9 +48,9 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
-            bus.SendLocal(new MyMessage());
+            await bus.SendLocalAsync(new MyMessage());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

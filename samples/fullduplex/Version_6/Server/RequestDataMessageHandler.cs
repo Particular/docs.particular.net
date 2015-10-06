@@ -1,5 +1,6 @@
 using NServiceBus;
 using System;
+using System.Threading.Tasks;
 
 #region RequestDataMessageHandler
 
@@ -15,7 +16,7 @@ public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
         this.bus = bus;
     }
 
-    public void Handle(RequestDataMessage message)
+    public async Task Handle(RequestDataMessage message)
     {
         Console.WriteLine("Received request {0}.", message.DataId);
         Console.WriteLine("String received: {0}.", message.String);
@@ -28,7 +29,7 @@ public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
                                            String = message.String
                                        };
 
-        bus.Reply(response);
+        await bus.ReplyAsync(response);
 
         #endregion
     }

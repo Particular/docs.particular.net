@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System.Threading.Tasks;
+using NServiceBus;
 
 class Sender : IWantToRunWhenBusStartsAndStops
 {
@@ -9,12 +10,13 @@ class Sender : IWantToRunWhenBusStartsAndStops
         this.bus = bus;
     }
 
-    public void Start()
+    public async Task StartAsync()
     {
-        bus.SendLocal(new MyMessage());
+        await bus.SendLocalAsync(new MyMessage());
     }
 
-    public void Stop()
+    public Task StopAsync()
     {
+        return Task.FromResult(0);
     }
 }
