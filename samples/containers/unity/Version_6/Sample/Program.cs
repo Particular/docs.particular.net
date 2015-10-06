@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Practices.Unity;
 using NServiceBus;
 
 static class Program
 {
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         #region ContainerConfiguration
         BusConfiguration busConfiguration = new BusConfiguration();
@@ -18,9 +24,9 @@ static class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
-            bus.SendLocal(new MyMessage());
+            await bus.SendLocalAsync(new MyMessage());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
