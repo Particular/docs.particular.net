@@ -1,12 +1,18 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
 {
 
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PipelineStream.Sender");
@@ -20,14 +26,14 @@ class Program
         #endregion
 
         busConfiguration.EnableInstallers();
-        using (var bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
-            Run(bus);
+            await Run(bus);
         }
     }
 
 
-    static void Run(IBus bus)
+    static async Task Run(IBus bus)
     {
         Console.WriteLine("Press 'F' to send a message with a file stream");
         Console.WriteLine("Press 'H' to send a message with a http stream");
@@ -39,19 +45,19 @@ class Program
 
             if (key.Key == ConsoleKey.F)
             {
-                SendMessageWithFileStream(bus);
+                await SendMessageWithFileStream(bus);
                 continue;
             }
             if (key.Key == ConsoleKey.H)
             {
-                SendMessageWithHttpStream(bus);
+                await SendMessageWithHttpStream(bus);
                 continue;
             }
-            return;
+            break;
         }
     }
 
-    static void SendMessageWithFileStream(IBus bus)
+    static async Task SendMessageWithFileStream(IBus bus)
     {
         #region send-message-with-file-stream
 
@@ -60,7 +66,7 @@ class Program
             SomeProperty = "This message contains a stream",
             StreamProperty = File.OpenRead("FileToSend.txt")
         };
-        bus.Send("Samples.PipelineStream.Receiver", message);
+        await bus.SendAsync("Samples.PipelineStream.Receiver", message);
 
         #endregion
 
@@ -68,7 +74,7 @@ class Program
         Console.WriteLine("Message with file stream sent");
     }
 
-    static void SendMessageWithHttpStream(IBus bus)
+    static async Task SendMessageWithHttpStream(IBus bus)
     {
         #region send-message-with-http-stream
 
@@ -79,7 +85,7 @@ class Program
                 SomeProperty = "This message contains a stream",
                 StreamProperty = webClient.OpenRead("http://www.particular.net")
             };
-            bus.Send("Samples.PipelineStream.Receiver", message);
+            await bus.SendAsync("Samples.PipelineStream.Receiver", message);
         }
 
         #endregion

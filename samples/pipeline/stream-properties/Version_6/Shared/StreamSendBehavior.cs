@@ -1,15 +1,15 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using NServiceBus.DeliveryConstraints;
-using NServiceBus.OutgoingPipeline;
 using NServiceBus.Performance.TimeToBeReceived;
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 using NServiceBus.TransportDispatch;
 
 #region SendBehaviorDefinition
-class StreamSendBehavior : Behavior<OutgoingContext>
+class StreamSendBehavior : Behavior<OutgoingLogicalMessageContext>
 {
     TimeSpan MaxMessageTimeToLive = TimeSpan.FromDays(14);
     string location;
@@ -18,7 +18,7 @@ class StreamSendBehavior : Behavior<OutgoingContext>
     {
         location = Path.GetFullPath(storageSettings.Location);
     }
-    public override void Invoke(OutgoingContext context, Action next)
+    public override async Task Invoke(OutgoingLogicalMessageContext context, Func<Task> next)
     {
 #endregion
         #region copy-stream-properties-to-disk
@@ -30,7 +30,7 @@ class StreamSendBehavior : Behavior<OutgoingContext>
             timeToBeReceived = constraint.MaxTime;
         }
 
-        object message = context.GetMessageInstance();
+        object message = context.Message.Instance;
 
         foreach (PropertyInfo property in StreamStorageHelper.GetStreamProperties(message))
         {
@@ -62,19 +62,23 @@ class StreamSendBehavior : Behavior<OutgoingContext>
             context.SetHeader("NServiceBus.PropertyStream." + headerKey, fileKey);
         }
 
-        next();
+        await next();
         #endregion
     }
     #region generata-key-for-stream
     string GenerateKey(TimeSpan timeToBeReceived)
     {
         if (timeToBeReceived > MaxMessageTimeToLive)
+        {
             timeToBeReceived = MaxMessageTimeToLive;
+        }
 
         DateTime keepMessageUntil = DateTime.MaxValue;
 
         if (timeToBeReceived < TimeSpan.MaxValue)
+        {
             keepMessageUntil = DateTime.Now + timeToBeReceived;
+        }
 
         return Path.Combine(keepMessageUntil.ToString("yyyy-MM-dd_HH"), Guid.NewGuid().ToString());
     }

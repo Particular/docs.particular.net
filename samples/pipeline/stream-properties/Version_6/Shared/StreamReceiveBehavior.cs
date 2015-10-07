@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
 #region ReceiveBehaviorDefinition
-class StreamReceiveBehavior : LogicalMessageProcessingStageBehavior
+
+class StreamReceiveBehavior : Behavior<LogicalMessageProcessingContext>
 {
     string location;
 
@@ -15,11 +17,13 @@ class StreamReceiveBehavior : LogicalMessageProcessingStageBehavior
         location = Path.GetFullPath(storageSettings.Location);
     }
 
-    public override void Invoke(Context context, Action next)
+    public override async Task Invoke(LogicalMessageProcessingContext context, Func<Task> next)
     {
-#endregion
+        #endregion
+
         #region write-stream-properties-back
-        object message = context.GetLogicalMessage().Instance;
+
+        object message = context.Message.Instance;
         List<FileStream> streamsToCleanUp = new List<FileStream>();
         foreach (PropertyInfo property in StreamStorageHelper
             .GetStreamProperties(message))
@@ -28,7 +32,7 @@ class StreamReceiveBehavior : LogicalMessageProcessingStageBehavior
             string dataBusKey;
             //only attempt to process properties that have an associated header
             string key = "NServiceBus.PropertyStream." + headerKey;
-            if (!context.GetPhysicalMessage().Headers.TryGetValue(key, out dataBusKey))
+            if (!context.Headers.TryGetValue(key, out dataBusKey))
             {
                 continue;
             }
@@ -47,16 +51,19 @@ class StreamReceiveBehavior : LogicalMessageProcessingStageBehavior
             property.SetValue(message, fileStream);
             streamsToCleanUp.Add(fileStream);
         }
+
         #endregion
 
         #region cleanup-after-nested-action
-        next();
+
+        await next();
         // Clean up all the temporary streams after handler processing
         // via the "next()" delegate has occurred
         foreach (FileStream fileStream in streamsToCleanUp)
         {
             fileStream.Dispose();
         }
+
         #endregion
     }
 }

@@ -61,12 +61,16 @@ class StreamSendBehavior : IBehavior<OutgoingContext>
     string GenerateKey(TimeSpan timeToBeReceived)
     {
         if (timeToBeReceived > MaxMessageTimeToLive)
+        {
             timeToBeReceived = MaxMessageTimeToLive;
+        }
 
         DateTime keepMessageUntil = DateTime.MaxValue;
 
         if (timeToBeReceived < TimeSpan.MaxValue)
+        {
             keepMessageUntil = DateTime.Now + timeToBeReceived;
+        }
 
         return Path.Combine(keepMessageUntil.ToString("yyyy-MM-dd_HH"), Guid.NewGuid().ToString());
     }
