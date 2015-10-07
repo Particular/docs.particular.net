@@ -21,7 +21,7 @@
             bool isDebug = (bool)Clients.Caller.debug;
             SendOptions sendOptions = new SendOptions();
             sendOptions.SetHeader("Debug", isDebug.ToString());
-            MvcApplication.Bus.Send(command,sendOptions);
+            MvcApplication.Bus.SendAsync(command,sendOptions);
         }
 
         public void PlaceOrder(string[] productIds)
@@ -45,7 +45,7 @@
 
             SendOptions sendOptions = new SendOptions();
             sendOptions.SetHeader("Debug", isDebug.ToString());
-            MvcApplication.Bus.Send(command, sendOptions);
+            MvcApplication.Bus.SendAsync(command, sendOptions);
         }
     }
 }

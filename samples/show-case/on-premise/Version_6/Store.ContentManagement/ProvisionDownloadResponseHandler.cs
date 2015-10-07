@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Threading.Tasks;
     using Messages.Events;
     using Messages.RequestResponse;
     using NServiceBus;
@@ -26,7 +27,7 @@
                 {"platform", "http://particular.net/service-platform"},
             };
 
-        public void Handle(ProvisionDownloadResponse message)
+        public async Task Handle(ProvisionDownloadResponse message)
         {
             if (DebugFlagMutator.Debug)
             {
@@ -34,8 +35,8 @@
             }
 
             Console.WriteLine("Download for Order # {0} has been provisioned, Publishing Download ready event", message.OrderNumber);
-         
-            bus.Publish<DownloadIsReady>(e =>
+
+            await bus.PublishAsync<DownloadIsReady>(e =>
             {
                 e.OrderNumber = message.OrderNumber;
                 e.ClientId = message.ClientId;

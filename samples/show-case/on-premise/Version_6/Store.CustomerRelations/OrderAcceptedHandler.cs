@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Threading.Tasks;
     using Messages.Events;
     using NServiceBus;
     using Common;
@@ -15,7 +16,7 @@
             this.bus = bus;
         }
 
-        public void Handle(OrderAccepted message)
+        public async Task Handle(OrderAccepted message)
         {
             if (DebugFlagMutator.Debug)
             {
@@ -25,7 +26,7 @@
             Console.WriteLine("Customer: {0} is now a preferred customer publishing for other service concerns", message.ClientId);
 
             // publish this event as an asynchronous event
-            bus.Publish<ClientBecamePreferred>(m =>
+            await bus.PublishAsync<ClientBecamePreferred>(m =>
             {
                 m.ClientId = message.ClientId;
                 m.PreferredStatusExpiresOn = DateTime.Now.AddMonths(2);

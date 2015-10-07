@@ -1,5 +1,6 @@
 namespace Store.ECommerce
 {
+    using System.Threading.Tasks;
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
@@ -21,18 +22,22 @@ namespace Store.ECommerce
 
         protected void Application_Start()
         {
+            AsyncStart().GetAwaiter().GetResult();
+        }
+
+        private static async Task AsyncStart()
+        {
             var configuration = new BusConfiguration();
             configuration.EndpointName("Store.ECommerce");
             configuration.PurgeOnStartup(true);
 
             configuration.ApplyCommonConfiguration();
 
-            Bus = NServiceBus.Bus.Create(configuration).Start();
+            Bus = await NServiceBus.Bus.Create(configuration).StartAsync();
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
-
     }
 }

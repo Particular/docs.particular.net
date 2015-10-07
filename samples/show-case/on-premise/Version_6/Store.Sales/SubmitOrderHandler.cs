@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Threading.Tasks;
     using Common;
     using Messages.Commands;
     using Messages.Events;
@@ -16,7 +17,7 @@
             this.bus = bus;
         }
 
-        public void Handle(SubmitOrder message)
+        public async Task Handle(SubmitOrder message)
         {
             if (DebugFlagMutator.Debug)
             {
@@ -31,7 +32,7 @@
             Console.WriteLine("CreditCard Expiration Date is {0}", message.EncryptedExpirationDate);
 
             //tell the client that we received the order
-            bus.Publish<OrderPlaced>(o =>
+            await bus.PublishAsync<OrderPlaced>(o =>
                 {
                     o.ClientId = message.ClientId;
                     o.OrderNumber = message.OrderNumber;
