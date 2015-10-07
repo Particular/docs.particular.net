@@ -28,6 +28,14 @@
                     Storage.GatewayDeduplication);
 
             #endregion
+
+
+            #region NHibernateSubscriptionCaching 5.0
+            
+            busConfiguration.UsePersistence<NHibernatePersistence>()
+                .EnableCachingForSubscriptionStorage(System.TimeSpan.FromSeconds(10));
+            
+            #endregion
 #pragma warning restore 618
         }
 
@@ -46,6 +54,13 @@
             busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();
             busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
             busConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
+
+            #endregion
+
+            #region NHibernateSubscriptionCaching 5.2
+
+            busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>()
+                .EnableCachingForSubscriptionStorage(System.TimeSpan.FromMinutes(1));
 
             #endregion
         }

@@ -68,3 +68,11 @@ NOTE: When using SQL 2012 you need to change the dialect to `MsSql2012Dialect`.
 NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhibernate.info/doc/) 
  
 <!-- import NHibernateAppConfig -->
+
+## Subscription caching
+
+The subscriptions can be cached when using NHibernate. This can improve the performance of publishing events as it is not required to request matching subscriptions from storage.
+
+NOTE: Publishing is performed on stale data. This is only advised in high volume environments where latency can be a potential issue.
+
+<!-- import NHibernateSubscriptionCaching -->

@@ -33,6 +33,13 @@
 
             #endregion
 
+
+            #region NHibernateSubscriptionCaching
+            
+            Configure configure = NServiceBus.Configure.With();
+            configure.UseNHibernateSubscriptionPersister(System.TimeSpan.FromSeconds(10));
+            
+            #endregion
         }
     }
 }
