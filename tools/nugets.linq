@@ -12,21 +12,22 @@ void Main()
 	var solutionFiles = Directory.EnumerateFiles(docsDirectory, "*.sln", SearchOption.AllDirectories);
 
 	Directory.SetCurrentDirectory(docsDirectory);
-	try
-	{
+
 		Parallel.ForEach(solutionFiles,
 		new ParallelOptions() { MaxDegreeOfParallelism = 10 },
 		(solutionFile) =>
-		{
-			Execute(nuget, "restore " + solutionFile + " -packagesDirectory " + packagesDirectory);
-			Execute(nuget, "update " + solutionFile + " -safe -repositoryPath " + packagesDirectory);
-		}
-		);
-	}
-	catch (Exception ex)
-	{
-		Debug.WriteLine(ex.InnerException.Message);
-	}
+			{
+				try
+				{
+					Execute(nuget, "restore " + solutionFile + " -packagesDirectory " + packagesDirectory);
+					Execute(nuget, "update " + solutionFile + " -safe -repositoryPath " + packagesDirectory);
+				}
+				catch (Exception ex)
+				{
+					Debug.WriteLine(ex.InnerException.Message);
+				}
+			}
+		); 
 }
 
 void Execute(string file, string arguments)
@@ -48,4 +49,3 @@ void Execute(string file, string arguments)
 	var result = process.StandardOutput.ReadToEnd();
 	Debug.WriteLine(result);
 }
-
