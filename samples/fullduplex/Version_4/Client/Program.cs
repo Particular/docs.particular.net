@@ -39,7 +39,7 @@ class Program
                 RequestDataMessage message = new RequestDataMessage
                 {
                     DataId = guid,
-                    String = "<node>it's my \"node\" & i like it<node>"
+                    String = "String property value"
                 };
                 bus.Send("Samples.FullDuplex.Server", message);
             }
