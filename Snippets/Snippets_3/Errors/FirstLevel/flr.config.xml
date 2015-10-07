@@ -3,7 +3,7 @@
 <configuration>
   <configSections>
     <section name="MsmqTransportConfig"
-             type="NServiceBus.Config.MsmqTransportConfig , NServiceBus.Core" />
+             type="NServiceBus.Config.MsmqTransportConfig, NServiceBus.Core" />
   </configSections>
   <MsmqTransportConfig ErrorQueue="error"
                        NumberOfWorkerThreads="1"
