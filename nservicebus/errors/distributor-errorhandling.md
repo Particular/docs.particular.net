@@ -11,7 +11,7 @@ related:
 - nservicebus/scalability-and-ha/distributor
 ---
 
-NServiceBus provides error handling and has [First Level Retries (FLR)](/nservicebus/errors/automatic-retries#first-level-retries) and [Secondary Level Retries (SLR)](/nservicebus/errors/automatic-retries#second-level-retries). The behavior on how the SLR policy is applied and how related message flow is different between major versions.
+NServiceBus provides error handling and has [First Level Retries (FLR)](automatic-retries#first-level-retries.md) and [Secondary Level Retries (SLR)](automatic-retries.md#second-level-retries). The behavior on how the SLR policy is applied and how related message flow is different between major versions.
 
 
 ## First Level Retries (FLR)
