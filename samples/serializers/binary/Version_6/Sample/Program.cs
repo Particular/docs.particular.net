@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using NServiceBus;
 
 static class Program
 {
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         #region config
         BusConfiguration busConfiguration = new BusConfiguration();
@@ -14,7 +20,7 @@ static class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
             #region message
             CreateOrder message = new CreateOrder
@@ -36,7 +42,7 @@ static class Program
                     },
                 }
             };
-            bus.SendLocal(message);
+            await bus.SendLocalAsync(message);
             #endregion
             Console.WriteLine("Order Sent");
             Console.WriteLine("Press any key to exit");
