@@ -16,6 +16,7 @@ class Program
         busConfiguration.EndpointName("Samples.Encryption.Endpoint1");
         busConfiguration.RijndaelEncryptionService();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
         using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
             MessageWithSecretData message = new MessageWithSecretData

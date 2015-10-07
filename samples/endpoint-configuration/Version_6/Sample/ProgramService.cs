@@ -89,6 +89,9 @@ class ProgramService : ServiceBase
         busConfiguration.UseSerialization<JsonSerializer>();
 
         #endregion
+        #region error
+        busConfiguration.SendFailedMessagesTo("error");
+        #endregion
 
         #region transport
 

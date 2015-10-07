@@ -54,6 +54,7 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
 
         return await Bus.Create(busConfiguration).StartAsync();
 
@@ -69,6 +70,7 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
 
         return await Bus.Create(busConfiguration).StartAsync();
     }

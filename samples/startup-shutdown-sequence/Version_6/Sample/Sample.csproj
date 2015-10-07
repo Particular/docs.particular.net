@@ -57,7 +57,6 @@
     <Compile Include="ExtensionPoints\NeedInitialization.cs" />
     <Compile Include="ExtensionPoints\NeedToInstallSomething.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>

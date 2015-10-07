@@ -19,6 +19,7 @@ class Program
         busConfiguration.UseDataBus<FileShareDataBus>().BasePath(BasePath);
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
+        busConfiguration.SendFailedMessagesTo("error");
         using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
             Console.WriteLine("Press any key to exit");

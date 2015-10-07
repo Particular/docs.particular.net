@@ -17,6 +17,7 @@ class Program
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Store.Operations");
         busConfiguration.ApplyCommonConfiguration();
+        busConfiguration.SendFailedMessagesTo("error");
         using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
             Console.WriteLine("Press any key to exit");

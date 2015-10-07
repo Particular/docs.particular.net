@@ -18,6 +18,7 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.SetStreamStorageLocation("..\\..\\..\\storage");
         busConfiguration.EnableInstallers();
+        busConfiguration.SendFailedMessagesTo("error");
         using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
             Console.WriteLine("Press any key to exit");

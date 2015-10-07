@@ -17,6 +17,7 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
 
         #region enable-counters
         busConfiguration.EnableCriticalTimePerformanceCounter();

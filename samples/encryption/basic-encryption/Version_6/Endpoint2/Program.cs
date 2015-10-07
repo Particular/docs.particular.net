@@ -15,6 +15,7 @@ class Program
         busConfiguration.EndpointName("Samples.Encryption.Endpoint2");
         busConfiguration.RijndaelEncryptionService();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
         using (await Bus.Create(busConfiguration).StartAsync())
         {
             Console.WriteLine("Press any key to exit");

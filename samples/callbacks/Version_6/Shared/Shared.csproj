@@ -56,7 +56,6 @@
     <Compile Include="ObjectMessage.cs" />
     <Compile Include="EnumMessage.cs" />
     <Compile Include="IntMessage.cs" />
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="Status.cs" />
   </ItemGroup>
   <ItemGroup>

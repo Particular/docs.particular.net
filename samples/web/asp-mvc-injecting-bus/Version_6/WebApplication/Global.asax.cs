@@ -30,6 +30,7 @@ namespace WebApplication
             busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.UsePersistence<InMemoryPersistence>();
             busConfiguration.EnableInstallers();
+            busConfiguration.SendFailedMessagesTo("error");
 
             bus = Bus.CreateSendOnly(busConfiguration);
             

@@ -66,7 +66,6 @@
   <ItemGroup>
     <Compile Include="ConfigAuditQueue.cs" />
     <Compile Include="Sender.cs" />
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />
     <Compile Include="ProgramService.cs">

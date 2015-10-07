@@ -45,7 +45,6 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="ConventionExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

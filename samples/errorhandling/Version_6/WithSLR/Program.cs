@@ -20,6 +20,7 @@ static class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
+        busConfiguration.SendFailedMessagesTo("error");
         using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
             Console.WriteLine("Press enter to send a message that will throw an exception.");

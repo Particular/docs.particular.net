@@ -53,7 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MultiSerializerFeature.cs" />
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="ConfigLogging.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="DeserializeConnector.cs" />

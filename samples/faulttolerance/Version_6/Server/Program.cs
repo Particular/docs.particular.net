@@ -17,10 +17,11 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
 
         // To disable second level retries(SLR), uncomment the following line. SLR is enabled by default.
         // busConfiguration.DisableFeature<SecondLevelRetries>();
-        
+
         using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
             Console.WriteLine("Press any key to exit");

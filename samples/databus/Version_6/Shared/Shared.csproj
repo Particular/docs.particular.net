@@ -53,7 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AnotherMessageWithLargePayload.cs" />
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="MessageWithLargePayload.cs" />
   </ItemGroup>
   <ItemGroup>

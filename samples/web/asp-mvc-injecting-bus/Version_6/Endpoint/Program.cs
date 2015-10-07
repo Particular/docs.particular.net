@@ -10,6 +10,7 @@ static class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
+        busConfiguration.SendFailedMessagesTo("error");
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {

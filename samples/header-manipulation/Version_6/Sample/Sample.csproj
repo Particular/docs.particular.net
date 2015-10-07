@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="Mutators\MutateIncomingMessages.cs" />
     <Compile Include="Mutators\MutateIncomingTransportMessages.cs" />
     <Compile Include="Mutators\MutateOutgoingMessages.cs" />

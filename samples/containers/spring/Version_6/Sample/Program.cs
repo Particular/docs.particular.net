@@ -20,6 +20,7 @@ static class Program
         applicationContext.ObjectFactory.RegisterSingleton("MyService", new MyService());
         busConfiguration.UseContainer<SpringBuilder>(c => c.ExistingApplicationContext(applicationContext));
         #endregion
+        busConfiguration.SendFailedMessagesTo("error");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();

@@ -27,6 +27,7 @@ static class Program
 
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
         busConfiguration.EnableInstallers();
 
         using (IBus bus = await Bus.Create(busConfiguration).StartAsync())

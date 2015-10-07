@@ -11,6 +11,7 @@ class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
+        busConfiguration.SendFailedMessagesTo("error");
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press 'E' to send a message with an enum return");

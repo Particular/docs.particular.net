@@ -14,6 +14,7 @@ class Program
         busConfiguration.EndpointName("Samples.MessageMutators");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.SendFailedMessagesTo("error");
 
         #region ComponentRegistartion
         busConfiguration.RegisterComponents(components =>

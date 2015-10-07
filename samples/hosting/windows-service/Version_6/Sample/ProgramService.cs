@@ -45,6 +45,7 @@ class ProgramService : ServiceBase
 
         busConfiguration.EndpointName("Samples.WindowsServiceAndConsole");
         busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.SendFailedMessagesTo("error");
 
         if (Environment.UserInteractive && Debugger.IsAttached)
         {

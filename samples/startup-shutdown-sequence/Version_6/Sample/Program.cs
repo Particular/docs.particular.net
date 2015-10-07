@@ -21,6 +21,7 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.EnableFeature<MyFeature>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
 
         Logger.WriteLine("Calling Bus.Create");
         using (IStartableBus bus = Bus.Create(busConfiguration))

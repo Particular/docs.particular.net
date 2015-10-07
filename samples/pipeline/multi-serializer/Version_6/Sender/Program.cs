@@ -16,6 +16,7 @@ class Program
         busConfiguration.EndpointName("Samples.MultiSerializer.Sender");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
+        busConfiguration.SendFailedMessagesTo("error");
         using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
             await Run(bus);

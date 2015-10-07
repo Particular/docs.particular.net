@@ -18,6 +18,7 @@ class Program
         busConfiguration.EndpointName("Samples.PipelineStream.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
 
         #region configure-stream-storage
 

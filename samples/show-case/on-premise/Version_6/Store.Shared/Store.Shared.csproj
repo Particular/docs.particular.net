@@ -45,7 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonConfiguration.cs" />
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="DebugFlagMutator.cs" />
   </ItemGroup>
   <ItemGroup>

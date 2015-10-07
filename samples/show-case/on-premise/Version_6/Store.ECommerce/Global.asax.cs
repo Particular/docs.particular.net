@@ -27,13 +27,14 @@ namespace Store.ECommerce
 
         private static async Task AsyncStart()
         {
-            var configuration = new BusConfiguration();
-            configuration.EndpointName("Store.ECommerce");
-            configuration.PurgeOnStartup(true);
+            var busConfiguration = new BusConfiguration();
+            busConfiguration.EndpointName("Store.ECommerce");
+            busConfiguration.PurgeOnStartup(true);
 
-            configuration.ApplyCommonConfiguration();
+            busConfiguration.ApplyCommonConfiguration();
+            busConfiguration.SendFailedMessagesTo("error");
 
-            Bus = await NServiceBus.Bus.Create(configuration).StartAsync();
+            Bus = await NServiceBus.Bus.Create(busConfiguration).StartAsync();
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
