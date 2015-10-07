@@ -1,5 +1,6 @@
 ﻿#region PlaceOrderHandler
 using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
@@ -11,7 +12,7 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
         this.bus = bus;
     }
 
-    public void Handle(PlaceOrder message)
+    public async Task Handle(PlaceOrder message)
     {
         Console.WriteLine(@"Order for Product:{0} placed with id: {1}", message.Product, message.Id);
 
@@ -21,7 +22,7 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
                                   {
                                       OrderId = message.Id
                                   };
-        bus.Publish(orderPlaced);
+        await bus.PublishAsync(orderPlaced);
     }
 }
 

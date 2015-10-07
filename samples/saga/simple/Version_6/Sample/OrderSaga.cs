@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -18,27 +19,29 @@ public class OrderSaga : Saga<OrderSagaData>,
                 .ToSaga(s => s.OrderId);
     }
 
-    public void Handle(StartOrder message)
+    public async Task Handle(StartOrder message)
     {
         Data.OrderId = message.OrderId;
         logger.Info(string.Format("Saga with OrderId {0} received StartOrder with OrderId {1}", Data.OrderId, message.OrderId));
-        Bus.SendLocal(new CompleteOrder
-                           {
-                               OrderId = Data.OrderId
-                           });
-        RequestTimeout<CancelOrder>(TimeSpan.FromMinutes(30));
+        await Bus.SendLocalAsync(new CompleteOrder
+        {
+            OrderId = Data.OrderId
+        });
+        await RequestTimeoutAsync<CancelOrder>(TimeSpan.FromMinutes(30));
     }
 
-    public void Handle(CompleteOrder message)
+    public Task Handle(CompleteOrder message)
     {
         logger.Info(string.Format("Saga with OrderId {0} received CompleteOrder with OrderId {1}", Data.OrderId, message.OrderId));
         MarkAsComplete();
+        return Task.FromResult(0);
     }
 
-    public void Timeout(CancelOrder state)
+    public Task Timeout(CancelOrder state)
     {
         logger.Info(string.Format("Complete not received soon enough OrderId {0}", Data.OrderId));
         MarkAsComplete();
+        return Task.FromResult(0);
     }
 
 }

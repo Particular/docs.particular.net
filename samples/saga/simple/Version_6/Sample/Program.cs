@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
@@ -6,19 +7,24 @@ class Program
 
     static void Main()
     {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.ComplexSagaFindingLogic");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
-            bus.SendLocal(new StartOrder
+            await bus.SendLocalAsync(new StartOrder
                           {
                               OrderId = "123"
                           });
-            bus.SendLocal(new StartOrder
+            await bus.SendLocalAsync(new StartOrder
                           {
                               OrderId = "456"
                           });

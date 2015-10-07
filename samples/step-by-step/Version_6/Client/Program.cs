@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
@@ -6,21 +7,26 @@ class Program
 
     static void Main()
     {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.StepByStep.Client");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
-           SendOrder(bus);
+            await SendOrder(bus);
         }
     }
 
 
     #region SendOrder
-    static void SendOrder(IBus bus)
+    static async Task SendOrder(IBus bus)
     {
 
         Console.WriteLine("Press enter to send a message");
@@ -33,7 +39,7 @@ class Program
 
             if (key.Key != ConsoleKey.Enter)
             {
-                return;
+                break;
             }
             Guid id = Guid.NewGuid();
 
@@ -42,7 +48,7 @@ class Program
                 Product = "New shoes",
                 Id = id
             };
-            bus.Send("Samples.StepByStep.Server", placeOrder);
+            await bus.SendAsync("Samples.StepByStep.Server", placeOrder);
 
             Console.WriteLine("Sent a new PlaceOrder message with id: {0}", id.ToString("N"));
 
