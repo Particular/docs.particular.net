@@ -1,5 +1,4 @@
-﻿using NServiceBus;
-using NServiceBus.Features;
+﻿using NServiceBus.Features;
 
 namespace Snippets5.Extending
 {
@@ -12,39 +11,6 @@ namespace Snippets5.Extending
         }
     }
     #endregion
-
-    public class ComponentRegistrationFeature : Feature
-    {
-        #region ComponentRegistrationFeature
-        protected override void Setup(FeatureConfigurationContext context)
-        {
-            context.Container.ConfigureComponent<Component>(DependencyLifecycle.InstancePerCall);
-            context.Container.ConfigureComponent(
-                c => new OtherComponent(c.Build<IServiceA>(), 42, "Hello NServiceBus!"),
-                DependencyLifecycle.InstancePerCall);
-        }
-
-        interface IServiceA
-        {
-        }
-
-        interface IServiceB
-        {
-        }
-
-        class Component : IServiceA, IServiceB
-        {
-
-        }
-        #endregion
-
-        class OtherComponent
-        {
-            public OtherComponent(IServiceA serviceA, int a, string b)
-            {
-            }
-        }
-    }
 
     public class DependencyAFeature : Feature
     {
