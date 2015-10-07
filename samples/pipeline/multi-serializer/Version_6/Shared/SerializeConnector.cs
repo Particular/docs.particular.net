@@ -1,22 +1,23 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.OutgoingPipeline;
 using NServiceBus.Pipeline;
-using NServiceBus.Pipeline.Contexts;
 using NServiceBus.Serialization;
 using NServiceBus.TransportDispatch;
 using NServiceBus.Unicast.Messages;
 
 #region serialize-behavior
-using ToContext = NServiceBus.OutgoingPipeline.PhysicalOutgoingContextStageBehavior.Context;
-class SerializeBehavior : StageConnector<OutgoingContext, ToContext>
+using ToContext = NServiceBus.OutgoingPipeline.OutgoingPhysicalMessageContext;
+using FromContext = NServiceBus.Pipeline.Contexts.OutgoingLogicalMessageContext;
+class SerializeConnector : StageConnector<FromContext, ToContext>
 {
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;
 
-    public SerializeBehavior(
+    public SerializeConnector(
         SerializationMapper serializationMapper, 
         MessageMetadataRegistry messageMetadataRegistry)
     {
@@ -24,9 +25,10 @@ class SerializeBehavior : StageConnector<OutgoingContext, ToContext>
         this.messageMetadataRegistry = messageMetadataRegistry;
     }
 
-    public override void Invoke(OutgoingContext context, Action<ToContext> next)
+    public override async Task Invoke(FromContext context, Func<OutgoingPhysicalMessageContext, Task> next)
     {
-        object messageInstance = context.GetMessageInstance();
+
+        object messageInstance = context.Message.Instance;
         Type messageType = messageInstance.GetType();
         IMessageSerializer messageSerializer = serializationMapper.GetSerializer(messageType);
 
@@ -34,7 +36,7 @@ class SerializeBehavior : StageConnector<OutgoingContext, ToContext>
         context.SetHeader(Headers.EnclosedMessageTypes, SerializeMessageTypes(messageType));
 
         byte[] array = Serialize(messageSerializer, messageInstance);
-        next(new ToContext(array, context));
+        await next(new ToContext(array, context));
     }
 
     static byte[] Serialize(IMessageSerializer messageSerializer, object messageInstance)

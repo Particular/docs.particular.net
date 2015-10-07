@@ -15,8 +15,8 @@ public class MultiSerializerFeature : Feature
     {
         PipelineSettings pipeline = context.Pipeline;
         //TODO: the magic strings here are temporary until connector replacement is enable in the core
-        pipeline.Replace("NServiceBus.DeserializeLogicalMessagesConnector", typeof(DeserializeBehavior));
-        pipeline.Replace("NServiceBus.SerializeMessagesBehavior", typeof(SerializeBehavior));
+        pipeline.Replace("NServiceBus.DeserializeLogicalMessagesConnector", typeof(DeserializeConnector));
+        pipeline.Replace("NServiceBus.SerializeMessageConnector", typeof(SerializeConnector));
 
         context.Container.ConfigureComponent<SerializationMapper>(DependencyLifecycle.SingleInstance);
     }

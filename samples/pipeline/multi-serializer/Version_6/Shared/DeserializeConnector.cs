@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Pipeline;
@@ -10,16 +11,16 @@ using NServiceBus.Serialization;
 using NServiceBus.Unicast.Messages;
 
 #region deserialize-behavior
-using ToContext = NServiceBus.Pipeline.Contexts.LogicalMessagesProcessingStageBehavior.Context;
-using FromContext = NServiceBus.PhysicalMessageProcessingStageBehavior.Context;
+using ToContext = NServiceBus.Pipeline.Contexts.LogicalMessageProcessingContext;
+using FromContext = NServiceBus.PhysicalMessageProcessingContext;
 
-class DeserializeBehavior : StageConnector<FromContext, ToContext>
+class DeserializeConnector : StageConnector<FromContext, ToContext>
 {
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;
     LogicalMessageFactory logicalMessageFactory;
 
-    public DeserializeBehavior(
+    public DeserializeConnector(
         SerializationMapper serializationMapper,
         MessageMetadataRegistry messageMetadataRegistry,
         LogicalMessageFactory logicalMessageFactory)
@@ -30,19 +31,14 @@ class DeserializeBehavior : StageConnector<FromContext, ToContext>
     }
 
 
-    public override void Invoke(FromContext context, Action<ToContext> next)
+    public override async Task Invoke(FromContext context, Func<LogicalMessageProcessingContext, Task> next)
     {
-        var transportMessage = context.GetPhysicalMessage();
-
-        if (transportMessage.IsControlMessage())
-        {
-            log.Info("Received a control message. Skipping deserialization as control message data is contained in the header.");
-
-            next(new ToContext(Enumerable.Empty<LogicalMessage>(), context));
-            return;
-        }
+        var transportMessage = context.Message;
         var messages = ExtractWithExceptionHandling(transportMessage);
-        next(new ToContext(messages, context));
+        foreach (var message in messages)
+        {
+            await next(new ToContext(message, context.Message.Headers, context)).ConfigureAwait(false);
+        }
     }
 
     List<LogicalMessage> ExtractWithExceptionHandling(TransportMessage transportMessage)
@@ -99,7 +95,7 @@ class DeserializeBehavior : StageConnector<FromContext, ToContext>
     }
 
 
-    static ILog log = LogManager.GetLogger(typeof(DeserializeBehavior));
+    static ILog log = LogManager.GetLogger(typeof(DeserializeConnector));
 }
 
 #endregion

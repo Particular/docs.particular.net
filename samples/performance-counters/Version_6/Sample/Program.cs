@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
 {
 
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PerfCounters");
@@ -17,7 +23,7 @@ class Program
         busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromSeconds(100));
         #endregion
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
 
             Console.WriteLine("Press enter to send 10 messages with random sleep");
@@ -30,11 +36,11 @@ class Program
 
                 if (key.Key != ConsoleKey.Enter)
                 {
-                    return;
+                    break;
                 }
                 for (int i = 0; i < 10; i++)
                 {
-                    bus.SendLocal(new MyMessage());
+                    await bus.SendLocalAsync(new MyMessage());
                 }
             }
         }

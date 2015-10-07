@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
@@ -6,18 +7,23 @@ class Program
 
     static void Main()
     {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MultiSerializer.Sender");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (var bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
-            Run(bus);
+            await Run(bus);
         }
     }
 
 
-    static void Run(IBus bus)
+    static async Task Run(IBus bus)
     {
         Console.WriteLine("Press 'J' to send a JSON message");
         Console.WriteLine("Press 'B' to send a Binary message");
@@ -30,35 +36,35 @@ class Program
 
             if (key.Key == ConsoleKey.B)
             {
-                SendBinaryMessage(bus);
+                await SendBinaryMessage(bus);
                 continue;
             }
             if (key.Key == ConsoleKey.J)
             {
-                SendJsonMessage(bus);
+                await SendJsonMessage(bus);
                 continue;
             }
-            return;
+            break;
         }
     }
 
-    static void SendBinaryMessage(IBus bus)
+    static async Task SendBinaryMessage(IBus bus)
     {
         MessageWithBinary message = new MessageWithBinary
         {
             SomeProperty = "Some content in a binary message",
         };
-        bus.Send("Samples.MultiSerializer.Receiver", message);
+        await bus.SendAsync("Samples.MultiSerializer.Receiver", message);
         Console.WriteLine("Binary message sent");
     }
 
-    static void SendJsonMessage(IBus bus)
+    static async Task SendJsonMessage(IBus bus)
     {
         MessageWithJson message = new MessageWithJson
         {
             SomeProperty = "Some content in a json message",
         };
-        bus.Send("Samples.MultiSerializer.Receiver", message);
+        await bus.SendAsync("Samples.MultiSerializer.Receiver", message);
         Console.WriteLine("Json Message sent");
     }
 }
