@@ -11,33 +11,17 @@ related:
 - nservicebus/scalability-and-ha/distributor
 ---
 
-- SLR TimeIncrease is managed by the distributor, changing this value on the workers does not have any effect.
-- SLR NumberOfRetries is strange, it seems to be applied on both the distributor and the worker
-- NumberOfRetries distributor<worker, then distributor forwards message to error queue
-- NumberOrRetries distributor>worker, then worker forward message to the error queue
-- NumberOfRetries distributor=worker, then worker forward message to the error queue
-
-[13:23] ramon: Is this behavior intended? Reason I ask is that a customer wants to know how it needs to configure SLR with the distributor. Based on this behavior I would say, distributor and workers need to have the same SLR config. Workers use the NumberOfRetries attribute and the distributor uses the TimeIncrease attribute.
-
-[13:24] ramon: @janovesk @andreas @seanfarmar : Please take note of this behavior based on our conversations of yesterday.
-
-[13:26] ramon: So basically the question is: who is responsible for forwarding a message to the error queue when message failed too many times. Is it the worker or the distributor?
-
-
-
-
-
-NServiceBus provides error handling and has [First Level Retries (FLR)]() and [Secondary  Level Retries (SLR)](). How these features behave is different between major versions.
+NServiceBus provides error handling and has [First Level Retries (FLR)](http://docs.particular.net/nservicebus/errors/automatic-retries#first-level-retries) and [Secondary Level Retries (SLR)](http://docs.particular.net/nservicebus/errors/automatic-retries#second-level-retries). The behavior on how the SLR policy is applied and how related message flow is different between major versions.
 
 
 ## First Level Retries (FLR)
 
-[First Level Retries (FLR)](http://docs.particular.net/nservicebus/errors/automatic-retries#first-level-retries) are always performed on the worker.
+First Level Retries (FLR) are always performed on the worker.
 
 
 ## Second Level Retries (SLR)
 
-The behavior of [Second Level Retries (SLR)](http://docs.particular.net/nservicebus/errors/automatic-retries#second-level-retries) is different between major versions.
+The behavior of Second Level Retries (SLR) is different between major versions.
 
 SLR has two configurable items TimeIncrease and NumberOfRetries.
 
