@@ -3,7 +3,6 @@ title: Features
 summary: Implement a Feature for advanced extension of NServiceBus
 tags:
  - feature
- - extensibility
  - pipeline
 ---
 
@@ -25,17 +24,19 @@ To create a new feature create a class which inherits from `Feature`. This offer
 
 <!-- import MinimalFeature -->
 
+
 ## Dependencies
 
-Features are so powerful because they can depend on each other to form more complex behaviours.
+Features can depend on each other to form more complex functionality.
 
 <!-- import DependentFeature -->
 
 A feature might use either strongly or loosely typed API when declaring dependencies (the latter can be useful if a dependency is declared in an external assembly).
 
-NOTICE: The feature name is derived from the name of the type but the suffix `Feature`, if present in the type name, is removed from the name of the feature.
+NOTE: The feature name is derived from the name of the type, however the suffix `Feature`, if present in the type name, is removed from the name of the feature.
 
 The API also allows to declare optional dependencies on one or more of listed features.
+
 
 ## Enabling, disabling and activation
 
@@ -45,6 +46,7 @@ This can be overridden and a feature can be enabled by default (like most of the
 
 <!-- import FeatureEnabledByDefault -->
 
+
 ### Defaults
 
 When a feature is found to be enabled, the bootstrapping code applies the *defaults* defined by that feature to a shared dictionary containing the settings.
@@ -53,17 +55,20 @@ When a feature is found to be enabled, the bootstrapping code applies the *defau
 
 The code above configures the key `"Key"` to contain value `"Value"` and the key `"OtherKey"` to contain value `42` as a default value. The querying API allows to distinguish these two types of registrations. Usually, for a given key, a feature registers a default value in this way and also exposes an extension method of `BusConfiguration` to allow a user to override this default value.
 
+
 ### Enabling other features
 
-The list of all the enabled features is built iteratively. A feature can enable other feature via the *defaults* mechanism and that fact might trigger another set of *defaults* to be applied, enabling subsequent features etc.
+The list of all the enabled features is built interactively. A feature can enable other feature via the *defaults* mechanism and that fact might trigger another set of *defaults* to be applied, enabling subsequent features etc.
 
 <!-- import EnablingOtherFeatures -->
+
 
 ### Enabling features from the outside
 
 You can manually activate or deactivate your features and most of the internal NServiceBus features in your endpoint configuration with the `BusConfiguration`:
 
 <!-- import EnableDisableFeatures -->
+
 
 ### Prerequisites
 
@@ -72,6 +77,7 @@ When the enabling algorithm can't find any more feature that should be enabled, 
 <!-- import FeatureWithPrerequisites -->
 
 NOTE: The differentiation between *explicit* settings and *default* settings comes useful when determining if a given feature should be activated.
+
 
 ### Activation 
 
@@ -82,6 +88,7 @@ In order for a feature to be activated it needs to satisfy the following criteri
  * All its *prerequisites* need to be satisfied
  * All the feature's dependencies need to be *enabled*
  * All the *prerequisites* of all the feature's dependencies need to be satisfied
+
 
 ## Feature setup
 
