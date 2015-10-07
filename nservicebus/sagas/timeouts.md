@@ -12,12 +12,13 @@ When working in a message-driven environment, you cannot make assumptions about 
 
 <!-- import saga-with-timeout -->
 
-The `RequestTimeout<T>` method on the base class tells NServiceBus to send a message to what is called a Timeout Manager(TM) which durably keeps time for us. In NServiceBus, each endpoint hosts a TM by default, so there is no configuration needed to get this up and running.
+The `RequestTimeout<T>` method on the base class tells NServiceBus to send a message to what is called a Timeout Manager which durably keeps time for us. The Timeout manager is enabled by default, so there is no configuration needed to get this up and running.
 
 When the timeout timestamp is elapsed, the Timeout Manager sends a message back to the saga causing its Timeout method to be called with the same state message originally passed.
 
 This timeout message will always be send no matter if any message has been send after requesting a timeout.
 
+NOTE: If the saga does not request a timeout then the corresponding timeout method will never be invoked. 
 
 ### Revoking timeouts
 
@@ -25,6 +26,7 @@ A timeout that has been scheduled cannot be revoked. This means that when the ti
 
 Reason for this is that a timeout is a regular message. The timeout message can already be in transit, queued, if there was the ability to revoke (delete) a timeout. Very often a state check is performed to see if the timeout is still applicable for processing.
 
+NOTE: Sending a timeout with the same data at the same time will result in that timeout to be send thus processed multiple times to the saga.
 
 ### Completed Sagas
 
