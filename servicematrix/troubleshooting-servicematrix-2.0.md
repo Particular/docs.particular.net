@@ -14,15 +14,18 @@ This article provides information on how to troubleshoot ServiceMatrix.
 3.  [Microsoft FixIt Tool](#using-the-microsoft-fixit-tool)
 4.  [Disconnecting a solution from ServiceMatrix](#disconnecting-a-solution-from-servicematrix)
 
+
 ## Issues Uninstalling ServiceMatrix
 
 Older versions of ServiceMatrix must be uninstalled prior to the installation of a new version.  The following are issues that can occur when uninstalling:
 
-### Unable To Uninstall using `Control Panel\Programs\Programs and Features`
+
+### Unable To Uninstall using Control Panel
 
 If you are unable to uninstall the old version using the traditional method through control panel you can uninstall it from inside Visual Studio.  Locate the Extension in Visual Studio through the `Tools\Extensions and Updates` [Menu](images/servicematrix-vstudio-toolsmenu.png "Extensions Menu") options.  You'll see the extension listed as shown here:
 
 ![Uninstalling and Extension](images/servicematrix-vstudio-extensions-uninstall.png)
+
 
 ### After Uninstalling, the ServiceMatrix still shows as installed
 
@@ -31,15 +34,6 @@ If you completed the uninstall and your system still shows ServiceMatrix as inst
 - Try uninstalling again through the `Programs and Features' list.  The last attempt may not have completed successfully.  
 - Restart your machine.  This can clear residual issues.
 - Try using the Microsoft [FixIt](#using-the-microsoft-fixit-tool) tool described below. 
-
-### Uninstalling ServiceMatrix after installing with the Platform Installer
-
-If you have installed ServiceMatrix using the [Platform Installer](/platform/installer), you can uninstall ServiceMatrix by performing the following actions:
-
-* Open a PowerShell command line 
-* Execute the following command: `cuninst ServiceMatrix.Vs2012.install` or `cuninst ServiceMatrix.Vs2013.install` for 2013
-
-Alternatively, you can delete the installation ServiceMatrix installation foldr under the Chocolatey folder (`c:/chocolatey/lib`).
 
 
 ### Manually Remove The Registry Keys
@@ -54,7 +48,9 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninsta
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Particular Software ServiceMatrix 2.0.0
 ```
 
+
 ## Access the ServiceMatrix Log File
+
 In case of any errors or exception the ServiceMatrix log file may contain information about the cause.  The log file is located in the ServiceMatrix extension installation location.  By default the location is:
 ```
 //Visual Studio 2012
@@ -64,7 +60,9 @@ In case of any errors or exception the ServiceMatrix log file may contain inform
 %localappdata%/Microsoft/VisualStudio/12.0/Extensions/{extensions-unique-id}/[MachineName]-[UserName].logging
 ```
 
+
 ## Using the Microsoft FixIt tool
+
 The Microsoft FixIt tool can help troubleshoot general installation issues including registry problems.  You may download it [here](https://support.microsoft.com/mats/program_install_and_uninstall/en-us "Microsoft FixIt tool"). 
 
 
