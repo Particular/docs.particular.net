@@ -1,5 +1,6 @@
 ﻿namespace Snippets4.Persistence.NHibernate
 {
+    using System;
     using global::NHibernate.Cfg;
     using NServiceBus;
 
@@ -32,12 +33,16 @@
             configure.UseNHibernateGatewayPersister(nhConfiguration);
 
             #endregion
+        }
 
+        public void NHibernateSubscriptionCaching()
+        {
 
             #region NHibernateSubscriptionCaching
-            
-            Configure configure = NServiceBus.Configure.With();
-            configure.UseNHibernateSubscriptionPersister(System.TimeSpan.FromSeconds(10));
+
+            Configure configure = Configure.With();
+            configure.UseNHibernateSubscriptionPersister(
+                cacheExpiration: TimeSpan.FromSeconds(10));
             
             #endregion
         }
