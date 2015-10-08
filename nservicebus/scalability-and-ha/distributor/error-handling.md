@@ -34,7 +34,7 @@ The message will be retried on *any* available worker. Message processing is not
 
 ### NServiceBus v5.x
 
-The SLR policy *NumberOfRetries* setting its is applied on *both* the distributor and workers, and the *TimeIncrease* setting is applied on the workers.
+The SLR policy *NumberOfRetries* setting its is applied on *both* the distributor and workers, and the *TimeIncrease* setting is applied on the distributor.
 
 When an error occurs the SLR policy is invoked immediately by the fault manager. The message will not be forwarded to the retries queue which is was the previous behavior.
 
@@ -43,7 +43,7 @@ When the retry limit is reached the message is  forwarded immediately to the err
 
 ### NServiceBus v4.x
 
-The SLR policy *NumberOfRetries* setting its is applied on the distributor and the *TimeIncrease* setting is applied on the workers.
+The SLR policy is only applied on the distributor for both *NumberOfRetries* and *TimeIncrease* settings.
 
 The distributor has a **.retries** queue where a message is forwarded to in case of an error. Then the distributor processes this message, when the retry limit has been reached the message will be forwarded to the error queue or else scheduled for retry by the distributor.
 
