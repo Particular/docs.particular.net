@@ -43,6 +43,6 @@ netsh http add urlacl url=http://localhost:33333/api/ user=<accountname> Listen=
     * `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs` if the issue relates to ServiceControl normal operations. Logs location may vary depending on the user that has been configured to run the ServiceControl service, the above one is the one where the LocalSystem user outputs logs information;
 * Most common cause is prerequisites installation and configuration issues;
 
-### Particular.ServiceControl fails to start: `EsentInstanceUnavailableException`
+### Particular.ServiceControl fails to start: EsentInstanceUnavailableException
 
 If the Particular.ServiceControl fails to start raising in the logs a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-maleware real-time and scheduled scan.
