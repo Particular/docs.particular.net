@@ -6,22 +6,26 @@ tags:
 - Error Handling
 - Exceptions
 - Automatic Retries
+redirects:
+- nservicebus/errors/distributor-errorhandling
 related:
 - samples/scaleout
 - nservicebus/scalability-and-ha/distributor
 ---
 
-NServiceBus provides error handling and has [First Level Retries (FLR)](automatic-retries.md#first-level-retries) and [Secondary Level Retries (SLR)](automatic-retries.md#second-level-retries). The behavior on how the SLR policy is applied and how related message flow is different between major versions.
+NServiceBus provides error handling and has [First Level Retries (FLR)](/nservicebus/errors/automatic-retries.md#first-level-retries) and [Secondary Level Retries (SLR)](/nservicebus/errors/automatic-retries.md#second-level-retries).
+
+When using the distributor the behavior of retries and the related message flow is different between major versions.
 
 
 ## First Level Retries (FLR)
 
-First Level Retries (FLR) are always performed on the worker.
+FLR are always performed on the worker.
 
 
 ## Second Level Retries (SLR)
 
-The behavior of Second Level Retries (SLR) is different between major versions.
+The behavior of SLR is different between major versions.
 
 SLR has two configurable items TimeIncrease and NumberOfRetries.
 
@@ -51,11 +55,10 @@ The SLR policy is applied *only* on the workers for both *TimeIncrease* and *Num
 When an error occurs the worker schedules the retry according to the SLR TimeIncrease setting and when the corresponding timeout is triggered the message is forwarded to the incoming queue of the distributor which will then forward the message to an available worker.
 
 
-## Best practise
+## Best practice
 
 Due to the behavioral differences between major versions it is advised to have the *SecondLevelRetriesConfig* exactly the same on both the distributor and the workers even though it could be that settings are ignored.
 
 It is assumed that *NumberOfRetries* and *TimeIncrease* are the same on the distributor and the workers.
 
 NOTE: If settings are managed in XML configuration a comment stating that changes should be updated on the distributor and worker configuration files.
-

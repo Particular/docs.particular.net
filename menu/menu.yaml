@@ -238,6 +238,7 @@
             - "nservicebus/scalability-and-ha/distributor/disconnect-workers"
             - "nservicebus/scalability-and-ha/distributor/publish-subscribe"
             - "nservicebus/scalability-and-ha/distributor/upgrading-the-distributor"
+            - "nservicebus/scalability-and-ha/distributor/error-handling"
 -
   Name: "ServiceInsight"
   Topics:
