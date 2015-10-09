@@ -123,10 +123,8 @@ NServiceBus polls the persister for timeouts by calling `GetNextChunk`, and prov
 
 In order to provide a custom timeout persister implementation: 
 - In versions 4.x and 5.x you need to implement interfaces `IPersistTimeouts` and `IPersistTimeoutsV2`. 
-    - The reference in-memory implementation of timeouts persistence for NServiceBus v4.x can be seen [here](...) and [here](...). 
-    - The reference in-memory implementation of timeouts persistence for NServiceBus v5.x can be seen [here](...) and [here](...). .
-- In version 6.x  you need to implement `IPersistTimeouts` interface. 
-    - The reference in-memory implementation of timeouts persistence for NServiceBus v6.x can be seen [here](...).
+    - The reference in-memory implementation of timeouts persistence for NServiceBus v4.x can be seen [here](https://github.com/Particular/NServiceBus/blob/support-4.4/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersistence.cs). 
+    - The reference in-memory implementation of timeouts persistence for NServiceBus v5.x can be seen [here](https://github.com/Particular/NServiceBus/blob/support-5.0/src/NServiceBus.Core/Persistence/InMemory/TimeoutPersister/InMemoryTimeoutPersister.cs).
  
 The differences in interfaces definitions across versions are related to a patch fix preventing a potential message loss. You can find more details in the [issue description](https://github.com/Particular/NServiceBus/issues/2885).
 
