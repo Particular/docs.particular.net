@@ -4,7 +4,6 @@ using NServiceBus;
 
 [ServiceBehavior(
     InstanceContextMode = InstanceContextMode.Single,
-    IncludeExceptionDetailInFaults = true,
     Name = "CallbackService")]
 class CallbackService<TRequest, TResponse> : ICallbackService<TRequest, TResponse>
 {
