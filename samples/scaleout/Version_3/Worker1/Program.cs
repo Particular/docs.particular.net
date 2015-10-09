@@ -20,7 +20,6 @@ class Program
         #endregion
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
-        configure.RunTimeoutManagerWithInMemoryPersistence();
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
         using (IStartableBus startableBus = configure.UnicastBus().CreateBus())

@@ -14,7 +14,6 @@ class Program
         Address.InitializeLocalAddress("Samples.Scaleout.Worker2");
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
-        configure.RunTimeoutManagerWithInMemoryPersistence();
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
         using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
