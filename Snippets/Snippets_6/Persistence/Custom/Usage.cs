@@ -6,12 +6,12 @@
     {
         public Usage()
         {
-            #region PersistTimeoutsInterfaces
+        	#region PersistTimeoutsInterfaces
 
-            public interface IPersistTimeouts
-			{
-				//TODO: modify once v6 fix is ready
-			}
+        	public interface IPersistTimeouts
+		{
+			//TODO: modify once v6 fix is ready
+		}
 
             #endregion
         }
