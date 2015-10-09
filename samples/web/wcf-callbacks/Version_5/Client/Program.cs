@@ -40,7 +40,7 @@ static class Program
 
     static async Task SendEnum()
     {
-        using (var channelFactory = WcfMapper.GetChannelFactory<EnumMessage, Status>("http://localhost:8080"))
+        using (var channelFactory = ClientChannelBuilder.GetChannelFactory<EnumMessage, Status>("http://localhost:8080"))
         {
             ICallbackService<EnumMessage, Status> client = channelFactory.CreateChannel();
             var communicationObject = (ICommunicationObject) client;
@@ -56,7 +56,7 @@ static class Program
 
     static async Task SendInt()
     {
-        using (var channelFactory = WcfMapper.GetChannelFactory<IntMessage, int>("http://localhost:8080"))
+        using (var channelFactory = ClientChannelBuilder.GetChannelFactory<IntMessage, int>("http://localhost:8080"))
         {
             ICallbackService<IntMessage, int> client = channelFactory.CreateChannel();
 
@@ -73,7 +73,7 @@ static class Program
 
     static async Task SendObject()
     {
-        using (var channelFactory = WcfMapper.GetChannelFactory<ObjectMessage, ReplyMessage>("http://localhost:8080"))
+        using (var channelFactory = ClientChannelBuilder.GetChannelFactory<ObjectMessage, ReplyMessage>("http://localhost:8080"))
         {
             ICallbackService<ObjectMessage, ReplyMessage> client = channelFactory.CreateChannel();
             var communicationObject = (ICommunicationObject) client;
