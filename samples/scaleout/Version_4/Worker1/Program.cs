@@ -7,13 +7,17 @@ class Program
     static void Main()
     {
         Configure.Serialization.Json();
+
+#pragma warning disable 618
         #region Workerstartup
         Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Scaleout.Worker1");
         configure.DefaultBuilder();
-        configure.EnlistWithMSMQDistributor();
+        configure.EnlistWithDistributor();
         #endregion
+#pragma warning restore 618
+
         #region WorkerNameToUseWhileTestingCode
         //called after EnlistWithDistributor
         Address.InitializeLocalAddress("Samples.Scaleout.Worker1");

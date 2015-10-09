@@ -1,14 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F7A10384-CB9C-4572-87F9-6BEBE2821B4B}</ProjectGuid>
+    <ProjectGuid>{F09F96A1-0A51-4A97-A597-390FD6C35916}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Worker2</RootNamespace>
-    <AssemblyName>Worker2</AssemblyName>
+    <RootNamespace>Server</RootNamespace>
+    <AssemblyName>Server</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,6 +48,10 @@
       <HintPath>..\..\..\..\packages\NServiceBus.4.7.6\lib\net40\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NServiceBus.Distributor.MSMQ, Version=4.4.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\NServiceBus.Distributor.MSMQ.4.4.8\lib\net40\NServiceBus.Distributor.MSMQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,17 +64,12 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj">
       <Project>{439cf4e4-de6a-4570-87c7-9795df677697}</Project>
       <Name>Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Worker.Handlers\Worker.Handlers.csproj">
-      <Project>{dcb3b87d-4e30-4013-89db-fb8110f06eb7}</Project>
-      <Name>Worker.Handlers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

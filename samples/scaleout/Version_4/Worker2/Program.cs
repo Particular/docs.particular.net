@@ -7,11 +7,15 @@ class Program
     static void Main()
     {
         Configure.Serialization.Json();
+
+#pragma warning disable 618
         Configure configure = Configure.With();
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Scaleout.Worker2");
         configure.DefaultBuilder();
-        configure.EnlistWithMSMQDistributor();
+        configure.EnlistWithDistributor();
+#pragma warning restore 618
+
         Address.InitializeLocalAddress("Samples.Scaleout.Worker2");
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();

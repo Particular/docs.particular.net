@@ -7,17 +7,17 @@ class Program
     static void Main()
     {
         Configure.Serialization.Json();
-
-#pragma warning disable 618
-        #region server
+        #region Workerstartup
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Samples.Scaleout.Server");
+        configure.DefineEndpointName("Samples.Scaleout.Worker1");
         configure.DefaultBuilder();
-        configure.RunDistributor(withWorker:false);
+        configure.EnlistWithMSMQDistributor();
         #endregion
-#pragma warning restore 618
-
+        #region WorkerNameToUseWhileTestingCode
+        //called after EnlistWithDistributor
+        Address.InitializeLocalAddress("Samples.Scaleout.Worker1");
+        #endregion
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
