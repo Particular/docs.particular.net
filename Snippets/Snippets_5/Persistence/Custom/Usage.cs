@@ -6,7 +6,7 @@
     {
         public Usage()
         {
-        	#region PersistTimeoutsInterfaces [4.4,5.0]
+        	#region PersistTimeoutsInterfaces
 
         	public interface IPersistTimeouts
 		{
