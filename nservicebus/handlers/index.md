@@ -8,15 +8,7 @@ redirects:
 
 To handle a message, write a class that implements `IHandleMessages<T>` where `T` is the message type:
 
-```C#
-public class H1 : IHandleMessages<MyMessage>
-{
-     public void Handle(MyMessage message)
-     {
-        //do something relevant with the message
-     }
-}
-```
+<!-- import CreatingMessageHandler -->
 
 To handle messages of all types:
 
@@ -25,18 +17,7 @@ To handle messages of all types:
 
 Since this class is setup to handle type `Object`, every message arriving in the queue will trigger it.
 
-```C#
-public class GenericMessageHandler : IHandleMessages<Object>
-{
-    static ILog Logger = LogManager.GetLogger(typeof(GenericMessageHandler));
-    
-    public void Handle(Object message)
-    { 
-        Logger.Info(string.Format("I just received a message of type {0}.", message.GetType().Name));
-        Console.WriteLine("*********************************************************************************");
-    }
-}
-```
+<!-- import GenericMessageHandler -->
 
 If you are using the Request-Response or Full Duplex pattern, your handler will probably do the work it needs to do, such as updating a database or calling a web service, then creating and sending a response message. See [How to Reply to a Message](/nservicebus/messaging/reply-to-a-message.md).
 
