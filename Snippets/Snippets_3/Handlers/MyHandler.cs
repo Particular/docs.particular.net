@@ -9,6 +9,7 @@
         public void Handle(MyMessage message)
         {
             //do something relevant with the message
+            SomeLibrary.SomeMethod(message);
         }
     }
 

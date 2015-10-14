@@ -5,7 +5,6 @@
     using NServiceBus;
 
     #region GenericMessageHandler
-
     public class GenericMessageHandler : IHandleMessages<Object>
     {
         static ILog Logger = LogManager.GetLogger(typeof(GenericMessageHandler));
@@ -14,6 +13,7 @@
         {
             Logger.Info(string.Format("I just received a message of type {0}.", message.GetType().Name));
             Console.WriteLine("*********************************************************************************");
+            SomeLibrary.SomeMethod(message);
         }
     }
 
