@@ -86,7 +86,7 @@
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />
-    <Compile Include="Handlers\GenericMessageHandler.cs" />
+    <Compile Include="Handlers\GenericAsyncHandler.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
     <Compile Include="Headers\MyMessage.cs" />

@@ -1,13 +1,12 @@
-using System;
 using System.Threading.Tasks;
 
 public static class SomeLibrary
 {
-    public static Task SomeMethodAsync(Object message)
+    public static Task SomeMethodAsync(object data)
     {
         return Task.FromResult(0);
     }
-    public static void SomeMethod(Object message)
+    public static void SomeMethod(object data)
     {
         //no-op
     }

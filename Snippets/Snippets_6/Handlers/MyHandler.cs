@@ -5,18 +5,14 @@
 
     #region CreatingMessageHandler
 
-    public class MyAsynchronousHandler : IHandleMessages<MyMessage>
+    public class MyAsyncHandler : IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message)
         {
-            //do something relevant with the message
-            await SomeLibrary.SomeMethodAsync(message);
+            //do something with the message data
+            await SomeLibrary.SomeMethodAsync(message.Data);
         }
     }
 
     #endregion
-
-
 }
-
-
