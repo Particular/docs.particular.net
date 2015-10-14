@@ -6,11 +6,11 @@
 
     #region GenericMessageHandler
 
-    public class GenericMessageHandler : IHandleMessages<Object>
+    public class GenericMessageHandler : IHandleMessages<object>
     {
         static ILog Logger = LogManager.GetLogger(typeof(GenericMessageHandler));
 
-        public void Handle(Object message)
+        public void Handle(object message)
         {
             Logger.Info(string.Format("I just received a message of type {0}.", message.GetType().Name));
             Console.WriteLine("*********************************************************************************");
