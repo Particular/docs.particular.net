@@ -53,11 +53,15 @@ Since a saga manages the state of a long-running process, under which conditions
 
 Please note that `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that. This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it.
 
-How to correlate a `CompleteOrder` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. You only need to store this in the saga data, and tell NServiceBus about the connection. This is done in the `ConfigureHowToFindSaga` in the above saga. NServiceBus will not allow you to change the value of correlated properties for existing instances.
+How to correlate a `CompleteOrder` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. You only need to store this in the saga data, and tell NServiceBus about the connection. This is done in the `ConfigureHowToFindSaga` in the above saga. 
 
-NOTE: Version 5 and below didn't enforce correlated properties to be read only for existing instances
+{{NOTE:
+In Version 6 and higher NServiceBus will not allow you to change the value of correlated properties for existing instances.
 
-Since version 5 it is possible to specify the mapping to the message using expressions if the correlation information is split between multiple fields
+In Version 5 and below NServiceBus didn't enforce correlated properties to be read only for existing instances.
+
+Since version 5 it is possible to specify the mapping to the message using expressions if the correlation information is split between multiple fields.
+}}
 
 <!-- import saga-find-by-expression -->
 
