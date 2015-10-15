@@ -4,26 +4,31 @@ using NServiceBus.Logging;
 
 static class Program
 {
-    
+
     static void Main()
     {
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
-#region startbus
+
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.WcfCallbacks");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
+
+        #region startbus
+
         using (IBus bus = Bus.Create(busConfiguration).Start())
         using (StartWcfHost(bus))
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
-#endregion
+
+        #endregion
     }
-#region startwcf
+
+    #region startwcf
 
     static IDisposable StartWcfHost(IBus bus)
     {

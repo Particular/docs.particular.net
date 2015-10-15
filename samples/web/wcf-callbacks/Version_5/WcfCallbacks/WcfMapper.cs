@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ServiceModel;
 using NServiceBus;
 
+#region WcfMapper 
 public class WcfMapper : IDisposable
 {
     IBus bus;
@@ -35,3 +36,4 @@ public class WcfMapper : IDisposable
         }
     }
 }
+#endregion

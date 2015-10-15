@@ -1,7 +1,9 @@
-﻿using System.ServiceModel;
+﻿using System;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using NServiceBus;
 
+#region CallbackService
 [ServiceBehavior(
     InstanceContextMode = InstanceContextMode.Single,
     Name = "CallbackService")]
@@ -34,4 +36,10 @@ class CallbackService<TRequest, TResponse> : ICallbackService<TRequest, TRespons
         });
 
     }
+
+    public void Dispose()
+    {
+        ((IDisposable)this).Dispose();
+    }
 }
+#endregion

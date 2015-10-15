@@ -1,5 +1,7 @@
 ﻿using System.ServiceModel;
 
+#region ClientChannelBuilder
+
 public static class ClientChannelBuilder
 {
 
@@ -11,3 +13,4 @@ public static class ClientChannelBuilder
         return new ChannelFactory<ICallbackService<TMessage, TResponse>>(myBinding, myEndpoint);
     }
 }
+#endregion

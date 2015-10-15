@@ -1,9 +1,9 @@
 ﻿using System;
-using System.ServiceModel;
 using System.Threading.Tasks;
 
 static class Program
 {
+    static string serverUrl = "http://localhost:8080";
 
     static void Main()
     {
@@ -40,50 +40,45 @@ static class Program
 
     static async Task SendEnum()
     {
-        using (var channelFactory = ClientChannelBuilder.GetChannelFactory<EnumMessage, Status>("http://localhost:8080"))
+        EnumMessage message = new EnumMessage
         {
-            ICallbackService<EnumMessage, Status> client = channelFactory.CreateChannel();
-            var communicationObject = (ICommunicationObject) client;
-            EnumMessage message = new EnumMessage
-            {
-                Property = "The Property Value"
-            };
-            var response = await client.SendRequest(message);
-            Console.WriteLine("Response: " + response);
-            communicationObject.Close();
-        }
+            Property = "The Property Value"
+        };
+        var response = await Send<EnumMessage, Status>(message);
+        Console.WriteLine("Response: " + response);
     }
 
     static async Task SendInt()
     {
-        using (var channelFactory = ClientChannelBuilder.GetChannelFactory<IntMessage, int>("http://localhost:8080"))
+        IntMessage message = new IntMessage
         {
-            ICallbackService<IntMessage, int> client = channelFactory.CreateChannel();
+            Property = "The Property Value"
+        };
 
-            var communicationObject = (ICommunicationObject) client;
-            IntMessage message = new IntMessage
-            {
-                Property = "The Property Value"
-            };
-            var response = await client.SendRequest(message);
-            Console.WriteLine("Response: " + response);
-            communicationObject.Close();
-        }
+        var response = await Send<IntMessage, int>(message);
+        Console.WriteLine("Response: " + response);
     }
 
+    #region Send
     static async Task SendObject()
     {
-        using (var channelFactory = ClientChannelBuilder.GetChannelFactory<ObjectMessage, ReplyMessage>("http://localhost:8080"))
+        ObjectMessage message = new ObjectMessage
         {
-            ICallbackService<ObjectMessage, ReplyMessage> client = channelFactory.CreateChannel();
-            var communicationObject = (ICommunicationObject) client;
-            ObjectMessage message = new ObjectMessage
-            {
-                Property = "The Property Value"
-            };
-            var response = await client.SendRequest(message);
-            Console.WriteLine("Response: " + response.Property);
-            communicationObject.Close();
+            Property = "The Property Value"
+        };
+        var response = await Send<ObjectMessage, ReplyMessage>(message);
+        Console.WriteLine("Response: " + response.Property);
+    }
+    #endregion
+
+    #region SendHelper
+    static async Task<TResponse> Send<TRequest,TResponse>(TRequest request)
+    {
+        using (var channelFactory = ClientChannelBuilder.GetChannelFactory<TRequest, TResponse>(serverUrl))
+        using (ICallbackService<TRequest, TResponse> client = channelFactory.CreateChannel())
+        {
+            return await client.SendRequest(request);
         }
     }
+#endregion
 }
