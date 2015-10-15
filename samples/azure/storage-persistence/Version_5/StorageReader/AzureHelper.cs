@@ -65,7 +65,7 @@ public class AzureHelper
             foreach (var property in entity.Properties)
             {
                 string propertyAsObject = property.Value.PropertyAsObject.ToString().Truncate(50);
-                Debug.WriteLine(string.Format("    {0}:= {1}", property.Key, propertyAsObject));
+                Debug.WriteLine("    {0}:= {1}", property.Key, propertyAsObject);
             }
         }
         Debug.WriteLine("");
