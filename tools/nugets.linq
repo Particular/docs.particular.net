@@ -13,21 +13,25 @@ void Main()
 
 	Directory.SetCurrentDirectory(docsDirectory);
 
-		Parallel.ForEach(solutionFiles,
-		new ParallelOptions() { MaxDegreeOfParallelism = 10 },
-		(solutionFile) =>
+	Parallel.ForEach(solutionFiles,
+	new ParallelOptions() { MaxDegreeOfParallelism = 10 },
+	(solutionFile) =>
+		{
+			try
 			{
-				try
-				{
-					Execute(nuget, "restore " + solutionFile + " -packagesDirectory " + packagesDirectory);
-					Execute(nuget, "update " + solutionFile + " -safe -repositoryPath " + packagesDirectory);
-				}
-				catch (Exception ex)
+				Execute(nuget, "restore " + solutionFile + " -packagesDirectory " + packagesDirectory);
+				Execute(nuget, "update " + solutionFile + " -safe -repositoryPath " + packagesDirectory);
+			}
+			catch (Exception ex)
+			{
+				Debug.WriteLine(solutionFile + ": " + ex.Message);
+				if (ex.InnerException != null)
 				{
 					Debug.WriteLine(ex.InnerException.Message);
 				}
 			}
-		); 
+		}
+	);
 }
 
 void Execute(string file, string arguments)
