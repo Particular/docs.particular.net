@@ -17,6 +17,11 @@ void Main()
 		new ParallelOptions() { MaxDegreeOfParallelism = 10 },
 		(solutionFile) =>
 			{
+				if (solutionFile.Contains("_6"))
+				{ 
+					return;
+				}
+				Debug.WriteLine(solutionFile);
 				try
 				{
 					Execute(nuget, "restore " + solutionFile + " -packagesDirectory " + packagesDirectory);
@@ -24,7 +29,11 @@ void Main()
 				}
 				catch (Exception ex)
 				{
-					Debug.WriteLine(ex.InnerException.Message);
+					Debug.WriteLine(solutionFile + ": " + ex.ToString());
+					if (ex.InnerException != null)
+					{
+						Debug.WriteLine(ex.InnerException.ToString());
+					}
 				}
 			}
 		); 
