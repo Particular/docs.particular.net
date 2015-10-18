@@ -27,7 +27,7 @@ In this mode the transport in use does not attempt to wrap the receive operation
 
 Once a message has been received, if the message processing fails it should still be put into the error queue. If there is a critical failure, including system or endpoint crash, the message is **permanently lost**. 
 
-NOTE: Before version 6, no retries will be performed in this mode and messages will not be forwarded to the error queue in case of any failure.
+WARNING: Before version 6, no retries will be performed in this mode and messages will not be forwarded to the error queue in case of any failure.
 
 <!-- import TransactionsDisable -->
 
