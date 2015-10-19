@@ -111,75 +111,71 @@
       <HintPath>..\..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus">
-      <HintPath>..\..\packages\NServiceBus.Interfaces.4.7.6\lib\net40\NServiceBus.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Interfaces.4.7.7\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Azure, Version=5.3.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\NServiceBus.Azure.5.3.11\lib\net40\NServiceBus.Azure.dll</HintPath>
+    <Reference Include="NServiceBus.Azure">
+      <HintPath>..\..\packages\NServiceBus.Azure.5.3.12\lib\net40\NServiceBus.Azure.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus, Version=5.3.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.5.3.11\lib\net40\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
+    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureServiceBus">
+      <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureServiceBus.5.3.12\lib\net40\NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues, Version=5.3.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.5.3.11\lib\net40\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
+    <Reference Include="NServiceBus.Azure.Transports.WindowsAzureStorageQueues">
+      <HintPath>..\..\packages\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.5.3.12\lib\net40\NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus.4.7.6\lib\net40\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.4.7.7\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Distributor.MSMQ, Version=4.4.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Distributor.MSMQ.4.4.8\lib\net40\NServiceBus.Distributor.MSMQ.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Host">
-      <HintPath>..\..\packages\NServiceBus.Host.4.7.6\lib\net40\NServiceBus.Host.exe</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Host.4.7.7\lib\net40\NServiceBus.Host.exe</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.NHibernate, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\NServiceBus.NHibernate.5.0.2\lib\net40\NServiceBus.NHibernate.dll</HintPath>
+    <Reference Include="NServiceBus.NHibernate">
+      <HintPath>..\..\packages\NServiceBus.NHibernate.5.0.3\lib\net40\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Autofac">
-      <HintPath>..\..\packages\NServiceBus.Autofac.4.7.6\lib\net40\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Autofac.4.7.7\lib\net40\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.CastleWindsor">
-      <HintPath>..\..\packages\NServiceBus.CastleWindsor.4.7.6\lib\net40\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.CastleWindsor.4.7.7\lib\net40\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Ninject">
-      <HintPath>..\..\packages\NServiceBus.Ninject.4.7.6\lib\net40\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Ninject.4.7.7\lib\net40\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Spring">
-      <HintPath>..\..\packages\NServiceBus.Spring.4.7.6\lib\net40\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Spring.4.7.7\lib\net40\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.StructureMap">
-      <HintPath>..\..\packages\NServiceBus.StructureMap.4.7.6\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.StructureMap.4.7.7\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Unity">
       <HintPath>..\..\packages\NServiceBus.Unity.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
-      <HintPath>..\..\packages\NServiceBus.RavenDB.1.0.1\lib\net40\NServiceBus.RavenDB.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.RavenDB.1.0.2\lib\net40\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Testing">
-      <HintPath>..\..\packages\NServiceBus.Testing.4.7.6\lib\net40\NServiceBus.Testing.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Testing.4.7.7\lib\net40\NServiceBus.Testing.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.RabbitMQ">
       <HintPath>..\..\packages\NServiceBus.RabbitMQ.1.1.5\lib\net40\NServiceBus.Transports.RabbitMQ.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.SQLServer">
-      <HintPath>..\..\packages\NServiceBus.SqlServer.1.2.3\lib\net40\NServiceBus.Transports.SQLServer.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.SqlServer.1.2.4\lib\net40\NServiceBus.Transports.SQLServer.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="RabbitMQ.Client">
-      <HintPath>..\..\packages\RabbitMQ.Client.3.5.4\lib\net40\RabbitMQ.Client.dll</HintPath>
+      <HintPath>..\..\packages\RabbitMQ.Client.3.5.6\lib\net40\RabbitMQ.Client.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
-      <HintPath>..\..\packages\RavenDB.Client.2.5.2962\lib\net45\Raven.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\RavenDB.Client.2.5.2971\lib\net45\Raven.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Client.Lightweight">
-      <HintPath>..\..\packages\RavenDB.Client.2.5.2962\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+      <HintPath>..\..\packages\RavenDB.Client.2.5.2971\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.Contracts">
       <HintPath>..\..\packages\ServiceControl.Contracts.1.1.1\lib\net40\ServiceControl.Contracts.dll</HintPath>

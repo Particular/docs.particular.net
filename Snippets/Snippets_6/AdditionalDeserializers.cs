@@ -12,7 +12,6 @@
             busConfiguration.UseSerialization<XmlSerializer>();
             // configures additional deserialization
             busConfiguration.AddDeserializer<JsonSerializer>();
-            busConfiguration.AddDeserializer<BsonSerializer>();
             #endregion
         }
     }

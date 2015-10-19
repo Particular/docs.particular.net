@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.7\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.8\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Wire, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Wire.1.0.0\Lib\NET45\NServiceBus.Wire.dll</HintPath>
@@ -50,9 +50,8 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Wire, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\Wire.0.0.4\lib\Wire.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Wire">
+      <HintPath>..\..\..\..\..\packages\Wire.0.0.5\lib\Wire.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
