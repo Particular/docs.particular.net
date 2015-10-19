@@ -23,9 +23,9 @@ void Main()
 				}
 				Debug.WriteLine(solutionFile);
 				try
-				{
+				{ 
 					Execute(nuget, "restore " + solutionFile + " -packagesDirectory " + packagesDirectory);
-					Execute(nuget, "update " + solutionFile + " -safe -repositoryPath " + packagesDirectory);
+					Execute(nuget, "update " + solutionFile + " -safe -NonInteractive -repositoryPath " + packagesDirectory);
 				}
 				catch (Exception ex)
 				{
