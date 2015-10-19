@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Data.SqlClient;
+    using System.Management.Automation;
+    using System.Management.Automation.Runspaces;
     using NServiceBus;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
@@ -48,6 +50,48 @@
                 state.ResetEvent.WaitOne();
             }
         }
+
+        [Test]
+        public void SendPowershell()
+        {
+            State state = new State();
+            using (IBus bus = StartBus(state))
+            {
+                string message = @"{ Property: 'Value' }";
+
+                var headers = new Dictionary<string, string>
+                {
+                    {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
+                };
+
+                // Run a PowerShell script with two parameter and set execution policy to Unrestricted
+                RunPowershellScript(@"C:\Code\docs.particular.net\Snippets\Operations\SqlServer\NativeSendPowershell.ps1", connectionString, endpointName, message, headers);
+
+                state.ResetEvent.WaitOne();
+            }
+        }
+
+        private static void RunPowershellScript(string scriptFile, params object[] parameters)
+        {
+
+            RunspaceConfiguration runspaceConfiguration = RunspaceConfiguration.Create();
+
+            using (Runspace runspace = RunspaceFactory.CreateRunspace(runspaceConfiguration))
+            {
+                runspace.Open();
+                RunspaceInvoke scriptInvoker = new RunspaceInvoke(runspace);
+                scriptInvoker.Invoke("Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force");
+                Pipeline pipeline = runspace.CreatePipeline();
+                Command scriptCommand = new Command(scriptFile);
+                foreach (var p in parameters)
+                {
+                    scriptCommand.Parameters.Add(new CommandParameter(null, p));
+                }
+                pipeline.Commands.Add(scriptCommand);
+                pipeline.Invoke();
+            }
+        }
+
 
         IBus StartBus(State state)
         {
