@@ -56,6 +56,8 @@ Please note that `IHandleMessages<StartOrder>` is redundant since `IAmStartedByM
 How to correlate a `CompleteOrder` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. You only need to store this in the saga data, and tell NServiceBus about the connection. This is done in the `ConfigureHowToFindSaga` in the above saga. 
 
 {{NOTE:
+In Version 6 and higher NServiceBus will enforce that all correlated properties have a non default value when the saga instance is persisted.
+
 In Version 6 and higher NServiceBus will not allow you to change the value of correlated properties for existing instances.
 
 In Version 5 and below NServiceBus didn't enforce correlated properties to be read only for existing instances.
