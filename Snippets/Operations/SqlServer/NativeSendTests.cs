@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Data.SqlClient;
+    using System.IO;
     using System.Management.Automation;
     using System.Management.Automation.Runspaces;
     using NServiceBus;
@@ -64,34 +65,29 @@
                     {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
                 };
 
-                // Run a PowerShell script with two parameter and set execution policy to Unrestricted
-                RunPowershellScript(@"C:\Code\docs.particular.net\Snippets\Operations\SqlServer\NativeSendPowershell.ps1", connectionString, endpointName, message, headers);
+                string script = File.ReadAllText(@"C:\Code\docs.particular.net\Snippets\Operations\SqlServer\NativeSendPowershell.ps1");
+
+                using (var powershell = PowerShell.Create())
+                {
+                    powershell.AddScript(script, false);
+
+                    powershell.Invoke();
+
+                    powershell.Commands.Clear();
+
+                    powershell.AddCommand("SendMessage")
+                        .AddParameter(null, connectionString)
+                        .AddParameter(null, endpointName)
+                        .AddParameter(null, message)
+                        .AddParameter(null, headers);
+
+                    var results = powershell.Invoke();
+
+                }
 
                 state.ResetEvent.WaitOne();
             }
         }
-
-        private static void RunPowershellScript(string scriptFile, params object[] parameters)
-        {
-
-            RunspaceConfiguration runspaceConfiguration = RunspaceConfiguration.Create();
-
-            using (Runspace runspace = RunspaceFactory.CreateRunspace(runspaceConfiguration))
-            {
-                runspace.Open();
-                RunspaceInvoke scriptInvoker = new RunspaceInvoke(runspace);
-                scriptInvoker.Invoke("Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force");
-                Pipeline pipeline = runspace.CreatePipeline();
-                Command scriptCommand = new Command(scriptFile);
-                foreach (var p in parameters)
-                {
-                    scriptCommand.Parameters.Add(new CommandParameter(null, p));
-                }
-                pipeline.Commands.Add(scriptCommand);
-                pipeline.Invoke();
-            }
-        }
-
 
         IBus StartBus(State state)
         {
