@@ -29,9 +29,11 @@ NServiceBus supports two DataBus implementations:
 * `AzureDataBus`
 
 To enable DataBus, NServiceBus needs to be configured. For file share based DataBus:
+
 <!-- import FileShareDataBus -->
 
 For Azure (storage blobs) based DataBus:
+
 <!-- import AzureDataBus -->
 
 NOTE: The `AzureDataBus` implementation is part of the Azure transport package.
