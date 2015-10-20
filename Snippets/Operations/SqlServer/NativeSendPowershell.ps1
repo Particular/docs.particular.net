@@ -37,14 +37,14 @@ Function SendMessage
 
 	$sqlConnection.Close()
 }
-
+# endcode
 Function Usage
 {
 
-	# region sqlserver-powershell-nativesend-usage
+	# startcode sqlserver-powershell-nativesend-usage
 
 	SendMessage "Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True" "sqlserverNativeSendTests" "{'Property':'Value'}" @{"NServiceBus.EnclosedMessageTypes" = "Operations.SqlServer.NativeSendTests+MessageToSend"}
 
-	# endregion
+	# endcode
 
 }

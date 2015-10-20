@@ -6,7 +6,6 @@
     using System.Data.SqlClient;
     using System.IO;
     using System.Management.Automation;
-    using System.Management.Automation.Runspaces;
     using NServiceBus;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
@@ -65,7 +64,9 @@
                     {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
                 };
 
-                string script = File.ReadAllText(@"C:\Code\docs.particular.net\Snippets\Operations\SqlServer\NativeSendPowershell.ps1");
+                string scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"SqlServer\NativeSendPowershell.ps1");
+
+                string script = File.ReadAllText(scriptPath);
 
                 using (var powershell = PowerShell.Create())
                 {
@@ -113,7 +114,6 @@
             {
                 this.state = state;
             }
-
 
             public void Handle(MessageToSend message)
             {
