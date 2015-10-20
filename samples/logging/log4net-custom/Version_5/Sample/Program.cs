@@ -19,7 +19,7 @@ class Program
             ConversionPattern = "%d [%t] %-5p %c [%x] - %m%n"
         };
         layout.ActivateOptions();
-        ColoredConsoleAppender consoleAppender = new ColoredConsoleAppender
+        ConsoleAppender consoleAppender = new ConsoleAppender
         {
             Threshold = Level.Info,
             Layout = layout

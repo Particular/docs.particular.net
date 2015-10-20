@@ -33,4 +33,12 @@ For example to limit log output to a specific namespace.
 
 Here is a code configuration example for adding a [Filter](http://logging.apache.org/log4net/release/manual/configuration.html#filters).
 
-<!-- import Log4netFiltering -->
+
+### The Filter
+
+<!-- import Log4netFilter -->
+
+
+### Using the Filter
+
+<!-- import Log4netFilterUsage -->
