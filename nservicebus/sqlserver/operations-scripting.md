@@ -26,6 +26,14 @@ The following code shows an example of how to perform the following actions
 
 <!-- import sqlserver-nativesend-usage -->
 
+#### In Powershell;
+
+<!-- import sqlserver-powershell-nativesend -->
+
+
+### Using the native send helper methods
+
+<!-- import sqlserver-powershell-nativesend-usage -->
 
 ## Create queues
 
