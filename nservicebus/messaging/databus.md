@@ -8,6 +8,7 @@ redirects:
 - nservicebus/databus
 related:
 - samples/databus
+- samples/azure/blob-storage-databus/
 ---
 
 ## What is the DataBus feature for
