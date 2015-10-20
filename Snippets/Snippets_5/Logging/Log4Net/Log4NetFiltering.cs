@@ -21,7 +21,6 @@
                     {
                         return FilterDecision.Deny;
                     }
-                    return FilterDecision.Accept;
                 }
                 return FilterDecision.Accept;
             }
