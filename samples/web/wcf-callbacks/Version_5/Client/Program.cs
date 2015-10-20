@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ServiceModel;
 using System.Threading.Tasks;
 
 static class Program
@@ -44,7 +45,7 @@ static class Program
         {
             Property = "The Property Value"
         };
-        var response = await Send<EnumMessage, Status>(message);
+        Status response = await Send<EnumMessage, Status>(message);
         Console.WriteLine("Response: " + response);
     }
 
@@ -55,7 +56,7 @@ static class Program
             Property = "The Property Value"
         };
 
-        var response = await Send<IntMessage, int>(message);
+        int response = await Send<IntMessage, int>(message);
         Console.WriteLine("Response: " + response);
     }
 
@@ -66,7 +67,7 @@ static class Program
         {
             Property = "The Property Value"
         };
-        var response = await Send<ObjectMessage, ReplyMessage>(message);
+        ReplyMessage response = await Send<ObjectMessage, ReplyMessage>(message);
         Console.WriteLine("Response: " + response.Property);
     }
     #endregion
@@ -74,7 +75,7 @@ static class Program
     #region SendHelper
     static async Task<TResponse> Send<TRequest,TResponse>(TRequest request)
     {
-        using (var channelFactory = ClientChannelBuilder.GetChannelFactory<TRequest, TResponse>(serverUrl))
+        using (ChannelFactory<ICallbackService<TRequest, TResponse>> channelFactory = ClientChannelBuilder.GetChannelFactory<TRequest, TResponse>(serverUrl))
         using (ICallbackService<TRequest, TResponse> client = channelFactory.CreateChannel())
         {
             return await client.SendRequest(request);
