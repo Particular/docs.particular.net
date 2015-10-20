@@ -36,8 +36,8 @@ When sending a message using the NServiceBus Message attachments mechanism, the 
 
 ```json
 {
-	"SomeProperty":"This message contains a large payload that will be sent on the Azure data bus",
-	"LargeBlob":
+	"Description":"This message contains a large payload that will be sent on the Azure data bus",
+	"LargePayload":
 	{
 		"Key":"7c9a4430-c020-4462-a849-9994f3de354a",
 		"HasValue":true
