@@ -18,11 +18,11 @@ This samples shows how to perform a WCF request response by leveraging the [call
 
 ### Shared contract
 
-An generic interface that is share between both Client and Server to give a strong typed API. 
+An generic interface that is shared between both Client and Server to give a strong typed API. 
 
 <!-- import ICallbackService -->
 
-Note: For the sake of simplicity this interface is located in the same assembly as the server side helpers. This results in a reference to NServiceBus assemblies on the client side. In a real world solution this interface would most likely be moved to another assembly to avoid the need for  a NServiceBus reference on the client side.
+Note: For the sake of simplicity this interface is located in the same assembly as the server side helpers. This results in a reference to NServiceBus assemblies on the client side. In a real world solution this interface would most likely be moved to another assembly to avoid the need for a NServiceBus reference on the client side.
 
 
 ### Receiving Endpoint Helpers
@@ -30,7 +30,7 @@ Note: For the sake of simplicity this interface is located in the same assembly 
 
 #### WCF Mapper
 
-Maps a Request-Response message pair to a  [ServiceHost](https://msdn.microsoft.com/en-us/library/system.servicemodel.servicehost.aspx) listening on [BasicHttpBinding](https://msdn.microsoft.com/en-us/library/system.servicemodel.basichttpbinding.aspx).
+Maps a Request-Response message pair to a  [ServiceHost](https://msdn.microsoft.com/en-us/library/system.servicemodel.servicehost.aspx) listening on a [BasicHttpBinding](https://msdn.microsoft.com/en-us/library/system.servicemodel.basichttpbinding.aspx).
 
 The url used for the binding will be of the format `http://localhost:8080/BusService/{RequestMessage}_{Response}`. So for a message `EnumMessage` that has a response of `Status` the url would be `http://localhost:8080/BusService/EnumMessage_Status`
 
