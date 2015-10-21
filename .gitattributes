@@ -24,10 +24,10 @@
 *.ico	-text -diff
 *.ttf	-text -diff
 *.otf	-text -diff
-*.DotSettings -text -diff
 *.psm1 -text -diff
 *.ps1 -text -diff
 
+*.DotSettings text
 *.cs text diff=csharp
 *.config text diff=csharp
 *.xml text diff=csharp
