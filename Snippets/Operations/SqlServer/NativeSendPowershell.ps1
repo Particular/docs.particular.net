@@ -6,20 +6,20 @@ Add-Type -AssemblyName System.Data
 Function SendMessage
 {
 	param(
-	    [Parameter(Mandatory=$true)]
+		[Parameter(Mandatory=$true)]
 		[ValidateNotNullOrEmpty()]
 		[string] $ConnectionString,
 
 		[Parameter(Mandatory=$true)]
-        [ValidateNotNullOrEmpty()] 
+		[ValidateNotNullOrEmpty()] 
 		[string] $Queue,
 
 		[Parameter(Mandatory=$true)]
-        [ValidateNotNullOrEmpty()] 
+		[ValidateNotNullOrEmpty()] 
 		[string] $MessageBody,
 
 		[Parameter(Mandatory=$true)]
-        [ValidateNotNull()] 
+		[ValidateNotNull()] 
 		[HashTable] $Headers
 	)
 
@@ -56,9 +56,9 @@ Function Usage
 		ConnectionString = "Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True" 
 		Queue = "sqlserverNativeSendTests" 
 		Headers  = @{
-            "NServiceBus.EnclosedMessageTypes" = "Operations.SqlServer.NativeSendTests+MessageToSend"
-        }
-        MessageBody = "{'Property':'Value'}"
+			"NServiceBus.EnclosedMessageTypes" = "Operations.SqlServer.NativeSendTests+MessageToSend"
+		}
+		MessageBody = "{'Property':'Value'}"
 	}
 
 	SendMessage @payload
