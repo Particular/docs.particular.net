@@ -22,10 +22,6 @@ The following code shows an example of how to perform the following actions
 <!-- import sqlserver-nativesend -->
 
 
-### Using the native send helper methods
-
-<!-- import sqlserver-nativesend-usage -->
-
 #### In Powershell;
 
 <!-- import sqlserver-powershell-nativesend -->
@@ -33,7 +29,8 @@ The following code shows an example of how to perform the following actions
 
 ### Using the native send helper methods
 
-<!-- import sqlserver-powershell-nativesend-usage -->
+<!-- import sqlserver-nativesend-usage -->
+
 
 ## Create queues
 
