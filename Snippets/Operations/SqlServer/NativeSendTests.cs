@@ -4,6 +4,8 @@
     using System.Collections.Generic;
     using System.Threading;
     using System.Data.SqlClient;
+    using System.IO;
+    using System.Management.Automation;
     using NServiceBus;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
@@ -49,6 +51,45 @@
             }
         }
 
+        [Test]
+        public void SendPowershell()
+        {
+            State state = new State();
+            using (IBus bus = StartBus(state))
+            {
+                string message = @"{ Property: 'Value' }";
+
+                var headers = new Dictionary<string, string>
+                {
+                    {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
+                };
+
+                string scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"SqlServer\NativeSendPowershell.ps1");
+
+                string script = File.ReadAllText(scriptPath);
+
+                using (var powershell = PowerShell.Create())
+                {
+                    powershell.AddScript(script, false);
+
+                    powershell.Invoke();
+
+                    powershell.Commands.Clear();
+
+                    powershell.AddCommand("SendMessage")
+                        .AddParameter(null, connectionString)
+                        .AddParameter(null, endpointName)
+                        .AddParameter(null, message)
+                        .AddParameter(null, headers);
+
+                    var results = powershell.Invoke();
+
+                }
+
+                state.ResetEvent.WaitOne();
+            }
+        }
+
         IBus StartBus(State state)
         {
             BusConfiguration config = new BusConfiguration();
@@ -73,7 +114,6 @@
             {
                 this.state = state;
             }
-
 
             public void Handle(MessageToSend message)
             {
