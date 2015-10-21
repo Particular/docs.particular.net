@@ -1,9 +1,10 @@
 ---
-title: WCF calls via Callbacks
+title: WCF request response via Callbacks
 summary: Illustrates how to map between WCF and messages on the bus via the Callbacks API.
 tags:
 related:
 - nservicebus/messaging/handling-responses-on-the-client-side
+- samples/web/owin-pass-through
 ---
 
 
@@ -20,6 +21,8 @@ This samples shows how to perform a WCF request response by leveraging the [call
 An generic interface that is share between both Client and Server to give a strong typed API. 
 
 <!-- import ICallbackService -->
+
+Note: For the sake of simplicity this interface is located in the same assembly as the server side helpers. This results in a reference to NServiceBus assemblies on the client side. In a real world solution this interface would most likely be moved to another assembly to avoid the need for  a NServiceBus reference on the client side.
 
 
 ### Receiving Endpoint Helpers
@@ -38,7 +41,9 @@ If you want to use a different binding or url structure you can customize this c
 
 #### CallbackService
 
-The server side implementation of `ICallbackService`. This class handles the actual correlation of Request to Response. Note that the Callback APIs for Enums, Int sand message responses differ slightly.
+The server side implementation of `ICallbackService`. This class handles the actual correlation of Request to Response.
+
+Note: In Version 5 and lower the Callback APIs for Enums, Ints and message responses differ slightly hence some logic is required to call the correct API for each response type. In Version 6 and higher this API has been simplified and hence no logic is required.
 
 <!-- import CallbackService -->
 
@@ -48,7 +53,7 @@ The server side implementation of `ICallbackService`. This class handles the act
 
 #### ClientChannelBuilder
 
-The ClientChannelBuilder creates a proxy at run time to allow strong typed execution of a mapped WCF service.
+The `ClientChannelBuilder` creates a proxy at run time to allow strong typed execution of a mapped WCF service.
 
 <!-- import ClientChannelBuilder -->
 
@@ -81,7 +86,7 @@ A helper that build and cleans up both the [ChannelFactory](https://msdn.microso
 
 <!-- import SendHelper -->
 
-Note that, for the purposes of this sample, for every call it creates a new `ChannelFactory` and `ICommunicationObject`. Depending on your specific use case you mat want to apply different scoping, lifetime and cleanup rules for these instances.
+Note: For the purposes of this sample, for every call it creates a new `ChannelFactory` and `ICommunicationObject`. Depending on your specific use case you mat want to apply different scoping, lifetime and cleanup rules for these instances.
 
 
 ### Sending
@@ -89,4 +94,3 @@ Note that, for the purposes of this sample, for every call it creates a new `Cha
 The actual request send and handling of the response.
 
 <!-- import Send -->
-
