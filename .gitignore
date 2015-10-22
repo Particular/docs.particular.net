@@ -49,9 +49,6 @@ ChocolateyNuGetBuild/
 *.psess
 *.vsp
 
-RavenData*
-RavenSampleData*
-
 # ReSharper is a .NET coding add-in
 _ReSharper*
 
