@@ -5,7 +5,7 @@ tags:
 - Encryption
 redirects:
 related:
-- nservicebus/security/index
+- nservicebus/security
 - nservicebus/security/encryption
 ---
 
