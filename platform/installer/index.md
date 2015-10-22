@@ -82,7 +82,7 @@ Installs the ServiceInsight Package.  This MSI can be downloaded directly from h
 Installs the ServicePulse Package. This MSI can be downloaded directly from here: [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases/latest).
     
 
-### ServiceControl
+#### ServiceControl
 
 Installs the ServiceControl Package. This MSI can be downloaded directly from here: [ServiceControl Releases](https://github.com/Particular/ServiceControl/releases/latest).
 
@@ -101,15 +101,6 @@ An installation or upgrade of a product will overwrite any existing MSI log for 
 
 MSI provide detailed error information via error codes.  This MSDN article details [MSI error messages](https://msdn.microsoft.com/en-us/library/aa376931.aspx) which can assist in fault finding installation issues. 
 
-
-### VSIX Installer Logs
-
-VSIX files are installed using the VSIX installer that ships with Visual Studio Professional (or greater).  The `VSIXInstaller.exe` creates log file in `%temp%`,  these log files use the following naming convention: `VSIXInstaller_<Random GUID>.log`. A typical log file name would be: `VSIXInstaller_06fb7e74-5b5a-490e-af27-3396433f3bea.log`.
-
-
-Unfortunately Microsoft does not provide a mechanism for setting the logging location or file name. If a VSIX installation fails the Platform Installer will try to indicate the correct VSIXInstaller log file to examine.  
-
-
 ### Click-Once 
 
 As mentioned above in some circumstances Click-Once can be problematic.  The following links provide some useful tips on troubleshooting issues with Click-Once.
@@ -117,11 +108,10 @@ As mentioned above in some circumstances Click-Once can be problematic.  The fol
 * [Click-Once Deployment](https://msdn.microsoft.com/en-us/library/t71a733d.aspx)
 * [Troubleshooting Click-Once Deployments](https://msdn.microsoft.com/en-us/library/fb94w1t5.aspx)
 
-
 ## Chocolatey   
 
 Early versions of the Platform Installer relied on [Chocolatey](https://chocolatey.org) to deploy and update products.
 
 The current Platform installer no longer has this dependency.  If you installed Chocolatey solely to accommodate the Platform Installer then [you can safely remove it](https://github.com/chocolatey/choco/wiki/Uninstallation).
 
-Note: While the Platform Installer no longer uses Chocolatey, this does not mean that Particular will discontinue publishing updates via the Chocolatey platform. We understand some users would prefer to install the packages this way and we will continue to make the Chocolatey packages available.  
+
