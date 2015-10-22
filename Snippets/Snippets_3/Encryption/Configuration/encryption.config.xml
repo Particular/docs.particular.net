@@ -1,13 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <configuration>
-  <!-- startcode EncryptionFromAppConfig-->
+  <!-- startcode EncryptionFromAppConfig -->
   <configSections>
-    <section name="RijndaelEncryptionServiceConfig" 
-             type="NServiceBus.Config.RijndaelEncryptionServiceConfig, NServiceBus.Core"/>
+    <section
+      name="RijndaelEncryptionServiceConfig"
+      type="NServiceBus.Config.RijndaelEncryptionServiceConfig, NServiceBus.Core"/>
   </configSections>
-  <RijndaelEncryptionServiceConfig Key="gdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6">
+  <RijndaelEncryptionServiceConfig Key="gdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"
+                                   KeyIdentifier="2015-10">
     <ExpiredKeys>
-      <add Key="abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6" />
+      <add Key="abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"
+           KeyIdentifier="2015-09" />
       <add Key="cdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6" />
     </ExpiredKeys>
   </RijndaelEncryptionServiceConfig>

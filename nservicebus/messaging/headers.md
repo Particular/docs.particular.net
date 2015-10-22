@@ -254,3 +254,10 @@ Given an initiating message with the following headers:
 When that message fails to be processed it will be sent to the Error queue with the following headers:
 
 <!-- import HeaderWriterError_Error -->
+
+
+## Encryption headers
+
+Headers used when using [Rijndael property encryption](/nservicebus/security/encryption.md).
+
+ * `NServiceBus.RijndaelKeyIdentifier`: Identifies which encryption key used for encryption the message property fragments.
