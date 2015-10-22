@@ -95,7 +95,7 @@ So for example take the `OrderSagaData` and it needs to be pluralized to `Orders
 RavenDB does not support changing the underlying document id. This means the only way of fully renaming a document is to take the following steps:
 
  * Read all old documents 
- * Copy to the new document in memory 
+ * Copy to the new document  
  * Save the new document
  * Delete the old document
 
@@ -134,6 +134,17 @@ Similar migration code could also be written in PowerShell or [ScriptCS](https:/
 The above code used some RavenDB helper methods to help simplify the code.
 
 <!-- import RavenExtensions -->
+
+
+### Performance
+
+Given that this is a migration that requires endpoints to be taken offline the time taken to perform the migration should be tested in a lower environment.
+
+Given the above saga migration and a 2.7GHz i7 with an SSD 30,000 saga datas can be converted  in 50 seconds.
+
+Note that the deletion of old saga datas could be done on a running system so as to achieve a smaller migration window. 
+
+Raven DB has a variety of API that have different performance characteristics. Based on the type of saga data changes required a different combination of APIs might give better performance or simplify the migration. For example the [Patch API](http://ravendb.net/docs/article-page/3.0/Csharp/client-api/commands/patches/how-to-use-javascript-to-patch-your-documents) can allow you to manipulate documents without needing to load the full document into memory.
 
 
 ## Other Saga Data changes
