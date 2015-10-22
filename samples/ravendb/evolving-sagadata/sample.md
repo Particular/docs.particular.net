@@ -6,6 +6,7 @@ tags:
 related:
 - nservicebus/sagas
 - nservicebus/ravendb
+- nservicebus/ravendb/operations-scripting
 ---
 
 ## Introduction
@@ -20,7 +21,7 @@ This sample requires a RavenDB server listening on `http://localhost:8083`.
 
 ## Initial Saga
 
-The initial Saga Data structure 
+The initial Saga and Data structure 
 
 
 ### Data
