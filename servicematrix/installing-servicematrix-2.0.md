@@ -7,25 +7,38 @@ tags:
 - Troubleshooting
 ---
 
-ServiceMatrix enables developers to efficiently generate a fully functional distributed NServiceBus solution using an intuitive visual interface.  Using the drawing canvas you can create a solution composed of endpoints, services, components and messages.   The resulting Visual Studio solution contains generated code that adheres to best practices and includes developer-friendly extension points for integration with your custom code.   
-
-If you're ready to learn more, this article reviews how to download and install ServiceMatrix for use in Visual Studio.
+This article reviews how to download and install ServiceMatrix for use in Visual Studio.
 
 ## Prerequisites
 
 ServiceMatrix is a Visual Studio extension.  Version 2.1 and beyond require that you have Visual Studio 2012 or 2013 on your system prior to installation. You will need the Professional or above edition of Visual Studio (Express editions not supported).
   
-If you are using Visual Studio 2010, ServiceMatrix 1.0 will be detected and installed. Version 1.0 builds solutions through a tree view in the solution builder interface. New features like the drawing canvas are only available in V2.X.  Version 1.0 will no longer be updated with new features.
-
-If you run both Visual Studio 2013 and 2012, you may install the proper version in each version on the same system.  If you have Visual Studio 2010 installed along with Visual Studion 2012 or 2013, you must choose to install ServiceMatrix for one platform or the other.
+If you run both Visual Studio 2013 and 2012, you may install the proper version in each version on the same system.
 
 ## Installing ServiceMatrix
 
-You can install ServiceMatrix by using the [Platform Installer](/platform/installer) or by installing the Visual Studio extension (VSIX) from the [Particular Software website downloads page](http://particular.net/downloads)
+To install ServiceMatrix the VSIXInstaller.exe is required which is shipped with commercial versions of Visual Studio ( i.e Visual Studio Professional or better).  The Express editions of Visual Studio are not supported.
 
-### Installing ServiceMatrix from the Platform Installer
+### From Visual Studio Gallery
 
-Please refer to the [Platform Installer](/platform/installer) for detailed information.
+From your Visual Studio IDE, go to Tools -> Extensions and Updates and Search for `ServiceMatrix` online. You can directly download and install from the `Tools and Extensions` dialog. 
+
+### Download the VSIX and install
+
+You can download the VSIX from here: [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases/latest).  
+
+The file name for the Visual Studio 2013 version is `Particular.ServiceMatrix.12.0.vsix`.
+The file name for the Visual Studio 2012 version is `Particular.ServiceMatrix.11.0.vsix`.
+
+The VSIX file can either be double-clicked on to install it or run from the command line.  The following example shows the installation using Visual Studio 2013.
+
+```bat
+"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDEVsixinstaller.exe" Particular.ServiceMatrix.12.0.vsix  
+```
+
+WARN: ServiceMatrix requires an Internet connection to download packages from the NuGet public feed. So whilst ServiceMatrix can be installed offline without a NuGet feed it will not be able to create and manage projects properly.
+
+
 
 ### Installing the ServiceMatrix Visual Studio extension (VSIX)
 
