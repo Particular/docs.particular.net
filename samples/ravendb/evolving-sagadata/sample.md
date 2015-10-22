@@ -140,7 +140,7 @@ The above code used some RavenDB helper methods to help simplify the code.
 
 Given that this is a migration that requires endpoints to be taken offline the time taken to perform the migration should be tested in a lower environment.
 
-Given the above saga migration and a 2.7GHz i7 with an SSD 30,000 saga datas can be converted  in 50 seconds.
+Given the above saga migration, and a 2.7GHz i7 with an SSD, 30,000 saga datas can be converted  in 50 seconds.
 
 Note that the deletion of old saga datas could be done on a running system so as to achieve a smaller migration window. 
 

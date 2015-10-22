@@ -21,6 +21,7 @@ This sample shows a simple Client + Server scenario.
 * The Server then publishes a message that the client subscribes to.
 * `Client` handles `OrderCompleted` event.
 
+
 ### Raven Config
 
 Configure the endpoint to use RavenDB persistence.
