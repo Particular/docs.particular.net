@@ -2,8 +2,6 @@
 using NServiceBus.Logging;
 using NServiceBus.Saga;
 
-#region thesagav2
-
 public class OrderSaga : Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
     IHandleMessages<IncrementOrder>
@@ -40,5 +38,3 @@ public class OrderSaga : Saga<OrderSagaData>,
     }
 
 }
-
-#endregion

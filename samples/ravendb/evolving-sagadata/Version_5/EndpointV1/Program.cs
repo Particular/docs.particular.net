@@ -8,8 +8,6 @@ class Program
 
     static void Main()
     {
-        #region Config
-
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.RavenDB.Migration");
         DocumentStore documentStore = new DocumentStore
@@ -18,13 +16,9 @@ class Program
             DefaultDatabase = "RavenSampleData",
         };
         documentStore.Initialize();
-
         busConfiguration.UsePersistence<RavenDBPersistence>()
             .DoNotSetupDatabasePermissions() //Only required to simplify the sample setup
             .SetDefaultDocumentStore(documentStore);
-
-        #endregion
-
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
 

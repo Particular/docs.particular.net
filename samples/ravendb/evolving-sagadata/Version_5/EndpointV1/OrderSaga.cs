@@ -2,7 +2,7 @@
 using NServiceBus.Logging;
 using NServiceBus.Saga;
 
-#region thesagav1
+#region saga
 
 public class OrderSaga : Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,

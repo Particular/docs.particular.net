@@ -57,7 +57,9 @@
   <ItemGroup>
     <Compile Include="OrderSagaData.cs" />
     <Compile Include="OrdersSagaData.cs" />
+    <Compile Include="SagaRenamer.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="RavenExtensions.cs" />
     <Compile Include="SagaUniqueIdentity.cs" />
   </ItemGroup>
   <ItemGroup>
