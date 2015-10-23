@@ -17,7 +17,7 @@ class Program
             DocumentStore documentStore = new DocumentStore
             {
                 Url = "http://localhost:32076",
-                DefaultDatabase = "NServiceBus"
+                DefaultDatabase = "RavenSampleData"
             };
             documentStore.Initialize();
 

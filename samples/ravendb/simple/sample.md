@@ -46,6 +46,13 @@ So that no running instance of RavenDB server is required.
 <!-- import thesaga -->
 
 
+### Handler Using Raven Session
+
+The handler access the same Raven `ISession` via `ISessionProvider`.
+
+<!-- import handler -->
+
+
 ## The Data in RavenDB
 
 The data in RavenDB is stored in three different collections.

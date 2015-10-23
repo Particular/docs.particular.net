@@ -29,6 +29,12 @@ public class OrderSaga : Saga<OrderSagaData>,
         string orderDescription = "The saga for order " + message.OrderId;
         Data.OrderDescription = orderDescription;
         logger.InfoFormat("Received StartOrder message {0}. Starting Saga", Data.OrderId);
+
+        Bus.SendLocal(new ShipOrder
+        {
+            OrderId = message.OrderId
+        });
+
         logger.Info("Order will complete in 5 seconds");
         CompleteOrder timeoutData = new CompleteOrder
         {

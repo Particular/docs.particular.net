@@ -12,7 +12,7 @@ class RavenHost : IDisposable
         {
             DataDirectory = "Data",
             UseEmbeddedHttpServer = true,
-            DefaultDatabase = "NServiceBus",
+            DefaultDatabase = "RavenSampleData",
             Configuration =
             {
                 Port = 32076,
