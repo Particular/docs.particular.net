@@ -30,7 +30,7 @@ Shared session is only applicable to Saga and Outbox storage. It can be configur
 
 <!-- import ravendb-persistence-shared-session-for-sagas -->
 
-The session configured in this was is made available via the `ISessionProvider` interface to the user code e.g. in the handler:
+The session configured is then made available  user code via the `ISessionProvider` interface. e.g. in the handler:
 
 <!-- import ravendb-persistence-shared-session-for-sagas-handler -->
 
