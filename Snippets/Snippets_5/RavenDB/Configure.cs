@@ -52,13 +52,18 @@
 
         public class MyMessageHandler : IHandleMessages<MyMessage>
         {
-            public ISessionProvider SessionProvider { get; set; }
+            ISessionProvider sessionProvider;
+
+            public MyMessageHandler(ISessionProvider sessionProvider)
+            {
+                this.sessionProvider = sessionProvider;
+            }
 
             public void Handle(MyMessage message)
             {
                 MyDocument doc = new MyDocument();
 
-                SessionProvider.Session.Store(doc);
+                sessionProvider.Session.Store(doc);
             }
         }
 
