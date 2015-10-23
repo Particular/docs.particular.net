@@ -87,3 +87,8 @@ Note that the message type maps to multiple subscriber endpoints.
  * The list of subscribers is stored in a array of objects each containing `Queue` and `MachineName` properties. 
 
 ![](subscriptions.png)
+
+
+### The Handler Stored data
+
+![](handlerdoc.png)
