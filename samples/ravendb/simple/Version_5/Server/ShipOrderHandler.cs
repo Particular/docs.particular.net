@@ -1,7 +1,6 @@
 ﻿using System;
 using NServiceBus;
 using NServiceBus.RavenDB.Persistence;
-using Raven.Client;
 
 #region handler    
 
