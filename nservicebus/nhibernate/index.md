@@ -69,6 +69,11 @@ NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NH
  
 <!-- import NHibernateAppConfig -->
 
+## Change database schema
+
+The database schema used can be changed by defining the `default_schema` NHibernate property. See the previous *Customizing the configuration* section.
+
+
 ## Subscription caching
 
 The subscriptions can be cached when using NHibernate. This can improve the performance of publishing events as it is not required to request matching subscriptions from storage.
