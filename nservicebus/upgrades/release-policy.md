@@ -4,6 +4,8 @@ summary: What version numbers mean to Particular
 tags: []
 redirects:
  - nservicebus/release-policy
+related:
+ - nservicebus/licensing
 ---
 
 To reduce scope and risk we have optimized to release small components with a regular cadence. We're also committed to backport all important bugfixes to your specific version, this allows you to stay updated while keeping the risk of upgrading to a minimum.
@@ -30,14 +32,14 @@ By following SemVer 2.0 you will be able to quickly determine the urgency, risk 
 
 While not stipulated by SemVer we've made the decision to backport important fixes to all supported versions of NServiceBus.
 
-By "supported" we mean the latest major version, or any major version released within the last 3 years. Within a supported major version, we support the latest minor version, or any minor version released within the last year.
+See [licensing](/nservicebus/licensing/) for more details on supported versions. 
 
-This means that, by using a supported version, you will get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version.
+By using a supported version you will get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version.
 
 Some examples:
 
- - version 4.0 was released on 2013-07-11 and version 4 will therefor be supported until 2016-07-11 but only if you're on the latest minor or a minor version released within  the last year.
- - version 4.6 was released on 2014-05-01 this means that its latest patch release will be supported till 2015-05-01. This means that we will not fix minor versions after 2015-05-01. You are required to update to at least a newer minor version that is still supported as this version will receive a patch release. 
+ - Version 4.0 was released on 2013-07-11 and version 4 will therefor be supported until 2016-07-11 but only if you're on the latest minor or a minor version released within the last year.
+ - Version 4.6 was released on 2014-05-01 this means that its latest patch release will be supported till 2015-05-01. This means that we will not fix minor versions after 2015-05-01. You are required to update to at least a newer minor version that is still supported as this version will receive a patch release. 
  - A newer patch release will automatically mean that the previous patch release will be obsolete. We will apply a bugfix on the latest patch release but will not officially release a patch for a obsolete patch release. In other words, we will not patch version X.Y.3 to version X.Y.3.1 when version X.Y.4 is the latest patch. We would then release version X.Y.5
 
 We strongly recommend you upgrade frequently enough to stay on a supported version. For a best upgrade experience we recommend to upgrade from major version to major version. For example if you are on NServiceBus version 3.3.15 and want to upgrade to NServiceBus version 5.2.3. First upgrade to the latest NServiceBus version 4.x release (i.ex. version 4.7.6). Follow the suggested API upgrade guides and obsoletion messages and then upgrade to NServiceBus version 5.2.3.
