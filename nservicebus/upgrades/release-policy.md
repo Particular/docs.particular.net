@@ -38,7 +38,7 @@ By using a supported version you will get critical bugfixes without the associat
 
 Some examples:
 
- - Version 4.0 was released on 2013-07-11 and version 4 will therefor be supported until 2016-07-11 but only if you're on the latest minor or a minor version released within the last year.
+ - Version 4.0 was released on 2013-07-11 and version 4 will therefore be supported until 2016-07-11 but only if you're on the latest minor or a minor version released within the last year.
  - Version 4.6 was released on 2014-05-01 this means that its latest patch release will be supported till 2015-05-01. This means that we will not fix minor versions after 2015-05-01. You are required to update to at least a newer minor version that is still supported as this version will receive a patch release. 
  - A newer patch release will automatically mean that the previous patch release will be obsolete. We will apply a bugfix on the latest patch release but will not officially release a patch for a obsolete patch release. In other words, we will not patch version X.Y.3 to version X.Y.3.1 when version X.Y.4 is the latest patch. We would then release version X.Y.5
 
@@ -79,4 +79,4 @@ Since all critical issues will be back-ported, you can choose to upgrade when it
 
 ### Major
 
-Since a new `major` version will contain breaking changes you will most probably need to update your code. Because of the extent of code changes in a major version, it is recommendation that you do a full regression test of your system.
+Since a new `major` version will contain breaking changes you will likely need to modify your code. Because of the extent of code changes in a major version, it is recommendation that you do a full regression test of your system.
