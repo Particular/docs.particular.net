@@ -9,14 +9,15 @@ namespace NativeSender
     {
         static void Main(string[] args)
         {
-            #region ASB connection string and destination queue 
-
             var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString");
             var queueClient = QueueClient.CreateFromConnectionString(connectionString, "Samples.ASB.NativeIntegration");
 
-            #endregion
+            #region SerializedMessage
 
             var nativeMessage = @"{""Content"":""Hello from native sender"",""SendOnUtc"":""2015-10-27T20:47:27.4682716Z""}";
+
+            #endregion
+
             var nativeMessageAsStream = new MemoryStream(Encoding.UTF8.GetBytes(nativeMessage));
 
             var message = new BrokeredMessage(nativeMessageAsStream)

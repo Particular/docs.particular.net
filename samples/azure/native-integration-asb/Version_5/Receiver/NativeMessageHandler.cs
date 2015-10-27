@@ -5,17 +5,16 @@ namespace Receiver
 {
     using Shared;
 
-    #region NativeMessageHandler
-
     public class NativeMessageHandler : IHandleMessages<NativeMessage>
     {
+        #region NativeMessageHandler
+
         public void Handle(NativeMessage message)
         {
             Console.WriteLine($"Message content: {message.Content}");
             Console.WriteLine($"Received native message sent on {message.SendOnUtc} UTC");
         }
+
+        #endregion
     }
-
-    #endregion
-
 }
