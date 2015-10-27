@@ -9,10 +9,11 @@
         IAmStartedByMessages<StartMessage>
     {
 
-        public async Task Handle(StartMessage message)
+        public async Task Handle(StartMessage message, IMessageHandlerContext context)
         {
             Data.SomeID = message.SomeID;
-            await ReplyToOriginatorAsync(new AlmostDoneMessage
+
+            await ReplyToOriginatorAsync(context, new AlmostDoneMessage
             {
                 SomeID = Data.SomeID
             });
@@ -23,6 +24,7 @@
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
         }
+        
     }
 
 }

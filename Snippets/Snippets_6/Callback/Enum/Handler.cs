@@ -7,16 +7,9 @@ namespace Snippets5.Callback.Enum
 
     public class Handler : IHandleMessages<Message>
     {
-        IBus bus;
-
-        public Handler(IBus bus)
+        public async Task Handle(Message message, IMessageHandlerContext context)
         {
-            this.bus = bus;
-        }
-
-        public async Task Handle(Message message)
-        {
-            await bus.ReplyAsync(Status.OK);
+            await context.ReplyAsync(Status.OK);
         }
     }
 

@@ -18,12 +18,12 @@ namespace Snippets6.Sagas.FindByExpression
 
         #endregion
 
-        public async Task Handle(Message1 message)
+        public async Task Handle(Message1 message, IMessageHandlerContext context)
         {
             // code to handle Message1
         }
 
-        public async Task Handle(Message2 message)
+        public async Task Handle(Message2 message, IMessageHandlerContext context)
         {
             // code to handle Message2
         }

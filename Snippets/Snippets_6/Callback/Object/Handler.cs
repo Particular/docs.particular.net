@@ -7,16 +7,9 @@ namespace Snippets5.Callback.Object
 
     public class Handler : IHandleMessages<Message>
     {
-        IBus bus;
-
-        public Handler(IBus bus)
+        public async Task Handle(Message message, IMessageHandlerContext context)
         {
-            this.bus = bus;
-        }
-
-        public async Task Handle(Message message)
-        {
-            await bus.ReplyAsync(new ResponseMessage
+            await context.ReplyAsync(new ResponseMessage
             {
                 Property = "PropertyValue"
             });

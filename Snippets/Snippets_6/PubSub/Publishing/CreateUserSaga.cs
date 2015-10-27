@@ -8,16 +8,9 @@ namespace Snippets6.PubSub.Publishing
     public class CreateUserSaga : Saga<CreateUserSaga.SagaData>,
         IHandleMessages<CreateUserCommand>
     {
-        IBus bus;
-
-        public CreateUserSaga(IBus bus)
+        public async Task Handle(CreateUserCommand message, IMessageHandlerContext context)
         {
-            this.bus = bus;
-        }
-
-        public async Task Handle(CreateUserCommand message)
-        {
-            await bus.PublishAsync<UserCreatedEvent>(e =>
+            await context.PublishAsync<UserCreatedEvent>(e =>
             {
                 e.Name = message.Name;
             });

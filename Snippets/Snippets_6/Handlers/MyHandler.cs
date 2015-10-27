@@ -7,7 +7,7 @@
 
     public class MyAsyncHandler : IHandleMessages<MyMessage>
     {
-        public async Task Handle(MyMessage message)
+        public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             //do something with the message data
             await SomeLibrary.SomeMethodAsync(message.Data);

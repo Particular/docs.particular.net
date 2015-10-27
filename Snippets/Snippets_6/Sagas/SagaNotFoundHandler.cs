@@ -8,16 +8,9 @@
 
     public class SagaNotFoundHandler : IHandleSagaNotFound
     {
-        IBus bus;
-
-        public SagaNotFoundHandler(IBus bus)
+        public async Task Handle(object message, IMessageHandlerContext context)
         {
-            this.bus = bus;
-        }
-
-        public async Task Handle(object message)
-        {
-            await bus.ReplyAsync(new SagaDisappearedMessage());
+            await context.ReplyAsync(new SagaDisappearedMessage());
         }
     }
 

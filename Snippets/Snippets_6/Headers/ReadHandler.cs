@@ -7,16 +7,9 @@
     #region header-incoming-handler
     public class ReadHandler : IHandleMessages<MyMessage>
     {
-        IBus bus;
-
-        public ReadHandler(IBus bus)
+        public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            this.bus = bus;
-        }
-
-        public async Task Handle(MyMessage message)
-        {
-            IDictionary<string, string> headers = bus.CurrentMessageContext.Headers;
+            IReadOnlyDictionary<string, string> headers = context.MessageHeaders;
             string nsbVersion = headers[Headers.NServiceBusVersion];
             string customHeader = headers["MyCustomHeader"];
         }
