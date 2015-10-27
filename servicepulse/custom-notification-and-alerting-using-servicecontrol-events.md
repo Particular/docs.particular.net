@@ -87,3 +87,10 @@ Once a custom check succeeds ServiceControl will publish a `CustomCheckSucceeded
 The message contains the time it was detected.
 
 Similarly to the code above you can subscribe to the event, handle it, and perform custom actions.
+
+
+## Decommissioning alert subscribers
+
+ServiceControl uses [Event Publishing](/nservicebus/messaging/publish-subscribe/) to send alerts to all subscribers. If you are using a [persistence based transport](/nservicebus/messaging/publish-subscribe/#mechanics-persistence-based) then ServiceControl will keep an internal reference to each subscriber. If a subscriber for an alert cannot be contacted then ServiceControl will shut itself down after a few attempts.
+
+To prevent this situation it is important to properly decommission an endpoint that subscribes to ServiceControl events. To do this you should [disable auto-subscription](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed#disabling-auto-subscription) and then [unsubscribe to all events](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed#how-to-manually-subscribe-to-a-message). This should be done from the endpoint being decommissioned.
