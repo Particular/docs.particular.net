@@ -11,7 +11,7 @@ public class MyHandler : IHandleMessages<MyMessage>
         this.myService = myService;
     }
 
-    public Task Handle(MyMessage message)
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         myService.WriteHello();
         return Task.FromResult(0);
