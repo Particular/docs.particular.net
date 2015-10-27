@@ -16,10 +16,10 @@ Provides support for sending messages over [SQL Server](http://www.microsoft.com
 
 ## Queue table structure
 
-Following SQL DDL is used to create a table for a queue:
+Following SQL DDL is used to create a table and its index for a queue:
 
 ```SQL
-CREATE TABLE [dbo].[{0}](
+CREATE TABLE [schema].[queuename](
 	[Id] [uniqueidentifier] NOT NULL,
 	[CorrelationId] [varchar](255) NULL,
 	[ReplyToAddress] [varchar](255) NULL,
@@ -29,9 +29,13 @@ CREATE TABLE [dbo].[{0}](
 	[Body] [varbinary](max) NULL,
 	[RowVersion] [bigint] IDENTITY(1,1) NOT NULL
 ) ON [PRIMARY];
+
+CREATE CLUSTERED INDEX [Index_RowVersion] ON [schema].[queuename](
+	[RowVersion] ASC
+) WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ```
 
-Additionally, a clustered index on a `[RowVersion]` column is created. The column are directly mapped to the properties of `NServiceBus.TransportMessage` class. Receiving messages is conducted via a `DELETE` statement from the top of the table (the oldest row according to `[RowVersion]` column).
+The column are directly mapped to the properties of `NServiceBus.TransportMessage` class. Receiving messages is conducted via a `DELETE` statement from the top of the table (the oldest row according to `[RowVersion]` column).
 
 The tables are created during host install time by [installers](/nservicebus/operations/installers.md). It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
 
