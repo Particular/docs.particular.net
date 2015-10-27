@@ -5,7 +5,7 @@ using NServiceBus.Pipeline.Contexts;
 
 public class OutboxLoopbackReceiveBehavior : IBehavior<IncomingContext>
 {
-    private readonly IBus bus;
+    IBus bus;
 
     public OutboxLoopbackReceiveBehavior(IBus bus)
     {

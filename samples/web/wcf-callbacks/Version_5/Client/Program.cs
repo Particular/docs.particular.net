@@ -11,7 +11,7 @@ static class Program
         AsyncMain().GetAwaiter().GetResult();
     }
 
-    private static async Task AsyncMain()
+    static async Task AsyncMain()
     {
         Console.WriteLine("Press 'E' to send a message that will respond with an enum");
         Console.WriteLine("Press 'I' to send a message that will respond with an enum");

@@ -80,7 +80,7 @@
         {
         }
 
-        private class Request : IMessage
+        class Request : IMessage
         {
         }
     }

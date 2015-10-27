@@ -6,7 +6,7 @@ using NServiceBus.Unicast;
 
 public class OutboxLoopbackSendBehavior : IBehavior<OutgoingContext>
 {
-    private readonly Configure configure;
+    Configure configure;
 
     public OutboxLoopbackSendBehavior(Configure configure)
     {

@@ -25,7 +25,7 @@ namespace Store.ECommerce
             AsyncStart().GetAwaiter().GetResult();
         }
 
-        private static async Task AsyncStart()
+        static async Task AsyncStart()
         {
             var busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName("Store.ECommerce");

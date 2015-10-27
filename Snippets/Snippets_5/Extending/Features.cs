@@ -80,7 +80,7 @@ namespace Snippets5.Extending
         {
         }
 
-        private class OtherFeature : Feature
+        class OtherFeature : Feature
         {
             protected override void Setup(FeatureConfigurationContext context)
             {
