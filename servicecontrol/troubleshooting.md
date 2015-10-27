@@ -46,3 +46,13 @@ netsh http add urlacl url=http://localhost:33333/api/ user=<accountname> Listen=
 ### Particular.ServiceControl fails to start: EsentInstanceUnavailableException
 
 If the Particular.ServiceControl fails to start raising in the logs a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-maleware real-time and scheduled scan.
+
+### Particular.ServiceControl fails to start: EsentDatabaseDirtyShutdownException
+
+If Particular.ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentDatabaseDirtyShutdownException` you need to run Esent Recovery against the ServiceControl database followed by an Esent Repair.
+
+1. Open a command prompt and navigate to the ServiceControl [database directory](configure-ravendb-location.md)
+2. Change to the RavenDB directory (the default is `localhost-33333`)
+3. Run `esentutl /r RVN` and wait for it to finish
+4. Run `esentutl /p Data` and wait for it to finish
+5. Restart ServiceControl
