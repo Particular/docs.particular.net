@@ -56,3 +56,16 @@ If Particular.ServiceControl fails to start and the logs contain a `Microsoft.Is
 3. Run `esentutl /r RVN` and wait for it to finish
 4. Run `esentutl /p Data` and wait for it to finish
 5. Restart ServiceControl
+
+### Particular.ServiceControl crashes when hard disk is busy
+
+Particular.ServiceControl can run out of memory and crash when the hard drive is busy. When this happens you will probably see the following error in the logs
+```
+The version store for this instance (0) has reached its maximum size of 511Mb. It is likely that a long-running transaction is preventing cleanup of the version store and causing it to build up in size. Updates will be rejected until the long-running transaction has been completely committed or rolled back.
+``` 
+You can increase the size of the version store by adding a new appSetting to the ServiceControl configuration file:
+
+`<add key="Raven/Esent/MaxVerPages" value="1024" />`
+
+The value is the size of the version store in MB.
+
