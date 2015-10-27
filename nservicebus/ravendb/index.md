@@ -1,6 +1,6 @@
 ---
 title: RavenDB
-summary: RavenDB
+summary: RavenDB persister documentation
 tags:
 - RavenDB
 - Persistence
