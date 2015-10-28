@@ -5,14 +5,7 @@ using NServiceBus;
 
 public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
 {
-    IBus bus;
-
-    public PlaceOrderHandler(IBus bus)
-    {
-        this.bus = bus;
-    }
-
-    public async Task Handle(PlaceOrder message)
+    public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
         Console.WriteLine(@"Order for Product:{0} placed with id: {1}", message.Product, message.Id);
 
@@ -22,7 +15,7 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
                                   {
                                       OrderId = message.Id
                                   };
-        await bus.PublishAsync(orderPlaced);
+        await context.PublishAsync(orderPlaced);
     }
 }
 
