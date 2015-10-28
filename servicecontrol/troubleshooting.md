@@ -26,7 +26,7 @@ tags:
 
 ### Unable to start Particular.ServiceControl as a standard user
 
-1. If the Particular.ServiceControl fails to start and it is set to run with a standard user account (no elevated or specific privileges) this may be due to missing access rights to storage directory in which the internal database is located (by default, this is the `C:\ProgramData\Particular` directory
+1. If ServiceControl fails to start and it is set to run with a standard user account (no elevated or specific privileges) this may be due to missing access rights to storage directory in which the internal database is located (by default, this is the `C:\ProgramData\Particular` directory
 2. To fix this issue:
    * Grant the user read/write access to the `C:\ProgramData\Particular` location
    * Grant the user access rights to run the service listening on the selected domain and port number by running the following commands (replacing the default URL and USERS parameters):
@@ -38,18 +38,18 @@ netsh http add urlacl url=http://localhost:33333/api/ user=<accountname> Listen=
 
 ### Particular.ServiceControl windows service fails to start
 
-* There are various reasons that can cause the Particular.ServiceControl windows service fail to start. To narrow down the possible cause, review the ServiceControl logs files located in:
+* There are various reasons that can cause the ServiceControl windows service fail to start. To narrow down the possible cause, review the ServiceControl logs files located in:
     * `%LOCALAPPDATA%\Particular\ServiceControl\logs` if the issue relates to the ServiceControl installation process;
     * `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs` if the issue relates to ServiceControl normal operations. Logs location may vary depending on the user that has been configured to run the ServiceControl service, the above one is the one where the LocalSystem user outputs logs information;
 * Most common cause is prerequisites installation and configuration issues;
 
 ### Particular.ServiceControl fails to start: EsentInstanceUnavailableException
 
-If the Particular.ServiceControl fails to start raising in the logs a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-maleware real-time and scheduled scan.
+If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-maleware real-time and scheduled scan.
 
 ### Particular.ServiceControl fails to start: EsentDatabaseDirtyShutdownException
 
-If Particular.ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentDatabaseDirtyShutdownException` you need to run Esent Recovery against the ServiceControl database followed by an Esent Repair.
+If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentDatabaseDirtyShutdownException` you need to run Esent Recovery against the ServiceControl database followed by an Esent Repair.
 
 1. Open an elevated command prompt and navigate to the ServiceControl [database directory](configure-ravendb-location.md)
 2. Change to the RavenDB directory (the default is `localhost-33333`)
@@ -59,7 +59,7 @@ If Particular.ServiceControl fails to start and the logs contain a `Microsoft.Is
 
 ### Particular.ServiceControl crashes when hard disk is busy
 
-Particular.ServiceControl can run out of memory and crash when the hard drive is busy. When this happens you will probably see the following error in the logs
+ServiceControl can run out of memory and crash when the hard drive is busy. When this happens you will probably see the following error in the logs
 ```
 The version store for this instance (0) has reached its maximum size of 511Mb. It is likely that a long-running transaction is preventing cleanup of the version store and causing it to build up in size. Updates will be rejected until the long-running transaction has been completely committed or rolled back.
 ``` 
