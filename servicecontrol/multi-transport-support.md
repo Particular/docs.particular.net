@@ -36,7 +36,7 @@ First, download the NuGet package for the relevant transport including any depen
 * Azure Storage Queues: [NServiceBus.Azure.Transports.WindowsAzureStorageQueues version 5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/5.3.8) and [WindowsAzure.Storage version 3.1.0.1](https://www.nuget.org/api/v2/package/WindowsAzure.Storage/3.1.0.1)
 * Azure ServiceBus: [NServiceBus.Azure.Transports.WindowsAzureServiceBus version 5.3.8](https://www.nuget.org/api/v2/package/NServiceBus.Azure.Transports.WindowsAzureServiceBus/5.3.8) and [WindowsAzure.ServiceBus version 2.2](https://www.nuget.org/api/v2/package/WindowsAzure.ServiceBus/2.2.0)
 
-WARNING: For ServiceControl 1.0 through to 1.6.x andonly transport DLLs targetting NServiceBus version 4 can be used.
+WARNING: For ServiceControl 1.0 through to 1.6.x only transport DLLs targetting NServiceBus version 4 can be used.
 
 NOTE: If you are configuring ServiceControl for use with Azure ServiceBus and want to use a newer version than 2.2 refer to the troubleshooting section 
 
