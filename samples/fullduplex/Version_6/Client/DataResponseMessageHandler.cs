@@ -6,9 +6,10 @@ using NServiceBus;
 class DataResponseMessageHandler : IHandleMessages<DataResponseMessage>
 #endregion
 {
-    public Task Handle(DataResponseMessage message)
+    public Task Handle(DataResponseMessage message, IMessageHandlerContext context)
     {
         Console.WriteLine("Response received with description: {0}", message.String);
         return Task.FromResult(0);
     }
+
 }

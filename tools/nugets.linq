@@ -17,10 +17,6 @@ void Main()
 		new ParallelOptions() { MaxDegreeOfParallelism = 10 },
 		(solutionFile) =>
 			{
-				if (solutionFile.Contains("_6"))
-				{ 
-					return;
-				}
 				Debug.WriteLine(solutionFile);
 				try
 				{ 

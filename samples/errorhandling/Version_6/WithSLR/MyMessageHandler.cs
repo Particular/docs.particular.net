@@ -5,21 +5,14 @@ using NServiceBus;
 
 public class MyMessageHandler : IHandleMessages<MyMessage>
 {
-    IBus bus;
     static ConcurrentDictionary<Guid, string> Last = new ConcurrentDictionary<Guid, string>();
-    
-    public MyMessageHandler(IBus bus)
-    {
-        this.bus = bus;
-    }
 
-    public Task Handle(MyMessage message)
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        IMessageContext context = bus.CurrentMessageContext;
-        Console.WriteLine("ReplyToAddress: {0} MessageId:{1}", context.ReplyToAddress, context.Id);
+        Console.WriteLine("ReplyToAddress: {0} MessageId:{1}", context.ReplyToAddress, context.MessageId);
 
         string numOfRetries;
-        if (context.Headers.TryGetValue(Headers.Retries, out numOfRetries))
+        if (context.MessageHeaders.TryGetValue(Headers.Retries, out numOfRetries))
         {
             string value;
             Last.TryGetValue(message.Id, out value);

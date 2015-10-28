@@ -9,14 +9,8 @@ public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
     #endregion
 
 {
-    IBus bus;
 
-    public RequestDataMessageHandler(IBus bus)
-    {
-        this.bus = bus;
-    }
-
-    public async Task Handle(RequestDataMessage message)
+    public async Task Handle(RequestDataMessage message, IMessageHandlerContext context)
     {
         Console.WriteLine("Received request {0}.", message.DataId);
         Console.WriteLine("String received: {0}.", message.String);
@@ -29,8 +23,9 @@ public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
                                            String = message.String
                                        };
 
-        await bus.ReplyAsync(response);
+        await context.ReplyAsync(response);
 
         #endregion
     }
+
 }
