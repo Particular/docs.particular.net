@@ -45,13 +45,11 @@ class SerializeBehavior : IBehavior<OutgoingContext>
 
     static byte[] Serialize(IMessageSerializer messageSerializer, object messageInstance)
     {
-        byte[] array;
-        using (MemoryStream ms = new MemoryStream())
+        using (MemoryStream stream = new MemoryStream())
         {
-            messageSerializer.Serialize(messageInstance, ms);
-            array = ms.ToArray();
+            messageSerializer.Serialize(messageInstance, stream);
+            return stream.ToArray();
         }
-        return array;
     }
 
     string SerializeEnclosedMessageTypes(LogicalMessage message)

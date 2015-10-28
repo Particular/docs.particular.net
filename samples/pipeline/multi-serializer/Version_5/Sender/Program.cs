@@ -20,7 +20,7 @@ class Program
     static void Run(IBus bus)
     {
         Console.WriteLine("Press 'J' to send a JSON message");
-        Console.WriteLine("Press 'B' to send a Binary message");
+        Console.WriteLine("Press 'X' to send a XML message");
         Console.WriteLine("Press any key to exit");
 
         while (true)
@@ -28,9 +28,9 @@ class Program
             ConsoleKeyInfo key = Console.ReadKey();
             Console.WriteLine();
 
-            if (key.Key == ConsoleKey.B)
+            if (key.Key == ConsoleKey.X)
             {
-                SendBinaryMessage(bus);
+                SendXmlMessage(bus);
                 continue;
             }
             if (key.Key == ConsoleKey.J)
@@ -42,14 +42,14 @@ class Program
         }
     }
 
-    static void SendBinaryMessage(IBus bus)
+    static void SendXmlMessage(IBus bus)
     {
-        MessageWithBinary message = new MessageWithBinary
+        MessageWithXml message = new MessageWithXml
         {
-            SomeProperty = "Some content in a binary message",
+            SomeProperty = "Some content in a xml message",
         };
         bus.Send("Samples.MultiSerializer.Receiver", message);
-        Console.WriteLine("Binary message sent");
+        Console.WriteLine("Xml message sent");
     }
 
     static void SendJsonMessage(IBus bus)

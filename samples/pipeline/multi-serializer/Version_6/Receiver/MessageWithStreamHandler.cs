@@ -4,17 +4,18 @@ using NServiceBus;
 
 public class MessageHandler :
     IHandleMessages<MessageWithJson>,
-    IHandleMessages<MessageWithBinary>
+    IHandleMessages<MessageWithXml>
 {
-    public Task Handle(MessageWithJson message)
+    public Task Handle(MessageWithJson message, IMessageHandlerContext context)
     {
         Console.WriteLine("Received JSON message with property '{0}'", message.SomeProperty);
         return Task.FromResult(0);
     }
 
-    public Task Handle(MessageWithBinary message)
+    public Task Handle(MessageWithXml message, IMessageHandlerContext context)
     {
-        Console.WriteLine("Received Binary message with property '{0}'", message.SomeProperty);
+        Console.WriteLine("Received XML message with property '{0}'", message.SomeProperty);
         return Task.FromResult(0);
     }
+    
 }

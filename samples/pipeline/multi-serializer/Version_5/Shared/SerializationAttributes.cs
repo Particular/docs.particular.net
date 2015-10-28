@@ -7,7 +7,7 @@ public class SerializeWithJsonAttribute : Attribute
 {
 }
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public class SerializeWithBinaryAttribute : Attribute
+public class SerializeWithXmlAttribute : Attribute
 {
 }
 #endregion

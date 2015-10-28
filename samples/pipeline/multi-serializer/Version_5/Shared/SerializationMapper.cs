@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NServiceBus;
 using NServiceBus.MessageInterfaces;
 using NServiceBus.Serialization;
-using NServiceBus.Serializers.Binary;
 using NServiceBus.Serializers.Json;
+using NServiceBus.Serializers.XML;
 
 #region serialization-mapper
 public class SerializationMapper
 {
     JsonMessageSerializer jsonSerializer;
-    BinaryMessageSerializer binarySerializer;
+    XmlMessageSerializer xmlSerializer;
 
-    public SerializationMapper(IMessageMapper mapper)
+    public SerializationMapper(IMessageMapper mapper, Conventions conventions, Configure configure)
     {
         jsonSerializer = new JsonMessageSerializer(mapper);
-        binarySerializer = new BinaryMessageSerializer();
+        xmlSerializer = new XmlMessageSerializer(mapper, conventions);
+        List<Type> messageTypes = configure.TypesToScan.Where(conventions.IsMessageType).ToList();
+        xmlSerializer.Initialize(messageTypes);
     }
-    
+
     public IMessageSerializer GetSerializer(Dictionary<string, string> headers)
     {
         string contentType;
@@ -30,9 +33,9 @@ public class SerializationMapper
         {
             return jsonSerializer;
         }
-        if (contentType == binarySerializer.ContentType)
+        if (contentType == xmlSerializer.ContentType)
         {
-            return binarySerializer;
+            return xmlSerializer;
         }
         string message = string.Format("Could not derive serializer for contentType='{0}'", contentType);
         throw new Exception(message);
@@ -41,15 +44,15 @@ public class SerializationMapper
     public IMessageSerializer GetSerializer(Type messageType)
     {
         bool isJsonMessage = messageType.ContainsAttribute<SerializeWithJsonAttribute>();
-        bool isBinaryMessage = messageType.ContainsAttribute<SerializeWithBinaryAttribute>();
-        if (isBinaryMessage && isJsonMessage)
+        bool isXmlMessage = messageType.ContainsAttribute<SerializeWithXmlAttribute>();
+        if (isXmlMessage && isJsonMessage)
         {
-            string message = string.Format("Choose either [SerializeWithBinary] or [SerializeWithJson] for serialization of '{0}'.", messageType.Name);
+            string message = string.Format("Choose either [SerializeWithXml] or [SerializeWithJson] for serialization of '{0}'.", messageType.Name);
             throw new Exception(message);
         }
-        if (isBinaryMessage)
+        if (isXmlMessage)
         {
-            return binarySerializer;
+            return xmlSerializer;
         }
         //default to json
         return jsonSerializer;

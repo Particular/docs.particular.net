@@ -4,8 +4,8 @@ using NServiceBus;
 #region message-definitions
 
 [Serializable]
-[SerializeWithBinary]
-public class MessageWithBinary : IMessage
+[SerializeWithXml]
+public class MessageWithXml : IMessage
 {
     public string SomeProperty { get; set; }
 }

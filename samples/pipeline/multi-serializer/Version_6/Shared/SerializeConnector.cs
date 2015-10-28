@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.OutgoingPipeline;
 using NServiceBus.Pipeline;
 using NServiceBus.Serialization;
 using NServiceBus.TransportDispatch;
@@ -25,36 +24,37 @@ class SerializeConnector : StageConnector<FromContext, ToContext>
         this.messageMetadataRegistry = messageMetadataRegistry;
     }
 
-    public override async Task Invoke(FromContext context, Func<OutgoingPhysicalMessageContext, Task> next)
+    public override async Task Invoke(FromContext context, Func<ToContext, Task> next)
     {
+        if (context.ShouldSkipSerialization())
+        {
+            await next(new ToContext(new byte[0], context.RoutingStrategies, context)).ConfigureAwait(false);
+            return;
+        }
 
-        object messageInstance = context.Message.Instance;
-        Type messageType = messageInstance.GetType();
+        Type messageType = context.Message.MessageType;
         IMessageSerializer messageSerializer = serializationMapper.GetSerializer(messageType);
-
         context.SetHeader(Headers.ContentType, messageSerializer.ContentType);
-        context.SetHeader(Headers.EnclosedMessageTypes, SerializeMessageTypes(messageType));
+        context.SetHeader(Headers.EnclosedMessageTypes, SerializeEnclosedMessageTypes(messageType));
 
-        byte[] array = Serialize(messageSerializer, messageInstance);
-        await next(new ToContext(array, context));
+        var array = Serialize(messageSerializer, context);
+        await next(new ToContext(array, context.RoutingStrategies, context)).ConfigureAwait(false);
     }
 
-    static byte[] Serialize(IMessageSerializer messageSerializer, object messageInstance)
+    byte[] Serialize(IMessageSerializer messageSerializer, FromContext context)
     {
-        using (MemoryStream ms = new MemoryStream())
+        using (var stream = new MemoryStream())
         {
-            messageSerializer.Serialize(messageInstance, ms);
-            return ms.ToArray();
+            messageSerializer.Serialize(context.Message.Instance, stream);
+            return stream.ToArray();
         }
     }
 
-    string SerializeMessageTypes(Type messageType)
+    string SerializeEnclosedMessageTypes(Type messageType)
     {
         var metadata = messageMetadataRegistry.GetMessageMetadata(messageType);
         var distinctTypes = metadata.MessageHierarchy.Distinct();
-
         return string.Join(";", distinctTypes.Select(t => t.AssemblyQualifiedName));
     }
-
 }
 #endregion
