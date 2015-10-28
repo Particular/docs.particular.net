@@ -25,8 +25,4 @@ ServiceControl supports the ability to forward all messages that receives to a p
 In order to enable the `audit.log` queue one of the following approaches can be used:
 
 * Add a configuration setting to the ServiceControl configuration file: `<add key="ServiceControl/ForwardAuditMessages" value="true" />` (see how to manage ServiceControl settings for detailed instructions)
-* Add the following registry key to the registry of the machine where ServiceControl is running:
-```
-[HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceControl]
-"ForwardAuditMessages"="true"
 ```
