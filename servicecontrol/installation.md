@@ -9,7 +9,7 @@ tags:
 
 The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI.  This installation can be executed standalone or via the Particular Software Platform Installer. From version 1.7 on-wards the installation package include a utility to manage the installation, upgrade and remove of ServiceControl services.  This utility is launched as the final step in the installation process and is also available via the Windows start menu.  
 
-NOTE: As of version 1.7 the installation does not automatically deploy or upgrade an instance of the ServiceControl service but instead launches the ServiceControl Management Utility. See the [Silent Installation](silent-installation.md) if you wish to deploy the ServiceControl service as part of the installation. 
+NOTE: As of version 1.7 the installation does not automatically deploy or upgrade an instance of the ServiceControl service but instead launches the ServiceControl Management Utility. See the [Silent Installation](/servicecontrol/installation-silent.md) if you wish to deploy the ServiceControl service as part of the installation. 
 
 ### Prerequisites
 

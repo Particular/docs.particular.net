@@ -39,7 +39,7 @@ Following are several options for doing so, based on your specific requirements.
 #### Limiting Access to ServiceControl using Windows Authentication
 
 It is possible to setup IIS to act as a reverse proxy and secure ServiceControl using Windows Authentication.
-Please refer to the [instructions](servicepulse/install-servicepulse-in-iis.md) here on see how to go about this and the limitations of the approach.
+Please refer to the [instructions](/servicepulse/install-servicepulse-in-iis.md) here on see how to go about this and the limitations of the approach.
 
 #### Limiting Access to ServiceControl Through VPN Requirements
 
