@@ -22,8 +22,8 @@ This sample shows how to send a message from non-NServicebus code using Azure Se
 
 Sample contains 2 executable projects:
 
-- NativeSender - sends a native `BrokeredMessage` message to a queue
-- Receiver - NServiceBus endpoint that processes messages
+- NativeSender - sends a native `BrokeredMessage` messages to a queue
+- Receiver - NServiceBus endpoint that processes messages sent by NativeSender
 
 ## Sending message with native Azure Service Bus API
 
@@ -45,7 +45,7 @@ To generate a serialized message, `MessageGenerator` project can be used with un
 
 Azure Service Bus API allows to construct `BrokeredMessage` body from a stream or an object that will get serialized by internals of `BrokeredMessage`. 
 
-NOTE: both sender (native or NServiceBus) and receiver have to agree on the convention used for sending the body.
+NOTE: both sender (native or NServiceBus) and receiver have to agree on the convention used for sending the message body.
 
 ## Message properties
 
@@ -60,28 +60,27 @@ Message properties applied on `BrokeredMessage` instance directly before it's se
 
 NOTE: `NServiceBus.EnclosedMessageTypes` property must contain the message expected by NServiceBus endpoint
 
-Message itself is define as an `IMessage` under `Shared` project
-
+Message itself is define as an `IMessage` under `Shared` project.
 
 <!-- import NativeMessage -->
 
 ## NServiceBus receiving endpoint
 
-Receiver is defining how to get Azure Service Bus transport message body by specifying strategy `BrokeredMessageBodyConversion`
+Receiver is defining how to get Azure Service Bus transport message body by specifying strategy using `BrokeredMessageBodyConversion`.
 
 <!-- import BrokeredMessageConvention -->
 
-NOTE: both sender (native or NServiceBus) and receiver have to agree on the convention used for sending the body.
+NOTE: both sender (native or NServiceBus) and receiver have to agree on the convention used for sending the the message body.
 
 ## Handling message from native sender in NServiceBus endpoint
 
-Once message is received by NServiceBus endpoint, it will write the contents of the message to the screen.
+Once message is received by NServiceBus endpoint, its contents will be presented.
 
 <!-- import NativeMessageHandler -->
 
 
 Things to note:
 
- * The use of the `AzureServiceBus.ConnectionString` environment variable mention above.
- * The use of `UseSingleBrokerQueue` prevents the Azure transport individualizing queue names by appending the machine name.  
- * Execute `Receiver` first to create destination queue `NativeSender` will need
+ * The use of the `AzureServiceBus.ConnectionString` environment variable mentioned above.
+ * The use of `UseSingleBrokerQueue` prevents the Azure Service Bus transport individualizing queue names by appending the machine name.  
+ * Execute `Receiver` first to create destination queue `NativeSender` will need to send native messages.
