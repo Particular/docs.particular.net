@@ -18,66 +18,65 @@ This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure/azure-
 
 ## Code walk-through
 
-This sample shows how to send a message from non-NServicebus code using Azure Service Bus API and process it with NServiceBus endpoint using Azure Service Bus transport.
+This sample shows how to send a message from non-NServicebus code using the Azure Service Bus API and process it with an NServiceBus endpoint using the Azure Service Bus transport.
 
-Sample contains 2 executable projects:
+The sample contains two executable projects:
 
 - NativeSender - sends a native `BrokeredMessage` messages to a queue
 - Receiver - NServiceBus endpoint that processes messages sent by NativeSender
 
-## Sending message with native Azure Service Bus API
+## Sending messages with native Azure Service Bus API
 
-To integrate native Azure Service Bus sender with NServiceBus endpoints you need to configure native sender to send messages to the queue used by receiving endpoint. By default, input queue for NServiceBus endpoint is its endpoint name.
+To integrate native Azure Service Bus sender with NServiceBus endpoints, you need to configure the native sender to send messages to the queue used by the receiving endpoint. By default, the input queue for an NServiceBus endpoint is its endpoint name.
 
 <!-- import EndpointAndSingleQueue -->
 
-Native sender is using queue client to send a `BrokeredMessage`.
+The native sender is using queue client to send a `BrokeredMessage`.
 
 ## Message serialization
 
-Azure Service Bus transport is using JSON serializer by default. Therefore message sent by native sender needs to be a valid JSON.
+The Azure Service Bus transport is using the JSON serializer by default. Therefore, the message sent by a native sender needs to be valid JSON.
 
 <!-- import SerializedMessage -->
 
-To generate a serialized message, `MessageGenerator` project can be used with unit test `Generate` under `SerializedMessageGenerator` test fixture.
+To generate a serialized message, the `MessageGenerator` project can be used with the unit test named `Generate` under the `SerializedMessageGenerator` test fixture.
 
 ## BrokeredMessage body format
 
-Azure Service Bus API allows to construct `BrokeredMessage` body from a stream or an object that will get serialized by internals of `BrokeredMessage`. 
+The Azure Service Bus API allows you to construct a `BrokeredMessage` body from a stream or an object that will get serialized by the internals of `BrokeredMessage`. 
 
-NOTE: both sender (native or NServiceBus) and receiver have to agree on the convention used for sending the message body.
+NOTE: Both sender (native or NServiceBus) and receiver must agree on the convention used for sending the message body.
 
 ## Message properties
 
-In order for native message to be processed, NServiceBus endpoint using Azure Service Bus transport requires 2 pieces of information
+For a native message to be processed, NServiceBus endpoints using  the Azure Service Bus transport require two pieces of information:
 
 1. Message type
 2. Message intent
 
-Message properties applied on `BrokeredMessage` instance directly before it's sent out.
+Message headers need to be applied on the `BrokeredMessage` directly via properties.
 
 <!-- import NecessaryHeaders -->
 
-NOTE: `NServiceBus.EnclosedMessageTypes` property must contain the message expected by NServiceBus endpoint
+NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the message type expected by the NServiceBus endpoint.
 
-Message itself is define as an `IMessage` under `Shared` project.
+The message itself is defined as an `IMessage` under the `Shared` project.
 
 <!-- import NativeMessage -->
 
 ## NServiceBus receiving endpoint
 
-Receiver is defining how to get Azure Service Bus transport message body by specifying strategy using `BrokeredMessageBodyConversion`.
+The receiver is defining how to get the Azure Service Bus transport message body by specifying a strategy using `BrokeredMessageBodyConversion`.
 
 <!-- import BrokeredMessageConvention -->
 
-NOTE: both sender (native or NServiceBus) and receiver have to agree on the convention used for sending the the message body.
+NOTE: Both the sender (native or NServiceBus) and receiver have to agree on the convention used for sending the message body.
 
-## Handling message from native sender in NServiceBus endpoint
+## Handling messages from native sender in an NServiceBus endpoint
 
-Once message is received by NServiceBus endpoint, its contents will be presented.
+Once the message is received by the NServiceBus endpoint, its contents will be presented.
 
 <!-- import NativeMessageHandler -->
-
 
 Things to note:
 
