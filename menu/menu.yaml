@@ -168,7 +168,7 @@
         - "nservicebus/lifecycle/ineedinitialization"
         - "nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized"
         - "nservicebus/lifecycle/iwanttorunwhenconfigurationiscomplete"
-        - "nservicebus/lifecycle/iwanttorunwhenthebusstartsandstops"
+        - "nservicebus/lifecycle/iwanttorunwhenbusstartsandstops"
     -
       Title: "Hosting"
       Url: "nservicebus/hosting"

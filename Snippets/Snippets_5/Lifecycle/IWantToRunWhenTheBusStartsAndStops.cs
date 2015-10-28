@@ -2,7 +2,7 @@
 {
     using NServiceBus;
 
-    #region lifecycle-iwanttorunwhenthebusstartsandstops
+    #region lifecycle-IWantToRunWhenBusStartsAndStops
 
     class RunWhenTheBusStartsAndStops : IWantToRunWhenBusStartsAndStops
     {

@@ -11,8 +11,11 @@ Classes that implement `IWantToRunWhenBusStartsAndStops` are invoked just after 
 
 NOTE: The bus keeps an internal list of instances which need to be stopped but the instances are registered with the `Builder` as Instance Per Call by default. This means that any attempt to resolve your own instance via dependency injection will result in a new instance and not the one which has been started and which will be stopped.
 
+
 # Previous versions of NServiceBus
+
 Instances are:
+
 * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/) during bus creation. These are registered as `Instance Per Call`.
 * Created and started as the last step when the bus is started.
 * Started after the Transport and any Satellites have started. You cannot rely on all instances of `IWantToRunWhenBusStartsAndStops` being created or started before messages start to be processed by your endpoint.
@@ -34,7 +37,9 @@ When the Bus is disposed, all instances of `IWantToRunWhenBusStartsAndStops` are
 NOTE: `Stop()` will wait for any outstanding instances of `Start()` to complete. If an instance of `IWantToRunWhenBusStartsAndStops` needs to be long running then it must start it's own background thread. Failure to do so will prevent the bus from being disposed.
 
 # NServiceBus V6
+
 Instances are:
+
 * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured container](/nservicebus/containers/) during bus creation. These are registered as `Instance Per Call`.
 * Created and Started before the Transport and any Satellites have started. You can rely on all instances of `IWantToRunWhenBusStartsAndStops` being created or started before messages start to be processed by your endpoint.
 * Created on the same thread that is starting the bus.

@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    #region lifecycle-iwanttorunwhenthebusstartsandstops
+    #region lifecycle-IWantToRunWhenBusStartsAndStops
 
     class RunWhenTheBusStartsAndStops : IWantToRunWhenBusStartsAndStops
     {
