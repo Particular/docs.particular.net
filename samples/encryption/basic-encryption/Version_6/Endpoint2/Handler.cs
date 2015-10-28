@@ -4,7 +4,7 @@ using NServiceBus;
 
 public class Handler : IHandleMessages<MessageWithSecretData>
 {
-    public Task Handle(MessageWithSecretData message)
+    public Task Handle(MessageWithSecretData message, IMessageHandlerContext context)
     {
         Console.Out.WriteLine("I know your secret - it's '" + message.Secret + "'");
 
@@ -16,4 +16,5 @@ public class Handler : IHandleMessages<MessageWithSecretData>
         }
         return Task.FromResult(0);
     }
+
 }
