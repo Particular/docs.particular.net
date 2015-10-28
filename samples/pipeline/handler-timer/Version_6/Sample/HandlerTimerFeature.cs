@@ -20,7 +20,6 @@ public class HandlerTimerFeature : Feature
         public Registration()
             : base("HandlerTimer", typeof(HandlerTimerBehavior), "Logs a warning if a handler take more than a specified time")
         {
-            InsertBefore(WellKnownStep.InvokeHandlers);
         }
     }
 }

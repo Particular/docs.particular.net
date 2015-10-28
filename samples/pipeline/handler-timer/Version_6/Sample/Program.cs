@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
@@ -6,19 +7,24 @@ class Program
 
     static void Main()
     {
+        Start().GetAwaiter().GetResult();
+    }
+
+    private static async Task Start()
+    {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.PipelineHandlerTimer");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         busConfiguration.SendFailedMessagesTo("error");
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
         {
-            Run(bus);
+            await Run(bus);
         }
     }
 
-    static void Run(IBus bus)
+    static async Task Run(IBus bus)
     {
         Console.WriteLine("Press 'Enter' to send a Message");
         Console.WriteLine("Press any key to exit");
@@ -28,17 +34,17 @@ class Program
             ConsoleKeyInfo key = Console.ReadKey();
             if (key.Key == ConsoleKey.Enter)
             {
-                SendMessage(bus);
+                await SendMessage(bus);
                 continue;
             }
             return;
         }
     }
 
-    static void SendMessage(IBus bus)
+    static async Task SendMessage(IBus bus)
     {
         Message message = new Message();
-        bus.SendLocal(message);
+        await bus.SendLocalAsync(message);
 
         Console.WriteLine();
         Console.WriteLine("Message sent");

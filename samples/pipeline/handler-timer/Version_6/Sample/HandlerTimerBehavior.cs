@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using NServiceBus.Logging;
+using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
 #region HandlerTimerBehavior
-class HandlerTimerBehavior : HandlingStageBehavior
+class HandlerTimerBehavior : Behavior<InvokeHandlerContext>
 {
     static ILog log = LogManager.GetLogger(typeof(HandlerTimerBehavior));
 
-    public override void Invoke(Context context, Action next)
+    public override async Task Invoke(InvokeHandlerContext context, Func<Task> next)
     {
         var stopwatch = Stopwatch.StartNew();
         try
         {
-            next();
+            await next();
         }
         finally
         {
@@ -24,7 +26,6 @@ class HandlerTimerBehavior : HandlingStageBehavior
                 log.WarnFormat("{1} took {0}ms to process", elapsedMilliseconds, handlerName);
             }
         }
-        next();
     }
 }
 #endregion
