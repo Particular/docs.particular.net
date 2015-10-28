@@ -47,14 +47,14 @@ The Azure Service Bus API allows you to construct a `BrokeredMessage` body from 
 
 NOTE: Both sender (native or NServiceBus) and receiver must agree on the convention used for sending the message body.
 
-## Message properties
+## Required headers
 
-For a native message to be processed, NServiceBus endpoints using  the Azure Service Bus transport require two pieces of information:
+For a native message to be processed, NServiceBus endpoints using  the Azure Service Bus transport require two headers:
 
 1. Message type
 2. Message intent
 
-Message headers need to be applied on the `BrokeredMessage` directly via properties.
+These headers need to be stored as `BrokeredMessage` properties.
 
 <!-- import NecessaryHeaders -->
 
