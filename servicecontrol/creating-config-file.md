@@ -60,19 +60,29 @@ Changing the input queue names via the configuration file without considering th
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
     <appSettings>
+		<add key="ServiceControl/ForwardAuditMessages" value="False" />
         <add key="ServiceBus/ErrorQueue" value="CustomErrorQueue" />
     </appSettings>
 </configuration>
 ```
 
-To avoid this confusion it is recommended the names of the output queues be explicitly configured using the `ServiceBus/ErrorLogQueue` and `ServiceBus/AuditLogQueue`settings. The recommended way to change the input and forwarding queues names is to use the command line options as detailed below. In this example all four queue names are being explicitly set and if any of the queues do not exist they will be created.
+To avoid this confusion it is recommended the names of the output queues be explicitly configured using the `ServiceBus/ErrorLogQueue` and `ServiceBus/AuditLogQueue`settings. The recommended way to change the input and forwarding queues names is to use the command line options as detailed below. In this example all four queue names are being explicitly set and if any of the queues do not exist they will be created.  
 
- 
-```bat
-net stop particular.servicecontrol
-servicecontrol.exe --install --d="ServiceBus/ErrorQueue==CustomErrorQueue" --d="ServiceBus/AuditQueue==CustomAuditQueue" --d="ServiceBus/ErrorLogQueue==CustomErrorQueue.Log" --d="ServiceBus/AuditLogQueue==CustomAuditQueue.Log"
-net stop particular.servicecontrol
 ```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <appSettings>
+  		<add key="ServiceControl/ForwardAuditMessages" value="False" />
+        <add key="ServiceBus/AuditQueue" value="audit" />
+        <add key="ServiceBus/ErrorQueue" value="error" />
+        <add key="ServiceBus/ErrorLogQueue" value="errorlog" />
+        <add key="ServiceBus/AuditLogQueue" value="auditlog" />    
+	</appSettings>
+</configuration>
+```
+
+From version 1.7 onwards the four queues will be explicitly added to the config when a new ServiceControl instance is added or modified through the Management UI
+
 
 ### Configuration Options
 
