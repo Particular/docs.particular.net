@@ -78,7 +78,7 @@ Once the message is received by the NServiceBus endpoint, its contents will be p
 
 <!-- import NativeMessageHandler -->
 
-Things to note:
+## Things to note
 
  * The use of the `AzureServiceBus.ConnectionString` environment variable mentioned above.
  * The use of `UseSingleBrokerQueue` prevents the Azure Service Bus transport individualizing queue names by appending the machine name.  
