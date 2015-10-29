@@ -297,12 +297,12 @@
 </div>
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceMatrix/releases"><img src="/home/release-notes.png" />All Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.png" />All Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.png" />Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceControl/releases"><img src="/home/release-notes.png" />Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn last">
