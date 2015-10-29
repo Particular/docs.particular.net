@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting
-summary: ServiceControl installation and common issues troubleshooting
+summary: Troubleshooting ServiceControl installation and common issues
 tags:
 - ServiceControl
 - Troubleshooting
@@ -17,12 +17,14 @@ tags:
 1. Uncheck "Management API" in the list of components to be installed with NServiceBus;
 1. Click "Modify" to apply changed and re-run installation;
 
+
 ### Unable to connect to ServiceControl from either ServiceInsight or ServicePulse
 
 1. In Computer Management > Services, check that the Windows Service "Particular ServiceControl" is running
 1. In any browser or HTTP client, enter a GET request for the ServiceControl HTTP API (default URI: `http://localhost:33333/api`). 
 1. You should get a valid response with JSON data containing ServiceControl default settings.
 1. Verify that firewall settings do not block access to the ServiceControl port (default: 33333) and that the default URI is accessible and responsive from a browser / HTTP client from the machine on which ServicePulse or ServiceInsight is trying to connect to ServiceControl
+
 
 ### Unable to start Particular.ServiceControl as a standard user
 
@@ -36,6 +38,7 @@ netsh http delete urlacl url=http://localhost:33333/api/
 netsh http add urlacl url=http://localhost:33333/api/ user=<accountname> Listen=yes
 ```
 
+
 ### Particular.ServiceControl windows service fails to start
 
 * There are various reasons that can cause the ServiceControl windows service fail to start. To narrow down the possible cause, review the ServiceControl logs files located in:
@@ -43,9 +46,11 @@ netsh http add urlacl url=http://localhost:33333/api/ user=<accountname> Listen=
     * `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs` if the issue relates to ServiceControl normal operations. Logs location may vary depending on the user that has been configured to run the ServiceControl service, the above one is the one where the LocalSystem user outputs logs information;
 * Most common cause is prerequisites installation and configuration issues;
 
+
 ### Particular.ServiceControl fails to start: EsentInstanceUnavailableException
 
 If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-maleware real-time and scheduled scan.
+
 
 ### Particular.ServiceControl fails to start: EsentDatabaseDirtyShutdownException
 
@@ -56,6 +61,7 @@ If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.In
 3. Run `esentutl /r RVN` and wait for it to finish
 4. Run `esentutl /p Data` and wait for it to finish
 5. Restart ServiceControl
+
 
 ### Particular.ServiceControl crashes when hard disk is busy
 
@@ -68,4 +74,3 @@ You can increase the size of the version store by adding a new appSetting to the
 `<add key="Raven/Esent/MaxVerPages" value="1024" />`
 
 The value is the size of the version store in MB.
-
