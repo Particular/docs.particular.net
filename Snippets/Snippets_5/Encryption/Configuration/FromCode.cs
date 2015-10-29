@@ -7,6 +7,7 @@
     {
         public FromCode()
         {
+#pragma warning disable 618
             #region EncryptionFromCode
 
             BusConfiguration busConfiguration = new BusConfiguration();
@@ -19,6 +20,7 @@
             busConfiguration.RijndaelEncryptionService(encryptionKey, expiredKeys);
 
             #endregion
+#pragma warning restore 618
         }
     }
 }
