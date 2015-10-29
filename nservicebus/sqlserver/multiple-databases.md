@@ -65,3 +65,15 @@ and the following connection strings:
 <!-- import sqlserver-multidb-connectionstrings -->
 
 the messages sent to `billing` will go to database `Billing` on server `DbServerB` while the messages to `sales` will go to the database and server set by default i.e. `MyDefaultDB` on server `DbServerA`.
+
+### ServiceControl
+
+In order to use a single instance of SericeControl for the whole system when there is more than one database used for queues, the `audit` and `error` queues need to be present in a single dedicated database (the ServiceControl database). In addition to configuring the mapping between the user endpoints and connection strings (as described above), there needs to be the mapping that redirects `audit` and `error` pseudo-endpoints to the ServiceControl databse
+
+<!-- import sqlserver-multidb-redirect-audit-error -->
+
+For ServiceControl to know where to put back messages when retrying after processing failure, it needs to have the same endpoint to connection string mapping as user endpoints e.g.
+
+<!-- import sqlserver-multidb-sc -->
+
+Users need to make sure the connection string mapping is kept in sync between all the endpoints and the ServiceControl.
