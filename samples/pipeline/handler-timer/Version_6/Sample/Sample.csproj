@@ -51,8 +51,9 @@
     <Reference Include="System.ServiceProcess" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handler2.cs" />
     <Compile Include="HandlerTimerFeature.cs" />
-    <Compile Include="Handler.cs" />
+    <Compile Include="Handler1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="HandlerTimerBehavior.cs" />

@@ -8,7 +8,7 @@ using NServiceBus.Pipeline.Contexts;
 #region HandlerTimerBehavior
 class HandlerTimerBehavior : Behavior<InvokeHandlerContext>
 {
-    static ILog log = LogManager.GetLogger(typeof(HandlerTimerBehavior));
+    static ILog log = LogManager.GetLogger<HandlerTimerBehavior>();
 
     public override async Task Invoke(InvokeHandlerContext context, Func<Task> next)
     {
