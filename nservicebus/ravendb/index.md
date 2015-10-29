@@ -5,7 +5,7 @@ tags:
 - RavenDB
 - Persistence
 related:
-- samples/unit-of-work/using-childcontainers
+- samples/ravendb 
 redirects:
  - nservicebus/using-ravendb-in-nservicebus-connecting
  - nservicebus/ravendb/connecting
