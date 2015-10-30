@@ -1,4 +1,4 @@
-﻿namespace Snippets5.PubSub.Publishing
+﻿namespace Snippets6.PubSub.Publishing
 {
     using System.Threading.Tasks;
     using NServiceBus;

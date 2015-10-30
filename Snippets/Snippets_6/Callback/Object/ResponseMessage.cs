@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Callback.Object
+﻿namespace Snippets6.Callback.Object
 {
     using NServiceBus;
 

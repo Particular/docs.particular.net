@@ -1,4 +1,4 @@
-namespace Snippets5.Callback.Enum
+namespace Snippets6.Callback.Enum
 {
     using System.Threading.Tasks;
     using NServiceBus;
