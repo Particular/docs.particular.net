@@ -149,11 +149,6 @@ Leverages the [JSONB](http://www.postgresql.org/docs/devel/static/datatype-json.
 <a href="http://www.nuget.org/packages/NServiceBus.RavenDB/"><img src="http://img.shields.io/nuget/v/NServiceBus.RavenDB.svg?" title="NuGet Status"></a>
 
 
-### <img src="community-project.png" title="A Community run project"> [DocumentDB](https://github.com/synhershko/NServiceBus.DocumentDB)
-
-A proof-of-concept project that shows the possibility of support for [Azure DocumentDB](https://azure.microsoft.com/en-us/services/documentdb/)
-
-
 ### <img src="particular-project.png" title="A Particular run project"> [Azure Storage](/nservicebus/azure/azure-storage-persistence.md)
 
 <a href="https://www.nuget.org/packages/NServiceBus.Azure/"><img src="http://img.shields.io/nuget/v/NServiceBus.Azure.svg?" title="NuGet Status"></a>
