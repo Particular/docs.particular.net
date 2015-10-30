@@ -5,11 +5,11 @@ using NServiceBus.Logging;
 #region Handler
 public class Handler : IHandleMessages<CreateProductCommand>
 {
-    static ILog log = LogManager.GetLogger<Handler>();
+    static ILog logger = LogManager.GetLogger<Handler>();
 
     public Task Handle(CreateProductCommand message, IMessageHandlerContext context)
     {
-        log.Info("Received a CreateProductCommand message: " + message);
+        logger.InfoFormat("Received a CreateProductCommand message: {0}", message);
         return Task.FromResult(0);
     }
 }

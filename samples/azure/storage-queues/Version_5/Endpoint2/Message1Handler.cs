@@ -4,7 +4,7 @@ using NServiceBus.Logging;
 public class Message1Handler : IHandleMessages<Message1>
 {
     IBus bus;
-    static ILog logger = LogManager.GetLogger(typeof(Message1Handler));
+    static ILog logger = LogManager.GetLogger<Message1Handler>();
 
     public Message1Handler(IBus bus)
     {

@@ -10,7 +10,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     IHandleTimeouts<CompleteOrder>
 {
     IBus bus;
-    static ILog logger = LogManager.GetLogger(typeof(OrderSaga));
+    static ILog logger = LogManager.GetLogger<OrderSaga>();
 
     public OrderSaga(IBus bus)
     {

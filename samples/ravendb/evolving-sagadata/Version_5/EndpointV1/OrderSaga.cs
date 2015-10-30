@@ -8,7 +8,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
     IHandleMessages<IncrementOrder>
 {
-    static ILog logger = LogManager.GetLogger(typeof(OrderSaga));
+    static ILog logger = LogManager.GetLogger<OrderSaga>();
     IBus bus;
 
     public OrderSaga(IBus bus)

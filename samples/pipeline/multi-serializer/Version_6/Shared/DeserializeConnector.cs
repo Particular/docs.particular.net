@@ -20,6 +20,7 @@ class DeserializeConnector : StageConnector<FromContext, ToContext>
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;
     LogicalMessageFactory logicalMessageFactory;
+    static ILog logger = LogManager.GetLogger<DeserializeConnector>();
 
     public DeserializeConnector(
         SerializationMapper serializationMapper,
@@ -85,7 +86,7 @@ class DeserializeConnector : StageConnector<FromContext, ToContext>
 
             if (messageMetadata.Count == 0 && physicalMessage.GetMesssageIntent() != MessageIntentEnum.Publish)
             {
-                log.WarnFormat("Could not determine message type from message header '{0}'. MessageId: {1}", messageTypeIdentifier, physicalMessage.MessageId);
+                logger.WarnFormat("Could not determine message type from message header '{0}'. MessageId: {1}", messageTypeIdentifier, physicalMessage.MessageId);
             }
         }
 
@@ -100,20 +101,6 @@ class DeserializeConnector : StageConnector<FromContext, ToContext>
         }
     }
 
-    //List<LogicalMessage> Deserialize(TransportMessage physicalMessage, List<MessageMetadata> messageMetadata)
-    //{
-    //    IMessageSerializer messageSerializer = serializationMapper.GetSerializer(physicalMessage.Headers);
-    //    List<Type> messageTypes = messageMetadata.Select(x => x.MessageType).ToList();
-    //    using (MemoryStream stream = new MemoryStream(physicalMessage.Body))
-    //    {
-    //        return messageSerializer.Deserialize(stream, messageTypes)
-    //            .Select(x => logicalMessageFactory.Create(x.GetType(), x))
-    //            .ToList();
-    //    }
-    //}
-
-
-    static ILog log = LogManager.GetLogger(typeof(DeserializeConnector));
 }
 
 #endregion

@@ -15,6 +15,7 @@ class DeserializeBehavior : IBehavior<IncomingContext>
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;
     LogicalMessageFactory logicalMessageFactory;
+    static ILog logger = LogManager.GetLogger<DeserializeBehavior>();
 
     public DeserializeBehavior(SerializationMapper serializationMapper, MessageMetadataRegistry messageMetadataRegistry, LogicalMessageFactory logicalMessageFactory)
     {
@@ -29,7 +30,7 @@ class DeserializeBehavior : IBehavior<IncomingContext>
 
         if (transportMessage.IsControlMessage())
         {
-            log.Info("Received a control message. Skipping deserialization as control message data is contained in the header.");
+            logger.Info("Received a control message. Skipping deserialization as control message data is contained in the header.");
             next();
             return;
         }
@@ -61,7 +62,7 @@ class DeserializeBehavior : IBehavior<IncomingContext>
             .ToList();
         if (messageMetadata.Count == 0 && physicalMessage.MessageIntent != MessageIntentEnum.Publish)
         {
-            log.WarnFormat("Could not determine message type from message header '{0}'. MessageId: {1}", typeIdentifier, physicalMessage.Id);
+            logger.WarnFormat("Could not determine message type from message header '{0}'. MessageId: {1}", typeIdentifier, physicalMessage.Id);
         }
         return Deserialize(physicalMessage, messageMetadata);
     }
@@ -86,7 +87,5 @@ class DeserializeBehavior : IBehavior<IncomingContext>
         }
     }
 
-
-    static ILog log = LogManager.GetLogger(typeof(DeserializeBehavior));
 }
-    #endregion
+#endregion

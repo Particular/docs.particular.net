@@ -7,7 +7,7 @@ using NServiceBus.Logging;
 public class MyHandler : IHandleMessages<MyMessage>
 {
     IBus bus;
-    static ILog logger = LogManager.GetLogger(typeof(MyHandler));
+    static ILog logger = LogManager.GetLogger<MyHandler>();
 
     public MyHandler(IBus bus)
     {

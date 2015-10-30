@@ -6,7 +6,7 @@ using NServiceBus.Logging;
 #region handler
 public class MyHandler : IHandleMessages<MyMessage>
 {
-    static ILog logger = LogManager.GetLogger(typeof(MyHandler));
+    static ILog logger = LogManager.GetLogger<MyHandler>();
 
     static Random random = new Random();
     

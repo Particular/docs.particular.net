@@ -8,7 +8,7 @@ using NServiceBus.Pipeline.Contexts;
 #region HandlerTimerBehavior
 class HandlerTimerBehavior : Behavior<InvokeHandlerContext>
 {
-    static ILog log = LogManager.GetLogger<HandlerTimerBehavior>();
+    static ILog logger = LogManager.GetLogger<HandlerTimerBehavior>();
 
     public override async Task Invoke(InvokeHandlerContext context, Func<Task> next)
     {
@@ -23,7 +23,7 @@ class HandlerTimerBehavior : Behavior<InvokeHandlerContext>
             if (elapsedMilliseconds > 500)
             {
                 string handlerName = context.MessageHandler.Instance.GetType().Name;
-                log.WarnFormat("{1} took {0}ms to process", elapsedMilliseconds, handlerName);
+                logger.WarnFormat("{1} took {0}ms to process", elapsedMilliseconds, handlerName);
             }
         }
     }

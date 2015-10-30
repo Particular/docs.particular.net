@@ -7,11 +7,11 @@ using NServiceBus.MessageMutator;
 #region TransportMessageCompressionMutator
 public class TransportMessageCompressionMutator : IMutateIncomingTransportMessages, IMutateOutgoingTransportMessages
 {
-    static ILog log = LogManager.GetLogger("TransportMessageCompressionMutator");
+    static ILog logger = LogManager.GetLogger("TransportMessageCompressionMutator");
 
     public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {
-        log.Info("transportMessage.Body size before compression: " + context.OutgoingBody.Length);
+        logger.InfoFormat("transportMessage.Body size before compression: {0}", context.OutgoingBody.Length);
 
         MemoryStream mStream = new MemoryStream(context.OutgoingBody);
         MemoryStream outStream = new MemoryStream();
@@ -24,7 +24,7 @@ public class TransportMessageCompressionMutator : IMutateIncomingTransportMessag
         // otherwise, not all the compressed message will be copied.
         context.OutgoingBody = outStream.ToArray();
         context.OutgoingHeaders["IWasCompressed"]= "true";
-        log.Info("transportMessage.Body size after compression: " + context.OutgoingBody.Length);
+        logger.InfoFormat("transportMessage.Body size after compression: {0}", context.OutgoingBody.Length);
         return Task.FromResult(0);
     }
 

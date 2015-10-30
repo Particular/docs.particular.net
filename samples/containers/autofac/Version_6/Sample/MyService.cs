@@ -2,9 +2,10 @@
 
 public class MyService
 {
-    static ILog log = LogManager.GetLogger<MyService>();
+    static ILog logger = LogManager.GetLogger<MyService>();
+    
     public void WriteHello()
     {
-        log.Info("Hello from MyService.");
+        logger.Info("Hello from MyService.");
     }
 }

@@ -6,7 +6,7 @@ public class OrdersSaga : Saga<OrdersSagaData>,
     IAmStartedByMessages<StartOrder>,
     IHandleMessages<IncrementOrder>
 {
-    static ILog logger = LogManager.GetLogger(typeof(OrdersSaga));
+    static ILog logger = LogManager.GetLogger<OrdersSaga>();
     IBus bus;
 
     public OrdersSaga(IBus bus)
