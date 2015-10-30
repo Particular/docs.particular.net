@@ -75,7 +75,7 @@ The receiver is defining how to get the Azure Service Bus transport message body
 
 <!-- import BrokeredMessageConvention -->
 
-NOTE: Both the sender (native or NServiceBus) and receiver have to agree on the convention used for sending the message body.
+NOTE: Both the sender (native or NServiceBus) and the receiver have to agree on the convention used for sending the message body.
 
 
 ## Handling messages from native sender in an NServiceBus endpoint
