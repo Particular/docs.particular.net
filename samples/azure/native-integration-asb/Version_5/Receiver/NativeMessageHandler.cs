@@ -1,20 +1,18 @@
-﻿using System;
-using NServiceBus;
+﻿using NServiceBus;
+using NServiceBus.Logging;
 
-namespace Receiver
+#region NativeMessageHandler
+
+public class NativeMessageHandler : IHandleMessages<NativeMessage>
 {
-    using Shared;
+    ILog logger = LogManager.GetLogger<NativeMessageHandler>();
 
-    public class NativeMessageHandler : IHandleMessages<NativeMessage>
+    public void Handle(NativeMessage message)
     {
-        #region NativeMessageHandler
-
-        public void Handle(NativeMessage message)
-        {
-            Console.WriteLine($"Message content: {message.Content}");
-            Console.WriteLine($"Received native message sent on {message.SendOnUtc} UTC");
-        }
-
-        #endregion
+        logger.InfoFormat("Message content: {0}", message.Content);
+        logger.InfoFormat("Received native message sent on {0} UTC", message.SendOnUtc);
     }
+
 }
+
+#endregion
