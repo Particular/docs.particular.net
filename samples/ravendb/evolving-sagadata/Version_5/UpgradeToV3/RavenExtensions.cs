@@ -40,7 +40,6 @@ public static class RavenExtensions
     {
         using (IDocumentSession session = store.OpenSession())
         using (IEnumerator<StreamResult<T>> enumerator = session.Advanced.Stream<T>(prefix))
-        using (BulkInsertOperation bulkInsert = store.BulkInsert())
         {
             while (enumerator.MoveNext())
             {
