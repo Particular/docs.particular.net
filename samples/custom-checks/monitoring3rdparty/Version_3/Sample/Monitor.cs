@@ -28,7 +28,7 @@ abstract class Monitor : PeriodicCheck
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    logger.InfoFormat("Succeeded in contacting {0}", uri);
+                    logger.Info(string.Format("Succeeded in contacting {0}", uri));
                     return CheckResult.Pass;
                 }
                 string error = string.Format("Failed to contact '{0}'. HttpStatusCode: {1}", uri, response.StatusCode);

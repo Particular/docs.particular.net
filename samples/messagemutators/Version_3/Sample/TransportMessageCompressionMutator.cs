@@ -11,7 +11,7 @@ public class TransportMessageCompressionMutator : IMutateTransportMessages
 
     public void MutateOutgoing(object[] messages, TransportMessage transportMessage)
     {
-        logger.InfoFormat("transportMessage.Body size before compression: {0}", transportMessage.Body.Length);
+        logger.Info(string.Format("transportMessage.Body size before compression: {0}", transportMessage.Body.Length));
 
         MemoryStream mStream = new MemoryStream(transportMessage.Body);
         MemoryStream outStream = new MemoryStream();
@@ -24,7 +24,7 @@ public class TransportMessageCompressionMutator : IMutateTransportMessages
         // otherwise, not all the compressed message will be copied.
         transportMessage.Body = outStream.ToArray();
         transportMessage.Headers["IWasCompressed"] = "true";
-        logger.InfoFormat("transportMessage.Body size after compression: {0}", transportMessage.Body.Length);
+        logger.Info(string.Format("transportMessage.Body size after compression: {0}", transportMessage.Body.Length));
     }
 
     public void MutateIncoming(TransportMessage transportMessage)

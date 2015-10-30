@@ -10,7 +10,7 @@
 
         public void Handle(object message)
         {
-            logger.InfoFormat("Received a message of type {0}.", message.GetType().Name);
+            logger.Info(string.Format("Received a message of type {0}.", message.GetType().Name));
             SomeLibrary.SomeMethod(message);
         }
     }

@@ -30,7 +30,7 @@ public class ValidationMessageMutator : IMessageMutator
 
         if (isValid)
         {
-            logger.InfoFormat("Validation succeeded for message: {0}", message);
+            logger.Info(string.Format("Validation succeeded for message: {0}", message));
             return;
         }
 

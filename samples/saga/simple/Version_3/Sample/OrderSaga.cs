@@ -20,7 +20,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     public void Handle(StartOrder message)
     {
         Data.OrderId = message.OrderId;
-        logger.InfoFormat("Saga with OrderId {0} received StartOrder with OrderId {1}", Data.OrderId, message.OrderId);
+        logger.Info(string.Format("Saga with OrderId {0} received StartOrder with OrderId {1}", Data.OrderId, message.OrderId));
         Bus.SendLocal(new CompleteOrder
                            {
                                OrderId = Data.OrderId
@@ -30,13 +30,13 @@ public class OrderSaga : Saga<OrderSagaData>,
 
     public void Handle(CompleteOrder message)
     {
-        logger.InfoFormat("Saga with OrderId {0} received CompleteOrder with OrderId {1}", Data.OrderId, message.OrderId);
+        logger.Info(string.Format("Saga with OrderId {0} received CompleteOrder with OrderId {1}", Data.OrderId, message.OrderId));
         MarkAsComplete();
     }
 
     public void Timeout(CancelOrder state)
     {
-        logger.InfoFormat("Complete not received soon enough OrderId {0}", Data.OrderId);
+        logger.Info(string.Format("Complete not received soon enough OrderId {0}", Data.OrderId));
         MarkAsComplete();
     }
 }
