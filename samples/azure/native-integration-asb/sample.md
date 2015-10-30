@@ -48,7 +48,7 @@ To generate a serialized message, the `MessageGenerator` project can be used wit
 
 The Azure Service Bus API allows you to construct a `BrokeredMessage` body from a stream or an object that will get serialized by the internals of `BrokeredMessage`. 
 
-NOTE: Both sender (native or NServiceBus) and receiver must agree on the convention used for sending the message body.
+NOTE: Both the sender (native or NServiceBus) and the receiver must agree on the convention used for sending the message body.
 
 
 ## Required headers
