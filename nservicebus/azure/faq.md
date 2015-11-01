@@ -1,5 +1,5 @@
 ---
-title: FAQ Azure
+title: Azure FAQ
 summary: Frequently Asked Questions related to the Azure transports and Azure hosting options.
 tags:
 - Cloud
