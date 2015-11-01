@@ -25,6 +25,7 @@ The Platform Installer installs 4 component parts:
 
 Each of these will be detailed below:
 
+
 ### NServiceBus Prerequistes
 
 The NServiceBus Prerequisites option in the Platform Install configures the system to run NServiceBus endpoints using Microsoft Message Queuing(MSMQ) by doing the following:
@@ -42,17 +43,21 @@ Install-NServiceBusMSMQ
 Install-NServiceBusPerformanceCounters
 ```
 
+
 ### ServiceControl 
 
 This MSI can be downloaded directly from here: [ServiceControl Releases](https://github.com/Particular/ServiceControl/releases/latest).
+
 
 ### ServiceInsight
 
 This MSI can be downloaded directly from here: [ServiceInsight Releases](https://github.com/Particular/ServiceInsight/releases/latest).
 
+
 ### ServicePulse
 
 This MSI can be downloaded directly from here: [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases/latest).
+
 
 ### ServiceMatrix 
 

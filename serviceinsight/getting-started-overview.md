@@ -4,19 +4,21 @@ summary: A short overview on ServiceInsight.
 tags: 
 - ServiceInsight
 ---
-# Introduction
 
+# Introduction
 
 The [NServiceBus](/nservicebus/architecture/) framework provides the benefits of a distributed, messaged based, fault tolerant, and distributed architecture by allowing you to visualize and verify the functionality of such a distributed system.  
 
 From design through to production, ServiceInsight provides concise and user-friendly insight and information about the system. 
 
+
 ## The NServiceBus Framework
 
 The NServiceBus Framework is part of the Particular Service Platform which includes these tools:
-* [ServiceMatrix](../servicematrix) accelerates the design of your system.  
+
 * The audit and error aggregation power of [ServiceControl](../servicecontrol) is leveraged by [ServicePulse](../servicepulse) for operational monitoring and alerting. 
 * ServiceInsight provides a detailed view of messages in their system context, from endpoints to sagas, showing relationships and data.  
+
 
 # Visualizing the System
 
@@ -24,6 +26,7 @@ The ServiceInsight user interface provides multiple views of your distributed sy
 
 The flow diagram provides a detailed visual overview of the messages, collated by conversation.  Using this view you can see the flow in your system and which endpoints raised specific events and sent or handled messages.  The Saga view illustrates the start of a saga, the timeouts, and interactions. 
 As you select endpoints, the other views within ServiceInsight respond and filter the information to show only messages pertaining to that endpoint. 
+
 
 ## The Message Window
 
@@ -33,6 +36,7 @@ The Messages window is a detailed grid view indicating the message status, type,
 
 You can filter and locate at design time. ServiceMatrix debugging automatically launches ServiceInsight and filters the messages to include only your current debug session.  The ServicePulse monitoring tool also allows you to open ServiceInsight to a specific message so you can drill down for more detail.
 
+
 ### Refresh and Auto-refresh
 
 The Refresh and Auto-Refresh toolbar buttons enable you to update the displayed information with the latest updates from the ServiceControl database. 
@@ -40,6 +44,7 @@ The Refresh and Auto-Refresh toolbar buttons enable you to update the displayed 
 Auto-refresh keeps the information in ServiceInsight automatically refreshed, delivering near real-time information to the views. 
 
 You can specify the auto-refresh rate in the "View" > "Options" > "Auto-Refresh Timer" setting (default is auto-refresh every 15 seconds; lowest value is 1 second), or you can specify the auto-refresh rate using the ServiceInsight invocation parameter (see [ServiceInsight Invocation](application-invocation.md)) 
+
 
 ### Timing and Performance
 
@@ -54,6 +59,7 @@ Using the messages window column headers you can sort the messages in ascending 
 
 When you select specific messages, the related properties window and flow diagram change to illustrate details of the selected message. 
 
+
 ## Endpoint Explorer
 
 The Endpoint Explorer indicates the connection to the ServiceControl instance providing data to ServiceInsight.  The list enumerates the endpoints and the machine where they are deployed.  
@@ -61,6 +67,7 @@ The Endpoint Explorer indicates the connection to the ServiceControl instance pr
 ![Endpoint Explorer](images/overview-endpointexplore-machinename.png)
 
 You can select endpoints to filter the message list. Select the root ServiceControl connection and the tree view to make the list expand to include all messages.
+
 
 ## Flow Diagram
 
@@ -70,11 +77,13 @@ The flow diagram provides extensive message and system information. When you sel
 
 Each message is represented by a box indicating the message type and illustrating details including the endpoints and time information.  Published events and sent commands have different icons and illustrations. Dropdowns provide more message details and links to search based on this message, copy message details, and retry messages.
 
+
 ## Message Properties
 
 Each message in NServiceBus contains extensive detail.  As you select messages in the flow diagram or in the list, an additional Message Properties window lists the properties for the message.
 
 ![The Message Properties Window](images/overview-messageproperties.png)
+
 
 ## The Saga View
 
@@ -84,29 +93,35 @@ Sagas play a critical role in NServiceBus systems.  As coordinators of processes
 
 The saga illustrates how the saga was initiated and other messages that were sent or handled, with detailed message data, time information, and details on saga data changes. 
 
+
 ## Body and Log Views
 
 Along the bottom edge of the flow diagram is a tab for the Body and Log views. 
+
 
 ### Body View
 
 ServiceInsight obviates the need for MSMQ tools provided by Windows. ServiceInsight provides raw message data in the Body tab of the flow diagram, with XML and HEX views of the body.  
 ![Body Tab ](images/overview-bodyview.png)
 
+
 ### Log View
 
 ServiceInsight leverages the ServiceControl API to retrieve information.  The Log tab of the Flow Diagram window displays details of the interactions as ServiceInsight polls ServiceControl for more data. 
 ![Log View Tab](images/overview-logview.png)
 
+
 ## Errors and Retries
 
 ServiceInsight provides added visibility, and NServiceBus provides durability and retries. Where intervention is required, you do not need to manually collate log files or access remote servers to research an error.  The views within ServiceInsight illustrate messages with errors and bring you the error information.
+
 
 ### Status in the Message List
 
 The status of an errant message is illustrated in the message window.
 
 ![An Error in the Message Window](images/overview-messagewindowerror.png)
+
 
 ### The Flow Diagram
 
@@ -115,7 +130,3 @@ The flow diagram highlights errors in red and provides details with access to th
 ![Error in the flow diagram](images/overview-flowdiagramwitherror.png)
 
 After the NServiceBus completes auto-retry, the errant message goes to an error queue. Instead of using the return-to-sender console application, to return the message to the queue from where it originated, click `Retry Message`. 
-
-## Next Steps
-
-ServiceInsight allows you to visualize your NServiceBus system and get a detailed view of how it works.  Explore the other framework tools: [ServiceMatrix](/servicematrix), [ServiceControl](/servicecontrol) and  [ServicePulse](/servicepulse). 

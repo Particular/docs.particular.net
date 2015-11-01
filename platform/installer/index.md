@@ -70,7 +70,9 @@ Note: The NServiceBus prerequisites do not have a version number and do not togg
 
 
 #### ServiceMatrix 
+
 The PlatformInstaller will no longer install ServiceMatrix. ServiceMatrix is available as an extension on the Visual Studio Gallery. Read this article on [how to install ServiceMatrix](/servicematrix/installing-servicematrix-2.0.md). 
+
  
 #### ServiceInsight
 

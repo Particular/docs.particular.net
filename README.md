@@ -153,16 +153,15 @@ Should be the url relative to the root with no beginning or trailing slash paddi
 
 ```
 ---
-title: ServiceMatrix and ServiceInsight Interaction
-summary: 'Using ServiceMatrix and ServiceInsight Together'
+title: ServiceInsight Interaction
+summary: 'Using ServiceInsight Together'
 tags:
-- ServiceMatrix
 - ServiceInsight
 - Invocation
 - Debugging
 redirects:
-- servicematrix/sm-si
-- servicematrix/debugging-servicematrix
+- serviceinsight/si
+- serviceinsight/debugging
 related:
 - samples/azure/shared-host
 ---

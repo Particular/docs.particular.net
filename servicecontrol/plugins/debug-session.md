@@ -3,8 +3,6 @@ title: DebugSession Plugin
 summary: 'Improves your debug sessions when using ServiceInsight or ServiceMatrix.'
 tags:
 - ServiceControl
-related:
-- servicematrix/servicematrix-serviceinsight
 ---
 
 DANGER: **For Development only**. Since this is meant only for use with Visual Studio it adds no value to deploy this plugin to production.
