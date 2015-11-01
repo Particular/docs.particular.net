@@ -22,7 +22,7 @@ Azure Queue storage is a service, hosted on the Azure platform, for storing larg
 
 ## How to enable the transport
 
-First you need to reference the assembly that contains the azure storage queue transport definition. The recommended way of doing this is by adding a nuget package reference to the  [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/) package to your project.
+First you need to reference the assembly that contains the Azure storage queue transport definition. The recommended way of doing this is by adding a nuget package reference to the  [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/) package to your project.
 
 Once you've done that you can use the configuration API to setup NServiceBus, all you need to do is specify `.UseTransport<T>()` to override the default transport.
 
@@ -46,7 +46,7 @@ For more information see [Configuring Azure Connection Strings](https://msdn.mic
 
 ## Detailed configuration
 
-If you need more fine grained control on how the azure storage queue transport behaves, you can override the default settings by adding a configuration section called `AzureQueueConfig` to your web.config or app.config. For example:
+If you need more fine grained control on how the Azure storage queue transport behaves, you can override the default settings by adding a configuration section called `AzureQueueConfig` to your web.config or app.config. For example:
 
 <!-- import AzureStorageQueueConfig -->
 
@@ -56,7 +56,7 @@ Using this configuration setting you can change the following values.
 - `PeekInterval`: Represents the amount of time that the transport waits before polling the queue in milliseconds, defaults to 50 ms.
 - `MaximumWaitTimeWhenIdle`: The transport will back of linearly when no messages can be found on the queue to save some money on the transaction operations, but it will never wait longer than the value specified here, also in milliseconds and defaults to 1000 (1 second)
 - `PurgeOnStartup`: Instructs the transport to remove any existing messages from the queue on startup, defaults to false.
-- `MessageInvisibleTime`: The peek lock system, supported by azure storage queues relies on a period of time that a message becomes locked/invisible after being read. If the processing unit fails to delete the message by the specified time it will reappear on the queue so that another process can retry. This value is defined in milliseconds and defaults to 30000 (30 seconds).
+- `MessageInvisibleTime`: The peek lock system, supported by Azure storage queues relies on a period of time that a message becomes locked/invisible after being read. If the processing unit fails to delete the message by the specified time it will reappear on the queue so that another process can retry. This value is defined in milliseconds and defaults to 30000 (30 seconds).
 - `BatchSize`: The number of messages that the transport tries to pull at once from the storage queue. Defaults to 10. Depending on the load you expect, I would vary this value between 1 and 1000 (which is the limit)
 
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.

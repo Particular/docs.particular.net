@@ -54,4 +54,4 @@ Here, the host passes you the instance of the class that implements `IConfigureT
 
 WARNING: While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
 
-See the [profiles for nservicebus host](/nservicebus/hosting/nservicebus-host/profiles.md) for more information.
+See the [profiles for NServiceBus host](/nservicebus/hosting/nservicebus-host/profiles.md) for more information.

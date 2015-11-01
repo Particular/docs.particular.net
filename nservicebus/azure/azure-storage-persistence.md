@@ -18,7 +18,7 @@ Various features of NServiceBus require persistence. Among them are subscription
 
 ## How To enable persistence with Azure storage services
 
-First you need to reference the assembly that contains the azure storage persisters. The recommended way of doing this is by adding a NuGet package reference to the  `NServiceBus.Azure` package to your project.
+First you need to reference the assembly that contains the Azure storage persisters. The recommended way of doing this is by adding a NuGet package reference to the  `NServiceBus.Azure` package to your project.
 
 If self hosting, you can configure the persistence technology using the configuration API and the extension method found in the `NServiceBus.Azure` assembly
 
@@ -27,7 +27,7 @@ If self hosting, you can configure the persistence technology using the configur
 
 ## Hosting
 
-When hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, or any other NServiceBus provided host, the azure storage persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config.
+When hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, or any other NServiceBus provided host, the Azure storage persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config.
 
 <!-- import PersistenceWithAzureHost -->
 

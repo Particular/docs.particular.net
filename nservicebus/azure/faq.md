@@ -7,7 +7,7 @@ tags:
 - Transports
 ---
 
-This document combines frequently asked questions related to the azure transports and azure hosting options.
+This document combines frequently asked questions related to the Azure transports and Azure hosting options.
 
 
 ## Azure Storage Queues
