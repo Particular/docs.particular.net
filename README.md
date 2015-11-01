@@ -69,16 +69,29 @@ redirects:
 
 ### Title
 
+```
+title: Auditing With NServiceBus
+```
+
 Required. Used for the web page title tag `<head><title>`, displayed in the page content, and displayed in search results.
 
 
 ### Summary
+
+```
+summary: Provides built-in message auditing for every endpoint.
+```
 
 Required. Used for the meta description tag (`<meta name="description"`) and displaying on the search results.
 
 
 ### Tags
 
+```
+tags:
+- Auditing
+- Forwarding Messages
+```
 Optional. Used to flag the article as being part of a group of articles.
 
 Tags are rendered in the articles content with the full list of tags being rendered at [http://docs.particular.net/tags](http://docs.particular.net/tags). Untagged articles will be rendered here [http://docs.particular.net/tags/untagged](http://docs.particular.net/tags/untagged)
@@ -93,12 +106,34 @@ Tags are interpreted in two ways.
    * Dashes (`-`) are replaced with dashes spaces 
 
 
+### Hidden
+
+```
+hidden: true
+```
+
+Causes two things:
+
+ * Stop search engines from finding the page using a `<meta name="robots" content="noindex" />`.
+ * Prevents the page from being found in the docs search.
+ * 
+
 ### Related
+
+```
+related:
+- samples/custom-checks/monitoring3rdparty
+```
 
 A list of related pages for this page. These links will be rendered at the bottom of the page. Can include both samples and articles and they will be grouped as such when rendered in html. 
 
 
 ### Redirects
+
+```
+redirects:
+- nservicebus/overview
+```
 
 When renaming an existing article to a new name, please add the `redirects:` section in the article header and specify the previous name for the article. If the old Url is linked anywhere, when the user clicks on it, the new renamed article will automatically be served.
  
@@ -125,16 +160,12 @@ tags:
 - ServiceInsight
 - Invocation
 - Debugging
-
 redirects:
 - servicematrix/sm-si
 - servicematrix/debugging-servicematrix
-
 related:
 - samples/azure/shared-host
-
 ---
-
 ```
 
 
