@@ -12,9 +12,7 @@
 
             #region RequestImmediateDispatch
             var options = new SendOptions();
-
             options.RequireImmediateDispatch();
-
             await bus.SendAsync(new MyMessage(), options);
             #endregion
         }
