@@ -48,12 +48,9 @@
         protected void Application_Start()
         {
             var busConfiguration = new BusConfiguration();
-
             busConfiguration.AzureConfigurationSource();
             busConfiguration.UseTransport<AzureStorageQueueTransport>();
             busConfiguration.UsePersistence<AzureStoragePersistence>();
-
-
             IStartableBus startableBus = Bus.Create(busConfiguration);
             IBus bus = startableBus.Start();
         }
