@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace Snippets5
+namespace Snippets6
 {
     using NServiceBus;
 
     public class MinimumConfiguration
     {
-        public void Usage()
+        public async void Usage()
         {
             #region MinimumConfiguration
 
@@ -18,7 +18,7 @@ namespace Snippets5
 
             using (IStartableBus bus = Bus.Create(busConfiguration))
             {
-                bus.Start();
+                await bus.StartAsync();
                 Console.ReadKey();
             } // Leaving this scope will stop the bus and dispose it.
 

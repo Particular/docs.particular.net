@@ -125,6 +125,9 @@
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
+    <Compile Include="CriticalError.cs" />
+    <Compile Include="CustomConfigSource.cs" />
+    <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="Errors\ErrorQueue\Usage.cs" />
     <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
     <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />
@@ -146,6 +149,9 @@
     <Compile Include="Headers\StaticHeaders.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="ImmediateDispatch\Usage.cs" />
+    <Compile Include="Installers.cs" />
+    <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
+    <Compile Include="License.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
     <Compile Include="Lifecycle\IWantToRunWhenTheBusStartsAndStops.cs" />
@@ -159,6 +165,8 @@
     <Compile Include="Logging\OverrideViaProfile.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="Logging\UsingLogging.cs" />
+    <Compile Include="MinimumConfiguration.cs" />
+    <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
     <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
@@ -168,6 +176,7 @@
     <Compile Include="PubSub\WithConvention\MessageToPublish.cs" />
     <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
     <Compile Include="PubSub\WithConvention\Usage.cs" />
+    <Compile Include="RegisterCustomSerializer.cs" />
     <Compile Include="Routing\BasicOperations.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
@@ -196,11 +205,14 @@
     <Compile Include="Sagas\Timeouts\TiredOfWaitingForMessage2.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="MsmqMessageLabel.cs" />
+    <Compile Include="SendOnly.cs" />
+    <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="Routing\AutomaticSubscriptions\AutoSubscribeSettings.cs" />
+    <Compile Include="XmlSerializationIntegration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Audit\Audit.config.xml">
