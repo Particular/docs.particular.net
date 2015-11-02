@@ -39,7 +39,7 @@ Click the title of a group to open the second tab which shows a list of all of t
 * **Headers:** Displays a complete set of message headers when you click the "Show headers" link.
 * **Body:** Displays the serialized message body when you click the "Show body" link.
 * **Copy Message Id:** Copies the failed message unique identifier to the clipboard, for future reference, when you click "Copy Id to clipboard". 
-* **Open in ServiceInsight:** Launches ServiceInsight, focusing on the failed message for in-depth analysis of the failure causes. (For more details, see [ServiceInsight Overview](/serviceinsight/getting-started-overview.md).) Only works if ServiceInsight is installed on the local machine.   
+* **Open in ServiceInsight:** Launches ServiceInsight, focusing on the failed message for in-depth analysis of the failure causes. (For more details, see [ServiceInsight](/serviceinsight/).) Only works if ServiceInsight is installed on the local machine.   
 
 
 ### Failed Message Retry
@@ -60,7 +60,7 @@ NOTE: Tracking the number of repeated retry attempts may be significant to your 
 
 **Related articles:**
 
-* [Failed Messages display and Retry in ServiceInsight](/serviceinsight/getting-started-overview.md#errors-and-retries)
+* [Failed Messages display and Retry in ServiceInsight](/serviceinsight/#errors-and-retries)
 
 
 ### Archiving Failed Messages

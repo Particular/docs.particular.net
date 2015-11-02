@@ -247,7 +247,6 @@
     -
       Title: "Getting Started"
       Articles:
-        - "serviceinsight/getting-started-overview"
         - "serviceinsight/application-invocation"
         - "serviceinsight/how-logging-works"
 -

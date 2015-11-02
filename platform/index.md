@@ -39,7 +39,7 @@ By default ServiceControl stores information for 30 days, but you can easily [cu
 
 ServiceInsight is a desktop application with features tailored to developers needs. It allows for advanced debugging, tracking the flow of an individual message in the system, observing sagas and more.
 
-It is much easier to quickly spot anomalies and incorrect behavior in your system when you are presented with information in visual form, such as message flow diagrams or sequence diagrams. At the same time, you can access more detailed information such as message headers and all message metadata. For more information, including sample screens, refer to the [documentation](/serviceinsight/getting-started-overview.md).
+It is much easier to quickly spot anomalies and incorrect behavior in your system when you are presented with information in visual form, such as message flow diagrams or sequence diagrams. At the same time, you can access more detailed information such as message headers and all message metadata. 
 
 
 ## [ServicePulse](/servicepulse) - production monitoring
