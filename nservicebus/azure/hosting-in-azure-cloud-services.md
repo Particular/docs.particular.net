@@ -29,36 +29,11 @@ NOTE: If self hosting, like we'll do later in this article for Web Roles, you ca
 
 To integrate the NServiceBus generic host into the worker role entry point, all you need to do is create a new instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override.
 
-    public class WorkerRole : RoleEntryPoint
-    {
-        private NServiceBusRoleEntrypoint nsb = new NServiceBusRoleEntrypoint();
-
-        public override bool OnStart()
-        {
-            nsb.Start();
-
-            return base.OnStart();
-        }
-
-        public override void OnStop()
-        {
-            nsb.Stop();
-
-            base.OnStop();
-        }
-    }
+<!-- import HostingInWorkerRole -->
 
 Next to starting the role entry point, you also need to define how you want your endpoint to behave. As we're inside worker roles most of the time, the role has been conveniently named `AsA_Worker`. Furthermore you also need to specify the transport that you want to use, using the `UseTransport<T>` , as well the persistence that you want to use, using the `UsePersistence<T>` configuration methods.
 
-    public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker {
-    
-     	public void Customize(BusConfiguration builder)
-        {
-            builder.UseTransport<AzureServiceBusTransport>();
-            builder.UsePersistence<AzureStorage>();
-        }
-    
-    }
+<!-- import ConfigureEndpoint -->
 
 This will integrate and configure the default infrastructure for you, being:
 
@@ -73,7 +48,7 @@ This will integrate and configure the default infrastructure for you, being:
 
 Because Azure cloud services has it's own configuration model, but NServiceBus is typically used with it's configuration in app.config, we've decided to go for a convention based override model. Where most of the configuration is in app.config, but you can add any setting 'by convention' to the service configuration file to override the original value in app.config. This makes it easy to develop locally (without the service runtime), but still make use of this feature in production.
 
-NServiceBus makes extensive use of the .net configuration section model, which allows it to apply default settings if you do not specify anything in app.config. So if you don't specify anything, than the following will apply:
+NServiceBus makes extensive use of the .NET configuration section model, which allows it to apply default settings if you do not specify anything in app.config. So if you don't specify anything, than the following will apply:
 
 	public class AzureSubscriptionStorageConfig : ConfigurationSection
     {
@@ -148,19 +123,11 @@ Logging settings can than be controlled by configuring the Azure diagnostics ser
 
 Next to worker roles, cloud services also has a role type called 'Web Roles'. These are worker roles which have IIS configured properly, this means that they run a worker role process (the entry point is in webrole.cs) and an IIS process on the same codebase.
 
-Usually you will want to run NServiceBus as a client in the IIS process though. This needs to be approached in the same way as any other website, by means of self hosting. When  selfhosting you can configure everything using the configuration API and the extension methods found in the `NServiceBus.Azure` package, no need to reference the hosting package in that case.
+Usually you will want to run NServiceBus as a client in the IIS process though. This needs to be approached in the same way as any other website, by means of self hosting. When  self-hosting you can configure everything using the configuration API and the extension methods found in the `NServiceBus.Azure` package, no need to reference the hosting package in that case.
 
 The configuration API is used with the following extension methods to achieve the same behavior as the generic `AsA_worker`:
 
-	Configure.With()
-            ...
-            .AzureConfigurationSource()
-            .TraceLogger()
-
-            .UseTransport<AzureStorageQueueTransport>()
-            .UsePersistence<AzureStorage>()
-		
-	    ...
+<!-- import HostingInWebRole -->
 
 a short explanation of each:
 
