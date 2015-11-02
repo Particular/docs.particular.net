@@ -21,14 +21,15 @@ This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure/azure-
 
 ## Code walk-through
 
-This sample shows a simple two endpoints scenario. 
+This sample has two endpoints. 
 
 * `Publisher` publishes `BaseEvent` and `DerivedEvent` events.
 * `Subscriber` subscribes and handles `BaseEvent` and `DerivedEvent` events.
 
-`DerivedEvent` event is derived from `BaseEvent` event. Main difference between the two events is an additional piece of information provided with the `DerivedEvent` in form of the `Data` property.
+`DerivedEvent` event is derived from `BaseEvent` event. The difference between the two events is an additional piece of information provided with the `DerivedEvent` in form of the `Data` property.
 
 <!-- import BaseEvent -->
+
 <!-- import DerivedEvent -->
 
 
@@ -39,12 +40,12 @@ The `Publisher` will publish an event of `BaseEvent` or `DerivedEvent` type base
 
 ## Subscriber
 
-By default, all events handled in `Subscriber` will be auto subscribed. Default topology subscription behaviour will create 2 subscriptions, one for each event.
+By default, all events handled in `Subscriber` will be auto subscribed. Default topology subscription behavior will create 2 subscriptions, one for each event.
 
 ![](images/subscriptions.png)
 
 
-### Auto subscription behaviour
+### Auto subscription behavior
 
 Normally, this would be fine. Though not with ASB transport and polymorphic events. Each subscription is filtering messages based on `NServiceBus.EnclosedMessageTypes` header. When an event of `BaseType` is published, it's going only into `Samples.ASB.Polymorphic.Subscriber.BaseEvent` subscription as per image below.
 
@@ -61,6 +62,7 @@ Since `DerivedEvent` implements `BaseEvent`, it's `NServiceBus.EnclosedMessageTy
 Both filters will pick the `DerivedEvent` message, causing duplicate delivery to the `Subscriber`. NServiceBus `Subscriber` endpoint will invoke handlers for each type that message implements. End result will be multiple invocations for the same message.
 
 <!-- import PublisherOutput -->
+
 <!-- import SubscriberOutput -->
 
 
@@ -85,4 +87,5 @@ For this sample, configuring `Subscriber` as described above, will create the to
 Results of the sample now adhere to the expected polymorphic message handling 
 
 <!-- import PublisherOutput-from-sample -->
+
 <!-- import SubscriberOutput-from-sample -->
