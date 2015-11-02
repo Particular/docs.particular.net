@@ -2,17 +2,11 @@
 {
     using System;
     using NServiceBus;
-    using NServiceBus.Features;
 
     public class Usage
     {
         public Usage()
         {
-            #region SecondLevelRetriesDisable
-
-            Configure.Features.Disable<SecondLevelRetries>();
-
-            #endregion
 
             #region SecondLevelRetriesCustomPolicy
 

@@ -9,12 +9,6 @@
     {
         public Usage()
         {
-            #region SecondLevelRetriesDisable
-
-            Configure.Instance.DisableSecondLevelRetries();
-
-            #endregion
-
             #region SecondLevelRetriesCustomPolicy
 
             SecondLevelRetries.RetryPolicy = MyCustomRetryPolicy;

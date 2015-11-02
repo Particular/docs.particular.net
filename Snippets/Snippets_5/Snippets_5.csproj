@@ -541,7 +541,6 @@
     <Compile Include="Logging\BuiltInConfig.cs" />
     <Compile Include="Installers.cs" />
     <Compile Include="Conventions\Usage.cs" />
-    <Compile Include="MinimumConfiguration.cs" />
     <Compile Include="Outbox\Usage.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="RavenDB\Configure.cs" />

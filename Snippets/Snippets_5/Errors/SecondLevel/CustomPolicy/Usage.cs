@@ -2,7 +2,6 @@
 {
     using System;
     using NServiceBus;
-    using NServiceBus.Features;
     using NServiceBus.SecondLevelRetries.Config;
 
     public class Usage
@@ -12,11 +11,6 @@
 
             BusConfiguration busConfiguration = new BusConfiguration();
 
-            #region SecondLevelRetriesDisable
-
-            busConfiguration.DisableFeature<SecondLevelRetries>();
-
-            #endregion
 
             #region SecondLevelRetriesCustomPolicy
 
