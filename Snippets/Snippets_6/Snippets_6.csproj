@@ -144,6 +144,7 @@
     <Compile Include="Headers\WriteHandler.cs" />
     <Compile Include="Headers\SomeOtherMessage.cs" />
     <Compile Include="Headers\StaticHeaders.cs" />
+    <Compile Include="HostIdentifier\HostIdFixer.cs" />
     <Compile Include="ImmediateDispatch\Usage.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
