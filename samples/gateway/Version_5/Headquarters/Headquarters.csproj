@@ -52,7 +52,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GatewayConfigConfigurationProvider.cs" />
+    <None Include="GatewayConfigConfigurationProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="AcknowledgedHandler.cs" />
     <Compile Include="UpdatePriceHandler.cs" />
