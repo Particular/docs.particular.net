@@ -27,7 +27,6 @@ A configuration file that logs everything (with log level = 'ALL') to a file nam
 <log4net>
   <appender name="LogFileAppender" type="log4net.Appender.FileAppender">
     <file value="Logs\Particular.ServiceInsight.txt"/>
-
     <appendToFile value="true"/>
     <layout type="log4net.Layout.PatternLayout">
       <conversionPattern value="%date - [%-5level] - %logger - %message%newline"/>
@@ -37,7 +36,6 @@ A configuration file that logs everything (with log level = 'ALL') to a file nam
     <level value="ALL"/>
     <appender-ref ref="LogFileAppender" />
   </root>
-  
 </log4net>
 ```
 
