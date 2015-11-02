@@ -30,7 +30,7 @@ Related:
  * [Self-Hosting Sample](/samples/hosting/self-hosting/) for more details.
 
 
-IMPORTANT: **Cleanup/Shutdown**: For all self hosting scenarios it is important to note that the hosting code is in control of properly shutting down the endpoint. This is done by calling `Dispose` on the Bus instance in the shutdown API of your chosen technology.
+WARNING: **Cleanup/Shutdown**: For all self hosting scenarios it is important to note that the hosting code is in control of properly shutting down the endpoint. This is done by calling `Dispose` on the Bus instance in the shutdown API of your chosen technology.
 
 
 ### Windows Service Hosting
