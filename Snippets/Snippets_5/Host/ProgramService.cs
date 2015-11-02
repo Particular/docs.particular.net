@@ -30,7 +30,7 @@ class ProgramService : ServiceBase
     protected override void OnStart(string[] args)
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        //rest of you bus configuration. eg endpoint name, logging, transport, persistence etc
+        //other bus configuration. endpoint name, logging, transport, persistence etc
         busConfiguration.EnableInstallers();
         bus = Bus.Create(busConfiguration).Start();
     }

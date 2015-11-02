@@ -133,6 +133,8 @@
     <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
     <Compile Include="Errors\SecondLevel\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\SecondLevel\ConfigurationSource\Usage.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicy\Usage.cs" />
+    <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />
     <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />

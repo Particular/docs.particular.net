@@ -1,17 +1,15 @@
-﻿namespace Snippets5.Errors.SecondLevel.CustomPolicy
+﻿namespace Snippets6.Errors.SecondLevel.CustomPolicy
 {
     using System;
     using NServiceBus;
     using NServiceBus.SecondLevelRetries.Config;
+    using NServiceBus.Transports;
 
     public class Usage
     {
         public Usage()
         {
-
             BusConfiguration busConfiguration = new BusConfiguration();
-
-
             #region SecondLevelRetriesCustomPolicy
 
             SecondLevelRetriesSettings retriesSettings = busConfiguration.SecondLevelRetries();
@@ -21,7 +19,7 @@
         }
 
         #region SecondLevelRetriesCustomPolicyHandler
-        TimeSpan MyCustomRetryPolicy(TransportMessage message)
+        TimeSpan MyCustomRetryPolicy(IncomingMessage message)
         {
             // retry max 3 times
             if (GetNumberOfRetries(message) >= 3)
@@ -34,7 +32,7 @@
             return TimeSpan.FromSeconds(5);
         }
 
-        static int GetNumberOfRetries(TransportMessage message)
+        static int GetNumberOfRetries(IncomingMessage message)
         {
             string value;
             if (message.Headers.TryGetValue(Headers.Retries, out value))

@@ -33,7 +33,7 @@ class ProgramService : ServiceBase
     async Task AsyncOnStart()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        //rest of you bus configuration. eg endpoint name, logging, transport, persistence etc
+        //other bus configuration. endpoint name, logging, transport, persistence etc
         busConfiguration.EnableInstallers();
         bus = await Bus.Create(busConfiguration).StartAsync();
     }

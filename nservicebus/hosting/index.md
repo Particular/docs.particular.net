@@ -20,7 +20,7 @@ There are several approaches to hosting.
 
  * Configuration
  * [Logging](/nservicebus/logging)
- * [Container Configuration](/nservicebus/containers/)
+ * [Container](/nservicebus/containers/)
  * [Startup and Shutdown](/samples/startup-shutdown-sequence/) 
  * [Endpoint Lifecycle](/nservicebus/lifecycle/)
  * [Critical Error handling](critical-errors.md)
@@ -107,7 +107,7 @@ For many scenarios a container is not required. In these cases a simple public s
  * In windows service or console the variable would be placed on the `Program.cs`
  * In a Website the variable would be placed on the `Global.cs`. 
 
-Alternatively the static variable could be placed on a (more appropriately named) helper class,
+Alternatively the static variable could be placed on a (more appropriately named) helper class.
 
 ```
 public static class BusInstance
