@@ -11,6 +11,7 @@ Lighter-weight than BizTalk and more powerful than WCF, NServiceBus comes with i
 
 Requiring just a reference to the NServiceBus NuGet package the configuration API can get you up and running with transactional one-way messaging in a snap.
 
+
 ## Configuring the bus
 
 In the `ApplicationStart` method of your Global.asax file in a web application, or in the `Main` method of your `Program` file for console or Windows Forms application, include the following initialization code:
@@ -21,11 +22,13 @@ You can now setup the appropriate configuration by calling the methods on the co
 
 <!-- import SecondLevelRetriesDisable --> 
 
+
 ## Creating an instance of the bus and starting it
 
 To start processing message just get an instance of the bus and start it like shown below.
 
 <!-- import BusDotCreate -->
+
 
 ## Configuration files
 
@@ -42,6 +45,7 @@ Include the following section:
 ```
 
 If an exception is thrown during the processing of a message, NServiceBus automatically retries the message (as it might have failed due to something transient like a database deadlock). MaxRetries specifies the maximum number of times this is done before the message is moved to the ErrorQueue.
+
 
 ## Routing configuration
 
