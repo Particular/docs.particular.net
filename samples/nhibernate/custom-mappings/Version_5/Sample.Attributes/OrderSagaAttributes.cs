@@ -10,10 +10,10 @@ public class OrderSagaAttributes : Saga<OrderSagaDataAttributes>,
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaDataAttributes> mapper)
     {
-        mapper.ConfigureMapping<StartOrder>(m => m.OrderId)
-                .ToSaga(s => s.OrderId);
-        mapper.ConfigureMapping<CompleteOrder>(m => m.OrderId)
-                .ToSaga(s => s.OrderId);
+        mapper.ConfigureMapping<StartOrder>(message => message.OrderId)
+                .ToSaga(sagaData => sagaData.OrderId);
+        mapper.ConfigureMapping<CompleteOrder>(message => message.OrderId)
+                .ToSaga(sagaData => sagaData.OrderId);
     }
 
     public void Handle(StartOrder message)

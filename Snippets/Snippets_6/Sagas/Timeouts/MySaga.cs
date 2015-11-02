@@ -13,8 +13,8 @@
     {
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
-            mapper.ConfigureMapping<Message2>(s => s.SomeID)
-                .ToSaga(m => m.SomeID);
+            mapper.ConfigureMapping<Message2>(message => message.SomeID)
+                .ToSaga(sagaData => sagaData.SomeID);
         }
 
         public async Task Handle(Message1 message, IMessageHandlerContext context)

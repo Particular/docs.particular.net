@@ -16,10 +16,10 @@ public class OrdersSaga : Saga<OrdersSagaData>,
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrdersSagaData> mapper)
     {
-        mapper.ConfigureMapping<StartOrder>(m => m.OrderId)
-            .ToSaga(s => s.OrderId);
-        mapper.ConfigureMapping<IncrementOrder>(m => m.OrderId)
-            .ToSaga(s => s.OrderId);
+        mapper.ConfigureMapping<StartOrder>(message => message.OrderId)
+            .ToSaga(sagaData => sagaData.OrderId);
+        mapper.ConfigureMapping<IncrementOrder>(message => message.OrderId)
+            .ToSaga(sagaData => sagaData.OrderId);
     }
 
     public void Handle(StartOrder message)

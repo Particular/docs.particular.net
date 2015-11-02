@@ -1,6 +1,4 @@
-﻿
-
-namespace Operations.SqlServer
+﻿namespace Operations.SqlServer
 {
     using System;
     using System.Collections.Generic;
@@ -9,8 +7,7 @@ namespace Operations.SqlServer
     using System.Text;
     using System.Transactions;
     using NServiceBus.Serializers.Json;
-
-
+    
     public static class NativeSend
     {
 

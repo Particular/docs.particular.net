@@ -14,9 +14,9 @@ public class OrderSaga : Saga<OrderSagaData>,
     public override void ConfigureHowToFindSaga()
     {
         ConfigureMapping<StartOrder>(m => m.OrderId)
-            .ToSaga(s => s.OrderId);
+            .ToSaga(sagaData => sagaData.OrderId);
         ConfigureMapping<CompleteOrder>(m => m.OrderId)
-            .ToSaga(s => s.OrderId);
+            .ToSaga(sagaData => sagaData.OrderId);
     }
 
     public void Handle(StartOrder message)

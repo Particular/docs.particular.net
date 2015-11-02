@@ -12,8 +12,8 @@ namespace Snippets6.Sagas.SimpleSaga
     {
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
         {
-            mapper.ConfigureMapping<CompleteOrder>(s => s.OrderId)
-                    .ToSaga(m => m.OrderId);
+            mapper.ConfigureMapping<CompleteOrder>(message => message.OrderId)
+                    .ToSaga(sagaData => sagaData.OrderId);
         }
 
         public async Task Handle(StartOrder message, IMessageHandlerContext context)

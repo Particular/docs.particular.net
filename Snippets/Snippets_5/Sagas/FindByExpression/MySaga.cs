@@ -11,8 +11,8 @@
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
-            mapper.ConfigureMapping<Message2>(m => m.Part1 + "_" + m.Part2)
-                .ToSaga(m => m.SomeID);
+            mapper.ConfigureMapping<Message2>(message => message.Part1 + "_" + message.Part2)
+                .ToSaga(sagaData => sagaData.SomeID);
         }
 
         #endregion

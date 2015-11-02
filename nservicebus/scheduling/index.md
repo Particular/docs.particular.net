@@ -9,11 +9,13 @@ redirects:
 
 The NServiceBus Scheduler is a lightweight/non-durable API that helps schedule a task that needs to be executed repeatedly based on a specified interval. The scheduling infrastructure leverages the approach of reliable messaging with the NServiceBus core functionality. This allows scheduling to include features such as built in retries and forwarding to the error queue. 
 
+
 ## How the scheduler works
 
-The scheduler holds a list of tasks scheduled in a non-durable in-memory dictionary. In version 3 and 4 tasks are scoped per `AppDomain`. In version 5 they are scoped per Bus instance.
+The scheduler holds a list of tasks scheduled in a non-durable in-memory dictionary. In version 4 and lower tasks are scoped per `AppDomain`. In version 5 and higher they are scoped per Bus instance.
 
 When a new scheduled task is created it is given a unique identifier and stored in the endpoint's in-memory dictionary. The identifier for the task is sent in a message to the Timeout Manager, setting the message to be deferred with the specified time interval. When the specified time has elapsed, the Timeouts dispatcher returns the message containing the identifier to the endpoint with the scheduled task identifier. The endpoint then uses that identifier to fetch and invoke the task from its internal list of tasks and executes it.
+
 
 ## Example usage
 
@@ -21,11 +23,13 @@ The difference between the following two examples is that in the latter a name i
 
 <!-- import ScheduleTask -->
 
+
 ## When not to use it
 
 - As soon as your task starts to get some branching logic (`if` or `switch` statements) or you start to add business logic, instead of a simple `Bus.Send()` or a `Bus.SendLocal()`, you should consider moving to a [saga](/nservicebus/sagas).
 - Often, instead of polling for a certain state using the Scheduler API, you can use an event sending model, where an event is published when the expected state transition occurs, and the necessary action is then taken by an event message handler which is subscribed to it. 
 - When you have requirements that are not currently supported by the Scheduler API. For example, scaling out the  tasks, canceling or deleting a scheduled task, doing a side-by-side deployment of a scheduled task as outlined in the following section. 
+
 
 ## Current Limitations
 
@@ -37,6 +41,7 @@ The difference between the following two examples is that in the latter a name i
 - The scheduler API does not support scaling out the endpoint or doing a side-by-side deployment of an endpoint. When you have multiple instances of the endpoint that are running on the same machine, while using a non-broker transport such as MSMQ, or when you are scaling out the endpoint instances while using a broker transport such as RabbitMQ, these endpoint instances share the same input queue. Since each endpoint maintains its own created tasks in memory, when the specified time is up and the task is queued at the endpoint, any of the endpoint instances that are currently running can dequeue that message. If an endpoint that did not originally create this task happened to dequeue this message in order to execute it, it will not find the task in its list. 
 
 WARNING: **This will result in the task not being executed but also not being rescheduled.**  
+
 
 ## Converting a scheduled task into a saga
 

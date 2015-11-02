@@ -12,7 +12,7 @@
         public override void ConfigureHowToFindSaga()
         {
             ConfigureMapping<CompleteOrder>(m => m.OrderId)
-                .ToSaga(s => s.OrderId);
+                .ToSaga(sagaData => sagaData.OrderId);
         }
 
     #endregion

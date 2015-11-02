@@ -67,10 +67,10 @@
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderData> mapper)
         {
-            mapper.ConfigureMapping<SubmitOrder>(m => m.OrderNumber)
-                .ToSaga(s => s.OrderNumber);
-            mapper.ConfigureMapping<CancelOrder>(m => m.OrderNumber)
-                .ToSaga(s => s.OrderNumber);
+            mapper.ConfigureMapping<SubmitOrder>(message => message.OrderNumber)
+                .ToSaga(sagaData => sagaData.OrderNumber);
+            mapper.ConfigureMapping<CancelOrder>(message => message.OrderNumber)
+                .ToSaga(sagaData => sagaData.OrderNumber);
         }
 
         public class OrderData : ContainSagaData
