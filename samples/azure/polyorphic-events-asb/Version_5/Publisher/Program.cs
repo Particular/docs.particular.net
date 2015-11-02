@@ -1,6 +1,7 @@
 ﻿using System;
 using Events;
 using NServiceBus;
+using NServiceBus.Features;
 
 class Program
 {
@@ -20,6 +21,7 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
+        busConfiguration.DisableFeature<SecondLevelRetries>();
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
