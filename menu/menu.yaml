@@ -173,17 +173,18 @@
       Title: "Hosting"
       Url: "nservicebus/hosting"
       Articles:
-        - "nservicebus/hosting/self-hosting"
+        - "nservicebus/hosting/windows-service"
         - "nservicebus/hosting/override-hostid"
         - "nservicebus/hosting/custom-configuration-providers"
         - "nservicebus/hosting/assembly-scanning"
-        - "nservicebus/hosting/nservicebus-host"
-        - "nservicebus/hosting/nservicebus-host/profiles"
-        - "nservicebus/hosting/send-only-endpoints"
         - "nservicebus/hosting/critical-errors"
         - "nservicebus/hosting/publishing-from-web-applications"
         - "nservicebus/azure/hosting"
         - "nservicebus/azure/hosting-in-azure-cloud-services"
+        - Title: "NServiceBus Host"
+          Url: "nservicebus/hosting/nservicebus-host"
+          Articles:
+            - "nservicebus/hosting/nservicebus-host/profiles"
     -
       Title: "Logging"
       Url: "nservicebus/logging"

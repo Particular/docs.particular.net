@@ -103,7 +103,7 @@ NServiceBus.Host.exe NServiceBus.Master
 
 ### When self-hosting
 
-When you [self host](/nservicebus/hosting/self-hosting.md) your endpoint, use this configuration:
+When you [self host](/nservicebus/hosting/) your endpoint, use this configuration:
  
 <!-- import ConfiguringDistributor -->
 

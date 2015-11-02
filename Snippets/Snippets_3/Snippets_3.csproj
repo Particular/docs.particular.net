@@ -141,6 +141,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -205,6 +206,9 @@
     <Compile Include="Handlers\GenericHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
+    <Compile Include="Host\ProgramService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ImmediateDispatch\Usage.cs" />
     <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />

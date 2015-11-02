@@ -1,14 +1,11 @@
 using System;
-using System.Diagnostics;
 using System.ServiceProcess;
-using System.Threading.Tasks;
 using NServiceBus;
 
+#region windowsservicehosting
 class ProgramService : ServiceBase
 {
     IBus bus;
-
-    #region windowsservice-hosting-main
 
     static void Main()
     {
@@ -30,30 +27,13 @@ class ProgramService : ServiceBase
         }
     }
 
-    #endregion
-
-    #region windowsservice-hosting-onstart
-
     protected override void OnStart(string[] args)
     {
-        AsyncOnStart().GetAwaiter().GetResult();
-    }
-
-    async Task AsyncOnStart()
-    {
         BusConfiguration busConfiguration = new BusConfiguration();
-
-        busConfiguration.EndpointName("Samples.WindowsServiceAndConsole");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.UsePersistence<InMemoryPersistence>();
+        //rest of you bus configuration. eg endpoint name, logging, transport, persistence etc
         busConfiguration.EnableInstallers();
-        bus = await Bus.Create(busConfiguration).StartAsync();
+        bus = Bus.Create(busConfiguration).Start();
     }
-
-    #endregion
-
-    #region windowsservice-hosting-onstop
 
     protected override void OnStop()
     {
@@ -63,6 +43,6 @@ class ProgramService : ServiceBase
         }
     }
 
-    #endregion
-
 }
+
+#endregion

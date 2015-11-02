@@ -59,4 +59,3 @@ If you don't require a response from the Web/WCF service, have the first endpoin
 ([more FAQ info](/nservicebus/messaging/publish-subscribe/)) and have the second endpoint call the Web/WCF service.
 
 If you do need a response from the Web/WCF service, turn the first endpoint into a [saga](/nservicebus/sagas/) that sends (not publishes) a message to the second endpoint, which calls the Web/WCF service and [replies](/nservicebus/messaging/reply-to-a-message.md) with a response that is handled by the saga in the first endpoint.
-

@@ -6,6 +6,15 @@ namespace Snippets4.Host
     using NServiceBus;
     using NServiceBus.Logging;
 
+    public static class BusInstance
+    {
+        public static IBus Bus { get; private set; }
+
+        public static void SetInstance(IBus bus)
+        {
+            Bus = bus;
+        }
+    } 
     class CriticalErrors
     {
         IStartableBus bus;

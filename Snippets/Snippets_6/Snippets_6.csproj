@@ -95,6 +95,7 @@
       <HintPath>..\..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -148,6 +149,9 @@
     <Compile Include="Headers\SomeOtherMessage.cs" />
     <Compile Include="Headers\StaticHeaders.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
+    <Compile Include="Host\ProgramService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ImmediateDispatch\Usage.cs" />
     <Compile Include="Installers.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />

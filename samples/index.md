@@ -54,9 +54,10 @@ foreach ($queue in [System.Messaging.MessageQueue]::GetPrivateQueuesByMachine(".
 }
 ```
 
+
 ### Console Hosting
 
-Samples default to [Self Hosting](/nservicebus/hosting/self-hosting.md) in a console since it is more explicit and less moving pieces. Obviously this would not be a real choice for a production system so you should read up on the other [Hosting Options](/nservicebus/hosting/).
+Samples default to [Self Hosting](/nservicebus/hosting/) in a console since it is more explicit and less moving pieces. Obviously this would not be a real choice for a production system so you should read up on the other [Hosting Options](/nservicebus/hosting/).
 
 
 ### [Logging](/nservicebus/logging/)

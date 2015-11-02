@@ -1,13 +1,12 @@
-using System;
-using System.Diagnostics;
-using System.ServiceProcess;
+﻿using System;
 using NServiceBus;
+using NServiceBus.Installation.Environments;
+using System.ServiceProcess;
 
+#region windowsservicehosting
 class ProgramService : ServiceBase
 {
     IBus bus;
-
-    #region windowsservice-hosting-main
 
     static void Main()
     {
@@ -29,33 +28,22 @@ class ProgramService : ServiceBase
         }
     }
 
-    #endregion
-
-    #region windowsservice-hosting-onstart
-
     protected override void OnStart(string[] args)
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-
-        busConfiguration.EndpointName("Samples.WindowsServiceAndConsole");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-        bus = Bus.Create(busConfiguration).Start();
+        Configure configure = Configure.With();
+        //rest of you bus configuration. eg endpoint name, logging, transport, persistence etc
+        bus = configure.UnicastBus()
+            .CreateBus()
+            .Start(() => configure.ForInstallationOn<Windows>().Install());
     }
-
-    #endregion
-
-    #region windowsservice-hosting-onstop
 
     protected override void OnStop()
     {
         if (bus != null)
         {
-            bus.Dispose();
+            ((IDisposable)bus).Dispose();
         }
     }
 
-    #endregion
-
 }
+#endregion

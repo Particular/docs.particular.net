@@ -28,9 +28,7 @@ In `WebApplication`, open `Global.asax.cs` and look at the code in the `Applicat
 
 <!-- import ApplicationStart --> 
 
-The rest of the code is typical for hosting NServiceBus in your own process. Read more about [the other lines](/nservicebus/hosting/self-hosting.md).
-
-The code holds a reference to the bus, which is used later for sending messages. This isn't the only option available; if the classes for sending messages are managed by Dependency Injection, then they can get a reference to the bus by declaring a dependency on IBus. [See an example](/nservicebus/containers/injecting-ibus.md).
+The rest of the code is typical for hosting NServiceBus in your own process. The code holds a reference to the bus, which is used later for sending messages. This isn't the only option available; if the classes for sending messages are managed by Dependency Injection, then they can get a reference to the bus by declaring a dependency on IBus. [See an example](/nservicebus/containers/injecting-ibus.md).
 
 
 ## Sending a message
