@@ -8,16 +8,11 @@ class Program
 
     static void Main()
     {
-        #region config
-
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.ASB.Polymorphic.Publisher");
         busConfiguration.ScaleOut().UseSingleBrokerQueue();
         busConfiguration.UseTransport<AzureServiceBusTransport>()
             .ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
-
-        #endregion
-
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
