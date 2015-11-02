@@ -25,7 +25,7 @@ There are several approaches to hosting.
  * [Endpoint Lifecycle](/nservicebus/lifecycle/)
  * [Critical Error handling](critical-errors.md)
 
-Related Pages:
+Related:
 
  * [Self-Hosting Sample](/samples/hosting/self-hosting/) for more details.
 
@@ -37,7 +37,7 @@ IMPORTANT: **Cleanup/Shutdown**: For all self hosting scenarios it is important 
 
 A [Windows Service](https://msdn.microsoft.com/en-us/library/d56de412.aspx) is the most common way NServiceBus is hosted.
 
-Related Pages:
+Related:
 
  * [Hosting NServiceBus in Windows Service](windows-service.md)
  * [Windows-Service Hosting Sample](/samples/hosting/windows-service/)
@@ -71,7 +71,7 @@ NOTE: There are some [Caveats when publishing from a Web Application](publishing
 
 NOTE: In a web hosted scenario a [IIS Recycle](https://msdn.microsoft.com/en-us/library/ms525803.aspx) is considered a shutdown and restart of the bus. 
 
-Related Pages:
+Related:
 
  * [Web Samples](/samples/web/)
  * [Handling Responses on the Client Side](/nservicebus/messaging/handling-responses-on-the-client-side.md)
@@ -81,19 +81,23 @@ Related Pages:
 
 "Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .net process. In Version 4 and earlier this could be achieved through multiple AppDomains. In Version 5 and higher multiple endpoints can share the same AppDomain or use the multiple AppDomains approach. 
 
-Related Pages:
+Related:
 
  * [Multi-Hosting Sample](/samples/hosting/multi-hosting/).
 
 
-### Accessing `IBus`
+### Accessing IBus
 
-At startup an instance of `IBus` is created and at shutdown it is disposed. Most usages of `IBus` will occur where the NServiceBus APIs are used. For example [Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/). However there are other scenarios 
+At startup an instance of `IBus` is created and at shutdown it is disposed. Most usages of `IBus` will occur where the NServiceBus APIs are used. For example [Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/). However there are other scenarios that may require an alternative approach. 
 
 
 #### Using a Container
 
 NServiceBus support dependency injection via use [Containers](/nservicebus/containers/). At startup the instance of `IBus` will be injected into the configured container and can be access via that container. 
+
+Related:
+ 
+ * [Injecting the Bus into ASP.NET MVC Controller](/samples/web/asp-mvc-injecting-bus/)
 
 
 #### Static variable
@@ -126,7 +130,7 @@ A "Custom Host" refers to a process or library that wraps the NServiceBus librar
 
 The [NServiceBus Host](/nservicebus/hosting/nservicebus-host/) takes a more opinionated approach to hosting. It allows the execution as both a windows service and a console application (for development). It also adds the concepts of [Profiles](/nservicebus/hosting/nservicebus-host/profiles.md) and [Custom installation](/nservicebus/hosting/nservicebus-host/#installation).
 
-Related Pages:
+Related:
 
  * [NServiceBus Host Sample](/samples/hosting/nservicebus-host/)
 
@@ -135,6 +139,6 @@ Related Pages:
 
 There are a variety of ways to host in Azure. Depending on your requirements Self Hosting may be an option or, alternatively, a custom Azure host may be required. See [Hosting in Azure Cloud Services](/nservicebus/azure/hosting-in-azure-cloud-services.md) and [Hosting in Azure](/nservicebus/azure/hosting.md) for more information. 
 
-Related Pages:
+Related:
 
  * [Shared Hosting in Azure Cloud Services Sample](/samples/azure/shared-host/)
