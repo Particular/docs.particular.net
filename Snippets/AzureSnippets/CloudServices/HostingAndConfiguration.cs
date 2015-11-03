@@ -3,34 +3,10 @@
     using System.Web;
     using Microsoft.WindowsAzure.ServiceRuntime;
     using NServiceBus;
+    using NServiceBus.Hosting.Azure;
 
-    // START Replacement for using NServiceBus.Hosting.Azure - can't mix nsb.host and azure host in the same project
-    
-    class NServiceBusRoleEntrypoint
-    {
-        public void Start()
-        {
-        }
 
-        public void Stop()
-        {
-        }
-    }
-
-    public interface AsA_Worker
-    {
-    }
-
-    static class FakeExtensions
-    {
-        public static BusConfiguration AzureConfigurationSource(this BusConfiguration config)
-        {
-            return null;
-        }
-    }
-    // END
-
-    #region HostingInWorkerRole
+    #region HostingInWorkerRole 5
 
     public class WorkerRole : RoleEntryPoint
     {
@@ -53,7 +29,7 @@
 
     #endregion
 
-    #region ConfigureEndpoint
+    #region ConfigureEndpoint 5
 
     public class EndpointConfig : IConfigureThisEndpoint, AsA_Worker
     {
@@ -66,7 +42,7 @@
 
     #endregion
 
-    #region HostingInWebRole
+    #region HostingInWebRole 5
 
     public class MvcApplication : HttpApplication
     {
