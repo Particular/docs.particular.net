@@ -111,8 +111,8 @@ Transport that support native publish–subscribe
 
 The subscribe workflow for native transports is as follows
 
- 1. Subscribers request to the transport the intent to subscribe to certain message types.
- 1. Transport stores both the subscriber names and the message types.
+ 1. Subscribers send request to the broker with the intent to subscribe to certain message types.
+ 1. Broker stores the subscription information.
 
 Note that in this case the publisher does not interact in the subscribe workflow.
  
@@ -120,10 +120,10 @@ Note that in this case the publisher does not interact in the subscribe workflow
 https://bramp.github.io/js-sequence-diagrams/
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
-Participant Transport As Transport
+Participant Broker As Broker
 Participant Publisher As Publisher
-Subscriber1->Transport: Subscribe to Message1 
-Subscriber2->Transport: Subscribe to Message1 
+Subscriber1->Broker: Subscribe to Message1 
+Subscriber2->Broker: Subscribe to Message1 
 -->
 
 ![](mechanics-native-subscribe.svg)
@@ -134,8 +134,8 @@ Subscriber2->Transport: Subscribe to Message1
 The publish workflow for native transports is as follows
 
  1. Some code (eg a saga or a handler) request that a message be published.
- 1. Publisher sends the message to the Transport.
- 1. Transport loops through the list and sends a copy of that message to each subscriber.
+ 1. Publisher sends the message to the Broker.
+ 1. Broker sends a copy of that message to each subscriber.
 
 <!-- 
 https://bramp.github.io/js-sequence-diagrams/
