@@ -65,7 +65,7 @@ So far we've seen how to send from other .NET applications. While that is fine s
 
 Sometimes you're not allowed to touch the legacy systems you're dealing with and this is where triggers come in handy. Yes you read that right, triggers! while, rightfully so, considered evil by most sane people there are still use cases where a trigger might be just what we need. 
 
-Let's create a fictive `Orders` using
+Let's create a fictive `Orders` table using
 
 <!-- import CreateLegacyTable -->
 
