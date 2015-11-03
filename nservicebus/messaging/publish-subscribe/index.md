@@ -112,7 +112,7 @@ Transport that support native publish–subscribe
 The subscribe workflow for native transports is as follows
 
  1. Subscribers request to the transport the intent to subscribe to certain message types.
- 1. Broker stores both the subscription information.
+ 1. Broker stores the subscription information.
 
 Note that in this case the publisher does not interact in the subscribe workflow.
  
