@@ -5,7 +5,6 @@
     using NServiceBus;
     using NServiceBus.Hosting.Azure;
 
-
     #region HostingInWorkerRole 5
 
     public class WorkerRole : RoleEntryPoint
