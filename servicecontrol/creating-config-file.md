@@ -140,6 +140,8 @@ Default: `00:00:40` (40 secs)
 
 When configuring heartbeat grace period, make sure it is synchronized with heartbeat interval defined by plugin or overwritten by [`heartbeat/interval`](/servicecontrol/plugins/heartbeat.md#configuration-heartbeat-interval) setting.
 
+Note: When monitoring multiple endpoints, ensure that heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
+
 
 #### ServiceControl/MaximumMessageThroughputPerSecond 
 
