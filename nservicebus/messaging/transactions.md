@@ -21,11 +21,13 @@ It does not discuss the transaction isolation aspect which only applies to the p
 Based on transaction handling mode, NServiceBus offers three levels of guarantees with regards to message processing
 
 
-### Unreliable
+### Unreliable (Transactions Disabled)
 
-In this mode the transport in use does not attempt to wrap the receive operation in any kind of transaction. Once the message has been received, it can't be put back into the queue. Should the message processing fail for any reason (including system crash), the message is **permanently lost**. 
+In this mode the transport in use does not attempt to wrap the receive operation in any kind of transaction. 
 
-NOTE: No retries will be performed in this mode and messages will not be forwarded to the error queue in case of failures
+Once a message has been received by an Endpoint, if the message processing fails because of an exception within the message handler, it will be put into the error queue. There will be no first level or second level retries. If there is a critical failure, including system or endpoint crash, the message is **permanently lost**. It will not be retried or added to the error queue.
+
+WARNING: In version 5 and below, when transactions are disabled, no retries will be performed and messages will not be forwarded to the error queue in the event of any failure.
 
 <!-- import TransactionsDisable -->
 
@@ -51,7 +53,7 @@ Ambient transaction mode is enabled by default. It can be enabled explicitly via
 
 #### Isolation level
 
-NServiceBus will by default use the `ReadCommited` [isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel). 
+NServiceBus will by default use the `ReadCommitted` [isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel). 
 
 NOTE: Version 3 and below used the default isolation level of .Net which is `Serializable`.
 
