@@ -57,7 +57,10 @@ But whenever `DerivedEvent` event is published, both `Samples.ASB.Polymorphic.Su
 
 Since `DerivedEvent` implements `BaseEvent`, it's `NServiceBus.EnclosedMessageTypes` header will contain both types:
 
-`Events.DerivedEvent, Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;Events.BaseEvent, Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null`
+```
+Events.DerivedEvent, Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null;
+Events.BaseEvent, Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+```
 
 Both filters will pick the `DerivedEvent` message, causing duplicate delivery to the `Subscriber`. NServiceBus `Subscriber` endpoint will invoke handlers for each type that message implements. End result will be multiple invocations for the same message.
 
