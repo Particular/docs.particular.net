@@ -132,11 +132,13 @@ Default: `empty`
 
 #### ServiceControl/HeartbeatGracePeriod
 
-The period that defines whether an endpoint is considered alive or not. 
+The period that defines whether an endpoint is considered alive or not since the last received heartbeat. 
 
 Type: timespan
 
 Default: `00:00:40` (40 secs)
+
+When configuring heartbeat grace period, make sure it is synchronized with heartbeat interval defined by plugin or overwritten by [`heartbeat/interval`](/servicecontrol/plugins/heartbeat.md#configuration-heartbeat-interval) setting.
 
 
 #### ServiceControl/MaximumMessageThroughputPerSecond 
