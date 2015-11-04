@@ -281,9 +281,10 @@
         - "servicecontrol/setting-custom-hostname"
         - "servicecontrol/logging"
         - "servicecontrol/errorlog-auditlog-behavior"
-        - Title: "Endpoint Plugins"
+        - Title: "Integration"
           Url: "servicecontrol/plugins"
           Articles:
+            - "servicecontrol/contracts"
             - "servicecontrol/plugins/heartbeat"
             - "servicecontrol/plugins/custom-checks"
             - "servicecontrol/plugins/saga-audit"

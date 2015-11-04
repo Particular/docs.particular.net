@@ -43,13 +43,6 @@ Assuming an existing NServiceBus endpoint is to be used, these steps need to be 
 Configure.Serialization.Json();
 ```
 
- * Make sure the endpoint knows the location of ServiceControl. In the `UnicastBusConfig` section add following mapping for the `particular.servicecontrol` queue or whatever queue ServiceControl instance has been configured with:
-
-```XML
-<MessageEndpointMappings>
-  <add Assembly="ServiceControl.Contracts" Endpoint="particular.servicecontrol" />
-</MessageEndpointMappings>
-```
 
  * Add a new message handler for the integration event:
 

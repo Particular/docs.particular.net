@@ -46,7 +46,7 @@ It is much easier to quickly spot anomalies and incorrect behavior in your syste
 
 ServicePulse is a web application aimed mainly at administrators. It gives you a clear, near real-time, high-level overview of the system. 
 
-You will get notified when the endpoint is down or when a message fails. You can also specify your own custom checks and get alerts. The interface allows you to perform the common operations for failure recovery, such as retrying failed messages. You can also [subscribe to publicly exposed events](/servicepulse/custom-notification-and-alerting-using-servicecontrol-events.md), in order to display and handle them in a custom way.
+You will get notified when the endpoint is down or when a message fails. You can also specify your own custom checks and get alerts. The interface allows you to perform the common operations for failure recovery, such as retrying failed messages. You can also [subscribe to publicly exposed events](/servicecontrol/contracts.md), in order to display and handle them in a custom way.
 
 
 ## How do you work with the platform?
