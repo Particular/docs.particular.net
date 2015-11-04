@@ -8,7 +8,7 @@ redirects:
 
 Messaging is a good way to build loosely coupled, scalable and reliable systems. However, it also has its challenges. The most common difficulty is having visibility of what's happening in the system. This is one of the problems that the Particular Service Platform was built to solve.
 
-The goal of the Platform is to provide a set of tools that make the building and maintenance of messaging systems easier. The tools are tailored to common needs of a messaging system and 'just work' out of the box, enabling developers to focus on other important challenges such as understanding their business domain better. Currently, the Particular Service Platform consists of [NServiceBus](/nservicebus), [ServiceMatrix](/servicematrix), [ServiceControl](/servicecontrol), [ServiceInsight](/serviceinsight) and [ServicePulse](/servicepulse).
+The goal of the Platform is to provide a set of tools that make the building and maintenance of messaging systems easier. The tools are tailored to common needs of a messaging system and 'just work' out of the box, enabling developers to focus on other important challenges such as understanding their business domain better. Currently, the Particular Service Platform consists of [NServiceBus](/nservicebus), [ServiceControl](/servicecontrol), [ServiceInsight](/serviceinsight) and [ServicePulse](/servicepulse).
 
 ![Particular Service Platform architecture](architecture-overview.png)
 
@@ -47,13 +47,6 @@ It is much easier to quickly spot anomalies and incorrect behavior in your syste
 ServicePulse is a web application aimed mainly at administrators. It gives you a clear, near real-time, high-level overview of the system. 
 
 You will get notified when the endpoint is down or when a message fails. You can also specify your own custom checks and get alerts. The interface allows you to perform the common operations for failure recovery, such as retrying failed messages. You can also [subscribe to publicly exposed events](/servicepulse/custom-notification-and-alerting-using-servicecontrol-events.md), in order to display and handle them in a custom way.
-
-
-## [ServiceMatrix](/servicematrix) - faster prototyping
-
-ServiceMatrix is a Visual Studio extension for VS2012 and VS2013. As an Architect or a Systems Design Engineer, you can quickly design your system on the design canvas and generate a prototype based on your design. You can customize the generated code to suit your prototyping needs.
-
-ServiceMatrix is perfect for Proof of Concept, prototyping and discussing project design with a team of developers. Having a working prototype with visualization helps to clarify the design better in terms of how the system works. Combined with the run time visualization from ServiceInsight, the team can see how information and messages flow through the various endpoints using message flow and sequence diagrams.
 
 
 ## How do you work with the platform?
