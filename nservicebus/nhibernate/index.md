@@ -86,7 +86,7 @@ NOTE: Publishing is performed on stale data. This is only advised in high volume
 
 ## Controlling schema
 
-In some cases it may be necessary to take full control over creating the SQL structure used by the NHibernate persister. In these case the automatic creation of SQL structures on install can be disabled as follows:
+In some cases it may be necessary to take full control over creating the SQL structure used by the NHibernate persister. In these cases the automatic creation of SQL structures on install can be disabled as follows:
 
 
 **For all persistence schema updates:**
