@@ -69,6 +69,7 @@ NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NH
  
 <!-- import NHibernateAppConfig -->
 
+
 ## Change database schema
 
 The database schema used can be changed by defining the `default_schema` NHibernate property. See the previous *Customizing the configuration* section.
@@ -81,3 +82,33 @@ The subscriptions can be cached when using NHibernate. This can improve the perf
 NOTE: Publishing is performed on stale data. This is only advised in high volume environments where latency can be a potential issue.
 
 <!-- import NHibernateSubscriptionCaching -->
+
+
+## Controlling schema
+
+In some cases it may be necessary to take full control over creating the SQL structure used by the NHibernate persister. In these case the automatic creation of SQL structures on install can be disabled as follows:
+
+
+**For all persistence schema updates:**
+
+<!-- import DisableSchemaUpdate -->
+
+
+**For Gateway schema update:**
+            
+<!-- import DisableGatewaySchemaUpdate -->
+
+
+**For Subscription schema update:**
+
+<!-- import DisableSubscriptionSchemaUpdate -->
+
+
+**For Timeout schema update:**
+
+<!-- import DisableTimeoutSchemaUpdate -->
+
+
+### Generating scripts for deployment
+
+To create scripts, for execution in production without using the NServiceBus installers, run an install in a lower environment and then export the SQL structure. This structure can then be migrated to production.
