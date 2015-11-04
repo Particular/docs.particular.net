@@ -19,7 +19,7 @@
         string endpointName = "sqlserverNativeSendTests";
         static string errorQueueName = "sqlserverNativeSendTestsError";
         static string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
-        static string schema = @"dbo";
+        static string schema = "dbo";
 
         [SetUp]
         [TearDown]

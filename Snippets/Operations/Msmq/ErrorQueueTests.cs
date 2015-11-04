@@ -1,7 +1,6 @@
 ﻿namespace Operations.Msmq
 {
     using System;
-    using System.Diagnostics;
     using System.IO;
     using System.Management.Automation;
     using System.Messaging;
@@ -72,8 +71,6 @@
                     command.AddParameter("ErrorQueueName", errorQueueName);
                     command.AddParameter("MessageId", msmqMessageId);
                     command.Invoke();
-                    PSDataCollection<ErrorRecord> psDataCollection = powerShell.Streams.Error;
-                    Debug.WriteLine(psDataCollection);
                 }
                 state.ResetEvent.WaitOne();
             }
