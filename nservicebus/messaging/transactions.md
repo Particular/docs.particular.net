@@ -21,13 +21,13 @@ It does not discuss the transaction isolation aspect which only applies to the p
 Based on transaction handling mode, NServiceBus offers three levels of guarantees with regards to message processing
 
 
-### Unreliable
+### Unreliable (Transactions Disabled)
 
 In this mode the transport in use does not attempt to wrap the receive operation in any kind of transaction. 
 
-Once a message has been received, if the message processing fails it should still be put into the error queue. If there is a critical failure, including system or endpoint crash, the message is **permanently lost**. 
+Once a message has been received by an Endpoint, if the message processing fails because of an exception within the message handler, it will be put into the error queue. If there is a critical failure, including system or endpoint crash, the message is **permanently lost**. It will not be retried or added to the error queue.
 
-WARNING: Before version 6, no retries will be performed in this mode and messages will not be forwarded to the error queue in case of any failure.
+WARNING: In version 5 and below, when transactions are disabled, no retries will be performed and messages will not be forwarded to the error queue in the event of any failure.
 
 <!-- import TransactionsDisable -->
 
