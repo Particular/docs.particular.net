@@ -273,6 +273,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Errors\retriesLogging.txt" />
     <Content Include="Gateway\Channels.xml">
       <SubType>Designer</SubType>
     </Content>

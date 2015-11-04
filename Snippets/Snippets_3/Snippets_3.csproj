@@ -161,6 +161,7 @@
     </Content>
     <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Errors\FirstLevel\flr.config.xml" />
+    <Content Include="Errors\retriesLogging.txt" />
     <Content Include="Monitoring\ServiceControlEvents.config.xml" />
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>

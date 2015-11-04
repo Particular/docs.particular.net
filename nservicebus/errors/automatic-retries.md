@@ -102,3 +102,37 @@ Here is a sample method for handling this behavior.
 To plug this into NServiceBus use the following APIs.
 
 <!-- import SecondLevelRetriesCustomPolicy -->
+
+
+## Total number of possible attempts
+
+The total number of possible attempts can be calculated with the below formula
+
+    Total Attempts = (FLR:MaxRetries) * (SLR:NumberOfRetries + 1)
+
+So for example given a variety of FLR and SLR here are the resultant possible attempts.
+
+| FLR:MaxRetries | SLR:NumberOfRetries | Total possible attempts |
+|----------------|---------------------|-------------------------|
+| 1              | 1                   | 2                       |
+| 1              | 2                   | 3                       |
+| 1              | 3                   | 4                       |
+| 2              | 1                   | 4                       |
+| 3              | 1                   | 6                       |
+| 2              | 2                   | 6                       |
+
+
+## Retry Logging
+
+Given the following configuration:
+
+ * FLR `MaxRetries`: 3
+ * SLR `NumberOfRetries`: 2
+
+And a Handler that both throws and exception and logs the current count of attempts:
+
+Then the resultant output in the log will be:
+
+<!-- import RetryLogging -->
+
+Note that in some cases a log entry contains the exception (`Exception included`) and in some cases it is omitted (`Exception omitted`)
