@@ -36,7 +36,14 @@ The above pages all have examples of how to pass in an instance of an existing c
 
 ### IBus resolution
 
-Note that the instance of `IBus` is scoped for the lifetime of the container. Hence if you resolve `IBus` and then dispose of it the endpoint will stop processing messages.
+Note that the instance of `IBus` is scoped for the lifetime of the container. Hence if you resolve `IBus` and then dispose of it the endpoint will stop processing messages. Note that all NServiceBus services, including `IBus`, will be injected into the passed in container instance. As such there is no need to register these instances at configuration time.
+
+
+### Cleanup
+
+When using an external container you would normally not dispose the bus instance manually. If you would call `IBus.Dispose()` then you will indirectly trigger the container to dispose lifetime scope.
+
+NOTE: Do NOT call `IBus.Dispose` when using an external container, instead call dispose in your container during shutdown.
 
 
 ## Plugging in your own container
