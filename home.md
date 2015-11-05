@@ -80,10 +80,11 @@
     font-size: 14px;
   }
   .block .left2 {
-    width: 60%;
+    width: 50%;
     float: left;
+    padding-right: 20px;
     border-right: 2px solid rgb(218,222,222);
-    min-width: 460px;
+    min-width: 360px;
   }
   .block .right1 {
     float: left;
