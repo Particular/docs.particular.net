@@ -13,10 +13,16 @@
             {
                 Key = "gdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6",
                 ExpiredKeys = new RijndaelExpiredKeyCollection
+                {
+                    new RijndaelExpiredKey
                     {
-                        new RijndaelExpiredKey{Key = "abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"},
-                        new RijndaelExpiredKey{Key = "cdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"}
+                        Key = "abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"
+                    },
+                    new RijndaelExpiredKey
+                    {
+                        Key = "cdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"
                     }
+                }
             };
         }
     }
