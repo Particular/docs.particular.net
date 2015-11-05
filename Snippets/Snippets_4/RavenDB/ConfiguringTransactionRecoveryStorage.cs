@@ -15,7 +15,7 @@
             Configure configure = Configure.With();
             configure.CustomiseRavenPersistence(store =>
             {
-                DocumentStore documentStore = ((DocumentStore) store);
+                DocumentStore documentStore = (DocumentStore) store;
                 documentStore.TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(transactionRecoveryPath);
             });
 

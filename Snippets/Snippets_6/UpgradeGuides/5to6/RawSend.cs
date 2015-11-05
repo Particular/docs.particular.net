@@ -19,7 +19,8 @@ namespace Snippets6.UpgradeGuides._5to6
             var headers = new Dictionary<string, string>();
             var outgoingMessage = new OutgoingMessage("MessageId", headers, new byte[] { });
             var constraints = new[] { new NonDurableDelivery() };
-            var options = new DispatchOptions(new UnicastAddressTag("Destination"), DispatchConsistency.Default, constraints);
+            UnicastAddressTag address = new UnicastAddressTag("Destination");
+            var options = new DispatchOptions(address, DispatchConsistency.Default, constraints);
             TransportOperation transportOperation = new TransportOperation(outgoingMessage, options);
             await dispatcher.Dispatch(new[] { transportOperation }, new ContextBag());
 
