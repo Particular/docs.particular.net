@@ -63,11 +63,14 @@ You can change the isolation level using
 
 #### Transaction timeout
 
-NServiceBus will use the [default transaction timeout](https://msdn.microsoft.com/en-us/library/system.transactions.transactionmanager.defaulttimeout) of the machine the enpoint is running on.
+NServiceBus will use the [default transaction timeout](https://msdn.microsoft.com/en-us/library/system.transactions.transactionmanager.defaulttimeout) of the machine the endpoint is running on.
 
 You can change the transaction timeout using
 
 <!-- import CustomTransactionTimeout -->
+
+Or via your *.config file see an example [here](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection%28v=vs.100%29.aspx#Anchor_5). 
+
 
 ## Handlers
 
