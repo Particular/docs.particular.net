@@ -93,6 +93,8 @@
     <Compile Include="RabbitMQ\QueueCreation.cs" />
     <Compile Include="RavenDB\UserCreation.cs" />
     <Compile Include="RavenDB\UserCreationTests.cs" />
+    <Compile Include="SqlServer\ErrorQueue.cs" />
+    <Compile Include="SqlServer\ErrorQueueTests.cs" />
     <Compile Include="SqlServer\NativeSend.cs" />
     <Compile Include="SqlServer\NativeSendTests.cs" />
     <Compile Include="SqlServer\QueueDeletionTests.cs" />
@@ -102,17 +104,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Msmq\QueueDeletion.ps">
+    <None Include="Msmq\QueueDeletion.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Msmq\QueueCreation.ps">
+    <None Include="Msmq\QueueCreation.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Msmq\ErrorQueue.ps">
+    <None Include="Msmq\ErrorQueue.ps1">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <Content Include="SqlServer\NativeSendPowershell.ps1">
+    <Content Include="SqlServer\NativeSend.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

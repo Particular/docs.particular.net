@@ -16,8 +16,8 @@
     [Explicit]
     public class NativeSendTests
     {
-        string endpointName = "sqlserverNativeSendTests";
-        static string errorQueueName = "sqlserverNativeSendTestsError";
+        string endpointName = "NativeSendTests";
+        static string errorQueueName = "NativeSendTestsError";
         static string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True";
         static string schema = "dbo";
 
@@ -64,26 +64,20 @@
                     {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
                 };
 
-                string scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"SqlServer\NativeSendPowershell.ps1");
-
+                string scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"SqlServer\NativeSend.ps1");
                 string script = File.ReadAllText(scriptPath);
 
                 using (var powershell = PowerShell.Create())
                 {
                     powershell.AddScript(script, false);
-
                     powershell.Invoke();
-
                     powershell.Commands.Clear();
-
                     powershell.AddCommand("SendMessage")
                         .AddParameter(null, connectionString)
                         .AddParameter(null, endpointName)
                         .AddParameter(null, message)
                         .AddParameter(null, headers);
-
                     var results = powershell.Invoke();
-
                 }
 
                 state.ResetEvent.WaitOne();

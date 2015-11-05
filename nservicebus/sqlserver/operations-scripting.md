@@ -70,3 +70,23 @@ To delete all queues for a given endpoint name.
 To delete shared queues
 
 <!-- import sqlserver-delete-queues-shared-usage -->
+
+
+## Return message to source queue
+
+
+### The retry helper methods
+
+The following code shows an example of how to perform the following actions
+
+ * read a message from the error queue table.
+ * forward that message to another queue table to be retried.
+
+NOTE: Since the connection information for the endpoint that failed is not contained in the error queue table that information is explicitly passed in.
+
+<!-- import sqlserver-return-to-source-queue -->
+
+
+### Using the retry helper methods
+
+<!-- import sqlserver-return-to-source-queue-usage -->
