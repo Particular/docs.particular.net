@@ -36,7 +36,7 @@ The Messages window is a detailed grid view indicating the message status, type,
 
 ![Message List View](images/overview-messagedetailwindow.png)
 
-You can filter and locate at design time. ServiceMatrix debugging automatically launches ServiceInsight and filters the messages to include only your current debug session.  The ServicePulse monitoring tool also allows you to open ServiceInsight to a specific message so you can drill down for more detail.
+You can filter and locate at design time.  The ServicePulse monitoring tool also allows you to open ServiceInsight to a specific message so you can drill down for more detail.
 
 
 ### Refresh and Auto-refresh

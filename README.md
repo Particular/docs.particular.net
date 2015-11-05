@@ -149,7 +149,7 @@ Should be the url relative to the root with no beginning or trailing slash paddi
 
 ## An example header for an article
 
-- In the following example, whenever the urls `/servicematrix/sm-si` or `/servicematrix/debugging-servicematrix` are being requested, the given article will be rendered.
+- In the following example, whenever the urls `/servicecontrol/sc-si` or `/servicecontrol/debugging-servicecontrol` are being requested, the given article will be rendered.
 
 ```
 ---
