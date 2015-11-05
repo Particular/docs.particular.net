@@ -18,14 +18,14 @@ related:
 Press 's' to send a valid message, press 'e' to send a failed message. To exit, 'q'
 
 s
-2014-11-04 16:49:41.338 INFO  ValidationMessageMutator Validation succeeded for message: CreateProductCommand: ProductId=XJ128, ProductName=Milk, ListPrice=4 Image (length)=7340032
-2014-11-04 16:49:41.438 INFO  TransportMessageCompressionMutator transportMessage.Body size before compression: 9787013
-2014-11-04 16:49:41.559 INFO  TransportMessageCompressionMutator transportMessage.Body size after compression: 9761
-2014-11-04 16:49:43.879 INFO  ValidationMessageMutator Validation succeeded for message: CreateProductCommand: ProductId=XJ128, ProductName=Milk, ListPrice=4 Image (length)=7340032
-2014-11-04 16:49:43.887 INFO  Handler Received a CreateProductCommand message: CreateProductCommand: ProductId=XJ128, ProductName=Milk, ListPrice=4 Image (length)=7340032
+INFO  ValidationMessageMutator Validation succeeded for message: CreateProductCommand: ProductId=XJ128, ProductName=Milk, ListPrice=4 Image (length)=7340032
+INFO  TransportMessageCompressionMutator transportMessage.Body size before compression: 9787013
+INFO  TransportMessageCompressionMutator transportMessage.Body size after compression: 9761
+INFO  ValidationMessageMutator Validation succeeded for message: CreateProductCommand: ProductId=XJ128, ProductName=Milk, ListPrice=4 Image (length)=7340032
+INFO  Handler Received a CreateProductCommand message: CreateProductCommand: ProductId=XJ128, ProductName=Milk, ListPrice=4 Image (length)=7340032
 
 e
-2014-11-04 16:55:17.997 ERROR ValidationMessageMutator Validation failed for message CreateProductCommand: ProductId=XJ128, ProductName=Milk Milk Milk Milk Milk, ListPrice=15 Image (length)=7340032, with the following error/s:
+ERROR ValidationMessageMutator Validation failed for message CreateProductCommand: ProductId=XJ128, ProductName=Milk Milk Milk Milk Milk, ListPrice=15 Image (length)=7340032, with the following error/s:
 The Product Name value cannot exceed 20 characters.
 The field ListPrice must be between 1 and 5.
 ``` 
