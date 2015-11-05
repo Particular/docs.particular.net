@@ -219,6 +219,8 @@
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
+    <Compile Include="UpgradeGuides\5to6\Recoverable.cs" />
+    <Compile Include="UpgradeGuides\5to6\TimeToBeReceived.cs" />
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="Routing\AutomaticSubscriptions\AutoSubscribeSettings.cs" />
     <Compile Include="XmlSerializationIntegration.cs" />
