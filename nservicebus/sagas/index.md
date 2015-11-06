@@ -47,27 +47,31 @@ You can, as always, swap out these technologies, by implementing the `ISagaPersi
 The important part of a long-running process is its behavior. Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled. 
 
 
-## Starting and correlating sagas
+## Starting a saga
 
-Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sometimes it's the arrival of a given message type. In our previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives `IAmStartedByMessages<StartOrder>`
+Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Since sagas in essence is a message driven state machine they are started by the arrival of one or more message types. In our previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives you would declare that by adding `IAmStartedByMessages<StartOrder>` to your saga. 
 
-Please note that `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that. This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it.
+Please note that `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that. This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it if there isn't already an existing saga that correlates to the message. In essence the semantics of `IAmStartedByMessages` is "create a new instance if a existing one can't be found".
 
-How to correlate a `CompleteOrder` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. You only need to store this in the saga data, and tell NServiceBus about the connection. This is done in the `ConfigureHowToFindSaga` in the above saga. 
+NOTE: As of Version 6 NServiceBus will require each saga to have at least one message that is able to start it.
+
+## Correlating messages to a saga
+
+Correlation is needed in order to find existing saga instances based on data on the incoming message. In our example how do we correlate a `CompleteOrder` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. To declare this you need to use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to. Note that NServiceBus will only allow you to correlate on a single saga property. Should you need to correlate on more than one property you need to use a custom saga finder mentioned below.
 
 {{NOTE:
 In Version 6 and higher NServiceBus will enforce that all correlated properties have a non default value when the saga instance is persisted.
 
 In Version 6 and higher NServiceBus will not allow you to change the value of correlated properties for existing instances.
 
-In Version 5 and below NServiceBus didn't enforce correlated properties to be read only for existing instances.
-
 Since version 5 it is possible to specify the mapping to the message using expressions if the correlation information is split between multiple fields.
+
+Version 5 and below allowed you to correlate on more than one saga property.
 }}
 
 <!-- import saga-find-by-expression -->
 
-Underneath the covers, when `CompleteOrder` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `OrderSagaData` that has a property `OrderId` whose value is the same as the `OrderId` property of the message.
+Underneath the covers, when `CompleteOrder` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `OrderSagaData` that has a property `OrderId` whose value is the same as the `OrderId` property of the message. If found the saga instance will be loaded a the `Handle` method for the `CompleteOrder` message will be invoked. Should the saga instance not be found and the message, like in this case, not be allowed to start a saga the [saga not found](/nservicebus/sagas/saga-not-found.md) handlers will be invoked.
 
 
 ### Auto correlation
@@ -76,6 +80,9 @@ A common usage of sagas is to have them send out a request message to get some w
 
 NOTE: A caveat of this feature is that it currently doesn't support auto correlation between sagas. So if the request is handled by a another saga you must add relevant message properties and map them to the requesting saga using the syntax described above.
 
+### Custom saga finder
+
+Should you need full control over how a message is correlated to a saga you can create a custom [saga finder](/nservicebus/sagas/saga-finding.md).
 
 ## Uniqueness
 
