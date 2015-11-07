@@ -1,13 +1,10 @@
-﻿namespace Messages
+﻿using NServiceBus;
+
+#region AnotherMessageWithLargePayload
+
+public class AnotherMessageWithLargePayload : ICommand
 {
-    using NServiceBus;
-
-    #region AnotherMessageWithLargePayload
-
-    public class AnotherMessageWithLargePayload : ICommand
-    {
-        public byte[] LargeBlob { get; set; }
-    }
-
-    #endregion
+    public byte[] LargeBlob { get; set; }
 }
+
+#endregion
