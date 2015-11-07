@@ -107,11 +107,12 @@
 
             #region 5to6ScanningUpgrade
 
-            busConfiguration.AssembliesToScan(
+            IExcludesBuilder excludesBuilder =
                 AllAssemblies.Matching("NServiceBus")
-                .And("MyCompany.")
-                .Except("BadAssembly1.dll")
-                .And("BadAssembly2.dll"));
+                    .And("MyCompany.")
+                    .Except("BadAssembly1.dll")
+                    .And("BadAssembly2.dll");
+            busConfiguration.AssembliesToScan(excludesBuilder);
 
             #endregion
         }
