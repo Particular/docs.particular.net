@@ -46,20 +46,20 @@ In this example we've chosen to silently install the ServiceControl Management u
 
 
 ```bat
-Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADESINSTANCES=ALL
+Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL
 
 ```  
  
 In this example we've chosen to silently install the ServiceControl Management utility and attempt to upgrade just one instance called `TestServiceControl` 
 
 ```bat
-Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADESINSTANCES=TestServiceControl 
+Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl 
 ```  
 
 To specify multiple instances use a comma separated the list:  
 
 ```bat
-Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADESINSTANCES=TestServiceControl,ProdServiceControl  
+Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl,ProdServiceControl  
 ```  
 
 #### Add the license file as part of the Silent installation
