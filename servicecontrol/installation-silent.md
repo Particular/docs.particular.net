@@ -87,7 +87,7 @@ NOTE: This command will not remove any ServiceControl service instances that are
 
   
 #### Logging and Failures
-In each of the samples above a log file was specified on the command line. The silent install actions will log to the MSI log file specified.  In versions prior to 1.7 if an installation action failed the installation was rolled back, this resulted in failed upgrades acting like a complete uninstall of the product.  From 1.7 a failure to do an unattended install action will be logged but the overall installation will still return success and not rollback any actions take on a  
+In each of the samples above a log file was specified on the command line. The silent install actions will log to the MSI log file specified.  In versions prior to 1.7 if an installation action failed the installation was rolled back, this resulted in failed upgrades acting like a complete uninstall of the product.  From 1.7 a failure to do an unattended install action will be logged but the overall installation will still return success and not rollback. 
 
 #### PowerShell
 
