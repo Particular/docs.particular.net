@@ -233,6 +233,7 @@
       <img src="/home/stackoverflow-big.png" />
       <h3>StackOverflow</h3>
     </a>
+    <p>All questions and answers tagged with 'NServiceBus'</p>
     <div style="clear: both"></div>
   </div>
   <div style="clear: both"></div>
