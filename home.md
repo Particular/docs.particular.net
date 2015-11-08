@@ -233,7 +233,17 @@
       <img src="/home/stackoverflow-big.png" />
       <h3>StackOverflow</h3>
     </a>
-    <p>All questions and answers tagged with 'NServiceBus'</p>
+    <p>All questions and answers tagged 'NServiceBus'</p>
+    <div style="clear: both"></div>
+    <a href="http://www.pluralsight.com/courses/microservices-nservicebus-scaling-applications">
+      <img src="/home/pluralsight.png">
+      <h3>Pluralsight: Scaling Applications with<br> Microservices and NServiceBus</h3>
+    </a>
+    <div style="clear: both"></div>
+    <a href="http://www.pluralsight.com/courses/nservicebus">
+      <img src="/home/pluralsight.png">
+      <h3>Pluralsight: Introduction to NServiceBus</h3>
+    </a>
     <div style="clear: both"></div>
   </div>
   <div style="clear: both"></div>
