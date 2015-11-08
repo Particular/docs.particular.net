@@ -207,6 +207,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Errors\retriesLogging.txt" />
+    <Content Include="Gateway\Channels\Channels.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Gateway\Sites\Sites.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -279,6 +285,12 @@
     <Compile Include="Container\Containers_Unity.cs" />
     <Compile Include="Container\Custom\MyCustomObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
+    <Compile Include="Gateway\Channels\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Gateway\Channels\ConfigurationSource\Usage.cs" />
+    <Compile Include="Gateway\Channels\ProvideConfiguration.cs" />
+    <Compile Include="Gateway\Sites\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Gateway\Sites\ConfigurationSource\Usage.cs" />
+    <Compile Include="Gateway\Sites\ProvideConfiguration.cs" />
     <Compile Include="Handlers\GenericHandler.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
