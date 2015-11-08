@@ -47,27 +47,36 @@ You can, as always, swap out these technologies, by implementing the `ISagaPersi
 The important part of a long-running process is its behavior. Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled. 
 
 
-## Starting and correlating sagas
+## Starting a saga
 
-Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sometimes it's the arrival of a given message type. In our previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives `IAmStartedByMessages<StartOrder>`
+Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sagas are, in essence, a message driven state machine. The trigger to started this state machine is the arrival of one or more specified message types. In our previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives you would declare that by adding `IAmStartedByMessages<StartOrder>` to your saga. 
 
-Please note that `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that. This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it.
+NOTE: `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that. 
 
-How to correlate a `CompleteOrder` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. You only need to store this in the saga data, and tell NServiceBus about the connection. This is done in the `ConfigureHowToFindSaga` in the above saga. 
+This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it if there isn't already an existing saga that correlates to the message. In essence the semantics of `IAmStartedByMessages` is:
+
+> Create a new instance if a existing one can't be found
+
+NOTE: As of Version 6 NServiceBus will require each saga to have at least one message that is able to start it.
+
+
+## Correlating messages to a saga
+
+Correlation is needed in order to find existing saga instances based on data on the incoming message. In our example how do we correlate a `CompleteOrder` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. To declare this you need to use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to. Note that NServiceBus will only allow you to correlate on a single saga property. Should you need to correlate on more than one property you need to use a custom saga finder mentioned below.
 
 {{NOTE:
 In Version 6 and higher NServiceBus will enforce that all correlated properties have a non default value when the saga instance is persisted.
 
 In Version 6 and higher NServiceBus will not allow you to change the value of correlated properties for existing instances.
 
-In Version 5 and below NServiceBus didn't enforce correlated properties to be read only for existing instances.
-
 Since version 5 it is possible to specify the mapping to the message using expressions if the correlation information is split between multiple fields.
+
+Version 5 and below allowed you to correlate on more than one saga property.
 }}
 
 <!-- import saga-find-by-expression -->
 
-Underneath the covers, when `CompleteOrder` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `OrderSagaData` that has a property `OrderId` whose value is the same as the `OrderId` property of the message.
+Underneath the covers, when `CompleteOrder` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `OrderSagaData` that has a property `OrderId` whose value is the same as the `OrderId` property of the message. If found the saga instance will be loaded a the `Handle` method for the `CompleteOrder` message will be invoked. Should the saga instance not be found and the message, like in this case, not be allowed to start a saga the [saga not found](/nservicebus/sagas/saga-not-found.md) handlers will be invoked.
 
 
 ### Auto correlation
@@ -75,6 +84,11 @@ Underneath the covers, when `CompleteOrder` arrives, NServiceBus asks the saga p
 A common usage of sagas is to have them send out a request message to get some work done and receive a response message back when the work is complete. To make this easier NServiceBus will auto correlate those response messages back to the correct saga instance without any need for mappings.
 
 NOTE: A caveat of this feature is that it currently doesn't support auto correlation between sagas. So if the request is handled by a another saga you must add relevant message properties and map them to the requesting saga using the syntax described above.
+
+
+### Custom saga finder
+
+Should you need full control over how a message is correlated to a saga you can create a custom [saga finder](/nservicebus/sagas/saga-finding.md).
 
 
 ## Uniqueness
@@ -137,9 +151,9 @@ The usual way is to correlate on some kind of ID and let the user tell you how t
 
 Sagas manage state of potentially long-running business processes. When we want to access the current state of a business process we may feel the urge to query the saga data directly. It can be done, but we recommend against it. While this can be appropriate for very simple administrative or support functionality, we don't recommend it as a general-purpose approach for these reasons:
 
-* The way a given persistence chooses to store the saga data is an implementation detail to the specific persistence that can potentially change over time. By directly querying for the saga data you are coupling that query to this implementation and risk being affected by format changes.
-* By exposing the data outside of the safeguards of the business logic in the saga you risk the data is not treated as read-only. Eventually, a component tries to bypass the saga and directly modify the data. 
-* Querying the data might require additional indexes, resources etc. which need to be managed by the component issuing the query. Those additional resources can influence saga performance.
-* The saga data may not contain all the required data. A saga handling the order process may keep track of the "payment id" and the status of the payment, but it is not interested in keeping track of the amount paid. On the other hand, for querying we may want to query the paid amount along with other data.
+ * The way a given persistence chooses to store the saga data is an implementation detail to the specific persistence that can potentially change over time. By directly querying for the saga data you are coupling that query to this implementation and risk being affected by format changes.
+ * By exposing the data outside of the safeguards of the business logic in the saga you risk the data is not treated as read-only. Eventually, a component tries to bypass the saga and directly modify the data. 
+ * Querying the data might require additional indexes, resources etc. which need to be managed by the component issuing the query. Those additional resources can influence saga performance.
+ * The saga data may not contain all the required data. A saga handling the order process may keep track of the "payment id" and the status of the payment, but it is not interested in keeping track of the amount paid. On the other hand, for querying we may want to query the paid amount along with other data.
 
 The recommended approach is for the saga to publish events, containing the required data, and have handlers that process these events and store the data in one or more read model(s) for querying purposes. It reduces coupling to the internals of the specific saga persistence, removes contention and doesn't bypass the safeguard of the existing saga logic.
