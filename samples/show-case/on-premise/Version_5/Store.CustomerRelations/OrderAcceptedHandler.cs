@@ -1,35 +1,31 @@
-﻿namespace Store.CustomerRelations
+﻿using System;
+using System.Diagnostics;
+using NServiceBus;
+using Store.Messages.Events;
+
+class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
 {
-    using System;
-    using System.Diagnostics;
-    using Messages.Events;
-    using NServiceBus;
-    using Common;
+    IBus bus;
 
-    class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
+    public OrderAcceptedHandler(IBus bus)
     {
-        IBus bus;
+        this.bus = bus;
+    }
 
-        public OrderAcceptedHandler(IBus bus)
+    public void Handle(OrderAccepted message)
+    {
+        if (DebugFlagMutator.Debug)
         {
-            this.bus = bus;
+            Debugger.Break();
         }
 
-        public void Handle(OrderAccepted message)
+        Console.WriteLine("Customer: {0} is now a preferred customer publishing for other service concerns", message.ClientId);
+
+        // publish this event as an asynchronous event
+        bus.Publish<ClientBecamePreferred>(m =>
         {
-            if (DebugFlagMutator.Debug)
-            {
-                Debugger.Break();
-            }
-
-            Console.WriteLine("Customer: {0} is now a preferred customer publishing for other service concerns", message.ClientId);
-
-            // publish this event as an asynchronous event
-            bus.Publish<ClientBecamePreferred>(m =>
-            {
-                m.ClientId = message.ClientId;
-                m.PreferredStatusExpiresOn = DateTime.Now.AddMonths(2);
-            });
-        }
+            m.ClientId = message.ClientId;
+            m.PreferredStatusExpiresOn = DateTime.Now.AddMonths(2);
+        });
     }
 }

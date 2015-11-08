@@ -1,51 +1,48 @@
-﻿namespace Store.ECommerce.Handlers
+﻿using System.Threading;
+using Microsoft.AspNet.SignalR;
+using NServiceBus;
+using System.Diagnostics;
+using Store.Messages.Commands;
+
+public class OrdersHub : Hub
 {
-    using System.Threading;
-    using Microsoft.AspNet.SignalR;
-    using Messages.Commands;
-    using NServiceBus;
-    using System.Diagnostics;
+    static int orderNumber;
 
-    public class OrdersHub : Hub
+    public void CancelOrder(int orderNumber)
     {
-        static int orderNumber;
-
-        public void CancelOrder(int orderNumber)
+        var command = new CancelOrder
         {
-            var command = new CancelOrder
-            {
-                ClientId = Context.ConnectionId,
-                OrderNumber = orderNumber
-            };
+            ClientId = Context.ConnectionId,
+            OrderNumber = orderNumber
+        };
 
-            bool isDebug = (bool)Clients.Caller.debug;
-            MvcApplication.Bus.SetMessageHeader(command, "Debug", isDebug.ToString());
+        bool isDebug = (bool)Clients.Caller.debug;
+        MvcApplication.Bus.SetMessageHeader(command, "Debug", isDebug.ToString());
 
-            MvcApplication.Bus.Send(command);
+        MvcApplication.Bus.Send(command);
+    }
+
+    public void PlaceOrder(string[] productIds)
+    {
+        bool isDebug = (bool)Clients.Caller.debug;
+        if (isDebug)
+        {
+            Debugger.Break();
         }
 
-        public void PlaceOrder(string[] productIds)
+        var command = new SubmitOrder
         {
-            bool isDebug = (bool)Clients.Caller.debug;
-            if (isDebug)
-            {
-                Debugger.Break();
-            }
+            ClientId = Context.ConnectionId,
+            OrderNumber = Interlocked.Increment(ref orderNumber),
+            ProductIds = productIds,
+            // This property will be encrypted. Therefore when viewing the message in the queue, the actual values will not be shown. 
+            EncryptedCreditCardNumber = "4000 0000 0000 0008",
+            // This property will be encrypted.
+            EncryptedExpirationDate = "10/13" 
+        };
 
-            var command = new SubmitOrder
-            {
-                ClientId = Context.ConnectionId,
-                OrderNumber = Interlocked.Increment(ref orderNumber),
-                ProductIds = productIds,
-                // This property will be encrypted. Therefore when viewing the message in the queue, the actual values will not be shown. 
-                EncryptedCreditCardNumber = "4000 0000 0000 0008",
-                // This property will be encrypted.
-                EncryptedExpirationDate = "10/13" 
-            };
+        MvcApplication.Bus.SetMessageHeader(command, "Debug", isDebug.ToString());
 
-            MvcApplication.Bus.SetMessageHeader(command, "Debug", isDebug.ToString());
-
-            MvcApplication.Bus.Send(command);
-        }
+        MvcApplication.Bus.Send(command);
     }
 }

@@ -4,7 +4,6 @@ using Microsoft.Owin.Hosting;
 using NServiceBus;
 using NServiceBus.Installation.Environments;
 using Owin;
-using OwinPassThrough;
 
 static class Program
 {

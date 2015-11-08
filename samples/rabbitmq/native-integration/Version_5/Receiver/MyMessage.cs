@@ -2,12 +2,9 @@
 
 #region DefineNSBMessage
 
-namespace MyNamespace
+public class MyMessage : IMessage
 {
-    public class MyMessage : IMessage
-    {
-        public string SomeProperty { get; set; }
-    }
+    public string SomeProperty { get; set; }
 }
 
 #endregion

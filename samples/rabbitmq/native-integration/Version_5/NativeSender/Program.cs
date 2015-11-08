@@ -34,7 +34,7 @@
                         #endregion
 
                         #region CreateNativePayload
-                        string payload = @"<MyNamespace.MyMessage><SomeProperty>Hello from native sender</SomeProperty></MyNamespace.MyMessage>";
+                        string payload = @"<MyMessage><SomeProperty>Hello from native sender</SomeProperty></MyMessage>";
                         #endregion
 
                         #region SendMessage

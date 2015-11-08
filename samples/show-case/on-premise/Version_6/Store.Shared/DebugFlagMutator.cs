@@ -1,44 +1,41 @@
-﻿namespace Store.Common
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.MessageMutator;
+
+public class DebugFlagMutator : 
+    IMutateIncomingTransportMessages,
+    IMutateOutgoingTransportMessages, 
+    INeedInitialization
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.MessageMutator;
+    public static bool Debug { get { return debug.Value; } }
 
-    public class DebugFlagMutator : 
-        IMutateIncomingTransportMessages,
-        IMutateOutgoingTransportMessages, 
-        INeedInitialization
+    static ThreadLocal<bool> debug = new ThreadLocal<bool>();
+
+    public void Customize(BusConfiguration configuration)
     {
-        public static bool Debug { get { return debug.Value; } }
+        configuration.RegisterComponents(c => c.ConfigureComponent<DebugFlagMutator>(DependencyLifecycle.InstancePerCall));
+    }
 
-        static ThreadLocal<bool> debug = new ThreadLocal<bool>();
 
-        public void Customize(BusConfiguration configuration)
+    public Task MutateIncoming(MutateIncomingTransportMessageContext context)
+    {
+        var debugFlag = context.Headers.ContainsKey("Debug") ? context.Headers["Debug"] : "false";
+        if (debugFlag != null && debugFlag.Equals("true", StringComparison.OrdinalIgnoreCase))
         {
-            configuration.RegisterComponents(c => c.ConfigureComponent<DebugFlagMutator>(DependencyLifecycle.InstancePerCall));
+            debug.Value = true;
         }
-
-
-        public Task MutateIncoming(MutateIncomingTransportMessageContext context)
+        else
         {
-            var debugFlag = context.Headers.ContainsKey("Debug") ? context.Headers["Debug"] : "false";
-            if (debugFlag != null && debugFlag.Equals("true", StringComparison.OrdinalIgnoreCase))
-            {
-                debug.Value = true;
-            }
-            else
-            {
-                debug.Value = false;
-            }
-            return Task.FromResult(0);
+            debug.Value = false;
         }
+        return Task.FromResult(0);
+    }
 
-        public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
-        {
-            context.OutgoingHeaders["Debug"]= Debug.ToString();
-            return Task.FromResult(0);
-        }
+    public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
+    {
+        context.OutgoingHeaders["Debug"]= Debug.ToString();
+        return Task.FromResult(0);
     }
 }

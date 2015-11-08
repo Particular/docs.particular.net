@@ -1,30 +1,26 @@
 ﻿using System.Web.Mvc;
 using NServiceBus;
 
-namespace WebApplication.Controllers
+#region Controller
+public class DefaultController : Controller
 {
+    IBus bus;
 
-    #region Controller
-    public class DefaultController : Controller
+    public DefaultController(IBus bus)
     {
-        IBus bus;
-
-        public DefaultController(IBus bus)
-        {
-            this.bus = bus;
-        }
-
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        [AllowAnonymous]
-        public ActionResult Send()
-        {
-            bus.Send("Samples.Mvc.Endpoint", new MyMessage());
-            return RedirectToAction("Index", "Default");
-        }
+        this.bus = bus;
     }
-#endregion
+
+    public ActionResult Index()
+    {
+        return View();
+    }
+
+    [AllowAnonymous]
+    public ActionResult Send()
+    {
+        bus.Send("Samples.Mvc.Endpoint", new MyMessage());
+        return RedirectToAction("Index", "Default");
+    }
 }
+#endregion

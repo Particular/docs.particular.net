@@ -1,22 +1,18 @@
-﻿namespace Store.CustomerRelations
-{
-    using System;
-    using System.Diagnostics;
-    using System.Threading.Tasks;
-    using Messages.Events;
-    using NServiceBus;
-    using Common;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using NServiceBus;
+using Store.Messages.Events;
 
-    class SendLimitedTimeOffer : IHandleMessages<ClientBecamePreferred>
+class SendLimitedTimeOffer : IHandleMessages<ClientBecamePreferred>
+{
+    public Task Handle(ClientBecamePreferred message)
     {
-        public Task Handle(ClientBecamePreferred message)
+        if (DebugFlagMutator.Debug)
         {
-            if (DebugFlagMutator.Debug)
-            {
-                Debugger.Break();
-            }
-            Console.WriteLine("Handler WhenCustomerIsPreferredSendLimitedTimeOffer invoked for CustomerId: {0}", message.ClientId);
-            return Task.FromResult(0);
+            Debugger.Break();
         }
+        Console.WriteLine("Handler WhenCustomerIsPreferredSendLimitedTimeOffer invoked for CustomerId: {0}", message.ClientId);
+        return Task.FromResult(0);
     }
 }

@@ -1,20 +1,16 @@
-﻿namespace Store.CustomerRelations
-{
-    using System;
-    using System.Diagnostics;
-    using Messages.Events;
-    using NServiceBus;
-    using Common;
+﻿using System;
+using System.Diagnostics;
+using NServiceBus;
+using Store.Messages.Events;
 
-    class SendLimitedTimeOffer : IHandleMessages<ClientBecamePreferred>
+class SendLimitedTimeOffer : IHandleMessages<ClientBecamePreferred>
+{
+    public void Handle(ClientBecamePreferred message)
     {
-        public void Handle(ClientBecamePreferred message)
+        if (DebugFlagMutator.Debug)
         {
-            if (DebugFlagMutator.Debug)
-            {
-                Debugger.Break();
-            }
-            Console.WriteLine("Handler WhenCustomerIsPreferredSendLimitedTimeOffer invoked for CustomerId: {0}", message.ClientId);
+            Debugger.Break();
         }
+        Console.WriteLine("Handler WhenCustomerIsPreferredSendLimitedTimeOffer invoked for CustomerId: {0}", message.ClientId);
     }
 }

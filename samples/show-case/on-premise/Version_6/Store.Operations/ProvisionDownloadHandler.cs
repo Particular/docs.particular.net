@@ -1,36 +1,32 @@
-﻿namespace Store.Operations
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using NServiceBus;
+using Store.Messages.RequestResponse;
+
+public class ProvisionDownloadHandler : IHandleMessages<ProvisionDownloadRequest>
 {
-    using System;
-    using System.Diagnostics;
-    using System.Threading.Tasks;
-    using Common;
-    using Messages.RequestResponse;
-    using NServiceBus;
+    IBus bus;
 
-    public class ProvisionDownloadHandler : IHandleMessages<ProvisionDownloadRequest>
+    public ProvisionDownloadHandler(IBus bus)
     {
-        IBus bus;
+        this.bus = bus;
+    }
 
-        public ProvisionDownloadHandler(IBus bus)
+    public async Task Handle(ProvisionDownloadRequest message)
+    {
+        if (DebugFlagMutator.Debug)
         {
-            this.bus = bus;
+            Debugger.Break();
         }
 
-        public async Task Handle(ProvisionDownloadRequest message)
-        {
-            if (DebugFlagMutator.Debug)
+        Console.WriteLine("Provision the products and make the Urls available to the Content management for download ...[{0}] product(s) to provision", string.Join(", ", message.ProductIds));
+
+        await bus.ReplyAsync(new ProvisionDownloadResponse
             {
-                Debugger.Break();
-            }
-
-            Console.WriteLine("Provision the products and make the Urls available to the Content management for download ...[{0}] product(s) to provision", string.Join(", ", message.ProductIds));
-
-            await bus.ReplyAsync(new ProvisionDownloadResponse
-                {
-                    OrderNumber = message.OrderNumber,
-                    ProductIds = message.ProductIds,
-                    ClientId = message.ClientId
-                });
-        }
+                OrderNumber = message.OrderNumber,
+                ProductIds = message.ProductIds,
+                ClientId = message.ClientId
+            });
     }
 }
