@@ -274,10 +274,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Errors\retriesLogging.txt" />
-    <Content Include="Gateway\Channels.xml">
+    <Content Include="Gateway\Channels\Channels.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Gateway\Gateway.config.xml">
+    <Content Include="Gateway\Sites\Sites.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Headers\Writers\HeaderWriterAudit_Audit.txt" />
@@ -390,6 +390,12 @@
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Features\FeatureConfiguration.cs" />
     <Compile Include="Features\MyFeature.cs" />
+    <Compile Include="Gateway\Channels\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Gateway\Channels\ConfigurationSource\Usage.cs" />
+    <Compile Include="Gateway\Channels\ProvideConfiguration.cs" />
+    <Compile Include="Gateway\Sites\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Gateway\Sites\ConfigurationSource\Usage.cs" />
+    <Compile Include="Gateway\Sites\ProvideConfiguration.cs" />
     <Compile Include="Handlers\GenericHandler.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />

@@ -63,15 +63,37 @@ The sending process in site A sends a message to the gateway's input queue. The 
 
 ## Configuration and code
 
-When you configure the client endpoint, make sure that the UnicastBusConfig's `MessageEndpointMappings` element has an entry indicating that the relevant message types go to the gateway's input queue.
+When you configure the client endpoint, make sure that the [Message Owner](/nservicebus/messaging/message-owner.md) has been configured so that the relevant message types go to the gateway's input queue.
 
 To send a message to a remote site, use the `SendToSites` API call, as shown:
 
 <!-- import SendToSites -->
 
- Did you notice the list of strings as the first parameter? This is the list of remote sites where you want the message(s) sent. While you can put the URLs of the site directly in the call, we recommend that you put these settings in `app.config` so your administrators can change them should the need arise. To do this, add this config section:
+This values (`SiteA` and `SiteB`) is the list of remote sites where you want the message(s) sent. 
 
-<!-- import GatewayAppConfig -->
+
+### Configuring Destination
+
+While you can put the URLs of the site directly in the call, we recommend that you put these settings in `app.config` so your administrators can change them should the need arise. To do this, add this config section:
+
+#### Using a IConfigurationProvider
+
+<!-- import GatewaySitesConfigurationProvider -->
+
+
+#### Using a ConfigurationSource
+
+<!-- import GatewaySitesConfigurationSource -->
+
+Then at configuration time:
+
+<!-- import UseCustomConfigurationSourceForGatewaySitesConfig -->
+
+
+#### Using App.Config
+
+<!-- import GatewaySitesAppConfig -->
+
 
 NServiceBus automatically sets the required headers that enable you to send messages back over the gateway using the familiar `Bus.Reply`.
 
@@ -90,22 +112,39 @@ Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/
 Going across alternate channels like HTTP means that you lose the MSMQ safety guarantee of exactly one message. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid burdening you with de-duplication, the NServiceBus gateway supports this out of the box. You just need to store the message IDs of all received messages so it can detect potential duplicates. Read more on persistence options and how to configure them [here](/nservicebus/persistence/)
 
 
-### Version 5
+### Version 5 and higher
 
-The gateway will use the storage type you configure. At this stage InMemory, NHibernate and RavenDB is supported. 
+The gateway will use the storage type you configure. At this stage [InMemory](/nservicebus/persistence/in-memory.md), [NHibernate](/nservicebus/nhibernate/) and [RavenDB](/nservicebus/ravendb/) is supported. 
 
 
 ### Version 4
 
-By default, NServiceBus uses RavenDB to store the IDs but InMemory and SqlServer persistences are supported as well.
+By default, NServiceBus uses [RavenDB](/nservicebus/ravendb/) to store the IDs but [InMemory](/nservicebus/persistence/in-memory.md) and [NHibernate](/nservicebus/nhibernate/) persistences are supported as well.
 
 
 ## Incoming channels
 
 When you enable the gateway, it automatically sets up an HTTP channel to listen to `http://localhost/{name of your endpoint}`. To change this URL or add more than one incoming channel, configure `app.config`, as shown:
 
-<!-- import GatewayChannels -->
 
-The "Default" on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels. Currently, HTTP/HTTPS is the only supported channel but there are plans for Azure, FTP, and Amazon SQS to help you bridge both on-site and cloud sites.
+#### Using a IConfigurationProvider
+
+<!-- import GatewayChannelsConfigurationProvider -->
+
+
+#### Using a ConfigurationSource
+
+<!-- import GatewayChannelsConfigurationSource -->
+
+Then at configuration time:
+
+<!-- import UseCustomConfigurationSourceForGatewayChannelsConfig -->
+
+
+#### Using App.Config
+
+<!-- import GatewayChannelsAppConfig -->
+
+The `Default` on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels. 
 
 Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/ms733768.aspx) and make sure to configure the gateway to listen on the appropriate port, as well as to contact the remote gateway on the same port.

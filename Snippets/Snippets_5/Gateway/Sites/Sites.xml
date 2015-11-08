@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<!--startcode GatewayAppConfig-->
+<!--startcode GatewaySitesAppConfig-->
 <configuration>
   <configSections>
-    <!-- Other sections go here -->
     <section name="GatewayConfig" 
              type="NServiceBus.Config.GatewayConfig, NServiceBus.Core" />
   </configSections>
-  <!-- Other config options go here -->
   <GatewayConfig>
     <Sites>
       <Site Key="SiteA" 
