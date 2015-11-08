@@ -2,34 +2,31 @@ using System;
 using System.Web;
 using NServiceBus;
 
-namespace WebApplication
+public class Global : HttpApplication
 {
-    public class Global : HttpApplication
+    public static IBus Bus;
+
+    public override void Dispose()
     {
-        public static IBus Bus;
-
-        public override void Dispose()
+        if (Bus != null)
         {
-            if (Bus != null)
-            {
-                Bus.Dispose();
-            }
-            base.Dispose();
+            Bus.Dispose();
         }
-        protected void Application_Start(object sender, EventArgs e)
-        {
-            #region ApplicationStart
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.EndpointName("Samples.AsyncPages.WebApplication");
-            busConfiguration.UseSerialization<JsonSerializer>();
-            busConfiguration.EnableInstallers();
-            busConfiguration.UsePersistence<InMemoryPersistence>();
-
-            Bus = NServiceBus.Bus.Create(busConfiguration).Start();
-
-            #endregion
-        }
-
+        base.Dispose();
     }
+    protected void Application_Start(object sender, EventArgs e)
+    {
+        #region ApplicationStart
+
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Samples.AsyncPages.WebApplication");
+        busConfiguration.UseSerialization<JsonSerializer>();
+        busConfiguration.EnableInstallers();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+
+        Bus = NServiceBus.Bus.Create(busConfiguration).Start();
+
+        #endregion
+    }
+
 }

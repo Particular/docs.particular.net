@@ -1,38 +1,34 @@
 using System;
 using System.Web;
 using NServiceBus;
+using NServiceBus.Installation.Environments;
 
-namespace WebApplication
+public class Global : HttpApplication
 {
-    using NServiceBus.Installation.Environments;
+    public static IBus Bus;
 
-    public class Global : HttpApplication
+    public override void Dispose()
     {
-        public static IBus Bus;
-
-        public override void Dispose()
+        if (Bus != null)
         {
-            if (Bus != null)
-            {
-                ((IDisposable)Bus).Dispose();
-            }
-            base.Dispose();
+            ((IDisposable)Bus).Dispose();
         }
-
-        protected void Application_Start(object sender, EventArgs e)
-        {
-            #region ApplicationStart
-            Configure configure = Configure.With();
-            configure.Log4Net();
-            configure.DefineEndpointName("Samples.AsyncPages.WebApplication");
-            configure.DefaultBuilder();
-            configure.JsonSerializer();
-            configure.MsmqTransport();
-            Bus = configure.UnicastBus()
-                .CreateBus()
-                .Start(() => configure.ForInstallationOn<Windows>().Install());
-            #endregion
-        }
-
+        base.Dispose();
     }
+
+    protected void Application_Start(object sender, EventArgs e)
+    {
+        #region ApplicationStart
+        Configure configure = Configure.With();
+        configure.Log4Net();
+        configure.DefineEndpointName("Samples.AsyncPages.WebApplication");
+        configure.DefaultBuilder();
+        configure.JsonSerializer();
+        configure.MsmqTransport();
+        Bus = configure.UnicastBus()
+            .CreateBus()
+            .Start(() => configure.ForInstallationOn<Windows>().Install());
+        #endregion
+    }
+
 }

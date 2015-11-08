@@ -1,4 +1,3 @@
-using Messages;
 using NServiceBus;
 using System;
 
