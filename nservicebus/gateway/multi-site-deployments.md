@@ -129,6 +129,11 @@ By default, NServiceBus uses [RavenDB](/nservicebus/ravendb/) to store the IDs b
 
 When you enable the gateway, it automatically sets up an HTTP channel to listen to `http://localhost/{name of your endpoint}`. To change this URL or add more than one incoming channel, configure `app.config`, as shown:
 
+#### Using App.Config
+
+<!-- import GatewayChannelsAppConfig -->
+
+If you prefer to specify this physical routing in code:
 
 #### Using a IConfigurationProvider
 
@@ -143,10 +148,6 @@ Then at configuration time:
 
 <!-- import UseCustomConfigurationSourceForGatewayChannelsConfig -->
 
-
-#### Using App.Config
-
-<!-- import GatewayChannelsAppConfig -->
 
 The `Default` on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels. 
 
