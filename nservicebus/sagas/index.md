@@ -49,11 +49,16 @@ The important part of a long-running process is its behavior. Just like regular 
 
 ## Starting a saga
 
-Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Since sagas in essence is a message driven state machine they are started by the arrival of one or more message types. In our previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives you would declare that by adding `IAmStartedByMessages<StartOrder>` to your saga. 
+Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sagas are, in essence, a message driven state machine. The trigger to started this state machine is the arrival of one or more specified message types. In our previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives you would declare that by adding `IAmStartedByMessages<StartOrder>` to your saga. 
 
-Please note that `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that. This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it if there isn't already an existing saga that correlates to the message. In essence the semantics of `IAmStartedByMessages` is "create a new instance if a existing one can't be found".
+NOTE: `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that. 
+
+This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it if there isn't already an existing saga that correlates to the message. In essence the semantics of `IAmStartedByMessages` is:
+
+> Create a new instance if a existing one can't be found
 
 NOTE: As of Version 6 NServiceBus will require each saga to have at least one message that is able to start it.
+
 
 ## Correlating messages to a saga
 
@@ -80,9 +85,11 @@ A common usage of sagas is to have them send out a request message to get some w
 
 NOTE: A caveat of this feature is that it currently doesn't support auto correlation between sagas. So if the request is handled by a another saga you must add relevant message properties and map them to the requesting saga using the syntax described above.
 
+
 ### Custom saga finder
 
 Should you need full control over how a message is correlated to a saga you can create a custom [saga finder](/nservicebus/sagas/saga-finding.md).
+
 
 ## Uniqueness
 
@@ -144,9 +151,9 @@ The usual way is to correlate on some kind of ID and let the user tell you how t
 
 Sagas manage state of potentially long-running business processes. When we want to access the current state of a business process we may feel the urge to query the saga data directly. It can be done, but we recommend against it. While this can be appropriate for very simple administrative or support functionality, we don't recommend it as a general-purpose approach for these reasons:
 
-* The way a given persistence chooses to store the saga data is an implementation detail to the specific persistence that can potentially change over time. By directly querying for the saga data you are coupling that query to this implementation and risk being affected by format changes.
-* By exposing the data outside of the safeguards of the business logic in the saga you risk the data is not treated as read-only. Eventually, a component tries to bypass the saga and directly modify the data. 
-* Querying the data might require additional indexes, resources etc. which need to be managed by the component issuing the query. Those additional resources can influence saga performance.
-* The saga data may not contain all the required data. A saga handling the order process may keep track of the "payment id" and the status of the payment, but it is not interested in keeping track of the amount paid. On the other hand, for querying we may want to query the paid amount along with other data.
+ * The way a given persistence chooses to store the saga data is an implementation detail to the specific persistence that can potentially change over time. By directly querying for the saga data you are coupling that query to this implementation and risk being affected by format changes.
+ * By exposing the data outside of the safeguards of the business logic in the saga you risk the data is not treated as read-only. Eventually, a component tries to bypass the saga and directly modify the data. 
+ * Querying the data might require additional indexes, resources etc. which need to be managed by the component issuing the query. Those additional resources can influence saga performance.
+ * The saga data may not contain all the required data. A saga handling the order process may keep track of the "payment id" and the status of the payment, but it is not interested in keeping track of the amount paid. On the other hand, for querying we may want to query the paid amount along with other data.
 
 The recommended approach is for the saga to publish events, containing the required data, and have handlers that process these events and store the data in one or more read model(s) for querying purposes. It reduces coupling to the internals of the specific saga persistence, removes contention and doesn't bypass the safeguard of the existing saga logic.
