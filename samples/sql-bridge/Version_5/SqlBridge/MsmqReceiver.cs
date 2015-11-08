@@ -6,7 +6,6 @@ using NServiceBus.Satellites;
 using NServiceBus.Transports;
 using NServiceBus.Transports.Msmq;
 using NServiceBus.Unicast;
-using Shared;
 
 #region satellite
 // Implements an advanced satellite. Allows to receive messages on a different transport.
@@ -30,13 +29,13 @@ class MsmqReceiver : IAdvancedSatellite
     // input queue to the queue which will be receiving all the events from the MSMQ publishers.
     public Action<NServiceBus.Unicast.Transport.TransportReceiver> GetReceiverCustomization()
     {
-        return (tr =>
+        return tr =>
         {
             tr.Receiver = new MsmqDequeueStrategy(configure, criticalError, new MsmqUnitOfWork())
-                            {
-                                ErrorQueue = Address.Parse(ConfigErrorQueue.errorQueue)
-                            };
-        });
+            {
+                ErrorQueue = Address.Parse(ConfigErrorQueue.errorQueue)
+            };
+        };
     }
 
 
