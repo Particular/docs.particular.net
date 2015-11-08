@@ -83,12 +83,13 @@
     width: 50%;
     float: left;
     padding-right: 20px;
-    border-right: 2px solid rgb(218,222,222);
     min-width: 360px;
   }
   .block .right1 {
+    width: 50%;
     float: left;
     padding-left: 20px;
+    border-left: 2px solid rgb(218,222,222);
   }
   .block h2{
     clear: both;
@@ -124,7 +125,7 @@
   }
   .block .right1 img, .block .left2 img {
     float: left;
-    margin: 0px 13px 23px 0px;
+    margin: 0px 13px 17px 0px;
   }
   .productcolumn{
     width: 32%;
