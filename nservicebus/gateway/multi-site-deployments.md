@@ -76,6 +76,13 @@ This values (`SiteA` and `SiteB`) is the list of remote sites where you want the
 
 While you can put the URLs of the site directly in the call, we recommend that you put these settings in `app.config` so your administrators can change them should the need arise. To do this, add this config section:
 
+#### Using App.Config
+
+<!-- import GatewaySitesAppConfig -->
+
+
+If you prefer to specify this physical routing in code:
+
 #### Using a IConfigurationProvider
 
 <!-- import GatewaySitesConfigurationProvider -->
@@ -90,9 +97,6 @@ Then at configuration time:
 <!-- import UseCustomConfigurationSourceForGatewaySitesConfig -->
 
 
-#### Using App.Config
-
-<!-- import GatewaySitesAppConfig -->
 
 NServiceBus automatically sets the required headers that enable you to send messages back over the gateway using the familiar `Bus.Reply`.
 
