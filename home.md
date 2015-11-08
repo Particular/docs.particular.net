@@ -90,9 +90,6 @@
     float: left;
     padding-left: 20px;
   }
-  .block .right1 h3{
-    padding-top: 7px;
-  }
   .block h2{
     clear: both;
     font-size: 20px !important;
