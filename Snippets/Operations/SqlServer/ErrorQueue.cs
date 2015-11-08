@@ -44,7 +44,6 @@
         {
             public Guid Id;
             public string Headers;
-            public bool Recoverable;
             public byte[] Body;
         }
 
@@ -71,7 +70,7 @@
                     parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = messageToRetry.Id;
                     parameters.Add("Headers", SqlDbType.VarChar).Value = messageToRetry.Headers;
                     parameters.Add("Body", SqlDbType.VarBinary).Value = messageToRetry.Body;
-                    parameters.Add("Recoverable", SqlDbType.Bit).Value = messageToRetry.Recoverable;
+                    parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
                     command.ExecuteNonQuery();
                 }
             }
@@ -82,7 +81,6 @@
             string sql = string.Format(
                 @"DELETE FROM [{0}] 
                 OUTPUT 
-                   DELETED.Recoverable,
                    DELETED.Headers,
                    DELETED.Body
                 WHERE Id = @Id", queueName);
@@ -102,9 +100,8 @@
                         return new MessageToRetry
                         {
                             Id = messageId,
-                            Recoverable = reader.GetBoolean(0),
-                            Headers = reader.GetString(1),
-                            Body = reader.GetSqlBinary(2).Value
+                            Headers = reader.GetString(0),
+                            Body = reader.GetSqlBinary(1).Value
                         };
                     }
                 }

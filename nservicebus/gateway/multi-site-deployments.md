@@ -94,7 +94,6 @@ Then at configuration time:
 
 <!-- import GatewaySitesAppConfig -->
 
-
 NServiceBus automatically sets the required headers that enable you to send messages back over the gateway using the familiar `Bus.Reply`.
 
 NOTE: All cross-site interactions are performed internally to a service, so publish and subscribe are not supported across gateways.
