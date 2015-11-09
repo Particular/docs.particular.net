@@ -19,7 +19,7 @@ public class DefaultController : Controller
     [AllowAnonymous]
     public ActionResult Send()
     {
-        bus.Send("Samples.Mvc.Endpoint", new MyMessage());
+        bus.SendAsync("Samples.Mvc.Endpoint", new MyMessage());
         return RedirectToAction("Index", "Default");
     }
 }
