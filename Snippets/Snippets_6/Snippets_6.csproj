@@ -130,10 +130,14 @@
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="Errors\ErrorQueue\Usage.cs" />
+    <Compile Include="Errors\FirstLevel\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />
     <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
     <Compile Include="Errors\SecondLevel\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\SecondLevel\ConfigurationSource\Usage.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicy\Usage.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />
     <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
@@ -232,6 +236,9 @@
     </Content>
     <Content Include="Errors\ErrorQueue\configureErrorQueue.config.xml" />
     <Content Include="Errors\FirstLevel\flr.config.xml" />
+    <Content Include="Errors\SecondLevel\SecondLevelReties.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>

@@ -285,6 +285,8 @@
     <Compile Include="Container\Containers_Unity.cs" />
     <Compile Include="Container\Custom\MyCustomObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
     <Compile Include="Gateway\Channels\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Gateway\Channels\ConfigurationSource\Usage.cs" />
     <Compile Include="Gateway\Channels\ProvideConfiguration.cs" />
@@ -432,7 +434,7 @@
     <Compile Include="Monitoring\MessageFailedHandler.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
-    <Compile Include="Errors\SecondLevel\SecondLevelRetries\Usage.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
     <Compile Include="Container\Containers_Spring.cs" />
     <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />

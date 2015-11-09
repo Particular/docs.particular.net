@@ -31,9 +31,9 @@ Note: The configured value describes the minimum number of times a message will 
 
 ### Configuring FLR using app.config
 
-In NServiceBus version 3, this configuration was available via `MsmqTransportConfig`.
+In version 3, this configuration was available via `MsmqTransportConfig`.
 
-From version 4 onward the configuration for this mechanism is implemented in the `TransportConfig` section. For more details on `MsmqTransportConfig` and `TransportConfig` [read this article](/nservicebus/msmq/transportconfig.md).
+In version 4 and higher the configuration for this mechanism is implemented in the `TransportConfig` section. For more details on `MsmqTransportConfig` and `TransportConfig` [read this article](/nservicebus/msmq/transportconfig.md).
 
 <!-- import configureFlrViaXml -->
 
@@ -93,15 +93,33 @@ To completely disable SLR through code:
 
 ### Custom Retry Policy
 
-You can change the time between retries or the number of retries in code.
+You can apply custom retry logic based on headers or timing in code. 
 
-Here is a sample method for handling this behavior.
+
+#### Applying a custom policy
+
+<!-- import SecondLevelRetriesCustomPolicy -->
+
+
+#### Error Headers Helper
+
+A Custom Policy has access to the raw message including both the [retries handling headers](/nservicebus/messaging/headers.md#retries-handling-headers) and the [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers). Any of these headers can be used to control the reties for a message. In the below examples the following helper class will provide access to a subset of the headers.
+
+<!-- import ErrorsHeadersHelper -->
+
+
+#### Simple Policy
+
+Here is a simple retry policy that will retry 3 times with a 5 second interval.
 
 <!-- import SecondLevelRetriesCustomPolicyHandler -->
 
-To plug this into NServiceBus use the following APIs.
 
-<!-- import SecondLevelRetriesCustomPolicy -->
+#### Exception based Policy
+
+Here is a policy that extends the above with custom handling for a specific exception.
+
+<!-- import SecondLevelRetriesCustomExceptionPolicyHandler -->
 
 
 ## Total number of possible attempts

@@ -387,6 +387,8 @@
     <Compile Include="Container\Containers_StructureMap.cs" />
     <Compile Include="Container\Custom\MyObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Features\FeatureConfiguration.cs" />
     <Compile Include="Features\MyFeature.cs" />
@@ -562,7 +564,7 @@
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="SendOnly.cs" />
     <Compile Include="Serialization\XmlSerialization.cs" />
-    <Compile Include="Errors\SecondLevel\CustomPolicy\Usage.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Transports\SqlServer\NamedConnectionString.cs" />
     <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />
