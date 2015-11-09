@@ -58,6 +58,7 @@ NOTE: If a key identifier is not set then no encrypted messages can be send but 
 
 NOTE: Key identifiers are only supported since v3.3.16+, v4.7.8+, v5.0.7, 5.1.5, 5.2.9 and newer. All previous versions support decrypting messages that have encrypted fragments but no key identifier header.
 
+
 #### Key identifier naming strategy
 
 A key identifier identifies which key is used, it does not expose anything about the key itself.
@@ -85,12 +86,12 @@ If the KeyIdentifier attribute is set then this key will be used to decrypt mess
 
 #### Key format (v5+)
 
-The key format can be specfied in either *Base64* or *ASCII* format.
+The key format can be specified in either *Base64* or *ASCII* format.
 
 
 With ASCII its not possible to use the full 8bit range of a byte as its a 7bit encoding and even then some characters need to be escaped which is not done resulting in even less characters. Meaning per byte only about 100 values are used. When you use 16 byte / 128 bit keys this means only about 100^16 combinations are possible versus 256^16.
 
-NOTE: Use Base64 whenever possible, ASCII 7bit keys are ment for backwards compatibility.
+NOTE: Use Base64 whenever possible, ASCII 7bit keys are meant for backwards compatibility.
 
 
 ### Defining the encryption key
@@ -100,8 +101,7 @@ In conjunction with enabling encryption you need to configure the encryption and
 Note: The key specified must be the same in the configuration of all processes that are communicating encrypted information, both on the sending and on the receiving sides.
 
 
-
-## Key strength
+### Key strength
 
 Description        | Calculation| Combinations
 -------------------|------------|-------
@@ -116,6 +116,7 @@ Base64 32 bytes:   | 256^32     |  1.16e+77
 This means that a 16 character ASCII key is almost 100.000 times weaker then a 16 byte Base64 key.
 
 NOTE: Our advice is to use Base64 if possible and to use ASCII 32 character keys for backward compatibility and not to use ASCII 16 character keys.
+
 
 #### App.config
 
