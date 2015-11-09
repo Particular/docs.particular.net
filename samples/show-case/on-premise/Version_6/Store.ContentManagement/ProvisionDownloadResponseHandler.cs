@@ -8,12 +8,6 @@ using Store.Messages.RequestResponse;
 
 public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloadResponse>
 {
-    IBus bus;
-
-    public ProvisionDownloadResponseHandler(IBus bus)
-    {
-        this.bus = bus;
-    }
 
     Dictionary<string, string> productIdToUrlMap = new Dictionary<string, string>
         {
@@ -24,7 +18,7 @@ public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloa
             {"platform", "http://particular.net/service-platform"},
         };
 
-    public async Task Handle(ProvisionDownloadResponse message)
+    public async Task Handle(ProvisionDownloadResponse message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
@@ -33,7 +27,7 @@ public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloa
 
         Console.WriteLine("Download for Order # {0} has been provisioned, Publishing Download ready event", message.OrderNumber);
 
-        await bus.PublishAsync<DownloadIsReady>(e =>
+        await context.PublishAsync<DownloadIsReady>(e =>
         {
             e.OrderNumber = message.OrderNumber;
             e.ClientId = message.ClientId;
@@ -47,4 +41,5 @@ public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloa
 
         Console.WriteLine("Downloads for Order #{0} is ready, publishing it.", message.OrderNumber);
     }
+    
 }

@@ -18,7 +18,7 @@ public class CreateProductCommand : ICommand
     {
         return string.Format(
             "CreateProductCommand: ProductId={0}, ProductName={1}, ListPrice={2} Image (length)={3}",
-            ProductId, ProductName, ListPrice, (Image == null ? 0 : Image.Length));
+            ProductId, ProductName, ListPrice, Image == null ? 0 : Image.Length);
     }
 }
 

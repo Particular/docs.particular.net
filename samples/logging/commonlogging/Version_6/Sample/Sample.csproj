@@ -45,12 +45,11 @@
       <HintPath>..\..\..\..\..\packages\Common.Logging.Core.3.3.0\lib\net40\Common.Logging.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.CommonLogging, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.CommonLogging.2.2.0-unstable0005\lib\net451\NServiceBus.CommonLogging.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.CommonLogging">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.CommonLogging.2.2.0-unstable0007\lib\net452\NServiceBus.CommonLogging.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1008\lib\net451\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1041\lib\net451\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

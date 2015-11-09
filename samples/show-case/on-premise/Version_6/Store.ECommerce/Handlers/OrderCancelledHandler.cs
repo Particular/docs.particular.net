@@ -5,14 +5,15 @@ using Store.Messages.Events;
 
 public class OrderCancelledHandler : IHandleMessages<OrderCancelled>
 {
-    public Task Handle(OrderCancelled message)
+    public Task Handle(OrderCancelled message, IMessageHandlerContext context)
     {
-        var context = GlobalHost.ConnectionManager.GetHubContext<OrdersHub>();
+        var hubContext = GlobalHost.ConnectionManager.GetHubContext<OrdersHub>();
 
-        context.Clients.Client(message.ClientId).orderCancelled(new
+        hubContext.Clients.Client(message.ClientId).orderCancelled(new
             {
                 message.OrderNumber,
             });
         return Task.FromResult(0);
     }
+
 }

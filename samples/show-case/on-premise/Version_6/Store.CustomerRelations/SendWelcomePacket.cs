@@ -7,7 +7,7 @@ using Store.Messages.Events;
 class SendWelcomePacket : IHandleMessages<ClientBecamePreferred>
 {
 
-    public Task Handle(ClientBecamePreferred message)
+    public Task Handle(ClientBecamePreferred message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
@@ -16,4 +16,5 @@ class SendWelcomePacket : IHandleMessages<ClientBecamePreferred>
         Console.WriteLine("Handler WhenCustomerIsPreferredSendWelcomeEmail invoked for CustomerId: {0}", message.ClientId);
         return Task.FromResult(0);
     }
+
 }

@@ -10,7 +10,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
                                 IHandleMessages<CancelOrder>,
                                 IHandleTimeouts<ProcessOrderSaga.BuyersRemorseIsOver>
 {
-    public async Task Handle(SubmitOrder message)
+    public async Task Handle(SubmitOrder message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
@@ -21,18 +21,18 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
         Data.ProductIds = message.ProductIds;
         Data.ClientId = message.ClientId;
 
-        await RequestTimeoutAsync(TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
+        await RequestTimeoutAsync(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
         Console.WriteLine("Starting cool down period for order #{0}.", Data.OrderNumber);
     }
 
-    public async Task Timeout(BuyersRemorseIsOver state)
+    public async Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
             Debugger.Break();
         }
 
-        await Bus.PublishAsync<OrderAccepted>(e =>
+        await context.PublishAsync<OrderAccepted>(e =>
             {
                 e.OrderNumber = Data.OrderNumber;
                 e.ProductIds = Data.ProductIds;
@@ -44,7 +44,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
         Console.WriteLine("Cooling down period for order #{0} has elapsed.", Data.OrderNumber);
     }
 
-    public async Task Handle(CancelOrder message)
+    public async Task Handle(CancelOrder message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
@@ -53,7 +53,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
 
         MarkAsComplete();
 
-        await Bus.PublishAsync<OrderCancelled>(o =>
+        await context.PublishAsync<OrderCancelled>(o =>
             {
                 o.OrderNumber = message.OrderNumber;
                 o.ClientId = message.ClientId;
@@ -80,5 +80,5 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
     public class BuyersRemorseIsOver
     {
     }
-
+    
 }

@@ -7,14 +7,8 @@ using Store.Messages.Events;
 
 public class SubmitOrderHandler : IHandleMessages<SubmitOrder>
 {
-    IBus bus;
 
-    public SubmitOrderHandler(IBus bus)
-    {
-        this.bus = bus;
-    }
-
-    public async Task Handle(SubmitOrder message)
+    public async Task Handle(SubmitOrder message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
@@ -29,11 +23,12 @@ public class SubmitOrderHandler : IHandleMessages<SubmitOrder>
         Console.WriteLine("CreditCard Expiration Date is {0}", message.EncryptedExpirationDate);
 
         //tell the client that we received the order
-        await bus.PublishAsync<OrderPlaced>(o =>
+        await context.PublishAsync<OrderPlaced>(o =>
             {
                 o.ClientId = message.ClientId;
                 o.OrderNumber = message.OrderNumber;
                 o.ProductIds = message.ProductIds;
             });
     }
+    
 }

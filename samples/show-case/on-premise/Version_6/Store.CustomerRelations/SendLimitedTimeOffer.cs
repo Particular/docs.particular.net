@@ -6,7 +6,7 @@ using Store.Messages.Events;
 
 class SendLimitedTimeOffer : IHandleMessages<ClientBecamePreferred>
 {
-    public Task Handle(ClientBecamePreferred message)
+    public Task Handle(ClientBecamePreferred message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
