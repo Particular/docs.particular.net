@@ -49,12 +49,12 @@ Create transport message mutators by implementing the `IMutateTransportMessages`
 
 #### IMutateIncomingTransportMessages
 
-<!-- import IMutateIncomingMessages -->
+<!-- import IMutateIncomingTransportMessages -->
 
 
 #### IMutateOutgoingTransportMessages
 
-<!-- import IMutateOutgoingMessages -->
+<!-- import IMutateOutgoingTransportMessages -->
 
 
 #### IMutateTransportMessages
@@ -68,12 +68,11 @@ Mutators are **NOT** automatically registered in the container, so to have them 
 
 <!-- import MutatorRegistration -->
 
+NOTE: Mutators are non-deterministic in terms of order of execution. If you want more fine grained control over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/customizing.md).
+
 
 ## What happens if a mutator throws an exception?
 
 If a incoming throws an exception, the message aborts, rolls back to the queue, and [error handling](/nservicebus/errors/) is applied.
 
 If a outgoing mutator throws an exception, the exception bubbles up to the method performing the Send or Publish.
-
-
-NOTE: Mutators are non-deterministic in terms of order of execution. If you want more fine grained control over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/customizing.md).
