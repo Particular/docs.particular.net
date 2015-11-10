@@ -13,8 +13,12 @@ public class OrderSaga : Saga<OrderSagaData>,
 
     public override void ConfigureHowToFindSaga()
     {
-        ConfigureMapping<StartOrder>(sagaData => sagaData.OrderId, message => message.OrderId);
-        ConfigureMapping<CompleteOrder>(sagaData => sagaData.OrderId, message => message.OrderId);
+        ConfigureMapping<StartOrder>(
+            sagaData => sagaData.OrderId, 
+            message => message.OrderId);
+        ConfigureMapping<CompleteOrder>(
+            sagaData => sagaData.OrderId, 
+            message => message.OrderId);
     }
 
     public void Handle(StartOrder message)
