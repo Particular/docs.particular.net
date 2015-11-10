@@ -148,11 +148,13 @@
     <Compile Include="Handlers\MyHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
     <Compile Include="Headers\MyMessage.cs" />
+    <Compile Include="Headers\ReadSaga.cs" />
     <Compile Include="Headers\ReadHandler.cs" />
     <Compile Include="Headers\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Headers\MutateIncomingTransportMessages.cs" />
     <Compile Include="Headers\OutgoingBehavior.cs" />
     <Compile Include="Headers\IncomingBehavior.cs" />
+    <Compile Include="Headers\WriteSaga.cs" />
     <Compile Include="Headers\WriteHandler.cs" />
     <Compile Include="Headers\SomeOtherMessage.cs" />
     <Compile Include="Headers\StaticHeaders.cs" />

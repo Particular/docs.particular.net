@@ -3,9 +3,10 @@
     using System.Threading.Tasks;
     using NServiceBus;
 
-    #region header-outgoing-handler
+    #region header-outgoing-saga
 
-    public class WriteHandler : IHandleMessages<MyMessage>
+    public class WriteSaga : Saga<WriteSagaData>,
+        IHandleMessages<MyMessage>
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
@@ -21,9 +22,17 @@
             publishOptions.SetHeader("MyCustomHeader", "My custom value");
             await context.PublishAsync(new SomeOtherMessage(), publishOptions);
         }
+        #endregion
+
+        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<WriteSagaData> mapper)
+        {
+        }
     }
 
-    #endregion
 
+
+    public class WriteSagaData : ContainSagaData
+    {
+    }
 
 }

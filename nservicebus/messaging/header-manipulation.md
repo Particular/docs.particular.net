@@ -8,6 +8,10 @@ redirects:
 related:
 - samples/header-manipulation
 - nservicebus/messaging/headers
+- nservicebus/pipeline/message-mutators
+- nservicebus/pipeline/customizing
+- nservicebus/handlers
+- nservicebus/sagas
 ---
 
 The mechanism for [header communication](/nservicebus/messaging/headers.md). is either native headers, if the transport supports that feature, or via a serialized collection of key value pairs. This article covers the various ways of manipulating the message headers.
@@ -33,6 +37,11 @@ Headers can be read for an incoming message.
 <!-- import header-incoming-handler -->
 
 
+### From a Saga
+
+<!-- import header-incoming-saga-->
+
+
 ## Writing outgoing Headers
 
 Headers can be written for an outgoing message.
@@ -51,6 +60,11 @@ Headers can be written for an outgoing message.
 ### From a Handler
 
 <!-- import header-outgoing-handler -->
+
+
+### From a Saga
+
+<!-- import header-outgoing-saga -->
 
 
 ### For all outgoing messages
