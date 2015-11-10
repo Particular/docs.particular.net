@@ -97,7 +97,7 @@ class ProductionEmailBehavior : IHandleProfile<NServiceBus.Production>
 }
 ```
 
-With these classes, switching profiles doesn't only change NServiceBus behaviors but also your own applicative behaviors as a consistent set. There is no worry about keeping different parts of a configuration file in sync or changing the configuration file your application uses.
+With these classes, switching profiles doesn't only change NServiceBus behaviors but also your own behaviors as a consistent set. There is no worry about keeping different parts of a configuration file in sync or changing the configuration file your application uses.
 You can also have multiple classes provide behaviors for the same profile, or you can have a single class handle multiple profiles (by implementing `IHandleProfile<T>` for each profile type) if you want identical behavior across profiles.
 
 ## Dependent profile behaviors

@@ -123,7 +123,7 @@ To communicate status in our ongoing example:
 
 <!-- import saga-with-reply -->
 
-This is one of the methods on the saga base class that would be very difficult to implement yourself without tying your applicative saga code to low-level parts of the NServiceBus infrastructure.
+This is one of the methods on the saga base class that would be very difficult to implement yourself without tying your saga code to low-level parts of the NServiceBus infrastructure.
 
 
 ## Configuring Saga persistence
