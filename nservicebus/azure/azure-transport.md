@@ -25,7 +25,7 @@ As part of the Azure support for NServiceBus, you can choose between two options
 -   Azure Storage Queues
 -   Azure Service Bus
 
-Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits your application's needs, review the MSDN article "[Azure Queues and Azure Service Bus Queues - Compared and Contrasted](https://msdn.microsoft.com/library/azure/hh767287.aspx)".
+Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits your application's needs, review the Azure article "[Azure Queues and Azure Service Bus Queues - Compared and Contrasted](https://azure.microsoft.com/en-us/documentation/articles/service-bus-azure-and-service-bus-queues-compared-contrasted/)".
 
 
 ## Prerequisites
