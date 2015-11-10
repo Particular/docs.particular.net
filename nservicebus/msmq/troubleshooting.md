@@ -54,3 +54,21 @@ The cause of this exception is that the MSMQ has run out of space for holding on
 WARNING: On production servers uninstalling MSMQ will delete all queues and messages, which may contain business data. Do not attempt uninstalling MSMQ unless message loss is acceptable.
 
 You can find more details about this exception in [this blog post](http://blogs.msdn.com/b/johnbreakwell/archive/2006/09/18/insufficient-resources-run-away-run-away.aspx).
+
+
+## Virtual Private Networks (VPN)
+
+MSMQ isn't smart enough to dynamically detect network interfaces. If you connect a VPN after the MSMQ service starts, you have to restart the MSMQ service for it to detect the VPN. Once it starts with the interface, the VPN is free to disconnect/reconnect whenever it wants.
+
+It is recommended to have batch setup scripts that run on server startups to connect the VPN, which then restarts the MSMQ service automatically.
+
+
+## Useful links
+
+-   [MSMQ on Windows Server 2008](https://technet.microsoft.com/en-gb/library/cc753070%28WS.10%29.aspx)
+-   [List of MSMQ articles](http://blogs.msdn.com/b/johnbreakwell/)
+-   [Changing the MSMQ Storage location](http://blogs.msdn.com/b/johnbreakwell/archive/2009/02/09/changing-the-msmq-storage-location.aspx) 
+-   [Technet content for troubleshooting MSMQ on Windows 2008](http://blogs.msdn.com/b/johnbreakwell/archive/2008/05/07/technet-content-for-troubleshooting-msmq-on-windows-2008-and-vista.aspx)
+-   [Publicly available tools for troubleshooting MSMQ problems](http://blogs.msdn.com/b/johnbreakwell/archive/2007/12/13/what-publically-available-tools-are-available-for-troubleshooting-msmq-problems.aspx)
+-   [MSMQ service might not send or receive messages after you restart](https://support.microsoft.com/en-us/kb/2554746)
+-   [Troubleshooting MSDTC issues with the DTCPing tool](http://blogs.msdn.com/b/distributedservices/archive/2008/11/12/troubleshooting-msdtc-issues-with-the-dtcping-tool.aspx)

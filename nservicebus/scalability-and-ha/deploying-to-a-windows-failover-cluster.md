@@ -11,11 +11,13 @@ redirects:
 
 NServiceBus is designed for scalability and reliability, but to take advantage of these features, you need to deploy it in a Windows Failover Cluster. Unfortunately, information on how to do this effectively is, as yet, incomplete and scattered. This article describes the process for deploying NServiceBus in a failover cluster. This article does not cover the generic setup of a failover cluster. There are other, better resources for that, such as [Creating a Cluster in Windows Server 2008](http://blogs.msdn.com/b/clustering/archive/2008/01/18/7151154.aspx) or [Server 2012](https://technet.microsoft.com/en-us/library/dn505754.aspx). The focus here is the setup related to NServiceBus.
 
+
 ## Planning your infrastructure
 
 A simple setup for scalability and reliability includes at least two servers in a failover cluster. The failover cluster servers run a distributor process with a timeout manager for each logical message queue.
 
 In addition you have one or more additional servers called worker nodes. These contain endpoints with your message handlers and they are the servers you add more of when you need to scale out. The endpoints on worker nodes request work from the clustered distributors, do the work, and then ask for more.
+
 
 ## Setting up the clustered service
 
@@ -63,6 +65,7 @@ Go to MSMQ by expanding Services and Applications - Message Queuing.
 Keep in mind that this only seems to work if you're viewing Failover Cluster Management from the server where the MSMQ Network Name currently resides. If you are on Server A and you try to manage MSMQ on a MSMQ Network residing on Server B, you won't see Message Queuing in the Computer Management window.
 
 Try swapping the MSMQ Network Name back and forth between nodes a few times. It's best to make sure that everything is working properly now before continuing.
+
 
 ## More about MSMQ Network Name
 
@@ -125,7 +128,9 @@ Now, add each distributor to the cluster:
 
 Again, try swapping the cluster back and forth, to make sure it can move freely between the cluster nodes.
 
+
 ## Setting up the workers
+
 The first thing you should do is to make sure that the worker servers have [unqiue QMIds](distributor/#worker-qmid-needs-to-be-unique).
 
 Set up your worker processes on all worker servers (not the cluster nodes!) as services, as you did for the distributors. But instead of using NServiceBus.Distributor, use NServiceBus.Worker profile instead.
