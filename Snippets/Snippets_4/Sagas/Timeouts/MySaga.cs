@@ -13,7 +13,7 @@
     {
         public override void ConfigureHowToFindSaga()
         {
-            ConfigureMapping<Message2>(m => m.SomeID)
+            ConfigureMapping<Message2>(message => message.SomeID)
                 .ToSaga(sagaData => sagaData.SomeID);
         }
 

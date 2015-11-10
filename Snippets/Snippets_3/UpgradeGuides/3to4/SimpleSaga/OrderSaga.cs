@@ -11,7 +11,7 @@
     {
         public override void ConfigureHowToFindSaga()
         {
-            ConfigureMapping<CompleteOrder>(s => s.OrderId, m => m.OrderId);
+            ConfigureMapping<CompleteOrder>(sagaData => sagaData.OrderId, message => message.OrderId);
         }
 
         public void Handle(StartOrder message)

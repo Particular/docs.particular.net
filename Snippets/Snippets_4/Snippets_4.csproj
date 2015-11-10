@@ -379,6 +379,10 @@
     <Compile Include="Pipeline\NewStep\NewPipelineStep.cs" />
     <Compile Include="Pipeline\Replace\ReplacePipelineBehavior.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
+    <Compile Include="Sagas\Reply\AlmostDoneMessage.cs" />
+    <Compile Include="Sagas\Reply\MySaga.cs" />
+    <Compile Include="Sagas\Reply\MySagaData.cs" />
+    <Compile Include="Sagas\Reply\StartMessage.cs" />
     <Compile Include="Serialization\BsonSerialization.cs" />
     <Compile Include="Serialization\BinarySerialization.cs" />
     <Compile Include="Serialization\JsonSerialization.cs" />
