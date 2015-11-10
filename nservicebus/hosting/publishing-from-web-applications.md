@@ -1,5 +1,5 @@
 ---
-title: Publishing Events from Web Applications
+title: Publishing from Web Applications
 summary: "Guidance on why you should or should not publish events from a web application"
 tags:
 - azure
