@@ -31,9 +31,9 @@ Note: The configured value describes the minimum number of times a message will 
 
 ### Configuring FLR using app.config
 
-In version 3, this configuration was available via `MsmqTransportConfig`.
+In version 3 this configuration was available via `MsmqTransportConfig`.
 
-In version 4 and higher the configuration for this mechanism is implemented in the `TransportConfig` section. For more details on `MsmqTransportConfig` and `TransportConfig` [read this article](/nservicebus/msmq/transportconfig.md).
+In version 4 and higher the configuration for this mechanism is implemented in the `TransportConfig` section.
 
 <!-- import configureFlrViaXml -->
 
@@ -58,7 +58,7 @@ SLR then picks up the message and defers it, by default first for 10 seconds, th
 
 For example, if there is a call to an web service in your handler, but the service goes down for five seconds just at that time. Without SLR, the message is retried instantly and sent to the error queue. With SLR, the message is instantly retried, deferred for 10 seconds, and then retried again. This way, when the Web Service is available the message is processed just fine.
 
-SLR can be configured either via code or through `app.config`.
+SLR can be configured in several ways.
 
 
 ### Configuring SLR using app.config

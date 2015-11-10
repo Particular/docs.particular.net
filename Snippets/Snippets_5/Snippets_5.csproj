@@ -326,9 +326,6 @@
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Transports\Mqmq\TransportConfig.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Audit\Audit.config.xml">
       <SubType>Designer</SubType>
     </Content>

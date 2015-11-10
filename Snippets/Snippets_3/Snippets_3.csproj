@@ -176,7 +176,6 @@
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Transports\Msmq\MsmqTransportConfig.config.xml" />
     <Content Include="Transports\Msmq\MessageQueueConfiguration.config.xml">
       <SubType>Designer</SubType>
     </Content>

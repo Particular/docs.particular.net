@@ -248,9 +248,6 @@
     <Content Include="Persistence\NHibernate\nhibernate.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Transports\Msmq\TransportConfig.config.xml">
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="Transports\Msmq\MessageQueue.config.xml">
       <SubType>Designer</SubType>
     </Content>

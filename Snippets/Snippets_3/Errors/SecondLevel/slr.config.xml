@@ -4,7 +4,7 @@
   <configSections>
     <section name="SecondLevelRetriesConfig"
              type="NServiceBus.Config.SecondLevelRetriesConfig, NServiceBus.Core"/>
-    </configSections>
+  </configSections>
   <SecondLevelRetriesConfig Enabled="true" 
                             TimeIncrease="00:00:10" 
                             NumberOfRetries="3" />

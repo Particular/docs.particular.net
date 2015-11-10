@@ -53,22 +53,3 @@ WARNING: This feature was added in Version 6 and can be used to communicate with
 Often when debugging MSMQ using [native tools](viewing-message-content-in-msmq.md) it is helpful to have some custom text in the MSMQ Label. For example the message type or the message id. As of version 6 the text used to apply to [Message.Label](https://msdn.microsoft.com/en-us/library/vstudio/system.messaging.message.label.aspx) can be controlled at configuration time using the `ApplyLabelToMessages` extension method. This method takes a delegate which will be passed the header collection and should return a string to use for the label. It will be called for all standard messages as well as Audits, Errors and all control messages. The only exception to this rule is received messages with corrupted headers. In some cases it may be useful to use the `Headers.ControlMessageHeader` key to determine if a message is a control message.  These messages will be forwarded to the error queue with no label applied. The returned string can be `String.Empty` for no label and must be at most 240 characters.
 
 <!-- import ApplyLabelToMessages -->
-
-
-### Failure handling & throttling
-
-NServiceBus is designed in such a way that a user does not have to care about exception handling. All the heavy lifting is done by the framework via a [two-level retries mechanism](/nservicebus/errors/).
-
-From version 4 onwards the configuration for this mechanism is implemented in the `TransportConfig` section. 
-
-<!-- import TransportConfig -->
-
- * `MaximumMessageThroughputPerSecond` (default: `0`) sets a limit on how quickly messages can be processed between all threads. Use a value of 0 to have no throughput limit.
- * `MaximumConcurrencyLevel` defines the maximum number of threads concurrently processing messages at any given point in time
- * `MaxRetries` (default: `5`) defines how many times a message is tried to be processed before is is moved to the *error queue* or passed to the [Second-Level Retries, SLR](/nservicebus/errors/automatic-retries.md) mechanism.
- * `ErrorQueue` (default: `error`) sets the name of the queue where poison messages are sent to (including messages that failed *MaxRerties* number of times with SLR disabled and messages which cannot be processed at all, e.g. having unparsable or missing headers)
-
-In version 3 some of these setting were available via `MsqmTransportConfig` section with following 
-
- * In version 3 the `ErrorQueue` (the queue where messages that fail a configured number of times) settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
- * In version 3 the `MaxRetries` as well as the throttling  (`NumberOfWorkerThreads`) settings can be set only via `MsmqTransportConfig` section.
