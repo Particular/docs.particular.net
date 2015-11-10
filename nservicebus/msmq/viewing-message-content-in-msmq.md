@@ -1,5 +1,5 @@
 ---
-title: Viewing message content in MSMQ
+title: Viewing MSMQ content
 summary: See queues and message contents
 tags: []
 redirects:
