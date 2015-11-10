@@ -4,7 +4,7 @@ summary: This sample shows how to host in your own process an instance of NServi
 tags:
 - Hosting
 related:
-- nservicebus/hosting/self-hosting
+- nservicebus/hosting
 ---
 
 ## Code walk-through

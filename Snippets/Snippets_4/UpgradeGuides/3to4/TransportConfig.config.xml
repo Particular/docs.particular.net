@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode 3to4TransportConfig -->
+<configuration>
+  <configSections>
+    <section name="TransportConfig" 
+             type="NServiceBus.Config.TransportConfig, NServiceBus.Core"/>
+  </configSections>
+  <TransportConfig MaximumConcurrencyLevel="5" 
+                   MaxRetries="2" 
+                   MaximumMessageThroughputPerSecond="0"/>
+</configuration>
+<!--endcode -->

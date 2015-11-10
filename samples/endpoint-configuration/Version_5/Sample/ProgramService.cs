@@ -59,7 +59,7 @@ class ProgramService : ServiceBase
         #endregion
 
         #region endpoint-name
-        busConfiguration.EndpointName("Sample.FirstEndpoint");
+        busConfiguration.EndpointName("Samples.FirstEndpoint");
         #endregion
 
         #region container
@@ -95,7 +95,8 @@ class ProgramService : ServiceBase
             logger.Fatal(string.Format("CRITICAL: {0}", errorMessage), exception);
 
             // Kill the process on a critical error
-            Environment.FailFast(string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage), exception);
+            string output = string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage);
+            Environment.FailFast(output, exception);
         });
         #endregion
 

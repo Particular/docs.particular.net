@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -22,6 +22,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,9 +41,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.5.2.0\lib\net45\NServiceBus.Core.dll</HintPath>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\..\..\..\packages\NServiceBus.5.2.9\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -70,10 +71,4 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <StartAction>Program</StartAction>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <Prefer32Bit>false</Prefer32Bit>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-  </PropertyGroup>
 </Project>

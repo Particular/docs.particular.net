@@ -4,17 +4,21 @@ summary: NServiceBus enables durable fire-and-forget messaging across physically
 tags: []
 redirects:
  - nservicebus/introduction-to-the-gateway
+related:
+ - samples/gateway
 ---
 
 The purpose of the gateway is to allow you to do the same durable fire-and-forget messaging that you are accustomed to with NServiceBus across physically separated sites, where "sites " are locations where you run IT infrastructure and not web sites.
 
-The gateway only comes into play where you can't use the regular queued transports for communication i.e. when setting up a VPN-connection is not an option. The reason for not using a VPN could be security concerns, bandwidth limitation, latency problems, high availability constraints, etc.
+The gateway only comes into play where you can't use the regular queued transports for communication i.e. when setting up a VPN connection is not an option. The reason for not using a VPN could be security concerns, bandwidth limitation, latency problems, high availability constraints, etc.
+
 
 ## When not to use the gateway
 
 The gateway should not be used when the reason for running separate sites is disaster recovery. Under those circumstances all your sites are exact replicas and are not logically different from each other, so you're better off using whatever support your infrastructure provides to keep your sites in sync. Examples are SAN snapshots, SQL server log shipping, and RavenDB replication.
 
 So if your sites are logically similar, use one of the approaches above; if they are logically different, the gateway may come in handy.
+
 
 ## What are logically different sites?
 
@@ -39,21 +43,10 @@ Going across sites usually means radically different transport characteristics l
 
 RPC completely hides the fact that you are now going out of your data center and will meet all the fallacies of distributed computing head on.
 
+
 ## Using the gateway
 
-In order to send message to other sites you need to call the `IBus.SendToSites` method shown below.
-
-```C#
-/// <summary>
-/// Sends the messages to all sites with matching 
-/// site keys registered with the gateway.
-/// The gateway is assumed to be located at the master node. 
-/// </summary>
-/// <param name="siteKeys"></param>
-/// <param name="messages"></param>
-/// <returns></returns>
-ICallback SendToSites(IEnumerable<string> siteKeys, params object[] messages);
-```
+In order to send message to other sites you need to call the `IBus.SendToSites`.
 
 This allows you to pass in a list of sites to where you want to send your messages. You can configure each site with a different transport mechanism. Currently the supported channels are HTTP/HTTPS but you can easily extend the gateway with your own implementation.
 
@@ -71,13 +64,15 @@ A gateway runs inside each host process. The gateway gets its input from a regul
 - Included in every endpoint
 - Easily extensible with other channels
 
+
 ### Configuring the gateway
 
-In Version 5 the gateway is provided by the `NServiceBus.Gateway` NuGet. In Version 3 and v4 the gateway is included in the core assembly, meaning that every endpoint is capable of running a gateway.
+In version 5 the gateway is provided by the `NServiceBus.Gateway` NuGet. In version  3 and version 4 the gateway is included in the core assembly, meaning that every endpoint is capable of running a gateway.
 
 To turn on the gateway, add the following to your configuration:
 
 <!-- import GatewayConfiguration -->
+
 
 ## Key messages
 

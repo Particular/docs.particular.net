@@ -20,8 +20,9 @@ The inject property values you could do the following:
 
 At construction time both `SmtpAddress` and `SmtpPort` will be injected.
 
+
 ## A Handler/Saga specific API
 
-From v5.2 and above a new, more explicit, API has been introduced that specifically targets Handlers and Sagas.
+From version 5.2 and above a new, more explicit, API has been introduced that specifically targets Handlers and Sagas.
 
 <!-- import ConfigurePropertyInjectionForHandler --> 

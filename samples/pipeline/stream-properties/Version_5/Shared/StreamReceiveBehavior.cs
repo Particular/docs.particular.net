@@ -5,6 +5,7 @@ using System.Reflection;
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
+#region ReceiveBehaviorDefinition
 class StreamReceiveBehavior : IBehavior<IncomingContext>
 {
     string location;
@@ -16,6 +17,7 @@ class StreamReceiveBehavior : IBehavior<IncomingContext>
 
     public void Invoke(IncomingContext context, Action next)
     {
+#endregion
         #region write-stream-properties-back
         object message = context.IncomingLogicalMessage.Instance;
         List<FileStream> streamsToCleanUp = new List<FileStream>();

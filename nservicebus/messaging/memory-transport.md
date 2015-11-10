@@ -8,9 +8,10 @@ redirects:
 
 NOTE: Bus.InMemory feature has been deprecated starting from version 4.6 and removed in version 5.0
 
-Prior to V4.0, NServiceBus provided an asynchronous method of communication between parts of the system using `Send`, `Reply`, and `Publish` API. Asynchronous forms of communication are great for ensuring reliable and durable communication between parts of the system. NServiceBus V4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.
+Prior to version 4.0, NServiceBus provided an asynchronous method of communication between parts of the system using `Send`, `Reply`, and `Publish` API. Asynchronous forms of communication are great for ensuring reliable and durable communication between parts of the system. NServiceBus version 4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.
 
-This is the same concept as for the [domain events pattern](http://www.udidahan.com/2009/06/14/domain-events-salvation/).
+This is the same concept as for the [domain events pattern](http://udidahan.com/2009/06/14/domain-events-salvation/).
+
 
 ## Events
 
@@ -19,13 +20,15 @@ In the OO world, nouns identify objects. In the event-driven world, the word "wh
 
 In .NET 4.0, to define an event, use the event keyword in the signature of your event field, and specify the type of delegate for the event and its arguments. For example:
 
-### Define an event:
+
+### Define an event
     
 ```C#
 public event EventHandler<ClientBecamePreferredEventArgs> RaiseClientBecamePreferredEvent;
 ```
 
-### Define the event arguments:
+
+### Define the event arguments
     
 ```C#
 public class ClientBecamePreferredArgs : EventArgs
@@ -35,7 +38,8 @@ public class ClientBecamePreferredArgs : EventArgs
 
 ```
 
-### Raise the event:
+
+### Raise the event
     
 ```C#
 public void DoSomething()
@@ -55,11 +59,13 @@ protected virtual void OnRaiseClientBecamePreferredEvent(ClientBecamePrefferedEv
 }
 ```
 
+
 ## In-memory events
 
 In-memory events are like regular .NET events in that all observing objects that have registered interest are called synchronously. They are implemented in the same fashion as the rest of the bus events. In-memory events can be useful if a few things must be handled synchronously when a certain business event has occurred. Define them as IEvent or POCOs, and use the conventions in the same way as before.
 
 For example:
+
 
 ### Event defined using the IEvent marker interface
 
@@ -69,6 +75,7 @@ public class ClientBecamePreferred : IEvent
   // message details go here.
 }
 ```
+
 
 ### POCO Event
 
@@ -80,6 +87,7 @@ public class ClientBecamePreferred
 ```
 
 Read how to tell NServiceBus to [use the POCOs as events](/nservicebus/messaging/unobtrusive-mode.md).
+
 
 ### How to raise an in-memory event?
 
@@ -101,6 +109,7 @@ class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
 }
 ```
 
+
 ### How to subscribe to in-memory events?
 
 To subscribe to these events, implement a class that implements `IHandleMessages<T>`. The handlers are invoked when the event is raised:
@@ -116,7 +125,7 @@ private class CustomerBecamePreferredHandler: IHandleMessages<ClientBecamePrefer
 ```
 
 
-### How is an in-memory event different from `Bus.Publish<T>`?
+### How is an in-memory event different from Bus.Publish<T>?
 
 
 When an event is published via Bus.Publish, a message is delivered asynchronously to all of the subscribers via the queue/transport of your choice, taking into account all the messaging constraints such as the receiving party could be down. Subscribers of this event can be in different machines or different endpoints on the same machine.
@@ -130,6 +139,7 @@ Examples:
 
 -   Where reliable and durable integration is needed; for example, when integrating with third-party web services.
 -   Sending an email, because the email should be sent only when the transaction succeeds in its entirety. To send emails directly, use `Bus.Send` in the handler instead of SMTP code.
+
 
 ## NServiceBus eventing style 
 

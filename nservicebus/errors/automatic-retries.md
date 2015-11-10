@@ -2,7 +2,7 @@
 title: Automatic Retries
 summary: With retries, the message causing the exception is instantly retried configured number of times before forwarding to the error queue.
 tags:
-- Second Level Retry 
+- Second Level Retry
 - Error Handling
 - Exceptions
 - Automatic retries
@@ -12,12 +12,12 @@ related:
 - samples/faulttolerance
 ---
 
-Sometimes processing of a message can fail. This could be due to a transient problem like a deadlock in the database, in which case retrying the message a few times might overcome this problem. Or, if the problem is more protracted, like a third party web service going down or a database being unavailable, where it might be useful to wait a little longer before retrying the message again. 
+Sometimes processing of a message can fail. This could be due to a transient problem like a deadlock in the database, in which case retrying the message a few times might overcome this problem. Or, if the problem is more protracted, like a third party web service going down or a database being unavailable, where it might be useful to wait a little longer before retrying the message again.
 
-For situations like these, NServiceBus offers two levels of retries: 
+For situations like these, NServiceBus offers two levels of retries:
 
 - First Level Retry(FLR) is for the transient errors where quick successive retries could solve the problem.
-- Second Level Retry(SLR) is when a small delay is needed between retries. 
+- Second Level Retry(SLR) is when a small delay is needed between retries.
 
 NOTE: When a message cannot be deserialized, it will bypass all retry mechanisms both the FLR and SLR and the message will be moved directly to the error queue.
 
@@ -26,12 +26,14 @@ NOTE: When a message cannot be deserialized, it will bypass all retry mechanisms
 
 NServiceBus automatically retries the message when an exception is thrown during message processing up to five successive times by default. This value can be configured through `app.config` or code.
 
+Note: The configured value describes the minimum number of times a message will be retried. Especially in environments with competing consumers on the same queue there is an increased chance of retrying a failing message more often across the endpoints.
+
 
 ### Configuring FLR using app.config
 
-In NServiceBus V3, this configuration was available via `MsmqTransportConfig`.
+In version 3 this configuration was available via `MsmqTransportConfig`.
 
-From V4 onward the configuration for this mechanism is implemented in the `TransportConfig` section. For more details on `MsmqTransportConfig` and `TransportConfig` [read this article](/nservicebus/msmq/transportconfig.md).
+In version 4 and higher the configuration for this mechanism is implemented in the `TransportConfig` section.
 
 <!-- import configureFlrViaXml -->
 
@@ -56,7 +58,7 @@ SLR then picks up the message and defers it, by default first for 10 seconds, th
 
 For example, if there is a call to an web service in your handler, but the service goes down for five seconds just at that time. Without SLR, the message is retried instantly and sent to the error queue. With SLR, the message is instantly retried, deferred for 10 seconds, and then retried again. This way, when the Web Service is available the message is processed just fine.
 
-SLR can be configured either via code or through `app.config`.
+SLR can be configured in several ways.
 
 
 ### Configuring SLR using app.config
@@ -75,21 +77,80 @@ To configure SLR, enable its configuration section:
 <!-- import SlrProvideConfiguration -->
 
 
-### Configuring FLR through ConfigurationSource
+### Configuring SLR through ConfigurationSource
 
 <!-- import SlrConfigurationSource -->
 
 <!-- import SLRConfigurationSourceUsage -->
 
 
+### Disabling SLR through code
+
+To completely disable SLR through code:
+
+<!-- import DisableSlrWithCode -->
+
+
 ### Custom Retry Policy
 
-You can change the time between retries or the number of retries in code.
+You can apply custom retry logic based on headers or timing in code. 
 
-Here is a sample method for handling this behavior.
+
+#### Applying a custom policy
+
+<!-- import SecondLevelRetriesCustomPolicy -->
+
+
+#### Error Headers Helper
+
+A Custom Policy has access to the raw message including both the [retries handling headers](/nservicebus/messaging/headers.md#retries-handling-headers) and the [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers). Any of these headers can be used to control the reties for a message. In the below examples the following helper class will provide access to a subset of the headers.
+
+<!-- import ErrorsHeadersHelper -->
+
+
+#### Simple Policy
+
+Here is a simple retry policy that will retry 3 times with a 5 second interval.
 
 <!-- import SecondLevelRetriesCustomPolicyHandler -->
 
-To plug this into NServiceBus use the following APIs.
 
-<!-- import SecondLevelRetriesCustomPolicy -->
+#### Exception based Policy
+
+Here is a policy that extends the above with custom handling for a specific exception.
+
+<!-- import SecondLevelRetriesCustomExceptionPolicyHandler -->
+
+
+## Total number of possible attempts
+
+The total number of possible attempts can be calculated with the below formula
+
+    Total Attempts = (FLR:MaxRetries) * (SLR:NumberOfRetries + 1)
+
+So for example given a variety of FLR and SLR here are the resultant possible attempts.
+
+| FLR:MaxRetries | SLR:NumberOfRetries | Total possible attempts |
+|----------------|---------------------|-------------------------|
+| 1              | 1                   | 2                       |
+| 1              | 2                   | 3                       |
+| 1              | 3                   | 4                       |
+| 2              | 1                   | 4                       |
+| 3              | 1                   | 6                       |
+| 2              | 2                   | 6                       |
+
+
+## Retry Logging
+
+Given the following configuration:
+
+ * FLR `MaxRetries`: 3
+ * SLR `NumberOfRetries`: 2
+
+And a Handler that both throws and exception and logs the current count of attempts:
+
+Then the resultant output in the log will be:
+
+<!-- import RetryLogging -->
+
+Note that in some cases a log entry contains the exception (`Exception included`) and in some cases it is omitted (`Exception omitted`)

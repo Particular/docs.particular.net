@@ -3,14 +3,14 @@ using NServiceBus;
 
 public class MessageHandler :
     IHandleMessages<MessageWithJson>,
-    IHandleMessages<MessageWithBinary>
+    IHandleMessages<MessageWithXml>
 {
     public void Handle(MessageWithJson message)
     {
         Console.WriteLine("Received JSON message with property '{0}'", message.SomeProperty);
     }
-    public void Handle(MessageWithBinary message)
+    public void Handle(MessageWithXml message)
     {
-        Console.WriteLine("Received Binary message with property '{0}'", message.SomeProperty);
+        Console.WriteLine("Received Xml message with property '{0}'", message.SomeProperty);
     }
 }

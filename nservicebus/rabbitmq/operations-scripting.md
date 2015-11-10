@@ -12,6 +12,27 @@ These samples use the [RabbitMQ.Client](http://www.nuget.org/packages/RabbitMQ.C
 Since RabbitMQ.Client is not [CLS Compliant](https://msdn.microsoft.com/en-us/library/system.clscompliantattribute.aspx) it is not possible to run this code within PowerShell.
 
 
+## Native Send
+
+
+### The native send helper methods
+
+The following code shows an example of how to perform the following actions
+
+ * create and serialize headers.
+ * write a message body directly to RabbitMQ.
+
+
+#### In C&#35;
+
+<!-- import rabbit-nativesend -->
+
+
+### Using the native send helper methods
+
+<!-- import rabbit-nativesend-usage -->
+
+
 ## Return message to source queue 
 
 

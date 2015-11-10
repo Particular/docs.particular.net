@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -38,9 +38,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.5.2.0\lib\net45\NServiceBus.Core.dll</HintPath>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\..\..\..\packages\NServiceBus.5.2.9\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -48,13 +47,17 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="MyMessage.cs" />
     <Compile Include="MyMessageHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj">
+      <Project>{87ADE927-38CB-453E-9C9D-2B69CF248A60}</Project>
+      <Name>Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

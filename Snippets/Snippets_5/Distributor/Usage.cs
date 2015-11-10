@@ -1,6 +1,8 @@
 ﻿namespace Snippets5.Distributor
 {
     using NServiceBus;
+    using NServiceBus.Configuration.AdvanceExtensibility;
+    using NServiceBus.Distributor.MSMQ;
 
     class Usage
     {
@@ -24,12 +26,34 @@
 
             #endregion
         }
+
         public void ConfiguringWorker()
         {
             #region ConfiguringWorker
 
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EnlistWithMSMQDistributor();
+
+            #endregion
+        }
+
+        public void IsEnabled()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
+
+            #region IsDistributorEnabled
+
+            bool isDistributorEnabled = busConfiguration
+                .GetSettings()
+                .GetOrDefault<bool>(typeof(Distributor).FullName);
+
+            #endregion
+
+            #region IsWorkerEnabled
+
+            bool isWorkerEnabled = busConfiguration
+                .GetSettings()
+                .GetOrDefault<bool>(typeof(WorkerNode).FullName);
 
             #endregion
         }

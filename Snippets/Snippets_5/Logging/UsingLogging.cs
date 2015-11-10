@@ -6,13 +6,13 @@
 
     public class ClassUsingLogging
     {
+        static ILog logger = LogManager.GetLogger<ClassUsingLogging>();
+
         public void SomeMethod()
         {
             //your code
-            Logger.Debug("Something interesting happened.");
+            logger.Debug("Something interesting happened.");
         }
-
-        static ILog Logger = LogManager.GetLogger(typeof(ClassUsingLogging));
     }
 
     #endregion

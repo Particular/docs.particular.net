@@ -1,5 +1,6 @@
 ﻿namespace Snippets4.Persistence.NHibernate
 {
+    using System;
     using global::NHibernate.Cfg;
     using NServiceBus;
 
@@ -9,11 +10,11 @@
         {
             #region ConfiguringNHibernate
 
-            Configure.With()
-                .UseNHibernateSubscriptionPersister()
-                .UseNHibernateTimeoutPersister()
-                .UseNHibernateSagaPersister()
-                .UseNHibernateGatewayPersister();
+            Configure configure = Configure.With();
+            configure.UseNHibernateSubscriptionPersister();
+            configure.UseNHibernateTimeoutPersister();
+            configure.UseNHibernateSagaPersister();
+            configure.UseNHibernateGatewayPersister();
 
             #endregion
         }
@@ -25,14 +26,25 @@
             Configuration nhConfiguration = new Configuration();
             nhConfiguration.Properties["dialect"] = "NHibernate.Dialect.MsSql2008Dialect";
 
-            Configure.With()
-                .UseNHibernateSubscriptionPersister(nhConfiguration)
-                .UseNHibernateTimeoutPersister(nhConfiguration, true)
-                .UseNHibernateSagaPersister(nhConfiguration)
-                .UseNHibernateGatewayPersister(nhConfiguration);
+            Configure configure = Configure.With();
+            configure.UseNHibernateSubscriptionPersister(nhConfiguration);
+            configure.UseNHibernateTimeoutPersister(nhConfiguration, true);
+            configure.UseNHibernateSagaPersister(nhConfiguration);
+            configure.UseNHibernateGatewayPersister(nhConfiguration);
 
             #endregion
+        }
 
+        public void NHibernateSubscriptionCaching()
+        {
+
+            #region NHibernateSubscriptionCaching
+
+            Configure configure = Configure.With();
+            configure.UseNHibernateSubscriptionPersister(
+                cacheExpiration: TimeSpan.FromSeconds(10));
+            
+            #endregion
         }
     }
 }

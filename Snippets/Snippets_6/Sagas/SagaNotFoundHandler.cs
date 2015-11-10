@@ -1,28 +1,22 @@
-﻿using NServiceBus;
-using NServiceBus.Saga;
-
-namespace Snippets6.Sagas
+﻿namespace Snippets6.Sagas
 {
+    using System.Threading.Tasks;
+    using NServiceBus;
+    using NServiceBus.Sagas;
 
     #region saga-not-found
 
     public class SagaNotFoundHandler : IHandleSagaNotFound
     {
-        IBus bus;
-
-        public SagaNotFoundHandler(IBus bus)
+        public async Task Handle(object message, IMessageProcessingContext context)
         {
-            this.bus = bus;
-        }
-
-        public void Handle(object message)
-        {
-            bus.Reply(new SagaDisappearedMessage());
+            await context.ReplyAsync(new SagaDisappearedMessage());
         }
     }
 
     public class SagaDisappearedMessage
     {
     }
+
     #endregion
 }

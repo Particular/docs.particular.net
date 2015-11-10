@@ -14,7 +14,7 @@ public class MyHandler : IHandleMessages<MyMessage>
     {
         int sleepTime = random.Next(1, 300);
         Thread.Sleep(sleepTime);
-        logger.InfoFormat("Hello from MyHandler. Slept for {0}ms", sleepTime);
+        logger.Info(string.Format("Hello from MyHandler. Slept for {0}ms", sleepTime));
     }
 }
 #endregion

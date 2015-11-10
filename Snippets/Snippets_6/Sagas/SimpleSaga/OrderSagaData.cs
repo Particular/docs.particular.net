@@ -1,7 +1,6 @@
-﻿using NServiceBus.Saga;
-
-namespace Snippets6.Sagas.SimpleSaga
+﻿namespace Snippets6.Sagas.SimpleSaga
 {
+    using NServiceBus;
 
     #region simple-saga-data
     public class OrderSagaData : ContainSagaData

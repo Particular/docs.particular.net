@@ -4,13 +4,17 @@ using NServiceBus;
 #region Handler
 public class MyMessageHandler : IHandleMessages<MyMessage>
 {
+    IBus bus;
     static ConcurrentDictionary<Guid, string> Last = new ConcurrentDictionary<Guid, string>();
 
-    public IBus Bus { get; set; }
+    public MyMessageHandler(IBus bus)
+    {
+        this.bus = bus;
+    }
 
     public void Handle(MyMessage message)
     {
-        IMessageContext context = Bus.CurrentMessageContext;
+        IMessageContext context = bus.CurrentMessageContext;
         Console.WriteLine("ReplyToAddress: {0} MessageId:{1}", context.ReplyToAddress, context.Id);
         
         string numOfRetries;

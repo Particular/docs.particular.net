@@ -2,51 +2,51 @@
 using System.Web.Mvc;
 using NServiceBus;
 
-namespace AsyncPagesMVC.Controllers
+public class SendAsyncController : AsyncController
 {
-    public class SendAsyncController : AsyncController
+    IBus bus;
+
+    public SendAsyncController(IBus bus)
     {
-        IBus bus;
+        this.bus = bus;
+    }
 
-        public SendAsyncController(IBus bus)
+    [HttpGet]
+    public ActionResult Index()
+    {
+        ViewBag.Title = "SendAsync";
+        return View("Index");
+    }
+
+    [HttpPost]
+    [AsyncTimeout(50000)]
+    public void IndexAsync(string textField)
+    {
+        int number;
+        if (!int.TryParse(textField, out number))
         {
-            this.bus = bus;
+            return;
         }
 
-        [HttpGet]
-        public ActionResult Index()
-        {
-            ViewBag.Title = "SendAsync";
-            return View("Index");
-        }
+        #region AsyncController
 
-        [HttpPost]
-        [AsyncTimeout(50000)]
-        public void IndexAsync(string textField)
+        Command command = new Command
         {
-            int number;
-            if (!int.TryParse(textField, out number))
+            Id = number
+        };
+        bus.Send("Samples.Mvc.Server", command)
+            .Register<int>(status =>
             {
-                return;
-            }
-            #region AsyncController
-            Command command = new Command
-                          {
-                              Id = number
-                          };
-            bus.Send("Samples.Mvc.Server", command)
-                .Register<int>(status =>
-                {
-                    AsyncManager.Parameters["errorCode"] = Enum.GetName(typeof (ErrorCodes), status);
-                });
-            #endregion
-        }
+                AsyncManager.Parameters["errorCode"] = Enum.GetName(typeof(ErrorCodes), status);
+            });
 
-        public ActionResult IndexCompleted(string errorCode)
-        {
-            ViewBag.Title = "SendAsync"; 
-            ViewBag.ResponseText = errorCode; 
-            return View("Index");
-        }
+        #endregion
+    }
+
+    public ActionResult IndexCompleted(string errorCode)
+    {
+        ViewBag.Title = "SendAsync";
+        ViewBag.ResponseText = errorCode;
+        return View("Index");
     }
 }

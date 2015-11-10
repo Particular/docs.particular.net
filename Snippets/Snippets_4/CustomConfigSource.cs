@@ -9,16 +9,14 @@
     {
         public CustomConfigSource()
         {
-
             #region RegisterCustomConfigSource
 
-            Configure.With()
-                //this call needs to happen right after With()
-                .CustomConfigurationSource(new MyCustomConfigurationSource()); 
+            Configure configure = Configure.With();
+            //this call needs to happen right after With()
+            configure.CustomConfigurationSource(new MyCustomConfigurationSource()); 
 
-            #endregion 
+            #endregion
         }
-
 
         #region CustomConfigSource
 

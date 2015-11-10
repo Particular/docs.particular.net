@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Snippets6</RootNamespace>
     <AssemblyName>Snippets_6</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>1998</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,22 +30,73 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>1998</NoWarn>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Common.Logging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.3.3.0\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Core.3.3.0\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.2.0\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NServiceBus.Callbacks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0017\lib\net451\NServiceBus.Callbacks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NServiceBus.CommonLogging, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.CommonLogging.2.2.0-unstable0007\lib\net452\NServiceBus.CommonLogging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.6.0.0-unstable0519\lib\net451\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1041\lib\net451\NServiceBus.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Host, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Host.7.0.0-pullrequest0040\lib\net451\NServiceBus.Host.exe</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Host.7.0.0-unstable0031\lib\net452\NServiceBus.Host.exe</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NServiceBus.Log4Net, Version=1.1.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.Log4Net.1.1.0-unstable0016\lib\net452\NServiceBus.Log4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NServiceBus.NLog, Version=1.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.NLog.1.2.0-unstable0007\lib\net452\NServiceBus.NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,27 +104,102 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdditionalDeserializers.cs" />
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="Audit\Usage.cs" />
+    <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
+    <Compile Include="BusNotifications\Errors.cs" />
+    <Compile Include="Callback\Cancellation\Message.cs" />
+    <Compile Include="Callback\Cancellation\Usage.cs" />
+    <Compile Include="Callback\Enum\Handler.cs" />
+    <Compile Include="Callback\Enum\Message.cs" />
+    <Compile Include="Callback\Enum\Status.cs" />
+    <Compile Include="Callback\Enum\Usage.cs" />
+    <Compile Include="Callback\Int\Handler.cs" />
+    <Compile Include="Callback\Int\Message.cs" />
+    <Compile Include="Callback\Int\Usage.cs" />
+    <Compile Include="Callback\Object\Handler.cs" />
+    <Compile Include="Callback\Object\Message.cs" />
+    <Compile Include="Callback\Object\ResponseMessage.cs" />
+    <Compile Include="Callback\Object\Usage.cs" />
+    <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
+    <Compile Include="CriticalError.cs" />
+    <Compile Include="CustomConfigSource.cs" />
+    <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="Errors\ErrorQueue\Usage.cs" />
+    <Compile Include="Errors\FirstLevel\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />
     <Compile Include="Errors\FirstLevel\ProvideConfiguration.cs" />
+    <Compile Include="Errors\SecondLevel\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Errors\SecondLevel\ConfigurationSource\Usage.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
+    <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />
     <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="HandlerOrdering.cs" />
+    <Compile Include="Handlers\GenericAsyncHandler.cs" />
+    <Compile Include="Handlers\MyHandler.cs" />
+    <Compile Include="Handlers\MyMessage.cs" />
     <Compile Include="Headers\MyMessage.cs" />
+    <Compile Include="Headers\ReadSaga.cs" />
     <Compile Include="Headers\ReadHandler.cs" />
     <Compile Include="Headers\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Headers\MutateIncomingTransportMessages.cs" />
     <Compile Include="Headers\OutgoingBehavior.cs" />
     <Compile Include="Headers\IncomingBehavior.cs" />
+    <Compile Include="Headers\WriteSaga.cs" />
     <Compile Include="Headers\WriteHandler.cs" />
     <Compile Include="Headers\SomeOtherMessage.cs" />
     <Compile Include="Headers\StaticHeaders.cs" />
+    <Compile Include="HostIdentifier\HostIdFixer.cs" />
+    <Compile Include="Host\ProgramService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ImmediateDispatch\Usage.cs" />
+    <Compile Include="Installers.cs" />
+    <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
+    <Compile Include="License.cs" />
+    <Compile Include="Lifecycle\INeedInitialization.cs" />
+    <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
+    <Compile Include="Lifecycle\IWantToRunWhenTheBusStartsAndStops.cs" />
+    <Compile Include="Logging\BuiltInConfig.cs" />
+    <Compile Include="Logging\CommonLogging\Usage.cs" />
+    <Compile Include="Logging\Log4Net\Log4NetFiltering.cs" />
+    <Compile Include="Logging\Log4Net\Usage.cs" />
+    <Compile Include="Logging\MessageToLog.cs" />
+    <Compile Include="Logging\NLog\NLogFiltering.cs" />
+    <Compile Include="Logging\NLog\Usage.cs" />
+    <Compile Include="Logging\OverrideViaProfile.cs" />
+    <Compile Include="Logging\ProvideConfiguration.cs" />
+    <Compile Include="Logging\UsingLogging.cs" />
+    <Compile Include="Mutators\Instance\MutateIncomingMessages.cs" />
+    <Compile Include="Mutators\Instance\MutateOutgoingMessages.cs" />
+    <Compile Include="Mutators\MutatorRegistration.cs" />
+    <Compile Include="Mutators\Transport\MutateIncomingTransportMessages.cs" />
+    <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
+    <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
+    <Compile Include="PerformanceMonitoring.cs" />
+    <Compile Include="Persistence\Msmq\Usage.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
+    <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />
+    <Compile Include="PubSub\Publishing\PublishAtStartup.cs" />
+    <Compile Include="PubSub\Publishing\UserCreatedEvent.cs" />
+    <Compile Include="PubSub\WithConvention\MessageToPublish.cs" />
+    <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
+    <Compile Include="PubSub\WithConvention\Usage.cs" />
+    <Compile Include="RegisterCustomSerializer.cs" />
+    <Compile Include="Routing\BasicOperations.cs" />
+    <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
+    <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
+    <Compile Include="Routing\EndpointMapping\ProvideConfiguration.cs" />
     <Compile Include="Sagas\FindByExpression\Message1.cs" />
     <Compile Include="Sagas\FindByExpression\Message2.cs" />
     <Compile Include="Sagas\FindByExpression\MySaga.cs" />
@@ -83,8 +210,6 @@
     <Compile Include="Sagas\Reply\MySaga.cs" />
     <Compile Include="Sagas\Reply\MySagaData.cs" />
     <Compile Include="Sagas\Reply\StartMessage.cs" />
-    <Compile Include="Sagas\FindSagas\SagaFinder.cs" />
-    <Compile Include="Sagas\SagaMapping.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
     <Compile Include="Sagas\SimpleSaga\CompleteOrder.cs" />
     <Compile Include="Sagas\SimpleSaga\OrderSaga.cs" />
@@ -99,11 +224,37 @@
     <Compile Include="Sagas\Timeouts\TiredOfWaitingForMessage2.cs" />
     <Compile Include="Scanning\ScanningPublicApi.cs" />
     <Compile Include="MsmqMessageLabel.cs" />
+    <Compile Include="Scheduling\Saga\SchedulerSaga.cs" />
+    <Compile Include="Scheduling\Scheduling.cs" />
+    <Compile Include="SendOnly.cs" />
+    <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
+    <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
+    <Compile Include="Transactions.cs" />
+    <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
+    <Compile Include="UpgradeGuides\5to6\RawSend.cs" />
+    <Compile Include="UpgradeGuides\5to6\Recoverable.cs" />
+    <Compile Include="UpgradeGuides\5to6\TimeToBeReceived.cs" />
+    <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
+    <Compile Include="Routing\AutomaticSubscriptions\AutoSubscribeSettings.cs" />
+    <Compile Include="XmlSerializationIntegration.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Audit\App.config" />
-    <None Include="Errors\ErrorQueue\configureErrorQueue.config" />
-    <None Include="Errors\FirstLevel\flr.config" />
+    <Content Include="Audit\Audit.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Errors\ErrorQueue\configureErrorQueue.config.xml" />
+    <Content Include="Errors\FirstLevel\flr.config.xml" />
+    <Content Include="Errors\SecondLevel\SecondLevelReties.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Logging\OverrideInAppConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Persistence\Msmq\msmq.config.xml" />
+    <Content Include="Transports\Throughput\InitialThroughput.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -118,5 +269,6 @@
       <Name>Operations</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -27,14 +27,14 @@
 
         public static void ReturnMessageToSourceQueue(string errorQueueMachine, string errorQueueName, string userName, string password, string messageId)
         {
-            using (IModel errorQueue = OpenQueue(errorQueueMachine, userName, password))
+            using (IModel errorConnection = OpenConnection(errorQueueMachine, userName, password))
             {
                 Dictionary<string, object> query = new Dictionary<string, object>
                 {
                     {"message_id", messageId}
                 };
-                QueueingBasicConsumer consumer = new QueueingBasicConsumer(errorQueue);
-                string basicConsume = errorQueue.BasicConsume(errorQueueName, false, Environment.UserName, false, true, query, consumer);
+                QueueingBasicConsumer consumer = new QueueingBasicConsumer(errorConnection);
+                string basicConsume = errorConnection.BasicConsume(errorQueueName, false, Environment.UserName, false, true, query, consumer);
 
                 BasicDeliverEventArgs deliverArgs = consumer.Queue.Dequeue();
 
@@ -42,11 +42,11 @@
                 string failedMachineName;
                 ReadFailedQueueHeader(out failedQueueName, deliverArgs, out failedMachineName);
 
-                using (IModel failedQueue = OpenQueue(failedMachineName, userName, password))
+                using (IModel targetConnection = OpenConnection(failedMachineName, userName, password))
                 {
-                    failedQueue.BasicPublish(string.Empty, failedQueueName, true, false, deliverArgs.BasicProperties, deliverArgs.Body);
+                    targetConnection.BasicPublish(string.Empty, failedQueueName, true, false, deliverArgs.BasicProperties, deliverArgs.Body);
                 }
-                errorQueue.BasicAck(deliverArgs.DeliveryTag, true);
+                errorConnection.BasicAck(deliverArgs.DeliveryTag, true);
             }
         }
 
@@ -58,7 +58,7 @@
             machineName = header.Split('@')[1];
         }
 
-        static IModel OpenQueue(string machine, string userName, string password)
+        static IModel OpenConnection(string machine, string userName, string password)
         {
             ConnectionFactory factory = new ConnectionFactory
             {

@@ -20,25 +20,7 @@ In Version 3 and 4 of NServiceBus Log4Net support was built in.
 In NServiceBus Version 5 Log4Net was externalized to its own [nuget](https://www.nuget.org/packages/NServiceBus.Log4Net/) package available that allows for simple integration of NServiceBus.
 
 
-## Usage
-
-
-### Pull in the nugets
-
-
-#### NServiceBus Version 3 and 4 
-
-    Install-Package log4net
-
-
-#### NServiceBus Version 5 and higher 
-
-    Install-Package NServiceBus.Log4Net
-
-This has a dependency on the `log4net` nuget so that will automatically be pulled in.
-
-
-### The code 
+## Usage 
 
 <!-- import Log4netInCode -->
 
@@ -51,4 +33,12 @@ For example to limit log output to a specific namespace.
 
 Here is a code configuration example for adding a [Filter](http://logging.apache.org/log4net/release/manual/configuration.html#filters).
 
-<!-- import Log4netFiltering -->
+
+### The Filter
+
+<!-- import Log4netFilter -->
+
+
+### Using the Filter
+
+<!-- import Log4netFilterUsage -->

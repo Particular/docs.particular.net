@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
 using Raven.Client.Embedded;
+#region ravenhost
 
-// In process RavenServer
 class RavenHost : IDisposable
 {
 
@@ -37,3 +37,5 @@ class RavenHost : IDisposable
         }
     }
 }
+
+#endregion

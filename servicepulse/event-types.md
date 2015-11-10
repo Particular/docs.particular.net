@@ -10,19 +10,23 @@ related:
 
 ServicePulse gives you an overview of the system health, based on endpoints heartbeats and custom checks, and a detailed view of all the failed messages.
 
-Note: You can consume the same information not only via the ServicePulse web interface but also subscribing to [custom notifications and alerts from ServiceControl](custom-notification-and-alerting-using-servicecontrol-events.md).
+Note: You can consume the same information not only via the ServicePulse web interface but also subscribing to [custom notifications and alerts from ServiceControl](/servicecontrol/contracts.md).
+
 
 ### Heartbeats
+
 
 #### HeartbeatStopped
 
 The `HeartbeatStopped` event is published each time the monitoring infrastructure does not receive the heartbeat, from an endpoint, within the expected amount of time.
+
 
 #### HeartbeatRestored
 
 The `HeartbeatRestored` event is published to notify that a previously stopped heartbeat has been restored and the related endpoint is running as expected.
 
 More details on [Endpoints and Heartbeats in ServicePulse](intro-endpoints-heartbeats.md).
+
 
 ### MessageFailed
 
@@ -33,6 +37,7 @@ The `MessageFailed` event is published to notify that a message has failed all t
 * `ArchivedFailure`: The message has been archived;
 
 More details on [Failed Message Monitoring in ServicePulse](intro-failed-messages.md).
+
 
 ### Custom Check / Periodic Check
 

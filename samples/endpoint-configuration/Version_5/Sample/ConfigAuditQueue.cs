@@ -9,7 +9,7 @@ class ConfigAuditQueue : IProvideConfiguration<AuditConfig>
     {
         return new AuditConfig
         {
-            QueueName = "auditqueue@adminmachine",
+            QueueName = "audit",
             OverrideTimeToBeReceived = TimeSpan.FromMinutes(10)
         };
     }

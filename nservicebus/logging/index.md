@@ -69,6 +69,13 @@ In NServiceBus Versions 3 and 4 the supported Levels are defined by the [Log4Net
 
 ### Changing the Logging Level
 
+{{Note: When logging level is defined in both app.config and code:
+
+ * In Version 4 and earlier the app.config wins.
+ * In Version 5 and higher the code wins.
+
+}}
+
 
 #### Via app.config
 

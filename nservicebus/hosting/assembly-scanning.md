@@ -2,7 +2,6 @@
 title: Assembly scanning
 summary: To enable automatic detection of various features NServiceBus scans your assemblies for well known types
 tags:
-- Configuration
 - Assembly scanning
 redirects:
  - nservicebus/assembly-scanning
@@ -31,41 +30,60 @@ There are some cases where you need fine grained control over which assemblies a
  
 NOTE: Extensions to NServiceBus (for example `NServiceBus.Distributor.MSMQ.dll` or `NServiceBus.RavenDB.dll`) are not considered core dlls and will need to be explicitly added if you customize assembly scanning.
 
-## Default behaviour
 
-BETA: In version 6 default behaviour for assembly scanning has changed not to scan nested folders for assemblies.
+## Nested Directories
+
+BETA: In version 6 default behavior for assembly scanning has changed not to scan nested folders for assemblies.
 
 For version 5 and below assemblies in nested folders were automatically scanned by default. 
 
-From version 6, default behaviour is not to scan nested folders for assemblies. You can enable nested folders assembly scanning using:
+From version 6, default behavior is not to scan nested folders for assemblies. You can enable nested folders assembly scanning using:
 
 <!-- import ScanningNestedAssebliesEnabled -->
+
+
+## Assemblies to scan
+
+In version 5 and earlier the API for assembly scanning took an "Include a list" approach. This proved to be problematic. Many extensions to NServiceBus rely on assembly scanning, for example transports and persistences in external nugets. If, at endpoint configuration time, a list of assemblies was generated, and that list did not include extension assemblies, the endpoint would fail at runtime with some unexpected and hard to diagnose behaviors. 
+
+In version 6 the API has been changes to an "Exclude a list" approach. This supports that the common scenario removing specific assemblies from scanning without the common side effect of accidentally excluding required assemblies.
+
+
+## Exclude a list approach
+
 
 ### You can exclude specific assemblies by name:
 
 <!-- import ScanningExcludeByName -->
 
+
 ### You can exclude specific types:
 
 <!-- import ScanningExcludeTypes -->
 
-## Options deprecated from version 6 and later
 
-Use the `AllAssemblies` helper class to easily create a list of assemblies either by creating a blacklist using the method Except or a whitelist by using Matching or a combination of both.
+## Include a list approach
 
-NOTE: The `Except`, `Matching` and `And` methods behave like `string.StartsWith(string)`.
+Note: these options are deprecated from version 6 and later.
+
 
 ### Including assemblies:
 
 <!-- import ScanningListOfAssemblies -->
 
-### Control the exact types that NServiceBus uses:
+
+### Controlling the exact types that NServiceBus uses:
 
 <!-- import ScanningListOfTypes -->
 
-### Include assemblies using pattern matching:
+
+### Including assemblies using pattern matching:
 
 <!-- import ScanningIncludeByPattern -->
+
+`AllAssemblies` helper class can be used to create a list of assemblies either by creating a blacklist using the method Except or a whitelist by using Matching or a combination of both.
+
+NOTE: The `Except`, `Matching` and `And` methods behave like `string.StartsWith(string)`.
 
 
 ### Mixing includes and excludes:

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1791A2E6-D9CB-4C73-B3E9-1B17EF7117ED}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Snippets_Misc</RootNamespace>
+    <AssemblyName>Snippets_Misc</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EfEdmx\EntityConnectionCreation.cs" />
+    <Compile Include="EfEdmx\MySample.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MySample.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfEdmx\MySample.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MySample.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EfEdmx\MySample.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MySample.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="EfEdmx\MySampleContainer.cs" />
+    <Compile Include="EfEdmx\Person.cs">
+      <DependentUpon>MySample.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="EfEdmx\MySample.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MySample.Context.cs</LastGenOutput>
+      <DependentUpon>MySample.edmx</DependentUpon>
+    </Content>
+    <Content Include="EfEdmx\MySample.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MySample.cs</LastGenOutput>
+      <DependentUpon>MySample.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="EfEdmx\MySample.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MySample.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="EfEdmx\MySample.edmx.diagram">
+      <DependentUpon>MySample.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

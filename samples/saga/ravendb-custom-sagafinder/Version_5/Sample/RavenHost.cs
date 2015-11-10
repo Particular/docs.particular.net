@@ -3,7 +3,8 @@ using System.Diagnostics;
 using Raven.Client.Embedded;
 using Raven.Client.UniqueConstraints;
 
-// In process RavenServer
+#region ravenhost
+
 class RavenHost : IDisposable
 {
 
@@ -39,3 +40,4 @@ class RavenHost : IDisposable
         }
     }
 }
+#endregion

@@ -9,7 +9,7 @@ related:
 - samples/errorhandling
 ---
 
-### Durable Messaging
+## Durable Messaging
 
 *  Run the solution and hit Enter on the 'Client' console a couple of times to make sure the messages are being processed. 
    
@@ -17,7 +17,8 @@ related:
 **Client Output**
 
 ```
-Press 'Enter' to send a message.To exit, Ctrl + C
+Press 'Enter' to send a message.
+Press any key to exit
 Sent a new message with id: 5a1ca67b03ae4b38b99e1fd66ebc97eb
 Sent a new message with id: 30f443c4ce454de5be8541cafb0da332
 Sent a new message with id: 2c9f0f60763243aeb16e1688f31b1f53
@@ -26,29 +27,32 @@ Sent a new message with id: 2c9f0f60763243aeb16e1688f31b1f53
 **Server Output**
 
 ```
-Press any key to stop program
-
+Press any key to exit
 Message received. Id: 00000000-0000-0000-0000-000000000000
 Message received. Id: 5a1ca67b-03ae-4b38-b99e-1fd66ebc97eb
 Message received. Id: 30f443c4-ce45-4de5-be85-41cafb0da332
 Message received. Id: 2c9f0f60-7632-43ae-b16e-1688f31b1f53
 ```
 
-#### Queue up multiple messages
+
+### Queue up multiple messages
 
 * Then, kill the 'Server' console (endpoint) but leave the 'Client' console (endpoint) running.
 * Hit Enter on the 'Client' console a couple of times to see that the 'Client' application isn't blocked even when the other process it's trying to communicate with is down. This makes it easier to upgrade the backend even while the front-end is still running, resulting in a more highly-available system.
 *  Now, leaving the 'Client' console running, view the `Samples.FaultTolerance.Server` queue in MSMQ.  Note that All the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties specifically BodyStream, where the data is.
 
-#### Consume those messages
+
+### Consume those messages
 
 Now bring the 'Server' endpoint back online by right clicking the project, Debug, Start new instance.
 
 As you can see the 'Server' processes all those messages, and if you go back to the `Samples.FaultTolerance.Server` queue it is empty.
 
-### Fault tolerance
 
-#### Make the handler fail 
+## Fault tolerance
+
+
+### Make the handler fail 
 
 So, let's make the handling of messages in the 'Server' endpoint fail. Open `MyHandler.cs`.
 

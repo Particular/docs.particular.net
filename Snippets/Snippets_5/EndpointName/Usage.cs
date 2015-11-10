@@ -9,7 +9,6 @@
             #region EndpointNameCode
 
             BusConfiguration busConfiguration = new BusConfiguration();
-
             busConfiguration.EndpointName("MyEndpoint");
         
             #endregion

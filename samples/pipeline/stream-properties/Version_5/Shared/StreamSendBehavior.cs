@@ -5,6 +5,7 @@ using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 using NServiceBus.Unicast.Messages;
 
+#region SendBehaviorDefinition
 class StreamSendBehavior : IBehavior<OutgoingContext>
 {
     TimeSpan MaxMessageTimeToLive = TimeSpan.FromDays(14);
@@ -14,6 +15,7 @@ class StreamSendBehavior : IBehavior<OutgoingContext>
     {
         location = Path.GetFullPath(storageSettings.Location);
     }
+#endregion
     public void Invoke(OutgoingContext context, Action next)
     {
         #region copy-stream-properties-to-disk
@@ -59,12 +61,16 @@ class StreamSendBehavior : IBehavior<OutgoingContext>
     string GenerateKey(TimeSpan timeToBeReceived)
     {
         if (timeToBeReceived > MaxMessageTimeToLive)
+        {
             timeToBeReceived = MaxMessageTimeToLive;
+        }
 
         DateTime keepMessageUntil = DateTime.MaxValue;
 
         if (timeToBeReceived < TimeSpan.MaxValue)
+        {
             keepMessageUntil = DateTime.Now + timeToBeReceived;
+        }
 
         return Path.Combine(keepMessageUntil.ToString("yyyy-MM-dd_HH"), Guid.NewGuid().ToString());
     }

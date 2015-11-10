@@ -6,32 +6,36 @@ using NServiceBus.Satellites;
 using NServiceBus.Transports;
 using NServiceBus.Transports.Msmq;
 using NServiceBus.Unicast;
-using Shared;
 
 #region satellite
 // Implements an advanced satellite. Allows to receive messages on a different transport.
 class MsmqReceiver : IAdvancedSatellite
 {
+    Configure configure;
+    CriticalError criticalError;
+    // Since this endpoint's transport is usingSqlServer, the IPublishMessages will be using the SqlTransport to publish messages
+    IPublishMessages publisher;
     static ILog logger = LogManager.GetLogger<MsmqReceiver>();
-    public Configure Configure { get; set; }
-    public CriticalError CriticalError { get; set; }
     public bool Disabled { get { return false; } }
 
-    // Since this endpoint's transport is usingSqlServer, the IPublishMessages will be using the SqlTransport to publish
-    // messages
-    public IPublishMessages Publisher { get; set; }
+    public MsmqReceiver(Configure configure, CriticalError criticalError, IPublishMessages publisher)
+    {
+        this.configure = configure;
+        this.criticalError = criticalError;
+        this.publisher = publisher;
+    }
 
     // Since we want to listen to the events published by MSMQ, we are newing up MsmqDequeueStrategy and setting the
     // input queue to the queue which will be receiving all the events from the MSMQ publishers.
     public Action<NServiceBus.Unicast.Transport.TransportReceiver> GetReceiverCustomization()
     {
-        return (tr =>
+        return tr =>
         {
-            tr.Receiver = new MsmqDequeueStrategy(Configure, CriticalError, new MsmqUnitOfWork())
-                            {
-                                ErrorQueue = Address.Parse(ConfigErrorQueue.errorQueue)
-                            };
-        });
+            tr.Receiver = new MsmqDequeueStrategy(configure, criticalError, new MsmqUnitOfWork())
+            {
+                ErrorQueue = Address.Parse(ConfigErrorQueue.errorQueue)
+            };
+        };
     }
 
 
@@ -53,7 +57,7 @@ class MsmqReceiver : IAdvancedSatellite
             message.Headers["NServiceBus.MessageId"] = GuidBuilder.BuildDeterministicGuid(msmqId).ToString();
         }
         logger.Info("Forwarding message to all the SQL subscribers via a Publish");
-        Publisher.Publish(message, new PublishOptions(eventTypes.First()));
+        publisher.Publish(message, new PublishOptions(eventTypes.First()));
         return true;
     }
 

@@ -16,11 +16,11 @@ This is not a big deal for commands because they are always used with in the bou
 
 There are a couple of ways you can solve this.
 
--   NServiceBus follows the [semver.org](http://semver.org/) semantics, only changing the assembly version when changes are not backwards compatible or introduce substantial new functionality or improvements. This mean that V3.0.1 and V3.0.X have the same assembly version (3.0.0), and file version of course changes for every release/build. This means that as long as you do a NuGet update with the -safe flag your service contracts will stay compatible.
+-   NServiceBus follows the [semver.org](http://semver.org/) semantics, only changing the assembly version when changes are not backwards compatible or introduce substantial new functionality or improvements. This mean that version 3.0.1 and version 3.0.X have the same assembly version (3.0.0), and file version of course changes for every release/build. This means that as long as you do a NuGet update with the -safe flag your service contracts will stay compatible.
 -   Support for running in "Unobtrusive" mode means you do not need to reference any NServiceBus assemblies from your own message assemblies, thereby removing the problem altogether.
 
 ## Unobtrusive mode
 
-NServiceBus allows you define to own [message conventions](messages-events-commands.md) instead of using the `IMessage`, `ICommand` or `IEvent` interfaces. NServiceBus also supports conventions encrypted properties, express messages, databus properties and time to be received. So with these conventions combined you can avoid a reference to NServiceBus in you messages assembly.
+NServiceBus allows you to define your own [message conventions](messages-events-commands.md) instead of using the `IMessage`, `ICommand` or `IEvent` interfaces and attributes like `TimeToBeReceivedAttribute` and `ExpressAttribute`. NServiceBus also supports conventions for encrypted properties, express messages, databus properties and time to be received. So with these conventions combined you can avoid referencing NServiceBus in your messages assembly.
 
 <!-- import MessageConventions -->  

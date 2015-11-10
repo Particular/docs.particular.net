@@ -7,7 +7,7 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Sample.AzureBlobStorageDataBus.Receiver");
+        busConfiguration.EndpointName("Samples.AzureBlobStorageDataBus.Receiver");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UseDataBus<AzureDataBus>()
             .ConnectionString("UseDevelopmentStorage=true");

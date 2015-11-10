@@ -1,51 +1,38 @@
 ---
 title: Serialization In NServiceBus
-summary: How instances of .net classes are serialized onto the transport.
+summary: How instances of .NET classes are serialized onto the transport.
+related:
+ - samples/pipeline/multi-serializer
 ---
 
-NServiceBus takes instances of .net objects (messages, events and commands) and then sens/receives them over a specified [Transport](/nservicebus/transports/). As part of this the object need to be serialized and deserialized. To achieve this NServiceBus uses "Serializers"
+NServiceBus takes instances of .NET objects (messages, events and commands) and then sends/receives them over a specified [Transport](/nservicebus/transports/). As part of this the object need to be serialized and deserialized. To achieve this NServiceBus uses **Serializers**.
 
 
-## [Xml](xml-serializer.md)
+### Supported Serializers
 
-A custom written XML serializer.
-
-
-### Usage
-
-<!-- import XmlSerialization --> 
+- [XmlSerializer](xml.md)
+- [JsonSerializer/BsonSerializer](json.md)
+- [BinarySerializer](binary.md)
 
 
-## Json
+### Using an existing serializer
 
-Using [Json](http://en.wikipedia.org/wiki/Json) via an ILMerged copy of Json.NET.
+The default serializer used in NServiceBus projects is the custom [XmlSerializer](xml.md).
 
+The pages dedicated to particular Serializers show how to configure the endpoint to use each of them. Unless explicitly configured otherwise, NServiceBus will use XmlSerializer for serializing and deserializing all messages.
 
-### Usage
-
-<!-- import JsonSerialization -->
-
-
-## Bson
-
-Using [Bson](http://en.wikipedia.org/wiki/BSON) via an ILMerged copy of Json.NET.
+NOTE: The same Serializer must be used by the sending endpoint to serialize messages and by receiving endpoint to deserialize them, unless additional deserializers are specified.
 
 
-### Usage
+### Specifying additional deserializers
 
-<!-- import BsonSerialization -->
+To support sending and receiving messages between endpoints using different serializers, additional deserialization capability may be specified. Starting from NServiceBus version 6 it's possible to register additional deserializers to process incoming messages.
 
+<!-- import AdditionalDeserializers -->
 
-## Binary
-
-Uses the .net [BinaryFormatter](https://msdn.microsoft.com/en-us/library/system.runtime.serialization.formatters.binary.binaryformatter.aspx).
-
-
-### Usage
-
-<!-- import BinarySerialization -->
+To configure multiple deserializers in version 5 of NServiceBus, check out [Taking control of serialization via the pipeline](/samples/pipeline/multi-serializer/).
 
 
-### Community run Serializers
+### Community run serializers
 
 There are several community run Serializers that can be seen on the full list of [Extensions](/platform/extensions.md#serializers).

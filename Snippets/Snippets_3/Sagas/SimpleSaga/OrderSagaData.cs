@@ -3,7 +3,6 @@
     using System;
     using NServiceBus.Saga;
 
-    #region simple-saga-data
     public class OrderSagaData : IContainSagaData
     {
         public Guid Id { get; set; }
@@ -12,5 +11,4 @@
         [Unique]
         public string OrderId { get; set; }
     }
-    #endregion
 }

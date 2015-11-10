@@ -1,6 +1,6 @@
 ---
 title: Shared Hosting in Azure Cloud Services Sample
-summary: 'Shared hosting in Azure Cloud Services.'
+summary: Uses the NServiceBus Hosting Azure HostProcess to achieve shared hosting of multiple NServiceBus endpoints in an Azure instance.
 tags:
 - Azure
 - Cloud Services
@@ -14,7 +14,7 @@ related:
 
 ## Running in development mode
 
- 1. Start [Azure Storage Emulator](http://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/)
+ 1. Start [Azure Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/)
  1. Run the solution
  1. Inspect Azure Storage Emulator Tables for `MultiHostedEndpointsOutput` table and its content for something like the following:
 

@@ -28,6 +28,7 @@ NOTE: This example requires ServiceMatrix. For a code only introduction to NServ
 * [NServiceBus Overview](/nservicebus/architecture/) 
 * [NServiceBus Step by Step Guide](/samples/step-by-step/) 
 
+
 ## Installing ServiceMatrix for Visual Studio 2012
 
 ServiceMatrix is a Visual Studio integrated development environment for developing the NServiceBus distributed system.
@@ -42,9 +43,11 @@ For this example you need to meet the following system requirements:
 
 NOTE: If you have both Visual Studio 2010 and Visual Studio 2012 installed on your machine, you can install ServiceMatrix for one Visual Studio version only. This document reviews the use of ServiceMatrix v2.0 for Visual Studio 2012.
 
+
 ## Creating a New Project
 
 To get started with ServiceMatrix, create a new project.
+
 
 ### Create an NServiceBus project
 
@@ -53,6 +56,7 @@ In Visual Studio select `File\New\Project` and Select 'NServiceBus System' under
 ![NewProject](/servicematrix/images/servicematrix-reqresp-newproject.png)
 
 In the Solution name, type 'OnlineSales' (or any other name) for the name of your application.
+
 
 ### Review The Solution
 
@@ -82,15 +86,18 @@ The dashed areas within the canvas and the buttons at the top are used to start 
 
 NOTE: Alternatively, they can also be created using the Solution Builder tree view.  However, since this is a visual tool, this example will demonstrate using the canvas.  As items are added to the canvas they will appear in the Solution Builder as well as in the Solution Explorer project.
 
-##Building the Online Sales Solution
+
+## Building the Online Sales Solution
 
 Our online sales example involves a website that collects online orders and a back-end order processing system that processes them.  
 
 To build the solution you will define and endpoint for the website and another endpoint for the order processing system.  A new 'Sales' service will define components for submitting and processing orders as well as a command message to represent the order submission.  
 
+
 ## Creating Endpoints
 
 First you will create the endpoints for selling and processing.
+
 
 ### New endpoint
 
@@ -102,11 +109,13 @@ Name the endpoint `ECommerce` and choose ASP.NET MVC as the endpoint host.
 
 NOTE: MVC Endpoints require that ASP.NET MVC be installed on the local machine. You can install ASP.NET MVC from [here](http://www.asp.net/downloads) or by using Web Platform Installer.
 
+
 ### Review the endpoint
 
 You will examine the generated code in detail later to understand how things work behind the scenes.  For now, notice how ServiceMatrix has created the ECommerce Endpoint on the canvas, in the Solution Builder and in the Visual Studio Project.
 
 In the solution builder notice that this endpoint has a folder to contain components.  Components contain the code for specific services.  They can only send commands to other components in the same service.  However, they can subscribe to events that are published by components in *any* service. Soon your Sales components will be deployed to your endpoints.
+
 
 ### Create OrderProcessing endpoint
 
@@ -118,11 +127,13 @@ At this point your solution should have both endpoints on the NServiceBus canvas
 
 Notice how you can control the zoom with your mouse scroll wheel and drag the boxes around. This is how you will rearrange the canvas as more things are added to it.
 
+
 ## Creating a Message
 
 Communication between the website and the back-end `OrderProcessing` endpoint will be done with a command message. To create this message use the drop-down menu of the `ECommerce` endpoint and select `Send Command` as shown.  
 
 ![Send Command](/servicematrix/images/servicematrix-ecommercesendcommand.png)
+
 
 ## Creating Services 
 
@@ -133,6 +144,7 @@ As you create the new command message, you'll also be prompted for the name of a
 The canvas now illustrates the new Sales service with two components.  The `SubmitOrderSender` component sends the command and is deployed to the `ECommerce` endpoint.  The `SubmitOrderHandler` component is for receiving the command message and is shown in a 'Undeployed Components' box.  
 
 ![Undeployed Sales Service](/servicematrix/images/servicematrix-sales-undeployed.png)
+
 
 ## Deploying Components
 
@@ -148,6 +160,7 @@ By deploying these components to each endpoint, the `Sales` service will afford 
 
 In addition to illustrating these in the canvas the [Solution Builder](/servicematrix/images/servicematrix-solutionbuilder-salesservice.png "Solution Builder With Sales") now shows the `SubmitOrder` command in the commands folder.  It also illustrates the components and the fact they send and process the `SubmitOrder` command accordingly. You will notice there is now code that has been generated in the Visual Studio project as well.
 
+
 ## Review the Message
 
 The `SubmitOrder` command is a simple message meant to communicate the order between your endpoints.  To view the generated class file, click the drop-down menu of the `SubmitOrder` command and select View Code [as shown](/servicematrix/images/servicematrix-submitorderviewcode.png "View SubmitOrder Code"). This is  very simple C# class.  You can add all sorts of properties to your message to represent the order data: strings,  integers, arrays, dictionaries, etc. Just make sure to provide both a get accessor and a set mutator for each property. 
@@ -162,6 +175,7 @@ namespace OnlineSales.Internal.Commands.Sales
     }
 }
 ```
+
 
 ## Handling a Message
 
@@ -201,9 +215,11 @@ namespace OnlineSales.Sales
 
 ```
 
+
 ## Sending a Message 
 
 The last thing to do is to review how the 'ECommerce' website sends a message.  When ServiceMatrix generated the MVC endpoint it also created a demonstration site already capable of sending the commands created using the tool.
+
 
 ### Review MVC code
 
@@ -256,9 +272,11 @@ namespace OnlineSales.Sales
 }
 ```
 
+
 ## Running the Application
 
 Now press `F5` or press the 'Play' button in Visual Studio to debug the application. You should see both the eCommerce website launched in your default browser and a console window for the NServiceBus host that is running your OrderProcessing endpoint.  
+
 
 ### eCommerce website
 
@@ -272,6 +290,7 @@ Notice the 'Try NServiceBus' box and the 'Test Messages' button on the right hal
 
 To send the `SubmitOrder` message just click the word 'Send!'. Go ahead and click to send a few times.
 
+
 ### Order processing
 
 Since you selected the NServiceBus host for your OrderProcessing endpoint it is launched as a console application for convenient development.  Your console window should look like this.
@@ -280,15 +299,18 @@ Since you selected the NServiceBus host for your OrderProcessing endpoint it is 
 
 As you click the Send button in the website, you will see the console indicate that the `OrderProcessing` endpoint has received the messages.
 
+
 ## Using ServiceInsight
 
 By default, when you run a ServiceMatrix project, [ServiceInsight](/serviceinsight) is launched.  ServiceInsight is another Particular Service Platform application that provides a detailed runtime view of your solution.  It will illustrate and enumerate the messages, endpoints and data in your solution as you create an debug it.  To understand how to use ServiceInsight to complement ServiceMatrix please see [this article on that topic](/servicematrix/servicematrix-serviceinsight.md "Using ServiceInsight and ServiceMatrix").  
 
 ![ServiceInsight](/servicematrix/images/serviceinsight-screen.jpg)
 
-### Congratulations!
+
+### Congratulations
 
 You've just built your first NServiceBus application. Wasn't that easy?
+
 
 ## Next steps
 

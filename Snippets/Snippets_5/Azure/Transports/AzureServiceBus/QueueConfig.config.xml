@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <!-- startcode AzureServiceBusQueueConfig 6 -->
+  <configSections>
+    <section name="AzureServiceBusQueueConfig"
+             type="NServiceBus.Config.AzureServiceBusQueueConfig, NServiceBus.Azure.Transports.WindowsAzureServiceBus" />   
+  </configSections>
+  <AzureServiceBusQueueConfig ConnectionString="Endpoint=sb://{yournamespace}.servicebus.windows.net/;SharedSecretIssuer=owner;SharedSecretValue={yourkey}" />
+  <!-- endcode -->
+</configuration>

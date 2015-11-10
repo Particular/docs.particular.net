@@ -1,8 +1,8 @@
 ﻿using NServiceBus;
-using NServiceBus.Saga;
 
 namespace Snippets6.Sagas.SimpleSaga
 {
+    using System.Threading.Tasks;
 
     #region simple-saga
 
@@ -12,16 +12,16 @@ namespace Snippets6.Sagas.SimpleSaga
     {
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
         {
-            mapper.ConfigureMapping<CompleteOrder>(s => s.OrderId)
-                    .ToSaga(m => m.OrderId);
+            mapper.ConfigureMapping<CompleteOrder>(message => message.OrderId)
+                    .ToSaga(sagaData => sagaData.OrderId);
         }
 
-        public void Handle(StartOrder message)
+        public async Task Handle(StartOrder message, IMessageHandlerContext context)
         {
             Data.OrderId = message.OrderId;
         }
 
-        public void Handle(CompleteOrder message)
+        public async Task Handle(CompleteOrder message, IMessageHandlerContext context)
         {
             // code to handle order completion
             MarkAsComplete();

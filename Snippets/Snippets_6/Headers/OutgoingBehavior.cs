@@ -1,17 +1,18 @@
 ﻿namespace Snippets6.Headers
 {
     using System;
+    using System.Threading.Tasks;
+    using NServiceBus.OutgoingPipeline;
     using NServiceBus.Pipeline;
-    using NServiceBus.Pipeline.Contexts;
     using NServiceBus.TransportDispatch;
 
     #region header-outgoing-behavior
-    public class OutgoingBehavior : Behavior<OutgoingContext>
+    public class OutgoingBehavior : Behavior<OutgoingPhysicalMessageContext>
     {
-        public override void Invoke(OutgoingContext context, Action next)
+        public override async Task Invoke(OutgoingPhysicalMessageContext context, Func<Task> next)
         {
             context.SetHeader("MyCustomHeader", "My custom value");
-            next();
+            await next();
         }
     }
     #endregion

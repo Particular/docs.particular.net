@@ -49,7 +49,7 @@ Something happened with some data 1 and no more info
 ```
 Press any key to stop program
 
-Something happened with some data 1 and more info It's a secret.
+Something happened with some data 1 and more information It's a secret.
 ```
 
 NOTE: When each subscriber processes the event, each sees it as the schema version it is compiled against. In this manner, publishers can be extended from one version to the next without breaking existing subscribers, allowing new subscribers to be created to handle the additional information in the new version of the events.

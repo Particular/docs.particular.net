@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -32,12 +32,11 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus, Version=4.7.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.Interfaces.4.7.5\lib\net40\NServiceBus.dll</HintPath>
+    <Reference Include="NServiceBus">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Interfaces.4.7.8\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\packages\NServiceBus.4.7.5\lib\net40\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.4.7.8\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

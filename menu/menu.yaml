@@ -1,10 +1,10 @@
-- 
+-
   Name: "NServiceBus"
-  Topics: 
-    - 
+  Topics:
+    -
       Title: "Getting Started"
       Url: "platform"
-      Articles: 
+      Articles:
         - "platform"
         - "nservicebus/concept-overview"
         - "samples/endpoint-configuration"
@@ -13,46 +13,50 @@
         - "nservicebus/operations/transactions-message-processing"
         - "nservicebus/architecture/nservicebus-and-wcf"
         - "nservicebus/architecture/nservicebus-and-biztalk"
-    - 
+    -
       Title: "Messaging"
       Url: "nservicebus/messaging"
-      Articles: 
+      Articles:
         - "nservicebus/messaging/messages-events-commands"
         - "nservicebus/messaging/databus"
         - "nservicebus/messaging/custom-databus"
         - "nservicebus/messaging/discard-old-messages"
         - "nservicebus/messaging/non-durable-messaging"
         - "nservicebus/messaging/handling-responses-on-the-client-side"
-        - "nservicebus/messaging/message-headers"
+        - "nservicebus/messaging/headers"
+        - "nservicebus/messaging/header-manipulation"
+        - "nservicebus/messaging/third-party-integration"
         - "nservicebus/messaging/messages-as-interfaces"
         - "nservicebus/messaging/reply-to-a-message"
         - "nservicebus/messaging/send-a-message"
+        - "nservicebus/messaging/batched-dispatch"
         - "nservicebus/messaging/specify-input-queue-name"
-        - "nservicebus/messaging/specify-message-destination"
+        - "nservicebus/messaging/message-owner"
         - "nservicebus/messaging/unobtrusive-mode"
+        - "nservicebus/messaging/best-practice-enforcement"
         - "nservicebus/scheduling"
         - Title: "Publish Subscribe"
           Url: "nservicebus/messaging/publish-subscribe"
-          Articles: 
-            - "nservicebus/messaging/publish-subscribe/configuration"
-            - "nservicebus/messaging/publish-subscribe/how-to-pub-sub"
+          Articles:
+            - "nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed"
+            - "nservicebus/messaging/publish-subscribe/publish-handle-event"
         - Title: "Gateway"
           Url: "nservicebus/gateway"
-          Articles: 
+          Articles:
             - "nservicebus/gateway/multi-site-deployments"
             - "nservicebus/gateway/service-point-manager"
             - "nservicebus/gateway/troubleshooting"
         - "nservicebus/outbox"
-    - 
+    -
       Title: "Handlers"
       Url: "nservicebus/handlers"
-      Articles: 
+      Articles:
         - "nservicebus/handlers/handler-ordering"
         - "nservicebus/testing"
-    - 
+    -
       Title: "Sagas"
       Url: "nservicebus/sagas"
-      Articles: 
+      Articles:
         - "nservicebus/sagas/timeouts"
         - "nservicebus/sagas/saga-finding"
         - "nservicebus/sagas/saga-not-found"
@@ -60,36 +64,37 @@
         - "nservicebus/sagas/reply-replaytooriginator-differences"
         - "nservicebus/testing"
         - "nservicebus/persistence"
-    - 
+    -
       Title: "Error Handling"
       Url: "nservicebus/errors"
-      Articles: 
+      Articles:
         - "nservicebus/errors/critical-exception-for-timeout-outages"
         - "nservicebus/errors/exception-caveats"
         - "nservicebus/errors/automatic-retries"
         - "nservicebus/errors/subscribing-to-push-based-error-notifications"
-    - 
+    -
       Title: "Pipeline"
       Url: "nservicebus/pipeline"
-      Articles: 
+      Articles:
         - "nservicebus/pipeline/customizing"
         - "nservicebus/pipeline/message-mutators"
         - "nservicebus/pipeline/unit-of-work"
         - "nservicebus/pipeline/aborting"
         - "nservicebus/security/encryption"
         - "nservicebus/messaging/databus"
-    - 
+        - "nservicebus/pipeline/features"
+    -
       Title: "Transports"
       Url: "nservicebus/transports"
-      Articles: 
+      Articles:
         - Title: "Azure"
           Url: "nservicebus/azure"
-          Articles: 
+          Articles:
             - "nservicebus/azure/azure-servicebus-transport"
             - "nservicebus/azure/azure-transport"
         - Title: "Sql Server"
           Url: "nservicebus/sqlserver"
-          Articles: 
+          Articles:
             - "nservicebus/sqlserver/usage"
             - "nservicebus/sqlserver/design"
             - "nservicebus/sqlserver/concurrency"
@@ -97,69 +102,93 @@
             - "nservicebus/sqlserver/operations-scripting"
         - Title: "MSMQ"
           Url: "nservicebus/msmq"
-          Articles: 
+          Articles:
             - "nservicebus/msmq/connection-strings"
             - "nservicebus/msmq/viewing-message-content-in-msmq"
             - "nservicebus/msmq/transportconfig"
+            - "nservicebus/msmq/troubleshooting"
             - "nservicebus/msmq/network-load-balancing"
             - "nservicebus/msmq/operations-scripting"
-            - "nservicebus/msmq/uninstalling-msmq"            
+            - "nservicebus/msmq/uninstalling-msmq"
+            - "nservicebus/msmq/subscription-persistence"
         - Title: "RabbitMQ"
           Url: "nservicebus/rabbitmq"
-          Articles: 
+          Articles:
             - "nservicebus/rabbitmq/rabbitmqclient-nuget"
             - "nservicebus/rabbitmq/connection-strings"
             - "nservicebus/rabbitmq/configuration-api"
             - "nservicebus/rabbitmq/cluster"
             - "nservicebus/rabbitmq/operations-scripting"
-    - 
+    -
       Title: "Serialization"
       Url: "nservicebus/serialization"
-      Articles: 
+      Articles:
+        - "nservicebus/serialization/xml"
+        - "nservicebus/serialization/json"
+        - "nservicebus/serialization/binary"
         - "nservicebus/serialization/custom-serializer"
-        - "nservicebus/serialization/xml-serializer"
         - "nservicebus/serialization/type-was-not-registered"
-    - 
+    -
       Title: "Persistence"
       Url: "nservicebus/persistence"
-      Articles: 
+      Articles:
         - "nservicebus/persistence/order"
         - "nservicebus/persistence/authoring-custom"
         - "nservicebus/azure/azure-storage-persistence"
         - "nservicebus/persistence/in-memory"
-        - "nservicebus/nhibernate/"
+        - "nservicebus/msmq/subscription-persistence"
+        - Title: "NHibernate"
+          Url: "nservicebus/nhibernate"
+          Articles:
+            - "nservicebus/nhibernate/accessing-data"
+            - "nservicebus/nhibernate/saga-concurrency"
+            - "nservicebus/nhibernate/sql-azure"
         - Title: "RavendDB"
           Url: "nservicebus/ravendb"
-          Articles: 
+          Articles:
             - "nservicebus/ravendb/operations-scripting"
-            - "nservicebus/ravendb/connecting"
             - "nservicebus/ravendb/installation"
-    - 
+    -
       Title: "Containers"
       Url: "nservicebus/containers"
-      Articles: 
+      Articles:
         - "nservicebus/containers/child-containers"
         - "nservicebus/containers/injecting-ibus"
         - "nservicebus/containers/property-injection"
-    - 
+        - "nservicebus/containers/autofac"
+        - "nservicebus/containers/castlewindsor"
+        - "nservicebus/containers/ninject"
+        - "nservicebus/containers/spring"
+        - "nservicebus/containers/structuremap"
+        - "nservicebus/containers/unity"
+    -
+      Title: "Interface life-cycles"
+      Url: "nservicebus/lifecycle"
+      Articles:
+        - "nservicebus/lifecycle/ineedinitialization"
+        - "nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized"
+        - "nservicebus/lifecycle/iwanttorunwhenconfigurationiscomplete"
+        - "nservicebus/lifecycle/iwanttorunwhenbusstartsandstops"
+    -
       Title: "Hosting"
       Url: "nservicebus/hosting"
-      Articles: 
-        - "nservicebus/hosting/self-hosting"
+      Articles:
+        - "nservicebus/hosting/windows-service"
         - "nservicebus/hosting/override-hostid"
         - "nservicebus/hosting/custom-configuration-providers"
         - "nservicebus/hosting/assembly-scanning"
-        - "nservicebus/hosting/nservicebus-host"
-        - "nservicebus/hosting/nservicebus-host/profiles"
-        - "nservicebus/hosting/send-only-endpoints"
         - "nservicebus/hosting/critical-errors"
         - "nservicebus/hosting/publishing-from-web-applications"
         - "nservicebus/azure/hosting"
         - "nservicebus/azure/hosting-in-azure-cloud-services"
-    - 
+        - Title: "NServiceBus Host"
+          Url: "nservicebus/hosting/nservicebus-host"
+          Articles:
+            - "nservicebus/hosting/nservicebus-host/profiles"
+    -
       Title: "Logging"
       Url: "nservicebus/logging"
-      Articles: 
+      Articles:
         - "nservicebus/logging/message-contents"
         - "nservicebus/logging/usage"
         - "nservicebus/logging/log4net"
@@ -169,10 +198,10 @@
         - "nservicebus/operations/auditing"
         - Title: "Samples"
           Url: "samples/logging"
-    - 
+    -
       Title: "Azure"
       Url: "nservicebus/azure"
-      Articles: 
+      Articles:
         - "nservicebus/azure/azure-servicebus-transport"
         - "nservicebus/azure/azure-storage-persistence"
         - "nservicebus/azure/azure-storage-queues-transport"
@@ -182,10 +211,11 @@
         - "nservicebus/azure/multiple-azure-storage-accounts-for-scaleout"
         - "nservicebus/azure/shared-hosting-in-azure-cloud-services"
         - "nservicebus/azure/transactions"
-    - 
+        - "nservicebus/azure/faq"
+    -
       Title: "Operations"
       Url: "nservicebus/operations"
-      Articles: 
+      Articles:
         - "nservicebus/operations/auditing"
         - "nservicebus/security/encryption"
         - "nservicebus/operations/configuring-aws"
@@ -193,54 +223,56 @@
         - "nservicebus/operations/installers"
         - "nservicebus/operations/management-using-powershell"
         - "nservicebus/operations/performance-counters"
-        - "nservicebus/operations/throughput"
+        - "nservicebus/operations/tuning"
         - "nservicebus/operations/running-on-windows"
         - "nservicebus/operations/transactions-message-processing"
         - "nservicebus/operations/warning-for-cid-values"
-    - 
+    -
       Title: "Scalability and HA"
       Url: "nservicebus/scalability-and-ha"
-      Articles: 
+      Articles:
         - "nservicebus/scalability-and-ha/deploying-to-a-windows-failover-cluster"
         - "nservicebus/scalability-and-ha/individualizing-queues-when-scaling-out"
         - Title: "Distributor"
           Url: "nservicebus/scalability-and-ha/distributor"
-          Articles: 
+          Articles:
             - "nservicebus/scalability-and-ha/distributor/when-worker-goes-down"
             - "nservicebus/scalability-and-ha/distributor/disconnect-workers"
+            - "nservicebus/scalability-and-ha/distributor/publish-subscribe"
             - "nservicebus/scalability-and-ha/distributor/upgrading-the-distributor"
-- 
+            - "nservicebus/scalability-and-ha/distributor/error-handling"
+-
   Name: "ServiceInsight"
-  Topics: 
-    - 
+  Topics:
+    -
       Title: "Getting Started"
-      Articles: 
-        - "serviceinsight/getting-started-overview"
+      Articles:
         - "serviceinsight/application-invocation"
         - "serviceinsight/how-logging-works"
-- 
+-
   Name: "ServicePulse"
-  Topics: 
-    - 
+  Topics:
+    -
       Title: "Introduction"
-      Articles: 
+      Articles:
         - "servicepulse/introduction-and-installing-servicepulse"
         - "servicepulse/intro-endpoints-heartbeats"
         - "servicepulse/intro-failed-messages"
         - "servicepulse/intro-endpoints-custom-checks"
         - "servicepulse/event-types"
-    - 
+    -
       Title: "Configuration"
-      Articles: 
+      Articles:
+        - "servicepulse/servicepulse-host-config"
         - "servicepulse/how-to-configure-endpoints-for-monitoring"
         - "servicepulse/install-servicepulse-in-iis"
         - "servicepulse/troubleshooting"
-- 
+-
   Name: "ServiceControl"
-  Topics: 
-    - 
+  Topics:
+    -
       Title: "Configuration"
-      Articles: 
+      Articles:
         - "servicecontrol/installation"
         - "servicecontrol/creating-config-file"
         - "servicecontrol/multi-transport-support"
@@ -248,12 +280,18 @@
         - "servicecontrol/customize-name-and-description"
         - "servicecontrol/setting-custom-hostname"
         - "servicecontrol/logging"
-        - "servicecontrol/plugins"
-        - "servicecontrol/heartbeat-configuration"
         - "servicecontrol/errorlog-auditlog-behavior"
-    - 
+        - Title: "Integration"
+          Url: "servicecontrol/plugins"
+          Articles:
+            - "servicecontrol/contracts"
+            - "servicecontrol/plugins/heartbeat"
+            - "servicecontrol/plugins/custom-checks"
+            - "servicecontrol/plugins/saga-audit"
+            - "servicecontrol/plugins/debug-session"
+    -
       Title: "Management"
-      Articles: 
+      Articles:
         - "servicecontrol/securing-servicecontrol"
         - "servicecontrol/capacity-and-planning"
         - "servicecontrol/how-purge-expired-data"
@@ -261,26 +299,26 @@
         - "servicecontrol/backup-sc-database"
         - "servicecontrol/configure-non-privileged-service-account"
         - "servicecontrol/multi-instances-on-one-host"
-        - "servicecontrol/db-compaction"        
-    - 
+        - "servicecontrol/db-compaction"
+    -
       Title: "Troubleshooting"
-      Articles: 
+      Articles:
         - "servicecontrol/troubleshooting"
-- 
+-
   Name: "ServiceMatrix"
-  Topics: 
-    - 
+  Topics:
+    -
       Title: "Getting Started"
-      Articles: 
+      Articles:
         - "servicematrix/installing-servicematrix-2.0"
         - "servicematrix/getting-started-with-servicematrix-2.0"
         - "servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance"
         - "servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe"
         - "servicematrix/servicematrix-serviceinsight"
         - "servicematrix/getting-started-sagasfullduplex-2.0"
-    - 
+    -
       Title: "Using ServiceMatrix"
-      Articles: 
+      Articles:
         - "servicematrix/customizing-extending"
         - "servicematrix/servicematrix-persistence"
         - "servicematrix/licensing-servicematrix-v2.0"

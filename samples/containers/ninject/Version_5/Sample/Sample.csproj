@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -35,20 +35,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ninject">
-      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Extensions.ContextPreservation">
-      <HintPath>..\packages\Ninject.Extensions.ContextPreservation.3.2.0.0\lib\net45-full\Ninject.Extensions.ContextPreservation.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\Ninject.Extensions.ContextPreservation.3.2.0.0\lib\net45-full\Ninject.Extensions.ContextPreservation.dll</HintPath>
     </Reference>
     <Reference Include="Ninject.Extensions.NamedScope">
-      <HintPath>..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net45-full\Ninject.Extensions.NamedScope.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net45-full\Ninject.Extensions.NamedScope.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.5.2.0\lib\net45\NServiceBus.Core.dll</HintPath>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.9\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Ninject">
-      <HintPath>..\packages\NServiceBus.Ninject.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Ninject.5.0.0\lib\net45\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

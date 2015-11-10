@@ -10,7 +10,6 @@
             #region GatewayConfiguration
 
             BusConfiguration busConfiguration = new BusConfiguration();
-
             busConfiguration.EnableFeature<Gateway>();
 
             #endregion

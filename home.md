@@ -1,8 +1,4 @@
 <style>
-  a.img img.hover{display:none;}
-  a.img:hover img{display:none;}
-  a.img:hover img.hover{display:inline;}
-	
   .small.button{
 	line-height: 45px;
 	font-size: 16px;
@@ -84,17 +80,16 @@
     font-size: 14px;
   }
   .block .left2 {
-    width: 60%;
+    width: 50%;
     float: left;
-    border-right: 2px solid rgb(218,222,222);
-    min-width: 460px;
+    padding-right: 20px;
+    min-width: 360px;
   }
   .block .right1 {
+    width: 50%;
     float: left;
     padding-left: 20px;
-  }
-  .block .right1 h3{
-    padding-top: 7px;
+    border-left: 2px solid rgb(218,222,222);
   }
   .block h2{
     clear: both;
@@ -130,7 +125,7 @@
   }
   .block .right1 img, .block .left2 img {
     float: left;
-    margin: 0px 13px 23px 0px;
+    margin: 0px 13px 17px 0px;
   }
   .productcolumn{
     width: 32%;
@@ -180,26 +175,26 @@
 </div>
 <div class="block middle">
   <div class="ic">
-    <a href="/samples/step-by-step/" class="img">
-      <img src="/home/getting-started.png" /><img src="/home/getting-started-hover.png" class="hover"/><br/>
+    <a href="/samples/step-by-step/">
+      <img src="/home/getting-started.png" /><br/>
       Getting Started
     </a>
   </div>
   <div class="ic">
-    <a href="http://particular.net/Videos-and-Presentations" class="img">
-      <img src="/home/intro-videos.png" /><img src="/home/intro-videos-hover.png" class="hover"/><br/>
+    <a href="http://particular.net/Videos-and-Presentations">
+      <img src="/home/intro-videos.png" /><br/>
       Intro Videos
     </a>
   </div>
   <div class="ic">
-    <a href="https://groups.google.com/forum/#!forum/particularsoftware" class="img">
-      <img src="/home/discussion-large.png" /><img src="/home/discussion-large-hover.png" class="hover"/><br/>
+    <a href="https://groups.google.com/forum/#!forum/particularsoftware">
+      <img src="/home/discussion-large.png" /><br/>
       Discussion group
     </a>
   </div>
   <div class="ic">
-    <a href="/samples/" class="img rarr">
-      <img src="/home/samples.png" /><img src="/home/samples-hover.png" class="hover"/><br/>
+    <a href="/samples/" class="rarr">
+      <img src="/home/samples.png" /><br/>
       Samples
     </a>
   </div>
@@ -210,39 +205,45 @@
 </div>
 <div class="block middle">
 <div class="left2">
-    <a href="/platform/" class="img">
+    <a href="/platform/">
       <img src="/home/platform-small.png" />
-      <img src="/home/platform-small-hover.png" class="hover"/>
       <h3>Particular Service Platform Overview</h3>
     </a>
     <p>A short and high level overview of the Platform</p>
     <div style="clear: both"></div>
-    <a href="https://www.packtpub.com/application-development/learning-nservicebus-second-edition" class="img">
+    <a href="https://www.packtpub.com/application-development/learning-nservicebus-second-edition">
       <img src="/home/book.png" />
-      <img src="/home/book-hover.png" class="hover"/>
       <h3>Learning NServiceBus - Second Edition</h3>
     </a>
     <p>Book by David Boike on building reliable and scalable software with NServiceBus.</p>
     <div style="clear: both"></div>
-    <a href="/platform/extensions.md" class="img">
+    <a href="/platform/extensions.md">
       <img src="/home/extensions-small.png" />
-      <img src="/home/extensions-small-hover.png" class="hover"/>
       <h3>Extensions and integrations</h3>
     </a>
     <p>Extensions to NServiceBus developed by both the community and Particular</p>
     <div style="clear: both"></div>
   </div>
   <div class="right1">
-    <a href="http://particular.net/HandsOnLabs" class="img">
+    <a href="http://particular.net/HandsOnLabs">
       <img src="/home/hand-on-labs-small.png" />
-      <img src="/home/hand-on-labs-small-hover.png" class="hover"/>
       <h3>Hands-On Labs</h3>
     </a>
     <div style="clear: both"></div>
-    <a href="http://stackoverflow.com/questions/tagged/nservicebus" class="img">
+    <a href="http://stackoverflow.com/questions/tagged/nservicebus">
       <img src="/home/stackoverflow-big.png" />
-      <img src="/home/stackoverflow-big-hover.png" class="hover"/>
       <h3>StackOverflow</h3>
+    </a>
+    <p>All questions and answers tagged 'NServiceBus'</p>
+    <div style="clear: both"></div>
+    <a href="http://www.pluralsight.com/courses/microservices-nservicebus-scaling-applications">
+      <img src="/home/pluralsight.png">
+      <h3>Pluralsight: Scaling Applications with<br> Microservices and NServiceBus</h3>
+    </a>
+    <div style="clear: both"></div>
+    <a href="http://www.pluralsight.com/courses/nservicebus">
+      <img src="/home/pluralsight.png">
+      <h3>Pluralsight: Introduction to NServiceBus</h3>
     </a>
     <div style="clear: both"></div>
   </div>
@@ -250,16 +251,16 @@
 </div>
 <div class="productcolumn header">
   <div class="block top">
-    <a href="/servicematrix/">
-      <img src="/home/servicematrix.png" />
+    <a href="/serviceinsight/">
+      <img src="/home/serviceinsight.png" />
     </a>
     <div style="clear: both"></div>
   </div>
 </div>
 <div class="productcolumn header">
   <div class="block top">
-    <a href="/serviceinsight/">
-      <img src="/home/serviceinsight.png" />
+    <a href="/servicecontrol/">
+      <img src="/home/servicecontrol.png" />
     </a>
     <div style="clear: both"></div>
   </div>
@@ -274,40 +275,43 @@
 </div>
 <div class="productcolumnc">
   <div class="productcolumn block">
-    <p><h4>Prototype your distributed system design in a matter of minutes</h4></p>
-    <ul>
-      <li><a href="/servicematrix/getting-started-with-servicematrix-2.0.md">Getting Started</a></li>
-      <li><a href="/servicematrix/servicematrix-serviceinsight.md">Interaction with ServiceInsight</a></li>
-      <li><a href="/servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md">Publish/Subscribe</a></li></ul><a href="/servicematrix/"><h3>All ServiceMatrix articles</h3></a><br/>
-   <div style="clear: both"></div>
-  </div>
-  <div class="productcolumn block">
     <p><h4>Complete under-the-hood visualization of your system's behavior</h4></p>
     <ul>
-      <li><a href="/serviceinsight/getting-started-overview.md">Getting Started</a></li>
       <li><a href="/serviceinsight/application-invocation.md">Application invocation</a></li>
-      <li><a href="/serviceinsight/how-logging-works.md">Logging in ServiceInsight</a></li></ul>
-      <a href="/serviceinsight/"><h3>All ServiceInsight articles</h3></a><br/>
+      <li><a href="/serviceinsight/how-logging-works.md">Logging in ServiceInsight</a></li>
+    </ul>
+    <a href="/serviceinsight/"><h3>All ServiceInsight articles</h3></a><br/>
     <div style="clear: both"></div>
+  </div>
+  <div class="productcolumn block">
+    <p><h4>Gather all the data and monitor multiple endpoints from a single location</h4></p>
+    <ul>
+      <li><a href="/servicecontrol/installation.md">Installing ServiceControl</a></li>
+      <li><a href="/servicecontrol/multi-transport-support.md">Multi Transport Support</a></li>
+      <li><a href="/servicecontrol/plugins/">Endpoint Plugins</a></li>
+    </ul>
+    <a href="/servicecontrol/"><h3>All ServiceControl articles</h3></a><br/>
+   <div style="clear: both"></div>
   </div>
   <div class="productcolumn last block">
     <p><h4>Real-time monitoring that is custom tailored to fit your distributed systems</h4></p>
     <ul>
       <li><a href="/servicepulse/intro-endpoints-heartbeats.md">Monitoring Endpoints</a></li>
       <li><a href="/servicepulse/intro-failed-messages.md">Handling Failed Messages</a></li>
-      <li><a href="/servicepulse/intro-endpoints-custom-checks.md">Introduction to Custom Checks</a></li></ul>
-      <a href="/servicepulse/"><h3>All ServicePulse articles</h3></a><br/>
+      <li><a href="/servicepulse/intro-endpoints-custom-checks.md">Introduction to Custom Checks</a></li>
+    </ul>
+    <a href="/servicepulse/"><h3>All ServicePulse articles</h3></a><br/>
     <div style="clear: both"></div>
   </div>
 </div>
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceMatrix/releases"><img src="/home/release-notes.png" />All Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.png" />All Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn">
   <div class="block black">
-    <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><img src="/home/release-notes.png" />Release notes</a></span>
+    <span class="blue"><a href="https://github.com/Particular/ServiceControl/releases"><img src="/home/release-notes.png" />Release notes</a></span>
   </div>
 </div>
 <div class="productcolumn last">

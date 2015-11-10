@@ -1,11 +1,14 @@
 using System;
 using NServiceBus;
+using NServiceBus.Logging;
 
 class Program
 {
 
     static void Main()
     {
+        LogManager.Use<DefaultFactory>()
+            .Level(LogLevel.Info);
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.FullDuplex.Client");
         busConfiguration.UseSerialization<JsonSerializer>();
@@ -34,7 +37,7 @@ class Program
                 RequestDataMessage message = new RequestDataMessage
                 {
                     DataId = guid,
-                    String = "<node>it's my \"node\" & i like it<node>"
+                    String = "String property value"
                 };
                 bus.Send("Samples.FullDuplex.Server", message);
             }

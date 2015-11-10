@@ -11,7 +11,7 @@ class Program
         Configure.Serialization.Json();
         Configure configure = Configure.With();
         configure.Log4Net();
-        configure.DefineEndpointName("Sample.PipelineStream.Sender");
+        configure.DefineEndpointName("Samples.PipelineStream.Sender");
         configure.DefaultBuilder();
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
@@ -63,7 +63,7 @@ class Program
                                         SomeProperty = "This message contains a stream",
                                         StreamProperty = File.OpenRead("FileToSend.txt")
                                     };
-        bus.Send("Sample.PipelineStream.Receiver", message);
+        bus.Send("Samples.PipelineStream.Receiver", message);
         #endregion
 
         Console.WriteLine();
@@ -80,7 +80,7 @@ class Program
                                             SomeProperty = "This message contains a stream",
                                             StreamProperty = webClient.OpenRead("http://www.particular.net")
                                         };
-            bus.Send("Sample.PipelineStream.Receiver", message);
+            bus.Send("Samples.PipelineStream.Receiver", message);
         }
         #endregion
 

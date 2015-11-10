@@ -62,6 +62,10 @@ ServiceControl 1.4 introduced a database maintenance feature which allows Servic
 
 - Stop ServiceControl (press `<enter>` in the console).
 
+NOTE: If you get an `System.OutOfMemoryException` during import you can work around this error by reducing the batch size in advanced settings.
+
+![](import-database-note.png)
+
 ## Step 5: Restart ServiceControl
 
 - Start the ServiceControl WindowsService.

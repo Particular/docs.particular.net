@@ -11,10 +11,9 @@ namespace Snippets4.Encryption.EncryptionService
         {
             #region EncryptionFromIEncryptionService
             //where EncryptionService implements IEncryptionService 
-            Configure.With()
-                .Configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
+            Configure configure = Configure.With();
+            configure.Configurer.RegisterSingleton<IEncryptionService>(new EncryptionService());
             #endregion
         }
-
     }
 }

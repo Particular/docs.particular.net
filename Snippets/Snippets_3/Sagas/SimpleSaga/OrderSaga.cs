@@ -3,7 +3,7 @@
     using NServiceBus;
     using NServiceBus.Saga;
 
-    #region simple-saga
+    #region 3to4ConfigureHowToFindSaga
 
     public class OrderSaga : Saga<OrderSagaData>,
                             IAmStartedByMessages<StartOrder>,
@@ -11,9 +11,12 @@
     {
         public override void ConfigureHowToFindSaga()
         {
-            ConfigureMapping<CompleteOrder>(s => s.OrderId, m => m.OrderId);
+            ConfigureMapping<CompleteOrder>(
+                sagaData => sagaData.OrderId, 
+                message => message.OrderId);
         }
 
+    #endregion
         public void Handle(StartOrder message)
         {
             Data.OrderId = message.OrderId;
@@ -26,6 +29,5 @@
         }
     }
 
-    #endregion
 
 }

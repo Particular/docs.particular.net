@@ -5,9 +5,12 @@ tags:
 - Platform
 ---
 
+
 ### Platform Installer 
+
 - [Download and Launch the Platform Installer](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
 - [Release notes](installer)
+
 
 ### Applications and Tools
 
@@ -31,8 +34,9 @@ The Particular Service Platform source code, current and previous releases and t
 |**RabbitMQ**|[Releases](https://github.com/Particular/NServiceBus.RabbitMQ/tags)| [Release Notes](https://github.com/Particular/NServiceBus.RabbitMQ/releases)
 |**Azure Queues and ServiceBus**|[Releases](https://github.com/Particular/NServiceBus.Azure/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Azure/releases)
 
+
 ### ServiceControl Plugins
 
-* See [ServiceControl Endpoints Plugins](/servicecontrol/plugins.md)
+* See [ServiceControl Endpoints Plugins](/servicecontrol/plugins/)
 
 

@@ -7,6 +7,7 @@ redirects:
 related:
 - nservicebus/containers
 - nservicebus/hosting
+- nservicebus/hosting/publishing-from-web-applications
 ---
 
 

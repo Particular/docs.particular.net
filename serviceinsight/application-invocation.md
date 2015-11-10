@@ -1,6 +1,6 @@
 ---
 title: ServiceInsight Application Invocation
-summary: How the integration between ServicePulse and ServiceInsight works and how to use the parametrized invocation of ServiceInsight.
+summary: How the integration between ServicePulse and ServiceInsight works and how to use the parameterized invocation of ServiceInsight.
 tags: 
 - Integration
 ---

@@ -3,9 +3,7 @@ title: NServiceBus Host
 summary: Avoid writing repeat configuration code, host your endpoints in a Windows Service, and change technologies without code.
 tags:
 - Hosting
-- Configuration
 - Logging
-- Installation
 - NServiceBus.Host
 redirects:
  - nservicebus/the-nservicebus-host
@@ -13,17 +11,11 @@ related:
 - nservicebus/operations/installers
 ---
 
-To avoid re-writing the same configuration code, or to host your endpoints in a Windows Service, use `NServiceBus.Host.exe`, which can also run as a console.
+The NServiceBus Host takes a more opinionated approach to hosting. It allows the execution as both a windows service and a console application (for development).
 
-The NServiceBus host streamlines service development and deployment, allows you to change technologies without code, and is administrator-friendly when setting permissions and accounts.
+The NServiceBus host automates some parts of the windows service deployment. See [Installation](#Installation).
 
-To use the host just create a new C# class library and reference the NServiceBus.Host NuGet package
-
-```
-install-package NServiceBus.Host
-```
-
-That's it, the package will create an example endpoint configuration and setup the NServiceBus.Host.exe to run your endpoint.
+To use the host just create a new C# class library and reference the [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host/). The package also creates an example endpoint configuration and sets the NServiceBus.Host.exe as the startup project for the endpoint.
 
 
 ## Configuring your endpoint
@@ -35,14 +27,21 @@ If you want to avoid the scanning process you can explicitly configure the type 
 <!-- import ExplicitHostConfigType -->
 
 
+## Application Domains
+
+The `NServiceBus.Host.exe` creates a separate *service* [Application Domain](https://msdn.microsoft.com/en-us/library/2bh4z9hs.aspx) to run NServiceBus and the user code. The new domain is assigned a configuration file named after the dll that contains the class implementing `IConfigureThisEndpoint`. All the configuration should be done in that file (as opposed to `NServiceBus.Host.exe.config`). In most cases that means just adding the `app.config` file to the project and letting MSBuild take care of renaming it while moving to the `bin` folder.
+
+NOTE: When the endpoint configuration is not specified explicitly, the host scans all the assemblies to find it and it does so in the context of the *host* application domain, not the new *service* domain. Because of that, when [reditecting assembly versions](https://msdn.microsoft.com/en-us/library/7wd6ex19.aspx), the `assemblyBinding` element needs to be present in both `NServiceBus.Host.exe.config` and `app.config`.
+
+
 ## Custom initialization and startup
 
-As of NServiceBus v5 you customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on your endpoint configuration class. Just call the appropriate methods on the `BusConfiguration` parameter passed to the method.
+As of NServiceBus version 5 you customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on your endpoint configuration class. Just call the appropriate methods on the `BusConfiguration` parameter passed to the method.
 
 <!-- import customize_nsb_host -->
 
 
-#### NServiceBus v4 and v3
+#### NServiceBus version 4 and version 3
 
 To change core settings such as assembly scanning, container, and serialization format, implement
 `IWantCustomInitialization` on the endpoint configuration class (the same class that implements
@@ -54,19 +53,19 @@ Configure.With()
 
 NOTE: Do not perform any startup behaviors in the `Init` method.
 
-After the custom initalization is done the regular core `INeedInitalization` implementations found will be called in the same way as when you're self hosting. 
+After the custom initialization is done the regular core `INeedInitalization` implementations found will be called in the same way as when you're self hosting. 
 
-Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in v3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in v3.x) should kick off things such as web crawling, data mining, and batch processes.
+Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in version 3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in version 3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in version 3.x) should kick off things such as web crawling, data mining, and batch processes.
 
 
 ## Logging
 
-As of NServiceBus v5 logging for the host is controlled with the same API as the core. This is documented [here](/nservicebus/logging/).
+As of NServiceBus version 5 logging for the host is controlled with the same API as the core. This is documented [here](/nservicebus/logging/).
 
 You can add the logging API calls as mentioned in the above article directly in your implementation of `IConfigureThisEndoint.Customize` method.
 
 
-#### NServiceBus v4 and v3
+### NServiceBus version 4 and version 3
 
 To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure your custom setup. To make NServiceBus use your logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](/nservicebus/logging) and shown below:
 
@@ -82,7 +81,7 @@ As of version 5 roles are obsoleted and should not be used. Most of the function
 <!-- import AsAClientEquivalent -->
 
 
-#### NServiceBus v4 and v3
+#### NServiceBus version 4 and version 3
 
 The rest of the code specifying transport, subscription storage, and other technologies isn't here, because of the `AsA_Server` built-in configuration described next.
 

@@ -46,7 +46,7 @@ To delimiter file names use a dash (`-`).
 
 ## Headers
 
-Each document has a header. It is enclosed by `---` and is defined in a [YAML](http://en.wikipedia.org/wiki/YAML) document format.
+Each document has a header. It is enclosed by `---` and is defined in a [YAML](https://en.wikipedia.org/wiki/YAML) document format.
 
 The GitHub  UI will [correctly render YAML](https://github.com/blog/1647-viewing-yaml-metadata-in-your-documents).
 
@@ -69,16 +69,29 @@ redirects:
 
 ### Title
 
+```
+title: Auditing With NServiceBus
+```
+
 Required. Used for the web page title tag `<head><title>`, displayed in the page content, and displayed in search results.
 
 
 ### Summary
+
+```
+summary: Provides built-in message auditing for every endpoint.
+```
 
 Required. Used for the meta description tag (`<meta name="description"`) and displaying on the search results.
 
 
 ### Tags
 
+```
+tags:
+- Auditing
+- Forwarding Messages
+```
 Optional. Used to flag the article as being part of a group of articles.
 
 Tags are rendered in the articles content with the full list of tags being rendered at [http://docs.particular.net/tags](http://docs.particular.net/tags). Untagged articles will be rendered here [http://docs.particular.net/tags/untagged](http://docs.particular.net/tags/untagged)
@@ -93,12 +106,34 @@ Tags are interpreted in two ways.
    * Dashes (`-`) are replaced with dashes spaces 
 
 
+### Hidden
+
+```
+hidden: true
+```
+
+Causes two things:
+
+ * Stop search engines from finding the page using a `<meta name="robots" content="noindex" />`.
+ * Prevents the page from being found in the docs search.
+
+
 ### Related
+
+```
+related:
+- samples/custom-checks/monitoring3rdparty
+```
 
 A list of related pages for this page. These links will be rendered at the bottom of the page. Can include both samples and articles and they will be grouped as such when rendered in html. 
 
 
 ### Redirects
+
+```
+redirects:
+- nservicebus/overview
+```
 
 When renaming an existing article to a new name, please add the `redirects:` section in the article header and specify the previous name for the article. If the old Url is linked anywhere, when the user clicks on it, the new renamed article will automatically be served.
  
@@ -114,24 +149,22 @@ Should be the url relative to the root with no beginning or trailing slash paddi
 
 ## An example header for an article
 
-- In the following example, whenever the urls `/servicematrix/sm-si` or `/servicematrix/debugging-servicematrix` are being requested, the given article will be rendered.
+- In the following example, whenever the urls `/servicecontrol/sc-si` or `/servicecontrol/debugging-servicecontrol` are being requested, the given article will be rendered.
 
 ```
 ---
-title: ServiceMatrix and ServiceInsight Interaction
-summary: 'Using ServiceMatrix and ServiceInsight Together'
+title: ServiceInsight Interaction
+summary: 'Using ServiceInsight Together'
 tags:
-- ServiceMatrix
 - ServiceInsight
 - Invocation
 - Debugging
-
 redirects:
-- servicematrix/sm-si
-- servicematrix/debugging-servicematrix
-
+- serviceinsight/si
+- serviceinsight/debugging
+related:
+- samples/azure/shared-host
 ---
-
 ```
 
 
@@ -263,6 +296,7 @@ File extensions scanned for snippets include:
 
  * `.config`
  * `.cs`
+ * `.ps`
  * `.cscfg`
  * `.csdef` 
  * `.html`
@@ -280,6 +314,14 @@ Any code wrapped in a convention based comment will be picked up. The comment ne
 var configure = Configure.With();
 // endcode
 ```
+
+For non-code snippets apply a similar approach as in code, using comments appropriate for a given file type. For plain-text files an extra empty line is required before `endcode` tag.
+
+|Tag        |XML-based                    |PowerShell            |SQL script             |Plain text          |
+|-----------|-----------------------------|----------------------|-----------------------|--------------------|
+|**Open**   |```<!-- startcode name -->```|```# startcode name```|```-- startcode name```|```startcode name```|
+|Content    |                             |                      |                       |                    |
+|**Close**  |```<!-- endcode -->```       |```# endcode```       |```-- endcode```       |```endcode```       |
 
 
 #### Using regions 
@@ -558,13 +600,18 @@ This will result in the image being resized with the following parameters
 It will also wrap the image in a clickable lightbox so the full image can be accessed. 
 
 
+### Sequence diagrams
+
+Sequence diagram images are genrated using https://bramp.github.io/js-sequence-diagrams/ online service. Keep the source text used to generate sequence image in the document as an HTML comment to allow future modifications in case images need to be re-generated.
+
+
 ## Some Useful Characters
 
  * Ticks are done with `&#10004;` &#10004;
  * Crosses are done with `&#10006;` &#10006;
   
 
-## More Info
+## More Information
  
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 

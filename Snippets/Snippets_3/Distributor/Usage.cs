@@ -6,30 +6,36 @@
     {
         public Usage()
         {
+            Configure configure = Configure.With();
             #region ConfiguringDistributor
 
             // --------------------------------------
             // Running the Distributor and a Worker
-            Configure.With()
-                .AsMasterNode();
+            configure.AsMasterNode();
             //or 
-            Configure.With()
-                .RunDistributor();
+            configure.RunDistributor();
             // --------------------------------------
 
             // --------------------------------------
             // Running the Distributor only
-            Configure.With()
-                .RunDistributorWithNoWorkerOnItsEndpoint();
+            configure.RunDistributorWithNoWorkerOnItsEndpoint();
             //or
-            Configure.With()
-                .RunDistributor(false);
+            configure.RunDistributor(false);
             // --------------------------------------
 
             #endregion
             #region ConfiguringWorker
-            Configure.With()
-                .EnlistWithDistributor();
+            configure.EnlistWithDistributor();
+            #endregion
+        }
+        public void IsEnabled()
+        {
+            Configure configure = Configure.With();
+            #region IsDistributorEnabled
+            bool isDistributorEnabled = configure.DistributorEnabled();
+            #endregion
+            #region IsWorkerEnabled
+            bool isWorkerEnabled = configure.WorkerRunsOnThisEndpoint();
             #endregion
         }
     }

@@ -8,27 +8,17 @@ related:
 - samples/logging/nlog-custom
 ---
 
-Support for routing log entries to NLog is compatible with NServiceBus 5 and higher.
+Support for routing log entries to [NLog](http://nlog-project.org/) is compatible with NServiceBus 5 and higher.
 
-There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) package available that allows for simple integration of NServiceBus and [NLog](http://nlog-project.org/).
+There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) package available that allows for simple integration of NServiceBus and NLog.
 
 
 ## Usage
 
-
-### Pull in the nugets
-
-    Install-Package NServiceBus.NLog
-
-This has a dependency on the `NLog` nuget so that will automatically be pulled in.
-
-
-### The code
-
 <!-- import NLogInCode -->
 
 
-### Filtering 
+## Filtering 
 
 If NServiceBus writes a significant amount of information to the log. To limit this information you can use the filtering features of your underlying logging framework. 
 

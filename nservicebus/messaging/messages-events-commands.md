@@ -16,11 +16,11 @@ redirects:
 - nservicebus/messaging/invalidoperationexception-in-unobtrusive-mode
 ---
 
-A Message is the unit of communication for NServiceBus. There are two sub-types of messages that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default unless disabled in [configuration](configure-best-practice-enforcement.md). 
+A *Message* is the unit of communication for NServiceBus. There are two sub-types of messages that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default unless disabled in [configuration](best-practice-enforcement.md). 
 
 ### Command
 
-Used to request that an action should be taken. A Command is intended to be _sent to a receiver_ (all commands should have one logical owner and should be sent to the endpoint responsible for processing). As such, commands ...
+Used to request that an action should be taken. A *Command* is intended to be _sent to a receiver_ (all commands should have one logical owner and should be sent to the endpoint responsible for processing). As such, commands ...
 
 -   are not allowed to be _published_. 
 -   cannot be _subscribed_ to or _unsubscribed_ from.
@@ -28,7 +28,7 @@ Used to request that an action should be taken. A Command is intended to be _sen
 
 ### Event
 
-Used to communicate that some action has taken place. An Event should be _published_. An event ...
+Used to communicate that some action has taken place. An *Event* should be _published_. An event ...
 
 -   can be _subscribed_ to and _unsubscribed_ from.
 -   cannot be sent using `Bus.Send()` (since _all events should be published_).
@@ -39,16 +39,15 @@ Note: For reply messages in a request and response pattern, you may want to use 
 
 ## Defining Messages
 
-Messages can be defined via two mechanisms:
+Messages can be defined via *marker interfaces* or via *conventions*.
 
 ### Marker interfaces
 
-The simplest way to define a message is to use a marker interfaces. 
+The simplest way to define a message is to use marker interfaces. 
 
  * `NServiceBus.IMessage` for defining a Message.
  * `NServiceBus.ICommand` for defining a Command.
  * `NServiceBus.IEvent` for defining an Event.
-
 
 ```C#
 public class MyMessage : IMessage { }
@@ -62,12 +61,18 @@ public interface MyEvent : IEvent { }
 
 ### Conventions 
 
-Message Conventions is a way of defining what classes are Messages/Events or commands without the use of interfaces.
+A *message convention* is a way of defining what a certain type is instead of using a marker interface or an attribute.
 
+We currently have conventions that can identity:
 
+- Commands
+- Events
+- Messages
+- Encryption
+- DataBus
+- Express messages
+- TimeToBeReceived
 
 Note: It is important to include the `.Namespace != null`; otherwise a null reference exception will occur during the type scanning.
 
-Encryption, databus, express messages TimeToBeReceived
-
-When Message Conventions are combined with avoiding an reference to any NServiceBus assemblies this is referred to as [Unobtrusive Mode](unobtrusive-mode.md)
+When Message Conventions are combined with avoiding an reference to any NServiceBus assemblies this is referred to as [Unobtrusive Mode](unobtrusive-mode.md). This makes it also ideal to use in cross platform environments. Messages can be defined in a *Portable Class Library* (PCL) and shared accross multiple platform even though not all platforms use NServiceBus for message processing.

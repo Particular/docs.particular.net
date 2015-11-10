@@ -19,6 +19,7 @@ related:
  8. Finally, after a couple of seconds, on the Receiver console you should see that the timeout message has been received.
  9. Open SQL Server Management Studio and go to the receiver database. Verify that there is a row in saga state table (`receiver.OrderLifecycleSagaData`) and in the orders table (`receiver.Orders`)
 
+
 ## Code walk-through
 
 This sample contains three projects: 
@@ -29,6 +30,7 @@ This sample contains three projects:
 
 Sender and Receiver use different schemas within one database. This creates a nice separation on logical level (schemas can be secured independently) while retaining the benefits of having a single physical database. Each schema contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence.
 
+
 ### Sender project
  
 The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQLServer transport with NHibernate persistence. The transport is configured to use a non-standard schema `sender` and to send messages addressed to `receiver` endpoint to a different schema.
@@ -38,6 +40,7 @@ The Sender does not store any data. It mimics the front-end system where orders 
 The connection strings for both persistence and transport need to be exactly the same.
 
 <!-- import SenderConnectionStrings -->
+
 
 ### Receiver project
 

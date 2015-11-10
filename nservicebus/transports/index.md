@@ -1,6 +1,6 @@
 ---
 title: Transports
-summary: Transports.
+summary: All information on the available Transports
 tags: []
 redirects:
  - nservicebus/nservicebus-and-websphere-sonic
@@ -8,27 +8,34 @@ redirects:
 
 NServiceBus is built on top of existing queuing technologies. In NServicebus the choice of queuing technology is referred to as a "Transport".
 
+
 ## Available transports
+
 
 ### [MSMQ](/nservicebus/msmq)
 
 MSMQ is the default transport used by NServiceBus.
 
+
 ### [SqlServer](/nservicebus/sqlserver)
 
 Uses Sql Server tables as a queuing mechanism.
+
 
 ### [Azure](/nservicebus/azure)
 
 Uses either Azure Servicebus or Azure Storage Queues as a transport.
 
+
 ### [RabbitMQ](/nservicebus/rabbitmq)
 
 Uses [RabbitMQ](https://www.rabbitmq.com/) as a transport
 
+
 ### Community run transports
 
 There are several community run transports that can be seen on the full list of [Extensions](/platform/extensions.md#transports).
+
 
 ### WebSphereMQ
 

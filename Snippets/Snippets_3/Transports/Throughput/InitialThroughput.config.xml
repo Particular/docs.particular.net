@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <!-- startcode TuningFromAppConfig-->
+  <configSections>
+    <section name="MsmqTransportConfig"
+             type="NServiceBus.Config.TransportConfig, NServiceBus.Core"/>
+  </configSections>
+  <MsmqTransportConfig NumberOfWorkerThreads="5" />
+  <!--endcode -->
+</configuration>

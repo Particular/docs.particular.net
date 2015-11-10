@@ -1,9 +1,8 @@
-﻿using System;
-using NServiceBus;
-using NServiceBus.Saga;
-
-namespace Snippets6.Sagas.Timeouts
+﻿namespace Snippets6.Sagas.Timeouts
 {
+    using System;
+    using System.Threading.Tasks;
+    using NServiceBus;
 
     #region saga-with-timeout
 
@@ -14,30 +13,30 @@ namespace Snippets6.Sagas.Timeouts
     {
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
-            mapper.ConfigureMapping<Message2>(s => s.SomeID)
-                .ToSaga(m => m.SomeID);
+            mapper.ConfigureMapping<Message2>(message => message.SomeID)
+                .ToSaga(sagaData => sagaData.SomeID);
         }
 
-        public void Handle(Message1 message)
+        public async Task Handle(Message1 message, IMessageHandlerContext context)
         {
             Data.SomeID = message.SomeID;
-            RequestTimeout<MyCustomTimeout>(TimeSpan.FromHours(1));
+            await RequestTimeoutAsync<MyCustomTimeout>(context, TimeSpan.FromHours(1));
         }
 
-        public void Handle(Message2 message)
+        public async Task Handle(Message2 message, IMessageHandlerContext context)
         {
             Data.Message2Arrived = true;
-            ReplyToOriginator(new AlmostDoneMessage
+            await ReplyToOriginatorAsync(context, new AlmostDoneMessage
             {
                 SomeID = Data.SomeID
             });
         }
 
-        public void Timeout(MyCustomTimeout state)
+        public async Task Timeout(MyCustomTimeout state, IMessageHandlerContext context)
         {
             if (!Data.Message2Arrived)
             {
-                ReplyToOriginator(new TiredOfWaitingForMessage2());
+                await ReplyToOriginatorAsync(context, new TiredOfWaitingForMessage2());
             }
         }
     }

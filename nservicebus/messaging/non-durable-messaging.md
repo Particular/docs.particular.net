@@ -11,7 +11,7 @@ related:
 
 Relaxes message delivery guarantees in order to achieve better performance. 
 
-WARNING: This makes you sustainable to message loss during server crashes and restarts. 
+WARNING: This makes you susceptible to message loss during server crashes and restarts. 
 
 
 ## Enabling non-durable messaging
@@ -71,9 +71,9 @@ This effectively means the blocking call to [WaitForConfirmsOrDie](http://www.ra
 
 ### SQL Server
 
-The SQL Server transport has no support for this setting an it is ignored.
+The SQL Server transport has no support for this setting and it is ignored.
 
 
 ### Azure
 
-The Azure transports have no support for this setting an it is ignored.
+The Azure transports have no support for this setting and it is ignored.

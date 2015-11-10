@@ -8,6 +8,27 @@ Example code and scripts to facilitate deployment and operational actions agains
 These examples use the [System.Messaging.dll](https://msdn.microsoft.com/en-us/library/System.Messaging.aspx) and [System.Transactions.dll](https://msdn.microsoft.com/en-us/library/system.transactions.aspx) assemblies.
 
 
+## Native Send
+
+
+### The native send helper methods
+
+The following code shows an example of how to perform the following actions
+
+ * create and serialize headers.
+ * write a message body directly to MSMQ.
+
+
+#### In C&#35;
+
+<!-- import msmq-nativesend -->
+
+
+### Using the native send helper methods
+
+<!-- import msmq-nativesend-usage -->
+
+
 ## Return message to source queue 
 
 
@@ -39,6 +60,7 @@ The following code shows an example of how to perform the following actions
 
 Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.
 
+
 ### Default permissions
 
 | Group | Permissions |
@@ -54,7 +76,9 @@ MSMQ permissions are defined in the [MessageQueueAccessRights](https://msdn.micr
 
 NOTE: Write access is granted to both `Everyone` and `Anonymous`. The reason for this is so that a given endpoint can receive messages from other endpoints running under different accounts. If you want to further lock down MSMQ write permissions you can remove `Everyone` and `Anonymous` and instead grant specific access to a know subset of account.
 
+
 ### The create queue helper methods
+
 
 #### In C&#35;
 

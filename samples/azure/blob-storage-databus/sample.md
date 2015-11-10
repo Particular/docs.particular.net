@@ -11,7 +11,7 @@ related:
 - samples/databus
 ---
 
- 1. Start [Azure Storage Emulator](http://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/)
+ 1. Start [Azure Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/)
  1. Run the solution. Two console applications start.
  1. Find the `Sender` application by looking for the one with `Sender` in its path and press Enter in the window to send a message. You have just sent a message that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment via Azure storage, allowing it to reach the `Receiver` application.
  
@@ -36,8 +36,8 @@ When sending a message using the NServiceBus Message attachments mechanism, the 
 
 ```json
 {
-	"SomeProperty":"This message contains a large payload that will be sent on the Azure data bus",
-	"LargeBlob":
+	"Description":"This message contains a large payload that will be sent on the Azure data bus",
+	"LargePayload":
 	{
 		"Key":"7c9a4430-c020-4462-a849-9994f3de354a",
 		"HasValue":true

@@ -11,7 +11,6 @@
             #region FileShareDataBus
 
             BusConfiguration busConfiguration = new BusConfiguration();
-
             busConfiguration.UseDataBus<FileShareDataBus>()
                 .BasePath(databusPath);
 

@@ -37,15 +37,10 @@ class ProgramService : ServiceBase
     {
         BusConfiguration busConfiguration = new BusConfiguration();
 
-        busConfiguration.EndpointName("Sample.WindowsServiceAndConsole");
+        busConfiguration.EndpointName("Samples.WindowsServiceAndConsole");
         busConfiguration.UseSerialization<JsonSerializer>();
-
-        if (Environment.UserInteractive && Debugger.IsAttached)
-        {
-            busConfiguration.UsePersistence<InMemoryPersistence>();
-            busConfiguration.EnableInstallers();
-        }
-
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.EnableInstallers();
         bus = Bus.Create(busConfiguration).Start();
     }
 

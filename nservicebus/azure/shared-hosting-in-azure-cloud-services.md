@@ -16,13 +16,15 @@ If real scale is what you're looking for, as in tens, hundreds or even thousands
 
 This role allows you to co-locate multiple endpoints on the same set of machines, while preserving the regular worker role programming model so that you can easily put each endpoint on it's own role again when required later.
 
+
 ## How it works
 
 **Prerequisites** This approach assumes you already have your endpoints [hosted in worker roles](hosting-in-azure-cloud-services.md). The rest of this article will focus on how to transition from a multi worker environment to a shared hosting environment.
 
-Instead of having our endpoints packaged & deployed by the Azure infrastructure, we will package them ourselves (as zip files), and put them in a well known location (in azure blob storage).
+Instead of having our endpoints packaged & deployed by the Azure infrastructure, we will package them ourselves (as zip files), and put them in a well known location (in Azure blob storage).
 
 Then we'll add a new worker role to the cloud services solution that will act as the host. This host will be configured to pull the endpoints from the well known location, extract them to disk and run them.
+
 
 ## Preparing the endpoint
 
@@ -37,6 +39,7 @@ You'll notice that an NServiceBus.Hosting.Azure.HostProcess.exe is now reference
 Next you need to pack the build output as a zip file so that the NServiceBus.Hosting.Azure.HostProcess.exe is in the root of the archive. (Just zip the debug or release folder)
 
 Finally go to your Azure storage account and create a private container called `endpoints` and put the zip file in there. We'll configure the host role entry point to download endpoints from this container later.
+
 
 ## Creating the host
 
@@ -100,9 +103,10 @@ Other configuration settings are available as well if you need more fine grained
 * `DynamicHostControllerConfig.TimeToWaitUntilProcessIsKilled`: When updating an endpoint to a new version, the host will kill the current process. Sometimes this fails or takes a very long time. This property specifies how long the host should wait, if this time elapses without the process going down, the host will reboot the machine (by throwing an exception). Default value: 10000.
 * `DynamicHostControllerConfig.RecycleRoleOnError`: By default Azure role instances will reboot when an exception is thrown from the role entrypoint, but not when thrown from a child process. If you want the role instance to reboot in this case as well, set RecycleRoleOnError on true. Then the host will start monitoring the child process for errors and request a recycle when it throws.
 
+
 ## Configuration concerns
 
 The Azure configuration system applies to all instances of all roles. It has a built in way to separate role types, but not role instance and definitely no separation for processes on those instances. This means that a configuration override put in the service configuration file will automatically apply to all endpoints hosted on those roles. This is obviously not desirable, and can be dealt with in 2 ways. 
 
-* Put your configuration settings in the app.config. As autoupdate is available you can easily manage it this way as changing a config means uploading a new zip to your azure storage account and the hosts will update themselves automatically. (This is the default)
+* Put your configuration settings in the app.config. As autoupdate is available you can easily manage it this way as changing a configuration means uploading a new zip to your Azure storage account and the hosts will update themselves automatically. (This is the default)
 * Alternatively you can separate the configuration settings in the service configuration file by convention. The `.AzureConfigurationSource(prefix)` overload allows you to set a prefix in every endpoint that will be prepended to it's configuration settings. Call this configuration method with a prefix of your choice and you can still use the configuration settings file for your hosted endpoints.

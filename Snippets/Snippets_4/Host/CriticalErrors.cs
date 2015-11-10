@@ -6,6 +6,7 @@ namespace Snippets4.Host
     using NServiceBus;
     using NServiceBus.Logging;
 
+
     class CriticalErrors
     {
         IStartableBus bus;

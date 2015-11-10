@@ -28,12 +28,17 @@
         public class MyRavenDbSagaFinder :
             IFindSagas<MySagaData>.Using<MyMessage>
         {
-            public ISessionProvider SessionProvider { get; set; }
+            ISessionProvider sessionProvider;
+
+            public MyRavenDbSagaFinder(ISessionProvider sessionProvider)
+            {
+                this.sessionProvider = sessionProvider;
+            }
 
             public MySagaData FindBy(MyMessage message)
             {
                 //your custom finding logic here, e.g.
-                return SessionProvider.Session
+                return sessionProvider.Session
                     .Query<MySagaData>()
                     .SingleOrDefault(x => x.SomeID == message.SomeID && x.SomeData == message.SomeData);
             }

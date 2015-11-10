@@ -1,5 +1,6 @@
 ﻿namespace Snippets5.Persistence.NHibernate
 {
+    using System;
     using global::NHibernate.Cfg;
     using NServiceBus;
     using NServiceBus.Persistence;
@@ -11,9 +12,9 @@
         {
 #pragma warning disable 618
 
-            #region ConfiguringNHibernate 5.0
-
             BusConfiguration busConfiguration = new BusConfiguration();
+
+            #region ConfiguringNHibernate 5.0
 
             //Use NHibernate for all persistence concerns
             busConfiguration.UsePersistence<NHibernatePersistence>();
@@ -27,6 +28,14 @@
                     Storage.Outbox,
                     Storage.GatewayDeduplication);
 
+            #endregion
+
+
+            #region NHibernateSubscriptionCaching 5.0
+            
+            busConfiguration.UsePersistence<NHibernatePersistence>()
+                .EnableCachingForSubscriptionStorage(TimeSpan.FromSeconds(10));
+            
             #endregion
 #pragma warning restore 618
         }
@@ -46,6 +55,13 @@
             busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();
             busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
             busConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
+
+            #endregion
+
+            #region NHibernateSubscriptionCaching 5.2
+
+            busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>()
+                .EnableCachingForSubscriptionStorage(TimeSpan.FromMinutes(1));
 
             #endregion
         }
@@ -86,6 +102,7 @@
             #endregion
 
         }
+        
 
         public void CustomCommonConfigurationWarning()
         {

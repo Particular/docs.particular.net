@@ -7,7 +7,8 @@ using NServiceBus.Unicast.Messages;
 
 #pragma warning disable 618
 
-public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
+#region SendBehaviorDefinition
+class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
 {
     TimeSpan MaxMessageTimeToLive = TimeSpan.FromDays(14);
     string location;
@@ -19,6 +20,7 @@ public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
 
     public void Invoke(SendLogicalMessageContext context, Action next)
     {
+#endregion
         #region copy-stream-properties-to-disk
         LogicalMessage logicalMessage = context.MessageToSend;
         TimeSpan timeToBeReceived = logicalMessage.Metadata.TimeToBeReceived;
@@ -62,12 +64,16 @@ public class StreamSendBehavior : IBehavior<SendLogicalMessageContext>
     string GenerateKey(TimeSpan timeToBeReceived)
     {
         if (timeToBeReceived > MaxMessageTimeToLive)
+        {
             timeToBeReceived = MaxMessageTimeToLive;
+        }
 
         DateTime keepMessageUntil = DateTime.MaxValue;
 
         if (timeToBeReceived < TimeSpan.MaxValue)
+        {
             keepMessageUntil = DateTime.Now + timeToBeReceived;
+        }
 
         return Path.Combine(keepMessageUntil.ToString("yyyy-MM-dd_HH"), Guid.NewGuid().ToString());
     }

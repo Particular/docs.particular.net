@@ -10,7 +10,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     IHandleMessages<PaymentTransactionCompleted>,
     IHandleMessages<CompleteOrder>
 {
-    static ILog logger = LogManager.GetLogger(typeof(OrderSaga));
+    static ILog logger = LogManager.GetLogger<OrderSaga>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {

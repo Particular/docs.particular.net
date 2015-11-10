@@ -7,15 +7,19 @@ tags:
 - Cloud
 redirects:
  - nservicebus/hosting-nservicebus-in-windows-azure
+related:
+ - samples/azure/shared-host
 ---
 
 The Azure platform and NServiceBus are a perfect fit. The Azure platform offers the scalable and flexible platform for your designs, while NServiceBus makes development on this highly distributed environment a breeze.
 
 Azure offers various ways to host applications. Each of these hosting options can be used in the context of NServiceBus, but there are some things to keep in mind for each.
 
+
 ## General Considerations
 
 Because of the size and service nature of the Azure platform, you cannot rely on distributed transactions in this environment. You cannot rely on any setup that would require distributed transactions, including the MSMQ transport. For details, refer to ['Understanding transactions in Azure'](transactions.md).
+
 
 ## Azure Virtual Machines
 
@@ -32,6 +36,7 @@ For more information about enabling the Azure storage queues or Azure Service Bu
 
 For persistence you can rely on any option, including RavenDB, SQL Server installed on a Virtual Machine, SQL Azure or Azure storage services.
 
+
 ## Azure Websites
 
 Another deployment model is Azure Websites, where you use a regular website and push it to your favorite source control repository (like GitHub).  On your behalf, Microsoft takes the latest issue from the repository, builds the binaries, runs your tests, and deploys to production.
@@ -41,9 +46,11 @@ As for an NServiceBus programming model, this is roughly the same as any other s
 The only quirk in this model is that Azure website is built with cheap hosting in mind. By default, its technology puts your website in suspended mode when there is no traffic. This also implies that if you have an NServiceBus endpoint hosted here, it is also suspended and stops processing messages. However, the 'Always on' feature periodically sends requests to your website to keep it active. This feature requires standard mode and is not available in the free edition. 
 
 The advised transports in this environment are `AzureStorageQueuesTransport` and `AzureServiceBusTransport`. 
-As it is now also possible to include Azure websites in the same virtual network as Azure virtual machines, [made available in Q4 2014](http://azure.microsoft.com/blog/2014/09/15/azure-websites-virtual-network-integration/), it is also possible to use any other hosted transport that does not rely on distributed transactions, such as RabbitMQ .
+
+As it is now also possible to include Azure websites in the same virtual network as Azure virtual machines, [made available in Q4 2014](https://azure.microsoft.com/en-us/blog/azure-websites-virtual-network-integration/), it is also possible to use any other hosted transport that does not rely on distributed transactions, such as RabbitMQ .
 
 To learn more about enabling persistence with Azure storage, refer to [Azure storage persisters](azure-storage-persistence.md).
+
 
 ## Cloud Services 
 
@@ -66,6 +73,7 @@ To integrate these facilities with your endpoint code, we have provided a specif
 
 To learn more about the details of hosting in Azure cloud services, refer to [Cloud Services](hosting-in-azure-cloud-services.md).
 
+
 ## Cloud Services - Shared Hosting
 
 The Cloud Services model is beautiful when it comes to building large scale systems, but in reality only a few systems need size from the very beginning, and find this model quite expensive. Most want to start out small and cheap, then grow larger over time. 
@@ -73,7 +81,3 @@ The Cloud Services model is beautiful when it comes to building large scale syst
 To support this need to start small, we also provide a shared hosting option, using the `AsA_Host` role. In this model, the role entry point doesn't actually host an endpoint itself. Instead, it downloads, invokes, and manages other worker role entry points as child processes on the same machine.
 
 If you want to learn more about the shared hosting options, please refer to [Cloud Services - Shared hosting](shared-hosting-in-azure-cloud-services.md).
-
-## Sample
-
-To see these hosting models in action, refer to the [Video store samples.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/).

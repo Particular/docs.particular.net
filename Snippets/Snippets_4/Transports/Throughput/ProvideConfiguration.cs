@@ -3,7 +3,7 @@
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
 
-    #region ThroughputFromCode
+    #region TuningFromCode
 
     public class ProvideConfiguration :
         IProvideConfiguration<TransportConfig>

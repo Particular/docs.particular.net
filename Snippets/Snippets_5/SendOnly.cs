@@ -9,7 +9,6 @@
             #region SendOnly
 
             BusConfiguration busConfiguration = new BusConfiguration();
-
             ISendOnlyBus bus = Bus.CreateSendOnly(busConfiguration);
 
             #endregion

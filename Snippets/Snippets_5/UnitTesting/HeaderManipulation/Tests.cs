@@ -16,7 +16,7 @@
             Test.Initialize();
 
             Test.Handler<MyMessageHandler>()
-                .SetIncomingHeader("Test", "abc")
+                .SetIncomingHeader("MyHeaderKey", "myHeaderValue")
                 .ExpectReply<ResponseMessage>(m => Test.Bus.GetMessageHeader(m, "MyHeaderKey") == "myHeaderValue")
                 .OnMessage<RequestMessage>(m => m.String = "hello");
         }
@@ -28,8 +28,10 @@
 
         public void Handle(RequestMessage message)
         {
+            var header = Bus.GetMessageHeader(message, "MyHeaderKey");
+
             ResponseMessage responseMessage = new ResponseMessage();
-            Bus.SetMessageHeader(responseMessage, "MyHeaderKey", "myHeaderValue");
+            Bus.SetMessageHeader(responseMessage, "MyHeaderKey", header);
             Bus.Reply(responseMessage);
         }
     }

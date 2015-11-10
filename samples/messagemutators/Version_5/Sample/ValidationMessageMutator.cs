@@ -7,7 +7,7 @@ using NServiceBus.MessageMutator;
 #region ValidationMessageMutator
 public class ValidationMessageMutator : IMessageMutator
 {
-    static ILog log = LogManager.GetLogger("ValidationMessageMutator");
+    static ILog logger = LogManager.GetLogger("ValidationMessageMutator");
 
     public object MutateOutgoing(object message)
     {
@@ -30,12 +30,12 @@ public class ValidationMessageMutator : IMessageMutator
 
         if (isValid)
         {
-            log.Info("Validation succeeded for message: " + message);
+            logger.InfoFormat("Validation succeeded for message: {0}", message);
             return;
         }
 
         StringBuilder errorMessage = new StringBuilder();
-        string error = string.Format("Validation failed for message {0}, with the following error/s: " + Environment.NewLine,message);
+        string error = string.Format("Validation failed for message {0}, with the following error/s: " + Environment.NewLine, message);
         errorMessage.Append(error);
 
         foreach (ValidationResult validationResult in results)
@@ -43,7 +43,7 @@ public class ValidationMessageMutator : IMessageMutator
             errorMessage.Append(validationResult.ErrorMessage + Environment.NewLine);
         }
 
-        log.Error(errorMessage.ToString());
+        logger.Error(errorMessage.ToString());
         throw new Exception(errorMessage.ToString());
     }
 }

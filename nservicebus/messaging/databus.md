@@ -8,6 +8,7 @@ redirects:
 - nservicebus/databus
 related:
 - samples/databus
+- samples/azure/blob-storage-databus
 ---
 
 ## What is the DataBus feature for
@@ -28,15 +29,17 @@ NServiceBus supports two DataBus implementations:
 * `AzureDataBus`
 
 To enable DataBus, NServiceBus needs to be configured. For file share based DataBus:
+
 <!-- import FileShareDataBus -->
 
 For Azure (storage blobs) based DataBus:
+
 <!-- import AzureDataBus -->
 
 NOTE: The `AzureDataBus` implementation is part of the Azure transport package.
 
 
-## Specifying message properties for DataBus
+## Specifying DataBus properties
 
 There are two ways to specify the message properties to be sent using DataBus
 1. Using `DataBusProperty<T>` type

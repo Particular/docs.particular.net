@@ -12,8 +12,10 @@
     {
         public override void ConfigureHowToFindSaga()
         {
-            // To ensure that there is only one saga instance per the task name, regardless of if the endpoint is restarted or not.
-            ConfigureMapping<StartSaga>(m => m.TaskName).ToSaga(s => s.TaskName);
+            // To ensure that there is only one saga instance per the task name, 
+            // regardless of if the endpoint is restarted or not.
+            ConfigureMapping<StartSaga>(message => message.TaskName)
+                .ToSaga(sagaData => sagaData.TaskName);
         }
 
         public void Handle(StartSaga message)

@@ -5,12 +5,13 @@ tags:
 - Azure
 - Cloud
 - Transport
-- Configuration
 - Concurrency
 - Performance
 - Batching
 redirects:
  - nservicebus/using-azure-servicebus-as-transport-in-nservicebus
+related:
+ - samples/azure/azure-service-bus
 ---
 
 In some environments such as very large cloud networks or hybrid network scenarios, it is not possible or recommended to rely heavily on the DTC, and thus on MSMQ, to ensure transactional behavior and retry in case of failures. A good alternative to MSMQ in this case is to use Azure Service Bus instead.
@@ -23,7 +24,9 @@ Azure Service Bus is messaging infrastructure that sits between applications, al
 
 ## Enabling the Transport
 
-First, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a NuGet package reference to the  `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package to your project.
+First, ensure you're using Standard Messaging Tier for Azure Service Bus when creating your namespace at Azure portal.
+
+Second, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a NuGet package reference to the  `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package to your project.
 
 ```
 PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureServiceBus
@@ -36,6 +39,7 @@ Then, use the Configuration API to set up NServiceBus, by specifying `.UseTransp
 Alternatively, when using one of the NServiceBus provided hosting processes, you should call the `UseTransport<T>` on the endpoint configuration. In the Azure role entrypoint host, for example, it looks like this:
 
 <!-- import AzureServiceBusTransportWithAzureHost -->
+
 
 ## Setting the Connection String
 
@@ -77,6 +81,13 @@ NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configu
 Defaults are just starting values. You should always measure and test these values against your solution and adjust those accordingly.
 
 
+## Transactions
+
+NServiceBus AzureServiceBus transport relies on the underlying Azure ServiceBus library which requires the use of the `Serializable` isolation level (the most restrictive isolation level that does not permit `dirty reads`, `phantom reads` and `non repeatable reads`; will block any reader until the writer is committed [see this link](http://dotnetspeak.com/2013/04/transaction-isolation-levels-explained-in-details) for more information)
+
+NServiceBus AzureServiceBus transport configuration is hard coded to `Serializable` isolation level to prevent users from overriding it.
+
+
 ## Scenarios
 
 For any scenario provided in this document, you should always test it in environment as close to production as possible.
@@ -91,10 +102,4 @@ There are several things to consider:
 
 In scenario where handlers are CPU intense and have very little IO, it is advised to lower number of threads to one and have a bigger `BatchSize`. `LockDuration` and `MaxDeliveryCount` might require an adjustment to match the batch size taking in account number of messages that end up in the dead letter queue.
 
-In scenario where handlers are IO intense, it is advised to set number of threads ([`MaximumConcurrencyLevel`](/nservicebus/operations/throughput.md) in NServiceBus) to 12 threads per logical core and `BatchSize` to a number of messages that takes to process, taking in account possible/measured single message processing time and IO latency. Try to start with a small `BatchSize` and through adjustment and measurement bring it up, adjusting accordingly `LockDuration` and `MaxDeliveryCount`.
-
-
-## Sample
-
-To see this transport in action, see the [Video store sample.](https://github.com/Particular/NServiceBus.Azure.Samples/tree/master/VideoStore.AzureServiceBus.Cloud)
-
+In scenario where handlers are IO intense, it is advised to set number of threads ([`MaximumConcurrencyLevel`](/nservicebus/operations/tuning.md) in NServiceBus) to 12 threads per logical core and `BatchSize` to a number of messages that takes to process, taking in account possible/measured single message processing time and IO latency. Try to start with a small `BatchSize` and through adjustment and measurement bring it up, adjusting accordingly `LockDuration` and `MaxDeliveryCount`.

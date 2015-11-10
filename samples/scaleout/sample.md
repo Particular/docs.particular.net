@@ -1,5 +1,5 @@
 ---
-title: Scale Out
+title: Scale Out with the Distributor
 summary: Scale out your existing message processing by adding workers on different machines.
 tags:
 - Distributor
@@ -12,137 +12,165 @@ related:
 
 Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out your existing message processing by adding more workers on different machines.
 
-Scaling out workers does not require code changes. It requires a few configuration changes in the `app.config` file, to make your worker point to the distributor and use the `NServiceBus.Worker` profile at the command line when the endpoint starts up.
-
-Run the `ScaleOut` sample in Visual Studio. The sample starts with `Orders.Sender` (an endpoint which simulates message load), Orders.Handler
-(an endpoint which processes the message and configured to the distributor), `Orders.Handler.Worker1` and `Orders.Handler.Worker2`
-(endpoints configured to be workers). The order processing code in the distributor and the worker endpoints are exactly the same.
-
-While running the sample for the first time, if you get a "queue not found" exception (a common race condition on an initial run, when the queues were not yet created), start the Orders.Handler project first and once the queue has been created, start the rest. 
-
-Find the sender application by looking for the one with `Orders.Sender` in its path. Click Enter in the window. Your screen should look like this:
-
-![Scale Out sample Running](scaleout-master-and-sender-running.png "Scale Out sample Running")
-
-NOTE: Either the distributor or one of the workers could process the messages from the Orders.Sender endpoint
-
-Now let's look at the code.
 
 ## Code walk-through
 
-There are five projects in the solution.
-
--   `Orders.Handler` handles the `PlaceOrder` command from the sender endpoint. Upon receiving the `PlaceOrder` command it returns the `PlaceOrderStatus.Ok` status code and publishes an `OrderPlaced` event.
--   `Orders.Sender` sends the `PlaceOrder` command, receives the OK status, and handles the published `OrderPlaced` event after `Orders.Handlers` completes "processing" the order and publishes the event.
--   `Orders.Messages` contains the `PlaceOrder` command, the error codes enumeration, and the `OrderPlaced` event.
--   `Orders.Handler.Worker1` contains the exact same code as the Orders.Handler. The only change is in the `app.config` and is setup to run using the Worker profile.
--   `Orders.Handler.Worker2` contains the exact same code as the Orders.Handler. The only change is in the `app.config` and is setup to run using the Worker profile.
-
-## Scaling out
-
-Assuming business is booming, orders are flowing in, and `PlaceOrder` commands are stacking up in the `Orders.Handler` endpoint, you need to scale out.
-
-You can scale out by having the same Orders.Handler project function as a distributor and another copy of the `Orders.Handler` function as a worker as illustrated by the `Orders.Handler.Worker1` and `Orders.Handler.Worker2`. Starting the `Orders.Handler` with the `Master` profile, among other things, turns on the Distributor at this endpoint. Starting the `Orders.Handler` with the Worker profile makes it enlist with the Distributor and function as a worker. Being a [distributor](/nservicebus/scalability-and-ha/distributor/) means that Workers can send an "I'm ready" message to the control endpoint of the Distributor, and the Distributor forwards messages to them in a round robin manner. Steps to scale out
-
-Following are the steps required to scale out message handlers by deploying more workers on additional machines.
-
-### **1. Setting up the Master (and Distributor) node**
-
-No changes are needed to the Master Orders.Handler. Start it directly from Visual Studio. The profiles are setup as command line arguments.
-
-Otherwise, you can start Orders.Handler from the command line, as follows:
-
-    > NServiceBus.Host.exe NServiceBus.Integration NServiceBus.Master
+There are several projects in the solution.
 
 
-### Profiles:
+### Sender
 
-#### NServiceBus.Master
+A simple project that sends a message to `Server` and handles the message back from the `Worker`.
 
-Turns on the Distributor within the Orders.Handler endpoint and starts a worker on that same endpoint.
 
-### NServiceBus.Integration
+#### Sending code
 
-The production and integration profiles configure NServiceBus to use RavenDB for storing the subscriptions. As stated earlier, this store is shared among all `Orders.Handler` endpoints (all workers). Read about [publish subscribe](/nservicebus/messaging/publish-subscribe/) .
+<!-- import sender -->
 
-If running from Visual Studio, when configuring the `NServiceBus.Production` profile, NServiceBus creates the queues for you. If running from the command line, use `NServiceBus.Integration` to create the queues.
 
-For the Master node to function, the machine needs to be accessible to RavenDB from where the Worker is deployed. By default, RavenDB accepts calls on port 8080, so you can check access to this machine by getting to the RavenDB management console on `http://<ip-of-masternode>:8080`. If the management page does not load, open the port in your incoming firewall.
+#### Handling code
 
-### 2. Setting up an additional Worker
 
-To scale out, you need another worker to handle `PlaceOrder` messages. `Orders.Handler.Worker1` and `Orders.Handler.Worker2` were setup as workers using the following steps:
+<!-- import sender-event-handler -->
 
-1.  Stop the `Orders.Handler`.
-2.  Copy the `Orders.Handler` bin folder to another machine (or another folder on the same machine if you are just testing the sample). This instance of Orders.Handler is the additional Worker.
-3.  In `Orders.Handler.dll.config` add the MasterNodeConfig section and add the Distributor address in the `UnicastBusConfig` as shown:
 
-```XML
-<?xml version="1.0" encoding="utf-8" ?>
-<configuration>
-  <configSections>
-    <section name="MessageForwardingInCaseOfFaultConfig" type="NServiceBus.Config.MessageForwardingInCaseOfFaultConfig, NServiceBus.Core" />
-    <section name="MasterNodeConfig" type="NServiceBus.Config.MasterNodeConfig, NServiceBus.Core" />
-    <section name="UnicastBusConfig" type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
-  </configSections>
+### Shared
 
-  <MessageForwardingInCaseOfFaultConfig ErrorQueue="error"/>
-  <MasterNodeConfig Node="localhost"/>
+Common message definitions shared between all projects.
 
-  <UnicastBusConfig
-    DistributorControlAddress="orders.handler.distributor.control@localhost"
-    DistributorDataAddress="orders.handler@localhost">
-  </UnicastBusConfig>
-</configuration>
-```
+
+### Worker.Handlers
+
+A library for sharing handlers between workers.
+
+Contains one handler.
+
+<!-- import WorkerHandler -->  
+
+WARNING: If you are doing publish from a handler inside a worker then all workers mush share the same [subscription persistence](/nservicebus/persistence/).
+
+
+### Server
+
+A host for the distributor
+
+<!-- import server -->  
+
+
+### Worker1 and Worker2
+
+The works are simply host for running the handlers defined in `Worker.Handlers`
+
+
+#### Startup code
+
+<!-- import Workerstartup -->
+
+
+#### Configuration
+ 
+<!-- import workerConfig --> 
 
 The Node in the MasterNodeConfig points to the host name where the MasterNode is running. If running the Worker from the same machine as the Distributor, Node should equal "localhost".
 
-That's it. To start the worker node, type the following at the command line:
 
-    > NServiceBus.Host.exe NServiceBus.Integration NServiceBus.Worker
+## Running the code
 
-1.  NServiceBus.Integration: Orders.Handler is a publisher that stores its subscribers' addressing information to know where the published event should go to. Since the workers run from different machines, they need to share the subscriptions. `NServiceBus.Integration` and `NServiceBus.Production` profiles register RavenDB as their underlying store.
-2.  NServiceBus.Worker profile: Order.Handler with this profile sends "ready to accept incoming messages" to the master node.
+Start the solution with all the console applications (`Server`, `Sender`, `Worker1`, `Worker2`) as startup applications.
 
-By specifying the `NServiceBus.Integration` and `NServiceBus.Worker` profiles along with the `MasterNodeConfig` Node setting in the configuration file, NServiceBus directs the `Orders.Handler` Worker to use the same RavenDB instance as the `Orders.Handler` Master instance. This database stores the subscription information.
+Go to the `Sender` console an press enter a few times. When this occurs the following happens
 
-`NServiceBus.Host.Exe` uses the `NServiceBus.Worker` profile to enlist the worker endpoint at the Distributor.
+ * `Worker`s registers with `Server` that they are work
+ * Press enter in `Sender` will trigger it to send a `PlaceOrder` to `Server`
+ * `Server` forwards to a random `Worker`
+ * `Worker` handles the message
+ * `Worker` responds with a `OrderPlaced` to `Sender`
+ * `Worker` again tells `Server` it is ready for work
+  
+<!-- 
+https://bramp.github.io/js-sequence-diagrams/
+Worker->Server: Ready for work
+Sender->Server: PlaceOrder
+Note left of Server: Server forwards\nto either Worker
+Server->Worker: Forwards PlaceOrder
+Worker->Sender: OrderPlaced
+Worker->Server: Ready for work
+-->
+ 
+![](flow.svg)
 
-Read about [profiles](/nservicebus/hosting/nservicebus-host/profiles.md) too.
 
-### 3. Setting up the Sender
+### Sender Output
 
-Nothing has to be done to the Sender; NServiceBus does all the distribution work, leaving the sender agnostic to the fact that it is sending messages to a bunch of workers. As far as the sender is concerned, it sends the message to a single endpoint. It is configured to send a `PlaceOrder` command to the `Orders.Handler` endpoint. If the Distributor runs on a different machine than the Sender, then use the `queue@machine` notation.
+```
+Press 'Enter' to send a message.
+Press any other key to exit.
 
+Sent PlacedOrder command with order id [1320cfdc-f5cc-42a7-9157-251756694069].
+Received OrderPlaced. OrderId: 1320cfdc-f5cc-42a7-9157-251756694069. Worker: Worker2
 
-```XML
-<UnicastBusConfig>
-    <MessageEndpointMappings>
-      <add Messages="Orders.Messages" Endpoint="Orders.Handler" />
-    </MessageEndpointMappings>
-</UnicastBusConfig>
+Sent PlacedOrder command with order id [40585dff-3749-4db1-b21a-25694468f042].
+Received OrderPlaced. OrderId: 40585dff-3749-4db1-b21a-25694468f042. Worker: Worker1
 ```
 
-Once Orders.Handler is set up as a distributor and the `Orders.Handler` starts as a worker on another machine, the following diagram demonstrates the flow of messages and the queues that exist on both machines:
 
-![Scale out diagram with one worker on another machine](scaleout-one-worker.png "Scale out diagram with one worker on another machine")
+### Server Output
 
-## What is going on here?
+```
+Press any key to exit
+2015-08-21 17:07:19.775 INFO  NServiceBus.Distributor.MSMQ.MsmqWorkerAvailabilityManager Worker at 'Sample.Scaleout.Worker2' has been registered with 1 capacity.
+2015-08-21 17:07:19.802 INFO  NServiceBus.Distributor.MSMQ.MsmqWorkerAvailabilityManager Worker at 'Sample.Scaleout.Worker1' has been registered with 1 capacity.
+```
 
-As can be seen from the diagram, nothing changes for the `Orders.Sender`. It still sends messages to the `Orders.Handler` endpoint.
 
-`Orders.Handler` that started with the `NServiceBus.Master` profile is responsible for receiving the messages that arrive at its `Orders.Handler` endpoint and forwarding them to its workers. Since `Orders.Handler` started with the NServiceBus.Master profile, besides being a Distributor, it also starts a Worker, which processes messages from the `Orders.Handlers.Worker` endpoint. Both this worker and Order.Handlers
-(running on another machine with the `NServiceBus.Worker` profile) send
-"I'm ready to process messages" to the Distributor, to its `Orders.Handler.Control` endpoint. After the Distributor forwards the `ProcessOrder` command to one of its workers, the receiving worker processes the `PlaceOrder` command (replies with a status to the `Orders.Sender` and publishes the `OrderProcess` event).
+### Worker1 Output
 
-When the workers finish handling the `ProcessOrder` command, they re-send "I'm ready to process messages" to the Distributor control endpoint: Orders.Handler.Control. The workers share the subscription storage so they can both publish the `OrderPlaces` event. NServiceBus is responsible for informing the workers to which database to connect. The database should be accessible to the workers.
+```
+2015-08-21 17:07:18.906 INFO  NServiceBus.Unicast.Transport.TransportReceiver Worker started, failures will be redirected to Sample.Scaleout.Server
+Press any key to exit
+Processing received order....
+Sent Order placed event for orderId [40585dff-3749-4db1-b21a-25694468f042].
+```
 
-## Worker at work
+
+### Worker2 Output
+
+```
+2015-08-21 17:07:18.818 INFO  NServiceBus.Unicast.Transport.TransportReceiver Worker started, failures will be redirected to Sample.Scaleout.Server
+Press any key to exit
+Processing received order....
+Sent Order placed event for orderId [1320cfdc-f5cc-42a7-9157-251756694069].
+```
+
+
+## Scaling out in a real environment
+
+This sample has two workers which are hard coded as projects for the sake of keeping the sample easy to use. This manifests in several ways
+
+1. Both `Worker1` and `Worker2` are different projects so that the solution automatically starts with two workers.
+2. Both `Worker1` and `Worker2` have different endpoint names so they have distinct queue names when running in your development environment. 
+3. Both `Worker1` and `Worker2` have hard coded settings in the app.config
+
+In a real solution you would do the following
+
+1. Have one Worker in the project (or even have the `Server` double up as a worker)
+2. In deployment the same `Worker` endpoint would be deployed to multiple machines and only differ by their app.config.
+
+
+### Worker Input queue
+
+Normally workers are deployed to different machines. When deployed to the same machine a GUID will be added to the end of the worker input queue name. This allows the distributor to properly route messages and prevents workers from competing on the same queue. Since, in this project, we are "faking different machines" by using different projects we can override the GUID behavior to prevent a proliferation of queue names.
  
-The following snapshot shows the Worker console window at work (the worker is running from a different machine than the Distributor).
- 
-![The Worker console window while running on another machine than the distributor](scaleoutworkeronremotemachine.png)
 
-You can see from the Worker console window (above) that the worker receives the Process Order (order2) and replies with 'OK', processes the order, and publishes an Order Placed event.
- 
+#### Version 4 and lower
+
+You need to hack the Local Address
+
+<!-- import WorkerNameToUseWhileTestingCode -->
+
+
+#### Version 5 and higher
+
+You can use configuration 
+
+<!-- import WorkerNameToUseWhileTestingConfig -->

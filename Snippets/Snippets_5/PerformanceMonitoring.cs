@@ -15,15 +15,11 @@
 
             #endregion
         }
-
         public void EnablingSla()
         {
             #region enable-sla
 
             BusConfiguration busConfiguration = new BusConfiguration();
-            //with the default
-            busConfiguration.EnableSLAPerformanceCounter();
-            //or with a defined SLA
             busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
 
             #endregion

@@ -8,11 +8,10 @@
         public Usage()
         {
             #region EncryptionServiceSimple
-            Configure.With()
-                .RijndaelEncryptionService();
+
+            Configure configure = Configure.With();
+            configure.RijndaelEncryptionService();
             #endregion
         }
-
-
     }
 }

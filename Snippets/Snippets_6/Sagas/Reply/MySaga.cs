@@ -1,7 +1,7 @@
-﻿using NServiceBus.Saga;
-
-namespace Snippets6.Sagas.Reply
+﻿namespace Snippets6.Sagas.Reply
 {
+    using System.Threading.Tasks;
+    using NServiceBus;
 
     #region saga-with-reply
 
@@ -9,10 +9,11 @@ namespace Snippets6.Sagas.Reply
         IAmStartedByMessages<StartMessage>
     {
 
-        public void Handle(StartMessage message)
+        public async Task Handle(StartMessage message, IMessageHandlerContext context)
         {
             Data.SomeID = message.SomeID;
-            ReplyToOriginator(new AlmostDoneMessage
+
+            await ReplyToOriginatorAsync(context, new AlmostDoneMessage
             {
                 SomeID = Data.SomeID
             });
@@ -23,6 +24,7 @@ namespace Snippets6.Sagas.Reply
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
         }
+        
     }
 
 }

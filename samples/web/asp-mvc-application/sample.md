@@ -6,6 +6,7 @@ redirects:
 - nservicebus/using-nservicebus-with-asp.net-mvc
 related:
 - nservicebus/hosting
+- nservicebus/hosting/publishing-from-web-applications
 ---
 
 Run the solution. A new browser window/tab opens, as well as a console application.

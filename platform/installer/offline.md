@@ -16,16 +16,15 @@ Note: Windows 8.1 and Windows 2012 R2 or greater already ship with this version 
 
 ##  Platform Installer Components
 
-The Platform Installer installs 6 component parts:
+The Platform Installer installs 4 component parts:
 
 - NServiceBus Prerequisities
 - ServiceControl
 - ServicePulse
 - ServiceInsight
-- ServiceMatrix for Visual Studio 2013 
-- ServiceMatrix for Visual Studio 2012 
 
 Each of these will be detailed below:
+
 
 ### NServiceBus Prerequistes
 
@@ -44,32 +43,22 @@ Install-NServiceBusMSMQ
 Install-NServiceBusPerformanceCounters
 ```
 
+
 ### ServiceControl 
 
 This MSI can be downloaded directly from here: [ServiceControl Releases](https://github.com/Particular/ServiceControl/releases/latest).
+
 
 ### ServiceInsight
 
 This MSI can be downloaded directly from here: [ServiceInsight Releases](https://github.com/Particular/ServiceInsight/releases/latest).
 
+
 ### ServicePulse
 
 This MSI can be downloaded directly from here: [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases/latest).
 
+
 ### ServiceMatrix 
 
-This VSIX files for ServiceMatrix can be downloaded directly from here: [ServiceMatrix Releases](https://github.com/Particular/ServiceMatrix/releases/latest).  
-
-The file name for the Visual Studio 2013 version is `Particular.ServiceMatrix.12.0.vsix`.
-The file name for the Visual Studio 2012 version is `Particular.ServiceMatrix.11.0.vsix`.
-
-To install ServiceMatrix the VSIXInstaller.exe is required which is shipped with commercial versions of Visual Studio ( i.e Visual Studio Professional or better).  The Express editions of Visual Studio are not supported.
-
-The VSIX file can either be double-clicked on to install it or run from the command line.  The following example shows the installation using Visual Studio 2013.
-
-```bat
-"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDEVsixinstaller.exe" Particular.ServiceMatrix.12.0.vsix  
-```
-
-Note: ServiceMatrix requires an Internet connection to download packages from the NuGet public feed. So whilst ServiceMatrix can be installed offline without a NuGet feed it will not be able to create and manage projects properly.
-
+ServiceMatrix is no longer part of the platform installer. Read this article on [how to install ServiceMatrix](/servicematrix/installing-servicematrix-2.0.md). 

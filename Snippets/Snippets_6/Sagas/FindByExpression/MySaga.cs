@@ -1,8 +1,9 @@
 ﻿using NServiceBus;
-using NServiceBus.Saga;
 
 namespace Snippets6.Sagas.FindByExpression
 {
+    using System.Threading.Tasks;
+
     public class MySaga : Saga<MySagaData>,
         IAmStartedByMessages<Message1>,
         IHandleMessages<Message2>
@@ -11,18 +12,18 @@ namespace Snippets6.Sagas.FindByExpression
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
         {
-            mapper.ConfigureMapping<Message2>(m => m.Part1 + "_" + m.Part2)
-                .ToSaga(m => m.SomeID);
+            mapper.ConfigureMapping<Message2>(message => message.Part1 + "_" + message.Part2)
+                .ToSaga(sagaData => sagaData.SomeID);
         }
 
         #endregion
 
-        public void Handle(Message1 message)
+        public async Task Handle(Message1 message, IMessageHandlerContext context)
         {
             // code to handle Message1
         }
 
-        public void Handle(Message2 message)
+        public async Task Handle(Message2 message, IMessageHandlerContext context)
         {
             // code to handle Message2
         }

@@ -14,7 +14,8 @@
         {
             // To ensure that there is only one saga instance per the task name, 
             // regardless of if the endpoint is restarted or not.
-            mapper.ConfigureMapping<StartSaga>(m => m.TaskName).ToSaga(s => s.TaskName);
+            mapper.ConfigureMapping<StartSaga>(message => message.TaskName)
+                .ToSaga(sagaData => sagaData.TaskName);
         }
 
         public void Handle(StartSaga message)

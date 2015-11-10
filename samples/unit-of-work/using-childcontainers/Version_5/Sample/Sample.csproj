@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -37,29 +37,29 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NServiceBus.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NServiceBus.5.2.0\lib\net45\NServiceBus.Core.dll</HintPath>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.9\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.StructureMap">
-      <HintPath>..\packages\NServiceBus.StructureMap.5.0.1\lib\net45\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.StructureMap.5.0.1\lib\net45\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Database.3.0.3690\lib\net45\Raven.Abstractions.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\RavenDB.Client.3.0.3800\lib\net45\Raven.Abstractions.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Raven.Client.Lightweight, Version=3.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RavenDB.Client.3.0.3690\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\RavenDB.Client.3.0.3800\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Raven.Database">
-      <HintPath>..\packages\RavenDB.Database.3.0.3690\lib\net45\Raven.Database.dll</HintPath>
+    <Reference Include="Raven.Database, Version=3.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\packages\RavenDB.Database.3.0.3800\lib\net45\Raven.Database.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.3.1.5.154\lib\net40\StructureMap.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\structuremap.3.1.6.186\lib\net40\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap.Net4">
-      <HintPath>..\packages\structuremap.3.1.5.154\lib\net40\StructureMap.Net4.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\structuremap.3.1.6.186\lib\net40\StructureMap.Net4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -81,13 +81,12 @@
     <Compile Include="RavenUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\packages\RavenDB.Database.3.0.3690\content\Raven.Studio.Html5.zip">
-      <Link>Raven.Studio.Html5.zip</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="app.manifest" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="..\..\..\..\..\packages\RavenDB.Database.3.0.3800\content\Raven.Studio.Html5.zip">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

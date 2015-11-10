@@ -13,6 +13,7 @@ class Program
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.StartupShutdown");
         busConfiguration.EnableInstallers();
+        busConfiguration.EnableFeature<MyFeature>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
         Logger.WriteLine("Calling Bus.Create");

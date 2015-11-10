@@ -10,8 +10,8 @@
 
             #region FileShareDataBus
 
-            Configure configure = Configure.With()
-                .FileShareDataBus(databusPath);
+            Configure configure = Configure.With();
+            configure.FileShareDataBus(databusPath);
 
             #endregion
         }

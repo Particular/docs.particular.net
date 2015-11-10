@@ -1,5 +1,7 @@
 ﻿namespace Snippets5
 {
+    using System;
+    using System.Transactions;
     using NServiceBus;
 
     public class Transactions
@@ -49,6 +51,22 @@
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EnableOutbox(); //Implies .DisableDistributedTransactions().DoNotWrapHandlersExecutionInATransactionScope();
 
+            #endregion
+        }
+
+        public void CustomTransactionTimeout()
+        {
+            #region CustomTransactionTimeout
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.Transactions().DefaultTimeout(TimeSpan.FromSeconds(30));
+            #endregion
+        }
+
+        public void CustomTransactionIsolationLevel()
+        {
+            #region CustomTransactionIsolationLevel
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.Transactions().IsolationLevel(IsolationLevel.RepeatableRead);
             #endregion
         }
     }

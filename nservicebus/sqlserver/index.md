@@ -6,9 +6,9 @@ tags:
 redirects:
 - nservicebus/sqlserver/configuration
 related:
+- samples/outbox/sqltransport-nhpersistence
 - samples/sqltransport-nhpersistence
-- samples/sqltransport-nhpersistence-outbox
-- samples/sqltransport-nhpersistence-outbox-ef
+- samples/outbox/sqltransport-nhpersistence-ef
 ---
 
 Provides support for sending messages over [SQL Server](http://www.microsoft.com/en-au/server-cloud/products/sql-server/) tables.
@@ -16,10 +16,10 @@ Provides support for sending messages over [SQL Server](http://www.microsoft.com
 
 ## Queue table structure
 
-Following SQL DDL is used to create a table for a queue:
+Following SQL DDL is used to create a table and its index for a queue:
 
 ```SQL
-CREATE TABLE [dbo].[{0}](
+CREATE TABLE [schema].[queuename](
 	[Id] [uniqueidentifier] NOT NULL,
 	[CorrelationId] [varchar](255) NULL,
 	[ReplyToAddress] [varchar](255) NULL,
@@ -29,9 +29,13 @@ CREATE TABLE [dbo].[{0}](
 	[Body] [varbinary](max) NULL,
 	[RowVersion] [bigint] IDENTITY(1,1) NOT NULL
 ) ON [PRIMARY];
+
+CREATE CLUSTERED INDEX [Index_RowVersion] ON [schema].[queuename](
+	[RowVersion] ASC
+) WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ```
 
-Additionally, a clustered index on a `[RowVersion]` column is created. The column are directly mapped to the properties of `NServiceBus.TransportMessage` class. Receiving messages is conducted via a `DELETE` statement from the top of the table (the oldest row according to `[RowVersion]` column).
+The column are directly mapped to the properties of `NServiceBus.TransportMessage` class. Receiving messages is conducted via a `DELETE` statement from the top of the table (the oldest row according to `[RowVersion]` column).
 
 The tables are created during host install time by [installers](/nservicebus/operations/installers.md). It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
 
@@ -71,6 +75,7 @@ The no transaction mode requires `Transactions.Enabled` to be set to false which
 <!-- import sqlserver-config-no-transactions -->
 
 When in this mode, the receive operation is not wrapped in any transaction so it is executed by the SQL Server in its own implicit transaction.
+
 WARNING: This means that as soon as the `DELETE` operation used for receiving completes, the message is gone and any exception that happens during processing of this message causes it to be permanently lost.
 
 
@@ -85,7 +90,7 @@ In order for callbacks e.g.
 
 <!-- import sqlserver-config-callbacks -->
 
-to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is necessary because callback handlers are stored in-memory in the node that did the send. The reply sent via
+to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is necessary because callback handlers are stored in-memory in the node that did the send. The reply is sent via:
 
 <!-- import sqlserver-config-callbacks-reply -->
 

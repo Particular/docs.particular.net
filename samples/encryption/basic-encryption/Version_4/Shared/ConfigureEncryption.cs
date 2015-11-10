@@ -8,9 +8,10 @@ public class ConfigureEncryption :
     public RijndaelEncryptionServiceConfig GetConfiguration()
     {
         return new RijndaelEncryptionServiceConfig
-               {
-                   Key = "gdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"
-               };
+        {
+            Key = "do-not-use-this-encryption-key!!",
+            KeyIdentifier = "2015-10",
+        };
     }
 }
 #endregion

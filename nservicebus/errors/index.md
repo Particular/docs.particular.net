@@ -11,16 +11,14 @@ related:
 - nservicebus/operations/transactions-message-processing
 ---
 
-Don't.
-
 NServiceBus has exception catching and handling logic of its own which surrounds all calls to user code. When an exception bubbles through to the NServiceBus infrastructure, it rolls back the transaction on a transactional endpoint, causing the message to be returned to the queue, and any messages that the user code tried to send or publish to be undone as well.
 
 
 ## Configure your error queue
 
-When a message fails, NServiceBus [automatically retries](/nservicebus/errors/automatic-retries.md) the message. On repeated failure, NServiceBus forwards that message to a designated error queue. 
+When a message fails NServiceBus [automatically retries](/nservicebus/errors/automatic-retries.md) the message. On repeated failure NServiceBus forwards that message to a designated error queue. 
 
-Error queue can be configured in one of two ways. 
+Error queue can be configured in several ways. 
 
 
 ### Using Code
@@ -48,7 +46,7 @@ Then at configuration time:
 
 <!-- import configureErrorQueueViaXml -->
 
-NOTE: In NServiceBus V3.x the `ErrorQueue` settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
+NOTE: In NServiceBus version 3.x the `ErrorQueue` settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
 
 For more details on `MsmqTransportConfig` [read this article](/nservicebus/msmq/transportconfig.md).
 

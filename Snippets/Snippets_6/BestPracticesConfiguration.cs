@@ -1,5 +1,6 @@
 ﻿namespace Snippets6
 {
+    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Features;
 
@@ -13,7 +14,7 @@
             #endregion
         }
 
-        void DisablePerMessage()
+        async Task DisablePerMessage()
         {
             IBus bus = null;
 
@@ -22,7 +23,7 @@
 
             options.DoNotEnforceBestPractices();
 
-            bus.Send(new MyEvent(), options);
+            await bus.SendAsync(new MyEvent(), options);
             #endregion
         }
 

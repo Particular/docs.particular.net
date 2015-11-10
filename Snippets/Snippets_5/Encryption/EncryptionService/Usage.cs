@@ -9,7 +9,7 @@
             #region EncryptionFromIEncryptionService
 
             BusConfiguration busConfiguration = new BusConfiguration();
-            //where MyCustomEncryptionService implements IEncryptionService 
+            //where EncryptionService implements IEncryptionService 
             busConfiguration.RegisterEncryptionService(b => new EncryptionService());
 
             #endregion

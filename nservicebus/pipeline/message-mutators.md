@@ -7,15 +7,18 @@ redirects:
 - nservicebus/pipeline-management-using-message-mutators
 related:
 - samples/messagemutators
+- nservicebus/messaging/headers
 ---
 
 The message pipeline in NServiceBus V2.X consisted of message modules. They served their purpose but didn't quite give full control over the message pipeline for more advanced things, and there was no way to hook into the pipeline at the sending/client side of the message conversation.
+
 
 ## Two flavors of mutators
 
 NServiceBus enables two types of message mutators:
 
-### Applicative Message Mutators
+
+### Logical Message Mutators
 
 Message mutators change/react to individual messages being sent or received. The `IMessageMutator` interface lets you implement hooks for the sending and receiving sides. If you only need one, use the finely grained `IMutateOutgoingMessages` or `IMutateIncomingMessages`.
 
@@ -23,24 +26,53 @@ You can use reactions to individual messages to perform actions such as validati
 
 NServiceBus uses this type of mutator internally to do things like property encryption and serialization/deserialization of properties to and from the DataBus.
 
+
+#### IMutateIncomingMessages
+
+<!-- import IMutateIncomingMessages -->
+
+
+#### IMutateOutgoingMessages
+
+<!-- import IMutateOutgoingMessages -->
+
+
+#### IMessageMutator
+
+`IMessageMutator` is an interface that combines both `IMutateIncomingMessages` and `IMutateOutgoingMessages`. It only exists in Version 5 and lower. In Version 6 and higher implement both `IMutateIncomingMessages` and `IMutateOutgoingMessages` instead.
+
+
 ### Transport Messages Mutators
 
-Create transport message mutators by implementing the `IMutateTransportMessages` interface. This type of mutator works on the entire transport message and is useful for compression, header manipulation, etc. See a [full explanation of the syntax](/samples/messagemutators/).
+Create transport message mutators by implementing the `IMutateTransportMessages` interface. This type of mutator works on the entire transport message and is useful for compression, header manipulation, etc.
 
-Remember that message mutators are NOT automatically registered in the container, so to invoke them, register them in the container yourself.
 
-## When should I use a message mutator?
+#### IMutateIncomingTransportMessages
 
-Just like the recommendation for headers, only use message mutators for infrastructure purposes.
+<!-- import IMutateIncomingTransportMessages -->
 
-As a rule of thumb, consider using message mutators only to solve technical requirements.
+
+#### IMutateOutgoingTransportMessages
+
+<!-- import IMutateOutgoingTransportMessages -->
+
+
+#### IMutateTransportMessages
+
+`IMutateTransportMessages` is an interface that combines both `IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`.  It only exists in Version 5 and lower. In Version 6 and higher implement both `IMutateTransportMessages` and `IMutateOutgoingTransportMessages` instead.
+
+
+## Registering a Mutator
+
+Mutators are **NOT** automatically registered in the container, so to have them invoked, register them in the [container](/nservicebus/containers/) yourself.
+
+<!-- import MutatorRegistration -->
+
+NOTE: Mutators are non-deterministic in terms of order of execution. If you want more fine grained control over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/customizing.md).
+
 
 ## What happens if a mutator throws an exception?
 
-If a server side (incoming) mutator throws an exception, the message aborts, rolls back to the queue, and is retried.
+If a incoming throws an exception, the message aborts, rolls back to the queue, and [error handling](/nservicebus/errors/) is applied.
 
-If a client side (outgoing) message mutator throws an exception, the exception bubbles up to the method calling `bus.Send` or `bus.Publish`.
-
-
-NOTE: `IMutateTransportMessages` are non-deterministic in terms of order of execution. If you want more fine grained control over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/customizing.md).
-
+If a outgoing mutator throws an exception, the exception bubbles up to the method performing the Send or Publish.

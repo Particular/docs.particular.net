@@ -9,12 +9,16 @@ class Program
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Sample.PipelineStream.Sender");
+        busConfiguration.EndpointName("Samples.PipelineStream.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+
         #region configure-stream-storage
+
         busConfiguration.SetStreamStorageLocation("..\\..\\..\\storage");
+
         #endregion
+
         busConfiguration.EnableInstallers();
         using (var bus = Bus.Create(busConfiguration).Start())
         {
@@ -56,12 +60,14 @@ class Program
             SomeProperty = "This message contains a stream",
             StreamProperty = File.OpenRead("FileToSend.txt")
         };
-        bus.Send("Sample.PipelineStream.Receiver", message);
+        bus.Send("Samples.PipelineStream.Receiver", message);
+
         #endregion
 
         Console.WriteLine();
         Console.WriteLine("Message with file stream sent");
     }
+
     static void SendMessageWithHttpStream(IBus bus)
     {
         #region send-message-with-http-stream
@@ -73,12 +79,12 @@ class Program
                 SomeProperty = "This message contains a stream",
                 StreamProperty = webClient.OpenRead("http://www.particular.net")
             };
-            bus.Send("Sample.PipelineStream.Receiver", message);
+            bus.Send("Samples.PipelineStream.Receiver", message);
         }
+
         #endregion
 
         Console.WriteLine();
         Console.WriteLine("Message with http stream sent");
     }
 }
-

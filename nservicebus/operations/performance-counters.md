@@ -52,14 +52,14 @@ In the NServiceBus Host this counter is enabled by default.
 
 **Added in:** Version 3
 
-Acts as a early warning system to tell you the number of seconds left until the SLA for the particular endpoint is breached. This gives you a system-wide counter that can be monitored without putting the SLA into your monitoring software. Just set that alarm to trigger when the counter goes below X, which is the time that your operations team needs to be able to take actions to prevent the SLA from being breached. To define the endpoint SLA, add the `[EndpointSLA]` attribute on your endpoint configuration. If self-hosting, use the `Configure.SetEndpointSLA()` method on the configuration API instead. All processes running with the NServiceBus collect this information and the counters are enabled by default.
+Acts as a early warning system to tell you the number of seconds left until the SLA for the particular endpoint is breached. This gives you a system-wide counter that can be monitored without putting the SLA into your monitoring software. Just set that alarm to trigger when the counter goes below X, which is the time that your operations team needs to be able to take actions to prevent the SLA from being breached.
 
 
 #### Configuration
 
 This counter can be enabled using the the following code:
 
-<!-- import enable-criticaltime -->
+<!-- import enable-sla-->
 
 In the NServiceBus Host this counter is enabled by default. But the value can be configured either by the above API or using a `EndpointSLAAttribute` on your `IConfigureThisEndpoint`.
 
@@ -123,11 +123,11 @@ The performance counters libraries need to be rebuild by doing the following ste
 1. Open an elevated command prompt
 2. Execute the following command to rebuild the performance counter libraries:
 
-    `LODCTR /R`  (Mind the uppercase /R)
+    `lodctr /r`
 
 
 ### More information
 
-* [KB2554336: How to manually rebuild Performance Counters for Windows Server 2008 64bit or Windows Server 2008 R2 systems](http://support.microsoft.com/kb/2554336)
+* [KB2554336: How to manually rebuild Performance Counters for Windows Server 2008 64bit or Windows Server 2008 R2 systems](https://support.microsoft.com/kb/2554336)
 * [KB300956: How to manually rebuild Performance Counter Library values](https://support.microsoft.com/kb/300956) 
 * [LODCTR at TechNet](https://technet.microsoft.com/en-us/library/bb490926.aspx)

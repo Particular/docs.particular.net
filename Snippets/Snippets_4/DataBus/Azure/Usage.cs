@@ -8,8 +8,8 @@
         {
             #region AzureDataBus
 
-            Configure.With()
-                .AzureDataBus();
+            Configure configure = Configure.With();
+            configure.AzureDataBus();
 
             #endregion
         }

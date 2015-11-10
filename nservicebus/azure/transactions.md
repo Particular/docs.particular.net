@@ -41,7 +41,7 @@ When multiple transaction-aware resources are involved in a single transaction, 
 
 As illustrated in the diagram below, the two-phase commit protocol consists of two phases where the global transaction manager communicates with all other resource managers to coordinate the transaction. During the preparation phase it instructs all resource managers to get ready to commit and when all resource managers approve (or not), it instructs all resource managers again to complete the commit (or rollback).
 
-![Two Phase Commit](two-phase-commit.jpg)
+![Two Phase Commit](two-phase-commit.png)
 
 Note that this protocol requires two communication steps for each resource manager added to the transaction and requires a response from each of them to be able to continue. Both of these conditions are problematic in a huge datacenter such as Azure.
 

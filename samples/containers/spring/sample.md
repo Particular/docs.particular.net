@@ -5,6 +5,7 @@ tags:
 - Container
 related:
 - nservicebus/containers
+- nservicebus/containers/spring
 ---
 
 ### Configuring NServiceBus to use the container 

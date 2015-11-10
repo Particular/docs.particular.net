@@ -60,3 +60,11 @@ With this in mind we configure our StructureMap container as follows
 <!-- import ContainerConfiguration -->
 
 Notice how we define the session factory as `single instance` and the session as `per call`.
+
+
+
+### In Process Raven Host
+
+So that no running instance of RavenDB server is required.
+
+<!-- import ravenhost -->
