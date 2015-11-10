@@ -8,10 +8,13 @@ redirects:
 - nservicebus/scale-out-sample
 related:
 - nservicebus/scalability-and-ha
+- nservicebus/scalability-and-ha/distributor
+- nservicebus/scalability-and-ha/distributor/test-distributor-on-one-machine
 ---
 
 Sometimes a single endpoint for handling messages is not enough so there is a need to scale out. The following sample demonstrates how easy it is to use NServiceBus to scale out your existing message processing by adding more workers on different machines.
 
+INFO: Please do not copy and paste the configuration as it is used to run the distributor for demonstration purposes.
 
 ## Code walk-through
 

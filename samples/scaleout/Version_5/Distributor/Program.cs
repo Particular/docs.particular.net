@@ -6,11 +6,18 @@ class Program
 
     static void Main()
     {
+
         #region server
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Scaleout.Server");
         busConfiguration.RunMSMQDistributor(withWorker: false);
         #endregion
+        
+        if(false)
+        #region DistributorMasterRoleCode
+        busConfiguration.RunMSMQDistributor(true);
+        #endregion
+
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
