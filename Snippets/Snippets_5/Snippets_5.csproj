@@ -412,6 +412,12 @@
     <Compile Include="Extending\Features.cs" />
     <Compile Include="Headers\StaticHeaders.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
+    <Compile Include="Mutators\Instance\MutateIncomingMessages.cs" />
+    <Compile Include="Mutators\Instance\MutateOutgoingMessages.cs" />
+    <Compile Include="Mutators\MutatorRegistration.cs" />
+    <Compile Include="Mutators\Transport\MutateIncomingTransportMessages.cs" />
+    <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
+    <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="Correlation\Usage.cs" />

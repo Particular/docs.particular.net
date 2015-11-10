@@ -177,6 +177,12 @@
     <Compile Include="Logging\OverrideViaProfile.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="Logging\UsingLogging.cs" />
+    <Compile Include="Mutators\Instance\MutateIncomingMessages.cs" />
+    <Compile Include="Mutators\Instance\MutateOutgoingMessages.cs" />
+    <Compile Include="Mutators\MutatorRegistration.cs" />
+    <Compile Include="Mutators\Transport\MutateIncomingTransportMessages.cs" />
+    <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
+    <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
