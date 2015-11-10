@@ -11,13 +11,11 @@ related:
 - nservicebus/operations/installers
 ---
 
-To avoid re-writing the same configuration code, or to host your endpoints in a Windows Service, use `NServiceBus.Host.exe`, which can also run as a console.
+The NServiceBus Host takes a more opinionated approach to hosting. It allows the execution as both a windows service and a console application (for development).
 
-The NServiceBus host streamlines service development and deployment, allows you to change technologies without code, and is administrator-friendly when setting permissions and accounts.
+The NServiceBus host automates some parts of the windows service deployment. See [Installation](#Installation).
 
-To use the host just create a new C# class library and reference the [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host/).
-
-That's it, the package will create an example endpoint configuration and setup the NServiceBus.Host.exe to run your endpoint.
+To use the host just create a new C# class library and reference the [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host/). The package also creates an example endpoint configuration and sets the NServiceBus.Host.exe as the startup project for the endpoint.
 
 
 ## Configuring your endpoint
