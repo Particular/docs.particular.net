@@ -35,7 +35,7 @@ public class MvcApplication : HttpApplication
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
         AreaRegistration.RegisterAllAreas();
-        RouteConfig.RegisterRoutes(RouteTable.Routes);
+        RegisterRoutes(RouteTable.Routes);
 
         #endregion
     }
@@ -47,5 +47,19 @@ public class MvcApplication : HttpApplication
             bus.Dispose();
         }
         base.Dispose();
+    }
+
+    void RegisterRoutes(RouteCollection routes)
+    {
+        routes.MapRoute(
+            name: "Default",
+            url: "{controller}/{action}/{id}",
+            defaults: new
+            {
+                controller = "Default",
+                action = "Index",
+                id = UrlParameter.Optional
+            }
+            );
     }
 }

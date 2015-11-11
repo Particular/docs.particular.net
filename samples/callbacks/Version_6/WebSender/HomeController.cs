@@ -18,7 +18,7 @@ public class HomeController : Controller
 
         SendOptions sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        Status status = await ServiceBus.Bus.Request<Status>(message, sendOptions);
+        Status status = await MvcApplication.Bus.Request<Status>(message, sendOptions);
 
         return View("SendEnumMessage", status);
     }
@@ -31,7 +31,7 @@ public class HomeController : Controller
 
         SendOptions sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        int response = await ServiceBus.Bus.Request<int>(message, sendOptions);
+        int response = await MvcApplication.Bus.Request<int>(message, sendOptions);
 
         return View("SendIntMessage", response);
     }
@@ -44,7 +44,7 @@ public class HomeController : Controller
 
         SendOptions sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        ObjectResponseMessage response = await ServiceBus.Bus.Request<ObjectResponseMessage>(message, sendOptions);
+        ObjectResponseMessage response = await MvcApplication.Bus.Request<ObjectResponseMessage>(message, sendOptions);
 
         return View("SendObjectMessage", response);
     }

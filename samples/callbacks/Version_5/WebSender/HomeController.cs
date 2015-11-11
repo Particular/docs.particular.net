@@ -13,7 +13,7 @@ public class HomeController : Controller
     public async Task<ActionResult> SendEnumMessage()
     {
         EnumMessage message = new EnumMessage();
-        Task<Status> statusTask = ServiceBus.Bus.Send("Samples.Callbacks.Receiver", message)
+        Task<Status> statusTask = MvcApplication.Bus.Send("Samples.Callbacks.Receiver", message)
             .Register<Status>();
 
         return View("SendEnumMessage", await statusTask);
@@ -26,7 +26,7 @@ public class HomeController : Controller
     public async Task<ActionResult> SendIntMessage()
     {
         IntMessage message = new IntMessage();
-        Task<int> responseTask = ServiceBus.Bus.Send("Samples.Callbacks.Receiver", message)
+        Task<int> responseTask = MvcApplication.Bus.Send("Samples.Callbacks.Receiver", message)
             .Register();
 
         return View("SendIntMessage", await responseTask);
@@ -39,7 +39,7 @@ public class HomeController : Controller
     public async Task<ActionResult> SendObjectMessage()
     {
         ObjectMessage message = new ObjectMessage();
-        Task<ObjectResponseMessage> responseTask = ServiceBus.Bus.Send("Samples.Callbacks.Receiver", message)
+        Task<ObjectResponseMessage> responseTask = MvcApplication.Bus.Send("Samples.Callbacks.Receiver", message)
             .Register(completion => (ObjectResponseMessage) completion.Messages[0]);
 
         return View("SendObjectMessage", await responseTask);

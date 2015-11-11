@@ -99,7 +99,6 @@
     <None Include="Views\Home\SendIntMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ServiceBus.cs" />
     <Compile Include="HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

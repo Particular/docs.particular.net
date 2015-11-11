@@ -14,8 +14,8 @@ public class HomeController : AsyncController
     {
         EnumMessage message = new EnumMessage();
         AsyncManager.OutstandingOperations.Increment();
-
-        ServiceBus.Bus.Send("Samples.Callbacks.Receiver", message)
+        
+        MvcApplication.Bus.Send("Samples.Callbacks.Receiver", message)
             .Register<Status>(status =>
             {
                 AsyncManager.Parameters["status"] = status;
@@ -35,7 +35,7 @@ public class HomeController : AsyncController
         IntMessage message = new IntMessage();
         AsyncManager.OutstandingOperations.Increment();
 
-        ServiceBus.Bus.Send("Samples.Callbacks.Receiver", message)
+        MvcApplication.Bus.Send("Samples.Callbacks.Receiver", message)
             .Register<int>(result =>
             {
                 AsyncManager.Parameters["result"] = result;
@@ -56,7 +56,7 @@ public class HomeController : AsyncController
         ObjectMessage message = new ObjectMessage();
         AsyncManager.OutstandingOperations.Increment();
 
-        ServiceBus.Bus.Send("Samples.Callbacks.Receiver", message)
+        MvcApplication.Bus.Send("Samples.Callbacks.Receiver", message)
             .Register(ar =>
             {
                 CompletionResult localResult = (CompletionResult)ar.AsyncState;
