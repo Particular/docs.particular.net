@@ -4,15 +4,15 @@ using NServiceBus.Logging;
 using ServiceControl.Plugin.CustomChecks;
 
 #region thecustomcheck
-abstract class Monitor : PeriodicCheck
-{
-    Uri uri;
-    static ILog logger = LogManager.GetLogger(typeof(Monitor));
 
-    protected Monitor(Uri uri, TimeSpan interval)
-        : base(string.Format("Monitor {0}", uri), "Monitor 3rd Party ", interval)
+class ThirdPartyMonitor : PeriodicCheck
+{
+    const string url = "http://localhost:57789";
+    static ILog logger = LogManager.GetLogger(typeof(ThirdPartyMonitor));
+
+    public ThirdPartyMonitor()
+        : base(string.Format("Monitor {0}", url), "Monitor 3rd Party ", TimeSpan.FromSeconds(10))
     {
-        this.uri = uri;
     }
 
     public override CheckResult PerformCheck()
@@ -23,32 +23,25 @@ abstract class Monitor : PeriodicCheck
             {
                 Timeout = TimeSpan.FromSeconds(3),
             })
-            using (HttpResponseMessage response = client.GetAsync(uri).Result)
+            using (HttpResponseMessage response = client.GetAsync(url).Result)
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    logger.InfoFormat("Succeeded in contacting {0}", uri);
+                    logger.InfoFormat("Succeeded in contacting {0}", url);
                     return CheckResult.Pass;
                 }
-                string error = string.Format("Failed to contact '{0}'. HttpStatusCode: {1}", uri, response.StatusCode);
+                string error = string.Format("Failed to contact '{0}'. HttpStatusCode: {1}", url, response.StatusCode);
                 logger.Info(error);
                 return CheckResult.Failed(error);
             }
         }
         catch (Exception exception)
         {
-            string error = string.Format("Failed to contact '{0}'. Error: {1}", uri, exception.Message);
+            string error = string.Format("Failed to contact '{0}'. Error: {1}", url, exception.Message);
             logger.Info(error);
             return CheckResult.Failed(error);
         }
     }
 }
 
-class ThirdPartyMonitor : Monitor
-{
-    public ThirdPartyMonitor()
-        : base(new Uri("http://localhost:57789"), TimeSpan.FromSeconds(10))
-    {
-    }
-}
 #endregion
