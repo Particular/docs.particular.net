@@ -29,6 +29,7 @@ public enum Status
 }
 ```
 
+
 ## WebSender project
 
 An ASP.NET MVC application responsible for sending messages and handling the web callback from the reply. Depending upon NServiceBus version, the method for integrating with asynchronous controllers is very different.
@@ -48,9 +49,6 @@ An ASP.NET MVC application responsible for sending messages and handling the web
 
 <!-- import Web_SendObjectMessage -->
 
-Note: In Version 3 if no handler exists for a received message then NServiceBus will throw an exception. Because Version 3 does not log to a file by default, this can be very hard difficult to detect, but it is quite wasteful as the message may be retried for no reason. For this scenario to operate without wasting server resources, a fake message handler is needed on the callback side.
-
-<!-- import Web_ObjectResponseMessageHandler -->
 
 ## Sender project
 
@@ -70,10 +68,6 @@ A console application responsible for sending a messages and handling the callba
 ### Send and callback for an object
 
 <!-- import SendObjectMessage -->
-
-Note: In Version 3 if no handler exists for a received message then NServiceBus will throw an exception. As such for this scenario to operate a fake message handler is needed on the callback side.
-
-<!-- import ObjectResponseMessageHandler -->
 
 
 ## Receiver project
@@ -96,3 +90,10 @@ A console application responsible replying to messages from either the web appli
 Note that this scenario requires a `Reply` with a real message.
 
 <!-- import ObjectMessageHandler -->
+
+
+## Fake Handler in Version 3
+
+Note: In Version 3 if no handler exists for a received message then NServiceBus will throw an exception. As such for this scenario to operate a fake message handler is needed on the callback side.
+
+<!-- import ObjectResponseMessageHandler -->
