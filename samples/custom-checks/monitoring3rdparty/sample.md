@@ -27,6 +27,6 @@ The sample console hosts an endpoint instance which has a custom check associate
 
 ### The custom check
 
-The custom check consists of an abstract base class which provides the monitoring capability. The monitoring capability implements a `PeriodicCheck` which calls a defined URI every time the specified interval is elapsed. When the 3rd system doesn't respond in a timely fashion a `CheckResult.Failed` is sent to ServiceControl.
+The monitoring capability implements a `PeriodicCheck` which calls a defined URI every time the specified interval is elapsed. When the 3rd system doesn't respond in a timely fashion a `CheckResult.Failed` is sent to ServiceControl.
 
 <!-- import thecustomcheck -->
