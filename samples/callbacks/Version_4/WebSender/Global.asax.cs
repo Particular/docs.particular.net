@@ -1,15 +1,22 @@
-﻿using System.Web.Mvc;
+﻿using System.Web;
+using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace WebSender
+public class MvcApplication : HttpApplication
 {
-    public class MvcApplication : System.Web.HttpApplication
+    protected void Application_Start()
     {
-        protected void Application_Start()
-        {
-            AreaRegistration.RegisterAllAreas();
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            ServiceBus.Init();
-        }
+        AreaRegistration.RegisterAllAreas();
+        RouteTable.Routes.MapRoute(
+            name: "Default",
+            url: "{controller}/{action}/{id}",
+            defaults: new
+            {
+                controller = "Home",
+                action = "Index",
+                id = UrlParameter.Optional
+            }
+            );
+        ServiceBus.Init();
     }
 }
