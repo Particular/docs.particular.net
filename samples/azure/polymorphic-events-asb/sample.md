@@ -7,6 +7,8 @@ related:
 - nservicebus/messaging/publish-subscribe
 - nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed
 - samples/azure/azure-service-bus
+redirects:
+- samples/azure/polyorphic-events-asb
 ---
 
 ## Prerequisites 
