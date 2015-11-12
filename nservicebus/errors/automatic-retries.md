@@ -58,7 +58,7 @@ SLR then picks up the message and defers it, by default first for 10 seconds, th
 
 For example, if there is a call to an web service in your handler, but the service goes down for five seconds just at that time. Without SLR, the message is retried instantly and sent to the error queue. With SLR, the message is instantly retried, deferred for 10 seconds, and then retried again. This way, when the Web Service is available the message is processed just fine.
 
-NOTE: Retrying messages for extended periods of time would hide failures from operators preventing them from taking manual action to honor Service Level Agreements. To avoid this happening due to miss-configured retry polices NServiceBus will make sure that no message is retried for more than 24 hours before being sent the error queue.
+NOTE: Retrying messages for extended periods of time would hide failures from operators preventing them from taking manual action to honor Service Level Agreements. To avoid this happening, due to miss-configured retry polices, NServiceBus will make sure that no message is retried for more than 24 hours before being sent the error queue.
 
 SLR can be configured in several ways.
 
