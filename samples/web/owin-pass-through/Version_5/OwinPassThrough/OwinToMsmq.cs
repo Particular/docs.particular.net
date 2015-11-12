@@ -20,10 +20,10 @@ public class OwinToMsmq
 
     public Func<AppFunc, AppFunc> Middleware()
     {
-        return x => (AppFunc) Invoke;
+        return x => Invoke;
     }
 
-    public async Task Invoke(IDictionary<string, object> environment)
+    async Task Invoke(IDictionary<string, object> environment)
     {
         using (Stream memoryStream = await RequestAsStream(environment))
         using (MessageQueue queue = new MessageQueue(queuePath))
