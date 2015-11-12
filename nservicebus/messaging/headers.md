@@ -256,8 +256,43 @@ When that message fails to be processed it will be sent to the Error queue with 
 <!-- import HeaderWriterError_Error -->
 
 
-## Encryption headers
+## Encryption Headers
 
 Headers used when using [Rijndael property encryption](/nservicebus/security/encryption.md).
 
  * `NServiceBus.RijndaelKeyIdentifier`: Identifies which encryption key used for encryption the message property fragments.
+
+
+## FileShare DataBus Headers
+
+When using the [FileShare DataBus](/nservicebus/messaging/databus.md) extra headers and serialized message information is necessary to correlate between the information on the queue and the data on the file system. 
+
+
+### When using DataBusProperty
+
+When using the `DataBusProperty` NServiceBus uses that property as a placeholder at serialization time. the the serialized value of that property will contain a key. This key maps to a named header. That header then provides the path suffix of where that binary data is stored on disk on the file system.
+
+
+#### Example Headers
+
+<!-- import HeaderWriterDataBusProperty --> 
+
+
+#### Example Body
+
+<!-- import HeaderWriterDataBusProperty_Body --> 
+
+
+### When using Convention
+
+When using a [Conventions](/nservicebus/messaging/messages-events-commands.md#defining-messages-conventions) there is no way to store a correlation value inside the serialized property. Instead each property has a matching header with the property name used as the header suffix. That header then provides the path suffix of where that binary data is stored on disk on the file system.
+
+
+#### Example Headers
+
+<!-- import HeaderWriterDataBusConvention -->
+
+
+#### Example Body
+
+<!-- import HeaderWriterDataBusConvention_Body -->

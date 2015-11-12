@@ -11,7 +11,7 @@
     [TestFixture]
     public class HeaderWriterReturn
     {
-        public static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
+        static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
         static IBus Bus;
         string endpointName = "HeaderWriterReturnV5";
 

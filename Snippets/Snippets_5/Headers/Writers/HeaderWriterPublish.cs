@@ -13,9 +13,9 @@
     [TestFixture]
     public class HeaderWriterPublish
     {
-        public static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
+        static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        public static string EndpointName = "HeaderWriterPublishV5";
+        static string EndpointName = "HeaderWriterPublishV5";
 
         [SetUp]
         [TearDown]

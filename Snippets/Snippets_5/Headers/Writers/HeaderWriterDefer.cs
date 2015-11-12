@@ -13,7 +13,7 @@
     [TestFixture]
     public class HeaderWriterDefer
     {
-        public static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
+        static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
         public static bool Received;
         static string EndpointName = "HeaderWriterDeferV5";
 

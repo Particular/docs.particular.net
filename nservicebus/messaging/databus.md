@@ -20,6 +20,8 @@ Messages are intended to be small. Some scenarios require sending large binary d
 
 The `DataBus` approach is to store a large payload in a location that both the sending and receiving parties can access. The message is sent with a reference to the location, and upon processing, the payload is brought, allowing the receiving part to access the message along with the payload. If the location is not available upon sending, the message fails the send operation. When the payload location is not available, the receive operation fails as well and results in standard NServiceBus behavior, causing retries and eventually going into the error queue.
 
+The FileShare DataBus also [leverage both serialization and headers](/nservicebus/messaging/headers.md#fileshare-dataBus-headers) to provide its functionality.
+
 
 ## How to enable DataBus
 
@@ -64,7 +66,7 @@ NServiceBus supports defining DataBus properties via convention. This allows def
 
 ## DataBus attachments cleanup
 
-NServiceBus `DataBus` implementations currently behave differently with regard to cleanup of physical attachments used to transfer data properties. `FileShareDataBus` **does not** remove physical attachments once the message is gone. `AzureDataBus` **does** remove Azure storage blobs used for physical attachments once the message is gone.
+NServiceBus DataBus implementations currently behave differently with regard to cleanup of physical attachments used to transfer data properties. `FileShareDataBus` **does not** remove physical attachments once the message is gone. `AzureDataBus` **does** remove Azure storage blobs used for physical attachments once the message is gone.
 
 
 ## Configuring AzureDataBus

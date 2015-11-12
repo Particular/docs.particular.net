@@ -2,20 +2,19 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Text;
     using System.Threading;
     using NServiceBus;
-    using NServiceBus.Config;
-    using NServiceBus.Config.ConfigurationSource;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
     using Operations.Msmq;
 
     [TestFixture]
-    public class HeaderWriterAudit
+    public class HeaderWriterDataBusProperty
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        const string endpointName = "HeaderWriterAuditV5";
+        string endpointName = "HeaderWriterDataBusPropertyV5";
 
         [SetUp]
         [TearDown]
@@ -29,56 +28,45 @@
         {
             BusConfiguration config = new BusConfiguration();
             config.EndpointName(endpointName);
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterAudit>(typeof(ConfigErrorQueue));
+            config.UseDataBus<FileShareDataBus>().BasePath(@"..\..\..\storage");
+            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusProperty>(typeof(ConfigErrorQueue));
             config.TypesToScan(typesToScan);
             config.EnableInstallers();
             config.UsePersistence<InMemoryPersistence>();
             config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
             using (IBus bus = Bus.Create(config).Start())
             {
-                bus.SendLocal(new MessageToSend());
+                bus.SendLocal(new MessageToSend
+                {
+                    LargeProperty1 = new DataBusProperty<byte[]>(new byte[10]),
+                    LargeProperty2 = new DataBusProperty<byte[]>(new byte[10]) 
+                });
                 ManualResetEvent.WaitOne();
             }
         }
 
         class MessageToSend : IMessage
         {
+            public DataBusProperty<byte[]> LargeProperty1 { get; set; }
+            public DataBusProperty<byte[]> LargeProperty2 { get; set; }
         }
-
+    
         class MessageHandler : IHandleMessages<MessageToSend>
         {
             public void Handle(MessageToSend message)
             {
+                throw new Exception("sdfsdf");
             }
         }
 
         class Mutator : IMutateIncomingTransportMessages
         {
-            static bool receivedFirstMessage;
-
             public void MutateIncoming(TransportMessage transportMessage)
             {
-                if (!receivedFirstMessage)
-                {
-                    receivedFirstMessage = true;
-                    string sendText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(transportMessage.Headers);
-                    SnippetLogger.Write(text: sendText, suffix: "Send",version:"All");
-                    return;
-                }
-                string auditText = HeaderWriter.ToFriendlyString<HeaderWriterAudit>(transportMessage.Headers);
-                SnippetLogger.Write(text: auditText, suffix: "Audit", version: "All");
+                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSend>(transportMessage.Headers);
+                SnippetLogger.Write(headerText, version: "All");
+                SnippetLogger.Write(Encoding.Default.GetString(transportMessage.Body), version: "All",suffix:"Body");
                 ManualResetEvent.Set();
-            }
-        }
-
-        class ProvideAuditConfig : IProvideConfiguration<AuditConfig>
-        {
-            public AuditConfig GetConfiguration()
-            {
-                return new AuditConfig
-                {
-                    QueueName = endpointName,
-                };
             }
         }
     }
