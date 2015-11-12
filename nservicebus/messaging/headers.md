@@ -258,9 +258,14 @@ When that message fails to be processed it will be sent to the Error queue with 
 
 ## Encryption Headers
 
-Headers used when using [Rijndael property encryption](/nservicebus/security/encryption.md).
+Headers when using [Rijndael property encryption](/nservicebus/security/encryption.md).
 
  * `NServiceBus.RijndaelKeyIdentifier`: Identifies which encryption key used for encryption the message property fragments.
+
+
+#### Example Headers
+
+<!-- import HeaderWriterEncryption --> 
 
 
 ## FileShare DataBus Headers

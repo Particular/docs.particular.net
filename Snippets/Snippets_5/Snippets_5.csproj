@@ -283,7 +283,12 @@
     </Content>
     <Content Include="Headers\Writers\HeaderWriterAudit_Audit.txt" />
     <Content Include="Headers\Writers\HeaderWriterAudit_Send.txt" />
+    <Content Include="Headers\Writers\HeaderWriterDataBusConvention.txt" />
+    <Content Include="Headers\Writers\HeaderWriterDataBusConvention_Body.txt" />
+    <Content Include="Headers\Writers\HeaderWriterDataBusProperty.txt" />
+    <Content Include="Headers\Writers\HeaderWriterDataBusProperty_Body.txt" />
     <Content Include="Headers\Writers\HeaderWriterDefer.txt" />
+    <Content Include="Headers\Writers\HeaderWriterEncryption.txt" />
     <Content Include="Headers\Writers\HeaderWriterError_Error.txt" />
     <Content Include="Headers\Writers\HeaderWriterError_Sending.txt" />
     <Content Include="Headers\Writers\HeaderWriterPublish.txt" />
@@ -401,6 +406,7 @@
     <Compile Include="Handlers\MyMessage.cs" />
     <Compile Include="Headers\ReadSaga.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDataBusConvention.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterEncryption.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDataBusProperty.cs" />
     <Compile Include="Headers\WriteSaga.cs" />
     <Compile Include="Host\ProgramService.cs">
