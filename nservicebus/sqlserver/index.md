@@ -61,7 +61,7 @@ When in this mode, the receive operation is wrapped in a `TransactionScope` toge
 
 ### Native transaction
 
-The native transaction mode requires both `Transactions.Enabled` and `Transactions.SuppressDistributedTransactions` to be set to `true`. It can be selcted via
+The native transaction mode requires both `Transactions.Enabled` and `Transactions.SuppressDistributedTransactions` to be set to `true`. It can be selected via
 
 <!-- import sqlserver-config-native-transactions -->
 
@@ -138,6 +138,6 @@ By using the `ConnectionStringName` extension method.
  
 <!-- import sqlserver-named-connection-string -->
 
-Combined with a named connection in the `connectionStrings` node of you app.config.
+Combined with a named connection in the `connectionStrings` node of you `app.config`.
 
 <!-- import sqlserver-named-connection-string-xml -->
