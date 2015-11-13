@@ -9,10 +9,9 @@ tags:
 ServiceControl allows external NServiceBus endpoints to be notified when a message fails processing (either for the first time or repeatably). This feature can be used to implement custom logic related to processing failures such as sending e-mails, IM notifications etc.
 
 
-### When the notifications are being sent?
+### When are the notifications being sent?
 
 The notifications are sent each time a message is put to the error queue and ServiceControl detects that fact. If the ServiceControl detects that the same message has already been in the error queue, it assigns it the status of `MessageFailed.MessageStatus.RepeatedFailure`.
-
 
 ### What do the notifications contain?
 
@@ -23,9 +22,13 @@ The notifications contain information about following aspects:
  * The message itself (e.g. the headers and, if using non-binary serialization, also the body)
 
 
-### Subscribing for failed message notifications
+### How do I subscribe to notifications
 
-Assuming an existing NServiceBus endpoint is to be used, these steps need to be done in order to get the failed message notifications from ServiceControl
+We recommend that you use a separate endpoint from your business endpoints to handle the integration events.
+
+NOTE: Make sure to use `error` and `audit` queues for this endpoint that isn't monitored by ServiceControl. If not search result might include integration events and failures in the integration endpoint might cause infinite loops since they will trigger new message failed events.
+
+These steps need to be done in order to get the failed message notifications from ServiceControl
 
  * Reference the assembly containing the contracts
 
