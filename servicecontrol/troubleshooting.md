@@ -58,7 +58,7 @@ If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.In
 
 1. Open an elevated command prompt and navigate to the ServiceControl [database directory](configure-ravendb-location.md)
 2. Change to the RavenDB directory (the default is `localhost-33333`)
-3. Run `esentutl /r RVN` and wait for it to finish
+3. Run `esentutl /r RVN /l "logs"` and wait for it to finish
 4. Run `esentutl /p Data` and wait for it to finish
 5. Restart ServiceControl
 
