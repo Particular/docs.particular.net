@@ -109,7 +109,7 @@ schemaVersion="2013-03.2.0">
 ```
 
 
-The "AzureQueueConfig.ConnectionString" for Azure Service Bus namespace connection string can be retrieved from the Azure portal using an authorized account.
+The "AzureServiceBusQueueConfig.ConnectionString" for Azure Service Bus namespace connection string can be retrieved from the Azure portal using an authorized account.
 
 In your NServiceBus solution, specify the endpoint configuration to use AzureServiceBus transport:
 
