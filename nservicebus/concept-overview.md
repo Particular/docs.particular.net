@@ -11,52 +11,63 @@ A high level overview of the concepts, features and vernacular of NServiceBus.
 
 ### [Message](/nservicebus/messaging/)
 
-A Message is the unit of communication for NServiceBus. Types of messages:
+A Message is the unit of communication for NServiceBus. Messages are send and received by endpoints. There are two general types of messages:
 
  * [Command](/nservicebus/messaging/messages-events-commands.md): Used to request that an action should be taken.
  * [Event](/nservicebus/messaging/messages-events-commands.md): Used to communicate that some action has taken place.
 
-Message type is usually defined via marker interfaces. 
+Message type can be set either using marker interfaces `ICommand` and `IEvent` or via [conventions](/nservicebus/messaging/unobtrusive-mode.md) (so called *unobtrusive mode*).
 
+### Body
 
-### [Message Conventions](/nservicebus/messaging/messages-events-commands.md)
+The payload of the message is also called body. It travels between the endpoints in a serialized form (either textual or binary). Body of a message is not being tempered with by NServiceBus in any way.
 
-Message Conventions is a way of defining what classes are used for Messages, Events or Commands without the use of marker interfaces. An extended use of Message Conventions, that allow a message assembly with no NServiceBus references, is called [Unobtrusive Mode](/nservicebus/messaging/unobtrusive-mode.md).
+### [Headers](/nservicebus/messaging/headers.md)
 
+Additional information about a message is communicated over the transport in a collection of key value pairs. Message headers are similar to HTTP headers in the sense that they define how messages should be transmitted and processed. NServiceBus uses headers to implement some of its features. Users are also able to add [custom headers](/nservicebus/messaging/header-manipulation.md).
 
-### [Header](/nservicebus/messaging/headers.md)
+### Endpoint
 
-Extra information about a message is communicated over the transport in a serialized collection of key value pairs in a similar way to how http headers are used.
+An Endpoint is a design-time concept that has a name and a collection of associated message Handlers and Sagas. Endpoint lives as a group of artefacts in a source code repository. An Endpoint (the binaries that result from building the endpoint's source code) can be deployed to a number of machines and environments. Each such deployment is a separate Endpoint Instance
 
+### Endpoint Instance
+
+An Endpoint Instance is a run-time object that allows to interact with the bus. Endpoint Instance is able to send and receive messages (an exception is a *send-only* endpoint). It runs associated Message Handlers and Sagas to process incoming messages. An Endpoint Instance has a single Input Queue (which can be shared with other instances of the same Endpoint in a scale-out scenario). 
+
+### [Hosting](/nservicebus/hosting)
+
+The act of "Hosting" refers to running an Endpoint Instance in some process. This can be any .NET process such as a console application, a website, or a Windows service. Multiple Endpoint instances can be hosted in a single process (custom AppDomains are required to achieve this in version 4 and below).
+
+### [Transport](/nservicebus/transports/)
+
+The Transport is the mechanism that NServiceBus Endpoint Instances use to communicate with each other. NServiceBus supports many different transports in a pluggable manner. For Endpoint Instances to communicate they need to share a common Transport technology.
 
 ### [Publish Subscribe](/nservicebus/messaging/publish-subscribe)
 
 Publish Subscribe is the interaction of 
 
- * Registering interest in being notified about an Event.
- * That Event being delivered to the endpoint that registered
+ * Registering interest in being notified about an event (*subscriber*).
+ * That event being delivered to the endpoint that registered itself (*publisher*)
 
-A "Subscriber" lets the "Publisher" know they're interested in an Event, and the "Publisher" stores the "Subscriber" address so that it knows where to send the Event. 
-
+Both *publisher* and *subscriber* are Endpoints which means they are logical rather than physical (e.g. `Sales` or `Shipping`, not `Cache-1` or `Web-1`). Each event is delivered to a single Instance of each *subscriber* Endpoint.
 
 ### [Handler](/nservicebus/handlers/)
 
-A Handler is code that processes a message. They are stateless and constructed on a per-message basis. 
+A Message Handler (or simply Handler) is a piece of code that processes a message of a given type. Handlers are not guaranteed to retain any state between processing of messages.
 
 
 ### [Saga](/nservicebus/sagas/)
 
-A Saga can be thought of as a long running Handler that handles multiple Messages and shared state. It is the NServiceBus equivalent of a workflow.
+A saga can be thought of as a long running Handler that handles multiple Messages and shared state. It is the NServiceBus equivalent of a workflow.
 
 
 ### [Timeout](/nservicebus/sagas/#timeouts)
 
-Used by Sagas to indicate that a give action, and associated state, should be performed at some point in the future.
-
+Is a message a Saga sends to its future self to indicate the fact that some action needs to be performed. A timeout can contain state which provides the context for that action.
 
 ### [Retries](/nservicebus/errors/automatic-retries.md)
 
-NServiceBus has retry logic which surrounds all calls to user code. This allows failing business code to be retried in a sensible way.
+NServiceBus has retry logic which surrounds all calls to user code. This allows failing business code to be retried in a sensible way in order to resolve any interim problems (such as a database server restart).
 
 
 ### [Error Queue](/nservicebus/errors/)
@@ -79,11 +90,6 @@ A Behavior is a single step in the Pipeline.
 NServiceBus has both built in encryption and extension points to create fully customized encryption models.
 
 
-### [Transport](/nservicebus/transports/)
-
-The Transport is the mechanism that NServiceBus Endpoints use to communicate with each other. NServiceBus supports many different transports in a pluggable manner. For Endpoints to communicate they need to share a common Transport technology.
-
-
 ### [Auditing](/nservicebus/operations/auditing.md)
 
 Allows the forwarding of every message received by an endpoint to a configured queue.
@@ -102,16 +108,6 @@ Several NServiceBus features rely on persistence storage to function. This inclu
 ### [Containers](/nservicebus/containers)
 
 NServiceBus relies heavily on Containers and Dependency Injection to manage services and state.
-
-
-### Endpoint
-
-An Endpoint is the general term used to describe a collection of configuration and functionality (handlers and sagas). It is the "processing-unit" for NServiceBus in that it sends, receives and process messages. A Send-Only endpoint is an endpoint which has no handlers or sagas and has outgoing messages. Many conventions are based on the [Endpoint Name](/nservicebus/messaging/specify-input-queue-name.md)
-
-
-### [Hosting](/nservicebus/hosting)
-
-The act of "Hosting" refers to running an Endpoint in some other process. This can be any .NET process such as a console application, a website, or a Windows service. Multiple logical Endpoints can be hosted in a single process (custom AppDomains are required to achieve this in version 4 and below).
 
 
 ### [Assembly Scanning](/nservicebus/hosting/assembly-scanning.md)
