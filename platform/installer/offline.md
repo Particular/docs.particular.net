@@ -9,10 +9,7 @@ The [Platform Installer](/platform/installer) handles installing pre-requisites 
 
 ## .Net Prerequisite Version
 
-The Particular platform products require [.Net 4.5.1](https://www.microsoft.com/en-us/download/details.aspx?id=40779). Before proceeding please ensure that this version of .Net is available on the system you are setting up. More detailed information about .NET 4.5.1 can be found on the [.NET Blog](http://blogs.msdn.com/b/dotnet/archive/2013/12/09/the-net-framework-4-5-1-is-now-available-on-windows-update-and-wsus.aspx). 
-
-Note: Windows 8.1 and Windows 2012 R2 or greater already ship with this version so no action is required on these products.
-
+The Particular platform products require [.Net 4.5.2](https://www.microsoft.com/en-us/download/details.aspx?id=42642). Before proceeding please ensure that this version of .Net is available on the system you are setting up. More detailed information about .NET 4.5.2 can be found on the [.NET Blog](http://blogs.msdn.com/b/dotnet/archive/2014/05/05/announcing-the-net-framework-4-5-2-release.aspx) and on the [WSUS Product Team Blog](http://blogs.technet.com/b/wsus/archive/2015/01/05/microsoft-net-framework-4-5-2-availability-via-wsus.aspx).
 
 ##  Platform Installer Components
 
