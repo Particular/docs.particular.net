@@ -28,7 +28,7 @@ Additional information about a message is communicated over the transport in a c
 
 ### Endpoint
 
-An Endpoint is a design-time concept that has a name and a collection of associated message Handlers and Sagas. Endpoint lives as a group of artefacts in a source code repository. An Endpoint (the binaries that result from building the endpoint's source code) can be deployed to a number of machines and environments. Each such deployment is a separate Endpoint Instance
+An Endpoint is a design-time concept that has a name and a collection of associated Message Handlers and Sagas. A definition of an Endpoint lives as a group of artefacts in a source code repository. An Endpoint (the binaries that result from building the endpoint's source code) can be deployed to a number of machines and environments. Each such deployment is a separate Endpoint Instance.
 
 ### Endpoint Instance
 
@@ -36,11 +36,15 @@ An Endpoint Instance is a run-time object that allows to interact with the bus. 
 
 ### [Hosting](/nservicebus/hosting)
 
-The act of "Hosting" refers to running an Endpoint Instance in some process. This can be any .NET process such as a console application, a website, or a Windows service. Multiple Endpoint instances can be hosted in a single process (custom AppDomains are required to achieve this in version 4 and below).
+The act of Hosting refers to running an Endpoint Instance in some process. This can be any .NET process such as a console application, a website, or a Windows service. Multiple Endpoint instances can be hosted in a single process (custom AppDomains are required to achieve this in version 4 and below).
 
 ### [Transport](/nservicebus/transports/)
 
 The Transport is the mechanism that NServiceBus Endpoint Instances use to communicate with each other. NServiceBus supports many different transports in a pluggable manner. For Endpoint Instances to communicate they need to share a common Transport technology.
+
+### Input Queue
+
+Each endpoint instance is assigned a single Input Queue. This queue can be shared among instances of same Endpoint but never with other Endpoints.
 
 ### [Publish Subscribe](/nservicebus/messaging/publish-subscribe)
 
@@ -58,17 +62,16 @@ A Message Handler (or simply Handler) is a piece of code that processes a messag
 
 ### [Saga](/nservicebus/sagas/)
 
-A saga can be thought of as a long running Handler that handles multiple Messages and shared state. It is the NServiceBus equivalent of a workflow.
+A saga can be thought of as a long running Handler that handles multiple Messages and shared state. It is the NServiceBus equivalent of a Process Manager pattern.
 
 
 ### [Timeout](/nservicebus/sagas/#timeouts)
 
-Is a message a Saga sends to its future self to indicate the fact that some action needs to be performed. A timeout can contain state which provides the context for that action.
+A Timeout is a message a Saga sends to its future self to indicate the fact that some action needs to be performed. A timeout can contain state which provides the context for that action.
 
 ### [Retries](/nservicebus/errors/automatic-retries.md)
 
 NServiceBus has retry logic which surrounds all calls to user code. This allows failing business code to be retried in a sensible way in order to resolve any interim problems (such as a database server restart).
-
 
 ### [Error Queue](/nservicebus/errors/)
 
@@ -97,13 +100,11 @@ Allows the forwarding of every message received by an endpoint to a configured q
 
 ### [Serialization](/nservicebus/serialization/)
 
-Serialization is the process of converting an in memory .net object (in our case a message) into a stream of bytes in order to transmit it via the Transport. For Endpoints to communicate they need to share a common serialization language.
-
+Serialization is the process of converting an in memory object representing a message into a stream of bytes in order to transmit it via the Transport. For Endpoint Instances to communicate they need to share a common serialization technology.
 
 ### [Persistence](/nservicebus/persistence/)
 
-Several NServiceBus features rely on persistence storage to function. This includes Sagas, Timeouts, Gateway, Outbox and Subscriptions.
-
+Several NServiceBus features rely on persistent storage to function. This includes Sagas, Timeouts, Gateway, Outbox and Subscriptions (with transports that do not support Pub/Sub natively).
 
 ### [Containers](/nservicebus/containers)
 
@@ -122,8 +123,7 @@ NServiceBus has some sensible defaults for logging built in and, for more advanc
 
 ### [OutBox](/nservicebus/outbox)
 
-An alternative to Distributed transactions to provide reliability in Message processing. 
-
+An alternative to Distributed Transactions to provide exactly-once message processing semantics when accessing user data store as part of message processing. 
 
 ### [Distributor](/nservicebus/scalability-and-ha/distributor/)
 
