@@ -8,12 +8,11 @@ tags:
 
 ## Configuration Settings
 
-The configuration of a ServiceControl instance can be adjusted via the ServiceControl Managment utility or by directly modifying the ServiceControl.exe.config file.  The configuration options available are categorized below: 
-
+The configuration of a ServiceControl instance can be adjusted via the ServiceControl Managment utility or by directly modifying the ServiceControl.exe.config file.  The settings listed are applicable to the  "appSettings" section of the configuration file unless otherwise specified.
 
 ## Host Settings   
 
-The following documents should be reviewed prior to modifying the settings in this section:
+The following documents should be reviewed prior to modifying configuration settings:
 
 - [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
 - [Securing ServiceControl](securing-servicecontrol.md) for a discussion on security implications of custom domain access and access limitation options.
@@ -56,8 +55,7 @@ The path where the internal RavenDB is located.
 
 Type: string
 
-Default: `%SystemDrive%\ProgramData\Particular\ServiceControl\<Hostname>-<Port>`
-
+Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<Hostname>-<Port>` 
 
 #### ServiceControl/LogPath
 
@@ -68,7 +66,6 @@ Type: string
 Default: `%LOCALAPPDATA%\Particular\ServiceControl\logs`
 
 Note: %LOCALAPPDATA% is a user specific environment variable.  
-
 
 
 ## Data Retention
@@ -137,7 +134,7 @@ The transport type to run ServiceControl with.
 
 Type: string
 
-Default: `NServiceBus.Msmq, NServiceBus.Core`
+Default: `NServiceBus.MsmqTransport, NServiceBus.Core`
 
 
 #### NServiceBus/Transport
