@@ -75,17 +75,6 @@ Following example shows how you could implement a shared-store based routing whe
 
 NOTE: The function passed to the `AddDynamic` call is executed **each time** a message is sent so it is essential to make sure it is performant (e.g. by caching the results if getting the result requires crossing a process boundary).
 
-#### Send via
-
-*This is implemented in a separate pull*
-
-The type mapping layer allows to configure the itinerary a given message is suppose to be routed. By default, a message is dispatched to its destination calculated as a result of a routing process. If a *send via* is configured, a message is physically dispatched to the destination specified by *send via* and a `NServiceBus.UltimateDestination` header is attached. Should there be more intermediate hops in the route, `NServiceBus.SendVia.N` headers are attached where `N` is the 1-based index of hop. 
-
-```
-string proxy = "ProxyQueueName";
-busConfig.Routing().UnicastRoutingTable.AddStatic(typeof(OrderAccepted), new EndpointName("Sales"), proxy);
-```
-
 ### Endpoint mapping
 
 The middle layer is responsible for mapping the endpoint name into the list of endpoint instance names. This mapping is done in a two-step process:
