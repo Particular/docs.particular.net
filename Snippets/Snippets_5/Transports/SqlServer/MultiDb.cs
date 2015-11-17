@@ -62,7 +62,7 @@
 
             #endregion
         }
-        
+
         void RedirectAuditAndError()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
@@ -71,8 +71,10 @@
 
             busConfiguration.UseTransport<SqlServerTransport>()
                 .UseSpecificConnectionInformation(
-                    EndpointConnectionInfo.For("error").UseConnectionString("ServiceControl connection string")),
-                    EndpointConnectionInfo.For("audit").UseConnectionString("ServiceControl connection string")
+                    EndpointConnectionInfo.For("error")
+                        .UseConnectionString("ServiceControl connection string"),
+                    EndpointConnectionInfo.For("audit")
+                        .UseConnectionString("ServiceControl connection string")
                 );
 
             #endregion

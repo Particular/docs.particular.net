@@ -80,7 +80,7 @@ ServiceControl requires the `error` and `audit` queues to be present in a single
 
 <!-- import sqlserver-multidb-redirect-audit-error -->
 
-For ServiceControl to know where to put back messages when retrying after processing failure, it needs to have the same endpoint to connection string mappings as user endpoints e.g.
+For ServiceControl to retrying a message, after processing failure, it needs to have the same endpoint to connection string mappings as user endpoints e.g.
 
 <!-- import sqlserver-multidb-sc -->
 
