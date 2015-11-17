@@ -76,7 +76,7 @@ the messages sent to `billing` will go to database `Billing` on server `DbServer
 
 ### ServiceControl
 
-In order to use a single instance of ServiceControl for the whole system when there are multiple databases used for queues, the `audit` and `error` queues need to be present in a single dedicated database (the ServiceControl database). In addition to configuring the mapping between the user endpoints and connection strings (as described above), there must be a mapping that redirects `audit` and `error` pseudo-endpoints to the ServiceControl database.
+ServiceControl requires the `error` and `audit` queues to be present in a single database. In a system where there are multiple databases, used by various endpoints, this can be achieved by redirecting the queues using the following configuration endpoint configuration:
 
 <!-- import sqlserver-multidb-redirect-audit-error -->
 
