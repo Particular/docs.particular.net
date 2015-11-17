@@ -16,6 +16,8 @@ Given the above behavior, if the system where we are installing ServiceControl a
 
 By default ServiceControl, at install time, creates a queue named `error.log`, each time ServiceControl consumes a message from the `error` queue the message is also forwarded to the `error.log` queue.
 
+NOTE: In order to avoid runtime failures when trying to forward messages to `error.log`, at start-up ServiceControl sends a single empty message to that queue. The start-up process is terminated if the send operation fails.
+
 ### Auditing
 
 ServiceControl messages can also be audited, e.g. to support a scenario where auditing was previously used in the production environment and must be used even after the introduction of ServiceControl.

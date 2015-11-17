@@ -62,5 +62,22 @@
 
             #endregion
         }
+
+        void RedirectAuditAndError()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
+
+            #region sqlserver-multidb-redirect-audit-error 2.1
+
+            busConfiguration.UseTransport<SqlServerTransport>()
+                .UseSpecificConnectionInformation(
+                    EndpointConnectionInfo.For("error")
+                        .UseConnectionString("ServiceControl connection string"),
+                    EndpointConnectionInfo.For("audit")
+                        .UseConnectionString("ServiceControl connection string")
+                );
+
+            #endregion
+        }
     }
 }
