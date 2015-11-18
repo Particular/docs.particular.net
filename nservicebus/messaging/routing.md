@@ -10,7 +10,7 @@ tags:
 - reply
 ---
 
-One of the things NServiceBus takes care of is the routing of messages. Usually the only thing a developer has to do is call `Send`, `Publish` or `Reply` and the actual message destination is calculated by the framework.
+One of the things NServiceBus takes care of is the routing of messages. Usually the only thing a developer has to do is call `Send`, `Publish` or `Reply` and the actual message destination is calculated by the framework. Flexible message routing is a feature added in Version 6. In previous versions NServiceBus used fixed [message ownership mappings](/nservicebus/messaging/message-owner.md) that allowed only to map the message type (or all types in an assembly or a namespace) to physical addresses (queue names). The flexible routing in V6 breaks this mapping down into a series of individually configurable steps. NServiceBus 6 still understands the old configuration in form of message-endpoint mappings for backwards compatibility.
 
 ## Endpoint and endpoint instances
 
