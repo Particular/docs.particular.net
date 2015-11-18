@@ -10,6 +10,7 @@ redirects:
 - nservicebus/messaging/specify-message-destination
 related:
 - samples/pubsub
+- nservicebus/messaging/routing
 ---
 
 NServiceBus had the concept of an "Owning Endpoint" for any given message type. In V6 this has been replaced with the more flexible [routing model](/nservicebus/messaging/routing.md).
