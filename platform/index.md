@@ -20,7 +20,7 @@ NServiceBus, the heart of the system, is a messaging and workflow framework that
 Moreover, NServiceBus is thoroughly extensible. You can tailor it to your needs, select technologies you're already familiar with or create customized versions of various elements in the system. 
 
 
-## [ServiceControl](/servicecontrol) - gather all the data
+## [ServiceControl](/servicecontrol) - the foundation
 
 ServiceControl is the monitoring brain in the Particular Service Platform. It collects data on every single message flowing through your system (Audit Queue), errors (Error Queue), as well as additional information regarding sagas, endpoints heartbeats and custom checks (Control Queue). The information is then exposed to ServicePulse and ServiceInsight via an HTTP API and SignalR notifications.
 
@@ -35,7 +35,7 @@ To enable ServiceControl to gather this information, you need to configure your 
 By default ServiceControl stores information for 30 days, but you can easily [customize this](/servicecontrol/creating-config-file.md).
 
 
-## [ServiceInsight](/serviceinsight) - invaluable developer tool
+## [ServiceInsight](/serviceinsight) - message flow visualization
 
 ServiceInsight is a desktop application with features tailored to developers needs. It allows for advanced debugging, tracking the flow of an individual message in the system, observing sagas and more.
 
@@ -44,7 +44,7 @@ It is much easier to quickly spot anomalies and incorrect behavior in your syste
 
 ## [ServicePulse](/servicepulse) - production monitoring
 
-ServicePulse is a web application aimed mainly at administrators. It gives you a clear, near real-time, high-level overview of the system. 
+ServicePulse is a web application aimed mainly at administrators. It gives a clear, near real-time, high-level overview of how a system is functioning. 
 
 You will get notified when the endpoint is down or when a message fails. You can also specify your own custom checks and get alerts. The interface allows you to perform the common operations for failure recovery, such as retrying failed messages. You can also [subscribe to publicly exposed events](/servicecontrol/contracts.md), in order to display and handle them in a custom way.
 
