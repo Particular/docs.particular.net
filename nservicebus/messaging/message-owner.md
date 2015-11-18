@@ -10,9 +10,10 @@ redirects:
 - nservicebus/messaging/specify-message-destination
 related:
 - samples/pubsub
+- nservicebus/messaging/routing
 ---
 
-NServiceBus had the concept of an "Owning Endpoint" for any given message type.
+NServiceBus had the concept of an "Owning Endpoint" for any given message type. In V6 this has been replaced with the more flexible [routing model](/nservicebus/messaging/routing.md).
 
 Message mapping is a configurable convention that, based on some information about a message, that message can be routed to a specific endpoint without the sending code needing to be aware of the destination. A message mapping contains the following information.
 

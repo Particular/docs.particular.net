@@ -47,6 +47,20 @@
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NLog.4.2.0\lib\net45\NLog.dll</HintPath>
+    <Reference Include="Common.Logging, Version=3.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.3.0.0\lib\net40\Common.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Core.3.0.0\lib\net40\Common.Logging.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.0.0\lib\net45\NLog.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Callbacks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
@@ -138,6 +152,7 @@
     <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
+    <Compile Include="Errors\SecondLevel\CustomPolicy\Usage.cs" />
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
     <Compile Include="Errors\SecondLevel\ProvideConfiguration.cs" />
     <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
@@ -162,6 +177,7 @@
     <Compile Include="Host\ProgramService.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Host\ProgramService.cs" />
     <Compile Include="ImmediateDispatch\Usage.cs" />
     <Compile Include="Installers.cs" />
     <Compile Include="InstancePerUnitOfWorkRegistration.cs" />
@@ -200,6 +216,7 @@
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
     <Compile Include="Routing\EndpointMapping\ProvideConfiguration.cs" />
+    <Compile Include="Routing\NewOutingAPIs.cs" />
     <Compile Include="Sagas\FindByExpression\Message1.cs" />
     <Compile Include="Sagas\FindByExpression\Message2.cs" />
     <Compile Include="Sagas\FindByExpression\MySaga.cs" />
