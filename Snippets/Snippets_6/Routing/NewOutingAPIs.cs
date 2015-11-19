@@ -96,6 +96,7 @@
             #endregion
         }
 
+        // ReSharper disable once ConvertClosureToMethodGroup
         public void TransportAddressRules()
         {
             var busConfig = new BusConfiguration();

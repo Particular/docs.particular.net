@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 
 public static class SomeLibrary
 {
-    public static Task SomeMethodAsync(object data)
+    public static Task SomeAsyncMethod(object data)
     {
         return Task.FromResult(0);
     }

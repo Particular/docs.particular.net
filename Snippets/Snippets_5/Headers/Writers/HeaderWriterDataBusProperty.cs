@@ -55,7 +55,7 @@
         {
             public void Handle(MessageToSend message)
             {
-                throw new Exception("sdfsdf");
+                throw new Exception("error");
             }
         }
 
