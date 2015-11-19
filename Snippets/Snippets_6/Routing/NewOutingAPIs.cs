@@ -19,9 +19,10 @@
         {
             var busConfig = new BusConfiguration();
             #region Routing-StaticRoutes
-            busConfig.Routing().UnicastRoutingTable.AddStatic(typeof(OrderAccepted), new EndpointName("Sales"));
-            busConfig.Routing().UnicastRoutingTable.AddStatic(typeof(OrderAccepted), new EndpointInstanceName(new EndpointName("Sales"), "1", null));
-            busConfig.Routing().UnicastRoutingTable.AddStatic(typeof(OrderAccepted), "Sales-2@MachineA");
+            UnicastRoutingTable routingTable = busConfig.Routing().UnicastRoutingTable;
+            routingTable.AddStatic(typeof(OrderAccepted), new EndpointName("Sales"));
+            routingTable.AddStatic(typeof(OrderAccepted), new EndpointInstanceName(new EndpointName("Sales"), "1", null));
+            routingTable.AddStatic(typeof(OrderAccepted), "Sales-2@MachineA");
             #endregion
         }
 
@@ -31,9 +32,12 @@
             #region Routing-DynamicRoutes
             busConfig.Routing().UnicastRoutingTable.AddDynamic((t, c) => new[]
             {
-                new UnicastRoutingDestination(new EndpointName("Sales")), //Use endpoint name
-                new UnicastRoutingDestination(new EndpointInstanceName(new EndpointName("Sales"), "1", null)), //Use endpoint instance name
-                new UnicastRoutingDestination("Sales-2@MachineA"), //Use transport address (e.g. MSMQ)
+                //Use endpoint name
+                new UnicastRoutingDestination(new EndpointName("Sales")), 
+                //Use endpoint instance name
+                new UnicastRoutingDestination(new EndpointInstanceName(new EndpointName("Sales"), "1", null)), 
+                //Use transport address (e.g. MSMQ)
+                new UnicastRoutingDestination("Sales-2@MachineA"),
             });
             #endregion
         }
@@ -43,9 +47,7 @@
             var busConfig = new BusConfiguration();
             #region Routing-CustomRoutingStore
             busConfig.Routing().UnicastRoutingTable.AddDynamic((t, c) => {
-                var destinations = LoadFromCache(t) ?? LoadFromDatabaseAndPutToCache(t);
-                return destinations;
-            });
+                return LoadFromCache(t) ?? LoadFromDatabaseAndPutToCache(t);            });
             #endregion
         }
 
@@ -54,7 +56,8 @@
             var busConfig = new BusConfiguration();
             #region Routing-StaticEndpointMapping
             EndpointName sales = new EndpointName("Sales");
-            busConfig.Routing().EndpointInstances.AddStatic(sales, new EndpointInstanceName(sales, "1", null), new EndpointInstanceName(sales, "2", null));
+            busConfig.Routing().EndpointInstances
+                .AddStatic(sales, new EndpointInstanceName(sales, "1", null), new EndpointInstanceName(sales, "2", null));
             #endregion
         }
 
@@ -63,7 +66,8 @@
             var busConfig = new BusConfiguration();
             #region Routing-StaticEndpointMappingWithDiscriminators
             EndpointName sales = new EndpointName("Sales");
-            busConfig.Routing().EndpointInstances.AddStaticUsingTransportDiscriminators(sales, "MachineA", "MachineB");
+            busConfig.Routing().EndpointInstances
+                .AddStaticUsingTransportDiscriminators(sales, "MachineA", "MachineB");
             #endregion
         }
 
@@ -92,7 +96,8 @@
             var busConfig = new BusConfiguration();
             #region Routing-SpecialCaseTransportAddress
             EndpointName sales = new EndpointName("Sales");
-            busConfig.Routing().TransportAddresses.AddException(new EndpointInstanceName(sales, "1", null), "Sales-One@MachineA");
+            busConfig.Routing().TransportAddresses
+                .AddException(new EndpointInstanceName(sales, "1", null), "Sales-One@MachineA");
             #endregion
         }
 
