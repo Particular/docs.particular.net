@@ -7,13 +7,6 @@
 
     public class NewOutingAPIs
     {
-        public void ConfigureTransport()
-        {
-            var config = new BusConfiguration();
-            #region Routing-ConfigureTransport
-            config.UseTransport<MsmqTransport>();
-            #endregion
-        }
 
         public void StaticRoutes()
         {

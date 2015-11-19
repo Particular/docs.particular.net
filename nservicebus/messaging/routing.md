@@ -49,11 +49,7 @@ Multicast routing uses topics. Multiple receivers can subscribe to a single topi
 
 ### Transport
 
-The transport selected by the user via
-
-<!-- import Routing-ConfigureTransport -->
-
-decides, for each of action (Send, Publish or Reply), which routing type is used. For example, MSMQ transport uses the unicast routing for all the APIs while RabbitMQ transport uses the unicast routing for Send and Reply but multicast routing for Publish. 
+The [transport selected by the user](/nservicebus/transports/) decides, for each of action (Send, Publish or Reply), which routing type is used. For example, [MSMQ transport](/nservicebus/msmq/) uses the unicast routing for all the APIs while [RabbitMQ transport](/nservicebus/rabbitmq/) uses the unicast routing for Send and Reply but multicast routing for Publish. 
 
 
 ## Unicast routing
