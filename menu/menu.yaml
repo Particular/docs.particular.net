@@ -282,6 +282,7 @@
         - "servicecontrol/setting-custom-hostname"
         - "servicecontrol/logging"
         - "servicecontrol/errorlog-auditlog-behavior"
+        - "servicecontrol/deploying-servicecontrol-in-a-cluster"
         - Title: "Integration"
           Url: "servicecontrol/plugins"
           Articles:
