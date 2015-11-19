@@ -5,7 +5,7 @@
     using NServiceBus;
     using NServiceBus.Routing;
 
-    public class NewOutingAPIs
+    public class NewRoutingAPIs
     {
 
         public void StaticRoutes()
@@ -109,12 +109,12 @@
             throw new NotImplementedException();
         }
 
-        IEnumerable<UnicastRoutingDestination> LoadFromDatabaseAndPutToCache(Type type)
+        IEnumerable<IUnicastRoute> LoadFromDatabaseAndPutToCache(Type type)
         {
             throw new NotImplementedException();
         }
 
-        IEnumerable<UnicastRoutingDestination> LoadFromCache(Type type)
+        IEnumerable<IUnicastRoute> LoadFromCache(Type type)
         {
             throw new NotImplementedException();
         }

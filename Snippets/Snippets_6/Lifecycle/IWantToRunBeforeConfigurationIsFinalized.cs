@@ -1,15 +1,16 @@
 ﻿namespace Snippets6.Lifecycle
 {
     using NServiceBus;
+    using NServiceBus.Settings;
 
     #region lifecycle-iwanttorunbeforeconfigurationisfinalized
 
-    class RunBeforeConfigurationIsFinalized : IWantToRunBeforeConfigurationIsFinalized
+    class RunBeforeConfigurationIsFinalized : IFinalizeConfiguration
     {
-        public void Run(Configure config)
+        public void Run(SettingsHolder settings)
         {
             // update config instance
-            config.Settings.Set("key", "value");
+            settings.Set("key", "value");
             // after this config.Settings will be frozen
         }
     }
