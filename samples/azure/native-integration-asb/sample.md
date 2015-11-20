@@ -62,7 +62,7 @@ These headers need to be stored as `BrokeredMessage` properties.
 
 <!-- import NecessaryHeaders -->
 
-NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the message type expected by the NServiceBus endpoint.
+NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the message type expected by the NServiceBus endpoint. Message type should include namespace it's contained in.
 
 The message itself is defined as an `IMessage` under the `Shared` project.
 
