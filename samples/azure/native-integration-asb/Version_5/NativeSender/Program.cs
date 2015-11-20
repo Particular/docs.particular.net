@@ -25,7 +25,7 @@ class Program
 
         #region NecessaryHeaders
 
-        message.Properties["NServiceBus.EnclosedMessageTypes"] = "NativeMessage"; // Message type including namespace if one is defined
+        message.Properties["NServiceBus.EnclosedMessageTypes"] = "NativeMessage";
         message.Properties["NServiceBus.MessageIntent"] = "Send";
 
         #endregion
