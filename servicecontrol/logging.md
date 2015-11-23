@@ -15,8 +15,10 @@ Instances of the ServiceControl service write diagnostic information and failed 
 
 ### Location 
 
-If the ServiceControl configuration file does not contain logging configuration the default logging location is  
-`%LOCALAPPDATA%\Particular\ServiceControl\logs`. 
+The location of the ServiceControl logs are controlled via the `ServiceControl/LogPath` configuration setting. Refer to [Customizing ServiceControl configuration](creating-config-file.md)) for more details.
+
+If the ServiceControl configuration file does not this setting the the default logging location is used. 
+The default logging location is `%LOCALAPPDATA%\Particular\ServiceControl\logs`. 
 
 The `%LOCALAPPDATA%` defines a user-specific location on disk, so the logging location will be different when the service is configured as a user account. So for example
 
@@ -28,7 +30,6 @@ as the default NTFS permissions on the systemprofile do not allow access.  These
 
 
 NOTE: If multiple Service Control instances are configured on the same machine ensure that the log locations for each instance are unique
-
 
 ### Custom logging location
 
@@ -46,7 +47,6 @@ To change the location ServiceControl stores its logs:
 When Save is clicked the the service with be restarted to apply the change. 
 
 #### Changing logging location by editing the configuration file
-    
 
 To change the location where ServiceControl stores its log:
 
@@ -58,7 +58,6 @@ To change the location where ServiceControl stores its log:
 <add key="ServiceControl/LogPath" value="x:\new\log\location" />
 ```
  * Start the ServiceControl service.
-
 
 NOTE: Ensure the account ServiceControl, is running under, has write and modify permissions to that directory.
 
