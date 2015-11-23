@@ -13,7 +13,7 @@ The primary job of ServiceControl is to collect information on system behavior i
 
 #### Location
 
-ServiceControl stores its data in a RavenDB embedded instanceThe location of the database has a significant impact on the overall system behavior in terms of performance and throughput. You should configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
+Each ServiceControl instance stores its data in a RavenDB embedded instance. The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. You should configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
 
 #### Size
 
@@ -23,9 +23,9 @@ Since ServiceControl is intended to be a recent-history storage to support Servi
 
 ServiceControl is configured with a default expiration policy that deletes old messages after a predefined time. The expiration policy can be customized to decrease or increase the amount of time data is retained, which impacts the storage requirements of ServiceControl.
 
-To limit the rate at which the database grows the body of an audit messages can be truncated if it exceeds a configuarble threshold.  
+To limit the rate at which the database grows the body of an audit messages can be truncated if it exceeds a configurable threshold.  
 
-Refer to Data Retention section of [Customizing ServiceControl Configuration](creating-config-file.md) for details on thes settings.
+Refer to Data Retention section of [Customizing ServiceControl Configuration](creating-config-file.md) for details on these settings.
 
 
 **NOTE**
@@ -39,7 +39,7 @@ Refer to Data Retention section of [Customizing ServiceControl Configuration](cr
 
 You can configure ServiceControl to forward any consumed messages into alternate queues, so that a copy of any message consumed by ServiceControl is available from these alternate queues.
 
-For more details, see [Customizing ServiceControl Configuration](creating-config-file.md#consuming-messages-from-audit-amp-error-queues).
+For more details, see [Forwarding Queues](errorlog-auditlog-behavior.md)
 
 #### Query the ServiceControl HTTP API
 
