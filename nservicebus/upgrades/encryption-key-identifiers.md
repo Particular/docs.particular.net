@@ -3,6 +3,8 @@ title: Upgrade encryption service configuration
 summary: Instructions on how to upgrade the Rijndael property encryption configuration to use key identifiers
 tags:
  - upgrade
+related:
+ - nservicebus/security/encryption
 ---
 
 ## Summary
@@ -25,9 +27,9 @@ To deploy this fix throughout your system, you must first upgrade your endpoints
 
 All endpoints using encryption need to be upgraded to the latest patch release.
 
-- Version 3.x.x requires atleast v3.3.17
-- Version 4.x.x requires atleast v4.7.8
-- Version 5.x.x requires atleast v5.0.7, v5.1.5 or v5.2.9
+- Version 3.x.x requires at least v3.3.17
+- Version 4.x.x requires at least v4.7.8
+- Version 5.x.x requires at least v5.0.7, v5.1.5 or v5.2.9
 
 For example, if currently using NServiceBus 4.7.x, you must update to the latest patch release 4.7.8.
 
@@ -136,8 +138,3 @@ Search in log files that indicate data validation issues. These could indicate t
 Recovering corrupted data is *only* possible when the original encrypted messages are moved to an audit queue.
 
 We do not have a tool that helps in recovering. Please contact support if you suspect possible data corruption. 
-
-## References
-
-- [Encryption overview](https://docs.particular.net/nservicebus/security/encryption)
-- [Generating secure random strong encryption keys](https://docs.particular.net/nservicebus/security/enerating-encryption-keys)
