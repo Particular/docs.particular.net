@@ -31,7 +31,7 @@ If the service account user does not have appropriate rights the service will fa
 
 ### Configuration Changes
 
-If the ServiceControl configuration is manually changed to listen to an alternate URL as detailed in [Customizing ServiceControl configuration](creating-config-file.md), then update the URLACL to reflect the user account assigned to run the service.  Otherwise, the service will not start.
+If the ServiceControl configuration is manually changed to listen to an alternate URL, Check the URLACL assigned to the URI is valid for the new service account.  For instructions on how to review and change the the URLACL refer to [Changing the ServiceControl URI](setting-custom-hostname.md) 
 
 ### RavenDB Security
 
@@ -72,7 +72,7 @@ If the command returns the error below then you cannot test the user account thi
 Once logon rights are granted you can proceed:
 
 3. Ensure that the service is stopped. 
-3. From the command prompt running as the service account, change to the ServiceControl installation directory and run ServiceControl.exe. In the following example the default name has been used. Check the ServiceControl Management Utility if you are unsure of the service name 
+3. From the command prompt running as the service account, change to the ServiceControl installation directory and run `ServiceControl.exe` with the `--serviceName` parameter. In the following example the default name has been used. Check the ServiceControl Management Utility if you are unsure of the service name 
 3. Examine the output and confirm that there are no critical errors.
 3. Shut down the console session. 
 3. Start the service.
@@ -81,7 +81,7 @@ Once logon rights are granted you can proceed:
 ServiceControl.exe --serviceName=Particular.ServiceControl
 ```
 
-NOTE:  You must specify the name of the Service on the command lime as this impacts the queues names used.
+NOTE: You must specify the correct name of the service on the command line as this impacts the queues names used.
 
 ### Expected Warnings when Running as a Non-Privileged Account
 
