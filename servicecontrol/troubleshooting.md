@@ -12,7 +12,7 @@ Open the ServiceControl Management utility and review the configuration. The Man
 
 ### Service fails to start 
 
-There are various reasons that can cause the ServiceControl windows service fail to start. To narrow down the possible cause, review the ServiceControl logs files. See {lo 
+There are various reasons that can cause the ServiceControl windows service fail to start. To narrow down the possible cause, review the [ServiceControl logs](setting-custom-log-location) files.
 
 
 ### The port is already in use
@@ -69,7 +69,7 @@ ServiceControl can run out of memory and crash when the hard drive is busy. When
 ```
 The version store for this instance (0) has reached its maximum size of 511Mb. It is likely that a long-running transaction is preventing cleanup of the version store and causing it to build up in size. Updates will be rejected until the long-running transaction has been completely committed or rolled back.
 ``` 
-You can increase the size of the version store by adding a new appSetting to the ServiceControl configuration file:
+You can increase the size of the version store by adding a new app setting to the ServiceControl configuration file:
 
 `<add key="Raven/Esent/MaxVerPages" value="1024" />`
 
