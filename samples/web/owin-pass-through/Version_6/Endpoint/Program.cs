@@ -25,16 +25,19 @@ static class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+
+        IEndpoint endpoint = await Endpoint.Start(busConfiguration);
+        var bus = endpoint.CreateBusContext();
         using (StartOwinHost(bus))
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
-#endregion
+        await endpoint.Stop();
+        #endregion
     }
 #region startowin
-    static IDisposable StartOwinHost(IBus bus)
+    static IDisposable StartOwinHost(IBusContext bus)
     {
         string baseUrl = "http://localhost:12345/";
         StartOptions startOptions = new StartOptions(baseUrl)
@@ -50,7 +53,7 @@ static class Program
         });
     }
 
-    static void MapToBus(IAppBuilder builder, IBus bus)
+    static void MapToBus(IAppBuilder builder, IBusContext bus)
     {
         OwinToBus owinToBus = new OwinToBus(bus);
         builder.Map("/to-bus", app => { app.Use(owinToBus.Middleware()); });

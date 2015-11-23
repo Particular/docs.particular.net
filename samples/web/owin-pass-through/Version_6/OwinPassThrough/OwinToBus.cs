@@ -11,10 +11,10 @@ using AppFunc = System.Func<System.Collections.Generic.IDictionary<string, objec
 
 public class OwinToBus
 {
-    IBus bus;
+    IBusContext bus;
     Newtonsoft.Json.JsonSerializer serializer;
 
-    public OwinToBus(IBus bus)
+    public OwinToBus(IBusContext bus)
     {
         this.bus = bus;
         serializer = new Newtonsoft.Json.JsonSerializer();
@@ -22,17 +22,17 @@ public class OwinToBus
 
     public Func<AppFunc, AppFunc> Middleware()
     {
-        return x => Invoke;
+        return _ => Invoke;
     }
 
     async Task Invoke(IDictionary<string, object> environment)
     {
-        string messageBody = await GetMessageBody(environment);
+        string messageBody = await GetMessageBody(environment).ConfigureAwait(false);
         IDictionary<string, string[]> requestHeaders = (IDictionary<string, string[]>) environment["owin.RequestHeaders"];
         string typeName = requestHeaders["MessageType"].Single();
         Type objectType = Type.GetType(typeName);
         object deserialize = Deserialize(messageBody, objectType);
-        await bus.SendLocalAsync(deserialize);
+        await bus.SendLocal(deserialize).ConfigureAwait(false);
     }
 
     object Deserialize(string messageBody, Type objectType)
@@ -43,12 +43,12 @@ public class OwinToBus
         }
     }
 
-    async Task<string> GetMessageBody(IDictionary<string, object> environment)
+    static async Task<string> GetMessageBody(IDictionary<string, object> environment)
     {
         using (Stream requestStream = (Stream) environment["owin.RequestBody"])
         using (StreamReader streamReader = new StreamReader(requestStream))
         {
-            return await streamReader.ReadToEndAsync();
+            return await streamReader.ReadToEndAsync().ConfigureAwait(false);
         }
     }
 }
