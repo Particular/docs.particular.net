@@ -15,7 +15,7 @@ The configuration of a ServiceControl instance can be adjusted via the ServiceCo
 The following documents should be reviewed prior to modifying configuration settings:
 
 - [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
-- [Securing ServiceControl](securing-servicecontrol.md) for a discussion on security implications of custom domain access and access limitation options.
+- [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
 #### ServiceControl/Hostname
 
