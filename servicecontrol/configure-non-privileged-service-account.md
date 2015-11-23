@@ -20,7 +20,7 @@ Assuming the service name the ServiceControl service is `particular.servicecontr
 - `particular.servicecontrol.timeouts`
 - `particular.servicecontrol.timeoutsdispatcher`
 
-In addition the Service requiresrtights to the configured audit and error queues and the corresponding forwarding queues. These are typically named: 
+In addition the Service requires rights to the configured audit and error queues and the corresponding forwarding queues. These are typically named: 
 
 - `audit`
 - `error`
@@ -53,33 +53,35 @@ These methods confirm that the user account has sufficient rights:
 
 #### Method 2: Running the service interactively as a non-privileged user 
 
-To run the service this way the user account must have rights to log on interactively on the computer.  
+To run the service this way the user account must have rights to log on interactively on the computer.
+  
 2. Log on to the computer with admin privileges. 
 2. Substitute the appropriate domain and user name. 
 2. Issue the following command, entering the password when prompted:
 
 ```
 e.g.   runas /user:MyDomain\MyTestUser cmd.exe
-
 ```
 
-If the command returns the error below then you cannot test the user account this way without adjusting the logon rights.  Normally this only occurs if the computer is configured as a domain controller or the System Administrator has restricted login access using group policies. 
+If the command returns the error below then you cannot test the user account this way without adjusting the logon rights.  Normally this only occurs if the computer is configured as a domain controller or the System Administrator has restricted logon access using group policies. 
 
 ``` 
 1385: Logon failure: the user has not been granted the requested logon type at this computer.
 ```
 
-Once logon rights are granted you can proceed: 
+Once logon rights are granted you can proceed:
+
 3. Ensure that the service is stopped. 
-3. From the command prompt running as the service account, change to the ServiceControl installation directory and run ServiceControl.exe. You must specify the name of the Service on the command lime as this impacts the queues names used.  In the following example the default name has been used.  Check the ServiceControl Management Utility if you are unsure of the service name 
+3. From the command prompt running as the service account, change to the ServiceControl installation directory and run ServiceControl.exe. In the following example the default name has been used. Check the ServiceControl Management Utility if you are unsure of the service name 
+3. Examine the output and confirm that there are no critical errors.
+3. Shut down the console session. 
+3. Start the service.
 
 ```
 ServiceControl.exe --serviceName=Particular.ServiceControl
 ```
 
-3. Examine the output and confirm that there are no critical errors.
-3. Shut down the console session. 
-3. Start the service.
+NOTE:  You must specify the name of the Service on the command lime as this impacts the queues names used.
 
 ### Expected Warnings when Running as a Non-Privileged Account
 
