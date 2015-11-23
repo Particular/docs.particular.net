@@ -71,7 +71,7 @@ Remove-ServiceControlInstance -Name Test.ServiceControl -RemoveDB -RemoveLogs
 Get-ServiceControlInstances | Remove-ServiceControlInstance -RemoveDB -RemoveLogs
 ```
 
-There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or hostname.
+There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or host name.
 
 #### Upgrading an instance
 
@@ -129,11 +129,13 @@ This sample produces the following Files
 </ServiceControlInstanceMetadata>
 ```
 
-There is also a cmdlet which can be used to create an instance from the unattended file produced. The ServiceAccount details can optionally be provided. If no service account details are specified the `LocalSystem` account is used
+There is also a cmdlet which can be used to create an instance from the unattended file produced. The service account details can optionally be provided. If no service account details are specified the `LocalSystem` account is used
 
 ```bat
 New-ServiceControlInstanceFromUnattendedFile -UnattendFile  c:\temp\unattended.xml -ServiceAccount MyServiceAccount -ServiceAccountPassword MyPassword
 ```
+
+Note: Neither the unattended file method or the `New-ServiceControlInstance` cover all the configuration settings that are available to ServiceControl.  To set additonal options refer to [Customizing ServiceControl configuration](creating-config-file.md).  A scripted method of adding additional settings is detailed in [Installing ServiceControl Silently](installation-silent.md)    
 
 ### Troubleshooting via PowerShell
 
