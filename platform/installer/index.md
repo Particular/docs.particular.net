@@ -19,7 +19,7 @@ The Platform Installer can be downloaded by clicking on the download now option 
 For testing and production environments it is recommended to: 
 
 - use the [NServiceBus Powershell Module](/nservicebus/operations/management-using-powershell.md) to install the prerequisite components you require. 
-- Download and run the individual installers from the [download](http://www.particular.net/downloads) page rather than install via the Platform Installer
+- Download and run the individual installers from the [download](http://particular.net/downloads) page rather than install via the Platform Installer
 
 
 ## What to expect 

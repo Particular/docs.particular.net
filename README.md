@@ -3,7 +3,7 @@
 Before you start ensure you have
 
  *  Created a [GitHub account](https://github.com/join)
- *  Signed the Particular [Contributor License Agreement](http://www.particular.net/contributors-license-agreement-consent).
+ *  Signed the Particular [Contributor License Agreement](http://particular.net/contributors-license-agreement-consent).
 
 There are two approaches to contributing.
 
@@ -282,7 +282,23 @@ Avoid using screen shots in sample unless it adds significant value over what ca
  * Are prone to resulting an in inconsistent feel as different people take screenshot at different sizes, different zoom levels and with different color schemes for the app in question
  * Screenshots add significantly to the page load time. 
 
-The most common mis-use of screenshots it when capturing console output. DO NOT DO THIS. Put the text inside a formatted code section instead. 
+The most common misuse of screenshots is when capturing console output. DO NOT DO THIS. Put the text inside a formatted code section instead. 
+
+
+## Markdown includes
+
+Markdown includes are pulled into the document prior to passing the content through the markdown conversion.
+
+
+### Defining an include 
+
+Add a file anywhere in the docs repository that is suffixed with `.include.md`.
+
+
+### Using an include 
+
+Add the following to the markdown `include: theKey`
+
 
 
 ## Code Snippets
@@ -389,7 +405,7 @@ So for example if `prerelease.txt` contains `beta` then the version will be `(â‰
 
 The keyed snippets can then be used in any documentation `.md` file by adding the text
 
-**&lt;!-- import KEY -->**.
+**snippet: KEY**
 
 Then snippets with the key (all versions) will be rendered in a tabbed manner. If there is only a single version then it will be rendered as a simple code block with no tabs.
 
@@ -397,7 +413,7 @@ For example
 
 <pre>
 <code >To configure the bus call
-&lt;!-- import ConfigureWith --></code>
+snippet: ConfigureWith</code>
 </pre>
 
 The resulting markdown will be

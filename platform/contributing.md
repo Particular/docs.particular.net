@@ -37,7 +37,7 @@ need contributors to follow so that we can have a chance of keeping on top of th
 
 ## Submitting Changes
 
-* Sign the [Contributor License Agreement](http://www.particular.net/contributors-license-agreement-consent).
+* Sign the [Contributor License Agreement](http://particular.net/contributors-license-agreement-consent).
 * Push your changes to a feature branch in your fork of the repository.
 * Submit a pull request to the NServiceBus repository
 
