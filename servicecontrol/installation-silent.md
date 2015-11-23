@@ -94,7 +94,39 @@ In each of the samples above a log file was specified on the command line. The s
 All of the actions that can be carried out as unattended installation action are also available via the [ServiceControl Management PowerShell](installation-powershell.md)     
 
 
+#### Setting configuration entries not covered in the unattended file
+
+The unattended file does not cover all the settings available to customize the operation of the ServiceControl service.
+The following PowerShell script shows a simple way to script the modification of some of the optional configuration settings.  The provided script makes use of the ServiceControl Management PowerShell module shipped with v1.7 to find the configuration file locations. 
 
 
+Prior to using the script modify the `$customSettings` hash table to reflect the key/value pairs you which to set.
+The provided entries in the `$customSettings` hash table are to illustrate how to set the values and are not meant to be a recommendation on the values for these settings. 
 
+```powershell
+#Requires -Version 3
+#Requires -RunAsAdministrator 
 
+Add-Type -AssemblyName System.Configuration
+Import-Module 'C:\Program Files (x86)\Particular Software\ServiceControl Management\ServiceControlMgmt.psd1'
+
+$customSettings = @{
+    'ServiceControl/HeartbeatGracePeriod'='00:01:30'   
+    'ServiceControl/HoursToKeepMessagesBeforeExpiring'='120'  
+}
+
+foreach ($sc in Get-ServiceControlInstances)
+{
+	$exe = Join-Path $sc.InstallPath -ChildPath 'servicecontrol.exe'
+    $configManager = [System.Configuration.ConfigurationManager]::OpenExeConfiguration($exe)
+	$appSettings = $configManager.AppSettings.Settings
+	foreach ($key in $customSettings.Keys) 
+	{
+	   $appSettings.Remove($key)
+	   $appSettings.Add((New-Object System.Configuration.KeyValueConfigurationElement($key, $customSettings[$key])))
+	}                  
+	$configManager.Save()
+	Restart-Service $sc.Name
+}
+
+```
