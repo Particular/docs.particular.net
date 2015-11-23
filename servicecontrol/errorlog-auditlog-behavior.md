@@ -28,7 +28,7 @@ Changing the input queue names via the configuration file without considering th
 <configuration>
     <appSettings>
 		 <add key="ServiceBus/ErrorQueue" value="CustomErrorQueue" />
-	     <!-- "ServiceControl/ErrorLogQueue" will resolve to `CustomErrorQueue.log as it's not set`  -->
+	     <!-- "ServiceBus/ErrorLogQueue" will resolve to `CustomErrorQueue.log as it's not set`  -->
     </appSettings>
 </configuration>
 ```
@@ -41,12 +41,15 @@ To avoid this confusion it is recommended the names of the output queues be expl
     <appSettings>
         <add key="ServiceBus/AuditQueue" value="audit" />
         <add key="ServiceBus/ErrorQueue" value="error" />
+        <add key="ServiceBus/ErrorLogQueue" value="error.log" />
+        <add key="ServiceBus/AuditLogQueue" value="audit.log" />    
 		<add key="ServiceControl/ForwardAuditMessages" value="False" />
-        <add key="ServiceControl/ErrorLogQueue" value="error.log" />
-        <add key="ServiceControl/AuditLogQueue" value="audit.log" />    
     </appSettings>
 </configuration>
 ```
+
+NOTE: The app setttings related to queue names are prefixed with "ServiceBus" not "ServiceControl".    
+
 
 ### Test Error and Audit Forwarding Queues on startup
 
