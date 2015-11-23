@@ -14,7 +14,7 @@ The ServiceControl Installation has the following prerequisites:
 
 1. The Microsoft .Net 4.5 Runtime
 
-If ServiceControl is installed via the Particular Software Platform Installer then the installation and configuration of these pre-requisites are managed for you.
+If ServiceControl is installed via the Particular Software Platform Installer then the installation and configuration of these per-requisites are managed for you.
 
 
 ### Transport Support
@@ -29,7 +29,7 @@ ServiceControl can be configured to use one of the NServiceBus supported transpo
 
 Adding third party transports via the Management Utility is not supported at this stage. 
 If MSMQ is the transport you intend to use then  ensure the service has been installed and configured as outlined in [Installing The Platform Components Manually](/platform/installer/offline.md#msmq)
-When using the Particular Platform Installer the MSMQ service is added auromatically as part of the `NServiceBus Pre-Requisites` option
+When using the Particular Platform Installer the MSMQ service is added automatically as part of the `NServiceBus Pre-Requisites` option
 
 #### Performance Counter
 
@@ -66,4 +66,4 @@ If this is a new installation of ServiceControl click on the `Add New Instance` 
 
 When adding your first instance of the ServiceControl service the default service name is "Particular.ServiceControl". You may choose to change this name to a custom service name. In doing so you are also changing the queue name associated with this instance of ServiceControl.  
 
-The endpoint plugins such as the heartbeat and custon check plugins assume that the ServiceControl queue name is the default.  If a custom service name was used then see [ServiceControl plugins](/servicecontrol/plugins) for more details on how to configure the endpoint plugins to use the custom queue name.  
+The endpoint plugins such as the heartbeat and custom check plugins assume that the ServiceControl queue name is the default.  If a custom service name was used then see [ServiceControl plugins](/servicecontrol/plugins) for more details on how to configure the endpoint plugins to use the custom queue name.  
