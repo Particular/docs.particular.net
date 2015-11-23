@@ -41,6 +41,8 @@ To subscribe to the `MessageFailed` event:
 - Customize the endpoint configuration to use `JsonSerializer` as the message published by ServiceControl uses Json serialization
 - Also customize the endpoint configuration such that the following conventions are used, as the `MessageFailed` event that is published by ServiceControl does not derive from `IEvent`. 
 
+NOTE: It's important that your integration endpoint do not use the same `error` and `audit` queue as your "business" endpoints since this might risk failures in the integration endpoint to cause an infinite feedback loop. Audited messages can cause confusion when searching for messages using ServiceInsight. Details on how to adjust error queue settings can be found [here](/nservicebus/errors/) and audit queue settings [here](nservicebus/operations/auditing.md).
+
 The code sample to do both customizations is as shown below:
 
 <!-- import ServiceControlEventsConfig -->
