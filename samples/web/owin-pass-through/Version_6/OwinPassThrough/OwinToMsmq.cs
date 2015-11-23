@@ -20,7 +20,7 @@ public class OwinToMsmq
 
     public Func<AppFunc, AppFunc> Middleware()
     {
-        return x => Invoke;
+        return _ => Invoke;
     }
 
     async Task Invoke(IDictionary<string, object> environment)
@@ -37,12 +37,12 @@ public class OwinToMsmq
         }
     }
 
-    async Task<Stream> RequestAsStream(IDictionary<string, object> environment)
+    static async Task<Stream> RequestAsStream(IDictionary<string, object> environment)
     {
         MemoryStream memoryStream = new MemoryStream();
         using (Stream requestStream = (Stream)environment["owin.RequestBody"])
         {
-            await requestStream.CopyToAsync(memoryStream);
+            await requestStream.CopyToAsync(memoryStream).ConfigureAwait(false);
         }
         return memoryStream;
     }
