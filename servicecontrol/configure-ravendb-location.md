@@ -15,7 +15,7 @@ If you are manually manipulating the configuration of ServiceControl this needs 
 
 ### Setting a Different Location for RavenDB Embedded Database
 
-The ServiceControl Management Utility does not provide a means of moving the ServiceControl database.  If you need to move the database to a different disk location follow this process:
+The ServiceControl Management Utility does not provide a means of moving the ServiceControl database.  To move the database to a different disk location follow this process:
 
  * Open the ServiceControl Management Utility 
  * Stop the service from the provided options
