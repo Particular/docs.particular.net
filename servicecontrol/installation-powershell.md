@@ -18,8 +18,8 @@ The ServiceControlMgmt module requires:
 
 ### Loading and Running the Powershell Module
 The majority of the ServiceControlMgmt Powershell module cmdlets will only work if the PowerShell session is running under administrator privileges.
-The ServiceControl installer creates a shortcut in the Windows start menu to launch a PowerShell as an addfromunattendfile and automatically loads the module.
-Alternatively the module can be loaded directly from an existing loading `ServiceControlMgmt.psd1` using the `Import-Module` cmdlet as show below:
+The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with the module automatically loaded.
+Alternatively the module can be loaded directly into an an existing PowerShell session by loading `ServiceControlMgmt.psd1` using the `Import-Module` cmdlet as show below:
 
 ```Powershell
 Import-Module "C:\Program Files (x86)\Particular Software\ServiceControl Management\ServiceControlMgmt.psd1"
@@ -48,7 +48,7 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 
 #### Examples
 
-To following commands show some uses of some of the cmdlets provided in the module. All of the cmdlets have local help which cna be accessed via the stardard Powershell help command
+To following commands show some uses of some of the cmdlets provided in the module. All of the cmdlets have local help which can be accessed via the standard PowerShell help command
 
 ```bat
 Get-Help  Get-ServiceControlInstances
@@ -71,7 +71,7 @@ Remove-ServiceControlInstance -Name Test.ServiceControl -RemoveDB -RemoveLogs
 Get-ServiceControlInstances | Remove-ServiceControlInstance -RemoveDB -RemoveLogs
 ```
 
-There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or hostname.
+There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string or host name.
 
 #### Upgrading an instance
 
@@ -129,11 +129,13 @@ This sample produces the following Files
 </ServiceControlInstanceMetadata>
 ```
 
-There is also a cmdlet which can be used to create an instance from the unattended file produced. The ServiceAccount details can optionally be provided. If no service account details are specified the `LocalSystem` account is used
+There is also a cmdlet which can be used to create an instance from the unattended file produced. The service account details can optionally be provided. If no service account details are specified the `LocalSystem` account is used
 
 ```bat
 New-ServiceControlInstanceFromUnattendedFile -UnattendFile  c:\temp\unattended.xml -ServiceAccount MyServiceAccount -ServiceAccountPassword MyPassword
 ```
+
+Note: Neither the unattended file method or the `New-ServiceControlInstance` cover all the configuration settings that are available to ServiceControl.  To set additonal options refer to [Customizing ServiceControl configuration](creating-config-file.md).  A scripted method of adding additional settings is detailed in [Installing ServiceControl Silently](installation-silent.md)    
 
 ### Troubleshooting via PowerShell
 
@@ -154,7 +156,7 @@ This example shows the available ports out of a range of ports
 
 #### Checking and manipulating UrlAcls
 
-The Window HTTPServer API is used by underlying components in ServiceControl.  This API uses a permissions system to limit what accounts can add a HTTP listener to a specfic URI.
+The Window HTTPServer API is used by underlying components in ServiceControl.  This API uses a permissions system to limit what accounts can add a HTTP listener to a specific URI.
 The standard mechanism for viewing and manipulating these ports in via the [netsh.exe](https://technet.microsoft.com/en-us/library/Cc725882%28v=WS.10%29.aspx) command line tool.
 
 For example `netsh.exe http show urlacl`  will list all of the available.  This output is detailed but not very friendly to query.  The ServiceControl Management Powershell provides simplied powershell equivalents for  listing, add and removing UrlAcls and makes the output easier to query.

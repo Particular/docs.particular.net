@@ -1,15 +1,30 @@
 ---
-title: Setting a Custom Hostname
+title: Configure the ServiceControl URI
 summary: How to configure ServiceControl to be exposed through a custom hostname and IP port
 tags:
 - ServiceControl
 - ServicePulse
 ---
 
-To set a custom hostname and IP port for ServiceControl:
+## Changing the ServiceControl URI 
 
-1. Open the ServiceControl configuration file (see [Customizing ServiceControl configuration](creating-config-file.md))  
-1. Add the `ServiceControl/Hostname` and `ServiceControl/Port` settings in the `<appSettings>` section. 
+To set a custom hostname and IP port for an instance of the ServiceControl service:
+
+NOTE: Anyone who can access the ServiceControl URL has complete access to the message data stored within ServiceControl.  This is  why the default is to only respond to the localhost.  Please consider carefully the implications of exposing ServiceControl via a custom or wildcard URI.
+
+### Using the ServiceControl Management Utility
+
+1. Click the Configuration Icon for for the Service Instance you wish to modify
+1. Change the Host and Port number fields to the desired values
+1. Click Save
+
+The ServiceControl Management Utility will then validate the settings changes and restart the service to apply the changes.
+The utility handles any required URLACL changes so the manual steps outlined in `Updating URL Changes` do not need to be carries out. 
+
+### Manually changing the Configuration
+
+1. Open the ServiceControl configuration file
+1. Add or Modify the `ServiceControl/Hostname` and `ServiceControl/Port` settings in the `<appSettings>` section. 
 
 
 The following example configures ServiceControl to listen to on port 33333.  The HostName value in this example is a wildcard. This instructs ServiceControl to respond to requests on all resolvable names for the host ( hostname, IP Address, DNS aliases etc). This change must also be reflected via a URLACL change (see below) 
@@ -28,28 +43,32 @@ The following example configures ServiceControl to listen to `http://sc.myspecia
 
 NOTE: You must set both the `ServiceControl/Hostname` and the `ServiceControl/Port`, even if the value of one remains unchanged.
 
-### Updating URLACL Settings
+#### Updating URLACL Settings
 
-1. After modifying the configuration file, update the URLACL configurations accordingly. 
+If you have modified the hostname settings manually you must change the URLACL settings to allow the service to listen on the resultant URL.  
+
+1. After modifying the configuration file manually, update the URLACL configurations accordingly. 
 1. Allow access to the ports specified for ServiceControl hostname & port number by configuring firewalls.
 
 For example, the following command line (with the appropriate adjustments for your hostname and port number) adds the relevant URLACL setting:  
 
-`Netsh http add urlacl  url=http://*:33333/api/  user=everyone  listen=yes`
+```
+netsh http add urlacl  url=http://*:33333/api/  user=everyone  listen=yes
+```
 
 Listing the current URLACLs can be done using the following command:    
 
-`Netsh http show urlacl`
+```
+netsh http show urlacl`
+```
 
 Ensure that there are no overlapping URLACLs as this can cause ServiceControl to fail on service startup.  For example, if the list command yielded results for `http://localhost:33333/api/` and `http://*:33333/api/` then it is not clear which URL ServiceControl should use.
 
 In the following example the wildcarded URLACL is removed:
 
-`Netsh http delete urlacl  url=http://*:33333/api/` 
-
-#### Security considerations
-
-NOTE: Anyone who can access the ServiceControl URL has complete access to the message data stored within ServiceControl.  This is why by default ServiceControl is configured to only respond to the localhost.  Please consider carefully the implications of exposing ServiceControl via a custom or wildcard URL
+```
+netsh http delete urlacl  url=http://*:33333/api/` 
+```
 
 It is important to understand that URLACLs do not restrict access to the URL based on the identity of the requestor, what they do is to restrict which user or security group can start to listen for incoming requests on the configured URL. 
 
@@ -57,14 +76,6 @@ In the above sample `everyone` is for demonstration purpose. Be sure to configur
 
 ServiceControl will not start if the service account does not have access to listen on the URL specified in the configuration file.
 
-
-### Configuring ServiceControl to Use a Virtual Directory
-
-You can customize ServiceControl to expose the API endpoint under a custom virtual directory at the configured URL. To customize the Virtual Directory, add a new setting to the ServiceControl configuration file:
-
-`<add key="ServiceControl/VirtualDirectory" value="MyFolder" />`
-
-After restarting the ServiceControl service, invoke the API by issuing a request to the following URL: `http://localhost:33333/MyFolder/API/`
 
 ### Updating ServicePulse Configuration to ServiceControl Custom Hostname
 

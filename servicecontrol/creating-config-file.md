@@ -1,106 +1,31 @@
 ---
-title: Customizing ServiceControl Configuration
-summary: How ServiceControl manages configuration and how to create and customize the ServiceControl configuration file.
+title: Configuration Settings
+summary: Categorized list of ServiceControl configuration settings
 tags:
 - ServiceControl
+- Settings
 ---
 
-ServiceControl allows you to create a configuration file with settings that override default settings.
+## Configuration Settings
 
-When you first install ServiceControl, it is set to automatically start (as a Windows Service) using its internal default settings. Examples: the default `localhost` hostname and `33333` port number, and the embedded database location.
+The configuration of a ServiceControl instance can be adjusted via the ServiceControl Management utility or by directly modifying the ServiceControl.exe.config file.  The settings listed are applicable to the app settings section of the configuration file unless otherwise specified.
 
-To override these default settings:
+## Host Settings   
 
-1. Stop the ServiceControl service.
-1. Locate/create a configuration file named `ServiceControl.exe.config` in the ServiceControl installation folder.
-1. Edit the configuration file and add the relevant settings to the `<appSettings>` section.
-1. Start the ServiceControl service.
- 
+The following documents should be reviewed prior to modifying configuration settings:
 
-### Sample configuration file
-  
-* File name: `servicecontrol.exe.config`
-* File path: `C:\Program Files (x86)\Particular Software\ServiceControl` (default ServiceControl installation folder)
- 
-```xml
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<configuration>
-  <appSettings>
-      <add key="ServiceControl/Hostname" value="my.domain-name.com" />
-      <add key="ServiceControl/Port" value="33333" />
-      <add key="ServiceControl/DbPath" value="x:\mydb" />
-      ...
-  </appSettings>
-</configuration>
-```
+- [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
+- [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
+#### ServiceControl/Hostname
 
-### Configuration Considerations
-
-
-#### Using custom domain names and TCP port number
-
-- See [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
-- See [Securing ServiceControl](securing-servicecontrol.md) for a discussion on security implications of custom domain access and access limitation options.
-
-
-#### Embedded database location and size
-
-ServiceControl uses RavenDB as an embedded database. The database location has significant effect both on ServiceControl throughput (number of read/write operations it can perform) and on the storage capacity (the limiting factor being the available storage on the drive on which the embedded database is located. For more information, see '[Customize RavenDB Embedded Path and Drive](configure-ravendb-location.md)'.
-
-
-#### Automatic expiration of messages 
-
-ServiceControl consumes messages from the Audit and Error queues and stores these messages temporarily (by default, for 30 days) in its embedded database. You can set the message storage timespan by [setting automatic expiration for ServiceControl data](how-purge-expired-data.md).
-
-
-#### Audit and Error queues
-
-ServiceControl consumes messages from the audit and error queues and stores these messages locally in its own embedded database.  These input queues name can be  customized via `ServiceBus/ErrorQueue` and `ServiceBus/AuditQueue` settings.  
-
-ServiceControl can also forward these messages to two forwarding queues.  All error messages received will be forward to `<ErrorQueue>.log`.  Audit message can optionally be configured to be forwarded to  `<AuditQueue>.log` by enabling the `ServiceControl/ForwardAuditMessages` setting.
-
-Changing the input queue names via the configuration file without considering the forwarding queues can cause issues.  For example, in the configuration below `ServiceBus/ErrorQueue` has been set to  `CustomErrorQueue`.  This will cause ServiceControl to expect a queue named `CustomErrorQueue.log` to exist as well. If the corresponding forwarding queue does not exist then the ServiceControl service will not start.
-
-```
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-    <appSettings>
-		<add key="ServiceControl/ForwardAuditMessages" value="False" />
-        <add key="ServiceBus/ErrorQueue" value="CustomErrorQueue" />
-    </appSettings>
-</configuration>
-```
-
-To avoid this confusion it is recommended the names of the output queues be explicitly configured using the `ServiceBus/ErrorLogQueue` and `ServiceBus/AuditLogQueue`settings. The recommended way to change the input and forwarding queues names is to use the command line options as detailed below. In this example all four queue names are being explicitly set and if any of the queues do not exist they will be created.  
-
-```
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-    <appSettings>
-  		<add key="ServiceControl/ForwardAuditMessages" value="False" />
-        <add key="ServiceBus/AuditQueue" value="audit" />
-        <add key="ServiceBus/ErrorQueue" value="error" />
-        <add key="ServiceBus/ErrorLogQueue" value="errorlog" />
-        <add key="ServiceBus/AuditLogQueue" value="auditlog" />    
-	</appSettings>
-</configuration>
-```
-
-From version 1.7 onwards the four queues will be explicitly added to the config when a new ServiceControl instance is added or modified through the Management UI
-
-
-
-### Configuration Options
-
-
-#### ServiceControl/LogPath
-
-The path for the ServiceControl logs. 
+The hostname to bind the embedded http server to, modify if you want to bind to a specific hostname, eg. sc.mydomain.com. 
 
 Type: string
 
-Default: `%LOCALAPPDATA%\Particular\ServiceControl\logs`
+Default: `localhost`
+
+Note: If the 'ServiceControl/DbPath' setting is not set then this also changes the path of the embedded RavenDB 
 
 
 #### ServiceControl/Port
@@ -111,15 +36,7 @@ Type: int
 
 Default: `33333`.
 
-
-#### ServiceControl/Hostname
-
-The hostname to bind the embedded http server to, modify if you want to bind to a specific hostname, eg. sc.mydomain.com. 
-
-Type: string
-
-Default: `localhost`
-
+Note: If the 'ServiceControl/DbPath' setting is not set then this also changes the path of the embedded RavenDB 
 
 #### ServiceControl/VirtualDirectory 
 
@@ -129,38 +46,29 @@ Type: string
 
 Default: `empty`
 
-
-#### ServiceControl/HeartbeatGracePeriod
-
-The period that defines whether an endpoint is considered alive or not since the last received heartbeat. 
-
-Type: timespan
-
-Default: `00:00:40` (40 secs)
-
-When configuring heartbeat grace period, make sure it is greater than heartbeat interval defined by plugin or overwritten by [`heartbeat/interval`](/servicecontrol/plugins/heartbeat.md#configuration-heartbeat-interval) setting.
-
-Note: When monitoring multiple endpoints, ensure that heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
+Note:  This setting is provided for backward compatibility and should be considered obsolete.   
 
 
-#### ServiceControl/MaximumMessageThroughputPerSecond 
+#### ServiceControl/DbPath
 
-This setting was introduced in version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An appropriate limit ensures that the database can cope with number of insert operations. Otherwise the query performance would drop significantly and the message expiration process would stop working when under heavy insert load. Make sure to conduct thorough performance tests on your hardware before increasing this value.  
+The path where the internal RavenDB is located. 
 
-Type: int
+Type: string
 
-Default: `350`. 
+Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<Hostname>-<Port>` 
+
+#### ServiceControl/LogPath
+
+The path for the ServiceControl logs. 
+
+Type: string
+
+Default: `%LOCALAPPDATA%\Particular\ServiceControl\logs`
+
+Note: %LOCALAPPDATA% is a user specific environment variable.  
 
 
-#### ServiceControl/ForwardAuditMessages
-
-Use this setting to configure whether processed audit messages are forwarded to another queue or not.   
-
-Type: bool `true` or `false`
-
-Default: `false`. From v1.5 if this setting is not explicitly set to true of false a warning is shown in the logs at startup.
-See [Installation](installation.md) for details on how to set this at install time.
-
+## Data Retention
 
 #### ServiceControl/ExpirationProcessTimerInSeconds
 
@@ -173,7 +81,7 @@ Default: `600` (10 minutes). The default prior to version 1.4 was `60` (1 minute
 
 #### ServiceControl/ExpirationProcessBatchSize
 
-This setting was introduced in version 1.4. This minimum allowed value for this settings is `10240`, there is no hardcoded maximum as this is heavily dependent on system performance.  
+This setting was introduced in version 1.4. This minimum allowed value for this settings is `10240`, there is no hard coded maximum as this is heavily dependent on system performance.  
 
 Type: int
 
@@ -189,14 +97,36 @@ Type: int
 Default: `720` (30 days). Valid Range is `24` (1 day) through to `1440` (60 days)
 
 
-#### ServiceControl/DbPath
+## Performance Tuning
 
-The path where the internal RavenDB is located. 
+#### ServiceControl/MaximumMessageThroughputPerSecond 
+
+This setting was introduced in version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An appropriate limit ensures that the database can cope with number of insert operations. Otherwise the query performance would drop significantly and the message expiration process would stop working when under heavy insert load. Make sure to conduct thorough performance tests on your hardware before increasing this value.  
+
+Type: int
+
+Default: `350`. 
+
+
+#### ServiceControl/MaxBodySizeToStore
+
+Up until version 1.6 ServiceControl only stores bodies of audit messages that are smaller than 100Kb. 
+Version 1.6 introduced this setting which allows the upper limit on body size to be configured.  
+
+Type: int
+
+Default: `102400` (100Kb)
+
+#### ServiceControl/HttpDefaultConnectionLimit
+
+This setting for version 1.6.2 and up. The maximum number of concurrent connections allowed by ServiceControl. When working with transports that operate over HTTP, number of concurrent connections can be increased to meet transport concurrency settings.
 
 Type: string
 
-Default: `%SystemDrive%\ProgramData\Particular\ServiceControl\`
+Default: `100`
 
+
+## Transport
 
 #### ServiceControl/TransportType
 
@@ -204,7 +134,7 @@ The transport type to run ServiceControl with.
 
 Type: string
 
-Default: `NServiceBus.Msmq, NServiceBus.Core`
+Default: `NServiceBus.MsmqTransport, NServiceBus.Core`
 
 
 #### NServiceBus/Transport
@@ -250,19 +180,36 @@ Type: string
 Default: `<AuditQueue>.log`
 
 
-#### ServiceControl/MaxBodySizeToStore
+#### ServiceControl/ForwardAuditMessages
 
-Up until version 1.6 ServiceControl only stores bodies of audit messages that are smaller than 100Kb by default. After version 1.6 Increase this number to store messages with larger bodies. Messages that have a larger message body in bytes than `MaxBodySizeToStore` are not stored for audit. This is to ensure that the majority of our users enjoy the best level of performance. For users with special analysis needs, edit `MaxBodySizeToStore` in `ServiceControl.exe.config` to increase the size of storeable audit messages.
+Use this setting to configure whether processed audit messages are forwarded to another queue or not.   
 
-Type: int
+Type: bool `true` or `false`
 
-Default: `102400` (100Kb)
+Default: `false`. From v1.5 if this setting is not explicitly set to true or false a warning is shown in the logs at start up.
+See [Installation](installation.md) for details on how to set this at install time.
 
 
-#### ServiceControl/HttpDefaultConnectionLimit
+## Plugin Specific
 
-This setting for version 1.6.2 and up. The maximum number of concurrent connections allowed by ServiceControl. When working with transports that operate over HTTP, number of concurrent connections can be increased to meet transport concurrency settings.
+#### ServiceControl/HeartbeatGracePeriod
 
-Type: string
+The period that defines whether an endpoint is considered alive or not since the last received heartbeat. 
 
-Default: `100`
+Type: timespan
+
+Default: `00:00:40` (40 secs)
+
+When configuring heartbeat grace period, make sure it is greater than heartbeat interval defined by plugin or overwritten by [`heartbeat/interval`](/servicecontrol/plugins/heartbeat.md#configuration-heartbeat-interval) setting.
+
+Note: When monitoring multiple endpoints, ensure that heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
+
+
+
+
+
+
+
+
+
+

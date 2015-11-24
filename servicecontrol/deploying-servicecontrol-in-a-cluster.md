@@ -9,7 +9,7 @@ related:
 - servicecontrol/troubleshooting
 ---
 
-ServiceControl supports high availability and fault tolerance through Windows clusters and Network Load Balancing (NLB) services.
+The following procedure is a high level guide on how to deploy ServiceControl onto a Microsoft fault tolerance Windows cluster.  This guide assumes that MSMQ is the underlying transport.
 
 
 ## Basic Setup

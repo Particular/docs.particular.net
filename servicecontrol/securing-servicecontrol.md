@@ -12,7 +12,7 @@ related:
 - servicecontrol/backup-sc-database        
 ---
 
-ServiceControl serves as the backend service for ServicePulse and ServiceInsight, supplying these client applications with the information required for their functionality. It does so by exposing HTTP API that can be accessed by these and other third-party tools.
+ServiceControl serves as the back-end service for ServicePulse and ServiceInsight, supplying these client applications with the information required for their functionality. It does so by exposing HTTP API that can be accessed by these and other third-party tools.
 
 The information gathered, stored, and exposed by ServiceControl contains all the messages audited and forwarded to the Audit and Error queues (including their metadata, headers, and body). This means unlimited access to the ServiceControl embedded database, and to all the information contained within all the system's audited messages.
 
@@ -20,11 +20,11 @@ It is critical to limit access to the ServiceControl instance, including accessi
 
 ### Post-Installation: Secure and Limited Access by Default  
 
-When installing ServiceControl, the installation is limited to access from the local host only. Any attempt to access the service's HTTP API from outside the machines on which it is installed results in an `access denied` message.
+When installing ServiceControl, the default installation will limit access from the local host only. Any attempt to access the service's HTTP API from outside the machines on which it is installed results in an `access denied` message.
 
 This applies also to accessing ServiceControl from ServicePulse and ServiceInsight. Using these default settings, these tools can only access ServiceControl when they are installed on the same machine as ServiceControl.
 
-### Extending Access by Changing Hostname
+### Extending Access by Changing Host Name
 
 You can allow access to ServiceControl from other machines by [setting a custom host name and port number](setting-custom-hostname.md). The scope of the access extension allowed by this change depends on the specified custom host name and port number. It also depends on various network limitations (e.g., proxy, firewall, DNS settings) that may limit access to the specified ServiceControl host and port.
 
@@ -39,7 +39,7 @@ Following are several options for doing so, based on your specific requirements.
 #### Limiting Access to ServiceControl using Windows Authentication
 
 It is possible to setup IIS to act as a reverse proxy and secure ServiceControl using Windows Authentication.
-Please refer to the [instructions](/servicepulse/install-servicepulse-in-iis.md) here on see how to go about this and the limitations of the approach.
+Please refer to the [instructions](/servicepulse/install-servicepulse-in-iis.md) here on see how to go about this and the limitations of the approach. 
 
 #### Limiting Access to ServiceControl Through VPN Requirements
 

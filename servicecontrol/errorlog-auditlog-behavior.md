@@ -1,30 +1,56 @@
 ---
-title: error.log and audit.log behavior
-summary: Details ServiceControl logging feature
+title: ServiceControl Forwarding Queues
+summary: Details the ServiceControl Audit and Error forwarding behavior and configuration 
 tags:
 - ServiceControl
-- Error
-- Auditing
-- Logging
 ---
 
-When ServiceControl is installed and configured it starts monitoring `error` and `audit` queues and all messages flowing into these queues are processed by ServiceControl and stored into its internal database.
+### Audit and Error queues
 
-The consumed messages are available via other Platform tools such as ServicePulse and ServiceInsight that can connect to the ServiceControl API to retrieve information regarding the consumed messages and the processes running in the system.
+ServiceControl consumes messages from the audit and error queues and stores these messages locally in its own embedded database. These input queues name can be customized via `ServiceBus/ErrorQueue` and `ServiceBus/AuditQueue` settings.
 
-Given the above behavior, if the system where we are installing ServiceControl already relies on `error` and `audit` queues to work properly, we can leverage the ServiceControl logging feature to configure ServiceControl to forward each consumed message to a specific queue in order to preserve the existing functionality.
+ServiceControl can also forward these messages to two forwarding queues. 
 
-By default ServiceControl, at install time, creates a queue named `error.log`, each time ServiceControl consumes a message from the `error` queue the message is also forwarded to the `error.log` queue.
+* Error messages are automatically forwarded to the Error forwarding queue.
+* Audit messages are optionally forwarded to the Audit forwarding queue.  This behavior can be toggled through the ServiceControl Management utility or by directly changing the  `ServiceControl/ForwardAuditMessages` setting. Refer to [Customizing ServiceControl Configuration](creating-config-file.md) for more details.  
 
-NOTE: In order to avoid runtime failures when trying to forward messages to `error.log`, at start-up ServiceControl sends a single empty message to that queue. The start-up process is terminated if the send operation fails.
+### Error and Audit Forwarding Queues  
 
-### Auditing
+The forwarding queues retain a copy of the original messages ingested by ServiceControl.
+The queues are not directly managed by ServiceControl and are meant as points of external integration.
+ 
+### Changing the queues name manually and default naming
 
-ServiceControl messages can also be audited, e.g. to support a scenario where auditing was previously used in the production environment and must be used even after the introduction of ServiceControl.
+Changing the input queue names via the configuration file without considering the forwarding queues can cause issues. For example, in the configuration below `ServiceBus/ErrorQueue` has been set to `CustomErrorQueue`. This will cause ServiceControl to expect a queue named `CustomErrorQueue.log` to exist as well. If the corresponding forwarding queue does not exist then the ServiceControl service will not start.
 
-ServiceControl supports the ability to forward all messages that receives to a predefined audit queue called `audit.log`, this feature must be enabled after the ServiceControl installation.
-
-In order to enable the `audit.log` queue one of the following approaches can be used:
-
-* Add a configuration setting to the ServiceControl configuration file: `<add key="ServiceControl/ForwardAuditMessages" value="true" />` (see how to manage ServiceControl settings for detailed instructions)
 ```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <appSettings>
+		 <add key="ServiceBus/ErrorQueue" value="CustomErrorQueue" />
+	     <!-- "ServiceBus/ErrorLogQueue" will resolve to `CustomErrorQueue.log as it's not set`  -->
+    </appSettings>
+</configuration>
+```
+
+To avoid this confusion it is recommended the names of the output queues be explicitly configured using the `ServiceBus/ErrorLogQueue` and `ServiceBus/AuditLogQueue` settings. The recommended way to change the input and forwarding queues names is to use the command line options as detailed below. In this example all four queue names are being explicitly set and if any of the queues do not exist they will be created.
+
+```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <appSettings>
+        <add key="ServiceBus/AuditQueue" value="audit" />
+        <add key="ServiceBus/ErrorQueue" value="error" />
+        <add key="ServiceBus/ErrorLogQueue" value="error.log" />
+        <add key="ServiceBus/AuditLogQueue" value="audit.log" />    
+		<add key="ServiceControl/ForwardAuditMessages" value="False" />
+    </appSettings>
+</configuration>
+```
+
+NOTE: The app setttings related to queue names are prefixed with "ServiceBus" not "ServiceControl".    
+
+
+### Test Error and Audit Forwarding Queues on startup
+
+To confirm the availability of the forwarding queues an empty message is sent to these queues at when the service starts.

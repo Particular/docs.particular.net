@@ -6,53 +6,53 @@ tags:
 - Troubleshooting
 ---
 
-### Port 33333 is already in use by another service
+### Check the configuration via the Management utility 
 
-1. This is most probably due to a previous install of ServiceControl beta (previously known as "Management API").
-1. Uninstall previous ServiceControl beta versions by following this process:
-1. In the Windows Computer Management > Services check for the existence of a service named "Particular.Management";
-1. If there is a service called "Particular.Management" uninstall previous versions of ServiceInsight beta (can be located and uninstalled in Control Panel > Programs as "Particular Software ServiceInsight";
-1. If a version of NServiceBus 4.0 or later is already installed, Open its installer modification settings (in Control Panel > Programs select "Change" for the "Particular Software NServiceBus);
-1. In the NServiceBus installer click "Modify";
-1. Uncheck "Management API" in the list of components to be installed with NServiceBus;
-1. Click "Modify" to apply changed and re-run installation;
+Open the ServiceControl Management utility and review the configuration. The Management utility is a quick way to get the information you will need to troubleshoot a ServiceControl issue.   
+
+### Service fails to start 
+
+There are various reasons that can cause the ServiceControl windows service fail to start. To narrow down the possible cause, review the [ServiceControl logs](setting-custom-log-location) files.
 
 
-### Unable to connect to ServiceControl from either ServiceInsight or ServicePulse
+### The port is already in use
+When adding a ServiceControl instance via the management utility, ServiceControl PowerShell Module or a silent install via an unattended XML configuration the port number is checked to ensure it is available.  This is not foolproof though as another application or service that uses the same port may not be running at the time the service is added.
 
-1. In Computer Management > Services, check that the Windows Service "Particular ServiceControl" is running
-1. In any browser or HTTP client, enter a GET request for the ServiceControl HTTP API (default URI: `http://localhost:33333/api`). 
-1. You should get a valid response with JSON data containing ServiceControl default settings.
-1. Verify that firewall settings do not block access to the ServiceControl port (default: 33333) and that the default URI is accessible and responsive from a browser / HTTP client from the machine on which ServicePulse or ServiceInsight is trying to connect to ServiceControl
+In the event that the service fails to start you may want to check if the configured port ( typically port 33333) is available.
+To do this open up a elevated command prompt and issue the following command:
 
-
-### Unable to start Particular.ServiceControl as a standard user
-
-1. If ServiceControl fails to start and it is set to run with a standard user account (no elevated or specific privileges) this may be due to missing access rights to storage directory in which the internal database is located (by default, this is the `C:\ProgramData\Particular` directory
-2. To fix this issue:
-   * Grant the user read/write access to the `C:\ProgramData\Particular` location
-   * Grant the user access rights to run the service listening on the selected domain and port number by running the following commands (replacing the default URL and USERS parameters):
-   
-```
-netsh http delete urlacl url=http://localhost:33333/api/
-netsh http add urlacl url=http://localhost:33333/api/ user=<accountname> Listen=yes
+```bat
+netstat -a -b 
 ```
 
+### Missing queue 
 
-### Particular.ServiceControl windows service fails to start
+The service expects to be able to connect to the error, audit and forwarding queues specified in the configuration. If the configuration has been manually changes ensure the specified queues exist.
 
-* There are various reasons that can cause the ServiceControl windows service fail to start. To narrow down the possible cause, review the ServiceControl logs files located in:
-    * `%LOCALAPPDATA%\Particular\ServiceControl\logs` if the issue relates to the ServiceControl installation process;
-    * `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs` if the issue relates to ServiceControl normal operations. Logs location may vary depending on the user that has been configured to run the ServiceControl service, the above one is the one where the LocalSystem user outputs logs information;
-* Most common cause is prerequisites installation and configuration issues;
+### Cannot connect to the queues
+
+Some transports have access controls build into them. Ensure the service account specified has sufficient rights to access the queues. 
 
 
-### Particular.ServiceControl fails to start: EsentInstanceUnavailableException
+### Service won't start after changing service accounts.
+
+1. The service account has access read rights to the directory the service is installed
+1. The service account has access read/write rights to the database and logs directories specified in the configuration. 
+1. The service account has the logon as a service privilege.
+1. Ensure that a URLACL exists for the service (see next point for further info on listing URLACLs
+1. Ensure group or account specified in the URLACL covers the service account.
+1. Confirm that the service account has sufficient writes to manage the configured queues. See [Configuring a Non-Privileged Service Account](configure-non-privileged-service-account.md) for a breakdown of the queues to check.
+
+ 
+Note: To examine the configured URLACLs use either the ServiceControl Management PowerShell prompt and issue `Get-UrlAcls` or to examine this from a command prompt using this command line `netsh http show urlacl`.
+
+
+### Service fails to start: EsentInstanceUnavailableException
 
 If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-maleware real-time and scheduled scan.
 
 
-### Particular.ServiceControl fails to start: EsentDatabaseDirtyShutdownException
+### Service fails to start: EsentDatabaseDirtyShutdownException
 
 If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentDatabaseDirtyShutdownException` you need to run Esent Recovery against the ServiceControl database followed by an Esent Repair.
 
@@ -63,14 +63,26 @@ If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.In
 5. Restart ServiceControl
 
 
-### Particular.ServiceControl crashes when hard disk is busy
+### Service crashes when hard disk is busy
 
-ServiceControl can run out of memory and crash when the hard drive is busy. When this happens you will probably see the following error in the logs
+ServiceControl can run out of memory and crash when the hard drive is busy. When this happens you will see the following error in the logs
 ```
 The version store for this instance (0) has reached its maximum size of 511Mb. It is likely that a long-running transaction is preventing cleanup of the version store and causing it to build up in size. Updates will be rejected until the long-running transaction has been completely committed or rolled back.
 ``` 
-You can increase the size of the version store by adding a new appSetting to the ServiceControl configuration file:
+You can increase the size of the version store by adding a new app setting to the ServiceControl configuration file:
 
 `<add key="Raven/Esent/MaxVerPages" value="1024" />`
 
 The value is the size of the version store in MB.
+
+
+### Unable to connect to ServiceControl from either ServiceInsight or ServicePulse
+
+1. Logon to the PC hosting ServiceControl
+1. Open the ServiceControl Management Utility  
+1. Click the ServiceControl instance is Running   
+1. Click the URL under 'Host'.  You should get a valid response with JSON data
+1. If you are having issues remotely connecting to ServiceControl.   Verify that firewall settings do not block access to the ServiceControl port specified in the URL.
+
+NOTE: Prior to changing firewall setting to expose ServiceControl please read [Securing ServiceControl](securing-servicecontrol.md)  
+
