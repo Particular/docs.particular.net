@@ -101,9 +101,6 @@ The `KnownEndpoints` class provides a number of convenience methods that let you
 
 <!-- import Routing-StaticEndpointMapping -->
 
-You can also pass only the transport discriminators
-
-<!-- import Routing-StaticEndpointMappingWithDiscriminators -->
 
 
 #### Dynamic mapping
