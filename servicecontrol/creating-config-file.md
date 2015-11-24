@@ -1,6 +1,6 @@
 ---
 title: Configuration Settings
-summary: Categorised list of ServiceControl configuration settings
+summary: Categorized list of ServiceControl configuration settings
 tags:
 - ServiceControl
 - Settings
@@ -8,7 +8,7 @@ tags:
 
 ## Configuration Settings
 
-The configuration of a ServiceControl instance can be adjusted via the ServiceControl Managment utility or by directly modifying the ServiceControl.exe.config file.  The settings listed are applicable to the  "appSettings" section of the configuration file unless otherwise specified.
+The configuration of a ServiceControl instance can be adjusted via the ServiceControl Management utility or by directly modifying the ServiceControl.exe.config file.  The settings listed are applicable to the app settings section of the configuration file unless otherwise specified.
 
 ## Host Settings   
 
@@ -81,7 +81,7 @@ Default: `600` (10 minutes). The default prior to version 1.4 was `60` (1 minute
 
 #### ServiceControl/ExpirationProcessBatchSize
 
-This setting was introduced in version 1.4. This minimum allowed value for this settings is `10240`, there is no hardcoded maximum as this is heavily dependent on system performance.  
+This setting was introduced in version 1.4. This minimum allowed value for this settings is `10240`, there is no hard coded maximum as this is heavily dependent on system performance.  
 
 Type: int
 
@@ -110,12 +110,12 @@ Default: `350`.
 
 #### ServiceControl/MaxBodySizeToStore
 
-Up until version 1.6 ServiceControl only stores bodies of audit messages that are smaller than 100Kb by default. After version 1.6 Increase this number to store messages with larger bodies. Messages that have a larger message body in bytes than `MaxBodySizeToStore` are not stored for audit. This is to ensure that the majority of our users enjoy the best level of performance. For users with special analysis needs, edit `MaxBodySizeToStore` in `ServiceControl.exe.config` to increase the size of storeable audit messages.
+Up until version 1.6 ServiceControl only stores bodies of audit messages that are smaller than 100Kb. 
+Version 1.6 introduced this setting which allows the upper limit on body size to be configured.  
 
 Type: int
 
 Default: `102400` (100Kb)
-
 
 #### ServiceControl/HttpDefaultConnectionLimit
 
@@ -186,7 +186,7 @@ Use this setting to configure whether processed audit messages are forwarded to 
 
 Type: bool `true` or `false`
 
-Default: `false`. From v1.5 if this setting is not explicitly set to true of false a warning is shown in the logs at startup.
+Default: `false`. From v1.5 if this setting is not explicitly set to true or false a warning is shown in the logs at start up.
 See [Installation](installation.md) for details on how to set this at install time.
 
 

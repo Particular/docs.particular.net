@@ -85,5 +85,4 @@ NOTE: You must specify the correct name of the service on the command line as th
 
 ### Expected Warnings when Running as a Non-Privileged Account
 
-On service start up the Embedded RavenDB attempts to create Windows performance counters. This does not succeed and RavenDB performance counters are not available.
-You can safely ignore this warning.
+On service start up the Embedded RavenDB attempts to create Windows performance counters. This does not succeed and RavenDB performance counters are not available.  You can safely ignore this warning.

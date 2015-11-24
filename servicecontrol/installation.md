@@ -14,7 +14,7 @@ The ServiceControl Installation has the following prerequisites:
 
 1. The Microsoft .Net 4.5 Runtime
 
-If ServiceControl is installed via the Particular Software Platform Installer then the installation and configuration of these per-requisites are managed for you.
+If ServiceControl is installed via the Particular Software Platform Installer then the installation and configuration of these prerequisites are managed for you.
 
 
 ### Transport Support
@@ -45,7 +45,7 @@ The ServiceControl Management Utility provides a simple means of setting up one 
 
 The ServiceControl Management Utility can be launched automatically at the end of the installation process to enable adding or upgrading ServiceControl instances. 
 
-If you had a previous version of ServiceControl installed the Management Utility will display the instances of ServiceControl and the current version. If the version of the binaries used by the instance are older that those shipped with the ServiceControl Management Utility an upgrade link will be shown.  
+The Management Utility will display the instances of the ServiceControl service installed. If the version of the binaries used by an instance are older that those shipped with the ServiceControl Management Utility an upgrade link will be shown against the version label.  
 
 ![](managementutil-upgradelink.png)
 
