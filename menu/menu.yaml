@@ -300,7 +300,6 @@
         - "servicecontrol/use-ravendb-studio"
         - "servicecontrol/backup-sc-database"
         - "servicecontrol/configure-non-privileged-service-account"
-        - "servicecontrol/multi-instances-on-one-host"
         - "servicecontrol/db-compaction"
     -
       Title: "Troubleshooting"
