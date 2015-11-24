@@ -25,8 +25,7 @@ Type: string
 
 Default: `localhost`
 
-Warning: If the `ServiceControl/Hostname`setting is changed and the  `ServiceControl/DbPath` setting is not set then the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md)  
-
+Warning: If the `ServiceControl/Hostname` setting is changed and the `ServiceControl/DbPath` setting is not set then the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md)  
 
 #### ServiceControl/Port
 
@@ -36,8 +35,7 @@ Type: int
 
 Default: `33333`.
 
-Warning: If the `ServiceControl/Port`setting is changed and the  `ServiceControl/DbPath` setting is not set then the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md)  
-
+Warning: If the `ServiceControl/Port` setting is changed and the `ServiceControl/DbPath` setting is not set then the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md)  
 
 #### ServiceControl/VirtualDirectory 
 
