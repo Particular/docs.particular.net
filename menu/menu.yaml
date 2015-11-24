@@ -279,7 +279,6 @@
         - "servicecontrol/installation-powershell"
         - "servicecontrol/creating-config-file"
         - "servicecontrol/configure-ravendb-location"
-        - "servicecontrol/customize-name-and-description"
         - "servicecontrol/setting-custom-hostname"
         - "servicecontrol/logging"
         - "servicecontrol/errorlog-auditlog-behavior"
