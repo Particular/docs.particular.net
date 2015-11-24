@@ -10,7 +10,7 @@
     {
         public async Task Handle(object message, IMessageProcessingContext context)
         {
-            await context.ReplyAsync(new SagaDisappearedMessage());
+            await context.Reply(new SagaDisappearedMessage());
         }
     }
 

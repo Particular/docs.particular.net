@@ -16,14 +16,14 @@
 
         async Task DisablePerMessage()
         {
-            IBus bus = null;
+            IBusContext busContext = null;
 
             #region DisableBestPracticeEnforcementPerMessage
             var options = new SendOptions();
 
             options.DoNotEnforceBestPractices();
 
-            await bus.SendAsync(new MyEvent(), options);
+            await busContext.Send(new MyEvent(), options);
             #endregion
         }
 

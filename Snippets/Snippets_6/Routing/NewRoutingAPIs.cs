@@ -5,7 +5,7 @@
     using NServiceBus;
     using NServiceBus.Routing;
 
-    public class NewOutingAPIs
+    public class NewRoutingAPIs
     {
 
         public void StaticRoutes()
@@ -26,11 +26,11 @@
             busConfig.Routing().UnicastRoutingTable.AddDynamic((t, c) => new[]
             {
                 //Use endpoint name
-                new UnicastRoutingDestination(new EndpointName("Sales")), 
+                new UnicastRoute(new EndpointName("Sales")), 
                 //Use endpoint instance name
-                new UnicastRoutingDestination(new EndpointInstanceName(new EndpointName("Sales"), "1", null)), 
+                new UnicastRoute(new EndpointInstanceName(new EndpointName("Sales"), "1", null)), 
                 //Use transport address (e.g. MSMQ)
-                new UnicastRoutingDestination("Sales-2@MachineA"),
+                new UnicastRoute("Sales-2@MachineA"),
             });
             #endregion
         }
@@ -40,7 +40,8 @@
             var busConfig = new BusConfiguration();
             #region Routing-CustomRoutingStore
             busConfig.Routing().UnicastRoutingTable.AddDynamic((t, c) => {
-                return LoadFromCache(t) ?? LoadFromDatabaseAndPutToCache(t);            });
+                return LoadFromCache(t) ?? LoadFromDatabaseAndPutToCache(t);
+            });
             #endregion
         }
 
@@ -51,16 +52,6 @@
             EndpointName sales = new EndpointName("Sales");
             busConfig.Routing().EndpointInstances
                 .AddStatic(sales, new EndpointInstanceName(sales, "1", null), new EndpointInstanceName(sales, "2", null));
-            #endregion
-        }
-
-        public void StaticEndpointMappingWithDiscriminators()
-        {
-            var busConfig = new BusConfiguration();
-            #region Routing-StaticEndpointMappingWithDiscriminators
-            EndpointName sales = new EndpointName("Sales");
-            busConfig.Routing().EndpointInstances
-                .AddStaticUsingTransportDiscriminators(sales, "MachineA", "MachineB");
             #endregion
         }
 
@@ -90,7 +81,7 @@
             #region Routing-SpecialCaseTransportAddress
             EndpointName sales = new EndpointName("Sales");
             busConfig.Routing().TransportAddresses
-                .AddException(new EndpointInstanceName(sales, "1", null), "Sales-One@MachineA");
+                .AddSpecialCase(new EndpointInstanceName(sales, "1", null), "Sales-One@MachineA");
             #endregion
         }
 
@@ -109,12 +100,12 @@
             throw new NotImplementedException();
         }
 
-        IEnumerable<UnicastRoutingDestination> LoadFromDatabaseAndPutToCache(Type type)
+        IEnumerable<IUnicastRoute> LoadFromDatabaseAndPutToCache(Type type)
         {
             throw new NotImplementedException();
         }
 
-        IEnumerable<UnicastRoutingDestination> LoadFromCache(Type type)
+        IEnumerable<IUnicastRoute> LoadFromCache(Type type)
         {
             throw new NotImplementedException();
         }

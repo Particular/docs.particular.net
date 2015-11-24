@@ -58,7 +58,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1041\lib\net451\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1126\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Host, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
@@ -110,19 +110,6 @@
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="BusNotifications\Errors.cs" />
-    <Compile Include="Callback\Cancellation\Message.cs" />
-    <Compile Include="Callback\Cancellation\Usage.cs" />
-    <Compile Include="Callback\Enum\Handler.cs" />
-    <Compile Include="Callback\Enum\Message.cs" />
-    <Compile Include="Callback\Enum\Status.cs" />
-    <Compile Include="Callback\Enum\Usage.cs" />
-    <Compile Include="Callback\Int\Handler.cs" />
-    <Compile Include="Callback\Int\Message.cs" />
-    <Compile Include="Callback\Int\Usage.cs" />
-    <Compile Include="Callback\Object\Handler.cs" />
-    <Compile Include="Callback\Object\Message.cs" />
-    <Compile Include="Callback\Object\ResponseMessage.cs" />
-    <Compile Include="Callback\Object\Usage.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
@@ -186,7 +173,6 @@
     <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
-    <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
     <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
     <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />
@@ -200,7 +186,7 @@
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
     <Compile Include="Routing\EndpointMapping\ProvideConfiguration.cs" />
-    <Compile Include="Routing\NewOutingAPIs.cs" />
+    <Compile Include="Routing\NewRoutingAPIs.cs" />
     <Compile Include="Sagas\FindByExpression\Message1.cs" />
     <Compile Include="Sagas\FindByExpression\Message2.cs" />
     <Compile Include="Sagas\FindByExpression\MySaga.cs" />
@@ -251,7 +237,6 @@
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Persistence\Msmq\msmq.config.xml" />
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -270,6 +255,8 @@
       <Name>Operations</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Persistence\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
