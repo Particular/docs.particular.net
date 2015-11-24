@@ -29,7 +29,6 @@
 .block.middle a,
 .productcolumn a {
   color: inherit;
-  white-space: nowrap;
 }
 
 .block {
@@ -95,29 +94,6 @@ span.blue {
   font-size: 14px;
 }
 
-.block .left2 {
-  width: 50%;
-  float: left;
-  padding-right: 20px;
-  min-width: 360px;
-}
-
-.block .right1 {
-  width: 50%;
-  float: left;
-  padding-left: 20px;
-  border-left: 2px solid rgb(218, 222, 222);
-}
-
-.block h2 {
-  clear: both;
-  font-size: 20px !important;
-  font-family: 'Dosis', Semibold;
-  padding-bottom: 20px;
-  margin-bottom: 0px;
-  margin-top: 0px;
-}
-
 .block h3 {
   font-weight: bold;
   font-size: 17px;
@@ -133,14 +109,6 @@ span.blue {
   margin-top: 0px;
 }
 
-.block h5 {
-  color: rgb(0, 114, 156);
-  font-size: 14px;
-  font-weight: bold;
-  padding-left: 28px;
-  padding-top: 5px;
-}
-
 .block p {
   font-size: 14px;
   color: rgb(77, 77, 77);
@@ -149,7 +117,7 @@ span.blue {
 .block .col-md-6 img,
 .block .col-md-6 img {
   float: left;
-  margin: 0px 13px 17px 0px;
+  margin: 0px 13px 0px 0px;
 }
 
 .productcolumn {
@@ -159,7 +127,7 @@ span.blue {
 }
 
 .productcolumn.header {
-  margin-top: 35px;
+  margin-top: 2%;
 }
 
 .productcolumn.last {
@@ -191,10 +159,6 @@ span.blue {
   text-indent: -12px;
 }
 
-.productcolumnc li:before {
-  content: "• ";
-  color: rgb(0, 114, 156);
-}
 </style>
 <div class="row">
 <div class="col-md-12 block top">
