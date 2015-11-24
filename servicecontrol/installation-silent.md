@@ -9,7 +9,7 @@ tags:
 
 ### Silent Installation Options
 
-Note:  This documentation covers silent installation instructions for ServiceControl Version 1.7 or greater.  The documentation for older versions of ServiceControl can be found [here](installation-silent-pre-1.7.md) 
+Note:  This documentation covers silent installation instructions for ServiceControl Version 1.7 or greater. 
 
 #### Silently installation from the commandline
 The following command line will silently install the ServiceControl Management utility only.   

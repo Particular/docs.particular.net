@@ -287,7 +287,6 @@
     <p><h4>Gather all the data and monitor multiple endpoints from a single location</h4></p>
     <ul>
       <li><a href="/servicecontrol/installation.md">Installing ServiceControl</a></li>
-      <li><a href="/servicecontrol/multi-transport-support.md">Multi Transport Support</a></li>
       <li><a href="/servicecontrol/plugins/">Endpoint Plugins</a></li>
     </ul>
     <a href="/servicecontrol/"><h3>All ServiceControl articles</h3></a><br/>

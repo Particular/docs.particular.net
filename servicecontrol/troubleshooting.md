@@ -12,7 +12,7 @@ Open the ServiceControl Management utility and review the configuration. The Man
 
 ### Service fails to start 
 
-There are various reasons that can cause the ServiceControl windows service fail to start. To narrow down the possible cause, review the [ServiceControl logs](setting-custom-log-location) files.
+There are various reasons that can cause the ServiceControl windows service fail to start. To narrow down the possible cause, review the [ServiceControl logs](logging) files.
 
 
 ### The port is already in use
