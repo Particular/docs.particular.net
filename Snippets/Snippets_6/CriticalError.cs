@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading;
+    using System.Threading.Tasks;
     using NServiceBus;
 
     public class CriticalErrorConfig
@@ -24,6 +25,7 @@
 
                 string fatalMessage = string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage);
                 Environment.FailFast(fatalMessage, exception);
+                return Task.FromResult(0);
             });
 
             #endregion

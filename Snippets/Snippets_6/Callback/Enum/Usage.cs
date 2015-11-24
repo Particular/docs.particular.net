@@ -7,11 +7,11 @@
     {
         async void Simple()
         {
-            IBus bus = null;
+            IBusContext busContext = null;
             SendOptions sendOptions = new SendOptions();
             #region EnumCallback
             Message message = new Message();
-            Status response = await bus.Request<Status>(message, sendOptions);
+            Status response = await busContext.Request<Status>(message, sendOptions);
             Console.WriteLine("Callback received with response:" + response);
             #endregion
         }

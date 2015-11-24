@@ -9,7 +9,7 @@ namespace Snippets6.Callback.Enum
     {
         public async Task Handle(Message message, IMessageHandlerContext context)
         {
-            await context.ReplyAsync(Status.OK);
+            await context.Reply(Status.OK);
         }
     }
 

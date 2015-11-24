@@ -6,7 +6,7 @@ using NServiceBus;
 #region windowsservicehosting
 class ProgramService : ServiceBase
 {
-    IEndpoint bus;
+    IEndpointInstance endpointInstance;
 
     static void Main()
     {
@@ -35,7 +35,7 @@ class ProgramService : ServiceBase
         BusConfiguration busConfiguration = new BusConfiguration();
         //other bus configuration. endpoint name, logging, transport, persistence etc
         busConfiguration.EnableInstallers();
-        bus = await Endpoint.StartAsync(busConfiguration);
+        endpointInstance = await Endpoint.Start(busConfiguration);
     }
 
     protected override void OnStop()
@@ -45,9 +45,9 @@ class ProgramService : ServiceBase
 
     async Task AsyncOnStop()
     {
-        if (bus != null)
+        if (endpointInstance != null)
         {
-            await bus.StopAsync();
+            await endpointInstance.Stop();
         }
     }
 }

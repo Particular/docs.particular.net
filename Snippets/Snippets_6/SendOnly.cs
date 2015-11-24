@@ -1,15 +1,17 @@
 ﻿namespace Snippets6
 {
+    using System.Threading.Tasks;
     using NServiceBus;
 
     public class SendOnly
     {
-        public void Simple()
+        public async Task Simple()
         {
             #region SendOnly
 
             BusConfiguration busConfiguration = new BusConfiguration();
-            ISendOnlyBus bus = Bus.CreateSendOnly(busConfiguration);
+            busConfiguration.SendOnly();
+            IEndpointInstance endpointInstance = await Endpoint.Start(busConfiguration);
 
             #endregion
         }

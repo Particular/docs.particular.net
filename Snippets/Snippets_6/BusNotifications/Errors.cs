@@ -21,7 +21,7 @@
             this.busNotifications = busNotifications;
         }
 
-        public Task StartAsync(IBusContext context)
+        public Task Start(IBusContext context)
         {
             CheckIfDisposed();
 
@@ -39,7 +39,7 @@
             // - busNotifications.Errors.MessageHasBeenSentToSecondLevelRetries
         }
 
-        public Task StopAsync(IBusContext context)
+        public Task Stop(IBusContext context)
         {
             CheckIfDisposed();
 
@@ -80,7 +80,7 @@
 
         public void Dispose()
         {
-            StopAsync(null).GetAwaiter().GetResult();
+            Stop(null).GetAwaiter().GetResult();
             disposed = true;
         }
 

@@ -9,7 +9,7 @@ namespace Snippets6.Callback.Object
     {
         public async Task Handle(Message message, IMessageHandlerContext context)
         {
-            await context.ReplyAsync(new ResponseMessage
+            await context.Reply(new ResponseMessage
             {
                 Property = "PropertyValue"
             });

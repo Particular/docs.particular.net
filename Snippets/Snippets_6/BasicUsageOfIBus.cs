@@ -7,19 +7,19 @@
     {
         async Task Send()
         {
-            IBus bus = null;
+            IBusContext busContext = null;
 
             #region BasicSend
-            await bus.SendAsync(new MyMessage());
+            await busContext.Send(new MyMessage());
             #endregion
         }
 
         async Task SendInterface()
         {
-            IBus bus = null;
+            IBusContext busContext = null;
 
             #region BasicSendInterface
-            await bus.SendAsync<IMyMessage>(m => m.MyProperty = "Hello world");
+            await busContext.Send<IMyMessage>(m => m.MyProperty = "Hello world");
             #endregion
         }
 

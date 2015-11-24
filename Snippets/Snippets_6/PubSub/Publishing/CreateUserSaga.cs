@@ -10,7 +10,7 @@ namespace Snippets6.PubSub.Publishing
     {
         public async Task Handle(CreateUserCommand message, IMessageHandlerContext context)
         {
-            await context.PublishAsync<UserCreatedEvent>(e =>
+            await context.Publish<UserCreatedEvent>(e =>
             {
                 e.Name = message.Name;
             });

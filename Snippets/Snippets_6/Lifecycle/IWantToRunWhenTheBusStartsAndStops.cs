@@ -7,12 +7,12 @@
 
     class RunWhenTheBusStartsAndStops : IWantToRunWhenBusStartsAndStops
     {
-        public async Task StartAsync(IBusContext context)
+        public async Task Start(IBusContext context)
         {
             // perform startup logic
         }
 
-        public async Task StopAsync(IBusContext context)
+        public async Task Stop(IBusContext context)
         {
             // perform shutdown logic
         }

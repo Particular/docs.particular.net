@@ -11,12 +11,10 @@
 
             BusConfiguration busConfiguration = new BusConfiguration();
             //Other config
-            using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
-            {
-                await bus.PublishAsync(new MyEvent());
+            IEndpointInstance endpointInstance = await Endpoint.Start(busConfiguration);
+            await endpointInstance.CreateBusContext().Publish(new MyEvent());
 
-                #endregion
-            }
+            #endregion
 
         }
     }

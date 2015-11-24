@@ -9,7 +9,7 @@ namespace Snippets6.Callback.Int
     {
         public async Task Handle(Message message, IMessageHandlerContext context)
         {
-            await context.ReplyAsync(10);
+            await context.Reply(10);
         }
     }
 
