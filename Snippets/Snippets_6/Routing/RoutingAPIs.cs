@@ -5,7 +5,7 @@
     using NServiceBus;
     using NServiceBus.Routing;
 
-    public class NewRoutingAPIs
+    public class RoutingAPIs
     {
 
         public void StaticRoutes()
