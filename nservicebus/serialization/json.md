@@ -10,7 +10,7 @@ Using [Json](https://en.wikipedia.org/wiki/Json) via an ILMerged copy of [Json.N
 
 ## Usage
 
-<!-- import JsonSerialization -->
+snippet:JsonSerialization
 
 
 ## Json.net versions
@@ -71,4 +71,4 @@ Using [Bson](https://en.wikipedia.org/wiki/BSON) via the same ILMerged copy of J
 
 ### Usage
 
-<!-- import BsonSerialization -->
+snippet:BsonSerialization

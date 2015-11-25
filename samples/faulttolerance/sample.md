@@ -56,7 +56,7 @@ As you can see the 'Server' processes all those messages, and if you go back to 
 
 So, let's make the handling of messages in the 'Server' endpoint fail. Open `MyHandler.cs`.
 
-<!-- import MyHandler -->
+snippet:MyHandler
 
 Note the commented out `throw new Exception`. Uncomment that line.
 

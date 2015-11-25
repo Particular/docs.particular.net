@@ -27,7 +27,7 @@ This sample contains three projects:
  
 Let's look at the Shared project:
 
-<!-- import MessageWithLargePayload -->
+snippet:MessageWithLargePayload
 
 `DataBusProperty<byte[]>` is an NServiceBus data type that instructs NServiceBus to treat the `LargePayload` property as an attachment. It is not transported in the NServiceBus normal flow.
 
@@ -53,7 +53,7 @@ The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is 
 
 Both the `Sender` and `Receive` project need to share a common location to store large binary objects. This is done by specifying Azure storage connection string. This code instructs NServiceBus to use specified Azure storage account for the attachment. 
 
-<!-- import ConfiguringDataBusLocation -->
+snippet:ConfiguringDataBusLocation
 
 Attachment blobs will be found in `databus` container.
  
@@ -61,7 +61,7 @@ Attachment blobs will be found in `databus` container.
 
 The following sender project code sends the `MessageWithLargePayload `message, utilizing the NServiceBus attachment mechanism:
 
-<!-- import SendMessageLargePayload -->
+snippet:SendMessageLargePayload
 
 Go to the `Receiver` project to see the receiving application.
 

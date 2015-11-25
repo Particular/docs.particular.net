@@ -21,12 +21,12 @@ The following code shows an example of how to perform the following actions
 
 #### In C&#35;
 
-<!-- import msmq-nativesend -->
+snippet:msmq-nativesend
 
 
 ### Using the native send helper methods
 
-<!-- import msmq-nativesend-usage -->
+snippet:msmq-nativesend-usage
 
 
 ## Return message to source queue 
@@ -43,17 +43,17 @@ The following code shows an example of how to perform the following actions
 
 #### In C&#35;
 
-<!-- import msmq-return-to-source-queue -->
+snippet:msmq-return-to-source-queue
 
 
 #### In Powershell
 
-<!-- import msmq-return-to-source-queue-powershell -->
+snippet:msmq-return-to-source-queue-powershell
 
 
 ### Using the retry helper methods
 
-<!-- import msmq-return-to-source-queue-usage -->
+snippet:msmq-return-to-source-queue-usage
 
 
 ## Create queues
@@ -82,23 +82,23 @@ NOTE: Write access is granted to both `Everyone` and `Anonymous`. The reason for
 
 #### In C&#35;
 
-<!-- import msmq-create-queues -->
+snippet:msmq-create-queues
 
 
 #### In Powershell
 
-<!-- import msmq-create-queues-powershell -->
+snippet:msmq-create-queues-powershell
 
 
 ### Using the create helper queue methods 
 
 To create all queues for a given endpoint name.
 
-<!-- import msmq-create-queues-endpoint-usage -->
+snippet:msmq-create-queues-endpoint-usage
 
 To create shared queues.
 
-<!-- import msmq-create-queues-shared-usage -->
+snippet:msmq-create-queues-shared-usage
 
 
 ## Delete queues
@@ -109,20 +109,20 @@ To create shared queues.
 
 #### In C&#35;
 
-<!-- import msmq-delete-queues -->
+snippet:msmq-delete-queues
 
 
 #### In Powershell
 
-<!-- import msmq-delete-queues-powershell -->
+snippet:msmq-delete-queues-powershell
 
 
 ### Using the delete queue helper methods
 
 To delete all queues for a given endpoint name.
 
-<!-- import msmq-delete-queues-endpoint-usage -->
+snippet:msmq-delete-queues-endpoint-usage
 
 To delete shared queues
 
-<!-- import msmq-delete-queues-shared-usage -->
+snippet:msmq-delete-queues-shared-usage

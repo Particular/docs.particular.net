@@ -34,7 +34,7 @@ INFO: If you are running this sample against an external RavenDB server you need
 
 So that no running instance of RavenDB server is required. 
 
-<!-- import ravenhost -->
+snippet:ravenhost
 
 
 ### The Saga
@@ -46,17 +46,17 @@ The saga shown in the sample is a very simple order management saga that:
 * handles the completion of the payment process;
 * completes the order;
 
-<!-- import TheSagaRavenDB -->
+snippet:TheSagaRavenDB
 
 From the process point of view is important to notice that the saga is not sending to the payment processor the order id instead is sending a payment transaction id, in this scenario we are simulating the fact that a saga can be correlated given more than one unique attribute, such as `OrderId` and `PaymentTransactionId` requiring both to be treated as unique and guaranteed to be so:
 
-<!-- import OrderSagaDataRavenDB -->
+snippet:OrderSagaDataRavenDB
 
 We can express attributes uniqueness using the `UniqueConstraint` attribute provided by the RavenDB bundle.
 
 At start-up the sample will send a `StartOrder` message, since we are decorating the saga data class with custom attributes we also need to plug our own logic to find a saga data instance:
 
-<!-- import CustomSagaFinderWithUniqueConstraintRavenDB -->
+snippet:CustomSagaFinderWithUniqueConstraintRavenDB
 
 Building a saga finder requires to define a class that implements the `IFindSagas<TSagaData>.Using<TMessage>` interface. The class will be automatically picked up by NServiceBus at configuration time and used each time a message of type `TMessage`, that is expected to load a saga of type `TSagaData`, is received. The `FindBy` method will be invoked by NServiceBus.
 
@@ -67,4 +67,4 @@ NOTE: In the sample the implementation of the `ConfigureHowToFindSaga` method, t
 
 So that no running instance of RavenDB server is required. 
 
-<!-- import ravenhost -->
+snippet:ravenhost

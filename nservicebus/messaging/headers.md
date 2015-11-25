@@ -64,7 +64,7 @@ Several headers are used to enable messaging interaction patters
 
 When a message is sent the headers will be as follows:
 
-<!-- import HeaderWriterSend -->
+snippet:HeaderWriterSend
 
 The above example headers are for a Send and hence the `MessageIntent` header is `Send`. If this was a Publish the `MessageIntent` header would be `Publish`.
 
@@ -87,14 +87,14 @@ Given an initiating message with the following headers:
 
 The headers of reply message will be as follows:
 
-<!-- import HeaderWriterReply_Replying -->
+snippet:HeaderWriterReply_Replying
 
 
 ## Publish Headers
 
 When a message is published the headers will be as follows:
 
-<!-- import HeaderWriterPublish -->
+snippet:HeaderWriterPublish
 
 
 ## Return from a Handler
@@ -113,7 +113,7 @@ Given an initiating message with the following headers:
 
 The headers of reply message will be as follows:
 
-<!-- import HeaderWriterReturn_Returning -->
+snippet:HeaderWriterReturn_Returning
 
 
 ## Dispatching a message from a Saga 
@@ -126,7 +126,7 @@ When any message is dispatched from within a Saga the message will contain the f
 
 ### Example "Send from Saga" Headers
 
-<!-- import HeaderWriterSaga_Sending -->
+snippet:HeaderWriterSaga_Sending
 
 
 ## Replying to a Saga
@@ -143,12 +143,12 @@ A message Reply is performed from a Saga will have the following headers:
 
 #### Via calling Bus.Reply
 
-<!-- import HeaderWriterSaga_Replying -->
+snippet:HeaderWriterSaga_Replying
 
 
 #### Via calling Saga.ReplyToOriginator
 
-<!-- import HeaderWriterSaga_ReplyingToOriginator -->
+snippet:HeaderWriterSaga_ReplyingToOriginator
 
 
 ## Timeout Headers
@@ -170,7 +170,7 @@ When requesting a Timeout from a Saga:
 
 ### Example Timeout Headers
 
-<!-- import HeaderWriterSaga_Timeout -->
+snippet:HeaderWriterSaga_Timeout
 
 
 ### Defer a Message
@@ -185,7 +185,7 @@ When doing a Defer the message will have similar header to a Send with a few edi
 
 ### Example Defer Headers
 
-<!-- import HeaderWriterDefer -->
+snippet:HeaderWriterDefer
 
 
 ## Diagnostics and Informational Headers
@@ -216,11 +216,11 @@ Headers added when a message is [Audited](/nservicebus/operations/auditing.md)
 
 Given an initiating message with the following headers:
 
-<!-- import HeaderWriterAudit_Send -->
+snippet:HeaderWriterAudit_Send
 
 When that message fails to be processed it will be sent to the Error queue with the following headers:
 
-<!-- import HeaderWriterAudit_Audit -->
+snippet:HeaderWriterAudit_Audit
 
 
 ## Retries handling headers
@@ -249,11 +249,11 @@ When a message is sent to the Error queue it will have the following extra heade
 
 Given an initiating message with the following headers:
 
-<!-- import HeaderWriterError_Sending -->
+snippet:HeaderWriterError_Sending
 
 When that message fails to be processed it will be sent to the Error queue with the following headers:
 
-<!-- import HeaderWriterError_Error -->
+snippet:HeaderWriterError_Error
 
 
 ## Encryption Headers
@@ -295,9 +295,9 @@ When using a [Conventions](/nservicebus/messaging/messages-events-commands.md#de
 
 #### Example Headers
 
-<!-- import HeaderWriterDataBusConvention -->
+snippet:HeaderWriterDataBusConvention
 
 
 #### Example Body
 
-<!-- import HeaderWriterDataBusConvention_Body -->
+snippet:HeaderWriterDataBusConvention_Body

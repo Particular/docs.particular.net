@@ -8,9 +8,9 @@ WARNING: Storing your subscriptions in MSMQ is not suitable for scenarios where 
 
 To configure MSMQ as your subscription persistence:
 
-<!-- import ConfiguringMsmqPersistence -->
+snippet:ConfiguringMsmqPersistence
 
 You don't need any configuration changes for this to work, NServiceBus automatically uses a queue called `{Name of your endpoint}.Subscriptions`. However if you want specify the queue used to store the subscriptions yourself, add the following config section and subsequent config entry:
 
 
-<!-- import MsmqSubscriptionAppConfig -->
+snippet:MsmqSubscriptionAppConfig

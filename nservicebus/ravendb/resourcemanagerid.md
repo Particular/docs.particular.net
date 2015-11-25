@@ -23,6 +23,6 @@ It is possible to configure RavenDB to use a different resource manager identifi
 
 * At runtime when creating the `DocumentStore` instance, for example when you need to inject your own document store as in the following sample:
 
-<!-- import ChangeResourceManagerID -->
+snippet:ChangeResourceManagerID
 
 NOTE: Be sure that the resource manager id is constant across process restarts otherwise it will be impossibile for the instance to re-enlist in an existing distributed transaction in case of a crash.

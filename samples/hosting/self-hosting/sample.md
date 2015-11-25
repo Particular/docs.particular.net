@@ -11,4 +11,4 @@ related:
 
 This sample shows how to host in your own process an instance of NServiceBus.
 
-<!-- import self-hosting -->
+snippet:self-hosting

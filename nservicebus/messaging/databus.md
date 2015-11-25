@@ -32,11 +32,11 @@ NServiceBus supports two DataBus implementations:
 
 To enable DataBus, NServiceBus needs to be configured. For file share based DataBus:
 
-<!-- import FileShareDataBus -->
+snippet:FileShareDataBus
 
 For Azure (storage blobs) based DataBus:
 
-<!-- import AzureDataBus -->
+snippet:AzureDataBus
 
 NOTE: The `AzureDataBus` implementation is part of the Azure transport package.
 
@@ -52,16 +52,16 @@ There are two ways to specify the message properties to be sent using DataBus
 
 Properties defined using the `DataBusProperty<T>` type provided by NServiceBus are not treated as part of a message, but persist externally based on the type of `DataBus` used, and are linked to the original message using a unique key. 
 
-<!-- import MessageWithLargePayload -->
+snippet:MessageWithLargePayload
 
 
 ### Using message conventions
 
 NServiceBus supports defining DataBus properties via convention. This allows defining a convention for data properties to be sent using `DataBus` without using `DataBusProperty<T>`.
 
-<!-- import DefineMessageWithLargePayloadUsingConvention -->
+snippet:DefineMessageWithLargePayloadUsingConvention
 
-<!-- import MessageWithLargePayloadUsingConvention -->
+snippet:MessageWithLargePayloadUsingConvention
 
 
 ## DataBus attachments cleanup
@@ -73,7 +73,7 @@ NServiceBus DataBus implementations currently behave differently with regard to 
 
 The following extension methods are available for changing the behavior of `AzureDataBus` defaults:
 
-<!-- import AzureDataBusConfiguration -->
+snippet:AzureDataBusConfiguration
 
 - `ConnectionString()`: the connection string to the storage account for storing DataBus properties, defaults to `UseDevelopmentStorage=true`
 - `Container()`: container name, defaults to '`databus`'

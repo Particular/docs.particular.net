@@ -12,19 +12,19 @@ This samples uses the community run serializer [NServiceBus.Newtonsoft.Json](htt
 
 ## Configuring to use NServiceBus.Newtonsoft.Json 
 
-<!-- import config -->
+snippet:config
 
 
 ## Diagnostic Mutator
 
 A helper that will Write out the contents of any incoming message. 
 
-<!-- import mutator -->
+snippet:mutator
 
 
 ## The message send
 
-<!-- import message -->
+snippet:message
    
 
 ## The Output

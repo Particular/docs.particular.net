@@ -48,7 +48,7 @@ Related:
 
 A "Send-only endpoint" is used when the only purpose is sending messages and no message processing is required in that endpoint. Common use cases include websites, console application and windows application. This is the code for starting an endpoint in send only mode.
  
-<!-- import SendOnly -->
+snippet:SendOnly
 
 The only configuration when running in this mode is the destination when [Sending a message](/nservicebus/messaging/send-a-message.md).
 

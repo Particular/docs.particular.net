@@ -15,7 +15,7 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) package ava
 
 ## Usage
 
-<!-- import NLogInCode -->
+snippet:NLogInCode
 
 
 ## Filtering 
@@ -26,4 +26,4 @@ For example to limit log output to a specific namespace.
 
 Here is a code configuration example for adding a [Rule](https://github.com/nlog/NLog/wiki/Configuration-file#rules).
 
-<!-- import NLogFiltering -->
+snippet:NLogFiltering

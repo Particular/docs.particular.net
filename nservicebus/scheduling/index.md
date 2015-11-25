@@ -21,7 +21,7 @@ When a new scheduled task is created it is given a unique identifier and stored 
 
 The difference between the following two examples is that in the latter a name is given for the task. The name can be used for logging.
 
-<!-- import ScheduleTask -->
+snippet:ScheduleTask
 
 
 ## When not to use it
@@ -60,6 +60,6 @@ Converting the scheduler code to a saga, with the code for the example usage of 
 
 In the following example, the endpoint upon startup will send itself a `StartMyCustomSaga` message to initiate the saga. The saga will request a timeout for 5 minutes if the task hasn't already been scheduled and, in the timeout handler, it will send the `CallLegacySystem` message that will execute some task and also request another timeout for the specified interval.
 
-<!-- import ScheduleTaskSaga -->
+snippet:ScheduleTaskSaga
 
 NOTE: If you need to cancel a scheduled task, create a new message, e.g. `CancelMyCustomSaga` and modify the above saga to also handle this message, which will end the saga using [MarkAsComplete() method](/nservicebus/sagas/#ending-a-long-running-process). 

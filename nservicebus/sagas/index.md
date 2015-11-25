@@ -74,7 +74,7 @@ Since version 5 it is possible to specify the mapping to the message using expre
 Version 5 and below allowed you to correlate on more than one saga property.
 }}
 
-<!-- import saga-find-by-expression -->
+snippet:saga-find-by-expression
 
 Underneath the covers, when `CompleteOrder` arrives, NServiceBus asks the saga persistence infrastructure to find an object of the type `OrderSagaData` that has a property `OrderId` whose value is the same as the `OrderId` property of the message. If found the saga instance will be loaded a the `Handle` method for the `CompleteOrder` message will be invoked. Should the saga instance not be found and the message, like in this case, not be allowed to start a saga the [saga not found](/nservicebus/sagas/saga-not-found.md) handlers will be invoked.
 
@@ -121,7 +121,7 @@ If you tried to use `Bus.Reply()` or `Bus.Return()` to communicate with the call
 
 To communicate status in our ongoing example:
 
-<!-- import saga-with-reply -->
+snippet:saga-with-reply
 
 This is one of the methods on the saga base class that would be very difficult to implement yourself without tying your saga code to low-level parts of the NServiceBus infrastructure.
 
@@ -130,7 +130,7 @@ This is one of the methods on the saga base class that would be very difficult t
 
 Make sure to configure appropriate [saga persistence](/nservicebus/persistence/). 
 
-<!-- import saga-configure -->
+snippet:saga-configure
 
 
 ## Sagas and automatic subscriptions

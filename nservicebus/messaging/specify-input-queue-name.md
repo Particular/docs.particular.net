@@ -14,7 +14,7 @@ NOTE: these approaches can also be used from NServiceBus Host via the use of `IC
 
 You can define your own convention in the endpoint initialization code using this
 
-<!-- import EndpointNameCode -->
+snippet:EndpointNameCode
 
 ## When using the NServiceBus.Host.exe  
 
@@ -22,7 +22,7 @@ You can define your own convention in the endpoint initialization code using thi
 
 When using NServiceBus.Host, the namespace of the class implementing `IConfigureThisEndpoint` will be used as the endpoint name as the default convention. In the following example the endpoint name when running NServiceBus host becomes `MyServer`. This is the recommended way to name a endpoint. Also this emphasizes convention over configuration approach.
 
-<!-- import EndpointNameByNamespace -->
+snippet:EndpointNameByNamespace
 
 ### EndpointName attribute
 

@@ -16,7 +16,7 @@ This sample leverages the pipeline to add timing to handlers. It injects a Behav
 
 The handler sleeps for a random amount of time so as to sometimes trigger the threshold.
 
-<!-- import handler -->
+snippet:handler
 
 
 ## The Behavior
@@ -26,4 +26,4 @@ The handler sleeps for a random amount of time so as to sometimes trigger the th
 
 ## Configuring the Pipeline
 
-<!-- import pipeline-config -->
+snippet:pipeline-config

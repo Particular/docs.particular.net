@@ -34,18 +34,18 @@ PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureServiceBus
 
 Then, use the Configuration API to set up NServiceBus, by specifying `.UseTransport<T>()` to override the default transport:
 
-<!-- import AzureServiceBusTransportWithAzure -->
+snippet:AzureServiceBusTransportWithAzure
 
 Alternatively, when using one of the NServiceBus provided hosting processes, you should call the `UseTransport<T>` on the endpoint configuration. In the Azure role entrypoint host, for example, it looks like this:
 
-<!-- import AzureServiceBusTransportWithAzureHost -->
+snippet:AzureServiceBusTransportWithAzureHost
 
 
 ## Setting the Connection String
 
 The default way to set the connection string is using the .net provided `connectionStrings` configuration section in app.config or web.config, with the name `NServicebus\Transport`:
 
-<!-- import AzureServiceBusConnectionStringFromAppConfig -->
+snippet:AzureServiceBusConnectionStringFromAppConfig
 
 For more detail see [Configuration Connection Strings](https://msdn.microsoft.com/en-us/library/azure/jj149830.aspx)
 
@@ -54,7 +54,7 @@ For more detail see [Configuration Connection Strings](https://msdn.microsoft.co
 
 If you need fine grained control on how the Azure Service Bus transport behaves, you can override the default settings by adding a configuration section called `AzureServiceBusQueueConfig` to your web.config or app.config files. For example:
 
-<!-- import AzureServiceBusQueueConfig -->
+snippet:AzureServiceBusQueueConfig
 
 Using this configuration setting you can change the following values. NOTE: Most of these values are applied when a queue or topic is created and cannot be changed afterwards).
 

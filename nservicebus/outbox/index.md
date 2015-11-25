@@ -60,7 +60,7 @@ The NHibernate implementation by default keeps deduplication records for 7 days 
 
 These default settings can be changed by specifying new defaults in the config file using [TimeStamp strings](https://msdn.microsoft.com/en-us/library/ee372286.aspx), here is how to do it:
 
-<!-- import OutboxNHibernateTimeToKeep -->
+snippet:OutboxNHibernateTimeToKeep
 
 
 ## Using outbox with RavenDB persistence
@@ -77,4 +77,4 @@ The RavenDB implementation by default keeps deduplication records for 7 days and
 
 These default settings can be changed by specifying new defaults in the settings dictionary, here is how to do it:
 
-<!-- import OutboxRavendBTimeToKeep -->
+snippet:OutboxRavendBTimeToKeep

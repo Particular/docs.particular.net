@@ -26,4 +26,4 @@ Once created `Run(...)` is called on each instance. These calls are made sequent
 
 Exceptions thrown by instances of `IWantToRunWhenConfigurationIsComplete` are unhandled by NServiceBus. These will bubble up to the creator of the bus.
 
-<!-- import lifecycle-iwanttorunwhenconfigurationiscomplete -->
+snippet:lifecycle-iwanttorunwhenconfigurationiscomplete

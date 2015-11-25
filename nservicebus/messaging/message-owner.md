@@ -114,7 +114,7 @@ Endpoint mapping can be configured in several ways
 
 You configure mapping in your app.config by adding `<UnicastBusConfig>` and `<MessageEndpointMappings>` nodes.
 
-<!-- import endpoint-mapping-appconfig -->
+snippet:endpoint-mapping-appconfig
 
 
 ### Using a ConfigurationSource
@@ -122,17 +122,17 @@ You configure mapping in your app.config by adding `<UnicastBusConfig>` and `<Me
 
 #### The IConfigurationSource
 
-<!-- import endpoint-mapping-configurationsource -->
+snippet:endpoint-mapping-configurationsource
 
 
 #### Injecting the IConfigurationSource
 
-<!-- import inject-endpoint-mapping-configuration-source -->
+snippet:inject-endpoint-mapping-configuration-source
 
 
 ### Using a configuration provider
 
-<!-- import endpoint-mapping-configurationprovider -->
+snippet:endpoint-mapping-configurationprovider
 
 
 ## Bypassing the owning endpoint

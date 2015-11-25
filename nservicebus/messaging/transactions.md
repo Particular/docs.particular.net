@@ -29,7 +29,7 @@ Once a message has been received by an Endpoint, if the message processing fails
 
 WARNING: In version 5 and below, when transactions are disabled, no retries will be performed and messages will not be forwarded to the error queue in the event of any failure.
 
-<!-- import TransactionsDisable -->
+snippet:TransactionsDisable
 
 
 ### Transport transaction
@@ -38,7 +38,7 @@ In this mode, if supported by the transport, the receive operation is wrapped in
 
 NOTE: In this mode messages on the wire can get duplicated at each endpoint so the handler logic has to be designed to be idempotent.
 
-<!-- import TransactionsDisableDistributedTransactions -->
+snippet:TransactionsDisableDistributedTransactions
 
 
 ### Ambient transaction
@@ -49,7 +49,7 @@ That **does not** mean that a distributed transaction is started right away. The
 
 Ambient transaction mode is enabled by default. It can be enabled explicitly via
 
-<!-- import TransactionsEnable -->
+snippet:TransactionsEnable
 
 #### Isolation level
 
@@ -59,7 +59,7 @@ NOTE: Version 3 and below used the default isolation level of .Net which is `Ser
 
 You can change the isolation level using
 
-<!-- import CustomTransactionIsolationLevel -->
+snippet:CustomTransactionIsolationLevel
 
 #### Transaction timeout
 
@@ -67,7 +67,7 @@ NServiceBus will use the [default transaction timeout](https://msdn.microsoft.co
 
 You can change the transaction timeout using
 
-<!-- import CustomTransactionTimeout -->
+snippet:CustomTransactionTimeout
 
 Or via your *.config file see an example [here](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection%28v=vs.100%29.aspx#Anchor_5). 
 
@@ -87,13 +87,13 @@ This results in suppressing any ambient transaction that exist. This effectively
 
 NOTE: Starting with version 5, in the *transport transaction* and *unreliable* modes this behavior is the default. Wrapping the message handlers with `TransactionScope` has to be enabled explicitly.
 
-<!-- import TransactionsWrapHandlersExecutionInATransactionScope -->
+snippet:TransactionsWrapHandlersExecutionInATransactionScope
 
 ## Outbox
 
 Outbox is a [feature](/nservicebus/outbox)  that enhances the *transport transaction* mode guarantees. 
 
-<!-- import TransactionsOutbox -->
+snippet:TransactionsOutbox
 
 Enabled by default only for RabbitMQ transport, requires explicit enabling when using other transports.
 

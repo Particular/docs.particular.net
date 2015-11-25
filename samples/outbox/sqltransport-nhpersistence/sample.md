@@ -43,35 +43,35 @@ Sender and Receiver use different databases, just like in a production scenario 
  
 The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQLServer transport with NHibernate persistence and Outbox.
 
-<!-- import SenderConfiguration -->
+snippet:SenderConfiguration
 
 The Sender uses a configuration file to tell NServiceBus where the messages 
 addressed to the Receiver should be sent
 
-<!-- import SenderConnectionStrings -->
+snippet:SenderConnectionStrings
 
 
 ### Receiver project
 
 The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence and Outbox but uses V2.1 code-based connection information API.
 
-<!-- import ReceiverConfiguration -->
+snippet:ReceiverConfiguration
 
 In order for the Outbox to work, the business data has to reuse the same connection string as NServiceBus' persistence
 
-<!-- import NHibernate -->
+snippet:NHibernate
 
 When the message arrives at the Receiver, it is dequeued using a native SQL Server transaction. Then a `TransactionScope` is created that encompasses
  * persisting business data,
 
-<!-- import StoreUserData -->
+snippet:StoreUserData
 
  * persisting saga data of `OrderLifecycleSaga` ,
  * storing the reply message and the timeout request in the outbox.
 
-<!-- import Reply -->
+snippet:Reply
 
-<!-- import Timeout -->
+snippet:Timeout
 
 Finally the messages in the outbox are pushed to their destinations. The timeout message gets stored in NServiceBus timeout store and is sent back to the saga after requested delay of five seconds.
 

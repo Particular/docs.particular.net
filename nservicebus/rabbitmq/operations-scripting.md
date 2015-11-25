@@ -25,12 +25,12 @@ The following code shows an example of how to perform the following actions
 
 #### In C&#35;
 
-<!-- import rabbit-nativesend -->
+snippet:rabbit-nativesend
 
 
 ### Using the native send helper methods
 
-<!-- import rabbit-nativesend-usage -->
+snippet:rabbit-nativesend-usage
 
 
 ## Return message to source queue 
@@ -44,12 +44,12 @@ The following code shows an example of how to perform the following actions
  * extract the failed queue from the headers.
  * forward that message to the failed queue name so it can be retried.
 
-<!-- import rabbit-return-to-source-queue -->
+snippet:rabbit-return-to-source-queue
 
 
 ### Using the retry helper methods 
 
-<!-- import rabbit-return-to-source-queue-usage -->
+snippet:rabbit-return-to-source-queue-usage
 
 
 ## Create queues
@@ -59,18 +59,18 @@ Queue creation can be done for a specific endpoint or queues shared between mult
 
 ### The create queue helper methods
 
-<!-- import rabbit-create-queues -->
+snippet:rabbit-create-queues
 
 
 ### Using the create queue helper methods 
 
 To create all queues for a given endpoint name.
 
-<!-- import rabbit-create-queues-endpoint-usage -->
+snippet:rabbit-create-queues-endpoint-usage
 
 To create shared queues.
 
-<!-- import rabbit-create-queues-shared-usage -->
+snippet:rabbit-create-queues-shared-usage
 
 ## Create HA policy
 
@@ -81,15 +81,15 @@ To configure HA policy, please refer to RabbitMQ [official documentation](https:
 
 ### The delete helper queue methods
 
-<!-- import rabbit-delete-queues -->
+snippet:rabbit-delete-queues
 
 
 ### Using the delete queue helper methods
 
 To delete all queues for a given endpoint name.
 
-<!-- import rabbit-delete-queues-endpoint-usage -->
+snippet:rabbit-delete-queues-endpoint-usage
 
 To delete shared queues
 
-<!-- import rabbit-delete-queues-shared-usage -->
+snippet:rabbit-delete-queues-shared-usage

@@ -14,4 +14,4 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.CommonLogging/) pa
 
 ## Usage
 
-<!-- import CommonLoggingInCode -->
+snippet:CommonLoggingInCode

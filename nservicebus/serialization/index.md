@@ -28,7 +28,7 @@ NOTE: The same Serializer must be used by the sending endpoint to serialize mess
 
 To support sending and receiving messages between endpoints using different serializers, additional deserialization capability may be specified. Starting from NServiceBus version 6 it's possible to register additional deserializers to process incoming messages.
 
-<!-- import AdditionalDeserializers -->
+snippet:AdditionalDeserializers
 
 To configure multiple deserializers in version 5 of NServiceBus, check out [Taking control of serialization via the pipeline](/samples/pipeline/multi-serializer/).
 

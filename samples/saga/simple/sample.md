@@ -29,4 +29,4 @@ The output to the console will be
 
 ### The Saga
 
-<!-- import thesaga -->
+snippet:thesaga

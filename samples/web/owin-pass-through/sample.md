@@ -78,7 +78,7 @@ This sample uses a [Self Hosted](http://katanaproject.codeplex.com/wikipage?titl
 
 The endpoint configuration is fairly standard. The one exception is that the instance of `IBus` is passed in to the OWIN configuration code. 
 
-<!-- import startbus -->
+snippet:startbus
 
 
 ## HTTP Hosting and OWIN middleware
@@ -88,7 +88,7 @@ A self-hosted instance of Katana is started and then different middleware are in
  * `/to-bus` for the Bus based interception
  * `/to-msmq` for the direct to MSMQ interception
 
-<!-- import startowin -->
+snippet:startowin
 
 
 ## Bus based middleware
@@ -101,7 +101,7 @@ The Bus based approach takes the following steps
  * Uses Type and message body, in conjunction with Json.net, to deserialize an instance of the real message
  * Places that message on the bus via a `SendLocal` 
 
-<!-- import OwinToBus -->
+snippet:OwinToBus
 
 
 ## MSMQ based middleware
@@ -113,14 +113,14 @@ The MSMQ based approach takes the following steps
  * Uses the message type name to create a MSMQ transport compatible header string.
  * Places that body and header directly onto MSMQ
  
-<!-- import OwinToMsmq -->
+snippet:OwinToMsmq
 
 
 ### Header Helper
 
 A helper method for creating an header string that is compatible with the NServiceBus MSMQ transport
 
-<!-- import msmqheaderserializer -->
+snippet:msmqheaderserializer
 
 
 ## Comparing the two approaches
@@ -135,4 +135,4 @@ A helper method for creating an header string that is compatible with the NServi
 
 ## JavaScript HTTP Post
 
-<!-- import PostMessage -->
+snippet:PostMessage

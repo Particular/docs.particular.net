@@ -30,7 +30,7 @@ The sample contains two executable projects:
 
 To integrate native Azure Service Bus sender with NServiceBus endpoints, you need to configure the native sender to send messages to the queue used by the receiving endpoint. By default, the input queue for an NServiceBus endpoint is its endpoint name.
 
-<!-- import EndpointAndSingleQueue -->
+snippet:EndpointAndSingleQueue
 
 The native sender is using queue client to send a `BrokeredMessage`.
 
@@ -39,7 +39,7 @@ The native sender is using queue client to send a `BrokeredMessage`.
 
 The Azure Service Bus transport is using the JSON serializer by default. Therefore, the message sent by a native sender needs to be valid JSON.
 
-<!-- import SerializedMessage -->
+snippet:SerializedMessage
 
 To generate a serialized message, the `MessageGenerator` project can be used with the unit test named `Generate` under the `SerializedMessageGenerator` test fixture.
 
@@ -60,20 +60,20 @@ For a native message to be processed, NServiceBus endpoints using  the Azure Ser
 
 These headers need to be stored as `BrokeredMessage` properties.
 
-<!-- import NecessaryHeaders -->
+snippet:NecessaryHeaders
 
 NOTE: The `NServiceBus.EnclosedMessageTypes` property must contain the message type expected by the NServiceBus endpoint. Message type should include namespace it's contained in.
 
 The message itself is defined as an `IMessage` under the `Shared` project.
 
-<!-- import NativeMessage -->
+snippet:NativeMessage
 
 
 ## NServiceBus receiving endpoint
 
 The receiver is defining how to get the Azure Service Bus transport message body by specifying a strategy using `BrokeredMessageBodyConversion`.
 
-<!-- import BrokeredMessageConvention -->
+snippet:BrokeredMessageConvention
 
 NOTE: Both the sender (native or NServiceBus) and the receiver have to agree on the convention used for sending the message body.
 
@@ -82,7 +82,7 @@ NOTE: Both the sender (native or NServiceBus) and the receiver have to agree on 
 
 Once the message is received by the NServiceBus endpoint, its contents will be presented.
 
-<!-- import NativeMessageHandler -->
+snippet:NativeMessageHandler
 
 
 ## Things to note

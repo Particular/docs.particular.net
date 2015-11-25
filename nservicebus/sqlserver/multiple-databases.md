@@ -21,17 +21,17 @@ NOTE: If the destination endpoint uses different database or server instance, se
 
 SQL Server transport defaults to `dbo` schema and uses `NServiceBus/Transport` connection string from the configuration file to connect to the database. The default schema can be changed using following API
 
-<!-- import sqlserver-multidb-current-endpoint-schema -->
+snippet:sqlserver-multidb-current-endpoint-schema
 
 or by providing additional `Queue Schema` parameter in the connection string
 
-<!-- import sqlserver-multidb-current-endpoint-schema-config -->
+snippet:sqlserver-multidb-current-endpoint-schema-config
 
 The second approach has precedence over the first one.
 
 The other parameters (database and instance name/address) can be changed in code using the connection string API
 
-<!-- import sqlserver-multidb-current-endpoint-connection-string -->
+snippet:sqlserver-multidb-current-endpoint-connection-string
 
 NOTE: `Queue Schema` parameter can also be used in the connection string provided via code.
 
@@ -49,7 +49,7 @@ If a particular remote endpoint requires customization of any part of the routin
 
 In the push mode the whole collection of endpoint connection information objects is passed during configuration time.
 
-<!-- import sqlserver-multidb-other-endpoint-connection-push -->
+snippet:sqlserver-multidb-other-endpoint-connection-push
 
 
 ### Pull mode
@@ -65,11 +65,11 @@ Endpoint-specific connection information is discovered by reading the connection
 
 Given the following mappings:
 
-<!-- import sqlserver-multidb-messagemapping -->
+snippet:sqlserver-multidb-messagemapping
 
 and the following connection strings:
  
-<!-- import sqlserver-multidb-connectionstrings -->
+snippet:sqlserver-multidb-connectionstrings
 
 the messages sent to `billing` will go to database `Billing` on server `DbServerB` while the messages to `sales` will go to the database and server set by default i.e. `MyDefaultDB` on server `DbServerA`.
 
@@ -78,10 +78,10 @@ the messages sent to `billing` will go to database `Billing` on server `DbServer
 
 ServiceControl requires the `error` and `audit` queues to be present in a single database. In a system where there are multiple databases, used by various endpoints, this can be achieved by redirecting the queues using the following configuration endpoint configuration:
 
-<!-- import sqlserver-multidb-redirect-audit-error -->
+snippet:sqlserver-multidb-redirect-audit-error
 
 For ServiceControl to retrying a message, after processing failure, it needs to have the same endpoint to connection string mappings as user endpoints e.g.
 
-<!-- import sqlserver-multidb-sc -->
+snippet:sqlserver-multidb-sc
 
 Users need to make sure the connection string mapping is kept in sync between all the endpoints and ServiceControl.

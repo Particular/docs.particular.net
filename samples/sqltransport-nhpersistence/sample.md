@@ -35,22 +35,22 @@ Sender and Receiver use different schemas within one database. This creates a ni
  
 The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQLServer transport with NHibernate persistence. The transport is configured to use a non-standard schema `sender` and to send messages addressed to `receiver` endpoint to a different schema.
 
-<!-- import SenderConfiguration -->
+snippet:SenderConfiguration
 
 The connection strings for both persistence and transport need to be exactly the same.
 
-<!-- import SenderConnectionStrings -->
+snippet:SenderConnectionStrings
 
 
 ### Receiver project
 
 The Receiver mimics a back-end system. It is also configured to use SQL Server transport with NHibernate persistence but instead of hard-coding the other endpoint's schema, it uses a convention based on the endpoint's queue name.
 
-<!-- import ReceiverConfiguration -->
+snippet:ReceiverConfiguration
 
 It is essential to tell NHibernate what schema should it use while accessing the database. The persistence tables have hard-coded names so if more than one endpoint uses the database, they *must* use different schemas.
 
-<!-- import NHibernate -->
+snippet:NHibernate
 
 When the message arrives at the Receiver, a `TransactionScope` is created that encompasses
  * dequeuing the message
@@ -58,12 +58,12 @@ When the message arrives at the Receiver, a `TransactionScope` is created that e
  * persisting saga data of `OrderLifecycleSaga` ,
  * sending the reply message and the timeout request.
 
-<!-- import Reply -->
+snippet:Reply
 
-<!-- import Timeout -->
+snippet:Timeout
 
 The shared session is managed by NServiceBus hence no need to explicitly begin a transaction or `Flush()` the session. 
 
-<!-- import StoreUserData -->
+snippet:StoreUserData
 
 The downside of this approach is, it makes it impossible to use NHibernate's second level cache feature since it requires usage of NHibernate's transactions and letting NHibernate manage its database connections, both of which are disabled when operating in shared connection mode.

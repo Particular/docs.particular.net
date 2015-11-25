@@ -57,6 +57,6 @@ ServiceControl configuration needs to be customized changing the following setti
 
 The following is a sample ServiceControl configuration file (ServiceControl.exe.config):
 
-<!-- import SCClusterAppSettings -->
+snippet:SCClusterAppSettings
 
 See [Customizing ServiceControl Configuration](/servicecontrol/creating-config-file.md) for more information. 

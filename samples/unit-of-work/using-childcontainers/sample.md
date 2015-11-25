@@ -24,7 +24,7 @@ This sample shows how to share a RavenDB `IDocumentSession` between multiple han
 
 With the UoW in place our handlers can focus solely on the business problem we're solving. Our handler in the sample looks like this:
 
-<!-- import PlaceOrderHandler -->
+snippet:PlaceOrderHandler
 
 Notice how we inject the `IDocumentSession` and then call `.Store` on it.
 
@@ -35,7 +35,7 @@ With RavenDB you need to call `.SaveChanges` explicitly. We'll add a pipeline st
 
 In this sample we'll use a incoming pipeline behavior to handler this.
 
-<!-- import RavenUnitOfWork -->
+snippet:RavenUnitOfWork
 
 Notice how we first call `next()` to invoke the pipeline and if no exception is thrown we'll call `.SaveChanges()` to apply the changes to our database.
 
@@ -44,7 +44,7 @@ Notice how we first call `next()` to invoke the pipeline and if no exception is 
 
 This is a easy as
 
-<!-- import PipelineRegistration -->
+snippet:PipelineRegistration
 
 
 ### Sharing the session between handlers and behavior
@@ -57,7 +57,7 @@ The final piece of the puzzle is disposing of the session. Again the works out o
 
 With this in mind we configure our StructureMap container as follows
 
-<!-- import ContainerConfiguration -->
+snippet:ContainerConfiguration
 
 Notice how we define the session factory as `single instance` and the session as `per call`.
 
@@ -67,4 +67,4 @@ Notice how we define the session factory as `single instance` and the session as
 
 So that no running instance of RavenDB server is required.
 
-<!-- import ravenhost -->
+snippet:ravenhost

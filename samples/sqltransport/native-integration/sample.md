@@ -59,7 +59,7 @@ Armed with this you will now be able to send messages from any app in your organ
 
 So far we've seen how to send from other .NET applications. While that is fine sometimes you'll integrate with old legacy apps where performing sends straight from within the database itself might be a better approach. Just execute the following T-SQL statement and notice how the message is consumed by your NServiceBus endpoint.
 
-<!-- import SendFromTSQL -->
+snippet:SendFromTSQL
 
 ### Using triggers to emit messages
 
@@ -67,11 +67,11 @@ Sometimes you're not allowed to touch the legacy systems you're dealing with and
 
 Let's create a fictive `Orders` table using
 
-<!-- import CreateLegacyTable -->
+snippet:CreateLegacyTable
 
 and create an `on inserted` trigger that will send a `LegacyOrderDetected` message for each new order that we add to the table. Here's the trigger:
 
-<!-- import CreateTrigger -->
+snippet:CreateTrigger
 
 Notice how we generate a unique message id by hashing the identity column. NServiceBus requires each message to have a unique id in order to safely perform retries.
 

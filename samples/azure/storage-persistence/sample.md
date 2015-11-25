@@ -40,24 +40,24 @@ The `Server` endpoint is configured to use the Azure Storage persistence in two 
 
 #### The endpoint configuration
 
-<!-- import Config -->
+snippet:Config
 
 
 #### The app.config
 
 Note the use of `UseDevelopmentStorage` to point to the Azure Storage Emulator. 
 
-<!-- import AppConfig -->
+snippet:AppConfig
 
 
 ### Order Saga Data
 
-<!-- import sagadata -->
+snippet:sagadata
 
 
 ### Order Saga
 
-<!-- import thesaga -->
+snippet:thesaga
 
 
 ## The Data in Azure Storage
@@ -72,17 +72,17 @@ There are several helper methods in `AzureHelper.cs` in the `StorageReader` proj
 
 #### Writing table data
 
-<!-- import WriteOutTable -->
+snippet:WriteOutTable
 
 
 #### Writing blob data
 
-<!-- import WriteOutBlobContainer -->
+snippet:WriteOutBlobContainer
 
 
 #### Using the helpers
 
-<!-- import UsingHelpers -->
+snippet:UsingHelpers
 
 
 ### The Saga Data 

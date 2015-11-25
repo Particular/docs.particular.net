@@ -26,31 +26,31 @@ This sample shows a simple Client + Server scenario.
 
 Configure the endpoint to use RavenDB persistence.
 
-<!-- import config -->
+snippet:config
 
 
 ### In Process Raven Host
 
 So that no running instance of RavenDB server is required.
 
-<!-- import ravenhost -->
+snippet:ravenhost
 
 
 ### Order Saga Data
 
-<!-- import sagadata -->
+snippet:sagadata
 
 
 ### Order Saga
 
-<!-- import thesaga -->
+snippet:thesaga
 
 
 ### Handler Using Raven Session
 
 The handler access the same Raven `ISession` via `ISessionProvider`.
 
-<!-- import handler -->
+snippet:handler
 
 
 ## The Data in RavenDB

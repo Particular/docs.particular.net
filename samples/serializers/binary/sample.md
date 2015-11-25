@@ -10,9 +10,9 @@ This samples uses the Binary Formatter serializer in the core.
 
 ## Configuring to use Binary 
 
-<!-- import config -->
+snippet:config
 
 
 ## The message send
 
-<!-- import message -->
+snippet:message

@@ -31,12 +31,12 @@ The saga shown in the sample is a very simple order management saga that:
 * handles the completition of the payment process;
 * completes the order;
 
-<!-- import TheSagaNHibernate -->
+snippet:TheSagaNHibernate
 
 From the process point of view is important to notice that the saga is not sending to the payment processor the order id instead is sending a payment transaction id, in this scenario we are simulating the fact that a saga can be correlated given more than one unique attribute, such as `OrderId` and `PaymentTransactionId` requiring both to be treated as unique.
 
 At start-up the sample will send a `StartOrder` message. Building a saga finder requires to define a class that implements the `IFindSagas<TSagaData>.Using<TMessage>` interface. The class will be automatically picked up by NServiceBus at configuration time and used each time a message of type `TMessage`, that is expected to load a saga of type `TSagaData`, is received. The `FindBy` method will be invoked by NServiceBus. It is our responsibility to query the saga storage looking for the saga instance:
 
-<!-- import CustomSagaFinderNHibernate -->
+snippet:CustomSagaFinderNHibernate
 
 NOTE: In the sample the implementation of the `ConfigureHowToFindSaga` method, that is required, is empty because we are providing a saga finder for each message type that the saga is handling. It is not required to provide a saga finder for every message type, a mix of standard saga mappings and custom saga finding is a valid scenario.

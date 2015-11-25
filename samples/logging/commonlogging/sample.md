@@ -15,4 +15,4 @@ This sample shows a usage of [CommonLogging](http://netcommon.sourceforge.net/) 
 
 ### Enabling Logging
 
-<!-- import ConfigureLogging -->
+snippet:ConfigureLogging

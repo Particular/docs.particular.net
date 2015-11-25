@@ -19,9 +19,9 @@ A custom written XML serializer.
 
 In certain integration scenarios you might want to bypass NServiceBus opinionated serialization format (essentially key/value pairs) and directly send custom XML structures over messaging. In order to do that you can simply declare one or multiple properties on your message contract as `XDocument` or `XElement`.
 
-<!-- import MessageWithXDocument -->
+snippet:MessageWithXDocument
 
-<!-- import MessageWithXElement -->
+snippet:MessageWithXElement
 
 The caveat of this approach is that the serializer will wrap your data in an outer node being named after the name of the property. So in the examples above you can see the associated expected payloads.
 

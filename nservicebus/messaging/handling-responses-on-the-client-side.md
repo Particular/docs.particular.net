@@ -47,12 +47,12 @@ The integer response scenario allows any integer value to be returned in a stron
 
 #### Send and Callback
 
-<!-- import IntCallback -->
+snippet:IntCallback
 
 
 #### Response
 
-<!-- import IntCallbackResponse -->
+snippet:IntCallbackResponse
 
 
 ### Enum 
@@ -62,12 +62,12 @@ The enum response scenario allows any enum value to be returned in a strong type
 
 #### Send and Callback
 
-<!-- import EnumCallback -->
+snippet:EnumCallback
 
 
 #### Response
 
-<!-- import EnumCallbackResponse -->
+snippet:EnumCallbackResponse
 
 
 ### Object 
@@ -79,21 +79,21 @@ The Object response scenario allows an object instance to be returned.
 
 This feature leverages the message Reply mechanism of the bus and hence the response need to be a message.
 
-<!-- import CallbackResponseMessage -->
+snippet:CallbackResponseMessage
 
 
 #### Send and Callback
 
-<!-- import ObjectCallback -->
+snippet:ObjectCallback
 
 Note: In Version 3 if no handler exists for a received message then NServiceBus will throw an exception. As such for this scenario to operate a fake message handler is needed on the callback side.
 
-<!-- import FakeObjectCallbackHandler -->
+snippet:FakeObjectCallbackHandler
 
 
 #### Response
 
-<!-- import ObjectCallbackResponse -->
+snippet:ObjectCallbackResponse
 
 
 ## Cancellation 
@@ -102,7 +102,7 @@ This API was added in the externalized Callbacks feature.
 
 The asynchronous callback can be canceled by registering a `CancellationToken` provided by a `CancellationTokenSource`. The token needs to be registered on the `SendOptions` as shown below.
 
-<!-- import CancelCallback -->
+snippet:CancelCallback
 
 
 ## When should you use callbacks?

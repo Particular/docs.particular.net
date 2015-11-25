@@ -33,28 +33,28 @@ The solution contains 3 projects
 
 These can be used to decorate messages.
 
-<!-- import attributes -->
+snippet:attributes
 
 
 ### The message definitions
 
 The messages use of the above attributes to control how they are serialized.
 
-<!-- import message-definitions -->
+snippet:message-definitions
 
 
 ### Serialization Mapper
 
 This class interrogates the message information and derives what serializer to use.
 
-<!-- import serialization-mapper -->
+snippet:serialization-mapper
 
 
 ### Behavior Configuration
 
 This replaces the existing serialization behavior and also injects the Serialization Mapper into the container.
 
-<!-- import behavior-configuration -->
+snippet:behavior-configuration
 
 
 ### Behaviors
@@ -64,12 +64,12 @@ This replaces the existing serialization behavior and also injects the Serializa
 
 #### Serialization Behavior
 
-<!-- import serialize-behavior -->
+snippet:serialize-behavior
 
 
 #### Deserialization Behavior
 
-<!-- import deserialize-behavior -->
+snippet:deserialize-behavior
 
 
 ## Running the Code

@@ -37,7 +37,7 @@ And you will get
 
 Both the SLA and Critical time are enabled and configured in you configuration code.
 
-<!-- import enable-counters -->
+snippet:enable-counters
 
 The other counters are enabled by default.
 
@@ -46,7 +46,7 @@ The other counters are enabled by default.
 
 The handler just has a random sleep to give us some fake load. Not that the max random number is greater than the above configured SLA to cause it to occasionally fire.
 
-<!-- import handler -->
+snippet:handler
 
 
 ## Run Solution

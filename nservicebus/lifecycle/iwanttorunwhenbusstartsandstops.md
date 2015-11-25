@@ -66,4 +66,4 @@ NOTE: `StopAsync()` will wait for any outstanding instances of `StartAsync()` to
 
 # Code
 
-<!-- import lifecycle-IWantToRunWhenBusStartsAndStops -->
+snippet:lifecycle-IWantToRunWhenBusStartsAndStops

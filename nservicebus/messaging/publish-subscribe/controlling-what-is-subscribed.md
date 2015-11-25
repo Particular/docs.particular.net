@@ -22,21 +22,21 @@ Messages matching the following criteria will be auto subscribed at startup.
 
 If your selected transport doesn't natively supports publish-subscribe you need to specify the address of the publisher for each event. This is done by [specifying a message owner in the message endpoint mappings](/nservicebus/messaging/message-owner.md). For example:
 
-<!-- import endpoint-mapping-appconfig -->
+snippet:endpoint-mapping-appconfig
 
 
 ### Exclude sagas from auto subscribe
 
 In version 3 and lower events that are only handled by sagas are not subscribed to by default. In version 4 and higher sagas are treated the same as handlers and will cause an endpoint to subscribe to a given event. You can opt-in to the old exclude saga event handling behavior using:
 
-<!-- import DoNotAutoSubscribeSagas -->
+snippet:DoNotAutoSubscribeSagas
 
 
 ### Auto subscribe to plain messages
 
 Before version 4 all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention where automatically subscribed. You can opt-in to the old behavior using:
 
-<!-- import AutoSubscribePlainMessages -->
+snippet:AutoSubscribePlainMessages
 
  
 ### When a subscriber stops or uninstalls
@@ -48,11 +48,11 @@ A Subscriber will not unsubscribe when it stops, it will remain registered at th
 
 You can also choose to **not** have the infrastructure automatically subscribe using the configuration API
 
-<!-- import DisableAutoSubscribe -->
+snippet:DisableAutoSubscribe
 
 
 ## How to manually subscribe to a message?
 
 To manually subscribe and unsubscribe from a message:
 
-<!-- import ExplicitSubscribe -->
+snippet:ExplicitSubscribe

@@ -29,11 +29,11 @@ NOTE: If self hosting, like we'll do later in this article for Web Roles, you ca
 
 To integrate the NServiceBus generic host into the worker role entry point, all you need to do is create a new instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override.
 
-<!-- import HostingInWorkerRole -->
+snippet:HostingInWorkerRole
 
 Next to starting the role entry point, you also need to define how you want your endpoint to behave. As we're inside worker roles most of the time, the role has been conveniently named `AsA_Worker`. Furthermore you also need to specify the transport that you want to use, using the `UseTransport<T>` , as well the persistence that you want to use, using the `UsePersistence<T>` configuration methods.
 
-<!-- import ConfigureEndpoint -->
+snippet:ConfigureEndpoint
 
 This will integrate and configure the default infrastructure for you, being:
 
@@ -127,7 +127,7 @@ Usually you will want to run NServiceBus as a client in the IIS process though. 
 
 The configuration API is used with the following extension methods to achieve the same behavior as the generic `AsA_worker`:
 
-<!-- import HostingInWebRole -->
+snippet:HostingInWebRole
 
 a short explanation of each:
 
@@ -150,4 +150,4 @@ Azure host is terminated on critical errors by default. When host is terminated,
 Azure host is not terminated on critical errors by default and only shuts down the bus. This would cause role not to process messages until host (role) is restarted.
 To address this, implement critical errors handling code that shuts down the host.
 
-<!-- import DefineCriticalErrorActionForAzureHost -->
+snippet:DefineCriticalErrorActionForAzureHost

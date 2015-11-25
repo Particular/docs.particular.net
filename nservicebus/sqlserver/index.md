@@ -54,7 +54,7 @@ The SQL Server transport can work in three modes with regards to transactions. T
 
 The ambient transaction mode is selected by default. It relies or `Transactions.Enabled` setting being set to `true` and `Transactions.SuppressDistributedTransactions` being set to false. One needs to only select the transport:
 
-<!-- import sqlserver-config-transactionscope -->
+snippet:sqlserver-config-transactionscope
 
 When in this mode, the receive operation is wrapped in a `TransactionScope` together with the message processing in the pipeline. This means that usage of any other persistent resource manager (e.g. RavenDB client, another `SqlConnection` with different connection string) will cause escalation of the transaction to full two-phase commit protocol handled via Distributed Transaction Coordinator (MS DTC).
 
@@ -63,7 +63,7 @@ When in this mode, the receive operation is wrapped in a `TransactionScope` toge
 
 The native transaction mode requires both `Transactions.Enabled` and `Transactions.SuppressDistributedTransactions` to be set to `true`. It can be selected via
 
-<!-- import sqlserver-config-native-transactions -->
+snippet:sqlserver-config-native-transactions
 
 When in this mode, the receive operation is wrapped in a plain ADO.NET `SqlTransaction`. Both connection and the transaction instances are attached to the pipeline context under these keys `SqlConnection-{ConnectionString}` and `SqlTransaction-{ConnectionString}` and are available for user code so that the updates to user data can be done atomically with queue receive operation.
 
@@ -72,7 +72,7 @@ When in this mode, the receive operation is wrapped in a plain ADO.NET `SqlTrans
 
 The no transaction mode requires `Transactions.Enabled` to be set to false which can be achieved via following API call:
 
-<!-- import sqlserver-config-no-transactions -->
+snippet:sqlserver-config-no-transactions
 
 When in this mode, the receive operation is not wrapped in any transaction so it is executed by the SQL Server in its own implicit transaction.
 
@@ -88,11 +88,11 @@ For each endpoint there is a single primary queue table which name matches the n
 
 In order for callbacks e.g.
 
-<!-- import sqlserver-config-callbacks -->
+snippet:sqlserver-config-callbacks
 
 to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is necessary because callback handlers are stored in-memory in the node that did the send. The reply is sent via:
 
-<!-- import sqlserver-config-callbacks-reply -->
+snippet:sqlserver-config-callbacks-reply
 
 should be delivered to this special queue so that it is picked up by the same node that registered the callback.
 
@@ -100,7 +100,7 @@ Secondary queue tables have the name of the machine appended to the name of the 
 
 Secondary queues are enabled by default. In order to disable them, one must use the configuration API:
 
-<!-- import sqlserver-config-disable-secondaries -->
+snippet:sqlserver-config-disable-secondaries
 
 Secondary queues use same adaptive concurrency model to the primary queue. Secondary queues (and hence callbacks) are disabled for satellite receivers.
 
@@ -129,15 +129,15 @@ By adding a connection named `NServiceBus/Transport` in the `connectionStrings` 
 
 By using the `ConnectionString` extension method. 
 
-<!-- import sqlserver-config-connectionstring -->
+snippet:sqlserver-config-connectionstring
 
 
 ### Via a named connection string
 
 By using the `ConnectionStringName` extension method.
  
-<!-- import sqlserver-named-connection-string -->
+snippet:sqlserver-named-connection-string
 
 Combined with a named connection in the `connectionStrings` node of you `app.config`.
 
-<!-- import sqlserver-named-connection-string-xml -->
+snippet:sqlserver-named-connection-string-xml

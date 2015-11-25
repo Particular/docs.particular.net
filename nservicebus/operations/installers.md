@@ -51,7 +51,7 @@ The installers are controlled by both the `/install` command line option to the 
 
 When self hosting NServiceBus, invoke the installers manually, using this:
 
-<!-- import Installers -->
+snippet:Installers
 
 NOTE: The use of `/installInfrastructure` flag with the `NServiceBus.Host` has been deprecated in version 4.0. To install needed infrastructure, use the [PowerShell commandlets](management-using-powershell.md) instead.
 

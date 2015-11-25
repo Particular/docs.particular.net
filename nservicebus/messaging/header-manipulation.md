@@ -24,17 +24,17 @@ Headers can be read for an incoming message.
 
 ### From a Behavior
 
-<!-- import header-incoming-behavior -->
+snippet:header-incoming-behavior
 
 
 ### From a Mutator
 
-<!-- import header-incoming-mutator -->
+snippet:header-incoming-mutator
 
 
 ### From a Handler
 
-<!-- import header-incoming-handler -->
+snippet:header-incoming-handler
 
 
 ### From a Saga
@@ -49,22 +49,22 @@ Headers can be written for an outgoing message.
 
 ### From a Behavior
 
-<!-- import header-outgoing-behavior -->
+snippet:header-outgoing-behavior
 
 
 ### From a Mutator
 
-<!-- import header-outgoing-mutator -->
+snippet:header-outgoing-mutator
 
 
 ### From a Handler
 
-<!-- import header-outgoing-handler -->
+snippet:header-outgoing-handler
 
 
 ### From a Saga
 
-<!-- import header-outgoing-saga -->
+snippet:header-outgoing-saga
 
 
 ### For all outgoing messages

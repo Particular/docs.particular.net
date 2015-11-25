@@ -59,11 +59,11 @@ RavenDB integration, in both the core and the externalized versions is configure
 
 So where you would previously do :
 
-<!-- import OldRavenDBPersistenceInitialization -->
+snippet:OldRavenDBPersistenceInitialization
 
 You now will use:
 
-<!-- import Version2_5RavenDBPersistenceInitialization -->
+snippet:Version2_5RavenDBPersistenceInitialization
 
 
 ## NServiceBus 3: ILMerged into the Core 

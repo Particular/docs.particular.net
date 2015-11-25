@@ -29,7 +29,7 @@ This sample shows a simple two endpoint scenario.
 
 The `Server` endpoint is configured to use the Azure Storage persistence in two locations.
 
-<!-- import Config -->
+snippet:Config
 
 Some things to note:
 

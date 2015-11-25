@@ -115,7 +115,7 @@ Another type of data being persisted by NServiceBus is timeouts. Because NServic
 
 Writing a timeout persister can be done by implementing the interfaces shown below:
 
-<!-- import PersistTimeoutsInterfaces -->
+snippet:PersistTimeoutsInterfaces
 
 The `TimeoutData` class holds timeout related data, like the `Time` it needs to fire at and the `SagaId` it is associated with. As a general rule, you should not use this class directly for persistence, but use another persistence class when possible and use the unique ID generation offered by the persistence you use.
 

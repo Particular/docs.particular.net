@@ -8,7 +8,7 @@ redirects:
 
 To handle a message, write a class that implements `IHandleMessages<T>` where `T` is the message type:
 
-<!-- import CreatingMessageHandler -->
+snippet:CreatingMessageHandler
 
 To handle messages of all types:
 
@@ -17,7 +17,7 @@ To handle messages of all types:
 
 Since this class is setup to handle type `Object`, every message arriving in the queue will trigger it.
 
-<!-- import GenericMessageHandler -->
+snippet:GenericMessageHandler
 
 If you are using the Request-Response or Full Duplex pattern, your handler will probably do the work it needs to do, such as updating a database or calling a web service, then creating and sending a response message. See [How to Reply to a Message](/nservicebus/messaging/reply-to-a-message.md).
 

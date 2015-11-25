@@ -20,7 +20,7 @@ Run the solution. Two console applications should start up, `Client` and `Server
 
 Look at the `ConventionExtensions` in the `SharedConventions` project. The code tells NServiceBus how to determine which types are message definitions by passing in your own conventions, instead of using the `IMessage`, `ICommand`, or `IEvent` interfaces:
 
-<!-- import CustomConvention -->
+snippet:CustomConvention
 
 The code tells NServiceBus to treat all types with a namespace that ends with "Messages" the same as for messages that explicitly implement `IMessage`.
 

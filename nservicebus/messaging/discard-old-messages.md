@@ -22,12 +22,12 @@ To discard a message when a specific time interval has elapsed:
 
 ## Using an Attribute
 
-<!-- import DiscardingOldMessagesWithAnAttribute -->
+snippet:DiscardingOldMessagesWithAnAttribute
 
 
 ## Using your own convention
 
-<!-- import DiscardingOldMessagesWithCode -->
+snippet:DiscardingOldMessagesWithCode
 
 ## Caveats
 TimeToBeReceived relies on underlying functionality in the transport infrastructure to discard expired messages. This feature's usefulness is highly affected by the actual implementation in the different transports.

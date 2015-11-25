@@ -67,7 +67,7 @@ When you configure the client endpoint, make sure that the [Message Owner](/nser
 
 To send a message to a remote site, use the `SendToSites` API call, as shown:
 
-<!-- import SendToSites -->
+snippet:SendToSites
 
 This values (`SiteA` and `SiteB`) is the list of remote sites where you want the message(s) sent. 
 
@@ -78,23 +78,23 @@ While you can put the URLs of the site directly in the call, we recommend that y
 
 #### Using App.Config
 
-<!-- import GatewaySitesAppConfig -->
+snippet:GatewaySitesAppConfig
 
 
 If you prefer to specify this physical routing in code:
 
 #### Using a IConfigurationProvider
 
-<!-- import GatewaySitesConfigurationProvider -->
+snippet:GatewaySitesConfigurationProvider
 
 
 #### Using a ConfigurationSource
 
-<!-- import GatewaySitesConfigurationSource -->
+snippet:GatewaySitesConfigurationSource
 
 Then at configuration time:
 
-<!-- import UseCustomConfigurationSourceForGatewaySitesConfig -->
+snippet:UseCustomConfigurationSourceForGatewaySitesConfig
 
 
 
@@ -131,22 +131,22 @@ When you enable the gateway, it automatically sets up an HTTP channel to listen 
 
 #### Using App.Config
 
-<!-- import GatewayChannelsAppConfig -->
+snippet:GatewayChannelsAppConfig
 
 If you prefer to specify this physical routing in code:
 
 #### Using a IConfigurationProvider
 
-<!-- import GatewayChannelsConfigurationProvider -->
+snippet:GatewayChannelsConfigurationProvider
 
 
 #### Using a ConfigurationSource
 
-<!-- import GatewayChannelsConfigurationSource -->
+snippet:GatewayChannelsConfigurationSource
 
 Then at configuration time:
 
-<!-- import UseCustomConfigurationSourceForGatewayChannelsConfig -->
+snippet:UseCustomConfigurationSourceForGatewayChannelsConfig
 
 
 The `Default` on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels. 

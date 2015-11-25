@@ -20,13 +20,13 @@ The simplest way to access the data in an *exactly-once* way is to just lean on 
 
 NServiceBus persistence APIs offer a solution to these problems but limits the data storage choices. The NHibernate persistence allows you too 'hook-up' to the data context used by NServiceBus to ensure atomic changes.
 
-<!-- import NHibernateAccessingDataViaContext -->
+snippet:NHibernateAccessingDataViaContext
 
 As shown above, you can use the `NHibernateStorageContext` directly but we recommend other approach, shown in the listing below
 
-<!-- import NHibernateAccessingDataDirectlyConfig -->
+snippet:NHibernateAccessingDataDirectlyConfig
 
-<!-- import NHibernateAccessingDataDirectly -->
+snippet:NHibernateAccessingDataDirectly
 
 The first part tell NServiceBus to inject the `ISession` instance into the handlers. This way your handlers are less coupled NServiceBus APIs and won't need to change should the API change in future. This `ISession` object is fully managed by NServiceBus according to the best practices defined by NServiceBus documentation with regards to transactions.
 
@@ -35,7 +35,7 @@ The first part tell NServiceBus to inject the `ISession` instance into the handl
 
 If you need some special behavior in the `ISession` object managed by NServiceBus, you can hook-up to the session creation process by providing your own delegate.
 
-<!-- import CustomSessionCreation -->
+snippet:CustomSessionCreation
 
 NOTE: Customizing the way session is opened works only for the 'shared' session that is used to access business/user, Saga and Outbox data. It does not work for other persistence concerns such as Timeouts or Subscriptions.
 

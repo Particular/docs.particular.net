@@ -109,7 +109,7 @@ license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;201
 
 As a developer you can specify the license to use in your configuration code:
 
-<!-- import License -->
+snippet:License
 
 ## Where does NServiceBus look for a license?
 

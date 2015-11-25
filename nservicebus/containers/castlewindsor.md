@@ -26,10 +26,10 @@ http://www.nuget.org/packages/NServiceBus.CastleWindsor/
 
 #### Default Usage
 
-<!-- import CastleWindsor -->
+snippet:CastleWindsor
 
 
 #### Existing Container Instance
 
-<!-- import CastleWindsor_Existing -->
+snippet:CastleWindsor_Existing
 

@@ -105,7 +105,7 @@ NServiceBus.Host.exe NServiceBus.Master
 
 When you [self host](/nservicebus/hosting/) your endpoint, use this configuration:
  
-<!-- import ConfiguringDistributor -->
+snippet:ConfiguringDistributor
 
 NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
@@ -169,7 +169,7 @@ For some extensibility scenarios it may be helpful to check if the endpoint is r
 
 ### Is running as a Worker
 
-<!-- import IsWorkerEnabled -->
+snippet:IsWorkerEnabled
  
 
 ## Routing with the Distributor

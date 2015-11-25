@@ -21,7 +21,7 @@ This approach has a downside of very poor performance in high-contention scenari
 
 The `RowVersion` attribute can be used to explicitly denote a property that should be used for optimistic concurrency control
 
-<!-- import NHibernateConcurrencyRowVersion -->
+snippet:NHibernateConcurrencyRowVersion
 
 That property will be included by NHibernate in the `SELECT` and `UPDATE` SQL statements causing concurrency violation error to be raised in case of concurrent updates. 
 
@@ -32,4 +32,4 @@ NOTE: Marking a property with `RowVersion` **does not** disable the pessimistic 
 
 The `LockMode` attribute can be used to override the default locking strategy. 
 
-<!-- import NHibernateConcurrencyLockMode -->
+snippet:NHibernateConcurrencyLockMode

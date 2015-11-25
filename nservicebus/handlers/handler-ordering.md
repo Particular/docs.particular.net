@@ -19,12 +19,12 @@ The inference here is that the remaining handlers (not specified in the order) a
 
 ### With the configuration API
 
-<!-- import HandlerOrderingWithCode -->
+snippet:HandlerOrderingWithCode
 
 #### Specifying one to run first
 
-<!-- import HandlerOrderingWithFirst -->
+snippet:HandlerOrderingWithFirst
 
 #### Specifying multiple to run ordered
 
-<!-- import HandlerOrderingWithMultiple -->
+snippet:HandlerOrderingWithMultiple

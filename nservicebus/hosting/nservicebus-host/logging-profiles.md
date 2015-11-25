@@ -48,7 +48,7 @@ To specify logging for a given profile, write a class that implements `IConfigur
 
 To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type.
 
-<!-- import LoggingConfigWithProfile -->
+snippet:LoggingConfigWithProfile
  
 Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
 

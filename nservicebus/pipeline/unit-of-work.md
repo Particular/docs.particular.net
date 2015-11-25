@@ -15,7 +15,7 @@ When using a framework like NServiceBus you usually need to create your own unit
 
 To create your unit of work, implement the `IManageUnitsOfWork` interface. 
 
-<!-- import UnitOfWorkImplementation -->
+snippet:UnitOfWorkImplementation
 
 The semantics are that `Begin()` is called when the transport messages enters the pipeline. Remember that a transport message can consist of multiple application messages. This allows you to do any setup that is required. 
 
@@ -28,7 +28,7 @@ This gives you a way to perform different actions depending on the outcome of th
 After implementing a `IManageUnitsOfWork`, you now need to register it with NServiceBus. 
 Here's an example of how to register your unit of work:  
 
-<!-- import InstancePerUnitOfWorkRegistration -->
+snippet:InstancePerUnitOfWorkRegistration
 
 NOTE: If you prefer, you can do the registration of the Unit of work by implementing the `INeedInitialization` in the same class that implements `IManageUnitsOfWork`.
 

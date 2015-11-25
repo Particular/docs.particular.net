@@ -36,7 +36,7 @@ To subscribe to the `MessageFailed` event:
 - Install the [ServiceControl.Contracts nuget package](https://www.nuget.org/packages/ServiceControl.Contracts/).
 - Add the message mapping in the `UnicastBusConfig` section of the endpoint's app.config so that this endpoint will subscribe to the events from ServiceControl as shown:
 
-<!-- import ServiceControlEventsXmlConfig -->
+snippet:ServiceControlEventsXmlConfig
 
 - Customize the endpoint configuration to use `JsonSerializer` as the message published by ServiceControl uses Json serialization
 - Also customize the endpoint configuration such that the following conventions are used, as the `MessageFailed` event that is published by ServiceControl does not derive from `IEvent`. 
@@ -45,11 +45,11 @@ NOTE: It's important that integration endpoints doesn't use the same `error` and
 
 The code sample to do both customizations is as shown below:
 
-<!-- import ServiceControlEventsConfig -->
+snippet:ServiceControlEventsConfig
 
 - The endpoint will also need a message handler, that handles the `MessageFailed` event. In the following example, there is also a simple HTTP call to HipChat's API to show how you could integrate with a 3rd party system to provide notification of the error.
 
-<!-- import MessageFailedHandler -->
+snippet:MessageFailedHandler
 
 
 ### Common information contained in events

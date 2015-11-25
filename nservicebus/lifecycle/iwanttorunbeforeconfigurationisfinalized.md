@@ -23,4 +23,4 @@ Once created `Run(...)` is called on each instance. These calls are made sequent
 
 Exceptions thrown by instances of `IWantToRunBeforeConfigurationIsFinalized` are unhandled by NServiceBus. These will bubble up to the caller creating the bus.
 
-<!-- import lifecycle-iwanttorunbeforeconfigurationisfinalized -->
+snippet:lifecycle-iwanttorunbeforeconfigurationisfinalized

@@ -11,7 +11,7 @@ redirects:
 
 To change the default and extend the wait time:
 
-<!-- import TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages  -->
+snippet:TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages 
 
 
 

@@ -33,14 +33,14 @@ This test says that when a message of the type `RequestMessage` is processed by 
 
 ## Testing a Saga
 
-<!-- import TestingSaga -->
+snippet:TestingSaga
 
 
 ## Configuring unobtrusive message conventions
 
 If you are using [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md) you need to configure the unit test support with those conventions as shown below.
 
-<!-- import SetupConventionsForUnitTests -->
+snippet:SetupConventionsForUnitTests
 
 
 ### Testing interface messages
@@ -52,7 +52,7 @@ To support testing of interface messages version 5 introduces a `.WhenHandling<T
 
 It is the responsibility of the message handlers in the service layer to use data from headers found in the request to make decisions, and to set headers for the response messages. This is how such functionality can be tested:
 
-<!-- import TestingHeaderManipulation -->
+snippet:TestingHeaderManipulation
 
 This test asserts that the value of the outgoing header has been set.
 
@@ -61,4 +61,4 @@ This test asserts that the value of the outgoing header has been set.
 
 Many of the message handling classes in the service layer make use of other objects to perform their work. When testing these classes, replace those objects with "stubs" so that the class under test is isolated. Here's how:
 
-<!-- import TestingAdditionalDependencies -->
+snippet:TestingAdditionalDependencies

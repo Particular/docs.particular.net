@@ -12,7 +12,7 @@ related:
 
 Inherited from `NServiceBus.WcfService<TCommand, TErrorCode>`, as shown below. `TCommand` is the message type of the request. `TErrorCode` must be an enumerated type, and should represent the result of processing the command. Example:
 
-<!-- import ExposeWCFService -->
+snippet:ExposeWCFService
 
 NOTE: After version 4 of NServiceBus `WcfService<TCommand, TErrorCode>` has been moved to [NServiceBus.Host nuget package](http://www.nuget.org/packages/NServiceBus.Host), so you need to reference this package.
 

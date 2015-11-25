@@ -49,7 +49,7 @@ Although the execution order of the built-in pipeline cannot be changed, it is p
 
 A message behavior is a class that implements the `IBehavior<TContext>` interface:
 
-<!-- import SamplePipelineBehavior -->
+snippet:SamplePipelineBehavior
 
 In the above code snippet the `SampleBehavior` class implements the `IBehavior<IncomingContext>` interface. This tells the framework to execute this behavior against the incoming pipeline. If you want to create a behavior that needs to be applied to the outgoing pipeline, implement the `IBehavior<OutgoingContext>` instead. 
 
@@ -77,14 +77,14 @@ To do this:
 1. Create a class that implements `RegisterStep`.
 2. Register the step itself in the pipeline.
 
-<!-- import NewStepInPipeline -->
+snippet:NewStepInPipeline
 
 
 ### How to replace behavior of a built-in step?
 
 We can also replace existing behaviors using the `Replace` method and passing as the first argument the `id` of the step we want to replace. For example:
 
-<!-- import ReplacePipelineStep -->
+snippet:ReplacePipelineStep
 
 
 ## Exception Handling

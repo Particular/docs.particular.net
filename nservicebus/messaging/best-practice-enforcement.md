@@ -16,8 +16,8 @@ BETA: In version 6 you can now override the default behavior
 
 You can now turn this feature on and off on the endpoint level using:
 
-<!-- import DisableBestPracticeEnforcementPerEndpoint -->
+snippet:DisableBestPracticeEnforcementPerEndpoint
 
 or at the message level using:
 
-<!-- import DisableBestPracticeEnforcementPerMessage -->
+snippet:DisableBestPracticeEnforcementPerMessage

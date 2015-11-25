@@ -9,11 +9,11 @@ redirects:
 To send a message, use the `Send` method on the `IBus` interface, passing as the argument the instance of the message to deliver:
 
 
-<!-- import BasicSend -->
+snippet:BasicSend
 
  Or instantiate and send all messages at once:
 
-<!-- import BasicSendInterface -->
+snippet:BasicSendInterface
 
 ## Immediate Dispatch
 
@@ -21,7 +21,7 @@ While its usually best to let NServiceBus [handle exceptions for you](/nserviceb
 
 In order to request immediate dispatch you can use the following syntax.
 
-<!-- import RequestImmediateDispatch -->
+snippet:RequestImmediateDispatch
 
 NOTE: By specifying immediate dispatch, outgoing messages are not [batched](/nservicebus/messaging/batched-dispatch.md) or enlisted in the current receive transaction even if the transport has support for it.
 
@@ -29,7 +29,7 @@ NOTE: By specifying immediate dispatch, outgoing messages are not [batched](/nse
 
 Version 6 and below allows you to suppress the ambient transaction in order to have the outgoing message sent immediately.
 
-<!-- import RequestImmediateDispatchUsingScope -->
+snippet:RequestImmediateDispatchUsingScope
 
 The issue with this approach is that it only works for transports that enlists the receive operation in a transaction scope. Currently this would be MSMQ and SqlServer in DTC mode. Should you use any other transport or disable the DTC this no longer works and the outgoing message might be rolled back together with the incoming message. 
 

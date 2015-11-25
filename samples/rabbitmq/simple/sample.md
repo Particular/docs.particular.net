@@ -13,7 +13,7 @@ This sample shows a basic usage of RabbitMQ as a transport for NServiceBus.
 
 ### Enable RabbitMQ
 
-<!-- import ConfigureRabbit -->
+snippet:ConfigureRabbit
 
 ### Configuring RabbitMQ
 

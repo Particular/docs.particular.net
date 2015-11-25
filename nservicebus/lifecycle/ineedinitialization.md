@@ -27,4 +27,4 @@ Exceptions thrown by instances of `INeedInitialization` are unhandled by NServic
 
 NOTE: Instances of `INeedInitialization` are created after type-scanning has occurred. You should not attempt to alter the types to be scanned from an instance of `INeedInitialization`.
 
-<!-- import lifecycle-ineedinitialization -->
+snippet:lifecycle-ineedinitialization

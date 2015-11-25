@@ -21,7 +21,7 @@ The "With SLR" endpoint uses the standard SLR settings.
 
 The "Disable SLR" endpoint disables SLR with the following
 
-<!-- import DisableSLR -->
+snippet:DisableSLR
 
 
 ## The output

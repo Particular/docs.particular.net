@@ -25,4 +25,4 @@ Another deployment where it is needed for the user to manage these settings is w
 
 ## How do I override an endpoint host identifier
 
-<!-- import HostIdFixer -->
+snippet:HostIdFixer

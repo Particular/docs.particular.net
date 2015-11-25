@@ -28,7 +28,7 @@ The initial Saga and Data structure
 
 For simplicity a very simple saga data is being used in this sample.
 
-<!-- import dataV1 -->
+snippet:dataV1
 
 
 ### Saga
@@ -40,7 +40,7 @@ The saga behaves as follows
  * Handles `IncrementOrder` which increments the order count.
  * Correlates on `OrderId`
 
-<!-- import saga -->
+snippet:saga
 
 
 ## Mutating an existing Saga Data
@@ -49,14 +49,14 @@ One common scenario for evolving a saga data is to change the internal structure
 
 In this example the `ItemCount` property will be renamed to `NumberOfItems`.
 
-<!-- import dataV2 -->
+snippet:dataV2
 
 One way of achieving this is to leverage they [RavenDb Conversion API](http://ravendb.net/search?q=IDocumentConversionListener) to convert a saga data when it reads. 
 
 
 ### Converter
 
-<!-- import Converter -->
+snippet:Converter
 
 
 #### Reading
@@ -79,7 +79,7 @@ Since in this case we want to have Version 1 and Version 2 side-by-side compatib
 
 The converter must be registered in the `DocumentStore` at startup.
 
-<!-- import registerConverter -->
+snippet:registerConverter
 
 
 WARNING: This approach is not suitable for renaming a saga data property that is being used for [mapping a message to a saga](/nservicebus/sagas/#starting-and-correlating-sagas).
@@ -91,7 +91,7 @@ Another common scenario is to rename a saga
 
 So for example take the `OrderSagaData` and it needs to be pluralized to `OrdersSagaData`, which is a completely new type.
 
-<!-- import dataV3 -->
+snippet:dataV3
 
 RavenDB does not support changing the underlying document id. This means the only way of fully renaming a document is to take the following steps:
 
@@ -118,14 +118,14 @@ Both of these actions leverage the following Raven APIs:
  * [Batch Delete](http://ravendb.net/search?q=DeleteCommandData)
  * [Type Conventions](http://ravendb.net/search?q=Type%20Conventions) 
 
-<!-- import renamer -->
+snippet:renamer
 
 
 ### Using the Rename
 
 This rename code can be invoked as part of a migration. In this case it is bundled in a console application.
 
-<!-- import rename -->
+snippet:rename
 
 Similar migration code could also be written in PowerShell or [ScriptCS](https://github.com/scriptcs/scriptcs).
 
@@ -134,7 +134,7 @@ Similar migration code could also be written in PowerShell or [ScriptCS](https:/
 
 The above code used some RavenDB helper methods to help simplify the code.
 
-<!-- import RavenExtensions -->
+snippet:RavenExtensions
 
 
 ### Performance

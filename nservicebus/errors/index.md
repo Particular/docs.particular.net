@@ -25,12 +25,12 @@ Error queue can be configured in several ways.
 
 You can configure the target error queue at configuration time.
 
-<!-- import ErrorWithCode -->
+snippet:ErrorWithCode
 
 
 ### Using a IConfigurationProvider 
 
-<!-- import ErrorQueueConfigurationProvider -->
+snippet:ErrorQueueConfigurationProvider
 
 
 ### Using a ConfigurationSource
@@ -39,12 +39,12 @@ You can configure the target error queue at configuration time.
 
 Then at configuration time:
 
-<!-- import UseCustomConfigurationSourceForErrorQueueConfig -->
+snippet:UseCustomConfigurationSourceForErrorQueueConfig
 
 
 ### Using App.Config
 
-<!-- import configureErrorQueueViaXml -->
+snippet:configureErrorQueueViaXml
 
 NOTE: In NServiceBus version 3.x the `ErrorQueue` settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
 

@@ -26,7 +26,7 @@ If you don't want your process to have its configuration specified in the config
 
 ### Initialize the bus to use the custom configuration source
  
-<!-- import RegisterCustomConfigSource -->
+snippet:RegisterCustomConfigSource
 
 
 ### Define your custom configuration source to provide the configuration values instead of app.config

@@ -10,7 +10,7 @@ related:
 
 When working in a message-driven environment you cannot make assumptions about when the next message will arrive. While the connection-less nature of messaging prevents a system from consuming resources while waiting, there is usually an upper limit on how long from a business perspective to wait. At that point, some business-specific action should be taken, as shown:
 
-<!-- import saga-with-timeout -->
+snippet:saga-with-timeout
 
 The `RequestTimeout<T>` method tells NServiceBus to send a message to the Timeout Manager which durably keeps time for us. The Timeout manager is enabled by default, so there is no configuration needed to get this up and running.
 

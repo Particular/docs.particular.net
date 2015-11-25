@@ -27,11 +27,11 @@ There are two ways of telling NServiceBus what properties to encrypt.
 
 Given a message of this convention 
 
-<!-- import MessageForEncryptionConvention -->
+snippet:MessageForEncryptionConvention
 
 You can encrypt `MyEncryptedProperty` using `DefiningEncryptedPropertiesAs`.
 
-<!-- import DefiningEncryptedPropertiesAs -->
+snippet:DefiningEncryptedPropertiesAs
 
 
 #### Property type
@@ -45,7 +45,7 @@ You can also use the `WireEncryptedString` type to flag that a property should b
 
 Property encryption is enabled via the configuration API. 
 
-<!-- import EncryptionServiceSimple -->
+snippet:EncryptionServiceSimple
 
 
 #### Key identifier
@@ -127,7 +127,7 @@ The encryption key can be defined in the `app.config`.
 
 #### IProvideConfiguration
 
-<!-- import EncryptionFromIProvideConfiguration -->
+snippet:EncryptionFromIProvideConfiguration
 
 For more info on `IProvideConfiguration` see [Customizing NServiceBus Configuration](/nservicebus/hosting/custom-configuration-providers.md)
 
@@ -136,7 +136,7 @@ For more info on `IProvideConfiguration` see [Customizing NServiceBus Configurat
 
 NOTE: Defining encryption keys via the configuration API is only supported in version 5 and up. 
 
-<!-- import EncryptionFromCode -->
+snippet:EncryptionFromCode
 
 
 ### Multi-Key decryption 
@@ -154,7 +154,7 @@ To take full control over how properties are encrypted you can replace the `IEnc
 
 This allows you to explicitly handled the encryption and decryption of each value. So for example if you want to use an algorithm other than Rijndael.
 
-<!-- import EncryptionFromIEncryptionService -->
+snippet:EncryptionFromIEncryptionService
 
 
 ## Message Encryption
@@ -163,8 +163,8 @@ Message encryption leverages the pipeline to apply encryption to the whole messa
 
 Once way of achieving this is using a `IMutateTransportMessages`.
 
-<!-- import MessageBodyEncryptor -->
+snippet:MessageBodyEncryptor
 
 The this class can be then injected into the container using the following
 
-<!-- import UsingMessageBodyEncryptor -->
+snippet:UsingMessageBodyEncryptor

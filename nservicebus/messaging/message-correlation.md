@@ -13,4 +13,4 @@ From an message payload perspective the `Correlation Id` is just an ordinary [me
 
 NServiceBus handles this automatically for you but should you need full control over the `Correlation Id` for integration purposes you can use the following code when sending your message
 
-<!-- import custom-correlationid -->
+snippet:custom-correlationid

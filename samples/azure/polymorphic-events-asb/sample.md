@@ -30,9 +30,9 @@ This sample has two endpoints.
 
 `DerivedEvent` event is derived from `BaseEvent` event. The difference between the two events is an additional piece of information provided with the `DerivedEvent` in form of the `Data` property.
 
-<!-- import BaseEvent -->
+snippet:BaseEvent
 
-<!-- import DerivedEvent -->
+snippet:DerivedEvent
 
 
 ## Publisher
@@ -66,9 +66,9 @@ Events.BaseEvent, Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 
 Both filters will pick the `DerivedEvent` message, causing duplicate delivery to the `Subscriber`. NServiceBus `Subscriber` endpoint will invoke handlers for each type that message implements. End result will be multiple invocations for the same message.
 
-<!-- import PublisherOutput -->
+snippet:PublisherOutput
 
-<!-- import SubscriberOutput -->
+snippet:SubscriberOutput
 
 
 ### How to address this?
@@ -79,11 +79,11 @@ To address this in general and allow proper handling of polymorphic events, `Sub
 1. Subscribe explicitly to the base events only of polymorphic events.
 1. Subscribe explicitly to the non-polymorphic events it's interested in.
 
-<!-- import DisableAutoSubscripton -->
+snippet:DisableAutoSubscripton
 
 When an event is a polymorphic event, such as `DerivedEvent`, endpoint will subscribe to the **base event** only.
 
-<!-- import ControledSubscriptions -->
+snippet:ControledSubscriptions
 
 For this sample, configuring `Subscriber` as described above, will create the topology that only has `BaseEvent` subscription serving as "catch-all".
 
@@ -91,6 +91,6 @@ For this sample, configuring `Subscriber` as described above, will create the to
 
 Results of the sample now adhere to the expected polymorphic message handling 
 
-<!-- import PublisherOutput-from-sample -->
+snippet:PublisherOutput-from-sample
 
-<!-- import SubscriberOutput-from-sample -->
+snippet:SubscriberOutput-from-sample

@@ -70,18 +70,18 @@ In an ideal world the topmost layer of unicast routing would decide, given a mes
 
 Static routes in NServiceBus are similar to static routes in the IP routing protocols. The `UnicastRoutingTable` class provides a number of convenience methods that let you register a static route which is defined by a pair of `Type` and `DirectRoutingDestination`.
 
-<!-- import Routing-StaticRoutes -->
+snippet:Routing-StaticRoutes
 
 
 #### Dynamic routes
 
 Dynamic routes are meant to provide a convenient extensibility point that can be used both by users and NServiceBus add-ons. To add a dynamic route you need to pass a function that takes a `Type` and a `ContextBag` containing the context of current message processing and returns a collection of destinations. The function is called each time any message is being send so you need to take performance into account (e.g. use caching if the destinations are to be fetched from a database).
 
-<!-- import Routing-DynamicRoutes -->
+snippet:Routing-DynamicRoutes
 
 Following example shows how you could implement a shared-store based routing where destinations of messages are managed e.g. in a database.
 
-<!-- import Routing-CustomRoutingStore -->
+snippet:Routing-CustomRoutingStore
 
 NOTE: The function passed to the `AddDynamic` call is executed **each time** a message is sent so it is essential to make sure it is performant (e.g. by caching the results if getting the result requires crossing a process boundary).
 
@@ -99,7 +99,7 @@ The default behavior of the second step is to select a single instance in a roun
 
 The `KnownEndpoints` class provides a number of convenience methods that let you register a static mapping.
 
-<!-- import Routing-StaticEndpointMapping -->
+snippet:Routing-StaticEndpointMapping
 
 
 
@@ -107,7 +107,7 @@ The `KnownEndpoints` class provides a number of convenience methods that let you
 
 Dynamic mapping is meant to provide a convenient extension point for both users and NServiceBus add-ons. To add a dynamic mapping rule you need to pass a function that takes an endpoint name and returns a collection of endpoint instance names. 
 
-<!-- import Routing-DynamicEndpointMapping -->
+snippet:Routing-DynamicEndpointMapping
 
 In this example the rule returns two instances passing both user-provided (1, 2) and transport-provided (A, B) discriminators.
 
@@ -121,13 +121,13 @@ The bottom layer is responsible for mapping between the instance name and a tran
 
 Sometimes there is a need to override the address translation for the single endpoint instance e.g. because the auto-generated address violates a constraint imposed by the transport. Such special case mappings have precedence over other mappings. In order to register an exception you need to use following API:
 
-<!-- import Routing-SpecialCaseTransportAddress -->
+snippet:Routing-SpecialCaseTransportAddress
 
 
 #### Rules
 
 User-provided rules override the transport defaults. In order to register a rule you need to use following API:
 
-<!-- import Routing-TransportAddressRule -->
+snippet:Routing-TransportAddressRule
 
 A rule is a function that takes the instance name as the input and return a transport address or null if it does not provide translation for that particular instance name. All rules registered via this API have equal importance. It is expected that the user is responsible for providing a set of mutually exclusive rules so that for each endpoint instance name there is only one not-null translation result. In case there is more than one, an exception is raised.

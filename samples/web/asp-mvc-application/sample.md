@@ -40,7 +40,7 @@ The sample controllers hold a reference of the bus, which is used later to send 
 
 In `AsyncPagesMvc`, open `Global.asax.cs` and see the code for the `ApplicationStart` method:
 
-<!-- import ApplicationStart -->
+snippet:ApplicationStart
 
 By calling `With()`, the code indicates to NServiceBus to scan the directory where the web application is deployed (different from non-web applications).
 
@@ -56,13 +56,13 @@ Read [how the IBus is injected into the controllers](/samples/web/asp-mvc-inject
 
 Using `AsyncController`:
 
-<!-- import AsyncController -->
+snippet:AsyncController
 
 ### Synchronous message sending: SendAndBlockController controller
 
 Open the SendAndBlockController class:
 
-<!-- import SendAndBlockController -->
+snippet:SendAndBlockController
 
 The controller is referencing its `IBus` (NServiceBus injected it when the controller was instantiated). The code calls the send method, passing in the newly created command object. The bus isn't anything special in the code; it's just an object for calling methods.
 
@@ -72,7 +72,7 @@ The call registers a callback method that will be called (with this parameter) a
 
 In the Server project, open the `CommandMessageHandler` class to see the following:
 
-<!-- import CommandMessageHandler -->
+snippet:CommandMessageHandler
 
 This class implements the NServiceBus interface `IHandleMessages<T>` where `T` is the specific message type being handled; in this case, the Command message.
 

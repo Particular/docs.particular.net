@@ -29,18 +29,18 @@ Following list outlines various ways to telling how to connect to the RavenDB se
 
 Shared session is only applicable to Saga and Outbox storage. It can be configured via
 
-<!-- import ravendb-persistence-shared-session-for-sagas -->
+snippet:ravendb-persistence-shared-session-for-sagas
 
 The session configured is then made available  user code via the `ISessionProvider` interface. e.g. in the handler:
 
-<!-- import ravendb-persistence-shared-session-for-sagas-handler -->
+snippet:ravendb-persistence-shared-session-for-sagas-handler
 
 
 #### External store for a specific persister
 
 One can pass an externally created `DocumentStore` instance for usage in a specific persister (e.g. timeouts) by using following code:
 
-<!-- import ravendb-persistence-specific-external-store -->
+snippet:ravendb-persistence-specific-external-store
 
 
 #### Store defined via a connection string for a specific persister
@@ -54,21 +54,21 @@ One can configure a RavenDB connection string that is only applicable to a speci
 
 If for a given persister no method listed above works, NServiceBus looks for a shared externally-provided store. One can provide such a store via:
 
-<!-- import ravendb-persistence-external-store -->
+snippet:ravendb-persistence-external-store
 
 
 #### Shared store for all persisters defined via connection parameters
 
 One can pass an instance of `ConnectionParameters` that allows to specify Url, DatabaseName and the ApiKey of RavenDB instance for usage in all the persisters. The runtime will use the parameters to create a shared `DocumentStore`.
 
-<!-- import ravendb-persistence-external-connection-params -->
+snippet:ravendb-persistence-external-connection-params
 
 
 #### Shared store for all persisters defined via connection string
 
 If nothing above succeeded, the runtime looks for shared store connection strings in the order below:
 
-<!-- import shared-document-store-via-connection-string -->
+snippet:shared-document-store-via-connection-string
 
 If a connection string is found, a corresponding shared `DocumentStore` is created.
 
@@ -85,7 +85,7 @@ As a last resort, a `DocumentStore` that connects to `http://localhost:8080` is 
 
 One of the limitations of the RavenDB persistence is support for only one `[Unique]` property (a saga property which value is guaranteed to be unique across all sagas of this type). Because of that limitation advanced user can turn off the validation that ensures sagas are only being found by unique properties:
 
-<!-- import ravendb-persistence-stale-sagas -->
+snippet:ravendb-persistence-stale-sagas
 
 **NOTE:** This is a potentially dangerous feature that can result in multiple instances of saga being created instead of one in cases of high contention. 
 
@@ -94,7 +94,7 @@ One of the limitations of the RavenDB persistence is support for only one `[Uniq
 
 By default NServiceBus chooses `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage for RavenDB. However you may need to change this default if you are running into [this issue](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ), here is an example how to change the default:
 
-<!-- import ConfiguringTransactionRecoveryStorage -->
+snippet:ConfiguringTransactionRecoveryStorage
 
 
 ## Previous releases

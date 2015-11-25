@@ -35,13 +35,13 @@ The rest of the code is typical for hosting NServiceBus in your own process. The
 
 Open `Default.aspx.cs` in `WebApplication` to see the `Button1Click` method:
 
-<!-- import ActionHandling -->
+snippet:ActionHandling
 
 The first line of code parses the text passed in by the user. The second line creates a new NServiceBus message of the type `Command`, and initializes its `Id` property with the value from the text box.
 
 Open the class definition for the `Command` type in the `Shared` project:
 
-<!-- import Message -->
+snippet:Message
 
 Return to `Default.aspx.cs` and look at the code `Global.Bus.Send(command)`. Global.Bus references the Bus property of the Global class, which you saw in `Global.asax.cs`. Then the code calls the Send method, passing in the newly created command object.
 
@@ -65,7 +65,7 @@ The `IBus` property of the class is how it gets a reference to the bus. In the m
 
 When the response arrives back at `WebApplication`, the bus invokes the callback that was registered when the request was sent by this code:
 
-<!-- import ActionHandling -->
+snippet:ActionHandling
 
 The `Register` method takes the callback code and tells the bus to invoke it when the response is received. There are several overloads to this method; the code above accepts a generic Enum parameter, effectively casting the return code from the server to the given enum.
 

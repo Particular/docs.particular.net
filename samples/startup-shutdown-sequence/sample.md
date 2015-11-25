@@ -15,18 +15,18 @@ Illustrates the order of startup shutdown operations including all extension poi
 
 At each step in the process a line is written to both the console and a text file via a logger.
 
-<!-- import Logger -->
+snippet:Logger
 
 
 ## Console Program
 
 The main of the console `Program` configures and starts the bus while logging all these actions.
 
-<!-- import Program -->
+snippet:Program
 
 
 ### The resulting order 
 
 Note: In some versions of NServiceBus certain extension points are executed on separate threads.
  
-<!-- import StartupShutdownSequence -->
+snippet:StartupShutdownSequence

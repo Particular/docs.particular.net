@@ -15,7 +15,7 @@ Here is an example how to register a custom serializer:
 
 ### Register that serializer
 
-<!-- import RegisterCustomSerializer -->
+snippet:RegisterCustomSerializer
 
 
 

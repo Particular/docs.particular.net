@@ -71,7 +71,7 @@ In version 5 the gateway is provided by the `NServiceBus.Gateway` NuGet. In vers
 
 To turn on the gateway, add the following to your configuration:
 
-<!-- import GatewayConfiguration -->
+snippet:GatewayConfiguration
 
 
 ## Key messages

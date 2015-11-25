@@ -26,9 +26,9 @@ http://www.nuget.org/packages/NServiceBus.Autofac/
 
 #### Default Usage
 
-<!-- import Autofac -->
+snippet:Autofac
 
 
 #### Existing Container Instance
 
-<!-- import Autofac_Existing -->
+snippet:Autofac_Existing

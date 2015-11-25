@@ -40,7 +40,7 @@ This sample shows a simple Client + Server scenario.
 
 The `Server` endpoint is configured to use the MongoDB persistence with a connection string of `mongodb://localhost:27017`.
 
-<!-- import mongoDbConfig -->
+snippet:mongoDbConfig
 
 
 ### Order Saga Data
@@ -49,12 +49,12 @@ The NServiceBus.MongoDB persistence [requires that saga data types implement IHa
 
 > Saga data needs to be defined the normal way NSB requires with the additional interface IHaveDocumentVersion to work appropriately with NServiceBus.MongoDB. All this interface adds is a version property. Alternatively you can just inherit from ContainMongoSagaData.
 
-<!-- import sagadata -->
+snippet:sagadata
 
 
 ### Order Saga
 
-<!-- import thesaga -->
+snippet:thesaga
 
 
 ## The Data in MongoDB

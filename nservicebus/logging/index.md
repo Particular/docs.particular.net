@@ -79,17 +79,17 @@ In NServiceBus Versions 3 and 4 the supported Levels are defined by the [Log4Net
 
 #### Via app.config
 
-<!-- import OverrideLoggingDefaultsInAppConfig -->
+snippet:OverrideLoggingDefaultsInAppConfig
 
 
 #### Via IProvideConfiguration
 
-<!-- import LoggingThresholdFromIProvideConfiguration -->
+snippet:LoggingThresholdFromIProvideConfiguration
 
 
 #### Via config API
 
-<!-- import OverrideLoggingLevelInCode -->
+snippet:OverrideLoggingLevelInCode
 
 The above API is only available in Version 5 and higher. In earlier versions you can achieve the same by taking full control over the [Log4Net integration](log4net.md).
 
@@ -101,7 +101,7 @@ The above API is only available in Version 5 and higher. In earlier versions you
 
 With code you can configure both the Level and the logging directory. To do this, use the `LogManager` class.
 
-<!-- import OverrideLoggingDefaultsInCode -->
+snippet:OverrideLoggingDefaultsInCode
 
 Ensure you do this before any bus configuration is done.
 

@@ -20,14 +20,14 @@ For many scenarios NServiceBus has built-in error and exception management, for 
 
 And hence the default behavior that will be taken in any kind of self hosting scenario.
 
-<!-- import DefaultCriticalErrorAction -->
+snippet:DefaultCriticalErrorAction
 
 NOTE:  In Version 4 and Version 3 the bus stops processing messages but is not disposed. This means sending of messages is allowed but no processing of messages will occur.
 
 
 ### Default action handling in NServiceBus.Host
 
-<!-- import DefaultHostCriticalErrorAction -->
+snippet:DefaultHostCriticalErrorAction
 
 WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if you are co-hosting NServiceBus with a web-service or website.  
 
@@ -36,7 +36,7 @@ WARNING: It is important to consider the effect these defaults will have on othe
 
 For Version 4 and up Critical Errors are logged inside the critical error action. This means that if you replace the Critical Error in these versions you should also write the log entry.
 
-<!-- import DefaultCriticalErrorActionLogging -->
+snippet:DefaultCriticalErrorActionLogging
 
 NOTE:  Version 3 does not write a log entry as part of default Critical Error handler. This is done high up the stack in the location where the exception occurs. It is for this reason that the `Exception` instance is not passed to the Critical Error handler. So it is optional to write a log entry when replacing the Critical Error in Version 3.
 
@@ -47,14 +47,14 @@ NServiceBus allows you to provide a delegate that overrides the above action. So
  
 You define a custom handler using the following code.
 
-<!-- import DefiningCustomHostErrorHandlingAction -->
+snippet:DefiningCustomHostErrorHandlingAction
 
 
 ## A possible custom implementation
 
 Next you define what action you want to take when this scenario occurs:
 
-<!-- import CustomHostErrorHandlingAction -->
+snippet:CustomHostErrorHandlingAction
 
 
 ## When should you override the default action
@@ -71,7 +71,7 @@ NOTE: If you choose to not kill the process and just dispose the bus, please be 
 
 Any code in your endpoint can invoke the Critical Error action.
 
-<!-- import InvokeCriticalError -->
+snippet:InvokeCriticalError
 
 
 ## ServicePulse and ServiceControl Heartbeat functionality

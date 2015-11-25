@@ -12,12 +12,12 @@ This samples uses the community run serializer [NServiceBus.Wire](https://github
 
 ## Configuring to use Wire 
 
-<!-- import config -->
+snippet:config
 
 
 ## The message send
 
-<!-- import message -->
+snippet:message
 
 
 ## The Output

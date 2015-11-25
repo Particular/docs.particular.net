@@ -26,12 +26,12 @@ http://www.nuget.org/packages/NServiceBus.Ninject/
 
 #### Default Usage
 
-<!-- import Ninject -->
+snippet:Ninject
 
 
 #### Existing Container Instance
 
-<!-- import Ninject_Existing -->
+snippet:Ninject_Existing
 
 
 ## Unit of work
@@ -45,8 +45,8 @@ In essence, bindings using _Unit of Work_ scope
 
 You can bind your services in _Unit of Work_ scope using:
 
-<!-- import NinjectUnitOfWork -->
+snippet:NinjectUnitOfWork
 
 Services using `InUnitOfWorkScope()` can only be injected into code which is processing messages. If you want to inject your service somewhere else (e.g. because of an user interaction) you have to define conditional bindings:
 
-<!-- import NinjectConditionalBindings -->
+snippet:NinjectConditionalBindings

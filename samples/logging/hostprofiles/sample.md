@@ -17,7 +17,7 @@ Illustrates how to configure logging using the [profiles](/nservicebus/hosting/n
 
 This is a simple helper that takes in a threshold as a parameter and configures logging based on that parameter.
 
-<!-- import LoggingHelper -->
+snippet:LoggingHelper
   
 
 ### Profile Handlers
@@ -27,12 +27,12 @@ Inside the `LoggingHandlers` directory there are `IConfigureLoggingForProfile`s 
 
 #### Integration
 
-<!-- import IntegrationHandler -->
+snippet:IntegrationHandler
 
 
 #### Lite 
 
-<!-- import LiteHandler -->
+snippet:LiteHandler
 
 
 #### Production

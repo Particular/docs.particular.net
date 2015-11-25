@@ -35,14 +35,14 @@ The central endpoint of the Sample.
 
 Handles `PriceUpdateAcknowledged` from `RemoteSite`.
 
-<!-- import AcknowledgedHandler -->
+snippet:AcknowledgedHandler
 
 
 ## UpdatePriceHandler
 
 Handles `UpdatePrice` from `WebClient`.
 
-<!-- import UpdatePriceHandler -->
+snippet:UpdatePriceHandler
 
 
 ## RemoteSite
@@ -57,11 +57,11 @@ Receives incoming messages on `http://localhost:25899/RemoteSite/`
 
 ### PriceUpdatedHandler
      
-<!-- import PriceUpdatedHandler -->
+snippet:PriceUpdatedHandler
 
 
 ## WebClient
 
 This project represents an external integration point. It sends a `UpdatePrice` to the channel `http://localhost:25899/Headquarter/`.
 
-<!-- import SendUpdatePrice -->
+snippet:SendUpdatePrice

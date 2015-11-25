@@ -11,11 +11,11 @@ By default, NServiceBus scans all assemblies in the endpoint bin folder to find 
 
 Scanning is invoked by default for self-hosting
 
-<!-- import ScanningDefault -->
+snippet:ScanningDefault
 
 or when NServiceBus.Host is used
 
-<!-- import ScanningConfigurationInNSBHost -->
+snippet:ScanningConfigurationInNSBHost
 
 NOTE: During the scanning process, the core dlls for NServiceBus namely `NServiceBus.Core.dll`, `NServiceBus.dll` (in versions prior to Version 5) and if in use `NServiceBus.Host.exe` are automatically included since the endpoint needs them to function properly.
 
@@ -39,7 +39,7 @@ For version 5 and below assemblies in nested folders were automatically scanned 
 
 From version 6, default behavior is not to scan nested folders for assemblies. You can enable nested folders assembly scanning using:
 
-<!-- import ScanningNestedAssebliesEnabled -->
+snippet:ScanningNestedAssebliesEnabled
 
 
 ## Assemblies to scan
@@ -54,12 +54,12 @@ In version 6 the API has been changes to an "Exclude a list" approach. This supp
 
 ### You can exclude specific assemblies by name:
 
-<!-- import ScanningExcludeByName -->
+snippet:ScanningExcludeByName
 
 
 ### You can exclude specific types:
 
-<!-- import ScanningExcludeTypes -->
+snippet:ScanningExcludeTypes
 
 
 ## Include a list approach
@@ -69,17 +69,17 @@ Note: these options are deprecated from version 6 and later.
 
 ### Including assemblies:
 
-<!-- import ScanningListOfAssemblies -->
+snippet:ScanningListOfAssemblies
 
 
 ### Controlling the exact types that NServiceBus uses:
 
-<!-- import ScanningListOfTypes -->
+snippet:ScanningListOfTypes
 
 
 ### Including assemblies using pattern matching:
 
-<!-- import ScanningIncludeByPattern -->
+snippet:ScanningIncludeByPattern
 
 `AllAssemblies` helper class can be used to create a list of assemblies either by creating a blacklist using the method Except or a whitelist by using Matching or a combination of both.
 
@@ -88,11 +88,11 @@ NOTE: The `Except`, `Matching` and `And` methods behave like `string.StartsWith(
 
 ### Mixing includes and excludes:
 
-<!-- import ScanningMixingIncludeAndExclude -->
+snippet:ScanningMixingIncludeAndExclude
 
 
 ### Specifying the directory to scan:
 
-<!-- import ScanningCustomDirectory -->
+snippet:ScanningCustomDirectory
 
 NOTE: Assembly scanning options applied in `INeedInitialization` code will not be applied. Assembly scanning options need to be specified using `IConfigureThisEndpoint` when using NServiceBus.Host or when self hosting and creating `BusConfiguration` only. 

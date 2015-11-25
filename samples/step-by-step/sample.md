@@ -22,21 +22,21 @@ The `Shared` project is the container for shared classes including message defin
 
 Used to initiate an order
 
-<!--import PlaceOrder-->
+snippet:PlaceOrder
 
 
 ### OrderPlaced Event
 
 Used to indicate that an order has been received and processed.
 
-<!--import OrderPlaced-->
+snippet:OrderPlaced
 
 
 ## The Client
 
 The `Client` is the initiate for the ordering process. The sending code in the client is as follows.
 
-<!-- import SendOrder -->
+snippet:SendOrder
 
 This is a console blocking loop that is called the the console starts.
 
@@ -45,7 +45,7 @@ This is a console blocking loop that is called the the console starts.
 
 The `Server` project processes an Order. It receives `PlaceOrder` sent from `Client` and then publishes `OrderPlaced` on success.
 
-<!-- import PlaceOrderHandler -->
+snippet:PlaceOrderHandler
 
 
 ## The Subscriber
@@ -64,7 +64,7 @@ The subscription is done in the `app.config` of the project
 
 When the event is received it will be passed to `OrderCreatedHandler` for processing.
 
-<!-- import OrderCreatedHandler -->
+snippet:OrderCreatedHandler
 
 
 ## Running the solution

@@ -31,4 +31,4 @@ There are two choices of package for this library.
 
 After installation of the package, enabling the driver is as simple as:
 
-<!-- import SqlAzureNHibernateDriverConfiguration -->
+snippet:SqlAzureNHibernateDriverConfiguration

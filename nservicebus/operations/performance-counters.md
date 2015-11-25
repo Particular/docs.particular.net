@@ -41,7 +41,7 @@ Monitors the age of the oldest message in the queue. This takes into account the
 
 This counter can be enabled using the the following code:
 
-<!-- import enable-criticaltime -->
+snippet:enable-criticaltime
 
 In the NServiceBus Host this counter is enabled by default. 
 
@@ -63,7 +63,7 @@ This counter can be enabled using the the following code:
 
 In the NServiceBus Host this counter is enabled by default. But the value can be configured either by the above API or using a `EndpointSLAAttribute` on your `IConfigureThisEndpoint`.
 
-<!-- import enable-sla-host-attribute -->
+snippet:enable-sla-host-attribute
 
 
 ### Successful Message Processing Rate

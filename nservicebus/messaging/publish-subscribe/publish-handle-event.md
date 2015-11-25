@@ -19,7 +19,7 @@ To publish a message it must be classified as an event. There are two ways of ac
 
 Adding a marker interface to the message definition.
 
-<!-- import EventWithInterface -->
+snippet:EventWithInterface
 
 
 ### Via Message Conventions
@@ -28,11 +28,11 @@ Using the `EventWithConvention` message convention.
 
 Given a message with the following definition.
 
-<!-- import EventWithConvention -->
+snippet:EventWithConvention
 
 It could be treated as an event using the following convention. 
 
-<!-- import DefiningEventsAs -->
+snippet:DefiningEventsAs
 
 
 ## Handling a event
@@ -49,21 +49,21 @@ An event can be published via any instance of `IBus`. However there are several 
 
 From a handler in reaction to some other message being handled.
 
-<!-- import publishFromHandler -->
+snippet:publishFromHandler
 
 
 ### From a Saga
 
 From a handler in reaction to some other message being handled.
 
-<!-- import publishFromSaga -->
+snippet:publishFromSaga
 
 
 ### At endpoint startup
 
 At startup of an endpoint, directly after the bus has started.
 
-<!-- import publishAtStartup -->
+snippet:publishAtStartup
 
 
 ## Events as Classes or Interfaces
@@ -73,11 +73,11 @@ Events can be either classes or interfaces. Since interfaces cannot be construct
 
 ### Publish a class 
 
-<!-- import InstancePublish -->
+snippet:InstancePublish
 
 
 ### Publish an interface
 
 If you are using interfaces to define your event contracts you need to set the message properties by passing in a lambda. NServiceBus will then generate a proxy and set those properties. 
 
-<!-- import InterfacePublish -->
+snippet:InterfacePublish

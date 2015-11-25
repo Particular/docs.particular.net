@@ -13,7 +13,7 @@ This samples uses the community run serializer [NServiceBus.MessagePack](https:/
 
 ## Configuring to use MessagePack 
 
-<!-- import config -->
+snippet:config
 
 
 ## The message send

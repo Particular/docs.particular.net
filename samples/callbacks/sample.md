@@ -39,17 +39,17 @@ Note: All the usages of the Bus are done via a staitic insatnce stored on the ro
 
 ### Send and callback for an enum
 
-<!-- import Web_SendEnumMessage -->
+snippet:Web_SendEnumMessage
 
 
 ### Send and callback for an int
 
-<!-- import Web_SendIntMessage -->
+snippet:Web_SendIntMessage
 
 
 ### Send and callback for an object
 
-<!-- import Web_SendObjectMessage -->
+snippet:Web_SendObjectMessage
 
 
 ## Sender project
@@ -59,17 +59,17 @@ A console application responsible for sending a messages and handling the callba
 
 ### Send and callback for an enum
 
-<!-- import SendEnumMessage -->
+snippet:SendEnumMessage
 
 
 ### Send and callback for an int
 
-<!-- import SendIntMessage -->
+snippet:SendIntMessage
 
 
 ### Send and callback for an object
 
-<!-- import SendObjectMessage -->
+snippet:SendObjectMessage
 
 
 ## Receiver project
@@ -79,23 +79,23 @@ A console application responsible replying to messages from either the web appli
 
 ### Return an enum
 
-<!-- import EnumMessageHandler -->
+snippet:EnumMessageHandler
 
 
 ### Return an int 
 
-<!-- import IntMessageHandler -->
+snippet:IntMessageHandler
 
 
 ### Return an Object
 
 Note that this scenario requires a `Reply` with a real message.
 
-<!-- import ObjectMessageHandler -->
+snippet:ObjectMessageHandler
 
 
 ## Fake Handler in Version 3
 
 Note: In Version 3 if no handler exists for a received message then NServiceBus will throw an exception. As such for this scenario to operate a fake message handler is needed on the callback side.
 
-<!-- import ObjectResponseMessageHandler -->
+snippet:ObjectResponseMessageHandler

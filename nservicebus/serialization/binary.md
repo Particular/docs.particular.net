@@ -10,4 +10,4 @@ Uses the .net [BinaryFormatter](https://msdn.microsoft.com/en-us/library/system.
 
 ### Usage
 
-<!-- import BinarySerialization -->
+snippet:BinarySerialization

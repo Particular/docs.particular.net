@@ -22,14 +22,14 @@ First you need to reference the assembly that contains the Azure storage persist
 
 If self hosting, you can configure the persistence technology using the configuration API and the extension method found in the `NServiceBus.Azure` assembly
 
-<!-- import PersistanceWithAzure -->
+snippet:PersistanceWithAzure
 
 
 ## Hosting
 
 When hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, or any other NServiceBus provided host, the Azure storage persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config.
 
-<!-- import PersistenceWithAzureHost -->
+snippet:PersistenceWithAzureHost
 
 NOTE: In version 4, when hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
@@ -41,7 +41,7 @@ You can get more control on the behavior of each persister by specifying one of 
 
 ### Detailed Configuration with Configuration Section
 
-<!-- import AzurePersistenceFromAppConfig -->
+snippet:AzurePersistenceFromAppConfig
 
 The following settings are available for changing the behavior of saga persistence through the `AzureSagaPersisterConfig`section:
 
@@ -84,14 +84,14 @@ You can drastically improve performance by overriding these settings. You can le
 
 For Sagas:
 
-<!-- import AzurePersistenceSagasCustomization -->
+snippet:AzurePersistenceSagasCustomization
 
 For Subscriptions:
 
-<!-- import AzurePersistenceSubscriptionsCustomization -->
+snippet:AzurePersistenceSubscriptionsCustomization
 
 For Timeouts:
 
-<!-- import AzurePersistenceTimeoutsCustomization -->
+snippet:AzurePersistenceTimeoutsCustomization
 
 NOTE: Subscriptions and Timeouts persistence configuration only has an effect when used with Azure Storage Queues transport from NServiceBus Azure version 6 and later.

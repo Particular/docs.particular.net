@@ -23,7 +23,7 @@ This sample uses a dual runnable console and Windows Service for hosting. More d
 
 When a message fails processing it will be forwarded here.
 
-<!-- import error -->
+snippet:error
 
 Note that, in version 5 and lower, this approach uses the [IProvideConfiguration](/nservicebus/hosting/custom-configuration-providers.md) approach to programmatically override the error queue. In version 6 an explicit API was added.
 
@@ -32,9 +32,9 @@ Note that, in version 5 and lower, this approach uses the [IProvideConfiguration
 
 All messages received by an endpoint will be forwarded to the audit queue.
 
-<!-- import audit -->
+snippet:audit
 
-<!-- import auditxml -->
+snippet:auditxml
 
 
 
@@ -42,62 +42,62 @@ All messages received by an endpoint will be forwarded to the audit queue.
 
 Log4net is being used to route log events to the Console.
 
-<!-- import logging -->
+snippet:logging
  
 
 ## Create the root configuration instance
 
-<!-- import create-config -->
+snippet:create-config
 
 
 ## Define the Endpoint Name
 
-<!-- import endpoint-name -->
+snippet:endpoint-name
 
 
 ## Select and configure a [Container](/nservicebus/containers)
 
 Autofac is being used with a customized container instance being passed into NServiceBus.
 
-<!-- import container -->
+snippet:container
 
 
 ## Select and configure [Serialization](/nservicebus/serialization)
 
-<!-- import serialization -->
+snippet:serialization
 
 
 ## Select and configure a [Transport](/nservicebus/transports)
 
-<!-- import transport -->
+snippet:transport
 
 
 ## Enable [Sagas](/nservicebus/sagas)
 
-<!-- import sagas -->
+snippet:sagas
 
 
 ## Select and configure [Persistence](/nservicebus/persistence)
 
-<!-- import persistence -->
+snippet:persistence
 
 
 ## Start the Bus
 
 Enable installers and start the bus.
 
-<!-- import start-bus -->
+snippet:start-bus
 
 
 ## Shut down the bus
 
 The bus implements `IDisposable` and should be shut down when the process is shut down.
 
-<!-- import stop-bus -->
+snippet:stop-bus
 
 
 ## Handling [Critical Errors](/nservicebus/hosting/critical-errors.md)
 
 Since this sample is configured to run as a windows service, the action defined when a critical error occurs is to shut down the process. 
 
-<!-- import critical-errors -->
+snippet:critical-errors

@@ -22,7 +22,7 @@ In NServiceBus Version 5 Log4Net was externalized to its own [nuget](https://www
 
 ## Usage 
 
-<!-- import Log4netInCode -->
+snippet:Log4netInCode
 
 
 ## Filtering 
@@ -36,9 +36,9 @@ Here is a code configuration example for adding a [Filter](http://logging.apache
 
 ### The Filter
 
-<!-- import Log4netFilter -->
+snippet:Log4netFilter
 
 
 ### Using the Filter
 
-<!-- import Log4netFilterUsage -->
+snippet:Log4netFilterUsage

@@ -26,9 +26,9 @@ http://www.nuget.org/packages/NServiceBus.Spring/
 
 #### Default Usage
 
-<!-- import Spring -->
+snippet:Spring
 
 
 #### Existing Container Instance
 
-<!-- import Spring_Existing -->
+snippet:Spring_Existing

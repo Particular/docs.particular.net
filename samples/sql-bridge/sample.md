@@ -18,7 +18,7 @@ NOTE: This sample uses NHibernate persistence. It uses a database called, `Persi
 
 The event that will be published by `MsmqPublisher`
 
-<!-- import event -->
+snippet:event
 
 
 ## MsmqPublisher 
@@ -26,12 +26,12 @@ The event that will be published by `MsmqPublisher`
 
 ### The publisher configuration.
 
-<!-- import publisher-config -->
+snippet:publisher-config
 
 
 ### The publish loop
 
-<!-- import publisher-loop -->
+snippet:publisher-loop
 
 
 ### Additional entry to the list of subscribers
@@ -64,12 +64,12 @@ Subscribes to the events from the `MsmqPublisher`
 
 ### The Msmq Subscriber configuration.
 
-<!-- import msmqsubscriber-config -->
+snippet:msmqsubscriber-config
 
 
 ### The Msmq Subscriber handler.
 
-<!-- import msmqsubscriber-handler -->
+snippet:msmqsubscriber-handler
 
 
 ## SqlBridge 
@@ -79,12 +79,12 @@ This endpoint is setup to read messages that arrive in MSMQ via an `IAdvancedSat
 
 ### The bridge configuration
 
-<!-- import bridge-config -->
+snippet:bridge-config
 
 
 ### The Satellite
 
-<!-- import satellite -->
+snippet:satellite
 
 Note: Since `SqlBridge` is not using native msmq transport you will need to manually create the `SqlMsmqTransportBridge` queue.
 
@@ -106,12 +106,12 @@ Receives events from the SqlBridge. The endpoint address is the sql bridge addre
 
 ### The Sql Subscriber configuration
 
-<!-- import sqlsubscriber-config -->
+snippet:sqlsubscriber-config
 
 
 ### The event handler
 
-<!-- import sqlsubscriber-handler -->
+snippet:sqlsubscriber-handler
 
 
 ## Summary

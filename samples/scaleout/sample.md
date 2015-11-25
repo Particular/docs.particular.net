@@ -25,13 +25,13 @@ A simple project that sends a message to `Server` and handles the message back f
 
 #### Sending code
 
-<!-- import sender -->
+snippet:sender
 
 
 #### Handling code
 
 
-<!-- import sender-event-handler -->
+snippet:sender-event-handler
 
 
 ### Shared
@@ -64,7 +64,7 @@ The works are simply host for running the handlers defined in `Worker.Handlers`
 
 #### Startup code
 
-<!-- import Workerstartup -->
+snippet:Workerstartup
 
 
 #### Configuration
@@ -166,11 +166,11 @@ Normally workers are deployed to different machines. When deployed to the same m
 
 You need to hack the Local Address
 
-<!-- import WorkerNameToUseWhileTestingCode -->
+snippet:WorkerNameToUseWhileTestingCode
 
 
 #### Version 5 and higher
 
 You can use configuration 
 
-<!-- import WorkerNameToUseWhileTestingConfig -->
+snippet:WorkerNameToUseWhileTestingConfig

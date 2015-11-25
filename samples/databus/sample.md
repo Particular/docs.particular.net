@@ -27,7 +27,7 @@ This sample contains three projects:
  
 Let's look at the Messages project, at the two messages. We start with the large one that is not utilizing the DataBus mechanism. The message is a simple byte array command:
 
-<!-- import AnotherMessageWithLargePayload -->
+snippet:AnotherMessageWithLargePayload
 
 The other message utilizes the DataBus mechanism:
 
@@ -71,7 +71,7 @@ static void Main()
 
 The following sender project code sends the `MessageWithLargePayload `message, utilizing the NServiceBus attachment mechanism:
 
-<!-- import SendMessageLargePayload -->
+snippet:SendMessageLargePayload
 
 The following `Sender` project code sends the `AnotherMessageWithLargePayload` message without utilizing the NServiceBus attachment mechanism:
 

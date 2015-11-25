@@ -35,19 +35,19 @@ In version 3 this configuration was available via `MsmqTransportConfig`.
 
 In version 4 and higher the configuration for this mechanism is implemented in the `TransportConfig` section.
 
-<!-- import configureFlrViaXml -->
+snippet:configureFlrViaXml
 
 
 ### Configuring FLR through IProvideConfiguration
 
-<!-- import FlrProvideConfiguration -->
+snippet:FlrProvideConfiguration
 
 
 ### Configuring FLR through ConfigurationSource
 
-<!-- import FLRConfigurationSource -->
+snippet:FLRConfigurationSource
 
-<!-- import FLRConfigurationSourceUsage -->
+snippet:FLRConfigurationSourceUsage
 
 
 ## Second Level Retries
@@ -66,7 +66,7 @@ SLR can be configured in several ways.
 
 To configure SLR, enable its configuration section:
 
-<!-- import SecondLevelRetiesAppConfig -->
+snippet:SecondLevelRetiesAppConfig
 
  *  `Enabled`: Turns the feature on and off. Default: true.
  *  `TimeIncrease`: A time span after which the time between retries increases. Default: 10 seconds (`00:00:10`).
@@ -75,21 +75,21 @@ To configure SLR, enable its configuration section:
 
 ### Configuration SLR through IProvideConfiguration
 
-<!-- import SlrProvideConfiguration -->
+snippet:SlrProvideConfiguration
 
 
 ### Configuring SLR through ConfigurationSource
 
-<!-- import SlrConfigurationSource -->
+snippet:SlrConfigurationSource
 
-<!-- import SLRConfigurationSourceUsage -->
+snippet:SLRConfigurationSourceUsage
 
 
 ### Disabling SLR through code
 
 To completely disable SLR through code:
 
-<!-- import DisableSlrWithCode -->
+snippet:DisableSlrWithCode
 
 
 ### Custom Retry Policy
@@ -99,28 +99,28 @@ You can apply custom retry logic based on headers or timing in code.
 
 #### Applying a custom policy
 
-<!-- import SecondLevelRetriesCustomPolicy -->
+snippet:SecondLevelRetriesCustomPolicy
 
 
 #### Error Headers Helper
 
 A Custom Policy has access to the raw message including both the [retries handling headers](/nservicebus/messaging/headers.md#retries-handling-headers) and the [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers). Any of these headers can be used to control the reties for a message. In the below examples the following helper class will provide access to a subset of the headers.
 
-<!-- import ErrorsHeadersHelper -->
+snippet:ErrorsHeadersHelper
 
 
 #### Simple Policy
 
 Here is a simple retry policy that will retry 3 times with a 5 second interval.
 
-<!-- import SecondLevelRetriesCustomPolicyHandler -->
+snippet:SecondLevelRetriesCustomPolicyHandler
 
 
 #### Exception based Policy
 
 Here is a policy that extends the above with custom handling for a specific exception.
 
-<!-- import SecondLevelRetriesCustomExceptionPolicyHandler -->
+snippet:SecondLevelRetriesCustomExceptionPolicyHandler
 
 
 ## Total number of possible attempts
@@ -152,6 +152,6 @@ And a Handler that both throws and exception and logs the current count of attem
 
 Then the resultant output in the log will be:
 
-<!-- import RetryLogging -->
+snippet:RetryLogging
 
 Note that in some cases a log entry contains the exception (`Exception included`) and in some cases it is omitted (`Exception omitted`)

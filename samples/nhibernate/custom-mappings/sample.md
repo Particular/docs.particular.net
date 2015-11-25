@@ -47,14 +47,14 @@ See [Your first NHibernate based application](http://nhibernate.info/doc/tutoria
 
 The `.hbm.xml` contents is as follows
 
-<!-- import hmlxml -->
+snippet:hmlxml
 
 
 ### Reading the mapping mappings 
 
 Create a custom NHibernate configuration object and use the following example to add mappings from the file system.
 
-<!-- import AddMappingsFromFilesystem -->
+snippet:AddMappingsFromFilesystem
 
 
 ## Use Fluent NHibernate
@@ -72,7 +72,7 @@ b. or by creating a new Configuration instance and pass it to FluentNHibernate
 
 Example of a possible implementation:
 
-<!-- import FluentConfiguration -->
+snippet:FluentConfiguration
 
 
 ## Use NHibernate.Mapping.Attributes
@@ -89,7 +89,7 @@ NHibernate.Mapping.Attributes needs to know what types to scan to generate an NH
 
 Initialize the NHibernate attribute based mappings:
 
-<!-- import AttributesConfiguration -->
+snippet:AttributesConfiguration
 
 
 ## Use the Loquacious mapping by code API
@@ -105,4 +105,4 @@ To use it:
 
 Initialize NHibernate Loquacious configuration
 
-<!-- import LoquaciousConfiguration -->
+snippet:LoquaciousConfiguration
