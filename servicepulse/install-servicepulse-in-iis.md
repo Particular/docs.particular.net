@@ -25,7 +25,7 @@ It is possible to manually install ServicePulse using IIS following these steps:
 * Extract ServicePulse files using, at a command prompt, the following command:
 
 ```
-ServicePulse.Host.exe` --extract --serviceControlUrl="http://localhost:33333/api" --outPath="C:\ServicePulse"
+ServicePulse.Host.exe --extract --serviceControlUrl="http://localhost:33333/api" --outPath="C:\ServicePulse"
 ```
 
 Note: `ServicePulse.Host.exe` can be found in the ServicePulse installation directory, whose default is `%programfiles(x86)%\Particular Software\ServicePulse`
