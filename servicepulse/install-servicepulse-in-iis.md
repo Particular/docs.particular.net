@@ -22,9 +22,10 @@ Steps
 
 1. Create folder for ServicePulse files
 1. Extract ServicePulse files
+1. Disable/Remove ServicePulse
+1. Remove `netsh` url restriction
 1. Create ServicePulse website in IIS
 1. Refer to ServicePulse folder
-1. Disable/Remove ServicePulse
 
 
 [ServicePulse](introduction-and-installing-servicepulse.md), by default, is installed as a Windows Service that will self-host the ServicePulse web application.
@@ -37,11 +38,18 @@ It is possible to manually install ServicePulse using IIS following these steps:
 ServicePulse.Host.exe --extract --serviceControlUrl="http://localhost:33333/api" --outPath="C:\ServicePulse"
 ```
 
+When using IIS to host ServicePulse the ServicePulse.Host service is not used.  To remove the service uninstall ServicePulse from Add/Remove programs.
+
+Use the following command on an elevated command prompt to remove the URLACL that was created by the ServicePulse installer to use port 9090 without any restrictions.
+
+```
+netsh http delete urlacl http://+:9090/
+```
+
 Note: `ServicePulse.Host.exe` can be found in the ServicePulse installation directory, whose default is `%programfiles(x86)%\Particular Software\ServicePulse`
 
 Once all the ServicePulse files are successfully extracted you can configure a new IIS web site whose physical path points to the location where files have been extracted.
 
-When using IIS to host ServicePulse the ServicePulse.Host service is not used.  To remove the service uninstall ServicePulse from Add/Remove programs.
 
 
 ## Advanced Configuration
