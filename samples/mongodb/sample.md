@@ -16,7 +16,9 @@ Ensure you have an instance of [MongoDB](https://www.mongodb.org/) running on `l
 
 ### MongoDB Persistence for NServiceBus 
 
-This sample utilizes the community run [NServiceBus.MongoDB project](https://github.com/sbmako/NServiceBus.MongoDB).
+This sample utilizes the community run [NServiceBus.MongoDB project](https://github.com/sbmako/NServiceBus.MongoDB). 
+
+NOTE: There are [two community run MongoDB persistences](/platform/extensions.md#persisters). You should evaluate both for the best fit to your solution. 
 
 
 ### MongoDB Management UI
