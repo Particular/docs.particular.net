@@ -38,10 +38,12 @@
         public void CustomRoutingStore()
         {
             var busConfig = new BusConfiguration();
+
             #region Routing-CustomRoutingStore
-            busConfig.Routing().UnicastRoutingTable.AddDynamic((t, c) => {
-                return LoadFromCache(t) ?? LoadFromDatabaseAndPutToCache(t);
-            });
+
+            busConfig.Routing().UnicastRoutingTable.AddDynamic((t, c) =>
+                LoadFromCache(t) ?? LoadFromDatabaseAndPutToCache(t));
+
             #endregion
         }
 

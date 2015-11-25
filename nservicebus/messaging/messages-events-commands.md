@@ -78,6 +78,4 @@ We currently have conventions that can identity:
 - [Express messages](/nservicebus/messaging/non-durable-messaging.md)
 - [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md)
 
-Note: It is important to include the `.Namespace != null`; otherwise a null reference exception will occur during the type scanning.
-
 When Message Conventions are combined with avoiding an reference to any NServiceBus assemblies this is referred to as [Unobtrusive Mode](unobtrusive-mode.md). This makes it also ideal to use in cross platform environments. Messages can be defined in a *Portable Class Library* (PCL) and shared across multiple platform even though not all platforms use NServiceBus for message processing.
