@@ -69,7 +69,7 @@ Installation Steps:
 1. Add a new URL Rewrite Rule
 1. Choose `Reverse Proxy` from the list of rule templates
 1. Enter `localhost:33333/api` into the inbound field and leave SSL offload enabled then click OK to add the rule.
-1. The website should now answer on `/api` as though you were directly accessing ServiceControl.
+1. The website should now answer on `/api` as though you were directly accessing ServiceControl. You can verify this by opening the reverse proxy url in a browser `http://localhost:9090/api/` (9090 is you reuse that port for the ServicePulse web site)
 1. Restrict access to website
 
 The procedure above should result in a `web.config` file in the newly created `/api` folder similar to this:
