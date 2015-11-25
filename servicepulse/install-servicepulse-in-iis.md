@@ -69,9 +69,10 @@ Installation Steps:
 1. Add a new URL Rewrite Rule
 1. Choose `Reverse Proxy` from the list of rule templates
 1. Enter `localhost:33333/api` into the inbound field and leave SSL offload enabled then click OK to add the rule.
-1. The website should now answer on /api as though you were directly accessing the ServiceControl.  
+1. The website should now answer on `/api` as though you were directly accessing ServiceControl.
+1. Restrict access to website
 
-The procedure above should result in a web.config file in the newly created /api folder similar to this:
+The procedure above should result in a `web.config` file in the newly created `/api` folder similar to this:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -87,18 +88,17 @@ The procedure above should result in a web.config file in the newly created /api
         </rewrite>
     </system.webServer>
 </configuration>
-
 ```
 
-WARNING: The default configuration for ServiceControl allows access to REST API via localhost only. By exposing the REST API via the reverse proxy configuration this protection is no longer in place. To address this it is recommended that the IIS Web site be configured with one of the IIS authentication providers such as Windows integration authentication.
+WARNING: The default configuration for ServiceControl only allows access to REST API via localhost. By exposing the REST API via the reverse proxy configuration this protection is no longer in place. To address this it is recommended that the IIS Web site be configured with one of the IIS authentication providers such as Windows integration authentication.
 It is also recommended that the IIS web site be configured to use SSL if an authorization provider is used.
 
 
 ### Limitations
 
-If ServiceControl is secured with an authentication module other that Windows Authentication  ServiceInsight will not be able to connect to the REST API exposed via IIS. ServiceInsight V1.4 or greater will is required to use Windows authentication.
+If ServiceControl is secured with an authentication module other that Windows Authentication  ServiceInsight will not be able to connect to the REST API exposed via IIS. ServiceInsight v1.4 or greater is required to use Windows authentication.
 
-Older version of ServiceInsight can still be used locally, bypassing the security by connecting to the ServiceControl port directly using the `http://localhost:33333/api` URL.  
+Older versions of ServiceInsight can still be used locally, bypassing the security by connecting to the ServiceControl port directly using the `http://localhost:33333/api` URL.  
 
 ## Upgrades
 
