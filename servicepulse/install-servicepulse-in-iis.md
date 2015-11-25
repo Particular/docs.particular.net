@@ -48,7 +48,9 @@ netsh http delete urlacl http://+:9090/
 
 Note: `ServicePulse.Host.exe` can be found in the ServicePulse installation directory, whose default is `%programfiles(x86)%\Particular Software\ServicePulse`
 
-Once all the ServicePulse files are successfully extracted you can configure a new IIS web site whose physical path points to the location where files have been extracted.
+Once all the ServicePulse files are successfully extracted you can configure a new IIS web site whose physical path points to the location where files have been extracted. You can configure it to use port `9090`.
+
+NOTE: Make sure that the ServicePulse windows service is not running and that the URLACL has been removed or else IIS will not be able to use port 9090.
 
 
 
