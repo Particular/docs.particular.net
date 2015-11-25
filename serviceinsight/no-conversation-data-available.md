@@ -9,7 +9,7 @@ tags:
 
 Sometimes, when you select a message in ServiceInsight, the visualization windows will show the message "No conversation data available". 
 
-![No conversation data available](./images/no-conversation-data-available.PNG)
+![No conversation data available](./images/no-conversation-data-available.png)
 
 ServiceInsight visualizations are based on collections of messages called conversations. Each of these visualizations will query Service Control to get all of the messages that belong to a specific conversation in order to display them on the screen. 
 
