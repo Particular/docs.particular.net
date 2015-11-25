@@ -43,7 +43,7 @@ snippet:AzureServiceBusTransportWithAzureHost
 
 ## Setting the Connection String
 
-The default way to set the connection string is using the .net provided `connectionStrings` configuration section in app.config or web.config, with the name `NServicebus\Transport`:
+The default way to set the connection string is using the .NET provided `connectionStrings` configuration section in app.config or web.config, with the name `NServicebus\Transport`:
 
 snippet:AzureServiceBusConnectionStringFromAppConfig
 

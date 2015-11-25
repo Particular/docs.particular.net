@@ -37,7 +37,7 @@ INFO: The name of the property on the message must exactly match the name of the
 
 ### XML Attributes
 
-The XML serializer in NServiceBus is a custom implementation. As such it does not support the [standard .net XML Attributes](https://msdn.microsoft.com/en-us/library/2baksw0z.aspx).
+The XML serializer in NServiceBus is a custom implementation. As such it does not support the [standard .NET XML Attributes](https://msdn.microsoft.com/en-us/library/2baksw0z.aspx).
 
 
 ### Unsupported Types

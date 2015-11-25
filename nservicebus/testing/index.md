@@ -12,7 +12,7 @@ Developing enterprise-scale distributed systems is hard and testing them is just
 
 ## Getting started
 
-NServiceBus ships with a stand alone testing helper nuget package that makes testing a lot simpler.  
+NServiceBus ships with a stand alone testing helper NuGet package that makes testing a lot simpler.  
 To install this package:
 ```
 Install-Package NServiceBus.Testing

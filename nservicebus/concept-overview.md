@@ -91,7 +91,7 @@ Allows the forwarding of every message received by an endpoint to a configured q
 
 ### [Serialization](/nservicebus/serialization/)
 
-Serialization is the process of converting an in memory .net object (in our case a message) into a stream of bytes in order to transmit it via the Transport. For Endpoints to communicate they need to share a common serialization language.
+Serialization is the process of converting an in memory .NET object (in our case a message) into a stream of bytes in order to transmit it via the Transport. For Endpoints to communicate they need to share a common serialization language.
 
 
 ### [Persistence](/nservicebus/persistence/)

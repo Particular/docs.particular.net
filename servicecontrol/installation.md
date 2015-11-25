@@ -18,7 +18,8 @@ If ServiceControl is installed via the Particular Software Platform Installer th
 
 
 ### Transport Support
-From ServiceControl 1.7 the transport DLLs are managed by the installation and do not need to be downloaded from Nuget. 
+
+From ServiceControl 1.7 the transport DLLs are managed by the installation and do not need to be downloaded from NuGet. 
 ServiceControl can be configured to use one of the NServiceBus supported transports listed below using the ServiceControl Management Utility:
 
 * Microsoft Message Queuing (MSMQ)

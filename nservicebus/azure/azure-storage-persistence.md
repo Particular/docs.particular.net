@@ -67,7 +67,7 @@ For more information see [Configuring Azure Connection Strings](https://msdn.mic
 
 ## Additional performance tips
 
-Azure storage persistence is network IO intensive, every operation performed against storage implies one or more network hops, most of which are small http requests to a single IP address (of your storage cluster). By default the .net framework has been configured to be very restrictive when it comes to this kind of communication:
+Azure storage persistence is network IO intensive, every operation performed against storage implies one or more network hops, most of which are small http requests to a single IP address (of your storage cluster). By default the .NET framework has been configured to be very restrictive when it comes to this kind of communication:
 - It only allows 2 simultaneous connections to a single IP address by default
 - It's algorithm stack has been optimized for larger payload exchanges, not for small requests
 - It doesn't trust the remote servers by default, so it verifies for revoked certificates on every request

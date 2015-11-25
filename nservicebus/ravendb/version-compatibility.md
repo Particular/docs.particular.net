@@ -8,7 +8,7 @@ tags:
 
 ## NServiceBus 5: Externalized RavenDB
 
-RavenDB persistence is available as a separate nuget [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB)
+RavenDB persistence is available as a separate NuGet [NServiceBus.RavenDB](https://www.nuget.org/packages/NServiceBus.RavenDB)
 
 The current approach moving forward for the RavenDB integration is to ship outside the core in a stand alone assembly NServiceBus.RavenDB.dll. This has the following advantages
 
@@ -48,7 +48,7 @@ Version 4 of NServiceBus was shipped with version 2.0.2375 of RavenDB resource m
 
 NServiceBus Version 4 uses RavenDB.Client version 2.0 internally. Using RavenDB client 2.0 against a RavenDB Server 2.5 is not recommended. Server restarts may result in wiping out outstanding transactions potentially resulting in message loss. Therefore if using RavenDB server version 2.5, please do the following:
 
-1. Install version 1 of NServiceBus.RavenDB nuget package in your endpoint. This will ensure that RavenDB Client version 2.5 is being used instead of 2.0
+1. Install version 1 of NServiceBus.RavenDB NuGet package in your endpoint. This will ensure that RavenDB Client version 2.5 is being used instead of 2.0
 ```
 Install-Package NServiceBus.RavenDB -version 1.X.Y
 ```

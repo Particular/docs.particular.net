@@ -51,7 +51,7 @@ Provides support for sending messages over [Oracle Advanced Queuing (Oracle AQ)]
 
 <a href="http://www.nuget.org/packages/NServiceBus.RabbitMQ/"><img src="http://img.shields.io/nuget/v/NServiceBus.RabbitMQ.svg?" title="NuGet Status"></a>
 
-Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) using the [RabbitMQ .net Client](http://www.nuget.org/packages/RabbitMQ.Client/).
+Provides support for sending messages over [RabbitMQ](http://www.rabbitmq.com/) using the [RabbitMQ .NET Client](http://www.nuget.org/packages/RabbitMQ.Client/).
 
 
 ### <img src="particular-project.png" title="A Particular run project"> [SqlServer](/nservicebus/sqlserver/)
@@ -109,7 +109,7 @@ The [Jil Project](https://github.com/kevin-montrose/Jil) is a fast JSON serializ
 
 <a href="http://www.nuget.org/packages/NServiceBus.Serializers.SystemXml/"><img src="http://img.shields.io/nuget/v/NServiceBus.Serializers.SystemXml.svg?" title="NuGet Status"></a>
 
-Using the .net [System.Xml.Serialization](https://msdn.microsoft.com/en-us/library/system.xml.serialization.aspx) to serialize messages. It allows better interoperability with non-NServiceBus peers.
+Using the .NET [System.Xml.Serialization](https://msdn.microsoft.com/en-us/library/system.xml.serialization.aspx) to serialize messages. It allows better interoperability with non-NServiceBus peers.
 
 
 ### <img src="particular-project.png" title="A Particular run project"> [Xml](/)

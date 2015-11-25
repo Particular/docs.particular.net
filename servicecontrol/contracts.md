@@ -33,7 +33,7 @@ ServiceControl publishes `MessageFailed` event when a message gets to the error 
 
 To subscribe to the `MessageFailed` event:
 - Create an [NServiceBus endpoint](/nservicebus/hosting/nservicebus-host/)
-- Install the [ServiceControl.Contracts nuget package](https://www.nuget.org/packages/ServiceControl.Contracts/).
+- Install the [ServiceControl.Contracts NuGet package](https://www.nuget.org/packages/ServiceControl.Contracts/).
 - Add the message mapping in the `UnicastBusConfig` section of the endpoint's app.config so that this endpoint will subscribe to the events from ServiceControl as shown:
 
 snippet:ServiceControlEventsXmlConfig

@@ -25,9 +25,9 @@ Uses the [NHibernate ORM](http://nhibernate.info/) for persistence.
 ## Usage
 
 
-### Pull in the nugets
+### Pull in the NuGets
 
-Install the [NServiceBus.NHibernate](https://www.nuget.org/packages/NServiceBus.NHibernate) nuget. This has a dependency on the `NHibernate` nuget so that will automatically be pulled in.
+Install the [NServiceBus.NHibernate](https://www.nuget.org/packages/NServiceBus.NHibernate) NuGet. This has a dependency on the `NHibernate` NuGet so that will automatically be pulled in.
 
 
 ### The Code

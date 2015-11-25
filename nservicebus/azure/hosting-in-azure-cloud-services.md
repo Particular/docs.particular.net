@@ -23,7 +23,7 @@ NOTE: if you don't need the scale offered by cloud services, there are [other ho
 
 ## Cloud Services - Worker Roles
 
-First you need to reference the assembly that contains the Azure role entry point integration. The recommended way of doing this is by adding a nuget package reference to the `NServiceBus.Hosting.Azure` package to your project.
+First you need to reference the assembly that contains the Azure role entry point integration. The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Hosting.Azure` package to your project.
 
 NOTE: If self hosting, like we'll do later in this article for Web Roles, you can configure everything using the configuration API and the extension methods found in the `NServiceBus.Azure` package, no need to reference the hosting package in that case.
 

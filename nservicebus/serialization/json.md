@@ -26,7 +26,7 @@ Over time the version of ILMerged Json.NET has changed.
 
 ## Customization
 
-Since Json.net is ILMerged the Json.net customization attributes are not supported. However certain customizations are still supported via standard .net attributes.
+Since Json.net is ILMerged the Json.net customization attributes are not supported. However certain customizations are still supported via standard .NET attributes.
 
 
 ### Excluding members

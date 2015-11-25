@@ -262,7 +262,7 @@ Endpoint1\Endpoint1.csproj
 ### Recommendations
 
  * Avoid using screen shots in samples as they cause extra effort when the sample needs to be updated.
- * Samples should illustrate a feature or scenario with as few moving pieces as possible. For example if the sample is "illustrating IOC with MVC" then "adding signalr" to that sample will only cause confusion. In general the fewer nugets you need to get the point across the better.
+ * Samples should illustrate a feature or scenario with as few moving pieces as possible. For example if the sample is "illustrating IOC with MVC" then "adding signalr" to that sample will only cause confusion. In general the fewer NuGets you need to get the point across the better.
  * Do not "document things inside a sample". A sample is "to show how something is used" not to document it. Instead update the appropriate documentation page and link to it. As a general rule if you add any content to a sample, where that guidance could possible be applicable to other samples, then that guidance should probably exist in a documentation page.
 
 
@@ -484,14 +484,14 @@ This is enforced by Resharper rules.
 
 ### Snippets are compiled
 
-The code used by snippets and samples is compiled on the build server. The compilation is done against the versions of the packages referenced in the samples and snippets projects. When a snippet doesn't compile the build will break so make sure snippets are compiling properly. Samples and snippets should not reference unreleased nugets.
+The code used by snippets and samples is compiled on the build server. The compilation is done against the versions of the packages referenced in the samples and snippets projects. When a snippet doesn't compile the build will break so make sure snippets are compiling properly. Samples and snippets should not reference unreleased NuGets.
 
 
-## Unreleased nugets
+## Unreleased NuGets
 
-There are some scenarios where documentation may require unreleased or beta nugets. For example when creating a PR against documentation for a feature that is not yet released. In this case it is ok for a PR to reference an unreleased nuget and have that PR fail to build on the build server. Once the nugets have been released that PR can be merged.
+There are some scenarios where documentation may require unreleased or beta NuGets. For example when creating a PR against documentation for a feature that is not yet released. In this case it is ok for a PR to reference an unreleased NuGet and have that PR fail to build on the build server. Once the NuGets have been released that PR can be merged.
 
-In some cases it may be necessary to have merged documentation for unreleased features. In this case the nuget should be pushed to [Particular feed on myget](https://www.myget.org/feed/Packages/particular). The feed is included by default in the [Snippets nuget.config](https://github.com/Particular/docs.particular.net/blob/master/Snippets/nuget.config#L14).
+In some cases it may be necessary to have merged documentation for unreleased features. In this case the NuGet should be pushed to [Particular feed on MyGet](https://www.myget.org/feed/Packages/particular). The feed is included by default in the [Snippets nuget.config](https://github.com/Particular/docs.particular.net/blob/master/Snippets/nuget.config#L14).
 
 
 ## Alerts

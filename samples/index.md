@@ -87,7 +87,7 @@ Many samples make use of `SendLocal` and sending to an endpoint directly by spec
 
 ### [Container](/nservicebus/containers/)
 
-Samples default to using the built-in container since it does not require pulling in any external nugets. You most likely want to switch to an external container since this will give you greater flexibility in you DI customizations.
+Samples default to using the built-in container since it does not require pulling in any external NuGets. You most likely want to switch to an external container since this will give you greater flexibility in you DI customizations.
 
 ### Async/await
 

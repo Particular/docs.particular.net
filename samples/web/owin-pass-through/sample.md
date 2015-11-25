@@ -23,7 +23,7 @@ The flow of this samples is as follows
 
 > OWIN defines a standard interface between .NET web servers and web applications. The goal of the OWIN interface is to decouple server and application, encourage the development of simple modules for .NET web development, and, by being an open standard, stimulate the open source ecosystem of .NET web development tools.
 
-So extensions to NServiceBus that plug into OWIN can be easily applied to [many .net web server technologies](http://owin.org/#projects).
+So extensions to NServiceBus that plug into OWIN can be easily applied to [many .NET web server technologies](http://owin.org/#projects).
 
 
 ## The purpose of this sample 
@@ -97,7 +97,7 @@ The Bus based approach takes the following steps
 
  * Reads text for the message body from the HTTP request
  * Reads the message type name from the required headers
- * Converts the message type name to a .net Type
+ * Converts the message type name to a .NET Type
  * Uses Type and message body, in conjunction with Json.net, to deserialize an instance of the real message
  * Places that message on the bus via a `SendLocal` 
 

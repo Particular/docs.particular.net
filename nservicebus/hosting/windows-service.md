@@ -25,31 +25,31 @@ Running inside a [Windows Service](https://msdn.microsoft.com/en-us/library/d56d
 NOTE: Note the use of `Environment.UserInteractive` to provide a dual console/service experience. ie this process can be executed from the command line or run as a Windows Service.
 
 
-## Bootstrapping Nuget
+## Bootstrapping NuGet
 
-There is a [Bootstrapping starter package](http://www.nuget.org/packages/NServiceBus.Bootstrap.WindowsService) on nuget that automates most of the above code.
+There is a [Bootstrapping starter package](http://www.nuget.org/packages/NServiceBus.Bootstrap.WindowsService) on NuGet that automates most of the above code.
 
 
 ### How to use
 
-Create a new Console Application (**.net 4.5 or higher**) and install the nuget package. A minimal NServiceBus configuration will be setup for you along with a `ProgramService.cs` class that can be used as both a interactive console for development purposes and a windows service for production use. 
+Create a new Console Application (**.net 4.5 or higher**) and install the NuGet package. A minimal NServiceBus configuration will be setup for you along with a `ProgramService.cs` class that can be used as both a interactive console for development purposes and a windows service for production use. 
 
 **Note that it will also delete the default `Program.cs` since it is superseded by `ProgramService.cs`**
 
 
-### Single use nuget
+### Single use NuGet
 
-This is a "single use nuget". So it after install, and adding code to your project, it will remove itself. Since it is single use there will never be any "upgrade", this is a "use and then own the code" approach.
+This is a "single use NuGet". So it after install, and adding code to your project, it will remove itself. Since it is single use there will never be any "upgrade", this is a "use and then own the code" approach.
 
 
 ### For new self hosting applications
 
-This nuget helps you get started on a new self hosted NServiceBus application. If you have an existing NServiceBus project you have probably already solved the problems this nuget attempts to address.
+This NuGet helps you get started on a new self hosted NServiceBus application. If you have an existing NServiceBus project you have probably already solved the problems this NuGet attempts to address.
 
 
 ### In Memory Persistence
 
-This nuget configures everything to be in memory. The reason is that it makes no assumptions about your choice of persistence and it also aims to be run-able with no other dependencies.
+This NuGet configures everything to be in memory. The reason is that it makes no assumptions about your choice of persistence and it also aims to be run-able with no other dependencies.
 
 WARNING: Choose a durable persistence before deploying to production.
 

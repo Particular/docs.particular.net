@@ -59,11 +59,11 @@ snippet:AddMappingsFromFilesystem
 
 ## Use Fluent NHibernate
 
-[Fluent NHibernate](http://www.fluentnhibernate.org) gives you a type-safe mapping approach where the mapping is specified as code (is not as `.hbm.xml`) but still separate from the classes. The benefit is that you get compile time feedback when a mapping is not valid anymore when you have breaking changes in your mapping but also that your classes and mappings are not part of the same .net type.
+[Fluent NHibernate](http://www.fluentnhibernate.org) gives you a type-safe mapping approach where the mapping is specified as code (is not as `.hbm.xml`) but still separate from the classes. The benefit is that you get compile time feedback when a mapping is not valid anymore when you have breaking changes in your mapping but also that your classes and mappings are not part of the same .NET type.
 
 To use it with NServiceBus:
 
-1. Install `FluentNHibernate` package via Nuget.
+1. Install `FluentNHibernate` package via NuGet.
 2. Create a custom NHibernate configuration
 a. via FluentNHibernate
 b. or by creating a new Configuration instance and pass it to FluentNHibernate
@@ -81,7 +81,7 @@ With [NHibernate.Mapping.Attributes](http://nhibernate.info/doc/nhibernate-refer
 
 NHibernate.Mapping.Attributes needs to know what types to scan to generate an NHibernate mapping configuration that gets passed to your NHibernate configuration.
 
-1. Add the nuget package `NHibernate.Mapping.Attributes`
+1. Add the NuGet package `NHibernate.Mapping.Attributes`
 2. Create a custom NHibernate configuration object.
 3. Initialize the attribute mapping (see sample below).
 4. Pass it to the NServiceBus NHibernate configuration.

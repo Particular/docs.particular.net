@@ -9,7 +9,7 @@ redirects:
 - nservicebus/hosting/send-only-endpoints
 ---
 
-At its core NServiceBus is a library, as such it can be hosted in any .net process.
+At its core NServiceBus is a library, as such it can be hosted in any .NET process.
 
 There are several approaches to hosting.
 
@@ -55,7 +55,7 @@ The only configuration when running in this mode is the destination when [Sendin
 
 ### Web Hosting
 
-NServiceBus can be hosted in any web technology that support .net. This includes
+NServiceBus can be hosted in any web technology that support .NET. This includes
 
  * ASP.net
  * ASP.MVC
@@ -79,7 +79,7 @@ Related:
 
 ### Multi-Hosting
 
-"Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .net process. In Version 4 and earlier this could be achieved through multiple AppDomains. In Version 5 and higher multiple endpoints can share the same AppDomain or use the multiple AppDomains approach. 
+"Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .NET process. In Version 4 and earlier this could be achieved through multiple AppDomains. In Version 5 and higher multiple endpoints can share the same AppDomain or use the multiple AppDomains approach. 
 
 Related:
 

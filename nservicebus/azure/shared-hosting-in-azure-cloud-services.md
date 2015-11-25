@@ -32,7 +32,7 @@ Assuming you have a working endpoint hosted in a worker role. Open your cloud se
 
 NOTE: Visual studio will remove any configuration setting from the Azure configuration settings file. If you had configuration overrides in place that effect the way your endpoint behaves, make sure you move those to the app.config file first or apply the alternative override system for shared hosts, see `Configuration concerns` further down this article for more details on this approach.
 
-The role entry point also doubles as a host process for our endpoint, one that is aware of the service runtime and role context. This functionality needs to be replaced by another process in order to run the endpoint in a similar context as it would have when it was a separate role. This replacement host process is available on nuget as the `NServiceBus.Hosting.Azure.HostProcess` package, please install it in your worker role project. 
+The role entry point also doubles as a host process for our endpoint, one that is aware of the service runtime and role context. This functionality needs to be replaced by another process in order to run the endpoint in a similar context as it would have when it was a separate role. This replacement host process is available on NuGet as the `NServiceBus.Hosting.Azure.HostProcess` package, please install it in your worker role project. 
 
 You'll notice that an NServiceBus.Hosting.Azure.HostProcess.exe is now referenced. The beauty of this exe is that it can also run on your machine, so outside the context of a service runtime, aka you can debug your endpoint locally without starting the Azure emulator by adding this exe to the debug path in the project properties.
 
@@ -45,7 +45,7 @@ Finally go to your Azure storage account and create a private container called `
 
 Once you have prepared and uploaded all your endpoints, you can add a new worker role project to your solution. This worker role will serve as a host for all your endpoints.
 
-In this worker role you need to reference the assembly that contains the Azure role entry point integration. The recommended way of doing this is by adding a nuget package reference to the `NServiceBus.Hosting.Azure` package to your project.
+In this worker role you need to reference the assembly that contains the Azure role entry point integration. The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Hosting.Azure` package to your project.
 
 To integrate the NServiceBus dynamic host into the worker role entry point, all you need to do is create a new instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override. 
 

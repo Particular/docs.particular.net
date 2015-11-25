@@ -50,7 +50,7 @@ Note that this protocol requires two communication steps for each resource manag
 
 This is the reason why none of the Azure services supports distributed transactions, and so you are encouraged not to use distributed transactions even if you technically could.
 
-Side note: The .net framework promotes to a distributed transaction rather quickly; for example, two open connections to the same resource (exact same connectionstring), will still promote to a distributed transaction, and there is no option to disable promotion. 
+Side note: The .NET framework promotes to a distributed transaction rather quickly; for example, two open connections to the same resource (exact same connectionstring), will still promote to a distributed transaction, and there is no option to disable promotion. 
 
 
 ## How to use NServiceBus in this environment
