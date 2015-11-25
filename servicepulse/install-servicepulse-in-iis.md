@@ -21,10 +21,10 @@ These instructions assume the following:
 Steps
 
 1. Create folder for ServicePulse files
-- Extract ServicePulse files
-- Create ServicePulse website in IIS
-- Refer to ServicePulse folder
-- Disable/Remove ServicePulse
+1. Extract ServicePulse files
+1. Create ServicePulse website in IIS
+1. Refer to ServicePulse folder
+1. Disable/Remove ServicePulse
 
 
 [ServicePulse](introduction-and-installing-servicepulse.md), by default, is installed as a Windows Service that will self-host the ServicePulse web application.
@@ -52,16 +52,16 @@ This is useful if you which to lock down access to ServicePulse or if wish to ex
 Installation Steps:
 
 1. Install the IIS [Application Request Routing](http://www.iis.net/downloads/microsoft/application-request-routing) extension.
-- Go to the root folder for the Web site you created in the basic configuration
-- Create a new subdirectory called `api`
-- Edit `config.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `/api`
-- Open the IIS management tool
-- Select the api sub folder from within IIS management tool
-- Click the `URL Rewrite`
-- Add a new URL Rewrite Rule
-- Choose `Reverse Proxy` from the list of rule templates
-- Enter `localhost:33333/api` into the inbound field and leave SSL offload enabled then click OK to add the rule.
-- The website should now answer on /api as though you were directly accessing the ServiceControl.  
+1. Go to the root folder for the Web site you created in the basic configuration
+1. Create a new subdirectory called `api`
+1. Edit `config.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `/api`
+1. Open the IIS management tool
+1. Select the api sub folder from within IIS management tool
+1. Click the `URL Rewrite`
+1. Add a new URL Rewrite Rule
+1. Choose `Reverse Proxy` from the list of rule templates
+1. Enter `localhost:33333/api` into the inbound field and leave SSL offload enabled then click OK to add the rule.
+1. The website should now answer on /api as though you were directly accessing the ServiceControl.  
 
 The procedure above should result in a web.config file in the newly created /api folder similar to this:
 
