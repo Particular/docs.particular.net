@@ -90,3 +90,44 @@ snippet:sqlserver-return-to-source-queue
 ### Using the retry helper methods
 
 snippet:sqlserver-return-to-source-queue-usage
+
+
+### How to shift SqlTransport audit log to long term storage
+
+There are several ways to achieve this. If you have access to a Database Administrator talk to them about techniques like [Table Partitioning](https://technet.microsoft.com/en-us/library/ms188730.aspx) and [Snapshot Replication](https://technet.microsoft.com/en-us/library/ms151832.aspx).
+
+If you're just looking for some simple techniques to clear down your audit queue try this
+
+In SQL Management Studio create an audit_archive table with this SQL script.
+
+```
+CREATE TABLE [dbo].[audit_archive](
+	[Id] [uniqueidentifier] NOT NULL,
+	[CorrelationId] [varchar](255) NULL,
+	[ReplyToAddress] [varchar](255) NULL,
+	[Recoverable] [bit] NOT NULL,
+	[Expires] [datetime] NULL,
+	[Headers] [varchar](max) NOT NULL,
+	[Body] [varbinary](max) NULL,
+	[RowVersion] [bigint] NOT NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+```
+
+Next run this script. 
+
+```
+DELETE FROM [dbo].[audit] 
+OUTPUT [deleted].*
+INTO [dbo].[audit_archive] 
+```
+
+You could run this with a scheduled job if you want to clear down the archive regularly. The script moves the contents of the audit table into audit_archive table you created earlier. You also could wrap this in a transaction.
+
+Once that query completes you are ready to archive to disk. In a command prompt use the [bcp utility](https://msdn.microsoft.com/en-AU/library/ms162802.aspx) to create an archive on disk.
+
+`bcp samples.dbo.audit_archive out archive.csv -c -q -T -S .\SQLExpress`
+
+You will still have to clear the audit records you just archived so go back to SQL Management Studio and in the samples database.
+
+`TRUNCATE TABLE  [dbo].[audit_archive] ;`
