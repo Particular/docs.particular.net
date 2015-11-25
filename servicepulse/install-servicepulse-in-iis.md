@@ -18,6 +18,15 @@ These instructions assume the following:
 
 ## Basic Setup
 
+Steps
+
+1. Create folder for ServicePulse files
+- Extract ServicePulse files
+- Create ServicePulse website in IIS
+- Refer to ServicePulse folder
+- Disable/Remove ServicePulse
+
+
 [ServicePulse](introduction-and-installing-servicepulse.md), by default, is installed as a Windows Service that will self-host the ServicePulse web application.
 
 It is possible to manually install ServicePulse using IIS following these steps:
