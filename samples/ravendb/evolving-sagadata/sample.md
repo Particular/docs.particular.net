@@ -51,7 +51,7 @@ In this example the `ItemCount` property will be renamed to `NumberOfItems`.
 
 snippet:dataV2
 
-One way of achieving this is to leverage they [RavenDb Conversion API](http://ravendb.net/search?q=IDocumentConversionListener) to convert a saga data when it reads. 
+One way of achieving this is to leverage they [RavenDb Conversion API](http://ravendb.net/docs/search/latest/csharp?searchTerm=IDocumentConversionListener) to convert a saga data when it reads. 
 
 
 ### Converter
@@ -100,7 +100,7 @@ RavenDB does not support changing the underlying document id. This means the onl
  * Save the new document
  * Delete the old document
 
-WARNING: This is an offline action in that all old version of the endpoints have to be stopped, the migration performed, and the new version endpoints deployed. As such a [full RavenDB Backup](http://ravendb.net/search?q=backup%20restore) should be performed prior to a migration. Also the migration, including a simulated rollback, should be tested in a lower environment prior to preforming these operations in production.
+WARNING: This is an offline action in that all old version of the endpoints have to be stopped, the migration performed, and the new version endpoints deployed. As such a [full RavenDB Backup](http://ravendb.net/docs/search/latest/csharp?searchTerm=backup%20restore) should be performed prior to a migration. Also the migration, including a simulated rollback, should be tested in a lower environment prior to preforming these operations in production.
 
 
 ### Rename Helper
@@ -112,11 +112,11 @@ Renaming a RavenDB saga data is done in two parts.
 
 Both of these actions leverage the following Raven APIs: 
 
- * [Batch](http://ravendb.net/search?q=Batch)
- * [Bulk Insert](http://ravendb.net/search?q=BulkInsert)
- * [Streaming Documents](http://ravendb.net/search?q=Stream)
- * [Batch Delete](http://ravendb.net/search?q=DeleteCommandData)
- * [Type Conventions](http://ravendb.net/search?q=Type%20Conventions) 
+ * [Batch](http://ravendb.net/docs/search/latest/csharp?searchTerm=Batch)
+ * [Bulk Insert](http://ravendb.net/docs/search/latest/csharp?searchTerm=BulkInsert)
+ * [Streaming Documents](http://ravendb.net/docs/search/latest/csharp?searchTerm=Stream)
+ * [Batch Delete](http://ravendb.net/docs/search/latest/csharp?searchTerm=DeleteCommandData)
+ * [Type Conventions](http://ravendb.net/docs/search/latest/csharp?searchTerm=Type%20Conventions) 
 
 snippet:renamer
 

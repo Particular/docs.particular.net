@@ -138,4 +138,4 @@ See also [How to specify your input queue name](/nservicebus/messaging/specify-i
 
 ## How do I look at the data?
 
-Open a web browser and type the URL of the RavenDB server. This opens the [RavenDB Studio](http://ravendb.net/search?q=management-studio).
+Open a web browser and type the URL of the RavenDB server. This opens the [RavenDB Studio](http://ravendb.net/docs/search/latest/csharp?searchTerm=management-studio).
