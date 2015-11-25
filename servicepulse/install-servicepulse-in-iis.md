@@ -100,16 +100,17 @@ If ServiceControl is secured with an authentication module other that Windows Au
 
 Older versions of ServiceInsight can still be used locally, bypassing the security by connecting to the ServiceControl port directly using the `http://localhost:33333/api` URL.  
 
-## Upgrades
+## Upgrading ServicePulse hosted in IIS
 
 When ServicePulse is hosted in IIS the upgrade process is as follows:
 
 1. Go to the root directory of the IIS web site,
-- View the contents of `config.js` and record the current value of `serviceControlUrl`
-- Remove all files and folders in the root of the IIS Web Site except the `api` folder if it exists
-- Install the new version of ServicePulse using the standard instructions
-- Extract the files from the ServicePulse.Host.exe using the following commandline, replacing `<rescordedvalue>` with the value from the `config.js` and `<webroot>` with the path to the root directory of the IIS website
+1. View and record the contents of `app.constants.js`. Specifically the current value of `serviceControlUrl`.
+1. Remove all files and folders in the root of the IIS Web Site **except** the `api` folder which exists when you have configured the ServiceControl reverse proxy. 
+1. Install the new version of ServicePulse using the standard instructions
+1. Extract the files from the ServicePulse.Host.exe using the following commandline, replacing the recorded values from step 2  with the values from the `app.constants.js` and `<webroot>` with the path to the root directory of the IIS website
 ```
-ServicePulse.Host.exe` --extract --serviceControlUrl="<rescordedvalue>" --outPath="<webroot>"
+ServicePulse.Host.exe --extract --serviceControlUrl="<recordedvalue>" --outPath="<webroot>"
 ```
-- Optionally remove the unneeded Windows Service by uninstalling ServicePulse via the Add/Remove applet in control panel
+1. Optionally remove or disable the unneeded Windows Service by uninstalling ServicePulse via the Add/Remove applet in control panel
+1. The installer might add the ACLURL which could restrict access and will need to be removed as described in the basis steps.
