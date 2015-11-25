@@ -54,7 +54,7 @@ Once all the ServicePulse files are successfully extracted you can configure a n
 
 ## Advanced Configuration
 
-ServicePulse relies on the ServiceControl REST API.  It is possible to add a reverse proxy to the web site using  the Microsoft [Application Request Routing](http://www.iis.net/downloads/microsoft/application-request-routing) IIS extension.
+ServicePulse relies on the ServiceControl REST API.  It is possible to add a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to the web site using  the Microsoft [Application Request Routing](http://www.iis.net/downloads/microsoft/application-request-routing) IIS extension.
 This is useful if you which to lock down access to ServicePulse or if wish to expose the web site over a single port.
 
 Installation Steps:
