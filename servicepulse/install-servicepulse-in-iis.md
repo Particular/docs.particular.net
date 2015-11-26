@@ -115,4 +115,4 @@ When ServicePulse is hosted in IIS the upgrade process is as follows:
 ServicePulse.Host.exe --extract --serviceControlUrl="<recordedvalue>" --outPath="<webroot>"
 ```
 1. Optionally remove or disable the unneeded Windows Service by uninstalling ServicePulse via the Add/Remove applet in control panel
-1. The installer might add the ACLURL which could restrict access and will need to be removed as described in the basis steps.
+1. The installer might add the ACLURL which could restrict access and will need to be removed as described in the basic steps.
