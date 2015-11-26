@@ -6,12 +6,17 @@ redirects:
 - nservicebus/how-do-i-send-a-message
 ---
 
-To send a message, use the `Send` method on the `IBus` interface, passing as the argument the instance of the message to deliver:
+Prior to V6 sending a message involved using the `Send` method on the `IBus` interface, passing as the argument the instance of the message to deliver. In V6 the equivalent of the `IBus` is the `IBusContext` family if interfaces.
 
+Here's how a message is sent by directly using the instance of the endpoint
 
 snippet:BasicSend
 
- Or instantiate and send all messages at once:
+And here's how it is done from the message handler
+
+snippet:SendFromHandler
+
+In both cases you can use an interface rather than a concrete class for a message:
 
 snippet:BasicSendInterface
 

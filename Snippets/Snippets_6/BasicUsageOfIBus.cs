@@ -7,12 +7,26 @@
     {
         async Task Send()
         {
-            IBusContext busContext = null;
+            var busConfig = new BusConfiguration();
 
             #region BasicSend
+            IEndpointInstance instance = await Endpoint.Start(busConfig);
+            IBusContext busContext = instance.CreateBusContext();
+
             await busContext.Send(new MyMessage());
             #endregion
         }
+
+        #region SendFromHandler
+
+        public class MyMessageHandler : IHandleMessages<MyMessage>
+        {
+            public async Task Handle(MyMessage message, IMessageHandlerContext context)
+            {
+                await context.Send(new OtherMessage());
+            }
+        }
+        #endregion
 
         async Task SendInterface()
         {
@@ -23,8 +37,13 @@
             #endregion
         }
 
-        class MyMessage
+        public class MyMessage
         {
+        }
+
+        public class OtherMessage
+        {
+             
         }
 
         interface IMyMessage
