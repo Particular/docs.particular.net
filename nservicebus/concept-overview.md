@@ -32,7 +32,7 @@ An Endpoint is a design-time concept that has a name and a collection of associa
 
 ### Endpoint Instance
 
-An Endpoint Instance is a run-time object that allows to interact with the bus. Endpoint Instance is able to send and receive messages (an exception is a *send-only* endpoint). It runs associated Message Handlers and Sagas to process incoming messages. An Endpoint Instance has a single Input Queue (which can be shared with other instances of the same Endpoint in a scale-out scenario). 
+An Endpoint Instance is a run-time object that allows to interact with the bus. Endpoint Instances are able to send and receive messages (an exception is a *send-only* endpoint). It runs associated Message Handlers and Sagas to process incoming messages. An Endpoint Instance has a single Input Queue (which can be shared with other instances of the same Endpoint in a scale-out scenario). 
 
 ### [Hosting](/nservicebus/hosting)
 
