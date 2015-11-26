@@ -107,7 +107,7 @@ Older versions of ServiceInsight can still be used locally, bypassing the securi
 When ServicePulse is hosted in IIS the upgrade process is as follows:
 
 1. Go to the root directory of the IIS web site,
-1. View and record the contents of `app.constants.js`. Specifically the current value of `serviceControlUrl`.
+1. View and record the the current ServicePulse configuration, specifically the value of `serviceControlUrl`. Prior to version 1.3 this was set in `config.js`. For v1.3 and higher the `app\js\app.constants.js` contains this configuration.
 1. Remove all files and folders in the root of the IIS Web Site **except** the `api` folder which exists when you have configured the ServiceControl reverse proxy. 
 1. Install the new version of ServicePulse using the standard instructions
 1. Extract the files from the ServicePulse.Host.exe using the following commandline, replacing the recorded values from step 2  with the values from the `app.constants.js` and `<webroot>` with the path to the root directory of the IIS website
