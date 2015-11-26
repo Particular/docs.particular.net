@@ -86,15 +86,7 @@ For each endpoint there is a single primary queue table which name matches the n
 
 ## Secondary queues
 
-In order for callbacks e.g.
-
-snippet:sqlserver-config-callbacks
-
-to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is necessary because callback handlers are stored in-memory in the node that did the send. The reply is sent via:
-
-snippet:sqlserver-config-callbacks-reply
-
-should be delivered to this special queue so that it is picked up by the same node that registered the callback.
+In order for [callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md) to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is necessary because callback handlers are stored in-memory in the node that did the send. The reply is sent via should be delivered to this special queue so that it is picked up by the same node that registered the callback.
 
 Secondary queue tables have the name of the machine appended to the name of the primary queue table with `.` as separator e.g. `SomeEndpoint.MyMachine`.
 
@@ -104,6 +96,36 @@ snippet:sqlserver-config-disable-secondaries
 
 Secondary queues use same adaptive concurrency model to the primary queue. Secondary queues (and hence callbacks) are disabled for satellite receivers.
 
+
+## Callback Receiver Max Concurrency
+
+Changes the number of threads that should be used for the callback receiver. The default is 1 thread.
+
+snippet:sqlserver-CallbackReceiverMaxConcurrency
+
+
+## Circuit Breaker
+
+The Sql transport has a built in circuit breaker to handle intermittent Sql connectivity problems.
+
+
+### Wait time
+
+Overrides the default time to wait before triggering a circuit breaker that initiates the endpoint shutdown procedure in case there are numerous errors while trying to receive messages.
+
+The default is 2 minutes.
+
+snippet:sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
+
+
+### Pause Time
+
+Overrides the default time to pause after a failure while trying to receive a message.
+
+The default is 10 seconds.
+
+snippet: sqlserver-PauseAfterReceiveFailure
+ 
 
 ## Connection strings
 
