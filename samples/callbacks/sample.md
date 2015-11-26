@@ -34,7 +34,7 @@ public enum Status
 
 An ASP.NET MVC application responsible for sending messages and handling the web callback from the reply. Depending upon NServiceBus version, the method for integrating with asynchronous controllers is very different.
 
-Note: All the usages of the Bus are done via a staitic insatnce stored on the root `MvcApplication` that is configured in the `Global.cs`.
+Note: All the usages of the Bus are done via a static instance stored on the root `MvcApplication` that is configured in the `Global.cs`.
 
 
 ### Send and callback for an enum
