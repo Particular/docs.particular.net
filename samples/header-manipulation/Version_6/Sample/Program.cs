@@ -31,20 +31,27 @@ class Program
         #region global-all-outgoing
 
         busConfiguration.AddHeaderToAllOutgoingMessages("AllOutgoing", "ValueAllOutgoing");
-        IStartableBus startableBus = Bus.Create(busConfiguration);
-        using (IBus bus = await startableBus.StartAsync())
+
+        #endregion
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
-            #endregion
+            IBusContext busContext = endpoint.CreateBusContext();
+
 
             #region sending
 
             MyMessage myMessage = new MyMessage();
-            await bus.SendLocalAsync(myMessage);
+            await busContext.SendLocal(myMessage);
 
             #endregion
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            endpoint.Stop().GetAwaiter().GetResult();
         }
     }
 }

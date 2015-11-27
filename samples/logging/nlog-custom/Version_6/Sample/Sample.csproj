@@ -37,12 +37,11 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NLog.4.2.0\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NLog">
+      <HintPath>..\..\..\..\..\packages\NLog.4.2.1\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1041\lib\net451\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1139\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NLog">
       <HintPath>..\..\..\..\..\packages\NServiceBus.NLog.1.2.0-unstable0007\lib\net452\NServiceBus.NLog.dll</HintPath>
