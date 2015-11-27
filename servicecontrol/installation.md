@@ -4,6 +4,8 @@ summary: Installation Options for ServiceControl
 tags:
 - ServiceControl
 - Installation
+redirects:
+- servicecontrol/multi-transport-support
 ---
 
 The ServiceControl installation file consists of an embedded MSI bootstrapper EXE and an embedded MSI.  This installation can be executed standalone or via the Particular Software Platform Installer.  The installation package include a utility to manage the installation, upgrade and remove of ServiceControl services.  This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.  
