@@ -449,7 +449,7 @@
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="CriticalError.cs" />
-    <Compile Include="SendOnly.cs" />
+    <Compile Include="Hosting.cs" />
     <Compile Include="Serialization\XmlSerialization.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DataBus\FileShare\DataBus.cs" />

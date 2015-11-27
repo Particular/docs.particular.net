@@ -29,8 +29,15 @@ Related:
 
  * [Self-Hosting Sample](/samples/hosting/self-hosting/) for more details.
 
+When self-hosting, the user is responsible for creating and starting the endpoint instance
 
-WARNING: **Cleanup/Shutdown**: For all self hosting scenarios it is important to note that the hosting code is in control of properly shutting down the endpoint. This is done by calling `Dispose` on the Bus instance in the shutdown API of your chosen technology.
+snippet:Hosting-Startup
+
+The user is also responsible for properly shutting down the endpoint when it is no longer needed (usually when the application terminates). 
+
+snippet:Hosting-Shutdown
+
+NOTE: Starting with V6 we no longer provide the `Dispose` method. This is because there is now way to flow the asynchronous context through the `Dispose` method. The shutdown procedure might involve executing async code (e.g. `IWantToRunWhenBusStartsAndStops`) which means that if `Dispose` would wrap `Stop` with a `GetResult()` call, it could cause deadlocks.
 
 
 ### Windows Service Hosting
@@ -48,7 +55,7 @@ Related:
 
 A "Send-only endpoint" is used when the only purpose is sending messages and no message processing is required in that endpoint. Common use cases include websites, console application and windows application. This is the code for starting an endpoint in send only mode.
  
-snippet:SendOnly
+snippet:Hosting-SendOnly
 
 The only configuration when running in this mode is the destination when [Sending a message](/nservicebus/messaging/send-a-message.md).
 
@@ -86,9 +93,9 @@ Related:
  * [Multi-Hosting Sample](/samples/hosting/multi-hosting/).
 
 
-### Accessing IBus
+### Accessing the bus
 
-At startup an instance of `IBus` is created and at shutdown it is disposed. Most usages of `IBus` will occur where the NServiceBus APIs are used. For example [Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/). However there are other scenarios that may require an alternative approach. 
+Most usages of the bus will occur where the NServiceBus APIs are used. For example [Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/). However there are other scenarios that may require an alternative approach where the user needs to directly access the bus from outside of the framework.
 
 
 #### Using a Container
@@ -100,6 +107,10 @@ Related:
  * [Injecting the Bus into ASP.NET MVC Controller](/samples/web/asp-mvc-injecting-bus/)
 
 
+NOTO: Since V6 `IEndpointInstance` (the equivalent of `IBus`) is no longer automatically injected into the container. Here's a sample code showing how to do it using the Autofac container
+
+snippet:Hosting-Inject
+
 #### Static variable
 
 For many scenarios a container is not required. In these cases a simple public static variable on the startup class will suffice. This variable can then be access globally in your application. For example:
@@ -109,17 +120,7 @@ For many scenarios a container is not required. In these cases a simple public s
 
 Alternatively the static variable could be placed on a (more appropriately named) helper class.
 
-```
-public static class BusInstance
-{
-    public static IBus Bus { get; private set; }
-    public static void SetInstance(IBus bus)
-    {
-        Bus = bus;
-    }
-} 
-```
-
+snippet:Hosting-Static
 
 ## "Custom Host" Solutions
 

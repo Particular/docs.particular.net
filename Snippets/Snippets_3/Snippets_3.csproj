@@ -312,7 +312,7 @@
     <Compile Include="Scheduling\Saga\SchedulerSaga.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
-    <Compile Include="SendOnly.cs" />
+    <Compile Include="Hosting.cs" />
     <Compile Include="Serialization\BinarySerialization.cs" />
     <Compile Include="Serialization\BsonSerialization.cs" />
     <Compile Include="Serialization\JsonSerialization.cs" />
