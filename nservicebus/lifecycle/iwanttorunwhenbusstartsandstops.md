@@ -58,7 +58,7 @@ NOTE: Since `Start()` executes all `IWantToRunWhenBusStartsAndStops` asynchronou
 
 Exceptions raised from the `Start()` method will cause the startup process to be aborted and the exception is raised to the caller.
 
-NOTE: The call to `IStartableBus.Start()` will not return before all instances of `IWantToRunWhenBusStartsAndStops.Start()` are completed.
+NOTE: The call to `IStartableEndpoint.Start()` will not return before all instances of `IWantToRunWhenBusStartsAndStops.Start()` are completed.
 
 When the Bus is disposed, all instances of `IWantToRunWhenBusStartsAndStops` are stopped by calling their `Stop()` method asynchronously but not on its dedicated thread. Each call to `Stop()` happens on the same thread which disposes the bus. Any exceptions thrown by a call to `Stop` will be logged at the Fatal level.
 
