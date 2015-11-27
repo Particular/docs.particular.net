@@ -79,9 +79,9 @@ snippet:FeatureWithPrerequisites
 NOTE: The differentiation between *explicit* settings and *default* settings comes useful when determining if a given feature should be activated.
 
 
-### Activation 
+### Activation
 
-Final stage is the activation where each feature has its chance to set up the bus. The features are activated in order of dependencies which means that when a given feature is activating, all the features it depends on have already been activated. 
+Final stage is the activation where each feature has its chance to set up the bus. The features are activated in order of dependencies which means that when a given feature is activating, all the features it depends on have already been activated.
 
 In order for a feature to be activated it needs to satisfy the following criteria:
  * It needs to be *enabled*
@@ -110,8 +110,12 @@ If you need to execute some feature related logic after the feature has been sta
 
 snippet:FeatureStartupTaskDefinition
 
-To associate a `FeatureStartupTask` with your feature, register it in the constructor of your feature using `RegisterStartupTask`. The task will only be created and called if the feature is enabled. The `FeatureStartupTask`s are activated and started in random order.
+To associate a `FeatureStartupTask` with your feature, using `RegisterStartupTask`.
 
 snippet:FeatureStartupTaskRegistration
 
-Note: `FeatureStartupTask` are executed synchronously. Avoid long running operations which will delay the bus startup time.
+The task will only be created and called if the feature is enabled. The `FeatureStartupTask`s are activated and started in random order.
+
+Note: In Version 5 `FeatureStartupTask` are executed synchronously. Avoid long running operations which will delay the bus startup time.
+
+Note: In Version 6 `FeatureStartupTask` run asynchronously the calling thread which initialized the endpoint. Furthermore, you get access to the `IBusContext` which allows to do basic bus operations inside a `FeatureStartupTask`.
