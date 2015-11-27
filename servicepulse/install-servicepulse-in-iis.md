@@ -142,7 +142,7 @@ OR set them in your web.config (these settings can work well if font-awesome isn
 </system.webServer>
 ```
 
-If you still having problems and IIS still is not serving the files, try removing the MIME type declaration before re-declaring it. See the example below for the .woff MIME type.
+If you are still having problems and IIS still is not serving the files, try removing the MIME type declaration before re-declaring it. See the example below for the .woff MIME type.
 
 ```
 <system.webServer>
@@ -157,4 +157,4 @@ If you still having problems and IIS still is not serving the files, try removin
 
 When access to http://platformupdate.particular.net/servicepulse.txt results in unsafe script warning accessed via SSL. You can edit `app.constants.js` so that the `service_pulse_url` uses `https://` instead of `http://`.
 
-This call is used to notify you of product updates. 
+We use This call is used to notify you of product updates. 
