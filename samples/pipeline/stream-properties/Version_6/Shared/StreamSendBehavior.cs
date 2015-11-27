@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using NServiceBus.DeliveryConstraints;
 using NServiceBus.Performance.TimeToBeReceived;
 using NServiceBus.Pipeline;
-using NServiceBus.Pipeline.Contexts;
+using NServiceBus.Pipeline.OutgoingPipeline;
 using NServiceBus.TransportDispatch;
 
 #region SendBehaviorDefinition

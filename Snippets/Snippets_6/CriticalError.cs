@@ -14,7 +14,7 @@
             #region DefineCriticalErrorActionForAzureHost
 
             // Configuring how NServicebus handles critical errors
-            busConfiguration.DefineCriticalErrorAction((message, exception) =>
+            busConfiguration.DefineCriticalErrorAction((endpointInstance, message, exception) =>
             {
                 string errorMessage = string.Format("We got a critical exception: '{0}'\r\n{1}", message, exception);
 

@@ -10,7 +10,7 @@ using NServiceBus.Unicast.Messages;
 
 #region serialize-behavior
 using ToContext = NServiceBus.OutgoingPipeline.OutgoingPhysicalMessageContext;
-using FromContext = NServiceBus.Pipeline.Contexts.OutgoingLogicalMessageContext;
+using FromContext = NServiceBus.Pipeline.OutgoingPipeline.OutgoingLogicalMessageContext;
 class SerializeConnector : StageConnector<FromContext, ToContext>
 {
     SerializationMapper serializationMapper;

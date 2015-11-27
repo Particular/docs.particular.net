@@ -24,16 +24,21 @@ class Program
         busConfiguration.SendFailedMessagesTo("error");
 
         Logger.WriteLine("Calling Bus.Create");
-        using (IStartableBus bus = Bus.Create(busConfiguration))
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
-            Logger.WriteLine("Calling IStartableBus.Create");
-            await bus.StartAsync();
+            Logger.WriteLine("Calling IEndpointInstance.CreateBusContext");
+            IBusContext busContext = endpoint.CreateBusContext();
 
             //simulate some bus activity
             Thread.Sleep(500);
 
             Logger.WriteLine("Bus is processing messages");
-            Logger.WriteLine("Calling IStartableBus.Dispose");
+        }
+        finally
+        {
+            Logger.WriteLine("Calling IEndpointInstance.Stop");
+            endpoint.Stop().GetAwaiter().GetResult();
         }
         Logger.WriteLine("Finished");
         #endregion

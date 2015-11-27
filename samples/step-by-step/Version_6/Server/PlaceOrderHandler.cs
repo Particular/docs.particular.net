@@ -15,7 +15,7 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
                                   {
                                       OrderId = message.Id
                                   };
-        await context.PublishAsync(orderPlaced);
+        await context.Publish(orderPlaced);
     }
 }
 

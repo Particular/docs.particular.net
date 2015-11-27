@@ -6,6 +6,7 @@ using NServiceBus.MessageInterfaces;
 using NServiceBus.Serialization;
 using NServiceBus.Serializers.Json;
 using NServiceBus.Serializers.XML;
+using NServiceBus.Settings;
 
 #region serialization-mapper
 public class SerializationMapper
@@ -13,11 +14,11 @@ public class SerializationMapper
     JsonMessageSerializer jsonSerializer;
     XmlMessageSerializer xmlSerializer;
 
-    public SerializationMapper(IMessageMapper mapper,Conventions conventions, Configure configure)
+    public SerializationMapper(IMessageMapper mapper,Conventions conventions, ReadOnlySettings settings)
     {
         jsonSerializer = new JsonMessageSerializer(mapper);
         xmlSerializer = new XmlMessageSerializer(mapper, conventions);
-        List<Type> messageTypes = configure.TypesToScan.Where(conventions.IsMessageType).ToList();
+        List<Type> messageTypes = settings.GetAvailableTypes().Where(conventions.IsMessageType).ToList();
         xmlSerializer.Initialize(messageTypes);
     }
     

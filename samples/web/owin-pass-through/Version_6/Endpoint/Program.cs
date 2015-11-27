@@ -18,7 +18,9 @@ static class Program
     {
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
-#region startbus
+
+        #region startbus
+
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.OwinPassThrough");
         busConfiguration.SendFailedMessagesTo("error");
@@ -26,18 +28,28 @@ static class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
-        IEndpoint endpoint = await Endpoint.Start(busConfiguration);
-        var bus = endpoint.CreateBusContext();
-        using (StartOwinHost(bus))
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
+            IBusContext busContext = endpoint.CreateBusContext();
+            using (StartOwinHost(busContext))
+            {
+                Console.WriteLine("Press any key to exit");
+                Console.ReadKey();
+            }
+            await endpoint.Stop();
+
+            #endregion
         }
-        await endpoint.Stop();
-        #endregion
+        finally
+        {
+            endpoint.Stop().GetAwaiter().GetResult();
+        }
     }
-#region startowin
-    static IDisposable StartOwinHost(IBusContext bus)
+
+    #region startowin
+
+    static IDisposable StartOwinHost(IBusContext busContext)
     {
         string baseUrl = "http://localhost:12345/";
         StartOptions startOptions = new StartOptions(baseUrl)
@@ -48,7 +60,7 @@ static class Program
         return WebApp.Start(startOptions, builder =>
         {
             builder.UseCors(CorsOptions.AllowAll);
-            MapToBus(builder, bus);
+            MapToBus(builder, busContext);
             MapToMsmq(builder);
         });
     }
@@ -65,6 +77,7 @@ static class Program
         OwinToMsmq owinToMsmq = new OwinToMsmq(queue);
         builder.Map("/to-msmq", app => { app.Use(owinToMsmq.Middleware()); });
     }
-#endregion
+
+    #endregion
 
 }

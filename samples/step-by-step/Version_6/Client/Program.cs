@@ -19,15 +19,21 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.SendFailedMessagesTo("error");
 
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
-            await SendOrder(bus);
+            IBusContext busContext = endpoint.CreateBusContext();
+            await SendOrder(busContext);
+        }
+        finally
+        {
+            endpoint.Stop().GetAwaiter().GetResult();
         }
     }
 
 
     #region SendOrder
-    static async Task SendOrder(IBus bus)
+    static async Task SendOrder(IBusContext busContext)
     {
 
         Console.WriteLine("Press enter to send a message");
@@ -49,7 +55,7 @@ class Program
                 Product = "New shoes",
                 Id = id
             };
-            await bus.SendAsync("Samples.StepByStep.Server", placeOrder);
+            await busContext.Send("Samples.StepByStep.Server", placeOrder);
 
             Console.WriteLine("Sent a new PlaceOrder message with id: {0}", id.ToString("N"));
 

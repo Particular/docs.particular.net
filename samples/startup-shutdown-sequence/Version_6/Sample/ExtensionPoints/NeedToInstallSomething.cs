@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
-using NServiceBus;
 using NServiceBus.Installation;
 
 public class NeedToInstallSomething :
-    INeedToInstallSomething
+    IInstall
 {
-    public Task InstallAsync(string identity, Configure config)
+
+    public Task Install(string identity)
     {
-        Logger.WriteLine("Inside INeedToInstallSomething.Install");
+        Logger.WriteLine("Inside IInstall.Install");
         return Task.FromResult(0);
     }
 }
