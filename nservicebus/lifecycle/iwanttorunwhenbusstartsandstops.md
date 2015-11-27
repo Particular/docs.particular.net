@@ -52,17 +52,17 @@ Instances are:
 
 Exceptions thrown in the constructors of instances of `IWantToRunWhenBusStartsAndStops` are unhandled by NServiceBus. These will bubble up to the code that starts the the bus.
 
-Once created `StartAsync()` is called on each instance asynchronously without awaiting its completion. Each `StartAsync()` call is made on a on the same thread which started the bus. Instances of `IWantToRunWhenBusStartsAndStops` are kept internally to be stopped when the bus is disposed.
+Once created `Start()` is called on each instance asynchronously without awaiting its completion. Each `Start()` call is made on a on the same thread which started the bus. Instances of `IWantToRunWhenBusStartsAndStops` are kept internally to be stopped when the bus is stopped.
 
-NOTE: Since `StartAsync()` executes all `IWantToRunWhenBusStartsAndStops` asynchronously but not on its dedicated thread. It is the responsibility of the implementing class to execute its operations in parallel if needed (i.ex. for CPU bound work). Failure to do so will prevent the bus from being started.
+NOTE: Since `Start()` executes all `IWantToRunWhenBusStartsAndStops` asynchronously but not on its dedicated thread. It is the responsibility of the implementing class to execute its operations in parallel if needed (i.ex. for CPU bound work). Failure to do so will prevent the bus from being started.
 
-Exceptions raised from the `StartAsync()` method will cause the startup process to be aborted and the exception is raised to the caller.
+Exceptions raised from the `Start()` method will cause the startup process to be aborted and the exception is raised to the caller.
 
-NOTE: The call to `IStartableBus.Start()` will not return before all instances of `IWantToRunWhenBusStartsAndStops.StartAsync()` are completed.
+NOTE: The call to `IStartableBus.Start()` will not return before all instances of `IWantToRunWhenBusStartsAndStops.Start()` are completed.
 
-When the Bus is disposed, all instances of `IWantToRunWhenBusStartsAndStops` are stopped by calling their `StopAsync()` method asynchronously but not on its dedicated thread. Each call to `StopAsync()` happens on the same thread which disposes the bus. Any exceptions thrown by a call to `StopAsync` will be logged at the Fatal level.
+When the Bus is disposed, all instances of `IWantToRunWhenBusStartsAndStops` are stopped by calling their `Stop()` method asynchronously but not on its dedicated thread. Each call to `Stop()` happens on the same thread which disposes the bus. Any exceptions thrown by a call to `Stop` will be logged at the Fatal level.
 
-NOTE: `StopAsync()` will wait for any outstanding instances of `StartAsync()` to complete. It is the responsibility of the implementing class to execute its operations in parallel if needed (i.ex. for CPU bound work). Failure to do so will prevent the bus from being disposed.
+NOTE: `Stop()` will wait for any outstanding instances of `Start()` to complete. It is the responsibility of the implementing class to execute its operations in parallel if needed (i.ex. for CPU bound work). Failure to do so will prevent the bus from being disposed.
 
 # Code
 
