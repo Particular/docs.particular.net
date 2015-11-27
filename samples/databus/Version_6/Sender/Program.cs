@@ -20,8 +20,10 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         busConfiguration.SendFailedMessagesTo("error");
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
+            IBusContext busContext = endpoint.CreateBusContext();
             Console.WriteLine("Press 'D' to send a databus large message");
             Console.WriteLine("Press 'N' to send a normal large message exceed the size limit and throw");
             Console.WriteLine("Press any other key to exit");
@@ -33,22 +35,26 @@ class Program
 
                 if (key.Key == ConsoleKey.N)
                 {
-                    await SendMessageTooLargePayload(bus);
+                    await SendMessageTooLargePayload(busContext);
                     continue;
                 }
 
                 if (key.Key == ConsoleKey.D)
                 {
-                    await SendMessageLargePayload(bus);
+                    await SendMessageLargePayload(busContext);
                     continue;
                 }
                 return;
             }
         }
+        finally
+        {
+            endpoint.Stop().GetAwaiter().GetResult();
+        }
     }
 
 
-    static async Task SendMessageLargePayload(IBus bus)
+    static async Task SendMessageLargePayload(IBusContext bus)
     {
         #region SendMessageLargePayload
 
@@ -57,14 +63,14 @@ class Program
             SomeProperty = "This message contains a large blob that will be sent on the data bus",
             LargeBlob = new DataBusProperty<byte[]>(new byte[1024*1024*5]) //5MB
         };
-        await bus.SendAsync("Samples.DataBus.Receiver", message);
+        await bus.Send("Samples.DataBus.Receiver", message);
 
         #endregion
 
         Console.WriteLine("Message sent, the payload is stored in: " + BasePath);
     }
 
-    static async Task SendMessageTooLargePayload(IBus bus)
+    static async Task SendMessageTooLargePayload(IBusContext bus)
     {
         #region SendMessageTooLargePayload
 
@@ -72,7 +78,7 @@ class Program
         {
             LargeBlob = new byte[1024*1024*5] //5MB
         };
-        await bus.SendAsync("Samples.DataBus.Receiver", message);
+        await bus.Send("Samples.DataBus.Receiver", message);
 
         #endregion
     }

@@ -16,11 +16,15 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.RegisterMessageEncryptor();
         busConfiguration.SendFailedMessagesTo("error");
-        IStartableBus startableBus = Bus.Create(busConfiguration);
-        using (await startableBus.StartAsync())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            endpoint.Stop().GetAwaiter().GetResult();
         }
     }
 }

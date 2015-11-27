@@ -3,20 +3,15 @@ using NServiceBus;
 
 class Sender : IWantToRunWhenBusStartsAndStops
 {
-    IBus bus;
 
-    public Sender(IBus bus)
+    public async Task Start(IBusContext context)
     {
-        this.bus = bus;
+        await context.SendLocal(new MyMessage());
     }
 
-    public async Task StartAsync()
-    {
-        await bus.SendLocalAsync(new MyMessage());
-    }
-
-    public Task StopAsync()
+    public Task Stop(IBusContext context)
     {
         return Task.FromResult(0);
     }
+
 }

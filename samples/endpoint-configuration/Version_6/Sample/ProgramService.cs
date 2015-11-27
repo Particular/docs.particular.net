@@ -13,7 +13,7 @@ using NServiceBus.Persistence;
 
 class ProgramService : ServiceBase
 {
-    IBus bus;
+    IEndpointInstance endpoint;
     static ILog logger = LogManager.GetLogger("ProgramService");
 
     static void Main()
@@ -114,8 +114,7 @@ class ProgramService : ServiceBase
         #endregion
 
         #region critical-errors
-
-        busConfiguration.DefineCriticalErrorAction((errorMessage, exception) =>
+        busConfiguration.DefineCriticalErrorAction((endpointInstance, errorMessage, exception) =>
         {
             // Log the critical error
             logger.Fatal(string.Format("CRITICAL: {0}", errorMessage), exception);
@@ -123,6 +122,7 @@ class ProgramService : ServiceBase
             // Kill the process on a critical error
             string output = string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage);
             Environment.FailFast(output, exception);
+            return Task.FromResult(0);
         });
 
         #endregion
@@ -130,18 +130,17 @@ class ProgramService : ServiceBase
         #region start-bus
 
         busConfiguration.EnableInstallers();
-        bus = await Bus.Create(busConfiguration).StartAsync();
-
+        endpoint = await Endpoint.Start(busConfiguration);
         #endregion
     }
 
 
     protected override void OnStop()
     {
-        #region stop-bus
-        if (bus != null)
+        #region stop-endpoint
+        if (endpoint != null)
         {
-            bus.Dispose();
+            endpoint.Stop().GetAwaiter().GetResult();
         }
         #endregion
     }

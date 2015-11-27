@@ -22,10 +22,17 @@ class Program
         // To disable second level retries(SLR), uncomment the following line. SLR is enabled by default.
         // busConfiguration.DisableFeature<SecondLevelRetries>();
 
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
+            IBusContext busContext = endpoint.CreateBusContext();
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            endpoint.Stop().GetAwaiter().GetResult();
         }
     }
 }

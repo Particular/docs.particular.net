@@ -93,7 +93,7 @@ snippet:start-bus
 
 The bus implements `IDisposable` and should be shut down when the process is shut down.
 
-snippet:stop-bus
+snippet:stop-endpoint
 
 
 ## Handling [Critical Errors](/nservicebus/hosting/critical-errors.md)

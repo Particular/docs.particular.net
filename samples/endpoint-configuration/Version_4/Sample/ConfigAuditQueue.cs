@@ -10,7 +10,6 @@ class ConfigAuditQueue : IProvideConfiguration<AuditConfig>
         return new AuditConfig
         {
             QueueName = "audit",
-            OverrideTimeToBeReceived = TimeSpan.FromMinutes(10)
         };
     }
 }

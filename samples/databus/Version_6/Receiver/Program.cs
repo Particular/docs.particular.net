@@ -20,10 +20,16 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         busConfiguration.SendFailedMessagesTo("error");
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
+            IBusContext busContext = endpoint.CreateBusContext();
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            endpoint.Stop().GetAwaiter().GetResult();
         }
     }
 }

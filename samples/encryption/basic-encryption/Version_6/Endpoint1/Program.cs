@@ -17,8 +17,10 @@ class Program
         busConfiguration.RijndaelEncryptionService();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.SendFailedMessagesTo("error");
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
+            IBusContext busContext = endpoint.CreateBusContext();
             MessageWithSecretData message = new MessageWithSecretData
             {
                 Secret = "betcha can't guess my secret",
@@ -40,10 +42,14 @@ class Program
                     }
                 }
             };
-            await bus.SendAsync("Samples.Encryption.Endpoint2", message);
+            await busContext.Send("Samples.Encryption.Endpoint2", message);
 
             Console.WriteLine("MessageWithSecretData sent. Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            endpoint.Stop().GetAwaiter().GetResult();
         }
     }
 }

@@ -21,8 +21,11 @@ static class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         busConfiguration.SendFailedMessagesTo("error");
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
+            IBusContext busContext = endpoint.CreateBusContext();
             Console.WriteLine("Press enter to send a message that will throw an exception.");
             Console.WriteLine("Press any key to exit");
 
@@ -37,8 +40,12 @@ static class Program
                 {
                     Id = Guid.NewGuid()
                 };
-                await bus.SendLocalAsync(m);
+                await busContext.SendLocal(m);
             }
+        }
+        finally
+        {
+            endpoint.Stop().GetAwaiter().GetResult();
         }
     }
 }

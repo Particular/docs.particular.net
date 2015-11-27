@@ -19,8 +19,10 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.SendFailedMessagesTo("error");
 
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
+            IBusContext busContext = endpoint.CreateBusContext();
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 
@@ -33,13 +35,17 @@ class Program
                 }
                 Guid id = Guid.NewGuid();
 
-                await bus.SendAsync("Samples.FaultTolerance.Server", new MyMessage
+                await busContext.Send("Samples.FaultTolerance.Server", new MyMessage
                 {
                     Id = id
                 });
 
                 Console.WriteLine("Sent a new message with id: {0}", id.ToString("N"));
             }
+        }
+        finally
+        {
+            endpoint.Stop().GetAwaiter().GetResult();
         }
     }
 }
