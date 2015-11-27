@@ -95,7 +95,6 @@ The procedure above should result in a `web.config` file in the newly created `/
 WARNING: The default configuration for ServiceControl only allows access to REST API via localhost. By exposing the REST API via the reverse proxy configuration this protection is no longer in place. To address this it is recommended that the IIS Web site be configured with one of the IIS authentication providers such as Windows integration authentication.
 It is also recommended that the IIS web site be configured to use SSL if an authorization provider is used.
 
-
 ### Limitations
 
 If ServiceControl is secured with an authentication module other that Windows Authentication  ServiceInsight will not be able to connect to the REST API exposed via IIS. ServiceInsight v1.4 or greater is required to use Windows authentication.
@@ -116,3 +115,46 @@ ServicePulse.Host.exe --extract --serviceControlUrl="<recordedvalue>" --outPath=
 ```
 1. Optionally remove or disable the unneeded Windows Service by uninstalling ServicePulse via the Add/Remove applet in control panel
 1. The installer might add the ACLURL which could restrict access and will need to be removed as described in the basic steps.
+
+## Adding Mime Types for Web Fonts
+
+Some users report getting 404 errors when trying to serve webfonts. Simply add the following MIME type declarations via IIS Manager (HTTP Headers tab of website properties):
+
+Extension | Mime Type
+------------ | -------------
+.eot | application/vnd.ms-fontobject
+.ttf  | application/octet-stream
+.svg | image/svg+xml                 
+.woff | application/font-woff         
+.woff2 | application/font-woff2   
+
+OR set them in your web.config (these settings can work well if font-awesome isn't working properly)
+
+```
+<system.webServer>
+    <staticContent>
+        <mimeMap fileExtension=".eot" mimeType="application/vnd.ms-fontobject" />
+        <mimeMap fileExtension=".ttf" mimeType="application/octet-stream" />
+        <mimeMap fileExtension=".svg" mimeType="image/svg+xml" />
+        <mimeMap fileExtension=".woff" mimeType="application/font-woff" />
+        <mimeMap fileExtension=".woff2" mimeType="application/font-woff2" />
+    </staticContent>
+</system.webServer>
+```
+
+If you still having problems and IIS still is not serving the files, try removing the MIME type declaration before re-declaring it. See the example below for the .woff MIME type.
+
+```
+<system.webServer>
+    <staticContent>
+        <remove fileExtension=".woff" />
+        <mimeMap fileExtension=".woff" mimeType="application/font-woff" />
+    </staticContent>
+</system.webServer>
+```
+
+## Unsafe script warning when accessing servicepulse.txt
+
+When access to http://platformupdate.particular.net/servicepulse.txt results in unsafe script warning accessed via SSL. You can edit `app.constants.js` so that the `service_pulse_url` uses `https://` instead of `http://`.
+
+This call is used to notify you of product updates. 
