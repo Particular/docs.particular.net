@@ -16,11 +16,11 @@ A Message is the unit of communication for NServiceBus. Messages are send and re
  * [Command](/nservicebus/messaging/messages-events-commands.md): Used to request that an action should be taken.
  * [Event](/nservicebus/messaging/messages-events-commands.md): Used to communicate that some action has taken place.
 
-Message type can be set either using marker interfaces `ICommand` and `IEvent` or via [conventions](/nservicebus/messaging/unobtrusive-mode.md) (so called *unobtrusive mode*).
+Message types can be set either using marker interfaces `ICommand` and `IEvent` or via [conventions](/nservicebus/messaging/unobtrusive-mode.md) (so called *unobtrusive mode*).
 
 ### Body
 
-The payload of the message is also called body. It travels between the endpoints in a serialized form (either textual or binary). Body of a message is not being tempered with by NServiceBus in any way.
+The payload of the message is also called body. It travels between the endpoints in a serialized form (either textual or binary). 
 
 ### [Headers](/nservicebus/messaging/headers.md)
 
@@ -32,11 +32,11 @@ An Endpoint is a design-time concept that has a name and a collection of associa
 
 ### Endpoint Instance
 
-An Endpoint Instance is a run-time object that allows to interact with the bus. Endpoint Instances are able to send and receive messages (an exception is a *send-only* endpoint). It runs associated Message Handlers and Sagas to process incoming messages. An Endpoint Instance has a single Input Queue (which can be shared with other instances of the same Endpoint in a scale-out scenario). 
+An Endpoint Instance is a run-time object that allows to interact with the bus. Endpoint Instances are able to send and receive messages. It runs associated Message Handlers and Sagas to process incoming messages. An Endpoint Instance has a single Input Queue (which can be shared with other instances of the same Endpoint in a scale-out scenario). 
 
 ### [Hosting](/nservicebus/hosting)
 
-The act of Hosting refers to running an Endpoint Instance in some process. This can be any .NET process such as a console application, a website, or a Windows service. Multiple Endpoint instances can be hosted in a single process (custom AppDomains are required to achieve this in version 4 and below).
+The act of Hosting refers to running an Endpoint Instance in some process. This can be any .NET process such as a console application, a website, or a Windows service. Multiple Endpoint instances can be hosted in a single process.
 
 ### [Transport](/nservicebus/transports/)
 
@@ -53,16 +53,16 @@ Publish Subscribe is the interaction of
  * Registering interest in being notified about an event (*subscriber*).
  * That event being delivered to the endpoint that registered itself (*publisher*)
 
-Both *publisher* and *subscriber* are Endpoints which means they are logical rather than physical (e.g. `Sales` or `Shipping`, not `Cache-1` or `Web-1`). Each event is delivered to a single Instance of each *subscriber* Endpoint.
+Both *publisher* and *subscriber* are Endpoints which means they are logical rather than physical (e.g. `Sales` or `Shipping`, not `Cache-1` or `Web-1`). Each event is delivered to a single Endpoint Instance of each *subscriber* Endpoint.
 
 ### [Handler](/nservicebus/handlers/)
 
-A Message Handler (or simply Handler) is a piece of code that processes a message of a given type. Handlers are not guaranteed to retain any state between processing of messages.
+A Message Handler (or simply Handler) is a piece of code that processes a message of a given type. Message handlers are steteless.
 
 
 ### [Saga](/nservicebus/sagas/)
 
-A saga can be thought of as a long running Handler that handles multiple Messages and shared state. It is the NServiceBus equivalent of a Process Manager pattern.
+A saga can be thought of as a long running Handler that handles multiple Messages and shared state. It is the NServiceBus equivalent of a [Process Manager](http://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html) pattern.
 
 
 ### [Timeout](/nservicebus/sagas/#timeouts)
