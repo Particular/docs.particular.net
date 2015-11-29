@@ -8,7 +8,7 @@ public static class StreamStorageHelper
 {
     internal static string GetHeaderKey(object message, PropertyInfo property)
     {
-        return string.Format("{0}.{1}", message.GetType().FullName, property.Name);
+        return $"{message.GetType().FullName}.{property.Name}";
     }
 
     internal static IEnumerable<PropertyInfo> GetStreamProperties(object message)

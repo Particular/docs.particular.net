@@ -44,7 +44,7 @@ class StreamReceiveBehavior : Behavior<LogicalMessageProcessingContext>
             // For safety send the message to the error queue
             if (!File.Exists(filePath))
             {
-                string format = string.Format("Expected a file to exist in '{0}'. It is possible the file has been prematurely cleaned up.", filePath);
+                string format = $"Expected a file to exist in '{filePath}'. It is possible the file has been prematurely cleaned up.";
                 throw new Exception(format);
             }
             FileStream fileStream = File.OpenRead(filePath);

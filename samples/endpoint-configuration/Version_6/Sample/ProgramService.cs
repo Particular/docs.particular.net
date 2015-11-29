@@ -117,10 +117,10 @@ class ProgramService : ServiceBase
         busConfiguration.DefineCriticalErrorAction((endpointInstance, errorMessage, exception) =>
         {
             // Log the critical error
-            logger.Fatal(string.Format("CRITICAL: {0}", errorMessage), exception);
+            logger.Fatal($"CRITICAL: {errorMessage}", exception);
 
             // Kill the process on a critical error
-            string output = string.Format("The following critical error was encountered by NServiceBus:\n{0}\nNServiceBus is shutting down.", errorMessage);
+            string output = $"The following critical error was encountered by NServiceBus:\n{errorMessage}\nNServiceBus is shutting down.";
             Environment.FailFast(output, exception);
             return Task.FromResult(0);
         });
@@ -138,11 +138,9 @@ class ProgramService : ServiceBase
     protected override void OnStop()
     {
         #region stop-endpoint
-        if (endpoint != null)
-        {
-            endpoint.Stop().GetAwaiter().GetResult();
-        }
+
+        endpoint?.Stop().GetAwaiter().GetResult();
+
         #endregion
     }
-
 }

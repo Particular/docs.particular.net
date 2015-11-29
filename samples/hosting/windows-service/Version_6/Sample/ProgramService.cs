@@ -56,10 +56,7 @@ class ProgramService : ServiceBase
 
     protected override void OnStop()
     {
-        if (endpoint != null)
-        {
-            endpoint.Stop().GetAwaiter().GetResult();
-        }
+        endpoint?.Stop().GetAwaiter().GetResult();
     }
 
     #endregion

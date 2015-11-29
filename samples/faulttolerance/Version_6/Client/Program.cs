@@ -45,7 +45,7 @@ class Program
         }
         finally
         {
-            endpoint.Stop().GetAwaiter().GetResult();
+            await endpoint.Stop();
         }
     }
 }
