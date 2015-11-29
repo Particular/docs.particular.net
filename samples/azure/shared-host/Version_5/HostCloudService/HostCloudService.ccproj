@@ -60,4 +60,6 @@
     <CloudExtensionsDir Condition=" '$(CloudExtensionsDir)' == '' ">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Windows Azure Tools\2.7\</CloudExtensionsDir>
   </PropertyGroup>
   <Import Project="$(CloudExtensionsDir)Microsoft.WindowsAzure.targets"  Condition="Exists('$(CloudExtensionsDir)Microsoft.WindowsAzure.targets')"/>
+  <Target Name="Build"  Condition="!Exists('$(CloudExtensionsDir)Microsoft.WindowsAzure.targets')">
+  </Target>
 </Project>
