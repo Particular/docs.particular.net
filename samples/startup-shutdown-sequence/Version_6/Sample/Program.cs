@@ -38,7 +38,7 @@ class Program
         finally
         {
             Logger.WriteLine("Calling IEndpointInstance.Stop");
-            endpoint.Stop().GetAwaiter().GetResult();
+            await endpoint.Stop();
         }
         Logger.WriteLine("Finished");
         #endregion
