@@ -49,7 +49,7 @@
         }
         void CallbackReceiverMaxConcurrency()
         {
-            #region sqlserver-CallbackReceiverMaxConcurrency
+            #region sqlserver-CallbackReceiverMaxConcurrency 2
 
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -59,7 +59,7 @@
         }
         void TimeToWaitBeforeTriggeringCircuitBreaker()
         {
-            #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
+            #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker 2
 
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseTransport<SqlServerTransport>()
@@ -69,7 +69,7 @@
         }
         void PauseAfterReceiveFailure()
         {
-            #region sqlserver-PauseAfterReceiveFailure
+            #region sqlserver-PauseAfterReceiveFailure 2
 
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseTransport<SqlServerTransport>()
