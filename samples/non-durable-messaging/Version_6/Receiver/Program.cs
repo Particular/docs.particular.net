@@ -18,6 +18,7 @@ static class Program
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
 
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
