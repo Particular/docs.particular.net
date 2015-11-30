@@ -38,8 +38,7 @@ public class SerializationMapper
         {
             return xmlSerializer;
         }
-        string message = string.Format("Could not derive serializer for contentType='{0}'", contentType);
-        throw new Exception(message);
+        throw new Exception($"Could not derive serializer for contentType='{contentType}'");
     }
 
     public IMessageSerializer GetSerializer(Type messageType)
@@ -48,8 +47,7 @@ public class SerializationMapper
         bool isXmlMessage = messageType.ContainsAttribute<SerializeWithXmlAttribute>();
         if (isXmlMessage && isJsonMessage)
         {
-            string message = string.Format("Choose either [SerializeWithXml] or [SerializeWithJson] for serialization of '{0}'.", messageType.Name);
-            throw new Exception(message);
+            throw new Exception($"Choose either [SerializeWithXml] or [SerializeWithJson] for serialization of '{messageType.Name}'.");
         }
         if (isXmlMessage)
         {

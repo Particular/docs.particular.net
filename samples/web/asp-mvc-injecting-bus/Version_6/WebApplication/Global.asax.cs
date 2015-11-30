@@ -7,7 +7,7 @@ using NServiceBus;
 
 public class MvcApplication : HttpApplication
 {
-    ISendOnlyBus bus;
+    IEndpointInstance endpoint;
 
     protected void Application_Start()
     {
@@ -31,7 +31,7 @@ public class MvcApplication : HttpApplication
         busConfiguration.EnableInstallers();
         busConfiguration.SendFailedMessagesTo("error");
 
-        bus = Bus.CreateSendOnly(busConfiguration);
+        endpoint = Endpoint.Start(busConfiguration).GetAwaiter().GetResult();
 
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
@@ -43,10 +43,7 @@ public class MvcApplication : HttpApplication
 
     public override void Dispose()
     {
-        if (bus != null)
-        {
-            bus.Dispose();
-        }
+        endpoint?.Stop().GetAwaiter().GetResult();
         base.Dispose();
     }
 

@@ -4,11 +4,11 @@ using NServiceBus;
 #region Controller
 public class DefaultController : Controller
 {
-    IBus bus;
+    IEndpointInstance endpoint;
 
-    public DefaultController(IBus bus)
+    public DefaultController(IEndpointInstance endpoint)
     {
-        this.bus = bus;
+        this.endpoint = endpoint;
     }
 
     public ActionResult Index()
@@ -19,7 +19,8 @@ public class DefaultController : Controller
     [AllowAnonymous]
     public ActionResult Send()
     {
-        bus.SendAsync("Samples.Mvc.Endpoint", new MyMessage());
+        endpoint.CreateBusContext()
+            .Send("Samples.Mvc.Endpoint", new MyMessage());
         return RedirectToAction("Index", "Default");
     }
 }

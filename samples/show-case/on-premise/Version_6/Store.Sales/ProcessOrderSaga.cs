@@ -21,7 +21,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
         Data.ProductIds = message.ProductIds;
         Data.ClientId = message.ClientId;
 
-        await RequestTimeoutAsync(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
+        await RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
         Console.WriteLine("Starting cool down period for order #{0}.", Data.OrderNumber);
     }
 
@@ -32,7 +32,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
             Debugger.Break();
         }
 
-        await context.PublishAsync<OrderAccepted>(e =>
+        await context.Publish<OrderAccepted>(e =>
             {
                 e.OrderNumber = Data.OrderNumber;
                 e.ProductIds = Data.ProductIds;
@@ -53,7 +53,7 @@ public class ProcessOrderSaga : Saga<ProcessOrderSaga.OrderData>,
 
         MarkAsComplete();
 
-        await context.PublishAsync<OrderCancelled>(o =>
+        await context.Publish<OrderCancelled>(o =>
             {
                 o.OrderNumber = message.OrderNumber;
                 o.ClientId = message.ClientId;

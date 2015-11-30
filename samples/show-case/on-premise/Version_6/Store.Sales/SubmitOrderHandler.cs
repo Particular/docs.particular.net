@@ -23,7 +23,7 @@ public class SubmitOrderHandler : IHandleMessages<SubmitOrder>
         Console.WriteLine("CreditCard Expiration Date is {0}", message.EncryptedExpirationDate);
 
         //tell the client that we received the order
-        await context.PublishAsync<OrderPlaced>(o =>
+        await context.Publish<OrderPlaced>(o =>
             {
                 o.ClientId = message.ClientId;
                 o.OrderNumber = message.OrderNumber;

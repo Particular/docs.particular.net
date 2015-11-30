@@ -2,12 +2,12 @@
 using NServiceBus.Installation;
 
 public class NeedToInstallSomething :
-    IInstall
+    INeedToInstallSomething
 {
 
     public Task Install(string identity)
     {
-        Logger.WriteLine("Inside IInstall.Install");
+        Logger.WriteLine("Inside INeedToInstallSomething.Install");
         return Task.FromResult(0);
     }
 }

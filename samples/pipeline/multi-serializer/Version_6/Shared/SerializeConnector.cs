@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Pipeline;
 using NServiceBus.Serialization;
-using NServiceBus.TransportDispatch;
 using NServiceBus.Unicast.Messages;
 
 #region serialize-behavior
@@ -34,8 +33,8 @@ class SerializeConnector : StageConnector<FromContext, ToContext>
 
         Type messageType = context.Message.MessageType;
         IMessageSerializer messageSerializer = serializationMapper.GetSerializer(messageType);
-        context.SetHeader(Headers.ContentType, messageSerializer.ContentType);
-        context.SetHeader(Headers.EnclosedMessageTypes, SerializeEnclosedMessageTypes(messageType));
+        context.Headers[Headers.ContentType] = messageSerializer.ContentType;
+        context.Headers[Headers.EnclosedMessageTypes] = SerializeEnclosedMessageTypes(messageType);
 
         var array = Serialize(messageSerializer, context);
         await next(new ToContext(array, context.RoutingStrategies, context)).ConfigureAwait(false);

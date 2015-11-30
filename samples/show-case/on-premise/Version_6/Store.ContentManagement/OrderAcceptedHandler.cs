@@ -18,7 +18,7 @@ public class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
         Console.WriteLine("Order # {0} has been accepted, Let's provision the download -- Sending ProvisionDownloadRequest to the Store.Operations endpoint", message.OrderNumber);
             
         //send out a request (a event will be published when the response comes back)
-        await context.SendAsync<ProvisionDownloadRequest>(r =>
+        await context.Send<ProvisionDownloadRequest>(r =>
         {
             r.ClientId = message.ClientId;
             r.OrderNumber = message.OrderNumber;

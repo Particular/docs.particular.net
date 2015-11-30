@@ -2,7 +2,7 @@
 using NServiceBus.Settings;
 
 public class WantToRunBeforeConfigurationIsFinalized :
-    IFinalizeConfiguration
+    IWantToRunBeforeConfigurationIsFinalized
 {
     public void Run(SettingsHolder settings)
     {

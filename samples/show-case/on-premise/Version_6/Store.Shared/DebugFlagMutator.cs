@@ -9,7 +9,7 @@ public class DebugFlagMutator :
     IMutateOutgoingTransportMessages, 
     INeedInitialization
 {
-    public static bool Debug { get { return debug.Value; } }
+    public static bool Debug => debug.Value;
 
     static ThreadLocal<bool> debug = new ThreadLocal<bool>();
 

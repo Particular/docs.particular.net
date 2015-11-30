@@ -6,7 +6,6 @@ using NServiceBus.DeliveryConstraints;
 using NServiceBus.Performance.TimeToBeReceived;
 using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.OutgoingPipeline;
-using NServiceBus.TransportDispatch;
 
 #region SendBehaviorDefinition
 class StreamSendBehavior : Behavior<OutgoingLogicalMessageContext>
@@ -59,7 +58,7 @@ class StreamSendBehavior : Behavior<OutgoingLogicalMessageContext>
 
             //Store the header so on the receiving endpoint the file name is known
             string headerKey = StreamStorageHelper.GetHeaderKey(message, property);
-            context.SetHeader("NServiceBus.PropertyStream." + headerKey, fileKey);
+            context.Headers["NServiceBus.PropertyStream." + headerKey] = fileKey;
         }
 
         await next();
