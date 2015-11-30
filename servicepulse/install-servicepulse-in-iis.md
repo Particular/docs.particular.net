@@ -82,9 +82,11 @@ The procedure above should result in a `web.config` file in the newly created `/
     <system.webServer>
         <rewrite>
             <rules>
-                <rule name="ReverseProxyInboundRule1" stopProcessing="true">
+                <rule name="ReverseProxyInboundRule1" 
+                      stopProcessing="true">
                     <match url="(.*)" />
-                    <action type="Rewrite" url="http://localhost:33333/api/{R:1}" />
+                    <action type="Rewrite" 
+                            url="http://localhost:33333/api/{R:1}" />
                 </rule>
             </rules>
         </rewrite>
@@ -136,11 +138,16 @@ OR set them in the web.config (these settings can work well if font-awesome isn'
 ```
 <system.webServer>
     <staticContent>
-        <mimeMap fileExtension=".eot" mimeType="application/vnd.ms-fontobject" />
-        <mimeMap fileExtension=".ttf" mimeType="application/octet-stream" />
-        <mimeMap fileExtension=".svg" mimeType="image/svg+xml" />
-        <mimeMap fileExtension=".woff" mimeType="application/font-woff" />
-        <mimeMap fileExtension=".woff2" mimeType="application/font-woff2" />
+        <mimeMap fileExtension=".eot" 
+                 mimeType="application/vnd.ms-fontobject" />
+        <mimeMap fileExtension=".ttf" 
+                 mimeType="application/octet-stream" />
+        <mimeMap fileExtension=".svg" 
+                 mimeType="image/svg+xml" />
+        <mimeMap fileExtension=".woff" 
+                 mimeType="application/font-woff" />
+        <mimeMap fileExtension=".woff2" 
+                 mimeType="application/font-woff2" />
     </staticContent>
 </system.webServer>
 ```
