@@ -1,21 +1,18 @@
 ﻿namespace Snippets3
 {
     using NServiceBus;
+    using NServiceBus.Unicast.Config;
 
     public class BasicUsageOfIBus
     {
         void Send()
         {
             #region BasicSend
-            IBus bus = CreateAndStartTheBus();
+            ConfigUnicastBus configUnicastBus = Configure.With().UnicastBus();
+            IBus bus = configUnicastBus.CreateBus().Start();
 
             bus.Send(new MyMessage());
             #endregion
-        }
-
-        IBus CreateAndStartTheBus()
-        {
-            throw new System.NotImplementedException();
         }
 
         #region SendFromHandler
