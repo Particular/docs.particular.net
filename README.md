@@ -632,6 +632,11 @@ Sequence diagram images are genrated using https://bramp.github.io/js-sequence-d
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 
+# Language Preferences
+
+For consistency, prefer American English.
+
+
 # Additional Resources
 
 * [GitHub Flow in the Browser](https://help.github.com/articles/github-flow-in-the-browser/)
