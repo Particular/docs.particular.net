@@ -61,7 +61,6 @@
         {
             var busConfiguration = new BusConfiguration();
             #region Routing-DynamicEndpointMapping
-            EndpointName sales = new EndpointName("Sales");
             busConfiguration.Routing().EndpointInstances.AddDynamic(e =>
             {
                 if (e.ToString().StartsWith("Sales"))
@@ -92,7 +91,6 @@
         {
             var busConfiguration = new BusConfiguration();
             #region Routing-TransportAddressRule
-            EndpointName sales = new EndpointName("Sales");
             busConfiguration.Routing().TransportAddresses.AddRule(i => CustomTranslationRule(i));
             #endregion
         }
