@@ -6,7 +6,7 @@ redirects:
 - nservicebus/how-do-i-send-a-message
 ---
 
-Prior to V6 sending a message involved using the `Send` method on the `IBus` interface, passing as the argument the instance of the message to deliver. In V6 the equivalent of the `IBus` is the `IBusContext` family of interfaces.
+Message sending involves using Send operation that takes an argument of a message instance to be delivered. The details differ slightly between version of NServiceBus, as shown in following snippets.
 
 Here's how a message is sent by directly using the instance of the endpoint
 
