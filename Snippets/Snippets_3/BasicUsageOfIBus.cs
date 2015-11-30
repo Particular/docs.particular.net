@@ -19,11 +19,16 @@
 
         public class MyMessageHandler : IHandleMessages<MyMessage>
         {
-            public IBus Bus { get; set; }
+            IBus bus;
+
+            public MyMessageHandler(IBus bus)
+            {
+                this.bus = bus;
+            }
 
             public void Handle(MyMessage message)
             {
-                Bus.Send(new OtherMessage());
+                bus.Send(new OtherMessage());
             }
         }
         #endregion
