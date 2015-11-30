@@ -158,7 +158,8 @@ If the problem continues and IIS still is not serving the files, try removing th
 <system.webServer>
     <staticContent>
         <remove fileExtension=".woff" />
-        <mimeMap fileExtension=".woff" mimeType="application/font-woff" />
+        <mimeMap fileExtension=".woff" 
+                 mimeType="application/font-woff" />
     </staticContent>
 </system.webServer>
 ```
