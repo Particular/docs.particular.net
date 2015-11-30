@@ -52,6 +52,8 @@ Once all the ServicePulse files are successfully extracted configure a new IIS w
 
 NOTE: Make sure that the ServicePulse windows service is not running and that the URLACL has been removed or else IIS will not be able to use port 9090.
 
+NOTE: If SSL is to be applied to ServicePulse then ServiceControl also needs to be configured for SSL. This can be achieved by reverse proxying ServiceControl through IIS as outlined below.
+
 
 ## Advanced Configuration
 
@@ -120,7 +122,6 @@ ServicePulse.Host.exe --extract --serviceControlUrl="<recordedvalue>" --outPath=
 1. Optionally remove or disable the unneeded Windows Service by uninstalling ServicePulse via the Add/Remove applet in control panel
 1. The installer will add the URLACL which could restrict access and will need to be removed as described in the basic steps.
 
-
 ## Adding Mime Types for Web Fonts
 
 If 404 errors when serving webfonts it is possible MIME type for web fonts have not been configured. Add the following MIME type declarations via IIS Manager (HTTP Headers tab of website properties):
@@ -133,40 +134,4 @@ Extension | Mime Type
 .woff | application/font-woff         
 .woff2 | application/font-woff2   
 
-OR set them in the web.config (these settings can work well if font-awesome isn't working properly).
-
-```
-<system.webServer>
-    <staticContent>
-        <mimeMap fileExtension=".eot" 
-                 mimeType="application/vnd.ms-fontobject" />
-        <mimeMap fileExtension=".ttf" 
-                 mimeType="application/octet-stream" />
-        <mimeMap fileExtension=".svg" 
-                 mimeType="image/svg+xml" />
-        <mimeMap fileExtension=".woff" 
-                 mimeType="application/font-woff" />
-        <mimeMap fileExtension=".woff2" 
-                 mimeType="application/font-woff2" />
-    </staticContent>
-</system.webServer>
-```
-
-If the problem continues and IIS still is not serving the files, try removing the MIME type declaration before re-declaring it. See the example below for the `.woff` MIME type.
-
-```
-<system.webServer>
-    <staticContent>
-        <remove fileExtension=".woff" />
-        <mimeMap fileExtension=".woff" 
-                 mimeType="application/font-woff" />
-    </staticContent>
-</system.webServer>
-```
-
-
-## Unsafe script warning when accessing servicepulse.txt
-
-When access to http://platformupdate.particular.net/servicepulse.txt results in unsafe script warning accessed via SSL. Edit `app.constants.js` so that the `service_pulse_url` uses `https://` instead of `http://`.
-
-This call is used to notify of product updates. 
+NOTE: Some of these mime types will already be setup on newer versions of IIS. Please verify that all the listed mime types are present.
