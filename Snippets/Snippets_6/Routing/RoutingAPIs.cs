@@ -10,9 +10,9 @@
 
         public void StaticRoutes()
         {
-            var busConfig = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             #region Routing-StaticRoutes
-            UnicastRoutingTable routingTable = busConfig.Routing().UnicastRoutingTable;
+            UnicastRoutingTable routingTable = busConfiguration.Routing().UnicastRoutingTable;
             routingTable.AddStatic(typeof(OrderAccepted), new EndpointName("Sales"));
             routingTable.AddStatic(typeof(OrderAccepted), new EndpointInstanceName(new EndpointName("Sales"), "1", null));
             routingTable.AddStatic(typeof(OrderAccepted), "Sales-2@MachineA");
@@ -21,9 +21,9 @@
 
         public void DynamicRoutes()
         {
-            var busConfig = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             #region Routing-DynamicRoutes
-            busConfig.Routing().UnicastRoutingTable.AddDynamic((t, c) => new[]
+            busConfiguration.Routing().UnicastRoutingTable.AddDynamic((t, c) => new[]
             {
                 //Use endpoint name
                 new UnicastRoute(new EndpointName("Sales")), 
@@ -37,11 +37,11 @@
 
         public void CustomRoutingStore()
         {
-            var busConfig = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
 
             #region Routing-CustomRoutingStore
 
-            busConfig.Routing().UnicastRoutingTable.AddDynamic((t, c) =>
+            busConfiguration.Routing().UnicastRoutingTable.AddDynamic((t, c) =>
                 LoadFromCache(t) ?? LoadFromDatabaseAndPutToCache(t));
 
             #endregion
@@ -49,20 +49,20 @@
 
         public void StaticEndpointMapping()
         {
-            var busConfig = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             #region Routing-StaticEndpointMapping
             EndpointName sales = new EndpointName("Sales");
-            busConfig.Routing().EndpointInstances
+            busConfiguration.Routing().EndpointInstances
                 .AddStatic(sales, new EndpointInstanceName(sales, "1", null), new EndpointInstanceName(sales, "2", null));
             #endregion
         }
 
         public void DynamicEndpointMapping()
         {
-            var busConfig = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             #region Routing-DynamicEndpointMapping
             EndpointName sales = new EndpointName("Sales");
-            busConfig.Routing().EndpointInstances.AddDynamic(e =>
+            busConfiguration.Routing().EndpointInstances.AddDynamic(e =>
             {
                 if (e.ToString().StartsWith("Sales"))
                 {
@@ -79,10 +79,10 @@
 
         public void SpecialCaseTransportAddress()
         {
-            var busConfig = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             #region Routing-SpecialCaseTransportAddress
             EndpointName sales = new EndpointName("Sales");
-            busConfig.Routing().TransportAddresses
+            busConfiguration.Routing().TransportAddresses
                 .AddSpecialCase(new EndpointInstanceName(sales, "1", null), "Sales-One@MachineA");
             #endregion
         }
@@ -90,10 +90,10 @@
         // ReSharper disable once ConvertClosureToMethodGroup
         public void TransportAddressRules()
         {
-            var busConfig = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
             #region Routing-TransportAddressRule
             EndpointName sales = new EndpointName("Sales");
-            busConfig.Routing().TransportAddresses.AddRule(i => CustomTranslationRule(i));
+            busConfiguration.Routing().TransportAddresses.AddRule(i => CustomTranslationRule(i));
             #endregion
         }
 

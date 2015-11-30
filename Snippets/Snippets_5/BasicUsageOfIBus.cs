@@ -6,10 +6,10 @@
     {
         void Send()
         {
-            var busConfig = new BusConfiguration();
+            var busConfiguration = new BusConfiguration();
 
             #region BasicSend
-            IBus bus = Bus.Create(busConfig).Start();
+            IBus bus = Bus.Create(busConfiguration).Start();
 
             bus.Send(new MyMessage());
             #endregion
