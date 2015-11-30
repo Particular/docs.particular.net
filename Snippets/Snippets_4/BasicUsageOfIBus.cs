@@ -1,17 +1,37 @@
 ﻿namespace Snippets4
 {
     using NServiceBus;
+    using NServiceBus.Unicast.Config;
 
     public class BasicUsageOfIBus
     {
         void Send()
         {
-            IBus bus = null;
-
             #region BasicSend
+            ConfigUnicastBus configUnicastBus = Configure.With().UnicastBus();
+            IBus bus = configUnicastBus.CreateBus().Start();
+
             bus.Send(new MyMessage());
             #endregion
         }
+
+        #region SendFromHandler
+
+        public class MyMessageHandler : IHandleMessages<MyMessage>
+        {
+            IBus bus;
+
+            public MyMessageHandler(IBus bus)
+            {
+                this.bus = bus;
+            }
+
+            public void Handle(MyMessage message)
+            {
+                bus.Send(new OtherMessage());
+            }
+        }
+        #endregion
 
         void SendInterface()
         {
@@ -22,7 +42,11 @@
             #endregion
         }
 
-        class MyMessage
+        public class MyMessage
+        {
+        }
+
+        public class OtherMessage
         {
         }
 

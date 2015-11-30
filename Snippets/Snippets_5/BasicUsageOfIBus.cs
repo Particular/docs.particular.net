@@ -6,12 +6,32 @@
     {
         void Send()
         {
-            IBus bus = null;
+            var busConfig = new BusConfiguration();
 
             #region BasicSend
+            IBus bus = Bus.Create(busConfig).Start();
+
             bus.Send(new MyMessage());
             #endregion
         }
+
+        #region SendFromHandler
+
+        public class MyMessageHandler : IHandleMessages<MyMessage>
+        {
+            IBus bus;
+
+            public MyMessageHandler(IBus bus)
+            {
+                this.bus = bus;
+            }
+
+            public void Handle(MyMessage message)
+            {
+                bus.Send(new OtherMessage());
+            }
+        }
+        #endregion
 
         void SendInterface()
         {
@@ -22,7 +42,11 @@
             #endregion
         }
 
-        class MyMessage
+        public class MyMessage
+        {
+        }
+
+        public class OtherMessage
         {
         }
 
