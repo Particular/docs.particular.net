@@ -3,8 +3,8 @@ title: Azure Storage Persistence
 summary: This sample shows how use Azure Storage to store Sagas, Timeouts and Subscriptions.
 tags:
 - Saga
-- Timeouts
-- Subscriptions
+- Timeout
+- Subscription
 related:
 - nservicebus/sagas
 - nservicebus/azure
