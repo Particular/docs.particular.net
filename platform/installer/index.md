@@ -2,7 +2,6 @@
 title: Platform Installer
 summary: 'Guidance on how to use the Platform Installer and its underlying components'
 tags: 
-- PI
 - Platform
 - Installation
 ---
