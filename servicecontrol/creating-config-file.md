@@ -3,7 +3,6 @@ title: Configuration Settings
 summary: Categorized list of ServiceControl configuration settings
 tags:
 - ServiceControl
-- Settings
 ---
 
 ## Configuration Settings
