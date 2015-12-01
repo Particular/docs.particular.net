@@ -4,10 +4,9 @@ summary: Understanding what kind of transactions are supported in Azure and how 
 tags: 
 - Azure
 - Cloud
-- Transactions
+- Transaction
 - Idempotency
 - DTC
-- Patterns
 redirects:
  - nservicebus/understanding-transactions-in-windows-azure
 ---
@@ -180,28 +179,3 @@ Arguably a dangerous approach, but often very useful in the real world, is to ch
 ### Accept uncertainty
 
 And finally, there is always the option, from a business perspective, to live with some uncertainty and potentially wrong data caused by non-idempotent messages. Maybe it just doesn't matter that much. An occasional retrying `+1` operation may not be that important when your counter is already on 8,489,232,123. Or maybe there are ways to deal with inconsistencies afterwards, and that's why credit notes were invented right. It's hard for us developers to accept this, but the real world works without any form of transaction or idempotency management.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
