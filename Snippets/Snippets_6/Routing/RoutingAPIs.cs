@@ -24,7 +24,7 @@
             var busConfiguration = new BusConfiguration();
             #region Routing-DynamicRoutes
             busConfiguration.Routing().UnicastRoutingTable
-                .AddDynamic((t, c) => new[]
+                .AddDynamic((types, contextBag) => new[]
                 {
                     //Use endpoint name
                     new UnicastRoute(new EndpointName("Sales")),
