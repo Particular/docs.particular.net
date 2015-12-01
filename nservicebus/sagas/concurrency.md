@@ -2,7 +2,7 @@
 title: Sagas And Concurrency
 summary: NServiceBus gives you ACID semantics, using underlying storage so only one worker thread hitting a saga instance can commit.
 tags:
-- Sagas
+- Saga
 redirects:
 - nservicebus/nservicebus-sagas-and-concurrency
 ---
