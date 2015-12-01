@@ -3,7 +3,7 @@ title: RavenDB persistence Sample
 summary: This sample shows how use RavenDB to store Sagas and Timeouts.
 tags:
 - Saga
-- Timeouts
+- Timeout
 related:
 - nservicebus/sagas
 - nservicebus/ravendb
