@@ -3,9 +3,6 @@ title: NServiceBus 32-bit (x86) Host Process
 summary: 'If 32-bit code must be invoked and loaded, use NServiceBus.Host32.exe instead. '
 tags:
 - NServiceBus.Host
-- x86
-- x64
-- NuGet
 redirects:
  - nservicebus/nservicebus-32-bit-x86-host-process
 ---
