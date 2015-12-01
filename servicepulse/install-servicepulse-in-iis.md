@@ -97,6 +97,7 @@ The procedure above should result in a `web.config` file in the newly created `/
 ```
 
 WARNING: The default configuration for ServiceControl only allows access to REST API via localhost. By exposing the REST API via the reverse proxy configuration this protection is no longer in place. To address this it is recommended that the IIS Web site be configured with one of the IIS authentication providers such as Windows integration authentication.
+
 It is also recommended that the IIS web site be configured to use SSL if an authorization provider is used.
 
 
@@ -121,6 +122,7 @@ ServicePulse.Host.exe --extract --serviceControlUrl="<recordedvalue>" --outPath=
 ```
 1. Optionally remove or disable the unneeded Windows Service by uninstalling ServicePulse via the Add/Remove applet in control panel
 1. The installer will add the URLACL which could restrict access and will need to be removed as described in the basic steps.
+
 
 ## Adding Mime Types for Web Fonts
 
