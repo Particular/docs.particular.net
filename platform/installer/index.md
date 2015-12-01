@@ -9,12 +9,14 @@ tags:
 
 ## Overview
 
-The Platform Installer is recommended for use on development machines only.  This is primarily because
+The Platform Installer is recommended for use on development machines only. 
+
+This is primarily because
 
 - Platform Installer does not provide a choice of transport (Microsoft Message Queue is assumed).
 - Platform Installer requires Internet access which may not be available in a production environment.
 
-The Platform Installer can be downloaded by clicking on the download now option on the Particular Downloads page
+The Platform Installer setup.exe can be downloaded from [here]((http://particular.net/start-platform-download)
     
 For testing and production environments it is recommended to: 
 
