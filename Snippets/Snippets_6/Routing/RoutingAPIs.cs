@@ -23,15 +23,16 @@
         {
             var busConfiguration = new BusConfiguration();
             #region Routing-DynamicRoutes
-            busConfiguration.Routing().UnicastRoutingTable.AddDynamic((t, c) => new[]
-            {
-                //Use endpoint name
-                new UnicastRoute(new EndpointName("Sales")), 
-                //Use endpoint instance name
-                new UnicastRoute(new EndpointInstanceName(new EndpointName("Sales"), "1", null)), 
-                //Use transport address (e.g. MSMQ)
-                new UnicastRoute("Sales-2@MachineA"),
-            });
+            busConfiguration.Routing().UnicastRoutingTable
+                .AddDynamic((t, c) => new[]
+                {
+                    //Use endpoint name
+                    new UnicastRoute(new EndpointName("Sales")),
+                    //Use endpoint instance name
+                    new UnicastRoute(new EndpointInstanceName(new EndpointName("Sales"), "1", null)),
+                    //Use transport address (e.g. MSMQ)
+                    new UnicastRoute("Sales-2@MachineA")
+                });
             #endregion
         }
 
@@ -100,12 +101,12 @@
             throw new NotImplementedException();
         }
 
-        IEnumerable<IUnicastRoute> LoadFromDatabaseAndPutToCache(Type type)
+        IEnumerable<IUnicastRoute> LoadFromDatabaseAndPutToCache(List<Type> type)
         {
             throw new NotImplementedException();
         }
 
-        IEnumerable<IUnicastRoute> LoadFromCache(Type type)
+        IEnumerable<IUnicastRoute> LoadFromCache(List<Type> type)
         {
             throw new NotImplementedException();
         }
