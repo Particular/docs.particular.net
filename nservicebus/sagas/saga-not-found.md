@@ -2,7 +2,7 @@
 title: Sagas Not Found
 summary: How a message is handled when it could be executed by a saga but no saga could be found.
 tags:
-- Sagas
+- Saga
 related:
 - samples/saga
 ---
