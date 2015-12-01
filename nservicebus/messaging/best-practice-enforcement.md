@@ -2,8 +2,7 @@
 title: Enforcement of best practices
 summary: How to enable/disable the enforcement of messaging best practices based on Events and Commands
 tags: 
-- Conventions
-- Message Semantics
+- Convention
 - Command
 - Event
 ---
