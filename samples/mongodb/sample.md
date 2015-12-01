@@ -3,7 +3,7 @@ title: MongoDB persistence Sample
 summary: This sample shows how use MongoDB to store Sagas and Timeouts.
 tags:
 - Saga
-- Timeouts
+- Timeout
 related:
 - nservicebus/sagas
 ---
