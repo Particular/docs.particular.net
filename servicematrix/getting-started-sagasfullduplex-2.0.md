@@ -4,7 +4,7 @@ summary: Using Sagas to correlate request response in NServiceBus
 tags:
 - ServiceMatrix
 - Publish Subscribe
-- Sagas
+- Saga
 ---
 
 A series of articles discusses the [advantages of NServiceBus](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "Fault Tolerance in NServiceBus").  The series also explores two patterns: [request-response](getting-started-with-servicematrix-2.0.md "ServiceMatrix Request Response ") and [publish-subscribe](getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md "ServiceMatrix and PubSub"). 
