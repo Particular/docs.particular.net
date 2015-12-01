@@ -3,10 +3,10 @@ title: Unobtrusive
 summary: Demonstrates NServiceBus operating in unobtrusive mode.
 tags:
 - Unobtrusive
-- Messages
-- Commands
-- Events
-- Conventions
+- Message
+- Command
+- Event
+- Convention
 redirects:
 - nservicebus/unobtrusive-sample
 related:
