@@ -15,7 +15,7 @@ This is primarily because
 
 - Platform Installer does not provide a choice of transport (Microsoft Message Queue is assumed).
 - Platform Installer requires Internet access which may not be available in a production environment.
-- The Platform Installer setup.exe will fail on Windows servers were 'IE Enhanced Security Configuration' is enabled
+- The Platform Installer setup.exe will fail on Windows servers were `IE Enhanced Security Configuration` is enabled
 
 The Platform Installer setup.exe can be downloaded from [here](http://particular.net/start-platform-download)
     
