@@ -3,7 +3,6 @@ title: Critical Errors
 summary: How to handle critical errors which adversely affect messaging in your endpoint.
 tags:
 - Hosting
-- NServiceBus Host
 - Self Hosting
 - Logging
 ---
