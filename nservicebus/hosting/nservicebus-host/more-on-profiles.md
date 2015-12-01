@@ -4,7 +4,6 @@ summary: 'Two types of profiles in NServiceBus: environment and feature.'
 tags:
 - Profiles
 - NServiceBus.Host
-- Defaults
 - Installers
 - Features
 - Distributor
