@@ -9,7 +9,7 @@
     {
         public void Simple()
         {
-            #region SendOnly
+            #region Hosting-SendOnly
 
             Configure configure = Configure.With();
             ConfigUnicastBus configUnicastBus = configure.UnicastBus();
