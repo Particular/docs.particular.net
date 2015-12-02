@@ -63,7 +63,8 @@
 
             BusConfiguration busConfiguration = new BusConfiguration();
             IEndpointInstance endpointInstance = await Endpoint.Start(busConfiguration);
-            containerBuilder.Register(_ => endpointInstance).SingleInstance().ExternallyOwned();
+            containerBuilder.Register(_ => endpointInstance.CreateBusContext()).InstancePerDependency();
+
             #endregion
 
         }

@@ -107,7 +107,7 @@ Related:
  * [Injecting the Bus into ASP.NET MVC Controller](/samples/web/asp-mvc-injecting-bus/)
 
 
-NOTO: Since V6 `IEndpointInstance` (the equivalent of `IBus`) is no longer automatically injected into the container. Here's a sample code showing how to do it using the Autofac container
+NOTO: Since V6 `IEndpointInstance` (the equivalent of `IBus`) is no longer automatically injected into the container. In order to send messages you need to explicitly create a bus context. Here's a sample code showing how to automate this task using the Autofac container
 
 snippet:Hosting-Inject
 
