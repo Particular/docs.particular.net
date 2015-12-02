@@ -182,6 +182,7 @@
     <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
     <Compile Include="PubSub\WithConvention\Usage.cs" />
     <Compile Include="RegisterCustomSerializer.cs" />
+    <Compile Include="Replies.cs" />
     <Compile Include="Routing\BasicOperations.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
