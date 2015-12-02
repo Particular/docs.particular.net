@@ -335,6 +335,7 @@
     <Compile Include="Encryption\EncryptionService\EncryptionService.cs" />
     <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
     <Compile Include="PubSub\WithEvent\MessageToPublish.cs" />
+    <Compile Include="Replies.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
     <Compile Include="EndpointName\EndpointConfigWithAttribute.cs" />
     <Compile Include="EndpointName\EndpointConfigByNamespace.cs" />
