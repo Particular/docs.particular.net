@@ -64,7 +64,7 @@ snippet:ScanningExcludeTypes
 
 ## Include a list approach
 
-Note: these options are deprecated from version 6 and later.
+Note: These options are deprecated from version 6 and later.
 
 
 ### Including assemblies:
