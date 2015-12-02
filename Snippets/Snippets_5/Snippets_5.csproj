@@ -504,6 +504,8 @@
     <Compile Include="Pipeline\Abort\Behavior.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\MyMessage.cs" />
+    <Compile Include="Pipeline\NewPipelineStep.cs" />
+    <Compile Include="Pipeline\SharingBehaviorData.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
     <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
     <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />
@@ -569,8 +571,6 @@
     <Compile Include="Outbox\Usage.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="RavenDB\Configure.cs" />
-    <Compile Include="Pipeline\NewStep\NewPipelineStep.cs" />
-    <Compile Include="Pipeline\Replace\ReplacePipelineBehavior.cs" />
     <Compile Include="Pipeline\SampleBehavior.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
