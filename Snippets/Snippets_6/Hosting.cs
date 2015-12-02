@@ -23,7 +23,7 @@
             #region Hosting-Startup
             BusConfiguration busConfiguration = new BusConfiguration();
             //Apply configuration
-            IInitializableEndpoint initializableEndpoint = Endpoint.Create(busConfiguration);
+            IInitializableEndpoint initializableEndpoint = Endpoint.Prepare(busConfiguration);
             IStartableEndpoint startableEndpoint = await initializableEndpoint.Initialize();
             IEndpointInstance endpointInstance = await startableEndpoint.Start();
 
