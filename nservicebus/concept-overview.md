@@ -61,8 +61,6 @@ Publish Subscribe is the interaction of
  * Registering interest in being notified about an event (*subscriber*).
  * That event being delivered to the endpoint that registered itself (*publisher*)
 
-Both *publisher* and *subscriber* are Endpoints which means they are logical rather than physical (e.g. `Sales` or `Shipping`, not `Cache-1` or `Web-1`). Each event is delivered to a single Endpoint Instance of each *subscriber* Endpoint.
-
 
 ### [Handler](/nservicebus/handlers/)
 
