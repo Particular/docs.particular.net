@@ -133,6 +133,9 @@
     <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
+    <Compile Include="Extending\Features.cs" />
+    <Compile Include="Features\FeatureConfiguration.cs" />
+    <Compile Include="Features\MyFeature.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
