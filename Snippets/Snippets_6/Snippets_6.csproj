@@ -140,6 +140,7 @@
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
+    <Compile Include="Handlers\ReplyingHandler.cs" />
     <Compile Include="Headers\MyMessage.cs" />
     <Compile Include="Headers\ReadSaga.cs" />
     <Compile Include="Headers\ReadHandler.cs" />
