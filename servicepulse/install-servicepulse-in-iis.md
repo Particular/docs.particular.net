@@ -12,20 +12,20 @@ tags:
 
 These instructions assume the following:
 
-* ServiceControl has installed and is listening on `http://localhost:33333/api`
-* ServicePulse has been installed
+* ServiceControl has installed and is listening on `http://localhost:33333/api`.
+* ServicePulse has been installed.
 
 
 ## Basic Setup
 
 Steps
 
-1. Create folder for ServicePulse files
-1. Extract ServicePulse files
-1. Disable/Remove ServicePulse
-1. Remove `netsh` url restriction
-1. Create ServicePulse website in IIS
-1. Refer to ServicePulse folder
+1. Create folder for ServicePulse files.
+1. Extract ServicePulse files.
+1. Disable/Remove ServicePulse.
+1. Remove `netsh` url restriction.
+1. Create ServicePulse website in IIS.
+1. Refer to ServicePulse folder.
 
 
 [ServicePulse](introduction-and-installing-servicepulse.md), by default, is installed as a Windows Service that will self-host the ServicePulse web application.
@@ -64,17 +64,17 @@ This is useful to lock down access to ServicePulse or to expose the web site ove
 Installation Steps:
 
 1. Install the IIS [Application Request Routing](http://www.iis.net/downloads/microsoft/application-request-routing) extension.
-1. Go to the root folder for the Web site created in the basic configuration
-1. Create a new subdirectory called `api`
-1. Edit `app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `/api`
-1. Open the IIS management tool
-1. Select the api sub folder from within IIS management tool
-1. Click the `URL Rewrite`
-1. Add a new URL Rewrite Rule
-1. Choose `Reverse Proxy` from the list of rule templates
+1. Go to the root folder for the Web site created in the basic configuration.
+1. Create a new subdirectory called `api`.
+1. Edit `app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `/api`.
+1. Open the IIS management tool.
+1. Select the api sub folder from within IIS management tool.
+1. Click the `URL Rewrite`.
+1. Add a new URL Rewrite Rule.
+1. Choose `Reverse Proxy` from the list of rule templates.
 1. Enter `localhost:33333/api` into the inbound field and leave SSL offload enabled then click OK to add the rule.
-1. The website will now answer on `/api` as though it were directly accessing ServiceControl. Verify this by opening the reverse proxy url in a browser `http://localhost:9090/api/` (9090 is the port chosen for the ServicePulse web site)
-1. Restrict access to website
+1. The website will now answer on `/api` as though it were directly accessing ServiceControl. Verify this by opening the reverse proxy url in a browser `http://localhost:9090/api/` (9090 is the port chosen for the ServicePulse web site).
+1. Restrict access to website.
 
 The procedure above should result in a `web.config` file in the newly created `/api` folder similar to this:
 
@@ -114,13 +114,13 @@ When ServicePulse is hosted in IIS the upgrade process is as follows:
 
 1. Go to the root directory of the IIS web site,
 1. View and record the the current ServicePulse configuration, specifically the value of `serviceControlUrl`. Prior to version 1.3 this was set in `config.js`. For v1.3 and higher the `app\js\app.constants.js` contains this configuration.
-1. In the advanced config above we tell them to create the api directory. In the upgrade we want them to remove everything except that api directory. Or they can manually create it again
-1. Install the new version of ServicePulse using the standard instructions
-1. Extract the files from the `ServicePulse.Host.exe` using the following command line, replacing the recorded values from step 2 with the values from the `app.constants.js` and `<webroot>` with the path to the root directory of the IIS website
+1. In the advanced config above we tell them to create the api directory. In the upgrade we want them to remove everything except that api directory. Or they can manually create it again.
+1. Install the new version of ServicePulse using the standard instructions.
+1. Extract the files from the `ServicePulse.Host.exe` using the following command line, replacing the recorded values from step 2 with the values from the `app.constants.js` and `<webroot>` with the path to the root directory of the IIS website.
 ```
 ServicePulse.Host.exe --extract --serviceControlUrl="<recordedvalue>" --outPath="<webroot>"
 ```
-1. Optionally remove or disable the unneeded Windows Service by uninstalling ServicePulse via the Add/Remove applet in control panel
+1. Optionally remove or disable the unneeded Windows Service by uninstalling ServicePulse via the Add/Remove applet in control panel.
 1. The installer will add the URLACL which could restrict access and will need to be removed as described in the basic steps.
 
 
