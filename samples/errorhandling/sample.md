@@ -5,7 +5,7 @@ tags:
 - Second Level Retry 
 - Error Handling
 - Exceptions
-- Automatic retries
+- Retry
 related:
 - nservicebus/errors
 ---
