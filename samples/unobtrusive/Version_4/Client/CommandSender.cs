@@ -100,8 +100,7 @@ public class CommandSender
         {
             CommandId = commandId,
             EncryptedString = "Some sensitive information"
-        })
-            .Register<CommandStatus>(outcome => Console.WriteLine("Server returned status: " + outcome));
+        });
 
         Console.WriteLine("Command sent id: " + commandId);
 

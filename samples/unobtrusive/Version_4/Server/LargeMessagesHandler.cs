@@ -8,11 +8,11 @@ public class LargeMessagesHandler : IHandleMessages<LargeMessage>
     {
         if (message.LargeDataBus == null)
         {
-            Console.Out.WriteLine("Message [{0}] received, id:{1}", message.GetType(), message.RequestId);
+            Console.WriteLine("Message [{0}] received, id:{1}", message.GetType(), message.RequestId);
         }
         else
         {
-            Console.Out.WriteLine("Message [{0}] received, id:{1} and payload {2} bytes", message.GetType(), message.RequestId, message.LargeDataBus.Length);
+            Console.WriteLine("Message [{0}] received, id:{1} and payload {2} bytes", message.GetType(), message.RequestId, message.LargeDataBus.Length);
         }
     }
 }

@@ -16,7 +16,7 @@ public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
     public void Handle(PlaceOrder placeOrder)
     {
         // Process Order...
-        Console.Out.WriteLine("Processing received order....");
+        Console.WriteLine("Processing received order....");
 
         OrderPlaced message = new OrderPlaced
         {
@@ -24,7 +24,7 @@ public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
             WorkerName = Assembly.GetEntryAssembly().GetName().Name
         };
         bus.Reply(message);
-        Console.Out.WriteLine("Sent Order placed event for orderId [{0}].", placeOrder.OrderId);
+        Console.WriteLine("Sent Order placed event for orderId [{0}].", placeOrder.OrderId);
     }
 }
 

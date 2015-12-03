@@ -4,7 +4,7 @@ using NServiceBus;
 
 public class MyCommandHandler : IHandleMessages<MyCommand>
 {
-    readonly IBus bus;
+    IBus bus;
 
     public MyCommandHandler(IBus bus)
     {
@@ -15,7 +15,5 @@ public class MyCommandHandler : IHandleMessages<MyCommand>
     {
         Console.WriteLine("Command received, id:" + message.CommandId);
         Console.WriteLine("EncryptedString:" + message.EncryptedString);
-
-        bus.Return(CommandStatus.Ok);
     }
 }

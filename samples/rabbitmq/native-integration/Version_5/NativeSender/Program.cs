@@ -39,7 +39,7 @@ class Program
 
                     channel.BasicPublish(string.Empty, "Samples.RabbitMQ.NativeIntegration", true, false, properties, Encoding.UTF8.GetBytes(payload));
                     #endregion
-                    Console.Out.WriteLine("Message with id {0} sent to queue {1}", messageId, "Samples.RabbitMQ.NativeIntegration");
+                    Console.WriteLine("Message with id {0} sent to queue {1}", messageId, "Samples.RabbitMQ.NativeIntegration");
                 }
             }
         }
