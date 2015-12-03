@@ -4,7 +4,7 @@ summary: Don't try to handle exceptions in your message handlers. Let NServiceBu
 tags:
 - Exceptions
 - Error Handling
-- Automatic Retries
+- Retry
 redirects:
  - nservicebus/how-do-i-handle-exceptions
 related:
