@@ -138,9 +138,11 @@
     <Compile Include="Features\MyFeature.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
+    <Compile Include="Handlers\MyEvent.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
     <Compile Include="Handlers\ReplyingHandler.cs" />
+    <Compile Include="Handlers\MyOtherMessage.cs" />
     <Compile Include="Headers\MyMessage.cs" />
     <Compile Include="Headers\ReadSaga.cs" />
     <Compile Include="Headers\ReadHandler.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transactions.cs" />
+    <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
     <Compile Include="UpgradeGuides\5to6\RawSend.cs" />
     <Compile Include="UpgradeGuides\5to6\Recoverable.cs" />
