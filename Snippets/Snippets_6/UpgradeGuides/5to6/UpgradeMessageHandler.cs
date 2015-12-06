@@ -8,7 +8,7 @@
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            await SomeLibrary.SomeMethodAsync(message);
+            await SomeLibrary.SomeAsyncMethod(message);
         }
     }
 
@@ -28,8 +28,8 @@
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            await context.SendAsync(new MyOtherMessage());
-            await context.PublishAsync(new MyEvent());
+            await context.Send(new MyOtherMessage());
+            await context.Publish(new MyEvent());
         }
     }
     #endregion

@@ -45,17 +45,17 @@
       <HintPath>..\..\..\..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Interfaces.3.3.17\lib\net40\NServiceBus.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Interfaces.3.3.18\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.3.3.17\lib\net40\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.3.3.18\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Autofac, Version=3.3.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Autofac.3.3.15\lib\net40\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.CastleWindsor">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.CastleWindsor.3.3.17\lib\net40\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.CastleWindsor.3.3.18\lib\net40\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

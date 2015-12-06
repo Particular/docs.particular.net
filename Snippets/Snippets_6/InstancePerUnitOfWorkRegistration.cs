@@ -1,5 +1,7 @@
 ﻿namespace Snippets6
 {
+    using System;
+    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.UnitOfWork;
 
@@ -21,14 +23,16 @@
 
     public class MyUnitOfWork : IManageUnitsOfWork
     {
-        public void Begin()
+        public Task Begin()
         {
             // Do your custom work here
+            return Task.FromResult(0);
         }
 
-        public void End(System.Exception ex = null)
+        public Task End(Exception ex = null)
         {
             // Do your custom work here
+            return Task.FromResult(0);
         }
     }
     #endregion
