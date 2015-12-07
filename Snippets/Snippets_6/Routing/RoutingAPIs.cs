@@ -1,4 +1,5 @@
-﻿namespace Snippets6.Routing
+﻿// ReSharper disable UnusedParameter.Local
+namespace Snippets6.Routing
 {
     using System;
     using System.Collections.Generic;

@@ -1,20 +1,15 @@
 ﻿namespace Snippets6.BusNotifications
 {
-    using System;
-    using System.Collections.Generic;
     using System.Net.Mail;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Faults;
 
     #region SubscribeToErrorsNotifications
 
-    public class SubscribeToErrorsNotifications : IWantToRunWhenBusStartsAndStops, IDisposable
+    public class SubscribeToErrorsNotifications : IWantToRunWhenBusStartsAndStops
     {
         BusNotifications busNotifications;
-        List<IDisposable> unsubscribeStreams = new List<IDisposable>();
-        bool disposed;
 
         public SubscribeToErrorsNotifications(BusNotifications busNotifications)
         {
@@ -23,15 +18,7 @@
 
         public Task Start(IBusContext context)
         {
-            CheckIfDisposed();
-
-            unsubscribeStreams.Add(
-                busNotifications.Errors.MessageSentToErrorQueue
-                    // It is very important to handle streams on another thread
-                    // otherwise the system performance can be impacted
-                    .ObserveOn(System.Reactive.Concurrency.Scheduler.Default) // Uses a pool-based scheduler
-                    .Subscribe(SendEmailOnFailure)
-                );
+            busNotifications.Errors.MessageSentToErrorQueue += Errors_MessageSentToErrorQueue;
             return Task.FromResult(0);
 
             // You can also subscribe when messages fail FLR and/or SLR
@@ -39,15 +26,13 @@
             // - busNotifications.Errors.MessageHasBeenSentToSecondLevelRetries
         }
 
+        private void Errors_MessageSentToErrorQueue(object sender, FailedMessage e)
+        {
+            SendEmailOnFailure(e);
+        }
+
         public Task Stop(IBusContext context)
         {
-            CheckIfDisposed();
-
-            foreach (IDisposable unsubscribeStream in unsubscribeStreams)
-            {
-                unsubscribeStream.Dispose();
-            }
-            unsubscribeStreams.Clear();
             return Task.FromResult(0);
         }
 
@@ -68,20 +53,6 @@
                     // Probably you should log this as a warning!
                 }
             }
-        }
-
-        void CheckIfDisposed()
-        {
-            if (disposed)
-            {
-                throw new Exception("Object has been disposed.");
-            }
-        }
-
-        public void Dispose()
-        {
-            Stop(null).GetAwaiter().GetResult();
-            disposed = true;
         }
 
     }
