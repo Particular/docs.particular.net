@@ -24,6 +24,9 @@ If your selected transport doesn't natively supports publish-subscribe you need 
 
 snippet:endpoint-mapping-appconfig
 
+Since version 6 you can also specify the publishers in code
+
+snippet:PubSub-CodePublisherMapping
 
 ### Exclude sagas from auto subscribe
 
