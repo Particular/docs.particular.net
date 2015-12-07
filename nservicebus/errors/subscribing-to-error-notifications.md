@@ -1,14 +1,15 @@
 ---
-title: Push-based error notifications
-summary: Subscribing to push-based error notifications using reactive extensions
+title: Error notifications
+summary: Subscribing to error notifications
 tags: []
 redirects:
  - nservicebus/subscribing-to-push-based-error-notifications
+ - nservicebus/errors/subscribing-to-push-based-error-notifications
 ---
 
 From version 5.1, we have exposed error notifications using the.
 
-These new event streams are exposed via the `BusNotifications` class that can be injected via DI.
+These event are exposed via the `BusNotifications` class that can be injected via DI.
 
 The following example shows how to be notified every time a message is about to be sent to the configured error queue so that an email is sent notifying interested parties.
 
@@ -17,7 +18,7 @@ snippet:SubscribeToErrorsNotifications
 
 ## Performance Impact
 
-Notifications re fired on the same thread as the the executing pipelien. As such, for long running actions, It is important to ensure all subscriptions are handled in another thread
+Notifications re fired on the same thread as the the executing pipeline. As such, for long running actions, It is important to ensure all subscriptions are handled in another thread
 
 
 ## Reactive Extensions
@@ -29,7 +30,7 @@ For more information about Reactive Extensions, see https://msdn.microsoft.com/e
 
 ## Unsubscribing
 
-Since BusNotifications are global for the current endpoint it is also important to ensure no longer required subscriptions removed so as to nor unnecessarily impact performance.
+Since notifications are global for the current endpoint it is also important to ensure no longer required subscriptions removed so as to nor unnecessarily impact performance.
 
 In version 6 and higher this is done by detaching from the event. 
 

@@ -72,7 +72,7 @@
         - "nservicebus/errors/critical-exception-for-timeout-outages"
         - "nservicebus/errors/exception-caveats"
         - "nservicebus/errors/automatic-retries"
-        - "nservicebus/errors/subscribing-to-push-based-error-notifications"
+        - "nservicebus/errors/subscribing-to-error-notifications"
     -
       Title: "Pipeline"
       Url: "nservicebus/pipeline"
