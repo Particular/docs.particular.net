@@ -139,4 +139,10 @@ The flow diagram highlights errors in red and provides details with access to th
 
 ![Error in the flow diagram](images/overview-flowdiagramwitherror.png)
 
+### The Sequence Diagram
+
+The sequence diagram highlights handlers with errors in red.
+
+![Error in the sequence diagram](images/overview-sequence-diagram-witherror.PNG)
+
 After the NServiceBus completes auto-retry, the errant message goes to an error queue. Instead of using the return-to-sender console application, to return the message to the queue from where it originated, click `Retry Message`. 
