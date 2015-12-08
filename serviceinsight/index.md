@@ -26,7 +26,8 @@ The NServiceBus Framework is part of the Particular Service Platform which inclu
 
 The ServiceInsight user interface provides multiple views of your distributed system.  Using information collected in ServiceControl, ServiceInsight enumerates your endpoints and provides detailed message and relationship data, with formatted views of XML, JSON, and binary messages.  
 
-The flow diagram provides a detailed visual overview of the messages, collated by conversation.  Using this view you can see the flow in your system and which endpoints raised specific events and sent or handled messages.  The Saga view illustrates the start of a saga, the timeouts, and interactions. 
+The flow diagram provides a detailed visual overview of the messages, collated by conversation.  Using this view you can see the flow in your system and which endpoints raised specific events and sent or handled messages.  The Saga view illustrates the start of a saga, the timeouts, and interactions. The sequence diagram shows the order in which messages have been sent and handled by endpoints in your system.
+ 
 As you select endpoints, the other views within ServiceInsight respond and filter the information to show only messages pertaining to that endpoint. 
 
 
@@ -95,6 +96,13 @@ Sagas play a critical role in NServiceBus systems.  As coordinators of processes
 
 The saga illustrates how the saga was initiated and other messages that were sent or handled, with detailed message data, time information, and details on saga data changes. 
 
+## Sequence Diagram
+
+While the Flow Diagram is very good at showing *why* each message in a conversation was sent, the Sequence Diagram is better for understanding *when* messages were sent and handled.
+
+![The Sequence Diagram](images/overview-sequence-diagram.PNG)
+
+Each endpoint appears along the top of the diagram with a lifeline moving down the page showing the flow of time. Each message that is handled appears as a box on the lifeline with new messages shown as arrows. These arrows go from the handler that sent them to the lifeline of the endpoint that received them. Clicking on a message will highlight when on the lifeline the endpoint handled that message. Alternatively you can click on a handler to highlight when on the lifeline the message being handled was sent to the endpoint. Published events and sent commands have different icons and line types. Timeout requests and messages an endpoint sends to itself also have special icons making them easy to pick out. Right-clicking on a message will show a context menu with additional information and actions.
 
 ## Body and Log Views
 
