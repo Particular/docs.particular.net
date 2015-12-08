@@ -8,7 +8,7 @@ tags:
 
 # Introduction
 
-Each visualization diagram in ServiceInsight displays the currently selected selected message in a broader context to help with troubleshooting and debugging.
+Each visualization diagram in ServiceInsight displays the currently selected message in a broader context to help with troubleshooting and debugging.
 
 The sequence diagram shows all of the messages in the same conversation. It also shows when these messages were sent and handled relative to each other. 
 
