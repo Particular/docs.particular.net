@@ -14,7 +14,7 @@ The sequence diagram shows all of the messages in the same conversation. It also
 
 !Image of Sequence Diagram
 
-Use the sequence diagram when the timing of when messages were handled is important.
+Use the sequence diagram when the timing of messages handling is important to understand.
 
 ## Which data is used to generate the diagram
 
@@ -23,13 +23,13 @@ When you send a message through NServiceBus, some headers are added automaticall
 
 ## What is on the diagram
 
-The sequence diagram shows a complex interraction of endpoints sending and processing messages over time. 
+The sequence diagram shows the interaction of endpoints by visualizing sending and processing messages over time. 
 
-### Endpoints and timelines
+### Endpoints and lifelines
 
 !Image of endpoints
 
-Each endpoint involved in the conversation is represented as a grey box along the top of the diagram. Hover over the endpoint ot get additional information such as the host that the endpoint is running on. Extending from the bottom of each endpoint is a line that shows time flowing from the endpoint to the bottom of the diagram. Elements that appear further down in the diagram happen later.
+Each endpoint involved in the conversation is represented as a labeled grey box along the top of the diagram. Hover on the endpoint label to get additional information such as the host that the endpoint is running on. Extending from the bottom of each endpoint is a (life)line that shows time flowing from top to bottom.
 
 ### Start of conversation
 
@@ -37,29 +37,29 @@ Each endpoint involved in the conversation is represented as a grey box along th
 
 Each conversation is initiated by a single command or event. This message is often triggered by some action which is external to the system such as a user clicking a Submit Order button on a website. The metadata used to generate the diagram doesn't include the trigger in this case but it does include the endpoint that sent or published this message. This is represented by a Start of Conversation marker on the endpoint timeline.
 
-NOTE: Not every sequence diagram will have the start of conversation marker. This can happen if the conversation started a long time ago and the initiating message has been expired. It can also happen if the number of messages in the conversation is very large. In this case, ServiceInsight will only get 50 messages from the conversation and this may not include the initiating message.
+NOTE: Not every sequence diagram will have the start of conversation marker. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. In this case, ServiceInsight will only get 50 messages from the conversation and this may not include the initiating message.
 
 ### Messages and Handlers
 
 !Image of send (preferrably with a send coming back again)
 
-When an endpoint sends a message a solid arrow is drawn from the timeline of the sending endpoint to the timeline of the processing endpoint. Each sent message will be labelled with the type of that was sent. Note that message arrow can face left or right depending on which order the Endpoints appear at the top of the diagram. The arrow always points from the sender and to the receiver.
+When an endpoint sends a message, a solid arrow is drawn from the lifeline of the sending endpoint to the lifeline of the processing endpoint. The label of each message indicates its type. The arrow always points from the sending endpoint to the receiving endpoint.
 
 !Image of context menu
 
-You can right-click on a message label to get access to additional data and actions about a message.
+Right-clicking on a message label gives access to actions related to that message.
 
 !Image of handler
 
-Sometime after a message is received it is handled by the endpoint. This is represented as a box on the endpoint timeline. Each handler is labelled with the type of message that it is handling. If the endpoint has received multiple messages of the same type you can see which specific instance is being handled by each handler by hovering over the message label or the handler.
+Some time after a message is received it is handled by the endpoint. This is represented as a box on the endpoint lifeline, labeled with the type of message that it is handling. If the endpoint has received multiple messages of the same type you can see which specific instance is being handled by each handler by hovering or selecting the handler.
 
 If a message arrow is drawn coming out of a handler then that means that the message was sent as a part of executing the handler. The order that message arrows appear within a handler is representative of the order they were sent.
 
-NOTE: If a handler appears further down the diagram then it was executed later. The size of a handler and the distance between them is not important.
+*NOTE: If a handler appears further down the diagram then it was executed later. This means other messages sent by other handlers in other endpoints may have been sent in the meanwhile. The size of a handler and the distance between them is not important.*
 
 !Image of failing handler
 
-If the processing of a message fails, the handler will be displayed in red with an exclamation mark in it. 
+If the processing of a message fails, the handler will be displayed in red with an exclamation mark in it. If the message that failed to process hasn't already been (automatically) retried, you can manually retry the message via the context menu.
 
 ### Events
 
@@ -67,13 +67,13 @@ If the processing of a message fails, the handler will be displayed in red with 
 
 Events are represented in a similar fashion to other messages except that they have dashed lines and a different icon. 
 
-NOTE: Each event that is published will appear on the diagram once for each subscriber. This looks like individual messages were sent to each subscriber by the sender regardless of whether Unicast or Multicast routing is used. See [Message Routing](/nservicebus/messaging/routing.md) for more details on routing. 
+*NOTE: Each event that is published will appear on the diagram once for each subscriber. This looks like individual messages were sent to each subscriber by the sender regardless of whether Unicast or Multicast routing is used - [Learn more about Message Routing](/nservicebus/messaging/routing.md).*
 
 ### Loopback messages
 
 !Image of a loopback
 
-When an endpoint sends a message to itself this is called a loopback message. On the sequence diagram this is represented as a short arrow that does not connect to another endpoint timeline. Each loopback message is displayed with a special icon to make it clear that's what it is. As with any other type of message, hovering over or selecting the message will highlight the handler for that message in the timeline.
+When an endpoint sends a message to itself this is called a loopback message. On the sequence diagram this is represented as a short arrow that does not connect to another endpoint timeline. Each loopback message is displayed with a special icon. As with any other type of message, hovering over or selecting the message will highlight the handler for that message in the lifeline.
 
 ### Timout messages
 
@@ -81,3 +81,8 @@ When an endpoint sends a message to itself this is called a loopback message. On
 
 A timeout is a special type of loopback message where the handling is deferred until a later time. This type of message is represented just like a loopback message but it has a clock icon to show that it is a timeout.
 
+*NOTE: the time of processing may not correspond to the time a timeout message was sent back for processing by the timeout scheduler. The sequence diagram does not currently support visualizing the time the message was sent back and will only indicate when was the message processed.*
+
+### Differences with UML sequence diagrams
+
+(Go over differences with UML here) 
