@@ -14,52 +14,43 @@ related:
 
 One of the core features of NServiceBus is routing of messages. The only thing required is to perform a Send, Publish or Reply and the actual message destination is calculated by the framework. Flexible message routing is a feature added in Version 6. In previous versions NServiceBus used fixed [message ownership mappings](/nservicebus/messaging/message-owner.md) that allowed only to map the message type (or all types in an assembly or a namespace) to physical addresses (queue names). The flexible routing in Version 6 splits this mapping up into a series of individually configurable steps. NServiceBus 6 still understands the old configuration in form of message-endpoint mappings for backwards compatibility.
 
-```no-highlight
-+--------------------------------------------------------------------------------------+
-|                                                                                      |
-| Determine the routing type based on operation (Send, Publish, Reply)                 |
-|                                                                                      |
-|                                                                                      |
-+-------------------------------+--------------------------------------------+---------+
-                                |                                            |
-                          Unicast routing                             Multicast routing
-                                |                                            |
-+-------------------------------v--------------------------------+ +---------v---------+
-|                                                                | |                   |
-| Determine the type of mapping based on type of route           | |                   |
-|                                                                | |                   |
-|                                                                | |                   |
-+---------+---------------------+----------------------+---------+ |                   |
-          |                     |                      |           |                   |
-          |                     |                      |           |                   |
-          |                     |                      |           |                   |
-+---------v---------+ +---------v----------+ +---------v---------+ |                   |
-|                   | |                    | |                   | |                   |
-| Map message type  | |                    | |                   | |                   |
-| to Endpoint       | |                    | |                   | |                   |
-|                   | |                    | |                   | |                   |
-+---------+---------+ |                    | |                   | | Depends entirely  |
-          |           | Map message type   | |                   | | on concrete       |
-          |           | to Instance        | |                   | | transport         |
-          |           |                    | |                   | | implementations   |
-+---------v---------+ |                    | |                   | |                   |
-|                   | |                    | | Map message type  | |                   |
-| Map Endpoint to   | |                    | | to address        | |                   |
-| list of Instances | |                    | |                   | |                   |
-|                   | |                    | |                   | |                   |
-+---------+---------+ +---------+----------+ |                   | |                   |
-          |                     |            |                   | |                   |
-          |                     |            |                   | |                   |
-          |                     |            |                   | |                   |
-+---------v---------+ +---------v----------+ |                   | |                   |
-|                   | |                    | |                   | |                   |
-| Map Instance(s)   | | Map Instance       | |                   | |                   |
-| to address(es)    | | to address         | |                   | |                   |
-|                   | |                    | |                   | |                   |
-+-------------------+ +--------------------+ +-------------------+ +-------------------+
+<!--
+http://code2flow.com/#
+switch (Operation?) {
+  case Send:
+    Determine routing for `Send`;
+    break;
+  case Publish:
+    Determine routing for `Publish`;
+    break;
+  case Reply:
+    Determine routing for `Reply`;
+    break;
+}
 
-```
+switch (Routing type?)
+{
+  case Multicast:
+    Hand message over to transport;
+    break;
+  case Unicast:
+    Iterate over routes;
+    switch (Route type?) {
+      case ToEndpoint:
+         Determine instances;
+      case ToInstance:
+         Determine transport address;
+         break;
+      case ToTransportAddress:
+         break;
+    }
+    Select routes to use;
+    Hand message over to transport;
+    break;
+}
+-->
 
+![Routing flow chart](routing.svg)
 
 ## Endpoint and endpoint instances
 
