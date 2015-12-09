@@ -18,8 +18,13 @@ Use the sequence diagram when the timing of messages handling is important to un
 
 ## Which data is used to generate the diagram
 
-When you send a message through NServiceBus, some headers are added automatically. All messages get the `NServiceBus.MessageId` header. This is a unqiue identifier for the message. If handling a message causes more messages to be sent or published then the `MessageId` of the message being handled is copied to the `NServiceBus.RelatedTo` header of the outgoing messages.
+When you send a message through NServiceBus, some headers are added automatically. All messages get the `NServiceBus.MessageId` header. This is a unqiue identifier for the message. 
 
+If handling a message causes more messages to be sent or published then the `MessageId` of the message being handled is copied to the `NServiceBus.RelatedTo` header of the outgoing messages.
+
+Another header that gets copied to outgoing messages is `NServiceBus.ConversationId`. The first mesgsage to be sent in a conversation will get a unique `ConversationId`. Each subsequent message will get the same `ConversationId`.
+
+There are additional headers which are used to label endpoints, handlers and messages. [More information about headers](http://docs.particular.net/nservicebus/messaging/headers).
 
 ## What is on the diagram
 
