@@ -184,6 +184,7 @@
     <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
+    <Compile Include="PubSub\PublisherMapping.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
     <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
     <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />
