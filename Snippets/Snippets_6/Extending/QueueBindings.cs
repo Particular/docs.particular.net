@@ -9,7 +9,8 @@ namespace Snippets6.Extending
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
-            context.Settings.Get<QueueBindings>().BindSending("someAddress");
+            context.Settings.Get<QueueBindings>().BindSending("sendingAddress");
+            context.Settings.Get<QueueBindings>().BindReceiving("receivingAddress");
         }
     }
     #endregion

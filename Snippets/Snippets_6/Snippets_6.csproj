@@ -60,6 +60,9 @@
     </Reference>
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1237\lib\net452\NServiceBus.Core.dll</HintPath>
+    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1237\lib\net452\NServiceBus.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Host, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Host.7.0.0-unstable0031\lib\net452\NServiceBus.Host.exe</HintPath>
@@ -132,6 +135,7 @@
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Extending\Features.cs" />
+    <Compile Include="Extending\QueueCreation.cs" />
     <Compile Include="Features\FeatureConfiguration.cs" />
     <Compile Include="Features\MyFeature.cs" />
     <Compile Include="Extending\QueueBindings.cs" />
