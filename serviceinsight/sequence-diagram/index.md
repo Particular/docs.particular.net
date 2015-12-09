@@ -12,7 +12,7 @@ Each visualization diagram in ServiceInsight displays the currently selected mes
 
 The sequence diagram shows all of the messages in the same conversation. It also shows when these messages were sent and handled relative to each other. 
 
-!Image of Sequence Diagram
+![Sequence Diagram](sequence-diagram.PNG)
 
 Use the sequence diagram when the timing of messages handling is important to understand.
 
@@ -27,13 +27,13 @@ The sequence diagram shows the interaction of endpoints by visualizing sending a
 
 ### Endpoints and lifelines
 
-!Image of endpoints
+![Endpoint](endpoint.PNG)
 
 Each endpoint involved in the conversation is represented as a labeled grey box along the top of the diagram. Hover on the endpoint label to get additional information such as the host that the endpoint is running on. Extending from the bottom of each endpoint is a (life)line that shows time flowing from top to bottom.
 
 ### Start of conversation
 
-!Image of start of conversation marker
+![Start of conversation marker](start-of-conversation.PNG)
 
 Each conversation is initiated by a single command or event. This message is often triggered by some action which is external to the system such as a user clicking a Submit Order button on a website. The metadata used to generate the diagram doesn't include the trigger in this case but it does include the endpoint that sent or published this message. This is represented by a Start of Conversation marker on the endpoint timeline.
 
@@ -41,15 +41,15 @@ NOTE: Not every sequence diagram will have the start of conversation marker. Thi
 
 ### Messages and Handlers
 
-!Image of send (preferrably with a send coming back again)
+![Send message](send.PNG)
 
 When an endpoint sends a message, a solid arrow is drawn from the lifeline of the sending endpoint to the lifeline of the processing endpoint. The label of each message indicates its type. The arrow always points from the sending endpoint to the receiving endpoint.
 
-!Image of context menu
+![Message context menu](context-menu.PNG)
 
 Right-clicking on a message label gives access to actions related to that message.
 
-!Image of handler
+![Handler](handler.PNG)
 
 Some time after a message is received it is handled by the endpoint. This is represented as a box on the endpoint lifeline, labeled with the type of message that it is handling. If the endpoint has received multiple messages of the same type you can see which specific instance is being handled by each handler by hovering or selecting the handler.
 
@@ -57,13 +57,13 @@ If a message arrow is drawn coming out of a handler then that means that the mes
 
 *NOTE: If a handler appears further down the diagram then it was executed later. This means other messages sent by other handlers in other endpoints may have been sent in the meanwhile. The size of a handler and the distance between them is not important.*
 
-!Image of failing handler
+![Failing handler](failing-handler.PNG)
 
 If the processing of a message fails, the handler will be displayed in red with an exclamation mark in it. If the message that failed to process hasn't already been (automatically) retried, you can manually retry the message via the context menu.
 
 ### Events
 
-!Image of an event
+![Event](event.PNG)
 
 Events are represented in a similar fashion to other messages except that they have dashed lines and a different icon. 
 
@@ -71,13 +71,13 @@ Events are represented in a similar fashion to other messages except that they h
 
 ### Loopback messages
 
-!Image of a loopback
+![Loopback](loopback.PNG)
 
 When an endpoint sends a message to itself this is called a loopback message. On the sequence diagram this is represented as a short arrow that does not connect to another endpoint timeline. Each loopback message is displayed with a special icon. As with any other type of message, hovering over or selecting the message will highlight the handler for that message in the lifeline.
 
 ### Timout messages
 
-!Image of a timeout
+![Timeout](timeout.PNG)
 
 A timeout is a special type of loopback message where the handling is deferred until a later time. This type of message is represented just like a loopback message but it has a clock icon to show that it is a timeout.
 
