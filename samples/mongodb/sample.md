@@ -9,16 +9,16 @@ related:
 ---
 
 
-## Prerequisites 
+## Prerequisites
 
-Ensure you have an instance of [MongoDB](https://www.mongodb.org/) running on `localhost:27017`. See [Install MongoDB on Windows](http://docs.mongodb.org/getting-started/shell/tutorial/install-mongodb-on-windows/). 
+Ensure you have an instance of [MongoDB](https://www.mongodb.org/) running on `localhost:27017`. See [Install MongoDB on Windows](http://docs.mongodb.org/getting-started/shell/tutorial/install-MongoDB-on-windows/).
 
 
-### MongoDB Persistence for NServiceBus 
+### MongoDB Persistence for NServiceBus
 
-This sample utilizes the community run [NServiceBus.MongoDB project](https://github.com/sbmako/NServiceBus.MongoDB). 
+This sample utilizes the community run [NServiceBus.Persistence.MongoDB project](https://github.com/tekmaven/NServiceBus.Persistence.MongoDB).
 
-NOTE: There are [two community run MongoDB persistences](/platform/extensions.md#persisters). You should evaluate both for the best fit to your solution. 
+NOTE: There are [two community run MongoDB persistences](/platform/extensions.md#persisters). You should evaluate both for the best fit to your solution.
 
 
 ### MongoDB Management UI
@@ -28,28 +28,26 @@ To visualize the data in MongoDB it is useful to have install a [MongoDB adminis
 
 ## Code walk-through
 
-This sample shows a simple Client + Server scenario. 
+This sample shows a simple Client + Server scenario.
 
 * `Client` sends a `StartOrder` message to `Server`
-* `Server` starts an `OrderSaga`. 
+* `Server` starts an `OrderSaga`.
 * `OrderSaga` requests a timeout with a `CompleteOrder` data.
 * When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
 * The Server then publishes a message that the client subscribes to.
 * `Client` handles `OrderCompleted` event.
 
 
-### MongoDb configuration
+### MongoDB configuration
 
-The `Server` endpoint is configured to use the MongoDB persistence with a connection string of `mongodb://localhost:27017`.
+The `Server` endpoint is configured to use the MongoDB persistence with a connection string of `mongodb://localhost:27017/SamplesMongoDBServer`.
 
-snippet:mongoDbConfig
+snippet:MongoDBConfig
 
 
 ### Order Saga Data
 
-The NServiceBus.MongoDB persistence [requires that saga data types implement IHaveDocumentVersion](https://github.com/sbmako/NServiceBus.MongoDB#sagas).
-
-> Saga data needs to be defined the normal way NSB requires with the additional interface IHaveDocumentVersion to work appropriately with NServiceBus.MongoDB. All this interface adds is a version property. Alternatively you can just inherit from ContainMongoSagaData.
+NServiceBus.Persistence.MongoDB [requires a property on your saga decorated with attribute `[DocumentVersion]`, usually named Version](https://github.com/tekmaven/NServiceBus.Persistence.MongoDB/#saga-definition-guideline).
 
 snippet:sagadata
 
@@ -61,21 +59,21 @@ snippet:thesaga
 
 ## The Data in MongoDB
 
-The data in MongoDb is stored in three different collections.
+The data in MongoDB is stored in three different collections.
 
 
-### The Saga Data 
+### The Saga Data
 
  * `IContainSagaData.Id` maps to the native MongoDB document `_id`
  * `IContainSagaData.Originator` and `IContainSagaData.OriginalMessageId` map to simple properties pairs.
  * Custom properties on the SagaData, in this case `OrderDescription` and `OrderId`, are also mapped to simple properties.
  * `_t` is type serialization metadata use by the underlying MongoDB Driver.
- * `DocumentVersion` used by NServiceBus.MongoDB to prevent concurrency issues.
+ * `DocumentVersion` used by NServiceBus.Persistence.MongoDB to prevent concurrency issues.
 
 ![](sagadata.png)
 
 
-### The Timeouts 
+### The Timeouts
 
   * The subscriber is stored in a `Destination` with the nested properties `Queue` and `Machine`.
   * The endpoint that initiated the timeout is stored in the `OwningTimeoutManager` property
@@ -91,8 +89,7 @@ The data in MongoDb is stored in three different collections.
 
 Note that the message type maps to multiple subscriber endpoints.
 
- * The Subscription message type and version are stored under the `MessageType` property.
- * `DocumentVersion` used by NServiceBus.MongoDB to prevent concurrency issues.
- * The list of subscribers is stored in a array of objects each containing `Queue` and `MachineName` properties. 
+ * The Subscription message type and version are stored as a composite key in the MongoDB document `_id` property.
+ * The list of subscribers is stored in a array of strings containing `Queue@MachineName` values.
 
 ![](subscriptions.png)
