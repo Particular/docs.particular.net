@@ -11,7 +11,7 @@ related:
 
 ## Prerequisites
 
-Ensure you have an instance of [MongoDB](https://www.mongodb.org/) running on `localhost:27017`. See [Install MongoDB on Windows](http://docs.mongodb.org/getting-started/shell/tutorial/install-MongoDB-on-windows/).
+Ensure you have an instance of [MongoDB](https://www.mongodb.org/) running on `localhost:27017`. See [Install MongoDB on Windows](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/).
 
 
 ### MongoDB Persistence for NServiceBus
