@@ -80,7 +80,7 @@ Events are represented in a similar fashion to other messages except that they h
 
 When an endpoint sends a message to itself this is called a loopback message. On the sequence diagram this is represented as a short arrow that does not connect to another endpoint lifeline. Each loopback message is displayed with a special icon. As with any other type of message, hovering over or selecting the message will highlight the handler for that message in the lifeline.
 
-### Timout messages
+### Timeout messages
 
 ![Timeout](timeout.PNG)
 
