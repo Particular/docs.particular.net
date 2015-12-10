@@ -102,7 +102,7 @@ While the Flow Diagram is very good at showing *why* each message in a conversat
 
 ![The Sequence Diagram](images/overview-sequence-diagram.PNG)
 
-Each endpoint appears along the top of the diagram with a lifeline moving down the page showing the flow of time. Each message that is handled appears as a box on the lifeline with new messages shown as arrows. These arrows go from the handler that sent them to the lifeline of the endpoint that received them. Clicking on a message will highlight when on the lifeline the endpoint handled that message. Alternatively you can click on a handler to highlight when on the lifeline the message being handled was sent to the endpoint. Published events and sent commands have different icons and line types. Timeout requests and messages an endpoint sends to itself also have special icons making them easy to pick out. Right-clicking on a message will show a context menu with additional information and actions.
+Read more about the [Sequence Diagram](/serviceinsight/sequence-diagram/)
 
 ## Body and Log Views
 
