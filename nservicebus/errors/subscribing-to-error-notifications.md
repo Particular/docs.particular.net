@@ -7,7 +7,13 @@ redirects:
  - nservicebus/errors/subscribing-to-push-based-error-notifications
 ---
 
-From version 5.1, we have exposed error notifications using the.
+Error notifications are available for several events.
+
+ * When a first level retie occurs.
+ * When a second level retry occurs.
+ * When a message fails retries and is forwarded to the error queue.
+
+This API was added in version 5.1.
 
 These event are exposed via the `BusNotifications` class that can be injected via DI.
 
