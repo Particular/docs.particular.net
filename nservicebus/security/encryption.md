@@ -52,9 +52,11 @@ snippet:EncryptionServiceSimple
 
 Each key needs an unique key identifier (`KeyIdentifier`). The key identifier is communicated in the message header meta data and provides the receiving endpoint information on which key to use for decryption.
 
+> Error: It is required to set the rijndael key identifier.
+
 NOTE: If a key identifier is not set then no encrypted messages can be send but received messages without a key identifier header will be decrypted using all keys in the configuration.
 
-> Encrypted message has no 'NServiceBus.RijndaelKeyIdentifier' header. Possibility of data corruption. Please upgrade endpoints that send messages with encrypted properties.
+> Error: Encrypted message has no 'NServiceBus.RijndaelKeyIdentifier' header. Possibility of data corruption. Please upgrade endpoints that send messages with encrypted properties.
 
 NOTE: Key identifiers are only supported since v3.3.16+, v4.7.8+, v5.0.7, 5.1.5, 5.2.9 and newer. All previous versions support decrypting messages that have encrypted fragments but no key identifier header.
 
