@@ -40,7 +40,7 @@ Each endpoint involved in the conversation is represented as a labeled grey box 
 
 ![Start of conversation marker](start-of-conversation.PNG)
 
-Each conversation is initiated by a single command or event. This message is often triggered by some action which is external to the system such as a user clicking a Submit Order button on a website. The metadata used to generate the diagram doesn't include the trigger in this case but it does include the endpoint that sent or published this message. This is represented by a Start of Conversation marker on the endpoint timeline.
+Each conversation is initiated by a single command or event. This message is often triggered by some action which is external to the system such as a user clicking a Submit Order button on a website. The metadata used to generate the diagram doesn't include the trigger in this case but it does include the endpoint that sent or published this message. This is represented by a Start of Conversation marker on the endpoint lifeline.
 
 NOTE: Not every sequence diagram will have the start of conversation marker. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. In this case, ServiceInsight will only get 50 messages from the conversation and this may not include the initiating message.
 
@@ -78,7 +78,7 @@ Events are represented in a similar fashion to other messages except that they h
 
 ![Loopback](loopback.PNG)
 
-When an endpoint sends a message to itself this is called a loopback message. On the sequence diagram this is represented as a short arrow that does not connect to another endpoint timeline. Each loopback message is displayed with a special icon. As with any other type of message, hovering over or selecting the message will highlight the handler for that message in the lifeline.
+When an endpoint sends a message to itself this is called a loopback message. On the sequence diagram this is represented as a short arrow that does not connect to another endpoint lifeline. Each loopback message is displayed with a special icon. As with any other type of message, hovering over or selecting the message will highlight the handler for that message in the lifeline.
 
 ### Timout messages
 
@@ -90,4 +90,15 @@ A timeout is a special type of loopback message where the handling is deferred u
 
 ### Differences with UML sequence diagrams
 
-(Go over differences with UML here) 
+The language used in the sequence diagram from ServiceInsight is largely modeled after the standard defined by UML sequence diagrams. However, due to some technical limitations as well as some specifics related to messaging systems, the sequence diagram in ServiceInsight has some notable differences when compared to its UML counterpart. Those are the following:
+
+What | Representation in ServiceInsight | Representation in UML
+--- | --- | --- | ---
+Sequence beginning | Represented by a black rectangle with a white "play" icon that acts as a sort of start landmark. This representation is used because metadata about what precedes the sequence is unavailable. | Represented by a message incoming from outside the diagram.
+Uni-directional solid lines | Used to represent any type of message other than events, including response messages | Used solely for request type of messages
+Uni-directional dashed lines | Used solely to represent event messages | Used solely to represent create messages and response messages
+Triangular arrow style | Used for all message types | Used for synchronous messages
+Open arrow style | N/A | Used for response messages and asynchronous messages 
+Asynchronous messages | All NServiceBus messages are asynchronous. Therefore, the ServiceInsight Sequence Diagram view has no visual representation for synchronous messages, even though they might exhibit synchronous behavior by (system) design. | Asynchronous messages are represented by a dashed line with a solid line and an open arrow
+Send to self / loopback messages | Represented as a short uni-directional arrow that does not connect to another endpoint lifeline and a specific icon next to its text label | Represented by an arrow that connects back to the sending object's lifeline. It is immediately by its handler, which usually overlaps the handler that sent the loopback message.
+Handlers | Displayed as labeled rectangles that may be disjointed from the arrows of its parent messages. This representation was chosen to reflect not only the default asynchronous nature of any associated response messages, but especially because of the execution/processing of parent messages which may only occur after several other messages were sent | Represented by rectangles directly connected to arrow lines
