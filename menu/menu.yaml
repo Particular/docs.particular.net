@@ -250,6 +250,7 @@
       Articles:
         - "serviceinsight/application-invocation"
         - "serviceinsight/how-logging-works"
+        - "serviceinsight/sequence-diagram"
 -
   Name: "ServicePulse"
   Topics:
