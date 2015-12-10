@@ -364,7 +364,7 @@
     <Compile Include="Audit\ProvideConfiguration.cs" />
     <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
-    <Compile Include="BusNotifications\Errors.cs" />
+    <Compile Include="BusNotifications\SubscribeToNotifications.cs" />
     <Compile Include="Callback\Enum\Handler.cs" />
     <Compile Include="Callback\Enum\Message.cs" />
     <Compile Include="Callback\Enum\Status.cs" />

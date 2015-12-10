@@ -112,7 +112,7 @@
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
-    <Compile Include="BusNotifications\Errors.cs" />
+    <Compile Include="BusNotifications\SubscribeToNotifications.cs" />
     <Compile Include="BusNotifications\EventsToObservables.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Correlation\Usage.cs" />
