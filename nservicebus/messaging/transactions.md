@@ -15,9 +15,11 @@ This article covers various levels of consistency guarantees NServiceBus provide
 
 It does not discuss the transaction isolation aspect which only applies to the process of updating the user data and does not affect the overall coordination and failure handling.
 
+
 ## Transactions
 
 Based on transaction handling mode, NServiceBus offers three levels of guarantees with regards to message processing. The levels available depends on the capability of the selected transport.
+
 
 ### Ambient transaction (Distributed transaction)
 
@@ -31,12 +33,15 @@ NOTE: MSMQ will escalate to a distributed transaction right away since it doesn'
 
 snippet:TransactionsEnable
 
+
 #### Consistency guarantees
+
 In this mode handlers will execute inside of the `TransactionScope` created by the transport. This means that all the data updates are executed as a whole or rolled back as a whole.
 
 Distributed transactions do not guarantee atomicity. Changes to the database might be visible *before* the messages on the queue or vice-versa, but they are guaranteed to eventually all sync up to reflect the outcome of the transaction.
 
 NOTE: This requires the selected storage to support participating in distributed transactions.
+
 
 ### Transport transaction - Receive Only
 
@@ -46,6 +51,7 @@ Use the following code to use this mode:
 
 snippet:TransactionsDisableDistributedTransactions
 
+
 #### Consistency guarantees
 
 In this mode some (or all) handlers might get invoked multiple times and partial results might be visible:
@@ -53,11 +59,12 @@ In this mode some (or all) handlers might get invoked multiple times and partial
  * partial updates - where one handler succeeded updating its data but the other didn't
  * partial sends - where some of the messages has been sent but others not
 
-To handle this make sure to write code that is consistent from a business perspective even though its executed more than once. In other words all handlers must be [idempotent](/nservicebus/concept-overview#Idempotence).
+To handle this make sure to write code that is consistent from a business perspective even though its executed more than once. In other words all handlers must be [idempotent](/nservicebus/concept-overview.md#idempotence).
 
 See the `Outbox` section below for details on how NServiceBus can handle idempotency at the infrastructure level.
 
-NOTE: Version 5 and below didn't have [batched dispatch](/nservicebus/messaging/batched-dispatch.md) and this meant that messages could be sent out without a matching update to business data depending the order of statements. This is called ghost messages. To avoid this make sure to perform all bus operations after any modification to business data. When reviewing the code remember that there can be multiple handlers for a given message. Details on how to enforce message handler ordering can be found [here](/nservicebus/handlers/handler-ordering).
+NOTE: Version 5 and below didn't have [batched dispatch](/nservicebus/messaging/batched-dispatch.md) and this meant that messages could be sent out without a matching update to business data depending the order of statements. This is called ghost messages. To avoid this make sure to perform all bus operations after any modification to business data. When reviewing the code remember that there can be multiple handlers for a given message and that handlers have an [order of execution](/nservicebus/handlers/handler-ordering.md).
+
 
 ### Transport transaction - Sends atomic with Receive
 
@@ -66,8 +73,11 @@ Some transports support enlisting outgoing operations in the current receive tra
 Use the following code to use this mode:
 
 snippet:TransactionsDisableDistributedTransactions
+
 #### Consistency guarantees
+
 This mode has the same consistency guarantees as the *Receive Only* mode mentioned above with the difference that the ghost messages are prevented since all outgoing operations are atomic with the receive operation.
+
 
 ### Unreliable (Transactions Disabled)
 
@@ -79,6 +89,7 @@ NOTE: In version 5 and below, when transactions are disabled, no retries will be
 
 snippet:TransactionsDisable
 
+
 ## Outbox
 
 The Outbox [feature](/nservicebus/outbox) provides idempotency at the infrastructure level and allows running in *transport transaction* mode while still getting the same semantics as *Ambient transaction* mode.
@@ -87,7 +98,9 @@ NOTE: Outbox data needs to be stored in the same database as business data to ac
 
 When using the outbox, any messages resulting from processing a given received message are not sent immediately but rather stored in the persistence database and pushed out after the handling logic is done. This mechanism ensures that the handling logic can only succeed once so there is no need to design for idempotency.
 
+
 ## Avoiding partial updates
+
 In this mode there is a risk for partial updates since one handler might succeed in updating business data while other won't. To avoid this configure NServiceBus to wrap all handlers in a `TransactionScope` that will act as a unit of work and make sure that there is no partial updates. Use following code to enable a wrapping scope:
 
 snippet:TransactionsWrapHandlersExecutionInATransactionScope
@@ -96,9 +109,11 @@ NOTE: This requires the selected storage to support enlisting in transaction sco
 
 WARNING: This might escalate to a distributed transaction if data in different databases are updated.
 
+
 ## Controlling transaction scope options
 
 The following options for transaction scopes used during message processing can be configured.
+
 
 ### Isolation level
 
@@ -109,6 +124,7 @@ NOTE: Version 3 and below used the default isolation level of .Net which is `Ser
 Change the isolation level using
 
 snippet:CustomTransactionIsolationLevel
+
 
 ### Transaction timeout
 
