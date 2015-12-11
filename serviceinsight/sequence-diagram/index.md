@@ -60,7 +60,7 @@ Some time after a message is received it is handled by the endpoint. This is rep
 
 If a message arrow is drawn coming out of a handler then that means that the message was sent as a part of executing the handler. The order that message arrows appear within a handler is representative of the order they were sent.
 
-*NOTE: If a handler appears further down the diagram then it was executed later. This means other messages sent by other handlers in other endpoints may have been sent in the meanwhile. The size of a handler and the distance between them is not important.*
+NOTE: If a handler appears further down the diagram then it was executed later. This means other messages sent by other handlers in other endpoints may have been sent in the meanwhile. The size of a handler and the distance between them is not important.
 
 ![Failing handler](failing-handler.PNG)
 
@@ -72,7 +72,7 @@ If the processing of a message fails, the handler will be displayed in red with 
 
 Events are represented in a similar fashion to other messages except that they have dashed lines and a different icon. 
 
-*NOTE: Each event that is published will appear on the diagram once for each subscriber. This looks like individual messages were sent to each subscriber by the sender regardless of whether Unicast or Multicast routing is used - [Learn more about Message Routing](/nservicebus/messaging/routing.md).*
+NOTE: Each event that is published will appear on the diagram once for each subscriber. This looks like individual messages were sent to each subscriber by the sender regardless of whether Unicast or Multicast routing is used - [Learn more about Message Routing](/nservicebus/messaging/routing.md).
 
 ### Loopback messages
 
@@ -86,19 +86,29 @@ When an endpoint sends a message to itself this is called a loopback message. On
 
 A timeout is a special type of loopback message where the handling is deferred until a later time. This type of message is represented just like a loopback message but it has a clock icon to show that it is a timeout.
 
-*NOTE: the time of processing may not correspond to the time a timeout message was sent back for processing by the timeout scheduler. The sequence diagram does not currently support visualizing the time the message was sent back and will only indicate when was the message processed.*
+NOTE: the time of processing may not correspond to the time a timeout message was sent back for processing by the timeout scheduler. The sequence diagram does not currently support visualizing the time the message was sent back and will only indicate when was the message processed.
 
 ### Differences with UML sequence diagrams
 
 The language used in the sequence diagram from ServiceInsight is largely modeled after the standard defined by UML sequence diagrams. However, due to some technical limitations as well as some specifics related to messaging systems, the sequence diagram in ServiceInsight has some notable differences when compared to its UML counterpart. Those are the following:
 
 What | Representation in ServiceInsight | Representation in UML
---- | --- | --- | ---
-Sequence beginning | Represented by a black rectangle with a white "play" icon that acts as a sort of start landmark. This representation is used because metadata about what precedes the sequence is unavailable. | Represented by a message incoming from outside the diagram.
-Uni-directional solid lines | Used to represent any type of message other than events, including response messages | Used solely for send and request type of messages
-Uni-directional dashed lines | Used solely to represent event messages | Used solely to represent create messages and response messages
-Triangular arrow style | Used for all message types | Used for synchronous messages
-Open arrow style | N/A | Used for response messages and asynchronous messages 
-Asynchronous messages | All NServiceBus messages are asynchronous. Therefore, the ServiceInsight Sequence Diagram view has no visual representation for synchronous messages, even though they might exhibit synchronous behavior by (system) design. | Asynchronous messages are represented by a sloping dashed or solid line with an open arrow
-Send to self / loopback messages | Represented as a short uni-directional arrow that does not connect to another endpoint lifeline and a specific icon next to its text label | Represented by an arrow that connects back to the sending object's lifeline. It is immediately followed by its handler, which usually overlaps the handler that sent the loopback message.
-Handlers | Displayed as labeled rectangles that may be disjointed from the arrows of its parent messages. This representation was chosen to reflect not only the default asynchronous nature of any associated response messages, but especially because of the execution/processing of parent messages which may only occur after several other messages were sent | Represented by rectangles directly attached to arrow lines
+:--- | :---: | :---:
+**Sequence beginning** | ![Sequence beginning](sequence-beginning.png) | ![Sequence beginning](uml-sequence-beginning.png)
+ | Represented by a black rectangle with a white "play" icon that acts as a sort of start landmark. This representation is used because metadata about what precedes the sequence is unavailable. | Represented by a message incoming from outside the diagram.
+**Uni-directional solid lines** | ![Solid line](solid-line.png) | ![UML solid line](uml-solid-line.png)
+| Used to represent any type of message other than events, including response messages | Used solely for send and request type of messages
+**Uni-directional dashed lines** | ![Dashed line](dashed-line.png) | ![UML dashed line](uml-dashed-line.png)
+| Used solely to represent event messages | Used solely to represent create messages and response messages
+**Filled arrow style** | ![Filled arrow](filled-arrow.png) | ![UML filled arrow](uml-filled-arrow.png)
+| Used for all message types | Used solely for synchronous send messages
+**Open arrow style** |  | ![UML open arrow](uml-open-arrow.png)
+ | N/A | Used for response messages and asynchronous messages 
+**Asynchronous messages** |  | ![UML asynchronous messages](uml-asynchronous.png)
+ | N/A - All NServiceBus messages are asynchronous. Therefore, the ServiceInsight Sequence Diagram view has no visual representation for synchronous messages, even though they might exhibit synchronous behavior by (system) design. | Asynchronous messages are represented by a sloping dashed or solid line with an open arrow
+**Send to self / loopback messages** | ![Loopback message](loopback-si.png) | ![UML loopback message](uml-loopback.png)
+ | Represented as a short uni-directional arrow that does not connect to another endpoint lifeline and a specific icon next to its text label | Represented by an arrow that connects back to the sending object's lifeline. It is immediately followed by its handler, which usually overlaps the handler that sent the loopback message.
+**Handlers** |  | ![UML handlers](uml-handlers.png)
+ | N/A - currently it's not possible to collect telemetry data to visualize message handlers | Represented by rectangles directly attached to arrow lines
+**Message Processing** | ![Message processing](processing.png) | 
+ | Displayed as labeled rectangles disjointed from the arrows of its parent messages. This representation was chosen to reflect not only the default asynchronous nature of any associated response messages, but especially because of the execution/processing of parent messages which may only occur after several other messages were sent | N/A
