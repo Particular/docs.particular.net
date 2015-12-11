@@ -61,21 +61,21 @@ NOTE: Version 5 and below didn't have [batched dispatch](/nservicebus/messaging/
 
 ### Transport transaction - Sends atomic with Receive
 
-Some transports supports enlisting outgoing operations in the current receive transaction. This prevents messages being sent to downstream endpoints during retries. Currently only the MSMQ and SQL Server transports support this type of transaction mode.
+Some transports support enlisting outgoing operations in the current receive transaction. This prevents messages being sent to downstream endpoints during retries. Currently only the MSMQ and SQL Server transports support this type of transaction mode.
 
 Use the following code to use this mode:
 
 snippet:TransactionsDisableDistributedTransactions
 #### Consistency guarantees
-This mode have the same consistency guarantees like the *Receive Only* mode mentioned above with the difference that ghost messages are prevented since all outgoing operations are atomic with the receive operation.
+This mode has the same consistency guarantees as the *Receive Only* mode mentioned above with the difference that the ghost messages are prevented since all outgoing operations are atomic with the receive operation.
 
 ### Unreliable (Transactions Disabled)
 
-In this mode the transport doesn't wrap the receive operation in any kind of transaction. Should the message fail to process it will be moved straight to the error queue. There will be no first level or second level retries since those features relies on transport level transactions.
+In this mode the transport doesn't wrap the receive operation in any kind of transaction. Should the message fail to process it will be moved straight to the error queue. There will be no first level or second level retries since those features rely on transport level transactions.
 
 WARNING: If there is a critical failure, including system or endpoint crash, the message is **permanently lost** since it's received with no transaction.
 
-NOTE: In version 5 and below, when transactions are disabled, no retries will be performed and messages will not be forwarded to the error queue in the event of any failure.
+NOTE: In version 5 and below, when transactions are disabled, no retries will be performed and messages **will not be forwarded** to the error queue in the event of any failure.
 
 snippet:TransactionsDisable
 
