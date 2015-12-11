@@ -23,7 +23,7 @@ Based on transaction handling mode, NServiceBus offers three levels of guarantee
 
 In this mode the receive transaction is wrapped in a [`TransactionScope`](http://msdn.microsoft.com/en-us/library/system.transactions.transactionscope). All operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole.
 
-Depending on transport the transaction is escalated to a distributed one (following two-phase commit protocol) when required. For example is not required when using SQL Server transport with NHibernate persistence both targeted at the same database. Since in this case ADO.NET driver guarantees that everything happens inside a single database transaction, ACID guarantees are held for the whole processing.
+Depending on transport the transaction is escalated to a distributed one (following two-phase commit protocol) when required. For example, this is not required when using SQL Server transport with NHibernate persistence both targeted at the same database. In this case the ADO.NET driver guarantees that everything happens inside a single database transaction, ACID guarantees are held for the whole processing.
 
 NOTE: MSMQ will escalate to a distributed transaction right away since it doesn't support promotable transaction enlistments.
 
@@ -34,7 +34,7 @@ snippet:TransactionsEnable
 #### Consistency guarantees
 In this mode handlers will execute inside of the `TransactionScope` created by the transport. This means that all the data updates are executed as a whole or rolled back as a whole.
 
-There is no atomicity guarantee as changes to the database might be visible *before* the messages on the queue or vice-versa. Specific configurations might provide stronger guarantees, but not weaker.
+Distributed transactions do not guarantee atomicity. Changes to the database might be visible *before* the messages on the queue or vice-versa, but they are guaranteed to eventually all sync up to reflect the outcome of the transaction.
 
 NOTE: This requires the selected storage to support participating in distributed transactions.
 
@@ -85,14 +85,14 @@ The Outbox [feature](/nservicebus/outbox) provides idempotency at the infrastruc
 
 NOTE: Outbox data needs to be stored in the same database as business data to achieve the idempotency mentioned above.
 
-When using the outbox, the messages resulting from processing a given received message are not being sent immediately but rather and stored in the persistence database and pushed out after handling logic is done. This mechanism ensures that the handling logic can only succeed once so there is no need to design for idempotency.
+When using the outbox, any messages resulting from processing a given received message are not sent immediately but rather stored in the persistence database and pushed out after the handling logic is done. This mechanism ensures that the handling logic can only succeed once so there is no need to design for idempotency.
 
 ## Avoiding partial updates
 In this mode there is a risk for partial updates since one handler might succeed in updating business data while other won't. To avoid this configure NServiceBus to wrap all handlers in a `TransactionScope` that will act as a unit of work and make sure that there is no partial updates. Use following code to enable a wrapping scope:
 
 snippet:TransactionsWrapHandlersExecutionInATransactionScope
 
-NOTE: This requires storage in use has support for enlisting in transaction scopes
+NOTE: This requires the selected storage to support enlisting in transaction scopes.
 
 WARNING: This might escalate to a distributed transaction if data in different databases are updated.
 
