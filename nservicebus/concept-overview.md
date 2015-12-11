@@ -21,7 +21,7 @@ Message types can be set either using marker interfaces `ICommand` and `IEvent` 
 
 ### Body
 
-The payload of the message is also called body. It travels between the endpoints in a serialized form (either textual or binary). 
+The payload of the message is also called body. It travels between the endpoints in a serialized form (either textual or binary).
 
 
 ### [Headers](/nservicebus/messaging/headers.md)
@@ -36,7 +36,7 @@ An Endpoint is a design-time concept that has a name and a collection of associa
 
 ### Endpoint Instance
 
-An Endpoint Instance is a run-time object that allows to interact with the bus. Endpoint Instances are able to send and receive messages. It runs associated Message Handlers and Sagas to process incoming messages. An Endpoint Instance has a single Input Queue (which can be shared with other instances of the same Endpoint in a scale-out scenario). 
+An Endpoint Instance is a run-time object that allows to interact with the bus. Endpoint Instances are able to send and receive messages. It runs associated Message Handlers and Sagas to process incoming messages. An Endpoint Instance has a single Input Queue (which can be shared with other instances of the same Endpoint in a scale-out scenario).
 
 
 ### [Hosting](/nservicebus/hosting)
@@ -56,7 +56,7 @@ Each endpoint instance is assigned a single Input Queue. This queue can be share
 
 ### [Publish Subscribe](/nservicebus/messaging/publish-subscribe)
 
-Publish Subscribe is the interaction of 
+Publish Subscribe is the interaction of
 
  * Registering interest in being notified about an event (*subscriber*).
  * That event being delivered to the endpoint that registered itself (*publisher*)
@@ -89,12 +89,12 @@ Messages that fail all retries are send to a error queue for triage for either a
 
 ### [Pipeline](/nservicebus/pipeline/)
 
-The Pipeline refers to the series of actions taken when an incoming message is processed and an outgoing message is sent. 
+The Pipeline refers to the series of actions taken when an incoming message is processed and an outgoing message is sent.
 
 
 ### [Behavior](/nservicebus/pipeline/customizing.md)
 
-A Behavior is a single step in the Pipeline. 
+A Behavior is a single step in the Pipeline.
 
 
 ### [Encryption](/nservicebus/security/encryption.md)
@@ -124,7 +124,7 @@ NServiceBus relies heavily on Containers and Dependency Injection to manage serv
 
 ### [Assembly Scanning](/nservicebus/hosting/assembly-scanning.md)
 
-NServiceBus leverages assembly scanning to implement several features. 
+NServiceBus leverages assembly scanning to implement several features.
 
 
 ### [Logging](/nservicebus/logging/)
@@ -134,9 +134,13 @@ NServiceBus has some sensible defaults for logging built in and, for more advanc
 
 ### [OutBox](/nservicebus/outbox)
 
-An alternative to Distributed Transactions to provide exactly-once message processing semantics when accessing user data store as part of message processing. 
+An alternative to Distributed Transactions to provide exactly-once message processing semantics when accessing user data store as part of message processing.
 
 
 ### [Distributor](/nservicebus/scalability-and-ha/distributor/)
 
 A load balancing tool for message distribution.
+
+### [Idempotence](http://en.wikipedia.org/wiki/Idempotence)
+
+The ability to call the same message handler more than once without causing inconsistent business results.

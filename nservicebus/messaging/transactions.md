@@ -11,7 +11,7 @@ This article covers various levels of consistency guarantees NServiceBus provide
 
 * receiving messages
 * updating user data
-* sending out messages
+* sending messages
 
 It does not discuss the transaction isolation aspect which only applies to the process of updating the user data and does not affect the overall coordination and failure handling.
 
@@ -58,7 +58,7 @@ In this mode some (or all) handlers might get invoked multiple times and partial
 
 To handle this you must make sure that you write code that is consistent from a business perspective even though its executed more than once. In other words you must ensure that your handlers are idempotent.
 
-See the `Outbox` section below for details on how NServiceBus can handle idempotency for you at the infrastructure level.
+See the `Outbox` section below for details on how NServiceBus can handle [idempotency](/nservicebus/concept-overview#Idempotence) for you at the infrastructure level.
 
 NOTE: Version 5 and below didn't have [batched dispatch](/nservicebus/messaging/batched-dispatch.md) and this meant that messages could be sent out without a matching update to business data depending how you ordered your code. We call this ghost messages. To avoid this you need to make sure that you always perform bus operations as the last statements in your handler taking into account that there can be multiple handlers for a given message.
 
@@ -85,7 +85,7 @@ snippet:TransactionsDisable
 
 The Outbox [feature](/nservicebus/outbox) provides idempotency on the infrastructure level and allows you to run in *transport transaction* mode while still getting the same semantics as *Ambient transaction* mode.
 
-NOTE: You need to store the outbox data in the same database as your business data to achieve the idempotency mentioned above. 
+NOTE: You need to store outbox data in the same database as your business data to achieve the idempotency mentioned above.
 
 When using the outbox, the messages resulting from processing a given received message are not being sent immediately but rather and stored in the persistence database and pushed out after handling logic is done. This mechanism ensures that the handling logic can only succeed once so there is no need to design for idempotence.
 
