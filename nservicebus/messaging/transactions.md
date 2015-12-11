@@ -21,7 +21,7 @@ Based on transaction handling mode, NServiceBus offers three levels of guarantee
 
 ### Ambient transaction (Distributed transaction)
 
-In this mode the receive transaction is wrapped in a `TransactionScope`. All the operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole. There is no atomicity guarantee as changes to the database might be visible *before* the messages on the queue or vice-versa. Specific configurations might provide stronger guarantees, but not weaker.
+In this mode the receive transaction is wrapped in a [`TransactionScope`](http://msdn.microsoft.com/en-us/library/system.transactions.transactionscope). All operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole. There is no atomicity guarantee as changes to the database might be visible *before* the messages on the queue or vice-versa. Specific configurations might provide stronger guarantees, but not weaker.
 
 NOTE: This requires the selected storage to support enlisting in distributed transactions.
 
