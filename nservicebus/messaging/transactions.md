@@ -57,7 +57,7 @@ To handle this make sure to write code that is consistent from a business perspe
 
 See the `Outbox` section below for details on how NServiceBus can handle idempotency at the infrastructure level.
 
-NOTE: Version 5 and below didn't have [batched dispatch](/nservicebus/messaging/batched-dispatch.md) and this meant that messages could be sent out without a matching update to business data depending the order of state,emts. This is called ghost messages. To avoid this make sure to perform all bus operations after any modification to business data. When reviewing the code remember that there can be multiple handlers for a given message. Details on how to enforce message handler ordering can be found [here](/nservicebus/handlers/handler-ordering).
+NOTE: Version 5 and below didn't have [batched dispatch](/nservicebus/messaging/batched-dispatch.md) and this meant that messages could be sent out without a matching update to business data depending the order of statements. This is called ghost messages. To avoid this make sure to perform all bus operations after any modification to business data. When reviewing the code remember that there can be multiple handlers for a given message. Details on how to enforce message handler ordering can be found [here](/nservicebus/handlers/handler-ordering).
 
 ### Transport transaction - Sends atomic with Receive
 
