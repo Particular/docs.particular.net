@@ -13,7 +13,7 @@ Here is an example how to register a custom serializer:
 
 <!-- import CustomSerializer --> 
 
-### Register that serializer
+### Register the serializer
 
 snippet:RegisterCustomSerializer
 
