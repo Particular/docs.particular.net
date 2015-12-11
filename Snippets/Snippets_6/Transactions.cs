@@ -29,31 +29,16 @@
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions().Enable().EnableDistributedTransactions();
             #endregion
-
-            #region TransactionsDoNotWrapHandlersExecutionInATransactionScope
-            busConfiguration.Transactions().DoNotWrapHandlersExecutionInATransactionScope();
-            #endregion
         }
 
         public void TransportTransactionsWithScope()
         {
             #region TransactionsWrapHandlersExecutionInATransactionScope
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().DisableDistributedTransactions().WrapHandlersExecutionInATransactionScope();
+            busConfiguration.Transactions().WrapHandlersExecutionInATransactionScope();
             #endregion
         }
-
-        public void Outbox()
-        {
-
-            #region TransactionsOutbox
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.EnableOutbox(); //Implies .DisableDistributedTransactions().DoNotWrapHandlersExecutionInATransactionScope();
-
-            #endregion
-        }
-
+        
         public void CustomTransactionTimeout()
         {
             #region CustomTransactionTimeout
