@@ -26,10 +26,6 @@
             #region TransactionsEnable
             Configure.Transactions.Enable().Advanced(x => x.EnableDistributedTransactions());
             #endregion
-
-            #region TransactionsDoNotWrapHandlersExecutionInATransactionScope
-            Configure.Transactions.Advanced(x => x.DoNotWrapHandlersExecutionInATransactionScope());
-            #endregion
         }
 
         public void CustomTransactionTimeout()
