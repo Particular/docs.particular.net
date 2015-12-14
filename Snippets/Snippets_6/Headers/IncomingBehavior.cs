@@ -7,9 +7,9 @@
     using NServiceBus.Pipeline;
 
     #region header-incoming-behavior
-    public class IncomingBehavior : Behavior<PhysicalMessageProcessingContext>
+    public class IncomingBehavior : Behavior<IncomingPhysicalMessageContext>
     {
-        public override async Task Invoke(PhysicalMessageProcessingContext context, Func<Task> next)
+        public override async Task Invoke(IncomingPhysicalMessageContext context, Func<Task> next)
         {
             Dictionary<string, string> headers = context.Message.Headers;
             string nsbVersion = headers[Headers.NServiceBusVersion];
