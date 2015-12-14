@@ -5,7 +5,7 @@ using NServiceBus.Pipeline;
 using Raven.Client;
 
 #region RavenUnitOfWork
-class RavenUnitOfWork : Behavior<PhysicalMessageProcessingContext>
+class RavenUnitOfWork : Behavior<IncomingPhysicalMessageContext>
 {
     IDocumentSession session;
 
@@ -14,7 +14,7 @@ class RavenUnitOfWork : Behavior<PhysicalMessageProcessingContext>
         this.session = session;
     }
 
-    public override async Task Invoke(PhysicalMessageProcessingContext context, Func<Task> next)
+    public override async Task Invoke(IncomingPhysicalMessageContext context, Func<Task> next)
     {
         await next();
         session.SaveChanges();
