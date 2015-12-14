@@ -1,8 +1,11 @@
 ﻿namespace Snippets6
 {
     using System;
+    using System.Collections.Generic;
     using System.Transactions;
     using NServiceBus;
+    using NServiceBus.Settings;
+    using NServiceBus.Transports;
 
     public class Transactions
     {
@@ -10,7 +13,8 @@
         {
             #region TransactionsDisable
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().Disable();
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.None);
             #endregion
         }
 
@@ -18,7 +22,11 @@
         {
             #region TransactionsDisableDistributedTransactions
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().DisableDistributedTransactions();
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.ReceiveOnly);
+            //or if supported by the transport
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             #endregion
 
         }
@@ -27,7 +35,8 @@
         {
             #region TransactionsEnable
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().Enable().EnableDistributedTransactions();
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.Promotable);
             #endregion
         }
 
@@ -54,5 +63,50 @@
             busConfiguration.Transactions().IsolationLevel(IsolationLevel.RepeatableRead);
             #endregion
         }
+    }
+
+    public class MyTransport:TransportDefinition
+    {
+        protected override TransportReceivingConfigurationResult ConfigureForReceiving(TransportReceivingConfigurationContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override TransportSendingConfigurationResult ConfigureForSending(TransportSendingConfigurationContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IEnumerable<Type> GetSupportedDeliveryConstraints()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override TransportTransactionMode GetSupportedTransactionMode()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IManageSubscriptions GetSubscriptionManager()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string GetDiscriminatorForThisEndpointInstance(ReadOnlySettings settings)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ToTransportAddress(LogicalAddress logicalAddress)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override OutboundRoutingPolicy GetOutboundRoutingPolicy(ReadOnlySettings settings)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ExampleConnectionStringForErrorMessage { get; }
     }
 }
