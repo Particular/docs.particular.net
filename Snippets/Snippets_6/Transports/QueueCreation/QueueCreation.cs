@@ -8,7 +8,7 @@
     using NServiceBus.Settings;
     using NServiceBus.Transports;
 
-    #region TransportDefinitionForQueueCreator
+    #region RegisteringTheQueueCreator
     class MyTransport : TransportDefinition
     {
         protected override TransportReceivingConfigurationResult ConfigureForReceiving(TransportReceivingConfigurationContext context)

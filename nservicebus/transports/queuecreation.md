@@ -26,7 +26,11 @@ snippet:queuebindings
 
 Queues get created during [installation](/nservicebus/operations/installers.md) time only.
 
-Transports need to implement a custom queue creator. It is the responsibility of the queue creator to either sequentially or concurrently create the queues provided in the queue bindings for the specified identity.
+Transports need to implement a custom queue creator.
+
+In NServiceBus v6 it is the responsibility of the queue creator to either sequentially or concurrently create the queues provided in the queue bindings for the specified identity.
+
+In NServiceBus v5 and lower the queue creation process is always executed sequentially.
 
 Here a sample of a sequential queue creator
 
@@ -36,6 +40,6 @@ Here a sample of a concurrent queue creator
 
 snippet:ConcurrentCustomQueueCreator
 
-The factory for creating the queue creator needs to be provided in the transport definition.
+The custom queue creator needs to be registered.
 
-snippet:TransportDefinitionForQueueCreator
+snippet:RegisteringTheQueueCreator
