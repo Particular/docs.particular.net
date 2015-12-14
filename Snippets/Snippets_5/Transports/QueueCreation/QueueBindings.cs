@@ -2,9 +2,9 @@
 using NServiceBus.Features;
 using NServiceBus.Unicast.Queuing;
 
-namespace Snippets5.UpgradeGuides._5to6
+namespace Snippets5.Transports
 {
-    #region 5to6queuebindings
+    #region queuebindings
     public class QueueRegistration : IWantQueueCreated
     {
         public QueueRegistration(Address queueAddress)

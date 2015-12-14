@@ -414,7 +414,7 @@
     <Compile Include="Lifecycle\IWantToRunWhenConfigurationIsComplete.cs" />
     <Compile Include="Lifecycle\IWantToRunWhenTheBusStartsAndStops.cs" />
     <Compile Include="Extending\Features.cs" />
-    <Compile Include="Extending\QueueBindings.cs" />
+    <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="Headers\StaticHeaders.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />
     <Compile Include="Mutators\Instance\MutateIncomingMessages.cs" />
@@ -607,7 +607,6 @@
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
-    <Compile Include="UpgradeGuides\5to6\QueueBindings.cs" />
     <Compile Include="WCF\Expose_wcf.cs" />
     <Compile Include="XmlSerializationIntegration.cs" />
   </ItemGroup>

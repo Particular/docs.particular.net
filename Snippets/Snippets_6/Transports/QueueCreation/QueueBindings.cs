@@ -1,5 +1,5 @@
 ﻿
-namespace Snippets6.Extending
+namespace Snippets6.Transports
 {
     using NServiceBus.Features;
     using NServiceBus.Transports;

@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Extending
+﻿namespace Snippets6.Transports
 {
     using System;
     using System.Collections.Generic;
