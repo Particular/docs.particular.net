@@ -24,7 +24,7 @@ If handling a message causes more messages to be sent or published then the `Mes
 
 Another header that gets copied to outgoing messages is `NServiceBus.ConversationId`. The first mesgsage to be sent in a conversation will get a unique `ConversationId`. Each subsequent message will get the same `ConversationId`.
 
-There are additional headers which are used to label endpoints, handlers and messages. [More information about headers](http://docs.particular.net/nservicebus/messaging/headers).
+There are additional headers which are used to label endpoints, messages and message processing. [More information about headers](http://docs.particular.net/nservicebus/messaging/headers).
 
 ## What is on the diagram
 
@@ -44,7 +44,7 @@ Each conversation is initiated by a single command or event. This message is oft
 
 NOTE: Not every sequence diagram will have the start of conversation marker. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. In this case, ServiceInsight will only get 50 messages from the conversation and this may not include the initiating message.
 
-### Messages and Handlers
+### Messages
 
 ![Send message](send.PNG)
 
@@ -54,17 +54,17 @@ When an endpoint sends a message, a solid arrow is drawn from the lifeline of th
 
 Right-clicking on a message label gives access to actions related to that message.
 
-![Handler](handler.PNG)
+![Message processing box](handler.PNG)
 
-Some time after a message is received it is handled by the endpoint. This is represented as a box on the endpoint lifeline, labeled with the type of message that it is handling. If the endpoint has received multiple messages of the same type you can see which specific instance is being handled by each handler by hovering or selecting the handler.
+Some time after a message is received it is processed by the endpoint. This is represented as a box on the endpoint lifeline, labeled with the type of message that it is processing. If the endpoint has received multiple messages of the same type you can see which specific instance is being processed by hovering over or selecting the processing box.
 
-If a message arrow is drawn coming out of a handler then that means that the message was sent as a part of executing the handler. The order that message arrows appear within a handler is representative of the order they were sent.
+If a message arrow is drawn coming out of a processing box then that means that the message was sent as a part of processing the original message. The order that message arrows appear within a processing box is representative of the order they were sent.
 
-NOTE: If a handler appears further down the diagram then it was executed later. This means other messages sent by other handlers in other endpoints may have been sent in the meanwhile. The size of a handler and the distance between them is not important.
+NOTE: If a processing box appears further down the diagram then it was executed later. This means other messages sent by other endpoints may have been processed in the meanwhile. The size of a processing box and the distance between them is not important.
 
-![Failing handler](failing-handler.PNG)
+![Failed processing](failing-handler.PNG)
 
-If the processing of a message fails, the handler will be displayed in red with an exclamation mark in it. If the message that failed to process hasn't already been (automatically) retried, you can manually retry the message via the context menu.
+If the processing of a message fails, the processing box will be displayed in red with an exclamation mark in it. If the message that failed to process hasn't already been (automatically) retried, you can manually retry the message via the context menu.
 
 ### Events
 
@@ -78,7 +78,7 @@ NOTE: Each event that is published will appear on the diagram once for each subs
 
 ![Loopback](loopback.PNG)
 
-When an endpoint sends a message to itself this is called a loopback message. On the sequence diagram this is represented as a short arrow that does not connect to another endpoint lifeline. Each loopback message is displayed with a special icon. As with any other type of message, hovering over or selecting the message will highlight the handler for that message in the lifeline.
+When an endpoint sends a message to itself this is called a loopback message. On the sequence diagram this is represented as a short arrow that does not connect to another endpoint lifeline. Each loopback message is displayed with a special icon. As with any other type of message, hovering over or selecting the message will highlight the processing for that message in the lifeline.
 
 ### Timeout messages
 
@@ -97,11 +97,11 @@ What | Representation in ServiceInsight | Representation in UML
 **Sequence beginning** | ![Sequence beginning](sequence-beginning.png) | ![Sequence beginning](uml-sequence-beginning.png)
  | Represented by a black rectangle with a white "play" icon that acts as a sort of start landmark. This representation is used because metadata about what precedes the sequence is unavailable. | Represented by a message incoming from outside the diagram.
 **Uni-directional solid lines** | ![Solid line](solid-line.png) | ![UML solid line](uml-solid-line.png)
-| Used to represent any type of message other than events, including response messages | Used solely for send and request type of messages
+ | Used to represent any type of message other than events, including response messages | Used solely for send and request type of messages
 **Uni-directional dashed lines** | ![Dashed line](dashed-line.png) | ![UML dashed line](uml-dashed-line.png)
-| Used solely to represent event messages | Used solely to represent create messages and response messages
+ | Used solely to represent event messages | Used solely to represent create messages and response messages
 **Filled arrow style** | ![Filled arrow](filled-arrow.png) | ![UML filled arrow](uml-filled-arrow.png)
-| Used for all message types | Used solely for synchronous send messages
+ | Used for all message types | Used solely for synchronous send messages
 **Open arrow style** |  | ![UML open arrow](uml-open-arrow.png)
  | N/A | Used for response messages and asynchronous messages 
 **Asynchronous messages** |  | ![UML asynchronous messages](uml-asynchronous.png)
