@@ -120,6 +120,10 @@
             - "nservicebus/rabbitmq/configuration-api"
             - "nservicebus/rabbitmq/cluster"
             - "nservicebus/rabbitmq/operations-scripting"
+        - Title: "Extending"
+          Url: "nservicebus/transports"
+          Articles:
+            - "nservicebus/transports/queuecreation"          
     -
       Title: "Serialization"
       Url: "nservicebus/serialization"

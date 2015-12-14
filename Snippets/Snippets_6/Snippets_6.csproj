@@ -58,8 +58,6 @@
       <HintPath>..\..\packages\NServiceBus.CommonLogging.2.2.0-unstable0007\lib\net452\NServiceBus.CommonLogging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1237\lib\net452\NServiceBus.Core.dll</HintPath>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1237\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
@@ -135,10 +133,10 @@
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Extending\Features.cs" />
-    <Compile Include="Extending\QueueCreation.cs" />
+    <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
     <Compile Include="Features\FeatureConfiguration.cs" />
     <Compile Include="Features\MyFeature.cs" />
-    <Compile Include="Extending\QueueBindings.cs" />
+    <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
     <Compile Include="Handlers\MyEvent.cs" />

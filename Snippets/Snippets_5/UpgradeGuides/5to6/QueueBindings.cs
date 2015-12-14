@@ -7,18 +7,16 @@ namespace Snippets5.UpgradeGuides._5to6
     #region 5to6queuebindings
     public class QueueRegistration : IWantQueueCreated
     {
-        public Address AuditQueue { get; set; }
-
-        public Address Address
+        public QueueRegistration(Address queueAddress)
         {
-            get { return AuditQueue; }
+            Address = queueAddress;
         }
 
-        public bool Enabled { get; set; }
+        public Address Address { get; private set; }
 
         public bool ShouldCreateQueue()
         {
-            return Enabled;
+            return true;
         }
     }
 
@@ -26,9 +24,7 @@ namespace Snippets5.UpgradeGuides._5to6
     {
         protected override void Setup(FeatureConfigurationContext context)
         {
-            context.Container.ConfigureComponent<QueueRegistration>(DependencyLifecycle.InstancePerCall)
-                .ConfigureProperty(p => p.Enabled, true)
-                .ConfigureProperty(t => t.AuditQueue, Address.Parse("someQueue"));
+            context.Container.ConfigureComponent(() => new QueueRegistration(Address.Parse("someQueue")), DependencyLifecycle.InstancePerCall);
         }
     }
     #endregion

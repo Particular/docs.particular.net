@@ -9,13 +9,13 @@
     using NServiceBus.Transports;
 
     #region TransportDefinitionForQueueCreator
-    public class MyTransport : TransportDefinition
+    class MyTransport : TransportDefinition
     {
         protected override TransportReceivingConfigurationResult ConfigureForReceiving(TransportReceivingConfigurationContext context)
         {
             return new TransportReceivingConfigurationResult(
                 c => default(IPushMessages),
-                () => new QueueCreator(),
+                () => new YourQueueCreator(),
                 () => Task.FromResult(StartupCheckResult.Success));
         }
         #endregion
@@ -58,23 +58,42 @@
         public override string ExampleConnectionStringForErrorMessage { get; }
     }
 
-    #region CustomQueueCreator
-    public class QueueCreator : ICreateQueues
+    class YourQueueCreator : ICreateQueues
+    {
+        public Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
+        {
+            return Task.FromResult(0);
+        }
+    }
+
+    #region SequentialCustomQueueCreator
+    class SequentialQueueCreator : ICreateQueues
     {
         public async Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
         {
-            // i.ex. create receiving queues sequentially
             foreach (string address in queueBindings.ReceivingAddresses)
             {
                 await CreateQueue(address);
             }
-            // i.ex. create sending queues concurrently
+        }
+        #endregion
+        static Task CreateQueue(string address)
+        {
+            return Task.FromResult(address);
+        }
+    }
+
+    #region ConcurrentCustomQueueCreator
+    class ConcurrentQueueCreator : ICreateQueues
+    {
+        public async Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
+        {
             await Task.WhenAll(queueBindings.SendingAddresses.Select(CreateQueue));
         }
         #endregion
         static Task CreateQueue(string address)
         {
-            return Task.FromResult(0);
+            return Task.FromResult(address);
         }
     }
 }
