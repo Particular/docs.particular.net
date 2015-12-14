@@ -8,7 +8,7 @@ using NServiceBus.Pipeline.Contexts;
 
 #region ReceiveBehaviorDefinition
 
-class StreamReceiveBehavior : Behavior<LogicalMessageProcessingContext>
+class StreamReceiveBehavior : Behavior<IncomingLogicalMessageContext>
 {
     string location;
 
@@ -17,7 +17,7 @@ class StreamReceiveBehavior : Behavior<LogicalMessageProcessingContext>
         location = Path.GetFullPath(storageSettings.Location);
     }
 
-    public override async Task Invoke(LogicalMessageProcessingContext context, Func<Task> next)
+    public override async Task Invoke(IncomingLogicalMessageContext context, Func<Task> next)
     {
         #endregion
 
