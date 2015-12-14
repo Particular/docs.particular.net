@@ -23,7 +23,7 @@ Based on transaction handling mode, NServiceBus offers three levels of guarantee
 
 ### Ambient transaction (Distributed transaction)
 
-In this mode the receive transaction is wrapped in a [`TransactionScope`](http://msdn.microsoft.com/en-us/library/system.transactions.transactionscope). All operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole.
+In this mode the transport receive operation is wrapped in a [`TransactionScope`](http://msdn.microsoft.com/en-us/library/system.transactions.transactionscope). Other operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole.
 
 Depending on transport the transaction is escalated to a distributed one (following two-phase commit protocol) when required. For example, this is not required when using SQL Server transport with NHibernate persistence both targeted at the same database. In this case the ADO.NET driver guarantees that everything happens inside a single database transaction, ACID guarantees are held for the whole processing.
 

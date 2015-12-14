@@ -36,7 +36,7 @@
             #region TransactionsEnable
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseTransport<MyTransport>()
-                .Transactions(TransportTransactionMode.Promotable);
+                .Transactions(TransportTransactionMode.TransactionScope);
             #endregion
         }
 
