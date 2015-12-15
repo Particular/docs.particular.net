@@ -132,9 +132,9 @@ Again, try swapping the cluster back and forth, to make sure it can move freely 
 
 ## Setting up the workers
 
-The first thing you should do is to make sure that the worker servers have [unqiue QMIds](distributor/#worker-qmid-needs-to-be-unique).
+The first thing you should do is to make sure that the worker servers have [unique QMIds](distributor/#worker-qmid-needs-to-be-unique).
 
-Set up your worker processes on all worker servers (not the cluster nodes!) as services, as you did for the distributors. But instead of using NServiceBus.Distributor, use NServiceBus.Worker profile instead.
+Set up your worker processes on all worker servers (not the cluster nodes!) as services, as you did for the distributors. But instead of using `NServiceBus.Distributor`, use `NServiceBus.Worker` profile instead.
 
 Configure the workers' `UnicastBusConfig` sections to point to the distributor's data and control queues as described on the Distributor Page under [Routing with the Distributor](distributor).
 
