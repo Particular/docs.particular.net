@@ -4,9 +4,9 @@ using NServiceBus;
 using NServiceBus.Pipeline;
 
 #region incoming-header-behavior
-class IncomingHeaderBehavior : Behavior<IncomingPhysicalMessageContext>
+class IncomingHeaderBehavior : Behavior<IIncomingPhysicalMessageContext>
 {
-    public override async Task Invoke(IncomingPhysicalMessageContext context, Func<Task> next)
+    public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
     {
         context.Message
             .Headers

@@ -8,7 +8,7 @@ using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.OutgoingPipeline;
 
 #region SendBehaviorDefinition
-class StreamSendBehavior : Behavior<OutgoingLogicalMessageContext>
+class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
 {
     TimeSpan MaxMessageTimeToLive = TimeSpan.FromDays(14);
     string location;
@@ -17,7 +17,7 @@ class StreamSendBehavior : Behavior<OutgoingLogicalMessageContext>
     {
         location = Path.GetFullPath(storageSettings.Location);
     }
-    public override async Task Invoke(OutgoingLogicalMessageContext context, Func<Task> next)
+    public override async Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
     {
 #endregion
         #region copy-stream-properties-to-disk

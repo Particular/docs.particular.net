@@ -6,11 +6,11 @@ using NServiceBus.Pipeline;
 using NServiceBus.Pipeline.Contexts;
 
 #region HandlerTimerBehavior
-class HandlerTimerBehavior : Behavior<InvokeHandlerContext>
+class HandlerTimerBehavior : Behavior<IInvokeHandlerContext>
 {
     static ILog logger = LogManager.GetLogger<HandlerTimerBehavior>();
 
-    public override async Task Invoke(InvokeHandlerContext context, Func<Task> next)
+    public override async Task Invoke(IInvokeHandlerContext context, Func<Task> next)
     {
         var stopwatch = Stopwatch.StartNew();
         try
