@@ -56,7 +56,7 @@ snippet:sqlserver-multidb-other-endpoint-connection-push
 
 The pull mode can be used when specific information is not available at configuration time. One can pass a `Func<String, ConnectionInfo>` that will be used by the SQL Server transport to resolve connection information at runtime.
 
-<!-- import sqlserver-multidb-other-endpoint-connection-pull -->
+snippet: sqlserver-multidb-other-endpoint-connection-pull
 
 
 ### Configuration

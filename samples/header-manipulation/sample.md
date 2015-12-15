@@ -78,12 +78,12 @@ Note that the injection is contextual to the other exiting steps in the pipeline
 
 ### The outgoing Behavior
 
-<!-- import outgoing-header-behavior-->
+snippet: outgoing-header-behavior
 
 
 ### The incoming Behavior
 
-<!-- import incoming-header-behavior-->
+snippet: incoming-header-behavior
 
 
 ## Globally for all outgoing messages
@@ -97,4 +97,4 @@ snippet:global-all-outgoing
 
 While the current contextual headers can be read in any of the above scenarios in this sample all headers will be written from the receiving Handler.
 
-<!-- import handler-->
+snippet: handler

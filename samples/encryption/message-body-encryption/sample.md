@@ -36,7 +36,7 @@ Which receives and decrypts the message.
 
 Starting with the Shared project, open the `CompleteOrder.cs` file and look at the following code:
 
-<!-- import Message -->
+snippet: Message
 
 Note that is does not need any custom property types to be encrypted.
 
@@ -49,11 +49,11 @@ Open either one of the `Program.cs`. You will notice the line
 
 This is a extension method that adds a `IMutateTransportMessages` to the configuration.
 
-<!-- import MessageEncryptorExtension -->
+snippet: MessageEncryptorExtension
 
 
 #### The Mutator
 
 WARNING: Clearly this it not true encryption. It is only doing a byte array reversal to illustrate the API. In your production system you should do true encryption via the [.NET Framework Cryptography Model](https://msdn.microsoft.com/en-us/library/0ss79b2x.aspx).
 
-snippet:Mutator
+snippet: Mutator

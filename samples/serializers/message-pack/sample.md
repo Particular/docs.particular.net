@@ -13,9 +13,9 @@ This samples uses the community run serializer [NServiceBus.MessagePack](https:/
 
 ## Configuring to use MessagePack
 
-snippet:config
+snippet: config
 
 
 ## The message send
 
-<!-- import message --> 
+snippet: message

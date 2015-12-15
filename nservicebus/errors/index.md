@@ -35,7 +35,7 @@ snippet:ErrorQueueConfigurationProvider
 
 ### Using a ConfigurationSource
 
-<!-- import ErrorQueueConfigurationSource-->
+snippet: ErrorQueueConfigurationSource
 
 Then at configuration time:
 

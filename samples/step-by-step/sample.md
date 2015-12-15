@@ -57,7 +57,7 @@ The `Subscriber` project needs notification of a successful order. Hence it subs
 
 The subscription is done in the `app.config` of the project
 
-<!-- import subscriptionConfig-->
+snippet: subscriptionConfig
 
 
 ### Handling the event

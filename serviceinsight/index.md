@@ -24,7 +24,7 @@ The NServiceBus Framework is part of the Particular Service Platform which inclu
 
 # Visualizing the System
 
-The ServiceInsight user interface provides multiple views of your distributed system.  Using information collected in ServiceControl, ServiceInsight enumerates your endpoints and provides detailed message and relationship data, with formatted views of XML, JSON, and binary messages. 
+The ServiceInsight user interface provides multiple views of your distributed system. Using information collected in ServiceControl, ServiceInsight enumerates your endpoints and provides detailed message and relationship data, with formatted views of XML, JSON, and binary messages.
 
 The flow diagram provides a detailed visual overview of the messages, collated by conversation.  Using this view you can see the flow in your system and which endpoints raised specific events and sent or handled messages.  The Saga view illustrates the start of a saga, the timeouts, and interactions.
 As you select endpoints, the other views within ServiceInsight respond and filter the information to show only messages pertaining to that endpoint.
@@ -32,11 +32,11 @@ As you select endpoints, the other views within ServiceInsight respond and filte
 
 ## The Message Window
 
-The Messages window is a detailed grid view indicating the message status, type, time stamp, and service level information.  You can filter the list based on specific message content, searching for all message data, not just commonly displayed fields.   
+The Messages window is a detailed grid view indicating the message status, type, time stamp, and service level information. You can filter the list based on specific message content, searching for all message data, not just commonly displayed fields.
 
 ![Message List View](images/overview-messagedetailwindow.png)
 
-You can filter and locate at design time.  The ServicePulse monitoring tool also allows you to open ServiceInsight to a specific message so you can drill down for more detail.
+You can filter and locate at design time. The ServicePulse monitoring tool also allows you to open ServiceInsight to a specific message so you can drill down for more detail.
 
 
 ### Refresh and Auto-refresh
@@ -64,7 +64,7 @@ When you select specific messages, the related properties window and flow diagra
 
 ## Endpoint Explorer
 
-The Endpoint Explorer indicates the connection to the ServiceControl instance providing data to ServiceInsight.  The list enumerates the endpoints and the machine where they are deployed. 
+The Endpoint Explorer indicates the connection to the ServiceControl instance providing data to ServiceInsight. The list enumerates the endpoints and the machine where they are deployed. 
 
 ![Endpoint Explorer](images/overview-endpointexplore-machinename.png)
 
@@ -77,7 +77,7 @@ The flow diagram provides extensive message and system information. When you sel
 
 ![The Flow Diagram](images/overview-flowdiagram-wpopup.png)
 
-Each message is represented by a box indicating the message type and illustrating details including the endpoints and time information.  Published events and sent commands have different icons and illustrations. Dropdowns provide more message details and links to search based on this message, copy message details, and retry messages.
+Each message is represented by a box indicating the message type and illustrating details including the endpoints and time information. Published events and sent commands have different icons and illustrations. Dropdowns provide more message details and links to search based on this message, copy message details, and retry messages.
 
 
 ## Message Properties
@@ -89,7 +89,7 @@ Each message in NServiceBus contains extensive detail.  As you select messages i
 
 ## The Saga View
 
-Sagas play a critical role in NServiceBus systems.  As coordinators of processes they are started by certain messages and interact with a variety of messages and services.  To open a graphical view of Sagas, you can click a message in the flow diagram that is handled by a saga. 
+Sagas play a critical role in NServiceBus systems. As coordinators of processes they are started by certain messages and interact with a variety of messages and services.  To open a graphical view of Sagas, you can click a message in the flow diagram that is handled by a saga. 
 
 ![The Saga View](images/overview-sagaview.png)
 
@@ -103,19 +103,21 @@ Along the bottom edge of the flow diagram is a tab for the Body and Log views.
 
 ### Body View
 
-ServiceInsight obviates the need for MSMQ tools provided by Windows. ServiceInsight provides raw message data in the Body tab of the flow diagram, with XML and HEX views of the body. 
+ServiceInsight obviates the need for MSMQ tools provided by Windows. ServiceInsight provides raw message data in the Body tab of the flow diagram, with XML and HEX views of the body.
+
 ![Body Tab ](images/overview-bodyview.png)
 
 
 ### Log View
 
 ServiceInsight leverages the ServiceControl API to retrieve information.  The Log tab of the Flow Diagram window displays details of the interactions as ServiceInsight polls ServiceControl for more data.
+
 ![Log View Tab](images/overview-logview.png)
 
 
 ## Errors and Retries
 
-ServiceInsight provides added visibility, and NServiceBus provides durability and retries. Where intervention is required, you do not need to manually collate log files or access remote servers to research an error.  The views within ServiceInsight illustrate messages with errors and bring you the error information.
+ServiceInsight provides added visibility, and NServiceBus provides durability and retries. Where intervention is required, you do not need to manually collate log files or access remote servers to research an error. The views within ServiceInsight illustrate messages with errors and bring you the error information.
 
 
 ### Status in the Message List

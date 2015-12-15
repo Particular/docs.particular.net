@@ -64,7 +64,7 @@ class StreamSendBehavior : Behavior<OutgoingLogicalMessageContext>
         await next();
         #endregion
     }
-    #region generata-key-for-stream
+    #region generate-key-for-stream
     string GenerateKey(TimeSpan timeToBeReceived)
     {
         if (timeToBeReceived > MaxMessageTimeToLive)

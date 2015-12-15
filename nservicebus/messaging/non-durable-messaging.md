@@ -40,7 +40,7 @@ snippet:ExpressMessageConvention
 
 All message to be non durable via the configuration API.
 
-<!-- import set-to-non-durable -->
+snippet: set-to-non-durable
 
 
 ## Effect on transports

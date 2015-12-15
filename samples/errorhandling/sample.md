@@ -14,8 +14,7 @@ When you run the sample, you should start them using Ctrl+F5 (start without debu
 
 Both endpoints execute the same code.
 
-<!-- import handler --> 
-
+snippet: handler
 
 The "With SLR" endpoint uses the standard SLR settings.
 

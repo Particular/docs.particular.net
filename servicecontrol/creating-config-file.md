@@ -184,7 +184,7 @@ Default: `<AuditQueue>.log`
 
 #### ServiceControl/ForwardAuditMessages
 
-Use this setting to configure whether processed audit messages are forwarded to another queue or not.  
+Use this setting to configure whether processed audit messages are forwarded to another queue or not.
 
 Type: bool `true` or `false`
 

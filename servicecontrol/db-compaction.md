@@ -8,9 +8,10 @@ tags:
 
 ## Overview
 
-ServiceControl 1.4 introduced a database maintenance feature which allows ServiceControl to be run with all features except for RavenDB Studio disabled.  While in this mode no messages are ingested from the queuing system.   
+ServiceControl 1.4 introduced a database maintenance feature which allows ServiceControl to be run with all features except for RavenDB Studio disabled. While in this mode no messages are ingested from the queuing system.
 
-Once servicecontrol is running in this  mode the following procedure can be used to compact the embedded RavenDB database.
+Once ServiceControl is running in this mode the following procedure can be used to compact the embedded RavenDB database.
+
 
 ## Step 1: Start ServiceControl in the maintenance mode
 
@@ -22,7 +23,8 @@ Once servicecontrol is running in this  mode the following procedure can be used
 - Open command line and installation path for the service
 - Type `ServiceControl -maint`
 - ServiceControl will start in the maintenance mode with RavenDB studio exposed on `http://localhost:{selected port}/storage`.
- 
+
+
 ## Step 2: Export the current database
 
 - Open a browser and navigate to `http://localhost:{selected port}/storage`
@@ -44,12 +46,14 @@ Once servicecontrol is running in this  mode the following procedure can be used
 
 - Once the export operation is complete, stop ServiceControl (press `<enter>` in the console).
 
+
 ## Step 3: Delete the existing database
 
 NOTE: At this point it is advisable to take a backup copy of the existing database folder as re-importing can fail. To do this ensure that ServiceControl is not running and the copy the contents of the database directory.
 
 - Delete the database directory contents.
-- Start ServiceControl, again in the maintenance mode.  This will populate the database folder with a blank database. 
+- Start ServiceControl, again in the maintenance mode. This will populate the database folder with a blank database.
+
 
 ## Step 4: Import the exported data
 
@@ -80,4 +84,3 @@ NOTE: If you get an `System.OutOfMemoryException` during import you can work aro
 ## Step 5: Restart ServiceControl
 
 - Start the ServiceControl Windows Service.
-

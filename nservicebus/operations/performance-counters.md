@@ -59,7 +59,7 @@ Acts as a early warning system to tell you the number of seconds left until the 
 
 This counter can be enabled using the the following code:
 
-<!-- import enable-sla-->
+snippet: enable-sla
 
 In the NServiceBus Host this counter is enabled by default. But the value can be configured either by the above API or using a `EndpointSLAAttribute` on your `IConfigureThisEndpoint`.
 

@@ -38,7 +38,7 @@ snippet:DefiningEncryptedPropertiesAs
 
 You can also use the `WireEncryptedString` type to flag that a property should be encrypted.
 
-<!-- import MessageWithEncryptedProperty -->
+snippet: MessageWithEncryptedProperty
 
 
 ### Enabling property encryption
@@ -124,7 +124,7 @@ NOTE: Our advice is to use Base64 if possible and to use ASCII 32 character keys
 
 The encryption key can be defined in the `app.config`.
 
-<!-- import EncryptionFromAppConfig -->
+snippet: EncryptionFromAppConfig
 
 
 #### IProvideConfiguration

@@ -16,11 +16,11 @@ NServiceBus Version 5 brings the option of running endpoints with the same relia
 
 In order to enable the Outbox, use the following API:
 
-<!-- import OutboxEnablineInCode -->
+snippet: OutboxEnablineInCode
 
 This is enough for the RabbitMQ transport. For SQL Server and MSMQ transports, to enable the outbox users need to also explicitly set the following configuration settings when configuring the endpoint:
 
-<!-- import OutboxEnablingInAppConfig -->
+snippet: OutboxEnablingInAppConfig
 
 NOTE: It may seem extreme to require double opt-in configuration of the Outbox for all other transports, but this is because we want users to be very aware that this new feature should not be used with existing endpoints that currently use DTC, unless those endpoints are [idempotent](https://en.wikipedia.org/wiki/Idempotence). Otherwise, problems could arise from double-processing messages sent (via an at-least-once guarantee) more than once.
 

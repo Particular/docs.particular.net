@@ -48,7 +48,7 @@ To avoid this confusion it is recommended the names of the output queues be expl
 </configuration>
 ```
 
-NOTE: The app setttings related to queue names are prefixed with "ServiceBus" not "ServiceControl".   
+NOTE: The app settings related to queue names are prefixed with "ServiceBus" not "ServiceControl".
 
 
 ### Test Error and Audit Forwarding Queues on startup

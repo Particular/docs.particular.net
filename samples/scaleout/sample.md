@@ -45,7 +45,7 @@ A library for sharing handlers between workers.
 
 Contains one handler.
 
-<!-- import WorkerHandler --> 
+snippet: WorkerHandler
 
 WARNING: If you are doing publish from a handler inside a worker then all workers mush share the same [subscription persistence](/nservicebus/persistence/).
 
@@ -54,7 +54,7 @@ WARNING: If you are doing publish from a handler inside a worker then all worker
 
 A host for the distributor
 
-<!-- import server --> 
+snippet: server
 
 
 ### Worker1 and Worker2
@@ -69,7 +69,7 @@ snippet:Workerstartup
 
 #### Configuration
 
-<!-- import workerConfig -->
+snippet: workerConfig
 
 The Node in the MasterNodeConfig points to the host name where the MasterNode is running. If running the Worker from the same machine as the Distributor, Node should equal "localhost".
 

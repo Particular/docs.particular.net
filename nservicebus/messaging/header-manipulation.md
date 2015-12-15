@@ -24,22 +24,22 @@ Headers can be read for an incoming message.
 
 ### From a Behavior
 
-snippet:header-incoming-behavior
+snippet: header-incoming-behavior
 
 
 ### From a Mutator
 
-snippet:header-incoming-mutator
+snippet: header-incoming-mutator
 
 
 ### From a Handler
 
-snippet:header-incoming-handler
+snippet: header-incoming-handler
 
 
 ### From a Saga
 
-<!-- import header-incoming-saga-->
+snippet: import header-incoming-saga
 
 
 ## Writing outgoing Headers
@@ -49,29 +49,28 @@ Headers can be written for an outgoing message.
 
 ### From a Behavior
 
-snippet:header-outgoing-behavior
+snippet: header-outgoing-behavior
 
 
 ### From a Mutator
 
-snippet:header-outgoing-mutator
+snippet: header-outgoing-mutator
 
 
 ### From a Handler
 
-snippet:header-outgoing-handler
+snippet: header-outgoing-handler
 
 
 ### From a Saga
 
-snippet:header-outgoing-saga
+snippet: header-outgoing-saga
 
 
 ### For all outgoing messages
 
 NServiceBus allows you to register headers at configuration time that's then added to all outgoing messages for the endpoint.
 
-<!-- import header-static-endpoint -->
+snippet: import header-static-endpoint
 
-
-WARNING: In Versions 3 through Version 5 the global outgoing headers are not thread safe. It is recommended that you manipulate them at startup. This has been limited to a configuration time only API in Version 6 .
+WARNING: In Versions 3 through Version 5 the global outgoing headers are not thread safe. It is recommended that you manipulate them at startup. This has been limited to a configuration time only API in Version 6.

@@ -26,7 +26,7 @@ This sample has three projects: `Shared`, `Server`, and `WebApplication`. `WebAp
 
 In `WebApplication`, open `Global.asax.cs` and look at the code in the `ApplicationStart` method:
 
-<!-- import ApplicationStart -->
+snippet: ApplicationStart
 
 The rest of the code is typical for hosting NServiceBus in your own process. The code holds a reference to the bus, which is used later for sending messages. This isn't the only option available; if the classes for sending messages are managed by Dependency Injection, then they can get a reference to the bus by declaring a dependency on IBus. [See an example](/nservicebus/containers/injecting-ibus.md).
 
@@ -54,7 +54,7 @@ Skip the rest of the code and see what happens to the message you just sent.
 
 In the Server project, find this code in the CommandMessageHandler class:
 
-<!-- import Handler -->
+snippet: Handler
 
 This class implements the NServiceBus interface `IHandleMessages<T>` where `T` is the specific message type being handled; in this case, the Command message. NServiceBus manages classes that implement this interface. When a message arrives in the input queue, it is deserialized and then, based on its type, NServiceBus instantiates the relevant classes and calls their `Handle` method, passing in the message object.
 

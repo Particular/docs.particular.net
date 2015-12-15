@@ -19,22 +19,22 @@ This sample leverages the pipeline to provide a pure stream based approach for s
 
 This provides an extension method to `Configure` to simplify passing in settings to the stream storage.
 
-snippet:stream-storage-helper
+snippet: stream-storage-helper
 
 You then call this helper method at configuration time.
 
-<!-- import configure-stream-storage -->
+snippet: configure-stream-storage
 
 
 ### Write Stream properties to disk
 
 This happens in as part of the outgoing pipeline, see `StreamSendBehavior.cs`.
 
-snippet:SendBehaviorDefinition
+snippet: SendBehaviorDefinition
 
 Each stream copied to disk will need a unique key.
 
-snippet:generata-key-for-stream
+snippet:generate-key-for-stream
 
 Copy each stream property to disk
 
@@ -57,42 +57,42 @@ Where each GUID is a file containing the contents of the emptied stream.
 
 This happens in as part of the incoming pipeline, see `StreamReceiveBehavior.cs`
 
-snippet:ReceiveBehaviorDefinition
+snippet: ReceiveBehaviorDefinition
 
 Copy the contents of the files on disk back into the message properties.
 
-snippet:write-stream-properties-back
+snippet: write-stream-properties-back
 
 Cleanup the opened streams after message processing.
 
-snippet:cleanup-after-nested-action
+snippet: cleanup-after-nested-action
 
 
 ### Configuring the pipeline behaviors
 
-snippet:pipeline-config
+snippet: pipeline-config
 
 
 ### The message to send
 
-snippet:message-with-stream
+snippet: message-with-stream
 
 
 ### Sending with a http stream
 
-snippet:send-message-with-http-stream
+snippet: send-message-with-http-stream
 
 
 ### Sending with a file stream
 
-snippet:send-message-with-file-stream
+snippet: send-message-with-file-stream
 
 NOTE: If you use a `MemoryStream` ensure that the [Position](https://msdn.microsoft.com/en-us/library/system.io.memorystream.position.aspx) is set back to `0` before sending the message. Also note that writing large amounts of data to a `MemoryStream` will result in significant memory usage (perhaps resulting in an `OutOfMemoryException`) and put pressure on Garbage Collection.
 
 
 ### Handler
 
-snippet:message-with-stream-handler
+snippet: message-with-stream-handler
 
 
 ## Difference to the Databus

@@ -9,15 +9,12 @@ redirects:
 
 Here is an example how to register a custom serializer:
 
+
 ### Create a custom serializer
 
-<!-- import CustomSerializer -->
+snippet: CustomSerializer
+
 
 ### Register the serializer
 
 snippet:RegisterCustomSerializer
-
-
-
-
-

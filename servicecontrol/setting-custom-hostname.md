@@ -6,11 +6,13 @@ tags:
 - ServicePulse
 ---
 
+
 ## Changing the ServiceControl URI
 
 To set a custom hostname and IP port for an instance of the ServiceControl service:
 
-NOTE: Anyone who can access the ServiceControl URL has complete access to the message data stored within ServiceControl.  This is  why the default is to only respond to the localhost.  Please consider carefully the implications of exposing ServiceControl via a custom or wildcard URI.
+NOTE: Anyone who can access the ServiceControl URL has complete access to the message data stored within ServiceControl. This is  why the default is to only respond to the localhost. Please consider carefully the implications of exposing ServiceControl via a custom or wildcard URI.
+
 
 ### Using the ServiceControl Management Utility
 
@@ -20,6 +22,7 @@ NOTE: Anyone who can access the ServiceControl URL has complete access to the me
 
 The ServiceControl Management Utility will then validate the settings changes and restart the service to apply the changes.
 The utility handles any required URLACL changes so the manual steps outlined in `Updating URL Changes` do not need to be carries out.
+
 
 ### Manually changing the Configuration
 
@@ -79,6 +82,6 @@ ServiceControl will not start if the service account does not have access to lis
 
 ### Updating ServicePulse Configuration to ServiceControl Custom Hostname
 
-1. Update the ServicePulse configuration file to access the updated ServiceControl hostname & port number. By default, the ServicePulse configuration file is located in `[Program Files]\Particular Software\ServicePulse\app\config.js`.
-1. Update the value of the `service_control_url` parameter to the specified ServiceControl hostname and IP port number.
-1. When next accessing ServicePulse, make sure to refresh the browser cache to allow ServicePulse to access the updated configuration settings.
+ 1. Update the ServicePulse configuration file to access the updated ServiceControl hostname & port number. By default, the ServicePulse configuration file is located in `[Program Files]\Particular Software\ServicePulse\app\config.js`.
+ 1. Update the value of the `service_control_url` parameter to the specified ServiceControl hostname and IP port number.
+ 1. When next accessing ServicePulse, make sure to refresh the browser cache to allow ServicePulse to access the updated configuration settings.

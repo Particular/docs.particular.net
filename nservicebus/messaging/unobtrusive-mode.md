@@ -25,6 +25,6 @@ There are a couple of ways you can solve this.
 
 NServiceBus allows you to define your own [message conventions](messages-events-commands.md) instead of using the `IMessage`, `ICommand` or `IEvent` interfaces and attributes like `TimeToBeReceivedAttribute` and `ExpressAttribute`. NServiceBus also supports conventions for encrypted properties, express messages, databus properties and time to be received. So with these conventions combined you can avoid referencing NServiceBus in your messages assembly.
 
-<!-- import MessageConventions -->
+snippet MessageConventions -->
 
 Note: It is important to note that in .NET namespace is optional and hence can be null. So if any conventions do partial string checks, for example using `EndsWith` or `StartsWith`, then a null check should be used. So include `.Namespace != null` at the start of the convention. Otherwise a null reference exception will occur during the type scanning.

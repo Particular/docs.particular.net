@@ -51,7 +51,7 @@ If the Save Credentials option is chosen the credentials will be encrypted and s
 
 ## Select items to install
 
-You will be prompted for which items to install. Individual components can be selected how for installation or upgrade. If the latest version of a product is installed that item will be disabled as there is no installation or upgrade action required.  Similarly if the Platform installer cannot communicate with the version information feed it will also disable product selection.
+You will be prompted for which items to install. Individual components can be selected how for installation or upgrade. If the latest version of a product is installed that item will be disabled as there is no installation or upgrade action required. Similarly if the Platform installer cannot communicate with the version information feed it will also disable product selection.
 
 ![](select-items.png)
 

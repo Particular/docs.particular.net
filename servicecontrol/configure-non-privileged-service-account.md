@@ -33,9 +33,11 @@ If the service account user does not have appropriate rights the service will fa
 
 If the ServiceControl configuration is manually changed to listen to an alternate URL, Check the URLACL assigned to the URI is valid for the new service account.  For instructions on how to review and change the the URLACL refer to [Changing the ServiceControl URI](setting-custom-hostname.md)
 
+
 ### RavenDB Security
 
-The installer will set the permissions to allow any member of the local Windows Users group to modify files in the embedded Raven DB folder.  You can change these rights manually to be more restrictive as long as the service account user retains modify rights.  Note that manual changes to the ACLs may be lost during an upgrade or re-installation of ServiceControl.   
+The installer will set the permissions to allow any member of the local Windows Users group to modify files in the embedded Raven DB folder. You can change these rights manually to be more restrictive as long as the service account user retains modify rights.  Note that manual changes to the ACLs may be lost during an upgrade or re-installation of ServiceControl.
+
 
 ### Testing the Configuration
 
@@ -44,20 +46,22 @@ These methods confirm that the user account has sufficient rights:
  - Configure and start the service as the user and then check the log files.  
  - Interactively run ServiceControl as the user.
 
+
 #### Method 1: Running the service as a non-privileged user
 
-1. Open computer management.
-1. Change the service account to the non-privileged user and password and apply the change. The user account will be given "logon as a service privilege".
-1. Start the service and confirm that it started.
-1. Examine the log file to ensure that the service is operating as you expect. If the service does not start and the log file does not indicate the issue, try Method 2.
+ 1. Open computer management.
+ 1. Change the service account to the non-privileged user and password and apply the change. The user account will be given "logon as a service privilege".
+ 1. Start the service and confirm that it started.
+ 1. Examine the log file to ensure that the service is operating as you expect. If the service does not start and the log file does not indicate the issue, try Method 2.
+
 
 #### Method 2: Running the service interactively as a non-privileged user
 
 To run the service this way the user account must have rights to log on interactively on the computer.
  
-2. Log on to the computer with admin privileges.
-2. Substitute the appropriate domain and user name.
-2. Issue the following command, entering the password when prompted:
+ 1. Log on to the computer with admin privileges.
+ 1. Substitute the appropriate domain and user name.
+ 1. Issue the following command, entering the password when prompted:
 
 For example
 
@@ -88,4 +92,4 @@ NOTE: You must specify the correct name of the service on the command line as th
 
 ### Expected Warnings when Running as a Non-Privileged Account
 
-On service start up the Embedded RavenDB attempts to create Windows performance counters. This does not succeed and RavenDB performance counters are not available.  You can safely ignore this warning.
+On service start up the Embedded RavenDB attempts to create Windows performance counters. This does not succeed and RavenDB performance counters are not available. You can safely ignore this warning.

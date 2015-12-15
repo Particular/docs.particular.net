@@ -28,14 +28,14 @@ The central endpoint of the Sample.
  * Maps the site key `RemoteSite` to `http://localhost:25899/RemoteSite`
  * Receives incoming messages on `http://localhost:25899/Headquarters/`
 
-<!-- import HeadquatersGatewayConfig-->
+snippet: HeadquatersGatewayConfig
 
 
 ## AcknowledgedHandler
 
 Handles `PriceUpdateAcknowledged` from `RemoteSite`.
 
-snippet:AcknowledgedHandler
+snippet: AcknowledgedHandler
 
 
 ## UpdatePriceHandler
@@ -52,16 +52,16 @@ snippet:UpdatePriceHandler
 
 Receives incoming messages on `http://localhost:25899/RemoteSite/`
 
-<!-- import RemoteSiteGatewayConfig-->
+snippet: RemoteSiteGatewayConfig
 
 
 ### PriceUpdatedHandler
     
-snippet:PriceUpdatedHandler
+snippet: PriceUpdatedHandler
 
 
 ## WebClient
 
 This project represents an external integration point. It sends a `UpdatePrice` to the channel `http://localhost:25899/Headquarter/`.
 
-snippet:SendUpdatePrice
+snippet: SendUpdatePric

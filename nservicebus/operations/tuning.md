@@ -40,14 +40,14 @@ The default limits of an endpoint can be changed in both code and via app.config
 
 By [overriding app.config settings](/nservicebus/hosting/custom-configuration-providers.md).
 
-<!-- import TuningFromCode--->
+snippet: TuningFromCode
 
 
 ### Via app.config
 
 By using raw xml.
 
-<!-- import TuningFromAppConfig--->
+snippet: TuningFromAppConfig
 
 
 ## Run time settings
@@ -57,9 +57,9 @@ Version 5 and lower allowed both concurrency and throughput throttling to be cha
 
 ## Optimizing at run time
 
-<!-- import ChangeTuning--->
+snippet: import ChangeTuning
 
 
 ## Reading current values at run time
 
-<!-- import ReadTuning--->
+snippet: ReadTuning

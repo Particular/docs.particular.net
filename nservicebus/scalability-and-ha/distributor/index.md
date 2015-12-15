@@ -150,7 +150,7 @@ Read about the `DistributorControlAddress` and the `DistributorDataAddress` in t
 
 If you are self-hosting your endpoint here is the code required to enlist the endpoint with a Distributor.
 
-<!-- import ConfiguringWorker -->
+snippet: ConfiguringWorker
 
 NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
@@ -164,12 +164,12 @@ For some extensibility scenarios it may be helpful to check if the endpoint is r
 
 ### Is running as a Distributor
 
-<!-- import IsDistributorEnabled -->
+snippet: IsDistributorEnabled
 
 
 ### Is running as a Worker
 
-snippet:IsWorkerEnabled
+snippet: IsWorkerEnabled
 
 
 ## Routing with the Distributor

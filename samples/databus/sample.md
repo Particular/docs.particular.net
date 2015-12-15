@@ -11,8 +11,9 @@ related:
 ---
 
  1. Run the solution. Two console applications start.
- 2. Find the Sender application by looking for the one with "Sender" in its path and pressing Enter in the window to send a message.      You have just sent a message that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
- 3. Click 'e' and Enter. A message larger than the allowed 4MB is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown at the "Sender" application.
+ 1. Find the Sender application by looking for the one with "Sender" in its path and pressing Enter in the window to send a message. You have just sent a message that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
+ 1. Click 'e' and Enter. A message larger than the allowed 4MB is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown at the "Sender" application.
+
 
 ## Code walk-through
 
@@ -22,6 +23,7 @@ This sample contains three projects:
  * Sender - A console application responsible for sending the large messages.
  * Receiver - A console application responsible for receiving the large messages from Sender.
 
+
 ### Messages project
 
 Let's look at the Messages project, at the two messages. We start with the large one that is not utilizing the DataBus mechanism. The message is a simple byte array command:
@@ -30,7 +32,7 @@ snippet:AnotherMessageWithLargePayload
 
 The other message utilizes the DataBus mechanism:
 
-<!-- import MessageWithLargePayload -->
+snippet: MessageWithLargePayload
 
 `DataBusProperty<byte[]>` is an NServiceBus data type that instructs NServiceBus to treat the `LargeBlob` property as an attachment. It is not transported in the NServiceBus normal flow.
 
@@ -52,6 +54,7 @@ Following is an example of the signaling message that is sent to the receiving e
 }
 ```
 
+
 ### Configuring the Databus location
 
 Both the `Sender` and `Receive` project need to share a common location to store large binary objects. This is done by calling `FileShareDataBus`. This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment.
@@ -66,6 +69,7 @@ static void Main()
 }
 ```
 
+
 ### Sender project
 
 The following sender project code sends the `MessageWithLargePayload `message, utilizing the NServiceBus attachment mechanism:
@@ -74,14 +78,15 @@ snippet:SendMessageLargePayload
 
 The following `Sender` project code sends the `AnotherMessageWithLargePayload` message without utilizing the NServiceBus attachment mechanism:
 
-<!-- import SendMessageTooLargePayload -->
+snippet: SendMessageTooLargePayload
 
 In both cases, a 5MB message is sent, but in the `MessageWithLargePayload `it goes through, while `AnotherMessageWithLargePayload` fails.
 
 Go to the `Receiver` project to see the receiving application.
 
+
 ### Receiver project
 
 Following is the receiving message handler:
 
-<!-- import MessageWithLargePayloadHandler -->
+snippet: MessageWithLargePayloadHandler

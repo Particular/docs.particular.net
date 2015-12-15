@@ -56,7 +56,7 @@ This code indicates that encryption should be enabled.
 
 The key is then configured using
 
-<!-- import ConfigureEncryption -->
+snippet: ConfigureEncryption
 
 
 ### The message on the wire

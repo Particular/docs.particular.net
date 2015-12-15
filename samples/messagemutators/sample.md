@@ -98,13 +98,13 @@ snippet:ComponentRegistartion
 
 ## The Sending code
 
-<!-- import SendingSmall -->
+snippet: SendingSmall
 
 Since the message buffer field is empty, `GZipStreamer` in the outgoing transport message mutator easily compresses it to a size under the MSMQ limit of 4MB and the message will get to the server.
 
 See how an invalid message is sent that will never be received since an exception will be thrown at the outgoing message mutator:
 
-<!-- import SendingLarge -->
+snippet: SendingLarge
 
 The message is invalid for several reasons: the product name is over the 20 character limit, the list price is too high, and the sell end date is not in the valid range. The thrown exception logs those invalid values. The server code is simple and straightforward:
 

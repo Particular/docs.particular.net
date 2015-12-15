@@ -11,8 +11,10 @@ tags:
 
 Note:  This documentation covers silent installation instructions for ServiceControl Version 1.7 or greater.
 
+
 #### Silently installation from the commandline
-The following command line will silently install the ServiceControl Management utility only.  
+
+The following command line will silently install the ServiceControl Management utility only.
 
 ```bat
 Particular.ServiceControl.1.7.0.exe /quiet
@@ -27,14 +29,15 @@ The following command line will silently install the ServiceControl Management a
 
 ```bat
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml
-``` 
+```
 
 For details on how to make the `unattendedfile.xml` file refer to ServiceControl Management [PowerShell](installation-powershell.md) documentation.
 The installed instance will use `localsystem` as the service account.  To specify an alternative service account use the `SERVICEACCOUNT` and `PASSWORD` command line switches.
 
 ```bat
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml SERVICEACCOUNT=MyServiceAccount PASSWORD=MyPassword
-``` 
+```
+
 
 #### Silently Upgrade ServiceControl during installation
 
@@ -62,6 +65,7 @@ To specify multiple instances use a comma separated the list:
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl,ProdServiceControl 
 ``` 
 
+
 #### Add the license file as part of the Silent installation
 
 In this example we've chosen to silently install the ServiceControl Management Utility and import the license file
@@ -70,10 +74,12 @@ In this example we've chosen to silently install the ServiceControl Management U
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log LICENSEFILE=license.xml
 ```
 
+
 #### Combining command line options
 
 It is valid to combine the `LICENSEFILE`, `UNATTENDEDFILE`,`UPGRADEINSTANCES`,  `SERVICEACCOUNT` and `PASSWORD`options on the same command line.
-The `SERVICEACCOUNT` and `PASSWORD` only apply to a new instance, these values are not used on upgrades.     
+The `SERVICEACCOUNT` and `PASSWORD` only apply to a new instance, these values are not used on upgrades.
+
 
 #### Command line Uninstall
 

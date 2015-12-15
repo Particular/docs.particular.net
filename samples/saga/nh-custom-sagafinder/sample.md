@@ -20,18 +20,19 @@ This sample shows how to perform custom saga finding logic based on custom query
 
 This sample requires [NHibernate persistence](http://www.nuget.org/packages/NServiceBus.NHibernate/) package and a running Microsoft Sql Server instance configured accordingly. The sample NHibernate setup can be configured according to your environment:
 
-<!-- import NHibernateSetup -->
+snippet: NHibernateSetup
+
 
 ### The Saga
 
 The saga shown in the sample is a very simple order management saga that:
 
-* handles the creation of an order;
-* offloads the payment process to a different handler;
-* handles the completition of the payment process;
-* completes the order;
+ * handles the creation of an order;
+ * offloads the payment process to a different handler;
+ * handles the completition of the payment process;
+ * completes the order;
 
-snippet:TheSagaNHibernate
+snippet: TheSagaNHibernate
 
 From the process point of view is important to notice that the saga is not sending to the payment processor the order id instead is sending a payment transaction id, in this scenario we are simulating the fact that a saga can be correlated given more than one unique attribute, such as `OrderId` and `PaymentTransactionId` requiring both to be treated as unique.
 

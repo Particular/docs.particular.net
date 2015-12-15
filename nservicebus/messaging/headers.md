@@ -83,18 +83,18 @@ When doing a Reply to a Message
 
 Given an initiating message with the following headers:
 
-<!-- import HeaderWriterReply_Sending -->
+snippet: HeaderWriterReply_Sending
 
 The headers of reply message will be as follows:
 
-snippet:HeaderWriterReply_Replying
+snippet: HeaderWriterReply_Replying
 
 
 ## Publish Headers
 
 When a message is published the headers will be as follows:
 
-snippet:HeaderWriterPublish
+snippet: HeaderWriterPublish
 
 
 ## Return from a Handler
@@ -109,11 +109,11 @@ When doing a Return:
 
 Given an initiating message with the following headers:
 
-<!-- import HeaderWriterReturn_Sending -->
+snippet: HeaderWriterReturn_Sending
 
 The headers of reply message will be as follows:
 
-snippet:HeaderWriterReturn_Returning
+snippet: HeaderWriterReturn_Returning
 
 
 ## Dispatching a message from a Saga
@@ -126,7 +126,7 @@ When any message is dispatched from within a Saga the message will contain the f
 
 ### Example "Send from Saga" Headers
 
-snippet:HeaderWriterSaga_Sending
+snippet: HeaderWriterSaga_Sending
 
 
 ## Replying to a Saga
@@ -143,12 +143,12 @@ A message Reply is performed from a Saga will have the following headers:
 
 #### Via calling Bus.Reply
 
-snippet:HeaderWriterSaga_Replying
+snippet: HeaderWriterSaga_Replying
 
 
 #### Via calling Saga.ReplyToOriginator
 
-snippet:HeaderWriterSaga_ReplyingToOriginator
+snippet: HeaderWriterSaga_ReplyingToOriginator
 
 
 ## Timeout Headers
@@ -170,7 +170,7 @@ When requesting a Timeout from a Saga:
 
 ### Example Timeout Headers
 
-snippet:HeaderWriterSaga_Timeout
+snippet: HeaderWriterSaga_Timeout
 
 
 ### Defer a Message
@@ -185,7 +185,7 @@ When doing a Defer the message will have similar header to a Send with a few edi
 
 ### Example Defer Headers
 
-snippet:HeaderWriterDefer
+snippet: HeaderWriterDefer
 
 
 ## Diagnostics and Informational Headers
@@ -216,11 +216,11 @@ Headers added when a message is [Audited](/nservicebus/operations/auditing.md)
 
 Given an initiating message with the following headers:
 
-snippet:HeaderWriterAudit_Send
+snippet: HeaderWriterAudit_Send
 
 When that message fails to be processed it will be sent to the Error queue with the following headers:
 
-snippet:HeaderWriterAudit_Audit
+snippet: HeaderWriterAudit_Audit
 
 
 ## Retries handling headers
@@ -249,11 +249,11 @@ When a message is sent to the Error queue it will have the following extra heade
 
 Given an initiating message with the following headers:
 
-snippet:HeaderWriterError_Sending
+snippet: HeaderWriterError_Sending
 
 When that message fails to be processed it will be sent to the Error queue with the following headers:
 
-snippet:HeaderWriterError_Error
+snippet: HeaderWriterError_Error
 
 
 ## Encryption Headers
@@ -265,7 +265,7 @@ Headers when using [Rijndael property encryption](/nservicebus/security/encrypti
 
 #### Example Headers
 
-<!-- import HeaderWriterEncryption -->
+snippet: HeaderWriterEncryption
 
 
 ## FileShare DataBus Headers
@@ -280,12 +280,12 @@ When using the `DataBusProperty` NServiceBus uses that property as a placeholder
 
 #### Example Headers
 
-<!-- import HeaderWriterDataBusProperty -->
+snippet: HeaderWriterDataBusProperty
 
 
 #### Example Body
 
-<!-- import HeaderWriterDataBusProperty_Body -->
+snippet: HeaderWriterDataBusProperty_Body
 
 
 ### When using Convention
@@ -295,9 +295,9 @@ When using a [Conventions](/nservicebus/messaging/messages-events-commands.md#de
 
 #### Example Headers
 
-snippet:HeaderWriterDataBusConvention
+snippet: HeaderWriterDataBusConvention
 
 
 #### Example Body
 
-snippet:HeaderWriterDataBusConvention_Body
+snippet: HeaderWriterDataBusConvention_Body

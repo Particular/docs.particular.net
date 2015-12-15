@@ -24,16 +24,16 @@ While it may seem excessive at first, the business implications of your system g
 
 A minimal Saga implementation. With NServiceBus, you specify behavior by writing a class that inherits from `Saga<T>` where `T` is the saga data class. There is also a base class for sagas that contains many features required for implementing long-running processes.
 
-<!-- import simple-saga -->
+snippet: simple-saga
 
 
-## Long-running means stateful 
+## Long-running means stateful
 
 Any process that involves multiple network calls (or messages sent and received) has an interim state. That state may be kept in memory, persisted to disk, or stored in a distributed cache; it may be as simple as 'Response 1 received, pending response 2', but the state exists.
 
 Using NServiceBus, you can explicitly define the data used for this state by inheriting from the `ContainSagaData` abstract class. All public get/set properties are persisted by default:
 
-<!-- import simple-saga-data -->
+snippet: simple-saga-data
 
 There are two production-supported storage mechanisms for saga data in NServiceBus, namely RavenDB and NHibernate. Prior to Version 5, RavenDB was a default implementation. Since NServiceBus 5, both implementations are equal and the user needs to explicitly chose one.
 

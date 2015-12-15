@@ -6,9 +6,11 @@ tags:
 - Troubleshooting
 ---
 
+
 ### Check the configuration via the Management utility
 
-Open the ServiceControl Management utility and review the configuration. The Management utility is a quick way to get the information you will need to troubleshoot a ServiceControl issue.  
+Open the ServiceControl Management utility and review the configuration. The Management utility is a quick way to get the information you will need to troubleshoot a ServiceControl issue.
+
 
 ### Service fails to start
 
@@ -16,6 +18,7 @@ There are various reasons that can cause the ServiceControl windows service fail
 
 
 ### The port is already in use
+
 When adding a ServiceControl instance via the management utility, ServiceControl PowerShell Module or a silent install via an unattended XML configuration the port number is checked to ensure it is available.  This is not foolproof though as another application or service that uses the same port may not be running at the time the service is added.
 
 In the event that the service fails to start you may want to check if the configured port ( typically port 33333) is available.
@@ -25,9 +28,11 @@ To do this open up a elevated command prompt and issue the following command:
 netstat -a -b
 ```
 
+
 ### Missing queue
 
 The service expects to be able to connect to the error, audit and forwarding queues specified in the configuration. If the configuration has been manually changes ensure the specified queues exist.
+
 
 ### Cannot connect to the queues
 
@@ -36,12 +41,12 @@ Some transports have access controls build into them. Ensure the service account
 
 ### Service won't start after changing service accounts.
 
-1. The service account has access read rights to the directory the service is installed
-1. The service account has access read/write rights to the database and logs directories specified in the configuration.
-1. The service account has the logon as a service privilege.
-1. Ensure that a URLACL exists for the service (see next point for further info on listing URLACLs
-1. Ensure group or account specified in the URLACL covers the service account.
-1. Confirm that the service account has sufficient writes to manage the configured queues. See [Configuring a Non-Privileged Service Account](configure-non-privileged-service-account.md) for a breakdown of the queues to check.
+ 1. The service account has access read rights to the directory the service is installed
+ 1. The service account has access read/write rights to the database and logs directories specified in the configuration.
+ 1. The service account has the logon as a service privilege.
+ 1. Ensure that a URLACL exists for the service (see next point for further info on listing URLACLs
+ 1. Ensure group or account specified in the URLACL covers the service account.
+ 1. Confirm that the service account has sufficient writes to manage the configured queues. See [Configuring a Non-Privileged Service Account](configure-non-privileged-service-account.md) for a breakdown of the queues to check.
 
 
 Note: To examine the configured URLACLs use either the ServiceControl Management PowerShell prompt and issue `Get-UrlAcls` or to examine this from a command prompt using this command line `netsh http show urlacl`.
@@ -56,19 +61,21 @@ If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.In
 
 If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentDatabaseDirtyShutdownException` you need to run Esent Recovery against the ServiceControl database followed by an Esent Repair.
 
-1. Open an elevated command prompt and navigate to the ServiceControl [database directory](configure-ravendb-location.md)
-2. Change to the RavenDB directory (the default is `localhost-33333`)
-3. Run `esentutl /r RVN /l "logs"` and wait for it to finish
-4. Run `esentutl /p Data` and wait for it to finish
-5. Restart ServiceControl
+ 1. Open an elevated command prompt and navigate to the ServiceControl [database directory](configure-ravendb-location.md)
+ 1. Change to the RavenDB directory (the default is `localhost-33333`)
+ 1. Run `esentutl /r RVN /l "logs"` and wait for it to finish
+ 1. Run `esentutl /p Data` and wait for it to finish
+ 1. Restart ServiceControl
 
 
 ### Service crashes when hard disk is busy
 
 ServiceControl can run out of memory and crash when the hard drive is busy. When this happens you will see the following error in the logs
+
 ```
 The version store for this instance (0) has reached its maximum size of 511Mb. It is likely that a long-running transaction is preventing cleanup of the version store and causing it to build up in size. Updates will be rejected until the long-running transaction has been completely committed or rolled back.
 ```
+
 You can increase the size of the version store by adding a new app setting to the ServiceControl configuration file:
 
 `<add key="Raven/Esent/MaxVerPages" value="1024" />`
@@ -78,11 +85,10 @@ The value is the size of the version store in MB.
 
 ### Unable to connect to ServiceControl from either ServiceInsight or ServicePulse
 
-1. Logon to the PC hosting ServiceControl
-1. Open the ServiceControl Management Utility 
-1. Click the ServiceControl instance is Running  
-1. Click the URL under 'Host'.  You should get a valid response with JSON data
-1. If you are having issues remotely connecting to ServiceControl.   Verify that firewall settings do not block access to the ServiceControl port specified in the URL.
+ 1. Logon to the PC hosting ServiceControl
+ 1. Open the ServiceControl Management Utility
+ 1. Click the ServiceControl instance is Running
+ 1. Click the URL under 'Host'. You should get a valid response with JSON data
+ 1. If you are having issues remotely connecting to ServiceControl. Verify that firewall settings do not block access to the ServiceControl port specified in the URL.
 
-NOTE: Prior to changing firewall setting to expose ServiceControl please read [Securing ServiceControl](securing-servicecontrol.md) 
-
+NOTE: Prior to changing firewall setting to expose ServiceControl please read [Securing ServiceControl](securing-servicecontrol.md).

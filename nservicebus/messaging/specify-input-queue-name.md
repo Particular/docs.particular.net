@@ -16,7 +16,9 @@ You can define your own convention in the endpoint initialization code using thi
 
 snippet:EndpointNameCode
 
+
 ## When using the NServiceBus.Host.exe 
+
 
 ### Namespace convention
 
@@ -29,12 +31,14 @@ snippet:EndpointNameByNamespace
 You can set the endpoint name using the `[EndpointName]` attribute on your endpoint configuration.
 
 NOTE: This will only work when using [NServiceBus host](/nservicebus/hosting/nservicebus-host/).
-   
-<!-- import EndpointNameByAttribute --> 
+
+snippet: EndpointNameByAttribute
+
 
 ### Installation parameter
 
 If you specify a explicit service name when installing the NServiceBus host, this is used as the endpoint name: `/serviceName:"MyEndpoint"`.
+
 
 ### Command-line parameter
 

@@ -12,13 +12,14 @@ If the setting is not specified then ServiceControl will store the database unde
 
 If you are manually manipulating the configuration of ServiceControl this needs to be taken into account as a change in port and host name would cause ServiceControl to create a new database if the `ServiceControl\DBPath` is not set.  The new ServiceControl Management Utility that ships with ServiceControl 1.7 sets the database location when creating or modifying the configuration to avoid this dynamic change.
 
+
 ### Setting a Different Location for RavenDB Embedded Database
 
-The ServiceControl Management Utility does not provide a means of moving the ServiceControl database.  To move the database to a different disk location follow this process:
+The ServiceControl Management Utility does not provide a means of moving the ServiceControl database. To move the database to a different disk location follow this process:
 
  * Open the ServiceControl Management Utility
  * Stop the service from the provided options
- * The current database path will be listed in the utility.  Copy the contents of this folder to the new location
+ * The current database path will be listed in the utility. Copy the contents of this folder to the new location
  * Ensure that the service account used has read/write access to the new location.
  * Manually edit the configuration and specify the new location by changing/adding the `ServiceControl\DBPath` setting. See [Configuration Settings](creating-config-file.md)
  * Restart the Service

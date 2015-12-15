@@ -6,9 +6,7 @@ tags:
 - Expiration
 ---
 
-ServiceControl contains audit information for a configurable period of time. Any audit data that is older than this threshold is deleted from the embedded RavenDB.
-By default the expiration threshold is 30 days. This value can be modified via configuration.  
-For more information on these settings refer to [Customizing ServiceControl configuration](creating-config-file.md)).
+ServiceControl contains audit information for a configurable period of time. Any audit data that is older than this threshold is deleted from the embedded RavenDB. By default the expiration threshold is 30 days. This value can be modified via configuration. For more information on these settings refer to [Customizing ServiceControl configuration](creating-config-file.md)).
 
 Note: The expiration process only curates the data in the embedded RavenDB. Audit and Error forwarding queues are not curated and or managed by ServiceControl
 

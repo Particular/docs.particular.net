@@ -12,7 +12,7 @@ tags:
 
 ## Running the sample
 
-Run the Solution.  Hit enter a few times and notice that an order will be stored for each key press. You can then browse the url presented by the sample to verify the data that gets stored in RavenDB.
+Run the Solution. Hit enter a few times and notice that an order will be stored for each key press. You can then browse the url presented by the sample to verify the data that gets stored in RavenDB.
 
 
 ## Code walkthrough

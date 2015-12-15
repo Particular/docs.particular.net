@@ -20,7 +20,7 @@ Running inside a [Windows Service](https://msdn.microsoft.com/en-us/library/d56d
  * Reference `System.ServiceProcess.dll`
  * Change the program to inherit from [ServiceBase](https://msdn.microsoft.com/en-us/library/system.serviceprocess.servicebase.aspx)
 
-<!-- import windowsservicehosting -->
+snippet: windowsservicehosting
 
 NOTE: Note the use of `Environment.UserInteractive` to provide a dual console/service experience. ie this process can be executed from the command line or run as a Windows Service.
 
