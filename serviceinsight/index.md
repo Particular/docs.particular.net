@@ -26,8 +26,9 @@ The NServiceBus Framework is part of the Particular Service Platform which inclu
 
 The ServiceInsight user interface provides multiple views of your distributed system. Using information collected in ServiceControl, ServiceInsight enumerates your endpoints and provides detailed message and relationship data, with formatted views of XML, JSON, and binary messages.
 
-The flow diagram provides a detailed visual overview of the messages, collated by conversation. Using this view you can see the flow in your system and which endpoints raised specific events and sent or handled messages. The Saga view illustrates the start of a saga, the timeouts, and interactions.
-As you select endpoints, the other views within ServiceInsight respond and filter the information to show only messages pertaining to that endpoint.
+The flow diagram provides a detailed visual overview of the messages, collated by conversation. Using this view you can see the flow in your system and which endpoints raised specific events and sent or handled messages. The Saga view illustrates the start of a saga, the timeouts, and interactions. The sequence diagram shows the order in which messages have been sent and handled by endpoints in your system.
+ 
+As you select endpoints, the other views within ServiceInsight respond and filter the information to show only messages pertaining to that endpoint. 
 
 
 ## The Message Window
@@ -95,6 +96,13 @@ Sagas play a critical role in NServiceBus systems. As coordinators of processes 
 
 The saga illustrates how the saga was initiated and other messages that were sent or handled, with detailed message data, time information, and details on saga data changes.
 
+## Sequence Diagram
+
+While the Flow Diagram is very good at showing *why* each message in a conversation was sent, the Sequence Diagram is better for understanding *when* messages were sent and handled.
+
+![The Sequence Diagram](images/overview-sequence-diagram.PNG)
+
+Read more about the [Sequence Diagram](/serviceinsight/sequence-diagram/)
 
 ## Body and Log Views
 
@@ -133,4 +141,12 @@ The flow diagram highlights errors in red and provides details with access to th
 
 ![Error in the flow diagram](images/overview-flowdiagramwitherror.png)
 
-After the NServiceBus completes auto-retry, the errant message goes to an error queue. Instead of using the return-to-sender console application, to return the message to the queue from where it originated, click `Retry Message`.
+
+### The Sequence Diagram
+
+The sequence diagram highlights handlers with errors in red.
+
+![Error in the sequence diagram](images/overview-sequence-diagram-witherror.PNG)
+
+After the NServiceBus completes auto-retry, the errant message goes to an error queue. Instead of using the return-to-sender console application, to return the message to the queue from where it originated, click `Retry Message`. 
+
