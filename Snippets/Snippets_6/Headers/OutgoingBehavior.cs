@@ -6,9 +6,9 @@
     using NServiceBus.Pipeline;
 
     #region header-outgoing-behavior
-    public class OutgoingBehavior : Behavior<OutgoingPhysicalMessageContext>
+    public class OutgoingBehavior : Behavior<IOutgoingPhysicalMessageContext>
     {
-        public override async Task Invoke(OutgoingPhysicalMessageContext context, Func<Task> next)
+        public override async Task Invoke(IOutgoingPhysicalMessageContext context, Func<Task> next)
         {
             context.Headers["MyCustomHeader"] = "My custom value";
             await next();
