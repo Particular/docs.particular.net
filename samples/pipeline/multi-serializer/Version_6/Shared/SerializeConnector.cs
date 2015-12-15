@@ -3,14 +3,14 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.OutgoingPipeline;
 using NServiceBus.Pipeline;
+using NServiceBus.Pipeline.OutgoingPipeline;
 using NServiceBus.Serialization;
 using NServiceBus.Unicast.Messages;
 
 #region serialize-behavior
-using ToContext = NServiceBus.OutgoingPipeline.OutgoingPhysicalMessageContext;
-using FromContext = NServiceBus.Pipeline.OutgoingPipeline.OutgoingLogicalMessageContext;
-class SerializeConnector : StageConnector<FromContext, ToContext>
+class SerializeConnector : StageConnector<IOutgoingLogicalMessageContext, IOutgoingPhysicalMessageContext>
 {
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;
@@ -23,11 +23,11 @@ class SerializeConnector : StageConnector<FromContext, ToContext>
         this.messageMetadataRegistry = messageMetadataRegistry;
     }
 
-    public override async Task Invoke(FromContext context, Func<ToContext, Task> next)
+    public override async Task Invoke(IOutgoingLogicalMessageContext context, Func<IOutgoingPhysicalMessageContext, Task> next)
     {
         if (context.ShouldSkipSerialization())
         {
-            await next(new ToContext(new byte[0], context.RoutingStrategies, context)).ConfigureAwait(false);
+            await next(new OutgoingPhysicalMessageContext(new byte[0], context.RoutingStrategies, context)).ConfigureAwait(false);
             return;
         }
 
@@ -37,10 +37,10 @@ class SerializeConnector : StageConnector<FromContext, ToContext>
         context.Headers[Headers.EnclosedMessageTypes] = SerializeEnclosedMessageTypes(messageType);
 
         var array = Serialize(messageSerializer, context);
-        await next(new ToContext(array, context.RoutingStrategies, context)).ConfigureAwait(false);
+        await next(new OutgoingPhysicalMessageContext(array, context.RoutingStrategies, context)).ConfigureAwait(false);
     }
 
-    byte[] Serialize(IMessageSerializer messageSerializer, FromContext context)
+    byte[] Serialize(IMessageSerializer messageSerializer, IOutgoingLogicalMessageContext context)
     {
         using (var stream = new MemoryStream())
         {

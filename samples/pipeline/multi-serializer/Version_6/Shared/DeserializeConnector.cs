@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Pipeline;
+using NServiceBus.Pipeline.Contexts;
 using NServiceBus.Serialization;
 using NServiceBus.Transports;
 using NServiceBus.Unicast.Messages;
 
 #region deserialize-behavior
-using ToContext = NServiceBus.Pipeline.Contexts.LogicalMessageProcessingContext;
-using FromContext = NServiceBus.PhysicalMessageProcessingContext;
-
-class DeserializeConnector : StageConnector<FromContext, ToContext>
+class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIncomingLogicalMessageContext>
 {
     SerializationMapper serializationMapper;
     MessageMetadataRegistry messageMetadataRegistry;
@@ -32,7 +30,7 @@ class DeserializeConnector : StageConnector<FromContext, ToContext>
     }
 
 
-    public override async Task Invoke(FromContext context, Func<ToContext, Task> next)
+    public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> next)
     {
         var incomingMessage = context.Message;
 
@@ -40,7 +38,7 @@ class DeserializeConnector : StageConnector<FromContext, ToContext>
 
         foreach (var message in messages)
         {
-            await next(new ToContext(message,context.MessageId,context.ReplyToAddress, context.Message.Headers,context)).ConfigureAwait(false);
+            await next(new IncomingLogicalMessageContext(message, context.MessageId, context.ReplyToAddress, context.Message.Headers, context)).ConfigureAwait(false);
         }
 
     }
