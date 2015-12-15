@@ -72,7 +72,16 @@ Some transports support enlisting outgoing operations in the current receive tra
 
 Use the following code to use this mode:
 
-snippet:TransactionsDisableDistributedTransactions
+
+#### With Receive Only
+
+snippet:TransactionsDisableDistributedTransactionsReceiveOnly
+
+
+#### With Atomic Receive
+
+snippet:TransactionsDisableDistributedTransactionsAtomic
+
 
 #### Consistency guarantees
 
@@ -134,4 +143,4 @@ Change the transaction timeout using
 
 snippet:CustomTransactionTimeout
 
-Or via .config file see an example [here](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection%28v=vs.100%29.aspx#Anchor_5).
+Or via .config file using a [example DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.aspx#Anchor_5).

@@ -3,7 +3,6 @@
     using System.Threading.Tasks;
     using NServiceBus.Transports;
 
-
     #region SequentialCustomQueueCreator
     class SequentialQueueCreator : ICreateQueues
     {

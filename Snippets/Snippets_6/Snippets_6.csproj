@@ -132,8 +132,8 @@
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Extending\Features.cs" />
-    <Compile Include="Transports\QueueCreation\QueueCreation - Copy %282%29.cs" />
-    <Compile Include="Transports\QueueCreation\QueueCreation - Copy.cs" />
+    <Compile Include="Transports\QueueCreation\ConcurrentQueueCreator.cs" />
+    <Compile Include="Transports\QueueCreation\SequentialQueueCreator.cs" />
     <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
     <Compile Include="Features\FeatureConfiguration.cs" />
     <Compile Include="Features\MyFeature.cs" />

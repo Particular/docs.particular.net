@@ -20,11 +20,13 @@
 
         public void TransportTransactions()
         {
-            #region TransactionsDisableDistributedTransactions
             BusConfiguration busConfiguration = new BusConfiguration();
+            #region TransactionsDisableDistributedTransactionsReceiveOnly
             busConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.ReceiveOnly);
-            //or if supported by the transport
+            #endregion
+
+            #region TransactionsDisableDistributedTransactionsAtomic
             busConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             #endregion
