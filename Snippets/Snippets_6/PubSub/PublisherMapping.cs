@@ -8,8 +8,8 @@
         {
             #region PubSub-CodePublisherMapping
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Pubishers().AddStatic(new EndpointName("Sales"), typeof(MyEvent));
-            busConfiguration.Pubishers().AddStatic(new EndpointName("Sales"), typeof(OtherEvent).Assembly);
+            busConfiguration.Pubishers().AddStatic(new Endpoint("Sales"), typeof(MyEvent));
+            busConfiguration.Pubishers().AddStatic(new Endpoint("Sales"), typeof(OtherEvent).Assembly);
             #endregion
         }
     }
