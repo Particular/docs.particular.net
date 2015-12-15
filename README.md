@@ -618,7 +618,7 @@ It will also wrap the image in a clickable lightbox so the full image can be acc
 
 ### Sequence diagrams
 
-Sequence diagram images are genrated using https://bramp.github.io/js-sequence-diagrams/ online service. Keep the source text used to generate sequence image in the document as an HTML comment to allow future modifications in case images need to be re-generated.
+Sequence diagram images are generated using https://bramp.github.io/js-sequence-diagrams/ online service. Keep the source text used to generate sequence image in the document as an HTML comment to allow future modifications in case images need to be re-generated.
 
 
 ## Some Useful Characters

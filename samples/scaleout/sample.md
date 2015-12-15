@@ -87,7 +87,7 @@ Go to the `Sender` console an press enter a few times. When this occurs the foll
  * `Worker` responds with a `OrderPlaced` to `Sender`
  * `Worker` again tells `Server` it is ready for work
  
-<!--
+<!-- 
 https://bramp.github.io/js-sequence-diagrams/
 Worker->Server: Ready for work
 Sender->Server: PlaceOrder
