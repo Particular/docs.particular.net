@@ -7,7 +7,7 @@ tags:
 
 ## Configuration Settings
 
-The configuration of a ServiceControl instance can be adjusted via the ServiceControl Management utility or by directly modifying the ServiceControl.exe.config file.  The settings listed are applicable to the app settings section of the configuration file unless otherwise specified.
+The configuration of a ServiceControl instance can be adjusted via the ServiceControl Management utility or by directly modifying the ServiceControl.exe.config file. The settings listed are applicable to the app settings section of the configuration file unless otherwise specified.
 
 ## Host Settings  
 
@@ -76,7 +76,7 @@ The number of seconds to wait between checking for expired messages.
 
 Type: int
 
-Default: `600` (10 minutes). The default prior to version 1.4 was `60` (1 minute), the new default is `600` (10 minutes).  Settings the value to `0` will disable the expiration process, this is not recommended and it is only provided for fault finding.  Valid Range is `0` through to `10800` (3 Hours)
+Default: `600` (10 minutes). The default prior to version 1.4 was `60` (1 minute), the new default is `600` (10 minutes). Settings the value to `0` will disable the expiration process, this is not recommended and it is only provided for fault finding. Valid Range is `0` through to `10800` (3 Hours)
 
 
 #### ServiceControl/ExpirationProcessBatchSize

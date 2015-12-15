@@ -38,7 +38,7 @@ It is possible to manually install ServicePulse using IIS following these steps:
 ServicePulse.Host.exe --extract --serviceControlUrl="http://localhost:33333/api" --outPath="C:\ServicePulse"
 ```
 
-When using IIS to host ServicePulse the ServicePulse.Host service is not used.  To remove the service uninstall ServicePulse from Add/Remove programs.
+When using IIS to host ServicePulse the ServicePulse.Host service is not used. To remove the service uninstall ServicePulse from Add/Remove programs.
 
 Use the following command on an elevated command prompt to remove the URLACL that was created by the ServicePulse installer to use port 9090 without any restrictions.
 
@@ -57,7 +57,7 @@ NOTE: If SSL is to be applied to ServicePulse then ServiceControl also needs to 
 
 ## Advanced Configuration
 
-ServicePulse relies on the ServiceControl REST API.  It is possible to add a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to the ServiceControl web site using  the Microsoft [Application Request Routing](http://www.iis.net/downloads/microsoft/application-request-routing) IIS extension.
+ServicePulse relies on the ServiceControl REST API. It is possible to add a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to the ServiceControl web site using  the Microsoft [Application Request Routing](http://www.iis.net/downloads/microsoft/application-request-routing) IIS extension.
 
 This is useful to lock down access to ServicePulse or to expose the web site over a single port.
 

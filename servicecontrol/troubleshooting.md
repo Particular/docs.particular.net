@@ -19,7 +19,7 @@ There are various reasons that can cause the ServiceControl windows service fail
 
 ### The port is already in use
 
-When adding a ServiceControl instance via the management utility, ServiceControl PowerShell Module or a silent install via an unattended XML configuration the port number is checked to ensure it is available.  This is not foolproof though as another application or service that uses the same port may not be running at the time the service is added.
+When adding a ServiceControl instance via the management utility, ServiceControl PowerShell Module or a silent install via an unattended XML configuration the port number is checked to ensure it is available. This is not foolproof though as another application or service that uses the same port may not be running at the time the service is added.
 
 In the event that the service fails to start you may want to check if the configured port ( typically port 33333) is available.
 To do this open up a elevated command prompt and issue the following command:

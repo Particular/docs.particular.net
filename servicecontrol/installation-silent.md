@@ -32,7 +32,7 @@ Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UNATTENDEDFILE=unatt
 ```
 
 For details on how to make the `unattendedfile.xml` file refer to ServiceControl Management [PowerShell](installation-powershell.md) documentation.
-The installed instance will use `localsystem` as the service account.  To specify an alternative service account use the `SERVICEACCOUNT` and `PASSWORD` command line switches.
+The installed instance will use `localsystem` as the service account. To specify an alternative service account use the `SERVICEACCOUNT` and `PASSWORD` command line switches.
 
 ```bat
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml SERVICEACCOUNT=MyServiceAccount PASSWORD=MyPassword
@@ -42,10 +42,10 @@ Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UNATTENDEDFILE=unatt
 #### Silently Upgrade ServiceControl during installation
 
 If an existing service matching the name specified in the unattended XML file already exists the unattended install options is ignored. 
-To update one or more instances of ServiceControl as part of the silence installation the command line switch `UPGRADEINSTANCES` command line argument can be used.   
+To update one or more instances of ServiceControl as part of the silence installation the command line switch `UPGRADEINSTANCES` command line argument can be used. 
  
 
-In this example we've chosen to silently install the ServiceControl Management utility and attempt to upgrade all the installed instances of the ServiceControl service.  Either `*` or  `ALL` can be used to specify all instances should be upgraded
+In this example we've chosen to silently install the ServiceControl Management utility and attempt to upgrade all the installed instances of the ServiceControl service. Either `*` or  `ALL` can be used to specify all instances should be upgraded
 
 
 ```bat
@@ -93,7 +93,7 @@ NOTE: This command will not remove any ServiceControl service instances that are
 
  
 #### Logging and Failures
-In each of the samples above a log file was specified on the command line. The silent install actions will log to the MSI log file specified.  In versions prior to 1.7 if an installation action failed the installation was rolled back, this resulted in failed upgrades acting like a complete uninstall of the product.  From 1.7 a failure to do an unattended install action will be logged but the overall installation will still return success and not rollback.
+In each of the samples above a log file was specified on the command line. The silent install actions will log to the MSI log file specified. In versions prior to 1.7 if an installation action failed the installation was rolled back, this resulted in failed upgrades acting like a complete uninstall of the product. From 1.7 a failure to do an unattended install action will be logged but the overall installation will still return success and not rollback.
 
 #### PowerShell
 
@@ -103,7 +103,7 @@ All of the actions that can be carried out as unattended installation action are
 #### Setting configuration entries not covered in the unattended file
 
 The unattended file does not cover all the settings available to customize the operation of the ServiceControl service.
-The following PowerShell script shows a simple way to script the modification of some of the optional configuration settings.  The provided script makes use of the ServiceControl Management PowerShell module shipped with v1.7 to find the configuration file locations.
+The following PowerShell script shows a simple way to script the modification of some of the optional configuration settings. The provided script makes use of the ServiceControl Management PowerShell module shipped with v1.7 to find the configuration file locations.
 
 
 Prior to using the script modify the `$customSettings` hash table to reflect the key/value pairs you which to set.

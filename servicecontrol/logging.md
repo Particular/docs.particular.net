@@ -26,7 +26,7 @@ The `%LOCALAPPDATA%` defines a user-specific location on disk, so the logging lo
  * For a user account it will be `%PROFILEPATH%\AppData\Local\Particular\ServiceControl\logs`
 
 Note: Browsing to  `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs` can be problematic
-as the default NTFS permissions on the systemprofile do not allow access.  These permissions may need to be modified to gain access to the logs.
+as the default NTFS permissions on the systemprofile do not allow access. These permissions may need to be modified to gain access to the logs.
 
 
 NOTE: If multiple Service Control instances are configured on the same machine ensure that the log locations for each instance are unique

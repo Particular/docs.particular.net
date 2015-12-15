@@ -40,12 +40,12 @@ ServiceControl reports metrics via the NServiceBus Performance Counters if the c
 
 For instructions on how to install the Performance Counters without the Platform Installer refer to [Installing The Platform Components Manually](/platform/installer/offline.md)
 
-The installation of the NServiceBus Performance counters is optional for ServiceControl 1.7 or higher.  When using the Particular Platform Installer the Performance counters are added as part of the `NServiceBus Pre-Requisites` option.
+The installation of the NServiceBus Performance counters is optional for ServiceControl 1.7 or higher. When using the Particular Platform Installer the Performance counters are added as part of the `NServiceBus Pre-Requisites` option.
 
 
 #### Using the ServiceControl Management Utility to upgrade ServiceControl instances.
 
-The ServiceControl Management Utility provides a simple means of setting up one or more instances of the ServiceControl service.  For production systems it is recommended to limit the number of instances per machine to one. The ability to add multiple instances is primarily intended to assist development and test environments.
+The ServiceControl Management Utility provides a simple means of setting up one or more instances of the ServiceControl service. For production systems it is recommended to limit the number of instances per machine to one. The ability to add multiple instances is primarily intended to assist development and test environments.
 
 The ServiceControl Management Utility can be launched automatically at the end of the installation process to enable adding or upgrading ServiceControl instances.
 
@@ -65,7 +65,7 @@ Clicking the upgrade link will
 
 #### Using the ServiceControl Management Utility to add ServiceControl instances.
 
-If this is a new installation of ServiceControl click on the `Add New Instance` button in the center of the screen or the "New Instance" link at the top of the screen,  both options launch the same "New instance form".  Complete the form to register a new ServiceControl service.
+If this is a new installation of ServiceControl click on the `Add New Instance` button in the center of the screen or the "New Instance" link at the top of the screen,  both options launch the same "New instance form". Complete the form to register a new ServiceControl service.
 
 
 #### Service Name and Plugins

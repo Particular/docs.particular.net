@@ -31,19 +31,19 @@ If the service account user does not have appropriate rights the service will fa
 
 ### Configuration Changes
 
-If the ServiceControl configuration is manually changed to listen to an alternate URL, Check the URLACL assigned to the URI is valid for the new service account.  For instructions on how to review and change the the URLACL refer to [Changing the ServiceControl URI](setting-custom-hostname.md)
+If the ServiceControl configuration is manually changed to listen to an alternate URL, Check the URLACL assigned to the URI is valid for the new service account. For instructions on how to review and change the the URLACL refer to [Changing the ServiceControl URI](setting-custom-hostname.md)
 
 
 ### RavenDB Security
 
-The installer will set the permissions to allow any member of the local Windows Users group to modify files in the embedded Raven DB folder. You can change these rights manually to be more restrictive as long as the service account user retains modify rights.  Note that manual changes to the ACLs may be lost during an upgrade or re-installation of ServiceControl.
+The installer will set the permissions to allow any member of the local Windows Users group to modify files in the embedded Raven DB folder. You can change these rights manually to be more restrictive as long as the service account user retains modify rights. Note that manual changes to the ACLs may be lost during an upgrade or re-installation of ServiceControl.
 
 
 ### Testing the Configuration
 
 These methods confirm that the user account has sufficient rights:
 
- - Configure and start the service as the user and then check the log files.  
+ - Configure and start the service as the user and then check the log files. 
  - Interactively run ServiceControl as the user.
 
 

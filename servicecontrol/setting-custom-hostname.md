@@ -30,7 +30,7 @@ The utility handles any required URLACL changes so the manual steps outlined in 
 1. Add or Modify the `ServiceControl/Hostname` and `ServiceControl/Port` settings in the `<appSettings>` section.
 
 
-The following example configures ServiceControl to listen to on port 33333.  The HostName value in this example is a wildcard. This instructs ServiceControl to respond to requests on all resolvable names for the host ( hostname, IP Address, DNS aliases etc). This change must also be reflected via a URLACL change (see below)
+The following example configures ServiceControl to listen to on port 33333. The HostName value in this example is a wildcard. This instructs ServiceControl to respond to requests on all resolvable names for the host ( hostname, IP Address, DNS aliases etc). This change must also be reflected via a URLACL change (see below)
 
 ```xml
 <add key="ServiceControl/Hostname" value="*" />
@@ -65,7 +65,7 @@ Listing the current URLACLs can be done using the following command:
 netsh http show urlacl`
 ```
 
-Ensure that there are no overlapping URLACLs as this can cause ServiceControl to fail on service startup.  For example, if the list command yielded results for `http://localhost:33333/api/` and `http://*:33333/api/` then it is not clear which URL ServiceControl should use.
+Ensure that there are no overlapping URLACLs as this can cause ServiceControl to fail on service startup. For example, if the list command yielded results for `http://localhost:33333/api/` and `http://*:33333/api/` then it is not clear which URL ServiceControl should use.
 
 In the following example the wildcarded URLACL is removed:
 

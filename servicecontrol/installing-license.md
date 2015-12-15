@@ -24,4 +24,4 @@ When the license is [installed in the registry](/nservicebus/licensing/license-m
 
 ## Using the license file
 
-Create a folder called `License` under the folder where ServiceControl is installed and copy `license.xml` file there.  E.g.   `{servicecontrol-directory}/license/license.xml`
+Create a folder called `License` under the folder where ServiceControl is installed and copy `license.xml` file there. E.g. `{servicecontrol-directory}/license/license.xml`

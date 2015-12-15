@@ -74,7 +74,7 @@ There are additional parameters available to set additional configuration option
 
 #### Removing an instance
 
-The following commands show how to remove a ServiceControl instance(s).  To List existing instances of the ServiceControl service use `Get-ServiceControlInstances`.
+The following commands show how to remove a ServiceControl instance(s). To List existing instances of the ServiceControl service use `Get-ServiceControlInstances`.
 
 ```bat
 # Remove the instance we created in the Add sample and delete the database and logs
@@ -153,7 +153,7 @@ There is also a cmdlet which can be used to create an instance from the unattend
 New-ServiceControlInstanceFromUnattendedFile -UnattendFile  c:\temp\unattended.xml -ServiceAccount MyServiceAccount -ServiceAccountPassword MyPassword
 ```
 
-Note: Neither the unattended file method or the `New-ServiceControlInstance` cover all the configuration settings that are available to ServiceControl.  To set additonal options refer to [Customizing ServiceControl configuration](creating-config-file.md).  A scripted method of adding additional settings is detailed in [Installing ServiceControl Silently](installation-silent.md)   
+Note: Neither the unattended file method or the `New-ServiceControlInstance` cover all the configuration settings that are available to ServiceControl. To set additonal options refer to [Customizing ServiceControl configuration](creating-config-file.md). A scripted method of adding additional settings is detailed in [Installing ServiceControl Silently](installation-silent.md)   
 
 
 ### Troubleshooting via PowerShell
@@ -177,10 +177,10 @@ This example shows the available ports out of a range of ports
 
 #### Checking and manipulating UrlAcls
 
-The Window HTTPServer API is used by underlying components in ServiceControl.  This API uses a permissions system to limit what accounts can add a HTTP listener to a specific URI.
+The Window HTTPServer API is used by underlying components in ServiceControl. This API uses a permissions system to limit what accounts can add a HTTP listener to a specific URI.
 The standard mechanism for viewing and manipulating these ports in via the [netsh.exe](https://technet.microsoft.com/en-us/library/Cc725882%28v=WS.10%29.aspx) command line tool.
 
-For example `netsh.exe http show urlacl`  will list all of the available.  This output is detailed but not very friendly to query.  The ServiceControl Management Powershell provides simplied powershell equivalents for  listing, add and removing UrlAcls and makes the output easier to query.
+For example `netsh.exe http show urlacl`  will list all of the available. This output is detailed but not very friendly to query. The ServiceControl Management Powershell provides simplied powershell equivalents for  listing, add and removing UrlAcls and makes the output easier to query.
 
 For example the following command lists all of the UrlAcls assigned to any URI for port 33333
 
@@ -194,7 +194,7 @@ In this example any UrlAcl on port 33335 is remove
 Get-UrlAcls | ? Port -eq 33335 | Remove-UrlAcl
 ```
 
-The following example shows how to add UrlAcl for a ServiceControl service that should only respond to a specific DNS name.  This would require an update of the ServiceControl config file as well. Refer to [setting a custom host name and port number](setting-custom-hostname.md)
+The following example shows how to add UrlAcl for a ServiceControl service that should only respond to a specific DNS name. This would require an update of the ServiceControl config file as well. Refer to [setting a custom host name and port number](setting-custom-hostname.md)
 
 ```bat
 Add-UrlAcl -Url http://servicecontrol.mycompany.com:33333/api/ -Users Users
