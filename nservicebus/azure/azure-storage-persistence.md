@@ -18,7 +18,7 @@ Various features of NServiceBus require persistence. Among them are subscription
 
 ## How To enable persistence with Azure storage services
 
-First you need to reference the assembly that contains the Azure storage persisters. The recommended way of doing this is by adding a NuGet package reference to the  `NServiceBus.Azure` package to your project.
+First you need to reference the assembly that contains the Azure storage persisters. The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Azure` package to your project.
 
 If self hosting, you can configure the persistence technology using the configuration API and the extension method found in the `NServiceBus.Azure` assembly
 
@@ -31,7 +31,7 @@ When hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure
 
 snippet:PersistenceWithAzureHost
 
-NOTE: In version 4, when hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
+NOTE: In Version 4, when hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
 
 ## Detailed Configuration
@@ -94,4 +94,4 @@ For Timeouts:
 
 snippet:AzurePersistenceTimeoutsCustomization
 
-NOTE: Subscriptions and Timeouts persistence configuration only has an effect when used with Azure Storage Queues transport from NServiceBus Azure version 6 and later.
+NOTE: Subscriptions and Timeouts persistence configuration only has an effect when used with Azure Storage Queues transport from NServiceBus Azure Version 6 and later.

@@ -44,7 +44,7 @@ Type: string
 
 Default: `empty`
 
-Note:  This setting is provided for backward compatibility and should be considered obsolete.   
+Note: This setting is provided for backward compatibility and should be considered obsolete.
 
 
 #### ServiceControl/DbPath
@@ -54,6 +54,7 @@ The path where the internal RavenDB is located.
 Type: string
 
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<Hostname>-<Port>` 
+
 
 #### ServiceControl/LogPath
 
@@ -67,6 +68,7 @@ Note: %LOCALAPPDATA% is a user specific environment variable.
 
 
 ## Data Retention
+
 
 #### ServiceControl/ExpirationProcessTimerInSeconds
 
@@ -97,7 +99,7 @@ Default: `720` (30 days). Valid Range is `24` (1 day) through to `1440` (60 days
 
 ## Performance Tuning
 
-#### ServiceControl/MaximumMessageThroughputPerSecond 
+#### ServiceControl/MaximumMessageThroughputPerSecond
 
 This setting was introduced in version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An appropriate limit ensures that the database can cope with number of insert operations. Otherwise the query performance would drop significantly and the message expiration process would stop working when under heavy insert load. Make sure to conduct thorough performance tests on your hardware before increasing this value.  
 
@@ -115,6 +117,7 @@ Type: int
 
 Default: `102400` (100Kb)
 
+
 #### ServiceControl/HttpDefaultConnectionLimit
 
 This setting for version 1.6.2 and up. The maximum number of concurrent connections allowed by ServiceControl. When working with transports that operate over HTTP, number of concurrent connections can be increased to meet transport concurrency settings.
@@ -126,9 +129,10 @@ Default: `100`
 
 ## Transport
 
+
 #### ServiceControl/TransportType
 
-The transport type to run ServiceControl with. 
+The transport type to run ServiceControl with.
 
 Type: string
 
@@ -153,7 +157,7 @@ Default: `audit`
 
 #### ServiceBus/ErrorQueue
 
-The error queue name. 
+The error queue name.
 
 Type: string
 
@@ -167,11 +171,11 @@ The error queue name to use for forwarding error messages.
 Type: string
 
 Default: `<ErrorQueue>.log`
-               
-    
+
+
 #### ServiceBus/AuditLogQueue
 
-The audit queue name to use for forwarding audit messages. This only works if `ServiceControl/ForwardAuditMessages` is true. 
+The audit queue name to use for forwarding audit messages. This only works if `ServiceControl/ForwardAuditMessages` is true.
 
 Type: string
 
@@ -190,9 +194,10 @@ See [Installation](installation.md) for details on how to set this at install ti
 
 ## Plugin Specific
 
+
 #### ServiceControl/HeartbeatGracePeriod
 
-The period that defines whether an endpoint is considered alive or not since the last received heartbeat. 
+The period that defines whether an endpoint is considered alive or not since the last received heartbeat.
 
 Type: timespan
 
@@ -201,13 +206,3 @@ Default: `00:00:40` (40 secs)
 When configuring heartbeat grace period, make sure it is greater than heartbeat interval defined by plugin or overwritten by [`heartbeat/interval`](/servicecontrol/plugins/heartbeat.md#configuration-heartbeat-interval) setting.
 
 Note: When monitoring multiple endpoints, ensure that heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
-
-
-
-
-
-
-
-
-
-

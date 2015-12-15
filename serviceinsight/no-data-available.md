@@ -19,4 +19,4 @@ Firstly, ServiceControl does not keep audit data forever. When messages are past
 
 The other reason that data might not be available is when messages in ServiceControl are not linked to a conversation. ServiceControl identifies which conversation a message belongs to by looking at the `NServiceBus.ConversationId` header on each message. If this header is not present for any reason then the message will not appear in any ServiceInsight visualizations. 
 
-NOTE: The `NServiceBus.ConversationId` header was introduced in NServiceBus version 4. Messages sent or published by earlier versions of NServiceBus will be missing this header and will not appear in ServiceInsight visualizations.
+NOTE: The `NServiceBus.ConversationId` header was introduced in NServiceBus Version 4. Messages sent or published by earlier versions of NServiceBus will be missing this header and will not appear in ServiceInsight visualizations.

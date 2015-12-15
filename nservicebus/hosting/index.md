@@ -111,6 +111,7 @@ NOTO: Since V6 `IEndpointInstance` (the equivalent of `IBus`) is no longer autom
 
 snippet:Hosting-Inject
 
+
 #### Static variable
 
 For many scenarios a container is not required. In these cases a simple public static variable on the startup class will suffice. This variable can then be access globally in your application. For example:
@@ -122,9 +123,10 @@ Alternatively the static variable could be placed on a (more appropriately named
 
 snippet:Hosting-Static
 
+
 ## "Custom Host" Solutions
 
-A "Custom Host" refers to a process or library that wraps the NServiceBus library to take partial control of configuration, startup and shutdown. This Host then exposes extension points for common activities and uses conventions and/or sensible defaults for many other configuration options.  
+A "Custom Host" refers to a process or library that wraps the NServiceBus library to take partial control of configuration, startup and shutdown. This Host then exposes extension points for common activities and uses conventions and/or sensible defaults for many other configuration options.
 
 
 ### NServiceBus Host

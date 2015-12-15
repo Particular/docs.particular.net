@@ -26,7 +26,7 @@ Azure Service Bus is messaging infrastructure that sits between applications, al
 
 First, ensure you're using Standard Messaging Tier for Azure Service Bus when creating your namespace at Azure portal.
 
-Second, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a NuGet package reference to the  `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package to your project.
+Second, reference the assembly that contains the Azure Service Bus transport definition. The recommended method is to add a NuGet package reference to the `NServiceBus.Azure.Transports.WindowsAzureServiceBus` package to your project.
 
 ```
 PM> Install-Package NServiceBus.Azure.Transports.WindowsAzureServiceBus
@@ -68,7 +68,7 @@ Using this configuration setting you can change the following values. NOTE: Most
 - `MaxDeliveryCount`: Specifies the number of times a message can be delivered before being put on the dead letter queue. Defaults to 6 (so the NServiceBus first and second level retry mechanism gets preference).
 - `MaxSizeInMegabytes`: Specifies the size in MB. Defaults to 1024 (1GB). Allowed values are 1024, 2048, 3072, 4096 5120.
 - `RequiresDuplicateDetection`: Specifies whether exactly once delivery is enabled. Defaults to false, meaning that the same message can arrive multiple times.
-- `DuplicateDetectionHistoryTimeWindow`:  Specifies the amount of time in milliseconds that the queue should perform duplicate detection. Defaults to 60000 ms (1 minute).
+- `DuplicateDetectionHistoryTimeWindow`: Specifies the amount of time in milliseconds that the queue should perform duplicate detection. Defaults to 60000 ms (1 minute).
 - `RequiresSession`: Specifies whether sessions are required. Defaults to false (NServiceBus makes no use of this feature).
 - `DefaultMessageTimeToLive`: Specifies the time that a message can stay in the queue without being delivered. Defaults to int64.MaxValue, which is roughly 10.000 days.
 - `EnableDeadLetteringOnMessageExpiration`: Specifies whether messages should be moved to a dead letter queue upon expiration. Defaults to false (TTL is so large it wouldn't matter anyway). This assumes there have been no attempts to deliver. Errors on delivery will still put the message on the dead letter queue.

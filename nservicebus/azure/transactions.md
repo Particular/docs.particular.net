@@ -105,14 +105,14 @@ Sagas in NServiceBus are a stateful set of message handlers that can be used to 
 
 **Advantages** 
 
-*  You don't need transactions at all to provide consistency.
-*  Extremely flexible and maps very well with the business domain.
+ * You don't need transactions at all to provide consistency.
+ * Extremely flexible and maps very well with the business domain.
 
 **Disadvantages**
 
-* To consider and implement all possible variations and error conditions in a transaction, involves quite a lot of work.
-* To implement effectively, requires a good understanding of the business.
-* If applied in conjunction with atomic operations that cannot be batched, you need to keep in mind that the saga is stateful as well and therefore breaks the atomicity of the operation. This needs to be taken into account when designing the saga. You should never execute operations against a store inside the saga itself, but always use another message handler and a queue in between and cater for idempotency at all levels.
+ * To consider and implement all possible variations and error conditions in a transaction, involves quite a lot of work.
+ * To implement effectively, requires a good understanding of the business.
+ * If applied in conjunction with atomic operations that cannot be batched, you need to keep in mind that the saga is stateful as well and therefore breaks the atomicity of the operation. This needs to be taken into account when designing the saga. You should never execute operations against a store inside the saga itself, but always use another message handler and a queue in between and cater for idempotency at all levels.
 
 
 ### Routing slips and compensation logic
@@ -121,14 +121,14 @@ Where the saga approach uses a central coordinator that orchestrates the work in
 
 **Advantages**
 
-*  You don't need transactions at all to provide consistency.
-*  Is more 'linear' in its conceptual model than sagas, so may be easier to keep in your mind.
-*  Does not require maintaining the state in a data store; it is implicit by the chaining of handlers and passing around the routing slip (to which the state can be added for the next handler in the list).
+ * You don't need transactions at all to provide consistency.
+ * Is more 'linear' in its conceptual model than sagas, so may be easier to keep in your mind.
+ * Does not require maintaining the state in a data store; it is implicit by the chaining of handlers and passing around the routing slip (to which the state can be added for the next handler in the list).
 
 **Disadvantages**
 
-*  To consider and implement all possible variations and error conditions in a transaction, it involves quite a lot of work.
-*  Less flexible than sagas, requires linear thinking, can't execute handlers in parallel, and therefore is often slower.
+ * To consider and implement all possible variations and error conditions in a transaction, it involves quite a lot of work.
+ * Less flexible than sagas, requires linear thinking, can't execute handlers in parallel, and therefore is often slower.
 
 
 ## The need for idempotency

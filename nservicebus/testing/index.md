@@ -12,7 +12,8 @@ Developing enterprise-scale distributed systems is hard and testing them is just
 
 ## Getting started
 
-NServiceBus ships with a stand alone testing helper NuGet package that makes testing a lot simpler.  
+NServiceBus ships with a stand alone testing helper NuGet package that makes testing a lot simpler.
+
 To install this package:
 ```
 Install-Package NServiceBus.Testing
@@ -45,7 +46,7 @@ snippet:SetupConventionsForUnitTests
 
 ### Testing interface messages
 
-To support testing of interface messages version 5 introduces a `.WhenHandling<T>()` method where T is the interface type.
+To support testing of interface messages Version 5 introduces a `.WhenHandling<T>()` method where T is the interface type.
 
 
 ## Testing header manipulation

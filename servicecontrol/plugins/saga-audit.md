@@ -31,9 +31,9 @@ The increase in load is proportional to size of the saga data multiplied by the 
 
 ## NuGets
 
- * NServiceBus version 5.x: [ServiceControl.Plugin.Nsb5.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.SagaAudit)
- * NServiceBus version 4.x: [ServiceControl.Plugin.Nsb4.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit)
- * NServiceBus version 3.x: Not Available
+ * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.SagaAudit)
+ * NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.SagaAudit](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.SagaAudit)
+ * NServiceBus Version 3.x: Not Available
 
 
 ### Deprecated NuGet

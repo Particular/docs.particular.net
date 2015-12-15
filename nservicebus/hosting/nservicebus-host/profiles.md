@@ -23,9 +23,9 @@ Starting out with NServiceBus development isn't always easy. There are many conf
 
 NServiceBus comes with three profiles out of the box: Lite, Integration, and Production. Each profile configures a cohesive combination of technologies:
 
--   Lite keeps everything in memory with the most detailed logging.
--   Integration uses technologies closer to production but without scale-out and less logging.
--   Production uses scale-out friendly technologies and minimal file-based logging.
+ * Lite keeps everything in memory with the most detailed logging.
+ * Integration uses technologies closer to production but without scale-out and less logging.
+ * Production uses scale-out friendly technologies and minimal file-based logging.
 
 ## Specifying which profiles to run
 
@@ -35,9 +35,10 @@ To tell the host to run using a specific profile, you need to pass the namespace
 NServiceBus.Host.exe NServiceBus.Lite
 ```
 
- You may be concerned about the use of command-line parameters. Be aware that when installing the NServiceBus host as a Windows Service, all provide profiles are baked into the installation. Second, having the ability to sit down at a tester workstation and turn on and off various behaviors without touching configuration files or code makes isolating bugs much easier. It may take some time to get used to, but the benefits are worth it.
+You may be concerned about the use of command-line parameters. Be aware that when installing the NServiceBus host as a Windows Service, all provide profiles are baked into the installation. Second, having the ability to sit down at a tester workstation and turn on and off various behaviors without touching configuration files or code makes isolating bugs much easier. It may take some time to get used to, but the benefits are worth it.
 
 If you just run the host without specifying a profile, NServiceBus defaults to the Production profile. You can pass in as many profiles as you want and NServiceBus runs them all.
+
 
 ## Writing your own profile
 
@@ -57,7 +58,8 @@ To tell the host to run your profile and the NServiceBus Lite profile together:
 NServiceBus.Host.exe YourNamespace.YourProfile NServiceBus.Lite
 ```
 
- As you can see, the profile itself does not contain any behavior itself. It is just a place-holder around which different kinds of behavior can be hooked. See how those behaviors are connected to their profiles.
+As you can see, the profile itself does not contain any behavior itself. It is just a place-holder around which different kinds of behavior can be hooked. See how those behaviors are connected to their profiles.
+
 
 ## Profile behaviors
 
@@ -100,6 +102,7 @@ class ProductionEmailBehavior : IHandleProfile<NServiceBus.Production>
 With these classes, switching profiles doesn't only change NServiceBus behaviors but also your own behaviors as a consistent set. There is no worry about keeping different parts of a configuration file in sync or changing the configuration file your application uses.
 You can also have multiple classes provide behaviors for the same profile, or you can have a single class handle multiple profiles (by implementing `IHandleProfile<T>` for each profile type) if you want identical behavior across profiles.
 
+
 ## Dependent profile behaviors
 
 You may want slight variations of behavior based on the properties of the class that implements `IConfigureThisEndpoint`. Also, you don't necessarily want all profile handlers to be dependent on the type that implements `IConfigureThisEndpoint`, just for it to check whether it also implements some other interface. The host itself does this when it handles publishers. Endpoints that don't publish don't need to have a subscription storage. Those that are publishers do need different storage technologies configured, based on profile. Just as the host defines the `AsAPublisher` interface and customizes behavior around it, you can do the same with your own interfaces.
@@ -128,6 +131,7 @@ class MyProfileHandler : IHandleProfile<MyProfile>, IWantTheEndpointConfig
 
 This lets you extend the host and write additional profiles and behaviors to customize various aspects of your system, all while maintaining loose-coupling and composability between the various parts of your system.
 
+
 ## Logging behaviors
 
 Logging is another kind of behavior that you can change from one profile to another. However, unlike other profile behaviors, logging levels and sinks need to be defined before you configure other components, even before the container. For that reason, logging configuration is kept separate from other profile behaviors.
@@ -149,9 +153,10 @@ When running under the production profile, the logs are written to 'logfile' in 
 <Logging Threshold="ERROR" />
 ```
 
- For changes to the configuration to have an effect, the process must be restarted.
+For changes to the configuration to have an effect, the process must be restarted.
 
 If you want different logging behaviors than these, see the next section.
+
 
 ## Customized logging
 
@@ -174,6 +179,7 @@ class YourProfileLoggingHandler : IConfigureLoggingForProfile<YourProfile>
 **IMPORTANT** : While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
 
 See the [logging documentation](/nservicebus/logging/) for more information.
+
 
 ## Behavior requiring initialization to be complete
 
@@ -205,6 +211,7 @@ class MyProfileHandler : IHandleProfile<MyProfile>, IWantToRunWhenConfigurationI
 
 This approach is particularly useful when you want your profile to hook into an event on the object you used the container to build, allowing your profile to perform activities at specific points in the life-cycle of the application not just at start-up.
 
+
 ## Persistence
 
 When you use NServiceBus.Host.exe out of the box, you can utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, you can override the configured defaults.
@@ -221,12 +228,9 @@ NOTE: Before configuring persistence technology, to avoid overriding your config
 |  Gateway                        |Lite     |MultiSite             |-            |-     					   |
 |  Distributor                    |- 	    |-                     |-            |Distributor				   |
 
+
 ## Default persisting technology
 
 The `AsAServer` role activates the timeout manager. This role does not explicitly determine which persisting technology to use. Hence, the default persisting technology for timeout manager (RavenDB) is used.
 
 Similarly to the `AsAServer` role, the various profiles activate the different NServiceBus features, without explicitly configuring the persisting technology.
-
-
-
-

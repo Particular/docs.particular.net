@@ -69,12 +69,12 @@ The data in RavenDB is stored in three different collections.
 
 ### The Timeouts 
 
-  * The subscriber is stored in a `Destination` with the nested properties `Queue` and `Machine`.
-  * The endpoint that initiated the timeout is stored in the `OwningTimeoutManager` property
-  * The connected saga id is stored in a `SagaId` property.
-  * The serialized data for the message is stored in a `State` property.
-  * The scheduled timestamp for the timeout is stored in a `Time` property.
-  * Any headers associated with the timeout are stored in an array of key value pairs.  
+ * The subscriber is stored in a `Destination` with the nested properties `Queue` and `Machine`.
+ * The endpoint that initiated the timeout is stored in the `OwningTimeoutManager` property
+ * The connected saga id is stored in a `SagaId` property.
+ * The serialized data for the message is stored in a `State` property.
+ * The scheduled timestamp for the timeout is stored in a `Time` property.
+ * Any headers associated with the timeout are stored in an array of key value pairs.
 
 ![](timeouts.png)
 
@@ -84,7 +84,7 @@ The data in RavenDB is stored in three different collections.
 Note that the message type maps to multiple subscriber endpoints.
 
  * The Subscription message type and version are stored under the `MessageType` property.
- * The list of subscribers is stored in a array of objects each containing `Queue` and `MachineName` properties. 
+ * The list of subscribers is stored in a array of objects each containing `Queue` and `MachineName` properties.
 
 ![](subscriptions.png)
 

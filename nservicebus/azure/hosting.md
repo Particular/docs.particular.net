@@ -39,7 +39,7 @@ For persistence you can rely on any option, including RavenDB, SQL Server instal
 
 ## Azure Websites
 
-Another deployment model is Azure Websites, where you use a regular website and push it to your favorite source control repository (like GitHub).  On your behalf, Microsoft takes the latest issue from the repository, builds the binaries, runs your tests, and deploys to production.
+Another deployment model is Azure Websites, where you use a regular website and push it to your favorite source control repository (like GitHub). On your behalf, Microsoft takes the latest issue from the repository, builds the binaries, runs your tests, and deploys to production.
 
 As for an NServiceBus programming model, this is roughly the same as any other self-hosted endpoint in a website. You use the `Configure` API to set things up and it will work.
 

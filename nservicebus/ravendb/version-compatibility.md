@@ -30,25 +30,25 @@ The current approach moving forward for the RavenDB integration is to ship outsi
 
 ## NServiceBus 4: Resource Merged into the core
 
-In version 4 of NServiceBus the approach to embedding RavenDB in NServiceBus.Core.dll changed from ILMerge to resource merging. 
+In Version 4 of NServiceBus the approach to embedding RavenDB in NServiceBus.Core.dll changed from ILMerge to resource merging. 
 
 This allowed us, at runtime, to chose the newest version of the RavenDB assemblies found on disk. So if a consumer of NServiceBus has updated to newer RavenDB assemblies NServiceBus would use those instead of the merged versions. 
 
-This resolved all the issue with ILMerged but raised a different one:  **Compatibility between different versions of the RavenDB client assemblies**. NServiceBus need to use a small subset of the RavenDB client APIs. At any one time we need to choose one version of those APIs to reference. This means that any incompatibilities between different versions of the RavenDB client API require a new version of NServiceBus to be release that copes with that incompatibility using reflection.  
+This resolved all the issue with ILMerged but raised a different one:  **Compatibility between different versions of the RavenDB client assemblies**. NServiceBus need to use a small subset of the RavenDB client APIs. At any one time we need to choose one version of those APIs to reference. This means that any incompatibilities between different versions of the RavenDB client API require a new version of NServiceBus to be release that copes with that incompatibility using reflection.
 
 The root underlying cause of these compatibility issue is that NServiceBus follows SemVer but RavenDB doesn't.
 
 
 ### Resource merged RavenDB versions 
 
-Version 4 of NServiceBus was shipped with version 2.0.2375 of RavenDB resource merged.
+Version 4 of NServiceBus was shipped with Version 2.0.2375 of RavenDB resource merged.
 
 
 ### NServiceBus 4 and RavenDB 2.5
 
-NServiceBus Version 4 uses RavenDB.Client version 2.0 internally. Using RavenDB client 2.0 against a RavenDB Server 2.5 is not recommended. Server restarts may result in wiping out outstanding transactions potentially resulting in message loss. Therefore if using RavenDB server version 2.5, please do the following:
+NServiceBus Version 4 uses RavenDB.Client Version 2.0 internally. Using RavenDB client 2.0 against a RavenDB Server 2.5 is not recommended. Server restarts may result in wiping out outstanding transactions potentially resulting in message loss. Therefore if using RavenDB server Version 2.5, please do the following:
 
-1. Install version 1 of NServiceBus.RavenDB NuGet package in your endpoint. This will ensure that RavenDB Client version 2.5 is being used instead of 2.0
+1. Install version 1 of NServiceBus.RavenDB NuGet package in your endpoint. This will ensure that RavenDB Client Version 2.5 is being used instead of 2.0
 ```
 Install-Package NServiceBus.RavenDB -version 1.X.Y
 ```

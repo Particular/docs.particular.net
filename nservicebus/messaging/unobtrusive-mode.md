@@ -12,18 +12,19 @@ This dependency can cause problems if you have different services that run diffe
 
 This is not a big deal for commands because they are always used with in the boundary of a single service and it's fair to require a service to use the same version of NServiceBus. But when it comes to events, this becomes more of a problem since it requires your services to all use the same version of NServiceBus, thereby forcing them to upgrade NServiceBus all at once.
 
+
 ## The solution
 
 There are a couple of ways you can solve this.
 
--   NServiceBus follows the [semver.org](http://semver.org/) semantics, only changing the assembly version when changes are not backwards compatible or introduce substantial new functionality or improvements. This mean that version 3.0.1 and version 3.0.X have the same assembly version (3.0.0), and file version of course changes for every release/build. This means that as long as you do a NuGet update with the -safe flag your service contracts will stay compatible.
--   Support for running in "Unobtrusive" mode means you do not need to reference any NServiceBus assemblies from your own message assemblies, thereby removing the problem altogether.
+ * NServiceBus follows the [semver.org](http://semver.org/) semantics, only changing the assembly version when changes are not backwards compatible or introduce substantial new functionality or improvements. This mean that Version 3.0.1 and Version 3.0.X have the same assembly version (3.0.0), and file version of course changes for every release/build. This means that as long as you do a NuGet update with the -safe flag your service contracts will stay compatible.
+ * Support for running in "Unobtrusive" mode means you do not need to reference any NServiceBus assemblies from your own message assemblies, thereby removing the problem altogether.
+
 
 ## Unobtrusive mode
 
 NServiceBus allows you to define your own [message conventions](messages-events-commands.md) instead of using the `IMessage`, `ICommand` or `IEvent` interfaces and attributes like `TimeToBeReceivedAttribute` and `ExpressAttribute`. NServiceBus also supports conventions for encrypted properties, express messages, databus properties and time to be received. So with these conventions combined you can avoid referencing NServiceBus in your messages assembly.
 
-<!-- import MessageConventions -->  
-
+<!-- import MessageConventions -->
 
 Note: It is important to note that in .NET namespace is optional and hence can be null. So if any conventions do partial string checks, for example using `EndsWith` or `StartsWith`, then a null check should be used. So include `.Namespace != null` at the start of the convention. Otherwise a null reference exception will occur during the type scanning.

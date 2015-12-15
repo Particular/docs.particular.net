@@ -30,7 +30,7 @@ Or in simpler terms
 
 ## Mechanics
 
-Depending on the features provided by a given transport there are two possible implementations of  Publish-Subscribe mechanics: "Persistence based" and "Native".
+Depending on the features provided by a given transport there are two possible implementations of Publish-Subscribe mechanics: "Persistence based" and "Native".
 
 Note: For simplicity these explanations refer to specific endpoints as "Subscribers" and "Publishers". However in reality any endpoint can be both a publisher and/or and a subscriber. 
 
@@ -153,7 +153,7 @@ Transport->Subscriber2: Send Message1
 
 ## Versioning subscriptions
 
-In NServiceBus version 3.0 and onwards subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
+In NServiceBus Version 3.0 and onwards subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
 
 NOTE: Version 2.X required a perfect match. This should make it easier to upgrade your publishers without affecting the subscribers.
 

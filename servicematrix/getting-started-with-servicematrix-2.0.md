@@ -36,13 +36,13 @@ To get started with ServiceMatrix, create a new project.
 
 ### Create an NServiceBus project
 
-In Visual Studio, select `File\New\Project` and select 'NServiceBus version 5 System' under the Visual C\# project type. Target the .NET Framework 4.5 for this project.
+In Visual Studio, select `File\New\Project` and select 'NServiceBus Version 5 System' under the Visual C\# project type. Target the .NET Framework 4.5 for this project.
 
 ![NewProject](images/servicematrix-reqresp-newprojectv2.2.0.png)
 
 In the Solution name, type 'OnlineSales' (or any other name) for the name of your application.
 
-NOTE: It is recommended that you use the 'NServiceBus version 5 System' project template unless you need to remain on NServiceBus version 4 for some particular reason. NServiceBus version 5 is wire compatible with earlier versions, so you should be able to use the latest version without breaking compatibility with services that may already be deployed and running on an earlier version. [Read this document](/nservicebus/upgrades/4to5.md) for an overview of the differences in version 5 from version 4.
+NOTE: It is recommended that you use the 'NServiceBus Version 5 System' project template unless you need to remain on NServiceBus Version 4 for some particular reason. NServiceBus Version 5 is wire compatible with earlier versions, so you should be able to use the latest version without breaking compatibility with services that may already be deployed and running on an earlier version. [Read this document](/nservicebus/upgrades/4to5.md) for an overview of the differences in Version 5 from Version 4.
 
 
 ### Review The Solution
@@ -342,7 +342,7 @@ using NServiceBus.Persistence;
 
 ### Installing RavenDB 2.5
 
-An NServiceBus version 5 ServiceMatrix project requires RavenDB version 2.5. Download the installer from [ravendb.net](http://ravendb.net/download) and select "Development" for the target environment.
+An NServiceBus Version 5 ServiceMatrix project requires RavenDB Version 2.5. Download the installer from [ravendb.net](http://ravendb.net/download) and select "Development" for the target environment.
 
 NOTE: If you already have RavenDB 2.0 installed, you can uninstall the service by finding the Raven.Server.exe executable on your machine and running it from the command line with /uninstall.
 

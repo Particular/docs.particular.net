@@ -48,7 +48,7 @@ Instances are:
   * Do not require a default constructor.
 * Started asynchronously on the same thread which started the bus.
 * Stopped after the Transport and any Satellites have stopped. You can rely on all instance of `IWantToRunWhenBusStartsAndStops` being stopped and no more messages will be handled during this stop sequence.
-* Stopped asynchronously on the same thread which disposed the bus.  
+* Stopped asynchronously on the same thread which disposed the bus.
 
 Exceptions thrown in the constructors of instances of `IWantToRunWhenBusStartsAndStops` are unhandled by NServiceBus. These will bubble up to the code that starts the the bus.
 

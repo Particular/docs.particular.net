@@ -123,7 +123,7 @@ Logging settings can than be controlled by configuring the Azure diagnostics ser
 
 Next to worker roles, cloud services also has a role type called 'Web Roles'. These are worker roles which have IIS configured properly, this means that they run a worker role process (the entry point is in webrole.cs) and an IIS process on the same codebase.
 
-Usually you will want to run NServiceBus as a client in the IIS process though. This needs to be approached in the same way as any other website, by means of self hosting. When  self-hosting you can configure everything using the configuration API and the extension methods found in the `NServiceBus.Azure` package, no need to reference the hosting package in that case.
+Usually you will want to run NServiceBus as a client in the IIS process though. This needs to be approached in the same way as any other website, by means of self hosting. When self-hosting you can configure everything using the configuration API and the extension methods found in the `NServiceBus.Azure` package, no need to reference the hosting package in that case.
 
 The configuration API is used with the following extension methods to achieve the same behavior as the generic `AsA_worker`:
 
@@ -140,12 +140,12 @@ a short explanation of each:
 ## Handling critical errors
 
 
-### Azure Host version 6.2.2 and up
+### Azure Host Version 6.2.2 and up
 
 Azure host is terminated on critical errors by default. When host is terminated, Azure Fabric will restart the host automatically.
 
 
-### Azure Host version 6.2.1 and lower
+### Azure Host Version 6.2.1 and lower
 
 Azure host is not terminated on critical errors by default and only shuts down the bus. This would cause role not to process messages until host (role) is restarted.
 To address this, implement critical errors handling code that shuts down the host.

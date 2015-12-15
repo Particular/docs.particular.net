@@ -19,7 +19,7 @@ Instances are:
 * Created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they
   * Are not resolved out of an IoC container (even if they are registered there).
   * Will not have any dependencies injected.
-  * Must have a default constructor.  
+  * Must have a default constructor.
 
 In Version 3 and Version 4, as instances are created `Init()` is called. In Version 5 this was changed to `Customize(BusConfiguration)`. All calls to either method are made in sequence on the thread that is creating the bus. The order of these calls is determined by the order of the scanned types list as a result of the assembly scan.
  

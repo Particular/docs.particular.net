@@ -24,20 +24,20 @@ If your selected transport doesn't natively supports publish-subscribe you need 
 
 snippet:endpoint-mapping-appconfig
 
-Since version 6 you can also specify the publishers in code
+Since Version 6 you can also specify the publishers in code
 
 snippet:PubSub-CodePublisherMapping
 
 ### Exclude sagas from auto subscribe
 
-In version 3 and lower events that are only handled by sagas are not subscribed to by default. In version 4 and higher sagas are treated the same as handlers and will cause an endpoint to subscribe to a given event. You can opt-in to the old exclude saga event handling behavior using:
+In Version 3 and lower events that are only handled by sagas are not subscribed to by default. In Version 4 and higher sagas are treated the same as handlers and will cause an endpoint to subscribe to a given event. You can opt-in to the old exclude saga event handling behavior using:
 
 snippet:DoNotAutoSubscribeSagas
 
 
 ### Auto subscribe to plain messages
 
-Before version 4 all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention where automatically subscribed. You can opt-in to the old behavior using:
+Before Version 4 all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention where automatically subscribed. You can opt-in to the old behavior using:
 
 snippet:AutoSubscribePlainMessages
 

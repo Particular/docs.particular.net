@@ -25,7 +25,7 @@ In this case only one thread is allowed to commit. The others roll back and the 
 
 NServiceBus solves this by automatically creating a unique constraint in your database for the property on which you are correlating. With this constraint in place, only one thread is allowed to create a new saga instance.
 
-NOTE: In NServiceBus version 2 you had to create the constraint yourself in the selected data store. Version 3 to 5 provided a `[Unique]` attribute. When you put that attribute on one of your saga data properties, NServiceBus creates the constraint for you. This works for both the NHibernate and the RavenDB saga persister.
+NOTE: In NServiceBus Version 2 you had to create the constraint yourself in the selected data store. Version 3 to 5 provided a `[Unique]` attribute. When you put that attribute on one of your saga data properties, NServiceBus creates the constraint for you. This works for both the NHibernate and the RavenDB saga persister.
 
 
 ## Concurrent access to existing saga instances
@@ -36,13 +36,13 @@ When you use the RavenDB saga persister, you don't have to do anything since the
 
 When running using the NHibernate saga persister, the NServiceBus framework requires you to add a ["Version" property to your saga data](http://ayende.com/blog/3946/nhibernate-mapping-concurrency) so that NHibernate can work its magic.
 
-NServiceBus version 4 makes this even easier by enabling the optimistic-all option if no Version property is found.
+NServiceBus Version 4 makes this even easier by enabling the optimistic-all option if no Version property is found.
 
 Another option is to use a [transaction isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel.aspx) of serializable but that causes [excessive locking](https://msdn.microsoft.com/en-us/library/ms173763.aspx) with considerable performance degradation.
 
 NOTE: "Serializable" is the default isolation level for TransactionScopes.
 
-In NServiceBus version 4 the default isolation level is
+In NServiceBus Version 4 the default isolation level is
 "ReadCommitted", which is a more sensible default.
 
 

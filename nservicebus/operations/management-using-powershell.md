@@ -23,9 +23,9 @@ The PowerShell module provides cmdlets to assist with:
 
 ## Prerequisites
 
-Prior to installation ensure that PowerShell version 2 or greater is installed. 
+Prior to installation ensure that PowerShell Version 2 or greater is installed. 
 
-From Version 5.0 the module is compatible with .NET 2 so there is no longer a requirement to upgrade PowerShell to version version 3.0+ or modify the `Powershell.exe.config` to force .NET 4 to be used.
+From Version 5.0 the module is compatible with .NET 2 so there is no longer a requirement to upgrade PowerShell to Version 3.0+ or modify the `Powershell.exe.config` to force .NET 4 to be used.
 
 
 ## Installation
@@ -63,17 +63,17 @@ Help for each cmdlet incorporated within the module and can be accessed via the 
     
     
 	DESCRIPTION
-	    Sets the registry settings for the default audit and error queues.  
-        These settings can be found in the registry under "HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceBus".  
+	    Sets the registry settings for the default audit and error queues.
+        These settings can be found in the registry under "HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceBus".
 		On 64 bit operating system the settings are applied to both the 32-bit and 64-bit registry.
- 
+
 
 ## Upgrade information
 
 
 ### RavenDB cmdlets
 
-NServiceBus now supports multiple versions of the [RavenDB](/nservicebus/ravendb/version-compatibility.md) client.  Previous versions of the PowerShell module included cmdlets to install and test  RavenDB V2.0.2375. To avoid confusion we have removed these cmdlets in version 5.0:
+NServiceBus now supports multiple versions of the [RavenDB](/nservicebus/ravendb/version-compatibility.md) client. Previous versions of the PowerShell module included cmdlets to install and test RavenDB V2.0.2375. To avoid confusion we have removed these cmdlets in Version 5.0:
 
 	Install-NServiceBusRavenDB
 	Test-NServiceBusRavenDBInstallation
@@ -83,7 +83,8 @@ For RavenDB installation instructions please review [Installing RavenDB](/nservi
 
 ### Licensing 
    
-Version 5 of the PowerShell module includes a commandlet for importing a Particular Platform License. This will work for NServiceBus versions 4. If you which to to install a license for versions prior to NServiceBus version 4.5 then an alternative method should be used. See  [License Management](/nservicebus/licensing/license-management.md) for
+Version 5 of the PowerShell module includes a commandlet for importing a Particular Platform License. This will work for NServiceBus versions 4. If you which to to install a license for versions prior to NServiceBus Version 4.5 then an alternative method should be used. See [License Management](/nservicebus/licensing/license-management.md) for
+
 
 ## Older versions of NServiceBus PowerShell
 

@@ -11,7 +11,7 @@ redirects:
 At startup NServicebus will attempt to recreate the urlacls so that the process can listen on a specific port. If it already exists we log a warning and continue on. In this case you will see something like this in your log file.
 
 ```
-WARN  NServiceBus.Installation.GatewayHttpListenerInstaller 
+WARN NServiceBus.Installation.GatewayHttpListenerInstaller 
 Failed to grant to grant user 'Machine\UserName' HttpListener permissions. Processing will continue. 
 Try running the following command from an admin console:
 netsh http add urlacl url=http://localhost:25894/MyEndpoint/ user="Machine\MyEndpointServiceAccount"

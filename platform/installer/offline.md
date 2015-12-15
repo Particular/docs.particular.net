@@ -28,11 +28,11 @@ Each of these will be detailed below:
 
 The NServiceBus Prerequisites option in the Platform Install configures the system to run NServiceBus endpoints using Microsoft Message Queuing(MSMQ) by doing the following:
 
-- Adds, configures and starts the MSMQ service.
-- Configures and starts the Microsoft Distributed Coordinator Service
-- Adds NServiceBus Performance Counters
+ * Adds, configures and starts the MSMQ service.
+ * Configures and starts the Microsoft Distributed Coordinator Service.
+ * Adds NServiceBus Performance Counters.
 
-These actions are available via [NServiceBus PowerShell Module](https://github.com/Particular/NServiceBus.PowerShell/releases/latest).  This module is available as standalone installation.  Once the module is installed, open a PowerShell prompt as a Administrator and issue the following commands:
+These actions are available via [NServiceBus PowerShell Module](https://github.com/Particular/NServiceBus.PowerShell/releases/latest). This module is available as standalone installation. Once the module is installed, open a PowerShell prompt as a Administrator and issue the following commands:
 
 ```bat
 Import-Module NServiceBus.PowerShell
@@ -42,7 +42,7 @@ Install-NServiceBusPerformanceCounters
 ```
 
 
-### ServiceControl 
+### ServiceControl
 
 This MSI can be downloaded directly from here: [ServiceControl Releases](https://github.com/Particular/ServiceControl/releases/latest).
 
@@ -59,4 +59,4 @@ This MSI can be downloaded directly from here: [ServicePulse Releases](https://g
 
 ### ServiceMatrix 
 
-ServiceMatrix is no longer part of the platform installer. Read this article on [how to install ServiceMatrix](/servicematrix/installing-servicematrix-2.0.md). 
+ServiceMatrix is no longer part of the platform installer. Read this article on [how to install ServiceMatrix](/servicematrix/installing-servicematrix-2.0.md).

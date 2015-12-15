@@ -28,7 +28,7 @@ So extensions to NServiceBus that plug into OWIN can be easily applied to [many 
 
 ## The purpose of this sample 
 
-The primary purpose of this sample is to illustrate how simple it is to bridge the world of HTTP with the world of a service bus.  The secondary purpose is to illustrate, as well as compare and contrast, two ways of communicating with the NServiceBus. i.e. using the Bus api and using the native queue. 
+The primary purpose of this sample is to illustrate how simple it is to bridge the world of HTTP with the world of a service bus. The secondary purpose is to illustrate, as well as compare and contrast, two ways of communicating with the NServiceBus. i.e. using the Bus api and using the native queue.
 
 
 ## Comparisons with the [NServiceBus Gateway](/nservicebus/gateway)

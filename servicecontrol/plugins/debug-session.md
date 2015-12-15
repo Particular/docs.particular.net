@@ -14,9 +14,9 @@ When deployed, the debug session plugin adds a specified debug session identifie
 
 ## NuGets
 
- * NServiceBus version 5.x: [ServiceControl.Plugin.Nsb5.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.DebugSession)
- * NServiceBus version 4.x: [ServiceControl.Plugin.Nsb4.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.DebugSession)
- * NServiceBus version 3.x: Not Available
+ * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.DebugSession)
+ * NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.DebugSession)
+ * NServiceBus Version 3.x: Not Available
 
 
 ### Deprecated NuGet

@@ -85,7 +85,7 @@ In this mode the transport doesn't wrap the receive operation in any kind of tra
 
 WARNING: If there is a critical failure, including system or endpoint crash, the message is **permanently lost** since it's received with no transaction.
 
-NOTE: In version 5 and below, when transactions are disabled, no retries will be performed and messages **will not be forwarded** to the error queue in the event of any failure.
+NOTE: In Version 5 and below, when transactions are disabled, no retries will be performed and messages **will not be forwarded** to the error queue in the event of any failure.
 
 snippet:TransactionsDisable
 

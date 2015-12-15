@@ -31,9 +31,9 @@ Note: The configured value describes the minimum number of times a message will 
 
 ### Configuring FLR using app.config
 
-In version 3 this configuration was available via `MsmqTransportConfig`.
+In Version 3 this configuration was available via `MsmqTransportConfig`.
 
-In version 4 and higher the configuration for this mechanism is implemented in the `TransportConfig` section.
+In Version 4 and higher the configuration for this mechanism is implemented in the `TransportConfig` section.
 
 snippet:configureFlrViaXml
 
@@ -68,9 +68,9 @@ To configure SLR, enable its configuration section:
 
 snippet:SecondLevelRetiesAppConfig
 
- *  `Enabled`: Turns the feature on and off. Default: true.
- *  `TimeIncrease`: A time span after which the time between retries increases. Default: 10 seconds (`00:00:10`).
- *  `NumberOfRetries`: Number of times SLR kicks in. Default: 3.
+ * `Enabled`: Turns the feature on and off. Default: true.
+ * `TimeIncrease`: A time span after which the time between retries increases. Default: 10 seconds (`00:00:10`).
+ * `NumberOfRetries`: Number of times SLR kicks in. Default: 3.
 
 
 ### Configuration SLR through IProvideConfiguration

@@ -32,7 +32,7 @@ If you don't care about the runtime environment, just use the `INeedToInstallSom
 
 NServiceBus scans the assemblies in the runtime directory for installers so you don't need any code to register them.
 
-**Version 3.0 Only:** Version 3.0 included an interface called `INeedToInstallInfrastructure<T>` interface. It was primarily used for things that are not specific to a given endpoint e.g., RavenDB or MSMQ. This interface has been obsoleted in version 4.0 and will be removed in 5.0, since the introduction of [PowerShell commandlets](management-using-powershell.md) to aid the installation of infrastructure.
+**Version 3.0 Only:** Version 3.0 included an interface called `INeedToInstallInfrastructure<T>` interface. It was primarily used for things that are not specific to a given endpoint e.g., RavenDB or MSMQ. This interface has been obsoleted in Version 4.0 and will be removed in 5.0, since the introduction of [PowerShell commandlets](management-using-powershell.md) to aid the installation of infrastructure.
 
 When are they invoked?
 
@@ -53,5 +53,5 @@ When self hosting NServiceBus, invoke the installers manually, using this:
 
 snippet:Installers
 
-NOTE: The use of `/installInfrastructure` flag with the `NServiceBus.Host` has been deprecated in version 4.0. To install needed infrastructure, use the [PowerShell commandlets](management-using-powershell.md) instead.
+NOTE: The use of `/installInfrastructure` flag with the `NServiceBus.Host` has been deprecated in Version 4.0. To install needed infrastructure, use the [PowerShell commandlets](management-using-powershell.md) instead.
 

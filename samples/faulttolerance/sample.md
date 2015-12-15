@@ -37,9 +37,9 @@ Message received. Id: 2c9f0f60-7632-43ae-b16e-1688f31b1f53
 
 ### Queue up multiple messages
 
-* Then, kill the 'Server' console (endpoint) but leave the 'Client' console (endpoint) running.
-* Hit Enter on the 'Client' console a couple of times to see that the 'Client' application isn't blocked even when the other process it's trying to communicate with is down. This makes it easier to upgrade the backend even while the front-end is still running, resulting in a more highly-available system.
-*  Now, leaving the 'Client' console running, view the `Samples.FaultTolerance.Server` queue in MSMQ.  Note that All the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties specifically BodyStream, where the data is.
+ * Then, kill the 'Server' console (endpoint) but leave the 'Client' console (endpoint) running.
+ * Hit Enter on the 'Client' console a couple of times to see that the 'Client' application isn't blocked even when the other process it's trying to communicate with is down. This makes it easier to upgrade the backend even while the front-end is still running, resulting in a more highly-available system.
+ * Now, leaving the 'Client' console running, view the `Samples.FaultTolerance.Server` queue in MSMQ. Note that All the messages sent to the 'Server' endpoint are queued, waiting for the process to come back online. You can click each message, press F4, and examine its properties specifically BodyStream, where the data is.
 
 
 ### Consume those messages
@@ -85,6 +85,6 @@ If you leave the endpoint running a while longer, you'll see that it tries proce
 
 In the above case, since SLR is automatically turned on by default you see this behavior.
 
-To turn off SLR, uncomment the code `busConfiguration.DisableFeature<SecondLevelRetries>();` and re-run the sample and notice the behavior. After successive retries the message is sent to the error queue right away. 
+To turn off SLR, uncomment the code `busConfiguration.DisableFeature<SecondLevelRetries>();` and re-run the sample and notice the behavior. After successive retries the message is sent to the error queue right away.
 
 Make sure you remove the code which throws an exception once you are done to resume processing of messages.

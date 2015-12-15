@@ -35,12 +35,12 @@ In order to support guaranteed once delivery of messages NServiceBus makes use o
 
 You can read more on transactions [here](/nservicebus/operations/transactions-message-processing.md)
 
-Since version 5 of NServiceBus there is a _non-DTC_ mode of operation available. In this mode NServiceBus uses a concept of outbox, a message store backed by same DB as the user code, to temporarily store messages that need to be send as a result of processing an incoming message. To read more about this subject see [Outbox](/nservicebus/outbox/).
+Since Version 5 of NServiceBus there is a _non-DTC_ mode of operation available. In this mode NServiceBus uses a concept of outbox, a message store backed by same DB as the user code, to temporarily store messages that need to be send as a result of processing an incoming message. To read more about this subject see [Outbox](/nservicebus/outbox/).
 
 
 ## Storage
 
-In order to durably handle things like subscriptions, timeouts, sagas, etc, NServiceBus needs a storage mechanism that supports the MSDTC (or when in _non-DTC_ mode, uses the same DB as the user code). The default storage for NServiceBus 3 and 4 was RavenDB with an option of using relational databases via [NHibernate](/nservicebus/nhibernate/). Since version 5 there is no default storage and a user has to explicitly choose either RavenDB, NHibernate or non durable. 
+In order to durably handle things like subscriptions, timeouts, sagas, etc, NServiceBus needs a storage mechanism that supports the MSDTC (or when in _non-DTC_ mode, uses the same DB as the user code). The default storage for NServiceBus 3 and 4 was RavenDB with an option of using relational databases via [NHibernate](/nservicebus/nhibernate/). Since Version 5 there is no default storage and a user has to explicitly choose either RavenDB, NHibernate or non durable. 
 
 You can read more on the persistence needs of NServiceBus [here](/nservicebus/persistence/).
 

@@ -57,4 +57,4 @@ This is almost always related to an exception happening at startup of the roleen
 
 ### Exceptions occurring at startup are not visible in the logs
 
-When using the diagnostics service in cloud services, this service starts in parallel with your own startup code. If an exception occurs at this point in time, your code may not be able to call the diagnostics service yet and your exception information may get lost. Use intellitrace and historical debugging instead to learn more about the cause of the exception.  
+When using the diagnostics service in cloud services, this service starts in parallel with your own startup code. If an exception occurs at this point in time, your code may not be able to call the diagnostics service yet and your exception information may get lost. Use intellitrace and historical debugging instead to learn more about the cause of the exception.

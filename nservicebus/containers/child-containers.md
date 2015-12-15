@@ -8,7 +8,7 @@ redirects:
 
 Child containers are essentially a snapshot of the main container where transient instances are treated as as singletons within the scope of the child container. This is useful when you want to scope instances for the duration of a web request or the handling of a message in NServiceBus. While this was possible before, child containers bring one more important feature to the table.
 
-INFO: As of [NServiceBus.Spring](https://www.nuget.org/packages/NServiceBus.Spring) version 6.0.0 Child containers are now supported as well. Previous versions don't support Child containers, so if you plan to take advantage of it, use one of the other containers supported by NServiceBus.
+INFO: As of [NServiceBus.Spring](https://www.nuget.org/packages/NServiceBus.Spring) Version 6.0.0 Child containers are now supported as well. Previous versions don't support Child containers, so if you plan to take advantage of it, use one of the other containers supported by NServiceBus.
 
 
 ## Deterministic disposal

@@ -8,11 +8,11 @@ redirects:
  - nservicebus/licensing-and-distribution
 ---
 
-**NServiceBus version 4.5 and up**
+**NServiceBus Version 4.5 and up**
 
 No limitations is enforced by the distributor
 
-**Up to NServiceBus version 4.5**
+**Up to NServiceBus Version 4.5**
 
 Basic licenses (default, express, Basic-2, 4, etc.) allow you to run your distributor with two worker nodes.
 

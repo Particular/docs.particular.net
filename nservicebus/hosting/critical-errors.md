@@ -21,14 +21,14 @@ And hence the default behavior that will be taken in any kind of self hosting sc
 
 snippet:DefaultCriticalErrorAction
 
-NOTE:  In Version 4 and Version 3 the bus stops processing messages but is not disposed. This means sending of messages is allowed but no processing of messages will occur.
+NOTE: In Version 4 and Version 3 the bus stops processing messages but is not disposed. This means sending of messages is allowed but no processing of messages will occur.
 
 
 ### Default action handling in NServiceBus.Host
 
 snippet:DefaultHostCriticalErrorAction
 
-WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if you are co-hosting NServiceBus with a web-service or website.  
+WARNING: It is important to consider the effect these defaults will have on other things hosted in the same process. For example if you are co-hosting NServiceBus with a web-service or website.
 
 
 ### Logging of critical errors
@@ -37,7 +37,7 @@ For Version 4 and up Critical Errors are logged inside the critical error action
 
 snippet:DefaultCriticalErrorActionLogging
 
-NOTE:  Version 3 does not write a log entry as part of default Critical Error handler. This is done high up the stack in the location where the exception occurs. It is for this reason that the `Exception` instance is not passed to the Critical Error handler. So it is optional to write a log entry when replacing the Critical Error in Version 3.
+NOTE: Version 3 does not write a log entry as part of default Critical Error handler. This is done high up the stack in the location where the exception occurs. It is for this reason that the `Exception` instance is not passed to the Critical Error handler. So it is optional to write a log entry when replacing the Critical Error in Version 3.
 
 
 ## Custom handling

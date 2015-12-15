@@ -46,7 +46,7 @@ snippet:UseCustomConfigurationSourceForErrorQueueConfig
 
 snippet:configureErrorQueueViaXml
 
-NOTE: In NServiceBus version 3.x the `ErrorQueue` settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
+NOTE: In NServiceBus Version 3.x the `ErrorQueue` settings can be set both via the new `MessageForwardingInCaseOfFaultConfig ` section and the old `MsmqTransportConfig` section.
 
 For more details on `MsmqTransportConfig` [read this article](/nservicebus/msmq/transportconfig.md).
 

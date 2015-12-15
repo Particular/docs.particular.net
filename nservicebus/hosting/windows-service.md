@@ -109,7 +109,7 @@ Username and password can be configured, at creation time, using the `obj` and `
 The Windows Service start mode can be configured, at creation time, using the `start` parameter.
 
     sc.exe create [ServiceName] start= {auto | demand | disabled} binpath= [BinaryPathName] 
-    sc.exe create SalesEndpoint start= demand  binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
+    sc.exe create SalesEndpoint start= demand binpath= "c:\SalesEndpoint\SalesEndpoint.exe"
 
 
 ### Uninstall

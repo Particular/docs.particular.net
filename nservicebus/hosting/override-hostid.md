@@ -8,7 +8,7 @@ redirects:
 
 ## What is a host identifier
 
-Since NServiceBus version 4.4, all messages sent to the audit queue include two extra headers, these are `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`. These extra headers uniquely identify the running host (not to be confused with `NServiceBus.Host`, in this scenario host refers to the operating system host) for the endpoint. The defaults are the machine name for `$.diagnostics.hostdisplayname` and for `$.diagnostics.hostid` is a hash of the running executable installed path concatenated with the machine name. These defaults mostly work, except in environments where endpoint upgrades are done to a new path or in Azure deployments.
+Since NServiceBus Version 4.4, all messages sent to the audit queue include two extra headers, these are `$.diagnostics.hostid` and `$.diagnostics.hostdisplayname`. These extra headers uniquely identify the running host (not to be confused with `NServiceBus.Host`, in this scenario host refers to the operating system host) for the endpoint. The defaults are the machine name for `$.diagnostics.hostdisplayname` and for `$.diagnostics.hostid` is a hash of the running executable installed path concatenated with the machine name. These defaults mostly work, except in environments where endpoint upgrades are done to a new path or in Azure deployments.
 
 
 ## What is a host identifier used for

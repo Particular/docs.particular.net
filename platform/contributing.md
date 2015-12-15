@@ -25,7 +25,7 @@ need contributors to follow so that we can have a chance of keeping on top of th
     branch.
   * To quickly create a feature branch based on develop; `git branch
     fix/develop/my_contribution` then checkout the new branch with `git
-    checkout fix/develop/my_contribution`.  Please avoid working directly on the
+    checkout fix/develop/my_contribution`. Please avoid working directly on the
     `develop` branch.
 * Make commits of logical units.
 * Check for unnecessary whitespace with `git diff --check` before committing.
@@ -37,11 +37,12 @@ need contributors to follow so that we can have a chance of keeping on top of th
 
 ## Submitting Changes
 
-* Sign the [Contributor License Agreement](http://particular.net/contributors-license-agreement-consent).
-* Push your changes to a feature branch in your fork of the repository.
-* Submit a pull request to the NServiceBus repository
+ * Sign the [Contributor License Agreement](http://particular.net/contributors-license-agreement-consent).
+ * Push your changes to a feature branch in your fork of the repository.
+ * Submit a pull request to the NServiceBus repository
+
 
 # Additional Resources
 
-* [General GitHub documentation](https://help.github.com/)
-* [Using pull requests](https://help.github.com/articles/using-pull-requests/)
+ * [General GitHub documentation](https://help.github.com/)
+ * [Using pull requests](https://help.github.com/articles/using-pull-requests/)

@@ -30,7 +30,7 @@ Since events represent something that occurred in the past, the importance of va
 
 The other reason to use interfaces is that they enable multiple inheritance, which is very useful for extending a system over time from one version to the next, without breaking existing subscribers.
 
-Let's say that in version 1 of a publisher, it exposed an event of type X. In version 2, we added a new event of type Y. Then in version 3, a new requirement comes along for a type of event, Z, which means that both X and Y occurred. If X, Y, and Z were implemented as interfaces, we could have Z inherit both X and Y. The main advantage of this is that when Z is published, subscribers of X and Y receive the event with no changes required of them, as well as subscribers of Z, of course.
+Let's say that in version 1 of a publisher, it exposed an event of type X. In Version 2, we added a new event of type Y. Then in Version 3, a new requirement comes along for a type of event, Z, which means that both X and Y occurred. If X, Y, and Z were implemented as interfaces, we could have Z inherit both X and Y. The main advantage of this is that when Z is published, subscribers of X and Y receive the event with no changes required of them, as well as subscribers of Z, of course.
 
 This would not be possible using classes.
 

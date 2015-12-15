@@ -59,7 +59,7 @@ snippet:IMutateOutgoingTransportMessages
 
 #### IMutateTransportMessages
 
-`IMutateTransportMessages` is an interface that combines both `IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`.  It only exists in Version 5 and lower. In Version 6 and higher implement both `IMutateTransportMessages` and `IMutateOutgoingTransportMessages` instead.
+`IMutateTransportMessages` is an interface that combines both `IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`. It only exists in Version 5 and lower. In Version 6 and higher implement both `IMutateTransportMessages` and `IMutateOutgoingTransportMessages` instead.
 
 
 ## Registering a Mutator

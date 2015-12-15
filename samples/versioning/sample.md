@@ -10,11 +10,11 @@ In this sample there are two message projects: `V1.Messages` and `V2.Messages`:
  
 snippet:V1Message
 
-The version 2 message schema inherits from the version 1 schema as shown below, adding another property on top of the properties in the version 1 schema.
+The Version 2 message schema inherits from the version 1 schema as shown below, adding another property on top of the properties in the version 1 schema.
 
 snippet:V2Message
 
-There are two subscribers as before, but now one subscriber is subscribed to the version 1 message schema, `V1Subscriber`; and the other subscriber is subscribed to the version 2 message schema, `V2Subscriber`.
+There are two subscribers as before, but now one subscriber is subscribed to the version 1 message schema, `V1Subscriber`; and the other subscriber is subscribed to the Version 2 message schema, `V2Subscriber`.
 
 NOTE: Subscribers have a message handler for the messages from their respective versions. Yet there is a slight difference in their config files; `V1Subscriber` has the following in its `UnicastBusConfig`:
 
@@ -26,7 +26,7 @@ snippet:V2SubscriberMapping
 
 The only difference is that each subscriber maps the version of the schema on which it is dependent.
 
-Look at `V2Publisher`, which is very similar to the publisher from the PubSub sample. The only thing that `V2Publisher` is doing is publishing a message from the version 2 schema. However, the sample is run, `V1Subscriber` receives these messages as well:
+Look at `V2Publisher`, which is very similar to the publisher from the PubSub sample. The only thing that `V2Publisher` is doing is publishing a message from the Version 2 schema. However, the sample is run, `V1Subscriber` receives these messages as well:
 
 ## Publisher output
 

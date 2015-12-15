@@ -19,7 +19,7 @@ Ideally, server code processes messages transactionally, but it often isn't requ
 
 ## Specifying transactions in code
 
-If you aren't using the generic host, you can specify whether the current endpoint should process messages transactionally by setting the `.IsTransactional(true)` after `.MsmqTransport()` (in version 3) or `.UseTransport<Msmq>()` (in version 4).
+If you aren't using the generic host, you can specify whether the current endpoint should process messages transactionally by setting the `.IsTransactional(true)` after `.MsmqTransport()` (in Version 3) or `.UseTransport<Msmq>()` (in Version 4).
 
 To override the System.Transactions default timeout of 10 minutes, follow the steps described in [this blog post](http://blogs.msdn.com/b/ajit/archive/2008/06/18/override-the-system-transactions-default-timeout-of-10-minutes-in-the-code.aspx).
 
@@ -61,15 +61,15 @@ Finally, check the TCP ports in use on the servers, making sure that each has a 
 
 Messages are processed in NServiceBus as follows:
 
-1.  The queue is peeked to see if there's a message.
-2.  If so, a distributed transaction is started.
-3.  The queue is contacted again to receive a message. This is because multiple threads may have peeked the same message. The queue makes sure only one thread actually gets a given message.
-4.  If the thread is able to get it, NServiceBus tries to deserialize the message. If this fails, the message moves to the configured error queue and the transaction commits.
-5.  After a successful deserialization, NServiceBus invokes all infrastructure, message mutators and handlers. An exception in this step causes the transaction to roll back and the message to return to the input queue.
+ 1. The queue is peeked to see if there's a message.
+ 1. If so, a distributed transaction is started.
+ 1. The queue is contacted again to receive a message. This is because multiple threads may have peeked the same message. The queue makes sure only one thread actually gets a given message.
+ 1. If the thread is able to get it, NServiceBus tries to deserialize the message. If this fails, the message moves to the configured error queue and the transaction commits.
+ 1. After a successful deserialization, NServiceBus invokes all infrastructure, message mutators and handlers. An exception in this step causes the transaction to roll back and the message to return to the input queue.
 
-    -   This happens the "MaxRetries" [configurable](/nservicebus/msmq/transportconfig.md#maxretries) number of times.
-    -   After that, the message passes to the [Second Level Retries (SLR).](/nservicebus/errors/automatic-retries.md)
-    -   If after SLR the error still occurs, the message will be moved to the configured error queue.
+    * This happens the "MaxRetries" [configurable](/nservicebus/msmq/transportconfig.md#maxretries) number of times.
+    * After that, the message passes to the [Second Level Retries (SLR).](/nservicebus/errors/automatic-retries.md)
+    * If after SLR the error still occurs, the message will be moved to the configured error queue.
 
 In this manner, even under all kinds of failure conditions like the application server restarting in the middle of a message or a database deadlock, messages are not lost.
 
@@ -80,9 +80,9 @@ The automatic retry mechanism is usually able to recover from most temporary pro
 
 In situations where more permanent errors affect systems, despite their diversity, the NServiceBus solution is the same. Before describing it, let's see examples of some of these situations:
 
--   The database is down.
--   An external or internal web service is down.
--   The system was upgraded accidentally, breaking backwards compatibility.
+ * The database is down.
+ * An external or internal web service is down.
+ * The system was upgraded accidentally, breaking backwards compatibility.
 
 In all of the above, administrative action is needed, from things as simple as bringing up a database or web service again, to more complex actions like reverting to the previous version of the system.
 

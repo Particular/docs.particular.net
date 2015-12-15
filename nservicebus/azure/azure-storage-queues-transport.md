@@ -22,7 +22,7 @@ Azure Queue storage is a service, hosted on the Azure platform, for storing larg
 
 ## How to enable the transport
 
-First you need to reference the assembly that contains the Azure storage queue transport definition. The recommended way of doing this is by adding a NuGet package reference to the  [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/) package to your project.
+First you need to reference the assembly that contains the Azure storage queue transport definition. The recommended way of doing this is by adding a NuGet package reference to the [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureStorageQueues/) package to your project.
 
 Once you've done that you can use the configuration API to setup NServiceBus, all you need to do is specify `.UseTransport<T>()` to override the default transport.
 

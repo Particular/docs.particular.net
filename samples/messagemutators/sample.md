@@ -10,8 +10,8 @@ related:
 - samples/header-manipulation
 ---
 
-1.  Run the solution.
-2.  Press 's' and 'Enter' in the window. Then press 'e' followed by 'Enter'.
+ 1. Run the solution.
+ 1. Press 's' and 'Enter' in the window. Then press 'e' followed by 'Enter'.
     The Console  output will look something like this (the exception message is expected):
 
 ```

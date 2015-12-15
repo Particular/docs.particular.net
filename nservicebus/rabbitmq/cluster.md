@@ -7,7 +7,7 @@ The [RabbitMQ Clustering Guide](https://www.rabbitmq.com/clustering.html) recomm
 
 If each of your clients is deployed to a machine which is running at least one RabbitMQ node in the cluster, another approach you may consider is to configure your client to only connect to the local node, e.g. using `localhost` as the hostname. Note that the RabbitMQ nodes must still be clustered, otherwise clients on each machine will only have access to the messages which originated locally.
 
-In version 2.x of the RabbitMQ transport, we provided the facility to specify multiple hostnames in the connection string. We removed this facility in version 3.0 for the reasons stated in the guide. We also found that this feature caused the following 
+In Version 2.x of the RabbitMQ transport, we provided the facility to specify multiple hostnames in the connection string. We removed this facility in Version 3.0 for the reasons stated in the guide. We also found that this feature caused the following 
 
   - Encouraged a misconception that the RabbitMQ transport was providing load balancing by sending messages to each node in a round-robin fashion. 
   - Led to the belief that the RabbitMQ nodes themselves did not need to be clustered.

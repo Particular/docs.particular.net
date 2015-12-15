@@ -33,20 +33,20 @@ NOTE: Extensions to NServiceBus (for example `NServiceBus.Distributor.MSMQ.dll` 
 
 ## Nested Directories
 
-BETA: In version 6 default behavior for assembly scanning has changed not to scan nested folders for assemblies.
+BETA: In Version 6 default behavior for assembly scanning has changed not to scan nested folders for assemblies.
 
-For version 5 and below assemblies in nested folders were automatically scanned by default. 
+For Version 5 and below assemblies in nested folders were automatically scanned by default. 
 
-From version 6, default behavior is not to scan nested folders for assemblies. You can enable nested folders assembly scanning using:
+From Version 6, default behavior is not to scan nested folders for assemblies. You can enable nested folders assembly scanning using:
 
 snippet:ScanningNestedAssebliesEnabled
 
 
 ## Assemblies to scan
 
-In version 5 and earlier the API for assembly scanning took an "Include a list" approach. This proved to be problematic. Many extensions to NServiceBus rely on assembly scanning, for example transports and persistences in external NuGets. If, at endpoint configuration time, a list of assemblies was generated, and that list did not include extension assemblies, the endpoint would fail at runtime with some unexpected and hard to diagnose behaviors. 
+In Version 5 and earlier the API for assembly scanning took an "Include a list" approach. This proved to be problematic. Many extensions to NServiceBus rely on assembly scanning, for example transports and persistences in external NuGets. If, at endpoint configuration time, a list of assemblies was generated, and that list did not include extension assemblies, the endpoint would fail at runtime with some unexpected and hard to diagnose behaviors. 
 
-In version 6 the API has been changes to an "Exclude a list" approach. This supports that the common scenario removing specific assemblies from scanning without the common side effect of accidentally excluding required assemblies.
+In Version 6 the API has been changes to an "Exclude a list" approach. This supports that the common scenario removing specific assemblies from scanning without the common side effect of accidentally excluding required assemblies.
 
 
 ## Exclude a list approach
@@ -64,7 +64,7 @@ snippet:ScanningExcludeTypes
 
 ## Include a list approach
 
-Note: These options are deprecated from version 6 and later.
+Note: These options are deprecated from Version 6 and later.
 
 
 ### Including assemblies:

@@ -7,7 +7,7 @@ redirects:
 - nservicebus/persistence-order
 ---
 
-When configuring persistence in NServiceBus version 5, order is very important.
+When configuring persistence in NServiceBus Version 5, order is very important.
 The last configured persistence option wins.
 Lets have a look at some examples.
 

@@ -18,7 +18,7 @@ tags:
 
 * Make sure you follow the guidance in [How to configure endpoints for monitoring by ServicePulse](how-to-configure-endpoints-for-monitoring.md)
 * Restart the endpoint after copying the Endpoint Plugin files into the endpoint's Bin directory
-* Make sure that the endpoint references NServiceBus version 4.0.0 or later
+* Make sure that the endpoint references NServiceBus Version 4.0.0 or later
 * Make sure auditing is turned on for the endpoint, and the audited messages are forwarded to the correct audit and error queues monitored by ServiceControl
 
 
@@ -67,11 +67,11 @@ The installation path of an endpoint is used by ServiceControl and ServicePulse 
 To workaround this issue see [Override host identifier](/nservicebus/hosting/override-hostid.md)
 
 
-### After enabling Heartbeat plugins for version 3 endpoints, ServicePulse reports that endpoints are inactive
+### After enabling Heartbeat plugins for Version 3 endpoints, ServicePulse reports that endpoints are inactive
 
-Messages that were forwarded to the audit queue by NSB version 3.x version of the endpoints did not have the `HostId` header available which uniquely identifies the endpoint. Adding the heartbeat plugin for version 3 endpoints automatically enriches the headers with this `HostId` information using a message mutator. Since the original message that was processed from the audit/error queue did not have this identifier, it is hard to correlate the messages received via the heartbeat that these belong to the same endpoint. Therefore there appears to be a discrepancy in the Endpoints Indicator.
+Messages that were forwarded to the audit queue by NSB Version 3.x version of the endpoints did not have the `HostId` header available which uniquely identifies the endpoint. Adding the heartbeat plugin for Version 3 endpoints automatically enriches the headers with this `HostId` information using a message mutator. Since the original message that was processed from the audit/error queue did not have this identifier, it is hard to correlate the messages received via the heartbeat that these belong to the same endpoint. Therefore there appears to be a discrepancy in the Endpoints Indicator.
 
-To workaround this issue in order to monitor version 3 endpoints:
+To workaround this issue in order to monitor Version 3 endpoints:
 
-- Add the heartbeat plugin to all version 3 endpoints, which will add the requisite header with the host information, which ServiceControl can then process.
+- Add the heartbeat plugin to all Version 3 endpoints, which will add the requisite header with the host information, which ServiceControl can then process.
 - Restart ServiceControl to clear the endpoint counter.

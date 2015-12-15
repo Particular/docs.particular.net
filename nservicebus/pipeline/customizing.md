@@ -7,11 +7,11 @@ redirects:
 - nservicebus/pipeline/customizing
 ---
 
-NServiceBus has always had the concept of a pipeline execution order that is executed when a message is received and also when a message is dispatched. NServiceBus version 5 makes this pipeline a first level concept and exposes it for extensibility. This now allows end users to take full control of the incoming and outgoing functionality.
+NServiceBus has always had the concept of a pipeline execution order that is executed when a message is received and also when a message is dispatched. NServiceBus Version 5 makes this pipeline a first level concept and exposes it for extensibility. This now allows end users to take full control of the incoming and outgoing functionality.
 
-In NServiceBus version 5, there are two explicit pipelines: one for the outgoing messages and one for the incoming messages. Each pipeline is composed of "Steps". The steps have built-in behavior and this behavior can now be easily replaced. A completely new step containing new behavior can also be added to the pipeline. 
+In NServiceBus Version 5, there are two explicit pipelines: one for the outgoing messages and one for the incoming messages. Each pipeline is composed of "Steps". The steps have built-in behavior and this behavior can now be easily replaced. A completely new step containing new behavior can also be added to the pipeline. 
 
-A step is an identifiable value in the pipeline. The steps are used to programmatically define order of execution in the pipeline. Each step is a placeholder for a behavior which is the actual code.  Each behavior is responsible for invoking the next item in the pipeline.
+A step is an identifiable value in the pipeline. The steps are used to programmatically define order of execution in the pipeline. Each step is a placeholder for a behavior which is the actual code. Each behavior is responsible for invoking the next item in the pipeline.
 
 The steps in the processing pipeline are dynamic in nature. They are added or removed based on what features are enabled. For example, if an endpoint has Sagas then the Saga feature will be enabled by default, which in turn adds extra steps to the incoming pipeline to facilitate the handling of sagas. 
 
@@ -97,9 +97,9 @@ As of Version 5.1 if a message fails to deserialize a `MessageDeserializationExc
 
 #### When to throw
 
-The implementation of `DeserializeLogicalMessagesBehavior` handles deserialization and can throw `MessageDeserializationException`. So any behavior that replaces  `DeserializeLogicalMessagesBehavior` should duplicate this functionality.
+The implementation of `DeserializeLogicalMessagesBehavior` handles deserialization and can throw `MessageDeserializationException`. So any behavior that replaces `DeserializeLogicalMessagesBehavior` should duplicate this functionality.
 
 
 #### When to handle
 
-The implementation of `UnitOfWorkBehavior` handles aggregating multiple exceptions that can occur in a unit of work. However `MessageDeserializationException` is re-thrown (not aggregated). So any behavior that replaces  `UnitOfWorkBehavior` should duplicate this functionality.   
+The implementation of `UnitOfWorkBehavior` handles aggregating multiple exceptions that can occur in a unit of work. However `MessageDeserializationException` is re-thrown (not aggregated). So any behavior that replaces  `UnitOfWorkBehavior` should duplicate this functionality.

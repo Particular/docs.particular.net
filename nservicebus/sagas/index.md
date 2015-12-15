@@ -35,11 +35,11 @@ Using NServiceBus, you can explicitly define the data used for this state by inh
 
 <!-- import simple-saga-data --> 
 
-There are two production-supported storage mechanisms for saga data in NServiceBus, namely RavenDB and NHibernate. Prior to version 5, RavenDB was a default implementation. Since NServiceBus 5, both implementations are equal and the user needs to explicitly chose one.
+There are two production-supported storage mechanisms for saga data in NServiceBus, namely RavenDB and NHibernate. Prior to Version 5, RavenDB was a default implementation. Since NServiceBus 5, both implementations are equal and the user needs to explicitly chose one.
 
 Both implementations have their strong points. While the schema-less nature of document databases makes them a perfect fit for saga storage where each saga instance is persisted as a single document, NHibernate allows using almost any relational database engine existing. 
 
-You can, as always, swap out these technologies, by implementing the `ISagaPersister` interface (`IPersistSagas` prior to version 5).
+You can, as always, swap out these technologies, by implementing the `ISagaPersister` interface (`IPersistSagas` prior to Version 5).
 
 
 ## Adding behavior
@@ -69,7 +69,7 @@ In Version 6 and higher NServiceBus will enforce that all correlated properties 
 
 In Version 6 and higher NServiceBus will not allow you to change the value of correlated properties for existing instances.
 
-Since version 5 it is possible to specify the mapping to the message using expressions if the correlation information is split between multiple fields.
+Since Version 5 it is possible to specify the mapping to the message using expressions if the correlation information is split between multiple fields.
 
 Version 5 and below allowed you to correlate on more than one saga property.
 }}
@@ -97,7 +97,7 @@ NServiceBus will make sure that all properties used for correlation is unique ac
 
 Mapping a single message to multiple saga instances is not supported. Should you need this you can simulate this by using a message handler that looks up all saga instance affected and send a separate message targeting each of those instances using the regular correlation described above.
 
-NOTE: Versions prior to version 6 required you to put a `[Unique]` attribute on the saga properties used for correlation to enforce uniqueness
+NOTE: Versions prior to Version 6 required you to put a `[Unique]` attribute on the saga properties used for correlation to enforce uniqueness
 
 Read more about the [concurrency](concurrency.md).
 
@@ -144,7 +144,7 @@ Sagas often play the role of coordinator, especially when used in integration sc
 
 A typical scenario is a saga controlling the process of billing a customer through Visa or MasterCard. In this case you probably have separate endpoints for making the web service/rest-calls to each payment provider and a saga coordinating retries and fallback rules. Each payment request would be a separate saga instance, so how would we know which instance to hydrate and invoke when the response returns?
 
-The usual way is to correlate on some kind of ID and let the user tell you how to find the correct saga instance using that ID. While this is easily done we decided that this was common enough to warrant native support in NServiceBus for these type of interactions. In version 3.0, NServiceBus handles all this for you without getting in your way. If you do `IBus.Reply` in response to a message coming from a saga, NServiceBus will detect it and automatically set the correct headers so that you can correlate the reply back to the saga instance that issued the request. The exception to this rule is the request/response message exchange between two sagas. In such case the automatic correlation won't work and the reply message needs to be explicitly mapped using `ConfigureHowToFindSaga`.
+The usual way is to correlate on some kind of ID and let the user tell you how to find the correct saga instance using that ID. While this is easily done we decided that this was common enough to warrant native support in NServiceBus for these type of interactions. In Version 3.0, NServiceBus handles all this for you without getting in your way. If you do `IBus.Reply` in response to a message coming from a saga, NServiceBus will detect it and automatically set the correct headers so that you can correlate the reply back to the saga instance that issued the request. The exception to this rule is the request/response message exchange between two sagas. In such case the automatic correlation won't work and the reply message needs to be explicitly mapped using `ConfigureHowToFindSaga`.
 
 
 ## Querying Saga Data

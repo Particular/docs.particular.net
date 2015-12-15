@@ -59,29 +59,32 @@ To run the service this way the user account must have rights to log on interact
 2. Substitute the appropriate domain and user name. 
 2. Issue the following command, entering the password when prompted:
 
+For example
+
 ```
-e.g.   runas /user:MyDomain\MyTestUser cmd.exe
+runas /user:MyDomain\MyTestUser cmd.exe
 ```
 
-If the command returns the error below then you cannot test the user account this way without adjusting the logon rights.  Normally this only occurs if the computer is configured as a domain controller or the System Administrator has restricted logon access using group policies. 
+If the command returns the error below then you cannot test the user account this way without adjusting the logon rights. Normally this only occurs if the computer is configured as a domain controller or the System Administrator has restricted logon access using group policies.
 
-``` 
+```
 1385: Logon failure: the user has not been granted the requested logon type at this computer.
 ```
 
 Once logon rights are granted you can proceed:
 
-3. Ensure that the service is stopped. 
-3. From the command prompt running as the service account, change to the ServiceControl installation directory and run `ServiceControl.exe` with the `--serviceName` parameter. In the following example the default name has been used. Check the ServiceControl Management Utility if you are unsure of the service name 
-3. Examine the output and confirm that there are no critical errors.
-3. Shut down the console session. 
-3. Start the service.
+ 1. Ensure that the service is stopped. 
+ 1. From the command prompt running as the service account, change to the ServiceControl installation directory and run `ServiceControl.exe` with the `--serviceName` parameter. In the following example the default name has been used. Check the ServiceControl Management Utility if you are unsure of the service name 
+ 1. Examine the output and confirm that there are no critical errors.
+ 1. Shut down the console session. 
+ 1. Start the service.
 
 ```
 ServiceControl.exe --serviceName=Particular.ServiceControl
 ```
 
 NOTE: You must specify the correct name of the service on the command line as this impacts the queues names used.
+
 
 ### Expected Warnings when Running as a Non-Privileged Account
 

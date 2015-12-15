@@ -6,9 +6,9 @@ redirects:
  - nservicebus/using-the-in-memory-bus
 ---
 
-NOTE: Bus.InMemory feature has been deprecated starting from version 4.6 and removed in version 5.0
+NOTE: Bus.InMemory feature has been deprecated starting from Version 4.6 and removed in Version 5.0
 
-Prior to version 4.0, NServiceBus provided an asynchronous method of communication between parts of the system using `Send`, `Reply`, and `Publish` API. Asynchronous forms of communication are great for ensuring reliable and durable communication between parts of the system. NServiceBus version 4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.
+Prior to Version 4.0, NServiceBus provided an asynchronous method of communication between parts of the system using `Send`, `Reply`, and `Publish` API. Asynchronous forms of communication are great for ensuring reliable and durable communication between parts of the system. NServiceBus Version 4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.
 
 This is the same concept as for the [domain events pattern](http://udidahan.com/2009/06/14/domain-events-salvation/).
 
@@ -149,5 +149,5 @@ When an event is raised, the bus invokes the `Handle` method on all the register
 
 This style of eventing has two significant advantages:
 
--   When new business requirements are introduced, the requirements can be implemented in the same service-oriented style of architecture, for extensibility. New handlers can be introduced to implement the requirements along with the existing handlers. By restarting the endpoint, the bus becomes aware of the new handlers. When the event is raised, the new handlers are invoked. This reduces the testing effort by implementing in such a way as to **not** touch existing working code to implement new functionality.
--   An easier way to scale out, when necessary. For example, to start with, the handlers can be deployed to the one endpoint to keep deployment small and the events raised using `Bus.InMemory.Raise<T>`. When the need to scale arises, each of these handlers can then be distributed to different endpoints across the same or different machines as needed. You can then change the `Bus.InMemory.Raise<T>` to a `Bus.Publish<T>` and add the necessary message mapping configuration in app.config for the message handlers in other endpoints to receive these events.
+ * When new business requirements are introduced, the requirements can be implemented in the same service-oriented style of architecture, for extensibility. New handlers can be introduced to implement the requirements along with the existing handlers. By restarting the endpoint, the bus becomes aware of the new handlers. When the event is raised, the new handlers are invoked. This reduces the testing effort by implementing in such a way as to **not** touch existing working code to implement new functionality.
+ * An easier way to scale out, when necessary. For example, to start with, the handlers can be deployed to the one endpoint to keep deployment small and the events raised using `Bus.InMemory.Raise<T>`. When the need to scale arises, each of these handlers can then be distributed to different endpoints across the same or different machines as needed. You can then change the `Bus.InMemory.Raise<T>` to a `Bus.Publish<T>` and add the necessary message mapping configuration in app.config for the message handlers in other endpoints to receive these events.

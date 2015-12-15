@@ -13,14 +13,11 @@ With the default NServiceBus.Host, your application always loads in 64-bit (x64)
 
 But if assemblies or other libraries containing 32-bit code must be invoked and loaded into the process, you have a problem, called `BadImageFormatException`.
 
-Beginning with NServiceBus version 3, there are two specific versions of the NServiceBus Host: the default Any CPU version and `NServiceBus.Host32.exe`. 
+Beginning with NServiceBus Version 3, there are two specific versions of the NServiceBus Host: the default Any CPU version and `NServiceBus.Host32.exe`. 
 
 The second one allows users running a 64-bit OS to run a 32-bit NServiceBus process, allowing execution of 32-bit binaries/code without resorting to workarounds such as `corflags.exe`, which instruct the .NET Framework to run in 32-bit mode.
 
 Links to the NuGet packages:
 
--   [NServiceBus.Host (32-bit and 64-bit)](https://www.nuget.org/packages/NServiceBus.Host)
--   [NServiceBus.Host32 (32-bit only)](https://www.nuget.org/packages/NServiceBus.Host32)
-
-
-
+ * [NServiceBus.Host (32-bit and 64-bit)](https://www.nuget.org/packages/NServiceBus.Host)
+ * [NServiceBus.Host32 (32-bit only)](https://www.nuget.org/packages/NServiceBus.Host32)

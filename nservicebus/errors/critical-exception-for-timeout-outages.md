@@ -1,8 +1,6 @@
 ---
 title: Wait time for raising critical exception
-summary: |
-         A critical error is raised when timeout retrieval fails.
-         By default we wait for 2 seconds for the storage to come back.
+summary: A critical error is raised when timeout retrieval fails. By default we wait for 2 seconds for the storage to come back.
 tags: 
 - timeout
 redirects:
@@ -12,7 +10,3 @@ redirects:
 To change the default and extend the wait time:
 
 snippet:TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages 
-
-
-
-
