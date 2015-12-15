@@ -24,7 +24,7 @@ If handling a message causes more messages to be sent or published then the `Mes
 
 Another header that gets copied to outgoing messages is `NServiceBus.ConversationId`. The first mesgsage to be sent in a conversation will get a unique `ConversationId`. Each subsequent message will get the same `ConversationId`.
 
-There are additional headers which are used to label endpoints, messages and message processing. [More information about headers](/nservicebus/messaging/headers).
+There are additional headers which are used to label endpoints, messages and message processing. [More information about headers](/nservicebus/messaging/headers.md).
 
 ## What is on the diagram
 
