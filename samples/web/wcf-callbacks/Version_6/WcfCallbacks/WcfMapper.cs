@@ -6,19 +6,19 @@ using NServiceBus;
 #region WcfMapper 
 public class WcfMapper : IDisposable
 {
-    IBusContext busContext;
+    IBusSession busSession;
     string server;
     List<ServiceHost> serviceHosts = new List<ServiceHost>();
 
-    public WcfMapper(IBusContext busContext, string server)
+    public WcfMapper(IBusSession busSession, string server)
     {
-        this.busContext = busContext;
+        this.busSession = busSession;
         this.server = server;
     }
 
     public void StartListening<TMessage, TResponse>()
     {
-        ServiceHost host = new ServiceHost(new CallbackService<TMessage, TResponse>(busContext));
+        ServiceHost host = new ServiceHost(new CallbackService<TMessage, TResponse>(busSession));
         BasicHttpBinding binding = new BasicHttpBinding();
         string address = AddressBuilder.GetAddress<TMessage, TResponse>(server);
         Type contract = typeof(ICallbackService<TMessage, TResponse>);

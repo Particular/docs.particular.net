@@ -7,12 +7,12 @@
     {
         async void Simple()
         {
-            IBusContext busContext = null;
+            IBusSession busSession = null;
             SendOptions sendOptions = new SendOptions();
             #region ObjectCallback
 
             Message message = new Message();
-            ResponseMessage response = await busContext.Request<ResponseMessage>(message, sendOptions);
+            ResponseMessage response = await busSession.Request<ResponseMessage>(message, sendOptions);
             Console.WriteLine("Callback received with response:" + response.Property);
 
             #endregion

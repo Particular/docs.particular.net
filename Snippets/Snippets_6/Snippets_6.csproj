@@ -51,15 +51,17 @@
     <Reference Include="NLog">
       <HintPath>..\..\packages\NLog.4.2.2\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Callbacks">
-      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0021\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+    <Reference Include="NServiceBus.Callbacks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0024\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.CommonLogging, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.CommonLogging.2.2.0-unstable0007\lib\net452\NServiceBus.CommonLogging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1288\lib\net452\NServiceBus.Core.dll</HintPath>
+    <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1291\lib\net452\NServiceBus.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Host, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Host.7.0.0-unstable0031\lib\net452\NServiceBus.Host.exe</HintPath>
@@ -111,6 +113,19 @@
     <Compile Include="BestPracticesConfiguration.cs" />
     <Compile Include="BusNotifications\SubscribeToNotifications.cs" />
     <Compile Include="BusNotifications\EventsToObservables.cs" />
+    <Compile Include="Callback\Cancellation\Message.cs" />
+    <Compile Include="Callback\Cancellation\Usage.cs" />
+    <Compile Include="Callback\Enum\Handler.cs" />
+    <Compile Include="Callback\Enum\Message.cs" />
+    <Compile Include="Callback\Enum\Status.cs" />
+    <Compile Include="Callback\Enum\Usage.cs" />
+    <Compile Include="Callback\Int\Handler.cs" />
+    <Compile Include="Callback\Int\Message.cs" />
+    <Compile Include="Callback\Int\Usage.cs" />
+    <Compile Include="Callback\Object\Handler.cs" />
+    <Compile Include="Callback\Object\Message.cs" />
+    <Compile Include="Callback\Object\ResponseMessage.cs" />
+    <Compile Include="Callback\Object\Usage.cs" />
     <Compile Include="Conventions\Usage.cs" />
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
