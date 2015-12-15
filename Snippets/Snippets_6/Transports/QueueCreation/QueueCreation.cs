@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Settings;
@@ -14,7 +13,7 @@
         protected override TransportReceivingConfigurationResult ConfigureForReceiving(TransportReceivingConfigurationContext context)
         {
             return new TransportReceivingConfigurationResult(
-                c => default(IPushMessages),
+                () => new YourMessagePump(),
                 () => new YourQueueCreator(),
                 () => Task.FromResult(StartupCheckResult.Success));
         }
@@ -30,9 +29,9 @@
             yield break;
         }
 
-        public override TransactionSupport GetTransactionSupport()
+        public override TransportTransactionMode GetSupportedTransactionMode()
         {
-            return TransactionSupport.None;
+            throw new NotImplementedException();
         }
 
         public override IManageSubscriptions GetSubscriptionManager()
@@ -58,42 +57,4 @@
         public override string ExampleConnectionStringForErrorMessage { get; }
     }
 
-    class YourQueueCreator : ICreateQueues
-    {
-        public Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
-        {
-            return Task.FromResult(0);
-        }
-    }
-
-    #region SequentialCustomQueueCreator
-    class SequentialQueueCreator : ICreateQueues
-    {
-        public async Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
-        {
-            foreach (string address in queueBindings.ReceivingAddresses)
-            {
-                await CreateQueue(address);
-            }
-        }
-        #endregion
-        static Task CreateQueue(string address)
-        {
-            return Task.FromResult(address);
-        }
-    }
-
-    #region ConcurrentCustomQueueCreator
-    class ConcurrentQueueCreator : ICreateQueues
-    {
-        public async Task CreateQueueIfNecessary(QueueBindings queueBindings, string identity)
-        {
-            await Task.WhenAll(queueBindings.SendingAddresses.Select(CreateQueue));
-        }
-        #endregion
-        static Task CreateQueue(string address)
-        {
-            return Task.FromResult(address);
-        }
-    }
 }
