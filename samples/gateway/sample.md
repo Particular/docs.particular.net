@@ -64,4 +64,4 @@ snippet: PriceUpdatedHandler
 
 This project represents an external integration point. It sends a `UpdatePrice` to the channel `http://localhost:25899/Headquarter/`.
 
-snippet: SendUpdatePric
+snippet: SendUpdatePrice
