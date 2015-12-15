@@ -13,7 +13,7 @@ NServiceBus uses the process config file as its default source of configuration.
 
 The preferred method of overriding a specific section is to use the `IProvideConfiguration<T>` model. For example, rather than providing the RijndaelEncryptionServiceConfig in app.config, you could provide it in code:
 
-snippet: import CustomConfigProvider
+snippet: CustomConfigProvider
 
 Just adding the code above is enough since NServiceBus will automatically use it found in the types scanned.
 
@@ -25,7 +25,7 @@ If you don't want your process to have its configuration specified in the config
 
 ### Initialize the bus to use the custom configuration source
 
-snippet:RegisterCustomConfigSource
+snippet: RegisterCustomConfigSource
 
 
 ### Define your custom configuration source to provide the configuration values instead of app.config
