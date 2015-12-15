@@ -9,4 +9,10 @@ public class MyFeatureStartupTask : FeatureStartupTask
         Logger.WriteLine("Inside FeatureStartupTask.OnStart");
         return Task.FromResult(0);
     }
+
+    protected override Task OnStop(IBusContext context)
+    {
+        Logger.WriteLine("Inside FeatureStartupTask.OnStop");
+        return Task.FromResult(0);
+    }
 }
