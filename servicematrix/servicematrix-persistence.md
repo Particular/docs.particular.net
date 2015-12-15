@@ -8,7 +8,7 @@ tags:
 
 NServiceBus requires a persistence store. By default, ServiceMatrix provisions your solution to use the `InMemoryPersistence` class, but only if the Visual Studio debugger is attached. If you attempt to run your project without the debugger attached, you will receive an exception informing you to choose a durable persistence class.
 
-NServiceBus offers multiple options for different persistence technologies. Please read [Persistence In NServiceBus](/nservicebus/persistence/) for an overview. The example below shows how to setup the RavenDB persistence store, but a similar process can be used for the other stores. 
+NServiceBus offers multiple options for different persistence technologies. Please read [Persistence In NServiceBus](/nservicebus/persistence/) for an overview. The example below shows how to setup the RavenDB persistence store, but a similar process can be used for the other stores.
 
 # Installing the RavenDB NuGet Package
 
@@ -24,14 +24,14 @@ NOTE: When prompted to reload the project, click reload
 
 # Selecting Persistence for an ASP.NET MVC Endpoint
 
-For an ASP.NET MVC endpoint, you will find the setup in `Infrastructure\WebGlobalInitialization.cs`. 
+For an ASP.NET MVC endpoint, you will find the setup in `Infrastructure\WebGlobalInitialization.cs`.
 
 ````C#
 if (Debugger.IsAttached)
 {
     // For production use, please select a durable persistence.
     // To use RavenDB, install-package NServiceBus.RavenDB and then use configuration.UsePersistence<RavenDBPersistence>();
-    // To use SQLServer, install-package NServiceBus.NHibernate and then use configuration.UsePersistence<NHibernatePersistence>();    
+    // To use SQLServer, install-package NServiceBus.NHibernate and then use configuration.UsePersistence<NHibernatePersistence>();   
     config.UsePersistence<InMemoryPersistence>();
 ...
 ````
@@ -73,10 +73,10 @@ Modify the code in `EndpointConfig.cs`.
 ````C#
 using NServiceBus;
 using NServiceBus.Persistence;
- 
+
 namespace OnlineSales.OrderProcessing
 {
-    public partial class EndpointConfig    
+    public partial class EndpointConfig   
     {
         public void Customize(BusConfiguration configuration)
         {

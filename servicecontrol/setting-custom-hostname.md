@@ -6,7 +6,7 @@ tags:
 - ServicePulse
 ---
 
-## Changing the ServiceControl URI 
+## Changing the ServiceControl URI
 
 To set a custom hostname and IP port for an instance of the ServiceControl service:
 
@@ -19,17 +19,17 @@ NOTE: Anyone who can access the ServiceControl URL has complete access to the me
 1. Click Save
 
 The ServiceControl Management Utility will then validate the settings changes and restart the service to apply the changes.
-The utility handles any required URLACL changes so the manual steps outlined in `Updating URL Changes` do not need to be carries out. 
+The utility handles any required URLACL changes so the manual steps outlined in `Updating URL Changes` do not need to be carries out.
 
 ### Manually changing the Configuration
 
 1. Open the ServiceControl configuration file
-1. Add or Modify the `ServiceControl/Hostname` and `ServiceControl/Port` settings in the `<appSettings>` section. 
+1. Add or Modify the `ServiceControl/Hostname` and `ServiceControl/Port` settings in the `<appSettings>` section.
 
 
-The following example configures ServiceControl to listen to on port 33333.  The HostName value in this example is a wildcard. This instructs ServiceControl to respond to requests on all resolvable names for the host ( hostname, IP Address, DNS aliases etc). This change must also be reflected via a URLACL change (see below) 
+The following example configures ServiceControl to listen to on port 33333.  The HostName value in this example is a wildcard. This instructs ServiceControl to respond to requests on all resolvable names for the host ( hostname, IP Address, DNS aliases etc). This change must also be reflected via a URLACL change (see below)
 
-```xml 
+```xml
 <add key="ServiceControl/Hostname" value="*" />
 <add key="ServiceControl/Port" value="33333" />
 ```
@@ -45,18 +45,18 @@ NOTE: You must set both the `ServiceControl/Hostname` and the `ServiceControl/Po
 
 #### Updating URLACL Settings
 
-If you have modified the hostname settings manually you must change the URLACL settings to allow the service to listen on the resultant URL.  
+If you have modified the hostname settings manually you must change the URLACL settings to allow the service to listen on the resultant URL. 
 
-1. After modifying the configuration file manually, update the URLACL configurations accordingly. 
+1. After modifying the configuration file manually, update the URLACL configurations accordingly.
 1. Allow access to the ports specified for ServiceControl hostname & port number by configuring firewalls.
 
-For example, the following command line (with the appropriate adjustments for your hostname and port number) adds the relevant URLACL setting:  
+For example, the following command line (with the appropriate adjustments for your hostname and port number) adds the relevant URLACL setting: 
 
 ```
 netsh http add urlacl  url=http://*:33333/api/  user=everyone  listen=yes
 ```
 
-Listing the current URLACLs can be done using the following command:    
+Listing the current URLACLs can be done using the following command:   
 
 ```
 netsh http show urlacl`
@@ -67,10 +67,10 @@ Ensure that there are no overlapping URLACLs as this can cause ServiceControl to
 In the following example the wildcarded URLACL is removed:
 
 ```
-netsh http delete urlacl  url=http://*:33333/api/` 
+netsh http delete urlacl  url=http://*:33333/api/`
 ```
 
-It is important to understand that URLACLs do not restrict access to the URL based on the identity of the requestor, what they do is to restrict which user or security group can start to listen for incoming requests on the configured URL. 
+It is important to understand that URLACLs do not restrict access to the URL based on the identity of the requestor, what they do is to restrict which user or security group can start to listen for incoming requests on the configured URL.
 
 In the above sample `everyone` is for demonstration purpose. Be sure to configure your URLACL based on security policies defined in your environment.
 
@@ -81,4 +81,4 @@ ServiceControl will not start if the service account does not have access to lis
 
 1. Update the ServicePulse configuration file to access the updated ServiceControl hostname & port number. By default, the ServicePulse configuration file is located in `[Program Files]\Particular Software\ServicePulse\app\config.js`.
 1. Update the value of the `service_control_url` parameter to the specified ServiceControl hostname and IP port number.
-1. When next accessing ServicePulse, make sure to refresh the browser cache to allow ServicePulse to access the updated configuration settings. 
+1. When next accessing ServicePulse, make sure to refresh the browser cache to allow ServicePulse to access the updated configuration settings.

@@ -8,7 +8,7 @@ tags:
 ---
 
 
-NServiceBus can be configured to use [Spring](http://www.springframework.net/) as a dependency injection container. 
+NServiceBus can be configured to use [Spring](http://www.springframework.net/) as a dependency injection container.
 
 
 ## Usage

@@ -23,7 +23,7 @@ This sample shows:
 
 ### RavenDB setup
 
-This sample requires [RavenDB persistence](/nservicebus/ravendb/) package and a running RavenDB instance configured accordingly. 
+This sample requires [RavenDB persistence](/nservicebus/ravendb/) package and a running RavenDB instance configured accordingly.
 
 NServiceBus out of the box does not support saga data with multiple `Unique` attributes, in order to achieve that it is possible to utilize the default RavenDB `UniqueConstraint` Bundle. Follow the [instructions on the RavenDB site](http://ravendb.net/docs/search/latest/csharp?searchTerm=extending%20bundles%20unique-constraints) to correctly install the bundle in your RavenDB server. You also need to configure the client side of the bundle by registering the `UniqueConstraintsStoreListener` as shown above.
 
@@ -32,7 +32,7 @@ INFO: If you are running this sample against an external RavenDB server you need
 
 ### In Process Raven Host
 
-So that no running instance of RavenDB server is required. 
+So that no running instance of RavenDB server is required.
 
 snippet:ravenhost
 
@@ -65,6 +65,6 @@ NOTE: In the sample the implementation of the `ConfigureHowToFindSaga` method, t
 
 ### In Process Raven Host
 
-So that no running instance of RavenDB server is required. 
+So that no running instance of RavenDB server is required.
 
 snippet:ravenhost

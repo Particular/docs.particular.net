@@ -5,7 +5,7 @@ tags:
 - RavenDB
 - Persistence
 related:
-- samples/ravendb 
+- samples/ravendb
 - samples/unit-of-work/using-childcontainers
 redirects:
  - nservicebus/using-ravendb-in-nservicebus-connecting
@@ -87,7 +87,7 @@ One of the limitations of the RavenDB persistence is support for only one `[Uniq
 
 snippet:ravendb-persistence-stale-sagas
 
-**NOTE:** This is a potentially dangerous feature that can result in multiple instances of saga being created instead of one in cases of high contention. 
+**NOTE:** This is a potentially dangerous feature that can result in multiple instances of saga being created instead of one in cases of high contention.
 
 
 #### Transaction recovery storage

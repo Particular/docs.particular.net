@@ -8,7 +8,7 @@ related:
 
 ## Code walk-through
 
-Illustrates the order of startup shutdown operations including all extension points that plug into that process. So all interfaces that extend the startup and shutdown are included in an `ExtensionPoints` directory. 
+Illustrates the order of startup shutdown operations including all extension points that plug into that process. So all interfaces that extend the startup and shutdown are included in an `ExtensionPoints` directory.
 
 
 ## Logger
@@ -25,8 +25,8 @@ The main of the console `Program` configures and starts the bus while logging al
 snippet:Program
 
 
-### The resulting order 
+### The resulting order
 
 Note: In some versions of NServiceBus certain extension points are executed on separate threads.
- 
+
 snippet:StartupShutdownSequence

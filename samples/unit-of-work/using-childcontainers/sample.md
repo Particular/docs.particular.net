@@ -51,7 +51,7 @@ snippet:PipelineRegistration
 
 For this we're leaning on the child container support of our container. This sample is using StructureMap but it would work on most other containers as well. (please check the documentation for your chosen container to make sure)
 
-NServiceBus will create a child container per message and the semantics of a child container is that any instances created by it becomes static for the lifetime of that container. This is exactly what we need since that means that it will be created when the pipeline step is execute and the same instance will be injected into our handlers. 
+NServiceBus will create a child container per message and the semantics of a child container is that any instances created by it becomes static for the lifetime of that container. This is exactly what we need since that means that it will be created when the pipeline step is execute and the same instance will be injected into our handlers.
 
 The final piece of the puzzle is disposing of the session. Again the works out of the box since the child container will automatically dispose any instances that was created by it.
 

@@ -14,17 +14,17 @@ related:
  1. Start [Azure Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/)
  1. Run the solution. Two console applications start.
  1. Find the `Sender` application by looking for the one with `Sender` in its path and press Enter in the window to send a message. You have just sent a message that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment via Azure storage, allowing it to reach the `Receiver` application.
- 
+
 ## Code walk-through
 
-This sample contains three projects: 
+This sample contains three projects:
 
  * Shared - A class library containing shared code including the message definition.
  * Sender - A console application responsible for sending the large message.
  * Receiver - A console application responsible for receiving the large message from Sender.
 
 ### Shared project
- 
+
 Let's look at the Shared project:
 
 snippet:MessageWithLargePayload
@@ -51,12 +51,12 @@ The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is 
 
 ### Configuring the DataBus location
 
-Both the `Sender` and `Receive` project need to share a common location to store large binary objects. This is done by specifying Azure storage connection string. This code instructs NServiceBus to use specified Azure storage account for the attachment. 
+Both the `Sender` and `Receive` project need to share a common location to store large binary objects. This is done by specifying Azure storage connection string. This code instructs NServiceBus to use specified Azure storage account for the attachment.
 
 snippet:ConfiguringDataBusLocation
 
 Attachment blobs will be found in `databus` container.
- 
+
 ### Sender project
 
 The following sender project code sends the `MessageWithLargePayload `message, utilizing the NServiceBus attachment mechanism:
@@ -69,4 +69,4 @@ Go to the `Receiver` project to see the receiving application.
 
 Following is the receiving message handler:
 
-<!-- import MessageWithLargePayloadHandler --> 
+<!-- import MessageWithLargePayloadHandler -->

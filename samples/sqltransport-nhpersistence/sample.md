@@ -10,9 +10,9 @@ related:
 ---
 
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create a databases `shared` and add two schemas to it: `sender` and `receiver` (schemas are stored under *security* folder in SSMS database tree).
- 2. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option). 
+ 2. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
  3. Start the Receiver project.
- 4. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready. 
+ 4. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready.
  5. Hit <enter>.
  6. On the Receiver console you should see that order was submitted.
  7. On the Sender console you should see that the order was accepted.
@@ -22,7 +22,7 @@ related:
 
 ## Code walk-through
 
-This sample contains three projects: 
+This sample contains three projects:
 
  * Shared - A class library containing common code including the messages definitions.
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
@@ -32,7 +32,7 @@ Sender and Receiver use different schemas within one database. This creates a ni
 
 
 ### Sender project
- 
+
 The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQLServer transport with NHibernate persistence. The transport is configured to use a non-standard schema `sender` and to send messages addressed to `receiver` endpoint to a different schema.
 
 snippet:SenderConfiguration
@@ -62,7 +62,7 @@ snippet:Reply
 
 snippet:Timeout
 
-The shared session is managed by NServiceBus hence no need to explicitly begin a transaction or `Flush()` the session. 
+The shared session is managed by NServiceBus hence no need to explicitly begin a transaction or `Flush()` the session.
 
 snippet:StoreUserData
 

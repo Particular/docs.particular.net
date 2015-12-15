@@ -8,7 +8,7 @@ tags:
 ---
 
 
-NServiceBus can be configured to use [StructureMap](http://structuremap.github.io/) as a dependency injection container. 
+NServiceBus can be configured to use [StructureMap](http://structuremap.github.io/) as a dependency injection container.
 
 
 ## Usage

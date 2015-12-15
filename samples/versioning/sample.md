@@ -7,7 +7,7 @@ redirects:
 ---
 
 In this sample there are two message projects: `V1.Messages` and `V2.Messages`:
- 
+
 snippet:V1Message
 
 The Version 2 message schema inherits from the version 1 schema as shown below, adding another property on top of the properties in the version 1 schema.

@@ -1,7 +1,7 @@
 ---
-title: Uninstalling the MSMQ Service 
+title: Uninstalling the MSMQ Service
 summary: How to remove the Microsoft Messaging Queue (MSMQ) service
-tags: 
+tags:
 - Transports
 - MSMQ
 - Installation
@@ -12,23 +12,23 @@ The Platform Installer and the NServiceBus.PowerShell modules provide a simple m
 
 The removal instructions vary depend on the operating system and are detailed below.
 
-## Before you proceed 
+## Before you proceed
 
 DANGER: Removing the MSMQ Service is a destructive operation which can result in data loss
 
 When the MSMQ service is uninstalled the following actions are also carried out:
- 
-- All existing queues and queue configuration information is deleted 
+
+- All existing queues and queue configuration information is deleted
 - All messages contained in those queue and the system dead letter queue (DLQ) is deleted
 
 
 ### Dependent Services
 
-Services in Microsoft Windows can be configured to depend on each other. Prior to removing MSMQ please ensure you have no services are dependent upon the MSMQ. To do this 
+Services in Microsoft Windows can be configured to depend on each other. Prior to removing MSMQ please ensure you have no services are dependent upon the MSMQ. To do this
 
- * Load the Windows Services MMC snapin `Services.msc`, 
- * Right click on `Message Queuing` in the list of services 
- * Check the `Dependencies` Tab in the window to see if any dependencies exist   
+ * Load the Windows Services MMC snapin `Services.msc`,
+ * Right click on `Message Queuing` in the list of services
+ * Check the `Dependencies` Tab in the window to see if any dependencies exist  
 
 Alternatively this can be done from PowerShell via the following command:
 
@@ -45,7 +45,7 @@ Alternatively this can be done from PowerShell via the following command:
 
 #### Windows 2012
 
- * Open Server Manager 
+ * Open Server Manager
  * From the manage menu, click the Remove Roles and Features
  * This will open the "Remove Roles and Features" Wizard
  * Click `Next` until the Features option is shown
@@ -70,16 +70,16 @@ Reboot to finalize the changes.
 
  * Open the Programs option from Control Panel
  * Under Programs and Features click on `Turn Windows features on or off`
- * Scroll down and deselect the `Microsoft Message Queue (MSMQ) Server` option and then click `OK` 
+ * Scroll down and deselect the `Microsoft Message Queue (MSMQ) Server` option and then click `OK`
 
 Reboot to finalize the changes.
- 
 
-### Removal using DISM.exe  
 
-`DISM.exe` is the command line tool Microsoft provides for enabling and disabling Windows Features such as the MSMQ subsystem on Windows 7, 8 and Windows Server 2008 and 2012. 
+### Removal using DISM.exe 
 
-`DISM.exe` requires admin privileges so all the commands listed should be run from an admin command prompt. 
+`DISM.exe` is the command line tool Microsoft provides for enabling and disabling Windows Features such as the MSMQ subsystem on Windows 7, 8 and Windows Server 2008 and 2012.
+
+`DISM.exe` requires admin privileges so all the commands listed should be run from an admin command prompt.
 
 NOTE: DISM command line options and feature names are all case sensitive.
 
@@ -106,8 +106,8 @@ To disable a feature execute the following:
 ```
 DISM /Online /Disable-Feature /FeatureName:<FeatureName>
 ```
-Once you have removed a feature reboot the system to finalize the changes. 
- 
+Once you have removed a feature reboot the system to finalize the changes.
+
 
 #### Removal using PowerShell Prompt
 
@@ -119,7 +119,7 @@ The following PowerShell script uses the DISM Module to remove any `MSMQ` featur
 Import-Module DISM
 Get-WindowsOptionalFeature -Online |
  ? FeatureName -Match MSMQ |
- ? State -EQ Enabled | % { 
+ ? State -EQ Enabled | % {
 	 Disable-WindowsOptionalFeature -Online -FeatureName $_.FeatureName -NoRestart
 }
 ```

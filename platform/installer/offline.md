@@ -9,7 +9,7 @@ The [Platform Installer](/platform/installer) handles installing prerequisites f
 
 ## .Net Prerequisite Version
 
-The Particular platform products require [.Net 4.5](https://www.microsoft.com/en-au/download/details.aspx?id=30653). Before proceeding please ensure that this version of .Net is available on the system you are setting up. More detailed information about .NET can be found on the [Wikipedia .NET Overview](https://en.wikipedia.org/wiki/.NET_Framework_version_history#Overview). 
+The Particular platform products require [.Net 4.5](https://www.microsoft.com/en-au/download/details.aspx?id=30653). Before proceeding please ensure that this version of .Net is available on the system you are setting up. More detailed information about .NET can be found on the [Wikipedia .NET Overview](https://en.wikipedia.org/wiki/.NET_Framework_version_history#Overview).
 
 
 ##  Platform Installer Components
@@ -57,6 +57,6 @@ This MSI can be downloaded directly from here: [ServiceInsight Releases](https:/
 This MSI can be downloaded directly from here: [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases/latest).
 
 
-### ServiceMatrix 
+### ServiceMatrix
 
 ServiceMatrix is no longer part of the platform installer. Read this article on [how to install ServiceMatrix](/servicematrix/installing-servicematrix-2.0.md).

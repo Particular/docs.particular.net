@@ -9,9 +9,9 @@ related:
  - nservicebus/msmq/connection-strings
 ---
 
-Relaxes message delivery guarantees in order to achieve better performance. 
+Relaxes message delivery guarantees in order to achieve better performance.
 
-WARNING: This makes you susceptible to message loss during server crashes and restarts. 
+WARNING: This makes you susceptible to message loss during server crashes and restarts.
 
 
 ## Enabling non-durable messaging
@@ -40,7 +40,7 @@ snippet:ExpressMessageConvention
 
 All message to be non durable via the configuration API.
 
-<!-- import set-to-non-durable --> 
+<!-- import set-to-non-durable -->
 
 
 ## Effect on transports
@@ -49,8 +49,8 @@ Individual transports interpret "non-durable" messaging with a custom approach d
 
 
 ### MSMQ
- 
-The default behavior of MSMQ is to use the concept of Store and Forward. In this approach messages are stored durably on disk at the sender and then delivered by MSMQ to the receiver. When non-durable messaging is used the MSMQ Transport sends messages in [Express Mode](https://msdn.microsoft.com/en-us/library/ms704130). 
+
+The default behavior of MSMQ is to use the concept of Store and Forward. In this approach messages are stored durably on disk at the sender and then delivered by MSMQ to the receiver. When non-durable messaging is used the MSMQ Transport sends messages in [Express Mode](https://msdn.microsoft.com/en-us/library/ms704130).
 The underlying setting that is used to achieve this is to set [Message.Recoverable](https://msdn.microsoft.com/en-us/library/system.messaging.message.recoverable) to `false`.
 
 

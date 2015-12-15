@@ -12,7 +12,7 @@ related:
 
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create a database `samples`
  2. Start the Receiver project.
- 3. In the Sender's console you should see `Press any key to send a message. Press `q` to quit` text when the app is ready. 
+ 3. In the Sender's console you should see `Press any key to send a message. Press `q` to quit` text when the app is ready.
  4. Hit any key.
  5. A message will be sent using ADO.NET and be received by the app.
  6. Open SQL Server Management Studio and go to the `samples` database.
@@ -23,7 +23,7 @@ related:
  10. Create the insert trigger using the `CreateTrigger` statement.
  11. Right click the table you just created and do `Edit top X rows`.
  12. Notice that a message is received by the app for each "order" you create.
- 
+
 
 ## Code walk-through
 
@@ -63,7 +63,7 @@ snippet:SendFromTSQL
 
 ### Using triggers to emit messages
 
-Sometimes you're not allowed to touch the legacy systems you're dealing with and this is where triggers come in handy. Yes you read that right, triggers! while, rightfully so, considered evil by most sane people there are still use cases where a trigger might be just what we need. 
+Sometimes you're not allowed to touch the legacy systems you're dealing with and this is where triggers come in handy. Yes you read that right, triggers! while, rightfully so, considered evil by most sane people there are still use cases where a trigger might be just what we need.
 
 Let's create a fictive `Orders` table using
 

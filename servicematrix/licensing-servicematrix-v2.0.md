@@ -1,7 +1,7 @@
 ---
 title: Licensing ServiceMatrix
 summary: Licensing ServiceMatrix v2.0
-tags: 
+tags:
 - ServiceMatrix
 - Licensing
 ---
@@ -13,7 +13,7 @@ When you download and install ServiceMatrix it includes a 45 day license. Ten da
 Selecting the 'Key' button will show the license screen:
 
 ![ServiceMatrix License Window](images/servicematrix-licensewindow.png)
- 
-Clicking the 'Purchase' button will open your browser to the [Particular.net licensing page](http://particular.net/licensing?product=ServiceMatrix "Licensing Page for Particular.net").  From there you can purchase a license and receive a file that you can install using the 'Browse' button.  
 
-If you continue beyond the trial period you will no longer be able to create new projects using ServiceMatrix.  ServiceMatrix features, including the canvas and Solution Builder will be disabled. However, existing code will remain available and operational in the Visual Studio Solution Explorer. 
+Clicking the 'Purchase' button will open your browser to the [Particular.net licensing page](http://particular.net/licensing?product=ServiceMatrix "Licensing Page for Particular.net").  From there you can purchase a license and receive a file that you can install using the 'Browse' button. 
+
+If you continue beyond the trial period you will no longer be able to create new projects using ServiceMatrix.  ServiceMatrix features, including the canvas and Solution Builder will be disabled. However, existing code will remain available and operational in the Visual Studio Solution Explorer.

@@ -12,8 +12,8 @@ related:
  3. In the Sender console application, you will be prompted to press various keys to trigger each scenario.
 
 
-## Shared Project 
- 
+## Shared Project
+
 A class library containing the messages and shared code.
 
 
@@ -82,7 +82,7 @@ A console application responsible replying to messages from either the web appli
 snippet:EnumMessageHandler
 
 
-### Return an int 
+### Return an int
 
 snippet:IntMessageHandler
 

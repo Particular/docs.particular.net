@@ -73,7 +73,7 @@ You can then override this setting in your app.config file, by specifying this c
 	</configSections>
 	<AzureSubscriptionStorageConfig ConnectionString="YourConnectionstring" />
 
-When hosting in a Azure cloud service, you can override this setting again in the service configuration (.cscfg) file. 
+When hosting in a Azure cloud service, you can override this setting again in the service configuration (.cscfg) file.
 
 First you need to define the setting in the service definition file (.csdef) and then specify the value for every cloud service deployment you have in your Cloud Services project.
 

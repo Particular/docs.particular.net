@@ -66,7 +66,7 @@ Both discriminators are optional and if they are absent, the resulting instance 
 
 ## Send, Publish and Reply
 
-NServiceBus offers three top-level API calls for sending messages, namely Send, Publish and Reply. Each of these calls can have different behavior in terms of message routing. 
+NServiceBus offers three top-level API calls for sending messages, namely Send, Publish and Reply. Each of these calls can have different behavior in terms of message routing.
 
 
 ## Types of routing
@@ -86,7 +86,7 @@ Multicast routing uses topics. Multiple receivers can subscribe to a single topi
 
 ### Transport
 
-The [transport selected by the user](/nservicebus/transports/) decides, for each of action (Send, Publish or Reply), which routing type is used. For example, [MSMQ transport](/nservicebus/msmq/) uses the unicast routing for all the APIs while [RabbitMQ transport](/nservicebus/rabbitmq/) uses the unicast routing for Send and Reply but multicast routing for Publish. 
+The [transport selected by the user](/nservicebus/transports/) decides, for each of action (Send, Publish or Reply), which routing type is used. For example, [MSMQ transport](/nservicebus/msmq/) uses the unicast routing for all the APIs while [RabbitMQ transport](/nservicebus/rabbitmq/) uses the unicast routing for Send and Reply but multicast routing for Publish.
 
 
 ## Unicast routing
@@ -121,7 +121,7 @@ snippet:PubSub-CodePublisherMapping
 
 #### Dynamic routes
 
-Dynamic routes are meant to provide a convenient extensibility point that can be used both by users and NServiceBus add-ons. To add a dynamic route you need to pass a function that takes a `Type` and a `ContextBag` containing the context of current message processing and returns a collection of destinations. 
+Dynamic routes are meant to provide a convenient extensibility point that can be used both by users and NServiceBus add-ons. To add a dynamic route you need to pass a function that takes a `Type` and a `ContextBag` containing the context of current message processing and returns a collection of destinations.
 
 snippet:Routing-DynamicRoutes
 
@@ -142,7 +142,7 @@ By default, NServiceBus assumes that each endpoint has a single non-scaled-out i
 
 #### Using config file
 
-In most scenarios endpoint mapping should be done via a config file so it can be modified without the need for re-deploying the binaries. 
+In most scenarios endpoint mapping should be done via a config file so it can be modified without the need for re-deploying the binaries.
 
 #### Static mapping
 
@@ -152,7 +152,7 @@ snippet:Routing-StaticEndpointMapping
 
 #### Dynamic mapping
 
-Dynamic mapping is meant to provide a convenient extension point for both users and NServiceBus add-ons. To add a dynamic mapping rule you need to pass a function that takes an endpoint name and returns a collection of endpoint instance names. 
+Dynamic mapping is meant to provide a convenient extension point for both users and NServiceBus add-ons. To add a dynamic mapping rule you need to pass a function that takes an endpoint name and returns a collection of endpoint instance names.
 
 snippet:Routing-DynamicEndpointMapping
 
@@ -160,7 +160,7 @@ In this example the rule returns two instances passing both user-provided (1, 2)
 
 ### Instance mapping layer
 
-Mapping of the endpoint instance to a transport address is a responsibility of the transport infrastructure. Usually it does not require intervention from the user as the selected transport automatically registers its translation rule. The only times where user is required to configure the instance mapping is when the default translation violates some naming rules implied by the transport infrastructure (e.g. the generated transport address is too long for a queue name in MSMQ). 
+Mapping of the endpoint instance to a transport address is a responsibility of the transport infrastructure. Usually it does not require intervention from the user as the selected transport automatically registers its translation rule. The only times where user is required to configure the instance mapping is when the default translation violates some naming rules implied by the transport infrastructure (e.g. the generated transport address is too long for a queue name in MSMQ).
 
 #### Special cases
 

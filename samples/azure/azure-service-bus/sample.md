@@ -7,7 +7,7 @@ related:
 - nservicebus/azure/azure-servicebus-transport
 ---
 
-## Prerequisites 
+## Prerequisites
 
 An environment variable named `SamplesAzureServiceBusConnection` that contains the connection string for the Azure Service Bus namespace.
 
@@ -19,7 +19,7 @@ This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure/azure-
 
 ## Code walk-through
 
-This sample shows a simple two endpoint scenario. 
+This sample shows a simple two endpoint scenario.
 
 * `Endpoint1` sends a `Message1` message to `Endpoint1`
 * `Endpoint2` replies to `Endpoint1` with a `Message2`.

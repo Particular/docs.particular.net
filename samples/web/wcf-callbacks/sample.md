@@ -18,7 +18,7 @@ This samples shows how to perform a WCF request response by leveraging the [call
 
 ### Shared contract
 
-An generic interface that is shared between both Client and Server to give a strong typed API. 
+An generic interface that is shared between both Client and Server to give a strong typed API.
 
 snippet:ICallbackService
 

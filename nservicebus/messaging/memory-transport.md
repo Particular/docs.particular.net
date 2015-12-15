@@ -22,14 +22,14 @@ In .NET 4.0, to define an event, use the event keyword in the signature of your 
 
 
 ### Define an event
-    
+   
 ```C#
 public event EventHandler<ClientBecamePreferredEventArgs> RaiseClientBecamePreferredEvent;
 ```
 
 
 ### Define the event arguments
-    
+   
 ```C#
 public class ClientBecamePreferredArgs : EventArgs
 {
@@ -40,7 +40,7 @@ public class ClientBecamePreferredArgs : EventArgs
 
 
 ### Raise the event
-    
+   
 ```C#
 public void DoSomething()
 {
@@ -141,7 +141,7 @@ Examples:
 -   Sending an email, because the email should be sent only when the transaction succeeds in its entirety. To send emails directly, use `Bus.Send` in the handler instead of SMTP code.
 
 
-## NServiceBus eventing style 
+## NServiceBus eventing style
 
 NServiceBus uses IoC heavily. When the endpoints start, NServiceBus scans the assemblies in the directory. It finds event, command, and message types, either the [marker interfaces or conventions](/nservicebus/messaging/messages-events-commands.md). It also scans the assemblies to identify the types that implement the handlers for event types that implement `IHandleMessages<T>`, and registers them in the container. Read more about [NServiceBus and its use of containers](/nservicebus/containers/).
 

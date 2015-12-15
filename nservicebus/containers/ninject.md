@@ -8,7 +8,7 @@ tags:
 ---
 
 
-NServiceBus can be configured to use [Ninject](http://www.ninject.org/) as a dependency injection container. 
+NServiceBus can be configured to use [Ninject](http://www.ninject.org/) as a dependency injection container.
 
 
 ## Usage

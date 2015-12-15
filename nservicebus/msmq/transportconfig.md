@@ -1,7 +1,7 @@
 ---
 title: MSMQ transport
 summary: 'Explains the mechanics of MSMQ transport, its configuration options and various other configuration settings that were at some point coupled to this transport'
-tags: 
+tags:
 - Transports
 - MSMQ
 redirects:

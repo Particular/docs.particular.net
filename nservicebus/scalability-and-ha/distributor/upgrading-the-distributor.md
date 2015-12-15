@@ -6,7 +6,7 @@ tags:
 - Distributor
 ---
 
-Upgrading to a newer version of NServiceBus when using the Distributor should be done in one of two ways to avoid incompatibility between Distributor and Workers. 
+Upgrading to a newer version of NServiceBus when using the Distributor should be done in one of two ways to avoid incompatibility between Distributor and Workers.
 
 The two supported upgrade paths are:
 - Offline approach
@@ -14,7 +14,7 @@ The two supported upgrade paths are:
 
 ## Offline approach
 
-This is the most straight forward scenario, but it requires you to take both the Distributor and Workers offline at the same time. 
+This is the most straight forward scenario, but it requires you to take both the Distributor and Workers offline at the same time.
 
 The procedure is as follows:
 

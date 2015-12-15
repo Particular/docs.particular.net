@@ -30,7 +30,7 @@ This may return something like the following:
 
 You can remove it with this command:
 
-`netsh.exe http delete urlacl url=http://+:8080/` 
+`netsh.exe http delete urlacl url=http://+:8080/`
 
 
 ### Final Folder Cleanup

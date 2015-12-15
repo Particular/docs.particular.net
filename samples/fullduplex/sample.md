@@ -26,9 +26,9 @@ The two classes here implement the NServiceBus `IMessage` interface, indicating 
 
 ### Client
 
-The client console has a input loop that does the following 
+The client console has a input loop that does the following
 
-<!-- import ClientLoop --> 
+<!-- import ClientLoop -->
 
 This code performs the following action every time the 'Enter' key is pressed:
 
@@ -40,13 +40,13 @@ This code performs the following action every time the 'Enter' key is pressed:
 
 When a `RequestDataMessage` arrives in the server queue, the bus dispatches it to the message handler found in the `RequestDataMessageHandler.cs` file in the `Server` project. The bus knows which classes to call, based on the interface they implement.
 
-<!-- import RequestDataMessageHandler --> 
+<!-- import RequestDataMessageHandler -->
 
 At start up, the bus scans all assemblies and builds a dictionary indicating which classes handle which messages. So when a given message arrives in a queue, the bus knows which class to invoke.
 
 The `Handle` method of this class contains this:
 
-<!-- import DataResponseReply --> 
+<!-- import DataResponseReply -->
 
 Finally, the bus replies with the response message, sending it to the InputQueue specified in the `MsmqTransportConfig` section, in the app.config of the `Client` endpoint. The bus knows to send the responses to where the message is sent every time the bus sends a message from the queue.
 
@@ -56,4 +56,4 @@ Look back at `ClientEndpoint.cs` to see that it gets the header information from
 
 Open `DataResponseMessageHandler.cs` in the `Client` project and find a class whose signature looks similar to the message handler on the server:
 
-<!-- import DataResponseMessageHandler --> 
+<!-- import DataResponseMessageHandler -->

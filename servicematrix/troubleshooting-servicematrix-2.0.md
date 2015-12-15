@@ -1,5 +1,5 @@
 ---
-title: Troubleshooting   
+title: Troubleshooting  
 summary: 'Troubleshooting and ServiceMatrix'
 tags:
 - ServiceMatrix
@@ -31,9 +31,9 @@ If you are unable to uninstall the old version using the traditional method thro
 
 If you completed the uninstall and your system still shows ServiceMatrix as installed, try the following actions.  If one does not work, proceed to the next.
 
-- Try uninstalling again through the `Programs and Features' list.  The last attempt may not have completed successfully.  
+- Try uninstalling again through the `Programs and Features' list.  The last attempt may not have completed successfully. 
 - Restart your machine.  This can clear residual issues.
-- Try using the Microsoft [FixIt](#using-the-microsoft-fixit-tool) tool described below. 
+- Try using the Microsoft [FixIt](#using-the-microsoft-fixit-tool) tool described below.
 
 
 ### Manually Remove The Registry Keys
@@ -63,7 +63,7 @@ In case of any errors or exception the ServiceMatrix log file may contain inform
 
 ## Using the Microsoft FixIt tool
 
-The Microsoft FixIt tool can help troubleshoot general installation issues including registry problems.  You may download it [here](https://support.microsoft.com/mats/program_install_and_uninstall/en-us "Microsoft FixIt tool"). 
+The Microsoft FixIt tool can help troubleshoot general installation issues including registry problems.  You may download it [here](https://support.microsoft.com/mats/program_install_and_uninstall/en-us "Microsoft FixIt tool").
 
 
 ## Disconnecting a solution from ServiceMatrix

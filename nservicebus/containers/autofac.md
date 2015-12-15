@@ -8,7 +8,7 @@ tags:
 ---
 
 
-NServiceBus can be configured to use [Autofac](http://autofac.org/) as a dependency injection container. 
+NServiceBus can be configured to use [Autofac](http://autofac.org/) as a dependency injection container.
 
 
 ## Usage

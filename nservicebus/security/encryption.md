@@ -11,11 +11,11 @@ related:
 
 ## Property Encryption
 
-Property encryption operates on specific properties of a message. The data in the property is encrypted, but the rest of the message is clear text. This keeps the performance impact of encryption as low as possible. 
+Property encryption operates on specific properties of a message. The data in the property is encrypted, but the rest of the message is clear text. This keeps the performance impact of encryption as low as possible.
 
 The encryption algorithm used is [Rijndael](https://msdn.microsoft.com/en-us/library/system.security.cryptography.rijndael.aspx).
 
-Keep in mind that the security is only as strong as the keys; if the key is exposed, then an attacker can decipher the information. As such, you may not want to have your encryption keys stored on the client (if deployed remotely) or even on a web server in the DMZ. 
+Keep in mind that the security is only as strong as the keys; if the key is exposed, then an attacker can decipher the information. As such, you may not want to have your encryption keys stored on the client (if deployed remotely) or even on a web server in the DMZ.
 
 
 ### Defining encrypted properties
@@ -23,9 +23,9 @@ Keep in mind that the security is only as strong as the keys; if the key is expo
 There are two ways of telling NServiceBus what properties to encrypt.
 
 
-#### Convention 
+#### Convention
 
-Given a message of this convention 
+Given a message of this convention
 
 snippet:MessageForEncryptionConvention
 
@@ -38,12 +38,12 @@ snippet:DefiningEncryptedPropertiesAs
 
 You can also use the `WireEncryptedString` type to flag that a property should be encrypted.
 
-<!-- import MessageWithEncryptedProperty --> 
+<!-- import MessageWithEncryptedProperty -->
 
 
 ### Enabling property encryption
 
-Property encryption is enabled via the configuration API. 
+Property encryption is enabled via the configuration API.
 
 snippet:EncryptionServiceSimple
 
@@ -69,7 +69,7 @@ Good strategies
 
 - Incrementing (1, 2, 3, 4, etc.)
 - Timestamp (2015-w01, 2015-m08, 2015-q03
-- Random (ab4b7a6e71833798), 
+- Random (ab4b7a6e71833798),
 
 Bad strategies
 
@@ -124,8 +124,8 @@ NOTE: Our advice is to use Base64 if possible and to use ASCII 32 character keys
 
 The encryption key can be defined in the `app.config`.
 
-<!-- import EncryptionFromAppConfig --> 
- 
+<!-- import EncryptionFromAppConfig -->
+
 
 #### IProvideConfiguration
 
@@ -136,18 +136,18 @@ For more info on `IProvideConfiguration` see [Customizing NServiceBus Configurat
 
 #### Configuration API
 
-NOTE: Defining encryption keys via the configuration API is only supported in Version 5 and up. 
+NOTE: Defining encryption keys via the configuration API is only supported in Version 5 and up.
 
 snippet:EncryptionFromCode
 
 
-### Multi-Key decryption 
+### Multi-Key decryption
 
 You will note in several of the above examples that both an encryption key and **multiple** decryption keys were defined.
 
 This feature allows a phased approach of managing encryption keys. So that different endpoints can update to a new encryption key while still maintaining wire compatibility with endpoints using the old key.
 
-When the original encryption key is replaced by a new encryption key, in-flight messages that were encrypted with the original key will fail decryption unless the original encryption key is added to a list of expired keys. 
+When the original encryption key is replaced by a new encryption key, in-flight messages that were encrypted with the original key will fail decryption unless the original encryption key is added to a list of expired keys.
 
 
 ### Custom handling of property encryption

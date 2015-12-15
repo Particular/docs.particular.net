@@ -9,14 +9,14 @@ related:
 
 ## Introduction
 
-This sample leverages OWIN (Open Web Interface for .NET) to add light weight HTTP message pass through middleware (general term for an extension to OWIN) that can be re-used in a variety of web technologies. This middleware provides the bridge between a HTTP stream (via JavaScript on a web page) and the queue used by NServiceBus. 
+This sample leverages OWIN (Open Web Interface for .NET) to add light weight HTTP message pass through middleware (general term for an extension to OWIN) that can be re-used in a variety of web technologies. This middleware provides the bridge between a HTTP stream (via JavaScript on a web page) and the queue used by NServiceBus.
 
 The flow of this samples is as follows
 
  * User performs some action on a webpage that triggers some JavaScript
  * JavaScript posts the message body to a specific URL
  * OWIN intercepts that post and passes to the bus middleware
- * The middleware takes the HTTP request, optionally deserializes it, and places it on the queue  
+ * The middleware takes the HTTP request, optionally deserializes it, and places it on the queue 
 
 
 ## What is [OWIN](http://owin.org/)
@@ -26,7 +26,7 @@ The flow of this samples is as follows
 So extensions to NServiceBus that plug into OWIN can be easily applied to [many .NET web server technologies](http://owin.org/#projects).
 
 
-## The purpose of this sample 
+## The purpose of this sample
 
 The primary purpose of this sample is to illustrate how simple it is to bridge the world of HTTP with the world of a service bus. The secondary purpose is to illustrate, as well as compare and contrast, two ways of communicating with the NServiceBus. i.e. using the Bus api and using the native queue.
 
@@ -37,20 +37,20 @@ The primary purpose of this sample is to illustrate how simple it is to bridge t
 ### Performance
 
  * The Gateway uses a [HttpListener](https://msdn.microsoft.com/en-us/library/system.net.httplistener.aspx) while this sample allows you to leverage the full power of your choice of webserver.
- * The Gateway is limited to run in a single endpoint while this samples allows you to use any well known web scale out technologies. 
+ * The Gateway is limited to run in a single endpoint while this samples allows you to use any well known web scale out technologies.
 
 
 ### Full Control of the incoming message
 
-This sample allow you to customize the http-to-message handling code that places the message on the queue. As such this allows you to 
+This sample allow you to customize the http-to-message handling code that places the message on the queue. As such this allows you to
 
- * Write custom validation rules on the message 
+ * Write custom validation rules on the message
  * Return custom errors to the HTTP client
  * Apply custom authentication and authorization
  * Perform custom serialization
 
 
-### Hosting 
+### Hosting
 
 The gateway is designed to run inside a NServiceBus endpoint. This sample code can run with your selection of technologies e.g. it will work with IIS, self-hosted, asp.mvc, NancyFX or within a NServiceBus endpoint in the same way as the Gateway.
 
@@ -76,7 +76,7 @@ This sample uses a [Self Hosted](http://katanaproject.codeplex.com/wikipage?titl
 
 ## The Endpoint Configuration
 
-The endpoint configuration is fairly standard. The one exception is that the instance of `IBus` is passed in to the OWIN configuration code. 
+The endpoint configuration is fairly standard. The one exception is that the instance of `IBus` is passed in to the OWIN configuration code.
 
 snippet:startbus
 
@@ -99,7 +99,7 @@ The Bus based approach takes the following steps
  * Reads the message type name from the required headers
  * Converts the message type name to a .NET Type
  * Uses Type and message body, in conjunction with Json.net, to deserialize an instance of the real message
- * Places that message on the bus via a `SendLocal` 
+ * Places that message on the bus via a `SendLocal`
 
 snippet:OwinToBus
 
@@ -112,7 +112,7 @@ The MSMQ based approach takes the following steps
  * Reads the message type name from the required headers
  * Uses the message type name to create a MSMQ transport compatible header string.
  * Places that body and header directly onto MSMQ
- 
+
 snippet:OwinToMsmq
 
 
@@ -125,7 +125,7 @@ snippet:msmqheaderserializer
 
 ## Comparing the two approaches
 
-|| Bus Based | Native MSMQ                                                                                                                                                          
+|| Bus Based | Native MSMQ                                                                                                                                                         
 |-|-|-|
 | Code Complexity         | Simple.                                                                                                    | Slightly more complicated since knowledge of the transport is required.                                                                                              |
 | Performance             | Slightly slower and uses more memory since every message needs to be deserialized before being sent to the Bus. | Slightly faster and less memory since no deserialization or translation needs to occur.                                                                              |

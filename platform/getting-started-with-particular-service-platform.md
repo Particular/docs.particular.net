@@ -25,8 +25,8 @@ The example demonstrates the integration of an online sales web store with a bac
 
 NOTE: This example requires ServiceMatrix. For a code only introduction to NServiceBus, see:
 
- * [NServiceBus Overview](/nservicebus/architecture/) 
- * [NServiceBus Step by Step Guide](/samples/step-by-step/) 
+ * [NServiceBus Overview](/nservicebus/architecture/)
+ * [NServiceBus Step by Step Guide](/samples/step-by-step/)
 
 
 ## Installing ServiceMatrix for Visual Studio 2012
@@ -52,7 +52,7 @@ To get started with ServiceMatrix, create a new project.
 
 ### Create an NServiceBus project
 
-In Visual Studio select `File\New\Project` and Select 'NServiceBus System' under the Visual C\# project type. Target the .NET Framework 4.5 for this project. 
+In Visual Studio select `File\New\Project` and Select 'NServiceBus System' under the Visual C\# project type. Target the .NET Framework 4.5 for this project.
 
 ![NewProject](/servicematrix/images/servicematrix-reqresp-newproject.png)
 
@@ -61,7 +61,7 @@ In the Solution name, type 'OnlineSales' (or any other name) for the name of you
 
 ### Review The Solution
 
-You'll see that a solution folder has been created for your solution, as shown. 
+You'll see that a solution folder has been created for your solution, as shown.
 
 ![New Solution](/servicematrix/images/servicematrix-reqresp-freshsolution.png)
 
@@ -70,9 +70,9 @@ A number of projects have been created for you, as shown in the Solution Explore
 Two important folders are the `Contract` and `Internal` projects as they are where all message types are placed:
 
  * All defined events will be put in the `Contract` project.
- * All commands will be put in the `Internal` project. 
+ * All commands will be put in the `Internal` project.
 
-Later you will see how messages from different services are partitioned in these projects. 
+Later you will see how messages from different services are partitioned in these projects.
 
 Take a look at the design environment. The [Solution Builder](/servicematrix/images/servicematrix-solutionbuilder.png "Solution Builder") on the left provides a hierarchy of the logical elements of the solution. If you  don't see a docked window in Visual Studio called Solution Builder,  open it via the View menu.
 
@@ -80,7 +80,7 @@ You should see folders in Solution Builder called 'Infrastructure', 'Libraries',
 -   Infrastructure is where cross-cutting concerns like authentication and auditing are handled.
 -   Libraries are units of code that can be reused, including logging and data access.
 -   Endpoints are where code is deployed as executable processes. They can be MVC web applications or [NServiceBus Hosts](/nservicebus/hosting/nservicebus-host/).
--   Services are logical containers for code that provide the structure for publish/subscribe events and command-processing. 
+-   Services are logical containers for code that provide the structure for publish/subscribe events and command-processing.
 
 The [NServiceBus Canvas](/servicematrix/images/servicematrix-canvas.png "NServiceBus Canvas") is in the center of the solution as shown above. The endpoints, services, components and messages that comprise your solution will be created and illustrated here.
 
@@ -107,7 +107,7 @@ To create an endpoint on the canvas either select the dashed 'New Endpoint' area
 
 ![New Endpoint Popup](/servicematrix/images/servicematrix-newendpoint.png)
 
-Name the endpoint `ECommerce` and choose ASP.NET MVC as the endpoint host.  
+Name the endpoint `ECommerce` and choose ASP.NET MVC as the endpoint host. 
 
 NOTE: MVC Endpoints require that ASP.NET MVC be installed on the local machine. You can install ASP.NET MVC from [here](http://www.asp.net/downloads) or by using Web Platform Installer.
 
@@ -125,7 +125,7 @@ Create another endpoint called `OrderProcessing`. This time select 'NServiceBus 
 
 At this point your solution should have both endpoints on the NServiceBus canvas.
 
-![Canvas With Endpoints](/servicematrix/images/servicematrix-canvaswithendpoints.png) 
+![Canvas With Endpoints](/servicematrix/images/servicematrix-canvaswithendpoints.png)
 
 Notice how you can control the zoom with your mouse scroll wheel and drag the boxes around. This is how you will rearrange the canvas as more things are added to it.
 
@@ -137,12 +137,12 @@ Communication between the website and the back-end `OrderProcessing` endpoint wi
 ![Send Command](/servicematrix/images/servicematrix-ecommercesendcommand.png)
 
 
-## Creating Services 
+## Creating Services
 
 As you create the new command message, you'll also be prompted for the name of a service.  In NServiceBus a service will contain components responsible for facilitating the communication between the website and order processing.  Name the new service `Sales` and the command `SubmitOrder` as shown.
 
 ![Sales Service and SubmitOrder Command](/servicematrix/images/servicematrix-sales-submitorder.png)
-  
+ 
 The canvas now illustrates the new Sales service with two components. The `SubmitOrderSender` component sends the command and is deployed to the `ECommerce` endpoint. The `SubmitOrderHandler` component is for receiving the command message and is shown in a 'Undeployed Components' box.
 
 ![Undeployed Sales Service](/servicematrix/images/servicematrix-sales-undeployed.png)
@@ -181,7 +181,7 @@ namespace OnlineSales.Internal.Commands.Sales
 
 ## Handling a Message
 
-Now build the solution and see how everything turns out. Look at the `SubmitOrderHandler` code by selecting its drop-down menu and choosing 'View Code'.  As you can see below, there isn't much there. A partial class has been created where you can add your order processing logic. 
+Now build the solution and see how everything turns out. Look at the `SubmitOrderHandler` code by selecting its drop-down menu and choosing 'View Code'.  As you can see below, there isn't much there. A partial class has been created where you can add your order processing logic.
 
 ```C#
 namespace OnlineSales.Sales
@@ -218,7 +218,7 @@ namespace OnlineSales.Sales
 ```
 
 
-## Sending a Message 
+## Sending a Message
 
 The last thing to do is to review how the 'ECommerce' website sends a message. When ServiceMatrix generated the MVC endpoint it also created a demonstration site already capable of sending the commands created using the tool.
 
@@ -240,9 +240,9 @@ namespace OnlineSales.ECommerce.Controllers
         }
 
         // POST: /TestMessages/SendMessageSubmitOrder
-          
+         
         public ISubmitOrderSender SubmitOrderSender { get; set; }
-          
+         
         [HttpPost]
         public ActionResult SendMessageSubmitOrder(SubmitOrder SubmitOrder)
         {
@@ -256,7 +256,7 @@ namespace OnlineSales.ECommerce.Controllers
         partial void ConfigureSubmitOrder(SubmitOrder message);
     }
 }
-```  
+``` 
 
 This is a demonstration site that provides an initial reference application in MVC.  Any modifications to this file will be overwritten by subsequent regeneration of the demonstration site. To accomodate any changes you wish to make, just before the `SubmitOrderSender.Send` is called the code invokes a partial method called `ConfigureSubmitOrder` that accepts your `SubmitOrder` message as a parameter.  This can be implemented by you inside the `SubmitOrderSender.cs` file in the `\Sales` directory of the `OnlinesSales.ECommerce` project. The following code snippet illustrates how that can be done.
 

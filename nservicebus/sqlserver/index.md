@@ -125,7 +125,7 @@ Overrides the default time to pause after a failure while trying to receive a me
 The default is 10 seconds.
 
 snippet: sqlserver-PauseAfterReceiveFailure
- 
+
 
 ## Connection strings
 
@@ -135,7 +135,7 @@ Connection string can be configured in several ways
 ### Via the App.Config
 
 By adding a connection named `NServiceBus/Transport` in the `connectionStrings` node.
-   
+  
 ```xml
 <connectionStrings>
    <!-- SQL Server -->
@@ -149,7 +149,7 @@ By adding a connection named `NServiceBus/Transport` in the `connectionStrings` 
 
 ### Via the configuration API
 
-By using the `ConnectionString` extension method. 
+By using the `ConnectionString` extension method.
 
 snippet:sqlserver-config-connectionstring
 
@@ -157,7 +157,7 @@ snippet:sqlserver-config-connectionstring
 ### Via a named connection string
 
 By using the `ConnectionStringName` extension method.
- 
+
 snippet:sqlserver-named-connection-string
 
 Combined with a named connection in the `connectionStrings` node of you `app.config`.

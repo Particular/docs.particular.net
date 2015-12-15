@@ -9,18 +9,18 @@ related:
  - samples/outbox
 ---
 
-NServiceBus Version 5 brings the option of running endpoints with the same reliability we all got accustomed to while running under DTC, but now without it. 
+NServiceBus Version 5 brings the option of running endpoints with the same reliability we all got accustomed to while running under DTC, but now without it.
 
 
 ## Enabling the outbox
 
 In order to enable the Outbox, use the following API:
 
-<!-- import OutboxEnablineInCode --> 
+<!-- import OutboxEnablineInCode -->
 
 This is enough for the RabbitMQ transport. For SQL Server and MSMQ transports, to enable the outbox users need to also explicitly set the following configuration settings when configuring the endpoint:
 
-<!-- import OutboxEnablingInAppConfig --> 
+<!-- import OutboxEnablingInAppConfig -->
 
 NOTE: It may seem extreme to require double opt-in configuration of the Outbox for all other transports, but this is because we want users to be very aware that this new feature should not be used with existing endpoints that currently use DTC, unless those endpoints are [idempotent](https://en.wikipedia.org/wiki/Idempotence). Otherwise, problems could arise from double-processing messages sent (via an at-least-once guarantee) more than once.
 
@@ -49,7 +49,7 @@ Here is a diagram how it all works:
 SQL Server transport supports *exactly-once* message delivery without Outbox solely by means of sharing the transport connection with persistence. This mode of operation is discussed in depth in this [sample](/samples/sqltransport-nhpersistence).
 
 
-### What extra tables does NHibernate outbox persistence create 
+### What extra tables does NHibernate outbox persistence create
 
 To keep track duplicate messages, the NHibernate implementation of Outbox requires the creation of two additional tables in your database, these are called `OutboxRecord` and `OutboxOperation`.
 
@@ -66,7 +66,7 @@ snippet:OutboxNHibernateTimeToKeep
 ## Using outbox with RavenDB persistence
 
 
-### What extra documents does RavenDB outbox persistence create 
+### What extra documents does RavenDB outbox persistence create
 
 To keep track duplicate messages, the RavenDB implementation of Outbox creates a special collection of documents inside your database, these are called `OutboxRecord`.
 

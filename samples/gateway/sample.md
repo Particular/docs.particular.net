@@ -10,7 +10,7 @@ related:
 
 ## Code walk-through
 
-This sample demonstrates how logically different sites (such as a headquarters and a remote site) communicate using the NServiceBus Gateway feature. 
+This sample demonstrates how logically different sites (such as a headquarters and a remote site) communicate using the NServiceBus Gateway feature.
 
 
 ## Headquarters.Shared
@@ -56,7 +56,7 @@ Receives incoming messages on `http://localhost:25899/RemoteSite/`
 
 
 ### PriceUpdatedHandler
-     
+    
 snippet:PriceUpdatedHandler
 
 

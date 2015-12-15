@@ -7,7 +7,7 @@ tags:
 
 The Endpoints indicator in the ServicePulse dashboard displays the current status of the monitored NServiceBus endpoints. Specifically, it indicates whether, based on the heartbeats received from each endpoint, the endpoint is active or inactive.
 
-This article explains how this is done, and defines the meaning of each of the terms used in describing the status of an endpoint (terms like "active", "monitored" and "heartbeat").  
+This article explains how this is done, and defines the meaning of each of the terms used in describing the status of an endpoint (terms like "active", "monitored" and "heartbeat"). 
 
 <!--![ServicePulse Dashboard Indicators (all green)](images/indicators-green.png)-->
 
@@ -16,20 +16,20 @@ This article explains how this is done, and defines the meaning of each of the t
 
 An NServiceBus endpoint can be set for monitoring by ServicePulse or can remain unmonitored. See [How to configure endpoints for monitoring by ServicePulse](/servicepulse/how-to-configure-endpoints-for-monitoring.md) for detailed instructions on preparing an endpoint for monitoring by ServicePulse.
 
-It is recommended that you configure all your endpoints for monitoring by ServicePulse. Once configured, the endpoint appears in the ServicePulse Configuration page.   
+It is recommended that you configure all your endpoints for monitoring by ServicePulse. Once configured, the endpoint appears in the ServicePulse Configuration page.  
 
 ![ServicePulse Configuration page](images/sp-configuration-page.png)
 
-In the ServicePulse Configuration page you can specify which endpoints you wish to monitor with ServicePulse by checking (or unchecking) the checkbox next to the endpoint's entry.  
+In the ServicePulse Configuration page you can specify which endpoints you wish to monitor with ServicePulse by checking (or unchecking) the checkbox next to the endpoint's entry. 
 
-This is a configuration setting only. The endpoint itself is unchanged, and is still set for monitoring; the change affects only the way in which ServicePulse treats information received from the endpoint. 
+This is a configuration setting only. The endpoint itself is unchanged, and is still set for monitoring; the change affects only the way in which ServicePulse treats information received from the endpoint.
 
-Unchecking an endpoint means that it is ignored by ServicePulse (for example, alerts and indications are not displayed for the unmonitored endpoint). 
+Unchecking an endpoint means that it is ignored by ServicePulse (for example, alerts and indications are not displayed for the unmonitored endpoint).
 
 Re-checking the endpoint setting as "monitored" does not make any changes to the endpoint itself, and only affects the ServicePulse behavior towards information received from the (now re-)monitored endpoint.
- 
-Unmonitoring an endpoint via the ServicePulse Configuration page is useful when you wish to temporarily or permanently ignore the behavior of an endpoint. For example, you may wish to shut down the endpoint's host for maintenance, or permanently deactivate the host itself (as when a VM is deactivated). In such cases, the endpoint's data remains available in ServicePulse (via the underlying ServiceControl database) but you may not wish to receive any notifications from ServicePulse related to this intentionally disabled endpoint.  
- 
+
+Unmonitoring an endpoint via the ServicePulse Configuration page is useful when you wish to temporarily or permanently ignore the behavior of an endpoint. For example, you may wish to shut down the endpoint's host for maintenance, or permanently deactivate the host itself (as when a VM is deactivated). In such cases, the endpoint's data remains available in ServicePulse (via the underlying ServiceControl database) but you may not wish to receive any notifications from ServicePulse related to this intentionally disabled endpoint. 
+
 
 ### Active vs. Inactive Endpoints
 
@@ -45,7 +45,7 @@ For more details on how heartbeats are sent by an endpoint, see [ServiceControl 
 
 Only monitored endpoints are expected by ServicePulse to send heartbeat messages periodically. Unmonitored endpoints (i.e., endpoints marked in the ServicePulse configuration page as "unmonitored") may be sending heartbeats (depending on their specific configuration and whether the relevant plugins were installed for that endpoint) but these heartbeats messages are ignored by ServiceControl and ServicePulse as long as the endpoint is marked as an unmonitored endpoint in the ServicePulse configuration page.
 
-![Sets of Endpoints: Monitored (active and inactive) vs. Unmonitored, ](images/endpoints-sets-monitored-active.png)     
+![Sets of Endpoints: Monitored (active and inactive) vs. Unmonitored, ](images/endpoints-sets-monitored-active.png)    
 
 
 ### Detecting New Endpoints
@@ -60,14 +60,14 @@ The newly detected endpoint can be either configured for monitoring (see [How to
 
 Configuring the newly added endpoints for monitoring by ServicePulse leads to the following results:
 
-* Heartbeat messages are sent by the NServiceBus endpoints. 
-* The heartbeat messages are received and processed by ServiceControl and ServicePulse. 
+* Heartbeat messages are sent by the NServiceBus endpoints.
+* The heartbeat messages are received and processed by ServiceControl and ServicePulse.
 * The ServicePulse dashboard indicator is updated with the heartbeat data, the endpoints indicator is updated, and appropriate events are displayed.
 
 ![Received heartbeats from new endpoints](images/received-heartbeats-from-new-endpoints.png)
 
 To display the list of monitored endpoints, click the Endpoints indicator in the dashboard (or the "Endpoints Overview" link in the side navigation menu). The list of monitored endpoints is separated into two columns:
-* Active Endpoints (heartbeats were received as expected) 
-* Inactive Endpoints (heartbeats were not received) 
+* Active Endpoints (heartbeats were received as expected)
+* Inactive Endpoints (heartbeats were not received)
 
 ![Endpoints Overview](images/endpoints-overview.png)

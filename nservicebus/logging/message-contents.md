@@ -1,7 +1,7 @@
 ---
 title: Logging message contents
 summary: How to output message contents to the log
-tags: 
+tags:
 - Logging
 redirects:
 - nservicebus/logging-message-contents

@@ -7,7 +7,7 @@ related:
 - samples/saga
 ---
 
-When a message is received that could possibly be handled by a saga, and no existing saga can be found, then an implementation of `IHandleSagaNotFound` executed. 
+When a message is received that could possibly be handled by a saga, and no existing saga can be found, then an implementation of `IHandleSagaNotFound` executed.
 
 snippet:saga-not-found
 

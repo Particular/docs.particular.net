@@ -21,7 +21,7 @@ There are several approaches to hosting.
  * Configuration
  * [Logging](/nservicebus/logging)
  * [Container](/nservicebus/containers/)
- * [Startup and Shutdown](/samples/startup-shutdown-sequence/) 
+ * [Startup and Shutdown](/samples/startup-shutdown-sequence/)
  * [Endpoint Lifecycle](/nservicebus/lifecycle/)
  * [Critical Error handling](critical-errors.md)
 
@@ -33,7 +33,7 @@ When self-hosting, the user is responsible for creating and starting the endpoin
 
 snippet:Hosting-Startup
 
-The user is also responsible for properly shutting down the endpoint when it is no longer needed (usually when the application terminates). 
+The user is also responsible for properly shutting down the endpoint when it is no longer needed (usually when the application terminates).
 
 snippet:Hosting-Shutdown
 
@@ -54,7 +54,7 @@ Related:
 ### Send-only hosting
 
 A "Send-only endpoint" is used when the only purpose is sending messages and no message processing is required in that endpoint. Common use cases include websites, console application and windows application. This is the code for starting an endpoint in send only mode.
- 
+
 snippet:Hosting-SendOnly
 
 The only configuration when running in this mode is the destination when [Sending a message](/nservicebus/messaging/send-a-message.md).
@@ -76,7 +76,7 @@ As most web technologies operate in a scale out manner NServiceBus is **usually*
 
 NOTE: There are some [Caveats when publishing from a Web Application](publishing-from-web-applications.md).
 
-NOTE: In a web hosted scenario a [IIS Recycle](https://msdn.microsoft.com/en-us/library/ms525803.aspx) is considered a shutdown and restart of the bus. 
+NOTE: In a web hosted scenario a [IIS Recycle](https://msdn.microsoft.com/en-us/library/ms525803.aspx) is considered a shutdown and restart of the bus.
 
 Related:
 
@@ -86,7 +86,7 @@ Related:
 
 ### Multi-Hosting
 
-"Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .NET process. In Version 4 and earlier this could be achieved through multiple AppDomains. In Version 5 and higher multiple endpoints can share the same AppDomain or use the multiple AppDomains approach. 
+"Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .NET process. In Version 4 and earlier this could be achieved through multiple AppDomains. In Version 5 and higher multiple endpoints can share the same AppDomain or use the multiple AppDomains approach.
 
 Related:
 
@@ -100,10 +100,10 @@ Most usages of the bus will occur where the NServiceBus APIs are used. For examp
 
 #### Using a Container
 
-NServiceBus support dependency injection via use [Containers](/nservicebus/containers/). At startup the instance of `IBus` will be injected into the configured container and can be access via that container. 
+NServiceBus support dependency injection via use [Containers](/nservicebus/containers/). At startup the instance of `IBus` will be injected into the configured container and can be access via that container.
 
 Related:
- 
+
  * [Injecting the Bus into ASP.NET MVC Controller](/samples/web/asp-mvc-injecting-bus/)
 
 
@@ -117,7 +117,7 @@ snippet:Hosting-Inject
 For many scenarios a container is not required. In these cases a simple public static variable on the startup class will suffice. This variable can then be access globally in your application. For example:
 
  * In windows service or console the variable would be placed on the `Program.cs`
- * In a Website the variable would be placed on the `Global.cs`. 
+ * In a Website the variable would be placed on the `Global.cs`.
 
 Alternatively the static variable could be placed on a (more appropriately named) helper class.
 
@@ -140,7 +140,7 @@ Related:
 
 ### Hosting in Azure
 
-There are a variety of ways to host in Azure. Depending on your requirements Self Hosting may be an option or, alternatively, a custom Azure host may be required. See [Hosting in Azure Cloud Services](/nservicebus/azure/hosting-in-azure-cloud-services.md) and [Hosting in Azure](/nservicebus/azure/hosting.md) for more information. 
+There are a variety of ways to host in Azure. Depending on your requirements Self Hosting may be an option or, alternatively, a custom Azure host may be required. See [Hosting in Azure Cloud Services](/nservicebus/azure/hosting-in-azure-cloud-services.md) and [Hosting in Azure](/nservicebus/azure/hosting.md) for more information.
 
 Related:
 

@@ -22,36 +22,36 @@ While it may seem excessive at first, the business implications of your system g
 
 ## A simple Saga
 
-A minimal Saga implementation. With NServiceBus, you specify behavior by writing a class that inherits from `Saga<T>` where `T` is the saga data class. There is also a base class for sagas that contains many features required for implementing long-running processes. 
+A minimal Saga implementation. With NServiceBus, you specify behavior by writing a class that inherits from `Saga<T>` where `T` is the saga data class. There is also a base class for sagas that contains many features required for implementing long-running processes.
 
-<!-- import simple-saga --> 
+<!-- import simple-saga -->
 
 
-## Long-running means stateful  
+## Long-running means stateful 
 
 Any process that involves multiple network calls (or messages sent and received) has an interim state. That state may be kept in memory, persisted to disk, or stored in a distributed cache; it may be as simple as 'Response 1 received, pending response 2', but the state exists.
 
 Using NServiceBus, you can explicitly define the data used for this state by inheriting from the `ContainSagaData` abstract class. All public get/set properties are persisted by default:
 
-<!-- import simple-saga-data --> 
+<!-- import simple-saga-data -->
 
 There are two production-supported storage mechanisms for saga data in NServiceBus, namely RavenDB and NHibernate. Prior to Version 5, RavenDB was a default implementation. Since NServiceBus 5, both implementations are equal and the user needs to explicitly chose one.
 
-Both implementations have their strong points. While the schema-less nature of document databases makes them a perfect fit for saga storage where each saga instance is persisted as a single document, NHibernate allows using almost any relational database engine existing. 
+Both implementations have their strong points. While the schema-less nature of document databases makes them a perfect fit for saga storage where each saga instance is persisted as a single document, NHibernate allows using almost any relational database engine existing.
 
 You can, as always, swap out these technologies, by implementing the `ISagaPersister` interface (`IPersistSagas` prior to Version 5).
 
 
 ## Adding behavior
 
-The important part of a long-running process is its behavior. Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled. 
+The important part of a long-running process is its behavior. Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled.
 
 
 ## Starting a saga
 
-Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sagas are, in essence, a message driven state machine. The trigger to started this state machine is the arrival of one or more specified message types. In our previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives you would declare that by adding `IAmStartedByMessages<StartOrder>` to your saga. 
+Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sagas are, in essence, a message driven state machine. The trigger to started this state machine is the arrival of one or more specified message types. In our previous example, let's say that a new saga should be started every time a message of type `StartOrder` message arrives you would declare that by adding `IAmStartedByMessages<StartOrder>` to your saga.
 
-NOTE: `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that. 
+NOTE: `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that.
 
 This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it if there isn't already an existing saga that correlates to the message. In essence the semantics of `IAmStartedByMessages` is:
 
@@ -110,7 +110,7 @@ The infrastructure contacts the Timeout Manager (if an entry for it exists) tell
 
 For more information about setting (requesting) the timeouts and handling them, see [Saga Timeouts](timeouts.md).
 
-When a message is received that could possibly be handled by a saga, and no existing saga can be found then that is handed by the [Saga Not Found](saga-not-found.md) feature. 
+When a message is received that could possibly be handled by a saga, and no existing saga can be found then that is handed by the [Saga Not Found](saga-not-found.md) feature.
 
 
 ## Notifying callers of status
@@ -128,7 +128,7 @@ This is one of the methods on the saga base class that would be very difficult t
 
 ## Configuring Saga persistence
 
-Make sure to configure appropriate [saga persistence](/nservicebus/persistence/). 
+Make sure to configure appropriate [saga persistence](/nservicebus/persistence/).
 
 snippet:saga-configure
 
@@ -152,7 +152,7 @@ The usual way is to correlate on some kind of ID and let the user tell you how t
 Sagas manage state of potentially long-running business processes. When we want to access the current state of a business process we may feel the urge to query the saga data directly. It can be done, but we recommend against it. While this can be appropriate for very simple administrative or support functionality, we don't recommend it as a general-purpose approach for these reasons:
 
  * The way a given persistence chooses to store the saga data is an implementation detail to the specific persistence that can potentially change over time. By directly querying for the saga data you are coupling that query to this implementation and risk being affected by format changes.
- * By exposing the data outside of the safeguards of the business logic in the saga you risk the data is not treated as read-only. Eventually, a component tries to bypass the saga and directly modify the data. 
+ * By exposing the data outside of the safeguards of the business logic in the saga you risk the data is not treated as read-only. Eventually, a component tries to bypass the saga and directly modify the data.
  * Querying the data might require additional indexes, resources etc. which need to be managed by the component issuing the query. Those additional resources can influence saga performance.
  * The saga data may not contain all the required data. A saga handling the order process may keep track of the "payment id" and the status of the payment, but it is not interested in keeping track of the amount paid. On the other hand, for querying we may want to query the paid amount along with other data.
 

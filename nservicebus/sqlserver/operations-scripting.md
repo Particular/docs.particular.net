@@ -1,12 +1,12 @@
 ---
-title: Scripting SQLServer Transport 
+title: Scripting SQLServer Transport
 summary: Example code and scripts to facilitate deployment and operational actions against the SQLServer Transport.
 ---
 
 The followings are example codes and scripts to facilitate deployment and operations against the SQLServer Transport.
 
 
-## Native Send  
+## Native Send 
 
 
 ### The native send helper methods
@@ -42,7 +42,7 @@ Queue creation can be done for a specific endpoint or queues shared between mult
 snippet:sqlserver-create-queues
 
 
-### Using the create helper queue methods 
+### Using the create helper queue methods
 
 To create all queues for a given endpoint name.
 
@@ -120,12 +120,12 @@ CREATE TABLE [dbo].[audit_archive](
 This script moves the contents of the audit table into `audit_archive` table.
 
 ```
-DELETE FROM [dbo].[audit] 
+DELETE FROM [dbo].[audit]
 OUTPUT [deleted].*
-INTO [dbo].[audit_archive] 
+INTO [dbo].[audit_archive]
 ```
 
-This can be run with a scheduled job to clear down the archive regularly. 
+This can be run with a scheduled job to clear down the archive regularly.
 
 
 #### Execute BCP

@@ -11,9 +11,9 @@ Due to the API/NuGet versioning strategy of RabbitMQ.Client there are some compl
 
 Most libraries NServiceBus integrates with follow [SemVer](http://semver.org/). This means that those libraries do not make breaking changes in Minor or Patch releases. So the NuGet range for these libraries is generally `≥ CurrentMajor && < NextMajor`. So it is safe for the consumer of these libraries to move between any Minor of the current Major version.
 
-The RabbitMQ.Client library does not follow SemVer. This means they are free to make breaking changes in Major, Minor or Patch released. 
+The RabbitMQ.Client library does not follow SemVer. This means they are free to make breaking changes in Major, Minor or Patch released.
 
-For example between versions 3.5.1 and 3.5.2 of RabbitMQ.Client the public type `RabbitMQ.Client.Framing.Impl.Connection` had two public fields and three public methods removed (luckily none of these affect the API surface area used by NServiceBus.RabbitMQ). 
+For example between versions 3.5.1 and 3.5.2 of RabbitMQ.Client the public type `RabbitMQ.Client.Framing.Impl.Connection` had two public fields and three public methods removed (luckily none of these affect the API surface area used by NServiceBus.RabbitMQ).
 
 RabbitMQ.Client's current policy of allowing "breaking changes in any version" makes it difficult for us to select a sensible default when it comes to determining the NuGet dependency version or version range.
 
@@ -27,7 +27,7 @@ Our standard approach to targeting NuGet ranges is to target "any Minor in the c
 
 * [MissingMethodException](https://msdn.microsoft.com/en-us/library/system.missingmethodexception.aspx)
 * [MissingFieldException](https://msdn.microsoft.com/en-us/library/system.missingfieldexception.aspx)
-* [TypeLoadException](https://msdn.microsoft.com/en-us/library/system.typeloadexception.aspx) 
+* [TypeLoadException](https://msdn.microsoft.com/en-us/library/system.typeloadexception.aspx)
 
 ### The current NuGet dependency
 

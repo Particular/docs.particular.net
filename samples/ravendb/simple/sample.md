@@ -12,10 +12,10 @@ related:
 
 ## Code walk-through
 
-This sample shows a simple Client + Server scenario. 
+This sample shows a simple Client + Server scenario.
 
 * `Client` sends a `StartOrder` message to `Server`
-* `Server` starts an `OrderSaga`. 
+* `Server` starts an `OrderSaga`.
 * `OrderSaga` requests a timeout with a `CompleteOrder` data.
 * When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
 * The Server then publishes a message that the client subscribes to.
@@ -58,7 +58,7 @@ snippet:handler
 The data in RavenDB is stored in three different collections.
 
 
-### The Saga Data 
+### The Saga Data
 
  * `IContainSagaData.Id` maps to the native RavenDB document `Id`
  * `IContainSagaData.Originator` and `IContainSagaData.OriginalMessageId` map to simple properties pairs.
@@ -67,7 +67,7 @@ The data in RavenDB is stored in three different collections.
 ![](sagadata.png)
 
 
-### The Timeouts 
+### The Timeouts
 
  * The subscriber is stored in a `Destination` with the nested properties `Queue` and `Machine`.
  * The endpoint that initiated the timeout is stored in the `OwningTimeoutManager` property

@@ -1,7 +1,7 @@
 ---
 title: Property injection
 summary: How to configure property injection
-tags: 
+tags:
 - Dependency Injection
 - IOC
 redirects:
@@ -12,11 +12,11 @@ When using the NServiceBus built-in container it is possible to control property
 
 So given the following class that is constructed by the container.
 
-<!-- import PropertyInjectionWithHandler --> 
+<!-- import PropertyInjectionWithHandler -->
 
 The inject property values you could do the following:
 
-<!-- import ConfigurePropertyInjectionForHandlerBefore --> 
+<!-- import ConfigurePropertyInjectionForHandlerBefore -->
 
 At construction time both `SmtpAddress` and `SmtpPort` will be injected.
 
@@ -25,4 +25,4 @@ At construction time both `SmtpAddress` and `SmtpPort` will be injected.
 
 From Version 5.2 and above a new, more explicit, API has been introduced that specifically targets Handlers and Sagas.
 
-<!-- import ConfigurePropertyInjectionForHandler --> 
+<!-- import ConfigurePropertyInjectionForHandler -->

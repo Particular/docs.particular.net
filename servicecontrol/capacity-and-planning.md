@@ -23,7 +23,7 @@ Since ServiceControl is intended to be a recent-history storage to support Servi
 
 ServiceControl is configured with a default expiration policy that deletes old messages after a predefined time. The expiration policy can be customized to decrease or increase the amount of time data is retained, which impacts the storage requirements of ServiceControl.
 
-To limit the rate at which the database grows the body of an audit messages can be truncated if it exceeds a configurable threshold.  
+To limit the rate at which the database grows the body of an audit messages can be truncated if it exceeds a configurable threshold. 
 
 Refer to Data Retention section of [Customizing ServiceControl Configuration](creating-config-file.md) for details on these settings.
 
@@ -43,9 +43,9 @@ For more details, see [Forwarding Queues](errorlog-auditlog-behavior.md)
 
 #### Query the ServiceControl HTTP API
 
-This provides a JSON stream of audited and error messages (headers, body, and context) that can be imported into another database. 
- 
-NOTE: ServiceControl HTTP API is subject to changes and enhancements that may not be fully backwards compatible.  Use of this HTTP API is discouraged by 3rd parties at this time. 
+This provides a JSON stream of audited and error messages (headers, body, and context) that can be imported into another database.
+
+NOTE: ServiceControl HTTP API is subject to changes and enhancements that may not be fully backwards compatible.  Use of this HTTP API is discouraged by 3rd parties at this time.
 
 ### Throughput
 

@@ -27,15 +27,15 @@ There two settings that control Auditing.
 
 The queue name to forward audit messages to
 
- 
+
 ### OverrideTimeToBeReceived
 
-You can force a [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) on audit messages by setting `OverrideTimeToBeReceived` using the configuration syntax below. 
+You can force a [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) on audit messages by setting `OverrideTimeToBeReceived` using the configuration syntax below.
 
 Note that while the phrasing is "forwarding a message" in the implementation it is actually "cloning and sending a new message". This is important when considering TimeToBeReceived since the time taken to receive and process the original message is not part of the TimeToBeReceived of the new audit message. So in effect the audit message receives the full time allotment of whatever TimeToBeReceived is used.
 
 
-#### Default Value 
+#### Default Value
 
 If no OverrideTimeToBeReceived is defined then:
 

@@ -1,5 +1,5 @@
 ---
-title: Scripting MSMQ 
+title: Scripting MSMQ
 summary: Example code and scripts to facilitate deployment and operational actions against MSMQ.
 ---
 
@@ -29,7 +29,7 @@ snippet:msmq-nativesend
 snippet:msmq-nativesend-usage
 
 
-## Return message to source queue 
+## Return message to source queue
 
 
 ### The retry helper methods
@@ -68,7 +68,7 @@ Queue creation can be done for a specific endpoint or queues shared between mult
 | Owning account | Write, Receive, Peek |
 | Administrators | Full |
 | Anonymous | Write  |
-| Everyone | Write | 
+| Everyone | Write |
 
 To retrieve the group names the [WellKnownSidType](https://msdn.microsoft.com/en-us/library/system.security.principal.wellknownsidtype.aspx) enumeration is used.
 
@@ -90,7 +90,7 @@ snippet:msmq-create-queues
 snippet:msmq-create-queues-powershell
 
 
-### Using the create helper queue methods 
+### Using the create helper queue methods
 
 To create all queues for a given endpoint name.
 

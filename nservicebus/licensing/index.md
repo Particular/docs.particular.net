@@ -1,6 +1,6 @@
 ---
-title: NServiceBus Licensing 
-summary: Outlines the usage, management and restrictions of the NServiceBus license. 
+title: NServiceBus Licensing
+summary: Outlines the usage, management and restrictions of the NServiceBus license.
 tags: []
 related:
  - nservicebus/upgrades/release-policy
@@ -8,7 +8,7 @@ related:
 
 ## License details
 
-See [Particular Licensing](http://particular.net/licensing) for specific license specifics. 
+See [Particular Licensing](http://particular.net/licensing) for specific license specifics.
 
 
 ## Supported Versions

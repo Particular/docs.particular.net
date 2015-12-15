@@ -9,7 +9,7 @@ redirects:
 
 NServiceBus has the concept of installers to make sure that endpoint specific specific artefacts e.g., queues, folders, or databases are installed and configured automatically for you if needed at install time.
 
-To create your own installer is as easy as implementing the `INeedToInstallSomething<T>` interface. 
+To create your own installer is as easy as implementing the `INeedToInstallSomething<T>` interface.
 
 #### Version 3 and 4 only
 
@@ -39,7 +39,7 @@ When are they invoked?
 When using the NServiceBus host, installers are invoked as shown:
 
 | Command Line Parameters          | Infrastructure (v3.0 Only) Installers | Regular Installers
-|----------------------------------|:-------------------------------------:|:------------------: 
+|----------------------------------|:-------------------------------------:|:------------------:
 | /install NServiceBus.Production  | &#10004;                              | &#10004;
 | NServiceBus.Production           | &#10006;                              | &#10006;
 | /install NServiceBus.Integration | &#10004;                              | &#10004;

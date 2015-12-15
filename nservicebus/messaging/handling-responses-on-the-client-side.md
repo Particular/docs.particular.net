@@ -24,7 +24,7 @@ public class MyHandler : IHandleMessages<MyMessage>
 
 ## Handling responses in the context of a message being sent
 
-When sending a message, you can register a callback that is invoked when a response arrives. 
+When sending a message, you can register a callback that is invoked when a response arrives.
 
 DANGER: If the server process returns multiple responses, NServiceBus cannot know which response message will be the last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a process restart (common scenarios are a crash or an IIS recycle) as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](/nservicebus/sagas/).
 
@@ -33,15 +33,15 @@ DANGER: If the server process returns multiple responses, NServiceBus cannot kno
 
 In NServiceBus Version 5 and lower callbacks are built into the core NuGet.
 
-In NServiceBus Version 6 and higher callbacks are shipped as `NServiceBus.Callbacks` NuGet package. 
+In NServiceBus Version 6 and higher callbacks are shipped as `NServiceBus.Callbacks` NuGet package.
 
 
-## Using Callbacks 
+## Using Callbacks
 
 The callback functionality can be split into three categories based on the type of information being used; integers, enums and objects. Each of these categories involves two parts; send+callback and the response.
 
 
-### Int 
+### Int
 
 The integer response scenario allows any integer value to be returned in a strong typed manner.
 
@@ -55,7 +55,7 @@ snippet:IntCallback
 snippet:IntCallbackResponse
 
 
-### Enum 
+### Enum
 
 The enum response scenario allows any enum value to be returned in a strong typed manner.
 
@@ -70,9 +70,9 @@ snippet:EnumCallback
 snippet:EnumCallbackResponse
 
 
-### Object 
+### Object
 
-The Object response scenario allows an object instance to be returned. 
+The Object response scenario allows an object instance to be returned.
 
 
 #### The Response message
@@ -96,7 +96,7 @@ snippet:FakeObjectCallbackHandler
 snippet:ObjectCallbackResponse
 
 
-## Cancellation 
+## Cancellation
 
 This API was added in the externalized Callbacks feature.
 

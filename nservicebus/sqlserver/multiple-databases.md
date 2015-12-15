@@ -12,7 +12,7 @@ The SQL Server transport allows you to select, on per-endpoint basis, where the 
  * different databases in a single SQL Server instance
  * different SQL Server instances
 
-The transport will route messages to destination endpoints based on the configuration. If no specific configuration has been provided for a particular destination endpoint, the transport assumes the destination has the same configuration (schema, database and instance name/address) as the sending endpoint. If this assumption turns out to be false (the transport cannot connect to destination queue), an exception is thrown immediately. There is no store-and-forward mechanism on the transport level (and hence -- no dead-letter queue). 
+The transport will route messages to destination endpoints based on the configuration. If no specific configuration has been provided for a particular destination endpoint, the transport assumes the destination has the same configuration (schema, database and instance name/address) as the sending endpoint. If this assumption turns out to be false (the transport cannot connect to destination queue), an exception is thrown immediately. There is no store-and-forward mechanism on the transport level (and hence -- no dead-letter queue).
 
 NOTE: If the destination endpoint uses different database or server instance, sending a message to it might cause the transaction to escalate to a distributed transaction. Usually it is not a desired effect and one can use NServiceBus Outbox to avoid it.
 
@@ -56,7 +56,7 @@ snippet:sqlserver-multidb-other-endpoint-connection-push
 
 The pull mode can be used when specific information is not available at configuration time. One can pass a `Func<String, ConnectionInfo>` that will be used by the SQL Server transport to resolve connection information at runtime.
 
-<!-- import sqlserver-multidb-other-endpoint-connection-pull --> 
+<!-- import sqlserver-multidb-other-endpoint-connection-pull -->
 
 
 ### Configuration
@@ -68,7 +68,7 @@ Given the following mappings:
 snippet:sqlserver-multidb-messagemapping
 
 and the following connection strings:
- 
+
 snippet:sqlserver-multidb-connectionstrings
 
 the messages sent to `billing` will go to database `Billing` on server `DbServerB` while the messages to `sales` will go to the database and server set by default i.e. `MyDefaultDB` on server `DbServerA`.

@@ -8,7 +8,7 @@ tags:
 ---
 
 
-NServiceBus can be configured to use [CastleWindsor](https://github.com/castleproject/Windsor) as a dependency injection container. 
+NServiceBus can be configured to use [CastleWindsor](https://github.com/castleproject/Windsor) as a dependency injection container.
 
 
 ## Usage

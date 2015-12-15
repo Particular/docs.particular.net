@@ -33,7 +33,7 @@ Not adding a unique constraint can result in duplicate saga entities as the seco
 
 ## Prerequisites
 
-The samples rely on `.\SQLEXPRESS` and need the database `Samples.CustomNhMappings` to run properly. 
+The samples rely on `.\SQLEXPRESS` and need the database `Samples.CustomNhMappings` to run properly.
 
 
 ## Custom .hbm.xml mapping
@@ -50,7 +50,7 @@ The `.hbm.xml` contents is as follows
 snippet:hmlxml
 
 
-### Reading the mapping mappings 
+### Reading the mapping mappings
 
 Create a custom NHibernate configuration object and use the following example to add mappings from the file system.
 

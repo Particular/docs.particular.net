@@ -1,7 +1,7 @@
 ---
 title: Message Mutators
 summary: Message mutators allow mutation of messages in the pipeline.
-tags: 
+tags:
 - Mutator
 redirects:
 - nservicebus/pipeline-management-using-message-mutators

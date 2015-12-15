@@ -1,7 +1,7 @@
 ---
 title: Azure Service Bus as Transport
 summary: NServiceBus can use Azure Service Bus to take advantage of its peek-lock mechanism in environments where one cannot rely on the DTC.
-tags: 
+tags:
 - Azure
 - Cloud
 - Transport
@@ -17,7 +17,7 @@ related:
 In some environments such as very large cloud networks or hybrid network scenarios, it is not possible or recommended to rely heavily on the DTC, and thus on MSMQ, to ensure transactional behavior and retry in case of failures. A good alternative to MSMQ in this case is to use Azure Service Bus instead.
 
 Azure Service Bus is messaging infrastructure that sits between applications, allowing them to exchange messages in a loosely coupled way for improved scale and resiliency. Service Bus Queues offer simple first in, first out guaranteed message delivery and supports a range of standard protocols (REST, AMQP, WS*) and APIs to put/pull messages on/off a queue. Service Bus Topics deliver messages to multiple subscriptions and easily fan out message delivery at scale to downstream systems.
- 
+
 - The main advantage of this service is that it offers a highly reliable and (relatively) low latency remote messaging infrastructure. A single queue message can be up to 256 KB in size, and a queue can contain many messages, up to 5GB in total. Furthermore it is capable of emulating local transactions using its queue peek-lock mechanism and has many built-in features that you (and NServiceBus) can take advantage of, such as message deduplication and deferred messages.
 - The main disadvantage of this service is its dependency on TCP (if you want low latency), which may require you to open some outbound ports on your firewall. Additionally, the price may be steep, depending on your scenario ($1 per million messages).
 
@@ -60,11 +60,11 @@ Using this configuration setting you can change the following values. NOTE: Most
 
 - `ConnectionString`: Overrides the default "NServiceBus/Transport" connectionstring value.
 - `ConnectivityMode`: Allows you to switch between HTTP and TCP based communication. Defaults to TCP. Very useful when behind a firewall.
-- `ServerWaitTime`: The transport uses longpolling to communicate with the Azure Service Bus entities. This value specifies the amount of time, in seconds, the longpoll can take. Defaults to 300 seconds. 
+- `ServerWaitTime`: The transport uses longpolling to communicate with the Azure Service Bus entities. This value specifies the amount of time, in seconds, the longpoll can take. Defaults to 300 seconds.
 - `BackoffTimeInSeconds`: The transport will back off linearly when no messages can be found on the queue to save some money on the transaction operations. This value specifies how fast it will back off. Defaults to 10 seconds.
-- `LockDuration`: The peek-lock system supported by Azure Service Bus relies on a period of time that a message becomes locked/invisible after being read. If the processing unit fails to delete the message by the specified time, it will reappear on the queue so that another process can retry. This value is defined in milliseconds and defaults to 30000 (30 seconds). 
+- `LockDuration`: The peek-lock system supported by Azure Service Bus relies on a period of time that a message becomes locked/invisible after being read. If the processing unit fails to delete the message by the specified time, it will reappear on the queue so that another process can retry. This value is defined in milliseconds and defaults to 30000 (30 seconds).
 - `EnableBatchedOperations`: Specifies whether batching is enabled. Defaults to true.
-- `BatchSize`: The number of messages that the transport tries to pull at once from the queue. Defaults to 1000. 
+- `BatchSize`: The number of messages that the transport tries to pull at once from the queue. Defaults to 1000.
 - `MaxDeliveryCount`: Specifies the number of times a message can be delivered before being put on the dead letter queue. Defaults to 6 (so the NServiceBus first and second level retry mechanism gets preference).
 - `MaxSizeInMegabytes`: Specifies the size in MB. Defaults to 1024 (1GB). Allowed values are 1024, 2048, 3072, 4096 5120.
 - `RequiresDuplicateDetection`: Specifies whether exactly once delivery is enabled. Defaults to false, meaning that the same message can arrive multiple times.

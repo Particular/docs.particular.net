@@ -34,10 +34,10 @@ Install the [NServiceBus.NHibernate](https://www.nuget.org/packages/NServiceBus.
 
 The next stage is to actually tell NServiceBus how to use NHibernate for persistence
 
-snippet:ConfiguringNHibernate 
+snippet:ConfiguringNHibernate
 
 
-## Customizing the configuration 
+## Customizing the configuration
 
 In case you want to customize the NHibernate `Configuration` object used to bootstrap the persistence mechanism, you can either provide a ready-made object via code or use convention-based XML configuration. The code-based approach overrides the configuration-based one when both are used.
 
@@ -54,7 +54,7 @@ snippet:SpecificNHibernateConfiguration
 
 NOTE: You can combine both approaches to define a common configuration and override it for one specific concern.
 
-WARNING: When using per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern you are enabling. The following code will set up NHibernate persistence only for `GatewayDeduplication` concern but will override the default configuration **for all the concerns**. 
+WARNING: When using per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern you are enabling. The following code will set up NHibernate persistence only for `GatewayDeduplication` concern but will override the default configuration **for all the concerns**.
 
 snippet:CustomCommonNhibernateConfigurationWarning
 
@@ -65,8 +65,8 @@ NServiceBus then picks up the connection setting from your `app.config` from `co
 
 NOTE: When using SQL 2012 you need to change the dialect to `MsSql2012Dialect`.
 
-NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhibernate.info/doc/) 
- 
+NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhibernate.info/doc/)
+
 snippet:NHibernateAppConfig
 
 
@@ -95,7 +95,7 @@ snippet:DisableSchemaUpdate
 
 
 **For Gateway schema update:**
-            
+           
 snippet:DisableGatewaySchemaUpdate
 
 

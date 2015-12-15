@@ -14,7 +14,7 @@ The samples are designed to be highlighting how various features of NServiceBus 
 Samples are not meant to be production ready code or to be used as-is with Particular Platform tools. They are meant to illustrate the use of the API in the simplest way possible. For this reason, these samples make certain assumptions on transport, hosting, etc. Please see the [Technology choices](#technology-choices) for more details.
 
 
-## Not "Endpoint drop in" projects 
+## Not "Endpoint drop in" projects
 
 Since the endpoints projects in samples have to chose specific technologies (transport, serializer, persistence etc) before using this code in production you need to ensure the code conforms with your specific technology choices.
 
@@ -48,7 +48,7 @@ Add-Type -AssemblyName System.Messaging
 foreach ($queue in [System.Messaging.MessageQueue]::GetPrivateQueuesByMachine("."))
 {
 	if($queue.QueueName.StartsWith("private$\samples."))
-	{  
+	{ 
 		[System.Messaging.MessageQueue]::Delete($queue.Path)
 	}
 }
@@ -62,7 +62,7 @@ Samples default to [Self Hosting](/nservicebus/hosting/) in a console since it i
 
 ### [Logging](/nservicebus/logging/)
 
-Samples default to logging at the `Info` level to the console. In production the preferred approach is some combination `Warning` and `Error` with a combination of targets. 
+Samples default to logging at the `Info` level to the console. In production the preferred approach is some combination `Warning` and `Error` with a combination of targets.
 
 
 ### [Persistence](/nservicebus/persistence/)
@@ -91,4 +91,4 @@ Samples default to using the built-in container since it does not require pullin
 
 ### Async/await
 
-Samples by default use `await` and declare the surrounding method `async` everywhere, even if we could just return the task returned by the called API. Furthermore, we are not using `ConfigureAwait(false)` when we `await` an asynchronous method execution. We've taken this conscious choice, although it is not following the best practices around async/await, to simplify readability for our samples.  
+Samples by default use `await` and declare the surrounding method `async` everywhere, even if we could just return the task returned by the called API. Furthermore, we are not using `ConfigureAwait(false)` when we `await` an asynchronous method execution. We've taken this conscious choice, although it is not following the best practices around async/await, to simplify readability for our samples. 

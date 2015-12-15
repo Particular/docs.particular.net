@@ -6,13 +6,13 @@ tags:
 - Error Handling
 ---
 
-Certain types of exceptions are special in their behavior and may require custom handling. 
+Certain types of exceptions are special in their behavior and may require custom handling.
 
 #### AccessViolationException
 
 If an [AccessViolationException](https://msdn.microsoft.com/en-us/library/system.accessviolationexception.aspx) is thrown then the endpoint will terminate. The reason is that a standard `try catch`, which NServiceBus uses does not catch an  `AccessViolationException` as such it will bubble out of he handler and terminate the endpoint.
 
-While you can explicitly handle these exceptions (using a [HandleProcessCorruptedStateExceptionsAttribute](https://msdn.microsoft.com/en-us/library/system.runtime.exceptionservices.handleprocesscorruptedstateexceptionsattribute.aspx)) it is explicitly recommended MS not to do it. 
+While you can explicitly handle these exceptions (using a [HandleProcessCorruptedStateExceptionsAttribute](https://msdn.microsoft.com/en-us/library/system.runtime.exceptionservices.handleprocesscorruptedstateexceptionsattribute.aspx)) it is explicitly recommended MS not to do it.
 
 > Corrupted process state exceptions are exceptions that indicate that the state of a process has been corrupted. We do not recommend executing your application in this state.
 
@@ -27,4 +27,4 @@ NServiceBus can't handle [StackOverflowExceptions](https://msdn.microsoft.com/en
 
 #### OutOfMemoryException
 
-While [OutOfMemoryException](https://msdn.microsoft.com/en-us/library/system.outofmemoryexception.aspx) will be caught by NServiceBus and handled in the standard NServiceBus manner, there is no guarantee that there will be enough memory available to handle the exception appropriately. 
+While [OutOfMemoryException](https://msdn.microsoft.com/en-us/library/system.outofmemoryexception.aspx) will be caught by NServiceBus and handled in the standard NServiceBus manner, there is no guarantee that there will be enough memory available to handle the exception appropriately.

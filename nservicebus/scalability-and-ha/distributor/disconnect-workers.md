@@ -1,7 +1,7 @@
 ---
 title: Disconnect Workers
 summary: How a worker can be disconnected from its distributor using PowerShell cmdlets
-tags: 
+tags:
 - Scalability
 - Distributor
 redirects:
@@ -22,7 +22,7 @@ Remove-NServiceBusMSMQWorker WorkerAddress DistributorAddress TransactionalDistr
    * `WorkerAddress` is the Worker queue name, eg Worker@localhost
    * `DistributorAddress` is the Distributor queue name eg MyDistributor@localhost, **Note:** you just pass the Distributor queue name, the PowerShell cmdlet will automatically appends ".distributor.control" to the end of the Distributor queue.
    * `TransactionalDistributorQueue` is the Distributor queue transactional or not ?
-}} 
+}}
 2. Wait for Worker to drain all queued messages from its input queue.
 3. Shutdown the endpoint.
 

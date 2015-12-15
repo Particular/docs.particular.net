@@ -35,7 +35,7 @@ You can, of course, [create your own profiles](/nservicebus/hosting/nservicebus-
 The environmental-related profiles:
 
 
-### Lite profile 
+### Lite profile
 
 Suitable for running on your development machine, possibly inside Visual Studio.
 
@@ -48,7 +48,7 @@ Lite also turns the TimeoutManager on by default.
 Logging is output to the console.
 
 
-### Integration profile 
+### Integration profile
 
 Suitable for running your endpoint in integration and QA environments.
 
@@ -57,7 +57,7 @@ Installers are invoked to make deployment easy to automate.
 Logging is output to the console by default.
 
 
-### Production profile 
+### Production profile
 
 The default if no explicit profile is defined.
 

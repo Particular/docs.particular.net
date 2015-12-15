@@ -27,7 +27,7 @@ NOTE: To limit the assemblies and types scanned by the test framework it is poss
 
 The service layer in an NServiceBus application is made from message handlers. Each class typically handles one specific type of message. Testing these classes usually focuses on their externally visible behavior: the types of messages they send or reply with. This is as simple to test as could be expected:
 
-<!-- import TestingServiceLayer --> 
+<!-- import TestingServiceLayer -->
 
 This test says that when a message of the type `RequestMessage` is processed by `MyHandler`, it responds with a message of the type `ResponseMessage`. Also, the test checks that if the request message's String property value is "hello" then that should be the value of the String property of the response message.
 

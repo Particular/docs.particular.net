@@ -30,7 +30,7 @@ snippet:sending
 ## Using Mutators
 
 Headers can be manipulated by implementing any of the message mutation interfaces.
- 
+
 
 ### IMessageMutator
 
@@ -62,7 +62,7 @@ snippet:mutate-outgoing-transport-messages
 snippet:mutate-transport-messages
 
 
-## Using the Pipeline 
+## Using the Pipeline
 
 Headers can be manipulated at any step in the pipeline.
 

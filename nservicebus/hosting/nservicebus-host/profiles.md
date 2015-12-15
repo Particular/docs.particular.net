@@ -138,11 +138,11 @@ Logging is another kind of behavior that you can change from one profile to anot
 
 The logging behavior configured for the three built-in profiles is shown:
 
-| Profile     | Appender     | Threshold  
+| Profile     | Appender     | Threshold 
 |-------------|--------------|-----
-| Lite        | Console      | Debug                         
-| Integration | Console      | Info 
-| Production  | Rolling File | Configurable, Warn by default 
+| Lite        | Console      | Debug                        
+| Integration | Console      | Info
+| Production  | Rolling File | Configurable, Warn by default
 
 When running under the production profile, the logs are written to 'logfile' in the same directory as the exe. The file grows to a maximum size of 1MB and then a new file is created. A maximum of 10 files is held and then the oldest file is erased. If no configuration exists, the logging threshold is Warn. Configure the logging threshold by including the following code in the application config file:
 
@@ -202,9 +202,9 @@ class MyProfileHandler : IHandleProfile<MyProfile>, IWantToRunWhenConfigurationI
         var obj = Builder.Build<SomeType>();
         // do something with the object
     }
-    
+   
     static bool _wasActivated;
-    
+   
     public IBuilder Builder { get; set; }
 }
 ```
@@ -216,12 +216,12 @@ This approach is particularly useful when you want your profile to hook into an 
 
 When you use NServiceBus.Host.exe out of the box, you can utilize one of the available profiles. The following table shows which persistence technology each pre-built profile configures by default. In addition, you can override the configured defaults.
 
-The following table summarizes the different persistence technologies being used by the built-in profiles. 
+The following table summarizes the different persistence technologies being used by the built-in profiles.
 
 NOTE: Before configuring persistence technology, to avoid overriding your configurations, the profiles check if other types of storage are used.
 
 |-                                |In-Memory|RavenDB			   |NHibernate   |MSMQ                         |
-|:--------------------------------|:--------|:---------------------|:------------|:----------------------------|                                         
+|:--------------------------------|:--------|:---------------------|:------------|:----------------------------|                                        
 |  Timeout                        |Lite     |Integration/Production|-            |Keeps a queue for management |
 |  Subscription                   |Lite     |Integration/Production|-            |-                            |
 |  Saga                           |Lite     |Integration/Production|-            |-    				           |

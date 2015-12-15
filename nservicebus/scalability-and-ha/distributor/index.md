@@ -104,7 +104,7 @@ NServiceBus.Host.exe NServiceBus.Master
 ### When self-hosting
 
 When you [self host](/nservicebus/hosting/) your endpoint, use this configuration:
- 
+
 snippet:ConfiguringDistributor
 
 NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
@@ -150,7 +150,7 @@ Read about the `DistributorControlAddress` and the `DistributorDataAddress` in t
 
 If you are self-hosting your endpoint here is the code required to enlist the endpoint with a Distributor.
 
-<!-- import ConfiguringWorker --> 
+<!-- import ConfiguringWorker -->
 
 NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
@@ -164,13 +164,13 @@ For some extensibility scenarios it may be helpful to check if the endpoint is r
 
 ### Is running as a Distributor
 
-<!-- import IsDistributorEnabled --> 
- 
+<!-- import IsDistributorEnabled -->
+
 
 ### Is running as a Worker
 
 snippet:IsWorkerEnabled
- 
+
 
 ## Routing with the Distributor
 
@@ -193,13 +193,13 @@ Similar to standard NServiceBus routing, you do not want high priority messages 
 In this case, name the queues just like the messages. For example, `SubmitPurchaseOrder.StrategicCustomers.Sales`. This is the name of the distributor's data queue and the input queues of each of the workers. The distributor's control queue is best named with a prefix of 'control', as follows: `Control.SubmitPurchaseOrder.StrategicCustomers.Sales`.
 
 
-## Worker QMId needs to be unique 
+## Worker QMId needs to be unique
 
-Every installation of MSMQ on a Windows machine is represented uniquely by a Queue Manager id (QMId). The QMId is stored as a key in the registry, `HKLM\Software\Microsoft\MSMQ\Parameters\Machine Cache`. MSMQ uses the QMId to know where is should send acks and replies for incoming messages. 
+Every installation of MSMQ on a Windows machine is represented uniquely by a Queue Manager id (QMId). The QMId is stored as a key in the registry, `HKLM\Software\Microsoft\MSMQ\Parameters\Machine Cache`. MSMQ uses the QMId to know where is should send acks and replies for incoming messages.
 
 It is very important that all your machines have their own unique QMId. If two or more machines share the same QMId, only one of those machines are able so successfully send and receive messages with MSMQ. Exactly which machine works changes in a seemingly random fashion.
 
-The primary reason for machines ending up with duplicate QMIds is cloning of virtual machines from a common Windows image without running the recommended [Sysprep](https://technet.microsoft.com/en-us/library/cc766049.aspx) tool. 
+The primary reason for machines ending up with duplicate QMIds is cloning of virtual machines from a common Windows image without running the recommended [Sysprep](https://technet.microsoft.com/en-us/library/cc766049.aspx) tool.
 
 Should you have two or more machines with the same QMId reinstall the MSMQ feature to generate a new QMId.
 

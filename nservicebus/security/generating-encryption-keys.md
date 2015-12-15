@@ -1,6 +1,6 @@
 ---
 title: Generating secure random strong encryption keys
-summary: Describes options in generating secure random strong encryption keys 
+summary: Describes options in generating secure random strong encryption keys
 tags:
 - Encryption
 redirects:
@@ -17,7 +17,7 @@ There are multiple ways of generating a key. Most implementations rely on a *ran
 #### Base64
 
 ```
-[Reflection.Assembly]::LoadWithPartialName("System.Security") 
+[Reflection.Assembly]::LoadWithPartialName("System.Security")
 $rijndael = new-Object System.Security.Cryptography.RijndaelManaged
 $rijndael.GenerateKey()
 Write-Host([Convert]::ToBase64String($rijndael.Key))
@@ -27,7 +27,7 @@ $rijndael.Dispose()
 #### Hex
 
 ```
-[Reflection.Assembly]::LoadWithPartialName("System.Security") 
+[Reflection.Assembly]::LoadWithPartialName("System.Security")
 $rijndael = new-Object System.Security.Cryptography.RijndaelManaged
 $rijndael.GenerateKey()
 Write-Host([System.BitConverter]::ToString($rijndael.Key).Replace("-", "").ToLowerInvariant())

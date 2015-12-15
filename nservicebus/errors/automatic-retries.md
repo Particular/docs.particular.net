@@ -94,7 +94,7 @@ snippet:DisableSlrWithCode
 
 ### Custom Retry Policy
 
-You can apply custom retry logic based on headers or timing in code. 
+You can apply custom retry logic based on headers or timing in code.
 
 
 #### Applying a custom policy

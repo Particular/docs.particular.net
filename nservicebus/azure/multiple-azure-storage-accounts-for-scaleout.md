@@ -1,7 +1,7 @@
 ---
 title: Multiple Azure Storage Accounts for Scale Out
 summary: NServiceBus can use multiple Azure storage accounts for scale out
-tags: 
+tags:
 - Azure
 - Cloud
 - Azure Storage
@@ -21,7 +21,7 @@ When the number of messages exceeds this quota, storage service responds with an
 
 ## Scaling Out
 
-A typical implementation uses a single storage account to send and receive messages. All endpoints are configured to receive and send messages using the same storage account. 
+A typical implementation uses a single storage account to send and receive messages. All endpoints are configured to receive and send messages using the same storage account.
 
 ![Single storage account](azure01.png "width=50%")
 
@@ -37,7 +37,7 @@ Message mapping for Endpoint 1:
 
 ```xml
 <MessageEndpointMappings>
-	<add Messages="Contracts" Namespace="Contracts.Commands.ForEndpoint2" 
+	<add Messages="Contracts" Namespace="Contracts.Commands.ForEndpoint2"
 		 Endpoint="Endpoint2@connection_string_for_endpoint_2" />
 </MessageEndpointMappings>
 ```
@@ -46,7 +46,7 @@ Message mapping for Endpoint 2:
 
 ```xml
 <MessageEndpointMappings>
-	<add Messages="Contracts" Namespace="Contracts.Commands.ForEndpoint1" 
+	<add Messages="Contracts" Namespace="Contracts.Commands.ForEndpoint1"
 		 Endpoint="Endpoint1@connection_string_for_endpoint_1" />
 </MessageEndpointMappings>
 ```
@@ -58,7 +58,7 @@ Each endpoint uses its own Azure storage account, thereby increasing message thr
 
 ## Scale Units
 
-Scaleout works to a certain extent, but you cannot apply it infinitely while expecting throughput to increase accordingly. You can only get so much throughput from a single resource or group of resources grouped together. 
+Scaleout works to a certain extent, but you cannot apply it infinitely while expecting throughput to increase accordingly. You can only get so much throughput from a single resource or group of resources grouped together.
 
 Suitable techniques in the cloud include resource partitioning and use of scale units. A scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput, create more scale units. Scale units do not share resources.
 

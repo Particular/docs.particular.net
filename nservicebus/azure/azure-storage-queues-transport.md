@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Queues as a transport
 summary: NServiceBus can use Azure storage queues to take advantage of their peek-lock mechanism in environments where one cannot rely on the DTC
-tags: 
+tags:
 - Azure
 - Cloud
 - Azure Storage Queues
@@ -15,7 +15,7 @@ related:
 In some environments, like very large cloud networks or hybrid network scenarios, it's not possible or recommended to rely heavily on the DTC, and thus on msmq, to ensure transactional behavior and retry in case of failures. A good alternative to using msmq in this case might be to use Azure Storage queues instead.
 
 Azure Queue storage is a service, hosted on the Azure platform, for storing large numbers of messages that can be accessed from anywhere in the world via authenticated calls using HTTP or HTTPS.
- 
+
 - The main advantage of this service is that it offers a highly reliable and very cheap queuing service ($0.1 per million messages). A single queue message can be up to 64 KB in size, and a queue can contain millions of messages, up to the total capacity limit of a storage account (200 TB). Furthermore it is capable to emulate local transactions using it's queue peek lock mechanism.
 - The main disadvantage of this service is latency introduced by it's remoteness and the fact that it only supports HTTP based communication.
 
@@ -39,7 +39,7 @@ The default way of setting the connection string is using the .NET provided conn
 
 snippet:AzureStorageQueueConnectionStringFromAppConfig
 
-Note that multiple connection string formats apply when working with Azure storage services. When you're running against the emulated environment the format is `UseDevelopmentStorage=true`, but when running against a cloud hosted storage account the format is `DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;` 
+Note that multiple connection string formats apply when working with Azure storage services. When you're running against the emulated environment the format is `UseDevelopmentStorage=true`, but when running against a cloud hosted storage account the format is `DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;`
 
 For more information see [Configuring Azure Connection Strings](https://msdn.microsoft.com/en-us/library/azure/ee758697.aspx)
 

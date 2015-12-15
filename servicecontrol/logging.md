@@ -1,5 +1,5 @@
 ---
-title: ServiceControl Logging 
+title: ServiceControl Logging
 summary: Where and what ServiceControl logs and how to change the location
 tags:
 - ServiceControl
@@ -13,12 +13,12 @@ redirects:
 Instances of the ServiceControl service write diagnostic information and failed message imports to the file system.
 
 
-### Location 
+### Location
 
 The location of the ServiceControl logs are controlled via the `ServiceControl/LogPath` configuration setting. Refer to [Customizing ServiceControl configuration](creating-config-file.md)) for more details.
 
-If the ServiceControl configuration file does not this setting the the default logging location is used. 
-The default logging location is `%LOCALAPPDATA%\Particular\ServiceControl\logs`. 
+If the ServiceControl configuration file does not this setting the the default logging location is used.
+The default logging location is `%LOCALAPPDATA%\Particular\ServiceControl\logs`.
 
 The `%LOCALAPPDATA%` defines a user-specific location on disk, so the logging location will be different when the service is configured as a user account. So for example
 
@@ -26,7 +26,7 @@ The `%LOCALAPPDATA%` defines a user-specific location on disk, so the logging lo
  * For a user account it will be `%PROFILEPATH%\AppData\Local\Particular\ServiceControl\logs`
 
 Note: Browsing to  `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs` can be problematic
-as the default NTFS permissions on the systemprofile do not allow access.  These permissions may need to be modified to gain access to the logs. 
+as the default NTFS permissions on the systemprofile do not allow access.  These permissions may need to be modified to gain access to the logs.
 
 
 NOTE: If multiple Service Control instances are configured on the same machine ensure that the log locations for each instance are unique
@@ -37,14 +37,14 @@ NOTE: If multiple Service Control instances are configured on the same machine e
 
 To change the location ServiceControl stores its logs:
 
- * Open the ServiceControl Management Utility 
+ * Open the ServiceControl Management Utility
  * Click the Configuration icon  for the instance you wish to modify.
- 
+
 ![](managementutil-configuration.png)
 
  * Change the Log Path and click Save
- 
-When Save is clicked the the service with be restarted to apply the change. 
+
+When Save is clicked the the service with be restarted to apply the change.
 
 #### Changing logging location by editing the configuration file
 

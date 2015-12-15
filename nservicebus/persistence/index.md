@@ -6,7 +6,7 @@ redirects:
 - nservicebus/persistence-in-nservicebus
 ---
 
-Various features of NServiceBus require persistence. 
+Various features of NServiceBus require persistence.
 
 
 ## Storage Types

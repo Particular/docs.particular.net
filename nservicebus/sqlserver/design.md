@@ -5,12 +5,12 @@ tags:
 - SQL Server
 ---
 
-The SQL Server transport implements a message queueing mechanism on top of a Microsoft SQL Server database. It uses tables to model queues. It does not make any use of ServiceBroker, a messaging technology built into the SQL Server, mainly due to cumbersome API and difficult maintenance. 
+The SQL Server transport implements a message queueing mechanism on top of a Microsoft SQL Server database. It uses tables to model queues. It does not make any use of ServiceBroker, a messaging technology built into the SQL Server, mainly due to cumbersome API and difficult maintenance.
 
 
 ## How it works?
 
-The SQL Server transport is a hybrid queueing system which is neither store-and-forward (like MSMQ) nor a broker (like RabbitMQ). It treats the SQL Server only as a storage infrastructure for the queues. The queueing logic itself is implemented and executed as part of the transport code running in an NServiceBus endpoint. 
+The SQL Server transport is a hybrid queueing system which is neither store-and-forward (like MSMQ) nor a broker (like RabbitMQ). It treats the SQL Server only as a storage infrastructure for the queues. The queueing logic itself is implemented and executed as part of the transport code running in an NServiceBus endpoint.
 
 
 ## Pros & cons
@@ -38,7 +38,7 @@ In the simplest form, SQL Server transport uses a single instance of the SQL Ser
 
 ## Database-per-endpoint
 
-In a more complex scenario endpoints use separate databases and DTC is involved. Due to lack of store-and-forward mechanism, if a remote endpoint's database or DTC infrastructure is down, our endpoint cannot send messages to it. This potentially renders our endpoint (and all endpoints transitively depending on it) unavailable. 
+In a more complex scenario endpoints use separate databases and DTC is involved. Due to lack of store-and-forward mechanism, if a remote endpoint's database or DTC infrastructure is down, our endpoint cannot send messages to it. This potentially renders our endpoint (and all endpoints transitively depending on it) unavailable.
 
 
 ## Database-per-endpoint with store-and-forward

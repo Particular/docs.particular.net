@@ -50,7 +50,7 @@ There are two ways to specify the message properties to be sent using DataBus
 
 ### Using DataBusProperty<T>
 
-Properties defined using the `DataBusProperty<T>` type provided by NServiceBus are not treated as part of a message, but persist externally based on the type of `DataBus` used, and are linked to the original message using a unique key. 
+Properties defined using the `DataBusProperty<T>` type provided by NServiceBus are not treated as part of a message, but persist externally based on the type of `DataBus` used, and are linked to the original message using a unique key.
 
 snippet:MessageWithLargePayload
 

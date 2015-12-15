@@ -4,7 +4,7 @@ summary: Illustrates customizing Serilog usage by configuring Serilog targets an
 tags:
 - Logging
 - Serilog
-related: 
+related:
 - nservicebus/logging
 - platform/extensions
 ---

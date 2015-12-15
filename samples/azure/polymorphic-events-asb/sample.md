@@ -11,7 +11,7 @@ redirects:
 - samples/azure/polyorphic-events-asb
 ---
 
-## Prerequisites 
+## Prerequisites
 
 An environment variable named `SamplesAzureServiceBusConnection` that contains the connection string for the Azure Service Bus namespace.
 
@@ -23,7 +23,7 @@ This sample utilizes the [Azure Service Bus Transport](/nservicebus/azure/azure-
 
 ## Code walk-through
 
-This sample has two endpoints. 
+This sample has two endpoints.
 
 * `Publisher` publishes `BaseEvent` and `DerivedEvent` events.
 * `Subscriber` subscribes and handles `BaseEvent` and `DerivedEvent` events.
@@ -53,7 +53,7 @@ Normally, this would be fine. Though not with ASB transport and polymorphic even
 
 ![](images/baseevent.published.png)
 
-But whenever `DerivedEvent` event is published, both `Samples.ASB.Polymorphic.Subscriber.BaseEvent` and `Samples.ASB.Polymorphic.Subscriber.DerivedEvent` subscriptions get a copy of that message. 
+But whenever `DerivedEvent` event is published, both `Samples.ASB.Polymorphic.Subscriber.BaseEvent` and `Samples.ASB.Polymorphic.Subscriber.DerivedEvent` subscriptions get a copy of that message.
 
 ![](images/derivedevent.published.png)
 
@@ -89,7 +89,7 @@ For this sample, configuring `Subscriber` as described above, will create the to
 
 ![](images/single.subscription.png)
 
-Results of the sample now adhere to the expected polymorphic message handling 
+Results of the sample now adhere to the expected polymorphic message handling
 
 snippet:PublisherOutput-from-sample
 

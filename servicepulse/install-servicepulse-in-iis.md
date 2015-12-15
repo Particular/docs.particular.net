@@ -84,10 +84,10 @@ The procedure above should result in a `web.config` file in the newly created `/
     <system.webServer>
         <rewrite>
             <rules>
-                <rule name="ReverseProxyInboundRule1" 
+                <rule name="ReverseProxyInboundRule1"
                       stopProcessing="true">
                     <match url="(.*)" />
-                    <action type="Rewrite" 
+                    <action type="Rewrite"
                             url="http://localhost:33333/api/{R:1}" />
                 </rule>
             </rules>
@@ -105,7 +105,7 @@ It is also recommended that the IIS web site be configured to use SSL if an auth
 
 If ServiceControl is secured with an authentication module other that Windows Authentication  ServiceInsight will not be able to connect to the REST API exposed via IIS. ServiceInsight v1.4 or greater is required to use Windows authentication.
 
-Older versions of ServiceInsight can still be used locally, bypassing the security by connecting to the ServiceControl port directly using the `http://localhost:33333/api` URL.  
+Older versions of ServiceInsight can still be used locally, bypassing the security by connecting to the ServiceControl port directly using the `http://localhost:33333/api` URL. 
 
 
 ## Upgrading ServicePulse hosted in IIS
@@ -132,8 +132,8 @@ Extension | Mime Type
 ------------ | -------------
 .eot | application/vnd.ms-fontobject
 .ttf  | application/octet-stream
-.svg | image/svg+xml                 
-.woff | application/font-woff         
-.woff2 | application/font-woff2   
+.svg | image/svg+xml                
+.woff | application/font-woff        
+.woff2 | application/font-woff2  
 
 NOTE: Some of these mime types will already be setup on newer versions of IIS. Please verify that all the listed mime types are present.

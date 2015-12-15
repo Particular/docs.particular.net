@@ -10,13 +10,13 @@ redirects:
 
 ## When using the configuration API
 
-NOTE: these approaches can also be used from NServiceBus Host via the use of `IConfigureThisEndpoint`. 
+NOTE: these approaches can also be used from NServiceBus Host via the use of `IConfigureThisEndpoint`.
 
 You can define your own convention in the endpoint initialization code using this
 
 snippet:EndpointNameCode
 
-## When using the NServiceBus.Host.exe  
+## When using the NServiceBus.Host.exe 
 
 ### Namespace convention
 
@@ -26,17 +26,17 @@ snippet:EndpointNameByNamespace
 
 ### EndpointName attribute
 
-You can set the endpoint name using the `[EndpointName]` attribute on your endpoint configuration. 
+You can set the endpoint name using the `[EndpointName]` attribute on your endpoint configuration.
 
 NOTE: This will only work when using [NServiceBus host](/nservicebus/hosting/nservicebus-host/).
-    
-<!-- import EndpointNameByAttribute -->  
+   
+<!-- import EndpointNameByAttribute --> 
 
-### Installation parameter 
+### Installation parameter
 
 If you specify a explicit service name when installing the NServiceBus host, this is used as the endpoint name: `/serviceName:"MyEndpoint"`.
 
-### Command-line parameter 
+### Command-line parameter
 
 You can specify a endpoint name when running the NServiceBus host: `/endpointName:"MyEndpoint"`.
 

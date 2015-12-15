@@ -28,7 +28,7 @@ e
 ERROR ValidationMessageMutator Validation failed for message CreateProductCommand: ProductId=XJ128, ProductName=Milk Milk Milk Milk Milk, ListPrice=15 Image (length)=7340032, with the following error/s:
 The Product Name value cannot exceed 20 characters.
 The field ListPrice must be between 1 and 5.
-``` 
+```
 
 Now let's look at the code.
 
@@ -98,13 +98,13 @@ snippet:ComponentRegistartion
 
 ## The Sending code
 
-<!-- import SendingSmall --> 
+<!-- import SendingSmall -->
 
 Since the message buffer field is empty, `GZipStreamer` in the outgoing transport message mutator easily compresses it to a size under the MSMQ limit of 4MB and the message will get to the server.
 
 See how an invalid message is sent that will never be received since an exception will be thrown at the outgoing message mutator:
 
-<!-- import SendingLarge --> 
+<!-- import SendingLarge -->
 
 The message is invalid for several reasons: the product name is over the 20 character limit, the list price is too high, and the sell end date is not in the valid range. The thrown exception logs those invalid values. The server code is simple and straightforward:
 

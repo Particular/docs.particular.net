@@ -1,7 +1,7 @@
 ---
 title: Containers
 summary: NServiceBus automatically registers components, user-implemented handlers, and sagas.
-tags: 
+tags:
 - Dependency Injection
 - IOC
 redirects:

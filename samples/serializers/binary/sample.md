@@ -8,7 +8,7 @@ related:
 
 This samples uses the Binary Formatter serializer in the core.
 
-## Configuring to use Binary 
+## Configuring to use Binary
 
 snippet:config
 

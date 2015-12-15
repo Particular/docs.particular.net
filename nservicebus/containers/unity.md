@@ -8,7 +8,7 @@ tags:
 ---
 
 
-NServiceBus can be configured to use [Unity](https://github.com/unitycontainer/unity) as a dependency injection container. 
+NServiceBus can be configured to use [Unity](https://github.com/unitycontainer/unity) as a dependency injection container.
 
 
 ## Usage

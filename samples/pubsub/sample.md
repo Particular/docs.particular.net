@@ -10,9 +10,9 @@ redirects:
 - nservicebus/publish-subscribe-sample
 related:
 - nservicebus/messaging/publish-subscribe
---- 
+---
 
-Before running the sample, look over the solution structure, the projects, and the classes. The projects `MyPublisher`, `Subscriber1`, and `Subscriber2` are Console Applications that each host an instance of NServiceBus. 
+Before running the sample, look over the solution structure, the projects, and the classes. The projects `MyPublisher`, `Subscriber1`, and `Subscriber2` are Console Applications that each host an instance of NServiceBus.
 
 
 ## Defining messages
@@ -55,6 +55,6 @@ Now let's see some of the other features of NServiceBus.
 
 Shut down `Subscriber1` by closing its console window. Return to the `MyPublisher` process and publish a few more messages by clicking Enter several more times. Notice how the publishing process does not change and there are no errors even though one of the subscribers is no longer running.
 
-In Visual Studio, right click the project of the closed subscriber, and restart it by right clicking the `Subscriber1` project and selecting `Debug` and then `Start new instance`. 
+In Visual Studio, right click the project of the closed subscriber, and restart it by right clicking the `Subscriber1` project and selecting `Debug` and then `Start new instance`.
 
 Note how `Subscriber1` immediately receives the messages that were published while it was not running. The publisher safely places the message into the transport in this case MSMQ without knowledge of the running status of any subscriber. MSMQ safely places the message in the inbound queue of the subscriber where it awaits handling, so you can be sure that even when processes or machines restart, NServiceBus protects your messages so they won't get lost.

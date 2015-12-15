@@ -20,7 +20,7 @@ This sample shows how to perform custom saga finding logic based on custom query
 
 This sample requires [NHibernate persistence](http://www.nuget.org/packages/NServiceBus.NHibernate/) package and a running Microsoft Sql Server instance configured accordingly. The sample NHibernate setup can be configured according to your environment:
 
-<!-- import NHibernateSetup --> 
+<!-- import NHibernateSetup -->
 
 ### The Saga
 

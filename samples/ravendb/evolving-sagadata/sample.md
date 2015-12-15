@@ -14,14 +14,14 @@ related:
 The aim of this samples to illustrate the API and techniques required gradually evolve saga(s) data structures over time.
 
 
-## Prerequisites 
+## Prerequisites
 
 This sample requires a RavenDB server listening on `http://localhost:8083`.
 
 
 ## Initial Saga
 
-The initial Saga and Data structure 
+The initial Saga and Data structure
 
 
 ### Data
@@ -45,13 +45,13 @@ snippet:saga
 
 ## Mutating an existing Saga Data
 
-One common scenario for evolving a saga data is to change the internal structure of a saga. 
+One common scenario for evolving a saga data is to change the internal structure of a saga.
 
 In this example the `ItemCount` property will be renamed to `NumberOfItems`.
 
 snippet:dataV2
 
-One way of achieving this is to leverage they [RavenDb Conversion API](http://ravendb.net/docs/search/latest/csharp?searchTerm=IDocumentConversionListener) to convert a saga data when it reads. 
+One way of achieving this is to leverage they [RavenDb Conversion API](http://ravendb.net/docs/search/latest/csharp?searchTerm=IDocumentConversionListener) to convert a saga data when it reads.
 
 
 ### Converter
@@ -61,11 +61,11 @@ snippet:Converter
 
 #### Reading
 
-The `AfterConversionToEntity` handles reading read the saga data from RavenDB. 
+The `AfterConversionToEntity` handles reading read the saga data from RavenDB.
 
-In this case the `ItemCount` wont exist on the Version 2 saga data so it needs to be read from the raw `RavenJObject`. 
+In this case the `ItemCount` wont exist on the Version 2 saga data so it needs to be read from the raw `RavenJObject`.
 
-Note that `NumberOfItems` is always overwritten with `ItemCount`. The reason for this is that since Version 1 is only aware of `ItemCount` it will not set `NumberOfItems`. But Version 2 will always set `ItemCount` (see the writing implementation below) we are safe to use `ItemCount` until all Version 1 endpoints have been decommissioned. 
+Note that `NumberOfItems` is always overwritten with `ItemCount`. The reason for this is that since Version 1 is only aware of `ItemCount` it will not set `NumberOfItems`. But Version 2 will always set `ItemCount` (see the writing implementation below) we are safe to use `ItemCount` until all Version 1 endpoints have been decommissioned.
 
 
 #### Writing
@@ -95,8 +95,8 @@ snippet:dataV3
 
 RavenDB does not support changing the underlying document id. This means the only way of fully renaming a document is to take the following steps:
 
- * Read all old documents 
- * Copy to the new document  
+ * Read all old documents
+ * Copy to the new document 
  * Save the new document
  * Delete the old document
 
@@ -108,15 +108,15 @@ WARNING: This is an offline action in that all old version of the endpoints have
 Renaming a RavenDB saga data is done in two parts.
 
 1. Migrate the actual saga data collection.
-2. Migrate the specific items in the `SagaUniqueIdentities` collection that are used to enforce property uniqueness over multiple instances. 
+2. Migrate the specific items in the `SagaUniqueIdentities` collection that are used to enforce property uniqueness over multiple instances.
 
-Both of these actions leverage the following Raven APIs: 
+Both of these actions leverage the following Raven APIs:
 
  * [Batch](http://ravendb.net/docs/search/latest/csharp?searchTerm=Batch)
  * [Bulk Insert](http://ravendb.net/docs/search/latest/csharp?searchTerm=BulkInsert)
  * [Streaming Documents](http://ravendb.net/docs/search/latest/csharp?searchTerm=Stream)
  * [Batch Delete](http://ravendb.net/docs/search/latest/csharp?searchTerm=DeleteCommandData)
- * [Type Conventions](http://ravendb.net/docs/search/latest/csharp?searchTerm=Type%20Conventions) 
+ * [Type Conventions](http://ravendb.net/docs/search/latest/csharp?searchTerm=Type%20Conventions)
 
 snippet:renamer
 
@@ -143,7 +143,7 @@ Given that this is a migration that requires endpoints to be taken offline the t
 
 Given the above saga migration, and a 2.7GHz i7 with an SSD, 30,000 saga datas can be converted  in 50 seconds.
 
-Note that the deletion of old saga datas could be done on a running system so as to achieve a smaller migration window. 
+Note that the deletion of old saga datas could be done on a running system so as to achieve a smaller migration window.
 
 Raven DB has a variety of API that have different performance characteristics. Based on the type of saga data changes required a different combination of APIs might give better performance or simplify the migration. For example the [Patch API](http://ravendb.net/docs/article-page/3.0/Csharp/client-api/commands/patches/how-to-use-javascript-to-patch-your-documents) can allow you to manipulate documents without needing to load the full document into memory.
 
@@ -154,4 +154,4 @@ The approach used for renaming a saga data, and APIs described, can also be used
 
  * Deleting sagas that are no longer required
  * Merging multiple saga types into a single new saga
- * Splitting existent sagas into multiple other sagas 
+ * Splitting existent sagas into multiple other sagas

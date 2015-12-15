@@ -22,7 +22,7 @@ NServiceBus creates a child container for each transport message that is receive
 When the message finishes processing, the child container and all transient instances are disposed. So if you need deterministic disposal, implement [IDisposable](https://msdn.microsoft.com/en-us/library/system.idisposable.aspx).
 
 When the message is processed, the session is disposed and all resources such as database connections are released.
- 
+
 Child containers are a powerful feature that can simplify your code and should definitely be in your toolbox.
 
 If you configure your components using the NServiceBus configure API, it's possible to configure instance life-cycle to be per unit of work, using this:

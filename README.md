@@ -8,7 +8,7 @@ Before you start ensure you have
 There are two approaches to contributing.
 
 
-## Via the GitHub Web UI  
+## Via the GitHub Web UI 
 
 For simple changes the GitHub web UI should suffice.
 
@@ -29,7 +29,7 @@ For more complex changes you should fork and then submit a pull request. This is
  1. Push the up to GitHub.
  1. Send a Pull Request on GitHub.
 
-For more information see [Collaborating on GitHub](https://help.github.com/categories/63/articles) especially [using GitHub pull requests](https://help.github.com/articles/using-pull-requests). 
+For more information see [Collaborating on GitHub](https://help.github.com/categories/63/articles) especially [using GitHub pull requests](https://help.github.com/articles/using-pull-requests).
 
 
 # Conventions
@@ -37,7 +37,7 @@ For more information see [Collaborating on GitHub](https://help.github.com/categ
 
 ## Lower case  and `-` delimited
 
-All content files (`.md`,`.png`,`.jpg` etc) and directories must be lower case. 
+All content files (`.md`,`.png`,`.jpg` etc) and directories must be lower case.
 
 All links pointing to them must be lower case.
 
@@ -96,14 +96,14 @@ Optional. Used to flag the article as being part of a group of articles.
 
 Tags are rendered in the articles content with the full list of tags being rendered at [http://docs.particular.net/tags](http://docs.particular.net/tags). Untagged articles will be rendered here [http://docs.particular.net/tags/untagged](http://docs.particular.net/tags/untagged)
 
-Tags are interpreted in two ways. 
+Tags are interpreted in two ways.
 
 * For inclusion of URLs:
    * Tag are lower case
-   * Spaces are replaced with dashes (`-`) 
-* For display purposes: 
+   * Spaces are replaced with dashes (`-`)
+* For display purposes:
    * Tags are lower case
-   * Dashes (`-`) are replaced with dashes spaces 
+   * Dashes (`-`) are replaced with dashes spaces
 
 
 ### Hidden
@@ -125,7 +125,7 @@ related:
 - samples/custom-checks/monitoring3rdparty
 ```
 
-A list of related pages for this page. These links will be rendered at the bottom of the page. Can include both samples and articles and they will be grouped as such when rendered in html. 
+A list of related pages for this page. These links will be rendered at the bottom of the page. Can include both samples and articles and they will be grouped as such when rendered in html.
 
 
 ### Redirects
@@ -136,7 +136,7 @@ redirects:
 ```
 
 When renaming an existing article to a new name, please add the `redirects:` section in the article header and specify the previous name for the article. If the old Url is linked anywhere, when the user clicks on it, the new renamed article will automatically be served.
- 
+
 * Values specified in the `redirects` section must be lower cased.
 * Multiple values can be specified for the redirects, same as `tags`.
 * Values are fully qualified
@@ -175,7 +175,7 @@ The menu is a YAML text document stored at [menu/menu.yaml](menu/menu.yaml).
 
 ## URLs
 
-The directory structure where a `.md` exists is used to derive the URL for that document. 
+The directory structure where a `.md` exists is used to derive the URL for that document.
 
 So a file existing at `nservicebus\logging\nlog.md` will have a resultant URL of `http://docs.particular.net/nservicebus/logging/nlog`.
 
@@ -194,7 +194,7 @@ Like any page an Index page can include [Related pages](#related). However Index
 
 ### Linking
 
-Links to other documentation pages should be relative and contain the `.md` extension. 
+Links to other documentation pages should be relative and contain the `.md` extension.
 
 The `.md` allows links to work inside the GitHub web UI. The `.md` will be trimmed when they are finally rendered.
 
@@ -207,7 +207,7 @@ To link to the file `\servicecontrol\page3.md`, use `[Page 3 Text](/servicecontr
 Don't link to `index.md` pages, instead link to the directory. So link to `/nservicebus/logging` and NOT `/nservicebus/logging/index.md`
 
 
-## Markdown 
+## Markdown
 
 The site is rendered using [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown)
 
@@ -219,7 +219,7 @@ For editing markdown on your desktop (after cloning locally with Git) try [Markd
 
 #### Markdown flavor
 
-Ensure you enable `GitHub Flavored Markdown (Offline)` by going to 
+Ensure you enable `GitHub Flavored Markdown (Offline)` by going to
 
     Tools > Options > Markdown > Markdown Processor > GitHub Flavored Markdown (Offline)
 
@@ -228,9 +228,9 @@ Or click in the bottom left no the `M` icon to "hot-switch"
 
 #### Yaml
 
-Don't render YAML Front-Matter by going to  
+Don't render YAML Front-Matter by going to 
 
-    Tools > Options > Markdown > Markdown Settings 
+    Tools > Options > Markdown > Markdown Settings
 
 And checking `Ignore YAML Front-matter`
 
@@ -245,7 +245,7 @@ And checking `Ignore YAML Front-matter`
  * Any directory in that structure with a sample.md will be considered a "root for a sample" or Sample Root.
  * A Sample Root may not contain an sample.md in subdirectories.
  * Each directory under the Sample Root will be rendered on the site as a downloadable zip with the directory name being the filename.
- * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root.  
+ * A sample.md can use snippets from within its Sample Root but not snippets defined outside that root. 
 
 
 ### Startup projects
@@ -268,21 +268,21 @@ Endpoint1\Endpoint1.csproj
 
 ### Bootstrapping a sample
 
-At the moment the best way to get started on a sample is to copy an existing one. Ideally one that has similarities to what you are trying to achieve. 
+At the moment the best way to get started on a sample is to copy an existing one. Ideally one that has similarities to what you are trying to achieve.
 
 A good sample to start with is the [Default Logging Sample](https://github.com/Particular/docs.particular.net/tree/master/samples/logging/default), since all it does is enable logging. You can then add the various moving pieces to your copy.
 
 
 ### Screenshots
 
-Avoid using screen shots in sample unless it adds significant value over what can be expressed in text. The have the following problems 
+Avoid using screen shots in sample unless it adds significant value over what can be expressed in text. The have the following problems
 
  * Screenshots are more time consuming to update than text
  * Not search-able
  * Are prone to resulting an in inconsistent feel as different people take screenshot at different sizes, different zoom levels and with different color schemes for the app in question
- * Screenshots add significantly to the page load time. 
+ * Screenshots add significantly to the page load time.
 
-The most common misuse of screenshots is when capturing console output. DO NOT DO THIS. Put the text inside a formatted code section instead. 
+The most common misuse of screenshots is when capturing console output. DO NOT DO THIS. Put the text inside a formatted code section instead.
 
 
 ## Markdown includes
@@ -290,12 +290,12 @@ The most common misuse of screenshots is when capturing console output. DO NOT D
 Markdown includes are pulled into the document prior to passing the content through the markdown conversion.
 
 
-### Defining an include 
+### Defining an include
 
 Add a file anywhere in the docs repository that is suffixed with `.include.md`. So for example the file might be named `theKey.include.md`.
 
 
-### Using an include 
+### Using an include
 
 Add the following to the markdown `include: theKey`
 
@@ -314,7 +314,7 @@ File extensions scanned for snippets include:
  * `.cs`
  * `.ps`
  * `.cscfg`
- * `.csdef` 
+ * `.csdef`
  * `.html`
  * `.sql`
  * `.txt`
@@ -340,9 +340,9 @@ For non-code snippets apply a similar approach as in code, using comments approp
 |**Close**  |```<!-- endcode -->```       |```# endcode```       |```-- endcode```       |```endcode```       |
 
 
-#### Using regions 
+#### Using regions
 
-Any code wrapped in a named C# region will be picked up. The name of the region is used as the key. 
+Any code wrapped in a named C# region will be picked up. The name of the region is used as the key.
 
 ```
 #region ConfigureWith
@@ -396,10 +396,10 @@ If a file named `prerelease.txt` exists in a versioned directory then a `-pre` w
 
 So for example if there is a directory `docs.particular.net\Snippets\Snippets_6\` and it contains a `prerelease.txt` file then the version will be `(≥ 6.0.0-pre)`
 
-If the `prerelease.txt` contains text then that text will be used for the pre-release text. 
+If the `prerelease.txt` contains text then that text will be used for the pre-release text.
 
 So for example if `prerelease.txt` contains `beta` then the version will be `(≥ 6.0.0-beta)`
- 
+
 
 ### Using Snippets
 
@@ -409,7 +409,7 @@ The keyed snippets can then be used in any documentation `.md` file by adding th
 
 Then snippets with the key (all versions) will be rendered in a tabbed manner. If there is only a single version then it will be rendered as a simple code block with no tabs.
 
-For example 
+For example
 
 <pre>
 <code >To configure the bus call
@@ -421,14 +421,14 @@ The resulting markdown will be
     To configure the bus call
     ```
     var configure = Configure.With();
-    ``` 
+    ```
 
 
 ### Code indentation
 
-The code snippets will do smart trimming of snippet indentation. 
+The code snippets will do smart trimming of snippet indentation.
 
-For example given this snippet. 
+For example given this snippet.
 
 <pre>
 &#8226;&#8226;#region DataBus
@@ -437,7 +437,7 @@ For example given this snippet.
 &#8226;&#8226;#endregion
 </pre>
 
-The leading two spaces (&#8226;&#8226;) will be trimmed and the result will be 
+The leading two spaces (&#8226;&#8226;) will be trimmed and the result will be
 
 ```
 var configure = Configure.With()
@@ -451,7 +451,7 @@ The same behavior will apply to leading tabs.
 
 If tabs and spaces are mixed there is no way for the snippets to work out what to trim.
 
-So given this snippet 
+So given this snippet
 
 <pre>
 &#8226;&#8226;#region DataBus
@@ -462,7 +462,7 @@ So given this snippet
 
 Where &#10137; is a tab.
 
-The resulting markdown will be will be 
+The resulting markdown will be will be
 
 <pre>
 var configure = Configure.With()
@@ -477,7 +477,7 @@ Note none of the tabs have been trimmed.
 This is done for two reasons
 
  1. Since the snippets are viewing inline to a page they lack much of the context of a full code file such as using statements. To remove the ambiguity explicit variable declaration is being used
- 2. It makes it much easier to build the docs search engine when the types being used on a page can be inferred by the snippets used. 
+ 2. It makes it much easier to build the docs search engine when the types being used on a page can be inferred by the snippets used.
 
 This is enforced by Resharper rules.
 
@@ -507,10 +507,10 @@ There are several keys each of which map to a different colored alert
 | `SUCCESS`        | green  |
 | `NOTE` or `INFO` | blue   |
 | `WARNING`        | yellow |
-| `DANGER`         | red    | 
-| `BETA`           | yellow | 
+| `DANGER`         | red    |
+| `BETA`           | yellow |
 
-`BETA` notes will also be prefixed with some text about it being a pre-release API. 
+`BETA` notes will also be prefixed with some text about it being a pre-release API.
 
 Keys can be used in two manners
 
@@ -529,35 +529,35 @@ Will be rendered as
 
     <p class="alert alert-info">
        Some sample note text.
-    </p> 
+    </p>
 
 
 ### Multi-line
 
 Sometimes it is necessary to group markdown elements inside a note. This can be done with the following syntax
- 
+
     {{KEY:
     Inner markdown elements
     }}
 
-For example this 
+For example this
 
     {{NOTE:
     * Point one
     * Point Two
-    }} 
+    }}
 
-Would be rendered as 
+Would be rendered as
 
     <p class="alert alert-info">
-    * Point One 
+    * Point One
     * Point Two
-    </p> 
+    </p>
 
 
 ## Headings
 
-The first (and all top level) headers in a `.md` page should be a `h2` ie `##`. With sub-headers under it being `h2` are `h3` etc. 
+The first (and all top level) headers in a `.md` page should be a `h2` ie `##`. With sub-headers under it being `h2` are `h3` etc.
 
 
 ## Space
@@ -570,7 +570,7 @@ The first (and all top level) headers in a `.md` page should be a `h2` ie `##`. 
 
 One addition to standard markdown is the auto creation of anchors for headings.
 
-So if you have a heading like this: 
+So if you have a heading like this:
 
     ## My Heading
 
@@ -581,23 +581,23 @@ it will be converted to this:
       My Heading
     </h2>
 
-Which means elsewhere in the page you can link to it with this: 
+Which means elsewhere in the page you can link to it with this:
 
     [Goto My Heading](#My-Heading)
 
 
 ## Images
 
-Images can be added using the following markdown syntax 
+Images can be added using the following markdown syntax
 
     ![Alt text](/path/to/img.jpg "Optional title")
 
-With the minimal syntax being 
+With the minimal syntax being
 
     ![](/path/to/img.jpg)
 
 
-### Image sizing 
+### Image sizing
 
 Image size can be controlled by adding a the text `width=x` to the end of the title
 
@@ -605,7 +605,7 @@ For example
 
     ![Alt text](/path/to/img.jpg "Optional title width=x")
 
-With the minimal syntax being 
+With the minimal syntax being
 
     ![](/path/to/img.jpg "width=x")
 
@@ -613,7 +613,7 @@ This will result in the image being resized with the following parameters
 
     width="x" height="auto"
 
-It will also wrap the image in a clickable lightbox so the full image can be accessed. 
+It will also wrap the image in a clickable lightbox so the full image can be accessed.
 
 
 ### Sequence diagrams
@@ -625,10 +625,10 @@ Sequence diagram images are genrated using https://bramp.github.io/js-sequence-d
 
  * Ticks are done with `&#10004;` &#10004;
  * Crosses are done with `&#10006;` &#10006;
-  
+ 
 
 ## More Information
- 
+
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 

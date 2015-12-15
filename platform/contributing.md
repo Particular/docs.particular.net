@@ -1,6 +1,6 @@
 ---
 title: How to contribute
-summary: The Particular Platform is open source and takes contributions from the community. 
+summary: The Particular Platform is open source and takes contributions from the community.
 tags:
 - Platform
 ---

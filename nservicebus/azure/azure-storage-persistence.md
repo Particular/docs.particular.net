@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Persistence
 summary: Using Azure Storage for persistence features of NServiceBus including timeouts, sagas, and subscription storage.
-tags: 
+tags:
 - Azure
 - Cloud
 - Persistence

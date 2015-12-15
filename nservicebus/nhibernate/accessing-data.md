@@ -42,4 +42,4 @@ NOTE: Customizing the way session is opened works only for the 'shared' session 
 
 ## Known limitations
 
-Because of the way NServiceBus opens sessions by passing an existing instance of a database connection, it is currently not possible to use NHibernate's second-level cache. Such behavior of NServiceBus is caused by still-unresolved [bug](https://nhibernate.jira.com/browse/NH-3023) in NHibernate. 
+Because of the way NServiceBus opens sessions by passing an existing instance of a database connection, it is currently not possible to use NHibernate's second-level cache. Such behavior of NServiceBus is caused by still-unresolved [bug](https://nhibernate.jira.com/browse/NH-3023) in NHibernate.

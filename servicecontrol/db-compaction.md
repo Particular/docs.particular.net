@@ -8,7 +8,7 @@ tags:
 
 ## Overview
 
-ServiceControl 1.4 introduced a database maintenance feature which allows ServiceControl to be run with all features except for RavenDB Studio disabled.  While in this mode no messages are ingested from the queuing system.    
+ServiceControl 1.4 introduced a database maintenance feature which allows ServiceControl to be run with all features except for RavenDB Studio disabled.  While in this mode no messages are ingested from the queuing system.   
 
 Once servicecontrol is running in this  mode the following procedure can be used to compact the embedded RavenDB database.
 
@@ -17,16 +17,16 @@ Once servicecontrol is running in this  mode the following procedure can be used
 - Open the ServiceControl Management utility
 - Stop the Service from the actions icons
 - Note down:
-	- the installation path for the service. 
-	- the database path for the service. 
+	- the installation path for the service.
+	- the database path for the service.
 - Open command line and installation path for the service
 - Type `ServiceControl -maint`
 - ServiceControl will start in the maintenance mode with RavenDB studio exposed on `http://localhost:{selected port}/storage`.
-  
+ 
 ## Step 2: Export the current database
 
 - Open a browser and navigate to `http://localhost:{selected port}/storage`
-- Export the existing ServiceControl database. 
+- Export the existing ServiceControl database.
 
 ![](export-database-step1.png)
 
@@ -46,10 +46,10 @@ Once servicecontrol is running in this  mode the following procedure can be used
 
 ## Step 3: Delete the existing database
 
-NOTE: At this point it is advisable to take a backup copy of the existing database folder as re-importing can fail. To do this ensure that ServiceControl is not running and the copy the contents of the database directory. 
+NOTE: At this point it is advisable to take a backup copy of the existing database folder as re-importing can fail. To do this ensure that ServiceControl is not running and the copy the contents of the database directory.
 
 - Delete the database directory contents.
-- Start ServiceControl, again in the maintenance mode.  This will populate the database folder with a blank database.  
+- Start ServiceControl, again in the maintenance mode.  This will populate the database folder with a blank database. 
 
 ## Step 4: Import the exported data
 
@@ -67,7 +67,7 @@ NOTE: At this point it is advisable to take a backup copy of the existing databa
 
 - Wait for the operation to complete.
 
-- After the operation has completed wait for the stale index count in the footer to indicate there are no stale indexes.  
+- After the operation has completed wait for the stale index count in the footer to indicate there are no stale indexes. 
 
 ![](import-database-step4.png)
 

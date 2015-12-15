@@ -1,7 +1,7 @@
 ---
 title: In Memory Persistence
 summary: In memory persistence stores data in a non-durable manner.
-tags: 
+tags:
 - Persistence
 ---
 

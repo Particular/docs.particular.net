@@ -26,6 +26,6 @@ If you are handling a message in a publish-and-subscribe scenario, see [How to P
 
 ## What happens when there are no handlers for a message?
 
-Receiving a message for which there are no message handlers is considered an error and the received message will be forwarded to the configured error queue. 
+Receiving a message for which there are no message handlers is considered an error and the received message will be forwarded to the configured error queue.
 
 Note: This behavior was slightly different in Version 3 where the message would only end up in the error queue if running in debug mode. If not in debug mode a Version 3 endpoint would log a warning but still consider the message successfully processed and therefore moving it to the configured error queue.

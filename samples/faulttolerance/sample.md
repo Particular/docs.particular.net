@@ -11,8 +11,8 @@ related:
 
 ## Durable Messaging
 
-*  Run the solution and hit Enter on the 'Client' console a couple of times to make sure the messages are being processed. 
-   
+*  Run the solution and hit Enter on the 'Client' console a couple of times to make sure the messages are being processed.
+  
 
 **Client Output**
 
@@ -52,7 +52,7 @@ As you can see the 'Server' processes all those messages, and if you go back to 
 ## Fault tolerance
 
 
-### Make the handler fail 
+### Make the handler fail
 
 So, let's make the handling of messages in the 'Server' endpoint fail. Open `MyHandler.cs`.
 
@@ -73,9 +73,9 @@ at NServiceBus.Unicast.Transport.TransportReceiver.ProcessMessage(TransportMessa
 \NServiceBus.Core\Unicast\Transport\TransportReceiver.cs:line 344
 at NServiceBus.Unicast.Transport.TransportReceiver.TryProcess(TransportMessage message) in
 \NServiceBus.Core\Unicast\Transport\TransportReceiver.cs:line 228
-at NServiceBus.Transports.Msmq.MsmqDequeueStrategy.Action() in 
+at NServiceBus.Transports.Msmq.MsmqDequeueStrategy.Action() in
 \NServiceBus.Core\Transports\Msmq\MsmqDequeueStrategy.cs:line 266
-2015-04-24 10:59:57.752 WARN  NServiceBus.Faults.Forwarder.FaultManager Message 
+2015-04-24 10:59:57.752 WARN  NServiceBus.Faults.Forwarder.FaultManager Message
 with '15f99a26-fc38-4ce4-9bc1-a48400b5184c' id has failed FLR and will be handed over to SLR for retry attempt 3.
 ```
 

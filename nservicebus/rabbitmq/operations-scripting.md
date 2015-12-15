@@ -1,5 +1,5 @@
 ---
-title: Scripting RabbitMQ 
+title: Scripting RabbitMQ
 summary: Example code and scripts to facilitate deployment and operational actions against RabbitMQ.
 ---
 
@@ -7,7 +7,7 @@ Example code and scripts to facilitate deployment and operational actions agains
 
 NOTE: Using statements omitted from below code for simplicity
 
-These samples use the [RabbitMQ.Client](http://www.nuget.org/packages/RabbitMQ.Client/) NuGet. 
+These samples use the [RabbitMQ.Client](http://www.nuget.org/packages/RabbitMQ.Client/) NuGet.
 
 Since RabbitMQ.Client is not [CLS Compliant](https://msdn.microsoft.com/en-us/library/system.clscompliantattribute.aspx) it is not possible to run this code within PowerShell.
 
@@ -33,7 +33,7 @@ snippet:rabbit-nativesend
 snippet:rabbit-nativesend-usage
 
 
-## Return message to source queue 
+## Return message to source queue
 
 
 ### The retry helper methods
@@ -47,7 +47,7 @@ The following code shows an example of how to perform the following actions
 snippet:rabbit-return-to-source-queue
 
 
-### Using the retry helper methods 
+### Using the retry helper methods
 
 snippet:rabbit-return-to-source-queue-usage
 
@@ -62,7 +62,7 @@ Queue creation can be done for a specific endpoint or queues shared between mult
 snippet:rabbit-create-queues
 
 
-### Using the create queue helper methods 
+### Using the create queue helper methods
 
 To create all queues for a given endpoint name.
 

@@ -1,5 +1,5 @@
 ---
-title: Critical Errors 
+title: Critical Errors
 summary: How to handle critical errors which adversely affect messaging in your endpoint.
 tags:
 - Hosting
@@ -43,7 +43,7 @@ NOTE: Version 3 does not write a log entry as part of default Critical Error han
 ## Custom handling
 
 NServiceBus allows you to provide a delegate that overrides the above action. So when a Critical Error occurs the new action will be called instead of the default.
- 
+
 You define a custom handler using the following code.
 
 snippet:DefiningCustomHostErrorHandlingAction
@@ -58,10 +58,10 @@ snippet:CustomHostErrorHandlingAction
 
 ## When should you override the default action
 
-The default action should be overridden whenever that default does not meet your specific hosting requirements. For example 
+The default action should be overridden whenever that default does not meet your specific hosting requirements. For example
 
 - If you are using NServiceBus Host, and you wish to take a custom action before the endpoint process is killed.
-- If you are self hosting you can shut down the process via `Environment.FailFast` and re-start the process once the root cause has been diagnosed. 
+- If you are self hosting you can shut down the process via `Environment.FailFast` and re-start the process once the root cause has been diagnosed.
 
 NOTE: If you choose to not kill the process and just dispose the bus, please be aware that any `bus.Send` operations will result in `ObjectDisposedException` being thrown.
 

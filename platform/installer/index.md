@@ -1,14 +1,14 @@
 ---
 title: Platform Installer
 summary: 'Guidance on how to use the Platform Installer and its underlying components'
-tags: 
+tags:
 - Platform
 - Installation
 ---
 
 ## Overview
 
-The Platform Installer is recommended for use on development machines only. 
+The Platform Installer is recommended for use on development machines only.
 
 This is primarily because
 
@@ -17,14 +17,14 @@ This is primarily because
 - The Platform Installer setup.exe will fail on Windows servers were `IE Enhanced Security Configuration` is enabled
 
 The Platform Installer setup.exe can be downloaded from [here](http://particular.net/start-platform-download)
-    
-For testing and production environments it is recommended to: 
+   
+For testing and production environments it is recommended to:
 
  * use the [NServiceBus Powershell Module](/nservicebus/operations/management-using-powershell.md) to install the prerequisite components you require.
  * Download and run the individual installers from the [download](http://particular.net/downloads) page rather than install via the Platform Installer
 
 
-## What to expect 
+## What to expect
 
 The Platform Installer is a Microsoft Click-Once application which means it has a built in self-updating mechanism. Click once applications are sometimes blocked by corporate firewalls or software restriction policies. If you cannot run the platform installer please review the [Offline Install](offline.md). page for installation instructions.
 
@@ -45,8 +45,8 @@ Platform Installer requires Internet access to download individual packages. If 
 
 ![](save-credentials.png)
 
-This dialog offers to save credentials for future use. 
-If the Save Credentials option is chosen the credentials will be encrypted and stored in the registry at `HKEY_CURRENT_USER\Software\Particular\PlatformInstaller\Credentials` for use in subsequent launches of the Platform Installer.  
+This dialog offers to save credentials for future use.
+If the Save Credentials option is chosen the credentials will be encrypted and stored in the registry at `HKEY_CURRENT_USER\Software\Particular\PlatformInstaller\Credentials` for use in subsequent launches of the Platform Installer. 
 
 
 ## Select items to install
@@ -61,7 +61,7 @@ You will be prompted for which items to install. Individual components can be se
 This installs the NServiceBus prerequisites and configures the machine to be compatible for usage by NServiceBus.
 This step does the following:
 
- * Configures Microsoft Distributed Transaction Coordinator for usage by NServiceBus 
+ * Configures Microsoft Distributed Transaction Coordinator for usage by NServiceBus
  * Adds the NServiceBus Performance Counters
  * Installs and configures Microsoft Message Queue (MSMQ) service
 
@@ -70,7 +70,7 @@ There is no harm in running these on multiple times. Each run will check the sta
 Note: The NServiceBus prerequisites do not have a version number and do not toggle to a disabled state after installation.
 
 
-#### ServiceMatrix 
+#### ServiceMatrix
 
 The PlatformInstaller will no longer install ServiceMatrix. ServiceMatrix is available as an extension on the Visual Studio Gallery. Read this article on [how to install ServiceMatrix](/servicematrix/installing-servicematrix-2.0.md).
 
@@ -83,7 +83,7 @@ Installs the ServiceInsight Package. This MSI can be downloaded directly from he
 #### ServicePulse
 
 Installs the ServicePulse Package. This MSI can be downloaded directly from here: [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases/latest).
-    
+   
 
 #### ServiceControl
 
@@ -92,9 +92,9 @@ Installs the ServiceControl Package. This MSI can be downloaded directly from he
 
 ## TroubleShooting
 
-### Downloads 
+### Downloads
 
-The Platform Installer caches the downloaded MSI and VSIX files in `%temp%\Temp\Particular\PlatformInstaller`. These files are download directly from GitHub. Some corporate firewalls prevent the downloading of executable files via content filters or by white/black listing specific web sites. If the Platform Installer cannot download the individual applications please consult with your network administration staff.  
+The Platform Installer caches the downloaded MSI and VSIX files in `%temp%\Temp\Particular\PlatformInstaller`. These files are download directly from GitHub. Some corporate firewalls prevent the downloading of executable files via content filters or by white/black listing specific web sites. If the Platform Installer cannot download the individual applications please consult with your network administration staff. 
 
 
 ### MSI Logs
@@ -103,7 +103,7 @@ The command line options used for the MSI installations ensure that a detailed l
 
 An installation or upgrade of a product will overwrite any existing MSI log for that product.
 
-MSI provide detailed error information via error codes. This MSDN article details [MSI error messages](https://msdn.microsoft.com/en-us/library/aa376931.aspx) which can assist in fault finding installation issues. 
+MSI provide detailed error information via error codes. This MSDN article details [MSI error messages](https://msdn.microsoft.com/en-us/library/aa376931.aspx) which can assist in fault finding installation issues.
 
 
 ### Click-Once

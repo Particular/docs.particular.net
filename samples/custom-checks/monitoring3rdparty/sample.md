@@ -10,9 +10,9 @@ related:
 - servicepulse/intro-endpoints-custom-checks
 ---
 
-## Code walk-through 
+## Code walk-through
 
-When integrating with 3rd party systems, we often end up having many messages that fail when those systems are down. We then usually end up looking for external monitoring services. Why look elsewhere when the Particular Platform already has the extensibility to enable you to monitor 3rd party systems which are exposed as HTTP endpoints. This sample shows how to achieve this with custom checks. 
+When integrating with 3rd party systems, we often end up having many messages that fail when those systems are down. We then usually end up looking for external monitoring services. Why look elsewhere when the Particular Platform already has the extensibility to enable you to monitor 3rd party systems which are exposed as HTTP endpoints. This sample shows how to achieve this with custom checks.
 
 
 ### 3rd Party System console
@@ -22,7 +22,7 @@ The 3rd party system console application simulates a HTTP service running on `ht
 
 ### The sample console
 
-The sample console hosts an endpoint instance which has a custom check associated with it. 
+The sample console hosts an endpoint instance which has a custom check associated with it.
 
 
 ### The custom check

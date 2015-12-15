@@ -7,15 +7,15 @@ tags: []
 
 ## Automatic subscriptions
 
-The default mode for managing subscriptions is  "auto subscribe". When a subscriber endpoint is started it determines to which events it needs to subscribe. It then sends sends subscription messages to the [owning endpoint](/nservicebus/messaging/message-owner.md) for those messages. 
+The default mode for managing subscriptions is  "auto subscribe". When a subscriber endpoint is started it determines to which events it needs to subscribe. It then sends sends subscription messages to the [owning endpoint](/nservicebus/messaging/message-owner.md) for those messages.
 
-This happens each time the subscriber is restarted. 
+This happens each time the subscriber is restarted.
 
 Messages matching the following criteria will be auto subscribed at startup.
 
  1. Defined as a event either using `IEvent` or by the `.DefiningEventsAs` convention.
  1. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given message
- 1. Has routing specified. Note that this only applies to transports that don't support publish-subscribe natively. 
+ 1. Has routing specified. Note that this only applies to transports that don't support publish-subscribe natively.
 
 
 ### Routing configuration needed
@@ -41,7 +41,7 @@ Before Version 4 all messages not defined as a command using `ICommand` or the `
 
 snippet:AutoSubscribePlainMessages
 
- 
+
 ### When a subscriber stops or uninstalls
 
 A Subscriber will not unsubscribe when it stops, it will remain registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started it will consume the messages from its queue. The subscriber will never loose an event.

@@ -53,7 +53,7 @@ Configure.With()
 
 NOTE: Do not perform any startup behaviors in the `Init` method.
 
-After the custom initialization is done the regular core `INeedInitalization` implementations found will be called in the same way as when you're self hosting. 
+After the custom initialization is done the regular core `INeedInitalization` implementations found will be called in the same way as when you're self hosting.
 
 Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in Version 3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in Version 3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in Version 3.x) should kick off things such as web crawling, data mining, and batch processes.
 
@@ -115,7 +115,7 @@ NServiceBus.Host.exe [/install [/serviceName]
 [/password]]
 [/uninstall [/serviceName]
 [/sidebyside]
-[/instance:Instance Name ] 
+[/instance:Instance Name ]
 ```
 
 You can get to this list by running the following at the command line:
@@ -143,7 +143,7 @@ To specify under which account you want your service to run, pass in the usernam
 Following is an example of the `/install` command line:
 
 ```
-NServiceBus.Host.exe /install /serviceName:"MyPublisher" 
+NServiceBus.Host.exe /install /serviceName:"MyPublisher"
 /displayName:"My Publisher Service"
 /description:"Service for publishing event messages"
 /endpointConfigurationType:"YourNameSpace.YourEndpointConfigType, YourAssembly"
@@ -171,4 +171,4 @@ For example:
 NServiceBus.Host.exe /uninstall /serviceName:YourServiceName /instance:YourInstanceName
 ```
 
-To invoke the infrastructure installers, run the host with the `/installInfrastructure` switch. 
+To invoke the infrastructure installers, run the host with the `/installInfrastructure` switch.

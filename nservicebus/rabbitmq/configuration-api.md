@@ -1,12 +1,12 @@
 ---
-title: RabbitMQ configuration settings 
+title: RabbitMQ configuration settings
 summary: The various ways to customize the RabbitMQ transport
 tags:
 - RabbitMQ
 - Transports
 ---
 
-## Configuring RabbitMQ transport to be used 
+## Configuring RabbitMQ transport to be used
 
 To make NServiceBus use RabbitMQ as the underlying transport you need to add this to your configuration:
 
@@ -51,7 +51,7 @@ RabbitMQ is a broker which means that you scale out by adding more endpoints fee
 
 snippet:rabbitmq-config-disablecallbackreceiver
 
-This means that the queue will not be created and no extra threads will be used to fetch messages from that queue. 
+This means that the queue will not be created and no extra threads will be used to fetch messages from that queue.
 
 By default 1 dedicated thread is used for the callbacks but if you want to add more threads due to a high rate of callbacks being used you can control the threads count using:
 
@@ -59,7 +59,7 @@ snippet:rabbitmq-config-callbackreceiver-thread-count
 
 ### Controlling the message id strategy
 
-By default NServiceBus uses the `message-id` property of the AMQP standard to relay the message id. If this header isn't set the transport will throw an exception since NServiceBus needs a message id in order to perform retries, de-duplication etc. in a safe way. In integration scenarios where you don't control the sender you might want to use your own custom scheme that extracts the message id from e.g.a custom header or some data contained in the actual message body. In these cases you can plug in your own strategy by calling: 
+By default NServiceBus uses the `message-id` property of the AMQP standard to relay the message id. If this header isn't set the transport will throw an exception since NServiceBus needs a message id in order to perform retries, de-duplication etc. in a safe way. In integration scenarios where you don't control the sender you might want to use your own custom scheme that extracts the message id from e.g.a custom header or some data contained in the actual message body. In these cases you can plug in your own strategy by calling:
 
 snippet:rabbitmq-config-custom-id-strategy
 

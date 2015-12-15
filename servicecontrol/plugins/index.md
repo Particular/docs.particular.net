@@ -22,7 +22,7 @@ The ServiceControl plugins are deployed with the endpoints they are monitoring. 
 * During development, add the relevant plugin NuGet package to the endpoint's project in Visual Studio using the NuGet.
 * When in production, add the plugin DLLs to the BIN directory of the endpoint, and restart the endpoint process for the changes to take effect and the plugin to be loaded.
 
-NOTE: For NServiceBus version-dependent requirements for each plugin, review the "Dependencies" section in the NuGet Gallery page for the specific plugin.  
+NOTE: For NServiceBus version-dependent requirements for each plugin, review the "Dependencies" section in the NuGet Gallery page for the specific plugin. 
 
 **Related articles**
 
@@ -33,15 +33,15 @@ NOTE: For NServiceBus version-dependent requirements for each plugin, review the
 
 Once deployed on an active endpoint, the endpoint sends plugin-specific information to ServiceControl. Plugins send messages using the defined endpoint transport to the ServiceControl queue. Location of ServiceControl queue is determined by the following:
 
-1. **Endpoint`s configuration file**  
+1. **Endpoint`s configuration file** 
 Check for an `appSetting` named `ServiceControl/Queue` e.g. `<add key="ServiceControl/Queue" value="particular.servicecontrol@machine"/>`.
-1. **Convention based on the configured Error Queue machine**  
+1. **Convention based on the configured Error Queue machine** 
 If an error queue is configured, for example `error@MachineName`, then the queue `Particular.ServiceControl@MachineName` will be used.
-1. **Convention based on the configured Audit Queue machine**  
+1. **Convention based on the configured Audit Queue machine** 
 If an audit queue is configured, for example `audit@MachineName`, then the queue `Particular.ServiceControl@MachineName` will be used.
 
 WARNING: Endpoint with plugins installed that cannot communicate to ServiceControl will shut down.
 
-The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl.  
+The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl. 
 
 NOTE: If you're using MSMQ and have configured ServiceControl to import audit and error queues those queues must be present on the same machine as ServiceControl is installed on.

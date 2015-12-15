@@ -8,11 +8,11 @@ related:
 - nservicebus/containers/autofac
 ---
 
-### Configuring NServiceBus to use the container 
+### Configuring NServiceBus to use the container
 
 snippet:ContainerConfiguration
 
 ### Injecting the dependency in the handler
 
 snippet:InjectingDependency
-   
+  

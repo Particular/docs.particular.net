@@ -16,9 +16,9 @@ NServiceBus has exception catching and handling logic of its own which surrounds
 
 ## Configure your error queue
 
-When a message fails NServiceBus [automatically retries](/nservicebus/errors/automatic-retries.md) the message. On repeated failure NServiceBus forwards that message to a designated error queue. 
+When a message fails NServiceBus [automatically retries](/nservicebus/errors/automatic-retries.md) the message. On repeated failure NServiceBus forwards that message to a designated error queue.
 
-Error queue can be configured in several ways. 
+Error queue can be configured in several ways.
 
 
 ### Using Code
@@ -28,7 +28,7 @@ You can configure the target error queue at configuration time.
 snippet:ErrorWithCode
 
 
-### Using a IConfigurationProvider 
+### Using a IConfigurationProvider
 
 snippet:ErrorQueueConfigurationProvider
 
@@ -55,7 +55,7 @@ For more details on `MsmqTransportConfig` [read this article](/nservicebus/msmq/
 
 Administrators should monitor that error queue so that they can see when problems occur. The message in the error queue contains the source queue and machine so that the administrator can see what's wrong with that node and possibly correct the problem, for example, bringing up a database that went down.
 
-Monitoring and handling of failed messages with [ServicePulse](/servicepulse) provides access to full exception details (including stack-trace, and through ServiceInsight it also enables advanced debugging with all message context. It also provides a "retry" option to send the message back to the endpoint for re-processing. For more details, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md). 
+Monitoring and handling of failed messages with [ServicePulse](/servicepulse) provides access to full exception details (including stack-trace, and through ServiceInsight it also enables advanced debugging with all message context. It also provides a "retry" option to send the message back to the endpoint for re-processing. For more details, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md).
 
 If either ServicePulse or ServiceInsight is not available in your environment you can perform this operation using the native management tools of your selected transport of by code or powershell:
 

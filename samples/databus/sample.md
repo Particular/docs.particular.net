@@ -16,21 +16,21 @@ related:
 
 ## Code walk-through
 
-This sample contains three projects: 
+This sample contains three projects:
 
  * Messages - A class library containing the sample messages. Only one of the message types utilizes the NServiceBus DataBus.
  * Sender - A console application responsible for sending the large messages.
  * Receiver - A console application responsible for receiving the large messages from Sender.
 
 ### Messages project
- 
+
 Let's look at the Messages project, at the two messages. We start with the large one that is not utilizing the DataBus mechanism. The message is a simple byte array command:
 
 snippet:AnotherMessageWithLargePayload
 
 The other message utilizes the DataBus mechanism:
 
-<!-- import MessageWithLargePayload --> 
+<!-- import MessageWithLargePayload -->
 
 `DataBusProperty<byte[]>` is an NServiceBus data type that instructs NServiceBus to treat the `LargeBlob` property as an attachment. It is not transported in the NServiceBus normal flow.
 
@@ -54,7 +54,7 @@ Following is an example of the signaling message that is sent to the receiving e
 
 ### Configuring the Databus location
 
-Both the `Sender` and `Receive` project need to share a common location to store large binary objects. This is done by calling `FileShareDataBus`. This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment. 
+Both the `Sender` and `Receive` project need to share a common location to store large binary objects. This is done by calling `FileShareDataBus`. This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment.
 
 ```C#
 static string BasePath = "..\\..\\..\\storage";
@@ -65,7 +65,7 @@ static void Main()
     ...
 }
 ```
- 
+
 ### Sender project
 
 The following sender project code sends the `MessageWithLargePayload `message, utilizing the NServiceBus attachment mechanism:
@@ -74,7 +74,7 @@ snippet:SendMessageLargePayload
 
 The following `Sender` project code sends the `AnotherMessageWithLargePayload` message without utilizing the NServiceBus attachment mechanism:
 
-<!-- import SendMessageTooLargePayload --> 
+<!-- import SendMessageTooLargePayload -->
 
 In both cases, a 5MB message is sent, but in the `MessageWithLargePayload `it goes through, while `AnotherMessageWithLargePayload` fails.
 
@@ -84,4 +84,4 @@ Go to the `Receiver` project to see the receiving application.
 
 Following is the receiving message handler:
 
-<!-- import MessageWithLargePayloadHandler --> 
+<!-- import MessageWithLargePayloadHandler -->

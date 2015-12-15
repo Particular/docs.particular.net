@@ -10,14 +10,14 @@ related:
 This samples uses the community run serializer [NServiceBus.Jil](https://github.com/SimonCropp/NServiceBus.Jil).
 
 
-## Configuring to use Jil 
+## Configuring to use Jil
 
 snippet:config
 
 
 ## Diagnostic Mutator
 
-A helper that will Write out the contents of any incoming message. 
+A helper that will Write out the contents of any incoming message.
 
 snippet:mutator
 
@@ -25,7 +25,7 @@ snippet:mutator
 ## The message send
 
 snippet:message
-   
+  
 
 ## The Output
 

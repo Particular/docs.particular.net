@@ -43,18 +43,18 @@ Another deployment model is Azure Websites, where you use a regular website and 
 
 As for an NServiceBus programming model, this is roughly the same as any other self-hosted endpoint in a website. You use the `Configure` API to set things up and it will work.
 
-The only quirk in this model is that Azure website is built with cheap hosting in mind. By default, its technology puts your website in suspended mode when there is no traffic. This also implies that if you have an NServiceBus endpoint hosted here, it is also suspended and stops processing messages. However, the 'Always on' feature periodically sends requests to your website to keep it active. This feature requires standard mode and is not available in the free edition. 
+The only quirk in this model is that Azure website is built with cheap hosting in mind. By default, its technology puts your website in suspended mode when there is no traffic. This also implies that if you have an NServiceBus endpoint hosted here, it is also suspended and stops processing messages. However, the 'Always on' feature periodically sends requests to your website to keep it active. This feature requires standard mode and is not available in the free edition.
 
-The advised transports in this environment are `AzureStorageQueuesTransport` and `AzureServiceBusTransport`. 
+The advised transports in this environment are `AzureStorageQueuesTransport` and `AzureServiceBusTransport`.
 
 As it is now also possible to include Azure websites in the same virtual network as Azure virtual machines, [made available in Q4 2014](https://azure.microsoft.com/en-us/blog/azure-websites-virtual-network-integration/), it is also possible to use any other hosted transport that does not rely on distributed transactions, such as RabbitMQ .
 
 To learn more about enabling persistence with Azure storage, refer to [Azure storage persisters](azure-storage-persistence.md).
 
 
-## Cloud Services 
+## Cloud Services
 
-The third hosting model available on the Azure platform is 'Cloud Services'. In this hosting model, which is intended for applications with huge scalability demands, you define a layout for your application in a service definition file. 
+The third hosting model available on the Azure platform is 'Cloud Services'. In this hosting model, which is intended for applications with huge scalability demands, you define a layout for your application in a service definition file.
 
 This layout is based on a concept called `Roles`. Roles define what a specific set of machines should look like, where all should be identical to what is defined in the role. By default, one NServiceBus endpoint translates to a role, meaning that it will be hosted by multiple identical machines at the same time. You specify how many machines should be in each role when deployed (we advise at least two), but the Azure platform will manage them for you, automatically monitoring and updating the machines.
 
@@ -76,7 +76,7 @@ To learn more about the details of hosting in Azure cloud services, refer to [Cl
 
 ## Cloud Services - Shared Hosting
 
-The Cloud Services model is beautiful when it comes to building large scale systems, but in reality only a few systems need size from the very beginning, and find this model quite expensive. Most want to start out small and cheap, then grow larger over time. 
+The Cloud Services model is beautiful when it comes to building large scale systems, but in reality only a few systems need size from the very beginning, and find this model quite expensive. Most want to start out small and cheap, then grow larger over time.
 
 To support this need to start small, we also provide a shared hosting option, using the `AsA_Host` role. In this model, the role entry point doesn't actually host an endpoint itself. Instead, it downloads, invokes, and manages other worker role entry points as child processes on the same machine.
 

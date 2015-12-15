@@ -29,7 +29,7 @@ Results sorted by Timestamp
 
 ## Deploying endpoints
 
-1. Open PowerShell console at the `shared-host\Version_5` location. This location should contain `PackageAndDeploy.ps1`. 
+1. Open PowerShell console at the `shared-host\Version_5` location. This location should contain `PackageAndDeploy.ps1`.
 1. Execute `PackageAndDeploy.ps1` PowerShell script to package and deploy multi-hosted endpoints to local emulator storage
 
 
@@ -44,11 +44,11 @@ NOTE: To inspect multi-host [role emulated file system](https://msdn.microsoft.c
 Azure Compute Emulator leaves any processes spawned at run time in memory. You should kill those once you're done with emulated Cloud Service execution by locating `WaWorkerHost.exe` process and killing all child processes named `NServiceBus.Hosting.Azure.HostProcess.exe`. Number of those processes will be as number of endpoints (2) X number of times Cloud Service was executed.
 
 Alternatively, you can stop Cloud Service emulator from Compute Emulator UI. Compute Emulator UI can be accessed via try icon on your taskbar. Within Compute Emulator UI, under `Service Deployments` tree select a deployment, right click and select `Remove` option. This will cleanly stop Cloud Service without leaving any processes in memory.
- 
+
 
 ## Code walk-through
 
-This sample contains five projects: 
+This sample contains five projects:
 
  * Shared - A class library containing shared code including the message definitions.
  * Sender - An NServiceBus endpoint responsible for sending `Ping` command designated for `Receiver` endpoint processing.
@@ -96,7 +96,7 @@ snippet:AzureSharedHosting_HostConfiguration
 NOTE: Multi-host project is used solely as a host for other endpoints
 
 
-### HostCloudService project 
+### HostCloudService project
 
 HostCloudService project defines multi-host parameters for all environment (`Local` and `Cloud` in this sample)
 

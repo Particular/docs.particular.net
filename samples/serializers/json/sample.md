@@ -8,14 +8,14 @@ related:
 
 This samples uses the JSON serializer in the core.
 
-## Configuring to use JSON 
+## Configuring to use JSON
 
 snippet:config
 
 
 ## Diagnostic Mutator
 
-A helper that will Write out the contents of any incoming message. 
+A helper that will Write out the contents of any incoming message.
 
 snippet:mutator
 
@@ -23,7 +23,7 @@ snippet:mutator
 ## The message send
 
 snippet:message
-   
+  
 
 ## The Output
 

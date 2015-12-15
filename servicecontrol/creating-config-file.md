@@ -9,7 +9,7 @@ tags:
 
 The configuration of a ServiceControl instance can be adjusted via the ServiceControl Management utility or by directly modifying the ServiceControl.exe.config file.  The settings listed are applicable to the app settings section of the configuration file unless otherwise specified.
 
-## Host Settings   
+## Host Settings  
 
 The following documents should be reviewed prior to modifying configuration settings:
 
@@ -18,28 +18,28 @@ The following documents should be reviewed prior to modifying configuration sett
 
 #### ServiceControl/Hostname
 
-The hostname to bind the embedded http server to, modify if you want to bind to a specific hostname, eg. sc.mydomain.com. 
+The hostname to bind the embedded http server to, modify if you want to bind to a specific hostname, eg. sc.mydomain.com.
 
 Type: string
 
 Default: `localhost`
 
-Warning: If the `ServiceControl/Hostname` setting is changed and the `ServiceControl/DbPath` setting is not set then the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md)  
+Warning: If the `ServiceControl/Hostname` setting is changed and the `ServiceControl/DbPath` setting is not set then the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md) 
 
 #### ServiceControl/Port
 
-The port to bind the embedded http server. 
+The port to bind the embedded http server.
 
 Type: int
 
 Default: `33333`.
 
-Warning: If the `ServiceControl/Port` setting is changed and the `ServiceControl/DbPath` setting is not set then the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md)  
+Warning: If the `ServiceControl/Port` setting is changed and the `ServiceControl/DbPath` setting is not set then the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md) 
 
-#### ServiceControl/VirtualDirectory 
+#### ServiceControl/VirtualDirectory
 
 The virtual directory to bind the embedded http server to, modify if you want to bind to a specific virtual directory.
- 
+
 Type: string
 
 Default: `empty`
@@ -49,22 +49,22 @@ Note: This setting is provided for backward compatibility and should be consider
 
 #### ServiceControl/DbPath
 
-The path where the internal RavenDB is located. 
+The path where the internal RavenDB is located.
 
 Type: string
 
-Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<Hostname>-<Port>` 
+Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<Hostname>-<Port>`
 
 
 #### ServiceControl/LogPath
 
-The path for the ServiceControl logs. 
+The path for the ServiceControl logs.
 
 Type: string
 
 Default: `%LOCALAPPDATA%\Particular\ServiceControl\logs`
 
-Note: %LOCALAPPDATA% is a user specific environment variable.  
+Note: %LOCALAPPDATA% is a user specific environment variable. 
 
 
 ## Data Retention
@@ -72,7 +72,7 @@ Note: %LOCALAPPDATA% is a user specific environment variable.
 
 #### ServiceControl/ExpirationProcessTimerInSeconds
 
-The number of seconds to wait between checking for expired messages.  
+The number of seconds to wait between checking for expired messages. 
 
 Type: int
 
@@ -81,7 +81,7 @@ Default: `600` (10 minutes). The default prior to version 1.4 was `60` (1 minute
 
 #### ServiceControl/ExpirationProcessBatchSize
 
-This setting was introduced in version 1.4. This minimum allowed value for this settings is `10240`, there is no hard coded maximum as this is heavily dependent on system performance.  
+This setting was introduced in version 1.4. This minimum allowed value for this settings is `10240`, there is no hard coded maximum as this is heavily dependent on system performance. 
 
 Type: int
 
@@ -90,7 +90,7 @@ Default: `65512`.
 
 #### ServiceControl/HoursToKeepMessagesBeforeExpiring
 
-The number of hours to keep a message for before it is deleted, 
+The number of hours to keep a message for before it is deleted,
 
 Type: int
 
@@ -101,17 +101,17 @@ Default: `720` (30 days). Valid Range is `24` (1 day) through to `1440` (60 days
 
 #### ServiceControl/MaximumMessageThroughputPerSecond
 
-This setting was introduced in version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An appropriate limit ensures that the database can cope with number of insert operations. Otherwise the query performance would drop significantly and the message expiration process would stop working when under heavy insert load. Make sure to conduct thorough performance tests on your hardware before increasing this value.  
+This setting was introduced in version 1.5. The setting controls the maximum throughput of messages ServiceControl will handle per second and is necessary to avoid overloading the underlying messages database. An appropriate limit ensures that the database can cope with number of insert operations. Otherwise the query performance would drop significantly and the message expiration process would stop working when under heavy insert load. Make sure to conduct thorough performance tests on your hardware before increasing this value. 
 
 Type: int
 
-Default: `350`. 
+Default: `350`.
 
 
 #### ServiceControl/MaxBodySizeToStore
 
-Up until version 1.6 ServiceControl only stores bodies of audit messages that are smaller than 100Kb. 
-Version 1.6 introduced this setting which allows the upper limit on body size to be configured.  
+Up until version 1.6 ServiceControl only stores bodies of audit messages that are smaller than 100Kb.
+Version 1.6 introduced this setting which allows the upper limit on body size to be configured. 
 
 Type: int
 
@@ -148,7 +148,7 @@ The connection string for the transport. This setting should be placed in `conne
 
 #### ServiceBus/AuditQueue
 
-The audit queue name. 
+The audit queue name.
 
 Type: string
 
@@ -166,7 +166,7 @@ Default: `error`
 
 #### ServiceBus/ErrorLogQueue
 
-The error queue name to use for forwarding error messages. 
+The error queue name to use for forwarding error messages.
 
 Type: string
 
@@ -184,7 +184,7 @@ Default: `<AuditQueue>.log`
 
 #### ServiceControl/ForwardAuditMessages
 
-Use this setting to configure whether processed audit messages are forwarded to another queue or not.   
+Use this setting to configure whether processed audit messages are forwarded to another queue or not.  
 
 Type: bool `true` or `false`
 

@@ -50,13 +50,13 @@ In the Azure Service Configuration file (ServiceConfiguration.cscfg), add the fo
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="AzureService" 
-xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" 
+<ServiceConfiguration serviceName="AzureService"
+xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration"
 schemaVersion="2013-03.2.0">
   <Role name="{role name}">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="AzureQueueConfig.ConnectionString" 
+      <Setting name="AzureQueueConfig.ConnectionString"
       value="DefaultEndpointsProtocol=https;AccountName={your account name here};
       AccountKey={your account key here}" />
       <Setting name="AzureQueueConfig.QueueName" value="{your queue name here}" />
@@ -85,20 +85,20 @@ In your NServiceBus solution, specify the Endpoint Configuration to use AzureSto
 	}
 
 
-### Azure Service Bus 
+### Azure Service Bus
 
 In the Azure Service Configuration file
 (ServiceConfiguration.cscfg), add the following sections:
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="AzureService" 
-xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" 
+<ServiceConfiguration serviceName="AzureService"
+xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration"
 schemaVersion="2013-03.2.0">
   <Role name="{role name}">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="AzureServiceBusQueueConfig.ConnectionString" 
+      <Setting name="AzureServiceBusQueueConfig.ConnectionString"
       value="Endpoint=sb://{your namespace here}.servicebus.windows.net/;
       SharedAccessKeyName=RootManageSharedAccessKey;
       SharedAccessKey={your shared access key here}" />
@@ -127,13 +127,13 @@ In your NServiceBus solution, specify the endpoint configuration to use AzureSer
 In the configuration file for the application (web.config or app.config), add an "NServiceBus\\Transport" element as follows:
 
 ```
-<configuration>  
+<configuration> 
 ...
  <connectionStrings>
     <add name="NServiceBus/Transport" connectionString="DefaultEndpointsProtocol=https;
                AccountName={your account name here};AccountKey={your account key here}"/>
   </connectionStrings>
-... 
+...
 </configuration>
 ```
 

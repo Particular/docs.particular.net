@@ -18,7 +18,7 @@ When the timeout timestamp is elapsed, the Timeout Manager sends a message back 
 
 This timeout message will always be send no matter if any message has been send after requesting a timeout.
 
-NOTE: If the saga does not request a timeout then the corresponding timeout method will never be invoked. 
+NOTE: If the saga does not request a timeout then the corresponding timeout method will never be invoked.
 
 WARNING: Don't assume that other messages haven't arrived in the meantime. If required a Saga can store boolean flags in the SagaData and then check these flags to confirm a given timeout message should be processed based on the current sate.
 
@@ -46,6 +46,6 @@ The state parameter provides a way to pass state to the Sagas timeout handle met
 
 ### Persistence
 
-Some form of [Persistence](/nservicebus/persistence/) is required to store the timestamp and the state of a timeout. 
+Some form of [Persistence](/nservicebus/persistence/) is required to store the timestamp and the state of a timeout.
 
-WARNING: A durable persistence (i.e. NOT [InMemory](/nservicebus/persistence/in-memory.md)) should be chosen before moving to production. 
+WARNING: A durable persistence (i.e. NOT [InMemory](/nservicebus/persistence/in-memory.md)) should be chosen before moving to production.

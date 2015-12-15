@@ -10,7 +10,7 @@ related:
 This samples uses the community run serializer [NServiceBus.Wire](https://github.com/hmemcpy/NServiceBus.Wire) to serialize messages with the [Wire](https://github.com/rogeralsing/Wire) binary format.
 
 
-## Configuring to use Wire 
+## Configuring to use Wire
 
 snippet:config
 

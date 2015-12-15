@@ -1,7 +1,7 @@
 ---
 title: Routing to NLog
 summary: Route all NServiceBus log entries to NLog
-tags: 
+tags:
 - Logging
 - nlog
 related:
@@ -18,9 +18,9 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.NLog/) package ava
 snippet:NLogInCode
 
 
-## Filtering 
+## Filtering
 
-If NServiceBus writes a significant amount of information to the log. To limit this information you can use the filtering features of your underlying logging framework. 
+If NServiceBus writes a significant amount of information to the log. To limit this information you can use the filtering features of your underlying logging framework.
 
 For example to limit log output to a specific namespace.
 

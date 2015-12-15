@@ -17,7 +17,7 @@ snippet:ConfigureRabbit
 
 ### Configuring RabbitMQ
 
-Since the above connection string does not define a username NServicebus will default to 
+Since the above connection string does not define a username NServicebus will default to
 
 ```
 username: guest

@@ -1,7 +1,7 @@
 ---
 title: Messages, Events and Commands
 summary: What are Messages, Events and Commands and how to define them.
-tags: 
+tags:
 - Unobtrusive
 redirects:
 - nservicebus/introducing-ievent-and-icommand
@@ -16,14 +16,14 @@ redirects:
 - nservicebus/messaging/invalidoperationexception-in-unobtrusive-mode
 ---
 
-A *Message* is the unit of communication for NServiceBus. There are two sub-types of messages that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default unless disabled in [configuration](best-practice-enforcement.md). 
+A *Message* is the unit of communication for NServiceBus. There are two sub-types of messages that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default unless disabled in [configuration](best-practice-enforcement.md).
 
 
 ### Command
 
 Used to request that an action should be taken. A *Command* is intended to be _sent to a receiver_ (all commands should have one logical owner and should be sent to the endpoint responsible for processing). As such, commands ...
 
- * are not allowed to be _published_. 
+ * are not allowed to be _published_.
  * cannot be _subscribed_ to or _unsubscribed_ from.
  * cannot implement `IEvent`.
 
@@ -47,7 +47,7 @@ Messages can be defined via *marker interfaces* or via *conventions*.
 
 ### Marker interfaces
 
-The simplest way to define a message is to use marker interfaces. 
+The simplest way to define a message is to use marker interfaces.
 
  * `NServiceBus.IMessage` for defining a Message.
  * `NServiceBus.ICommand` for defining a Command.
@@ -64,7 +64,7 @@ public interface MyEvent : IEvent { }
 ```
 
 
-### Conventions 
+### Conventions
 
 A *message convention* is a way of defining what a certain type is instead of using a marker interface or an attribute.
 

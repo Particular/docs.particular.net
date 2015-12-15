@@ -154,7 +154,7 @@ While in development, your endpoint configurations probably don't have any @ sym
   <!-- Other config options go here -->
   <MasterNodeConfig Node="MachineWhereDistributorRuns"/>
 
-  <UnicastBusConfig DistributorControlAddress="distributorControlBus@MsmqNetworkName" 
+  <UnicastBusConfig DistributorControlAddress="distributorControlBus@MsmqNetworkName"
                     DistributorDataAddress="distributorDataBus@MsmqNetworkName">
     <MessageEndpointMappings>
       <!-- regular entries -->

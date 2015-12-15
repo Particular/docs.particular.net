@@ -6,7 +6,7 @@ related:
 - nservicebus/azure/azure-servicebus-transport
 ---
 
-## Prerequisites 
+## Prerequisites
 
 An environment variable named `AzureServiceBus.ConnectionString` that contains the connection string for the Azure Service Bus namespace.
 
@@ -46,7 +46,7 @@ To generate a serialized message, the `MessageGenerator` project can be used wit
 
 ## BrokeredMessage body format
 
-The Azure Service Bus API allows you to construct a `BrokeredMessage` body from a stream or an object that will get serialized by the internals of `BrokeredMessage`. 
+The Azure Service Bus API allows you to construct a `BrokeredMessage` body from a stream or an object that will get serialized by the internals of `BrokeredMessage`.
 
 NOTE: Both the sender (native or NServiceBus) and the receiver must agree on the convention used for sending the message body.
 
@@ -88,5 +88,5 @@ snippet:NativeMessageHandler
 ## Things to note
 
  * The use of the `AzureServiceBus.ConnectionString` environment variable mentioned above.
- * The use of `UseSingleBrokerQueue` prevents the Azure Service Bus transport individualizing queue names by appending the machine name.  
+ * The use of `UseSingleBrokerQueue` prevents the Azure Service Bus transport individualizing queue names by appending the machine name. 
  * Execute `Receiver` first to create destination queue `NativeSender` will need to send native messages.

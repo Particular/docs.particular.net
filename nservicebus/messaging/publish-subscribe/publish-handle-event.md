@@ -12,7 +12,7 @@ related:
 
 ## Classifying a message as an event
 
-To publish a message it must be classified as an event. There are two ways of achieving this 
+To publish a message it must be classified as an event. There are two ways of achieving this
 
 
 ### Via a Marker interface
@@ -30,7 +30,7 @@ Given a message with the following definition.
 
 snippet:EventWithConvention
 
-It could be treated as an event using the following convention. 
+It could be treated as an event using the following convention.
 
 snippet:DefiningEventsAs
 
@@ -71,13 +71,13 @@ snippet:publishAtStartup
 Events can be either classes or interfaces. Since interfaces cannot be constructed there are slightly different semantics for publishing each.
 
 
-### Publish a class 
+### Publish a class
 
 snippet:InstancePublish
 
 
 ### Publish an interface
 
-If you are using interfaces to define your event contracts you need to set the message properties by passing in a lambda. NServiceBus will then generate a proxy and set those properties. 
+If you are using interfaces to define your event contracts you need to set the message properties by passing in a lambda. NServiceBus will then generate a proxy and set those properties.
 
 snippet:InterfacePublish

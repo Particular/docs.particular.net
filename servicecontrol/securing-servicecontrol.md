@@ -9,16 +9,16 @@ tags:
 related:
 - servicecontrol/creating-config-file
 - servicecontrol/configure-ravendb-location
-- servicecontrol/backup-sc-database        
+- servicecontrol/backup-sc-database       
 ---
 
 ServiceControl serves as the back-end service for ServicePulse and ServiceInsight, supplying these client applications with the information required for their functionality. It does so by exposing HTTP API that can be accessed by these and other third-party tools.
 
 The information gathered, stored, and exposed by ServiceControl contains all the messages audited and forwarded to the Audit and Error queues (including their metadata, headers, and body). This means unlimited access to the ServiceControl embedded database, and to all the information contained within all the system's audited messages.
 
-It is critical to limit access to the ServiceControl instance, including accessing its data through its clients (ServiceInsight and ServicePulse), and accessing directly through the HTTP API. 
+It is critical to limit access to the ServiceControl instance, including accessing its data through its clients (ServiceInsight and ServicePulse), and accessing directly through the HTTP API.
 
-### Post-Installation: Secure and Limited Access by Default  
+### Post-Installation: Secure and Limited Access by Default 
 
 When installing ServiceControl, the default installation will limit access from the local host only. Any attempt to access the service's HTTP API from outside the machines on which it is installed results in an `access denied` message.
 
@@ -39,31 +39,31 @@ Following are several options for doing so, based on your specific requirements.
 #### Limiting Access to ServiceControl using Windows Authentication
 
 It is possible to setup IIS to act as a reverse proxy and secure ServiceControl using Windows Authentication.
-Please refer to the [instructions](/servicepulse/install-servicepulse-in-iis.md) here on see how to go about this and the limitations of the approach. 
+Please refer to the [instructions](/servicepulse/install-servicepulse-in-iis.md) here on see how to go about this and the limitations of the approach.
 
 #### Limiting Access to ServiceControl Through VPN Requirements
 
-Use VPN requirements to require authorization when accessing the ServiceControl service, especially when doing so from outside the internal corporate network. 
+Use VPN requirements to require authorization when accessing the ServiceControl service, especially when doing so from outside the internal corporate network.
 
-This requires administration and logistical support, but also has the advantage of allowing full control of the authentication and authorization mechanisms using existing corporate policies and tools.      
+This requires administration and logistical support, but also has the advantage of allowing full control of the authentication and authorization mechanisms using existing corporate policies and tools.     
 
 #### Restricting Exposure to Message Body
 
 To deny access to the message body's ServiceControl HTTP API, use URLACL. This can serve in extreme cases where you need to hide the message body completely.
 
 To prevent access to the ServiceControl HTTP API `http://{customhostname}:{portname}/api/messages`, add an additional URLACL setting. Any calls to get a message body will fail with an HTTP 503 error ("Service Unavailable").
- 
+
 For more information, see [ServiceControl: Updating URLACL Settings](setting-custom-hostname.md#updating-urlacl-settings).
 
 #### Encrypting Sensitive Properties in Message Body
 
-For a more fine-grained limitation on message body visibility of specific properties, you can encrypt message properties that are sensitive (e.g., credit card numbers). 
+For a more fine-grained limitation on message body visibility of specific properties, you can encrypt message properties that are sensitive (e.g., credit card numbers).
 
-An example of how to set encryption per specific message property can be viewed in the [Encryption Sample](/samples/encryption/basic-encryption/).   
+An example of how to set encryption per specific message property can be viewed in the [Encryption Sample](/samples/encryption/basic-encryption/).  
 
 ### Accessing the Embedded RavenDB Database
 
-ServiceControl uses an embedded RavenDB database to store its data. This database is managed internally by ServiceControl and it is not intended for direct access or usage. By default, the database is located on the same machine as the ServiceControl instance is installed. You can select a different location (local or network path) for the database files. 
+ServiceControl uses an embedded RavenDB database to store its data. This database is managed internally by ServiceControl and it is not intended for direct access or usage. By default, the database is located on the same machine as the ServiceControl instance is installed. You can select a different location (local or network path) for the database files.
 
 Access to the location of the database files enables full access to the database contents, so take great care to ensure the database location is secure from unauthorized access and tampering.
 

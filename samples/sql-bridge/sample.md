@@ -14,14 +14,14 @@ This sample shows how to setup a sql subscriber so it can subscribe to events fr
 NOTE: This sample uses NHibernate persistence. It uses a database called, `PersistenceForMsmqTransport` for MSMQ transport endpoints and a different database called, `PersistenceForSqlTransport` for SQL Transport endpoints.
 
 
-## Shared 
+## Shared
 
 The event that will be published by `MsmqPublisher`
 
 snippet:event
 
 
-## MsmqPublisher 
+## MsmqPublisher
 
 
 ### The publisher configuration.
@@ -36,7 +36,7 @@ snippet:publisher-loop
 
 ### Additional entry to the list of subscribers
 
-Add a new entry in the Subscriptions collection for the new queue specified in the app.config to the list of subscribers in the MsmqPublisher's subscription storage. 
+Add a new entry in the Subscriptions collection for the new queue specified in the app.config to the list of subscribers in the MsmqPublisher's subscription storage.
 
 Run a this script to add the new entry:
 
@@ -72,9 +72,9 @@ snippet:msmqsubscriber-config
 snippet:msmqsubscriber-handler
 
 
-## SqlBridge 
+## SqlBridge
 
-This endpoint is setup to read messages that arrive in MSMQ via an `IAdvancedSatellite`. 
+This endpoint is setup to read messages that arrive in MSMQ via an `IAdvancedSatellite`.
 
 
 ### The bridge configuration
@@ -96,7 +96,7 @@ Note: Since `SqlBridge` is not using native msmq transport you will need to manu
 - The input queue is defined as `SqlMsmqTransportBridge` in the `InputAddress` property of the satellite.
 - The MSMQ dequeue strategy is set here for reading messages from the queue (MSMQ).
 - The satellite will automatically process any message that is received in that queue (MSMQ).
-- The satellite will publish the received event. Since this endpoint uses SqlTransport, it will publish to its Sql queues. 
+- The satellite will publish the received event. Since this endpoint uses SqlTransport, it will publish to its Sql queues.
 
 
 ## SqlSubscriber
@@ -121,4 +121,4 @@ snippet:sqlsubscriber-handler
 3. The Sql bridge endpoint (setup to read from that input queue) processes that message and publishes the event.
 4. The Sql Subscriber, subscribes to the SqlBridge.
 
-Note: The steps of creating the queue and adding the additional subscription message in the subscriptions queue of the publisher can be automated for deployment. 
+Note: The steps of creating the queue and adding the additional subscription message in the subscriptions queue of the publisher can be automated for deployment.

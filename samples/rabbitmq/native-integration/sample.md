@@ -26,7 +26,7 @@ snippet:SendMessage
 
 ### Message serialization
 
-In this sample we use XML to format our payload since NServiceBus is able to automatically detect the message type based on the root node of the xml. Our native sender will send a `MyMessage` xml string as the message payload. 
+In this sample we use XML to format our payload since NServiceBus is able to automatically detect the message type based on the root node of the xml. Our native sender will send a `MyMessage` xml string as the message payload.
 
 Note: The root node is the fully qualified type name (including namespace if it has one) of the message.
 
@@ -39,7 +39,7 @@ snippet:DefineNSBMessage
 
 ### Uniquely identifying messages
 
-NServiceBus requires all messages to be uniquely identified in order to be able to perform retries in a safe way. Unfortunately RabbitMQ doesn't provide a unique id for messages by default so we need to provide that. By default NServiceBus will look for the message id in the optional AMQP `MessageId` property but you can use your own custom strategy by calling `.CustomMessageIdStrategy` and extract the id from any property, header or event the message payload. 
+NServiceBus requires all messages to be uniquely identified in order to be able to perform retries in a safe way. Unfortunately RabbitMQ doesn't provide a unique id for messages by default so we need to provide that. By default NServiceBus will look for the message id in the optional AMQP `MessageId` property but you can use your own custom strategy by calling `.CustomMessageIdStrategy` and extract the id from any property, header or event the message payload.
 
 To set this up all we have to do is to generate a unique id on the sender side and attach it the `MessageId` property.
 

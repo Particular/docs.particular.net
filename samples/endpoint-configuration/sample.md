@@ -11,12 +11,12 @@ Note: This sample uses the same approach as the [NServiceBus as a Windows Servic
 
 ## Code walk-through
 
-This samples walks through the most common choices you will need to make when creating your first endpoint. It will also show the configuration APIs needed to implement those choices. 
+This samples walks through the most common choices you will need to make when creating your first endpoint. It will also show the configuration APIs needed to implement those choices.
 
 
 ## Hosting
 
-This sample uses a dual runnable console and Windows Service for hosting. More details on this approach can be seen in [Windows Service Hosting](/nservicebus/hosting/windows-service.md), there is also [a more detailed sample](/samples/hosting/windows-service/) of this approach. For more details on other hosting options see [Hosting choice](/nservicebus/hosting). 
+This sample uses a dual runnable console and Windows Service for hosting. More details on this approach can be seen in [Windows Service Hosting](/nservicebus/hosting/windows-service.md), there is also [a more detailed sample](/samples/hosting/windows-service/) of this approach. For more details on other hosting options see [Hosting choice](/nservicebus/hosting).
 
 
 ## Configure an [Error](/nservicebus/errors) queue
@@ -43,7 +43,7 @@ snippet:auditxml
 Log4net is being used to route log events to the Console.
 
 snippet:logging
- 
+
 
 ## Create the root configuration instance
 
@@ -98,6 +98,6 @@ snippet:stop-endpoint
 
 ## Handling [Critical Errors](/nservicebus/hosting/critical-errors.md)
 
-Since this sample is configured to run as a windows service, the action defined when a critical error occurs is to shut down the process. 
+Since this sample is configured to run as a windows service, the action defined when a critical error occurs is to shut down the process.
 
 snippet:critical-errors

@@ -24,7 +24,7 @@ This results in an increase in load in several areas
 
  1. Endpoint load in order to capture the required information
  2. Network load due to the extra information sent to ServiceControl
- 3. ServiceControl load in the areas of ingestion, correlation and data cleanup.  
+ 3. ServiceControl load in the areas of ingestion, correlation and data cleanup. 
 
 The increase in load is proportional to size of the saga data multiplied by the number of messages the the saga receives. Since both these variables are dependent on the specific saga implementation it is not possible to give accurate predictions on the impact of this load in a production system.
 

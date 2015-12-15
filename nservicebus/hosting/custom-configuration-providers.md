@@ -24,12 +24,12 @@ If you don't want your process to have its configuration specified in the config
 
 
 ### Initialize the bus to use the custom configuration source
- 
+
 snippet:RegisterCustomConfigSource
 
 
 ### Define your custom configuration source to provide the configuration values instead of app.config
 
-<!-- import CustomConfigSource --> 
+<!-- import CustomConfigSource -->
 
 The initialization code instructs NServiceBus to use a `CustomConfigurationSource`, passing in an instance of a new object: `MyCustomConfigurationSource`. Its `GetConfiguration` method provides data for `RijndaelEncryptionServiceConfig` directly in code, while allowing all other configuration sections to be retrieved from the config file.
