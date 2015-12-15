@@ -153,7 +153,7 @@ Transport->Subscriber2: Send Message1
 
 ## Versioning subscriptions
 
-In NServiceBus version 3.0 and onwards subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
+In NServiceBus version 3.0 and onwards subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.  Be aware that if your assembly uses a fourth build number, i.e. 1.X.Y.Z, the Z numbers must match in each assembly to be considered compliant.
 
 NOTE: Version 2.X required a perfect match. This should make it easier to upgrade your publishers without affecting the subscribers.
 
