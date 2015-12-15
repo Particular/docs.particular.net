@@ -66,10 +66,4 @@ snippet:SharingBehaviorData
 Note that the context respects the stage hierarchy and only allows adding new entries in the scope of the current context. A child behavior (later in the pipeline chain) can read and even modify entries set by a parent behavior (earlier in the pipeline chain) but entries added by the child cannot be accessed from the parent.
 
 
-## Exception Handling
-
-Exceptions thrown from a behaviors `Invoke` method bubble up the chain. If the exception is not handled by a behavior, the message is considered as faulted which results in putting the message back in the queue (and rolling back the transaction) or moving it to the error queue, depending on the endpoint configuration.
-
-### MessageDeserializationException
-
-As of Version 5.1 if a message fails to deserialize a `MessageDeserializationException` will be thrown by the  `DeserializeLogicalMessagesBehavior`. In this case, the message is directly moved to the error queue to avoid blocking the system by poison messages (e.g. no retry attempts).
+include: customizing-exception-handling
