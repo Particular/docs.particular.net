@@ -27,7 +27,7 @@ The caveat of this approach is that the serializer will wrap your data in an out
 
 If you would like to avoid that for interoperability reasons you need to instruct the serializer to not wrap raw xml structures like the following
 
-snippet: import ConfigureRawXmlSerialization
+snippet: ConfigureRawXmlSerialization
 
 INFO: The name of the property on the message must exactly match the name of the root node in the xml structure in order to be able to correctly deserialize the no longer wrapped content.
 

@@ -57,7 +57,7 @@ Version 5 and lower allowed both concurrency and throughput throttling to be cha
 
 ## Optimizing at run time
 
-snippet: import ChangeTuning
+snippet: ChangeTuning
 
 
 ## Reading current values at run time

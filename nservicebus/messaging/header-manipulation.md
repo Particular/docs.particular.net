@@ -39,7 +39,7 @@ snippet: header-incoming-handler
 
 ### From a Saga
 
-snippet: import header-incoming-saga
+snippet: header-incoming-saga
 
 
 ## Writing outgoing Headers
@@ -71,6 +71,6 @@ snippet: header-outgoing-saga
 
 NServiceBus allows you to register headers at configuration time that's then added to all outgoing messages for the endpoint.
 
-snippet: import header-static-endpoint
+snippet: header-static-endpoint
 
 WARNING: In Versions 3 through Version 5 the global outgoing headers are not thread safe. It is recommended that you manipulate them at startup. This has been limited to a configuration time only API in Version 6.
