@@ -100,7 +100,7 @@ The saga illustrates how the saga was initiated and other messages that were sen
 
 While the Flow Diagram is very good at showing *why* each message in a conversation was sent, the Sequence Diagram is better for understanding *when* messages were sent and handled.
 
-![The Sequence Diagram](images/overview-sequence-diagram.PNG)
+![The Sequence Diagram](images/overview-sequence-diagram.png)
 
 Read more about the [Sequence Diagram](/serviceinsight/sequence-diagram/)
 
@@ -146,7 +146,7 @@ The flow diagram highlights errors in red and provides details with access to th
 
 The sequence diagram highlights handlers with errors in red.
 
-![Error in the sequence diagram](images/overview-sequence-diagram-witherror.PNG)
+![Error in the sequence diagram](images/overview-sequence-diagram-witherror.png)
 
 After the NServiceBus completes auto-retry, the errant message goes to an error queue. Instead of using the return-to-sender console application, to return the message to the queue from where it originated, click `Retry Message`. 
 
