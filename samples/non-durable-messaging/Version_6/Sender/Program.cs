@@ -12,10 +12,13 @@ static class Program
     static async Task AsyncMain()
     {
         #region non-transactional
+
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.Transactions()
-            .Disable();
+        busConfiguration.UseTransport<MsmqTransport>()
+            .Transactions(TransportTransactionMode.None);
+
         #endregion
+
         busConfiguration.EndpointName("Samples.MessageDurability.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();

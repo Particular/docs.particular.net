@@ -12,8 +12,8 @@ static class Program
     static async Task AsyncMain()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.Transactions()
-            .Disable();
+        busConfiguration.UseTransport<MsmqTransport>()
+            .Transactions(TransportTransactionMode.None);
         busConfiguration.EndpointName("Samples.MessageDurability.Receiver");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
