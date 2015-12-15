@@ -34,7 +34,7 @@ The sequence diagram shows the interaction of endpoints by visualizing sending a
 
 ![Endpoint](endpoint.png)
 
-Each endpoint involved in the conversation is represented as a labeled grey box along the top of the diagram. Hover on the endpoint label to get additional information such as the host that the endpoint is running on. Extending from the bottom of each endpoint is a (life)line that shows time flowing from top to bottom.
+Each endpoint involved in the conversation is represented as a labeled gray box along the top of the diagram. Hover on the endpoint label to get additional information such as the host that the endpoint is running on. Extending from the bottom of each endpoint is a (life)line that shows time flowing from top to bottom.
 
 ### Start of conversation
 
@@ -97,18 +97,18 @@ What | Representation in ServiceInsight | Representation in UML
 **Sequence beginning** | ![Sequence beginning](sequence-beginning.png) | ![Sequence beginning](uml-sequence-beginning.png)
  | Represented by a black rectangle with a white "play" icon that acts as a sort of start landmark. This representation is used because metadata about what precedes the sequence is unavailable. | Represented by a message incoming from outside the diagram.
 **Uni-directional solid lines** | ![Solid line](solid-line.png) | ![UML solid line](uml-solid-line.png)
- | Used to represent any type of message other than events, including response messages | Used solely for send and request type of messages
+ | Used to represent any type of message other than events, including response messages. | Used solely for send and request type of messages.
 **Uni-directional dashed lines** | ![Dashed line](dashed-line.png) | ![UML dashed line](uml-dashed-line.png)
- | Used solely to represent event messages | Used solely to represent create messages and response messages
+ | Used solely to represent event messages. | Used solely to represent create messages and response messages.
 **Filled arrow style** | ![Filled arrow](filled-arrow.png) | ![UML filled arrow](uml-filled-arrow.png)
- | Used for all message types | Used solely for synchronous send messages
+ | Used for all message types. | Used solely for synchronous send messages.
 **Open arrow style** |  | ![UML open arrow](uml-open-arrow.png)
- | N/A | Used for response messages and asynchronous messages 
+ | N/A | Used for response messages and asynchronous messages.
 **Asynchronous messages** |  | ![UML asynchronous messages](uml-asynchronous.png)
- | N/A - All NServiceBus messages are asynchronous. Therefore, the ServiceInsight Sequence Diagram view has no visual representation for synchronous messages, even though they might exhibit synchronous behavior by (system) design. | Asynchronous messages are represented by a sloping dashed or solid line with an open arrow
+ | N/A - All NServiceBus messages are asynchronous. Therefore, the ServiceInsight Sequence Diagram view has no visual representation for synchronous messages, even though they might exhibit synchronous behavior by (system) design. | Asynchronous messages are represented by a sloping dashed or solid line with an open arrow.
 **Send to self / loopback messages** | ![Loopback message](loopback-si.png) | ![UML loopback message](uml-loopback.png)
- | Represented as a short uni-directional arrow that does not connect to another endpoint lifeline and a specific icon next to its text label | Represented by an arrow that connects back to the sending object's lifeline. It is immediately followed by its handler, which usually overlaps the handler that sent the loopback message.
+ | Represented as a short uni-directional arrow that does not connect to another endpoint lifeline and a specific icon next to its text label. | Represented by an arrow that connects back to the sending object's lifeline. It is immediately followed by its handler, which usually overlaps the handler that sent the loopback message.
 **Handlers** |  | ![UML handler](uml-handler.png)
- | N/A - currently it's not possible to collect telemetry data to visualize message handlers | Represented by rectangles directly attached to arrow lines
+ | N/A - currently it's not possible to collect telemetry data to visualize message handlers. | Represented by rectangles directly attached to arrow lines.
 **Message Processing** | ![Message processing](processing.png) | 
- | Displayed as labeled rectangles disjointed from the arrows of its parent messages. This representation was chosen to reflect not only the default asynchronous nature of any associated response messages, but especially because of the execution/processing of parent messages which may only occur after several other messages were sent | N/A
+ | Displayed as labeled rectangles disjointed from the arrows of its parent messages. This representation was chosen to reflect not only the default asynchronous nature of any associated response messages, but especially because of the execution/processing of parent messages which may only occur after several other messages were sent. | N/A
