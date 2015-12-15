@@ -108,16 +108,6 @@ Each layer is the responsibility of people in a different organizational role an
 
 Mapping a message type to the destination is the responsibility of the **architect** role (which can be fulfilled by the whole team of developers). It tells NServicesBus to which endpoint a given type of message should be send or, when it comes to events, which endpoint is responsible for publishing.
 
-#### Static mapping
-
-Static routes in NServiceBus are similar to static routes in the IP routing protocols. The `UnicastRoutingTable` class provides a number of convenience methods that let you register a static route which is defined by a pair of `Type` and `DirectRoutingDestination`. The following API is designed to be used for commands.
-
-snippet:Routing-StaticRoutes
-
-In absence of advanced routing in the broker, unicast routing of events is based on `Subscribe` messages send by the subscribe to the publisher. These messages allow the publisher to fill the routing table during run-time. In order to tell the subscriber who the publisher is, for a given type of events, use following API.
-
-snippet:PubSub-CodePublisherMapping
-
 
 #### Dynamic routes
 
