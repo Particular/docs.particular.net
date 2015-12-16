@@ -8,7 +8,7 @@
     {
         async void Simple()
         {
-            IBusContext busContext = null;
+            IBusSession busSession = null;
 
             #region CancelCallback
 
@@ -19,7 +19,7 @@
             Message message = new Message();
             try
             {
-                int response = await busContext.Request<int>(message, sendOptions);
+                int response = await busSession.Request<int>(message, sendOptions);
             }
             catch (OperationCanceledException ex)
             {

@@ -12,7 +12,8 @@
             BusConfiguration busConfiguration = new BusConfiguration();
             //Other config
             IEndpointInstance endpointInstance = await Endpoint.Start(busConfiguration);
-            await endpointInstance.CreateBusContext().Publish(new MyEvent());
+            IBusSession busSession = endpointInstance.CreateBusSession();
+            await busSession.Publish(new MyEvent());
 
             #endregion
 
