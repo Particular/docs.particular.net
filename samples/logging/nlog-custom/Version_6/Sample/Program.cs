@@ -44,11 +44,17 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.SendFailedMessagesTo("error");
 
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
-            await bus.SendLocalAsync(new MyMessage());
+            IBusContext busContext = endpoint.CreateBusContext();
+            await busContext.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }

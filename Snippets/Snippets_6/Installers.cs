@@ -1,10 +1,11 @@
 ﻿namespace Snippets6
 {
+    using System.Threading.Tasks;
     using NServiceBus;
 
     public class ForInstallationOnReplacement
     {
-        public void Simple()
+        public async Task Simple()
         {
             #region Installers
 
@@ -12,7 +13,7 @@
 
             busConfiguration.EnableInstallers();
 
-            Bus.Create(busConfiguration);//this will run the installers
+            await Endpoint.Start(busConfiguration);//this will run the installers
 
             #endregion
         }

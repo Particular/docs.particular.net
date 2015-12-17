@@ -32,7 +32,7 @@ Use one of the following based on your OS
 
     Start > Run > compmgmt.msc (Computer Management) > Features > Message Queuing
 
-or 
+or
 
     Start > Run > compmgmt.msc (Computer Management) > Services and Applications > Message Queuing.
 

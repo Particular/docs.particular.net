@@ -24,85 +24,85 @@ public class MyHandler : IHandleMessages<MyMessage>
 
 ## Handling responses in the context of a message being sent
 
-When sending a message, you can register a callback that is invoked when a response arrives. 
+When sending a message, you can register a callback that is invoked when a response arrives.
 
 DANGER: If the server process returns multiple responses, NServiceBus cannot know which response message will be the last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a process restart (common scenarios are a crash or an IIS recycle) as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](/nservicebus/sagas/).
 
 
 ## Prerequisites for callback functionality
 
-In NServiceBus version 5 and lower callbacks are built into the core nuget.
+In NServiceBus Version 5 and lower callbacks are built into the core NuGet.
 
-In NServiceBus version 6 and higher callbacks are shipped as `NServiceBus.Callbacks` nuget package. 
+In NServiceBus Version 6 and higher callbacks are shipped as `NServiceBus.Callbacks` NuGet package.
 
 
-## Using Callbacks 
+## Using Callbacks
 
 The callback functionality can be split into three categories based on the type of information being used; integers, enums and objects. Each of these categories involves two parts; send+callback and the response.
 
 
-### Int 
+### Int
 
 The integer response scenario allows any integer value to be returned in a strong typed manner.
 
 #### Send and Callback
 
-<!-- import IntCallback -->
+snippet:IntCallback
 
 
 #### Response
 
-<!-- import IntCallbackResponse -->
+snippet:IntCallbackResponse
 
 
-### Enum 
+### Enum
 
 The enum response scenario allows any enum value to be returned in a strong typed manner.
 
 
 #### Send and Callback
 
-<!-- import EnumCallback -->
+snippet:EnumCallback
 
 
 #### Response
 
-<!-- import EnumCallbackResponse -->
+snippet:EnumCallbackResponse
 
 
-### Object 
+### Object
 
-The Object response scenario allows an object instance to be returned. 
+The Object response scenario allows an object instance to be returned.
 
 
 #### The Response message
 
 This feature leverages the message Reply mechanism of the bus and hence the response need to be a message.
 
-<!-- import CallbackResponseMessage -->
+snippet:CallbackResponseMessage
 
 
 #### Send and Callback
 
-<!-- import ObjectCallback -->
+snippet:ObjectCallback
 
 Note: In Version 3 if no handler exists for a received message then NServiceBus will throw an exception. As such for this scenario to operate a fake message handler is needed on the callback side.
 
-<!-- import FakeObjectCallbackHandler -->
+snippet:FakeObjectCallbackHandler
 
 
 #### Response
 
-<!-- import ObjectCallbackResponse -->
+snippet:ObjectCallbackResponse
 
 
-## Cancellation 
+## Cancellation
 
 This API was added in the externalized Callbacks feature.
 
 The asynchronous callback can be canceled by registering a `CancellationToken` provided by a `CancellationTokenSource`. The token needs to be registered on the `SendOptions` as shown below.
 
-<!-- import CancelCallback -->
+snippet:CancelCallback
 
 
 ## When should you use callbacks?

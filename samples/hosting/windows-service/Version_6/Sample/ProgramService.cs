@@ -5,7 +5,7 @@ using NServiceBus;
 
 class ProgramService : ServiceBase
 {
-    IBus bus;
+    IEndpointInstance endpoint;
 
     #region windowsservice-hosting-main
 
@@ -47,7 +47,7 @@ class ProgramService : ServiceBase
         busConfiguration.SendFailedMessagesTo("error");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        bus = await Bus.Create(busConfiguration).StartAsync();
+        endpoint = await Endpoint.Start(busConfiguration);
     }
 
     #endregion
@@ -56,10 +56,7 @@ class ProgramService : ServiceBase
 
     protected override void OnStop()
     {
-        if (bus != null)
-        {
-            bus.Dispose();
-        }
+        endpoint?.Stop().GetAwaiter().GetResult();
     }
 
     #endregion

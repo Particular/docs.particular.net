@@ -16,10 +16,15 @@ class Program
         busConfiguration.EndpointName("Store.Operations");
         busConfiguration.ApplyCommonConfiguration();
         busConfiguration.SendFailedMessagesTo("error");
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }

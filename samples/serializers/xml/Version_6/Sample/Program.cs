@@ -28,8 +28,10 @@ static class Program
         busConfiguration.EnableInstallers();
         busConfiguration.SendFailedMessagesTo("error");
 
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
+            IBusContext busContext = endpoint.CreateBusContext();
             #region message
             CreateOrder message = new CreateOrder
             {
@@ -50,11 +52,15 @@ static class Program
                     },
                 }
             };
-            await bus.SendLocalAsync(message);
+            await busContext.SendLocal(message);
             #endregion
             Console.WriteLine("Order Sent");
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }

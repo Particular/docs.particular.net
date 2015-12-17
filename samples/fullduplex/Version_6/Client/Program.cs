@@ -22,8 +22,10 @@ class Program
         busConfiguration.EnableInstallers();
         busConfiguration.SendFailedMessagesTo("error");
 
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
+            IBusContext busContext = endpoint.CreateBusContext();
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 
@@ -46,10 +48,14 @@ class Program
                     DataId = guid,
                     String = "String property value"
                 };
-                await bus.SendAsync("Samples.FullDuplex.Server", message);
+                await busContext.Send("Samples.FullDuplex.Server", message);
             }
 
             #endregion
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }

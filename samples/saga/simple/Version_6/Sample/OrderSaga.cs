@@ -23,11 +23,11 @@ public class OrderSaga : Saga<OrderSagaData>,
     {
         Data.OrderId = message.OrderId;
         logger.InfoFormat("Saga with OrderId {0} received StartOrder with OrderId {1}", Data.OrderId, message.OrderId);
-        await context.SendLocalAsync(new CompleteOrder
+        await context.SendLocal(new CompleteOrder
         {
             OrderId = Data.OrderId
         });
-        await RequestTimeoutAsync<CancelOrder>(context, TimeSpan.FromMinutes(30));
+        await RequestTimeout<CancelOrder>(context, TimeSpan.FromMinutes(30));
     }
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)

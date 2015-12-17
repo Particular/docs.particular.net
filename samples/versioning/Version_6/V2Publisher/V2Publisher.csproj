@@ -39,7 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\packages\NServiceBus.5.2.9\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.6.0.0-unstable1288\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -55,10 +55,6 @@
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj">
-      <Project>{b5cd0590-4e86-4ac9-9670-e58063fac80a}</Project>
-      <Name>Shared</Name>
-    </ProjectReference>
     <ProjectReference Include="..\V1.Messages\V1.Messages.csproj">
       <Project>{9D27D517-B938-4594-8836-CE06A2955FFD}</Project>
       <Name>V1.Messages</Name>

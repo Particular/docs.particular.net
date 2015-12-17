@@ -4,7 +4,7 @@ summary: Illustrates customizing Serilog usage by configuring Serilog targets an
 tags:
 - Logging
 - Serilog
-related: 
+related:
 - nservicebus/logging
 - platform/extensions
 ---
@@ -17,12 +17,12 @@ Illustrates customizing [NServiceBus.Serilog](https://github.com/SimonCropp/NSer
 
 ### Configure Serilog
 
-<!-- import ConfigureSerilog -->
+snippet:ConfigureSerilog
 
 
 ### Pass that configuration to NServiceBus
 
-<!-- import UseConfig -->
+snippet:UseConfig
 
 
 ## More Information

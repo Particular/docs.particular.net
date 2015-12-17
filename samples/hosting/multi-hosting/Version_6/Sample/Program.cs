@@ -14,9 +14,13 @@ class Program
     {
         #region multi-hosting
 
-        using (IBus bus1 = await StartInstance1())
-        using (IBus bus2 = await StartInstance2())
+        IEndpointInstance endpoint1 = null;
+        IEndpointInstance endpoint2 = null;
+        try
         {
+            endpoint1 = await StartInstance1();
+            endpoint2 = await StartInstance2();
+
             Console.WriteLine("Press '1' to send a message from Instance1 to Instance2");
             Console.WriteLine("Press '2' to send a message from Instance2 to Instance1");
             Console.WriteLine("Press any key to exit");
@@ -27,22 +31,33 @@ class Program
                 Console.WriteLine();
                 if (key.Key == ConsoleKey.D1)
                 {
-                    await bus1.SendAsync("Samples.MultiHosting.Instance2", new MyMessage());
+                    await endpoint1.CreateBusContext().Send("Samples.MultiHosting.Instance2", new MyMessage());
                     continue;
                 }
                 if (key.Key == ConsoleKey.D2)
                 {
-                    await bus2.SendAsync("Samples.MultiHosting.Instance1", new MyMessage());
+                    await endpoint2.CreateBusContext().Send("Samples.MultiHosting.Instance1", new MyMessage());
                     continue;
                 }
                 return;
+            }
+        }
+        finally
+        {
+            if (endpoint1 != null)
+            {
+                endpoint1.Stop().GetAwaiter().GetResult();
+            }
+            if (endpoint2 != null)
+            {
+                endpoint2.Stop().GetAwaiter().GetResult();
             }
         }
 
         #endregion
     }
 
-    static async Task<IBus> StartInstance1()
+    static async Task<IEndpointInstance> StartInstance1()
     {
         #region multi-hosting-assembly-scan
 
@@ -56,12 +71,12 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.SendFailedMessagesTo("error");
 
-        return await Bus.Create(busConfiguration).StartAsync();
+        return await Endpoint.Start(busConfiguration);
 
         #endregion
     }
 
-    static async Task<IBus> StartInstance2()
+    static async Task<IEndpointInstance> StartInstance2()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
 
@@ -72,6 +87,6 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.SendFailedMessagesTo("error");
 
-        return await Bus.Create(busConfiguration).StartAsync();
+        return await Endpoint.Start(busConfiguration);
     }
 }

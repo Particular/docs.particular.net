@@ -20,13 +20,13 @@
         public async Task Handle(Message1 message, IMessageHandlerContext context)
         {
             Data.SomeID = message.SomeID;
-            await RequestTimeoutAsync<MyCustomTimeout>(context, TimeSpan.FromHours(1));
+            await RequestTimeout<MyCustomTimeout>(context, TimeSpan.FromHours(1));
         }
 
         public async Task Handle(Message2 message, IMessageHandlerContext context)
         {
             Data.Message2Arrived = true;
-            await ReplyToOriginatorAsync(context, new AlmostDoneMessage
+            await RequestTimeout(context, TimeSpan.FromHours(1), new AlmostDoneMessage
             {
                 SomeID = Data.SomeID
             });
@@ -36,7 +36,7 @@
         {
             if (!Data.Message2Arrived)
             {
-                await ReplyToOriginatorAsync(context, new TiredOfWaitingForMessage2());
+                await RequestTimeout(context, TimeSpan.FromHours(1), new TiredOfWaitingForMessage2());
             }
         }
     }

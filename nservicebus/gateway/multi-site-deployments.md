@@ -8,7 +8,7 @@ related:
  - samples/gateway
 ---
 
-The number of multi-site deployments of enterprise .NET systems are increasing due to the challenges of high availability and the requirement for faster response times for users, as the servers and data they access is closer. 
+The number of multi-site deployments of enterprise .NET systems are increasing due to the challenges of high availability and the requirement for faster response times for users, as the servers and data they access is closer.
 
 RPC technologies quickly run into trouble in these environments as they make machines in the same site and those in remote sites look the same.
 
@@ -19,7 +19,7 @@ In these cases, messaging is better than RPC, but many developers mistakenly rep
 
 In some cases, physical sites are replicas of one other. This is a common configuration for the purposes of disaster recovery and is largely influenced by technology, cost, and performance.
 
-![Disaster Recovery](disaster-recovery.png) 
+![Disaster Recovery](disaster-recovery.png)
 
 NServiceBus provides no special facilities for disaster recovery other than to enable developers to plug in their own specific technologies. This can take the form of database replication of subscription information, configuring MSMQ to store its message data on a SAN, etc. The difference in price and performance of the various options is quite large and is not covered here.
 
@@ -56,7 +56,7 @@ This model is recommended as it provides all the benefits of durable messaging b
 
 In cases where you only have access to HTTP for connection between sites, you can enable the NServiceBus Gateway on each site so it transmits messages from a queue in one site to a queue in another site, including the hash of the messages to ensure that the message is transmitted correctly. The following diagram shows how it works:
 
-![Gateway Headquarter to Site A](gateway-headquarter-to-site-a.png)  
+![Gateway Headquarter to Site A](gateway-headquarter-to-site-a.png) 
 
 The sending process in site A sends a message to the gateway's input queue. The gateway then initiates an HTTP connection to its configured target site. The gateway in site B accepts HTTP connections, takes the message transmitted, hashes it, and returns the hash to site A. If the hashes match, the gateway in site B transmits the message it receives to a configured queue. If the hashes don't match, the gateway in site A re-transmits.
 
@@ -67,9 +67,9 @@ When you configure the client endpoint, make sure that the [Message Owner](/nser
 
 To send a message to a remote site, use the `SendToSites` API call, as shown:
 
-<!-- import SendToSites -->
+snippet:SendToSites
 
-This values (`SiteA` and `SiteB`) is the list of remote sites where you want the message(s) sent. 
+This values (`SiteA` and `SiteB`) is the list of remote sites where you want the message(s) sent.
 
 
 ### Configuring Destination
@@ -78,23 +78,23 @@ While you can put the URLs of the site directly in the call, we recommend that y
 
 #### Using App.Config
 
-<!-- import GatewaySitesAppConfig -->
+snippet:GatewaySitesAppConfig
 
 
 If you prefer to specify this physical routing in code:
 
 #### Using a IConfigurationProvider
 
-<!-- import GatewaySitesConfigurationProvider -->
+snippet:GatewaySitesConfigurationProvider
 
 
 #### Using a ConfigurationSource
 
-<!-- import GatewaySitesConfigurationSource -->
+snippet:GatewaySitesConfigurationSource
 
 Then at configuration time:
 
-<!-- import UseCustomConfigurationSourceForGatewaySitesConfig -->
+snippet:UseCustomConfigurationSourceForGatewaySitesConfig
 
 
 
@@ -117,7 +117,7 @@ Going across alternate channels like HTTP means that you lose the MSMQ safety gu
 
 ### Version 5 and higher
 
-The gateway will use the storage type you configure. At this stage [InMemory](/nservicebus/persistence/in-memory.md), [NHibernate](/nservicebus/nhibernate/) and [RavenDB](/nservicebus/ravendb/) is supported. 
+The gateway will use the storage type you configure. At this stage [InMemory](/nservicebus/persistence/in-memory.md), [NHibernate](/nservicebus/nhibernate/) and [RavenDB](/nservicebus/ravendb/) is supported.
 
 
 ### Version 4
@@ -131,24 +131,24 @@ When you enable the gateway, it automatically sets up an HTTP channel to listen 
 
 #### Using App.Config
 
-<!-- import GatewayChannelsAppConfig -->
+snippet:GatewayChannelsAppConfig
 
 If you prefer to specify this physical routing in code:
 
 #### Using a IConfigurationProvider
 
-<!-- import GatewayChannelsConfigurationProvider -->
+snippet:GatewayChannelsConfigurationProvider
 
 
 #### Using a ConfigurationSource
 
-<!-- import GatewayChannelsConfigurationSource -->
+snippet:GatewayChannelsConfigurationSource
 
 Then at configuration time:
 
-<!-- import UseCustomConfigurationSourceForGatewayChannelsConfig -->
+snippet:UseCustomConfigurationSourceForGatewayChannelsConfig
 
 
-The `Default` on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels. 
+The `Default` on the first channel tells the gateway which address to attach on outgoing messages if the sender does not specify it explicitly. You can, of course, add as many channels as you like and mix all the supported channels.
 
 Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/ms733768.aspx) and make sure to configure the gateway to listen on the appropriate port, as well as to contact the remote gateway on the same port.

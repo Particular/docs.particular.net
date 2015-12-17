@@ -109,7 +109,7 @@ class ProgramService : ServiceBase
 
     protected override void OnStop()
     {
-        #region stop-bus
+        #region stop-endpoint
         if (bus != null)
         {
             IDisposable disposable = (IDisposable) bus;

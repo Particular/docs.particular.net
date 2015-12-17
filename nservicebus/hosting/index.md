@@ -9,7 +9,7 @@ redirects:
 - nservicebus/hosting/send-only-endpoints
 ---
 
-At its core NServiceBus is a library, as such it can be hosted in any .net process.
+At its core NServiceBus is a library, as such it can be hosted in any .NET process.
 
 There are several approaches to hosting.
 
@@ -21,7 +21,7 @@ There are several approaches to hosting.
  * Configuration
  * [Logging](/nservicebus/logging)
  * [Container](/nservicebus/containers/)
- * [Startup and Shutdown](/samples/startup-shutdown-sequence/) 
+ * [Startup and Shutdown](/samples/startup-shutdown-sequence/)
  * [Endpoint Lifecycle](/nservicebus/lifecycle/)
  * [Critical Error handling](critical-errors.md)
 
@@ -29,8 +29,15 @@ Related:
 
  * [Self-Hosting Sample](/samples/hosting/self-hosting/) for more details.
 
+When self-hosting, the user is responsible for creating and starting the endpoint instance
 
-WARNING: **Cleanup/Shutdown**: For all self hosting scenarios it is important to note that the hosting code is in control of properly shutting down the endpoint. This is done by calling `Dispose` on the Bus instance in the shutdown API of your chosen technology.
+snippet:Hosting-Startup
+
+The user is also responsible for properly shutting down the endpoint when it is no longer needed (usually when the application terminates).
+
+snippet:Hosting-Shutdown
+
+NOTE: Starting with V6 we no longer provide the `Dispose` method. This is because there is now way to flow the asynchronous context through the `Dispose` method. The shutdown procedure might involve executing async code (e.g. `IWantToRunWhenBusStartsAndStops`) which means that if `Dispose` would wrap `Stop` with a `GetResult()` call, it could cause deadlocks.
 
 
 ### Windows Service Hosting
@@ -47,15 +54,15 @@ Related:
 ### Send-only hosting
 
 A "Send-only endpoint" is used when the only purpose is sending messages and no message processing is required in that endpoint. Common use cases include websites, console application and windows application. This is the code for starting an endpoint in send only mode.
- 
-<!-- import SendOnly -->
+
+snippet:Hosting-SendOnly
 
 The only configuration when running in this mode is the destination when [Sending a message](/nservicebus/messaging/send-a-message.md).
 
 
 ### Web Hosting
 
-NServiceBus can be hosted in any web technology that support .net. This includes
+NServiceBus can be hosted in any web technology that support .NET. This includes
 
  * ASP.net
  * ASP.MVC
@@ -69,7 +76,7 @@ As most web technologies operate in a scale out manner NServiceBus is **usually*
 
 NOTE: There are some [Caveats when publishing from a Web Application](publishing-from-web-applications.md).
 
-NOTE: In a web hosted scenario a [IIS Recycle](https://msdn.microsoft.com/en-us/library/ms525803.aspx) is considered a shutdown and restart of the bus. 
+NOTE: In a web hosted scenario a [IIS Recycle](https://msdn.microsoft.com/en-us/library/ms525803.aspx) is considered a shutdown and restart of the bus.
 
 Related:
 
@@ -79,25 +86,30 @@ Related:
 
 ### Multi-Hosting
 
-"Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .net process. In Version 4 and earlier this could be achieved through multiple AppDomains. In Version 5 and higher multiple endpoints can share the same AppDomain or use the multiple AppDomains approach. 
+"Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .NET process. In Version 4 and earlier this could be achieved through multiple AppDomains. In Version 5 and higher multiple endpoints can share the same AppDomain or use the multiple AppDomains approach.
 
 Related:
 
  * [Multi-Hosting Sample](/samples/hosting/multi-hosting/).
 
 
-### Accessing IBus
+### Accessing the bus
 
-At startup an instance of `IBus` is created and at shutdown it is disposed. Most usages of `IBus` will occur where the NServiceBus APIs are used. For example [Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/). However there are other scenarios that may require an alternative approach. 
+Most usages of the bus will occur where the NServiceBus APIs are used. For example [Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/). However there are other scenarios that may require an alternative approach where the user needs to directly access the bus from outside of the framework.
 
 
 #### Using a Container
 
-NServiceBus support dependency injection via use [Containers](/nservicebus/containers/). At startup the instance of `IBus` will be injected into the configured container and can be access via that container. 
+NServiceBus support dependency injection via use [Containers](/nservicebus/containers/). At startup the instance of `IBus` will be injected into the configured container and can be access via that container.
 
 Related:
- 
+
  * [Injecting the Bus into ASP.NET MVC Controller](/samples/web/asp-mvc-injecting-bus/)
+
+
+NOTO: Since V6 `IEndpointInstance` (the equivalent of `IBus`) is no longer automatically injected into the container. In order to send messages you need to explicitly create a bus context. Here's a sample code showing how to automate this task using the Autofac container
+
+snippet:Hosting-Inject
 
 
 #### Static variable
@@ -105,25 +117,16 @@ Related:
 For many scenarios a container is not required. In these cases a simple public static variable on the startup class will suffice. This variable can then be access globally in your application. For example:
 
  * In windows service or console the variable would be placed on the `Program.cs`
- * In a Website the variable would be placed on the `Global.cs`. 
+ * In a Website the variable would be placed on the `Global.cs`.
 
 Alternatively the static variable could be placed on a (more appropriately named) helper class.
 
-```
-public static class BusInstance
-{
-    public static IBus Bus { get; private set; }
-    public static void SetInstance(IBus bus)
-    {
-        Bus = bus;
-    }
-} 
-```
+snippet:Hosting-Static
 
 
 ## "Custom Host" Solutions
 
-A "Custom Host" refers to a process or library that wraps the NServiceBus library to take partial control of configuration, startup and shutdown. This Host then exposes extension points for common activities and uses conventions and/or sensible defaults for many other configuration options.  
+A "Custom Host" refers to a process or library that wraps the NServiceBus library to take partial control of configuration, startup and shutdown. This Host then exposes extension points for common activities and uses conventions and/or sensible defaults for many other configuration options.
 
 
 ### NServiceBus Host
@@ -137,7 +140,7 @@ Related:
 
 ### Hosting in Azure
 
-There are a variety of ways to host in Azure. Depending on your requirements Self Hosting may be an option or, alternatively, a custom Azure host may be required. See [Hosting in Azure Cloud Services](/nservicebus/azure/hosting-in-azure-cloud-services.md) and [Hosting in Azure](/nservicebus/azure/hosting.md) for more information. 
+There are a variety of ways to host in Azure. Depending on your requirements Self Hosting may be an option or, alternatively, a custom Azure host may be required. See [Hosting in Azure Cloud Services](/nservicebus/azure/hosting-in-azure-cloud-services.md) and [Hosting in Azure](/nservicebus/azure/hosting.md) for more information.
 
 Related:
 

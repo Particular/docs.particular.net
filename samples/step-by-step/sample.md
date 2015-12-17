@@ -6,46 +6,46 @@ redirects:
 - nservicebus/nservicebus-step-by-step-guide
 ---
 
-In this sample shows a very simple ordering system that 
+In this sample shows a very simple ordering system that
 
- * sends a command from a client to a server 
+ * sends a command from a client to a server
  * that server handles the command and publishes a new event about the success
  * a subscriber listens to, and handles, the event
 
 
 ## The Shared Project
 
-The `Shared` project is the container for shared classes including message definitions. This project will be shared between the client and server so both sides agree on the typed message descriptions. It is referenced by all projects in the solution. 
+The `Shared` project is the container for shared classes including message definitions. This project will be shared between the client and server so both sides agree on the typed message descriptions. It is referenced by all projects in the solution.
 
 
 ### PlaceOrder Command
 
 Used to initiate an order
 
-<!--import PlaceOrder-->
+snippet:PlaceOrder
 
 
 ### OrderPlaced Event
 
 Used to indicate that an order has been received and processed.
 
-<!--import OrderPlaced-->
+snippet:OrderPlaced
 
 
 ## The Client
 
 The `Client` is the initiate for the ordering process. The sending code in the client is as follows.
 
-<!-- import SendOrder -->
+snippet:SendOrder
 
 This is a console blocking loop that is called the the console starts.
 
 
-## The Server 
+## The Server
 
 The `Server` project processes an Order. It receives `PlaceOrder` sent from `Client` and then publishes `OrderPlaced` on success.
 
-<!-- import PlaceOrderHandler -->
+snippet:PlaceOrderHandler
 
 
 ## The Subscriber
@@ -57,14 +57,14 @@ The `Subscriber` project needs notification of a successful order. Hence it subs
 
 The subscription is done in the `app.config` of the project
 
-<!-- import subscriptionConfig--> 
+snippet: subscriptionConfig
 
 
 ### Handling the event
 
 When the event is received it will be passed to `OrderCreatedHandler` for processing.
 
-<!-- import OrderCreatedHandler -->
+snippet:OrderCreatedHandler
 
 
 ## Running the solution
@@ -74,7 +74,7 @@ Run the solution.
 
 ### Client Output
 
-The output will be 
+The output will be
 
     Press 'Enter' to send a message. To exit press 'Ctrl + C'
 

@@ -13,7 +13,7 @@ The primary job of ServiceControl is to collect information on system behavior i
 
 #### Location
 
-ServiceControl stores its data in a RavenDB embedded instance, whose storage location on disk can be [customized](configure-ravendb-location.md). The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. You should configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
+Each ServiceControl instance stores its data in a RavenDB embedded instance. The location of the database has a significant impact on the overall system behavior in terms of performance and throughput. You should configure the embedded database files in a high-performance storage device that is connected to the ServiceControl machine with a high-throughput connection.
 
 #### Size
 
@@ -21,30 +21,31 @@ The storage size that ServiceControl requires depends on the production load and
 
 Since ServiceControl is intended to be a recent-history storage to support ServicePulse and ServiceInsight monitoring and debugging activity. This is different from a long-term data archiving system, that is intended to provide extremely long term archiving and storage solutions (measured in years, subject to various business or regulatory requirements).
 
-ServiceControl is configured with a [default expiration policy](/servicecontrol/how-purge-expired-data.md) that deletes old messages after a predefined time. The expiration policy can be [customized](/servicecontrol/how-purge-expired-data.md) to decrease or increase the amount of time data is retained, which impacts the storage requirements of ServiceControl.
+ServiceControl is configured with a default expiration policy that deletes old messages after a predefined time. The expiration policy can be customized to decrease or increase the amount of time data is retained, which impacts the storage requirements of ServiceControl.
+
+To limit the rate at which the database grows the body of an audit messages can be truncated if it exceeds a configurable threshold. 
+
+Refer to Data Retention section of [Customizing ServiceControl Configuration](creating-config-file.md) for details on these settings.
+
 
 **NOTE**
 
 * The maximum supported size of the RavenDB embedded database is 16TB.
-* A failed and archived message *never* expires and is retained indefinitely in the ServiceControl database. 
+* Failed messages are *never* expired and are retained indefinitely in the ServiceControl database.
 
 ### Accessing data and audited messages
-
-For various reasons you may wish to programmatically access the data and messages stored within the ServiceControl database. This may be in order to copy messages to long-term storage, or in order to develop custom tools on top of the ServiceControl data and API.
-
-To access raw message data for storage in a long-term archive or in a specialized BI database:
 
 #### Alternate Audit and Error queues
 
 You can configure ServiceControl to forward any consumed messages into alternate queues, so that a copy of any message consumed by ServiceControl is available from these alternate queues.
 
-For more details, see [Customizing ServiceControl Configuration](creating-config-file.md#consuming-messages-from-audit-amp-error-queues).
+For more details, see [Forwarding Queues](errorlog-auditlog-behavior.md)
 
 #### Query the ServiceControl HTTP API
 
-This provides a JSON stream of audited and error messages (headers, body, and context) that can be imported into another database. 
- 
-NOTE: ServiceControl HTTP API is subject to changes and enhancements that may not be fully backwards compatible.  Use of this HTTP API is discouraged by 3rd parties at this time. 
+This provides a JSON stream of audited and error messages (headers, body, and context) that can be imported into another database.
+
+NOTE: ServiceControl HTTP API is subject to changes and enhancements that may not be fully backwards compatible. Use of this HTTP API is discouraged by 3rd parties at this time.
 
 ### Throughput
 
@@ -54,9 +55,10 @@ The throughput of ServiceControl is dependent on multiple factors. Messages size
 
 #### Transport type
 
-Different transports provide different throughput capabilities. 
-The transports supported by ServiceControl out-of-the-box (i.e. MSMQ, RabbitMQ, SQL Server and Azure Queues and Azure Service Bus) provide varying throughput numbers, with MSMQ and SQL Server providing the highest throughput numbers. 
+Different transports provide different throughput capabilities.
+
+The transports supported by ServiceControl out-of-the-box (i.e. MSMQ, RabbitMQ, SQL Server and Azure Queues and Azure Service Bus) provide varying throughput numbers, with MSMQ and SQL Server providing the highest throughput numbers.
 
 Azure Queues and Service Bus throughput varies significantly based on deployment options and multiple related variables inherent to cloud deployment scenarios.
 
-It is recommended that you plan and perform realistic throughput tests on ServiceControl using the transport of your choice and deployment options that are as close as possible to your planned production deployment. For additional questions or information please [contact Particular Software](http://particular.net/contactus).       
+It is recommended that you plan and perform realistic throughput tests on ServiceControl using the transport of your choice and deployment options that are as close as possible to your planned production deployment. For additional questions or information please [contact Particular Software](http://particular.net/contactus).

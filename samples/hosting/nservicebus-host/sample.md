@@ -11,4 +11,4 @@ related:
 
 This sample shows how to host a NServiceBus endpoint using the NServiceBus.Host.
 
-<!-- import nservicebus-host -->
+snippet:nservicebus-host

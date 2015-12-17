@@ -9,18 +9,18 @@ related:
  - samples/outbox
 ---
 
-NServiceBus Version 5 brings the option of running endpoints with the same reliability we all got accustomed to while running under DTC, but now without it. 
+NServiceBus Version 5 brings the option of running endpoints with the same reliability we all got accustomed to while running under DTC, but now without it.
 
 
 ## Enabling the outbox
 
 In order to enable the Outbox, use the following API:
 
-<!-- import OutboxEnablineInCode --> 
+snippet: OutboxEnablineInCode
 
 This is enough for the RabbitMQ transport. For SQL Server and MSMQ transports, to enable the outbox users need to also explicitly set the following configuration settings when configuring the endpoint:
 
-<!-- import OutboxEnablingInAppConfig --> 
+snippet: OutboxEnablingInAppConfig
 
 NOTE: It may seem extreme to require double opt-in configuration of the Outbox for all other transports, but this is because we want users to be very aware that this new feature should not be used with existing endpoints that currently use DTC, unless those endpoints are [idempotent](https://en.wikipedia.org/wiki/Idempotence). Otherwise, problems could arise from double-processing messages sent (via an at-least-once guarantee) more than once.
 
@@ -38,8 +38,7 @@ Here is a diagram how it all works:
 
 ## Caveats
 
-- Both the business data and deduplication data need to share the same database
-- If you're forwarding processed messages to other endpoints they need to use a different datastore since outbox records are keyed on the `MessageId`
+- Both the business data and deduplication data need to share the same database.
 - The Outbox is bypassed when sending messages "from outside" via the `IBus` interface (not from a message handler). The reason for this is lack of a driving force for repeated dispatching of the Outbox messages (which currently is the retry mechanism that applies only when handling messages).
 
 ## Using outbox with NHibernate persistence
@@ -50,7 +49,7 @@ Here is a diagram how it all works:
 SQL Server transport supports *exactly-once* message delivery without Outbox solely by means of sharing the transport connection with persistence. This mode of operation is discussed in depth in this [sample](/samples/sqltransport-nhpersistence).
 
 
-### What extra tables does NHibernate outbox persistence create 
+### What extra tables does NHibernate outbox persistence create
 
 To keep track duplicate messages, the NHibernate implementation of Outbox requires the creation of two additional tables in your database, these are called `OutboxRecord` and `OutboxOperation`.
 
@@ -61,13 +60,13 @@ The NHibernate implementation by default keeps deduplication records for 7 days 
 
 These default settings can be changed by specifying new defaults in the config file using [TimeStamp strings](https://msdn.microsoft.com/en-us/library/ee372286.aspx), here is how to do it:
 
-<!-- import OutboxNHibernateTimeToKeep -->
+snippet:OutboxNHibernateTimeToKeep
 
 
 ## Using outbox with RavenDB persistence
 
 
-### What extra documents does RavenDB outbox persistence create 
+### What extra documents does RavenDB outbox persistence create
 
 To keep track duplicate messages, the RavenDB implementation of Outbox creates a special collection of documents inside your database, these are called `OutboxRecord`.
 
@@ -78,4 +77,4 @@ The RavenDB implementation by default keeps deduplication records for 7 days and
 
 These default settings can be changed by specifying new defaults in the settings dictionary, here is how to do it:
 
-<!-- import OutboxRavendBTimeToKeep -->
+snippet:OutboxRavendBTimeToKeep

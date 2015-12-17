@@ -1,7 +1,7 @@
 ---
 title: How to register a custom serializer
 summary: Registering a custom serializer via configuration.
-tags: 
+tags:
 - serialization
 redirects:
 - nservicebus/how-to-register-a-custom-serializer
@@ -9,15 +9,12 @@ redirects:
 
 Here is an example how to register a custom serializer:
 
+
 ### Create a custom serializer
 
-<!-- import CustomSerializer --> 
-
-### Register that serializer
-
-<!-- import RegisterCustomSerializer -->
+snippet: CustomSerializer
 
 
+### Register the serializer
 
-
-
+snippet:RegisterCustomSerializer

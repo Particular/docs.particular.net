@@ -33,7 +33,7 @@ Not adding a unique constraint can result in duplicate saga entities as the seco
 
 ## Prerequisites
 
-The samples rely on `.\SQLEXPRESS` and need the database `Samples.CustomNhMappings` to run properly. 
+The samples rely on `.\SQLEXPRESS` and need the database `Samples.CustomNhMappings` to run properly.
 
 
 ## Custom .hbm.xml mapping
@@ -47,23 +47,23 @@ See [Your first NHibernate based application](http://nhibernate.info/doc/tutoria
 
 The `.hbm.xml` contents is as follows
 
-<!-- import hmlxml -->
+snippet:hmlxml
 
 
-### Reading the mapping mappings 
+### Reading the mapping mappings
 
 Create a custom NHibernate configuration object and use the following example to add mappings from the file system.
 
-<!-- import AddMappingsFromFilesystem -->
+snippet:AddMappingsFromFilesystem
 
 
 ## Use Fluent NHibernate
 
-[Fluent NHibernate](http://www.fluentnhibernate.org) gives you a type-safe mapping approach where the mapping is specified as code (is not as `.hbm.xml`) but still separate from the classes. The benefit is that you get compile time feedback when a mapping is not valid anymore when you have breaking changes in your mapping but also that your classes and mappings are not part of the same .net type.
+[Fluent NHibernate](http://www.fluentnhibernate.org) gives you a type-safe mapping approach where the mapping is specified as code (is not as `.hbm.xml`) but still separate from the classes. The benefit is that you get compile time feedback when a mapping is not valid anymore when you have breaking changes in your mapping but also that your classes and mappings are not part of the same .NET type.
 
 To use it with NServiceBus:
 
-1. Install `FluentNHibernate` package via Nuget.
+1. Install `FluentNHibernate` package via NuGet.
 2. Create a custom NHibernate configuration
 a. via FluentNHibernate
 b. or by creating a new Configuration instance and pass it to FluentNHibernate
@@ -72,7 +72,7 @@ b. or by creating a new Configuration instance and pass it to FluentNHibernate
 
 Example of a possible implementation:
 
-<!-- import FluentConfiguration -->
+snippet:FluentConfiguration
 
 
 ## Use NHibernate.Mapping.Attributes
@@ -81,7 +81,7 @@ With [NHibernate.Mapping.Attributes](http://nhibernate.info/doc/nhibernate-refer
 
 NHibernate.Mapping.Attributes needs to know what types to scan to generate an NHibernate mapping configuration that gets passed to your NHibernate configuration.
 
-1. Add the nuget package `NHibernate.Mapping.Attributes`
+1. Add the NuGet package `NHibernate.Mapping.Attributes`
 2. Create a custom NHibernate configuration object.
 3. Initialize the attribute mapping (see sample below).
 4. Pass it to the NServiceBus NHibernate configuration.
@@ -89,7 +89,7 @@ NHibernate.Mapping.Attributes needs to know what types to scan to generate an NH
 
 Initialize the NHibernate attribute based mappings:
 
-<!-- import AttributesConfiguration -->
+snippet:AttributesConfiguration
 
 
 ## Use the Loquacious mapping by code API
@@ -105,4 +105,4 @@ To use it:
 
 Initialize NHibernate Loquacious configuration
 
-<!-- import LoquaciousConfiguration -->
+snippet:LoquaciousConfiguration

@@ -16,7 +16,7 @@ public class ProvisionDownloadHandler : IHandleMessages<ProvisionDownloadRequest
 
         Console.WriteLine("Provision the products and make the Urls available to the Content management for download ...[{0}] product(s) to provision", string.Join(", ", message.ProductIds));
 
-        await context.ReplyAsync(new ProvisionDownloadResponse
+        await context.Reply(new ProvisionDownloadResponse
             {
                 OrderNumber = message.OrderNumber,
                 ProductIds = message.ProductIds,

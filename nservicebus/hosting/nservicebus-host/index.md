@@ -24,7 +24,7 @@ The `NServiceBus.Host.exe` scans the runtime directory for assemblies containing
 
 If you want to avoid the scanning process you can explicitly configure the type of your endpoint configuration by adding the following to the `NServiceBus.Host.exe.config` file. The below example show the exact syntax:
 
-<!-- import ExplicitHostConfigType -->
+snippet:ExplicitHostConfigType
 
 
 ## Application Domains
@@ -36,12 +36,12 @@ NOTE: When the endpoint configuration is not specified explicitly, the host scan
 
 ## Custom initialization and startup
 
-As of NServiceBus version 5 you customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on your endpoint configuration class. Just call the appropriate methods on the `BusConfiguration` parameter passed to the method.
+As of NServiceBus Version 5 you customize the endpoint behavior using the `IConfigureThisEndpoint.Customize` method on your endpoint configuration class. Just call the appropriate methods on the `BusConfiguration` parameter passed to the method.
 
-<!-- import customize_nsb_host -->
+snippet:customize_nsb_host
 
 
-#### NServiceBus version 4 and version 3
+#### NServiceBus Version 4 and Version 3
 
 To change core settings such as assembly scanning, container, and serialization format, implement
 `IWantCustomInitialization` on the endpoint configuration class (the same class that implements
@@ -53,35 +53,35 @@ Configure.With()
 
 NOTE: Do not perform any startup behaviors in the `Init` method.
 
-After the custom initialization is done the regular core `INeedInitalization` implementations found will be called in the same way as when you're self hosting. 
+After the custom initialization is done the regular core `INeedInitalization` implementations found will be called in the same way as when you're self hosting.
 
-Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in version 3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in version 3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in version 3.x) should kick off things such as web crawling, data mining, and batch processes.
+Defer all startup behavior until all initialization has been completed. At this point, NServiceBus invokes classes that implement the `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in Version 3.x) interface. An example of behavior suitable to implement with `IWantToRunWhenBusStartsAndStops` (`IWantToRunWhenTheBusStarts` in Version 3.x) is the opening of the main form in a Windows Forms application. In the back-end Windows Services, classes implementing `IWantToRunWhenBusStartsAndStops`(`IWantToRunWhenTheBusStarts` in Version 3.x) should kick off things such as web crawling, data mining, and batch processes.
 
 
 ## Logging
 
-As of NServiceBus version 5 logging for the host is controlled with the same API as the core. This is documented [here](/nservicebus/logging/).
+As of NServiceBus Version 5 logging for the host is controlled with the same API as the core. This is documented [here](/nservicebus/logging/).
 
 You can add the logging API calls as mentioned in the above article directly in your implementation of `IConfigureThisEndoint.Customize` method.
 
 
-### NServiceBus version 4 and version 3
+### NServiceBus Version 4 and Version 3
 
 To change the host's logging infrastructure, implement the `IWantCustomLogging` interface. In the `Init` method, configure your custom setup. To make NServiceBus use your logger, use the `NServiceBus.SetLoggingLibrary.Log4Net()` API, described in the [logging documentation](/nservicebus/logging) and shown below:
 
-<!-- import CustomHostLogging -->
+snippet:CustomHostLogging
 
 You may want to specify different logging levels (`DEBUG`, `WARN`, etc.) and possibly different targets `(CONSOLE`, `FILE`, etc.). The host provides a mechanism for changing these permutations with no code or configuration changes, via [profiles](/nservicebus/hosting/nservicebus-host/profiles.md).
 
 
 ## Roles - Built-in configurations
 
-As of version 5 roles are obsoleted and should not be used. Most of the functionality of `AsA_Server`, and `AsA_Publisher` has been made defaults in the core and can be safely removed. If you still need the `AsA_Client` behavior please add the following to your configuration.
+As of Version 5 roles are obsoleted and should not be used. Most of the functionality of `AsA_Server`, and `AsA_Publisher` has been made defaults in the core and can be safely removed. If you still need the `AsA_Client` behavior please add the following to your configuration.
 
-<!-- import AsAClientEquivalent -->
+snippet:AsAClientEquivalent
 
 
-#### NServiceBus version 4 and version 3
+#### NServiceBus Version 4 and Version 3
 
 The rest of the code specifying transport, subscription storage, and other technologies isn't here, because of the `AsA_Server` built-in configuration described next.
 
@@ -115,7 +115,7 @@ NServiceBus.Host.exe [/install [/serviceName]
 [/password]]
 [/uninstall [/serviceName]
 [/sidebyside]
-[/instance:Instance Name ] 
+[/instance:Instance Name ]
 ```
 
 You can get to this list by running the following at the command line:
@@ -143,7 +143,7 @@ To specify under which account you want your service to run, pass in the usernam
 Following is an example of the `/install` command line:
 
 ```
-NServiceBus.Host.exe /install /serviceName:"MyPublisher" 
+NServiceBus.Host.exe /install /serviceName:"MyPublisher"
 /displayName:"My Publisher Service"
 /description:"Service for publishing event messages"
 /endpointConfigurationType:"YourNameSpace.YourEndpointConfigType, YourAssembly"
@@ -167,8 +167,8 @@ NServiceBus.Host.exe [/uninstall  [/serviceName] [/instance]]
 
 For example:
 
-```  
+```
 NServiceBus.Host.exe /uninstall /serviceName:YourServiceName /instance:YourInstanceName
 ```
 
-To invoke the infrastructure installers, run the host with the `/installInfrastructure` switch. 
+To invoke the infrastructure installers, run the host with the `/installInfrastructure` switch.

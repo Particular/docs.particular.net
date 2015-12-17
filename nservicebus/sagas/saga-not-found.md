@@ -2,14 +2,14 @@
 title: Sagas Not Found
 summary: How a message is handled when it could be executed by a saga but no saga could be found.
 tags:
-- Sagas
+- Saga
 related:
 - samples/saga
 ---
 
-When a message is received that could possibly be handled by a saga, and no existing saga can be found, then an implementation of `IHandleSagaNotFound` executed. 
+When a message is received that could possibly be handled by a saga, and no existing saga can be found, then an implementation of `IHandleSagaNotFound` executed.
 
-<!-- import saga-not-found -->
+snippet:saga-not-found
 
 Note that the message will be considered successfully processed and sent to the audit queue even if no saga was found. If you want the message to end up in the error queue just throw an exception from your `IHandleSagaNotFound` implementation.
 

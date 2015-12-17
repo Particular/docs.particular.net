@@ -1,8 +1,8 @@
 ---
 title: ServicePulse events
 summary: 'Introduction to ServicePulse monitoring events'
-tags: 
-- ServicePulse 
+tags:
+- ServicePulse
 - Monitoring Events
 related:
 - servicepulse/intro-endpoints-custom-checks

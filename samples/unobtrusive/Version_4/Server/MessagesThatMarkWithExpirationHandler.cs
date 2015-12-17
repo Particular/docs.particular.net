@@ -6,6 +6,6 @@ public class MessagesThatMarkWithExpirationHandler : IHandleMessages<MessageThat
 {
     public void Handle(MessageThatExpires message)
     {
-        Console.Out.WriteLine("Message [{0}] received, id: [{1}]", message.GetType(), message.RequestId);
+        Console.WriteLine("Message [{0}] received, id: [{1}]", message.GetType(), message.RequestId);
     }
 }

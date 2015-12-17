@@ -39,10 +39,10 @@
       <HintPath>..\..\..\..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Interfaces.4.7.8\lib\net40\NServiceBus.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Interfaces.4.7.11\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.4.7.8\lib\net40\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.4.7.11\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.RabbitMQ">
       <HintPath>..\..\..\..\..\packages\NServiceBus.RabbitMQ.1.1.5\lib\net40\NServiceBus.Transports.RabbitMQ.dll</HintPath>

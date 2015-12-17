@@ -12,6 +12,6 @@ public class MyHandler : IHandleMessages<MyMessage>
 
     public void Handle(MyMessage message)
     {
-        Console.Out.WriteLine("Got `MyMessage` with id: {0}, property value: {1}",bus.CurrentMessageContext.Id,message.SomeProperty);
+        Console.WriteLine("Got `MyMessage` with id: {0}, property value: {1}",bus.CurrentMessageContext.Id,message.SomeProperty);
     }
 }

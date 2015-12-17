@@ -26,7 +26,7 @@
             if (!Data.IsTaskAlreadyScheduled)
             {
                 // Setup a timeout for the specified interval for the task to be executed.
-                await RequestTimeoutAsync<ExecuteTask>(context, TimeSpan.FromMinutes(5)); 
+                await RequestTimeout<ExecuteTask>(context, TimeSpan.FromMinutes(5)); 
                 Data.IsTaskAlreadyScheduled = true;
             }
         }
@@ -34,9 +34,9 @@
         public async Task Timeout(ExecuteTask state, IMessageHandlerContext context)
         {
             // Action that gets executed when the specified time is up
-            await context.SendAsync(new CallLegacySystem());
+            await context.Send(new CallLegacySystem());
             // Reschedule the task
-            await RequestTimeoutAsync<ExecuteTask>(context, TimeSpan.FromMinutes(5));
+            await RequestTimeout<ExecuteTask>(context, TimeSpan.FromMinutes(5));
         }
 
     }

@@ -12,7 +12,7 @@ related:
 
 When an NServiceBus endpoint receives messages from external systems (such as BizTalk, TIBCO, etc) the message itself might not contain regular all information that NServiceBus provides. That information is necessary for proper serialization of the message, as well as better monitoring and troubleshooting experience.
 
-To get the best use of your tools ensure that the following information is included in the message sent by the third party endpoints. 
+To get the best use of your tools ensure that the following information is included in the message sent by the third party endpoints.
 
 ## Required information
 
@@ -28,7 +28,7 @@ NServiceBus.EnclosedMessageTypes  | [FullName](https://msdn.microsoft.com/en-us/
 
 If set NServiceBus will instruct the serializer to deserialize the payload into the type specified.
 
-## Additional information 
+## Additional information
 
 For NServericeBus v4 and above you will gain a better debugging experience in ServiceInsight by providing the following additional headers. This information is necessary for including the external message in the diagrams.
 

@@ -23,7 +23,7 @@ To list the installed counters you can use
 Get-Counter -ListSet NServiceBus | Select-Object -ExpandProperty Counter
 ```
 
-And you will get 
+And you will get
 
 ```
 \NServiceBus(*)\Critical Time
@@ -33,11 +33,11 @@ And you will get
 \NServiceBus(*)\# of msgs failures / sec
 ```
 
-## Enabling Counters For The Endpoint 
+## Enabling Counters For The Endpoint
 
 Both the SLA and Critical time are enabled and configured in you configuration code.
 
-<!-- import enable-counters -->
+snippet:enable-counters
 
 The other counters are enabled by default.
 
@@ -46,7 +46,7 @@ The other counters are enabled by default.
 
 The handler just has a random sleep to give us some fake load. Not that the max random number is greater than the above configured SLA to cause it to occasionally fire.
 
-<!-- import handler -->
+snippet:handler
 
 
 ## Run Solution
@@ -58,9 +58,9 @@ Run the solution so that the Performance Counter instances are registered.
 
 1. Start [Windows Performance Monitor](https://technet.microsoft.com/en-au/library/cc749249.aspx).
 2. Clear the default counters.
-3. Add the NServiceBus Counters 
+3. Add the NServiceBus Counters
 
-![](./add-counters.png) 
+![](./add-counters.png)
 
 
 ## Send Messages
@@ -77,14 +77,14 @@ The sending code is in `Program.cs` is set to send 10 messages at a time.
 
 If you continually send more messages the load on the endpoint increases. This will eventually result the queue becoming back-logged. Messages will spend longer in the queue resulting in a gradually increasing Critical Time. If you stop sending messages eventually the endpoint will catch up and the  Critical Time will drop back to 0.
 
-![](./critical-time.png) 
+![](./critical-time.png)
 
 
 ### SLA Violation Countdown
 
-The SLA Violation Countdown is the number of seconds left until the SLA for the particular endpoint is breached. So effectively SLA Violation Countdown is an inverse counter. So if you continually send message the Critical Time will increase while the SLA Violation Countdown decreased. 
+The SLA Violation Countdown is the number of seconds left until the SLA for the particular endpoint is breached. So effectively SLA Violation Countdown is an inverse counter. So if you continually send message the Critical Time will increase while the SLA Violation Countdown decreased.
 
-![](./sla-countdown.png)  
+![](./sla-countdown.png) 
 
 
 ### Other counters
@@ -105,4 +105,4 @@ logger.InfoFormat("Hello from MyHandler. Slept for {0}ms", sleepTime);
 
 Run the end point and send some messages and you can monitor the results of all those performance counters
 
-![](./other-counters.png)  
+![](./other-counters.png) 

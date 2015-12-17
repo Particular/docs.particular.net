@@ -6,7 +6,7 @@ redirects:
 - nservicebus/persistence-in-nservicebus
 ---
 
-Various features of NServiceBus require persistence. 
+Various features of NServiceBus require persistence.
 
 
 ## Storage Types
@@ -14,7 +14,7 @@ Various features of NServiceBus require persistence.
  * [Gateway Deduplication](/nservicebus/gateway/)
  * [Sagas](/nservicebus/sagas/)
  * [Subscriptions](/nservicebus/sagas/)
- * [Timeouts (including message deferral and SLR)](/nservicebus/sagas/#timeouts)
+ * [Timeouts](/nservicebus/sagas/#timeouts) (including message deferral and SLR)
  * [Outbox](/nservicebus/outbox/)
 
 

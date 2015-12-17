@@ -9,18 +9,20 @@ redirects:
 related:
 - nservicebus/licensing/licensing-limitations
 ---
-NServiceBus will by default allow the transport to optimize for maximum performance when it comes to message processing. While this is usually the preferred mode of operation there are situations where tuning needs to be applied. 
+NServiceBus will by default allow the transport to optimize for maximum performance when it comes to message processing. While this is usually the preferred mode of operation there are situations where tuning needs to be applied.
 
 
 ## Tuning concurrency
-You can define a maximum concurrency setting that will make sure that no more messages than the specified value is ever being processed at the same time. Set this value to `1` to process messages sequentially. If not specified the transport will choose an optimal value.  
 
-Examples where concurrency tuning is relevant are 
+You can define a maximum concurrency setting that will make sure that no more messages than the specified value is ever being processed at the same time. Set this value to `1` to process messages sequentially. If not specified the transport will choose an optimal value.
 
-- Non thread safe code that needs to run sequentially
-- Databases that might deadlock when getting to many concurrent requests 
+Examples where concurrency tuning is relevant are
+
+ * Non thread safe code that needs to run sequentially
+ * Databases that might deadlock when getting to many concurrent requests
 
 NOTE: NServiceBus Version 5 and below will by default limit concurrency to `1` if not configured by the user
+
 
 ## Tuning throughput
 
@@ -28,30 +30,36 @@ You can define a maximum value for the number of messages per second that the en
 
 NServiceBus will not enforce any throughput restrictions by default.
 
+
 ## Configuration
 
 The default limits of an endpoint can be changed in both code and via app.config.
 
-### Via Code  
+
+### Via Code 
 
 By [overriding app.config settings](/nservicebus/hosting/custom-configuration-providers.md).
 
-<!-- import TuningFromCode--->
+snippet: TuningFromCode
+
 
 ### Via app.config
 
 By using raw xml.
 
-<!-- import TuningFromAppConfig--->
+snippet: TuningFromAppConfig
+
 
 ## Run time settings
 
-Versions prior to Version 6 allowed both concurrency and throughput throttling to be changed and read at run time using the code below. 
+Version 5 and lower allowed both concurrency and throughput throttling to be changed and read at run time using the code below.
+
 
 ## Optimizing at run time
 
-<!-- import ChangeTuning--->
+snippet: ChangeTuning
+
 
 ## Reading current values at run time
 
-<!-- import ReadTuning--->
+snippet: ReadTuning

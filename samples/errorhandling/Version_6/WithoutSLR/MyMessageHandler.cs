@@ -9,7 +9,7 @@ public class MyMessageHandler : IHandleMessages<MyMessage>
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        Console.WriteLine("ReplyToAddress: {0} MessageId:{1}", context.ReplyToAddress, context.MessageId);
+        Console.WriteLine($"ReplyToAddress: {context.ReplyToAddress} MessageId:{context.MessageId}");
         
         string numOfRetries;
         if (context.MessageHeaders.TryGetValue(Headers.Retries, out numOfRetries))

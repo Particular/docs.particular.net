@@ -1,15 +1,14 @@
 using System;
+using System.Threading.Tasks;
 using Events;
-using Messages;
 using NServiceBus;
 
 class CommandSender
 {
 
-    public static void Start(IBus bus)
+    public static async Task Start(IBusContext busContext)
     {
         Console.WriteLine("Press 'E' to publish an event");
-        Console.WriteLine("Press 'D' to send a deferred message");
         Console.WriteLine("Press any key to exit");
 
         while (true)
@@ -20,32 +19,18 @@ class CommandSender
             switch (key.Key)
             {
                 case ConsoleKey.E:
-                    PublishEvent(bus);
-                    continue;
-                case ConsoleKey.D:
-                    DeferMessage(bus);
+                    await PublishEvent(busContext);
                     continue;
             }
             return;
         }
     }
 
-    static void DeferMessage(IBus bus)
-    {
-        DeferredMessage message = new DeferredMessage();
-        SendOptions sendOptions = new SendOptions();
-        sendOptions.RouteToLocalEndpointInstance();
-        sendOptions.DelayDeliveryWith(TimeSpan.FromSeconds(10));
-        bus.Send(message, sendOptions);
-        Console.WriteLine();
-        Console.WriteLine("{0} - {1}", DateTime.Now.ToLongTimeString(), "Sent a message that is deferred for 10 seconds");
-    }
-
-    static void PublishEvent(IBus bus)
+    static async Task PublishEvent(IBusContext busContext)
     {
         Guid eventId = Guid.NewGuid();
 
-        bus.Publish<IMyEvent>(m =>
+        await busContext.Publish<IMyEvent>(m =>
         {
             m.EventId = eventId;
         });

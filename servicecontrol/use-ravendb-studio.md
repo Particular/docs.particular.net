@@ -8,7 +8,7 @@ tags:
 
 ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If direct access to the RavenDB instance is required, ServiceControl can be configured to expose the RavenDB studio.
 
-WARNING: The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications. 
+WARNING: The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
 
 There are two ways to enable direct access to RavenDB:
 
@@ -19,7 +19,7 @@ There are two ways to enable direct access to RavenDB:
 ```
 	
 * Edit the registry and add a new String Value called `ExposeRavenDB` to the ServiceControl key as shown below:
- 
+
 ```
 [HKEY_LOCAL_MACHINE\SOFTWARE\ParticularSoftware\ServiceControl]
 "ExposeRavenDB"="true"

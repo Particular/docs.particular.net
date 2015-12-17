@@ -10,8 +10,8 @@ related:
 - samples/header-manipulation
 ---
 
-1.  Run the solution.
-2.  Press 's' and 'Enter' in the window. Then press 'e' followed by 'Enter'.
+ 1. Run the solution.
+ 1. Press 's' and 'Enter' in the window. Then press 'e' followed by 'Enter'.
     The Console  output will look something like this (the exception message is expected):
 
 ```
@@ -28,7 +28,7 @@ e
 ERROR ValidationMessageMutator Validation failed for message CreateProductCommand: ProductId=XJ128, ProductName=Milk Milk Milk Milk Milk, ListPrice=15 Image (length)=7340032, with the following error/s:
 The Product Name value cannot exceed 20 characters.
 The field ListPrice must be between 1 and 5.
-``` 
+```
 
 Now let's look at the code.
 
@@ -50,7 +50,7 @@ This sample implements two mutators:
 
 This message mutator validates all DataAnnotations attributes that exist in the message.
 
-<!-- import ValidationMessageMutator -->
+snippet:ValidationMessageMutator
 
 `ValidationMessageMutator` implements the two interface methods: outgoing and incoming. As can be seen in the code, both incoming and outgoing mutators have the exact same code in them. The mutation is symmetrical.
 
@@ -67,7 +67,7 @@ Browse the code. In this sample, if one of the validation fails, an exception is
 
 This transport mutator compresses the whole transport message.
 
-<!-- import TransportMessageCompressionMutator -->
+snippet:TransportMessageCompressionMutator
 
 The `TransportMessageCompressionMutator` is a transport message mutator, meaning that NServiceBus allows you to mutate the outgoing or/and incoming transport message.
 
@@ -93,21 +93,21 @@ Now all we have to do it hook those two mutators into the NServiceBus message fl
 
 To hook the sample message mutators into NServiceBus messaging flow:
 
-<!-- import ComponentRegistartion -->
+snippet:ComponentRegistartion
 
 
 ## The Sending code
 
-<!-- import SendingSmall --> 
+snippet: SendingSmall
 
 Since the message buffer field is empty, `GZipStreamer` in the outgoing transport message mutator easily compresses it to a size under the MSMQ limit of 4MB and the message will get to the server.
 
 See how an invalid message is sent that will never be received since an exception will be thrown at the outgoing message mutator:
 
-<!-- import SendingLarge --> 
+snippet: SendingLarge
 
 The message is invalid for several reasons: the product name is over the 20 character limit, the list price is too high, and the sell end date is not in the valid range. The thrown exception logs those invalid values. The server code is simple and straightforward:
 
-<!-- import Handler -->
+snippet:Handler
 
 The handler code does not need to change on account of the message mutation.

@@ -1,20 +1,14 @@
 using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 #region EnumMessageHandler
 public class EnumMessageHandler : IHandleMessages<EnumMessage>
 {
-    IBus bus;
-
-    public EnumMessageHandler(IBus bus)
-    {
-        this.bus = bus;
-    }
-
-    public void Handle(EnumMessage message)
+    public async Task Handle(EnumMessage message, IMessageHandlerContext context)
     {
         Console.WriteLine("Message received, Returning");
-        bus.Reply(Status.OK);
+        await context.Reply(Status.OK);
     }
 }
 

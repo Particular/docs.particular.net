@@ -5,7 +5,7 @@ tags:
 - Distributor
 - Error Handling
 - Exceptions
-- Automatic Retries
+- Retry
 redirects:
 - nservicebus/errors/distributor-errorhandling
 related:

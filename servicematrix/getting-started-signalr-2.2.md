@@ -1,5 +1,5 @@
 ---
-title: Integrating SignalR with ServiceMatrix 
+title: Integrating SignalR with ServiceMatrix
 summary: Using ServiceMatrix's SignalR integration to provide real-time communication with the browser.
 tags:
 - ServiceMatrix
@@ -11,11 +11,11 @@ When you build an ASP.NET MVC 4 endpoint in ServiceMatrix, it allows you to leve
 
 # Introducing SignalR and ServiceMatrix
 
-To demonstrate the SignalR integration you will extend your Online Sales sample.  Before proceeding, please verify that your solution has the ECommerce website, and the OrderProcessing, Billing, and PaymentProcessing endpoints, as shown. 
+To demonstrate the SignalR integration you will extend your Online Sales sample. Before proceeding, please verify that your solution has the ECommerce website, and the OrderProcessing, Billing, and PaymentProcessing endpoints, as shown.
 
 ![Pub Sub Wired Up](images/servicematrix-signalr-before-wired.png)
 
-As you may recall, in your example the ECommerce website sends the `SubmitOrder` message to the `OrderProcessing` system.  The backend `OrderProcessing` component processes the `SubmitOrder` message and raises an `OrderAccepted` event.  The `Billing` service has subscribed to this event and sends the `SubmitPayment` message to the `PaymentProcessing` system as part of a saga and waits for a `SubmitPaymentResponse` message to come back before completing the saga.
+As you may recall, in your example the ECommerce website sends the `SubmitOrder` message to the `OrderProcessing` system. The backend `OrderProcessing` component processes the `SubmitOrder` message and raises an `OrderAccepted` event. The `Billing` service has subscribed to this event and sends the `SubmitPayment` message to the `PaymentProcessing` system as part of a saga and waits for a `SubmitPaymentResponse` message to come back before completing the saga.
 
 ## Adding a BillingCompleted Event
 

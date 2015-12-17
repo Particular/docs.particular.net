@@ -1,7 +1,7 @@
 ---
 title: Routing to CommonLogging
 summary: Route all NServiceBus log entries to CommonLogging
-tags: 
+tags:
 - Common Logging
 related:
 - samples/logging/commonlogging
@@ -14,4 +14,4 @@ There is a [nuget](https://www.nuget.org/packages/NServiceBus.CommonLogging/) pa
 
 ## Usage
 
-<!-- import CommonLoggingInCode -->
+snippet:CommonLoggingInCode

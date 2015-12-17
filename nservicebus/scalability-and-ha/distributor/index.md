@@ -29,13 +29,13 @@ When starting to use NServiceBus, you'll see that you can easily run multiple in
 The Distributor gets around this limitation.
 
 
-## What about MSMQ version 4?
+## What about MSMQ Version 4?
 
 Version 4 of MSMQ, made available with Vista and Server 2008, can perform [remote transactional receive](https://msdn.microsoft.com/en-us/library/ms700128.aspx). This means that processes on other machines can transactionally pull work from a queue on a different machine. If the machine processing the message crashes, the message roll back to the queue and other machines could then process it.
 
 Even though the Distributor provided similar functionality even before Vista was released, there are other reasons to use it even on the newer operating systems. The problem with 'remote transactional receive' is that it gets proportionally slower as more worker nodes are added. This is due to the overhead of managing more transactions, as well as the longer period of time that these transactions are open.
 
-In short, the scale-out benefits of MSMQ version 4 by itself are quite limited.
+In short, the scale-out benefits of MSMQ Version 4 by itself are quite limited.
 
 
 ## Performance
@@ -83,7 +83,7 @@ To start your endpoint as a Distributor ensure you install the [NServiceBus.Dist
 ```cmd
 NServiceBus.Host.exe NServiceBus.MSMQDistributor
 ```
-or if using a version of NServiceBus that is earlier than version 4.3:
+or if using a version of NServiceBus that is earlier than Version 4.3:
 ```cmd
 NServiceBus.Host.exe NServiceBus.Distributor
 ```
@@ -95,7 +95,7 @@ To start your endpoint as a Master ensure you install the [NServiceBus.Distribut
 ```cmd
 NServiceBus.Host.exe NServiceBus.MSMQMaster
 ```
-or if using a version of NServiceBus that is earlier than version 4.3:
+or if using a version of NServiceBus that is earlier than Version 4.3:
 ```cmd
 NServiceBus.Host.exe NServiceBus.Master
 ```
@@ -104,8 +104,8 @@ NServiceBus.Host.exe NServiceBus.Master
 ### When self-hosting
 
 When you [self host](/nservicebus/hosting/) your endpoint, use this configuration:
- 
-<!-- import ConfiguringDistributor -->
+
+snippet:ConfiguringDistributor
 
 NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
@@ -123,7 +123,7 @@ If you are hosting your endpoint with NServiceBus.Host.exe, to run as a Worker, 
 NServiceBus.Host.exe NServiceBus.MSMQWorker
 ```
 
-or if using a version of NServiceBus that is earlier than version 4.3:
+or if using a version of NServiceBus that is earlier than Version 4.3:
 
 ```cmd
 NServiceBus.Host.exe NServiceBus.Worker
@@ -150,7 +150,7 @@ Read about the `DistributorControlAddress` and the `DistributorDataAddress` in t
 
 If you are self-hosting your endpoint here is the code required to enlist the endpoint with a Distributor.
 
-<!-- import ConfiguringWorker --> 
+snippet: ConfiguringWorker
 
 NOTE: In versions 4 and up the sample above is using [NServiceBus.Distributor.MSMQ NuGet](https://www.nuget.org/packages/NServiceBus.Distributor.MSMQ).
 
@@ -164,13 +164,13 @@ For some extensibility scenarios it may be helpful to check if the endpoint is r
 
 ### Is running as a Distributor
 
-<!-- import IsDistributorEnabled --> 
- 
+snippet: IsDistributorEnabled
+
 
 ### Is running as a Worker
 
-<!-- import IsWorkerEnabled -->
- 
+snippet: IsWorkerEnabled
+
 
 ## Routing with the Distributor
 
@@ -193,13 +193,13 @@ Similar to standard NServiceBus routing, you do not want high priority messages 
 In this case, name the queues just like the messages. For example, `SubmitPurchaseOrder.StrategicCustomers.Sales`. This is the name of the distributor's data queue and the input queues of each of the workers. The distributor's control queue is best named with a prefix of 'control', as follows: `Control.SubmitPurchaseOrder.StrategicCustomers.Sales`.
 
 
-## Worker QMId needs to be unique 
+## Worker QMId needs to be unique
 
-Every installation of MSMQ on a Windows machine is represented uniquely by a Queue Manager id (QMId). The QMId is stored as a key in the registry, `HKLM\Software\Microsoft\MSMQ\Parameters\Machine Cache`. MSMQ uses the QMId to know where is should send acks and replies for incoming messages. 
+Every installation of MSMQ on a Windows machine is represented uniquely by a Queue Manager id (QMId). The QMId is stored as a key in the registry, `HKLM\Software\Microsoft\MSMQ\Parameters\Machine Cache`. MSMQ uses the QMId to know where is should send acks and replies for incoming messages.
 
 It is very important that all your machines have their own unique QMId. If two or more machines share the same QMId, only one of those machines are able so successfully send and receive messages with MSMQ. Exactly which machine works changes in a seemingly random fashion.
 
-The primary reason for machines ending up with duplicate QMIds is cloning of virtual machines from a common Windows image without running the recommended [Sysprep](https://technet.microsoft.com/en-us/library/cc766049.aspx) tool. 
+The primary reason for machines ending up with duplicate QMIds is cloning of virtual machines from a common Windows image without running the recommended [Sysprep](https://technet.microsoft.com/en-us/library/cc766049.aspx) tool.
 
 Should you have two or more machines with the same QMId reinstall the MSMQ feature to generate a new QMId.
 

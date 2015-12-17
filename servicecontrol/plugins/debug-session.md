@@ -12,13 +12,13 @@ The DebugSession plugin is used for for integrated debugging on a developers mac
 When deployed, the debug session plugin adds a specified debug session identifier to the header of each message sent by the endpoint. This allows messages sent by a debugging or test run within Visual Studio to be correlated, filtered, and highlighted within ServiceInsight.
 
 
-## Nugets
+## NuGets
 
- * NServiceBus version 5.x: [ServiceControl.Plugin.Nsb5.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.DebugSession)
- * NServiceBus version 4.x: [ServiceControl.Plugin.Nsb4.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.DebugSession)
- * NServiceBus version 3.x: Not Available
+ * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.DebugSession)
+ * NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.DebugSession](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.DebugSession)
+ * NServiceBus Version 3.x: Not Available
 
 
-### Deprecated Nuget
+### Deprecated NuGet
 
 If you are using the older version of the plugin, namely **ServiceControl.Plugin.DebugSession** please remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.

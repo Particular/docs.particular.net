@@ -23,9 +23,16 @@ class Program
             components.ConfigureComponent<TransportMessageCompressionMutator>(DependencyLifecycle.InstancePerCall);
         });
         #endregion
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
-            await Runner.Run(bus);
+            IBusContext busContext = endpoint.CreateBusContext();
+            await Runner.Run(busContext);
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }

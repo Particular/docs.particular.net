@@ -16,9 +16,9 @@ Illustrates customizing NLog usage by configuring NLog targets and rules.
 
 ### Configure NLog
 
-<!-- import ConfigureNLog -->
+snippet:ConfigureNLog
 
 
 ### Pass that configuration to NServiceBus
 
-<!-- import UseConfig -->
+snippet:UseConfig

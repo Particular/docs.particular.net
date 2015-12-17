@@ -1,20 +1,14 @@
 using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 #region IntMessageHandler
 public class IntMessageHandler : IHandleMessages<IntMessage>
 {
-    IBus bus;
-
-    public IntMessageHandler(IBus bus)
-    {
-        this.bus = bus;
-    }
-
-    public void Handle(IntMessage message)
+    public async Task Handle(IntMessage message, IMessageHandlerContext context)
     {
         Console.WriteLine("Message received, Returning");
-        bus.Reply(10);
+        await context.Reply(10);
     }
 }
 

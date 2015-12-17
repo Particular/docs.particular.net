@@ -1,10 +1,11 @@
 ﻿using NServiceBus;
+using NServiceBus.Settings;
 
 public class WantToRunBeforeConfigurationIsFinalized :
     IWantToRunBeforeConfigurationIsFinalized
 {
-    public void Run(Configure config)
+    public void Run(SettingsHolder settings)
     {
-        Logger.WriteLine("Inside IWantToRunBeforeConfigurationIsFinalized.Run");
+        Logger.WriteLine("Inside WantToRunBeforeConfigurationIsFinalized.Run");
     }
 }

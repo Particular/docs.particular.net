@@ -22,10 +22,10 @@ public class OwinToBus
 
     public Func<AppFunc, AppFunc> Middleware()
     {
-        return x => (AppFunc) Invoke;
+        return x => Invoke;
     }
 
-    public async Task Invoke(IDictionary<string, object> environment)
+    async Task Invoke(IDictionary<string, object> environment)
     {
         string messageBody = await GetMessageBody(environment);
         IDictionary<string, string[]> requestHeaders = (IDictionary<string, string[]>) environment["owin.RequestHeaders"];

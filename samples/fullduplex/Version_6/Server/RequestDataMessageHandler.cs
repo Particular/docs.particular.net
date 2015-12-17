@@ -23,7 +23,7 @@ public class RequestDataMessageHandler : IHandleMessages<RequestDataMessage>
                                            String = message.String
                                        };
 
-        await context.ReplyAsync(response);
+        await context.Reply(response);
 
         #endregion
     }

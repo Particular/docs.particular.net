@@ -10,9 +10,10 @@ redirects:
 - nservicebus/messaging/specify-message-destination
 related:
 - samples/pubsub
+- nservicebus/messaging/routing
 ---
 
-NServiceBus had the concept of an "Owning Endpoint" for any given message type.
+NServiceBus had the concept of an "Owning Endpoint" for any given message type. In V6 this has been replaced with the more flexible [routing model](/nservicebus/messaging/routing.md).
 
 Message mapping is a configurable convention that, based on some information about a message, that message can be routed to a specific endpoint without the sending code needing to be aware of the destination. A message mapping contains the following information.
 
@@ -34,7 +35,7 @@ When a endpoint is started the [Auto Subscribe](/nservicebus/messaging/message-o
 
 The owning endpoint for any given message type can be configured using message mappings.
 
-An endpoint may have multiple message mappings where each mapping consists of two pieces of information: 
+An endpoint may have multiple message mappings where each mapping consists of two pieces of information:
 
 
 ## 1. The Owning "Endpoint"
@@ -42,7 +43,7 @@ An endpoint may have multiple message mappings where each mapping consists of tw
 The owning endpoint (sometimes referred to as "target" or "destination" endpoint) can be of the form `QueueName@ServerName`, or just `QueueName` if the destination is the local machine.
 
 
-## 2. Resolving the Messages Types to map 
+## 2. Resolving the Messages Types to map
 
 This allows the mapping to know which message types to include in the mapping.
 
@@ -60,41 +61,41 @@ Note: This value is the [AssemblyName](https://msdn.microsoft.com/en-us/library/
 
 The type list from `Assembly` can be further filtered via one of the following:
 
- * **Type**: If `Type` is defined then only that type will be included in the mapping. This effectively calls [Assembly.GetType](https://msdn.microsoft.com/en-us/library/y0cd10tb.aspx) on the Assembly resolved via `Assembly`. 
+ * **Type**: If `Type` is defined then only that type will be included in the mapping. This effectively calls [Assembly.GetType](https://msdn.microsoft.com/en-us/library/y0cd10tb.aspx) on the Assembly resolved via `Assembly`.
  * **Namespace**: If `Namespace` is defined then only the types that have that namespace will be included in the mapping. It does not include sub namespaces.
 
 {{Note: The xml configuration version (`app.config`) the the code based API differ slightly.
 
 In `app.config` the attributes are `Assembly` and `Type`.
 
-In the code API the properties are `AssemblyName` and `TypeFullName`. 
+In the code API the properties are `AssemblyName` and `TypeFullName`.
 }}
 
 ### Resolving with Messages
 
 If the `Messages` represents a valid Type (i.e. [Type.GetType](https://msdn.microsoft.com/en-us/library/w3f99sx1.aspx) returns a Type) then that type will be mapped to the target endpoint.
 
-Otherwise it will be assumed `Messages` is an assembly name and all types in that assembly will be mapped to the target endpoint.  This effectively uses [Assembly.Load(Assembly)](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) followed by [Assembly.GetTypes()](https://msdn.microsoft.com/en-us/library/system.reflection.assembly.gettypes.aspx).
+Otherwise it will be assumed `Messages` is an assembly name and all types in that assembly will be mapped to the target endpoint. This effectively uses [Assembly.Load(Assembly)](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) followed by [Assembly.GetTypes()](https://msdn.microsoft.com/en-us/library/system.reflection.assembly.gettypes.aspx).
 
-WARNING: Since `Messages` is ambiguous in its usage the `Assembly`, `Type` and `Namespace` attributes are the recommended approach for mapping types. The `Messages` attribute is still supported for backwards comparability. 
+WARNING: Since `Messages` is ambiguous in its usage the `Assembly`, `Type` and `Namespace` attributes are the recommended approach for mapping types. The `Messages` attribute is still supported for backwards comparability.
 
 
-## Some example mappings 
+## Some example mappings
 
 To register all message types defined in an assembly:
 
- * `Assembly` = `YourMessagesAssemblyName` 
+ * `Assembly` = `YourMessagesAssemblyName`
  * `Endpoint` = `queue@machinename`
 
-To register all message types defined in an assembly with a specific namespace: 
+To register all message types defined in an assembly with a specific namespace:
 
- * `Assembly` = `YourMessagesAssemblyName` 
+ * `Assembly` = `YourMessagesAssemblyName`
  * `Namespace` = `YourMessageNamespace`
  * `Endpoint` = `queue@machinename`
-  
+ 
 To register a specific type in an assembly:
 
- * `Assembly` = `YourMessagesAssemblyName` 
+ * `Assembly` = `YourMessagesAssemblyName`
  * `Type` = `YourMessageFullTypeName`
  * `Endpoint` = `queue@machinename`
 
@@ -113,7 +114,7 @@ Endpoint mapping can be configured in several ways
 
 You configure mapping in your app.config by adding `<UnicastBusConfig>` and `<MessageEndpointMappings>` nodes.
 
-<!-- import endpoint-mapping-appconfig -->
+snippet:endpoint-mapping-appconfig
 
 
 ### Using a ConfigurationSource
@@ -121,17 +122,17 @@ You configure mapping in your app.config by adding `<UnicastBusConfig>` and `<Me
 
 #### The IConfigurationSource
 
-<!-- import endpoint-mapping-configurationsource -->
+snippet:endpoint-mapping-configurationsource
 
 
 #### Injecting the IConfigurationSource
 
-<!-- import inject-endpoint-mapping-configuration-source -->
+snippet:inject-endpoint-mapping-configuration-source
 
 
 ### Using a configuration provider
 
-<!-- import endpoint-mapping-configurationprovider -->
+snippet:endpoint-mapping-configurationprovider
 
 
 ## Bypassing the owning endpoint

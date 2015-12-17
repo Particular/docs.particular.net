@@ -39,13 +39,13 @@
       <HintPath>..\..\..\..\..\packages\log4net.1.2.10\lib\2.0\log4net.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Interfaces.4.7.8\lib\net40\NServiceBus.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Interfaces.4.7.11\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.4.7.8\lib\net40\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.4.7.11\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.StructureMap">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.StructureMap.4.7.8\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.StructureMap.4.7.11\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="StructureMap">
       <HintPath>..\..\..\..\..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>

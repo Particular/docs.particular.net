@@ -4,8 +4,8 @@ summary: "Guidance on why you should or should not publish events from a web app
 tags:
 - azure
 - cloud
-- events
-- transports
+- event
+- transport
 - scale out
 - publish subscribe
 - persistence

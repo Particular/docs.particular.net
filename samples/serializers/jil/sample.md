@@ -10,22 +10,22 @@ related:
 This samples uses the community run serializer [NServiceBus.Jil](https://github.com/SimonCropp/NServiceBus.Jil).
 
 
-## Configuring to use Jil 
+## Configuring to use Jil
 
-<!-- import config -->
+snippet:config
 
 
 ## Diagnostic Mutator
 
-A helper that will Write out the contents of any incoming message. 
+A helper that will Write out the contents of any incoming message.
 
-<!-- import mutator -->
+snippet:mutator
 
 
 ## The message send
 
-<!-- import message -->
-   
+snippet:message
+  
 
 ## The Output
 

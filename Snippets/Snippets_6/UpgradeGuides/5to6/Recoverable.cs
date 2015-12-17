@@ -2,7 +2,6 @@
 {
     using NServiceBus;
     using NServiceBus.DeliveryConstraints;
-    using NServiceBus.TransportDispatch;
 
     class Recoverable
     {

@@ -11,7 +11,7 @@
     [TestFixture]
     public class HeaderWriterSend
     {
-        public static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
+        static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
         string endpointName = "HeaderWriterSendV5";
 

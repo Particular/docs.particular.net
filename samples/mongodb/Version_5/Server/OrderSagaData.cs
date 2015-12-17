@@ -1,17 +1,18 @@
 ﻿using System;
-using NServiceBus.MongoDB;
+using NServiceBus.Persistence.MongoDB;
 using NServiceBus.Saga;
 
 #region sagadata
 
 public class OrderSagaData : 
-    IHaveDocumentVersion, 
     IContainSagaData
 {
     public Guid Id { get; set; }
     public string Originator { get; set; }
     public string OriginalMessageId { get; set; }
-    public int DocumentVersion { get; set; }
+
+    [DocumentVersion]
+    public int Version { get; set; }
 
     [Unique]
     public Guid OrderId { get; set; }

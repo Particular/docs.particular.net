@@ -1,21 +1,14 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Commands;
 using NServiceBus;
 
 public class MyCommandHandler : IHandleMessages<MyCommand>
 {
-    readonly IBus bus;
-
-    public MyCommandHandler(IBus bus)
-    {
-        this.bus = bus;
-    }
-
-    public void Handle(MyCommand message)
+    public Task Handle(MyCommand message, IMessageHandlerContext context)
     {
         Console.WriteLine("Command received, id:" + message.CommandId);
         Console.WriteLine("EncryptedString:" + message.EncryptedString);
-
-        bus.Reply(CommandStatus.Ok);
+        return Task.FromResult(0);
     }
 }

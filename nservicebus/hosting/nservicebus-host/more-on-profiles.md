@@ -4,7 +4,6 @@ summary: 'Two types of profiles in NServiceBus: environment and feature.'
 tags:
 - Profiles
 - NServiceBus.Host
-- Defaults
 - Installers
 - Features
 - Distributor
@@ -19,12 +18,13 @@ The NServiceBus Host profiles allow you to alter the behavior of your endpoint w
 
 Profiles are divided into two main categories, depending on what they control:
 
--   Environment profiles help to avoid common configuration errors that occur when you manually move a system from development to production via integration. Environment profiles enable easy transition of the system without any code changes.
--   Feature profiles turn NServiceBus features on and off, easily and with no code changes. For example, turning on and off the Distributor and timeout manager.
+ * Environment profiles help to avoid common configuration errors that occur when you manually move a system from development to production via integration. Environment profiles enable easy transition of the system without any code changes.
+ * Feature profiles turn NServiceBus features on and off, easily and with no code changes. For example, turning on and off the Distributor and timeout manager.
 
 Technically there is no difference between the environment- and feature-related profiles.
 
 Let's look at each of them, starting with the environment-related profiles.
+
 
 ## Environment-related profiles
 
@@ -35,7 +35,7 @@ You can, of course, [create your own profiles](/nservicebus/hosting/nservicebus-
 The environmental-related profiles:
 
 
-### Lite profile 
+### Lite profile
 
 Suitable for running on your development machine, possibly inside Visual Studio.
 
@@ -47,7 +47,8 @@ Lite also turns the TimeoutManager on by default.
 
 Logging is output to the console.
 
-### Integration profile 
+
+### Integration profile
 
 Suitable for running your endpoint in integration and QA environments.
 
@@ -55,7 +56,8 @@ Installers are invoked to make deployment easy to automate.
 
 Logging is output to the console by default.
 
-### Production profile 
+
+### Production profile
 
 The default if no explicit profile is defined.
 
@@ -69,14 +71,16 @@ Logging is output to a log file in the runtime directory (again, because you are
 
 Performance counters are installed by default.
 
+
 ## Feature-related profiles
 
 Feature-related profiles that come out of the box :
 
--   `Master` makes the endpoint a "master node endpoint". This means that it runs the gateway for multi-site interaction, the timeout manager, and the Distributor. It also starts a worker that enlists with the Distributor. It can no tbe combined with the worker or distributor profiles.
--   `Worker` makes the current endpoint enlist as a worker with its distributor running on the master node. It cannot be combined with the master or distributor profiles.
--   `Distributor` starts the endpoint as a distributor only. This means that the endpoint does no actual work and only distributes the load among its enlisted workers. It cannot be combined with the Master and Worker profiles.
--   `PerformanceCounters` turns on the NServiceBus-specific performance counters. Performance counters are installed by default when running in Production profile.
+ * `Master` makes the endpoint a "master node endpoint". This means that it runs the gateway for multi-site interaction, the timeout manager, and the Distributor. It also starts a worker that enlists with the Distributor. It can no tbe combined with the worker or distributor profiles.
+ * `Worker` makes the current endpoint enlist as a worker with its distributor running on the master node. It cannot be combined with the master or distributor profiles.
+ * `Distributor` starts the endpoint as a distributor only. This means that the endpoint does no actual work and only distributes the load among its enlisted workers. It cannot be combined with the Master and Worker profiles.
+ * `PerformanceCounters` turns on the NServiceBus-specific performance counters. Performance counters are installed by default when running in Production profile.
+
 
 ## Telling the host which profiles to run
 

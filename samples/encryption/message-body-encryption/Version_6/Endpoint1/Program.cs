@@ -16,17 +16,22 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.RegisterMessageEncryptor();
         busConfiguration.SendFailedMessagesTo("error");
-        IStartableBus startableBus = Bus.Create(busConfiguration);
-        using (IBus bus = await startableBus.StartAsync())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
+            IBusContext busContext = endpoint.CreateBusContext();
             CompleteOrder completeOrder = new CompleteOrder
                                           {
                                               CreditCard = "123-456-789"
                                           };
-            await bus.SendAsync("Samples.MessageBodyEncryption.Endpoint2", completeOrder);
+            await busContext.Send("Samples.MessageBodyEncryption.Endpoint2", completeOrder);
             Console.WriteLine("Message sent");
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }

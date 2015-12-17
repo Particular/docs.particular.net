@@ -33,24 +33,26 @@
     <NoWarn>1998</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Common.Logging, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Common.Logging.3.3.0\lib\net40\Common.Logging.dll</HintPath>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Common.Logging.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Common.Logging.Core.3.3.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    <Reference Include="Common.Logging, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.3.3.1\lib\net40\Common.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    <Reference Include="Common.Logging.Core, Version=3.3.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NLog.4.2.0\lib\net45\NLog.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="log4net">
+      <HintPath>..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\..\packages\NLog.4.2.2\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Callbacks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0017\lib\net451\NServiceBus.Callbacks.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0024\lib\net452\NServiceBus.Callbacks.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.CommonLogging, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -58,7 +60,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1041\lib\net451\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1309\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Host, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
@@ -109,7 +111,8 @@
     <Compile Include="Audit\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BestPracticesConfiguration.cs" />
-    <Compile Include="BusNotifications\Errors.cs" />
+    <Compile Include="BusNotifications\SubscribeToNotifications.cs" />
+    <Compile Include="BusNotifications\EventsToObservables.cs" />
     <Compile Include="Callback\Cancellation\Message.cs" />
     <Compile Include="Callback\Cancellation\Usage.cs" />
     <Compile Include="Callback\Enum\Handler.cs" />
@@ -143,10 +146,21 @@
     <Compile Include="Errors\ErrorQueue\ProvideConfiguration.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
+    <Compile Include="Extending\Features.cs" />
+    <Compile Include="Pipeline\AbortingPipeline.cs" />
+    <Compile Include="Transports\QueueCreation\ConcurrentQueueCreator.cs" />
+    <Compile Include="Transports\QueueCreation\SequentialQueueCreator.cs" />
+    <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
+    <Compile Include="Features\FeatureConfiguration.cs" />
+    <Compile Include="Features\MyFeature.cs" />
+    <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
+    <Compile Include="Handlers\MyEvent.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
+    <Compile Include="Handlers\ReplyingHandler.cs" />
+    <Compile Include="Handlers\MyOtherMessage.cs" />
     <Compile Include="Headers\MyMessage.cs" />
     <Compile Include="Headers\ReadSaga.cs" />
     <Compile Include="Headers\ReadHandler.cs" />
@@ -159,6 +173,7 @@
     <Compile Include="Headers\SomeOtherMessage.cs" />
     <Compile Include="Headers\StaticHeaders.cs" />
     <Compile Include="HostIdentifier\HostIdFixer.cs" />
+    <Compile Include="Host\CriticalErrors.cs" />
     <Compile Include="Host\ProgramService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -186,7 +201,7 @@
     <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
     <Compile Include="PerformanceMonitoring.cs" />
-    <Compile Include="Persistence\Msmq\Usage.cs" />
+    <Compile Include="PubSub\PublisherMapping.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
     <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
     <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />
@@ -200,6 +215,7 @@
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
     <Compile Include="Routing\EndpointMapping\ProvideConfiguration.cs" />
+    <Compile Include="Routing\RoutingAPIs.cs" />
     <Compile Include="Sagas\FindByExpression\Message1.cs" />
     <Compile Include="Sagas\FindByExpression\Message2.cs" />
     <Compile Include="Sagas\FindByExpression\MySaga.cs" />
@@ -226,10 +242,13 @@
     <Compile Include="MsmqMessageLabel.cs" />
     <Compile Include="Scheduling\Saga\SchedulerSaga.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
-    <Compile Include="SendOnly.cs" />
+    <Compile Include="Hosting.cs" />
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
+    <Compile Include="Transports\QueueCreation\YourMessagePump.cs" />
+    <Compile Include="Transports\QueueCreation\YourQueueCreator.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transactions.cs" />
+    <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
     <Compile Include="UpgradeGuides\5to6\RawSend.cs" />
     <Compile Include="UpgradeGuides\5to6\Recoverable.cs" />
@@ -250,7 +269,6 @@
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Persistence\Msmq\msmq.config.xml" />
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -269,6 +287,8 @@
       <Name>Operations</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Persistence\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

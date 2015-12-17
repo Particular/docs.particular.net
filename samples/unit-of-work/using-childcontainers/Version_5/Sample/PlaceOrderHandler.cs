@@ -21,7 +21,7 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
         };
         session.Store(order);
 
-        Console.Out.WriteLine("Order {0} stored",message.OrderNumber);
+        Console.WriteLine("Order {0} stored",message.OrderNumber);
     }
 }
 #endregion

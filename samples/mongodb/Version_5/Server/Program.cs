@@ -1,6 +1,6 @@
 ﻿using System;
 using NServiceBus;
-using NServiceBus.MongoDB;
+using NServiceBus.Persistence.MongoDB;
 
 class Program
 {
@@ -11,9 +11,8 @@ class Program
 
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MongoDB.Server");
-        busConfiguration.UsePersistence<MongoDBPersistence>()
-            .SetDatabaseName("SamplesMongoDBServer")
-            .SetConnectionString("mongodb://localhost:27017");
+        busConfiguration.UsePersistence<MongoDbPersistence>()
+            .SetConnectionString("mongodb://localhost:27017/SamplesMongoDBServer");
 
         #endregion
         busConfiguration.UseSerialization<JsonSerializer>();

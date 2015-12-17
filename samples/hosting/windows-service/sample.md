@@ -17,12 +17,12 @@ NServiceBus comes with a very functional host exe that abstracts much of the hos
 
 The sample is a console application whose `Main` entry point detects if the application is run in interactive mode or not; when run in interactive mode the `service` is manually created and invoked as any other C# class instance, otherwise the `Run` method is called to invoke the base `ServiceBase` class API.
 
-<!-- import windowsservice-hosting-main -->
+snippet:windowsservice-hosting-main
 
 The `OnStart` method, manually called when running in interactive mode and automatically called by the Windows Service when running as service, configures the IBus instance:
 
-<!-- import windowsservice-hosting-onstart -->
+snippet:windowsservice-hosting-onstart
 
 When the interactive application is shut down or the Windows Service is stopped the `OnStop` method is called perform the required clean up:
 
-<!-- import windowsservice-hosting-onstop -->
+snippet:windowsservice-hosting-onstop

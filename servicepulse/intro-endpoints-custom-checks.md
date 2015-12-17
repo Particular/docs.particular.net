@@ -23,17 +23,17 @@ While the specific needs and dependencies of solutions and endpoints may vary si
 
 #### Connectivity
 
-Most endpoints require connectivity to local intranet or external internet. Some also require VPN connectivity. 
+Most endpoints require connectivity to local intranet or external internet. Some also require VPN connectivity.
 
-It is recommended that you identify and periodically check that the endpoint (and its host) can indeed connect to the resources it requires. 
+It is recommended that you identify and periodically check that the endpoint (and its host) can indeed connect to the resources it requires.
 
 **Examples:**
 
 * In a store & forward pattern (MSMQ): can an endpoint hosted on one machine connect to another machine, on which another endpoint is located ?
-* In a broker pattern: can the endpoint connect to the broker (e.g., SQL Server)? 
+* In a broker pattern: can the endpoint connect to the broker (e.g., SQL Server)?
 * If required by the endpoint, can the endpoint connect to the local intranet?
-* If required by the endpoint, can the endpoint connect to the internet?  
-* If required by the endpoint, can the endpoint connect with the required security settings, credentials, and VPN software?  
+* If required by the endpoint, can the endpoint connect to the internet? 
+* If required by the endpoint, can the endpoint connect with the required security settings, credentials, and VPN software? 
 
 
 #### Storage
@@ -44,7 +44,7 @@ It is recommended that you identify and periodically check that the endpoint (an
 
 #### External Services
 
-* When an endpoint needs to communicate with external services (credit card validation, identity and authentication service, CRM, etc.), is that service available, accessible, and responsive? 
+* When an endpoint needs to communicate with external services (credit card validation, identity and authentication service, CRM, etc.), is that service available, accessible, and responsive?
 
 
 ### Custom Checks in ServicePulse
@@ -56,7 +56,7 @@ The custom check indicator in the ServicePulse dashboard indicates when one or m
 
 ![Custom Checks](images/custom-checks.png)
 
-For example, in the image above, the number 4 indicates that there are four failing custom checks. These custom checks may be all located on the same endpoint or on four separate endpoints. Use the Custom Checks details page to drill down into the details of the failures and their location. 
+For example, in the image above, the number 4 indicates that there are four failing custom checks. These custom checks may be all located on the same endpoint or on four separate endpoints. Use the Custom Checks details page to drill down into the details of the failures and their location.
 
 
 #### Custom Checks Details Page
@@ -65,7 +65,7 @@ For a detailed display of the currently failed and failing custom checks per end
 
 ![Custom Checks Details page](images/custom-checks-details.png)
 
-As you can see, there are four failing custom checks located on two endpoints (two failures per endpoint). 
+As you can see, there are four failing custom checks located on two endpoints (two failures per endpoint).
 
 If one or more of the failures is expected (for example, it may be caused by a planned maintenance activity that brought down an external service the endpoint relies on), you can mute the specific occurrence of the custom check.
 

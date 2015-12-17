@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Persistence
 summary: Using Azure Storage for persistence features of NServiceBus including timeouts, sagas, and subscription storage.
-tags: 
+tags:
 - Azure
 - Cloud
 - Persistence
@@ -18,20 +18,20 @@ Various features of NServiceBus require persistence. Among them are subscription
 
 ## How To enable persistence with Azure storage services
 
-First you need to reference the assembly that contains the Azure storage persisters. The recommended way of doing this is by adding a NuGet package reference to the  `NServiceBus.Azure` package to your project.
+First you need to reference the assembly that contains the Azure storage persisters. The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Azure` package to your project.
 
 If self hosting, you can configure the persistence technology using the configuration API and the extension method found in the `NServiceBus.Azure` assembly
 
-<!-- import PersistanceWithAzure -->
+snippet:PersistanceWithAzure
 
 
 ## Hosting
 
 When hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, or any other NServiceBus provided host, the Azure storage persistence can be enabled by specifying the `UsePersistence<AzureStoragePersistence>` on the endpoint config.
 
-<!-- import PersistenceWithAzureHost -->
+snippet:PersistenceWithAzureHost
 
-NOTE: In version 4, when hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
+NOTE: In Version 4, when hosting in the Azure role entrypoint provided by `NServiceBus.Hosting.Azure`, these persistence strategies will be enabled by default.
 
 
 ## Detailed Configuration
@@ -41,7 +41,7 @@ You can get more control on the behavior of each persister by specifying one of 
 
 ### Detailed Configuration with Configuration Section
 
-<!-- import AzurePersistenceFromAppConfig -->
+snippet:AzurePersistenceFromAppConfig
 
 The following settings are available for changing the behavior of saga persistence through the `AzureSagaPersisterConfig`section:
 
@@ -60,14 +60,14 @@ The following settings are available for changing the behavior of timeout persis
 - `TimeoutManagerDataTableName`: Allows you to set the name of the table where the timeout manager stores it's internal state, defaults to `TimeoutManagerDataTable`
 - `TimeoutDataTableName`: Allows you to set the name of the table where the timeouts themselves are stored, defaults to `TimeoutDataTableName`
 - `CatchUpInterval`: When a node hosting a timeout manager would go down, it needs to catch up with missed timeouts faster than it normally would (1 sec), this value allows you to set the catchup interval in seconds. Defaults to 3600, meaning it will process one hour at a time.
-- `PartitionKeyScope`: The time range used as partition key value for all timeouts. For optimal performance, this should be in line with the catchup interval so it should come to no surprise that the default value also represents an hour: `yyyyMMddHH`.
+- `PartitionKeyScope`: The time range used as partition key value for all timeouts. For optimal performance, this should be in line with the catchup interval so it should come to no surprise that the default value also represents an hour: `yyyyMMddHH`. When modifying `PartitionKeyScope`, you will need to migrate the data in the table defined by `TimeoutDataTableName`
 
 For more information see [Configuring Azure Connection Strings](https://msdn.microsoft.com/en-us/library/azure/ee758697.aspx)
 
 
 ## Additional performance tips
 
-Azure storage persistence is network IO intensive, every operation performed against storage implies one or more network hops, most of which are small http requests to a single IP address (of your storage cluster). By default the .net framework has been configured to be very restrictive when it comes to this kind of communication:
+Azure storage persistence is network IO intensive, every operation performed against storage implies one or more network hops, most of which are small http requests to a single IP address (of your storage cluster). By default the .NET framework has been configured to be very restrictive when it comes to this kind of communication:
 - It only allows 2 simultaneous connections to a single IP address by default
 - It's algorithm stack has been optimized for larger payload exchanges, not for small requests
 - It doesn't trust the remote servers by default, so it verifies for revoked certificates on every request
@@ -84,14 +84,14 @@ You can drastically improve performance by overriding these settings. You can le
 
 For Sagas:
 
-<!-- import AzurePersistenceSagasCustomization -->
+snippet:AzurePersistenceSagasCustomization
 
 For Subscriptions:
 
-<!-- import AzurePersistenceSubscriptionsCustomization -->
+snippet:AzurePersistenceSubscriptionsCustomization
 
 For Timeouts:
 
-<!-- import AzurePersistenceTimeoutsCustomization -->
+snippet:AzurePersistenceTimeoutsCustomization
 
-NOTE: Subscriptions and Timeouts persistence configuration only has an effect when used with Azure Storage Queues transport from NServiceBus Azure version 6 and later.
+NOTE: Subscriptions and Timeouts persistence configuration only has an effect when used with Azure Storage Queues transport from NServiceBus Azure Version 6 and later.

@@ -27,7 +27,7 @@ public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloa
 
         Console.WriteLine("Download for Order # {0} has been provisioned, Publishing Download ready event", message.OrderNumber);
 
-        await context.PublishAsync<DownloadIsReady>(e =>
+        await context.Publish<DownloadIsReady>(e =>
         {
             e.OrderNumber = message.OrderNumber;
             e.ClientId = message.ClientId;

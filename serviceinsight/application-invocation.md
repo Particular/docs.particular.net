@@ -1,8 +1,7 @@
 ---
 title: ServiceInsight Application Invocation
 summary: How the integration between ServicePulse and ServiceInsight works and how to use the parameterized invocation of ServiceInsight.
-tags: 
-- Integration
+tags:
 ---
 
 When we built the NServiceBus suite of tools, we carefully considered the integration between them. Since the tools are conceptually built for different purposes, the people using them must be able to collaborate.
@@ -29,7 +28,7 @@ As you can see, there's no magic here and you can do this as well. Construct the
 A list of the supported parameters and a description of their effects:
 
 - Search [String]: Performs a search using the full-text search feature of ServiceInsight. This can be a message identifier, a part of the message payload, or any value in the message header.
-   
+  
    - Example: `si://localhost:33333/api?search=SubmitOrder`
 
 - EndpointName [String]: The name of the endpoint to select upon startup. When you select an endpoint, the operations and message lists are filtered to the endpoint you have selected.

@@ -23,15 +23,16 @@ An inactive endpoint indicates that there is a failure in the communication path
 NOTE: It is essential that you deploy this plugin to your endpoint in production for ServicePulse to be able to monitor your endpoint.
 
 
-## Nugets
+## NuGets
 
- * NServiceBus version 5.x: [ServiceControl.Plugin.Nsb5.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat)
- * NServiceBus version 4.x: [ServiceControl.Plugin.Nsb4.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat)
- * NServiceBus version 3.x: [ServiceControl.Plugin.Nsb3.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat)
+ * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat)
+ * NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat)
+ * NServiceBus Version 3.x: [ServiceControl.Plugin.Nsb3.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat)
 
-WARNING: The Heartbeat plugin version 2 for NServiceBus 5 is currently not supporting Send-Only endpoints.
+WARNING: The Heartbeat plugin Version 2 for NServiceBus 5 is currently not supporting Send-Only endpoints.
 
-### Deprecated Nuget
+
+### Deprecated NuGet
 
 If you are using the older version of the plugin, namely **ServiceControl.Plugin.Heartbeat** please remove the package and replace it with the appropriate plugin based on your NServiceBus version. This package has been deprecated and unlisted.
 

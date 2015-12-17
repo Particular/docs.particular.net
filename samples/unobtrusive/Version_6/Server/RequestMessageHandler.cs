@@ -1,24 +1,18 @@
-﻿
-using System;
+﻿using System;
+using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
 
 public class RequestMessageHandler : IHandleMessages<Request>
 {
-    IBus bus;
-
-    public RequestMessageHandler(IBus bus)
-    {
-        this.bus = bus;
-    }
-
-    public void Handle(Request message)
+    public Task Handle(Request message, IMessageHandlerContext context)
     {
         Console.WriteLine("Request received with id:" + message.RequestId);
 
-        bus.Reply(new Response
+        context.Reply(new Response
                         {
                             ResponseId = message.RequestId
                         });
+        return Task.FromResult(0);
     }
 }

@@ -28,7 +28,7 @@
             byte[] bytes = context.OutgoingBody;
 
             // optionally replace the Body. 
-            // this can be done using any informaiton from the context
+            // this can be done using any information from the context
             context.OutgoingBody = ServiceThatChangesBody.Mutate(context.OutgoingMessage);
 
 

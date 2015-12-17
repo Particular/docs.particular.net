@@ -1,8 +1,12 @@
 ﻿namespace Snippets6
 {
     using System;
+    using System.Collections.Generic;
     using System.Transactions;
     using NServiceBus;
+    using NServiceBus.Routing;
+    using NServiceBus.Settings;
+    using NServiceBus.Transports;
 
     public class Transactions
     {
@@ -10,15 +14,22 @@
         {
             #region TransactionsDisable
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().Disable();
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.None);
             #endregion
         }
 
         public void TransportTransactions()
         {
-            #region TransactionsDisableDistributedTransactions
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().DisableDistributedTransactions();
+            #region TransactionsDisableDistributedTransactionsReceiveOnly
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.ReceiveOnly);
+            #endregion
+
+            #region TransactionsDisableDistributedTransactionsAtomic
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             #endregion
 
         }
@@ -27,11 +38,8 @@
         {
             #region TransactionsEnable
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().Enable().EnableDistributedTransactions();
-            #endregion
-
-            #region TransactionsDoNotWrapHandlersExecutionInATransactionScope
-            busConfiguration.Transactions().DoNotWrapHandlersExecutionInATransactionScope();
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.TransactionScope);
             #endregion
         }
 
@@ -39,18 +47,7 @@
         {
             #region TransactionsWrapHandlersExecutionInATransactionScope
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().DisableDistributedTransactions().WrapHandlersExecutionInATransactionScope();
-            #endregion
-        }
-
-        public void Outbox()
-        {
-
-            #region TransactionsOutbox
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.EnableOutbox(); //Implies .DisableDistributedTransactions().DoNotWrapHandlersExecutionInATransactionScope();
-
+            busConfiguration.Transactions().WrapHandlersExecutionInATransactionScope();
             #endregion
         }
 
@@ -69,5 +66,50 @@
             busConfiguration.Transactions().IsolationLevel(IsolationLevel.RepeatableRead);
             #endregion
         }
+    }
+
+    public class MyTransport : TransportDefinition
+    {
+        protected override TransportReceivingConfigurationResult ConfigureForReceiving(TransportReceivingConfigurationContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override TransportSendingConfigurationResult ConfigureForSending(TransportSendingConfigurationContext context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IEnumerable<Type> GetSupportedDeliveryConstraints()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override TransportTransactionMode GetSupportedTransactionMode()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IManageSubscriptions GetSubscriptionManager()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override EndpointInstance BindToLocalEndpoint(EndpointInstance instance, ReadOnlySettings settings)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ToTransportAddress(LogicalAddress logicalAddress)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override OutboundRoutingPolicy GetOutboundRoutingPolicy(ReadOnlySettings settings)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ExampleConnectionStringForErrorMessage { get; }
     }
 }

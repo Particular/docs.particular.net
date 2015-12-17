@@ -1,13 +1,13 @@
 ---
 title: Before Configuration Finalized
 summary: An interface that allows you to hook into the configuration sequence of NServiceBus
-tags: 
+tags:
  - life-cycle
 related:
  - samples/startup-shutdown-sequence
 ---
 
-During bus creation the configuration object used to construct the bus becomes frozen and locked. Classes that implement `IWantToRunBeforeConfigurationIsFinalized` are created and called just before this happens. Use `IWantToRunBeforeConfigurationIsFinalized` for any last minute alterations to the configuration that may rely on other configuration settings. 
+During bus creation the configuration object used to construct the bus becomes frozen and locked. Classes that implement `IWantToRunBeforeConfigurationIsFinalized` are created and called just before this happens. Use `IWantToRunBeforeConfigurationIsFinalized` for any last minute alterations to the configuration that may rely on other configuration settings.
 
 Instances are:
 
@@ -23,4 +23,4 @@ Once created `Run(...)` is called on each instance. These calls are made sequent
 
 Exceptions thrown by instances of `IWantToRunBeforeConfigurationIsFinalized` are unhandled by NServiceBus. These will bubble up to the caller creating the bus.
 
-<!-- import lifecycle-iwanttorunbeforeconfigurationisfinalized -->
+snippet:lifecycle-iwanttorunbeforeconfigurationisfinalized

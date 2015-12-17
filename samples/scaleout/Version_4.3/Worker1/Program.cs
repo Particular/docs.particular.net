@@ -13,11 +13,8 @@ class Program
         configure.DefineEndpointName("Samples.Scaleout.Worker1");
         configure.DefaultBuilder();
         configure.EnlistWithMSMQDistributor();
-        #endregion
-        #region WorkerNameToUseWhileTestingCode
-        //called after EnlistWithDistributor
-        Address.InitializeLocalAddress("Samples.Scaleout.Worker1");
-        #endregion
+        #endregion       
+        Address.InitializeLocalAddress("Samples.Scaleout.Worker1");        
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();

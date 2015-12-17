@@ -7,9 +7,9 @@ related:
 - nservicebus/azure/azure-storage-queues-transport
 ---
 
-## Prerequisites 
+## Prerequisites
 
-Ensure you have an instance of the [Azure Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/) running. 
+Ensure you have an instance of the [Azure Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/) running.
 
 
 ## Azure Storage Queues Transport
@@ -19,9 +19,9 @@ This sample utilizes the [Azure Storage Queues Transport](/nservicebus/azure/azu
 
 ## Code walk-through
 
-This sample shows a simple two endpoint scenario. 
+This sample shows a simple two endpoint scenario.
 
-* `Endpoint1` sends a `Message1` message to `Endpoint1`
+* `Endpoint1` sends a `Message1` message to `Endpoint2`
 * `Endpoint2` replies to `Endpoint1` with a `Message2`.
 
 
@@ -32,14 +32,14 @@ The `Server` endpoint is configured to use the Azure Storage persistence in two 
 
 #### The endpoint configuration
 
-<!-- import Config -->
+snippet:Config
 
 
 #### The app.config
 
-Note the use of `UseDevelopmentStorage` to point to the Azure Storage Emulator. 
+Note the use of `UseDevelopmentStorage` to point to the Azure Storage Emulator.
 
-<!-- import AppConfig -->
+snippet:AppConfig
 
 
 ## The Data in Azure Storage
@@ -58,17 +58,17 @@ There are several helper methods in `AzureHelper.cs` in the `StorageReader` proj
 
 This helper peeks the first message from a given queue and writes out the contents of that message.
 
-<!-- import WriteOutQueue -->
+snippet:WriteOutQueue
 
 
 #### Using the helper
 
-<!-- import UsingHelpers -->
+snippet:UsingHelpers
 
 
-### The Message Data 
+### The Message Data
 
-If you run only `Endpoint1` and send a messages you can see the contents of the message in the `samples-azure-storagequeues-endpoint2` queue. 
+If you run only `Endpoint1` and send a messages you can see the contents of the message in the `samples-azure-storagequeues-endpoint2` queue.
 
 
 ### CloudQueueMessage contents

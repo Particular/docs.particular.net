@@ -9,18 +9,18 @@ using NServiceBus;
     Name = "CallbackService")]
 class CallbackService<TRequest, TResponse> : ICallbackService<TRequest, TResponse>
 {
-    IBus bus;
+    IBusSession busSession;
 
-    public CallbackService(IBus bus)
+    public CallbackService(IBusSession busSession)
     {
-        this.bus = bus;
+        this.busSession = busSession;
     }
 
     public async Task<TResponse> SendRequest(TRequest request)
     {
         SendOptions sendOptions = new SendOptions();
         sendOptions.RouteToLocalEndpointInstance();
-        return await bus.Request<TResponse>(request, sendOptions);
+        return await busSession.Request<TResponse>(request, sendOptions);
     }
 
     public void Dispose()

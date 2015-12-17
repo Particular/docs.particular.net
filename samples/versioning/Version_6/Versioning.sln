@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V1.Messages", "V1.Messages\V1.Messages.csproj", "{9D27D517-B938-4594-8836-CE06A2955FFD}"
 EndProject
@@ -12,8 +12,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V2Subscriber", "V2Subscriber\V2Subscriber.csproj", "{DCFE28B5-245F-4C28-869B-C42C73E816E5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V1Subscriber", "V1Subscriber\V1Subscriber.csproj", "{FBA8997D-01C8-458D-ACE6-28DC7BC32711}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{B5CD0590-4E86-4AC9-9670-E58063FAC80A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{FBA8997D-01C8-458D-ACE6-28DC7BC32711}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBA8997D-01C8-458D-ACE6-28DC7BC32711}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBA8997D-01C8-458D-ACE6-28DC7BC32711}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5CD0590-4E86-4AC9-9670-E58063FAC80A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B5CD0590-4E86-4AC9-9670-E58063FAC80A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5CD0590-4E86-4AC9-9670-E58063FAC80A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B5CD0590-4E86-4AC9-9670-E58063FAC80A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

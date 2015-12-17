@@ -19,18 +19,24 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.SendFailedMessagesTo("error");
 
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
-            await bus.SendLocalAsync(new StartOrder
+            IBusContext busContext = endpoint.CreateBusContext();
+            await busContext.SendLocal(new StartOrder
                           {
                               OrderId = "123"
                           });
-            await bus.SendLocalAsync(new StartOrder
+            await busContext.SendLocal(new StartOrder
                           {
                               OrderId = "456"
                           });
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }

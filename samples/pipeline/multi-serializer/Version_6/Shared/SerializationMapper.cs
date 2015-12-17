@@ -6,6 +6,7 @@ using NServiceBus.MessageInterfaces;
 using NServiceBus.Serialization;
 using NServiceBus.Serializers.Json;
 using NServiceBus.Serializers.XML;
+using NServiceBus.Settings;
 
 #region serialization-mapper
 public class SerializationMapper
@@ -13,11 +14,11 @@ public class SerializationMapper
     JsonMessageSerializer jsonSerializer;
     XmlMessageSerializer xmlSerializer;
 
-    public SerializationMapper(IMessageMapper mapper,Conventions conventions, Configure configure)
+    public SerializationMapper(IMessageMapper mapper,Conventions conventions, ReadOnlySettings settings)
     {
         jsonSerializer = new JsonMessageSerializer(mapper);
         xmlSerializer = new XmlMessageSerializer(mapper, conventions);
-        List<Type> messageTypes = configure.TypesToScan.Where(conventions.IsMessageType).ToList();
+        List<Type> messageTypes = settings.GetAvailableTypes().Where(conventions.IsMessageType).ToList();
         xmlSerializer.Initialize(messageTypes);
     }
     
@@ -37,8 +38,7 @@ public class SerializationMapper
         {
             return xmlSerializer;
         }
-        string message = string.Format("Could not derive serializer for contentType='{0}'", contentType);
-        throw new Exception(message);
+        throw new Exception($"Could not derive serializer for contentType='{contentType}'");
     }
 
     public IMessageSerializer GetSerializer(Type messageType)
@@ -47,8 +47,7 @@ public class SerializationMapper
         bool isXmlMessage = messageType.ContainsAttribute<SerializeWithXmlAttribute>();
         if (isXmlMessage && isJsonMessage)
         {
-            string message = string.Format("Choose either [SerializeWithXml] or [SerializeWithJson] for serialization of '{0}'.", messageType.Name);
-            throw new Exception(message);
+            throw new Exception($"Choose either [SerializeWithXml] or [SerializeWithJson] for serialization of '{messageType.Name}'.");
         }
         if (isXmlMessage)
         {

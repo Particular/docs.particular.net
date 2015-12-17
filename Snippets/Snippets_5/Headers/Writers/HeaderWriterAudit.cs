@@ -13,7 +13,7 @@
     [TestFixture]
     public class HeaderWriterAudit
     {
-        public static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
+        static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
         const string endpointName = "HeaderWriterAuditV5";
 

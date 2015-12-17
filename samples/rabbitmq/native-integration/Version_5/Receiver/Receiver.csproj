@@ -34,11 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.9\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.12\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Transports.RabbitMQ, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.RabbitMQ.3.0.0\lib\net45\NServiceBus.Transports.RabbitMQ.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Transports.RabbitMQ">
+      <HintPath>..\..\..\..\..\packages\NServiceBus.RabbitMQ.3.0.1\lib\net45\NServiceBus.Transports.RabbitMQ.dll</HintPath>
     </Reference>
     <Reference Include="RabbitMQ.Client, Version=3.5.6.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\RabbitMQ.Client.3.5.6\lib\net40\RabbitMQ.Client.dll</HintPath>

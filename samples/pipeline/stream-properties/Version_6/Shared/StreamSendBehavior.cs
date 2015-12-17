@@ -5,11 +5,10 @@ using System.Threading.Tasks;
 using NServiceBus.DeliveryConstraints;
 using NServiceBus.Performance.TimeToBeReceived;
 using NServiceBus.Pipeline;
-using NServiceBus.Pipeline.Contexts;
-using NServiceBus.TransportDispatch;
+using NServiceBus.Pipeline.OutgoingPipeline;
 
 #region SendBehaviorDefinition
-class StreamSendBehavior : Behavior<OutgoingLogicalMessageContext>
+class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
 {
     TimeSpan MaxMessageTimeToLive = TimeSpan.FromDays(14);
     string location;
@@ -18,7 +17,7 @@ class StreamSendBehavior : Behavior<OutgoingLogicalMessageContext>
     {
         location = Path.GetFullPath(storageSettings.Location);
     }
-    public override async Task Invoke(OutgoingLogicalMessageContext context, Func<Task> next)
+    public override async Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
     {
 #endregion
         #region copy-stream-properties-to-disk
@@ -59,13 +58,13 @@ class StreamSendBehavior : Behavior<OutgoingLogicalMessageContext>
 
             //Store the header so on the receiving endpoint the file name is known
             string headerKey = StreamStorageHelper.GetHeaderKey(message, property);
-            context.SetHeader("NServiceBus.PropertyStream." + headerKey, fileKey);
+            context.Headers["NServiceBus.PropertyStream." + headerKey] = fileKey;
         }
 
         await next();
         #endregion
     }
-    #region generata-key-for-stream
+    #region generate-key-for-stream
     string GenerateKey(TimeSpan timeToBeReceived)
     {
         if (timeToBeReceived > MaxMessageTimeToLive)

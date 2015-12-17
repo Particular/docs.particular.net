@@ -10,9 +10,9 @@ related:
 
 ### Configuring NServiceBus to use the container
 
-<!-- import ContainerConfiguration -->
+snippet:ContainerConfiguration
 
 ### Injecting the dependency in the handler
 
-<!-- import InjectingDependency -->
-   
+snippet:InjectingDependency
+  

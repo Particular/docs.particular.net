@@ -2,32 +2,31 @@
 title: Automatic Retries
 summary: With SLR, the message causing the exception is instantly retried via a retries queue instead of an error queue.
 tags:
-- Second Level Retry 
+- Second Level Retry
 - Error Handling
 - Exceptions
-- Automatic retries
+- Retry
 related:
 - nservicebus/errors
 ---
 
-When you run the sample, you should start them using Ctrl+F5 (start without debugging), press the letter "Enter" in both windows at the same time and watch the different outputs. 
+When you run the sample, you should start them using Ctrl+F5 (start without debugging), press the letter "Enter" in both windows at the same time and watch the different outputs.
 
 Both endpoints execute the same code.
 
-<!-- import handler -->  
-
+snippet: handler
 
 The "With SLR" endpoint uses the standard SLR settings.
 
 The "Disable SLR" endpoint disables SLR with the following
 
-<!-- import DisableSLR -->
+snippet:DisableSLR
 
 
 ## The output
 
 
-### Without SLR 
+### Without SLR
 
 ```
 ReplyToAddress: Samples.ErrorHandling.WithoutSLR MessageId:91cc7d3b-b763-4e01-9a3b-a42f0014f233

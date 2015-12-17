@@ -9,7 +9,7 @@ related:
 - servicecontrol/troubleshooting
 ---
 
-ServiceControl supports high availability and fault tolerance through Windows clusters and Network Load Balancing (NLB) services.
+The following procedure is a high level guide on how to deploy ServiceControl onto a Microsoft fault tolerance Windows cluster. This guide assumes that MSMQ is the underlying transport.
 
 
 ## Basic Setup
@@ -17,8 +17,8 @@ ServiceControl supports high availability and fault tolerance through Windows cl
 * Set up a Failover (active/passive) Windows cluster:
 	* [Creating a Cluster in Windows Server 2008](http://blogs.msdn.com/b/clustering/archive/2008/01/18/7151154.aspx)
 	* [Creating a Cluster in Windows Server 2012R2](https://technet.microsoft.com/en-us/library/dn505754.aspx)
-* Install ServiceControl on each node adding it as a "Generic service" using the cluster manager. This means that ServiceControl will fail over automatically with the cluster. 
-* Set up a MSMQ Cluster Group. Cluster group is a group of resources that have a unique DNS name and can be addressed externally like a computer. 
+* Install ServiceControl on each node adding it as a "Generic service" using the cluster manager. This means that ServiceControl will fail over automatically with the cluster.
+* Set up a MSMQ Cluster Group. Cluster group is a group of resources that have a unique DNS name and can be addressed externally like a computer.
 * Add the ServiceControl generic clustered service to the MSMQ cluster group:
 	* Make it depend on MSMQ and MSMQ network name;
 	* Check "use network name as computer name" in the service configuration;
@@ -57,6 +57,6 @@ ServiceControl configuration needs to be customized changing the following setti
 
 The following is a sample ServiceControl configuration file (ServiceControl.exe.config):
 
-<!-- import SCClusterAppSettings -->
+snippet:SCClusterAppSettings
 
-See [Customizing ServiceControl Configuration](/servicecontrol/creating-config-file.md) for more information. 
+See [Customizing ServiceControl Configuration](/servicecontrol/creating-config-file.md) for more information.

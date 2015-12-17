@@ -1,11 +1,13 @@
 using System;
+using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
 
 public class MessagesThatMarkWithExpirationHandler : IHandleMessages<MessageThatExpires>
 {
-    public void Handle(MessageThatExpires message)
+    public Task Handle(MessageThatExpires message, IMessageHandlerContext context)
     {
-        Console.Out.WriteLine("Message [{0}] received, id: [{1}]", message.GetType(), message.RequestId);
+        Console.WriteLine("Message [{0}] received, id: [{1}]", message.GetType(), message.RequestId);
+        return Task.FromResult(0);
     }
 }

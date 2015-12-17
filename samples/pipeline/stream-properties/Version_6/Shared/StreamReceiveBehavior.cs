@@ -8,7 +8,7 @@ using NServiceBus.Pipeline.Contexts;
 
 #region ReceiveBehaviorDefinition
 
-class StreamReceiveBehavior : Behavior<LogicalMessageProcessingContext>
+class StreamReceiveBehavior : Behavior<IIncomingLogicalMessageContext>
 {
     string location;
 
@@ -17,7 +17,7 @@ class StreamReceiveBehavior : Behavior<LogicalMessageProcessingContext>
         location = Path.GetFullPath(storageSettings.Location);
     }
 
-    public override async Task Invoke(LogicalMessageProcessingContext context, Func<Task> next)
+    public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
     {
         #endregion
 
@@ -44,7 +44,7 @@ class StreamReceiveBehavior : Behavior<LogicalMessageProcessingContext>
             // For safety send the message to the error queue
             if (!File.Exists(filePath))
             {
-                string format = string.Format("Expected a file to exist in '{0}'. It is possible the file has been prematurely cleaned up.", filePath);
+                string format = $"Expected a file to exist in '{filePath}'. It is possible the file has been prematurely cleaned up.";
                 throw new Exception(format);
             }
             FileStream fileStream = File.OpenRead(filePath);

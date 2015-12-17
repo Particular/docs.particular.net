@@ -17,7 +17,7 @@ class OrderAcceptedHandler : IHandleMessages<OrderAccepted>
         Console.WriteLine("Customer: {0} is now a preferred customer publishing for other service concerns", message.ClientId);
 
         // publish this event as an asynchronous event
-        await context.PublishAsync<ClientBecamePreferred>(m =>
+        await context.Publish<ClientBecamePreferred>(m =>
         {
             m.ClientId = message.ClientId;
             m.PreferredStatusExpiresOn = DateTime.Now.AddMonths(2);

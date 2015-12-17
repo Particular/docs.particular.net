@@ -30,9 +30,9 @@ Or in simpler terms
 
 ## Mechanics
 
-Depending on the features provided by a given transport there are two possible implementations of  Publish-Subscribe mechanics: "Persistence based" and "Native".
+Depending on the features provided by a given transport there are two possible implementations of Publish-Subscribe mechanics: "Persistence based" and "Native".
 
-Note: For simplicity these explanations refer to specific endpoints as "Subscribers" and "Publishers". However in reality any endpoint can be both a publisher and/or and a subscriber. 
+Note: For simplicity these explanations refer to specific endpoints as "Subscribers" and "Publishers". However in reality any endpoint can be both a publisher and/or and a subscriber.
 
 
 ### Persistence Based
@@ -65,9 +65,9 @@ The subscribe workflow for persistence based transports is as follows
 https://bramp.github.io/js-sequence-diagrams/
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
-Subscriber1->Publisher: Subscribe to Message1 
-Publisher->Persistence: Store "Subscriber1\nwants Message1" 
-Subscriber2->Publisher: Subscribe to Message1 
+Subscriber1->Publisher: Subscribe to Message1
+Publisher->Persistence: Store "Subscriber1\nwants Message1"
+Subscriber2->Publisher: Subscribe to Message1
 Publisher->Persistence: Store "Subscriber2\nwants Message1"
 -->
 
@@ -87,10 +87,10 @@ https://bramp.github.io/js-sequence-diagrams/
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
 Note over Publisher: bus.Publish()\nMessage1 occurs
-Publisher->Persistence: Requests "who\nwants Message1" 
-Persistence->Publisher: "Subscriber1 and\nSubscriber2" 
-Publisher->Subscriber1: Send Message1 
-Publisher->Subscriber2: Send Message1 
+Publisher->Persistence: Requests "who\nwants Message1"
+Persistence->Publisher: "Subscriber1 and\nSubscriber2"
+Publisher->Subscriber1: Send Message1
+Publisher->Subscriber2: Send Message1
 -->
 
 ![](mechanics-persistence-publish.svg)
@@ -105,7 +105,7 @@ Transport that support native publish–subscribe
 
  * [Azure Service Bus](/nservicebus/azure/azure-servicebus-transport.md)
  * [RabbitMQ](/nservicebus/rabbitmq/)
- 
+
 
 #### Subscribe
 
@@ -115,15 +115,15 @@ The subscribe workflow for native transports is as follows
  1. Broker stores the subscription information.
 
 Note that in this case the publisher does not interact in the subscribe workflow.
- 
+
 <!-- 
 https://bramp.github.io/js-sequence-diagrams/
 Participant Subscriber1 As Subscriber1
 Participant Subscriber2 As Subscriber2
 Participant Broker As Broker
 Participant Publisher As Publisher
-Subscriber1->Broker: Subscribe to Message1 
-Subscriber2->Broker: Subscribe to Message1 
+Subscriber1->Broker: Subscribe to Message1
+Subscriber2->Broker: Subscribe to Message1
 -->
 
 ![](mechanics-native-subscribe.svg)
@@ -144,8 +144,8 @@ Participant Subscriber2 As Subscriber2
 Participant Transport As Transport
 Note over Publisher: bus.Publish()\nMessage1 occurs
 Publisher->Transport: Sends Message1
-Transport->Subscriber1: Send Message1 
-Transport->Subscriber2: Send Message1 
+Transport->Subscriber1: Send Message1
+Transport->Subscriber2: Send Message1
 -->
 
 ![](mechanics-native-publish.svg)
@@ -153,14 +153,14 @@ Transport->Subscriber2: Send Message1
 
 ## Versioning subscriptions
 
-In NServiceBus version 3.0 and onwards subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
+In NServiceBus Version 3.0 and onwards subscriptions for types with the same Major version are considered compliant. This means that a subscription for MyEvent 1.1.0 will be considered valid for MyEvent 1.X.Y as well.
 
 NOTE: Version 2.X required a perfect match. This should make it easier to upgrade your publishers without affecting the subscribers.
 
 
 ## Authorizations
 
-You may not want to allow any endpoints to subscribe to a given publisher or event. NServiceBus provides a way for you to intervene in the subscription process and decide whether a given client should be allowed to subscribe to a given message. 
+You may not want to allow any endpoints to subscribe to a given publisher or event. NServiceBus provides a way for you to intervene in the subscription process and decide whether a given client should be allowed to subscribe to a given message.
 
 NOTE: Subscription authorization is only available when using transports that require persistence based publish-subscribe.
 

@@ -15,4 +15,4 @@ This sample shows how to customize logging when running inside the NServiceBus h
 
 ### Configuring logging
 
-<!-- import Config --> 
+snippet: Config

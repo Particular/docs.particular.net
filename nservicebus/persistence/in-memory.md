@@ -1,13 +1,13 @@
 ---
 title: In Memory Persistence
 summary: In memory persistence stores data in a non-durable manner.
-tags: 
+tags:
 - Persistence
 ---
 
 Some scenarios require an in-memory persistence such as the development environment or a lightweight client not interested in durability across restarts:
 
-<!-- import ConfiguringInMemory -->
+snippet:ConfiguringInMemory
 
 WARNING: Because there is no clustering / replication happening between NServiceBus instances, when a process is down, all the information stored in the InMemory persistence of that process is lost.
 

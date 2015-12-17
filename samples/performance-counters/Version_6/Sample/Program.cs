@@ -24,8 +24,10 @@ class Program
         busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromSeconds(100));
         #endregion
 
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
+            IBusContext busContext = endpoint.CreateBusContext();
 
             Console.WriteLine("Press enter to send 10 messages with random sleep");
             Console.WriteLine("Press any key to exit");
@@ -41,9 +43,13 @@ class Program
                 }
                 for (int i = 0; i < 10; i++)
                 {
-                    await bus.SendLocalAsync(new MyMessage());
+                    await busContext.SendLocal(new MyMessage());
                 }
             }
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }

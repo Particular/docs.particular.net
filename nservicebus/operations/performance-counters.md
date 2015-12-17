@@ -41,9 +41,9 @@ Monitors the age of the oldest message in the queue. This takes into account the
 
 This counter can be enabled using the the following code:
 
-<!-- import enable-criticaltime -->
+snippet:enable-criticaltime
 
-In the NServiceBus Host this counter is enabled by default. 
+In the NServiceBus Host this counter is enabled by default.
 
 
 ### SLA violation countdown
@@ -59,11 +59,11 @@ Acts as a early warning system to tell you the number of seconds left until the 
 
 This counter can be enabled using the the following code:
 
-<!-- import enable-sla-->
+snippet: enable-sla
 
 In the NServiceBus Host this counter is enabled by default. But the value can be configured either by the above API or using a `EndpointSLAAttribute` on your `IConfigureThisEndpoint`.
 
-<!-- import enable-sla-host-attribute -->
+snippet:enable-sla-host-attribute
 
 
 ### Successful Message Processing Rate
@@ -72,7 +72,7 @@ In the NServiceBus Host this counter is enabled by default. But the value can be
 
 **Added in:** Version 4
 
-The current number of messages processed successfully by the transport per second. 
+The current number of messages processed successfully by the transport per second.
 
 #### Configuration
 
@@ -85,7 +85,7 @@ Enabled by default and will only write to the counter if it exists.
 
 **Added in:** Version 4
 
-The current number of messages pulled from the input queue by the transport per second. 
+The current number of messages pulled from the input queue by the transport per second.
 
 
 #### Configuration
@@ -99,7 +99,7 @@ Enabled by default and will only write to the counter if it exists.
 
 **Added in:** Version 4
 
-The current number of failed processed messages by the transport per second. 
+The current number of failed processed messages by the transport per second.
 
 
 #### Configuration
@@ -129,5 +129,5 @@ The performance counters libraries need to be rebuild by doing the following ste
 ### More information
 
 * [KB2554336: How to manually rebuild Performance Counters for Windows Server 2008 64bit or Windows Server 2008 R2 systems](https://support.microsoft.com/kb/2554336)
-* [KB300956: How to manually rebuild Performance Counter Library values](https://support.microsoft.com/kb/300956) 
+* [KB300956: How to manually rebuild Performance Counter Library values](https://support.microsoft.com/kb/300956)
 * [LODCTR at TechNet](https://technet.microsoft.com/en-us/library/bb490926.aspx)

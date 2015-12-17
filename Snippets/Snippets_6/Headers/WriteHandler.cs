@@ -11,15 +11,15 @@
         {
             SendOptions sendOptions = new SendOptions();
             sendOptions.SetHeader("MyCustomHeader", "My custom value");
-            await context.SendAsync(new SomeOtherMessage(), sendOptions);
+            await context.Send(new SomeOtherMessage(), sendOptions);
 
             ReplyOptions replyOptions = new ReplyOptions();
             replyOptions.SetHeader("MyCustomHeader", "My custom value");
-            await context.ReplyAsync(new SomeOtherMessage(), replyOptions);
+            await context.Reply(new SomeOtherMessage(), replyOptions);
 
             PublishOptions publishOptions = new PublishOptions();
             publishOptions.SetHeader("MyCustomHeader", "My custom value");
-            await context.PublishAsync(new SomeOtherMessage(), publishOptions);
+            await context.Publish(new SomeOtherMessage(), publishOptions);
         }
     }
 

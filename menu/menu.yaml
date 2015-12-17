@@ -31,6 +31,7 @@
         - "nservicebus/messaging/send-a-message"
         - "nservicebus/messaging/batched-dispatch"
         - "nservicebus/messaging/specify-input-queue-name"
+        - "nservicebus/messaging/routing"
         - "nservicebus/messaging/message-owner"
         - "nservicebus/messaging/unobtrusive-mode"
         - "nservicebus/messaging/best-practice-enforcement"
@@ -71,7 +72,7 @@
         - "nservicebus/errors/critical-exception-for-timeout-outages"
         - "nservicebus/errors/exception-caveats"
         - "nservicebus/errors/automatic-retries"
-        - "nservicebus/errors/subscribing-to-push-based-error-notifications"
+        - "nservicebus/errors/subscribing-to-error-notifications"
     -
       Title: "Pipeline"
       Url: "nservicebus/pipeline"
@@ -119,6 +120,10 @@
             - "nservicebus/rabbitmq/configuration-api"
             - "nservicebus/rabbitmq/cluster"
             - "nservicebus/rabbitmq/operations-scripting"
+        - Title: "Extending"
+          Url: "nservicebus/transports"
+          Articles:
+            - "nservicebus/transports/queuecreation"          
     -
       Title: "Serialization"
       Url: "nservicebus/serialization"
@@ -274,13 +279,14 @@
       Title: "Configuration"
       Articles:
         - "servicecontrol/installation"
+        - "servicecontrol/installation-silent"
+        - "servicecontrol/installation-powershell"
         - "servicecontrol/creating-config-file"
-        - "servicecontrol/multi-transport-support"
         - "servicecontrol/configure-ravendb-location"
-        - "servicecontrol/customize-name-and-description"
         - "servicecontrol/setting-custom-hostname"
         - "servicecontrol/logging"
         - "servicecontrol/errorlog-auditlog-behavior"
+        - "servicecontrol/deploying-servicecontrol-in-a-cluster"
         - Title: "Integration"
           Url: "servicecontrol/plugins"
           Articles:
@@ -298,7 +304,6 @@
         - "servicecontrol/use-ravendb-studio"
         - "servicecontrol/backup-sc-database"
         - "servicecontrol/configure-non-privileged-service-account"
-        - "servicecontrol/multi-instances-on-one-host"
         - "servicecontrol/db-compaction"
     -
       Title: "Troubleshooting"

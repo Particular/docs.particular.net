@@ -25,19 +25,19 @@ Uses the [NHibernate ORM](http://nhibernate.info/) for persistence.
 ## Usage
 
 
-### Pull in the nugets
+### Pull in the NuGets
 
-Install the [NServiceBus.NHibernate](https://www.nuget.org/packages/NServiceBus.NHibernate) nuget. This has a dependency on the `NHibernate` nuget so that will automatically be pulled in.
+Install the [NServiceBus.NHibernate](https://www.nuget.org/packages/NServiceBus.NHibernate) NuGet. This has a dependency on the `NHibernate` NuGet so that will automatically be pulled in.
 
 
 ### The Code
 
 The next stage is to actually tell NServiceBus how to use NHibernate for persistence
 
-<!-- import ConfiguringNHibernate  -->
+snippet:ConfiguringNHibernate
 
 
-## Customizing the configuration 
+## Customizing the configuration
 
 In case you want to customize the NHibernate `Configuration` object used to bootstrap the persistence mechanism, you can either provide a ready-made object via code or use convention-based XML configuration. The code-based approach overrides the configuration-based one when both are used.
 
@@ -46,17 +46,17 @@ In case you want to customize the NHibernate `Configuration` object used to boot
 
 The following snippet tells NServiceBus to use a given `Configuration` object for all the persistence concerns
 
-<!-- import CommonNHibernateConfiguration -->
+snippet:CommonNHibernateConfiguration
 
 If you need specific configuration on a per-concern basis, you can use following
 
-<!-- import SpecificNHibernateConfiguration -->
+snippet:SpecificNHibernateConfiguration
 
 NOTE: You can combine both approaches to define a common configuration and override it for one specific concern.
 
-WARNING: When using per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern you are enabling. The following code will set up NHibernate persistence only for `GatewayDeduplication` concern but will override the default configuration **for all the concerns**. 
+WARNING: When using per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern you are enabling. The following code will set up NHibernate persistence only for `GatewayDeduplication` concern but will override the default configuration **for all the concerns**.
 
-<!-- import CustomCommonNhibernateConfigurationWarning -->
+snippet:CustomCommonNhibernateConfigurationWarning
 
 
 ### Using configuration convention
@@ -65,9 +65,9 @@ NServiceBus then picks up the connection setting from your `app.config` from `co
 
 NOTE: When using SQL 2012 you need to change the dialect to `MsSql2012Dialect`.
 
-NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhibernate.info/doc/) 
- 
-<!-- import NHibernateAppConfig -->
+NOTE: Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](http://nhibernate.info/doc/)
+
+snippet:NHibernateAppConfig
 
 
 ## Change database schema
@@ -81,7 +81,7 @@ The subscriptions can be cached when using NHibernate. This can improve the perf
 
 NOTE: Publishing is performed on stale data. This is only advised in high volume environments where latency can be a potential issue.
 
-<!-- import NHibernateSubscriptionCaching -->
+snippet:NHibernateSubscriptionCaching
 
 
 ## Controlling schema
@@ -91,22 +91,22 @@ In some cases it may be necessary to take full control over creating the SQL str
 
 **For all persistence schema updates:**
 
-<!-- import DisableSchemaUpdate -->
+snippet:DisableSchemaUpdate
 
 
 **For Gateway schema update:**
-            
-<!-- import DisableGatewaySchemaUpdate -->
+           
+snippet:DisableGatewaySchemaUpdate
 
 
 **For Subscription schema update:**
 
-<!-- import DisableSubscriptionSchemaUpdate -->
+snippet:DisableSubscriptionSchemaUpdate
 
 
 **For Timeout schema update:**
 
-<!-- import DisableTimeoutSchemaUpdate -->
+snippet:DisableTimeoutSchemaUpdate
 
 
 ### Generating scripts for deployment

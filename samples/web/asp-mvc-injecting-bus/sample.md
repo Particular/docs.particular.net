@@ -15,11 +15,11 @@ related:
 
 Open `Global.asax.cs` and look at the `ApplicationStart` method.
 
-<!-- import ApplicationStart -->
+snippet:ApplicationStart
 
 
 ### Injection into the Controller
 
-Not that `IBus` is injected into the `DefaultController` at construction time.
+Note that `IBus` is injected into the `DefaultController` at construction time.
 
-<!-- import Controller -->
+snippet:Controller

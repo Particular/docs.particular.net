@@ -22,8 +22,8 @@ The Azure transports for NServiceBus enable the use of Azure Queues and Azure Se
 
 As part of the Azure support for NServiceBus, you can choose between two options provided by the Azure platform:
 
--   Azure Storage Queues
--   Azure Service Bus
+ * Azure Storage Queues
+ * Azure Service Bus
 
 Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits your application's needs, review the Azure article "[Azure Queues and Azure Service Bus Queues - Compared and Contrasted](https://azure.microsoft.com/en-us/documentation/articles/service-bus-azure-and-service-bus-queues-compared-contrasted/)".
 
@@ -32,9 +32,9 @@ Each of these two options has separate features, capabilities, and usage charact
 
 The Azure transport for NServiceBus and its samples require the following:
 
--   [NServiceBus version 4.0 or later](http://particular.net/downloads)
-    -   Note that Azure transport for NServiceBus is supported by NServiceBus version 3 and later. It is, however, recommended that you use it with NServiceBus version 4, and the samples require NServiceBus version 4.
--   [Microsoft Azure SDK version 2.0](https://azure.microsoft.com/en-us/downloads/)
+ * [NServiceBus Version 4.0 or later](http://particular.net/downloads)
+  * Note that Azure transport for NServiceBus is supported by NServiceBus Version 3 and later. It is, however, recommended that you use it with NServiceBus Version 4, and the samples require NServiceBus Version 4.
+ * [Microsoft Azure SDK Version 2.0](https://azure.microsoft.com/en-us/downloads/)
 
 
 ## Configuring for cloud service hosting
@@ -50,13 +50,13 @@ In the Azure Service Configuration file (ServiceConfiguration.cscfg), add the fo
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="AzureService" 
-xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" 
+<ServiceConfiguration serviceName="AzureService"
+xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration"
 schemaVersion="2013-03.2.0">
   <Role name="{role name}">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="AzureQueueConfig.ConnectionString" 
+      <Setting name="AzureQueueConfig.ConnectionString"
       value="DefaultEndpointsProtocol=https;AccountName={your account name here};
       AccountKey={your account key here}" />
       <Setting name="AzureQueueConfig.QueueName" value="{your queue name here}" />
@@ -85,20 +85,20 @@ In your NServiceBus solution, specify the Endpoint Configuration to use AzureSto
 	}
 
 
-### Azure Service Bus 
+### Azure Service Bus
 
 In the Azure Service Configuration file
 (ServiceConfiguration.cscfg), add the following sections:
 
 ```
 <?xml version="1.0" encoding="utf-8"?>
-<ServiceConfiguration serviceName="AzureService" 
-xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" 
+<ServiceConfiguration serviceName="AzureService"
+xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration"
 schemaVersion="2013-03.2.0">
   <Role name="{role name}">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="AzureServiceBusQueueConfig.ConnectionString" 
+      <Setting name="AzureServiceBusQueueConfig.ConnectionString"
       value="Endpoint=sb://{your namespace here}.servicebus.windows.net/;
       SharedAccessKeyName=RootManageSharedAccessKey;
       SharedAccessKey={your shared access key here}" />
@@ -109,7 +109,7 @@ schemaVersion="2013-03.2.0">
 ```
 
 
-The "AzureQueueConfig.ConnectionString" for Azure Service Bus namespace connection string can be retrieved from the Azure portal using an authorized account.
+The "AzureServiceBusQueueConfig.ConnectionString" for Azure Service Bus namespace connection string can be retrieved from the Azure portal using an authorized account.
 
 In your NServiceBus solution, specify the endpoint configuration to use AzureServiceBus transport:
 
@@ -127,13 +127,13 @@ In your NServiceBus solution, specify the endpoint configuration to use AzureSer
 In the configuration file for the application (web.config or app.config), add an "NServiceBus\\Transport" element as follows:
 
 ```
-<configuration>  
+<configuration> 
 ...
  <connectionStrings>
     <add name="NServiceBus/Transport" connectionString="DefaultEndpointsProtocol=https;
                AccountName={your account name here};AccountKey={your account key here}"/>
   </connectionStrings>
-... 
+...
 </configuration>
 ```
 

@@ -97,37 +97,37 @@
       <HintPath>..\..\packages\NLog.2.1.0\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus">
-      <HintPath>..\..\packages\NServiceBus.Interfaces.3.3.17\lib\net40\NServiceBus.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Interfaces.3.3.18\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus.3.3.17\lib\net40\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.3.3.18\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Host">
-      <HintPath>..\..\packages\NServiceBus.Host.3.3.17\lib\net40\NServiceBus.Host.exe</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Host.3.3.18\lib\net40\NServiceBus.Host.exe</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NHibernate">
-      <HintPath>..\..\packages\NServiceBus.NHibernate.3.3.17\lib\net40\NServiceBus.NHibernate.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.NHibernate.3.3.18\lib\net40\NServiceBus.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Autofac">
-      <HintPath>..\..\packages\NServiceBus.Autofac.3.3.17\lib\net40\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Autofac.3.3.18\lib\net40\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.CastleWindsor">
-      <HintPath>..\..\packages\NServiceBus.CastleWindsor.3.3.17\lib\net40\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.CastleWindsor.3.3.18\lib\net40\NServiceBus.ObjectBuilder.CastleWindsor.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Ninject">
-      <HintPath>..\..\packages\NServiceBus.Ninject.3.3.17\lib\net40\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Ninject.3.3.18\lib\net40\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Spring">
-      <HintPath>..\..\packages\NServiceBus.Spring.3.3.17\lib\net40\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Spring.3.3.18\lib\net40\NServiceBus.ObjectBuilder.Spring.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.StructureMap">
-      <HintPath>..\..\packages\NServiceBus.StructureMap.3.3.17\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.StructureMap.3.3.18\lib\net40\NServiceBus.ObjectBuilder.StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Unity">
-      <HintPath>..\..\packages\NServiceBus.Unity.3.3.17\lib\net40\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Unity.3.3.18\lib\net40\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Testing">
-      <HintPath>..\..\packages\NServiceBus.Testing.3.3.17\lib\net40\NServiceBus.Testing.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Testing.3.3.18\lib\net40\NServiceBus.Testing.dll</HintPath>
     </Reference>
     <Reference Include="ServiceControl.Contracts">
       <HintPath>..\..\packages\ServiceControl.Contracts.1.1.1\lib\net40\ServiceControl.Contracts.dll</HintPath>
@@ -208,6 +208,7 @@
     <Compile Include="Handlers\GenericHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
+    <Compile Include="Handlers\ReplyingHandler.cs" />
     <Compile Include="Headers\ReadSaga.cs" />
     <Compile Include="Headers\WriteSaga.cs" />
     <Compile Include="Host\ProgramService.cs">
@@ -312,7 +313,7 @@
     <Compile Include="Scheduling\Saga\SchedulerSaga.cs" />
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
-    <Compile Include="SendOnly.cs" />
+    <Compile Include="Hosting.cs" />
     <Compile Include="Serialization\BinarySerialization.cs" />
     <Compile Include="Serialization\BsonSerialization.cs" />
     <Compile Include="Serialization\JsonSerialization.cs" />

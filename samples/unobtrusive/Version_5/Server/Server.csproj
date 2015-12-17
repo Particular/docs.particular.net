@@ -39,15 +39,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\packages\NServiceBus.5.2.9\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.5.2.12\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CatchAllMessageHandler.cs" />
-    <Compile Include="DeferredMessageHandler.cs" />
     <Compile Include="ExpressMessagesHandler.cs" />
     <Compile Include="LargeMessagesHandler.cs" />
     <Compile Include="MessagesThatMarkWithExpirationHandler.cs" />

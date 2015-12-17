@@ -1,41 +1,34 @@
-using System;
+﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
-
-
-public class Handler :
+public class Handler : 
     IHandleMessages<EnumMessage>,
     IHandleMessages<IntMessage>,
     IHandleMessages<ObjectMessage>
 {
-    IBus bus;
 
-    public Handler(IBus bus)
+    public async Task Handle(EnumMessage message, IMessageHandlerContext context)
     {
-        this.bus = bus;
+        string format = $"Received EnumMessage. Property:'{message.Property}'";
+        Console.WriteLine(format);
+        await context.Reply(Status.Ok);
     }
 
-    public void Handle(EnumMessage message)
+    public async Task Handle(IntMessage message, IMessageHandlerContext context)
     {
-        string format = string.Format("Received EnumMessage. Property:'{0}'", message.Property);
+        string format = $"Received IntMessage. Property:'{message.Property}'";
         Console.WriteLine(format);
-        bus.Reply(Status.Ok);
-    }
-    public void Handle(IntMessage message)
-    {
-        string format = string.Format("Received IntMessage. Property:'{0}'", message.Property);
-        Console.WriteLine(format);
-        bus.Reply(10);
+        await context.Reply(10);
     }
 
-    public void Handle(ObjectMessage message)
+    public async Task Handle(ObjectMessage message, IMessageHandlerContext context)
     {
-        string format = string.Format("Received ObjectMessage. Property:'{0}'", message.Property);
+        string format = $"Received ObjectMessage. Property:'{message.Property}'";
         Console.WriteLine(format);
-
-        bus.Reply(new ReplyMessage
+        await context.Reply(new ReplyMessage
         {
-            Property = string.Format("Handler Received '{0}'", message.Property)
+            Property = $"Handler Received '{message.Property}'"
         });
     }
 }

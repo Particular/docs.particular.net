@@ -105,8 +105,7 @@ public class CommandSender
             CommandId = commandId,
             EncryptedString = "Some sensitive information"
         };
-        bus.Send("Samples.Unobtrusive.Server", command)
-            .Register<CommandStatus>(outcome => Console.WriteLine("Server returned status: " + outcome));
+        bus.Send("Samples.Unobtrusive.Server", command);
 
         Console.WriteLine("Command sent id: " + commandId);
 

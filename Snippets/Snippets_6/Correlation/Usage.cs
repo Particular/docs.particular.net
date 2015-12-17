@@ -7,14 +7,14 @@
     {
         public async Task Correlation()
         {
-            IBus bus = null;
+            IBusContext busContext = null;
 
             #region custom-correlationid
             SendOptions options = new SendOptions();
 
             options.SetCorrelationId("My custom correlation id");
 
-            await bus.SendAsync(new MyRequest(),options);
+            await busContext.Send(new MyRequest(),options);
 
             #endregion
         }

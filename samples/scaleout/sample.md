@@ -25,13 +25,13 @@ A simple project that sends a message to `Server` and handles the message back f
 
 #### Sending code
 
-<!-- import sender -->
+snippet:sender
 
 
 #### Handling code
 
 
-<!-- import sender-event-handler -->
+snippet:sender-event-handler
 
 
 ### Shared
@@ -45,7 +45,7 @@ A library for sharing handlers between workers.
 
 Contains one handler.
 
-<!-- import WorkerHandler -->  
+snippet: WorkerHandler
 
 WARNING: If you are doing publish from a handler inside a worker then all workers mush share the same [subscription persistence](/nservicebus/persistence/).
 
@@ -54,7 +54,7 @@ WARNING: If you are doing publish from a handler inside a worker then all worker
 
 A host for the distributor
 
-<!-- import server -->  
+snippet: server
 
 
 ### Worker1 and Worker2
@@ -64,12 +64,12 @@ The works are simply host for running the handlers defined in `Worker.Handlers`
 
 #### Startup code
 
-<!-- import Workerstartup -->
+snippet:Workerstartup
 
 
 #### Configuration
- 
-<!-- import workerConfig --> 
+
+snippet: workerConfig
 
 The Node in the MasterNodeConfig points to the host name where the MasterNode is running. If running the Worker from the same machine as the Distributor, Node should equal "localhost".
 
@@ -86,7 +86,7 @@ Go to the `Sender` console an press enter a few times. When this occurs the foll
  * `Worker` handles the message
  * `Worker` responds with a `OrderPlaced` to `Sender`
  * `Worker` again tells `Server` it is ready for work
-  
+ 
 <!-- 
 https://bramp.github.io/js-sequence-diagrams/
 Worker->Server: Ready for work
@@ -96,7 +96,7 @@ Server->Worker: Forwards PlaceOrder
 Worker->Sender: OrderPlaced
 Worker->Server: Ready for work
 -->
- 
+
 ![](flow.svg)
 
 
@@ -148,7 +148,7 @@ Sent Order placed event for orderId [1320cfdc-f5cc-42a7-9157-251756694069].
 This sample has two workers which are hard coded as projects for the sake of keeping the sample easy to use. This manifests in several ways
 
 1. Both `Worker1` and `Worker2` are different projects so that the solution automatically starts with two workers.
-2. Both `Worker1` and `Worker2` have different endpoint names so they have distinct queue names when running in your development environment. 
+2. Both `Worker1` and `Worker2` have different endpoint names so they have distinct queue names when running in your development environment.
 3. Both `Worker1` and `Worker2` have hard coded settings in the app.config
 
 In a real solution you would do the following
@@ -160,17 +160,17 @@ In a real solution you would do the following
 ### Worker Input queue
 
 Normally workers are deployed to different machines. When deployed to the same machine a GUID will be added to the end of the worker input queue name. This allows the distributor to properly route messages and prevents workers from competing on the same queue. Since, in this project, we are "faking different machines" by using different projects we can override the GUID behavior to prevent a proliferation of queue names.
- 
+
 
 #### Version 4 and lower
 
 You need to hack the Local Address
 
-<!-- import WorkerNameToUseWhileTestingCode -->
+snippet:WorkerNameToUseWhileTestingCode
 
 
 #### Version 5 and higher
 
-You can use configuration 
+You can use configuration
 
-<!-- import WorkerNameToUseWhileTestingConfig -->
+snippet:WorkerNameToUseWhileTestingConfig

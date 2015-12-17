@@ -92,21 +92,7 @@
 
             #endregion
         }
-
-        public void ScanningUpgrade()
-        {
-            #region 5to6ScanningUpgrade
-
-            IExcludesBuilder excludesBuilder = AllAssemblies
-                .Matching("NServiceBus")
-                .And("MyCompany.")
-                .Except("BadAssembly1.dll")
-                .And("BadAssembly2.dll");
-            Configure.With(excludesBuilder);
-
-            #endregion
-        }
-
+        
         #region ScanningConfigurationInNSBHost
 
         public class EndpointConfig : IConfigureThisEndpoint, IWantCustomInitialization

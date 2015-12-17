@@ -13,7 +13,7 @@
         {
             Data.SomeID = message.SomeID;
 
-            await ReplyToOriginatorAsync(context, new AlmostDoneMessage
+            await ReplyToOriginator(context, new AlmostDoneMessage
             {
                 SomeID = Data.SomeID
             });

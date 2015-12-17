@@ -3,15 +3,14 @@
     using System;
     using System.Threading.Tasks;
     using NServiceBus.Pipeline;
-    using NServiceBus.Pipeline.Contexts;
-    using NServiceBus.TransportDispatch;
+    using NServiceBus.Pipeline.OutgoingPipeline;
 
     #region 5to6header-outgoing-behavior
-    public class OutgoingBehavior : Behavior<OutgoingLogicalMessageContext>
+    public class OutgoingBehavior : Behavior<IOutgoingLogicalMessageContext>
     {
-        public override async Task Invoke(OutgoingLogicalMessageContext context, Func<Task> next)
+        public override async Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
         {
-            context.SetHeader("MyCustomHeader", "My custom value");
+            context.Headers["MyCustomHeader"] = "My custom value";
             await next();
         }
     }

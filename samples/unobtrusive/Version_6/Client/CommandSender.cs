@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Commands;
 using Messages;
 using NServiceBus;
@@ -6,7 +7,7 @@ using NServiceBus;
 public class CommandSender
 {
 
-    public static void Start(IBus bus)
+    public static async Task Start(IBusContext bus)
     {
         Console.WriteLine("Press 'C' to send a command");
         Console.WriteLine("Press 'R' to send a request");
@@ -14,6 +15,7 @@ public class CommandSender
         Console.WriteLine("Press 'D' to send a large message that is marked to be sent using Data Bus");
         Console.WriteLine("Press 'X' to send a message that is marked with expiration time.");
         Console.WriteLine("Press any key to exit");
+
 
         while (true)
         {
@@ -23,19 +25,19 @@ public class CommandSender
             switch (key.Key)
             {
                 case ConsoleKey.C:
-                    SendCommand(bus);
+                    await SendCommand(bus);
                     continue;
                 case ConsoleKey.R:
-                    SendRequest(bus);
+                    await SendRequest(bus);
                     continue;
                 case ConsoleKey.E:
-                    Express(bus);
+                    await Express(bus);
                     continue;
                 case ConsoleKey.D:
-                    Data(bus);
+                    await Data(bus);
                     continue;
                 case ConsoleKey.X:
-                    Expiration(bus);
+                    await Expiration(bus);
                     continue;
             }
             return;
@@ -45,20 +47,20 @@ public class CommandSender
 
 
     // Shut down server before sending this message, after 30 seconds, the message will be moved to Transactional dead-letter messages queue.
-    static void Expiration(IBus bus)
+    static async Task Expiration(IBusContext bus)
     {
-        bus.Send(new MessageThatExpires
+        await bus.Send(new MessageThatExpires
                  {
                      RequestId = new Guid()
                  });
         Console.WriteLine("message with expiration was sent");
     }
 
-    static void Data(IBus bus)
+    static async Task Data(IBusContext bus)
     {
         Guid requestId = Guid.NewGuid();
 
-        bus.Send(new LargeMessage
+        await bus.Send(new LargeMessage
         {
             RequestId = requestId,
             LargeDataBus = new byte[1024*1024*5]
@@ -67,11 +69,11 @@ public class CommandSender
         Console.WriteLine("Request sent id: " + requestId);
     }
 
-    static void Express(IBus bus)
+    static async Task Express(IBusContext bus)
     {
         Guid requestId = Guid.NewGuid();
 
-        bus.Send(new RequestExpress
+        await bus.Send(new RequestExpress
         {
             RequestId = requestId
         });
@@ -79,11 +81,11 @@ public class CommandSender
         Console.WriteLine("Request sent id: " + requestId);
     }
 
-    static void SendRequest(IBus bus)
+    static async Task SendRequest(IBusContext bus)
     {
         Guid requestId = Guid.NewGuid();
 
-        bus.Send(new Request
+        await bus.Send(new Request
         {
             RequestId = requestId
         });
@@ -91,21 +93,17 @@ public class CommandSender
         Console.WriteLine("Request sent id: " + requestId);
     }
 
-    static async void SendCommand(IBus bus)
+    static async Task SendCommand(IBusContext bus)
     {
         Guid commandId = Guid.NewGuid();
 
-        SendOptions sendOptions = new SendOptions();
-        sendOptions.SetCorrelationId(commandId.ToString());
-        MyCommand message = new MyCommand();
-        var response =  await bus.Request<CommandStatus>(new MyCommand
-        {
-            CommandId = commandId,
-            EncryptedString = "Some sensitive information"
-        }, sendOptions);
-        Console.WriteLine("Callback received with response:" + response);
-        Console.WriteLine("Command sent id: " + commandId);
+        await bus.Send(new MyCommand
+                 {
+                     CommandId = commandId,
+                     EncryptedString = "Some sensitive information"
+                 });
 
+        Console.WriteLine("Command sent id: " + commandId);
     }
 
 

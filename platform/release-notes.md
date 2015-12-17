@@ -6,7 +6,7 @@ tags:
 ---
 
 
-### Platform Installer 
+### Platform Installer
 
 - [Download and Launch the Platform Installer](https://s3.amazonaws.com/particular.downloads/PlatformInstaller/PlatformInstaller.application)
 - [Release notes](installer)
@@ -14,10 +14,10 @@ tags:
 
 ### Applications and Tools
 
-The Particular Service Platform source code, current and previous releases and their release notes are available as public repositories in [GitHub](https://github.com/particular). 
+The Particular Service Platform source code, current and previous releases and their release notes are available as public repositories in [GitHub](https://github.com/particular).
 
 
-| | | | 
+| | | |
 |:--- |:--- |:--- |
 | ![](/menu/nservicebus-logo.png) | [Releases](https://github.com/Particular/NServiceBus/tags) | [Release Notes](https://github.com/Particular/NServiceBus/releases)|
 | ![](/menu/servicematrix-logo.png) | [Releases](https://github.com/Particular/ServiceMatrix/tags)|[Release Notes](https://github.com/Particular/ServiceMatrix/releases)|
@@ -28,7 +28,7 @@ The Particular Service Platform source code, current and previous releases and t
 
 ### NServiceBus Transports
 
-| | | | 
+| | | |
 |:--- |:--- |:--- |
 |**SQL Server**|[Releases](https://github.com/Particular/NServiceBus.SqlServer/tags)| [Release Notes](https://github.com/Particular/NServiceBus.SqlServer/releases)
 |**RabbitMQ**|[Releases](https://github.com/Particular/NServiceBus.RabbitMQ/tags)| [Release Notes](https://github.com/Particular/NServiceBus.RabbitMQ/releases)

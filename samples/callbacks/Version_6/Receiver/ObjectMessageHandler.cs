@@ -1,25 +1,19 @@
 using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 #region ObjectMessageHandler
+
 public class ObjectMessageHandler : IHandleMessages<ObjectMessage>
 {
-    IBus bus;
-
-    public ObjectMessageHandler(IBus bus)
-    {
-        this.bus = bus;
-    }
-
-    public void Handle(ObjectMessage message)
+    public async Task Handle(ObjectMessage message, IMessageHandlerContext context)
     {
         Console.WriteLine("Message received, Returning");
-        bus.Reply(new ObjectResponseMessage
+        await context.Reply(new ObjectResponseMessage
         {
             Property = "PropertyValue"
         });
     }
 }
-
 
 #endregion

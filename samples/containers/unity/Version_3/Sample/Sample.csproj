@@ -57,16 +57,16 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Interfaces.3.3.17\lib\net40\NServiceBus.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Interfaces.3.3.18\lib\net40\NServiceBus.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.3.3.17\lib\net40\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.3.3.18\lib\net40\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Autofac">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Autofac.3.3.17\lib\net40\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Autofac.3.3.18\lib\net40\NServiceBus.ObjectBuilder.Autofac.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Unity">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Unity.3.3.17\lib\net40\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Unity.3.3.18\lib\net40\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

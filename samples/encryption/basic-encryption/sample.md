@@ -15,16 +15,16 @@ related:
 You will see two console applications start up.
 
 
-### Endpoint1 
+### Endpoint1
 
 Which outputs
 
 ```
-MessageWithSecretData sent. 
+MessageWithSecretData sent.
 ```
 
 
-### Endpoint2 
+### Endpoint2
 
 Which outputs
 
@@ -43,20 +43,20 @@ CreditCard: 543645546546456 is valid to 3/11/2016 5:21:59 AM
 
 Starting with the Shared project, open the `MessageWithSecretData.cs` file and look at the following code:
 
-<!-- import Message -->
+snippet:Message
 
 
-### How is encryption configured. 
+### How is encryption configured.
 
-Open either one of the `Program.cs`. You will notice the line 
+Open either one of the `Program.cs`. You will notice the line
 
     busConfiguration.RijndaelEncryptionService();
 
 This code indicates that encryption should be enabled.
 
-The key is then configured using 
+The key is then configured using
 
-<!-- import ConfigureEncryption --> 
+snippet: ConfigureEncryption
 
 
 ### The message on the wire

@@ -17,14 +17,21 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         busConfiguration.SendFailedMessagesTo("error");
-        using (IBus bus = await Bus.Create(busConfiguration).StartAsync())
+
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
-            await Run(bus);
+            IBusContext busContext = endpoint.CreateBusContext();
+            await Run(busContext);
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 
 
-    static async Task Run(IBus bus)
+    static async Task Run(IBusContext busContext)
     {
         Console.WriteLine("Press 'J' to send a JSON message");
         Console.WriteLine("Press 'X' to send a XML message");
@@ -37,35 +44,35 @@ class Program
 
             if (key.Key == ConsoleKey.X)
             {
-                await SendXmlMessage(bus);
+                await SendXmlMessage(busContext);
                 continue;
             }
             if (key.Key == ConsoleKey.J)
             {
-                await SendJsonMessage(bus);
+                await SendJsonMessage(busContext);
                 continue;
             }
             break;
         }
     }
 
-    static async Task SendXmlMessage(IBus bus)
+    static async Task SendXmlMessage(IBusContext busContext)
     {
         MessageWithXml message = new MessageWithXml
         {
             SomeProperty = "Some content in a Xml message",
         };
-        await bus.SendAsync("Samples.MultiSerializer.Receiver", message);
+        await busContext.Send("Samples.MultiSerializer.Receiver", message);
         Console.WriteLine("XML message sent");
     }
 
-    static async Task SendJsonMessage(IBus bus)
+    static async Task SendJsonMessage(IBusContext busContext)
     {
         MessageWithJson message = new MessageWithJson
         {
             SomeProperty = "Some content in a json message",
         };
-        await bus.SendAsync("Samples.MultiSerializer.Receiver", message);
+        await busContext.Send("Samples.MultiSerializer.Receiver", message);
         Console.WriteLine("Json Message sent");
     }
 }

@@ -1,9 +1,15 @@
-using System;
+﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
-class Program
+static class Program
 {
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.WcfCallbacks");
@@ -11,13 +17,24 @@ class Program
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         busConfiguration.SendFailedMessagesTo("error");
+
         #region startbus
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
-        using (StartWcfHost(bus))
+
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
+            IBusSession busSession = endpoint.CreateBusSession();
+
+            using (StartWcfHost(busSession))
+            {
+                Console.WriteLine("Press any key to exit");
+                Console.ReadKey();
+            }
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
 
         #endregion
@@ -25,9 +42,9 @@ class Program
 
     #region startwcf
 
-    static IDisposable StartWcfHost(IBus bus)
+    static IDisposable StartWcfHost(IBusSession busSession)
     {
-        WcfMapper wcfMapper = new WcfMapper(bus, "http://localhost:8080");
+        WcfMapper wcfMapper = new WcfMapper(busSession, "http://localhost:8080");
         wcfMapper.StartListening<EnumMessage, Status>();
         wcfMapper.StartListening<ObjectMessage, ReplyMessage>();
         wcfMapper.StartListening<IntMessage, int>();

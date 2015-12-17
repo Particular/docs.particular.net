@@ -6,14 +6,12 @@ using NServiceBus;
 
 public class MvcApplication : HttpApplication
 {
-    public static IBus Bus;
+    public static IEndpointInstance Endpoint;
+    public static IBusContext BusContext;
 
     public override void Dispose()
     {
-        if (Bus != null)
-        {
-            Bus.Dispose();
-        }
+        Endpoint?.Stop().GetAwaiter().GetResult();
         base.Dispose();
     }
 
@@ -31,7 +29,8 @@ public class MvcApplication : HttpApplication
         busConfiguration.ApplyCommonConfiguration();
         busConfiguration.SendFailedMessagesTo("error");
 
-        Bus = await NServiceBus.Bus.Create(busConfiguration).StartAsync();
+        Endpoint = await NServiceBus.Endpoint.Start(busConfiguration);
+        BusContext = Endpoint.CreateBusContext();
 
         AreaRegistration.RegisterAllAreas();
         FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

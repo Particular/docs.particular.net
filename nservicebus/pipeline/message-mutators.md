@@ -1,7 +1,7 @@
 ---
 title: Message Mutators
 summary: Message mutators allow mutation of messages in the pipeline.
-tags: 
+tags:
 - Mutator
 redirects:
 - nservicebus/pipeline-management-using-message-mutators
@@ -29,12 +29,12 @@ NServiceBus uses this type of mutator internally to do things like property encr
 
 #### IMutateIncomingMessages
 
-<!-- import IMutateIncomingMessages -->
+snippet:IMutateIncomingMessages
 
 
 #### IMutateOutgoingMessages
 
-<!-- import IMutateOutgoingMessages -->
+snippet:IMutateOutgoingMessages
 
 
 #### IMessageMutator
@@ -49,24 +49,24 @@ Create transport message mutators by implementing the `IMutateTransportMessages`
 
 #### IMutateIncomingTransportMessages
 
-<!-- import IMutateIncomingTransportMessages -->
+snippet:IMutateIncomingTransportMessages
 
 
 #### IMutateOutgoingTransportMessages
 
-<!-- import IMutateOutgoingTransportMessages -->
+snippet:IMutateOutgoingTransportMessages
 
 
 #### IMutateTransportMessages
 
-`IMutateTransportMessages` is an interface that combines both `IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`.  It only exists in Version 5 and lower. In Version 6 and higher implement both `IMutateTransportMessages` and `IMutateOutgoingTransportMessages` instead.
+`IMutateTransportMessages` is an interface that combines both `IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`. It only exists in Version 5 and lower. In Version 6 and higher implement both `IMutateTransportMessages` and `IMutateOutgoingTransportMessages` instead.
 
 
 ## Registering a Mutator
 
 Mutators are **NOT** automatically registered in the container, so to have them invoked, register them in the [container](/nservicebus/containers/) yourself.
 
-<!-- import MutatorRegistration -->
+snippet:MutatorRegistration
 
 NOTE: Mutators are non-deterministic in terms of order of execution. If you want more fine grained control over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/customizing.md).
 

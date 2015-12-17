@@ -1,7 +1,7 @@
 ---
 title: Logging in NServiceBus
 summary: Logging in NServiceBus
-tags: 
+tags:
 - Logging
 redirects:
 - nservicebus/logging-in-nservicebus
@@ -19,7 +19,7 @@ The default logging behavior is as follows:
 
 ### Version 3 and 4 Defaults
 
-In these versions default logging was only enabled in the NServiceBus Host. For self hosting you must [enable the logging yourself using code](log4net.md). 
+In these versions default logging was only enabled in the NServiceBus Host. For self hosting you must [enable the logging yourself using code](log4net.md).
 
 See [NServiceBus Host Profiles](/nservicebus/hosting/nservicebus-host/profiles.md) for the default logging in the NServiceBus Host.
 
@@ -33,15 +33,15 @@ This is applicable to both self hosting and using the NServiceBus Host
 
 All `Info` (and above) messages will be piped to the current console.
 
-Errors will be written with `ConsoleColor.Red`. Warnings will be written with `ConsoleColor.DarkYellow`. All other message will be written with `ConsoleColor.White`. 
+Errors will be written with `ConsoleColor.Red`. Warnings will be written with `ConsoleColor.DarkYellow`. All other message will be written with `ConsoleColor.White`.
 
 
 #### Trace
 
 All `Warn` (and above) messages will be written to `Trace.WriteLine`.
- 
 
-#### Rolling File 
+
+#### Rolling File
 
 All `Info` (and above) messages will be written to a rolling log file.
 
@@ -54,7 +54,7 @@ The default file name will be `nsb_log_yyyy-MM-dd_N.txt`, where `N` is a sequenc
 
 ## Logging Levels
 
-The Logging level, or "Threshold", indicates the log levels that will be outputted. So for example a value of `Warn` would mean all `Warn`, `Error` and `Fatal` message would be outputted. 
+The Logging level, or "Threshold", indicates the log levels that will be outputted. So for example a value of `Warn` would mean all `Warn`, `Error` and `Fatal` message would be outputted.
 
 In NServiceBus Version 5 and higher the supported logging levels are
 
@@ -79,17 +79,17 @@ In NServiceBus Versions 3 and 4 the supported Levels are defined by the [Log4Net
 
 #### Via app.config
 
-<!-- import OverrideLoggingDefaultsInAppConfig -->
+snippet:OverrideLoggingDefaultsInAppConfig
 
 
 #### Via IProvideConfiguration
 
-<!-- import LoggingThresholdFromIProvideConfiguration -->
+snippet:LoggingThresholdFromIProvideConfiguration
 
 
 #### Via config API
 
-<!-- import OverrideLoggingLevelInCode -->
+snippet:OverrideLoggingLevelInCode
 
 The above API is only available in Version 5 and higher. In earlier versions you can achieve the same by taking full control over the [Log4Net integration](log4net.md).
 
@@ -101,22 +101,22 @@ The above API is only available in Version 5 and higher. In earlier versions you
 
 With code you can configure both the Level and the logging directory. To do this, use the `LogManager` class.
 
-<!-- import OverrideLoggingDefaultsInCode -->
+snippet:OverrideLoggingDefaultsInCode
 
 Ensure you do this before any bus configuration is done.
 
-In earlier versions you can achieve the same by taking full control over the [Log4Net integration](log4net.md). 
+In earlier versions you can achieve the same by taking full control over the [Log4Net integration](log4net.md).
 
 
 ## Custom Logging
 
-For more advanced logging, it is recommended that you utilize one of the many mature logging libraries available for .Net. 
+For more advanced logging, it is recommended that you utilize one of the many mature logging libraries available for .Net.
 
  * [Log4Net integration](log4net.md)
  * [NLog integration](nlog.md)
  * [CommonLogging integration](common-logging.md)
 
-Note: Moving to custom logging means none of the approaches used in the above [Default Logging](#default-logging) apply. 
+Note: Moving to custom logging means none of the approaches used in the above [Default Logging](#default-logging) apply.
 
 
 ### When to configure logging

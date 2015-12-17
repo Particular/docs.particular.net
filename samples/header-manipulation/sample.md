@@ -25,44 +25,44 @@ For all the below samples that mutate the outgoing pipeline they also (optionall
 
 When performing the standard messaging actions (Send, Publish, Reply etc) headers can be appended to the message being dispatched.
 
-<!-- import sending -->
+snippet:sending
 
 ## Using Mutators
 
 Headers can be manipulated by implementing any of the message mutation interfaces.
- 
+
 
 ### IMessageMutator
 
-<!-- import message-mutator -->
+snippet:message-mutator
 
 
 ### IMutateIncomingMessages
 
-<!-- import mutate-incoming-messages -->
+snippet:mutate-incoming-messages
 
 
 ### IMutateIncomingTransportMessages
 
-<!-- import mutate-incoming-transport-messages -->
+snippet:mutate-incoming-transport-messages
 
 
 ### IMutateOutgoingMessages
 
-<!-- import mutate-outgoing-messages -->
+snippet:mutate-outgoing-messages
 
 
 ### IMutateOutgoingTransportMessages
 
-<!-- import mutate-outgoing-transport-messages -->
+snippet:mutate-outgoing-transport-messages
 
 
 ### IMutateTransportMessages
 
-<!-- import mutate-transport-messages -->
+snippet:mutate-transport-messages
 
 
-## Using the Pipeline 
+## Using the Pipeline
 
 Headers can be manipulated at any step in the pipeline.
 
@@ -71,30 +71,30 @@ Headers can be manipulated at any step in the pipeline.
 
 Configure the pipeline changes as follows.
 
-<!-- import pipeline-config -->
+snippet:pipeline-config
 
 Note that the injection is contextual to the other exiting steps in the pipeline. Do in this case the injection is happening after Transport message mutation has occurred.
 
 
 ### The outgoing Behavior
 
-<!-- import outgoing-header-behavior-->
+snippet: outgoing-header-behavior
 
 
 ### The incoming Behavior
 
-<!-- import incoming-header-behavior-->
+snippet: incoming-header-behavior
 
 
 ## Globally for all outgoing messages
 
 A list of headers can be defined that are automatically appended to all messages sent though a give instance of the Bus.
 
-<!-- import global-all-outgoing -->
+snippet:global-all-outgoing
 
 
 ## The Handler
 
 While the current contextual headers can be read in any of the above scenarios in this sample all headers will be written from the receiving Handler.
 
-<!-- import handler-->
+snippet: handler

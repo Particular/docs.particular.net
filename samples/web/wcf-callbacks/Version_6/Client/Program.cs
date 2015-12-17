@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
@@ -14,7 +14,7 @@ static class Program
     static async Task AsyncMain()
     {
         Console.WriteLine("Press 'E' to send a message that will respond with an enum");
-        Console.WriteLine("Press 'I' to send a message that will respond with an enum");
+        Console.WriteLine("Press 'I' to send a message that will respond with an int");
         Console.WriteLine("Press 'O' to send a message that will respond with an object");
         Console.WriteLine("Press any key to exit");
 
@@ -61,7 +61,6 @@ static class Program
     }
 
     #region Send
-
     static async Task SendObject()
     {
         ObjectMessage message = new ObjectMessage
@@ -71,12 +70,10 @@ static class Program
         ReplyMessage response = await Send<ObjectMessage, ReplyMessage>(message);
         Console.WriteLine("Response: " + response.Property);
     }
-
     #endregion
 
     #region SendHelper
-
-    static async Task<TResponse> Send<TRequest, TResponse>(TRequest request)
+    static async Task<TResponse> Send<TRequest,TResponse>(TRequest request)
     {
         using (ChannelFactory<ICallbackService<TRequest, TResponse>> channelFactory = ClientChannelBuilder.GetChannelFactory<TRequest, TResponse>(serverUrl))
         using (ICallbackService<TRequest, TResponse> client = channelFactory.CreateChannel())
@@ -84,6 +81,5 @@ static class Program
             return await client.SendRequest(request);
         }
     }
-
-    #endregion
+#endregion
 }

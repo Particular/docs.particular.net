@@ -13,11 +13,11 @@ This sample shows a basic usage of RabbitMQ as a transport for NServiceBus.
 
 ### Enable RabbitMQ
 
-<!-- import ConfigureRabbit -->
+snippet:ConfigureRabbit
 
 ### Configuring RabbitMQ
 
-Since the above connection string does not define a username NServicebus will default to 
+Since the above connection string does not define a username NServicebus will default to
 
 ```
 username: guest

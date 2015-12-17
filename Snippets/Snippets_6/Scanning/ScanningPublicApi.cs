@@ -14,7 +14,7 @@
             #endregion
         }
 
-        public void ScanningNestedAssebliesEnabled()
+        public void ScanningNestedAssembliesEnabled()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
 

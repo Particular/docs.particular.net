@@ -1,8 +1,14 @@
-﻿using NServiceBus;
+﻿using System.Threading.Tasks;
+using NServiceBus;
 
 class Program
 {
-    public static void Main()
+    static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Unobtrusive.Server");
@@ -15,9 +21,15 @@ class Program
 
         busConfiguration.ApplyCustomConventions();
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
-            CommandSender.Start(bus);
+            IBusContext busContext = endpoint.CreateBusContext();
+            await CommandSender.Start(busContext);
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }

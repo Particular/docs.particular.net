@@ -13,10 +13,10 @@ redirects:
 ---
 
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create three databases: `sender`, `receiver` and `shared`.
- 2. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option). 
+ 2. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
  3. Start the Receiver project.
  4. If you see `DtcRunningWarning` log message in the console, it means you have a Distributed Transaction Coordinator (DTC) service running. The Outbox feature is designed to provide *exactly once* delivery guarantees without DTC. We believe it is better to disable the DTC service to avoid confusion when you use Outbox.
- 5. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready. 
+ 5. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready.
  6. Hit <enter>.
  7. On the Receiver console you should see that order was submitted.
  8. On the Sender console you should see that the order was accepted.
@@ -32,9 +32,9 @@ This sample show how to add store-and-forward functionality to any a transport t
 
 In such scenario if the receiver (back-end) endpoint's database is down (e.g. for maintenance), the sender (front-end, user facing) endpoint can't send messages to it. This happens because even when the Outbox is enabled, the messages that are send from outside of a handler bypass the Outbox and are immediately dispatched to the transport (which in this case means inserting into the destination table in the destination database). The exception is thrown from the `Send`/`Publish` method which inevitably results in a bad user experience (UX).
 
-In order to provide a better UX, a store-and-forward functionality using local sender's database is required. 
+In order to provide a better UX, a store-and-forward functionality using local sender's database is required.
 
-This sample contains three projects: 
+This sample contains three projects:
 
  * Shared - A class library containing common code including the message definitions.
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
@@ -44,10 +44,10 @@ Sender and Receiver use different databases, just like in a production scenario 
 
 
 ### Sender project
- 
+
 The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport with NHibernate persistence and Outbox.
 
-<!-- import SenderConfiguration -->
+snippet:SenderConfiguration
 
 It also registers two custom behaviors, one for the send pipeline and the other for the receive pipeline.
 
@@ -56,7 +56,7 @@ It also registers two custom behaviors, one for the send pipeline and the other 
 
 The new behavior is added at the beginning of the send pipeline.
 
-<!-- import OutboxLoopbackSendBehavior -->
+snippet:OutboxLoopbackSendBehavior
 
 It checks if the message comes from a handler and in such case it does nothing. Otherwise it captures the destination of the message in a header and overrides the original value so that the message is actually send to the local endpoint (put in the end of the endpoint's incoming queue).
 
@@ -67,7 +67,7 @@ NOTICE: Other properties of a message (such as defer time) are not captured in t
 
 In the receive pipeline the new behavior is placed just before loading the message handlers.
 
-<!-- import OutboxLoopbackReceiveBehavior -->
+snippet:OutboxLoopbackReceiveBehavior
 
 If the message contains the headers used by the send-side behavior, it is routed to the ultimate destination (this time via the Outbox) instead of being processed locally. This is the first time the remote database of Receiver endpoint is contacted. Should it be down, the retry mechanism will kick in and ensure the message is eventually dispatched to the destination.
 
@@ -76,4 +76,4 @@ If the message contains the headers used by the send-side behavior, it is routed
 
 The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence and Outbox but uses V2.1 code-based connection information API.
 
-<!-- import ReceiverConfiguration -->
+snippet:ReceiverConfiguration

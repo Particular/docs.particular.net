@@ -10,7 +10,7 @@ Using [Json](https://en.wikipedia.org/wiki/Json) via an ILMerged copy of [Json.N
 
 ## Usage
 
-<!-- import JsonSerialization -->
+snippet:JsonSerialization
 
 
 ## Json.net versions
@@ -26,7 +26,7 @@ Over time the version of ILMerged Json.NET has changed.
 
 ## Customization
 
-Since Json.net is ILMerged the Json.net customization attributes are not supported. However certain customizations are still supported via standard .net attributes.
+Since Json.net is ILMerged the Json.net customization attributes are not supported. However certain customizations are still supported via standard .NET attributes.
 
 
 ### Excluding members
@@ -71,4 +71,4 @@ Using [Bson](https://en.wikipedia.org/wiki/BSON) via the same ILMerged copy of J
 
 ### Usage
 
-<!-- import BsonSerialization -->
+snippet:BsonSerialization

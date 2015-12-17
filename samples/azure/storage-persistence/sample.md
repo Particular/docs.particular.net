@@ -3,17 +3,17 @@ title: Azure Storage Persistence
 summary: This sample shows how use Azure Storage to store Sagas, Timeouts and Subscriptions.
 tags:
 - Saga
-- Timeouts
-- Subscriptions
+- Timeout
+- Subscription
 related:
 - nservicebus/sagas
 - nservicebus/azure
 - nservicebus/azure/azure-storage-persistence
 ---
 
-## Prerequisites 
+## Prerequisites
 
-Ensure you have an instance of the [Azure Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/) running. 
+Ensure you have an instance of the [Azure Storage Emulator](https://azure.microsoft.com/en-us/documentation/articles/storage-use-emulator/) running.
 
 
 ## Azure Storage Persistence
@@ -23,10 +23,10 @@ This sample utilizes the [Azure Storage Persistence](/nservicebus/azure/azure-st
 
 ## Code walk-through
 
-This sample shows a simple Client + Server scenario. 
+This sample shows a simple Client + Server scenario.
 
 * `Client` sends a `StartOrder` message to `Server`
-* `Server` starts an `OrderSaga`. 
+* `Server` starts an `OrderSaga`.
 * `OrderSaga` requests a timeout with a `CompleteOrder` data.
 * When the `CompleteOrder` timeout fires the `OrderSaga` publishes a `OrderCompleted` event.
 * The Server then publishes a message that the client subscribes to.
@@ -40,24 +40,24 @@ The `Server` endpoint is configured to use the Azure Storage persistence in two 
 
 #### The endpoint configuration
 
-<!-- import Config -->
+snippet:Config
 
 
 #### The app.config
 
-Note the use of `UseDevelopmentStorage` to point to the Azure Storage Emulator. 
+Note the use of `UseDevelopmentStorage` to point to the Azure Storage Emulator.
 
-<!-- import AppConfig -->
+snippet:AppConfig
 
 
 ### Order Saga Data
 
-<!-- import sagadata -->
+snippet:sagadata
 
 
 ### Order Saga
 
-<!-- import thesaga -->
+snippet:thesaga
 
 
 ## The Data in Azure Storage
@@ -72,22 +72,22 @@ There are several helper methods in `AzureHelper.cs` in the `StorageReader` proj
 
 #### Writing table data
 
-<!-- import WriteOutTable -->
+snippet:WriteOutTable
 
 
 #### Writing blob data
 
-<!-- import WriteOutBlobContainer -->
+snippet:WriteOutBlobContainer
 
 
 #### Using the helpers
 
-<!-- import UsingHelpers -->
+snippet:UsingHelpers
 
 
-### The Saga Data 
+### The Saga Data
 
-The saga data from the 'OrderSagaData' table contents 
+The saga data from the 'OrderSagaData' table contents
 
 ```
   PartitionKey:= 21a6f7ed-65d2-42ff-a4d3-a50e00ea76ba
@@ -100,7 +100,7 @@ The saga data from the 'OrderSagaData' table contents
 ```
 
 
-### The Timeouts 
+### The Timeouts
 
 The timeout data from the `TimeoutDataTableName` table
 

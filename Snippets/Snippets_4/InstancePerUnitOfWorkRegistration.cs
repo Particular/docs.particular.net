@@ -1,5 +1,6 @@
 ﻿namespace Snippets4
 {
+    using System;
     using NServiceBus;
     using NServiceBus.UnitOfWork;
 
@@ -26,7 +27,7 @@
             // Do your custom work here
         }
 
-        public void End(System.Exception ex = null)
+        public void End(Exception ex = null)
         {
             // Do your custom work here
         }

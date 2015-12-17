@@ -2,15 +2,14 @@
 using System.Threading.Tasks;
 using NServiceBus.OutgoingPipeline;
 using NServiceBus.Pipeline;
-using NServiceBus.TransportDispatch;
 
 #region outgoing-header-behavior
 
-class OutgoingHeaderBehavior : Behavior<OutgoingPhysicalMessageContext>
+class OutgoingHeaderBehavior : Behavior<IOutgoingPhysicalMessageContext>
 {
-    public override async Task Invoke(OutgoingPhysicalMessageContext context, Func<Task> next)
+    public override async Task Invoke(IOutgoingPhysicalMessageContext context, Func<Task> next)
     {
-        context.SetHeader("OutgoingHeaderBehavior", "ValueOutgoingHeaderBehavior");
+        context.Headers["OutgoingHeaderBehavior"] = "ValueOutgoingHeaderBehavior";
         await next();
     }
 }

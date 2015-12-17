@@ -23,17 +23,17 @@ NOTE: if you don't need the scale offered by cloud services, there are [other ho
 
 ## Cloud Services - Worker Roles
 
-First you need to reference the assembly that contains the Azure role entry point integration. The recommended way of doing this is by adding a nuget package reference to the `NServiceBus.Hosting.Azure` package to your project.
+First you need to reference the assembly that contains the Azure role entry point integration. The recommended way of doing this is by adding a NuGet package reference to the `NServiceBus.Hosting.Azure` package to your project.
 
 NOTE: If self hosting, like we'll do later in this article for Web Roles, you can configure everything using the configuration API and the extension methods found in the `NServiceBus.Azure` package, no need to reference the hosting package in that case.
 
 To integrate the NServiceBus generic host into the worker role entry point, all you need to do is create a new instance of `NServiceBusRoleEntrypoint` and call it's `Start` and `Stop` methods in the appropriate `RoleEntryPoint` override.
 
-<!-- import HostingInWorkerRole -->
+snippet:HostingInWorkerRole
 
 Next to starting the role entry point, you also need to define how you want your endpoint to behave. As we're inside worker roles most of the time, the role has been conveniently named `AsA_Worker`. Furthermore you also need to specify the transport that you want to use, using the `UseTransport<T>` , as well the persistence that you want to use, using the `UsePersistence<T>` configuration methods.
 
-<!-- import ConfigureEndpoint -->
+snippet:ConfigureEndpoint
 
 This will integrate and configure the default infrastructure for you, being:
 
@@ -73,7 +73,7 @@ You can then override this setting in your app.config file, by specifying this c
 	</configSections>
 	<AzureSubscriptionStorageConfig ConnectionString="YourConnectionstring" />
 
-When hosting in a Azure cloud service, you can override this setting again in the service configuration (.cscfg) file. 
+When hosting in a Azure cloud service, you can override this setting again in the service configuration (.cscfg) file.
 
 First you need to define the setting in the service definition file (.csdef) and then specify the value for every cloud service deployment you have in your Cloud Services project.
 
@@ -116,18 +116,18 @@ If the following trace listener is added to your app.config, all NServiceBus log
 		</trace>
 	</system.diagnostics>
 
-Logging settings can than be controlled by configuring the Azure diagnostics service itself using a .wadcfg file. Check out the (msdn documentation)[https://msdn.microsoft.com/library/azure/hh411551.aspx] for more information on this topic.
+Logging settings can than be controlled by configuring the Azure diagnostics service itself using a .wadcfg file. Check out the [MSDN documentation](https://msdn.microsoft.com/library/azure/hh411551.aspx) for more information on this topic.
 
 
 ## Cloud Services - Web Roles
 
 Next to worker roles, cloud services also has a role type called 'Web Roles'. These are worker roles which have IIS configured properly, this means that they run a worker role process (the entry point is in webrole.cs) and an IIS process on the same codebase.
 
-Usually you will want to run NServiceBus as a client in the IIS process though. This needs to be approached in the same way as any other website, by means of self hosting. When  self-hosting you can configure everything using the configuration API and the extension methods found in the `NServiceBus.Azure` package, no need to reference the hosting package in that case.
+Usually you will want to run NServiceBus as a client in the IIS process though. This needs to be approached in the same way as any other website, by means of self hosting. When self-hosting you can configure everything using the configuration API and the extension methods found in the `NServiceBus.Azure` package, no need to reference the hosting package in that case.
 
 The configuration API is used with the following extension methods to achieve the same behavior as the generic `AsA_worker`:
 
-<!-- import HostingInWebRole -->
+snippet:HostingInWebRole
 
 a short explanation of each:
 
@@ -140,14 +140,14 @@ a short explanation of each:
 ## Handling critical errors
 
 
-### Azure Host version 6.2.2 and up
+### Azure Host Version 6.2.2 and up
 
 Azure host is terminated on critical errors by default. When host is terminated, Azure Fabric will restart the host automatically.
 
 
-### Azure Host version 6.2.1 and lower
+### Azure Host Version 6.2.1 and lower
 
 Azure host is not terminated on critical errors by default and only shuts down the bus. This would cause role not to process messages until host (role) is restarted.
 To address this, implement critical errors handling code that shuts down the host.
 
-<!-- import DefineCriticalErrorActionForAzureHost -->
+snippet:DefineCriticalErrorActionForAzureHost
