@@ -56,13 +56,7 @@ switch (Routing type?)
 
 Endpoint is a logical concept that relates to a program that uses NServiceBus to communicate with other similar programs. Each endpoint has a name e.g. `Sales` or `OrderProcessing`.
 
-During deployment each endpoint might be materialized in form of one or many instances. Each instance is an identical copy of binaries resulting from building the endpoint program code base. Usually each endpoint instance is placed in separate directory or separate machine. Each instance has its unique name that consists of the name of the endpoint (e.g. `Sales`) and up to two *discriminator* values:
-
- * User-provided discriminator is configured at start-up time via the Bus Configuration APIs
- * Transport-provided discriminator is wired by the transport if a particular transport supports it
-
-Both discriminators are optional and if they are absent, the resulting instance name is based only on the endpoint name. This means that in the absence of discriminators, there can be only one instance of an endpoint because there is one possible instance name value. In order to scale out an endpoint and deploy multiple instances, either a user-provided or transport-provided discriminator has to be used.
-
+During deployment each endpoint might be materialized in form of one or many instances. Each instance is an identical copy of binaries resulting from building the endpoint program code base. Usually each endpoint instance is placed in separate directory or separate machine. Each instance has its unique identity that consists of the name of the endpoint (e.g. `Sales`) and a discriminator. The discriminator can be provided either by the hosting infrastructure (e.g. Azure role ID) or by the user himself. In addition to these, an endpoint instance identity can include transport-specific information (e.g. machine name in MSMQ or schema name in SQL Server). The discriminator can be absent.
 
 ## Send, Publish and Reply
 
@@ -128,7 +122,7 @@ Mapping of an endpoint to the collection of instances is the responsibility of *
 
 #### Default mapping
 
-By default, NServiceBus assumes that each endpoint has a single non-scaled-out instance without any *discriminators* (which means it is a local in MSMQ). This default allows for running without any configuration on transports like SQL Server or RabbitMQ.
+By default, NServiceBus assumes that each endpoint has a single non-scaled-out instance without a *discriminator*. This default allows for running without any configuration on transports like SQL Server or RabbitMQ.
 
 #### Using config file
 
@@ -146,7 +140,7 @@ Dynamic mapping is meant to provide a convenient extension point for both users 
 
 snippet:Routing-DynamicEndpointMapping
 
-In this example the rule returns two instances passing both user-provided (1, 2) and transport-provided (A, B) discriminators.
+In this example the rule returns two instances in which case providing a discriminator is mandatory. In addition to that, the instance "1" specifies a custom property which can be used by the transport to generate the actual address. The instance "2" usues an MSMQ-specific convenience method to achieve the same goal.
 
 ### Instance mapping layer
 
