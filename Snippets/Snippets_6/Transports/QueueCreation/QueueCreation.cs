@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using NServiceBus;
+    using NServiceBus.Routing;
     using NServiceBus.Settings;
     using NServiceBus.Transports;
 
@@ -39,9 +40,9 @@
             return null;
         }
 
-        public override string GetDiscriminatorForThisEndpointInstance(ReadOnlySettings settings)
+        public override EndpointInstance BindToLocalEndpoint(EndpointInstance instance, ReadOnlySettings settings)
         {
-            return null;
+            return instance;
         }
 
         public override string ToTransportAddress(LogicalAddress logicalAddress)

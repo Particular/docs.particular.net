@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Transactions;
     using NServiceBus;
+    using NServiceBus.Routing;
     using NServiceBus.Settings;
     using NServiceBus.Transports;
 
@@ -94,7 +95,7 @@
             throw new NotImplementedException();
         }
 
-        public override string GetDiscriminatorForThisEndpointInstance(ReadOnlySettings settings)
+        public override EndpointInstance BindToLocalEndpoint(EndpointInstance instance, ReadOnlySettings settings)
         {
             throw new NotImplementedException();
         }

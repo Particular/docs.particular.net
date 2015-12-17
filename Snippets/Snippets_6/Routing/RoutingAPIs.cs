@@ -19,7 +19,7 @@ namespace Snippets6.Routing
                     //Use endpoint name
                     new UnicastRoute("Sales"),
                     //Use endpoint instance name
-                    new UnicastRoute(new EndpointInstance(new Endpoint("Sales"), "1", null)),
+                    new UnicastRoute(new EndpointInstance("Sales", "1")),
                     //Use transport address (e.g. MSMQ)
                     new UnicastRoute("Sales-2@MachineA")
                 });
@@ -42,7 +42,7 @@ namespace Snippets6.Routing
         {
             var busConfiguration = new BusConfiguration();
             #region Routing-StaticEndpointMapping
-            Endpoint sales = new Endpoint("Sales");
+            EndpointName sales = new EndpointName("Sales");
             busConfiguration.Routing().EndpointInstances
                 .AddStatic(sales, new EndpointInstance(sales, "1", null), new EndpointInstance(sales, "2", null));
             #endregion
@@ -58,8 +58,8 @@ namespace Snippets6.Routing
                 {
                     return new[]
                     {
-                        new EndpointInstance(e, "1", "MachineA"),
-                        new EndpointInstance(e, "2", "MachineB")
+                        new EndpointInstance(e, "1").AtMachine("A"),
+                        new EndpointInstance(e, "2").AtMachine("B")
                     };
                 }
                 return null;
@@ -71,9 +71,8 @@ namespace Snippets6.Routing
         {
             var busConfiguration = new BusConfiguration();
             #region Routing-SpecialCaseTransportAddress
-            Endpoint sales = new Endpoint("Sales");
             busConfiguration.Routing().TransportAddresses
-                .AddSpecialCase(new EndpointInstance(sales, "1", null), "Sales-One@MachineA");
+                .AddSpecialCase(new EndpointInstance("Sales", "1"), "Sales-One@MachineA");
             #endregion
         }
 
