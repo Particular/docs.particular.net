@@ -21,7 +21,7 @@ Azure Service Bus is messaging infrastructure that sits between applications, al
 - The main advantage of this service is that it offers a highly reliable and (relatively) low latency remote messaging infrastructure. A single queue message can be up to 256 KB in size, and a queue can contain many messages, up to 5GB in total. Furthermore it is capable of emulating local transactions using its queue peek-lock mechanism and has many built-in features that you (and NServiceBus) can take advantage of, such as message deduplication and deferred messages.
 - The main disadvantage of this service is its dependency on TCP (if you want low latency), which may require you to open some outbound ports on your firewall. Additionally, the price may be steep, depending on your scenario ($1 per million messages).
 
-Note: features like Publish/Subscribe and Timeouts (including message deferral) are supported natively by the transport and do not use persistence.
+Note: Publish/Subscribe and Timeouts (including message deferral) are supported natively by the transport and do not use persistence.
 
 ## Enabling the Transport
 
