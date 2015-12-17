@@ -58,7 +58,7 @@ namespace Snippets6.Routing
                 {
                     return new[]
                     {
-                        new EndpointInstance(e, "1").AtMachine("A"),
+                        new EndpointInstance(e, "1").SetProperty("SomeProp", "SomeValue"),
                         new EndpointInstance(e, "2").AtMachine("B")
                     };
                 }
