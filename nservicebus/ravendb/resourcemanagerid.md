@@ -10,7 +10,9 @@ When using RavenDB in an environment where you are relying also on distributed t
 
 > "A resource manager with the same identifier is already registered with the specified transaction coordinator"
 
-The above is generally due to multiple RavenDB server instances, running on the same machine, trying to enlist in the same transaction with the same resource manager identifier.
+The above is generally due to multiple RavenDB `IDocumentStore` instances, running on the same machine, trying to enlist in the same transaction with the same resource manager identifier.
+
+When using NServiceBus with the RavenDB persistence a constant and deterministic ResourceMagagerId is automatically generated for each endpoint. If you are configuring the endpoint to use your own `IDocumentStore` instance please be sure to setup the store with a valid resource manager identifier, other then the default one.
 
 It is possible to configure RavenDB to use a different resource manager identifier in two ways:
 
