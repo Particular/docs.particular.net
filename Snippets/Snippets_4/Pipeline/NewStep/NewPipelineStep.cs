@@ -4,7 +4,7 @@
     using NServiceBus.Pipeline.Contexts;
     using NServiceBus.Unicast.Behaviors;
 
-    #region NewStepInPipeline 4.5
+    #region NewPipelineStep 4.5
 
     class NewStepInPipeline : PipelineOverride
     {
