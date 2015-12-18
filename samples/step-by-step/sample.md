@@ -101,5 +101,5 @@ Publishing: OrderPlaced for Order Id: ef5b77ba-192e-451b-ad4a-94c4acbbd8ed
 ```
 To exit press 'Ctrl + C'
 2015-04-23 11:45:19.972 INFO Subscribing to OrderPlaced publisher queue StepByStep.Server
-Handling: OrderPlaceed for Order Id: ef5b77ba-192e-451b-ad4a-94c4acbbd8ed
+Handling: OrderPlaced for Order Id: ef5b77ba-192e-451b-ad4a-94c4acbbd8ed
 ```

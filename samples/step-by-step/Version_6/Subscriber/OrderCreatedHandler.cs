@@ -6,7 +6,7 @@ public class OrderCreatedHandler : IHandleMessages<OrderPlaced>
 {
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
-        Console.WriteLine(@"Handling: OrderPlaceed for Order Id: {0}", message.OrderId);
+        Console.WriteLine(@"Handling: OrderPlaced for Order Id: {0}", message.OrderId);
         return Task.FromResult(0);
     }
 }

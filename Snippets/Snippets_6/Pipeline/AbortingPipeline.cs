@@ -1,4 +1,5 @@
-﻿namespace Snippets6.Pipeline
+﻿// ReSharper disable UnusedParameter.Local
+namespace Snippets6.Pipeline
 {
     using System;
     using System.Threading.Tasks;
