@@ -49,8 +49,9 @@ In this mode the receive operation is wrapped in a transport native transaction.
 
 Use the following code to use this mode:
 
-snippet:TransactionsDisableDistributedTransactions
+snippet:TransportTransactionReceiveOnly
 
+NOTE: Prior to Version 6 receive only mode couldn't be requested for transports supporting  the atomic sends with receive mode (see below)
 
 #### Consistency guarantees
 

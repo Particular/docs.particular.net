@@ -14,13 +14,20 @@
             #endregion
         }
 
-        public void TransportTransactions()
+        public void TransportTransactionReceiveOnly()
         {
-            #region TransactionsDisableDistributedTransactions
+            #region TransportTransactionReceiveOnly
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions().DisableDistributedTransactions();
             #endregion
+        }
 
+        public void TransportTransactionAtomicSendsWithReceive()
+        {
+            #region TransportTransactionAtomicSendsWithReceive
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.Transactions().DisableDistributedTransactions();
+            #endregion
         }
 
         public void AmbientTransactions()

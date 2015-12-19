@@ -13,12 +13,18 @@
             #endregion
         }
 
-        public void TransportTransactions()
+        public void TransportTransactionReceiveOnly()
         {
-            #region TransactionsDisableDistributedTransactions
+            #region TransportTransactionReceiveOnly
             Configure.Transactions.Advanced(x => x.DisableDistributedTransactions());
             #endregion
+        }
 
+        public void TransportTransactionAtomicSendsWithReceive()
+        {
+            #region TransportTransactionAtomicSendsWithReceive
+            Configure.Transactions.Advanced(x => x.DisableDistributedTransactions());
+            #endregion
         }
 
         public void AmbientTransactions()
