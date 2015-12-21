@@ -21,7 +21,7 @@ It does not discuss the transaction isolation aspect which only applies to the p
 Based on transaction handling mode, NServiceBus offers three levels of guarantees with regards to message processing. The levels available depends on the capability of the selected transport.
 
 
-### Ambient transaction (Distributed transaction)
+### Transaction scope (Distributed transaction)
 
 In this mode the transport receive operation is wrapped in a [`TransactionScope`](http://msdn.microsoft.com/en-us/library/system.transactions.transactionscope). Other operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole.
 
@@ -29,10 +29,9 @@ Depending on transport the transaction is escalated to a distributed one (follow
 
 NOTE: MSMQ will escalate to a distributed transaction right away since it doesn't support promotable transaction enlistments.
 
-*Ambient transaction* mode is enabled by default for the transports that support it. It can be enabled explicitly via
+*Transaction scope* mode is enabled by default for the transports that support it. It can be enabled explicitly via
 
-snippet:TransactionsEnable
-
+snippet:TransportTransactionScope
 
 #### Consistency guarantees
 
@@ -91,7 +90,7 @@ snippet:TransactionsDisable
 
 ## Outbox
 
-The Outbox [feature](/nservicebus/outbox) provides idempotency at the infrastructure level and allows running in *transport transaction* mode while still getting the same semantics as *Ambient transaction* mode.
+The Outbox [feature](/nservicebus/outbox) provides idempotency at the infrastructure level and allows running in *transport transaction* mode while still getting the same semantics as *Transaction scope* mode.
 
 NOTE: Outbox data needs to be stored in the same database as business data to achieve the idempotency mentioned above.
 

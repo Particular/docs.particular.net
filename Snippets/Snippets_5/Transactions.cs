@@ -30,9 +30,9 @@
             #endregion
         }
 
-        public void AmbientTransactions()
+        public void TransportTransactionScope()
         {
-            #region TransactionsEnable
+            #region TransportTransactionScope
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions().Enable().EnableDistributedTransactions();
             #endregion

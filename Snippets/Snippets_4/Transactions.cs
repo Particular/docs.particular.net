@@ -27,9 +27,9 @@
             #endregion
         }
 
-        public void AmbientTransactions()
+        public void TransportTransactionScope()
         {
-            #region TransactionsEnable
+            #region TransportTransactionScope
             Configure.Transactions.Enable().Advanced(x => x.EnableDistributedTransactions());
             #endregion
         }

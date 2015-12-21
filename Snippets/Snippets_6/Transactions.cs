@@ -34,9 +34,9 @@
 
         }
 
-        public void AmbientTransactions()
+        public void TransportTransactionScope()
         {
-            #region TransactionsEnable
+            #region TransportTransactionScope
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope);
