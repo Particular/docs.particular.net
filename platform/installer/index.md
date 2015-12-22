@@ -69,12 +69,6 @@ There is no harm in running these on multiple times. Each run will check the sta
 
 Note: The NServiceBus prerequisites do not have a version number and do not toggle to a disabled state after installation.
 
-
-#### ServiceMatrix
-
-The PlatformInstaller will no longer install ServiceMatrix. ServiceMatrix is available as an extension on the Visual Studio Gallery. Read this article on [how to install ServiceMatrix](/servicematrix/installing-servicematrix-2.0.md).
-
-
 #### ServiceInsight
 
 Installs the ServiceInsight Package. This MSI can be downloaded directly from here: [ServiceInsight Releases](https://github.com/Particular/ServiceInsight/releases/latest).
