@@ -1,10 +1,12 @@
 ---
-title: Transactional messaging
-summary: Durability guarantees using transactions
+title: Transport transactions
+summary: Supported transaction modes and their consistency guarantees
 tags:
 - Transactions
-- Durable
-- Retry
+- Retries
+- Consistency
+- Transports
+- TransactionScope
 ---
 
 This article covers various levels of consistency guarantees NServiceBus provides with regards to
@@ -33,6 +35,7 @@ NOTE: MSMQ will escalate to a distributed transaction right away since it doesn'
 
 snippet:TransportTransactionScope
 
+
 #### Consistency guarantees
 
 In this mode handlers will execute inside of the `TransactionScope` created by the transport. This means that all the data updates are executed as a whole or rolled back as a whole.
@@ -51,6 +54,7 @@ Use the following code to use this mode:
 snippet:TransportTransactionReceiveOnly
 
 NOTE: Prior to Version 6 receive only mode couldn't be requested for transports supporting the atomic sends with receive mode (see below)
+
 
 #### Consistency guarantees
 
@@ -74,9 +78,11 @@ Use the following code to use this mode:
 
 snippet:TransportTransactionAtomicSendsWithReceive
 
+
 #### Consistency guarantees
 
 This mode has the same consistency guarantees as the *Receive Only* mode mentioned above with the difference that ghost messages are prevented since all outgoing operations are atomic with the ongoing receive operation.
+
 
 ### Unreliable (Transactions Disabled)
 
@@ -88,6 +94,7 @@ NOTE: In version 5 and below, when transactions are disabled, no retries will be
 
 snippet:TransactionsDisable
 
+
 ## Outbox
 
 The Outbox [feature](/nservicebus/outbox) provides idempotency at the infrastructure level and allows running in *transport transaction* mode while still getting the same semantics as *Transaction scope* mode.
@@ -95,6 +102,7 @@ The Outbox [feature](/nservicebus/outbox) provides idempotency at the infrastruc
 NOTE: Outbox data needs to be stored in the same database as business data to achieve the idempotency mentioned above.
 
 When using the outbox, any messages resulting from processing a given received message are not sent immediately but rather stored in the persistence database and pushed out after the handling logic is done. This mechanism ensures that the handling logic can only succeed once so there is no need to design for idempotency.
+
 
 ## Avoiding partial updates
 
@@ -106,9 +114,11 @@ NOTE: This requires the selected storage to support enlisting in transaction sco
 
 WARNING: This might escalate to a distributed transaction if data in different databases are updated.
 
+
 ## Controlling transaction scope options
 
 The following options for transaction scopes used during message processing can be configured.
+
 
 ### Isolation level
 
@@ -119,6 +129,7 @@ NOTE: Version 3 and below used the default isolation level of .Net which is `Ser
 Change the isolation level using
 
 snippet:CustomTransactionIsolationLevel
+
 
 ### Transaction timeout
 
