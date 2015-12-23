@@ -4,7 +4,7 @@ using NServiceBus;
 
 public class Runner
 {
-    public static async Task Run(IBusContext bus)
+    public static async Task Run(IBusSession bus)
     {
         Console.WriteLine("Press 's' to send a valid message");
         Console.WriteLine("Press 'e' to send a failed message");
