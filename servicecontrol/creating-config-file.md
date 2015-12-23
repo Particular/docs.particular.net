@@ -94,8 +94,10 @@ The number of hours to keep a message for before it is deleted,
 
 Type: int
 
-Default: `720` (30 days). Valid Range is `24` (1 day) through to `1440` (60 days)
+Default: `720` (30 days). 
 
+Prior to 1.8.3 the valid range for this setting was `24` (1 day) through to `1440` (60 days)
+From 1.8.3 the upper limit has been removed to allow for longer retention.  This was done to allow customers with low volumes of messages to retain them longer.  Setting this value too high can cause the embeddeded RavenDB to become large and unresponsive when indexing.  See [Capacity and Planning](capacity-and-planning.md)
 
 ## Performance Tuning
 
