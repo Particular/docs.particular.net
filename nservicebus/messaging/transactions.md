@@ -1,10 +1,12 @@
 ---
-title: Transactional messaging
-summary: Durability guarantees using transactions
+title: Transport transactions
+summary: Supported transaction modes and their consistency guarantees
 tags:
 - Transactions
-- Durable
-- Retry
+- Retries
+- Consistency
+- Transports
+- TransactionScope
 ---
 
 This article covers various levels of consistency guarantees NServiceBus provides with regards to
@@ -21,7 +23,7 @@ It does not discuss the transaction isolation aspect which only applies to the p
 Based on transaction handling mode, NServiceBus offers three levels of guarantees with regards to message processing. The levels available depends on the capability of the selected transport.
 
 
-### Ambient transaction (Distributed transaction)
+### Transaction scope (Distributed transaction)
 
 In this mode the transport receive operation is wrapped in a [`TransactionScope`](http://msdn.microsoft.com/en-us/library/system.transactions.transactionscope). Other operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole.
 
@@ -29,9 +31,9 @@ Depending on transport the transaction is escalated to a distributed one (follow
 
 NOTE: MSMQ will escalate to a distributed transaction right away since it doesn't support promotable transaction enlistments.
 
-*Ambient transaction* mode is enabled by default for the transports that support it. It can be enabled explicitly via
+*Transaction scope* mode is enabled by default for the transports that support it. It can be enabled explicitly via
 
-snippet:TransactionsEnable
+snippet:TransportTransactionScope
 
 
 #### Consistency guarantees
@@ -49,7 +51,9 @@ In this mode the receive operation is wrapped in a transport native transaction.
 
 Use the following code to use this mode:
 
-snippet:TransactionsDisableDistributedTransactions
+snippet:TransportTransactionReceiveOnly
+
+NOTE: Prior to Version 6 receive only mode couldn't be requested for transports supporting the atomic sends with receive mode (see below)
 
 
 #### Consistency guarantees
@@ -72,20 +76,12 @@ Some transports support enlisting outgoing operations in the current receive tra
 
 Use the following code to use this mode:
 
-
-#### With Receive Only
-
-snippet:TransactionsDisableDistributedTransactionsReceiveOnly
-
-
-#### With Atomic Receive
-
-snippet:TransactionsDisableDistributedTransactionsAtomic
+snippet:TransportTransactionAtomicSendsWithReceive
 
 
 #### Consistency guarantees
 
-This mode has the same consistency guarantees as the *Receive Only* mode mentioned above with the difference that the ghost messages are prevented since all outgoing operations are atomic with the receive operation.
+This mode has the same consistency guarantees as the *Receive Only* mode mentioned above with the difference that ghost messages are prevented since all outgoing operations are atomic with the ongoing receive operation.
 
 
 ### Unreliable (Transactions Disabled)
@@ -101,7 +97,7 @@ snippet:TransactionsDisable
 
 ## Outbox
 
-The Outbox [feature](/nservicebus/outbox) provides idempotency at the infrastructure level and allows running in *transport transaction* mode while still getting the same semantics as *Ambient transaction* mode.
+The Outbox [feature](/nservicebus/outbox) provides idempotency at the infrastructure level and allows running in *transport transaction* mode while still getting the same semantics as *Transaction scope* mode.
 
 NOTE: Outbox data needs to be stored in the same database as business data to achieve the idempotency mentioned above.
 
