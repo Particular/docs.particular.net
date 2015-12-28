@@ -19,21 +19,6 @@
             #endregion
         }
 
-        public void TransportTransactions()
-        {
-            BusConfiguration busConfiguration = new BusConfiguration();
-            #region TransactionsDisableDistributedTransactionsReceiveOnly
-            busConfiguration.UseTransport<MyTransport>()
-                .Transactions(TransportTransactionMode.ReceiveOnly);
-            #endregion
-
-            #region TransactionsDisableDistributedTransactionsAtomic
-            busConfiguration.UseTransport<MyTransport>()
-                .Transactions(TransportTransactionMode.SendsAtomicWithReceive);
-            #endregion
-
-        }
-
         public void TransportTransactionScope()
         {
             #region TransportTransactionScope
