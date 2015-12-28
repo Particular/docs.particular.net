@@ -2,6 +2,8 @@
 {
     using System.Threading.Tasks;
     using NServiceBus;
+    using NServiceBus.ConsistencyGuarantees;
+    using NServiceBus.Settings;
 
     public class Upgrade
     {
@@ -42,6 +44,28 @@
             #endregion
             // ReSharper restore RedundantDelegateCreation
             // ReSharper restore ConvertToLambdaExpression
+        }
+
+        public void SuppressDistributedTransactions()
+        {
+            ReadOnlySettings readOnlySettings = null;
+
+            #region 5to6SuppressDistributedTransactions
+
+            bool suppressDistributedTransactions = readOnlySettings.GetRequiredTransactionModeForReceives() != TransportTransactionMode.TransactionScope;
+
+            #endregion
+        }
+
+        public void IsTransactional()
+        {
+            ReadOnlySettings readOnlySettings = null;
+
+            #region 5to6IsTransactional
+        
+            bool isTransactional = readOnlySettings.GetRequiredTransactionModeForReceives() != TransportTransactionMode.None;
+
+            #endregion
         }
     }
 }
