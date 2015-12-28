@@ -4,8 +4,9 @@ summary: Adding Publish/Subscribe to our solution using ServiceMatrix
 tags:
 - ServiceMatrix
 - Publish Subscribe
-include: sm-discontinued
 ---
+
+include: sm-discontinued
 
 In the [previous article](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "ServiceMatrix Fault Tolerance") introducing ServiceMatrix, you explored some of the fault tolerance features of NServiceBus.
 

@@ -5,8 +5,9 @@ tags:
 - ServiceMatrix
 - Visual Studio
 - Troubleshooting
-include: sm-discontinued
 ---
+
+include: sm-discontinued
 
 This article reviews how to download and install ServiceMatrix for use in Visual Studio.
 

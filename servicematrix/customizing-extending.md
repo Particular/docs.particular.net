@@ -2,8 +2,10 @@
 title: Using ServiceMatrix Generated Code
 summary: Using ServiceMatrix and extending it with your own code.
 tags:
-include: sm-discontinued
 ---
+
+include: sm-discontinued
+
 ServiceMatrix accelerates the creation of a distributed NServiceBus solution. As the canvas and visual elements are used to design the system the Visual Studio solution is updated with generated code and content. 
 
 This article explores how to customize the ServiceMatrix solution and add your own code.

@@ -3,8 +3,9 @@ title: Integrating SignalR with ServiceMatrix
 summary: Using ServiceMatrix's SignalR integration to provide real-time communication with the browser.
 tags:
 - ServiceMatrix
-include: sm-discontinued
 ---
+
+include: sm-discontinued
 
 SignalR is a library that is part of ASP.NET. It allows a persistent, bi-directional communication channel between the web browser and web server. ServiceMatrix can help you utilize the power of SignalR whenever you have an ASP.NET MVC endpoint subscribe to an event.
 

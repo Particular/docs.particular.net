@@ -4,8 +4,9 @@ summary: 'Selecting a persistence store within a ServiceMatrix project.'
 tags:
 - ServiceMatrix
 - Persistence
-include: sm-discontinued
 ---
+
+include: sm-discontinued
 
 NServiceBus requires a persistence store. By default, ServiceMatrix provisions your solution to use the `InMemoryPersistence` class, but only if the Visual Studio debugger is attached. If you attempt to run your project without the debugger attached, you will receive an exception informing you to choose a durable persistence class.
 

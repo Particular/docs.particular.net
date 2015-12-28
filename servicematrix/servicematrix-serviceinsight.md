@@ -4,8 +4,9 @@ summary: 'Using ServiceMatrix and ServiceInsight Together'
 tags:
 - ServiceMatrix
 - ServiceInsight
-include: sm-discontinued
 ---
+
+include: sm-discontinued
 
 ServiceMatrix dramatically accelerates the creation of NServiceBus systems using a graphical design tool that is integrated into the Visual Studio environment. 
 
