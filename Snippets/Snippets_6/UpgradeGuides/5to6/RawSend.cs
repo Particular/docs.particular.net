@@ -2,6 +2,7 @@
 namespace Snippets6.UpgradeGuides._5to6
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Extensibility;
@@ -17,12 +18,20 @@ namespace Snippets6.UpgradeGuides._5to6
             #region DispatcherRawSending
 
             var headers = new Dictionary<string, string>();
-            var outgoingMessage = new OutgoingMessage("MessageId", headers, new byte[] { });
-            var constraints = new[] { new NonDurableDelivery() };
+            var outgoingMessage = new OutgoingMessage("MessageId", headers, new byte[]
+            {
+            });
+            var constraints = new[]
+            {
+                new NonDurableDelivery()
+            };
             UnicastAddressTag address = new UnicastAddressTag("Destination");
-            var options = new DispatchOptions(address, DispatchConsistency.Default, constraints);
-            TransportOperation transportOperation = new TransportOperation(outgoingMessage, options);
-            await dispatcher.Dispatch(new[] { transportOperation }, new ContextBag());
+            TransportOperation transportOperation = new TransportOperation(outgoingMessage, address, DispatchConsistency.Default, constraints);
+            UnicastTransportOperation unicastTransportOperation = new UnicastTransportOperation(outgoingMessage, "destination");
+            IEnumerable<MulticastTransportOperation> multicastOperations = Enumerable.Empty<MulticastTransportOperation>();
+            UnicastTransportOperation[] unicastOperations = {unicastTransportOperation};
+            TransportOperations operations = new TransportOperations(multicastOperations, unicastOperations);
+            await dispatcher.Dispatch(operations, new ContextBag());
 
             #endregion
         }

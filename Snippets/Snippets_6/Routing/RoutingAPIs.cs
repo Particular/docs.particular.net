@@ -3,6 +3,7 @@ namespace Snippets6.Routing
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Routing;
 
@@ -51,19 +52,23 @@ namespace Snippets6.Routing
         public void DynamicEndpointMapping()
         {
             var busConfiguration = new BusConfiguration();
+
             #region Routing-DynamicEndpointMapping
+
             busConfiguration.Routing().EndpointInstances.AddDynamic(e =>
             {
                 if (e.ToString().StartsWith("Sales"))
                 {
-                    return new[]
+                    EndpointInstance[] instances =
                     {
                         new EndpointInstance(e, "1").SetProperty("SomeProp", "SomeValue"),
                         new EndpointInstance(e, "2").AtMachine("B")
                     };
+                    return Task.FromResult<IEnumerable<EndpointInstance>>(instances);
                 }
                 return null;
             });
+
             #endregion
         }
 
