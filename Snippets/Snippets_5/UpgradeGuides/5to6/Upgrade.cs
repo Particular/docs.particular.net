@@ -21,5 +21,16 @@
 
             // ReSharper restore RedundantDelegateCreation
         }
+
+        public void TransportTransactions()
+        {
+            #region 5to6DoNotWrapHandlersInTransaction
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.Transactions()
+                .DoNotWrapHandlersExecutionInATransactionScope();
+
+            #endregion
+        }
     }
 }

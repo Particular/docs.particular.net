@@ -10,24 +10,29 @@
         {
             #region TransactionsDisable
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().Disable();
+            busConfiguration.Transactions()
+                .Disable();
             #endregion
         }
 
         public void TransportTransactions()
         {
             #region TransactionsDisableDistributedTransactions
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().DisableDistributedTransactions();
-            #endregion
 
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.Transactions()
+                .DisableDistributedTransactions();
+
+            #endregion
         }
 
         public void AmbientTransactions()
         {
             #region TransactionsEnable
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().Enable().EnableDistributedTransactions();
+            busConfiguration.Transactions()
+                .Enable()
+                .EnableDistributedTransactions();
             #endregion
         }
 
@@ -35,7 +40,9 @@
         {
             #region TransactionsWrapHandlersExecutionInATransactionScope
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().DisableDistributedTransactions().WrapHandlersExecutionInATransactionScope();
+            busConfiguration.Transactions()
+                .DisableDistributedTransactions()
+                .WrapHandlersExecutionInATransactionScope();
             #endregion
         }
 

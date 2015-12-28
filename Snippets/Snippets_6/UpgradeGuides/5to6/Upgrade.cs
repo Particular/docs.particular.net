@@ -14,6 +14,19 @@
             #endregion
         }
 
+
+        public void TransportTransactions()
+        {
+            #region 5to6DoNotWrapHandlersInTransaction
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.ReceiveOnly);
+
+            #endregion
+        }
+
+
         public void CriticalError()
         {
             // ReSharper disable RedundantDelegateCreation
