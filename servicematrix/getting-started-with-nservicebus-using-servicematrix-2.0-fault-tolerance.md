@@ -7,6 +7,7 @@ tags:
 - Second-Level Retry
 - Second Level Retry
 - Error Queue
+include: sm-discontinued
 ---
 
 In [the previous section](getting-started-with-servicematrix-2.0.md) you used ServiceMatrix to created a web application that communicates with a backend processing system using NServiceBus. In this section you will continue on with your OnlineSales example and see how using NServiceBus and durable messaging can get past all sorts of failure scenarios.

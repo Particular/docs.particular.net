@@ -4,6 +4,7 @@ summary: Licensing ServiceMatrix v2.0
 tags:
 - ServiceMatrix
 - Licensing
+include: sm-discontinued
 ---
 
 When you download and install ServiceMatrix it includes a 45 day license. Ten days before the trial license expires you'll see a dialog box informing you that your licensing is close to expiring. To view the license status, select the 'Register ServiceMatrix' button in the Solution Builder toolbar as highlighted:

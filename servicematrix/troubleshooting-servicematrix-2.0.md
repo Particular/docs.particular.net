@@ -5,6 +5,7 @@ tags:
 - ServiceMatrix
 - Visual Studio
 - Troubleshooting
+include: sm-discontinued
 ---
 
 This article provides information on how to troubleshoot ServiceMatrix.
