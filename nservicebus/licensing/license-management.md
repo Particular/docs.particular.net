@@ -14,7 +14,7 @@ There are several ways to make sure that your NServiceBus endpoints pick up and 
 
 ## Using the Registry
 
-Using the registry to store your license information is a way that all platform tools can access this information easily. This includes NServiceBus endpoints, ServiceControl, ServiceInsight, and ServiceMatrix. (ServicePulse determines licensing status by querying the ServiceControl API.) Using the registry ensures that all the platform tools can access the license status without requiring additional complexity on every deployment.
+Using the registry to store your license information is a way that all platform tools can access this information easily. This includes NServiceBus endpoints, ServiceControl, and ServiceInsight. (ServicePulse determines licensing status by querying the ServiceControl API.) Using the registry ensures that all the platform tools can access the license status without requiring additional complexity on every deployment.
 
 
 ### NServiceBus Version 4.5 and above

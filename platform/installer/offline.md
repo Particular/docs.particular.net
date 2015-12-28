@@ -55,8 +55,3 @@ This MSI can be downloaded directly from here: [ServiceInsight Releases](https:/
 ### ServicePulse
 
 This MSI can be downloaded directly from here: [ServicePulse Releases](https://github.com/Particular/ServicePulse/releases/latest).
-
-
-### ServiceMatrix
-
-ServiceMatrix is no longer part of the platform installer. Read this article on [how to install ServiceMatrix](/servicematrix/installing-servicematrix-2.0.md).
