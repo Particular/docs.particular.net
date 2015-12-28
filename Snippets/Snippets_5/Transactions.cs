@@ -15,20 +15,27 @@
             #endregion
         }
 
-        public void TransportTransactions()
+        public void TransportTransactionReceiveOnly()
         {
-            #region TransactionsDisableDistributedTransactions
-
+            #region TransportTransactionReceiveOnly
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions()
                 .DisableDistributedTransactions();
-
             #endregion
         }
 
-        public void AmbientTransactions()
+        public void TransportTransactionAtomicSendsWithReceive()
         {
-            #region TransactionsEnable
+            #region TransportTransactionAtomicSendsWithReceive
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.Transactions()
+                .DisableDistributedTransactions();
+            #endregion
+        }
+
+        public void TransportTransactionScope()
+        {
+            #region TransportTransactionScope
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.Transactions()
                 .Enable()
@@ -46,13 +53,14 @@
             #endregion
         }
 
-     
+
 
         public void CustomTransactionTimeout()
         {
             #region CustomTransactionTimeout
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().DefaultTimeout(TimeSpan.FromSeconds(30));
+            busConfiguration.Transactions()
+                .DefaultTimeout(TimeSpan.FromSeconds(30));
             #endregion
         }
 
@@ -60,7 +68,8 @@
         {
             #region CustomTransactionIsolationLevel
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().IsolationLevel(IsolationLevel.RepeatableRead);
+            busConfiguration.Transactions()
+                .IsolationLevel(IsolationLevel.RepeatableRead);
             #endregion
         }
     }

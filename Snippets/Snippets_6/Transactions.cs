@@ -34,9 +34,9 @@
 
         }
 
-        public void AmbientTransactions()
+        public void TransportTransactionScope()
         {
-            #region TransactionsEnable
+            #region TransportTransactionScope
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope);
@@ -47,7 +47,8 @@
         {
             #region TransactionsWrapHandlersExecutionInATransactionScope
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().WrapHandlersExecutionInATransactionScope();
+            busConfiguration.Transactions()
+                .WrapHandlersExecutionInATransactionScope();
             #endregion
         }
 
@@ -55,7 +56,8 @@
         {
             #region CustomTransactionTimeout
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().DefaultTimeout(TimeSpan.FromSeconds(30));
+            busConfiguration.Transactions()
+                .DefaultTimeout(TimeSpan.FromSeconds(30));
             #endregion
         }
 
@@ -63,7 +65,8 @@
         {
             #region CustomTransactionIsolationLevel
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions().IsolationLevel(IsolationLevel.RepeatableRead);
+            busConfiguration.Transactions()
+                .IsolationLevel(IsolationLevel.RepeatableRead);
             #endregion
         }
     }
