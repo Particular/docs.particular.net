@@ -6,6 +6,8 @@ tags:
 - ServiceMatrix
 - Send and Receive
 - Visual Studio
+redirects:
+- platform/getting-started-with-particular-service-platform
 ---
 
 include: sm-discontinued

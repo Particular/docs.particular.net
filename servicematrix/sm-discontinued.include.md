@@ -1,3 +1,1 @@
-## ServiceMatrix is no longer available. For more details, [please read this message](http://www.particular.net/servicematrix)
-----------
-
+DANGER: ServiceMatrix has been discontinued. Please see the [ServiceMatrix product page](http://www.particular.net/servicematrix) for more information.
