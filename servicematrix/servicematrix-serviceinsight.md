@@ -6,6 +6,8 @@ tags:
 - ServiceInsight
 ---
 
+include: sm-discontinued
+
 ServiceMatrix dramatically accelerates the creation of NServiceBus systems using a graphical design tool that is integrated into the Visual Studio environment. 
 
 ServiceInsight provides the ability to visualize the behavior of your system at runtime (whether in a debug and test environment or a production environment). This visualization includes message and endpoints interactions, Saga and long running processes, performance data and more.

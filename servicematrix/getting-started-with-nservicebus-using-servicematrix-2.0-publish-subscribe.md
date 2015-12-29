@@ -6,6 +6,8 @@ tags:
 - Publish Subscribe
 ---
 
+include: sm-discontinued
+
 In the [previous article](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "ServiceMatrix Fault Tolerance") introducing ServiceMatrix, you explored some of the fault tolerance features of NServiceBus.
 
 In this article you will expand the Online Sales system and introduce the Publish/Subscribe pattern using ServiceMatrix.

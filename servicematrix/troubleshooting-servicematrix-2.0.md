@@ -7,6 +7,8 @@ tags:
 - Troubleshooting
 ---
 
+include: sm-discontinued
+
 This article provides information on how to troubleshoot ServiceMatrix.
 
 1. [Issues Uninstalling](#issues-uninstalling-servicematrix)

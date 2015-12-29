@@ -6,6 +6,8 @@ tags:
 - Persistence
 ---
 
+include: sm-discontinued
+
 NServiceBus requires a persistence store. By default, ServiceMatrix provisions your solution to use the `InMemoryPersistence` class, but only if the Visual Studio debugger is attached. If you attempt to run your project without the debugger attached, you will receive an exception informing you to choose a durable persistence class.
 
 NServiceBus offers multiple options for different persistence technologies. Please read [Persistence In NServiceBus](/nservicebus/persistence/) for an overview. The example below shows how to setup the RavenDB persistence store, but a similar process can be used for the other stores.

@@ -7,6 +7,8 @@ tags:
 - Saga
 ---
 
+include: sm-discontinued
+
 A series of articles discusses the [advantages of NServiceBus](getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance.md "Fault Tolerance in NServiceBus"). The series also explores two patterns: [request-response](getting-started-with-servicematrix-2.0.md "ServiceMatrix Request Response ") and [publish-subscribe](getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe.md "ServiceMatrix and PubSub").
 
 Business processes usually involve multiple steps and require coordination of multiple systems. You can use the saga pattern when dealing with this situation with message-based and event-driven architecture. NServiceBus has built-in [support for sagas](/nservicebus/sagas/).

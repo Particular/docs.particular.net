@@ -9,6 +9,8 @@ related:
 - servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance
 ---
 
+include: sm-discontinued
+
 This step-by-step guide to the Particular Service Platform walks you through the creation of a send-and-receive NServiceBus distributed application using ServiceMatrix V2.X for Visual Studio 2012 & 2013.
 
 The example demonstrates the integration of an online sales web store with a backend system using the request-response pattern and NServiceBus.
