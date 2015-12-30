@@ -9,7 +9,7 @@ related:
  - samples/outbox
 ---
 
-NServiceBus Version 5 brings the option of running endpoints with the same reliability we all got accustomed to while running under DTC, but now without it.
+NServiceBus from Version 5 brings the option of running endpoints with the same reliability we all got accustomed to while running under DTC, but now without it.
 
 
 ## Enabling the outbox
