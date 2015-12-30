@@ -27,7 +27,7 @@
 
         void NativeTransactions()
         {
-            #region sqlserver-config-native-transactions 2
+            #region sqlserver-config-native-transactions-atomicSendsReceive 2
 
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseTransport<SqlServerTransport>();
@@ -36,7 +36,25 @@
 
             #endregion
         }
+		
+        void AccessNativeTransactions()
+        {
+            #region sqlserver-config-native-transactions-accessTransaction 2
+			class MyHandler : IHandleMessages<MyMessage>
+            {
+				//Injected property with SqlTransport storage context
+                public SqlServerStorageContext StorageContext { get; set; }
 
+                public void Handle(MyMessage message)
+                {
+                    var currentNativeTransaction = StorageContext.Transaction;
+
+					...
+                }
+            }
+
+            #endregion
+        }
         void NoTransactions()
         {
             #region sqlserver-config-no-transactions 2
