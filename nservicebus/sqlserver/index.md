@@ -46,7 +46,7 @@ The SQL Server transport adapts the number of receiving threads (up to `MaximumC
 
 ## Transactions
 
-The general information regarding transactions supported by NServiceBus transports is described in detail [here](/nservicebus/messaging/transactions.md). The SQL Server transport supports all levels of available transaction guarantees.
+The general information regarding transactions supported by NServiceBus transports is described in detail [here](/nservicebus/messaging/transactions.md). The SQL Server transport supports all levels of available transaction guarantees. Since the most popular set up is to use SQL Server transport together with NHibernate persistence this combination is discussed in more detail.
 
 
 ### Transaction scope (Distributed transaction)
@@ -56,6 +56,12 @@ The default transaction level support for SQL Server transport is Transaction sc
 snippet:sqlserver-config-transactionscope
 
 When in this mode, the receive operation is wrapped in a `TransactionScope` together with the message processing in the pipeline. This means that usage of any other persistent resource manager (e.g. RavenDB client, another `SqlConnection` with different connection string) will cause escalation of the transaction to full two-phase commit protocol handled via Distributed Transaction Coordinator (MS DTC).
+
+In this mode the transaction is started before receiving of the message and encompasses the whole processing process including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no Distributed Transaction Coordinator (DTC) escalation.
+
+snippet:OutboxSqlServerConnectionStrings
+
+A sample covering this mode of operation is available [here](/samples/sqltransport-nhpersistence/).
 
 ### Native transaction (Transport transaction) - Receive only
 
@@ -77,14 +83,21 @@ Both connection and the transaction instances are attached to the pipeline conte
 
 snippet:sqlserver-config-native-transactions-accessTransaction
 			
+Because of the limitations of NHibernate connection management infrastructure, it wasn't possible to provide *exactly-once* message processing guarantees solely by means of sharing instances of `SqlConnection` and `SqlTransaction` between the transport and NHibernate. For that reason NServiceBus does not allow that configuration and throws an exception at start-up.
+
+Fortunately the [Outbox](/nservicebus/outbox/) feature can be used to mitigate that problem. In such scenario the messages are stored in the same physical store as saga and user data and dispatched after the whole processing is finished. NHibernate persistence detects the status of Outbox and the presence of SQLServer transport and automatically stops reusing the transport connection and transaction. All the data access is done within the Outbox ambient transaction. From the perspective of a particular endpoint this is *exactly-once* processing because of the deduplication that happens on the incoming queue. From a global point of view this is *at-least-once* since on the wire messages can get duplicated.
+
+A sample covering this mode of operation is available [here](/samples/outbox/sqltransport-nhpersistence/).
+
+
 ### No transaction
 
 
-When in this mode, the receive operation is not wrapped in any transaction so it is executed by the SQL Server in its own implicit transaction.
+When in this mode, the receive operation is not wrapped in any transaction so it is executed by the SQL Server in its own implicit transaction. This means it cannot be retried should something go wrong while processing it. Any messages sent as a result of handling the received message are delivered to their destination queues immediately. Should a failure happen between sending one message and another, the first one will be successfully delivered (*partial sends*). The business data updates that happen as part of handler execution are executed in whatever transaction context the user provided, unrelated to the sends. The saga state updates are done on the same connection as the receive but are not related to the receive or sends by means of transactions.
 
 snippet:sqlserver-config-no-transactions
 
-WARNING: This means that as soon as the `DELETE` operation used for receiving completes, the message is gone and any exception that happens during processing of this message causes it to be permanently lost.
+WARNING: This means that as soon as the `DELETE` operation used for receiving completes, the message is gone and any exception that happens during processing of this message causes it to be permanently lost. The message cannot be retried.
 
 ## Queues
 
