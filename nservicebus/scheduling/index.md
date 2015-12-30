@@ -27,7 +27,7 @@ snippet:ScheduleTask
 ## When not to use it
 
 - As soon as your task starts to get some branching logic (`if` or `switch` statements) or you start to add business logic, instead of a simple message send, you should consider moving to a [saga](/nservicebus/sagas).
-- Often, instead of polling for a certain state using the Scheduler API, you can use an event sending model, where an event is published when the expected state transition occurs, and the necessary action is then taken by an event message handler which is subscribed to it.
+- Often, instead of polling for a certain state using the Scheduler API, it is more appropriate to publish an event when the expected state transition occurs, and the necessary action is then taken by a message handler which is subscribed to it.
 - When you have requirements that are not currently supported by the Scheduler API. For example, scaling out the  tasks, canceling or deleting a scheduled task, doing a side-by-side deployment of a scheduled task as outlined in the following section.
 
 
