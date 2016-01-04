@@ -1,13 +1,13 @@
 ---
-title: Customizing the Pipeline in NSB v5
-summary: Customizing the message handling pipeline in NServiceBus version 5.
+title: Customizing the Pipeline in NServiceBus Version 5
+summary: Customizing the message handling pipeline in NServiceBus Version 5.
 tags:
 - Pipeline
 related:
 - nservicebus/pipeline/customizing
 ---
 
-In NServiceBus version 5, there are two explicit pipelines: one for the outgoing messages and one for the incoming messages. You can extend the pipeline with a custom behavior implementing `IBehavior<IncomingContext>` or `IBehavior<OutgoingContext>`.
+In NServiceBus Version 5, there are two explicit pipelines: one for the outgoing messages and one for the incoming messages. You can extend the pipeline with a custom behavior implementing `IBehavior<IncomingContext>` or `IBehavior<OutgoingContext>`.
 
 snippet:SamplePipelineBehavior
 
@@ -53,7 +53,7 @@ To help you adding your custom steps at the right place within the pipeline, the
 
 ### Outgoing Message Pipeline
 
-- `EnforceBestPractices`: This behavior is responsible for ensuring that best practices are respected. One example of this is that the user is not trying to `send` an event or to `publish` a command;
+* `EnforceBestPractices`: This behavior is responsible for ensuring that best practices are respected. One example of this is that the user is not trying to `send` an event or to `publish` a command;
 * `MutateOutgoingMessages`: Each message (like incoming messages) is passed to a set of message mutators that have the opportunity to manage and mutate the outgoing message;
 * `CreatePhysicalMessage`: This behavior transforms the logical messages that need to be sent to the corresponding `TransportMessage`;
 * `SerializeMessage`: This behavior takes care of using the configured serialization engine to serialize the outgoing message;

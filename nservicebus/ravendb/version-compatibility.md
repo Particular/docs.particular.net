@@ -68,7 +68,7 @@ snippet:Version2_5RavenDBPersistenceInitialization
 
 ## NServiceBus 3: ILMerged into the Core
 
-In **version 3 of NServiceBus** the default persistence was changed from NHibernate to RavenDB. The required RavenDB assemblies were [ILMerged](http://research.microsoft.com/en-us/people/mbarnett/ilmerge.aspx) into NServiceBus.Core.dll to give users a seamless OOTB experience.
+In NServiceBus Version 3 the default persistence was changed from NHibernate to RavenDB. The required RavenDB assemblies were [ILMerged](http://research.microsoft.com/en-us/people/mbarnett/ilmerge.aspx) into NServiceBus.Core.dll to give users a seamless OOTB experience.
 
 
 ### ILMerged RavenDB client versions

@@ -1,6 +1,6 @@
 ---
-title: Customizing the Pipeline in NSB v6
-summary: Customizing the message handling pipeline in NServiceBus version 6.
+title: Customizing the Pipeline in NServiceBus Version 6
+summary: Customizing the message handling pipeline in NServiceBus Version 6.
 tags:
 - Pipeline
 related:
@@ -44,17 +44,20 @@ The following lists describe some of the common stages which you can build your 
 
 
 ### Incoming Pipeline Stages
-* Physical message processing: Behaviors on this stage have access the raw message body before it is deserialized. This stage provides `IIncomingPhysicalMessageContext` to it's behaviors.
-* Logical message processing: This stage provides information about the received message type and it's deserialized instance. It provides `IIncomingLogicalMessageContext` to it's behaviors.
-* Handler invocation: Each received message can be handled by multiple handlers. This stage will be executed once for every associated handler and provides `IInvokeHandlerContext` to the behaviors.
+
+ * Physical message processing: Behaviors on this stage have access the raw message body before it is deserialized. This stage provides `IIncomingPhysicalMessageContext` to it's behaviors.
+ * Logical message processing: This stage provides information about the received message type and it's deserialized instance. It provides `IIncomingLogicalMessageContext` to it's behaviors.
+ * Handler invocation: Each received message can be handled by multiple handlers. This stage will be executed once for every associated handler and provides `IInvokeHandlerContext` to the behaviors.
+
 
 ### Outgoing Pipeline Stages
-* Operation specific processing: There is a dedicated stage for each bus operation (e.g. Send, Publish, Subscribe, ...). Behaviors can use one of the following contexts: `IOutgoingSendContext`, `IOutgoingPublishContext`, `IOutgoingReplyContext`, `ISubscribeContext`, `IUnsubscribeContext`.
-* Logical message processing: Behaviors on this stage have access to the message which should be sent. Use `IOutgoingLogicalMessageContext` in your behavior to enlist in this stage.
-* Physical message processing: Enables you to access the serialized message. This stage provides `IOutgoingPhysicalMessageContext` to it's behaviors.
+
+ * Operation specific processing: There is a dedicated stage for each bus operation (e.g. Send, Publish, Subscribe, ...). Behaviors can use one of the following contexts: `IOutgoingSendContext`, `IOutgoingPublishContext`, `IOutgoingReplyContext`, `ISubscribeContext`, `IUnsubscribeContext`.
+ * Logical message processing: Behaviors on this stage have access to the message which should be sent. Use `IOutgoingLogicalMessageContext` in your behavior to enlist in this stage.
+ * Physical message processing: Enables you to access the serialized message. This stage provides `IOutgoingPhysicalMessageContext` to it's behaviors.
 
 
-NOTE: As in version 5, you can still configure steps by ordering them using `WellKnownSteps`. We recommend to not rely on certain steps but to choose the appropriate stage instead.
+NOTE: As in Version 5, you can still configure steps by ordering them using `WellKnownSteps`. We recommend to not rely on certain steps but to choose the appropriate stage instead.
 
 
 ## Sharing data between behaviors
@@ -64,6 +67,5 @@ Sometimes a parent behavior might need to pass some information to a child behav
 snippet:SharingBehaviorData
 
 Note that the context respects the stage hierarchy and only allows adding new entries in the scope of the current context. A child behavior (later in the pipeline chain) can read and even modify entries set by a parent behavior (earlier in the pipeline chain) but entries added by the child cannot be accessed from the parent.
-
 
 include: customizing-exception-handling
