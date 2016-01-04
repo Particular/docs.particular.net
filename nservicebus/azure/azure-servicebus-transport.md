@@ -81,6 +81,17 @@ NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configu
 
 Defaults are just starting values. You should always measure and test these values against your solution and adjust those accordingly.
 
+### BrokeredMessage body conventions
+
+By default `BrokeredMessage` body is transmitted as a byte array. For scenarios such as native integration, the body can be stored and retrieved using an alternative - `Stream`. To specify how the `BrokeredMessage` body is stored and retrieved, override conventions provided by using `BrokeredMessageBodyConversion` class.
+
+Outgoing message:
+
+snippet: ASB-outgoing-message-convention
+
+Incoming message:
+
+snippet: ASB-incoming-message-convention
 
 ## Transactions
 

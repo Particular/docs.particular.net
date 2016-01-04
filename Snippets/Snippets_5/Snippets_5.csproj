@@ -362,6 +362,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audit\ProvideConfiguration.cs" />
+    <Compile Include="Azure\Transports\AzureServiceBus\BrokeredMessageBodyConventionUsage.cs" />
     <Compile Include="Azure\Transports\AzureStorageQueues\Usage.cs" />
     <Compile Include="BasicUsageOfIBus.cs" />
     <Compile Include="BusNotifications\SubscribeToNotifications.cs" />
