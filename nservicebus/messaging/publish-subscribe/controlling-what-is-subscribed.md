@@ -35,11 +35,11 @@ snippet:DoNotAutoSubscribeSagas
 
 ### Auto subscribe to plain messages
 
-Before Version 4 all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention where automatically subscribed. In versions 4 and 5 you could opt-into that legacy behavior using following code
+In Version 4 and lower all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention where automatically subscribed. In versions 4 and 5 you could opt-into that legacy behavior using following code
 
 snippet:AutoSubscribePlainMessages
 
-Starting with version 6 we removed that possibility as it was encouraging bad practices.
+Since Version 6 the ability to auto subscribe to plain messages was removed. Although not recommended, this can be overridden by [manually subscribing](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#how-to-manually-subscribe-to-a-message) to other message types.
 
 ### When a subscriber stops or uninstalls
 
