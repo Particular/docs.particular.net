@@ -414,6 +414,9 @@
     <Compile Include="Lifecycle\IWantToRunWhenConfigurationIsComplete.cs" />
     <Compile Include="Lifecycle\IWantToRunWhenTheBusStartsAndStops.cs" />
     <Compile Include="Extending\Features.cs" />
+    <Compile Include="Profiles\behavior.cs" />
+    <Compile Include="Profiles\configure_logging.cs" />
+    <Compile Include="Profiles\dependent_profile.cs" />
     <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="Headers\StaticHeaders.cs" />
     <Compile Include="Logging\ProvideConfiguration.cs" />

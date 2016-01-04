@@ -222,6 +222,10 @@
     <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
     <Compile Include="Persistence\Msmq\Usage.cs" />
+    <Compile Include="Profiles\behavior.cs" />
+    <Compile Include="Profiles\configure_logging.cs" />
+    <Compile Include="Profiles\defining_profile.cs" />
+    <Compile Include="Profiles\dependent_profile.cs" />
     <Compile Include="PubSub\Publishing\CreateUserCommand.cs" />
     <Compile Include="PubSub\Publishing\CreateUserHandler.cs" />
     <Compile Include="PubSub\Publishing\CreateUserSaga.cs" />
