@@ -1,5 +1,6 @@
 ﻿namespace Snippets6.UpgradeGuides._5to6
 {
+    using System;
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.ConsistencyGuarantees;
@@ -36,7 +37,7 @@
             #region 5to6CriticalError
             var busConfiguration = new BusConfiguration();
             busConfiguration.DefineCriticalErrorAction(
-                new CriticalErrorAction((endpointInstance, error, exception) =>
+                new Func<ICriticalErrorContext,Task>(context =>
                 {
                     // place you custom handling here 
                     return Task.FromResult(0);

@@ -21,14 +21,14 @@ namespace Snippets5.Host
 
         #region CustomHostErrorHandlingAction
 
-        Task OnCriticalError(IEndpointInstance endpoint, string error, Exception exception)
+        Task OnCriticalError(ICriticalErrorContext context)
         {
             // If you want the process to be active, stop the endpoint. 
-            return endpoint.Stop();
+            return context.Stop();
 
             // If you want to kill the process, await the above, then raise a fail fast error as shown below. 
-            //string failMessage = string.Format("Critical error shutting down:'{0}'.", errorMessage);
-            //Environment.FailFast(failMessage, exception);
+            //string failMessage = string.Format("Critical error shutting down:'{0}'.", context.Error);
+            //Environment.FailFast(failMessage, context.Exception);
         }
 
         #endregion

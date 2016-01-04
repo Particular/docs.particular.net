@@ -114,16 +114,16 @@ class ProgramService : ServiceBase
         #endregion
 
         #region critical-errors
-        busConfiguration.DefineCriticalErrorAction(async (endpointInstance, errorMessage, exception) =>
+        busConfiguration.DefineCriticalErrorAction(async context =>
         {
             // Log the critical error
-            logger.Fatal($"CRITICAL: {errorMessage}", exception);
+            logger.Fatal($"CRITICAL: {context.Error}", context.Exception);
 
-            await endpointInstance.Stop();
+            await context.Stop();
 
             // Kill the process on a critical error
-            string output = $"The following critical error was encountered by NServiceBus:\n{errorMessage}\nNServiceBus is shutting down.";
-            Environment.FailFast(output, exception);
+            string output = $"The following critical error was encountered by NServiceBus:\n{context.Error}\nNServiceBus is shutting down.";
+            Environment.FailFast(output, context.Exception);
         });
 
         #endregion

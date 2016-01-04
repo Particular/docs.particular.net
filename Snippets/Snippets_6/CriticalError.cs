@@ -14,9 +14,9 @@
             #region DefineCriticalErrorActionForAzureHost
 
             // Configuring how NServicebus handles critical errors
-            busConfiguration.DefineCriticalErrorAction((endpointInstance, message, exception) =>
+            busConfiguration.DefineCriticalErrorAction(context =>
             {
-                string errorMessage = $"We got a critical exception: '{message}'\r\n{exception}";
+                string errorMessage = $"We got a critical exception: '{context.Error}'\r\n{context.Exception}";
 
                 if (Environment.UserInteractive)
                 {
@@ -24,7 +24,7 @@
                 }
 
                 string fatalMessage = $"The following critical error was encountered by NServiceBus:\n{errorMessage}\nNServiceBus is shutting down.";
-                Environment.FailFast(fatalMessage, exception);
+                Environment.FailFast(fatalMessage, context.Exception);
                 return Task.FromResult(0);
             });
 
