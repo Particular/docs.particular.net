@@ -26,15 +26,5 @@
 
             #endregion
         }
-        public void AutoSubscribePlainMessages()
-        {
-            #region AutoSubscribePlainMessages
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-
-            busConfiguration.AutoSubscribe().AutoSubscribePlainMessages();
-
-            #endregion
-        }
     }
 }
