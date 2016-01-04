@@ -83,7 +83,7 @@ Defaults are just starting values. You should always measure and test these valu
 
 ### BrokeredMessage body conventions
 
-By default BrokeredMessage body is transmitted as a byte array. For scenarios such as native integration, the body can be stored and retrieved using an alternative - `Stream`. To specify how the `BrokeredMessage` body is stored an retrieved, override conventions provided by `BrokeredMessageBodyConversion` class.
+By default BrokeredMessage body is transmitted as a byte array. For scenarios such as native integration, the body can be stored and retrieved using an alternative - `Stream`. To specify how the `BrokeredMessage` body is stored and retrieved, override conventions provided by using `BrokeredMessageBodyConversion` class.
 
 Outgoing message:
 
