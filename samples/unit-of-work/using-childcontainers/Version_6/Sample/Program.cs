@@ -53,7 +53,7 @@ static class Program
             IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
             try
             {
-                IBusContext busContext = endpoint.CreateBusContext();
+                IBusSession busSession = endpoint.CreateBusSession();
                 Console.WriteLine("Press enter to send a message");
                 Console.WriteLine("Press any key to exit");
                 Console.WriteLine("After storing a few orders you can open a browser and view them at http://localhost:32076");
@@ -67,7 +67,7 @@ static class Program
                     {
                         return;
                     }
-                    await busContext.SendLocal(new PlaceOrder
+                    await busSession.SendLocal(new PlaceOrder
                     {
                         OrderNumber = $"Order-{orderNumber}",
                         OrderValue = 100
