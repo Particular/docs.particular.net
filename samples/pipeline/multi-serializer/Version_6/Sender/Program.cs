@@ -21,8 +21,8 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusContext busContext = endpoint.CreateBusContext();
-            await Run(busContext);
+            IBusSession busSession = endpoint.CreateBusSession();
+            await Run(busSession);
         }
         finally
         {
@@ -31,7 +31,7 @@ class Program
     }
 
 
-    static async Task Run(IBusContext busContext)
+    static async Task Run(IBusSession busSession)
     {
         Console.WriteLine("Press 'J' to send a JSON message");
         Console.WriteLine("Press 'X' to send a XML message");
@@ -44,35 +44,35 @@ class Program
 
             if (key.Key == ConsoleKey.X)
             {
-                await SendXmlMessage(busContext);
+                await SendXmlMessage(busSession);
                 continue;
             }
             if (key.Key == ConsoleKey.J)
             {
-                await SendJsonMessage(busContext);
+                await SendJsonMessage(busSession);
                 continue;
             }
             break;
         }
     }
 
-    static async Task SendXmlMessage(IBusContext busContext)
+    static async Task SendXmlMessage(IBusSession busSession)
     {
         MessageWithXml message = new MessageWithXml
         {
             SomeProperty = "Some content in a Xml message",
         };
-        await busContext.Send("Samples.MultiSerializer.Receiver", message);
+        await busSession.Send("Samples.MultiSerializer.Receiver", message);
         Console.WriteLine("XML message sent");
     }
 
-    static async Task SendJsonMessage(IBusContext busContext)
+    static async Task SendJsonMessage(IBusSession busSession)
     {
         MessageWithJson message = new MessageWithJson
         {
             SomeProperty = "Some content in a json message",
         };
-        await busContext.Send("Samples.MultiSerializer.Receiver", message);
+        await busSession.Send("Samples.MultiSerializer.Receiver", message);
         Console.WriteLine("Json Message sent");
     }
 }

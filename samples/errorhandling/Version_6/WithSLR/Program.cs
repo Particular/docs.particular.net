@@ -25,7 +25,7 @@ static class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusContext busContext = endpoint.CreateBusContext();
+            IBusSession busSession = endpoint.CreateBusSession();
             Console.WriteLine("Press enter to send a message that will throw an exception.");
             Console.WriteLine("Press any key to exit");
 
@@ -40,7 +40,7 @@ static class Program
                 {
                     Id = Guid.NewGuid()
                 };
-                await busContext.SendLocal(m);
+                await busSession.SendLocal(m);
             }
         }
         finally

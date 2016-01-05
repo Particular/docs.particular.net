@@ -4,13 +4,13 @@ using NServiceBus;
 public class WantToRunWhenBusStartsAndStops :
     IWantToRunWhenBusStartsAndStops
 {
-    public Task Start(IBusContext context)
+    public Task Start(IBusSession busSession)
     {
         Logger.WriteLine("Inside IWantToRunWhenBusStartsAndStops.Start");
         return Task.FromResult(0);
     }
 
-    public Task Stop(IBusContext context)
+    public Task Stop(IBusSession busSession)
     {
         Logger.WriteLine("Inside IWantToRunWhenBusStartsAndStops.Stop");
         return Task.FromResult(0);

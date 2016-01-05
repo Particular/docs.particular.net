@@ -27,7 +27,7 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusContext busContext = endpoint.CreateBusContext();
+            IBusSession busSession = endpoint.CreateBusSession();
 
             Console.WriteLine("Press enter to send 10 messages with random sleep");
             Console.WriteLine("Press any key to exit");
@@ -43,7 +43,7 @@ class Program
                 }
                 for (int i = 0; i < 10; i++)
                 {
-                    await busContext.SendLocal(new MyMessage());
+                    await busSession.SendLocal(new MyMessage());
                 }
             }
         }

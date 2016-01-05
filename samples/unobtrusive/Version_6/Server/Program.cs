@@ -24,8 +24,8 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusContext busContext = endpoint.CreateBusContext();
-            await CommandSender.Start(busContext);
+            IBusSession busSession = endpoint.CreateBusSession();
+            await CommandSender.Start(busSession);
         }
         finally
         {

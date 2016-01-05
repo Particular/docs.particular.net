@@ -22,12 +22,12 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusContext busContext = endpoint.CreateBusContext();
-            await busContext.SendLocal(new StartOrder
+            IBusSession busSession = endpoint.CreateBusSession();
+            await busSession.SendLocal(new StartOrder
                           {
                               OrderId = "123"
                           });
-            await busContext.SendLocal(new StartOrder
+            await busSession.SendLocal(new StartOrder
                           {
                               OrderId = "456"
                           });

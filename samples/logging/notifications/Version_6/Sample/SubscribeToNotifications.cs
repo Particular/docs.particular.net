@@ -15,7 +15,7 @@ public class SubscribeToNotifications :
         this.busNotifications = busNotifications;
     }
 
-    public Task Start(IBusContext context)
+    public Task Start(IBusSession busSession)
     {
         ErrorsNotifications errors = busNotifications.Errors;
         errors.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => LogToConsole(retry);
@@ -39,7 +39,7 @@ public class SubscribeToNotifications :
         Console.WriteLine("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
     }
 
-    public Task Stop(IBusContext context)
+    public Task Stop(IBusSession busSession)
     {
         return Task.FromResult(0);
     }

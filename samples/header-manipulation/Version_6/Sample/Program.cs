@@ -36,13 +36,11 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusContext busContext = endpoint.CreateBusContext();
-
-
+            IBusSession busSession = endpoint.CreateBusSession();
             #region sending
 
             MyMessage myMessage = new MyMessage();
-            await busContext.SendLocal(myMessage);
+            await busSession.SendLocal(myMessage);
 
             #endregion
 

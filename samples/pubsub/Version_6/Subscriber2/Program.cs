@@ -25,11 +25,11 @@ static class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusContext busContext = endpoint.CreateBusContext();
-            await busContext.Subscribe<IMyEvent>();
+            IBusSession busSession = endpoint.CreateBusSession();
+            await busSession.Subscribe<IMyEvent>();
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
-            await busContext.Unsubscribe<IMyEvent>();
+            await busSession.Unsubscribe<IMyEvent>();
         }
         finally
         {

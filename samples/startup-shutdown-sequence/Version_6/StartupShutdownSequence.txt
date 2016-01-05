@@ -10,7 +10,7 @@ Thread:1 Inside IWantToRunWhenBusStartsAndStops.Start
 Thread:1 Calling IEndpointInstance.CreateBusContext
 Thread:1 Bus is processing messages
 Thread:1 Calling IEndpointInstance.Stop
-Thread:8 Inside FeatureStartupTask.OnStop
-Thread:8 Inside IWantToRunWhenBusStartsAndStops.Stop
-Thread:8 Finished
+Thread:7 Inside FeatureStartupTask.OnStop
+Thread:7 Inside IWantToRunWhenBusStartsAndStops.Stop
+Thread:7 Finished
 endcode

@@ -4,7 +4,7 @@ using NServiceBus;
 
 public class Runner
 {
-    public static async Task Run(IBusContext bus)
+    public static async Task Run(IBusSession busSession)
     {
         Console.WriteLine("Press 's' to send a valid message");
         Console.WriteLine("Press 'e' to send a failed message");
@@ -19,7 +19,7 @@ public class Runner
             {
                 case ConsoleKey.S:
                     #region SendingSmall
-                    await bus.SendLocal(new CreateProductCommand
+                    await busSession.SendLocal(new CreateProductCommand
                     {
                         ProductId = "XJ128",
                         ProductName = "Milk",
@@ -34,7 +34,7 @@ public class Runner
                     try
                     {
                         #region SendingLarge
-                        await bus.SendLocal(new CreateProductCommand
+                        await busSession.SendLocal(new CreateProductCommand
                         {
                             ProductId = "XJ128",
                             ProductName = "Really long product name",

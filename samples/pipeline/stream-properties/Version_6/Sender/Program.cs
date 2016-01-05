@@ -30,8 +30,8 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusContext busContext = endpoint.CreateBusContext();
-            await Run(busContext);
+            IBusSession busSession = endpoint.CreateBusSession();
+            await Run(busSession);
         }
         finally
         {
@@ -40,7 +40,7 @@ class Program
     }
 
 
-    static async Task Run(IBusContext busContext)
+    static async Task Run(IBusSession busSession)
     {
         Console.WriteLine("Press 'F' to send a message with a file stream");
         Console.WriteLine("Press 'H' to send a message with a http stream");
@@ -52,19 +52,19 @@ class Program
 
             if (key.Key == ConsoleKey.F)
             {
-                await SendMessageWithFileStream(busContext);
+                await SendMessageWithFileStream(busSession);
                 continue;
             }
             if (key.Key == ConsoleKey.H)
             {
-                await SendMessageWithHttpStream(busContext);
+                await SendMessageWithHttpStream(busSession);
                 continue;
             }
             break;
         }
     }
 
-    static async Task SendMessageWithFileStream(IBusContext busContext)
+    static async Task SendMessageWithFileStream(IBusSession busSession)
     {
         #region send-message-with-file-stream
 
@@ -73,7 +73,7 @@ class Program
             SomeProperty = "This message contains a stream",
             StreamProperty = File.OpenRead("FileToSend.txt")
         };
-        await busContext.Send("Samples.PipelineStream.Receiver", message);
+        await busSession.Send("Samples.PipelineStream.Receiver", message);
 
         #endregion
 
@@ -81,7 +81,7 @@ class Program
         Console.WriteLine("Message with file stream sent");
     }
 
-    static async Task SendMessageWithHttpStream(IBusContext busContext)
+    static async Task SendMessageWithHttpStream(IBusSession busSession)
     {
         #region send-message-with-http-stream
 
@@ -92,7 +92,7 @@ class Program
                 SomeProperty = "This message contains a stream",
                 StreamProperty = webClient.OpenRead("http://www.particular.net")
             };
-            await busContext.Send("Samples.PipelineStream.Receiver", message);
+            await busSession.Send("Samples.PipelineStream.Receiver", message);
         }
 
         #endregion

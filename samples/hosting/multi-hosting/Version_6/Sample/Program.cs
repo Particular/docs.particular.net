@@ -31,12 +31,14 @@ class Program
                 Console.WriteLine();
                 if (key.Key == ConsoleKey.D1)
                 {
-                    await endpoint1.CreateBusContext().Send("Samples.MultiHosting.Instance2", new MyMessage());
+                    IBusSession busSession1 = endpoint1.CreateBusSession();
+                    await busSession1.Send("Samples.MultiHosting.Instance2", new MyMessage());
                     continue;
                 }
                 if (key.Key == ConsoleKey.D2)
                 {
-                    await endpoint2.CreateBusContext().Send("Samples.MultiHosting.Instance1", new MyMessage());
+                    IBusSession busSession2 = endpoint2.CreateBusSession();
+                    await busSession2.Send("Samples.MultiHosting.Instance1", new MyMessage());
                     continue;
                 }
                 return;

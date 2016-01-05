@@ -25,7 +25,6 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusContext busContext = endpoint.CreateBusContext();
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

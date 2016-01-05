@@ -4,12 +4,12 @@ using NServiceBus;
 class Sender : IWantToRunWhenBusStartsAndStops
 {
 
-    public async Task Start(IBusContext busContext)
+    public async Task Start(IBusSession session)
     {
-        await busContext.SendLocal(new MyMessage());
+        await session.SendLocal(new MyMessage());
     }
 
-    public Task Stop(IBusContext busContext)
+    public Task Stop(IBusSession session)
     {
         return Task.FromResult(0);
     }
