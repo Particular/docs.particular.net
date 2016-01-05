@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Transports.SQLServer;
 
 class Program
 {
@@ -29,8 +28,6 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusContext busContext = endpoint.CreateBusContext();
-
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 
