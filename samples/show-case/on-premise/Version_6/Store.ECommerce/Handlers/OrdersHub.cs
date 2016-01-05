@@ -19,7 +19,7 @@ public class OrdersHub : Hub
         bool isDebug = (bool)Clients.Caller.debug;
         SendOptions sendOptions = new SendOptions();
         sendOptions.SetHeader("Debug", isDebug.ToString());
-        MvcApplication.BusContext.Send(command,sendOptions);
+        MvcApplication.BusSession.Send(command,sendOptions);
     }
 
     public void PlaceOrder(string[] productIds)
@@ -43,6 +43,6 @@ public class OrdersHub : Hub
 
         SendOptions sendOptions = new SendOptions();
         sendOptions.SetHeader("Debug", isDebug.ToString());
-        MvcApplication.BusContext.Send(command, sendOptions);
+        MvcApplication.BusSession.Send(command, sendOptions);
     }
 }
