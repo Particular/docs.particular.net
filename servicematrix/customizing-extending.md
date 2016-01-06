@@ -369,8 +369,6 @@ This JavaScript should give you an example of what you need to place into your a
 
 The visual design environment of ServiceMatrix generates code designed to be extensible. This article reviewed the partial classes and methods that need to be customized. 
 
-To learn more about using sagas within ServiceMatrix refer to [this article](getting-started-sagasfullduplex-2.0.md "Using Sagas in Full Duplex").
-
 As you design your solution, learn to use ServiceInsight. [This article](servicematrix-serviceinsight.md "ServiceMatrix and ServiceInsight") reviews how both products work together and add efficiency to your design process.
 
 You can monitor your sagas and bus endpoints in production using [ServicePulse](../servicepulse)
