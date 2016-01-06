@@ -313,18 +313,10 @@
   Name: "ServiceMatrix"
   Topics:
     -
-      Title: "Getting Started"
-      Articles:
-        - "servicematrix/installing-servicematrix-2.0"
-        - "servicematrix/getting-started-with-servicematrix-2.0"
-        - "servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-fault-tolerance"
-        - "servicematrix/getting-started-with-nservicebus-using-servicematrix-2.0-publish-subscribe"
-        - "servicematrix/servicematrix-serviceinsight"
-        - "servicematrix/getting-started-sagasfullduplex-2.0"
-    -
       Title: "Using ServiceMatrix"
       Articles:
         - "servicematrix/customizing-extending"
+        - "servicematrix/servicematrix-serviceinsight"
         - "servicematrix/servicematrix-persistence"
         - "servicematrix/licensing-servicematrix-v2.0"
         - "servicematrix/troubleshooting-servicematrix-2.0"
