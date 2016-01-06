@@ -196,8 +196,9 @@
     <Reference Include="NServiceBus.RavenDB">
       <HintPath>..\..\packages\NServiceBus.RavenDB.3.0.6\lib\net45\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Testing">
-      <HintPath>..\..\packages\NServiceBus.Testing.5.0.7\lib\net45\NServiceBus.Testing.dll</HintPath>
+    <Reference Include="NServiceBus.Testing, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.Testing.5.1.1\lib\net45\NServiceBus.Testing.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Transports.RabbitMQ">
       <HintPath>..\..\packages\NServiceBus.RabbitMQ.3.0.1\lib\net45\NServiceBus.Transports.RabbitMQ.dll</HintPath>
