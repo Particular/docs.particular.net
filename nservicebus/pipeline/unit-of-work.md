@@ -4,9 +4,6 @@ summary: Implementing your own unit of work in NServiceBus.
 tags: []
 redirects:
 - nservicebus/unit-of-work-in-nservicebus
-
-related:
-- samples/unit-of-work/using-childcontainers
 ---
 
 When using a framework like NServiceBus you usually need to create your own units of work to avoid having to repeat code in your message handlers. For example, committing NHibernate transactions, or calling `SaveChanges` on the RavenDB session.

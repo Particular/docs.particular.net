@@ -6,7 +6,6 @@ tags:
 - Persistence
 related:
 - samples/ravendb
-- samples/unit-of-work/using-childcontainers
 redirects:
  - nservicebus/using-ravendb-in-nservicebus-connecting
  - nservicebus/ravendb/connecting
