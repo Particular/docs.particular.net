@@ -15,8 +15,6 @@ Messages matching the following criteria will be auto subscribed at startup.
 
  1. Defined as a event either using `IEvent` or by the `.DefiningEventsAs` convention.
  1. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given message
- 1. Has routing specified. Note that this only applies to transports that don't support publish-subscribe natively.
-
 
 ### Routing configuration needed
 
@@ -37,10 +35,13 @@ snippet:DoNotAutoSubscribeSagas
 
 ### Auto subscribe to plain messages
 
-Before Version 4 all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention where automatically subscribed. You can opt-in to the old behavior using:
+In Version 4 and lower all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention are automatically subscribed. In versions 4 and 5 you can opt-in to that legacy behavior using following code
 
 snippet:AutoSubscribePlainMessages
 
+WARNING: This is a bad practice. Subscriptions should only be based on events.
+
+Since Version 6 the ability to auto subscribe to plain messages was removed. Although not recommended, this can be overridden by [manually subscribing](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#how-to-manually-subscribe-to-a-message) to other message types.
 
 ### When a subscriber stops or uninstalls
 
