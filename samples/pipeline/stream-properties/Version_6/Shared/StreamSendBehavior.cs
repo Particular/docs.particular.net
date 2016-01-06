@@ -47,7 +47,7 @@ class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
 
             using (FileStream target = File.OpenWrite(filePath))
             {
-                sourceStream.CopyTo(target);
+                await sourceStream.CopyToAsync(target).ConfigureAwait(false);
             }
 
             //Reset the property to null so no other serializer attempts to use the property
@@ -61,7 +61,7 @@ class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
             context.Headers["NServiceBus.PropertyStream." + headerKey] = fileKey;
         }
 
-        await next();
+        await next().ConfigureAwait(false);
         #endregion
     }
     #region generate-key-for-stream
