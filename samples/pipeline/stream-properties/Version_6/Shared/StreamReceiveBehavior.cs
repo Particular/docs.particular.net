@@ -56,7 +56,7 @@ class StreamReceiveBehavior : Behavior<IIncomingLogicalMessageContext>
 
         #region cleanup-after-nested-action
 
-        await next();
+        await next().ConfigureAwait(false);
         // Clean up all the temporary streams after handler processing
         // via the "next()" delegate has occurred
         foreach (FileStream fileStream in streamsToCleanUp)

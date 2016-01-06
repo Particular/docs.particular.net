@@ -11,7 +11,7 @@
         public override async Task Invoke(IOutgoingLogicalMessageContext context, Func<Task> next)
         {
             context.Headers["MyCustomHeader"] = "My custom value";
-            await next();
+            await next().ConfigureAwait(false);
         }
     }
     #endregion

@@ -15,7 +15,7 @@
             // set some shared information on the context
             context.Extensions.Set(new SharedData());
 
-            await next();
+            await next().ConfigureAwait(false);
         }
     }
 
@@ -26,7 +26,7 @@
             // access the shared data
             SharedData data = context.Extensions.Get<SharedData>();
 
-            await next();
+            await next().ConfigureAwait(false);
         }
     }
 

@@ -16,7 +16,7 @@ namespace Snippets6.Pipeline
             {
                 if (ShouldPipelineContinue(context))
                 {
-                    await next();
+                    await next().ConfigureAwait(false);
                 }
                 // since next is not invoke all downstream behaviors will be skipped
             }

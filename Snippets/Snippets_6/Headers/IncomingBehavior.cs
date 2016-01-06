@@ -14,7 +14,7 @@
             Dictionary<string, string> headers = context.Message.Headers;
             string nsbVersion = headers[Headers.NServiceBusVersion];
             string customHeader = headers["MyCustomHeader"];
-            await next();
+            await next().ConfigureAwait(false);
         }
     }
     #endregion
