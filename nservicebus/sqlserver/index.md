@@ -35,56 +35,76 @@ CREATE CLUSTERED INDEX [Index_RowVersion] ON [schema].[queuename](
 ) WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ```
 
-The column are directly mapped to the properties of `NServiceBus.TransportMessage` class. Receiving messages is conducted via a `DELETE` statement from the top of the table (the oldest row according to `[RowVersion]` column).
+Up until version 2.x columns are directly mapped to the properties of `NServiceBus.TransportMessage` class. In version 3.0 the `NServiceBus.TransportMessage` class was replaced with `NServiceBus.Transports.IncomingMessage` and `NServiceBus.Transports.OutgoingMessage`, which are used by incoming and outgoing pipeline, respectively. Receiving messages is conducted via a `DELETE` statement from the top of the table (the oldest row according to `[RowVersion]` column).
 
 The tables are created during host install time by [installers](/nservicebus/operations/installers.md). It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
 
 
 ## Concurrency
 
-The SQL Server transport adapts the number of receiving threads (up to `MaximumConcurrencyLevel` [set via `TransportConfig` section](/nservicebus/msmq/transportconfig.md)) to the amount of messages waiting for processing. When idle it maintains only one thread that continuously polls the table queue. A more details description of the concurrency control mechanism, as well as the description of behavior of previous versions, can be found [here](concurrency.md).
-
+The SQL Server transport adapts the number of receiving threads (up to `MaximumConcurrencyLevel` [set via `TransportConfig` section](/nservicebus/msmq/transportconfig.md)) to the amount of messages waiting for processing. When idle it maintains only one thread that continuously polls the table queue. A more detailed description of the concurrency control mechanism, as well as the description of behavior of previous versions, can be found [here](concurrency.md).
 
 ## Transactions
 
-The SQL Server transport can work in three modes with regards to transactions. These modes are enabled based on the bus configurations:
+The general information regarding transactions supported by NServiceBus transports is described in detail [here](/nservicebus/messaging/transactions.md). The SQL Server transport supports all levels of available transaction guarantees. Since the most popular set up is to use SQL Server transport together with NHibernate persistence this combination is discussed in more detail.
 
 
-### Ambient transaction
+### Transaction scope (Distributed transaction)
 
-The ambient transaction mode is selected by default. It relies or `Transactions.Enabled` setting being set to `true` and `Transactions.SuppressDistributedTransactions` being set to false. One needs to only select the transport:
+The default transaction level support for SQL Server transport is Transaction scope (or Distributed transaction). It doesn't require any setup, distributed transactions are enabled by default when you choose SQL Server transport:
 
 snippet:sqlserver-config-transactionscope
 
 When in this mode, the receive operation is wrapped in a `TransactionScope` together with the message processing in the pipeline. This means that usage of any other persistent resource manager (e.g. RavenDB client, another `SqlConnection` with different connection string) will cause escalation of the transaction to full two-phase commit protocol handled via Distributed Transaction Coordinator (MS DTC).
 
+In this mode the transaction is started before receiving of the message and encompasses the whole processing process including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no Distributed Transaction Coordinator (DTC) escalation.
 
-### Native transaction
+snippet:OutboxSqlServerConnectionStrings
 
-The native transaction mode requires both `Transactions.Enabled` and `Transactions.SuppressDistributedTransactions` to be set to `true`. It can be selected via
+A sample covering this mode of operation is available [here](/samples/sqltransport-nhpersistence/).
 
-snippet:sqlserver-config-native-transactions
+### Native transaction (Transport transaction) - Receive only
 
-When in this mode, the receive operation is wrapped in a plain ADO.NET `SqlTransaction`. Both connection and the transaction instances are attached to the pipeline context under these keys `SqlConnection-{ConnectionString}` and `SqlTransaction-{ConnectionString}` and are available for user code so that the updates to user data can be done atomically with queue receive operation.
+
+In this mode the receive operation is wrapped in a plain ADO.NET `SqlTransaction`. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is finished successfully. It can be selected via
+
+snippet:sqlserver-config-native-transactions-receiveOnly
+
+**Note:** This mode wasn't available for SQL Server transport prior to version 3.0. In older versions the only supported guarantee level for native transactions was *Sends atomic with receive*.
+
+
+### Native transaction (Transport transaction) -  Sends atomic with Receive
+
+In this mode the outgoing operations are wrapped in the same plain ADO.NET `SqlTransaction` as the current receive operation. This prevents messages being sent to downstream endpoints during retries. 
+
+snippet:sqlserver-config-native-transactions-atomicSendsReceive
+
+Both connection and the transaction instances are attached to the pipeline context  and are available for user code so that the updates to user data can be done atomically with queue receive operation. You can access current transaction via current SQL Server transport storage context, by using property injection:
+
+snippet:sqlserver-config-native-transactions-accessTransaction
+			
+Because of the limitations of NHibernate connection management infrastructure, it wasn't possible to provide *exactly-once* message processing guarantees solely by means of sharing instances of `SqlConnection` and `SqlTransaction` between the transport and NHibernate. For that reason NServiceBus does not allow that configuration and throws an exception at start-up.
+
+Fortunately the [Outbox](/nservicebus/outbox/) feature can be used to mitigate that problem. In such scenario the messages are stored in the same physical store as saga and user data and dispatched after the whole processing is finished. NHibernate persistence detects the status of Outbox and the presence of SQLServer transport and automatically stops reusing the transport connection and transaction. All the data access is done within the Outbox ambient transaction. From the perspective of a particular endpoint this is *exactly-once* processing because of the deduplication that happens on the incoming queue. From a global point of view this is *at-least-once* since on the wire messages can get duplicated.
+
+A sample covering this mode of operation is available [here](/samples/outbox/sqltransport-nhpersistence/).
 
 
 ### No transaction
 
-The no transaction mode requires `Transactions.Enabled` to be set to false which can be achieved via following API call:
+
+When in this mode, the receive operation is not wrapped in any transaction so it is executed by the SQL Server in its own implicit transaction. This means it cannot be retried should something go wrong while processing it. Any messages sent as a result of handling the received message are delivered to their destination queues immediately. Should a failure happen between sending one message and another, the first one will be successfully delivered (*partial sends*). The business data updates that happen as part of handler execution are executed in whatever transaction context the user provided, unrelated to the sends. The saga state updates are done on the same connection as the receive but are not related to the receive or sends by means of transactions.
 
 snippet:sqlserver-config-no-transactions
 
-When in this mode, the receive operation is not wrapped in any transaction so it is executed by the SQL Server in its own implicit transaction.
+WARNING: This means that as soon as the `DELETE` operation used for receiving completes, the message is gone and any exception that happens during processing of this message causes it to be permanently lost. The message cannot be retried.
 
-WARNING: This means that as soon as the `DELETE` operation used for receiving completes, the message is gone and any exception that happens during processing of this message causes it to be permanently lost.
+## Queues
 
-
-## Primary queue
+### Version 2.x and older
+Prior to version 3.0 there were two kinds of queues - primary queues and secondary queues. Primary queues support the standard functionality of the SQL Server transport. Secondary queues are mechanism introduced in order to support [callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md) in a scale-out scenario. 
 
 For each endpoint there is a single primary queue table which name matches the name of the endpoint. This single queue is shared by all instances in case of a scale-out scenario.
-
-
-## Secondary queues
 
 In order for [callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md) to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is necessary because callback handlers are stored in-memory in the node that did the send. The reply is sent via should be delivered to this special queue so that it is picked up by the same node that registered the callback.
 
@@ -96,17 +116,21 @@ snippet:sqlserver-config-disable-secondaries
 
 Secondary queues use same adaptive concurrency model to the primary queue. Secondary queues (and hence callbacks) are disabled for satellite receivers.
 
-
-## Callback Receiver Max Concurrency
-
-Changes the number of threads that should be used for the callback receiver. The default is 1 thread.
+Callback Receiver Max Concurrency setting changes the number of threads that should be used for the callback receiver. The default is 1 thread.
 
 snippet:sqlserver-CallbackReceiverMaxConcurrency
+
+### Version 3.0 and higher
+In version 3.0 there is only one kind of queues. Each endpoint instance has its own dedicated queue table. The name matches the name of the endpoint instance and contains additional suffix to differentiate between endpoint instances. In short, it's a scale-out first, where set up with a single endpoint instance is treated as a specific case of scale-out. 
+
+//TODO: explain how that could be specified and how one should configure this transport to work correctly, do we have defaults? Run test & check
+
+In order to use callbacks in version 3.x, you need to use a dedicated Nuget package `NServiceBus.Callbacks`. The usage is described [here](/nservicebus/messaging/handling-responses-on-the-client-side.md).
 
 
 ## Circuit Breaker
 
-The Sql transport has a built in circuit breaker to handle intermittent Sql connectivity problems.
+The Sql transport has a built in circuit breaker to handle intermittent SQL Server connectivity problems.
 
 
 ### Wait time
@@ -124,42 +148,4 @@ Overrides the default time to pause after a failure while trying to receive a me
 
 The default is 10 seconds.
 
-snippet: sqlserver-PauseAfterReceiveFailure
-
-
-## Connection strings
-
-Connection string can be configured in several ways
-
-
-### Via the App.Config
-
-By adding a connection named `NServiceBus/Transport` in the `connectionStrings` node.
-  
-```xml
-<connectionStrings>
-   <!-- SQL Server -->
-   <add name="NServiceBus/Transport"
-        connectionString="Data Source=.\SQLEXPRESS;
-                                      Initial Catalog=nservicebus;
-                                      Integrated Security=True"/>
-</connectionStrings>
-```
-
-
-### Via the configuration API
-
-By using the `ConnectionString` extension method.
-
-snippet:sqlserver-config-connectionstring
-
-
-### Via a named connection string
-
-By using the `ConnectionStringName` extension method.
-
-snippet:sqlserver-named-connection-string
-
-Combined with a named connection in the `connectionStrings` node of you `app.config`.
-
-snippet:sqlserver-named-connection-string-xml
+snippet:sqlserver-PauseAfterReceiveFailure

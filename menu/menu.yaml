@@ -96,6 +96,7 @@
         - Title: "Sql Server"
           Url: "nservicebus/sqlserver"
           Articles:
+            - "nservicebus/sqlserver/connection-strings"
             - "nservicebus/sqlserver/usage"
             - "nservicebus/sqlserver/design"
             - "nservicebus/sqlserver/concurrency"
