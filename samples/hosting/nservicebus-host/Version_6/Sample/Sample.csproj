@@ -43,7 +43,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Host, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Host.7.0.0-unstable0049\lib\net452\NServiceBus.Host.exe</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Host.7.0.0-pullrequest0049\lib\net452\NServiceBus.Host.exe</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -63,7 +63,6 @@
     <Compile Include="MessageSender.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
