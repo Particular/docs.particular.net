@@ -9,6 +9,7 @@ public class EndpointConfig : IConfigureThisEndpoint
         busConfiguration.EndpointName("Samples.NServiceBus.Host");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
+        busConfiguration.SendFailedMessagesTo("error");
         busConfiguration.UsePersistence<InMemoryPersistence>();
     }
 }

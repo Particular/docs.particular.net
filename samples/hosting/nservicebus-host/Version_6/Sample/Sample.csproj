@@ -56,7 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />
