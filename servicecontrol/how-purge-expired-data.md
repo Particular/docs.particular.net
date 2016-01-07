@@ -15,8 +15,8 @@ Note: The expiration process only curates the data in the embedded RavenDB. Audi
 The following settings would change the expiration task to run every 15 minutes and expire messages older than 10 days.
 
 ```
-<add key="ServiceControl/ExpirationProcessTimerInSeconds" value=900 />
-<add key="ServiceControl/HoursToKeepMessagesBeforeExpiring" value=240 />
+<add key="ServiceControl/ExpirationProcessTimerInSeconds" value="900" />
+<add key="ServiceControl/HoursToKeepMessagesBeforeExpiring" value="240" />
 ```
 
 Note: It is not recommended to set `ExpirationProcessTimerInSeconds` to a value lower that 300.
