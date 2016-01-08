@@ -17,14 +17,14 @@ public class OrderSaga : Saga<OrderSagaData>,
             .ToSaga(sagaData => sagaData.OrderId);
     }
 
-    public Task Handle(StartOrder message, IMessageHandlerContext context)
+    public async Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
         string orderDescription = "The saga for order " + message.OrderId;
         Data.OrderDescription = orderDescription;
         logger.InfoFormat("Received StartOrder message {0}. Starting Saga", Data.OrderId);
 
-        context.SendLocal(new ShipOrder
+        await context.SendLocal(new ShipOrder
         {
             OrderId = message.OrderId
         });
@@ -34,18 +34,17 @@ public class OrderSaga : Saga<OrderSagaData>,
         {
             OrderDescription = orderDescription
         };
-        return RequestTimeout(context, TimeSpan.FromSeconds(5), timeoutData);
+        await RequestTimeout(context, TimeSpan.FromSeconds(5), timeoutData);
     }
 
-    public Task Timeout(CompleteOrder state, IMessageHandlerContext context)
+    public async Task Timeout(CompleteOrder state, IMessageHandlerContext context)
     {
         logger.InfoFormat("Saga with OrderId {0} completed", Data.OrderId);
-        context.Publish(new OrderCompleted
+        await context.Publish(new OrderCompleted
         {
             OrderId = Data.OrderId
         });
         MarkAsComplete();
-        return Task.FromResult(0);
     }
 }
 

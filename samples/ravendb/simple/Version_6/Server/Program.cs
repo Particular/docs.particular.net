@@ -35,14 +35,14 @@ static class Program
             busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.EnableInstallers();
 
-            IEndpointInstance endpoint = await Endpoint.Start( busConfiguration );
+            IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
             try {
-                IBusSession busSession = endpoint.CreateBusSession( );
-                Console.WriteLine( "Press any key to exit" );
-                Console.ReadKey( );
+                IBusSession busSession = endpoint.CreateBusSession();
+                Console.WriteLine("Press any key to exit");
+                Console.ReadKey();
             }
             finally {
-                await endpoint.Stop( );
+                await endpoint.Stop();
             }
         }
     }
