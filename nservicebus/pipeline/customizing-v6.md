@@ -60,6 +60,7 @@ The following lists describe some of the common stages which you can build your 
 
 NOTE: As in Version 5, you can still configure steps by ordering them using `WellKnownSteps`. We recommend to not rely on certain steps but to choose the appropriate stage instead.
 
+
 ## Sharing data between behaviors
 
 Sometimes a parent behavior might need to pass some information to a child behavior and vice versa. The `context` parameter of a behavior's Invoke method facilitates  passing data between behaviors. The context is very similar to a shared dictionary which allows adding and retrieving information from different behaviors.
@@ -70,19 +71,22 @@ Note that the context respects the stage hierarchy and only allows adding new en
 
 include: customizing-exception-handling
 
+
 ## Advanced concepts
+
 
 ### Stage Connectors
 
-![Stage Connector](StageConnectors.svg)
+![Stage Connector](stage-connectors.svg)
 
 Stage connectors connect from the current stage (i.ex. `IOutgoingLogicalMessageContext`) to another stage (i.ex. `IOutgoingPhysicalMessageContext`). In order to override an existing stage you need to inherit from `StageConnector<TFromContext, TToContext>` and then replace an existing stage connector. Most pipeline extensions can be done by just inheriting from `Behavior<TContext>`. It is rarely ever necessary to implement stage connectors or replace existing ones. If you implement a stage connector you need to make sure that all required data is passed along for the next stage.
 
 snippet:CustomStageConnector
 
+
 ### Fork Connectors
 
-![Fork Connector](ForkConnectors.svg)
+![Fork Connector](fork-connectors.svg)
 
 Fork connectors fork from a current stage (i.ex. `IIncomingPhysicalMessageContext`) to another independent pipeline (i.ex. `IAuditContext`). A fork connector has the required knowledge to create additional pipelines and cache them appropriately for performance reasons. In order to override an existing fork connector you need to inherit from `ForkConnector<TFromContext, TForkContext>` and then replace an existing fork connector.
 
@@ -90,9 +94,10 @@ snippet:CustomForkConnector
 
 There is currently no mechanism available to create pipelines which are not known to NServiceBus.
 
+
 ### Stage Fork Connector
 
-![Stage Fork Connector](StageForkConnectors.svg)
+![Stage Fork Connector](stage-fork-connectors.svg)
 
 Stage fork connectors are essentially a marriage of a stage connector and a fork connector. They have the ability to connect from the current stage (i.ex. `ITransportReceiveContext`) to another stage (i.ex. `IIncomingPhysicalMessageContext`) and fork to another independent pipeline (i.ex. `IBatchedDispatchContext`). Like a fork connector it has the required knowledge to create additional pipelines and cache them appropriately for performance reasons. In order to override an existing stage fork connector you need to inherit from `StageForkConnector<TFromContext, TToContext, TForkContext` and then replace an existing stage fork connector.
 
