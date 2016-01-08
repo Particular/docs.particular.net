@@ -4,7 +4,7 @@ summary: Outlines the usage, management and restrictions of the NServiceBus lice
 tags: []
 related:
  - nservicebus/upgrades/release-policy
-- nservicebus/upgrades/support-policy
+ - nservicebus/upgrades/support-policy
 ---
 
 ## License details
