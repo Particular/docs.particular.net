@@ -11,7 +11,6 @@
             // Do your startup action here. 
             // Either mark your Start method as async or do the following
             return Task.FromResult(0);
-
         }
 
         public Task Stop(IBusSession session)
