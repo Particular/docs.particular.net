@@ -13,9 +13,9 @@ See [Particular Licensing](http://particular.net/licensing) for specific license
 
 ## Supported Versions
 
-Supported versions include any major version released within the last 3 years. Within a supported major version, we support the latest minor version, or any minor version released within the last year.
+Supported versions include any major version released within the last 3 years. Within a supported major version, the latest minor version is supported, or any minor version released within the last year.
 
-If your version is not listed or has expired but you would like support, please [contact us](http://particular.net/contactus). For more information on the relationship between licensing and release see our [release policy](/nservicebus/upgrades/release-policy.md).
+If a version is not listed or has expired but support is required please [contact us](http://particular.net/contactus). For more information on the relationship between licensing and release see [release policy](/nservicebus/upgrades/release-policy.md).
 
 
 ### NServiceBus 5.x
@@ -35,4 +35,4 @@ If your version is not listed or has expired but you would like support, please 
 
 ### NServiceBus 3.x
 
-As of 10 October 2015, we no longer support Version 3. If you're currently using this version and require support, please [contact us](http://particular.net/contactus).
+As of 10 October 2015, Version 3 is no longer support Version 3. If support is required for this version please [contact us](http://particular.net/contactus).

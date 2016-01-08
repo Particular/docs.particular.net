@@ -69,15 +69,15 @@ Next to your endpoint, the role definition will also include additional services
 * Configuration system: This system allows you to update configuration settings from the Azure management portal, or through the service management API, and the platform will promote these configuration settings to all instances in your roles without downtime.
 * Diagnostics service: This system allows you to collect diagnostics information from the different role instances (application logs, event logs, performance counters, etc.) and aggregate them in a central storage account.
 
-To integrate these facilities with your endpoint code, we have provided a specific `NServiceBusRoleEntrypoint` that wires our regular host into a role entrypoint. In addition, there are specific NServiceBus `Roles` (not to be confused with Azure roles) such as `AsA_Worker` in the `NServiceBus.Hosting.Azure` package.
+To integrate these facilities with an endpoint use `NServiceBusRoleEntrypoint` which wires the regular host into a role entrypoint. In addition, there are specific NServiceBus `Roles` (not to be confused with Azure roles) such as `AsA_Worker` in the `NServiceBus.Hosting.Azure` package.
 
 To learn more about the details of hosting in Azure cloud services, refer to [Cloud Services](hosting-in-azure-cloud-services.md).
 
 
 ## Cloud Services - Shared Hosting
 
-The Cloud Services model is beautiful when it comes to building large scale systems, but in reality only a few systems need size from the very beginning, and find this model quite expensive. Most want to start out small and cheap, then grow larger over time.
+The Cloud Services model is best suited to building large scale systems, but in reality only a few systems need size from the very beginning, and find this model quite expensive. Most start out small and cheap, then grow larger over time.
 
-To support this need to start small, we also provide a shared hosting option, using the `AsA_Host` role. In this model, the role entry point doesn't actually host an endpoint itself. Instead, it downloads, invokes, and manages other worker role entry points as child processes on the same machine.
+To support this need to start small a shared hosting option is available using the `AsA_Host` role. In this model, the role entry point doesn't actually host an endpoint itself. Instead, it downloads, invokes, and manages other worker role entry points as child processes on the same machine.
 
 If you want to learn more about the shared hosting options, please refer to [Cloud Services - Shared hosting](shared-hosting-in-azure-cloud-services.md).

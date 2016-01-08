@@ -21,7 +21,7 @@ This role allows you to co-locate multiple endpoints on the same set of machines
 
 **Prerequisites** This approach assumes you already have your endpoints [hosted in worker roles](hosting-in-azure-cloud-services.md). The rest of this article will focus on how to transition from a multi worker environment to a shared hosting environment.
 
-Instead of having our endpoints packaged & deployed by the Azure infrastructure, we will package them ourselves (as zip files), and put them in a well known location (in Azure blob storage).
+Instead of having endpoints packaged & deployed by the Azure infrastructure they are packaged as zip files and placed in a well known location (in Azure blob storage).
 
 Then we'll add a new worker role to the cloud services solution that will act as the host. This host will be configured to pull the endpoints from the well known location, extract them to disk and run them.
 
@@ -56,15 +56,13 @@ public class WorkerRole : RoleEntryPoint
 	
 	public override bool OnStart()
 	{
-	    nsb.Start();
-	
+	    nsb.Start();	
 	    return base.OnStart();
 	}
 	
 	public override void OnStop()
 	{
-	    nsb.Stop();
-	
+	    nsb.Stop();	
 	    base.OnStop();
 	}
 }
