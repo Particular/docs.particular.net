@@ -1,5 +1,5 @@
 ﻿using System;
-using NServiceBus.Saga;
+using NServiceBus;
 
 #region sagadata
 
@@ -10,7 +10,6 @@ public class OrderSagaData :
     public string Originator { get; set; }
     public string OriginalMessageId { get; set; }
 
-    [Unique]
     public Guid OrderId { get; set; }
     public string OrderDescription { get; set; }
 }
