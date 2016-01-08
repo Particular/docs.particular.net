@@ -8,7 +8,7 @@
     using NServiceBus.Settings;
     using NServiceBus.Transports;
 
-    public class Transactions
+    public class TransportTransactions
     {
         public void Unreliable()
         {
@@ -16,6 +16,24 @@
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.None);
+            #endregion
+        }
+
+        public void TransportTransactionReceiveOnly()
+        {
+            #region TransportTransactionReceiveOnly
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.ReceiveOnly);
+            #endregion
+        }
+
+        public void TransportTransactionAtomicSendsWithReceive()
+        {
+            #region TransportTransactionAtomicSendsWithReceive
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             #endregion
         }
 
@@ -32,17 +50,8 @@
         {
             #region TransactionsWrapHandlersExecutionInATransactionScope
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions()
-                .WrapHandlersExecutionInATransactionScope();
-            #endregion
-        }
-
-        public void CustomTransactionTimeout()
-        {
-            #region CustomTransactionTimeout
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions()
-                .DefaultTimeout(TimeSpan.FromSeconds(30));
+            busConfiguration.UnitOfWork()
+                .WrapHandlersInATransactionScope();
             #endregion
         }
 
@@ -50,8 +59,19 @@
         {
             #region CustomTransactionIsolationLevel
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.Transactions()
-                .IsolationLevel(IsolationLevel.RepeatableRead);
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.TransactionScope)
+                .TransactionScopeOptions(isolationLevel: IsolationLevel.RepeatableRead);
+            #endregion
+        }
+
+        public void CustomTransactionTimeout()
+        {
+            #region CustomTransactionTimeout
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.TransactionScope)
+                .TransactionScopeOptions(timeout: TimeSpan.FromSeconds(30));
             #endregion
         }
     }
@@ -99,5 +119,13 @@
         }
 
         public override string ExampleConnectionStringForErrorMessage { get; }
+    }
+
+    internal static class MyTransportConfigurationExtensions
+    {
+        public static TransportExtensions<MyTransport> TransactionScopeOptions(this TransportExtensions<MyTransport> transportExtensions, TimeSpan? timeout = null, IsolationLevel? isolationLevel = null)
+        {
+            return transportExtensions;
+        }
     }
 }

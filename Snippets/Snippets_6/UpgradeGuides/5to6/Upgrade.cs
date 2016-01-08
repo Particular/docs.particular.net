@@ -3,6 +3,7 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Transactions;
     using NServiceBus;
     using NServiceBus.ConsistencyGuarantees;
     using NServiceBus.MessageMutator;
@@ -79,6 +80,25 @@
         
             bool isTransactional = readOnlySettings.GetRequiredTransactionModeForReceives() != TransportTransactionMode.None;
 
+            #endregion
+        }
+
+        public void TransportTransactionIsolationLevelAndTimeout()
+        {
+            #region 5to6TransportTransactionScopeOptions
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<MyTransport>()
+                .Transactions(TransportTransactionMode.TransactionScope)
+                .TransactionScopeOptions(isolationLevel: IsolationLevel.RepeatableRead, timeout: TimeSpan.FromSeconds(30));
+            #endregion
+        }
+
+        public void WrapHandlersExecutionInATransactionScope()
+        {
+            #region 5to6WrapHandlersExecutionInATransactionScope
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UnitOfWork()
+                .WrapHandlersInATransactionScope();
             #endregion
         }
     }
