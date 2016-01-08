@@ -30,7 +30,7 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
     }
 
 
-    public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> next)
+    public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> stage)
     {
         var incomingMessage = context.Message;
 
@@ -38,7 +38,7 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
 
         foreach (var message in messages)
         {
-            await next(new IncomingLogicalMessageContext(message, context.MessageId, context.ReplyToAddress, context.Message.Headers, context)).ConfigureAwait(false);
+            await stage(new IncomingLogicalMessageContext(message, context.MessageId, context.ReplyToAddress, context.Message.Headers, context)).ConfigureAwait(false);
         }
 
     }
