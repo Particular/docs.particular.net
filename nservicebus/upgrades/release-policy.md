@@ -32,7 +32,7 @@ By following SemVer 2.0 you will be able to quickly determine the urgency, risk 
 
 While not stipulated by SemVer we've made the decision to backport important fixes to all supported versions of NServiceBus.
 
-See [licensing](/nservicebus/licensing/) for more details on supported versions.
+See [licensing](/nservicebus/upgrades/ssupport-policy) for more details on supported versions.
 
 By using a supported version you will get critical bugfixes without the associated risk and effort of upgrading to a higher `{major}.{minor}` version.
 
