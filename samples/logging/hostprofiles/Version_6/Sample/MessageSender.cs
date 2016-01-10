@@ -7,7 +7,7 @@ public class MessageSender : IWantToRunWhenBusStartsAndStops
     {
        await session.SendLocal(new MyMessage());
     }
-    public  Task Stop(IBusSession session)
+    public Task Stop(IBusSession session)
     {
         return Task.FromResult(0);
     }
