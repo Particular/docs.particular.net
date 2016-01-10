@@ -27,7 +27,8 @@ class SerializeConnector : StageConnector<IOutgoingLogicalMessageContext, IOutgo
     {
         if (context.ShouldSkipSerialization())
         {
-            await stage(new OutgoingPhysicalMessageContext(new byte[0], context.RoutingStrategies, context)).ConfigureAwait(false);
+            IOutgoingPhysicalMessageContext emptyPhysicalMessageContext = this.CreateOutgoingPhysicalMessageContext(new byte[0], context.RoutingStrategies, context);
+            await stage(emptyPhysicalMessageContext).ConfigureAwait(false);
             return;
         }
 
@@ -37,7 +38,8 @@ class SerializeConnector : StageConnector<IOutgoingLogicalMessageContext, IOutgo
         context.Headers[Headers.EnclosedMessageTypes] = SerializeEnclosedMessageTypes(messageType);
 
         var array = Serialize(messageSerializer, context);
-        await stage(new OutgoingPhysicalMessageContext(array, context.RoutingStrategies, context)).ConfigureAwait(false);
+        IOutgoingPhysicalMessageContext physicalMessageContext = this.CreateOutgoingPhysicalMessageContext(array, context.RoutingStrategies, context);
+        await stage(physicalMessageContext).ConfigureAwait(false);
     }
 
     byte[] Serialize(IMessageSerializer messageSerializer, IOutgoingLogicalMessageContext context)

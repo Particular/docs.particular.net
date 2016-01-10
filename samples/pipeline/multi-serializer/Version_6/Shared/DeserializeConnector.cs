@@ -29,7 +29,6 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
         this.logicalMessageFactory = logicalMessageFactory;
     }
 
-
     public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> stage)
     {
         var incomingMessage = context.Message;
@@ -38,9 +37,9 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
 
         foreach (var message in messages)
         {
-            await stage(new IncomingLogicalMessageContext(message, context.MessageId, context.ReplyToAddress, context.Message.Headers, context)).ConfigureAwait(false);
+            IIncomingLogicalMessageContext logicalMessageContext = this.CreateIncomingLogicalMessageContext(message, context);
+            await stage(logicalMessageContext).ConfigureAwait(false);
         }
-
     }
 
     List<LogicalMessage> ExtractWithExceptionHandling(IncomingMessage message)
