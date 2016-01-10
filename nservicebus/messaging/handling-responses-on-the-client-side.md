@@ -11,15 +11,7 @@ related:
 To handle responses on the client, the client (or the sending process) must have its own queue and cannot be configured as a SendOnly endpoint. When messages arrive in this queue, they are handled just like on the server by a message handler:
 
 
-```C#
-public class MyHandler : IHandleMessages<MyMessage>
-{
-     public void Handle(MyMessage message)
-     {
-          // do something in the client process
-     }
-}
-```
+snippet:EmptyHandler
 
 
 ## Handling responses in the context of a message being sent

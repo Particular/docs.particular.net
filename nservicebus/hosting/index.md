@@ -37,7 +37,7 @@ The user is also responsible for properly shutting down the endpoint when it is 
 
 snippet:Hosting-Shutdown
 
-NOTE: Starting with V6 we no longer provide the `Dispose` method. This is because there is now way to flow the asynchronous context through the `Dispose` method. The shutdown procedure might involve executing async code (e.g. `IWantToRunWhenBusStartsAndStops`) which means that if `Dispose` would wrap `Stop` with a `GetResult()` call, it could cause deadlocks.
+NOTE: Starting with Version 6 we no longer provide the `Dispose` method. This is because there is now way to flow the asynchronous context through the `Dispose` method. The shutdown procedure might involve executing async code (e.g. `IWantToRunWhenBusStartsAndStops`) which means that if `Dispose` would wrap `Stop` with a `GetResult()` call, it could cause deadlocks.
 
 
 ### Windows Service Hosting
@@ -95,6 +95,8 @@ Related:
 
 ### Accessing the bus
 
+NOTE: In Version 6, the `IBus` interface has been deprecated and removed. Use the `IMessageHandlerContext` interface instead. For more information, please consult the [upgrade guide](/nservicebus/upgrades/5to6.md).
+
 Most usages of the bus will occur where the NServiceBus APIs are used. For example [Handlers](/nservicebus/handlers/) and [Sagas](/nservicebus/sagas/). However there are other scenarios that may require an alternative approach where the user needs to directly access the bus from outside of the framework.
 
 
@@ -107,7 +109,7 @@ Related:
  * [Injecting the Bus into ASP.NET MVC Controller](/samples/web/asp-mvc-injecting-bus/)
 
 
-NOTO: Since V6 `IEndpointInstance` (the equivalent of `IBus`) is no longer automatically injected into the container. In order to send messages you need to explicitly create a bus context. Here's a sample code showing how to automate this task using the Autofac container
+NOTE: Since Version 6, `IEndpointInstance` (the equivalent of `IBus`) is no longer automatically injected into the container. In order to send messages you need to explicitly create a bus context. Here's a sample code showing how to automate this task using the Autofac container
 
 snippet:Hosting-Inject
 

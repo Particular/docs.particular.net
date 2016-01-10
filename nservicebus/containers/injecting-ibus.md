@@ -6,6 +6,8 @@ redirects:
  - nservicebus/how-do-i-get-a-reference-to-ibus-in-my-message-handler
 ---
 
+NOTE: In Version 6, the `IBus` interface has been deprecated and removed. Use the `IMessageHandlerContext` interface instead. For more information, please consult the [upgrade guide](/nservicebus/upgrades/5to6.md).
+
 Use constructor injection:
 
     public class MyHandler : IHandleMessages<MyMessage>

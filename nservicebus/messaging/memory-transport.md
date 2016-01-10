@@ -6,7 +6,10 @@ redirects:
  - nservicebus/using-the-in-memory-bus
 ---
 
-NOTE: Bus.InMemory feature has been deprecated starting from Version 4.6 and removed in Version 5.0
+{{NOTE: Bus.InMemory feature has been deprecated starting from Version 4.6 and removed in Version 5.0
+
+In Version 6, the `IBus` interface has been deprecated and removed. Use the `IMessageHandlerContext` interface instead. For more information, please consult the [upgrade guide](/nservicebus/upgrades/5to6.md).
+}}
 
 Prior to Version 4.0, NServiceBus provided an asynchronous method of communication between parts of the system using `Send`, `Reply`, and `Publish` API. Asynchronous forms of communication are great for ensuring reliable and durable communication between parts of the system. NServiceBus Version 4.0 introduces the concept of an in-memory bus, applicable when events need to be handled synchronously and durability is not a concern.
 
