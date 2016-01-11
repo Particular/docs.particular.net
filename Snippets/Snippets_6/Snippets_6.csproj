@@ -147,7 +147,6 @@
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Extending\Features.cs" />
     <Compile Include="Pipeline\AbortingPipeline.cs" />
-    <Compile Include="Pipeline\CustomForkConnector.cs" />
     <Compile Include="Pipeline\CustomStageConnector.cs" />
     <Compile Include="Pipeline\CustomStageForkConnector.cs" />
     <Compile Include="Transports\QueueCreation\ConcurrentQueueCreator.cs" />
@@ -220,7 +219,6 @@
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Routing\EndpointMapping\ConfigurationSource\Usage.cs" />
     <Compile Include="Routing\EndpointMapping\ProvideConfiguration.cs" />
-    <Compile Include="Routing\RoutingAPIs.cs" />
     <Compile Include="Sagas\FindByExpression\Message1.cs" />
     <Compile Include="Sagas\FindByExpression\Message2.cs" />
     <Compile Include="Sagas\FindByExpression\MySaga.cs" />
