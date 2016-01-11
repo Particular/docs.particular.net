@@ -6,9 +6,11 @@ using NServiceBus;
 using NServiceBus.Log4Net;
 using NServiceBus.Logging;
 
-#region nservicebus-host
+#region Config
 
-public class EndpointConfig : IConfigureThisEndpoint
+public class EndpointConfig :
+    IConfigureThisEndpoint,
+    AsA_Server
 {
     public EndpointConfig()
     {
@@ -28,15 +30,13 @@ public class EndpointConfig : IConfigureThisEndpoint
 
         LogManager.Use<Log4NetFactory>();
     }
-
+#endregion
     public void Customize(BusConfiguration busConfiguration)
     {
-        busConfiguration.EndpointName("Samples.NServiceBus.HostCustom");
+        busConfiguration.EndpointName("Samples.Logging.HostCustom");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.SendFailedMessagesTo("error");
         busConfiguration.UsePersistence<InMemoryPersistence>();
     }
 }
-
-#endregion

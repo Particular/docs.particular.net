@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EndpointConfig.cs" />
-    <Compile Include="MessageSender.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />
   </ItemGroup>

@@ -59,9 +59,10 @@
     <Compile Include="EndpointConfig.cs" />
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />
-    <Compile Include="MessageSender.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

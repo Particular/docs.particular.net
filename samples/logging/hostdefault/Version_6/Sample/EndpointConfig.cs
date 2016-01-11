@@ -1,17 +1,10 @@
-using System.IO;
 using NServiceBus;
-using NServiceBus.Logging;
 
 #region nservicebus-host
 
-public class EndpointConfig : IConfigureThisEndpoint
+public class EndpointConfig : IConfigureThisEndpoint,
+    AsA_Server
 {
-    public EndpointConfig()
-    {
-        DefaultFactory defaultFactory = LogManager.Use<DefaultFactory>();
-        defaultFactory.Directory(Path.GetTempPath());
-        defaultFactory.Level(LogLevel.Debug);
-    }
 
     public void Customize(BusConfiguration busConfiguration)
     {

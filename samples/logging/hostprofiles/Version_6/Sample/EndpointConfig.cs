@@ -2,11 +2,13 @@ using NServiceBus;
 
 #region nservicebus-host
 
-public class EndpointConfig : IConfigureThisEndpoint
+public class EndpointConfig :
+    IConfigureThisEndpoint,
+    AsA_Server
 {
     public void Customize(BusConfiguration busConfiguration)
     {
-        busConfiguration.EndpointName("Samples.NServiceBus.Host");
+        busConfiguration.EndpointName("Samples.Logging.HostProfiles");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.SendFailedMessagesTo("error");

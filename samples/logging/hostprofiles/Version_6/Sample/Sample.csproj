@@ -71,7 +71,7 @@
     <Compile Include="LoggingHandlers\ProductionLoggingHandler.cs" />
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />
-    <Compile Include="MessageSender.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
