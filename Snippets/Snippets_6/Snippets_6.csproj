@@ -149,6 +149,7 @@
     <Compile Include="Pipeline\AbortingPipeline.cs" />
     <Compile Include="Pipeline\CustomStageConnector.cs" />
     <Compile Include="Pipeline\CustomStageForkConnector.cs" />
+    <Compile Include="Routing\RoutingAPIs.cs" />
     <Compile Include="Transports\QueueCreation\ConcurrentQueueCreator.cs" />
     <Compile Include="Transports\QueueCreation\SequentialQueueCreator.cs" />
     <Compile Include="Transports\QueueCreation\QueueCreation.cs" />

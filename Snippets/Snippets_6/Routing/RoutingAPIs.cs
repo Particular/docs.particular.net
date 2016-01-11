@@ -76,8 +76,9 @@ namespace Snippets6.Routing
         {
             var busConfiguration = new BusConfiguration();
             #region Routing-SpecialCaseTransportAddress
-            busConfiguration.Routing().TransportAddresses
-                .AddSpecialCase(new EndpointInstance("Sales", "1"), "Sales-One@MachineA");
+            busConfiguration
+                .UseTransport<MsmqTransport>()
+                .AddAddressTranslationException(new EndpointInstance("Sales", "1"), "Sales-One@MachineA");
             #endregion
         }
 
@@ -86,11 +87,13 @@ namespace Snippets6.Routing
         {
             var busConfiguration = new BusConfiguration();
             #region Routing-TransportAddressRule
-            busConfiguration.Routing().TransportAddresses.AddRule(i => CustomTranslationRule(i));
+            busConfiguration
+                .UseTransport<MsmqTransport>()
+                .AddAddressTranslationRule(i => CustomTranslationRule(i));
             #endregion
         }
 
-        string CustomTranslationRule(EndpointInstance endpointInstanceName)
+        string CustomTranslationRule(LogicalAddress endpointInstanceName)
         {
             throw new NotImplementedException();
         }
