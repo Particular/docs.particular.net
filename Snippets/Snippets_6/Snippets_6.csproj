@@ -249,6 +249,8 @@
     <Compile Include="TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages.cs" />
     <Compile Include="Transports\QueueCreation\YourMessagePump.cs" />
     <Compile Include="Transports\QueueCreation\YourQueueCreator.cs" />
+    <Compile Include="Transports\SqlServer\ConfigurationSettings.cs" />
+    <Compile Include="Transports\SqlServer\NamedConnectionString.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
@@ -279,6 +281,8 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Transports\SqlServer\ConnectionStringAppConfig.config" />
+    <None Include="Transports\SqlServer\NamedConnectionString.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
