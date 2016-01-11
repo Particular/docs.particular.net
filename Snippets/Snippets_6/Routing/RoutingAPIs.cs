@@ -9,6 +9,17 @@ namespace Snippets6.Routing
 
     public class RoutingAPIs
     {
+        public void StaticRoutes()
+        {
+            var busConfiguration = new BusConfiguration();
+            #region Routing-StaticRoutes-Endpoint
+            busConfiguration.Routing().UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            #endregion
+
+            #region Routing-StaticRoutes-Address
+            busConfiguration.Routing().UnicastRoutingTable.RouteToAddress(typeof(AcceptOrder), "Sales@SomeMachine");
+            #endregion
+        }
 
         public void DynamicRoutes()
         {
@@ -98,6 +109,17 @@ namespace Snippets6.Routing
             throw new NotImplementedException();
         }
 
+        public void FileBasedRouting()
+        {
+            var busConfiguration = new BusConfiguration();
+            #region Routing-FileBased-Config
+            busConfiguration.Routing().UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
+            busConfiguration.Routing().UnicastRoutingTable.RouteToEndpoint(typeof(SendOrder), "Shipping");
+            busConfiguration.Routing().UseFileBasedEndpointInstanceMapping(@"C:\Routes.xml");
+            #endregion
+        }
+
+
         IEnumerable<IUnicastRoute> LoadFromDatabaseAndPutToCache(List<Type> type)
         {
             throw new NotImplementedException();
@@ -106,6 +128,14 @@ namespace Snippets6.Routing
         IEnumerable<IUnicastRoute> LoadFromCache(List<Type> type)
         {
             throw new NotImplementedException();
+        }
+
+        class AcceptOrder
+        {
+        }
+
+        class SendOrder
+        {
         }
 
         class OrderAccepted
