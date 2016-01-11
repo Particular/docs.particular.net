@@ -8,7 +8,8 @@ related:
 ---
 
 NServiceBus version 6 splits the existing pipelines into smaller composable units called "Stages". A stage is a group of steps acting on the same level of abstraction. This allows scenarios such as 
- * Defining a step that works with the "incoming physical" message before it has been deserialized  *Defining a step that is executed before and after each handler invocation (remember: there can be multiple message handlers per message)
+ * Defining a step that works with the "incoming physical" message before it has been deserialized  
+ * Defining a step that is executed before and after each handler invocation (remember: there can be multiple message handlers per message)
 
 Extending the pipeline is done with a custom behavior implementing `Behavior<TContext>`. `TContext` is the context of the stage that the behavior belongs to.
 
