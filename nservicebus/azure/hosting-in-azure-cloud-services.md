@@ -131,7 +131,7 @@ snippet:HostingInWebRole
 
 a short explanation of each:
 
-* AzureConfigurationSource: Tells NServiceBus to override any settings from the app.config file with settings from the service configuration file.
+* AzureConfigurationSource: Tells NServiceBus to override any settings in a known NServiceBus Azure configuration section within the app.config file with settings from the service configuration file.
 * TraceLogger: Redirects all logs to the trace logger (which in turn should be configured for diagnostics monitor trace listener.
 * UseTransport<AzureStorageQueueTransport>: Sets Azure storage queues as the transport
 * UsePersistence: Configures Azure storage for persistence of enabled features (like subscriptions, saga's & timeouts).
