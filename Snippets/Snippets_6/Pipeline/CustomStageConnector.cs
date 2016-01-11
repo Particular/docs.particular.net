@@ -19,7 +19,7 @@
             RoutingStrategy[] routingStrategies = { };
 
             // Start the next stage
-            await stage(new OutgoingPhysicalMessageContext(body, routingStrategies, context)).ConfigureAwait(false);
+            await stage(this.CreateOutgoingPhysicalMessageContext(body, routingStrategies, context)).ConfigureAwait(false);
         }
     }
     #endregion

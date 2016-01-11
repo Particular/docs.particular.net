@@ -2,12 +2,13 @@
 {
     using NServiceBus;
     using NServiceBus.DeliveryConstraints;
+    using NServiceBus.TransportDispatch;
 
     class Recoverable
     {
         public Recoverable()
         {
-            RoutingContext context = null;
+            IRoutingContext context = null;
 
             #region SetDeliveryConstraintNonDurable
             context.AddDeliveryConstraint(new NonDurableDelivery());
