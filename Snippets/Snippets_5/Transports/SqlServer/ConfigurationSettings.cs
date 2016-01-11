@@ -40,7 +40,7 @@
         void AccessNativeTransactions()
         {
             #region sqlserver-config-native-transactions-accessTransaction 2
-			/*
+			
             class MyHandler : IHandleMessages<MyMessage>
             {
             
@@ -54,7 +54,7 @@
 					...
                 }
             }
-            */
+            
             #endregion
         }
         void NoTransactions()
