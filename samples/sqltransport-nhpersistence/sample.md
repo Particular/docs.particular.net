@@ -48,7 +48,7 @@ The Receiver mimics a back-end system. It is also configured to use SQL Server t
 
 snippet:ReceiverConfiguration
 
-It is essential to tell NHibernate what schema should it use while accessing the database. The persistence tables have hard-coded names so if more than one endpoint uses the database, they *must* use different schemas.
+It is essential to tell NHibernate what schema should it use while accessing the database.
 
 snippet:NHibernate
 
