@@ -13,7 +13,7 @@ namespace Snippets6.UpgradeGuides._5to6
             IRoutingContext context = null;
 
             #region SetDeliveryConstraintDiscardIfNotReceivedBefore
-            var timeToBeReceived = TimeSpan.FromSeconds(25);
+            TimeSpan timeToBeReceived = TimeSpan.FromSeconds(25);
             context.AddDeliveryConstraint(new DiscardIfNotReceivedBefore(timeToBeReceived));
             #endregion
 

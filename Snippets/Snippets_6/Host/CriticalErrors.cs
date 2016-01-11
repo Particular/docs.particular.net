@@ -13,7 +13,7 @@ namespace Snippets5.Host
         {
             #region DefiningCustomHostErrorHandlingAction
 
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.DefineCriticalErrorAction(OnCriticalError);
 
             #endregion

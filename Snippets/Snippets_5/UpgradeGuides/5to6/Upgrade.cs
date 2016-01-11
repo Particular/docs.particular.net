@@ -12,7 +12,7 @@
 
             #region 5to6CriticalError
 
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.DefineCriticalErrorAction(
                 new Action<string, Exception>((error, exception) =>
                 {

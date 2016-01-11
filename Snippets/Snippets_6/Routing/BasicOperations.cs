@@ -9,7 +9,7 @@
         {
             IBusContext busContext = null;
             #region InstancePublish
-            var message = new MyEvent { SomeProperty = "Hello world" };
+            MyEvent message = new MyEvent { SomeProperty = "Hello world" };
             await busContext.Publish(message);
             #endregion
 

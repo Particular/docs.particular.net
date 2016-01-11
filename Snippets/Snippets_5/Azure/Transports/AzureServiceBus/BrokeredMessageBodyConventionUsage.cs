@@ -22,8 +22,8 @@
 
             BrokeredMessageBodyConversion.ExtractBody = brokeredMessage =>
             {
-                using (var stream = new MemoryStream())
-                using (var body = brokeredMessage.GetBody<Stream>())
+                using (MemoryStream stream = new MemoryStream())
+                using (Stream body = brokeredMessage.GetBody<Stream>())
                 {
                     body.CopyTo(stream);
                     return stream.ToArray();

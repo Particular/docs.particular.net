@@ -53,7 +53,7 @@
         static void ReadFailedQueueHeader(out string queueName, BasicDeliverEventArgs deliverArgs, out string machineName)
         {
             byte[] headerBytes = (byte[]) deliverArgs.BasicProperties.Headers["NServiceBus.FailedQ"];
-            var header = Encoding.UTF8.GetString(headerBytes);
+            string header = Encoding.UTF8.GetString(headerBytes);
             queueName = header.Split('@')[0];
             machineName = header.Split('@')[1];
         }

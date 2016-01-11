@@ -17,11 +17,11 @@ namespace Snippets6.UpgradeGuides._5to6
 
             #region DispatcherRawSending
 
-            var headers = new Dictionary<string, string>();
-            var outgoingMessage = new OutgoingMessage("MessageId", headers, new byte[]
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            OutgoingMessage outgoingMessage = new OutgoingMessage("MessageId", headers, new byte[]
             {
             });
-            var constraints = new[]
+            NonDurableDelivery[] constraints =
             {
                 new NonDurableDelivery()
             };
@@ -29,7 +29,10 @@ namespace Snippets6.UpgradeGuides._5to6
             TransportOperation transportOperation = new TransportOperation(outgoingMessage, address, DispatchConsistency.Default, constraints);
             UnicastTransportOperation unicastTransportOperation = new UnicastTransportOperation(outgoingMessage, "destination");
             IEnumerable<MulticastTransportOperation> multicastOperations = Enumerable.Empty<MulticastTransportOperation>();
-            UnicastTransportOperation[] unicastOperations = {unicastTransportOperation};
+            UnicastTransportOperation[] unicastOperations =
+            {
+                unicastTransportOperation
+            };
             TransportOperations operations = new TransportOperations(multicastOperations, unicastOperations);
             await dispatcher.Dispatch(operations, new ContextBag());
 

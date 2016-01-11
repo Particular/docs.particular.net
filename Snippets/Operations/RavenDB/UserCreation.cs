@@ -31,19 +31,19 @@
         #region raven-add-user
         public static void AddUserToDatabase(IDocumentStore documentStore, string username)
         {
-            var systemCommands = documentStore
+            IDatabaseCommands systemCommands = documentStore
                 .DatabaseCommands
                 .ForSystemDatabase();
             WindowsAuthDocument windowsAuthDocument = GetWindowsAuthDocument(systemCommands);
             AddOrUpdateAuthUser(windowsAuthDocument, username, "<system>");
 
-            var ravenJObject = RavenJObject.FromObject(windowsAuthDocument);
+            RavenJObject ravenJObject = RavenJObject.FromObject(windowsAuthDocument);
             systemCommands.Put("Raven/Authorization/WindowsSettings", null, ravenJObject, new RavenJObject());
         }
 
         static WindowsAuthDocument GetWindowsAuthDocument(IDatabaseCommands systemCommands)
         {
-            var existing = systemCommands.Get("Raven/Authorization/WindowsSettings");
+            JsonDocument existing = systemCommands.Get("Raven/Authorization/WindowsSettings");
             if (existing == null)
             {
                 return new WindowsAuthDocument();
@@ -55,7 +55,7 @@
 
         static void AddOrUpdateAuthUser(WindowsAuthDocument windowsAuthDocument, string identity, string tenantId)
         {
-            var windowsAuthForUser = windowsAuthDocument
+            WindowsAuthData windowsAuthForUser = windowsAuthDocument
                 .RequiredUsers
                 .FirstOrDefault(x => x.Name == identity);
             if (windowsAuthForUser == null)
@@ -73,7 +73,7 @@
 
         static void AddOrUpdateDataAccess(WindowsAuthData windowsAuthForUser, string tenantId)
         {
-            var dataAccess = windowsAuthForUser
+            ResourceAccess dataAccess = windowsAuthForUser
                 .Databases
                 .FirstOrDefault(x => x.TenantId == tenantId);
             if (dataAccess == null)

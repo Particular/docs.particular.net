@@ -12,12 +12,12 @@ public static class StackTraceCleaner
         {
             return string.Empty;
         }
-        using (var stringReader = new StringReader(stackTrace))
+        using (StringReader stringReader = new StringReader(stackTrace))
         {
-            var stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new StringBuilder();
             while (true)
             {
-                var line = stringReader.ReadLine();
+                string line = stringReader.ReadLine();
                 if (line == null)
                 {
                     break;

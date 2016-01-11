@@ -8,7 +8,7 @@ namespace Snippets6
 
         public void RawXml()
         {
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
             #region ConfigureRawXmlSerialization
 

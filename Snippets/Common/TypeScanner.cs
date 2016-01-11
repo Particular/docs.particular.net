@@ -8,11 +8,11 @@ public static class TypeScanner
     {
         Type rootType = typeof(T);
         yield return rootType;
-        foreach (var nestedType in rootType.GetNestedTypes(BindingFlags.NonPublic))
+        foreach (Type nestedType in rootType.GetNestedTypes(BindingFlags.NonPublic))
         {
             yield return nestedType;
         }
-        foreach (var extraType in extraTypes)
+        foreach (Type extraType in extraTypes)
         {
             yield return extraType;
         }

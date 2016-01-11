@@ -13,7 +13,7 @@
             #region CancelCallback
 
             SendOptions sendOptions = new SendOptions();
-            var cancellationToken = new CancellationTokenSource();
+            CancellationTokenSource cancellationToken = new CancellationTokenSource();
             sendOptions.RegisterCancellationToken(cancellationToken.Token);
             cancellationToken.CancelAfter(TimeSpan.FromSeconds(5));
             Message message = new Message();

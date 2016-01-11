@@ -14,9 +14,9 @@ namespace Snippets6.Features
 #region FeatureSetup
         protected override void Setup(FeatureConfigurationContext context)
         {
-            var retriesConfig = context.Settings.GetConfigSection<SecondLevelRetriesConfig>();
+            SecondLevelRetriesConfig retriesConfig = context.Settings.GetConfigSection<SecondLevelRetriesConfig>();
 
-            var retryPolicy = new SecondLevelRetryPolicy(retriesConfig.NumberOfRetries, retriesConfig.TimeIncrease);
+            SecondLevelRetryPolicy retryPolicy = new SecondLevelRetryPolicy(retriesConfig.NumberOfRetries, retriesConfig.TimeIncrease);
             context.Container.RegisterSingleton(typeof(SecondLevelRetryPolicy), retryPolicy);
 
             context.Pipeline.Register<SecondLevelRetriesBehavior.Registration>();
@@ -26,7 +26,7 @@ namespace Snippets6.Features
         async Task EndpointConfiguration()
         {
 #region EnableDisableFeatures
-            var configuration = new BusConfiguration();
+            BusConfiguration configuration = new BusConfiguration();
             
             // enable delayed delivery feature since SLR relies on it
             configuration.EnableFeature<DelayedDeliveryFeature>();
@@ -37,7 +37,7 @@ namespace Snippets6.Features
             // we can disable features we won't use
             configuration.DisableFeature<Sagas>();
 
-            var endpoint = await Endpoint.Create(configuration);
+            IStartableEndpoint endpoint = await Endpoint.Create(configuration);
 #endregion
         }
 

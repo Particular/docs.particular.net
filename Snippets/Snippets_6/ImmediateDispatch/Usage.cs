@@ -11,7 +11,7 @@
             IBusContext busContext = null;
 
             #region RequestImmediateDispatch
-            var options = new SendOptions();
+            SendOptions options = new SendOptions();
             options.RequireImmediateDispatch();
             await busContext.Send(new MyMessage(), options);
             #endregion

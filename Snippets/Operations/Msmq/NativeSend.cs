@@ -33,9 +33,9 @@
 
         public static void SendMessage(string queuePath, string messageBody, List<HeaderInfo> headers)
         {
-            using (var scope = new TransactionScope())
+            using (TransactionScope scope = new TransactionScope())
             {
-                using (var queue = new MessageQueue(queuePath))
+                using (MessageQueue queue = new MessageQueue(queuePath))
                 using (Message message = new Message())
                 {
                     message.BodyStream = new MemoryStream(Encoding.UTF8.GetBytes(messageBody));
@@ -49,7 +49,7 @@
         public static byte[] CreateHeaders(List<HeaderInfo> headerInfos)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<HeaderInfo>));
-            using (var stream = new MemoryStream())
+            using (MemoryStream stream = new MemoryStream())
             {
                 serializer.Serialize(stream, headerInfos);
                 return stream.ToArray();

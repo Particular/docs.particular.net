@@ -29,9 +29,9 @@
         public static void ReturnMessageToSourceQueue(string errorQueueMachine, string errorQueueName, string msmqMessageId)
         {
             string path = string.Format(@"{0}\private$\{1}", errorQueueMachine, errorQueueName);
-            var errorQueue = new MessageQueue(path);
+            MessageQueue errorQueue = new MessageQueue(path);
             {
-                var messageReadPropertyFilter = new MessagePropertyFilter
+                MessagePropertyFilter messageReadPropertyFilter = new MessagePropertyFilter
                 {
                     Body = true,
                     TimeToBeReceived = true,
@@ -44,12 +44,12 @@
                     LookupId = true,
                 };
                 errorQueue.MessageReadPropertyFilter = messageReadPropertyFilter;
-                using (var scope = new TransactionScope())
+                using (TransactionScope scope = new TransactionScope())
                 {
                     MessageQueueTransactionType transactionType = MessageQueueTransactionType.Automatic;
-                    var message = errorQueue.ReceiveById(msmqMessageId, TimeSpan.FromSeconds(5), transactionType);
+                    Message message = errorQueue.ReceiveById(msmqMessageId, TimeSpan.FromSeconds(5), transactionType);
                     string fullPath = ReadFailedQueueHeader(message);
-                    using (var failedQueue = new MessageQueue(fullPath))
+                    using (MessageQueue failedQueue = new MessageQueue(fullPath))
                     {
                         failedQueue.Send(message, transactionType);
                     }
@@ -60,7 +60,7 @@
 
         static string ReadFailedQueueHeader(Message message)
         {
-            var headers = ExtractHeaders(message);
+            List<HeaderInfo> headers = ExtractHeaders(message);
             string header = headers.Single(x => x.Key == "NServiceBus.FailedQ").Value;
             string queueName = header.Split('@')[0];
             string machineName = header.Split('@')[1];
@@ -70,8 +70,8 @@
         public static List<HeaderInfo> ExtractHeaders(Message message)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(List<HeaderInfo>));
-            var extension = Encoding.UTF8.GetString(message.Extension);
-            using (var stringReader = new StringReader(extension))
+            string extension = Encoding.UTF8.GetString(message.Extension);
+            using (StringReader stringReader = new StringReader(extension))
             {
                 return (List<HeaderInfo>) serializer.Deserialize(stringReader);
             }

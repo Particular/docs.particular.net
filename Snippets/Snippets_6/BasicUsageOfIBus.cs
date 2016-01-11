@@ -7,7 +7,7 @@
     {
         async Task Send()
         {
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
             #region BasicSend
             IEndpointInstance instance = await Endpoint.Start(busConfiguration);

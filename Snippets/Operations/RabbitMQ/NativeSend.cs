@@ -35,7 +35,7 @@
         {
             using (IModel channel = OpenConnection(machineName, userName, password))
             {
-                var properties = channel.CreateBasicProperties();
+                IBasicProperties properties = channel.CreateBasicProperties();
                 properties.MessageId = Guid.NewGuid().ToString();
                 properties.Headers = headers;
                 channel.BasicPublish(string.Empty, queueName, true, false, properties, Encoding.UTF8.GetBytes(messageBody));

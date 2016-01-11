@@ -10,7 +10,7 @@
         public async Task Handle(RequestDataMessage message, IMessageHandlerContext context)
         {
             //Create a response message:
-            var response = new DataResponseMessage
+            DataResponseMessage response = new DataResponseMessage
             {
                 DataId = message.DataId,
                 String = message.String

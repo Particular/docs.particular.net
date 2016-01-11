@@ -8,7 +8,7 @@
         {
             IBus bus = null;
             #region InstancePublish
-            var message = new MyEvent { SomeProperty = "Hello world" };
+            MyEvent message = new MyEvent { SomeProperty = "Hello world" };
             bus.Publish(message);
             #endregion
 

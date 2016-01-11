@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Threading;
     using System.Data.SqlClient;
     using System.IO;
@@ -41,7 +42,7 @@
             {
                 string message = @"{ Property: 'Value' }";
 
-                var headers = new Dictionary<string, string>
+                Dictionary<string, string> headers = new Dictionary<string, string>
                 {
                     {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
                 };
@@ -59,7 +60,7 @@
             {
                 string message = @"{ Property: 'Value' }";
 
-                var headers = new Dictionary<string, string>
+                Dictionary<string, string> headers = new Dictionary<string, string>
                 {
                     {"NServiceBus.EnclosedMessageTypes", "Operations.SqlServer.NativeSendTests+MessageToSend"}
                 };
@@ -67,7 +68,7 @@
                 string scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, @"SqlServer\NativeSend.ps1");
                 string script = File.ReadAllText(scriptPath);
 
-                using (var powershell = PowerShell.Create())
+                using (PowerShell powershell = PowerShell.Create())
                 {
                     powershell.AddScript(script, false);
                     powershell.Invoke();
@@ -77,7 +78,7 @@
                         .AddParameter(null, endpointName)
                         .AddParameter(null, message)
                         .AddParameter(null, headers);
-                    var results = powershell.Invoke();
+                    Collection<PSObject> results = powershell.Invoke();
                 }
 
                 state.ResetEvent.WaitOne();

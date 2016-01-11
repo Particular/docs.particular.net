@@ -42,7 +42,7 @@
                     @Recoverable, 
                     @Headers, 
                     @Body)", queue);
-            using (var scope = new TransactionScope())
+            using (TransactionScope scope = new TransactionScope())
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {

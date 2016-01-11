@@ -33,7 +33,7 @@
             config.EnableInstallers();
             config.UsePersistence<InMemoryPersistence>();
             config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (var bus = (UnicastBus) Bus.Create(config).Start())
+            using (UnicastBus bus = (UnicastBus) Bus.Create(config).Start())
             {
                 bus.SendLocal(new StartSaga1Message());
                 CountdownEvent.Wait();

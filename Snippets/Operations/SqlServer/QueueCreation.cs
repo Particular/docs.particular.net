@@ -82,8 +82,8 @@
                     ) ON [PRIMARY]
                   END";
 
-            var sql = string.Format(createQueueScript, schema, queueName);
-            using (var command = new SqlCommand(sql, connection))
+            string sql = string.Format(createQueueScript, schema, queueName);
+            using (SqlCommand command = new SqlCommand(sql, connection))
             {
                 command.ExecuteNonQuery();
             }

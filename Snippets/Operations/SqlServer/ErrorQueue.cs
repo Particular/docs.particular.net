@@ -32,7 +32,7 @@
             string retryQueueName,
             Guid messageId)
         {
-            using (var scope = new TransactionScope())
+            using (TransactionScope scope = new TransactionScope())
             {
                 MessageToRetry messageToRetry = ReadAndDelete(errorQueueConnectionString, errorQueueName, messageId);
                 RetryMessage(retryConnectionString, retryQueueName,  messageToRetry);
@@ -90,7 +90,7 @@
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
                     command.Parameters.AddWithValue("Id", messageId);
-                    using (var reader = command.ExecuteReader(CommandBehavior.SingleRow))
+                    using (SqlDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow))
                     {
                         if (!reader.Read())
                         {

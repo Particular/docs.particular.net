@@ -11,7 +11,7 @@ public static class HeaderWriter
     public static string ToFriendlyString<TRootTypeToReplace>(IDictionary<string, string> headers)
     {
         StringBuilder stringBuilder = new StringBuilder();
-        foreach (var header in headers.OrderBy(x=>x.Key))
+        foreach (KeyValuePair<string, string> header in headers.OrderBy(x=>x.Key))
         {
             string value = header.Value;
             if (value != null)

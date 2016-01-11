@@ -32,7 +32,7 @@
         {
             #region NinjectUnitOfWork [4.0,5.0]
 
-            var kernel = new StandardKernel();
+            StandardKernel kernel = new StandardKernel();
 
             kernel.Bind<MyService>().ToSelf().InUnitOfWorkScope();
 
@@ -43,7 +43,7 @@
         {
             #region NinjectConditionalBindings [4.0,5.0]
 
-            var kernel = new StandardKernel();
+            StandardKernel kernel = new StandardKernel();
 
             // always create a new instance when not processing a message
             kernel.Bind<MyService>().ToSelf()

@@ -19,7 +19,7 @@
             IBusContext busContext = null;
 
             #region DisableBestPracticeEnforcementPerMessage
-            var options = new SendOptions();
+            SendOptions options = new SendOptions();
 
             options.DoNotEnforceBestPractices();
 

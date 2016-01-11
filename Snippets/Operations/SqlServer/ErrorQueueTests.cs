@@ -91,7 +91,7 @@
                 {
                     while (true)
                     {
-                        using (var reader = command.ExecuteReader(CommandBehavior.SingleRow))
+                        using (SqlDataReader reader = command.ExecuteReader(CommandBehavior.SingleRow))
                         {
                             if (reader.Read())
                             {

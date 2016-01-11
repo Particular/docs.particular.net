@@ -35,7 +35,7 @@
             // ReSharper disable RedundantDelegateCreation
             // ReSharper disable ConvertToLambdaExpression
             #region 5to6CriticalError
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.DefineCriticalErrorAction(
                 new Func<ICriticalErrorContext,Task>(context =>
                 {

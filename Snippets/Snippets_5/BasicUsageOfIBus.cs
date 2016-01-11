@@ -6,7 +6,7 @@
     {
         void Send()
         {
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
             #region BasicSend
             IBus bus = Bus.Create(busConfiguration).Start();

@@ -15,7 +15,7 @@ namespace Snippets5.Host
         {
             #region DefiningCustomHostErrorHandlingAction
 
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.DefineCriticalErrorAction(OnCriticalError);
 
             #endregion
@@ -59,7 +59,7 @@ namespace Snippets5.Host
 
             #region DefaultCriticalErrorAction
 
-            var components = configure.Builder.Build<IConfigureComponents>();
+            IConfigureComponents components = configure.Builder.Build<IConfigureComponents>();
             if (!components.HasComponent<IBus>())
             {
                 return;

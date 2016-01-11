@@ -52,13 +52,13 @@
             string path = string.Format(@"{0}\private$\{1}", Environment.MachineName, queueName);
             if (MessageQueue.Exists(path))
             {
-                using (var messageQueue = new MessageQueue(path))
+                using (MessageQueue messageQueue = new MessageQueue(path))
                 {
                     SetPermissionsForQueue(messageQueue, account);
                     return;
                 }
             }
-            using (var messageQueue = MessageQueue.Create(path, true))
+            using (MessageQueue messageQueue = MessageQueue.Create(path, true))
             {
                 SetPermissionsForQueue(messageQueue, account);
             }

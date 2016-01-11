@@ -47,7 +47,7 @@
     {
         protected void Application_Start()
         {
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.AzureConfigurationSource();
             busConfiguration.UseTransport<AzureStorageQueueTransport>();
             busConfiguration.UsePersistence<AzureStoragePersistence>();

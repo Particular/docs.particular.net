@@ -13,7 +13,7 @@
             // To provide SLR Config
             if (typeof(T) == typeof(SecondLevelRetriesConfig))
             {
-                var slrConfig = new SecondLevelRetriesConfig
+                SecondLevelRetriesConfig slrConfig = new SecondLevelRetriesConfig
                 {
                     Enabled = true,
                     NumberOfRetries = 2, 

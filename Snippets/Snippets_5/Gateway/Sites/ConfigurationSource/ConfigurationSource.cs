@@ -12,7 +12,7 @@
         {
             if (typeof(T) == typeof(GatewayConfig))
             {
-                var gatewayConfig = new GatewayConfig
+                GatewayConfig gatewayConfig = new GatewayConfig
                 {
                     Sites = new SiteCollection
                     {
