@@ -71,9 +71,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!--startcode specific-profile -->
   <PropertyGroup>
     <StartAction>Program</StartAction>
     <StartProgram>$(ProjectDir)$(OutputPath)NServiceBus.Host.exe</StartProgram>
     <StartArguments>NServiceBus.Lite</StartArguments>
   </PropertyGroup>
+  <!--endcode-->
 </Project>
