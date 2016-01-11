@@ -40,8 +40,10 @@
         void AccessNativeTransactions()
         {
             #region sqlserver-config-native-transactions-accessTransaction 2
-			class MyHandler : IHandleMessages<MyMessage>
+			/*
+            class MyHandler : IHandleMessages<MyMessage>
             {
+            
 				//Injected property with SqlTransport storage context
                 public SqlServerStorageContext StorageContext { get; set; }
 
@@ -52,7 +54,7 @@
 					...
                 }
             }
-
+            */
             #endregion
         }
         void NoTransactions()
