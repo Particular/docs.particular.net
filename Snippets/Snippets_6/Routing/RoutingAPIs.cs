@@ -6,6 +6,8 @@ namespace Snippets6.Routing
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Routing;
+    using NServiceBus.Settings;
+    using NServiceBus.Transports;
 
     public class RoutingAPIs
     {
@@ -88,7 +90,7 @@ namespace Snippets6.Routing
             var busConfiguration = new BusConfiguration();
             #region Routing-SpecialCaseTransportAddress
             busConfiguration
-                .UseTransport<MsmqTransport>()
+                .UseTransport<MyTransport>()
                 .AddAddressTranslationException(new EndpointInstance("Sales", "1"), "Sales-One@MachineA");
             #endregion
         }
@@ -99,7 +101,7 @@ namespace Snippets6.Routing
             var busConfiguration = new BusConfiguration();
             #region Routing-TransportAddressRule
             busConfiguration
-                .UseTransport<MsmqTransport>()
+                .UseTransport<MyTransport>()
                 .AddAddressTranslationRule(i => CustomTranslationRule(i));
             #endregion
         }
@@ -140,6 +142,51 @@ namespace Snippets6.Routing
 
         class OrderAccepted
         {
+        }
+
+        class MyTransport : TransportDefinition
+        {
+            protected override TransportReceivingConfigurationResult ConfigureForReceiving(TransportReceivingConfigurationContext context)
+            {
+                throw new NotImplementedException();
+            }
+
+            protected override TransportSendingConfigurationResult ConfigureForSending(TransportSendingConfigurationContext context)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override IEnumerable<Type> GetSupportedDeliveryConstraints()
+            {
+                throw new NotImplementedException();
+            }
+
+            public override TransportTransactionMode GetSupportedTransactionMode()
+            {
+                throw new NotImplementedException();
+            }
+
+            public override IManageSubscriptions GetSubscriptionManager()
+            {
+                throw new NotImplementedException();
+            }
+
+            public override EndpointInstance BindToLocalEndpoint(EndpointInstance instance, ReadOnlySettings settings)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override string ToTransportAddress(LogicalAddress logicalAddress)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override OutboundRoutingPolicy GetOutboundRoutingPolicy(ReadOnlySettings settings)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override string ExampleConnectionStringForErrorMessage { get; }
         }
     }
 }
