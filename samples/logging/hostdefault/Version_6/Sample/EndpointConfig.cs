@@ -1,7 +1,5 @@
 using NServiceBus;
 
-#region nservicebus-host
-
 public class EndpointConfig : IConfigureThisEndpoint,
     AsA_Server
 {
@@ -16,4 +14,3 @@ public class EndpointConfig : IConfigureThisEndpoint,
     }
 }
 
-#endregion
