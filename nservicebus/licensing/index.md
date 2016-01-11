@@ -9,4 +9,4 @@ related:
 
 ## License details
 
-See [Particular Licensing](http://particular.net/licensing) for specific license specifics.
+See [Particular Licensing](http://particular.net/licensing) for license specifics.
