@@ -3,7 +3,7 @@
   <Namespace>SetStartupProjects</Namespace>
 </Query>
 
-void Main()
+ void Main()
 {
 	var toolsDiretory = Path.GetDirectoryName(Util.CurrentQueryPath);
 	var docsDirectory = Directory.GetParent(toolsDiretory).FullName;
@@ -13,12 +13,16 @@ void Main()
 	var startProjectSuoCreator = new StartProjectSuoCreator();
 	foreach (var solutionFile in Directory.EnumerateFiles(docsDirectory, "*.sln", SearchOption.AllDirectories))
 	{
-		var targetFile =solutionFile+ ".DotSettings";
-		File.Delete(targetFile );
-		var relative = GetRelativePath(sharedSettings,Path.GetDirectoryName(solutionFile));
-		var replaced = layeredText.Replace("SharedDotSettings",relative);
-		File.WriteAllText(targetFile,replaced);
-    }
+		var solutionDirectory = Path.GetDirectoryName(solutionFile);
+		foreach (string file in Directory.GetFiles(solutionDirectory, "*.DotSettings"))
+        {
+			File.Delete(file);
+		}
+		var relative = GetRelativePath(sharedSettings, solutionDirectory);
+		var replaced = layeredText.Replace("SharedDotSettings", relative);
+		var targetFile = solutionFile + ".DotSettings";
+		File.WriteAllText(targetFile, replaced);
+	}
 }
 
 string GetRelativePath(string filespec, string folder)
