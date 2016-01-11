@@ -3,11 +3,8 @@ title: File-based message routing
 summary: How to configure file-based message routing in NServiceBus
 tags:
 - routing
-- message
 - route
 - file
-- xml
-- dynamic
 related:
 - nservicebus/messaging/message-owner
 - nservicebus/messaging/routing
@@ -17,11 +14,11 @@ Before version 6, NServiceBus used fixed [message ownership mappings](/nserviceb
 
 ## Configuration
 
-The following code
+To configure NServiceBus to use endpoint instance mapping from a file, use the following config
 
 snippet:Routing-FileBased-Config
 
-tells NServiceBus to use the file-based instance mapping. This is different from V5 approach where all the routing information was present in the config file. Here, only the mapping between endpoints and their instances is in the config file. The mapping between message types and their destination endpoints is still in code. This separation is meant to support responsibility division between developers and operations as described [here](/nservicebus/messaging/routing.md) e.g. preventing accidental change of message-to-endpoint mapping.
+Notice how type mapping is still specified in code via `RouteToEndpoint` calls. This is different from V5 approach where all the routing information was present inside the config file. In V6 only the mapping between endpoints and their instances is in the file. This separation is meant to support responsibility division between developers and operations people as described [here](/nservicebus/messaging/routing.md) e.g. preventing accidental change of message-to-endpoint mappings.
 
 ## The file
 
