@@ -15,7 +15,7 @@ Illustrates how to configure logging using the [profiles](/nservicebus/hosting/n
 
 ### Change the default profile
 
-The startup action for this sample is configured to use the Lite profile.
+The startup action for this sample is configured to use the Lite profile in the `.csproj`.
 
 snippet: specific-profile
 
