@@ -19,7 +19,7 @@ namespace Snippets6.Pipeline
             string auditAddress = "AuditAddress";
 
             // Fork into new pipeline
-            await fork(new AuditContext(message, auditAddress, context)).ConfigureAwait(false);
+            await fork(this.CreateAuditContext(message, auditAddress, context)).ConfigureAwait(false);
         }
     }
     #endregion
