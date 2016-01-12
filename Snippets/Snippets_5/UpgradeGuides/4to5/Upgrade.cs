@@ -7,6 +7,8 @@ namespace Snippets5.UpgradeGuides._4to5
 
     public class Upgrade
     {
+
+
         public void MessageConventions()
         {
             #region 4to5MessageConventions

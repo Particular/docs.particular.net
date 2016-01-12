@@ -16,6 +16,7 @@ class Program
         busConfiguration.EndpointName("Samples.Encryption.Endpoint1");
         busConfiguration.RijndaelEncryptionService();
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.SendFailedMessagesTo("error");
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try

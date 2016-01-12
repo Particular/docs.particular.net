@@ -8,6 +8,15 @@
 
     public class Upgrade
     {
+        public void ImpersonateSender()
+        {
+            #region 4to5RunHandlersUnderIncomingPrincipal
+            Configure configure = Configure.With();
+            configure.UnicastBus()
+                .RunHandlersUnderIncomingPrincipal(true);
+            #endregion
+        }
+
         public void MessageConventions()
         {
             #region 4to5MessageConventions

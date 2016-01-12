@@ -12,11 +12,11 @@ class Program
     static async Task AsyncMain()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Encryption.Endpoint2");
-        busConfiguration.RijndaelEncryptionService();
+        busConfiguration.EndpointName("Samples.UsernameHeader.Endpoint2");
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.SendFailedMessagesTo("error");
+        
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
