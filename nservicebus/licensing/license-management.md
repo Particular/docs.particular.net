@@ -54,7 +54,7 @@ If modifying the registry directly using Registry Editor or a PowerShell script 
 
 NOTE: On a 64 bit operating system this script should not be run through the PowerShell(x86) console prompt, doing so will result in the license being imported into the 32 registry key. Please use a 64bit PowerShell session.
 
-NOTE: As of Version 4.5, both the `LicenseInstaller.exe` tool and the `install-NServiceBusLicense` PowerShell commandlet has been deprecated.
+NOTE: As of Version 4.5, both the `LicenseInstaller.exe` tool and the `install-NServiceBusLicense` PowerShell commandlet have been deprecated.
 
 
 ### NServiceBus Version 3.3
