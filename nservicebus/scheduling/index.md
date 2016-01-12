@@ -47,8 +47,6 @@ WARNING: **This will result in the task not being executed but also not being re
 
 ## Converting a scheduled task into a saga
 
-NOTE: In Version 6, the `IBus` interface has been deprecated and removed. Use the `Send` methods on the `IMessageHandlerContext` interface instead. For more information, please consult the [upgrade guide](/nservicebus/upgrades/5to6.md).
-
 In order to store these tasks in a durable way and support either a scale-out scenario or a side-by-side deployment scenario, you can use a [saga](/nservicebus/sagas) instead. You can think of the scheduler as a never ending saga.
 
 Converting the scheduler code to a saga, with the code for the example usage of the scheduler API shown above:
