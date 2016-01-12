@@ -7,9 +7,7 @@ tags:
 
 ## From inside a Handler
 
-NOTE: In Version 6, the IBus interface has been deprecated and removed. Use the `DoNotContinueDispatchingCurrentMessageToHandlers` method on the `IMessageHandlerContext` interface instead. For more information, please consult the [upgrade guide](/nservicebus/upgrades/5to6.md).
-
-From the context of a Handler further Handler execution can be aborted by calling the `IBus.DoNotContinueDispatchingCurrentMessageToHandlers()` method. This method instruct the bus not to pass the current message on to subsequent handlers in the pipeline. This is often used by authentication and authorization handlers when those checks fail.
+From the context of a Handler further Handler execution can be aborted by calling the `DoNotContinueDispatchingCurrentMessageToHandlers()` method. This method instruct the bus not to pass the current message on to subsequent handlers in the pipeline. This is often used by authentication and authorization handlers when those checks fail.
 
 snippet: AbortHandler
 

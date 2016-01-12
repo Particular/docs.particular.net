@@ -140,13 +140,11 @@ The auto subscription feature applies to sagas as well as your regular message h
 
 ## Sagas and request/response
 
-NOTE: In Version 6, the `IBus` interface has been deprecated and removed. Use the `IMessageHandlerContext` interface instead. For more information, please consult the [upgrade guide](/nservicebus/upgrades/5to6.md).
-
 Sagas often play the role of coordinator, especially when used in integration scenarios. In essence this means that the saga decides what to do next and then asks someone else to do it. This allows you to keep your sagas free from interacting with non-transactional things like file systems and rest services. The type of communication pattern best suited best for these type of interactions is the request/response pattern since there is really only one party interested in the response and that is the saga itself.
 
 A typical scenario is a saga controlling the process of billing a customer through Visa or MasterCard. In this case you probably have separate endpoints for making the web service/rest-calls to each payment provider and a saga coordinating retries and fallback rules. Each payment request would be a separate saga instance, so how would we know which instance to hydrate and invoke when the response returns?
 
-The usual way is to correlate on some kind of ID and let the user tell you how to find the correct saga instance using that ID. While this is easily done we decided that this was common enough to warrant native support in NServiceBus for these type of interactions. In Version 3.0, NServiceBus handles all this for you without getting in your way. If you do `IBus.Reply` in response to a message coming from a saga, NServiceBus will detect it and automatically set the correct headers so that you can correlate the reply back to the saga instance that issued the request. The exception to this rule is the request/response message exchange between two sagas. In such case the automatic correlation won't work and the reply message needs to be explicitly mapped using `ConfigureHowToFindSaga`.
+The usual way is to correlate on some kind of ID and let the user tell you how to find the correct saga instance using that ID. While this is easily done we decided that this was common enough to warrant native support in NServiceBus for these type of interactions. In Version 3.0, NServiceBus handles all this for you without getting in your way. If you `Reply` in response to a message coming from a saga, NServiceBus will detect it and automatically set the correct headers so that you can correlate the reply back to the saga instance that issued the request. The exception to this rule is the request/response message exchange between two sagas. In such case the automatic correlation won't work and the reply message needs to be explicitly mapped using `ConfigureHowToFindSaga`.
 
 
 ## Querying Saga Data

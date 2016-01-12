@@ -41,7 +41,7 @@ An event can be handled by use of the `IHandleMessages` interface on any [Handle
 
 ## Publishing an event
 
-NOTE: In Version 6, the IBus interface has been deprecated and removed. Use the `Publish` methods on the `IMessageHandlerContext` interface instead. For more information, please consult the [upgrade guide](/nservicebus/upgrades/5to6.md).
+NOTE: In Version 6, the IBus interface has been deprecated and removed. Use the `Publish` methods on the `IMessageHandlerContext` interface within a handler, or the `IBusSession` interface instead.
 
 An event can be published via any instance of `IBus`. However there are several common locations where publishing occurs.
 
