@@ -27,6 +27,10 @@ The outgoing mutator extracts `Thread.CurrentPrincipal.Identity.Name` and append
 
 snippet:Mutator
 
+#### Register the Mutator
+
+snippet: componentregistartion
+
 
 ### The Handler
 
