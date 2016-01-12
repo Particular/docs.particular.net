@@ -27,6 +27,7 @@ The outgoing mutator extracts `Thread.CurrentPrincipal.Identity.Name` and append
 
 snippet:Mutator
 
+
 #### Register the Mutator
 
 snippet: componentregistartion
@@ -45,7 +46,7 @@ WARNING: This approach is only supported in Version 4 and lower. For Version 5 a
 
 This approach uses the "Principal Manipulation" API that exists in both Versions 3 and 4. 
 
-WARNING: It is important to note that, on the receiving end, this API actually uses a fake windows principle, that has the name from the header, an **not** the real authenticated principal of the user who sent the message.
+WARNING: It is important to note that, on the receiving end, this API actually uses a fake windows principle, that has the name from the header, and **not** the real authenticated principal of the user who sent the message.
 
 
 ### Configure Principal Manipulation
