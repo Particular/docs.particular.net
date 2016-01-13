@@ -41,7 +41,7 @@
       <HintPath>..\..\..\..\..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1378\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1380\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NLog">
       <HintPath>..\..\..\..\..\packages\NServiceBus.NLog.1.2.0-unstable0007\lib\net452\NServiceBus.NLog.dll</HintPath>
