@@ -1,13 +1,29 @@
 namespace Snippets5.UpgradeGuides._4to5
 {
     using System;
+    using System.Security.Principal;
+    using System.Threading;
     using NServiceBus;
+    using NServiceBus.MessageMutator;
     using NServiceBus.Persistence;
     using Raven.Client.Document;
 
     public class Upgrade
     {
+        #region 4to5RemovePrincipalHack
 
+        public class PrincipalMutator : IMutateIncomingTransportMessages
+        {
+            public void MutateIncoming(TransportMessage message)
+            {
+                string windowsIdentityName = message.Headers[Headers.WindowsIdentityName];
+                GenericIdentity identity = new GenericIdentity(windowsIdentityName);
+                GenericPrincipal principal = new GenericPrincipal(identity, new string[0]);
+                Thread.CurrentPrincipal = principal;
+            }
+        }
+
+        #endregion
 
         public void MessageConventions()
         {

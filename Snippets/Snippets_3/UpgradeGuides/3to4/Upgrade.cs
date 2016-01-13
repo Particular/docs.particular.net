@@ -1,9 +1,20 @@
 ﻿namespace Snippets3.UpgradeGuides._3to4
 {
     using NServiceBus;
+    using NServiceBus.Unicast.Config;
 
     public class Upgrade
     {
+
+        public void RenamePrincipalHack()
+        {
+            #region 3to4RenamePrincipalHack
+            Configure configure = Configure.With();
+            ConfigUnicastBus unicastBus = configure.UnicastBus();
+            unicastBus.ImpersonateSender(true);
+            #endregion
+        }
+
         public void DisableSecondLevelRetries()
         {
             #region 3to4DisableSecondLevelRetries
