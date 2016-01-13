@@ -7,16 +7,9 @@ using NServiceBus.RavenDB.Persistence;
 
 public class ShipOrderHandler : IHandleMessages<ShipOrder>
 {
-    IAsyncSessionProvider sessionProvider;
-
-    public ShipOrderHandler(IAsyncSessionProvider sessionProvider)
-    {
-        this.sessionProvider = sessionProvider;
-    }
-
     public async Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
-        var session = sessionProvider.AsyncSession;
+        var session = context.GetRavenSession();
         await session.StoreAsync(new OrderShipped
         {
             Id = message.OrderId,
