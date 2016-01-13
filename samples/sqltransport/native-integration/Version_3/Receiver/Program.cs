@@ -16,12 +16,12 @@ class Program
     {
         #region EndpointConfiguration
         BusConfiguration busConfiguration = new BusConfiguration();
-
         busConfiguration.UseTransport<SqlServerTransport>()
             .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True");
         busConfiguration.EndpointName("Samples.SqlServer.NativeIntegration");
         busConfiguration.UseSerialization<JsonSerializer>();
         #endregion
+
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.SendFailedMessagesTo("error");
 
