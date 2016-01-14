@@ -39,14 +39,16 @@ Used to communicate that some action has taken place. An *Event* should be _publ
 
 Note: For reply messages in a request and response pattern, you may want to use `IMessage` since these replies are neither a Command nor an Event. 
 
-### Validation Messages (version 3 - version 6)
+
+### Validation Messages (Version 3 - Version 6)
 
 There are checks in place to ensure following of the best practices. While violating above rules the following exceptions can be seen:
-* "Pub/Sub is not supported for Commands. They should be be sent direct to their logical owner." - this exception is being thrown when one tries to publish a Command or subscribe to/unsubscribe from a Command.
-* "Events can have multiple recipient so they should be published." - this exception will occur when one tries to use 'Bus.Send()' to send an event.
-* "Reply is neither supported for Commands nor Events. Commands should be sent to their logical owner using bus.Send and bus. Events should be Published with bus.Publish." - this exception is thrown when one uses reply with a Command or an Event.
 
-Note: In version 3 and version 4 there are 2 additional messages that can be seen:
+* "Pub/Sub is not supported for Commands. They should be be sent direct to their logical owner." - this exception is being thrown when attempting to publish a Command or subscribe to/unsubscribe from a Command.
+* "Events can have multiple recipient so they should be published." - this exception will occur when attempting to use 'Bus.Send()' to send an event.
+* "Reply is neither supported for Commands nor Events. Commands should be sent to their logical owner using bus.Send and bus. Events should be Published with bus.Publish." - this exception is thrown when attempting to reply with a Command or an Event.
+
+Note: In Version 3 and Version 4 there are 2 additional messages that can be seen:
 * "Reply is not supported for Commands. Commands should be sent to their logical owner using bus.Send and bus." - this exception is thrown when one use reply with a Command.
 * "Reply is not supported for Events. Events should be Published with bus.Publish." - this exception will occur when one tries to use reply with an Event.
 

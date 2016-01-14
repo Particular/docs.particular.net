@@ -3,7 +3,7 @@ using NServiceBus;
 
 class Program
 {
-    private static void Main()
+    static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.CustomChecks.Monitor3rdParty");

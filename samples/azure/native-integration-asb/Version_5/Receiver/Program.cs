@@ -5,7 +5,7 @@ using NServiceBus.Azure.Transports.WindowsAzureServiceBus;
 
 class Program
 {
-    private static void Main()
+    static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
 
