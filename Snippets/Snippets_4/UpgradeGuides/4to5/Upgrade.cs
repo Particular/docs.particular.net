@@ -4,10 +4,19 @@
     using NServiceBus;
     using NServiceBus.Encryption;
     using NServiceBus.Installation.Environments;
+    using NServiceBus.Unicast.Config;
     using Snippets4.Encryption.EncryptionService;
 
     public class Upgrade
     {
+        public void RemovePrincipalHack()
+        {
+            #region 4to5RemovePrincipalHack
+            Configure configure = Configure.With();
+            ConfigUnicastBus unicastBus = configure.UnicastBus();
+            unicastBus.RunHandlersUnderIncomingPrincipal(true);
+            #endregion
+        }
 
         public void MessageConventions()
         {

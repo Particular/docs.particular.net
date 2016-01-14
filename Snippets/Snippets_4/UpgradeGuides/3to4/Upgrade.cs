@@ -2,9 +2,20 @@
 {
     using System.Transactions;
     using NServiceBus;
+    using NServiceBus.Unicast.Config;
 
     public class Upgrade
     {
+
+        public void RenamePrincipalHack()
+        {
+            #region 3to4RenamePrincipalHack
+            Configure configure = Configure.With();
+            ConfigUnicastBus unicastBus = configure.UnicastBus();
+            unicastBus.RunHandlersUnderIncomingPrincipal(true);
+            #endregion
+        }
+
         public void RevertToSerializable()
         {
             #region 3to4RevertToSerializable

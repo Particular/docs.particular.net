@@ -1,13 +1,26 @@
 ﻿namespace Snippets6.UpgradeGuides._5to6
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.ConsistencyGuarantees;
+    using NServiceBus.MessageMutator;
     using NServiceBus.Settings;
 
     public class Upgrade
     {
+        #region 5to6ReAddWinIdNameHeader
+
+        public class WinIdNameMutator : IMutateOutgoingTransportMessages
+        {
+            public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
+            {
+                context.OutgoingHeaders["WinIdName"] = Thread.CurrentPrincipal.Identity.Name;
+                return Task.FromResult(0);
+            }
+        }
+        #endregion
         void StaticHeaders()
         {
 

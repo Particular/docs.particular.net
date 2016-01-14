@@ -89,7 +89,6 @@ If you run only `Endpoint1` and send a messages you can see the contents of the 
     "NServiceBus.ContentType": "application/json",
     "NServiceBus.EnclosedMessageTypes": "Message1, Shared, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
     "NServiceBus.ConversationId": "a496f0ce-a3c8-4f30-9598-a50e010564a5",
-    "WinIdName": "retina\\simon",
     "NServiceBus.OriginatingMachine": "RETINA",
     "NServiceBus.OriginatingEndpoint": "Samples.Azure.StorageQueues.Endpoint1",
     "$.diagnostics.originating.hostid": "658a1d15fed47c77cd63a3e63da15cc6"
