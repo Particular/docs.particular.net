@@ -62,7 +62,7 @@ NOTE: As of Version 6 NServiceBus will require each saga to have at least one me
 
 ## Correlating messages to a saga
 
-Correlation is needed in order to find existing saga instances based on data on the incoming message. In our example how do we correlate a `CompleteOrder` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. To declare this you need to use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to. Note that NServiceBus will only allow you to correlate on a single saga property. Should you need to correlate on more than one property you need to use a custom saga finder mentioned below.
+Correlation is needed in order to find existing saga instances based on data on the incoming message. In our example how do we correlate a `CompleteOrder` message with the right saga that's already running? Usually, there's some applicative ID in both types of messages that can correlate between them. To declare this you need to use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify to which saga property each message maps to. Note that NServiceBus will only allow you to correlate on a single saga property and the type used to find the saga must match the saga property type. Should you need to correlate on more than one property, or match properties of different types, you need to use a custom saga finder mentioned below.
 
 {{NOTE:
 In Version 6 and higher NServiceBus will enforce that all correlated properties have a non default value when the saga instance is persisted.
