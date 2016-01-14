@@ -351,6 +351,8 @@
     <Content Include="RavenDB\SharedDocumentStoreViaConnectionString.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
+    <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
     <Content Include="Transports\RabbitMQ\rabbitmqconnection.config.xml" />
     <None Include="Transports\SqlServer\NamedConnectionString.config" />
