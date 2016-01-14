@@ -37,7 +37,7 @@ To replace the implementation of an existing step replace it with a custom behav
 
 snippet:ReplacePipelineStep
 
-Note: Stems can also be registered from a [Feature](features.md)
+Note: Steps can also be registered from a [Feature](features.md).
 
 
 ## Stages
