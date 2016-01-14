@@ -16,15 +16,15 @@
             {
                 if (entityType == EntityType.Queue || entityType == EntityType.Topic)
                 {
-                    var regexQueueAndTopicValidCharacters = new Regex(@"[^a-zA-Z0-9\-\._\/]");
-                    var regexLeadingAndTrailingForwardSlashes = new Regex(@"^\/|\/$");
+                    Regex regexQueueAndTopicValidCharacters = new Regex(@"[^a-zA-Z0-9\-\._\/]");
+                    Regex regexLeadingAndTrailingForwardSlashes = new Regex(@"^\/|\/$");
 
-                    var result = regexQueueAndTopicValidCharacters.Replace(entityName, "");
+                    string result = regexQueueAndTopicValidCharacters.Replace(entityName, "");
                     return regexLeadingAndTrailingForwardSlashes.Replace(result, "");
                 }
 
                 // Subscription
-                var regexSubscriptionValidCharacters = new Regex(@"[^a-zA-Z0-9\-\._]");
+                Regex regexSubscriptionValidCharacters = new Regex(@"[^a-zA-Z0-9\-\._]");
                 return regexSubscriptionValidCharacters.Replace(entityName, "");
             };
 
