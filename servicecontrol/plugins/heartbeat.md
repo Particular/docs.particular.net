@@ -44,7 +44,7 @@ If you are using the older version of the plugin, namely **ServiceControl.Plugin
 
 ServiceControl heartbeats are sent, by the plugin, at a predefined interval of 10 seconds. The interval value can be overridden on a per endpoint basis adding the following application setting to the endpoint configuration file:
 
-<!-- import heartbeatsIntervalConfig -->
+snippet: heartbeatsIntervalConfig
 
 Where the value is convertible to a `TimeSpan` value. In the above sample you are setting the endpoint heartbeat interval to 40 seconds.
 
@@ -52,12 +52,13 @@ When configuring heartbeat interval, make sure Service Control setting [`Heartbe
 
 
 ### TTL
+
 When the plugin sends heartbeat messages, the default TTL is fixed to four times the configured value of the Heartbeat interval. 
 
 TTL is now configurable, as of Version 1.1.0
 
 Add the app setting in app.config as shown to configure the TTL to a custom value instead of the default value based on heartbeat interval. Provide the timespan string for the value as shown. In this example, a heartbeat message will be sent every 30 seconds and the TTL for the heartbeat message is 3 minutes.
 
-<!-- import heartbeatsTtlConfig -->
+snippet: heartbeatsTtlConfig
 
 Note: To enable the change the endpoint needs to be restarted.
