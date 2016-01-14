@@ -52,10 +52,11 @@ When configuring heartbeat interval, make sure Service Control setting [`Heartbe
 
 
 ### TTL
-When the plugin sends heartbeat messages, the default TTL is fixed to four times the configured value of the Heartbeat interval. In some cases, this still caused the heartbeat message to end up in the Dead Letter Queue depending on the message load in the ServiceControl Queue.
+When the plugin sends heartbeat messages, the default TTL is fixed to four times the configured value of the Heartbeat interval. 
 
-TTL is now configurable, same as the heartbeat interval.
-Add the app setting in app.config as shown for to configure the TTL to a custom value instead of the default value based on heartbeat interval. Provide the timespan string for the value as shown. In this example, a heartbeat message will be sent every 30 seconds and the TTL for the heartbeat message is 3 minutes.
+TTL is now configurable, as of Version 1.1.0
+
+Add the app setting in app.config as shown to configure the TTL to a custom value instead of the default value based on heartbeat interval. Provide the timespan string for the value as shown. In this example, a heartbeat message will be sent every 30 seconds and the TTL for the heartbeat message is 3 minutes.
 
 <!-- import heartbeatsTtlConfig -->
 
