@@ -1,5 +1,6 @@
 ﻿using System;
 using NHibernate.Cfg;
+using NHibernate.Mapping.ByCode;
 using NServiceBus;
 using NServiceBus.Persistence;
 using Environment = NHibernate.Cfg.Environment;
@@ -8,7 +9,7 @@ class Program
 {
     static void Main()
     {
-        var nhConfiguration = new Configuration();
+        Configuration nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
         nhConfiguration.SetProperty(Environment.ConnectionDriver, "NHibernate.Driver.Sql2008ClientDriver");
@@ -46,7 +47,7 @@ class Program
     #region LoquaciousConfiguration
     static Configuration AddLoquaciousMappings(Configuration nhConfiguration)
     {
-        var mapper = new NHibernate.Mapping.ByCode.ModelMapper();
+        ModelMapper mapper = new ModelMapper();
         mapper.AddMappings(typeof(OrderSagaDataLoquacious).Assembly.GetTypes());
         nhConfiguration.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
         return nhConfiguration;

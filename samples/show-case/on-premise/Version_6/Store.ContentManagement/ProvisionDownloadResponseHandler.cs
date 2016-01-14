@@ -33,7 +33,7 @@ public class ProvisionDownloadResponseHandler : IHandleMessages<ProvisionDownloa
             e.ClientId = message.ClientId;
             e.ProductUrls = new Dictionary<string, string>();
 
-            foreach (var productId in message.ProductIds)
+            foreach (string productId in message.ProductIds)
             {
                 e.ProductUrls.Add(productId, productIdToUrlMap[productId]);
             }

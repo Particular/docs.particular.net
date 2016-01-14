@@ -1,6 +1,7 @@
 ﻿using System;
 using NServiceBus;
 using NServiceBus.RavenDB.Persistence;
+using Raven.Client;
 
 #region handler    
 
@@ -15,7 +16,7 @@ public class ShipOrderHandler : IHandleMessages<ShipOrder>
 
     public void Handle(ShipOrder message)
     {
-        var session = sessionProvider.Session;
+        IDocumentSession session = sessionProvider.Session;
         session.Store(new OrderShipped
         {
             Id = message.OrderId,

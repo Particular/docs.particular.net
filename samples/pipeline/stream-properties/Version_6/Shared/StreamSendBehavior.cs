@@ -21,7 +21,7 @@ class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
     {
 #endregion
         #region copy-stream-properties-to-disk
-        var timeToBeReceived = TimeSpan.MaxValue;
+        TimeSpan timeToBeReceived = TimeSpan.MaxValue;
         DiscardIfNotReceivedBefore constraint;
 
         if (context.TryGetDeliveryConstraint(out constraint))

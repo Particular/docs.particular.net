@@ -20,7 +20,7 @@ class Program
         #endregion
 
         busConfiguration.EnableInstallers();
-        using (var bus = Bus.Create(busConfiguration).Start())
+        using (IBus bus = Bus.Create(busConfiguration).Start())
         {
             Run(bus);
         }

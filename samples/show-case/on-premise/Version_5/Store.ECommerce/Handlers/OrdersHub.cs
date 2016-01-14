@@ -10,7 +10,7 @@ public class OrdersHub : Hub
 
     public void CancelOrder(int orderNumber)
     {
-        var command = new CancelOrder
+        CancelOrder command = new CancelOrder
         {
             ClientId = Context.ConnectionId,
             OrderNumber = orderNumber
@@ -30,7 +30,7 @@ public class OrdersHub : Hub
             Debugger.Break();
         }
 
-        var command = new SubmitOrder
+        SubmitOrder command = new SubmitOrder
         {
             ClientId = Context.ConnectionId,
             OrderNumber = Interlocked.Increment(ref orderNumber),

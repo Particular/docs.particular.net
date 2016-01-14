@@ -21,7 +21,7 @@ public class DebugFlagMutator :
 
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
-        var debugFlag = context.Headers.ContainsKey("Debug") ? context.Headers["Debug"] : "false";
+        string debugFlag = context.Headers.ContainsKey("Debug") ? context.Headers["Debug"] : "false";
         if (debugFlag != null && debugFlag.Equals("true", StringComparison.OrdinalIgnoreCase))
         {
             debug.Value = true;

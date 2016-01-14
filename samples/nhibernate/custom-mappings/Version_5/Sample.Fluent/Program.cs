@@ -9,7 +9,7 @@ class Program
 {
     static void Main()
     {
-        var nhConfiguration = new Configuration();
+        Configuration nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
         nhConfiguration.SetProperty(Environment.ConnectionDriver, "NHibernate.Driver.Sql2008ClientDriver");

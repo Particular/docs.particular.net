@@ -43,9 +43,9 @@ class MsmqReceiver : IAdvancedSatellite
     // The bridge is a MSMQ and the publishers have an entry for this queue in their subscription storage.
     public bool Handle(TransportMessage message)
     {
-        var eventTypes = new[] { Type.GetType(message.Headers["NServiceBus.EnclosedMessageTypes"]) };
+        Type[] eventTypes = { Type.GetType(message.Headers["NServiceBus.EnclosedMessageTypes"]) };
 
-        var msmqId = message.Headers["NServiceBus.MessageId"];
+        string msmqId = message.Headers["NServiceBus.MessageId"];
             
         // Set the Id to a deterministic guid, as Sql message Ids are Guids and Msmq message ids are guid\nnnn.
         // Newer versions of Nsb already return just a guid for the messageId. So, check to see if the Id is a valid Guid and if 

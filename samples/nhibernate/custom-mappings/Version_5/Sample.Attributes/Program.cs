@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using NHibernate.Cfg;
 using NHibernate.Mapping.Attributes;
 using NServiceBus;
@@ -9,7 +10,7 @@ class Program
 {
     static void Main()
     {
-        var nhConfiguration = new Configuration();
+        Configuration nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
         nhConfiguration.SetProperty(Environment.ConnectionDriver, "NHibernate.Driver.Sql2008ClientDriver");
@@ -48,12 +49,12 @@ class Program
 
     static void AddAttributeMappings(Configuration nhConfiguration)
     {
-        var hbmSerializer = new HbmSerializer
+        HbmSerializer hbmSerializer = new HbmSerializer
         {
             Validate = true
         };
 
-        using (var stream = hbmSerializer.Serialize(typeof(Program).Assembly))
+        using (MemoryStream stream = hbmSerializer.Serialize(typeof(Program).Assembly))
         {
             nhConfiguration.AddInputStream(stream);
         }

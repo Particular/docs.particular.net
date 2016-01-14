@@ -22,7 +22,7 @@ public class OutboxLoopbackSendBehavior : IBehavior<OutgoingContext>
             return;
         }
 
-        var sendOptions = context.DeliveryOptions as SendOptions;
+        SendOptions sendOptions = context.DeliveryOptions as SendOptions;
         if (sendOptions != null)
         {
             context.OutgoingLogicalMessage.Headers["$.store-and-forward.destination"] =
@@ -32,7 +32,7 @@ public class OutboxLoopbackSendBehavior : IBehavior<OutgoingContext>
         }
         else
         {
-            var publishOptions = context.DeliveryOptions as PublishOptions;
+            PublishOptions publishOptions = context.DeliveryOptions as PublishOptions;
             if (publishOptions != null)
             {
                 //Technically we don't need to store tha actual type, just a marker that this is a Publish operation

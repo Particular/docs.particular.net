@@ -7,7 +7,7 @@ public class OrderIsReadyHandler :  IHandleMessages<DownloadIsReady>
 {
     public void Handle(DownloadIsReady message)
     {
-        var context = GlobalHost.ConnectionManager.GetHubContext<OrdersHub>();
+        IHubContext context = GlobalHost.ConnectionManager.GetHubContext<OrdersHub>();
             
         context.Clients.Client(message.ClientId).orderReady(new
             {

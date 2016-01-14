@@ -56,7 +56,7 @@ public class MvcApplication : HttpApplication
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
 
-        var startableBus = Bus.Create(busConfiguration);
+        IStartableBus startableBus = Bus.Create(busConfiguration);
         bus = startableBus.Start();
 
         AreaRegistration.RegisterAllAreas();

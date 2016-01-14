@@ -6,7 +6,7 @@ public class OrderCancelledHandler : IHandleMessages<OrderCancelled>
 {
     public void Handle(OrderCancelled message)
     {
-        var context = GlobalHost.ConnectionManager.GetHubContext<OrdersHub>();
+        IHubContext context = GlobalHost.ConnectionManager.GetHubContext<OrdersHub>();
 
         context.Clients.Client(message.ClientId).orderCancelled(new
         {

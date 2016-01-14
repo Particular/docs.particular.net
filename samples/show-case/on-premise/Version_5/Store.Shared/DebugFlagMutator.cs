@@ -15,7 +15,7 @@ public class DebugFlagMutator :
 
     public void MutateIncoming(TransportMessage transportMessage)
     {
-        var debugFlag = transportMessage.Headers.ContainsKey("Debug") ? transportMessage.Headers["Debug"] : "false";
+        string debugFlag = transportMessage.Headers.ContainsKey("Debug") ? transportMessage.Headers["Debug"] : "false";
         if (debugFlag != null && debugFlag.Equals("true", StringComparison.OrdinalIgnoreCase))
         {
             debug.Value = true;

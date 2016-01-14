@@ -23,8 +23,7 @@ class Program
 
         using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
-            var bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
-
+            IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
             Run(bus);
         }
     }

@@ -10,7 +10,7 @@ class Program
 
     static void Main()
     {
-        var nhConfiguration = new Configuration();
+        Configuration nhConfiguration = new Configuration();
 
         nhConfiguration.SetProperty(Environment.ConnectionProvider, "NHibernate.Connection.DriverConnectionProvider");
         nhConfiguration.SetProperty(Environment.ConnectionDriver, "NHibernate.Driver.Sql2008ClientDriver");
@@ -48,10 +48,10 @@ class Program
     #region AddMappingsFromFilesystem
     static void AddMappingsFromFilesystem(Configuration nhConfiguration)
     {
-        var folder = Directory.GetCurrentDirectory();
-        var hmbFiles = Directory.GetFiles(folder, "*.hbm.xml", SearchOption.TopDirectoryOnly);
+        string folder = Directory.GetCurrentDirectory();
+        string[] hmbFiles = Directory.GetFiles(folder, "*.hbm.xml", SearchOption.TopDirectoryOnly);
 
-        foreach (var file in hmbFiles)
+        foreach (string file in hmbFiles)
         {
             nhConfiguration.AddFile(file);
         }

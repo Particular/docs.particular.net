@@ -14,7 +14,7 @@ public static class Extensions
     
     public static string DecodeFromKey(this string encodedKey)
     {
-        var base64 = encodedKey.Replace('_', '/');
+        string base64 = encodedKey.Replace('_', '/');
         byte[] bytes = Convert.FromBase64String(base64);
         return Encoding.UTF8.GetString(bytes);
     }

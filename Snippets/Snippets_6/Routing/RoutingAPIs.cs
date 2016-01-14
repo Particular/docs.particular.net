@@ -12,7 +12,7 @@ namespace Snippets6.Routing
 
         public void DynamicRoutes()
         {
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region Routing-DynamicRoutes
             busConfiguration.Routing().UnicastRoutingTable
                 .AddDynamic((types, contextBag) => new[]
@@ -29,7 +29,7 @@ namespace Snippets6.Routing
 
         public void CustomRoutingStore()
         {
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
             #region Routing-CustomRoutingStore
 
@@ -41,7 +41,7 @@ namespace Snippets6.Routing
 
         public void StaticEndpointMapping()
         {
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region Routing-StaticEndpointMapping
             EndpointName sales = new EndpointName("Sales");
             busConfiguration.Routing().EndpointInstances
@@ -51,7 +51,7 @@ namespace Snippets6.Routing
 
         public void DynamicEndpointMapping()
         {
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
 
             #region Routing-DynamicEndpointMapping
 
@@ -74,7 +74,7 @@ namespace Snippets6.Routing
 
         public void SpecialCaseTransportAddress()
         {
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region Routing-SpecialCaseTransportAddress
             busConfiguration
                 .UseTransport<MsmqTransport>()
@@ -85,7 +85,7 @@ namespace Snippets6.Routing
         // ReSharper disable once ConvertClosureToMethodGroup
         public void TransportAddressRules()
         {
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region Routing-TransportAddressRule
             busConfiguration
                 .UseTransport<MsmqTransport>()

@@ -11,7 +11,7 @@ class HandlerTimerBehavior : IBehavior<IncomingContext>
 
     public void Invoke(IncomingContext context, Action next)
     {
-        var stopwatch = Stopwatch.StartNew();
+        Stopwatch stopwatch = Stopwatch.StartNew();
         try
         {
             next();

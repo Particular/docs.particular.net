@@ -12,7 +12,7 @@ class HandlerTimerBehavior : Behavior<IInvokeHandlerContext>
 
     public override async Task Invoke(IInvokeHandlerContext context, Func<Task> next)
     {
-        var stopwatch = Stopwatch.StartNew();
+        Stopwatch stopwatch = Stopwatch.StartNew();
         try
         {
             await next().ConfigureAwait(false);

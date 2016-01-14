@@ -11,7 +11,7 @@ static class Program
         #region config
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Serialization.ExternalJson"); 
-        var settings = new JsonSerializerSettings
+        JsonSerializerSettings settings = new JsonSerializerSettings
         {
             Formatting = Formatting.Indented
         };

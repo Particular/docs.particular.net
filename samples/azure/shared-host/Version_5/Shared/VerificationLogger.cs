@@ -8,8 +8,8 @@ public static class VerificationLogger
 
     static VerificationLogger()
     {
-        var storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
-        var tableClient = storageAccount.CreateCloudTableClient();
+        CloudStorageAccount storageAccount = CloudStorageAccount.DevelopmentStorageAccount;
+        CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
         table = tableClient.GetTableReference("MultiHostedEndpointsOutput");
         table.CreateIfNotExists();
     }
@@ -18,7 +18,7 @@ public static class VerificationLogger
     {
         lock (locker)
         {
-            var operation = TableOperation.Insert(new LogEntry(endpoint, message));
+            TableOperation operation = TableOperation.Insert(new LogEntry(endpoint, message));
             table.Execute(operation);
         }
     }

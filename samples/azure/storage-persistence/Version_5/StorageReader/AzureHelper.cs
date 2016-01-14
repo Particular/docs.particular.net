@@ -32,7 +32,7 @@ public class AzureHelper
         CloudBlobClient tableClient = storageAccount.CreateCloudBlobClient();
         CloudBlobContainer container = tableClient.GetContainerReference(containerName);
         Debug.WriteLine(string.Format("'{0}' container contents", containerName));
-        foreach (var blob in container.ListBlobs())
+        foreach (IListBlobItem blob in container.ListBlobs())
         {
             string name = blob.Uri.AbsolutePath.Split('/').Last();
             Debug.WriteLine("  Blob:= " + name);
@@ -53,7 +53,7 @@ public class AzureHelper
         CloudTable table = tableClient.GetTableReference(tableName);
         List<DynamicTableEntity> entities = table.ExecuteQuery(new TableQuery()).ToList();
         Debug.WriteLine(string.Format("'{0}' table contents", tableName));
-        foreach (var entity in entities)
+        foreach (DynamicTableEntity entity in entities)
         {
             Debug.WriteLine(string.Format("  PartitionKey:= " + entity.PartitionKey));
             Debug.WriteLine(string.Format("    RowKey:= " + entity.RowKey));
@@ -62,7 +62,7 @@ public class AzureHelper
                 string decodedRowKey = entity.RowKey.DecodeFromKey();
                 Debug.WriteLine("    DecodedRowKey:= " + decodedRowKey);
             }
-            foreach (var property in entity.Properties)
+            foreach (KeyValuePair<string, EntityProperty> property in entity.Properties)
             {
                 string propertyAsObject = property.Value.PropertyAsObject.ToString().Truncate(50);
                 Debug.WriteLine("    {0}:= {1}", property.Key, propertyAsObject);

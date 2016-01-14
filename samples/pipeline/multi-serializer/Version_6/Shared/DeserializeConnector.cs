@@ -31,11 +31,11 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
 
     public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingLogicalMessageContext, Task> stage)
     {
-        var incomingMessage = context.Message;
+        IncomingMessage incomingMessage = context.Message;
 
-        var messages = ExtractWithExceptionHandling(incomingMessage);
+        List<LogicalMessage> messages = ExtractWithExceptionHandling(incomingMessage);
 
-        foreach (var message in messages)
+        foreach (LogicalMessage message in messages)
         {
             IIncomingLogicalMessageContext logicalMessageContext = this.CreateIncomingLogicalMessageContext(message, context);
             await stage(logicalMessageContext).ConfigureAwait(false);
@@ -62,13 +62,13 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
         }
 
         string messageTypeIdentifier;
-        var messageMetadata = new List<MessageMetadata>();
+        List<MessageMetadata> messageMetadata = new List<MessageMetadata>();
 
         if (physicalMessage.Headers.TryGetValue(Headers.EnclosedMessageTypes, out messageTypeIdentifier))
         {
-            foreach (var messageTypeString in messageTypeIdentifier.Split(';'))
+            foreach (string messageTypeString in messageTypeIdentifier.Split(';'))
             {
-                var typeString = messageTypeString;
+                string typeString = messageTypeString;
 
                 MessageMetadata metadata = messageMetadataRegistry.GetMessageMetadata(typeString);
 
@@ -86,10 +86,10 @@ class DeserializeConnector : StageConnector<IIncomingPhysicalMessageContext, IIn
             }
         }
 
-        using (var stream = new MemoryStream(physicalMessage.Body))
+        using (MemoryStream stream = new MemoryStream(physicalMessage.Body))
         {
             IMessageSerializer messageSerializer = serializationMapper.GetSerializer(physicalMessage.Headers);
-            var messageTypes = messageMetadata.Select(metadata => metadata.MessageType).ToList();
+            List<Type> messageTypes = messageMetadata.Select(metadata => metadata.MessageType).ToList();
             return messageSerializer.Deserialize(stream, messageTypes)
                 .Select(x => logicalMessageFactory.Create(x.GetType(), x))
                 .ToList();

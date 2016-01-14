@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,14 +38,14 @@ class SerializeConnector : StageConnector<IOutgoingLogicalMessageContext, IOutgo
         context.Headers[Headers.ContentType] = messageSerializer.ContentType;
         context.Headers[Headers.EnclosedMessageTypes] = SerializeEnclosedMessageTypes(messageType);
 
-        var array = Serialize(messageSerializer, context);
+        byte[] array = Serialize(messageSerializer, context);
         IOutgoingPhysicalMessageContext physicalMessageContext = this.CreateOutgoingPhysicalMessageContext(array, context.RoutingStrategies, context);
         await stage(physicalMessageContext).ConfigureAwait(false);
     }
 
     byte[] Serialize(IMessageSerializer messageSerializer, IOutgoingLogicalMessageContext context)
     {
-        using (var stream = new MemoryStream())
+        using (MemoryStream stream = new MemoryStream())
         {
             messageSerializer.Serialize(context.Message.Instance, stream);
             return stream.ToArray();
@@ -53,8 +54,8 @@ class SerializeConnector : StageConnector<IOutgoingLogicalMessageContext, IOutgo
 
     string SerializeEnclosedMessageTypes(Type messageType)
     {
-        var metadata = messageMetadataRegistry.GetMessageMetadata(messageType);
-        var distinctTypes = metadata.MessageHierarchy.Distinct();
+        MessageMetadata metadata = messageMetadataRegistry.GetMessageMetadata(messageType);
+        IEnumerable<Type> distinctTypes = metadata.MessageHierarchy.Distinct();
         return string.Join(";", distinctTypes.Select(t => t.AssemblyQualifiedName));
     }
 }

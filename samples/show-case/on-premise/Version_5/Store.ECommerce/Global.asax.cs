@@ -18,7 +18,7 @@ public class MvcApplication : HttpApplication
 
     protected void Application_Start()
     {
-        var configuration = new BusConfiguration();
+        BusConfiguration configuration = new BusConfiguration();
         configuration.EndpointName("Store.ECommerce");
         configuration.PurgeOnStartup(true);
 

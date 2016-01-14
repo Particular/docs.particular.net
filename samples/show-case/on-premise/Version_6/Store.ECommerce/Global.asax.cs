@@ -22,7 +22,7 @@ public class MvcApplication : HttpApplication
 
     static async Task AsyncStart()
     {
-        var busConfiguration = new BusConfiguration();
+        BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Store.ECommerce");
         busConfiguration.PurgeOnStartup(true);
 

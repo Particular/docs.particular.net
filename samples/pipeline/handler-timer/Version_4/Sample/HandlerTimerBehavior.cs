@@ -12,7 +12,7 @@ class HandlerTimerBehavior : IBehavior<HandlerInvocationContext>
 
     public void Invoke(HandlerInvocationContext context, Action next)
     {
-        var stopwatch = Stopwatch.StartNew();
+        Stopwatch stopwatch = Stopwatch.StartNew();
         try
         {
             next();

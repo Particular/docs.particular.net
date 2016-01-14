@@ -10,8 +10,8 @@ public class SerializedMessageGenerator
     [Test]
     public static void Generate()
     {
-        var serializer = new JsonMessageSerializer(new SimpleMessageMapper());
-        var serializedMessage = serializer.SerializeObject(new NativeMessage
+        JsonMessageSerializer serializer = new JsonMessageSerializer(new SimpleMessageMapper());
+        string serializedMessage = serializer.SerializeObject(new NativeMessage
         {
             Content = "Hello from native sender",
             SendOnUtc = DateTime.UtcNow

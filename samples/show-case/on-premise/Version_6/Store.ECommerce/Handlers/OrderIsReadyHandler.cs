@@ -8,7 +8,7 @@ public class OrderIsReadyHandler :  IHandleMessages<DownloadIsReady>
 {
     public Task Handle(DownloadIsReady message, IMessageHandlerContext context)
     {
-        var hubContext = GlobalHost.ConnectionManager.GetHubContext<OrdersHub>();
+        IHubContext hubContext = GlobalHost.ConnectionManager.GetHubContext<OrdersHub>();
             
         hubContext.Clients.Client(message.ClientId).orderReady(new
             {

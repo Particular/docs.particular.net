@@ -13,7 +13,7 @@ public static class RavenExtensions
     public static void BatchDelete(this DocumentStore store, IEnumerable<string> keysToDelete)
     {
         // Process groups in batches of 1000 to avoid a possible timeout
-        foreach (var batch in keysToDelete.Batch(1000))
+        foreach (IEnumerable<string> batch in keysToDelete.Batch(1000))
         {
             DeleteCommandData[] deleteCommands = batch
                 .Select(key => new DeleteCommandData
