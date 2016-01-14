@@ -44,12 +44,19 @@ If you are using the older version of the plugin, namely **ServiceControl.Plugin
 
 ServiceControl heartbeats are sent, by the plugin, at a predefined interval of 10 seconds. The interval value can be overridden on a per endpoint basis adding the following application setting to the endpoint configuration file:
 
-```xml
-<add key="heartbeat/interval" value="00:00:40" />
-```
+<!-- import heartbeatsIntervalConfig -->
 
 Where the value is convertible to a `TimeSpan` value. In the above sample you are setting the endpoint heartbeat interval to 40 seconds.
 
 When configuring heartbeat interval, make sure Service Control setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#configuration-options-servicecontrol-heartbeatgraceperiod) is greater than the heartbeat interval.
+
+
+### TTL
+When the plugin sends heartbeat messages, the default TTL is fixed to four times the configured value of the Heartbeat interval. In some cases, this still caused the heartbeat message to end up in the Dead Letter Queue depending on the message load in the ServiceControl Queue.
+
+TTL is now configurable, same as the heartbeat interval.
+Add the app setting in app.config as shown for to configure the TTL to a custom value instead of the default value based on heartbeat interval. Provide the timespan string for the value as shown. In this example, a heartbeat message will be sent every 30 seconds and the TTL for the heartbeat message is 3 minutes.
+
+<!-- import heartbeatsTtlConfig -->
 
 Note: To enable the change the endpoint needs to be restarted.

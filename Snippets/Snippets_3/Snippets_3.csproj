@@ -166,6 +166,8 @@
     <Content Include="Persistence\Msmq\msmq.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="SC Plugins Config\heartbeatsIntervalConfig.xml" />
+    <Content Include="SC Plugins Config\heartbeatsTtlConfig.xml" />
     <Content Include="UpgradeGuides\3to4\MsmqTransportConfig.config.xml" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
