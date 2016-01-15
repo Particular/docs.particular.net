@@ -107,7 +107,7 @@ Entities creation:
 
 snippet: ASB-NamingConventions-entity-creation-conventions
 
-WARN: This is an advanced topic and requires full understanding of the topology.
+WARNING: This is an advanced topic and requires full understanding of the topology.
 
 ## Transactions
 
