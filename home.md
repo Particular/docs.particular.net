@@ -267,7 +267,7 @@ span.blue {
 <div class="productcolumnc">
   <div class="productcolumn block">
     <p></p>
-    <h4>Complete under-the-hood visualization of your system's behavior</h4>
+    <h4>Complete under-the-hood visualization of a system's behavior</h4>
     <p></p>
     <ul>
       <li><a href="/serviceinsight/application-invocation.md">Application invocation</a></li>
@@ -289,7 +289,7 @@ span.blue {
   </div>
   <div class="productcolumn last block">
     <p></p>
-    <h4>Real-time monitoring that is custom tailored to fit your distributed systems</h4>
+    <h4>Real-time monitoring that is custom tailored to fit a distributed systems</h4>
     <p></p>
     <ul>
       <li><a href="/servicepulse/intro-endpoints-heartbeats.md">Monitoring Endpoints</a></li>
