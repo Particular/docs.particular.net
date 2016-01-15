@@ -13,7 +13,7 @@ namespace Snippets6.Routing
     {
         public void StaticRoutes()
         {
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region Routing-StaticRoutes-Endpoint
             busConfiguration.Routing().UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
             #endregion
@@ -113,7 +113,7 @@ namespace Snippets6.Routing
 
         public void FileBasedRouting()
         {
-            var busConfiguration = new BusConfiguration();
+            BusConfiguration busConfiguration = new BusConfiguration();
             #region Routing-FileBased-Config
             busConfiguration.Routing().UnicastRoutingTable.RouteToEndpoint(typeof(AcceptOrder), "Sales");
             busConfiguration.Routing().UnicastRoutingTable.RouteToEndpoint(typeof(SendOrder), "Shipping");
