@@ -226,15 +226,6 @@ span.blue {
       </a>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6"></div>
-    <div class="col-md-6">
-      <a href="http://www.pluralsight.com/courses/nservicebus">
-        <img src="/home/pluralsight.png">
-        <h3>Pluralsight: Introduction to NServiceBus</h3>
-      </a>
-    </div>
-  </div>
 </div>
 </div>
 <div class="row">
