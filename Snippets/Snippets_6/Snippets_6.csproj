@@ -275,11 +275,15 @@
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Routing\RoutingFile.xml" />
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <None Include="app.config" />
     <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Routing\RoutingFile.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

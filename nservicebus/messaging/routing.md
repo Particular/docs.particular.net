@@ -10,6 +10,7 @@ tags:
 - reply
 related:
 - nservicebus/messaging/message-owner
+- nservicebus/messaging/file-based-routing
 ---
 
 One of the core features of NServiceBus is routing of messages. The only thing required is to perform a Send, Publish or Reply and the actual message destination is calculated by the framework. Flexible message routing is a feature added in Version 6. In previous versions NServiceBus used fixed [message ownership mappings](/nservicebus/messaging/message-owner.md) that allowed only to map the message type (or all types in an assembly or a namespace) to physical addresses (queue names). The flexible routing in Version 6 splits this mapping up into a series of individually configurable steps. NServiceBus 6 still understands the old configuration in form of message-endpoint mappings for backwards compatibility.
@@ -102,6 +103,15 @@ Each layer is the responsibility of people in a different organizational role an
 
 Mapping a message type to the destination is the responsibility of the **architect** role (which can be fulfilled by the whole team of developers). It tells NServicesBus to which endpoint a given type of message should be send or, when it comes to events, which endpoint is responsible for publishing.
 
+#### Static routes
+
+The most common way of specifying the type mapping is through static routes. Most of the times the routing should specify the destination endpoint 
+
+snippet:Routing-StaticRoutes-Endpoint
+
+When necessary (e.g. for integration with legacy systems) you can specify the static routing to a given transport-level address but this should be avoided in most scenarios and the address resolution should be delegated to lower layers of routing. 
+
+snippet:Routing-StaticRoutes-Address
 
 #### Dynamic routes
 
@@ -126,7 +136,13 @@ By default, NServiceBus assumes that each endpoint has a single non-scaled-out i
 
 #### Using config file
 
-In most scenarios endpoint mapping should be done via a config file so it can be modified without the need for re-deploying the binaries.
+In most scenarios endpoint mapping should be done via a config file so it can be modified without the need for re-deploying the binaries. 
+
+snippet:Routing-FileBased-Config
+
+To read more about file-based endpoint mapping, go [here](nservicebus/messaging/file-based-routing.md).
+
+NOTE: If you use static type mapping to an address instead of an endpoint you won't be able to take advantage of file-based instance resolution.
 
 #### Static mapping
 
