@@ -28,7 +28,7 @@ This sample contains three projects:
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
  * Receiver - A console application responsible for processing the order message.
 
-Sender and Receiver use different schemas within one database. This creates a nice separation on logical level (schemas can be secured independently) while retaining the benefits of having a single physical database. Each schema contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence.
+Sender and Receiver use different schemas within one database. This creates a separation on logical level (schemas can be secured independently) while retaining the benefits of having a single physical database. Each schema contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence.  If no schema is specified, the transport will default to using the `dbo` schema.
 
 
 ### Sender project
@@ -47,8 +47,6 @@ snippet:SenderConnectionStrings
 The Receiver mimics a back-end system. It is also configured to use SQL Server transport with NHibernate persistence but instead of hard-coding the other endpoint's schema, it uses a convention based on the endpoint's queue name.
 
 snippet:ReceiverConfiguration
-
-It is essential to tell NHibernate what schema should it use while accessing the database. The persistence tables have hard-coded names so if more than one endpoint uses the database, they *must* use different schemas.
 
 snippet:NHibernate
 
