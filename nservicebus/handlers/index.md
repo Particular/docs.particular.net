@@ -23,6 +23,9 @@ If you are using the Request-Response or Full Duplex pattern, your handler will 
 
 If you are handling a message in a publish-and-subscribe scenario, see [How to Publish/Subscribe to a Message](/nservicebus/messaging/publish-subscribe/).
 
+### Mapping to FQN with fallback to type
+
+NServiceBus will try to map incoming messages to a type using its Fully Qualified Name (FQN). This is default behavior for sharing assemblies amongst endpoints and sendonly clients. When a message cannot be mapped based on FQN, NServiceBus will try to map to just the type.
 
 ## What happens when there are no handlers for a message?
 
