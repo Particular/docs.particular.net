@@ -70,7 +70,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigErrorQueue.cs" />
     <Compile Include="NativeMessageHandler.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
