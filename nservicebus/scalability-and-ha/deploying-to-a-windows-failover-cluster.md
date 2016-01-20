@@ -90,22 +90,22 @@ Before you can cluster the NServiceBus.Host.exe processes, you need to install t
 
 Copy the Distributor binary as many times as you have logical queues, and then configure each one as described in the [NServiceBus Distributor](distributor/) page. To keep everything straight, the queues are named according to the following convention:
 
- * Distributor Data Bus: ProjectName.QueueName
- * Distributor Control Bus: ProjectName.QueueName.Distributor.Control
- * Distributor Storage Queue: ProjectName.QueueName.Distributor.Storage
+ * Distributor Data Bus: EndpointName
+ * Distributor Control Bus: EndpointName.Distributor.Control
+ * Distributor Storage Queue: EndpointName.Distributor.Storage
 
 **A review of how the distributor works:** Other endpoints send messages to the queue specified by the Distributor Data Bus, where they accumulate if no worker is running. When a worker comes online, it sends a ReadyMessage to the queue specified by the Distributor Control Bus. If there is work to be done, the distributor sends an item from the Data Bus to the endpoint's local input queue, otherwise, it files it in the Distributor Storage Queue so that when work does come in, the distributor knows who is ready to process it.
 
-Using this naming convention, all of your applications' queues are grouped together, and all of the queues for a logical QueueName are also grouped together in alphabetical order.
+Using this naming convention, all the queues of an endpoint end up grouped together.
 
 Install each distributor from the command line:
 
 ```C#
 NServiceBus.Host.exe
 /install
-/serviceName:Distributor.ProjectName.QueueName
-/displayName:Distributor.ProjectName.QueueName
-/description:Distributor.ProjectName.QueueName
+/serviceName:EndpointName
+/displayName:Distributor.EndpointName
+/description:Distributor.EndpointName
 /userName:DOMAIN\us
 /password:thepassword
 NServiceBus.Production NServiceBus.Distributor
@@ -134,9 +134,9 @@ Again, try swapping the cluster back and forth, to make sure it can move freely 
 
 The first thing you should do is to make sure that the worker servers have [unique QMIds](distributor/#worker-qmid-needs-to-be-unique).
 
-Set up your worker processes on all worker servers (not the cluster nodes!) as services, as you did for the distributors. But instead of using `NServiceBus.Distributor`, use `NServiceBus.Worker` profile instead.
+Set up your worker processes on all worker servers (not the cluster nodes!) as windows services, but instead of using `NServiceBus.Distributor`, use `NServiceBus.Worker` profile instead.
 
-Configure the workers' `UnicastBusConfig` sections to point to the distributor's data and control queues as described on the Distributor Page under [Routing with the Distributor](distributor).
+Configure the workers' `MasterNodeConfig` section to point to the machine running the distributor as described on the Distributor Page under [Routing with the Distributor](distributor).
 
 With your distributors running in the cluster and your worker processes coming online, you should see the Storage queues for each process start to fill up. The more worker threads you have configured, the more messages you can expect to see in each Storage queue.
 
@@ -154,8 +154,7 @@ While in development, your endpoint configurations probably don't have any @ sym
   <!-- Other config options go here -->
   <MasterNodeConfig Node="MachineWhereDistributorRuns"/>
 
-  <UnicastBusConfig DistributorControlAddress="distributorControlBus@MsmqNetworkName"
-                    DistributorDataAddress="distributorDataBus@MsmqNetworkName">
+  <UnicastBusConfig">
     <MessageEndpointMappings>
       <!-- regular entries -->
     </MessageEndpointMappings>
