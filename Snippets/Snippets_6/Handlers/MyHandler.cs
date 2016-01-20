@@ -15,4 +15,16 @@
     }
 
     #endregion
+
+    #region EmptyHandler
+
+    public class MyMessageHandler : IHandleMessages<MyMessage>
+    {
+        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        {
+            // do something in the client process
+        }
+    }
+
+    #endregion
 }

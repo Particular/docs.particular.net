@@ -37,7 +37,7 @@ The user is also responsible for properly shutting down the endpoint when it is 
 
 snippet:Hosting-Shutdown
 
-NOTE: Starting with V6 we no longer provide the `Dispose` method. This is because there is now way to flow the asynchronous context through the `Dispose` method. The shutdown procedure might involve executing async code (e.g. `IWantToRunWhenBusStartsAndStops`) which means that if `Dispose` would wrap `Stop` with a `GetResult()` call, it could cause deadlocks.
+NOTE: Starting with Version 6, the bus session is no longer disposable, due to the asynchronous nature of the pipeline. Call `Stop` in an async manner (see example above).
 
 
 ### Windows Service Hosting
@@ -100,14 +100,14 @@ Most usages of the bus will occur where the NServiceBus APIs are used. For examp
 
 #### Using a Container
 
-NServiceBus support dependency injection via use [Containers](/nservicebus/containers/). At startup the instance of `IBus` will be injected into the configured container and can be access via that container.
+NServiceBus support dependency injection via use [Containers](/nservicebus/containers/). At startup, the instance of a bus session will be injected into the configured container and can be access via that container.
 
 Related:
 
  * [Injecting the Bus into ASP.NET MVC Controller](/samples/web/asp-mvc-injecting-bus/)
 
 
-NOTO: Since V6 `IEndpointInstance` (the equivalent of `IBus`) is no longer automatically injected into the container. In order to send messages you need to explicitly create a bus context. Here's a sample code showing how to automate this task using the Autofac container
+NOTE: Since Version 6, `IEndpointInstance`/`IBusSession` (the equivalent of `IBus` in earlier versions) is no longer automatically injected into the container. In order to send messages you need to explicitly create a bus context. Here's a sample code showing how to automate this task using the Autofac container
 
 snippet:Hosting-Inject
 

@@ -39,7 +39,7 @@ Here is a diagram how it all works:
 ## Caveats
 
 - Both the business data and deduplication data need to share the same database.
-- The Outbox is bypassed when sending messages "from outside" via the `IBus` interface (not from a message handler). The reason for this is lack of a driving force for repeated dispatching of the Outbox messages (which currently is the retry mechanism that applies only when handling messages).
+- The Outbox is bypassed when a message is sent outside of an NServiceBus message handler. The reason for this is lack of a driving force for repeated dispatching of the Outbox messages (which currently is the retry mechanism that applies only when handling messages).
 
 ## Using outbox with NHibernate persistence
 

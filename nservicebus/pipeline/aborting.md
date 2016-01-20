@@ -7,7 +7,7 @@ tags:
 
 ## From inside a Handler
 
-From the context of a Handler further Handler execution can be aborted by calling the `IBus.DoNotContinueDispatchingCurrentMessageToHandlers()` method. This method instruct the bus not to pass the current message on to subsequent handlers in the pipeline. This is often used by authentication and authorization handlers when those checks fail.
+From the context of a Handler further Handler execution can be aborted by calling the `DoNotContinueDispatchingCurrentMessageToHandlers()` method. This method instruct the bus not to pass the current message on to subsequent handlers in the pipeline. This is often used by authentication and authorization handlers when those checks fail.
 
 snippet: AbortHandler
 
