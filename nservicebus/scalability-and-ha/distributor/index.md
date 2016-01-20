@@ -179,7 +179,7 @@ The Distributor uses two queues for its runtime operation. The `DataInputQueue` 
 To use values other than the NServiceBus defaults you can override them, as shown in the `UnicastBusConfig` section below:
 
 ```XML
-<UnicastBusConfig DistributorControlAddress="distributorControlBus@Cluster1" DistributorDataAddress="distributorDataBus@Cluster1">
+<UnicastBusConfig DistributorControlAddress="EndpointName.Distributor.Control@MachineWhereDistributorRuns" DistributorDataAddress="EndpointName@MachineWhereDistributorRuns">
   <MessageEndpointMappings>
     <!-- regular entries -->
   </MessageEndpointMappings>
@@ -190,7 +190,7 @@ If those settings do not exist, the control queue is assumed as the endpoint nam
 
 Similar to standard NServiceBus routing, you do not want high priority messages to get stuck behind lower priority messages, so just as you have separate NServiceBus processes for different message types, you also set up different Distributor instances (with separate queues) for different message types.
 
-In this case, name the queues just like the messages. For example, `SubmitPurchaseOrder.StrategicCustomers.Sales`. This is the name of the distributor's data queue and the input queues of each of the workers. The distributor's control queue is best named with a prefix of 'control', as follows: `Control.SubmitPurchaseOrder.StrategicCustomers.Sales`.
+In this case, name the queues just like the messages. For example, `SubmitPurchaseOrder.StrategicCustomers.Sales`. This is the name of the distributor's data queue and the input queues of each of the workers.
 
 
 ## Worker QMId needs to be unique
