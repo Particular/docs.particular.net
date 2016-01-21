@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.RavenDB.Persistence;
 
@@ -6,17 +7,10 @@ using NServiceBus.RavenDB.Persistence;
 
 public class ShipOrderHandler : IHandleMessages<ShipOrder>
 {
-    ISessionProvider sessionProvider;
-
-    public ShipOrderHandler(ISessionProvider sessionProvider)
+    public async Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
-        this.sessionProvider = sessionProvider;
-    }
-
-    public void Handle(ShipOrder message)
-    {
-        var session = sessionProvider.Session;
-        session.Store(new OrderShipped
+        var session = context.GetRavenSession();
+        await session.StoreAsync(new OrderShipped
         {
             Id = message.OrderId,
             ShippingDate = DateTime.UtcNow,

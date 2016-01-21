@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence;
 using Raven.Client.Document;
 
-class Program
+static class Program
 {
-
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         using (new RavenHost())
         {
@@ -30,10 +35,14 @@ class Program
             busConfiguration.UseSerialization<JsonSerializer>();
             busConfiguration.EnableInstallers();
 
-            using (IBus bus = Bus.Create(busConfiguration).Start())
-            {
+            IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+            try {
+                IBusSession busSession = endpoint.CreateBusSession();
                 Console.WriteLine("Press any key to exit");
                 Console.ReadKey();
+            }
+            finally {
+                await endpoint.Stop();
             }
         }
     }

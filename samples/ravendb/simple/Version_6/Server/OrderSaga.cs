@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
-using NServiceBus.Saga;
 
 #region thesaga
 
@@ -9,13 +9,7 @@ public class OrderSaga : Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
     IHandleTimeouts<CompleteOrder>
 {
-    IBus bus;
     static ILog logger = LogManager.GetLogger<OrderSaga>();
-
-    public OrderSaga(IBus bus)
-    {
-        this.bus = bus;
-    }
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
@@ -23,14 +17,14 @@ public class OrderSaga : Saga<OrderSagaData>,
             .ToSaga(sagaData => sagaData.OrderId);
     }
 
-    public void Handle(StartOrder message)
+    public async Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
         string orderDescription = "The saga for order " + message.OrderId;
         Data.OrderDescription = orderDescription;
         logger.InfoFormat("Received StartOrder message {0}. Starting Saga", Data.OrderId);
 
-        Bus.SendLocal(new ShipOrder
+        await context.SendLocal(new ShipOrder
         {
             OrderId = message.OrderId
         });
@@ -40,19 +34,18 @@ public class OrderSaga : Saga<OrderSagaData>,
         {
             OrderDescription = orderDescription
         };
-        RequestTimeout(TimeSpan.FromSeconds(5), timeoutData);
+        await RequestTimeout(context, TimeSpan.FromSeconds(5), timeoutData);
     }
 
-    public void Timeout(CompleteOrder state)
+    public async Task Timeout(CompleteOrder state, IMessageHandlerContext context)
     {
         logger.InfoFormat("Saga with OrderId {0} completed", Data.OrderId);
-        bus.Publish(new OrderCompleted
+        await context.Publish(new OrderCompleted
         {
             OrderId = Data.OrderId
         });
         MarkAsComplete();
     }
-
 }
 
 #endregion
