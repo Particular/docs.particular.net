@@ -43,6 +43,18 @@ For subscriptions, timeouts, outbox, and gateway, the data structures are quite 
 
 Saga storage becomes more complex, as developers can create any data structure they like, and NHibernate has to try to represent that in relational form. This may require the use of multiple tables per saga, and also places some limitations on how those classes must be designed.
 
+### Operational considerations
+
+NHibernate is a strong choice for saga persistence because many organizations will already have plenty of in-house experience with SQL Server or Oracle. This includes troubleshooting, backups, index maintenance, etc., sometimes by a dedicated staff of database administrators.
+
+Of course, NHibernate will require schema to be applied to the database server. While NServiceBus can do this for you as a shortcut in development, it's wise to generate these in a test or QA environment and then manage the database schema migration for a production environment manually.
+
+Additionally, saga data tables, being generated from user code, require schema migrations whenever developers change the shape of the saga data.
+
+When deploying using NHibernate persistence to SQL Server or Oracle, keep in mind that the database becomes a single point of failure, and so the database should be deployed in a highly-available fashion.
+
+Lastly, NHibernate persistence is the "persistence of choice" when using the SQL Transport as the endpoint's queues, persistence, and business data can all be stored in the same database utilizing a single transaction.
+
 #### Saga virtual properties
 
 One peculiarity of NHibernate is that it loads data using dynamic proxy classes, which require all of your saga data properties to be marked as `virtual`.
@@ -115,35 +127,57 @@ Now, it is clear to the NHibernate persister that it should create two tables, `
 
 #### Saga contention
 
-* Explain saga contention, especially scatter/gather
-* Explain how sagas take locks
-* Explain possibility for append-only sagas. Link to sample?
+The NHibernate saga persister takes locks on the saga data table(s) during message processing in order to guarantee that another message processed in parallel does not modify the saga in the meantime. Because of these locks, it's easy for a saga to become a contention point when messages are processed in parallel.
 
-### Operational considerations
+In order to minimize contention, it is important to design sagas such that they are message sending state machines, i.e. they receive a message, make some decisions, and then send/publish other messages or request timeouts. A saga should not query database resources, call web services, or do anything else that will hold the database lock on the saga any longer than absolutely necessary. Instead, the saga should send messages to normal endpoints outside the scope of the saga, which can reply back to the saga with the result if necessary.
 
-* Org may have plenty of in-house experience for SQL Server or Oracle. (Backups, tuning, troubleshooting, etc.)
-* Stress single point of failure, high availability
-* Persistence of choice if using SQL Server transport.
+A prime example of a contentious saga is one employing the scatter/gather pattern. With the NHibernate persister it is possible to design an append-only saga that takes advantage of the multiple tables created by the NHibernate saga persister to allow multiple messages to process in parallel with minimal locking so that they do not trip over each other.
 
 ## RavenDB 
 
-Stub
+RavenDB persistence, provided through the NServiceBus.NHibernate NuGet package, stores NServiceBus data to a RavenDB database.
 
 ### How RavenDB persistence works
 
-#### Pointer documents
+RavenDB stores all information as JSON-serialized documents, addressable by a document ID represented as a string. RavenDB has no schema, making a very easy "F5 experience" as it just stores what is needed when asked without having to deal with things like schema migrations, which also makes iterating on saga data structures very fluid as well.
 
-* Describe doc store ACID vs. index store updated async
-* Describe pointer docs as unique index
-* Explain single unique property limit.
-
-#### Saga contention
-
-* Explain saga contention on documents, especially scatter/gather
-* Explain optimistic concurrency / concurrency exception
+Because Raven can support any schema in documents and does not have to deal with rows and columns, many things are more straightforward, especially saga persistence, which can be represented as a single document. However there are other considerations that must be taken into account.
 
 ### Operational considerations
 
-* Org may not have operational knowledge of Raven, which is a risk.
-* Explain more distributed architecture with Ravens on each node.
-* Stress backup strategy, on similar schedule as business databases.
+The primary advantage of RavenDB persistence is the lack of friction during development time, free from the need to update database schema.
+
+However, while many organizations already have deep knowledge of SQL Server in house, they may not have operational familiarity with RavenDB. Before choosing RavenDB, this needs to be identified as a risk.
+
+An advantage of RavenDB is that it need not be centralized, thus opening up the possibility for more distributed architecture with no single point of failure. By default, an NServiceBus endpoint will connect to the RavenDB server at `http://localhost:8080` using a database name matching the endpoint name. With this configuration, it's possible for endpoints on a given node to process messages and access their persistence locally, even if other parts of the system are down.
+
+RavenDB persistence can also be used in the cloud via a hosted offering from [RavenHQ](http://ravenhq.com), which can be an attractive alternative to Azure Storage Persistence.
+
+It's important to remember that data in RavenDB, especially saga data, is important and valuable business data, so it's important to create a backup strategy for any RavenDB databases on a similar schedule as any other business data.
+
+#### Pointer documents
+
+Raven includes the transactional document store, where documents can be loaded and stored by the document ID under a full ACID transaction. It also contains a query store based on Lucene search technology to enable querying for data inside documents, but the query store is *not* transactional, and is updated asynchronously a short time after documents are committed.
+
+This means that in order to have a transactional "unique index" on data within a document, RavenDB needs to employ **pointer documents**, which are especially needed to support lookups of a saga's correlation properties.
+
+When a saga is persisted, the document ID for the saga document itself is based on the SagaId of the saga itself. This is used to look up the saga when the SagaId is known, such as when processing a saga timeout message.
+
+To find a saga by OrderId, for example, an additional document (the pointer) is stored to RavenDB and given a document ID based on the OrderId. The pointer document includes the id of the saga document it points to. When loading the saga, Raven will ask for the pointer document but is able to return both documents in the same request.
+
+It's important to realize that the RavenDB persister will create these "extra" documents, and also helpful to understand what they do should anything go wrong.
+
+#### Saga contention
+
+With the RavenDB persister, any modification of saga data requires loading the document from the database, making changes, and then saving the entire document back to the database, including serialization and deserialization of the document to the JSON stored in the database.
+
+RavenDB uses optimistic concurrency by storing version numbers for each document. If two messages try to update a saga's data concurrently, one will succeed, while the other will fail with a `ConcurrencyException` and be forced to retry.
+
+Because of the document structure, it's impossible to escape contention if many messages are being processed simultaneously. Scatter/gather scenarios are especially problematic when using the RavenDB persister.
+
+One strategy that can be useful when dealing with contentious sagas using the RavenDB persister is to batch items and delegate to child sagas. A scatter/gather scenario with 100 items, for example, could subdivide into 10 batches of 10 to be handled by child sagas. The individual saga document is the point of contention, so spreading out the work so no more than 10 messages can ever be in contention can reduce the number of concurrency exceptions thrown and thus increase throughput.
+
+# Outside this article
+
+* Scatter gather guidance
+* Append-only saga sample
