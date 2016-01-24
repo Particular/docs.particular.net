@@ -1,0 +1,8 @@
+﻿<?xml version="1.0"?>
+<!--startcode 5to6nullXml-->
+<MessageWithNullable 
+  xmlns="http://tempuri.net/NServiceBus.Serializers.XML.Test">
+  <FirstName>FirstName</FirstName>
+  <BirthDate>null</BirthDate>
+</MessageWithNullable>
+<!--endcode-->
