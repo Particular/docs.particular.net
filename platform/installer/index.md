@@ -88,8 +88,11 @@ Installs the ServiceControl Package. This MSI can be downloaded directly from he
 
 ### Downloads
 
-The Platform Installer caches the downloaded MSI and VSIX files in `%temp%\Temp\Particular\PlatformInstaller`. These files are download directly from GitHub. Some corporate firewalls prevent the downloading of executable files via content filters or by white/black listing specific web sites. If the Platform Installer cannot download the individual applications please consult with your network administration staff. 
+The Platform Installer caches the downloaded MSI files in `%temp%\Particular\PlatformInstaller`. These files are download directly from GitHub. Some corporate firewalls prevent the downloading of executable files via content filters or by white/black listing specific web sites. If the Platform Installer cannot download the individual applications please consult with your network administration staff. 
 
+### Logs
+
+The Platform Installer logs activity in `%appdata%\PlatformInstaller`.  The current log file will be  named according to the current date. For example a log created  on the 25 January 2016 would result in the filename `log-20160125.txt`   
 
 ### MSI Logs
 
