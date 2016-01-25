@@ -76,7 +76,7 @@ You may want to specify different logging levels (`DEBUG`, `WARN`, etc.) and pos
 
 ## Roles - Built-in configurations
 
-As of Version 5 roles are obsoleted and should not be used. Most of the functionality of `AsA_Server`, and `AsA_Publisher` has been made defaults in the core and can be safely removed. If you still need the `AsA_Client` behavior please add the following to your configuration.
+As of Version 5 roles are obsoleted and should not be used. The functionality of `AsA_Server`, and `AsA_Publisher` has been made defaults in the core and can be safely removed. If the `AsA_Client` functionality is still required add the following configuration.
 
 snippet:AsAClientEquivalent
 
@@ -87,9 +87,9 @@ The rest of the code specifying transport, subscription storage, and other techn
 
 While NServiceBus allows you to pick and choose which technologies to use and how to configure each of them, the host packages these choices into three built-in options: `AsA_Client`, `AsA_Server`, and `AsA_Publisher`. All these options make use of `XmlSerializer`, `MsmqTransport`, and `UnicastBus`. The difference is in the configuration:
 
--   `AsA_Client` sets `MsmqTransport` as non-transactional and purges its queue of messages on startup. This means that it starts afresh every time, not remembering anything before a crash. Also, it processes messages using its own permissions, not those of the message sender.
--   `AsA_Server` sets `MsmqTransport` as transactional and does not purge messages from its queue on startup. This makes it fault-tolerant.
--   `AsA_Publisher` extends `AsA_Server` and indicates to the infrastructure to set up storage for subscription requests, described in the [profiles page](/nservicebus/hosting/nservicebus-host/profiles.md).
+ * `AsA_Client` sets `MsmqTransport` as non-transactional and purges its queue of messages on startup. This means that it starts afresh every time, not remembering anything before a crash. Also, it processes messages using its own permissions, not those of the message sender.
+ * `AsA_Server` sets `MsmqTransport` as transactional and does not purge messages from its queue on startup. This makes it fault-tolerant.
+ * `AsA_Publisher` extends `AsA_Server` and indicates to the infrastructure to set up storage for subscription requests, described in the [profiles page](/nservicebus/hosting/nservicebus-host/profiles.md).
 
 
 ## Installation

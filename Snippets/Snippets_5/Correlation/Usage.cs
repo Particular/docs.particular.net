@@ -10,7 +10,7 @@
 
             #region custom-correlationid
 
-            bus.Send("TargetQueue","My custom correlation id", new MyRequest());
+            bus.Send("TargetQueue", "My custom correlation id", new MyRequest());
 
             #endregion
         }

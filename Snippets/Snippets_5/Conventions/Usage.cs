@@ -18,7 +18,7 @@ namespace Snippets5.Conventions
             conventions.DefiningDataBusPropertiesAs(p => p.Name.EndsWith("DataBus"));
             conventions.DefiningExpressMessagesAs(t => t.Name.EndsWith("Express"));
             conventions.DefiningTimeToBeReceivedAs(t =>
-            t.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
+                t.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
 
             #endregion
         }
