@@ -6,7 +6,7 @@
     {
         public Usage()
         {
-            #region PluginCustomDataBusV5 5
+            #region PluginCustomDataBus
 
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseDataBus(typeof(CustomDataBus));
