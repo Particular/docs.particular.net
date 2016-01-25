@@ -13,10 +13,23 @@ These conditions are solution and/or endpoint specific. It is recommended that t
 
 For example, custom checks can include checking that a third-party service provider is accessible from the endpoint host, verifying that resources required by the endpoint are above a defined minimum threshold, and more.
 
-As mentioned above, there are two types of custom checks:
+As mentioned above, there are two types of custom checks.
 
-* Custom check that runs once, when the endpoint host starts
-* Periodic check that runs at defined intervals
+### Custom check
+
+A custom check is executed once when the endpoint host starts. NServiceBus assembly scanning mechanism detects a class inheriting from `CustomCheck` and creates an instance of that class. The check should happen in the constructor and the result needs to be communicated back using either `ReportPass` or `ReportFailed` methods.
+
+snippet:CustomCheck
+
+NOTE: Only the instance of a custom check which has been created by the NServiceBus framework is able to report status. The check instances created in user code will not function.
+
+### Periodic check
+
+A periodic check is executed at defined intervals. The check happens not in the constructor but in a dedicated `PerformCheck` method which returns the check result.
+
+snippet:PeriodicCheck
+
+### Results
 
 The result of a custom check is either success or a failure (with a detailed description defined by the developer). This result is sent as a message to the ServiceControl queue and status will be shown in the ServicePulse UI.
 
