@@ -1,4 +1,4 @@
-﻿namespace Snippets5.DataBus.Conventions
+﻿namespace Snippets6.DataBus.Conventions
 {
     using NServiceBus;
 

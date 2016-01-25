@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Scheduling
+﻿namespace Snippets6.Scheduling
 {
     using System;
     using System.Threading.Tasks;

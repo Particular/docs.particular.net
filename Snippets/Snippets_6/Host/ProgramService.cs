@@ -4,50 +4,53 @@ using System.Threading.Tasks;
 using NServiceBus;
 
 #region windowsservicehosting
-class ProgramService : ServiceBase
+namespace Snippets6.Host
 {
-    IEndpointInstance endpointInstance;
-
-    static void Main()
+    class ProgramService : ServiceBase
     {
-        using (ProgramService service = new ProgramService())
+        IEndpointInstance endpointInstance;
+
+        static void Main()
         {
-            if (Environment.UserInteractive)
+            using (ProgramService service = new ProgramService())
             {
-                service.OnStart(null);
-                Console.WriteLine("Bus created and configured");
-                Console.WriteLine("Press any key to exit");
-                Console.ReadKey();
-                service.OnStop();
-                return;
+                if (Environment.UserInteractive)
+                {
+                    service.OnStart(null);
+                    Console.WriteLine("Bus created and configured");
+                    Console.WriteLine("Press any key to exit");
+                    Console.ReadKey();
+                    service.OnStop();
+                    return;
+                }
+                Run(service);
             }
-            Run(service);
         }
-    }
 
-    protected override void OnStart(string[] args)
-    {
-        AsyncOnStart().GetAwaiter().GetResult();
-    }
-
-    async Task AsyncOnStart()
-    {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        //other bus configuration. endpoint name, logging, transport, persistence etc
-        busConfiguration.EnableInstallers();
-        endpointInstance = await Endpoint.Start(busConfiguration);
-    }
-
-    protected override void OnStop()
-    {
-        AsyncOnStop().GetAwaiter().GetResult();
-    }
-
-    async Task AsyncOnStop()
-    {
-        if (endpointInstance != null)
+        protected override void OnStart(string[] args)
         {
-            await endpointInstance.Stop();
+            AsyncOnStart().GetAwaiter().GetResult();
+        }
+
+        async Task AsyncOnStart()
+        {
+            BusConfiguration busConfiguration = new BusConfiguration();
+            //other bus configuration. endpoint name, logging, transport, persistence etc
+            busConfiguration.EnableInstallers();
+            endpointInstance = await Endpoint.Start(busConfiguration);
+        }
+
+        protected override void OnStop()
+        {
+            AsyncOnStop().GetAwaiter().GetResult();
+        }
+
+        async Task AsyncOnStop()
+        {
+            if (endpointInstance != null)
+            {
+                await endpointInstance.Stop();
+            }
         }
     }
 }

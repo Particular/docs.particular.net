@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Handlers
+﻿namespace Snippets6.UpgradeGuides._5to6
 {
     using System.Threading.Tasks;
     using NServiceBus;

@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Transports
+﻿namespace Snippets6.Transports.QueueCreation
 {
     using System;
     using System.Threading.Tasks;

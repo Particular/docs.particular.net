@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 649
-namespace Snippets5.Host
+namespace Snippets6.Host
 {
     using System;
     using System.Threading;

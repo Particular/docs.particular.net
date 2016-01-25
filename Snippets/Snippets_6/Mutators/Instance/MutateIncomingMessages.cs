@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Mutators.Instance
+﻿namespace Snippets6.Mutators.Instance
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

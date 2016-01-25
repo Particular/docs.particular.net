@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Scheduling.Saga
+﻿namespace Snippets6.Scheduling.Saga
 {
     using System;
     using System.Threading.Tasks;

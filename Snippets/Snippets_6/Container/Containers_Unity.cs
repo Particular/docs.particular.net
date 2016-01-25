@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Container
+﻿namespace Snippets6.Container
 {
     using Microsoft.Practices.Unity;
     using NServiceBus;
