@@ -22,7 +22,6 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 
@@ -35,7 +34,7 @@ class Program
                 }
                 Guid id = Guid.NewGuid();
 
-                await busSession.Send("Samples.FaultTolerance.Server", new MyMessage
+                await endpoint.Send("Samples.FaultTolerance.Server", new MyMessage
                 {
                     Id = id
                 });

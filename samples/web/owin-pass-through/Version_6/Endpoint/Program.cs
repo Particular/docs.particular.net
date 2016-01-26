@@ -31,8 +31,7 @@ static class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
-            using (StartOwinHost(busSession))
+            using (StartOwinHost(endpoint))
             {
                 Console.WriteLine("Press any key to exit");
                 Console.ReadKey();
@@ -49,7 +48,7 @@ static class Program
 
     #region startowin
 
-    static IDisposable StartOwinHost(IBusSession busSession)
+    static IDisposable StartOwinHost(IEndpointInstance endpointInstance)
     {
         string baseUrl = "http://localhost:12345/";
         StartOptions startOptions = new StartOptions(baseUrl)
@@ -60,14 +59,14 @@ static class Program
         return WebApp.Start(startOptions, builder =>
         {
             builder.UseCors(CorsOptions.AllowAll);
-            MapToBus(builder, busSession);
+            MapToBus(builder, endpointInstance);
             MapToMsmq(builder);
         });
     }
 
-    static void MapToBus(IAppBuilder builder, IBusSession busSession)
+    static void MapToBus(IAppBuilder builder, IEndpointInstance endpointInstance)
     {
-        OwinToBus owinToBus = new OwinToBus(busSession);
+        OwinToBus owinToBus = new OwinToBus(endpointInstance);
         builder.Map("/to-bus", app => { app.Use(owinToBus.Middleware()); });
     }
 

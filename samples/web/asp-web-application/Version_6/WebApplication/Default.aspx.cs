@@ -1,9 +1,11 @@
 using System;
+using System.Threading.Tasks;
 using System.Web.UI;
+using NServiceBus;
 
 public partial class Default : Page
 {
-    protected void Button1_Click(object sender, EventArgs e)
+    protected async void Button1_Click(object sender, EventArgs e)
     {
         if (string.IsNullOrWhiteSpace(TextBox1.Text))
         {
@@ -20,8 +22,11 @@ public partial class Default : Page
                             Id = number
                         };
 
-        Global.Bus.Send("Samples.AsyncPages.Server", command)
-            .Register<ErrorCodes>(code => Label1.Text = Enum.GetName(typeof (ErrorCodes), code));
+        SendOptions sendOptions = new SendOptions();
+        sendOptions.SetDestination("Samples.AsyncPages.Server");
+
+        ErrorCodes code = await Global.Endpoint.Request<ErrorCodes>(command, sendOptions);
+        Label1.Text = Enum.GetName(typeof(ErrorCodes), code);
         #endregion
     }
 

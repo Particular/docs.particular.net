@@ -94,6 +94,9 @@
       <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1414\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NServiceBus.Core">
+      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1432\lib\net452\NServiceBus.Core.dll</HintPath>
+    </Reference>
     <Reference Include="NServiceBus.Host, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Host.7.0.0-unstable0053\lib\net452\NServiceBus.Host.exe</HintPath>
       <Private>True</Private>

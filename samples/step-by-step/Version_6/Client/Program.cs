@@ -22,8 +22,7 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
-            await SendOrder(busSession);
+            await SendOrder(endpoint);
         }
         finally
         {
@@ -33,7 +32,7 @@ class Program
 
 
     #region SendOrder
-    static async Task SendOrder(IBusSession busSession)
+    static async Task SendOrder(IEndpointInstance endpointInstance)
     {
 
         Console.WriteLine("Press enter to send a message");
@@ -55,7 +54,7 @@ class Program
                 Product = "New shoes",
                 Id = id
             };
-            await busSession.Send("Samples.StepByStep.Server", placeOrder);
+            await endpointInstance.Send("Samples.StepByStep.Server", placeOrder);
 
             Console.WriteLine("Sent a new PlaceOrder message with id: {0}", id.ToString("N"));
 

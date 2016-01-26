@@ -1,27 +1,21 @@
 using NServiceBus;
 using System;
+using System.Threading.Tasks;
 
 #region Handler
 public class CommandMessageHandler : IHandleMessages<Command>
 {
-    IBus bus;
-
-    public CommandMessageHandler(IBus bus)
-    {
-        this.bus = bus;
-    }
-
-    public void Handle(Command message)
+    public async Task Handle(Command message, IMessageHandlerContext context)
     {
         Console.WriteLine("Hello from CommandMessageHandler");
 
-        if (message.Id%2 == 0)
+        if (message.Id % 2 == 0)
         {
-            bus.Return(ErrorCodes.Fail);
+            await context.Reply(ErrorCodes.Fail);
         }
         else
         {
-            bus.Return(ErrorCodes.None);
+            await context.Reply(ErrorCodes.None);
         }
     }
 }
