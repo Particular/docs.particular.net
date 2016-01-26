@@ -59,6 +59,31 @@ snippet:sqlserver-config-transactionscope
 When in this mode, the receive operation is wrapped in a `TransactionScope` together with the message processing in the pipeline. This means that usage of any other persistent resource manager (e.g. RavenDB client, another `SqlConnection` with different connection string) will cause escalation of the transaction to full two-phase commit protocol handled via Distributed Transaction Coordinator (MS DTC).
 
 
+### Controlling transaction scope options
+
+The following transaction scope options can be configured when the SQL Server transport is working in the ambient transaction mode.
+
+
+### Isolation level
+
+NServiceBus will by default use the `ReadCommitted` [isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel).
+
+Change the isolation level using
+
+snippet:sqlserver-config-transactionscope-isolation-level
+
+
+### Transaction timeout
+
+NServiceBus will use the [default transaction timeout](https://msdn.microsoft.com/en-us/library/system.transactions.transactionmanager.defaulttimeout) of the machine the endpoint is running on.
+
+Change the transaction timeout using
+
+snippet:sqlserver-config-transactionscope-timeout
+
+Or via .config file using a [example DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.aspx#Anchor_5).
+
+
 ### Native transaction
 
 The native transaction mode requires both `Transactions.Enabled` and `Transactions.SuppressDistributedTransactions` to be set to `true`. It can be selected via

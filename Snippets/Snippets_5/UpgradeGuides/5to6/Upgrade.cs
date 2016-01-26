@@ -1,6 +1,7 @@
 ﻿namespace Snippets5.UpgradeGuides._5to6
 {
     using System;
+    using System.Transactions;
     using NServiceBus;
     using NServiceBus.Unicast.Transport;
 
@@ -54,6 +55,25 @@
 
             bool isTransactional = transactionSettings.IsTransactional;
 
+            #endregion
+        }
+
+        public void TransportTransactionIsolationLevelAndTimeout()
+        {
+            #region 5to6TransportTransactionScopeOptions
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.Transactions()
+                .IsolationLevel(IsolationLevel.RepeatableRead)
+                .DefaultTimeout(TimeSpan.FromSeconds(30));
+            #endregion
+        }
+
+        public void WrapHandlersExecutionInATransactionScope()
+        {
+            #region 5to6WrapHandlersExecutionInATransactionScope
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.Transactions()
+                .WrapHandlersExecutionInATransactionScope();
             #endregion
         }
     }

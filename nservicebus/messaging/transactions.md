@@ -114,11 +114,14 @@ NOTE: This requires the selected storage to support enlisting in transaction sco
 
 WARNING: This might escalate to a distributed transaction if data in different databases are updated.
 
+WARNING: This API must not be used in combination with transports running in *transaction scope* mode. Starting from version 6, wrapping handlers in a `TransactionScope` in such a situation throws an exception.
+
 
 ## Controlling transaction scope options
 
 The following options for transaction scopes used during message processing can be configured.
 
+NOTE: Starting from version 6 isolation level and timeout for transaction scopes are also configured at the transport level.
 
 ### Isolation level
 

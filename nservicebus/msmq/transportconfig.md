@@ -53,3 +53,30 @@ WARNING: This feature was added in Version 6 and can be used to communicate with
 Often when debugging MSMQ using [native tools](viewing-message-content-in-msmq.md) it is helpful to have some custom text in the MSMQ Label. For example the message type or the message id. As of Version 6 the text used to apply to [Message.Label](https://msdn.microsoft.com/en-us/library/vstudio/system.messaging.message.label.aspx) can be controlled at configuration time using the `ApplyLabelToMessages` extension method. This method takes a delegate which will be passed the header collection and should return a string to use for the label. It will be called for all standard messages as well as Audits, Errors and all control messages. The only exception to this rule is received messages with corrupted headers. In some cases it may be useful to use the `Headers.ControlMessageHeader` key to determine if a message is a control message. These messages will be forwarded to the error queue with no label applied. The returned string can be `String.Empty` for no label and must be at most 240 characters.
 
 snippet:ApplyLabelToMessages
+
+
+## Controlling transaction scope options
+
+The following options can be configured when the MSMQ transport is working in the transaction scope mode.
+
+
+### Isolation level
+
+NServiceBus will by default use the `ReadCommitted` [isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel).
+
+NOTE: Version 3 and below used the default isolation level of .Net which is `Serializable`.
+
+Change the isolation level using
+
+snippet:MsmqTransactionScopeIsolationLevel
+
+
+### Transaction timeout
+
+NServiceBus will use the [default transaction timeout](https://msdn.microsoft.com/en-us/library/system.transactions.transactionmanager.defaulttimeout) of the machine the endpoint is running on.
+
+Change the transaction timeout using
+
+snippet:MsmqTransactionScopeTimeout
+
+Or via .config file using a [example DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.aspx#Anchor_5).
