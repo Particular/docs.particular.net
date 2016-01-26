@@ -31,6 +31,8 @@ You can define a maximum value for the number of messages per second that the en
 NServiceBus will not enforce any throughput restrictions by default.
 
 
+NOTE: Currently version 6 of NServiceBus does not support `MaximumMessageThroughputPerSecond` setting.
+
 ## Configuration
 
 The default limits of an endpoint can be changed in both code and via app.config.
