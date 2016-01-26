@@ -5,7 +5,6 @@
     <section name="TransportConfig"
              type="NServiceBus.Config.TransportConfig, NServiceBus.Core"/>
   </configSections>
-  <TransportConfig MaximumConcurrencyLevel="5"
-                   MaximumMessageThroughputPerSecond="10"/>
+  <TransportConfig MaximumConcurrencyLevel="5"/>
   <!--endcode -->
 </configuration>
