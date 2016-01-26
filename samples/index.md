@@ -16,7 +16,7 @@ Samples are not meant to be production ready code or to be used as-is with Parti
 
 ## Not "Endpoint drop in" projects
 
-Since the endpoints projects in samples have to chose specific technologies (transport, serializer, persistence etc) before using this code in production you need to ensure the code conforms with your specific technology choices.
+Since the endpoint in samples have to chose specific technologies (transport, serializer, persistence etc) before using this code in production ensure the code conforms with any specific [technology choices](./endpoint-configuration/).
 
 
 ## Downloadable and runnable
@@ -26,22 +26,24 @@ All samples have a download link that allows the sample solution to be downloade
 
 ## The full GitHub Repository
 
-The samples are located in GitHub at [Particular/docs.particular.net/samples](https://github.com/Particular/docs.particular.net/tree/master/samples) and we accept both [issues](https://github.com/Particular/docs.particular.net/issues) and [Pull Requests](https://help.github.com/articles/using-pull-requests/).
+The samples are located in GitHub at [Particular/docs.particular.net/samples](https://github.com/Particular/docs.particular.net/tree/master/samples) and both [issues](https://github.com/Particular/docs.particular.net/issues) and [Pull Requests](https://help.github.com/articles/using-pull-requests/) are accepted.
 
 
 ## Technology Choices
 
 Unless otherwise specified (by an individual sample) the following are the default technology choices.
 
+
 ### C# Language Level
 
-All samples that target NServiceBus Version 6 have the C# Language Level set to **6.0** to take advantage of the newer language features.
+All samples that target NServiceBus Version 6 and higher have the C# Language Level set to **6.0** to take advantage of the newer language features.
+
 
 ### [Transport](/nservicebus/transports/)
 
 Samples default to using the using [MSMQ](/nservicebus/msmq/). **See [MSMQ NServiceBus Configuration](/nservicebus/msmq/#nservicebus-configuration) to configure MSMQ in a way that is compatible with NServiceBus.**
 
-On startup each sample will create the required queues. By default the samples use the prefix `samples.` for all queue names. There is no process to clean up these queues, as such if you run several samples you will note those queues remain in MSMQ. You can clean up these queues manually by using a [MSMQ management tool](/nservicebus/msmq/viewing-message-content-in-msmq.md) or [programmatically using the native MSMQ API](/nservicebus/msmq/operations-scripting.md#delete-queues)
+On startup each sample will create the required queues. By default the samples use the prefix `samples.` for all queue names. There is no process to clean up these queues, as such after running samples those queues remain in MSMQ. To clean up these queues manually use a [MSMQ management tool](/nservicebus/msmq/viewing-message-content-in-msmq.md) or [programmatically using the native MSMQ API](/nservicebus/msmq/operations-scripting.md#delete-queues)
 
 For example this PowerShell will delete all queues prefixed with `private$\samples.`.
 
@@ -60,7 +62,7 @@ foreach ($queue in [System.Messaging.MessageQueue]::GetPrivateQueuesByMachine(".
 
 ### Console Hosting
 
-Samples default to [Self Hosting](/nservicebus/hosting/) in a console since it is more explicit and less moving pieces. Obviously this would not be a real choice for a production system so you should read up on the other [Hosting Options](/nservicebus/hosting/).
+Samples default to [Self Hosting](/nservicebus/hosting/) in a console since it is the most explicit and contains fewer moving pieces. This would not be a real choice for a production system and the other [Hosting Options](/nservicebus/hosting/) should be considered.
 
 
 ### [Logging](/nservicebus/logging/)
@@ -80,7 +82,7 @@ While the default serializer in NServiceBus is [XML](/nservicebus/serialization/
 
 ### [Messages definitions](/nservicebus/messaging/messages-events-commands.md)
 
-In many samples Messages are defined in a shared project along with reusable helper and configuration classes. This is done so reduce the number of projects in a solution. In real solution you most likely want to isolate your Message definitions in their own projects.
+In many samples Messages are defined in a shared project along with reusable helper and configuration classes. This is done so reduce the number of projects in a solution. In a real solution message definitions are most likely isolated in their own projects.
 
 
 ### [Message destinations](/nservicebus/messaging/message-owner.md)
@@ -90,8 +92,9 @@ Many samples make use of `SendLocal` and sending to an endpoint directly by spec
 
 ### [Container](/nservicebus/containers/)
 
-Samples default to using the built-in container since it does not require pulling in any external NuGets. You most likely want to switch to an external container since this will give you greater flexibility in you DI customizations.
+Samples default to using the built-in container since it does not require pulling in any external NuGets. Switching to an external container will give greater flexibility in DI customizations.
+
 
 ### Async/await
 
-Samples by default use `await` and declare the surrounding method `async` everywhere, even if we could just return the task returned by the called API. Furthermore, we are not using `ConfigureAwait(false)` when we `await` an asynchronous method execution. We've taken this conscious choice, although it is not following the best practices around async/await, to simplify readability for our samples. 
+Samples by default use `await` and declare the surrounding method `async` everywhere, even if we could just return the task returned by the called API. Furthermore, `ConfigureAwait(false)` is not used when awaiting an asynchronous method execution. This is a conscious choice, although it is not following the best practices around `async`/`await`, to simplify readability of samples. 
