@@ -2,7 +2,6 @@
 namespace Snippets6.UpgradeGuides._5to6
 {
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Extensibility;
@@ -27,13 +26,7 @@ namespace Snippets6.UpgradeGuides._5to6
             };
             UnicastAddressTag address = new UnicastAddressTag("Destination");
             TransportOperation transportOperation = new TransportOperation(outgoingMessage, address, DispatchConsistency.Default, constraints);
-            UnicastTransportOperation unicastTransportOperation = new UnicastTransportOperation(outgoingMessage, "destination");
-            IEnumerable<MulticastTransportOperation> multicastOperations = Enumerable.Empty<MulticastTransportOperation>();
-            UnicastTransportOperation[] unicastOperations =
-            {
-                unicastTransportOperation
-            };
-            TransportOperations operations = new TransportOperations(multicastOperations, unicastOperations);
+            TransportOperations operations = new TransportOperations(transportOperation);
             await dispatcher.Dispatch(operations, new ContextBag());
 
             #endregion
