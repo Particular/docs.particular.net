@@ -24,6 +24,16 @@ If you are using the Request-Response or Full Duplex pattern, your handler will 
 If you are handling a message in a publish-and-subscribe scenario, see [How to Publish/Subscribe to a Message](/nservicebus/messaging/publish-subscribe/).
 
 
+### Mapping to name
+
+NServiceBus will try to map incoming messages to a type using [Assembly Qualified Name](https://msdn.microsoft.com/en-us/library/system.type.assemblyqualifiedname.aspx). This is default behavior for sharing assemblies amongst endpoints. When a message cannot be mapped based on Assembly Qualified Name, NServiceBus will attempt to map to the [FullName](https://msdn.microsoft.com/en-us/library/system.type.fullname.aspx). The following is an example of how NServiceBus gets the type information.
+
+```
+string fqn = message.GetType().AssemblyQualifiedName;
+string fallback = message.GetType().FullName;
+```
+
+
 ## What happens when there are no handlers for a message?
 
 Receiving a message for which there are no message handlers is considered an error and the received message will be forwarded to the configured error queue.
