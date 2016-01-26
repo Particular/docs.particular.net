@@ -32,13 +32,15 @@ You can define a maximum value for the number of messages per second that the en
 
 NServiceBus will not enforce any throughput restrictions by default.
 
+NOTE: Throughput throttling options have been removed with NServiceBus Version 6.
+
 
 ## Configuration
 
 The default limits of an endpoint can be changed in both code and via app.config.
 
 
-### Via Code 
+### Via Code
 
 By [overriding app.config settings](/nservicebus/hosting/custom-configuration-providers.md).
 
