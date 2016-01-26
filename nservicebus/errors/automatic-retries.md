@@ -50,6 +50,9 @@ snippet:FLRConfigurationSource
 snippet:FLRConfigurationSourceUsage
 
 
+NOTE: Starting from version 6, configuration of the FLR mechanism will have no effect on how many times a deferred message is dispatched when an exception is thrown. In such a case the `TimeoutManager` will attempt the dispatch five times.
+
+
 ## Second Level Retries
 
 SLR introduces another level of retrying mechanism for messages that fail processing. When using SLR, the message that causes the exception is, as before, instantly retried, but instead of being sent to the error queue, it is sent to a retries queue.
