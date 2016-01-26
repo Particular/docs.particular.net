@@ -113,7 +113,7 @@ The NServiceBus Performance counters can be installed using the [NServiceBus Pow
 
 ## Perfomance Monitor Users local security group
 
-When using NServiceBus.Host.exe /Install or busConfiguration.EnableInstallers() the installing user account will automatically added to the local Performance Monitor Users group if the installation occurs under elevated priviledges.
+When using NServiceBus.Host.exe or BusConfiguration.EnableInstallers() the service account will be automatically added to the local Performance Monitor Users group if executed with elevated priviledges.
 
 ## Corrupted Counters
 
