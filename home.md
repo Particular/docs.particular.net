@@ -189,9 +189,9 @@ span.blue {
       <p>A short and high level overview of the Platform</p>
     </div>
     <div class="col-md-6">
-      <a href="http://particular.net/HandsOnLabs">
-        <img src="/home/hand-on-labs-small.png">
-        <h3>Hands-On Labs</h3>
+      <a href="http://www.pluralsight.com/courses/microservices-nservicebus-scaling-applications">
+        <img src="/home/pluralsight.png">
+        <h3>Pluralsight: Scaling Applications with<br> Microservices and NServiceBus</h3>
       </a>
     </div>
   </div>
@@ -220,10 +220,6 @@ span.blue {
       <p>Extensions developed by both the community and Particular</p>
     </div>
     <div class="col-md-6">
-      <a href="http://www.pluralsight.com/courses/microservices-nservicebus-scaling-applications">
-        <img src="/home/pluralsight.png">
-        <h3>Pluralsight: Scaling Applications with<br> Microservices and NServiceBus</h3>
-      </a>
     </div>
   </div>
 </div>
