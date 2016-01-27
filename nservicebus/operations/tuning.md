@@ -26,13 +26,11 @@ Examples where concurrency tuning is relevant are
 
 ## Tuning throughput
 
-NOTE: Starting from version 6 NServiceBus does not support `MaximumMessageThroughputPerSecond` setting.
+WARNING: Throughput throttling options have been removed in NServiceBus Version 6.
  
 You can define a maximum value for the number of messages per second that the endpoint will process at any given time. This will help you to avoid your endpoint overloading sensitive resources that it's using like web-services, databases, other endpoints etc. A concrete example here could be an integration endpoint calling a web api, like api.github.com, that have restrictions on the number or requests per unit of time allowed.
 
 NServiceBus will not enforce any throughput restrictions by default.
-
-NOTE: Throughput throttling options have been removed with NServiceBus Version 6.
 
 
 ## Configuration
