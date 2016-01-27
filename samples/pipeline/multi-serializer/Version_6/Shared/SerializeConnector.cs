@@ -4,9 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.OutgoingPipeline;
 using NServiceBus.Pipeline;
-using NServiceBus.Pipeline.OutgoingPipeline;
 using NServiceBus.Serialization;
 using NServiceBus.Unicast.Messages;
 
