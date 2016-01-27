@@ -30,4 +30,4 @@ If a version is not listed or has expired but support is required please [contac
 
 ### NServiceBus 3.x
 
-As of 10 October 2015, Version 3 is no longer support Version 3. If support is required for this version please [contact us](http://particular.net/contactus).
+As of 10 October 2015, Version 3 is no longer supported. If support is required for this version please [contact us](http://particular.net/contactus).
