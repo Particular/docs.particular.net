@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NServiceBus;
 using NServiceBus.Pipeline;
 
 #region incoming-header-behavior

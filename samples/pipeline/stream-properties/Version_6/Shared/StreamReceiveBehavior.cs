@@ -4,7 +4,6 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
-using NServiceBus.Pipeline.Contexts;
 
 #region ReceiveBehaviorDefinition
 

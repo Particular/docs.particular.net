@@ -3,7 +3,6 @@
     using System;
     using System.Threading.Tasks;
     using NServiceBus.Pipeline;
-    using NServiceBus.Pipeline.OutgoingPipeline;
 
     #region 5to6header-outgoing-behavior
     public class OutgoingBehavior : Behavior<IOutgoingLogicalMessageContext>

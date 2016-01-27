@@ -5,8 +5,6 @@ using System.Threading.Tasks;
 using NServiceBus.DeliveryConstraints;
 using NServiceBus.Performance.TimeToBeReceived;
 using NServiceBus.Pipeline;
-using NServiceBus.Pipeline.OutgoingPipeline;
-
 #region SendBehaviorDefinition
 class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
 {

@@ -2,7 +2,7 @@
 {
     using NServiceBus;
     using NServiceBus.DeliveryConstraints;
-    using NServiceBus.TransportDispatch;
+    using NServiceBus.Pipeline;
 
     class Recoverable
     {

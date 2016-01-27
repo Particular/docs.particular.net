@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Pipeline;
-using NServiceBus.Pipeline.Contexts;
 using NServiceBus.Serialization;
 using NServiceBus.Transports;
 using NServiceBus.Unicast.Messages;

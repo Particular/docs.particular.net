@@ -3,9 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.OutgoingPipeline;
     using NServiceBus.Pipeline;
-    using NServiceBus.Pipeline.OutgoingPipeline;
     using NServiceBus.Routing;
 
     #region CustomStageConnector
