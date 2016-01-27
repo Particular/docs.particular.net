@@ -15,7 +15,7 @@ It is recommended that you specify a central auditing queue for all related endp
 
 ## Handling Audit messages
 
-What you choose to do with those messages is now up to you: save them in a database, do custom logging, etc. The important thing is that you now have a centralized record of everything that is happening in your system while maintaining all the benefits of keep things distributed.
+What you choose to do with those messages is now up to you: save them in a database, do custom logging, etc. The important thing is that once you read the messages from the audit queue and process them, you have a centralized record of everything that is happening in your system while maintaining all the benefits of keep things distributed.  It is important not to leave the messages in the audit queue however, as most queueing technologies have upper-bound limits on their queue sizes and depth. By not processing these messages you may find yourself reaching the limits of the underlying queue technology.
 
 
 ## Audit configuration options
