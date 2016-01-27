@@ -7,7 +7,6 @@ using NHibernate.Tool.hbm2ddl;
 using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Transports.SQLServer;
-using NServiceBus.Transports.SQLServer.ConnectionStrings;
 
 class Program
 {
@@ -40,6 +39,7 @@ class Program
         #region ReceiverConfiguration
 
         BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.SendFailedMessagesTo("error");
         busConfiguration.UseTransport<SqlServerTransport>()
             .DefaultSchema("receiver")
             .UseSpecificSchema(e =>

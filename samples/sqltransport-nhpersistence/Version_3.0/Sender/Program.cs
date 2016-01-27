@@ -6,7 +6,6 @@ using NServiceBus.Transports.SQLServer;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus.Persistence;
-using NServiceBus.Transports.SQLServer.ConnectionStrings;
 
 class Program
 {
