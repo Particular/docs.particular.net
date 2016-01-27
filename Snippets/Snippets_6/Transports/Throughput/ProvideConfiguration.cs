@@ -12,8 +12,7 @@
         {
             return new TransportConfig
             {
-                MaximumConcurrencyLevel = 5,
-                MaximumMessageThroughputPerSecond = 10
+                MaximumConcurrencyLevel = 5
             };
         }
     }
