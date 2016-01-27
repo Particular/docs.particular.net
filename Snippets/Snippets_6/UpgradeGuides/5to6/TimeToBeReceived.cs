@@ -4,7 +4,7 @@ namespace Snippets6.UpgradeGuides._5to6
     using System;
     using NServiceBus.DeliveryConstraints;
     using NServiceBus.Performance.TimeToBeReceived;
-    using NServiceBus.TransportDispatch;
+    using NServiceBus.Pipeline;
 
     class TimeToBeReceived
     {

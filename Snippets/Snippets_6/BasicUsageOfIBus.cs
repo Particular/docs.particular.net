@@ -11,9 +11,8 @@
 
             #region BasicSend
             IEndpointInstance instance = await Endpoint.Start(busConfiguration);
-            IBusSession busSession = instance.CreateBusSession();
-
-            await busSession.Send(new MyMessage());
+            
+            await instance.Send(new MyMessage());
             #endregion
         }
 
@@ -30,10 +29,10 @@
 
         async Task SendInterface()
         {
-            IBusSession busSession = null;
+            IEndpointInstance endpointInstance = null;
 
             #region BasicSendInterface
-            await busSession.Send<IMyMessage>(m => m.MyProperty = "Hello world");
+            await endpointInstance.Send<IMyMessage>(m => m.MyProperty = "Hello world");
             #endregion
         }
 

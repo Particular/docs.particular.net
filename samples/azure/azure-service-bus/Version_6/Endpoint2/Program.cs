@@ -23,11 +23,8 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
-            {
-                Console.WriteLine("Press any key to exit");
-                Console.ReadKey();
-            }
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
         }
         finally
         {

@@ -22,8 +22,7 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
-            await Run(busSession);
+            await Run(endpoint);
         }
         finally
         {
@@ -31,7 +30,7 @@ class Program
         }
     }
 
-    static async Task Run(IBusSession busSession)
+    static async Task Run(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Press 'Enter' to send a Message");
         Console.WriteLine("Press any key to exit");
@@ -41,17 +40,17 @@ class Program
             ConsoleKeyInfo key = Console.ReadKey();
             if (key.Key == ConsoleKey.Enter)
             {
-                await SendMessage(busSession);
+                await SendMessage(endpointInstance);
                 continue;
             }
             return;
         }
     }
 
-    static async Task SendMessage(IBusSession busSession)
+    static async Task SendMessage(IEndpointInstance endpointInstance)
     {
         Message message = new Message();
-        await busSession.SendLocal(message);
+        await endpointInstance.SendLocal(message);
 
         Console.WriteLine();
         Console.WriteLine("Message sent");

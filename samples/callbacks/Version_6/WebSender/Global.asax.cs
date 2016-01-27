@@ -6,7 +6,6 @@ using NServiceBus;
 
 public class MvcApplication : HttpApplication
 {
-    public static IBusSession BusSession;
     public static IEndpointInstance Endpoint;
 
     protected void Application_Start()
@@ -35,7 +34,6 @@ public class MvcApplication : HttpApplication
         busConfiguration.SendFailedMessagesTo("error");
 
         Endpoint = await NServiceBus.Endpoint.Start(busConfiguration);
-        BusSession = Endpoint.CreateBusSession();
     }
 
 }

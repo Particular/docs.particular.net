@@ -19,12 +19,11 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
             CompleteOrder completeOrder = new CompleteOrder
                                           {
                                               CreditCard = "123-456-789"
                                           };
-            await busSession.Send("Samples.MessageBodyEncryption.Endpoint2", completeOrder);
+            await endpoint.Send("Samples.MessageBodyEncryption.Endpoint2", completeOrder);
             Console.WriteLine("Message sent");
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

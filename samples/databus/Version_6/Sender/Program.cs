@@ -23,7 +23,6 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
             Console.WriteLine("Press 'D' to send a databus large message");
             Console.WriteLine("Press 'N' to send a normal large message exceed the size limit and throw");
             Console.WriteLine("Press any other key to exit");
@@ -35,13 +34,13 @@ class Program
 
                 if (key.Key == ConsoleKey.N)
                 {
-                    await SendMessageTooLargePayload(busSession);
+                    await SendMessageTooLargePayload(endpoint);
                     continue;
                 }
 
                 if (key.Key == ConsoleKey.D)
                 {
-                    await SendMessageLargePayload(busSession);
+                    await SendMessageLargePayload(endpoint);
                     continue;
                 }
                 return;
@@ -54,7 +53,7 @@ class Program
     }
 
 
-    static async Task SendMessageLargePayload(IBusSession busSession)
+    static async Task SendMessageLargePayload(IEndpointInstance endpointInstance)
     {
         #region SendMessageLargePayload
 
@@ -63,14 +62,14 @@ class Program
             SomeProperty = "This message contains a large blob that will be sent on the data bus",
             LargeBlob = new DataBusProperty<byte[]>(new byte[1024*1024*5]) //5MB
         };
-        await busSession.Send("Samples.DataBus.Receiver", message);
+        await endpointInstance.Send("Samples.DataBus.Receiver", message);
 
         #endregion
 
         Console.WriteLine("Message sent, the payload is stored in: " + BasePath);
     }
 
-    static async Task SendMessageTooLargePayload(IBusSession busSession)
+    static async Task SendMessageTooLargePayload(IEndpointInstance endpointInstance)
     {
         #region SendMessageTooLargePayload
 
@@ -78,7 +77,7 @@ class Program
         {
             LargeBlob = new byte[1024*1024*5] //5MB
         };
-        await busSession.Send("Samples.DataBus.Receiver", message);
+        await endpointInstance.Send("Samples.DataBus.Receiver", message);
 
         #endregion
     }

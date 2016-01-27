@@ -28,29 +28,26 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
+            Console.WriteLine("Press 'enter' to send a message");
+            Console.WriteLine("Press any other key to exit");
+
+            while (true)
             {
-                Console.WriteLine("Press 'enter' to send a message");
-                Console.WriteLine("Press any other key to exit");
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
 
-                while (true)
+                if (key.Key != ConsoleKey.Enter)
                 {
-                    ConsoleKeyInfo key = Console.ReadKey();
-                    Console.WriteLine();
-
-                    if (key.Key != ConsoleKey.Enter)
-                    {
-                        return;
-                    }
-
-                    Guid orderId = Guid.NewGuid();
-                    Message1 message = new Message1
-                    {
-                        Property = "Hello from Endpoint1"
-                    };
-                    await busSession.Send("Samples.Azure.ServiceBus.Endpoint2", message);
-                    Console.WriteLine("Message1 sent");
+                    return;
                 }
+
+                Guid orderId = Guid.NewGuid();
+                Message1 message = new Message1
+                {
+                    Property = "Hello from Endpoint1"
+                };
+                await endpoint.Send("Samples.Azure.ServiceBus.Endpoint2", message);
+                Console.WriteLine("Message1 sent");
             }
         }
         finally

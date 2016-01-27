@@ -24,8 +24,7 @@ static class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
-            Start(busSession);
+            Start(endpoint);
         }
         finally
         {

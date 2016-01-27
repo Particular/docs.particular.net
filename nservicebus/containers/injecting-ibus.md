@@ -6,7 +6,7 @@ redirects:
  - nservicebus/how-do-i-get-a-reference-to-ibus-in-my-message-handler
 ---
 
-NOTE: In Version 6, the `IBus` interface has been deprecated and removed. Use the `IMessageHandlerContext` interface within a handler, or the `IBusSession` interface instead.
+NOTE: In Version 6, the `IBus` interface has been deprecated and removed. Use the `IMessageHandlerContext` interface within a handler, or the `IEndpointInstance`/`IBusSession` interface instead.
 
 Use constructor injection:
 

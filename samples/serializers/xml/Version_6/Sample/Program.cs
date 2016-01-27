@@ -31,7 +31,6 @@ static class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
             #region message
             CreateOrder message = new CreateOrder
             {
@@ -52,7 +51,7 @@ static class Program
                     },
                 }
             };
-            await busSession.SendLocal(message);
+            await endpoint.SendLocal(message);
             #endregion
             Console.WriteLine("Order Sent");
             Console.WriteLine("Press any key to exit");

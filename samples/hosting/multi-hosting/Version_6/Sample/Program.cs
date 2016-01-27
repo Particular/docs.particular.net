@@ -31,14 +31,12 @@ class Program
                 Console.WriteLine();
                 if (key.Key == ConsoleKey.D1)
                 {
-                    IBusSession busSession1 = endpoint1.CreateBusSession();
-                    await busSession1.Send("Samples.MultiHosting.Instance2", new MyMessage());
+                    await endpoint1.Send("Samples.MultiHosting.Instance2", new MyMessage());
                     continue;
                 }
                 if (key.Key == ConsoleKey.D2)
                 {
-                    IBusSession busSession2 = endpoint2.CreateBusSession();
-                    await busSession2.Send("Samples.MultiHosting.Instance1", new MyMessage());
+                    await endpoint2.Send("Samples.MultiHosting.Instance1", new MyMessage());
                     continue;
                 }
                 return;
@@ -48,11 +46,11 @@ class Program
         {
             if (endpoint1 != null)
             {
-                endpoint1.Stop().GetAwaiter().GetResult();
+                await endpoint1.Stop();
             }
             if (endpoint2 != null)
             {
-                endpoint2.Stop().GetAwaiter().GetResult();
+                await endpoint2.Stop();
             }
         }
 

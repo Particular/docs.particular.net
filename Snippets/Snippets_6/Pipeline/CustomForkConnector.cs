@@ -3,7 +3,6 @@ namespace Snippets6.Pipeline
     using System;
     using System.Threading.Tasks;
     using NServiceBus;
-    using NServiceBus.Audit;
     using NServiceBus.Pipeline;
     using NServiceBus.Transports;
 

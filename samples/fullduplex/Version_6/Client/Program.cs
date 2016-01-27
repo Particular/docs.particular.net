@@ -25,7 +25,6 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 
@@ -48,7 +47,7 @@ class Program
                     DataId = guid,
                     String = "String property value"
                 };
-                await busSession.Send("Samples.FullDuplex.Server", message);
+                await endpoint.Send("Samples.FullDuplex.Server", message);
             }
 
             #endregion

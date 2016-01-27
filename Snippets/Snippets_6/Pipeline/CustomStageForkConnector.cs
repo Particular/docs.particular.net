@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Pipeline;
-    using NServiceBus.Pipeline.Contexts;
     using NServiceBus.Transports;
 
     #region CustomStageForkConnector

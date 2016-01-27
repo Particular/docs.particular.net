@@ -21,7 +21,6 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
             MessageWithSecretData message = new MessageWithSecretData
             {
                 Secret = "betcha can't guess my secret",
@@ -43,7 +42,7 @@ class Program
                     }
                 }
             };
-            await busSession.Send("Samples.Encryption.Endpoint2", message);
+            await endpoint.Send("Samples.Encryption.Endpoint2", message);
 
             Console.WriteLine("MessageWithSecretData sent. Press any key to exit");
             Console.ReadKey();

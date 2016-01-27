@@ -4,7 +4,6 @@ namespace Snippets6.Pipeline.Abort
     using System;
     using System.Threading.Tasks;
     using NServiceBus.Pipeline;
-    using NServiceBus.Pipeline.Contexts;
 
     #region AbortPipelineWithBehavior
 

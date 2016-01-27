@@ -24,9 +24,7 @@ static class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
-
-            using (StartWcfHost(busSession))
+            using (StartWcfHost(endpoint))
             {
                 Console.WriteLine("Press any key to exit");
                 Console.ReadKey();
@@ -42,9 +40,9 @@ static class Program
 
     #region startwcf
 
-    static IDisposable StartWcfHost(IBusSession busSession)
+    static IDisposable StartWcfHost(IEndpointInstance endpointInstance)
     {
-        WcfMapper wcfMapper = new WcfMapper(busSession, "http://localhost:8080");
+        WcfMapper wcfMapper = new WcfMapper(endpointInstance, "http://localhost:8080");
         wcfMapper.StartListening<EnumMessage, Status>();
         wcfMapper.StartListening<ObjectMessage, ReplyMessage>();
         wcfMapper.StartListening<IntMessage, int>();

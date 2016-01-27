@@ -28,8 +28,7 @@ class Program
         try
         {
             Logger.WriteLine("Calling IEndpointInstance.CreateBusContext");
-            IBusSession busSession = endpoint.CreateBusSession();
-
+            
             //simulate some bus activity
             Thread.Sleep(500);
 

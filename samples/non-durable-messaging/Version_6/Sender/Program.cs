@@ -28,8 +28,7 @@ static class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
-            await busSession.Send("Samples.MessageDurability.Receiver", new MyMessage());
+            await endpoint.Send("Samples.MessageDurability.Receiver", new MyMessage());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

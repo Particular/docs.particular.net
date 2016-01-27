@@ -32,6 +32,9 @@ public class MvcApplication : HttpApplication
         busConfiguration.SendFailedMessagesTo("error");
 
         endpoint = Endpoint.Start(busConfiguration).GetAwaiter().GetResult();
+        ContainerBuilder updater = new ContainerBuilder();
+        updater.RegisterInstance(endpoint);
+        updater.Update(container);
 
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 

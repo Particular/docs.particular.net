@@ -47,8 +47,7 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
-            await busSession.SendLocal(new MyMessage());
+            await endpoint.SendLocal(new MyMessage());
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }
