@@ -40,7 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.12\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.13\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.RavenDB, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.RavenDB.3.0.6\lib\net45\NServiceBus.RavenDB.dll</HintPath>
