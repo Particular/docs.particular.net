@@ -62,3 +62,37 @@ The transports supported by ServiceControl out-of-the-box (i.e. MSMQ, RabbitMQ, 
 Azure Queues and Service Bus throughput varies significantly based on deployment options and multiple related variables inherent to cloud deployment scenarios.
 
 It is recommended that you plan and perform realistic throughput tests on ServiceControl using the transport of your choice and deployment options that are as close as possible to your planned production deployment. For additional questions or information please [contact Particular Software](http://particular.net/contactus).
+
+#### ServiceControl in Practice
+
+Often customers don't need all the features available in ServiceControl in one single environment. Its a tool that can accomodate many situations and sometimes some features get used in situations where their value proposition is not particularly strong.
+
+For example, in your development environment you probably want a lot of logging information to support problem analysis. For many users the [Debug Session](/servicecontrol/plugins/debug-session.md) plugin is really useful at this stage of the application lifecycle but you would never put that plugin into production. For the same reason, you would never use the [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin outside of development.
+
+Making decisions about the use of the other plugins and features requires a little more thought to balance the smooth running of your system with your actual requirements. The temptation to just use them all as a kind of insurance policy is not a good choice. The cost of having some of these features in play can actually cause issues down the track if you're not prepared.
+ 
+[Auditing](/nservicebus/operations/auditing.md) is a good example of how the cost of having a record of everything may cause significant impact on the system. It might be worth considering turning audit off in some or all endpoints in production. Or if you absolutely need it move the auditing to another place like your Business Intelligence database or somewhere that has better resources dedicated to the problem.
+
+[Heartbeats](/servicepulse/intro-endpoints-heartbeats.md) and [Custom Checks](/servicepulse/intro-endpoints-custom-checks.md) are great for knowing when an endpoint is up or down but they add extra noise to your system. Definitely think hard about what the business ramifications are of having each endpoint available. Often, not all endpoints are mission critical, maybe 10 second updates are right for some but 2 minute intervals are better for others. Remember also that all communication from endpoints with ServiceControl is performed via messaging. Adding a message to the queue every 5 seconds may have little impact on it when the notification shows up in ServicePulse. You could instead overwhelm ServiceControl with messages causing it fail. 
+
+Sometimes slower is better.
+
+Moving forward Pace the adoption of plugins and features: 
+
+- Turn off auditing on all my endpoints as well as heartbeats.
+- If you are using the NServiceBus.Host I would set the log levels to ['production'](/nservicebus/hosting/nservicebus-host/profiles.md#logging-behaviors)
+- Perform a load test to baseline your solution.
+- When you are comfortable with the performance of the system try adding Heartbeats. That will allow you to monitor your system
+- Try increasing the heartbeat interval to around a minute maybe even more. Its no good have the heartbeat update more frequently than your Operations staff are prepared to look at ServicePulse.
+- With each additional change perform your load test again adjusting the heartbeat interval until you get a satisfactory result.
+- Do the same with Custom Checks if you have them.
+- After all that I would consider adding audit back into the mix if it is really required and then test again.
+
+
+Notes for Pete
+
+- You could consider just running a seperate servicecontrol just for auditing - we should discuss to see if this makes sense
+
+ "it's no good"  Consider rewording 
+
+perhaps detail that the default heartbeat interval is 40 seconds. Repeatedly eluding to 10 seconds makes it seem like default value
