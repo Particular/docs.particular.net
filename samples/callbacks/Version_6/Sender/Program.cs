@@ -21,7 +21,6 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
             Console.WriteLine("Press 'E' to send a message with an enum return");
             Console.WriteLine("Press 'I' to send a message with an int return");
             Console.WriteLine("Press 'O' to send a message with an object return");
@@ -34,17 +33,17 @@ class Program
 
                 if (key.Key == ConsoleKey.E)
                 {
-                    await SendEnumMessage(busSession);
+                    await SendEnumMessage(endpoint);
                     continue;
                 }
                 if (key.Key == ConsoleKey.I)
                 {
-                    await SendIntMessage(busSession);
+                    await SendIntMessage(endpoint);
                     continue;
                 }
                 if (key.Key == ConsoleKey.O)
                 {
-                    await SendObjectMessage(busSession);
+                    await SendObjectMessage(endpoint);
                     continue;
                 }
                 return;

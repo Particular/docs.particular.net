@@ -29,10 +29,9 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
             #region SendMessage
             Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity("FakeUser"), new string[0]);
-            await busSession.Send("Samples.UsernameHeader.Endpoint2", new MyMessage());
+            await endpoint.Send("Samples.UsernameHeader.Endpoint2", new MyMessage());
             #endregion
             Console.WriteLine("Message sent. Press any key to exit");
             Console.ReadKey();

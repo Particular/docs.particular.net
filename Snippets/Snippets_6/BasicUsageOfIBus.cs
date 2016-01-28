@@ -11,9 +11,7 @@
 
             #region BasicSend
             IEndpointInstance instance = await Endpoint.Start(busConfiguration);
-            IBusSession busSession = instance.CreateBusSession();
-
-            await busSession.Send(new MyMessage());
+            await instance.Send(new MyMessage());
             #endregion
         }
 

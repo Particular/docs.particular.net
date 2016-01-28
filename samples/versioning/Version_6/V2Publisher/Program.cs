@@ -24,7 +24,6 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
             Console.WriteLine("Press enter to publish a message");
             Console.WriteLine("Press any key to exit");
             while (true)
@@ -36,7 +35,7 @@ class Program
                 {
                     return;
                 }
-                await busSession.Publish<V2.Messages.ISomethingHappened>(sh =>
+                await endpoint.Publish<V2.Messages.ISomethingHappened>(sh =>
                 {
                     sh.SomeData = 1;
                     sh.MoreInfo = "It's a secret.";

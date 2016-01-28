@@ -4,16 +4,14 @@ using NServiceBus;
 
 public class Global : HttpApplication
 {
-    public static IBus Bus;
+    public static IEndpointInstance Endpoint;
 
     public override void Dispose()
     {
-        if (Bus != null)
-        {
-            Bus.Dispose();
-        }
+        Endpoint?.Stop().GetAwaiter().GetResult();
         base.Dispose();
     }
+
     protected void Application_Start(object sender, EventArgs e)
     {
         #region ApplicationStart
@@ -24,9 +22,8 @@ public class Global : HttpApplication
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
 
-        Bus = NServiceBus.Bus.Create(busConfiguration).Start();
+        Endpoint = NServiceBus.Endpoint.Start(busConfiguration).GetAwaiter().GetResult();
 
         #endregion
     }
-
 }
