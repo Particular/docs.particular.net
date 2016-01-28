@@ -38,7 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\packages\NServiceBus.5.2.13\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\packages\NServiceBus.5.2.14\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Distributor.MSMQ">
       <HintPath>..\..\..\..\packages\NServiceBus.Distributor.MSMQ.5.0.3\lib\net45\NServiceBus.Distributor.MSMQ.dll</HintPath>
