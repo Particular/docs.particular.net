@@ -17,7 +17,7 @@ As mentioned above, there are two types of custom checks.
 
 ### Custom check
 
-A custom check is executed once when the endpoint host starts. NServiceBus assembly scanning mechanism detects a class inheriting from `CustomCheck` and creates an instance of that class. The check should happen in the constructor and the result needs to be communicated back using either `ReportPass` or `ReportFailed` methods.
+A custom check is executed once when the endpoint host starts. NServiceBus assembly scanning mechanism detects a class inheriting from `CustomCheck` and creates an instance of that class. The check should happen in the constructor for NServiceBus Version 5 and earlier or in the `PerformCheck` method for NServiceBus Version 6. The result needs to be communicated back using either `ReportPass` or `ReportFailed` methods.
 
 snippet:CustomCheck
 
@@ -38,6 +38,7 @@ NOTE: It is essential that you deploy this plugin to your endpoint in production
 
 ## NuGets
 
+ * NServiceBus Version 6.x: [ServiceControl.Plugin.Nsb6.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.CustomChecks)
  * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks)
  * NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks)
  * NServiceBus Version 3.x: [ServiceControl.Plugin.Nsb3.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks)
