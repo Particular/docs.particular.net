@@ -111,6 +111,9 @@ Enabled by default and will only write to the counter if it exists.
 
 The NServiceBus Performance counters can be installed using the [NServiceBus PowerShell tools](management-using-powershell.md).
 
+## Perfomance Monitor Users local security group
+
+When [running installers](installers.md) the service account will be automatically added to the local Performance Monitor Users group if executed with elevated privileges.
 
 ## Corrupted Counters
 
