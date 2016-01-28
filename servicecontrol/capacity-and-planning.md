@@ -73,26 +73,19 @@ Making decisions about the use of the other plugins and features requires a litt
  
 [Auditing](/nservicebus/operations/auditing.md) is a good example of how the cost of having a record of everything may cause significant impact on the system. It might be worth considering turning audit off in some or all endpoints in production. Or if you absolutely need it move the auditing to another place like your Business Intelligence database or somewhere that has better resources dedicated to the problem.
 
-[Heartbeats](/servicepulse/intro-endpoints-heartbeats.md) and [Custom Checks](/servicepulse/intro-endpoints-custom-checks.md) are great for knowing when an endpoint is up or down but they add extra noise to your system. Definitely think hard about what the business ramifications are of having each endpoint available. Often, not all endpoints are mission critical, maybe 10 second updates are right for some but 2 minute intervals are better for others. Remember also that all communication from endpoints with ServiceControl is performed via messaging. Adding a message to the queue every 5 seconds may have little impact on it when the notification shows up in ServicePulse. You could instead overwhelm ServiceControl with messages causing it fail. 
+It is technically possible to run two instances of ServiceControl one for audits and one for active monitoring and retries. Whether this makes sense for your situation is another discussion entirely.
 
-Sometimes slower is better.
+[Heartbeats](/servicepulse/intro-endpoints-heartbeats.md) and [Custom Checks](/servicepulse/intro-endpoints-custom-checks.md) are great for knowing when an endpoint is up or down but they add extra noise to your system. Definitely think hard about what the business ramifications are of having each endpoint available. Often, not all endpoints are mission critical, the default heartbeat is forty seconds. Maybe ten second updates are right for some endpoints but two minute intervals could be better for others. Remember also that all communication from endpoints with ServiceControl is performed via messaging. Adding a message to the queue every second may have little impact on when the notification shows up in ServicePulse. Remember, the last heartbeat is really the only one you care about. If you stop ServiceControl those heartbeats are going to bank up in the queue. You might want to consider flushing the heartbeats from the queue before starting ServiceControl again. Having a lot of noisey messages that add no value may overwhelm ServiceControl and causing it fail. 
 
-Moving forward Pace the adoption of plugins and features: 
+##### Sometimes slower is better.
 
-- Turn off auditing on all my endpoints as well as heartbeats.
-- If you are using the NServiceBus.Host I would set the log levels to ['production'](/nservicebus/hosting/nservicebus-host/profiles.md#logging-behaviors)
+Moving forward pace your adoption of plugins and features: 
+
+- Turn off auditing on all endpoints as well as heartbeats and custom checks.
+- If you are using the NServiceBus.Host set the log levels to ['production'](/nservicebus/hosting/nservicebus-host/profiles.md#logging-behaviors)
 - Perform a load test to baseline your solution.
 - When you are comfortable with the performance of the system try adding Heartbeats. That will allow you to monitor your system
-- Try increasing the heartbeat interval to around a minute maybe even more. Its no good have the heartbeat update more frequently than your Operations staff are prepared to look at ServicePulse.
+- Try increasing the heartbeat interval to around a minute maybe even more. Idealy you will not want to have a heartbeat update more frequently than ServiceControl can process it or more that your Operations staff are prepared to look at ServicePulse.
 - With each additional change perform your load test again adjusting the heartbeat interval until you get a satisfactory result.
 - Do the same with Custom Checks if you have them.
 - After all that I would consider adding audit back into the mix if it is really required and then test again.
-
-
-Notes for Pete
-
-- You could consider just running a seperate servicecontrol just for auditing - we should discuss to see if this makes sense
-
- "it's no good"  Consider rewording 
-
-perhaps detail that the default heartbeat interval is 40 seconds. Repeatedly eluding to 10 seconds makes it seem like default value
