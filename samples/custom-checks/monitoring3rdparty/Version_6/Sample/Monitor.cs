@@ -16,7 +16,7 @@ class ThirdPartyMonitor : PeriodicCheck
     {
     }
 
-    public override Task<CheckResult> PerformCheck()
+    public override async Task<CheckResult> PerformCheck()
     {
         try
         {
@@ -24,7 +24,7 @@ class ThirdPartyMonitor : PeriodicCheck
             {
                 Timeout = TimeSpan.FromSeconds(3),
             })
-            using (HttpResponseMessage response = client.GetAsync(url).Result)
+            using (HttpResponseMessage response = await client.GetAsync(url))
             {
                 if (response.IsSuccessStatusCode)
                 {

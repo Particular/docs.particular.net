@@ -7,6 +7,8 @@ class Program
     {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.CustomChecks.Monitor3rdParty");
+        busConfiguration.AuditProcessedMessagesTo("audit");
+        busConfiguration.SendFailedMessagesTo("error");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<InMemoryPersistence>();
