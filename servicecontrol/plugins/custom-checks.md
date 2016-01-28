@@ -17,7 +17,7 @@ As mentioned above, there are two types of custom checks.
 
 ### Custom check
 
-A custom check is executed once when the endpoint host starts. NServiceBus assembly scanning mechanism detects a class inheriting from `CustomCheck` and creates an instance of that class. The check should happen in the constructor and the result needs to be communicated back using either `ReportPass` or `ReportFailed` methods.
+A custom check is executed once when the endpoint host starts. NServiceBus assembly scanning mechanism detects a class inheriting from `CustomCheck` and creates an instance of that class. The check should happen in the constructor for NServiceBus Version 5 and earlier or in the `PerformCheck` method for NServiceBus Version 6. The result needs to be communicated back using either `ReportPass` or `ReportFailed` methods.
 
 snippet:CustomCheck
 
