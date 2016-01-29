@@ -6,7 +6,7 @@ using ServiceControl.Plugin.CustomChecks;
 
 #region thecustomcheck
 
-class ThirdPartyMonitor : PeriodicCheck
+class ThirdPartyMonitor : CustomCheck
 {
     const string url = "http://localhost:57789";
     static ILog logger = LogManager.GetLogger<ThirdPartyMonitor>();
@@ -15,6 +15,7 @@ class ThirdPartyMonitor : PeriodicCheck
         : base(string.Format("Monitor {0}", url), "Monitor 3rd Party ", TimeSpan.FromSeconds(10))
     {
     }
+
 
     public override async Task<CheckResult> PerformCheck()
     {
