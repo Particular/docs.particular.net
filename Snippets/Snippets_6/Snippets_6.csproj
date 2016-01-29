@@ -246,6 +246,8 @@
     <Compile Include="Pipeline\CustomStageConnector.cs" />
     <Compile Include="Pipeline\CustomStageForkConnector.cs" />
     <Compile Include="Routing\RoutingAPIs.cs" />
+    <Compile Include="Serialization\JsonSerialization.cs" />
+    <Compile Include="Serialization\XmlSerialization.cs" />
     <Compile Include="TransactionScopeUnitOfWork.cs" />
     <Compile Include="Transports\QueueCreation\ConcurrentQueueCreator.cs" />
     <Compile Include="Transports\QueueCreation\SequentialQueueCreator.cs" />
