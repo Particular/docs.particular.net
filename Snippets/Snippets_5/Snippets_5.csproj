@@ -421,6 +421,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ImmediateDispatch\Usage.cs" />
+    <Compile Include="InstallSomething.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
     <Compile Include="Lifecycle\IWantToRunWhenConfigurationIsComplete.cs" />
