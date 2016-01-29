@@ -29,10 +29,6 @@ In order to address the problem with excess number of unused polling threads, in
 
 ### 3.0
 
-In version 3.0 the adaptive concurrency model has been removed. Instead for each input queue SqlTransport maintains a dedicated monitoring thread. It is responsible for detecting the number of messages waiting for delivery and creating receive [tasks](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) - one for each pending message. 
+In version 3.0 and higher the adaptive concurrency model has been removed. Instead for each input queue SqlTransport maintains a dedicated monitoring thread. It is responsible for detecting the number of messages waiting for delivery and creating receive [tasks](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) - one for each pending message. 
 
-The maximum number of tasks existing at the same time will never exceed `MaximumConcurrencyLevel`. It is worth noting that number of tasks does not translate to number of running threads which is controlled by TPL scheduling mechanisms.
-
-  
-
-
+The maximum number of concurrent tasks will never exceed `MaximumConcurrencyLevel`. Number of tasks does not translate to number of running threads which is controlled by TPL scheduling mechanisms.
