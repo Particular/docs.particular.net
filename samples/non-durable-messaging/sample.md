@@ -43,8 +43,6 @@ Messages must have an `[ExpressAttribute]`.
 
 snippet:message-definition
 
-This could be
-
 
 ## Running the solution
 
