@@ -238,6 +238,7 @@
     <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="NonDurable\DisableDurable.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
+    <Compile Include="InstallSomething.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\Behavior.cs" />
     <Compile Include="Pipeline\Abort\MyMessage.cs" />

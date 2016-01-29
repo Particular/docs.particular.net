@@ -313,6 +313,7 @@
     <Compile Include="Mutators\Transport\MutateIncomingTransportMessages.cs" />
     <Compile Include="Mutators\Transport\MutateOutgoingTransportMessages.cs" />
     <Compile Include="Mutators\Transport\ServiceThatChangesBody.cs" />
+    <Compile Include="InstallSomething.cs" />
     <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="Profiles\configure_logging.cs" />
     <Compile Include="Profiles\dependent_profile.cs" />
