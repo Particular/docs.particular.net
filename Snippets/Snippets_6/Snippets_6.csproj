@@ -219,6 +219,16 @@
     <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\FileShare\Usage.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="Encryption\Configuration\FromCode.cs" />
+    <Compile Include="Encryption\Configuration\ProvideConfiguration.cs" />
+    <Compile Include="Encryption\Conventions\Message.cs" />
+    <Compile Include="Encryption\Conventions\Usage.cs" />
+    <Compile Include="Encryption\EncryptionService\EncryptionService.cs" />
+    <Compile Include="Encryption\EncryptionService\Usage.cs" />
+    <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
+    <Compile Include="Encryption\MessageBody\Usage.cs" />
+    <Compile Include="Encryption\Usage.cs" />
+    <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
     <Compile Include="EndpointName\EndpointConfigByNamespace.cs" />
     <Compile Include="EndpointName\EndpointConfigWithAttribute.cs" />
     <Compile Include="EndpointName\Usage.cs" />
@@ -368,6 +378,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Audit\Audit.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
