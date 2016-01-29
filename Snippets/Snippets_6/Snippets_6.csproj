@@ -235,6 +235,9 @@
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Extending\Features.cs" />
     <Compile Include="Host\CustomizingHost.cs" />
+    <Compile Include="NonDurable\DefineExpress.cs" />
+    <Compile Include="NonDurable\DisableDurable.cs" />
+    <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\Behavior.cs" />
     <Compile Include="Pipeline\Abort\MyMessage.cs" />
