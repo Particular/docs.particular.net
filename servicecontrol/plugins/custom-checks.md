@@ -17,7 +17,7 @@ As mentioned above, there are two types of custom checks.
 
 ### Custom check
 
-A custom check is executed once when the endpoint host starts. NServiceBus assembly scanning mechanism detects a class inheriting from `CustomCheck` and creates an instance of that class. The check should happen in the constructor for NServiceBus Version 5 and earlier or in the `PerformCheck` method for NServiceBus Version 6. The result needs to be communicated back using either `ReportPass` or `ReportFailed` methods.
+A custom check is executed once when the endpoint host starts. NServiceBus assembly scanning mechanism detects a class inheriting from `CustomCheck` and creates an instance of that class. The check should happen in the constructor for NServiceBus Version 5 and the result needs to be communicated back using either `ReportPass` or `ReportFailed` methods. For NServiceBus Version 6 the check should happen in the `PerformCheck` method and the result needs to be communicated back using either `CheckResult.Pass` or `CheckResult.Failed` methods.
 
 snippet:CustomCheck
 
@@ -28,6 +28,8 @@ NOTE: Only the instance of a custom check which has been created by the NService
 A periodic check is executed at defined intervals. The check happens not in the constructor but in a dedicated `PerformCheck` method which returns the check result.
 
 snippet:PeriodicCheck
+
+NOTE: For NServiceBus Version 6 the `PeriodicCheck` class has been deprecated. Inherit from `CustomCheck` and provided a `TimeSpan` to `repeatAfter` in the constructor of the `CustomCheck`.
 
 ### Results
 

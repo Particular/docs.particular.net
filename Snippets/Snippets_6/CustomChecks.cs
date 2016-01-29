@@ -15,20 +15,20 @@
 
             }
 
-            public override Task PerformCheck()
+            public override Task<CheckResult> PerformCheck()
             {
                 if (SomeService.GetStatus())
                 {
-                    return ReportPass();
+                    return CheckResult.Pass;
                 }
 
-                return ReportFailed("Some service is not available.");
+                return CheckResult.Failed("Some service is not available.");
             }
         }
         #endregion
 
         #region PeriodicCheck
-        public class MyPeriodicCheck : PeriodicCheck
+        public class MyPeriodicCheck : CustomCheck
         {
             public MyPeriodicCheck()
                 : base("SomeId-Periodic", "SomeCategory", TimeSpan.FromSeconds(5))
