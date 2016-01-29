@@ -219,6 +219,9 @@
     <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\FileShare\Usage.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="EndpointName\EndpointConfigByNamespace.cs" />
+    <Compile Include="EndpointName\EndpointConfigWithAttribute.cs" />
+    <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="Errors\ErrorQueue\Usage.cs" />
     <Compile Include="Errors\FirstLevel\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />
