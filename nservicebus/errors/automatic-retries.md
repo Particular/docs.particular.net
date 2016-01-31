@@ -50,7 +50,7 @@ snippet:FLRConfigurationSource
 snippet:FLRConfigurationSourceUsage
 
 
-NOTE: Starting from version 6, configuration of the FLR mechanism will have no effect on how many times a deferred message is dispatched when an exception is thrown. In such a case the `TimeoutManager` will attempt the dispatch five times.
+NOTE: From Version 6, configuration of the FLR mechanism will have no effect on how many times a deferred message is dispatched when an exception is thrown. In such a case the `TimeoutManager` will attempt the dispatch five times.
 
 
 ## Second Level Retries
@@ -64,6 +64,7 @@ For example, if there is a call to an web service in your handler, but the servi
 NOTE: Retrying messages for extended periods of time would hide failures from operators preventing them from taking manual action to honor Service Level Agreements. To avoid this happening, due to miss-configured retry polices, NServiceBus will make sure that no message is retried for more than 24 hours before being sent the error queue.
 
 SLR can be configured in several ways.
+
 
 ### Configuring SLR using app.config
 
