@@ -25,6 +25,7 @@ NOTE: It is essential that you deploy this plugin to your endpoint in production
 
 ## NuGets
 
+ * NServiceBus Version 6.x: [ServiceControl.Plugin.Nsb6.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.Heartbeat)
  * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.Heartbeat)
  * NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.Heartbeat)
  * NServiceBus Version 3.x: [ServiceControl.Plugin.Nsb3.Heartbeat](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.Heartbeat)
