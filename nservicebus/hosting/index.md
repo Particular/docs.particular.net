@@ -44,6 +44,10 @@ NOTE: In Version 6, the endpoint instance is not disposable due to the asynchron
 
 A [Windows Service](https://msdn.microsoft.com/en-us/library/d56de412.aspx) is the most common way NServiceBus is hosted.
 
+**Stopping Windows Service**
+
+NServiceBus gracefully shuts down the Windows Service by default. During a reboot of the machine, Windows will terminate the process if it takes longer than 30 seconds. To prevent endpoints from hanging indefinitely, NServiceBus also supports this feature and terminates the process after 30 seconds. 
+
 Related:
 
  * [Hosting NServiceBus in Windows Service](windows-service.md)
