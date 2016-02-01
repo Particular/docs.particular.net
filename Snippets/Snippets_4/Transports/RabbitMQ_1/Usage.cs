@@ -6,7 +6,7 @@
     {
         void Basic()
         {
-            #region rabbitmq-config-basic 1
+            #region rabbitmq-config-basic
 
             Configure configure = Configure.With();
             configure.UseTransport<RabbitMQ>();
@@ -16,7 +16,7 @@
 
         void CustomConnectionString()
         {
-            #region rabbitmq-config-connectionstring-in-code 1
+            #region rabbitmq-config-connectionstring-in-code
 
             Configure configure = Configure.With();
             configure.UseTransport<RabbitMQ>(() => "My custom connection string");
@@ -25,7 +25,7 @@
 
         void CustomConnectionStringName()
         {
-            #region rabbitmq-config-connectionstringname 1
+            #region rabbitmq-config-connectionstringname
 
             Configure configure = Configure.With();
             configure.UseTransport<RabbitMQ>("MyConnectionStringName");
