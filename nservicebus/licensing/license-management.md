@@ -25,9 +25,11 @@ The standalone NServiceBus PowerShell Version 5.0 includes a commandlet for impo
 
 For 64-bit operating systems the license is written to both the 32-bit and 64-bit registry. The license is stored is `HKEY_LOCAL_MACHINE\Software\ParticularSoftware\License` and `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ParticularSoftware`
 
+
 #### Advanced Registry Options
 
 These following instructions cover installing the license file without using NServiceBus PowerShell Module. These options give a bit more flexibility as they allow you to store the the license in `HKEY_CURRENT_USER` if you wish. If the licenses is stored in `HKEY_CURRENT_USER` it is only accessible to the current user.
+
 
 ##### Using PowerShell Script 
 
@@ -44,6 +46,7 @@ If modifying the registry directly using Registry Editor or a PowerShell script 
 
 NOTE: For 64 bit operating systems repeat the process in both the Powershell prompt and the PowerShell(x86) console prompt.  This will ensure the license is imported into both the 32 bit and 64 bit registry keys. 
 
+
 ##### Using Registry Editor
 
 - Run `regedit.exe` (usually located in `%windir%`, e.g. `C:\Windows`)
@@ -54,6 +57,7 @@ NOTE: For 64 bit operating systems repeat the process in both the Powershell pro
 If `HKEY_LOCAL_MACHINE`is the chosen license location and the operating system is 64-bit then repeat the import process for the `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ParticularSoftware` key to support 32-bit clients.
 
 (You can safely ignore any warnings regarding empty strings.)
+
 
 ### NServiceBus Version 3.3
 
