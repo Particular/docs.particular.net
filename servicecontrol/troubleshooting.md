@@ -95,18 +95,19 @@ NOTE: Prior to changing firewall setting to expose ServiceControl please read [S
 
 ### Unable to start Service after exposing RavenDB
 
-The `ExposeRavenDB`setting enables the embedded RavenDB Management Studio to be accessible via a web browser.
-When this setting is used in combination with a low privilege service account it can cause the service not to start.
-This is because a URLACL is required and the low priviege account does not have sufficent right to create it. 
+The `ExposeRavenDB` setting enables the embedded RavenDB Management Studio to be accessible via a web browser.
+When this setting is used in combination with a low privilege service account it can cause the service fail on startup.
+This is because a URLACL is required and the service account does not have rights to create it.
+ 
 To workaround this create the required URLACL. This can be done using the ServiceControl Management Powershell module.  
 
-NOTE: Replace the `<hostname>` and `<port>` valuse in the sample command below   with the appropriate values for your configuration
+NOTE: Replace the `<hostname>` and `<port>` valus in the sample commands below with the appropriate values from the ServiceControl configuration.
 
 ```posh
 urlacl-add -Url http://<hostname>:<port>/storage/ -Users Users
 ```
 
-If the `ExposeRavenDB` is removed from the configuration the URLACL can be cleaned up using this command
+If the `ExposeRavenDB` setting is removed or disabled in the configuration then the URLACL can be cleaned up using this command:
 
 ```posh
 urlacl-list | ? VirtualDirectory -eq storage | ? Port -eq <port> | urlacl-delete
