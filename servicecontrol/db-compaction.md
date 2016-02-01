@@ -20,7 +20,7 @@ Once ServiceControl is running in this mode the following procedure can be used 
 - Note down:
 	- the installation path for the service.
 	- the database path for the service.
-- Open command line and installation path for the service
+- Open command line, as Administrator, at installation path for the service
 - Type `ServiceControl -maint`
 - ServiceControl will start in the maintenance mode with RavenDB studio exposed on `http://localhost:{selected port}/storage`.
 
