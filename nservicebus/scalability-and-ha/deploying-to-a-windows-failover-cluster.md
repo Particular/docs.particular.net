@@ -108,12 +108,12 @@ NServiceBus.Host.exe
 /description:Distributor.EndpointName
 /userName:DOMAIN\us
 /password:thepassword
-NServiceBus.Production NServiceBus.Distributor
+NServiceBus.Production NServiceBus.MSMQDistributor
 ```
 
 It's easier to set the service name, display name, and description to be the same. It helps when trying to start and stop things from a NET START/STOP command and when viewing them in the multiple graphical tools. Starting each one with Distributor puts them all together alphabetically in the Services MMC snap-in.
 
-Don't forget the `NServiceBus.Production` at the end, which sets the profile for the NServiceBus generic host, as described in the [Generic Host page](/nservicebus/hosting/nservicebus-host/) and the `NServiceBus.Distributor` which sets up the host in distributor mode.
+Don't forget the `NServiceBus.Production` at the end, which sets the profile for the NServiceBus generic host, as described in the [Generic Host page](/nservicebus/hosting/nservicebus-host/) and the `NServiceBus.MSMQDistributor` which sets up the host in distributor mode.
 
 Do not try starting the services. If you do, they will run in the scope of the local server node, and will attempt to create their queues there.
 
@@ -134,7 +134,7 @@ Again, try swapping the cluster back and forth, to make sure it can move freely 
 
 The first thing you should do is to make sure that the worker servers have [unique QMIds](distributor/#worker-qmid-needs-to-be-unique).
 
-Set up your worker processes on all worker servers (not the cluster nodes!) as windows services, but instead of using `NServiceBus.Distributor`, use `NServiceBus.Worker` profile instead.
+Set up your worker processes on all worker servers (not the cluster nodes!) as windows services, but instead of using `NServiceBus.MSMQDistributor`, use `NServiceBus.MSMQWorker` profile instead.
 
 Configure the workers' `MasterNodeConfig` section to point to the machine running the distributor as described on the Distributor Page under [Routing with the Distributor](distributor).
 
