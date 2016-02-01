@@ -8,10 +8,48 @@ redirects:
 
 MSMQ is the default transport used by NServiceBus.
 
-
 ## NServiceBus Configuration
 
-NServiceBus requires a specific MSMQ configuration to run. To enable this configuration either use "NServiceBus Prerequisites" in the [Platform Installer](/platform/installer/) or using the [Powershell Module](/nservicebus/operations/management-using-powershell.md).
+NServiceBus requires a specific MSMQ configuration to operate.     
+
+The supported configuration is to only have the base MSMQ service installed with no optional features.
+To enable the supported configuration either use `NServiceBus Prerequisites` in the [Platform Installer](/platform/installer/) or use the `Install-NServiceBusMSMQ` cmdlet from the [NserviceBus Powershell Module](/nservicebus/operations/management-using-powershell.md).
+
+Alternatively the MSMQ service can be manually installed by following these Operating System specific instructions:  
+
+
+### Windows 7
+
+From the Control Panel, choose Programs
+Then run the Windows Features Wizard by click on `Turn Windows Features On or Off`  
+Enable `Microsoft Message Queue (MSMQ) Server Core`
+All other MSMQ sub-options should be disabled.
+
+The DISM command line equivalent is:
+
+`DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server` 
+
+
+### Windows 8.x and 10
+
+From the Control Panel, choose Programs
+Then run the Windows Features Wizard by click on `Turn Windows Features On or Off`
+Enable `Microsoft Message Queue (MSMQ) Server Core` 
+All other MSMQ sub-options should be disabled.
+
+The DISM command line equivalent is:
+
+`DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server ` 
+
+
+### Windows 2008 R2 and Windows 2012
+
+From Server Manager's Add Roles and Features Wizard enable `Message Queue Server` 
+All other MSMQ options should be disabled.
+
+The DISM command line equivalent is:
+
+`DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server` 
 
 
 ## MSMQ clustering
