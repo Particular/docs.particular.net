@@ -55,7 +55,7 @@ Set-ItemProperty -Path HKLM:\Software\ParticularSoftware -Name License -Force -V
 
 If modifying the registry directly using Registry Editor or a PowerShell script to update the license for ServiceControl, you will need to restart the ServiceControl service, as it only checks for its license information once at startup.
 
-NOTE: On a 64 bit operating system repeat the process in both the Powershell prompt and the PowerShell(x86) console prompt.  This will ensure the license is imported into both the 32 bit and 64 bit registry keys. 
+NOTE: For 64 bit operating systems repeat the process in both the Powershell prompt and the PowerShell(x86) console prompt.  This will ensure the license is imported into both the 32 bit and 64 bit registry keys. 
 
 ### NServiceBus Version 3.3
 
