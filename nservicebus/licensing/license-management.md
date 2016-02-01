@@ -14,6 +14,8 @@ There are several ways to make sure that your NServiceBus endpoints pick up and 
 
 ## Using the Registry
 
+NOTE: Using the Powershell cmdlet is the preferred and simpliest method of adding the license file. 
+
 Using the registry to store your license information is a way that all platform tools can access this information easily. This includes NServiceBus endpoints, ServiceControl, and ServiceInsight. (ServicePulse determines licensing status by querying the ServiceControl API.) Using the registry ensures that all the platform tools can access the license status without requiring additional complexity on every deployment.
 
 
@@ -23,24 +25,9 @@ The standalone NServiceBus PowerShell Version 5.0 includes a commandlet for impo
 
 For 64-bit operating systems the license is written to both the 32-bit and 64-bit registry. The license is stored is `HKEY_LOCAL_MACHINE\Software\ParticularSoftware\License` and `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ParticularSoftware`
 
-NOTE: Using the Powershell cmdlet is the preferred and simpliest method of adding the license file. 
-
-
 #### Advanced Registry Options
 
 These following instructions cover installing the license file without using NServiceBus PowerShell Module. These options give a bit more flexibility as they allow you to store the the license in `HKEY_CURRENT_USER` if you wish. If the licenses is stored in `HKEY_CURRENT_USER` it is only accessible to the current user.
-
-##### Using Registry Editor
-
-- Run `regedit.exe` (usually located in `%windir%`, e.g. `C:\Windows`)
-- Go to `HKEY_LOCAL_MACHINE\Software\ParticularSoftware` or `HKEY_CURRENT_USER\Software\ParticularSoftware`
-- Create a new Multi-String Value (`REG_MULTI_SZ`) named `License`
-- Paste the contents of the license file you received from Particular Software.
-
-If `HKEY_LOCAL_MACHINE`is the chosen license location and the operating system is 64-bit then repeat the import process for the `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ParticularSoftware` key to support 32-bit clients.
-
-(You can safely ignore any warnings regarding empty strings.)
-
 
 ##### Using PowerShell Script 
 
@@ -56,6 +43,17 @@ Set-ItemProperty -Path HKLM:\Software\ParticularSoftware -Name License -Force -V
 If modifying the registry directly using Registry Editor or a PowerShell script to update the license for ServiceControl, you will need to restart the ServiceControl service, as it only checks for its license information once at startup.
 
 NOTE: For 64 bit operating systems repeat the process in both the Powershell prompt and the PowerShell(x86) console prompt.  This will ensure the license is imported into both the 32 bit and 64 bit registry keys. 
+
+##### Using Registry Editor
+
+- Run `regedit.exe` (usually located in `%windir%`, e.g. `C:\Windows`)
+- Go to `HKEY_LOCAL_MACHINE\Software\ParticularSoftware` or `HKEY_CURRENT_USER\Software\ParticularSoftware`
+- Create a new Multi-String Value (`REG_MULTI_SZ`) named `License`
+- Paste the contents of the license file you received from Particular Software.
+
+If `HKEY_LOCAL_MACHINE`is the chosen license location and the operating system is 64-bit then repeat the import process for the `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ParticularSoftware` key to support 32-bit clients.
+
+(You can safely ignore any warnings regarding empty strings.)
 
 ### NServiceBus Version 3.3
 
