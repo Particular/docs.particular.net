@@ -92,3 +92,22 @@ The value is the size of the version store in MB.
  1. If you are having issues remotely connecting to ServiceControl. Verify that firewall settings do not block access to the ServiceControl port specified in the URL.
 
 NOTE: Prior to changing firewall setting to expose ServiceControl please read [Securing ServiceControl](securing-servicecontrol.md).
+
+### Unable to start Service after exposing RavenDB
+
+The `ExposeRavenDB`setting enables the embedded RavenDB Management Studio to be accessible via a web browser.
+When this setting is used in combination with a low privilege service account it can cause the service not to start.
+This is because a URLACL is required and the low priviege account does not have sufficent right to create it. 
+To workaround this create the required URLACL. This can be done using the ServiceControl Management Powershell module.  
+
+NOTE: Replace the `<hostname>` and `<port>` valuse in the sample command below   with the appropriate values for your configuration
+
+```posh
+urlacl-add -Url http://<hostname>:<port>/storage/ -Users Users
+```
+
+If the `ExposeRavenDB` is removed from the configuration the URLACL can be cleaned up using this command
+
+```posh
+urlacl-list | ? VirtualDirectory -eq storage | ? Port -eq <port> | urlacl-delete
+``` 
