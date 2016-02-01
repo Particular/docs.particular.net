@@ -101,7 +101,7 @@ This is because a URLACL is required and the service account does not have right
  
 To workaround this create the required URLACL. This can be done using the ServiceControl Management Powershell module.  
 
-NOTE: Replace the `<hostname>` and `<port>` valus in the sample commands below with the appropriate values from the ServiceControl configuration.
+NOTE: Replace the `<hostname>` and `<port>` values in the sample commands below with the appropriate values from the ServiceControl configuration.
 
 ```posh
 urlacl-add -Url http://<hostname>:<port>/storage/ -Users Users
