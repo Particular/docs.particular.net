@@ -17,6 +17,7 @@ To enable the supported configuration either use `NServiceBus Prerequisites` in 
 
 Alternatively the MSMQ service can be manually installed by following these Operating System specific instructions:  
 
+
 ### Windows 7
 
 From the Control Panel, choose Programs
@@ -28,7 +29,9 @@ The DISM command line equivalent is:
 
 `DISM.exe /Online /NoRestart /English /Enable-Feature /FeatureName:MSMQ-Container /FeatureName:MSMQ-Server` 
 
+
 ### Windows 8.x and 10
+
 From the Control Panel, choose Programs
 Then run the Windows Features Wizard by click on `Turn Windows Features On or Off`
 Enable `Microsoft Message Queue (MSMQ) Server Core` 
@@ -38,6 +41,7 @@ The DISM command line equivalent is:
 
 `DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server ` 
 
+
 ### Windows 2008 R2 and Windows 2012
 
 From Server Manager's Add Roles and Features Wizard enable `Message Queue Server` 
@@ -46,6 +50,7 @@ All other MSMQ options should be disabled.
 The DISM command line equivalent is:
 
 `DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server` 
+
 
 ## MSMQ clustering
 
