@@ -1,13 +1,9 @@
-﻿using NServiceBus.Config;
-using NServiceBus.Config.ConfigurationSource;
+﻿using NServiceBus;
 
-class ConfigErrorQueue : IProvideConfiguration<MessageForwardingInCaseOfFaultConfig>
+class ConfigErrorQueue : INeedInitialization
 {
-    public MessageForwardingInCaseOfFaultConfig GetConfiguration()
+    public void Customize(BusConfiguration configuration)
     {
-        return new MessageForwardingInCaseOfFaultConfig
-               {
-                   ErrorQueue = "error"
-               };
+        configuration.SendFailedMessagesTo("error");
     }
 }
