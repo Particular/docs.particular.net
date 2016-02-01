@@ -14,7 +14,7 @@ There are several ways to make sure that your NServiceBus endpoints pick up and 
 
 ## Using the Registry
 
-NOTE: Using the Powershell cmdlet is the preferred and simpliest method of adding the license file. 
+NOTE: Using the PowerShell cmdlet is the preferred and simplest method of adding the license file. 
 
 Using the registry to store your license information is a way that all platform tools can access this information easily. This includes NServiceBus endpoints, ServiceControl, and ServiceInsight. (ServicePulse determines licensing status by querying the ServiceControl API.) Using the registry ensures that all the platform tools can access the license status without requiring additional complexity on every deployment.
 
@@ -56,7 +56,7 @@ NOTE: For 64 bit operating systems repeat the process in both the Powershell pro
 
 If `HKEY_LOCAL_MACHINE`is the chosen license location and the operating system is 64-bit then repeat the import process for the `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ParticularSoftware` key to support 32-bit clients.
 
-(You can safely ignore any warnings regarding empty strings.)
+You can safely ignore any warnings regarding empty strings.
 
 
 ### NServiceBus Version 3.3
