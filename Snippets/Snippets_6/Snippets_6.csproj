@@ -292,7 +292,6 @@
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
-    <Compile Include="Transports\RabbitMQ\Usage.cs" />
     <Compile Include="UpgradeGuides\5to6\MyEvent.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
@@ -437,7 +436,6 @@
     <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
     <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
-    <Content Include="Transports\RabbitMQ\rabbitmqconnection.config.xml" />
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
