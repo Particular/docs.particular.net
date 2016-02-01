@@ -261,6 +261,7 @@
     <Compile Include="Headers\Writers\HeaderWriterDataBusConvention.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDataBusProperty.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDefer.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterEncryption.cs" />
     <Compile Include="Headers\Writers\HeaderWriterPublish.cs" />
     <Compile Include="Headers\Writers\HeaderWriterReply.cs" />
     <Compile Include="Headers\Writers\HeaderWriterReturn.cs" />
@@ -418,6 +419,9 @@
     <Content Include="Headers\Writers\HeaderWriterDataBusProperty.txt" />
     <Content Include="Headers\Writers\HeaderWriterDataBusProperty_Body.txt" />
     <Content Include="Headers\Writers\HeaderWriterDefer.txt" />
+    <Content Include="Headers\Writers\HeaderWriterEncryption.txt" />
+    <Content Include="Headers\Writers\HeaderWriterEncryption_Body.txt" />
+    <Content Include="Headers\Writers\HeaderWriterPublish.txt" />
     <Content Include="Headers\Writers\HeaderWriterReply_Replying.txt" />
     <Content Include="Headers\Writers\HeaderWriterReply_Sending.txt" />
     <Content Include="Headers\Writers\HeaderWriterReturn_Returning.txt" />

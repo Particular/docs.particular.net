@@ -290,6 +290,7 @@
     <Content Include="Headers\Writers\HeaderWriterDataBusProperty_Body.txt" />
     <Content Include="Headers\Writers\HeaderWriterDefer.txt" />
     <Content Include="Headers\Writers\HeaderWriterEncryption.txt" />
+    <Content Include="Headers\Writers\HeaderWriterEncryption_Body.txt" />
     <Content Include="Headers\Writers\HeaderWriterError_Error.txt" />
     <Content Include="Headers\Writers\HeaderWriterError_Sending.txt" />
     <Content Include="Headers\Writers\HeaderWriterPublish.txt" />

@@ -1,9 +1,10 @@
-﻿namespace Snippets5.Headers.Writers
+﻿namespace Snippets6.Headers.Writers
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Threading;
+    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
@@ -14,7 +15,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterEncryptionV5";
+        string endpointName = "HeaderWriterEncryptionV6";
 
         [SetUp]
         [TearDown]
@@ -24,26 +25,25 @@
         }
 
         [Test]
-        public void Write()
+        public async Task Write()
         {
             BusConfiguration config = new BusConfiguration();
             config.EndpointName(endpointName);
-            config.RijndaelEncryptionService("key1", Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
+            config.RijndaelEncryptionService("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
             config.Conventions().DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>(typeof(ConfigErrorQueue));
-            config.TypesToScan(typesToScan);
+            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>();
+            config.SetTypesToScan(typesToScan);
+            config.SendFailedMessagesTo("error");
             config.EnableInstallers();
             config.UsePersistence<InMemoryPersistence>();
             config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IBus bus = Bus.Create(config).Start())
+            IEndpointInstance endpoint = await Endpoint.Start(config);
+            await endpoint.SendLocal(new MessageToSend
             {
-                bus.SendLocal(new MessageToSend
-                {
-                    EncryptedProperty1 = "String 1",
-                    EncryptedProperty2 = "String 2"
-                });
-                ManualResetEvent.WaitOne();
-            }
+                EncryptedProperty1 = "String 1",
+                EncryptedProperty2 = "String 2"
+            });
+            ManualResetEvent.WaitOne();
         }
 
         class MessageToSend : IMessage
@@ -54,19 +54,21 @@
 
         class MessageHandler : IHandleMessages<MessageToSend>
         {
-            public void Handle(MessageToSend message)
+            public Task Handle(MessageToSend message, IMessageHandlerContext context)
             {
+                return Task.FromResult(0);
             }
         }
 
         class Mutator : IMutateIncomingTransportMessages
         {
-            public void MutateIncoming(TransportMessage transportMessage)
+            public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
-                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterEncryption>(transportMessage.Headers);
-                SnippetLogger.Write(headerText, version: "5");
-                SnippetLogger.Write(Encoding.Default.GetString(transportMessage.Body), version: "5", suffix: "Body");
+                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterEncryption>(context.Headers);
+                SnippetLogger.Write(headerText, version: "6");
+                SnippetLogger.Write(Encoding.Default.GetString(context.Body), version: "6", suffix: "Body");
                 ManualResetEvent.Set();
+                return Task.FromResult(0);
             }
         }
     }
