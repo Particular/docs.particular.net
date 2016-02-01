@@ -34,5 +34,5 @@ NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost 
 
 ### Troubleshooting
 
-If ServiceControl is configured to use a service account other than `localsystem` it is necessary to manually add a URLACL.
+If ServiceControl is configured to use a service account other than `localsystem` it may be necessary to manually add a URLACL.
 Refer to [TroubleShooting](troubleshooting.md#unable-to-start-service-after-exposing-ravendb) 
