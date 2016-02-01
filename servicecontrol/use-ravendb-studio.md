@@ -30,3 +30,9 @@ After restarting the ServiceControl service, you can access the RavenDB studio l
     http://localhost:33333/storage
 
 NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting.
+
+
+### Troubleshooting
+
+If ServiceControl is configured to use a service account other than `localsystem` it is necessary to manually add a URLACL.
+Refer to [TroubleShooting](troubleshooting.md#unable-to-start-service-after-exposing-ravendb) 
