@@ -1,9 +1,10 @@
-﻿namespace Snippets5.Headers.Writers
+﻿namespace Snippets6.Headers.Writers
 {
     using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Threading;
+    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
@@ -14,7 +15,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterDataBusPropertyV5";
+        string endpointName = "HeaderWriterDataBusPropertyV6";
 
         [SetUp]
         [TearDown]
@@ -24,25 +25,27 @@
         }
 
         [Test]
-        public void Write()
+        public async Task Write()
         {
             BusConfiguration config = new BusConfiguration();
             config.EndpointName(endpointName);
             config.UseDataBus<FileShareDataBus>().BasePath(@"..\..\..\storage");
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusProperty>(typeof(ConfigErrorQueue));
-            config.TypesToScan(typesToScan);
+            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusProperty>();
+            config.SetTypesToScan(typesToScan);
+            config.SendFailedMessagesTo("error");
             config.EnableInstallers();
             config.UsePersistence<InMemoryPersistence>();
             config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IBus bus = Bus.Create(config).Start())
+
+            IEndpointInstance endpoint = await Endpoint.Start(config);
+
+            await endpoint.SendLocal(new MessageToSend
             {
-                bus.SendLocal(new MessageToSend
-                {
-                    LargeProperty1 = new DataBusProperty<byte[]>(new byte[10]),
-                    LargeProperty2 = new DataBusProperty<byte[]>(new byte[10])
-                });
-                ManualResetEvent.WaitOne();
-            }
+                LargeProperty1 = new DataBusProperty<byte[]>(new byte[10]),
+                LargeProperty2 = new DataBusProperty<byte[]>(new byte[10])
+            });
+            ManualResetEvent.WaitOne();
+            await endpoint.Stop();
         }
 
         class MessageToSend : IMessage
@@ -50,22 +53,25 @@
             public DataBusProperty<byte[]> LargeProperty1 { get; set; }
             public DataBusProperty<byte[]> LargeProperty2 { get; set; }
         }
-
+    
         class MessageHandler : IHandleMessages<MessageToSend>
-        {
-            public void Handle(MessageToSend message)
+        { 
+            public Task Handle(MessageToSend message, IMessageHandlerContext context)
             {
+                return Task.FromResult(0);
             }
         }
 
         class Mutator : IMutateIncomingTransportMessages
         {
-            public void MutateIncoming(TransportMessage transportMessage)
+
+            public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
-                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusProperty>(transportMessage.Headers);
-                SnippetLogger.Write(headerText, version: "5");
-                SnippetLogger.Write(Encoding.Default.GetString(transportMessage.Body), version: "5", suffix: "Body");
+                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusProperty>(context.Headers);
+                SnippetLogger.Write(headerText, version: "6");
+                SnippetLogger.Write(Encoding.Default.GetString(context.Body), version: "6", suffix: "Body");
                 ManualResetEvent.Set();
+                return Task.FromResult(0);
             }
         }
     }

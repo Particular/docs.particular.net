@@ -1,8 +1,9 @@
-﻿namespace Snippets5.Headers.Writers
+﻿namespace Snippets6.Headers.Writers
 {
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
@@ -15,7 +16,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        static string EndpointName = "HeaderWriterPublishV5";
+        static string EndpointName = "HeaderWriterPublishV6";
 
         [SetUp]
         [TearDown]
@@ -25,22 +26,23 @@
         }
 
         [Test]
-        public void Write()
+        public async Task Write()
         {
             BusConfiguration config = new BusConfiguration();
             config.EndpointName(EndpointName);
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterPublish>(typeof(ConfigErrorQueue));
-            config.TypesToScan(typesToScan);
+            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterPublish>();
+            config.SetTypesToScan(typesToScan);
+            config.SendFailedMessagesTo("error");
             config.EnableInstallers();
             config.UsePersistence<InMemoryPersistence>();
             config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (IBus bus = Bus.Create(config).Start())
-            {
-                //give time for the subscription to happen
-                Thread.Sleep(3000);
-                bus.Publish(new MessageToPublish());
-                ManualResetEvent.WaitOne();
-            }
+            IEndpointInstance endpoint = await Endpoint.Start(config);
+
+            //give time for the subscription to happen
+            Thread.Sleep(3000);
+            await endpoint.Publish(new MessageToPublish());
+            ManualResetEvent.WaitOne();
+            await endpoint.Stop();
         }
 
         class MessageToPublish : IEvent
@@ -49,8 +51,9 @@
 
         class MessageHandler : IHandleMessages<MessageToPublish>
         {
-            public void Handle(MessageToPublish message)
+            public Task Handle(MessageToPublish message, IMessageHandlerContext context)
             {
+                return Task.FromResult(0);
             }
         }
 
@@ -70,11 +73,12 @@
 
         class Mutator : IMutateIncomingTransportMessages
         {
-            public void MutateIncoming(TransportMessage transportMessage)
+            public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
-                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterPublish>(transportMessage.Headers);
-                SnippetLogger.Write(headerText, version: "5");
+                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterPublish>(context.Headers);
+                SnippetLogger.Write(headerText, version: "6");
                 ManualResetEvent.Set();
+                return Task.FromResult(0);
             }
         }
     }

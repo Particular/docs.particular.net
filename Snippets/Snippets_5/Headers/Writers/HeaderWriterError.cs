@@ -45,7 +45,7 @@
                         string headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(e.Headers);
                         headerText = BehaviorCleaner.CleanStackTrace(headerText);
                         headerText = StackTraceCleaner.CleanStackTrace(headerText);
-                        SnippetLogger.Write(text: headerText, suffix: "Error", version: "All");
+                        SnippetLogger.Write(text: headerText, suffix: "Error", version: "5");
                         ManualResetEvent.Set();
                     });
                 bus.SendLocal(new MessageToSend());
@@ -98,7 +98,7 @@
                 {
                     hasCapturedMessage = true;
                     string sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(transportMessage.Headers);
-                    SnippetLogger.Write(text: sendingText, suffix: "Sending", version: "All");
+                    SnippetLogger.Write(text: sendingText, suffix: "Sending", version: "5");
                 }
             }
         }

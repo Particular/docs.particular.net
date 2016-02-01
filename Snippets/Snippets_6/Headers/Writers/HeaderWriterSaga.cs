@@ -1,12 +1,11 @@
-﻿namespace Snippets5.Headers.Writers
+﻿namespace Snippets6.Headers.Writers
 {
     using System;
     using System.Collections.Generic;
     using System.Threading;
+    using System.Threading.Tasks;
     using NServiceBus;
     using NServiceBus.MessageMutator;
-    using NServiceBus.Saga;
-    using NServiceBus.Unicast;
     using NUnit.Framework;
     using Operations.Msmq;
 
@@ -14,7 +13,7 @@
     public class HeaderWriterSaga
     {
         static CountdownEvent CountdownEvent = new CountdownEvent(4);
-        string endpointName = "HeaderWriterSagaV5";
+        string endpointName = "HeaderWriterSagaV6";
 
         [SetUp]
         [TearDown]
@@ -24,20 +23,20 @@
         }
 
         [Test]
-        public void Write()
+        public async Task Write()
         {
             BusConfiguration config = new BusConfiguration();
             config.EndpointName(endpointName);
-            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterSaga>(typeof(ConfigErrorQueue));
-            config.TypesToScan(typesToScan);
+            IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterSaga>();
+            config.SetTypesToScan(typesToScan);
+            config.SendFailedMessagesTo("error");
             config.EnableInstallers();
             config.UsePersistence<InMemoryPersistence>();
             config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (UnicastBus bus = (UnicastBus) Bus.Create(config).Start())
-            {
-                bus.SendLocal(new StartSaga1Message());
-                CountdownEvent.Wait();
-            }
+
+            IEndpointInstance endpoint = await Endpoint.Start(config);
+            await endpoint.SendLocal(new StartSaga1Message());
+            CountdownEvent.Wait();
         }
 
         class StartSaga1Message : IMessage
@@ -53,9 +52,9 @@
             IHandleMessages<ReplyFromSagaMessage>,
             IHandleMessages<ReplyToOriginatorFromSagaMessage>
         {
-            public void Handle(StartSaga1Message message)
+            public async Task Handle(StartSaga1Message message, IMessageHandlerContext context)
             {
-                Bus.SendLocal(new SendFromSagaMessage());
+                await context.SendLocal(new SendFromSagaMessage());
             }
 
             public class SagaData : IContainSagaData
@@ -69,13 +68,14 @@
             {
             }
 
-            public void Handle(ReplyFromSagaMessage message)
+            public Task Handle(ReplyFromSagaMessage message, IMessageHandlerContext context)
             {
+                return Task.FromResult(0);
             }
 
-            public void Handle(ReplyToOriginatorFromSagaMessage message)
+            public Task Handle(ReplyToOriginatorFromSagaMessage message, IMessageHandlerContext context)
             {
-                
+                return Task.FromResult(0);
             }
         }
 
@@ -83,11 +83,11 @@
             IAmStartedByMessages<SendFromSagaMessage>,
             IHandleTimeouts<TimeoutFromSaga>
         {
-            public void Handle(SendFromSagaMessage message)
+            public async Task Handle(SendFromSagaMessage message, IMessageHandlerContext context)
             {
-                Bus.Reply(new ReplyFromSagaMessage());
-                ReplyToOriginator(new ReplyToOriginatorFromSagaMessage());
-                RequestTimeout(TimeSpan.FromMilliseconds(1), new TimeoutFromSaga());
+                await context.Reply(new ReplyFromSagaMessage());
+                await ReplyToOriginator(context, new ReplyToOriginatorFromSagaMessage());
+                await RequestTimeout(context, TimeSpan.FromMilliseconds(1), new TimeoutFromSaga());
             }
 
             public class SagaData : IContainSagaData
@@ -100,45 +100,49 @@
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
             {
             }
+            
 
-            public void Timeout(TimeoutFromSaga state)
+            public Task Timeout(TimeoutFromSaga state, IMessageHandlerContext context)
             {
+                return Task.FromResult(0);
             }
         }
 
         class Mutator : IMutateIncomingTransportMessages
         {
-            public void MutateIncoming(TransportMessage transportMessage)
+        
+            public Task MutateIncoming(MutateIncomingTransportMessageContext context)
             {
-                if (transportMessage.IsMessageOfTye<SendFromSagaMessage>())
+                if (context.IsMessageOfTye<SendFromSagaMessage>())
                 {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Sending", version: "5");
+                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(context.Headers);
+                    SnippetLogger.Write(text: headerText, suffix: "Sending", version: "6");
                     CountdownEvent.Signal();
-                    return;
+                    return Task.FromResult(0);
                 }
-                if (transportMessage.IsMessageOfTye<ReplyFromSagaMessage>())
+                if (context.IsMessageOfTye<ReplyFromSagaMessage>())
                 {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Replying", version: "5");
+                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(context.Headers);
+                    SnippetLogger.Write(text: headerText, suffix: "Replying", version: "6");
                     CountdownEvent.Signal();
-                    return;
+                    return Task.FromResult(0);
                 }
-                if (transportMessage.IsMessageOfTye<ReplyToOriginatorFromSagaMessage>())
+                if (context.IsMessageOfTye<ReplyToOriginatorFromSagaMessage>())
                 {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "ReplyingToOriginator", version: "5");
+                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(context.Headers);
+                    SnippetLogger.Write(text: headerText, suffix: "ReplyingToOriginator", version: "6");
                     CountdownEvent.Signal();
-                    return;
+                    return Task.FromResult(0);
                 }
-                
-                if (transportMessage.IsMessageOfTye<TimeoutFromSaga>())
+
+                if (context.IsMessageOfTye<TimeoutFromSaga>())
                 {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Timeout", version: "5");
+                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(context.Headers);
+                    SnippetLogger.Write(text: headerText, suffix: "Timeout", version: "6");
                     CountdownEvent.Signal();
-                    return;
+                    return Task.FromResult(0);
                 }
+                return Task.FromResult(0);
             }
         }
 

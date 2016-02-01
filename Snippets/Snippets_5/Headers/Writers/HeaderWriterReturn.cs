@@ -12,7 +12,6 @@
     public class HeaderWriterReturn
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-        static IBus Bus;
         string endpointName = "HeaderWriterReturnV5";
 
         [SetUp]
@@ -32,9 +31,9 @@
             config.EnableInstallers();
             config.UsePersistence<InMemoryPersistence>();
             config.RegisterComponents(c => c.ConfigureComponent<Mutator>(DependencyLifecycle.InstancePerCall));
-            using (Bus = NServiceBus.Bus.Create(config).Start())
+            using (IBus bus = Bus.Create(config).Start())
             {
-                Bus.SendLocal(new MessageToSend());
+                bus.SendLocal(new MessageToSend());
                 ManualResetEvent.WaitOne();
             }
         }
@@ -45,9 +44,16 @@
 
         class MessageHandler : IHandleMessages<MessageToSend>
         {
+            IBus bus;
+
+            public MessageHandler(IBus bus)
+            {
+                this.bus = bus;
+            }
+
             public void Handle(MessageToSend message)
             {
-                Bus.Return(100);
+                bus.Return(100);
             }
         }
 
@@ -57,13 +63,13 @@
             {
                 if (transportMessage.IsMessageOfTye<MessageToSend>())
                 {
-                    string sendingText = HeaderWriter.ToFriendlyString < HeaderWriterReturn>(transportMessage.Headers);
-                    SnippetLogger.Write(text: sendingText, suffix: "Sending", version: "All");
+                    string sendingText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(transportMessage.Headers);
+                    SnippetLogger.Write(text: sendingText, suffix: "Sending", version: "5");
                 }
                 else
                 {
                     string returnText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(transportMessage.Headers);
-                    SnippetLogger.Write(text: returnText, suffix: "Returning", version: "All");
+                    SnippetLogger.Write(text: returnText, suffix: "Returning", version: "5");
                     ManualResetEvent.Set();
                 }
 
