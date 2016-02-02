@@ -239,6 +239,8 @@
     <Compile Include="DataBus\Custom\Usage.cs" />
     <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\FileShare\Usage.cs" />
+    <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
+    <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
     <Compile Include="Encryption\Configuration\FromCode.cs" />
     <Compile Include="Encryption\Configuration\ProvideConfiguration.cs" />
