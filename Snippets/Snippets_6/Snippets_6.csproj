@@ -314,6 +314,9 @@
     <Compile Include="Pipeline\CustomForkConnector.cs" />
     <Compile Include="Pipeline\CustomStageConnector.cs" />
     <Compile Include="Pipeline\CustomStageForkConnector.cs" />
+    <Compile Include="Profiles\ConfigureLogging.cs" />
+    <Compile Include="Profiles\CustomProfiles.cs" />
+    <Compile Include="Profiles\DependentProfile.cs" />
     <Compile Include="RavenDB\ChangeResourceManagerID.cs" />
     <Compile Include="RavenDB\Configure.cs" />
     <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
