@@ -65,9 +65,9 @@ It is recommended that you plan and perform realistic throughput tests on Servic
 
 #### ServiceControl in Practice
 
-Often customers don't need all the features available in ServiceControl in one single environment. Its a tool that can accomodate many situations and sometimes some features get used in situations where their value proposition is not particularly strong.
+Often customers don't need all the features available in ServiceControl in one single environment. Its a tool that can accommodate many situations and sometimes some features get used in situations where their value proposition is not particularly strong.
 
-For example, in your development environment you probably want a lot of logging information to support problem analysis. For many users the [Debug Session](/servicecontrol/plugins/debug-session.md) plugin is really useful at this stage of the application lifecycle but you would never put that plugin into production. For the same reason, you would never use the [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin outside of development.
+For example, in your development environment you probably want a lot of logging information to support problem analysis. For many users the [Debug Session](/servicecontrol/plugins/debug-session.md) plugin is really useful at this stage of the application life-cycle but you would never put that plugin into production. For the same reason, you would never use the [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin outside of development.
 
 Making decisions about the use of the other plugins and features requires a little more thought to balance the smooth running of your system with your actual requirements. The temptation to just use them all as a kind of insurance policy is not a good choice. The cost of having some of these features in play can actually cause issues down the track if you're not prepared.
  
@@ -85,7 +85,7 @@ Moving forward pace your adoption of plugins and features:
 - If you are using the NServiceBus.Host set the log levels to ['production'](/nservicebus/hosting/nservicebus-host/profiles.md#logging-behaviors)
 - Perform a load test to baseline your solution.
 - When you are comfortable with the performance of the system try adding Heartbeats. That will allow you to monitor your system
-- Try increasing the heartbeat interval to around a minute maybe even more. Idealy you will not want to have a heartbeat update more frequently than ServiceControl can process it or more that your Operations staff are prepared to look at ServicePulse.
+- Try increasing the heartbeat interval to around a minute maybe even more. Ideally you will not want to have a heartbeat update more frequently than ServiceControl can process it or more that your Operations staff are prepared to look at ServicePulse.
 - With each additional change perform your load test again adjusting the heartbeat interval until you get a satisfactory result.
 - Do the same with Custom Checks if you have them.
 - After all that I would consider adding audit back into the mix if it is really required and then test again.
