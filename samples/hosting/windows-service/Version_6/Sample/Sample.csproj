@@ -49,7 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sender.cs" />
     <Compile Include="MyHandler.cs" />
     <Compile Include="MyMessage.cs" />
     <Compile Include="ProgramService.cs">

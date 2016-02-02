@@ -73,7 +73,6 @@
     <Compile Include="ProgramService.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Sender.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

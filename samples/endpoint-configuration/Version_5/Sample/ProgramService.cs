@@ -104,6 +104,9 @@ class ProgramService : ServiceBase
         busConfiguration.EnableInstallers();
         bus = Bus.Create(busConfiguration).Start();
         #endregion
+
+
+        bus.SendLocal(new MyMessage());
     }
 
 
