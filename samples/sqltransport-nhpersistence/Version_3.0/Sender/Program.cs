@@ -46,7 +46,6 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 
@@ -61,7 +60,7 @@ class Program
                 }
 
                 string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                await busSession.Publish(new OrderSubmitted
+                await endpoint.Publish(new OrderSubmitted
                 {
                     OrderId = orderId,
                     Value = random.Next(100)
