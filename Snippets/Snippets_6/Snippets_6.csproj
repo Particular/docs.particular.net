@@ -165,6 +165,10 @@
       <HintPath>..\..\packages\RavenDB.Client.3.5.35035-Unstable\lib\net45\Raven.Client.Lightweight.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ServiceControl.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceControl.Contracts.1.2.0\lib\net45\ServiceControl.Contracts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ServiceControl.Plugin.Nsb6.CustomChecks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceControl.Plugin.Nsb6.CustomChecks.1.0.0-beta0002\lib\net452\ServiceControl.Plugin.Nsb6.CustomChecks.dll</HintPath>
       <Private>True</Private>
@@ -293,6 +297,8 @@
     <Compile Include="Headers\Writers\HeaderWriterSend.cs" />
     <Compile Include="Headers\Writers\TransportMessageExtension.cs" />
     <Compile Include="Host\CustomizingHost.cs" />
+    <Compile Include="Monitoring\MessageFailedHandler.cs" />
+    <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="NonDurable\DisableDurable.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
@@ -479,6 +485,7 @@
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Monitoring\ServiceControlEvents.config.xml" />
     <Content Include="Outbox\EnablingInConfig.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -506,6 +513,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="UpgradeGuides\5to6\null.xml" />
+    <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
