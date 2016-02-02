@@ -6,7 +6,7 @@
     public class ConfigureSagaPersistence
     {
 
-        public void Simple()
+        public async void Simple()
         {
             BusConfiguration busConfiguration = new BusConfiguration();
 
@@ -17,7 +17,7 @@
             #endregion
         }
 
-        public class PersistenceToUseGoesHere: PersistenceDefinition
+        public class PersistenceToUseGoesHere : PersistenceDefinition
         {
         }
     }

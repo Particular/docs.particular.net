@@ -144,9 +144,6 @@
     </Reference>
     <Reference Include="RabbitMQ.Client, Version=3.6.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
       <HintPath>..\..\packages\RabbitMQ.Client.3.6.0\lib\net45\RabbitMQ.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="ServiceControl.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ServiceControl.Contracts.1.1.1\lib\net40\ServiceControl.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Raven.Abstractions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
@@ -277,7 +274,6 @@
     <Compile Include="Headers\Writers\HeaderWriterDataBusConvention.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDataBusProperty.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDefer.cs" />
-    <Compile Include="Headers\Writers\HeaderWriterEncryption.cs" />
     <Compile Include="Headers\Writers\HeaderWriterPublish.cs" />
     <Compile Include="Headers\Writers\HeaderWriterReply.cs" />
     <Compile Include="Headers\Writers\HeaderWriterReturn.cs" />
@@ -285,8 +281,6 @@
     <Compile Include="Headers\Writers\HeaderWriterSend.cs" />
     <Compile Include="Headers\Writers\TransportMessageExtension.cs" />
     <Compile Include="Host\CustomizingHost.cs" />
-    <Compile Include="Monitoring\MessageFailedHandler.cs" />
-    <Compile Include="Monitoring\ServiceControlEventsConfig.cs" />
     <Compile Include="NonDurable\DefineExpress.cs" />
     <Compile Include="NonDurable\DisableDurable.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
@@ -302,6 +296,7 @@
     <Compile Include="RavenDB\Configure.cs" />
     <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="Routing\RoutingAPIs.cs" />
+    <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Serialization\JsonSerialization.cs" />
     <Compile Include="Serialization\XmlSerialization.cs" />
     <Compile Include="TransactionScopeUnitOfWork.cs" />
@@ -440,9 +435,6 @@
     <Content Include="Headers\Writers\HeaderWriterDataBusProperty.txt" />
     <Content Include="Headers\Writers\HeaderWriterDataBusProperty_Body.txt" />
     <Content Include="Headers\Writers\HeaderWriterDefer.txt" />
-    <Content Include="Headers\Writers\HeaderWriterEncryption.txt" />
-    <Content Include="Headers\Writers\HeaderWriterEncryption_Body.txt" />
-    <Content Include="Headers\Writers\HeaderWriterPublish.txt" />
     <Content Include="Headers\Writers\HeaderWriterReply_Replying.txt" />
     <Content Include="Headers\Writers\HeaderWriterReply_Sending.txt" />
     <Content Include="Headers\Writers\HeaderWriterReturn_Returning.txt" />
@@ -458,7 +450,6 @@
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Monitoring\ServiceControlEvents.config.xml">
     <Content Include="RavenDB\SharedDocumentStoreViaConnectionString.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -471,7 +462,6 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="UpgradeGuides\5to6\null.xml" />
-    <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
