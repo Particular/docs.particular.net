@@ -63,3 +63,7 @@ This test asserts that the value of the outgoing header has been set.
 Many of the message handling classes in the service layer make use of other objects to perform their work. When testing these classes, replace those objects with "stubs" so that the class under test is isolated. Here's how:
 
 snippet:TestingAdditionalDependencies
+
+## Constructor injected bus
+
+snippet: ConstructorInjectedBus
