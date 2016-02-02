@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using NHibernate;
 using NServiceBus;
 
 public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
@@ -10,7 +11,8 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
         #region StoreUserData
 
-        context.SynchronizedStorageSession.Session().Save(new Order
+        ISession nhibernateSession = context.SynchronizedStorageSession.Session();
+        nhibernateSession.Save(new Order
         {
             OrderId = message.OrderId,
             Value = message.Value
