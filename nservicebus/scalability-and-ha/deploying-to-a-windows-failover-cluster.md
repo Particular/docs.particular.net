@@ -5,6 +5,7 @@ tags:
 - Failover
 - Msmq Cluster
 - Scalability
+- Distributor
 redirects:
  - nservicebus/deploying-nservicebus-in-a-windows-failover-cluster
 ---
