@@ -33,6 +33,7 @@ class Program
         #region ReceiverConfiguration
 
         BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EnableInstallers();
         busConfiguration.UseTransport<SqlServerTransport>()
             .DefaultSchema("receiver")
             .UseSpecificConnectionInformation(endpoint =>

@@ -5,6 +5,7 @@ tags:
 - Failover
 - Msmq Cluster
 - Scalability
+- Distributor
 redirects:
  - nservicebus/deploying-nservicebus-in-a-windows-failover-cluster
 ---
@@ -108,12 +109,12 @@ NServiceBus.Host.exe
 /description:Distributor.EndpointName
 /userName:DOMAIN\us
 /password:thepassword
-NServiceBus.Production NServiceBus.Distributor
+NServiceBus.Production NServiceBus.MSMQDistributor
 ```
 
 It's easier to set the service name, display name, and description to be the same. It helps when trying to start and stop things from a NET START/STOP command and when viewing them in the multiple graphical tools. Starting each one with Distributor puts them all together alphabetically in the Services MMC snap-in.
 
-Don't forget the `NServiceBus.Production` at the end, which sets the profile for the NServiceBus generic host, as described in the [Generic Host page](/nservicebus/hosting/nservicebus-host/) and the `NServiceBus.Distributor` which sets up the host in distributor mode.
+Don't forget the `NServiceBus.Production` at the end, which sets the profile for the NServiceBus generic host, as described in the [Generic Host page](/nservicebus/hosting/nservicebus-host/) and the `NServiceBus.MSMQDistributor` which sets up the host in distributor mode.
 
 Do not try starting the services. If you do, they will run in the scope of the local server node, and will attempt to create their queues there.
 
@@ -134,7 +135,7 @@ Again, try swapping the cluster back and forth, to make sure it can move freely 
 
 The first thing you should do is to make sure that the worker servers have [unique QMIds](distributor/#worker-qmid-needs-to-be-unique).
 
-Set up your worker processes on all worker servers (not the cluster nodes!) as windows services, but instead of using `NServiceBus.Distributor`, use `NServiceBus.Worker` profile instead.
+Set up your worker processes on all worker servers (not the cluster nodes!) as windows services, but instead of using `NServiceBus.MSMQDistributor`, use `NServiceBus.MSMQWorker` profile instead.
 
 Configure the workers' `MasterNodeConfig` section to point to the machine running the distributor as described on the Distributor Page under [Routing with the Distributor](distributor).
 
@@ -171,5 +172,3 @@ This article shows how to set up a Windows Failover Cluster and one or more work
  * Scaling out can be achieved by starting up another server to run another worker process connected to the clustered distributor.
  * For maintenance, the worker processes on either worker server can be stopped for server maintenance or application updates, while worker processes on the other server continue to process messages. All clustered resources can be failed over to one node without disrupting the system, allowing message processing to continue while the other clustered node is available for updates.
  * Reliability is achieved by never requiring that any one component be completely shut down.
-
-(This article has some minor updates to the originally written and published article by [David Boike](http://www.make-awesome.com/2010/10/deploying-nservicebus-in-a-windows-failover-cluster/).)

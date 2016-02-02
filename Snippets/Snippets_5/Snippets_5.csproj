@@ -290,6 +290,7 @@
     <Content Include="Headers\Writers\HeaderWriterDataBusProperty_Body.txt" />
     <Content Include="Headers\Writers\HeaderWriterDefer.txt" />
     <Content Include="Headers\Writers\HeaderWriterEncryption.txt" />
+    <Content Include="Headers\Writers\HeaderWriterEncryption_Body.txt" />
     <Content Include="Headers\Writers\HeaderWriterError_Error.txt" />
     <Content Include="Headers\Writers\HeaderWriterError_Sending.txt" />
     <Content Include="Headers\Writers\HeaderWriterPublish.txt" />
@@ -360,7 +361,7 @@
     <Content Include="SCPluginsConfig\heartbeatsTtlConfig.xml" />
     <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
-    <Content Include="Transports\RabbitMQ\rabbitmqconnection.config.xml" />
+    <Content Include="Transports\RabbitMQ_[2.0,3.0]\rabbitmqconnection.config.xml" />
     <None Include="Transports\SqlServer\NamedConnectionString.config" />
     <Content Include="Transports\SqlServer\MultiDb.config.xml">
       <SubType>Designer</SubType>
@@ -397,6 +398,7 @@
     <Compile Include="Container\Custom\MyObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
     <Compile Include="CustomChecks.cs" />
+    <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
@@ -597,7 +599,7 @@
     <Compile Include="Transactions.cs" />
     <Compile Include="Transports\SqlServer\NamedConnectionString.cs" />
     <Compile Include="Azure\Transports\AzureServiceBus\Usage.cs" />
-    <Compile Include="Transports\RabbitMQ\Usage.cs" />
+    <Compile Include="Transports\RabbitMQ_[2.0,3.0]\Usage.cs" />
     <Compile Include="Transports\SqlServer\MultiDb.cs" />
     <Compile Include="Transports\SqlServer\ConfigurationSettings.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />

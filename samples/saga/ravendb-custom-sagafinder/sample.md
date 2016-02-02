@@ -61,10 +61,3 @@ snippet:CustomSagaFinderWithUniqueConstraintRavenDB
 Building a saga finder requires to define a class that implements the `IFindSagas<TSagaData>.Using<TMessage>` interface. The class will be automatically picked up by NServiceBus at configuration time and used each time a message of type `TMessage`, that is expected to load a saga of type `TSagaData`, is received. The `FindBy` method will be invoked by NServiceBus.
 
 NOTE: In the sample the implementation of the `ConfigureHowToFindSaga` method, that is required, is empty because we are providing a saga finder for each message type that the saga is handling. It is not required to provide a saga finder for every message type, a mix of standard saga mappings and custom saga finding is a valid scenario.
-
-
-### In Process Raven Host
-
-So that no running instance of RavenDB server is required.
-
-snippet:ravenhost

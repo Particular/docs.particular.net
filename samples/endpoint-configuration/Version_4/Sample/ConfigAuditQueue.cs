@@ -1,5 +1,4 @@
-﻿using System;
-using NServiceBus.Config;
+﻿using NServiceBus.Config;
 using NServiceBus.Config.ConfigurationSource;
 
 #region audit

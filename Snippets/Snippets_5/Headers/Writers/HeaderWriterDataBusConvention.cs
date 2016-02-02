@@ -63,10 +63,10 @@
         {
             public void MutateIncoming(TransportMessage transportMessage)
             {
-                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSend>(transportMessage.Headers)
+                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusConvention>(transportMessage.Headers)
                     .Replace(typeof(MessageToSend).FullName, "MessageToSend");
-                SnippetLogger.Write(headerText, version: "All");
-                SnippetLogger.Write(Encoding.Default.GetString(transportMessage.Body), version: "All", suffix: "Body");
+                SnippetLogger.Write(headerText, version: "5");
+                SnippetLogger.Write(Encoding.Default.GetString(transportMessage.Body), version: "5", suffix: "Body");
                 ManualResetEvent.Set();
             }
         }

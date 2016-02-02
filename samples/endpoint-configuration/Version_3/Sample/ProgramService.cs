@@ -103,6 +103,8 @@ class ProgramService : ServiceBase
             .CreateBus()
             .Start(() => configure.ForInstallationOn<Windows>().Install());
         #endregion
+
+        bus.SendLocal(new MyMessage());
     }
 
 

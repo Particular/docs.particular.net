@@ -39,7 +39,7 @@
                 bus.SendLocal(new MessageToSend
                 {
                     LargeProperty1 = new DataBusProperty<byte[]>(new byte[10]),
-                    LargeProperty2 = new DataBusProperty<byte[]>(new byte[10]) 
+                    LargeProperty2 = new DataBusProperty<byte[]>(new byte[10])
                 });
                 ManualResetEvent.WaitOne();
             }
@@ -50,12 +50,11 @@
             public DataBusProperty<byte[]> LargeProperty1 { get; set; }
             public DataBusProperty<byte[]> LargeProperty2 { get; set; }
         }
-    
+
         class MessageHandler : IHandleMessages<MessageToSend>
         {
             public void Handle(MessageToSend message)
             {
-                throw new Exception("error");
             }
         }
 
@@ -63,9 +62,9 @@
         {
             public void MutateIncoming(TransportMessage transportMessage)
             {
-                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSend>(transportMessage.Headers);
-                SnippetLogger.Write(headerText, version: "All");
-                SnippetLogger.Write(Encoding.Default.GetString(transportMessage.Body), version: "All",suffix:"Body");
+                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusProperty>(transportMessage.Headers);
+                SnippetLogger.Write(headerText, version: "5");
+                SnippetLogger.Write(Encoding.Default.GetString(transportMessage.Body), version: "5", suffix: "Body");
                 ManualResetEvent.Set();
             }
         }

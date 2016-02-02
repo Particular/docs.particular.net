@@ -268,6 +268,11 @@ Headers when using [Rijndael property encryption](/nservicebus/security/encrypti
 snippet: HeaderWriterEncryption
 
 
+#### Example Body
+
+snippet: HeaderWriterEncryption_Body
+
+
 ## FileShare DataBus Headers
 
 When using the [FileShare DataBus](/nservicebus/messaging/databus.md) extra headers and serialized message information is necessary to correlate between the information on the queue and the data on the file system.

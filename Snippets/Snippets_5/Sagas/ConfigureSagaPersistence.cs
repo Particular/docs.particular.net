@@ -8,13 +8,17 @@
 
         public void Simple()
         {
+            BusConfiguration busConfiguration = new BusConfiguration();
+
             #region saga-configure
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UsePersistence<RavenDBPersistence>(); //or NHibernatePersistence
-            IStartableBus bus = Bus.Create(busConfiguration);
+            busConfiguration.UsePersistence<PersistenceToUseGoesHere>();
 
             #endregion
+        }
+
+        public class PersistenceToUseGoesHere: PersistenceDefinition
+        {
         }
     }
 }
