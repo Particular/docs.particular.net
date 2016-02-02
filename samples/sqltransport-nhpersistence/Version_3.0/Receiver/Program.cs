@@ -40,6 +40,8 @@ class Program
 
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.SendFailedMessagesTo("error");
+        busConfiguration.AuditProcessedMessagesTo("audit");
+        busConfiguration.EnableInstallers();
         busConfiguration.UseTransport<SqlServerTransport>()
             .DefaultSchema("receiver")
             .UseSpecificSchema(e =>
@@ -68,7 +70,6 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
         }

@@ -5,7 +5,7 @@ using NHibernate;
 
 public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 {
-    private ISession session;
+    ISession session;
 
     public OrderSubmittedHandler(ISession session)
     {

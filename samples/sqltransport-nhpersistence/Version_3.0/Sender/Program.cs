@@ -9,8 +9,8 @@ using NServiceBus.Persistence;
 
 class Program
 {
-    private const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-    private static Random random;
+    const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+    static Random random;
 
     static void Main()
     {
@@ -22,7 +22,7 @@ class Program
     {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.SendFailedMessagesTo("error");
-
+        busConfiguration.EnableInstallers();
 
         Configuration hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
