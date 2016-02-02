@@ -22,7 +22,8 @@
             {
                 public Task Handle(OrderMessage message, IMessageHandlerContext context)
                 {
-                    context.SynchronizedStorageSession.Session().Save(new Order());
+                    ISession nhibernateSession = context.SynchronizedStorageSession.Session();
+                    nhibernateSession.Save(new Order());
                     return Task.FromResult(0);
                 }
             }
@@ -36,7 +37,8 @@
                 #region NHibernateAccessingDataDirectlyConfig
 
                 BusConfiguration busConfiguration = new BusConfiguration();
-                busConfiguration.UsePersistence<NHibernatePersistence>().RegisterManagedSessionInTheContainer();
+                busConfiguration.UsePersistence<NHibernatePersistence>()
+                    .RegisterManagedSessionInTheContainer();
 
                 #endregion
             }
@@ -47,7 +49,8 @@
             {
                 public Task Handle(OrderMessage message, IMessageHandlerContext context)
                 {
-                    context.SynchronizedStorageSession.Session().Save(new Order());
+                    ISession nhibernateSession = context.SynchronizedStorageSession.Session();
+                    nhibernateSession.Save(new Order());
                     return Task.FromResult(0);
                 }
             }
@@ -59,7 +62,8 @@
             public void Configure()
             {
                 BusConfiguration busConfiguration = new BusConfiguration();
-                busConfiguration.UsePersistence<NHibernatePersistence>().UseCustomSessionCreationMethod(CreateSession);
+                busConfiguration.UsePersistence<NHibernatePersistence>()
+                    .UseCustomSessionCreationMethod(CreateSession);
             }
 
             ISession CreateSession(ISessionFactory sessionFactory, string connectionString)
