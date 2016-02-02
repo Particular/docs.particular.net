@@ -1,3 +1,4 @@
+---
 title: ServiceControl in Practice
 summary: Details how to think about the use of ServiceControl in production environments
 tags:
