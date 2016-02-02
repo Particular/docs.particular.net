@@ -53,6 +53,10 @@
       <HintPath>..\..\packages\Common.Logging.Core.3.3.1\lib\net40\Common.Logging.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net">
       <HintPath>..\..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -80,6 +84,10 @@
       <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NLog">
       <HintPath>..\..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -100,6 +108,10 @@
     </Reference>
     <Reference Include="NServiceBus.Log4Net, Version=1.1.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Log4Net.1.1.0-unstable0016\lib\net452\NServiceBus.Log4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NServiceBus.NHibernate, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.NHibernate.6.3.0-unstable0036\lib\net452\NServiceBus.NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.NLog, Version=1.2.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
@@ -284,6 +296,15 @@
     <Compile Include="NonDurable\DisableDurable.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="InstallSomething.cs" />
+    <Compile Include="Persistence\InMemory\Usage.cs" />
+    <Compile Include="Persistence\Msmq\Usage.cs" />
+    <Compile Include="Persistence\NHibernate\AccessingData.cs" />
+    <Compile Include="Persistence\NHibernate\Concurrency\SagaDataWithLockMode.cs" />
+    <Compile Include="Persistence\NHibernate\Concurrency\SagaDataWithRowVersion.cs" />
+    <Compile Include="Persistence\NHibernate\ConfiguringNHibernate.cs" />
+    <Compile Include="Persistence\NHibernate\ConfiguringNHibernateSqlAzure.cs" />
+    <Compile Include="Persistence\NHibernate\DisableSchemaUpdate.cs" />
+    <Compile Include="Persistence\PersistenceOrder.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\Behavior.cs" />
     <Compile Include="Pipeline\Abort\MyMessage.cs" />
@@ -449,6 +470,12 @@
     <Content Include="Logging\OverrideInAppConfig.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Persistence\Msmq\msmq.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Persistence\NHibernate\nhibernate.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="RavenDB\SharedDocumentStoreViaConnectionString.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -478,8 +505,6 @@
       <Name>Operations</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Persistence\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
