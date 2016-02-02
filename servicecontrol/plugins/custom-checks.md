@@ -17,7 +17,7 @@ As mentioned above, there are two types of custom checks.
 
 ### Custom check
 
-A custom check is executed once when the endpoint host starts. NServiceBus assembly scanning mechanism detects a class inheriting from `CustomCheck` and creates an instance of that class. The check should happen in the constructor and the result needs to be communicated back using either `ReportPass` or `ReportFailed` methods.
+A custom check is executed once when the endpoint host starts. NServiceBus assembly scanning mechanism detects a class inheriting from `CustomCheck` and creates an instance of that class. The check should happen in the constructor for NServiceBus Version 5 and the result needs to be communicated back using either `ReportPass` or `ReportFailed` methods. For NServiceBus Version 6 the check should happen in the `PerformCheck` method and the result needs to be communicated back using either `CheckResult.Pass` or `CheckResult.Failed` methods.
 
 snippet:CustomCheck
 
@@ -29,6 +29,8 @@ A periodic check is executed at defined intervals. The check happens not in the 
 
 snippet:PeriodicCheck
 
+NOTE: For NServiceBus Version 6 the `PeriodicCheck` class has been deprecated. Inherit from `CustomCheck` and provided a `TimeSpan` to `repeatAfter` in the constructor of the `CustomCheck`.
+
 ### Results
 
 The result of a custom check is either success or a failure (with a detailed description defined by the developer). This result is sent as a message to the ServiceControl queue and status will be shown in the ServicePulse UI.
@@ -38,6 +40,7 @@ NOTE: It is essential that you deploy this plugin to your endpoint in production
 
 ## NuGets
 
+ * NServiceBus Version 6.x: [ServiceControl.Plugin.Nsb6.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb6.CustomChecks)
  * NServiceBus Version 5.x: [ServiceControl.Plugin.Nsb5.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb5.CustomChecks)
  * NServiceBus Version 4.x: [ServiceControl.Plugin.Nsb4.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb4.CustomChecks)
  * NServiceBus Version 3.x: [ServiceControl.Plugin.Nsb3.CustomChecks](https://www.nuget.org/packages/ServiceControl.Plugin.Nsb3.CustomChecks)

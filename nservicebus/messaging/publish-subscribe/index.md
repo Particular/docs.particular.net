@@ -76,7 +76,7 @@ Publisher->Persistence: Store "Subscriber2\nwants Message1"
 
 #### Publish
 
-The subscribe workflow for persistence based transports is as follows
+The publish workflow for persistence based transports is as follows
 
  1. Some code (eg a saga or a handler) request that a message be published.
  1. Publisher queries the storage for a list of subscribers.

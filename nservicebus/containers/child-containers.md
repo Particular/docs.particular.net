@@ -6,16 +6,16 @@ redirects:
  - nservicebus/nservicebus-support-for-child-containers
 ---
 
-Child containers are essentially a snapshot of the main container where transient instances are treated as as singletons within the scope of the child container. This is useful when you want to scope instances for the duration of a web request or the handling of a message in NServiceBus. While this was possible before, child containers bring one more important feature to the table.
+Child containers are essentially a snapshot of the main container where transient instances are treated as singletons within the scope of the child container. This is useful when you want to scope instances for the duration of a web request or the handling of a message in NServiceBus. While this was possible before, child containers bring one more important feature to the table.
 
 INFO: As of [NServiceBus.Spring](https://www.nuget.org/packages/NServiceBus.Spring) Version 6.0.0 Child containers are now supported as well. Previous versions don't support Child containers, so if you plan to take advantage of it, use one of the other containers supported by NServiceBus.
 
 
 ## Deterministic disposal
 
-Instance lifetime is usually not tracked by the container (Windsor is an exception) and that means that you have to manually call dispose any instance that needs deterministic disposal. Child containers solve this issue by automatically disposing all transient objects created within each specific child container.
+Instance lifetime is usually not tracked by the container (Windsor is an exception) and that means that you have to manually dispose any instance that needs deterministic disposal. Child containers solve this issue by automatically disposing all transient objects created within each specific child container.
 
-This is very handy when it comes to managing things like the database sessions session.
+This is very handy when it comes to managing things like the database sessions.
 
 NServiceBus creates a child container for each transport message that is received, remembering that transport messages can contain multiple "user defined messages". This means that all transient instances created during message processing are scoped as singletons within the child container. This allows you to easily share, for example, the NHibernate session between repositories, without messing around with thread static caching.
 

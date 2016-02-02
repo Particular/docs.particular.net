@@ -148,7 +148,7 @@
             - "nservicebus/nhibernate/accessing-data"
             - "nservicebus/nhibernate/saga-concurrency"
             - "nservicebus/nhibernate/sql-azure"
-        - Title: "RavendDB"
+        - Title: "RavenDB"
           Url: "nservicebus/ravendb"
           Articles:
             - "nservicebus/ravendb/operations-scripting"

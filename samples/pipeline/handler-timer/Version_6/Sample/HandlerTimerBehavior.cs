@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus.Logging;
 using NServiceBus.Pipeline;
-using NServiceBus.Pipeline.Contexts;
 
 #region HandlerTimerBehavior
 class HandlerTimerBehavior : Behavior<IInvokeHandlerContext>

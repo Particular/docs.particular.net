@@ -147,7 +147,7 @@
       <HintPath>..\..\packages\NServiceBus.CommonLogging.2.1.0\lib\net45\NServiceBus.CommonLogging.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus.5.2.13\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.5.2.14\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Distributor.MSMQ, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Distributor.MSMQ.5.0.3\lib\net45\NServiceBus.Distributor.MSMQ.dll</HintPath>
@@ -397,6 +397,7 @@
     <Compile Include="Container\Custom\MyObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
     <Compile Include="CustomChecks.cs" />
+    <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
     <Compile Include="Errors\SecondLevel\DisableWithCode.cs" />
@@ -421,6 +422,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ImmediateDispatch\Usage.cs" />
+    <Compile Include="InstallSomething.cs" />
     <Compile Include="Lifecycle\INeedInitialization.cs" />
     <Compile Include="Lifecycle\IWantToRunBeforeConfigurationIsFinalized.cs" />
     <Compile Include="Lifecycle\IWantToRunWhenConfigurationIsComplete.cs" />

@@ -83,15 +83,16 @@
     <Reference Include="NLog">
       <HintPath>..\..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Callbacks">
-      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0026\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+    <Reference Include="NServiceBus.Callbacks, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.Callbacks.1.0.0-unstable0028\lib\net452\NServiceBus.Callbacks.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.CommonLogging, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.CommonLogging.2.2.0-unstable0007\lib\net452\NServiceBus.CommonLogging.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1423\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1436\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Host, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
@@ -126,12 +127,24 @@
       <HintPath>..\..\packages\NServiceBus.Unity.6.3.0-unstable0015\lib\net452\NServiceBus.ObjectBuilder.Unity.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="NServiceBus.Transports.RabbitMQ, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NServiceBus.RabbitMQ.4.0.0-beta0001\lib\net45\NServiceBus.Transports.RabbitMQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NServiceBus.Transports.SQLServer, Version=3.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.SqlServer.3.0.0-unstable0077\lib\net452\NServiceBus.Transports.SQLServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=3.6.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RabbitMQ.Client.3.6.0\lib\net45\RabbitMQ.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceControl.Plugin.Nsb6.CustomChecks, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ServiceControl.Plugin.Nsb6.CustomChecks.1.0.0-beta0002\lib\net452\ServiceControl.Plugin.Nsb6.CustomChecks.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Spring.Core, Version=2.0.1.45000, Culture=neutral, PublicKeyToken=65e474d141e25e07, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Spring.Core.2.0.1\lib\net45\Spring.Core.dll</HintPath>
@@ -205,6 +218,7 @@
     <Compile Include="Correlation\Usage.cs" />
     <Compile Include="Correlation\MyRequest.cs" />
     <Compile Include="CriticalError.cs" />
+    <Compile Include="CustomChecks.cs" />
     <Compile Include="CustomConfigSource.cs" />
     <Compile Include="DataBus\Conventions\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\Conventions\Usage.cs" />
@@ -213,6 +227,19 @@
     <Compile Include="DataBus\DataBusProperty\MessageWithLargePayload.cs" />
     <Compile Include="DataBus\FileShare\Usage.cs" />
     <Compile Include="DiscardingOldMessages.cs" />
+    <Compile Include="Encryption\Configuration\FromCode.cs" />
+    <Compile Include="Encryption\Configuration\ProvideConfiguration.cs" />
+    <Compile Include="Encryption\Conventions\Message.cs" />
+    <Compile Include="Encryption\Conventions\Usage.cs" />
+    <Compile Include="Encryption\EncryptionService\EncryptionService.cs" />
+    <Compile Include="Encryption\EncryptionService\Usage.cs" />
+    <Compile Include="Encryption\MessageBody\MessageEncryptor.cs" />
+    <Compile Include="Encryption\MessageBody\Usage.cs" />
+    <Compile Include="Encryption\Usage.cs" />
+    <Compile Include="Encryption\WireEncryptedProperty\MyMessage.cs" />
+    <Compile Include="EndpointName\EndpointConfigByNamespace.cs" />
+    <Compile Include="EndpointName\EndpointConfigWithAttribute.cs" />
+    <Compile Include="EndpointName\Usage.cs" />
     <Compile Include="Errors\ErrorQueue\Usage.cs" />
     <Compile Include="Errors\FirstLevel\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Errors\FirstLevel\ConfigurationSource\Usage.cs" />
@@ -229,6 +256,10 @@
     <Compile Include="Errors\ErrorQueue\ConfigurationSource\Usage.cs" />
     <Compile Include="Extending\Features.cs" />
     <Compile Include="Host\CustomizingHost.cs" />
+    <Compile Include="NonDurable\DefineExpress.cs" />
+    <Compile Include="NonDurable\DisableDurable.cs" />
+    <Compile Include="NonDurable\MessageWithExpress.cs" />
+    <Compile Include="InstallSomething.cs" />
     <Compile Include="Pipeline\Abort\Handler.cs" />
     <Compile Include="Pipeline\Abort\Behavior.cs" />
     <Compile Include="Pipeline\Abort\MyMessage.cs" />
@@ -237,6 +268,8 @@
     <Compile Include="Pipeline\CustomStageConnector.cs" />
     <Compile Include="Pipeline\CustomStageForkConnector.cs" />
     <Compile Include="Routing\RoutingAPIs.cs" />
+    <Compile Include="Serialization\JsonSerialization.cs" />
+    <Compile Include="Serialization\XmlSerialization.cs" />
     <Compile Include="TransactionScopeUnitOfWork.cs" />
     <Compile Include="Transports\QueueCreation\ConcurrentQueueCreator.cs" />
     <Compile Include="Transports\QueueCreation\SequentialQueueCreator.cs" />
@@ -246,6 +279,8 @@
     <Compile Include="Transports\QueueCreation\QueueBindings.cs" />
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
+    <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
+    <Compile Include="Transports\RabbitMQ\Usage.cs" />
     <Compile Include="UpgradeGuides\5to6\MyEvent.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
@@ -355,6 +390,9 @@
     <Content Include="Audit\Audit.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Encryption\Configuration\encryption.config.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Errors\FirstLevel\flr.config.xml" />
     <Content Include="Errors\retriesLogging.txt" />
@@ -368,6 +406,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Routing\RoutingFile.xml" />
+    <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
+    <Content Include="Transports\RabbitMQ\rabbitmqconnection.config.xml" />
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>

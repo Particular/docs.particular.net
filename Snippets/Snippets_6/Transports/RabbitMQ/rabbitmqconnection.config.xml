@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <!--startcode rabbitmqconnectionstring 2 -->
+  <connectionStrings>
+    <add name="NServiceBus/Transport"
+         connectionString="host=broker1"/>
+  </connectionStrings>
+  <!--endcode-->
+  
+  <!--startcode rabbitmqconnectionstring-debug 2 -->
+  <connectionStrings>
+    <add name="NServiceBus/Transport"
+         connectionString="host=broker1;RequestedHeartbeat=600;DequeueTimeout=600"/>
+  </connectionStrings>
+  <!--endcode-->
+
+  <!--startcode rabbitmq-custom-breaker-settings 2.1 -->
+  <appSettings>
+    <add key="NServiceBus/RabbitMqDequeueStrategy/TimeToWaitBeforeTriggering" 
+         value="00:02:00"/>
+    <add key="NServiceBus/RabbitMqDequeueStrategy/DelayAfterFailure" 
+         value="00:00:05"/>
+  </appSettings>
+  <!--endcode-->
+
+</configuration>

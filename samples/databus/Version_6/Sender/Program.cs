@@ -23,7 +23,6 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
             Console.WriteLine("Press 'D' to send a databus large message");
             Console.WriteLine("Press 'N' to send a normal large message exceed the size limit and throw");
             Console.WriteLine("Press any other key to exit");
@@ -35,13 +34,13 @@ class Program
 
                 if (key.Key == ConsoleKey.N)
                 {
-                    await SendMessageTooLargePayload(busSession);
+                    await SendMessageTooLargePayload(endpoint);
                     continue;
                 }
 
                 if (key.Key == ConsoleKey.D)
                 {
-                    await SendMessageLargePayload(busSession);
+                    await SendMessageLargePayload(endpoint);
                     continue;
                 }
                 return;

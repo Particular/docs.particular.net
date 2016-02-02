@@ -24,8 +24,7 @@ static class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
-            Start(busSession);
+            await Start(endpoint);
         }
         finally
         {
@@ -33,7 +32,7 @@ static class Program
         }
     }
 
-    static void Start(IBusSession busSession)
+    static async Task Start(IBusSession busSession)
     {
         Console.WriteLine("Press '1' to publish IEvent");
         Console.WriteLine("Press '2' to publish EventMessage");
@@ -49,7 +48,7 @@ static class Program
             switch (key.Key)
             {
                 case ConsoleKey.D1:
-                    busSession.Publish<IMyEvent>(m =>
+                    await busSession.Publish<IMyEvent>(m =>
                     {
                         m.EventId = eventId;
                         m.Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null;
@@ -64,7 +63,7 @@ static class Program
                         Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null,
                         Duration = TimeSpan.FromSeconds(99999D)
                     };
-                    busSession.Publish(eventMessage);
+                    await busSession.Publish(eventMessage);
                     Console.WriteLine("Published EventMessage with Id {0}.", eventId);
                     continue;
                 case ConsoleKey.D3:
@@ -74,7 +73,7 @@ static class Program
                         Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null,
                         Duration = TimeSpan.FromSeconds(99999D)
                     };
-                    busSession.Publish(anotherEventMessage);
+                    await busSession.Publish(anotherEventMessage);
                     Console.WriteLine("Published AnotherEventMessage with Id {0}.", eventId);
                     continue;
                 default:

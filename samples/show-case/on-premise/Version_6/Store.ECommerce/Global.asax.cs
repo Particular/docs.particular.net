@@ -7,7 +7,6 @@ using NServiceBus;
 public class MvcApplication : HttpApplication
 {
     public static IEndpointInstance Endpoint;
-    public static IBusSession BusSession;
 
     public override void Dispose()
     {
@@ -30,7 +29,6 @@ public class MvcApplication : HttpApplication
         busConfiguration.SendFailedMessagesTo("error");
 
         Endpoint = await NServiceBus.Endpoint.Start(busConfiguration);
-        BusSession = Endpoint.CreateBusSession();
 
         AreaRegistration.RegisterAllAreas();
         FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

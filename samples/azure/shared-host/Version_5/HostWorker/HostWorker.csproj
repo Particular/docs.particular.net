@@ -62,7 +62,7 @@
       <HintPath>..\..\..\..\..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.13\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.5.2.14\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Hosting.Azure">
       <HintPath>..\..\..\..\..\packages\NServiceBus.Hosting.Azure.6.2.4\lib\net45\NServiceBus.Hosting.Azure.dll</HintPath>

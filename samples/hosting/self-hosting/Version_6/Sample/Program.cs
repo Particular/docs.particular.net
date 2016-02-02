@@ -24,9 +24,8 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
         {
-            IBusSession busSession = endpoint.CreateBusSession();
             Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
-            await busSession.SendLocal(new MyMessage());
+            await endpoint.SendLocal(new MyMessage());
             Console.ReadKey();
         }
         finally

@@ -83,7 +83,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\packages\NServiceBus.5.2.13\lib\net45\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.5.2.14\lib\net45\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Hosting.Azure, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.Hosting.Azure.6.2.4\lib\net45\NServiceBus.Hosting.Azure.dll</HintPath>

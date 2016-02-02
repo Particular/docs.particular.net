@@ -8,6 +8,7 @@ using NServiceBus;
 public class MvcApplication : HttpApplication
 {
     IEndpointInstance endpoint;
+    
 
     protected void Application_Start()
     {
@@ -15,7 +16,7 @@ public class MvcApplication : HttpApplication
 
         ContainerBuilder builder = new ContainerBuilder();
 
-        // Register your MVC controllers.
+        // Register MVC controllers.
         builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
         // Set the dependency resolver to be Autofac.
@@ -23,8 +24,7 @@ public class MvcApplication : HttpApplication
 
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MvcInjection.WebApplication");
-        // ExistingLifetimeScope() ensures that IBus is added to the container as well,
-        // allowing you to resolve IBus from your own components.
+        // instruct NServiceBus to use a custom AutoFac configuration
         busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
@@ -32,6 +32,10 @@ public class MvcApplication : HttpApplication
         busConfiguration.SendFailedMessagesTo("error");
 
         endpoint = Endpoint.Start(busConfiguration).GetAwaiter().GetResult();
+
+        ContainerBuilder updater = new ContainerBuilder();
+        updater.RegisterInstance(endpoint);
+        updater.Update(container);
 
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 

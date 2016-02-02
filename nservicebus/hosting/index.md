@@ -37,7 +37,7 @@ The user is also responsible for properly shutting down the endpoint when it is 
 
 snippet:Hosting-Shutdown
 
-NOTE: Starting with Version 6, the bus session is no longer disposable, due to the asynchronous nature of the pipeline. Call `Stop` in an async manner (see example above).
+NOTE: In Version 6, the endpoint instance is not disposable due to the asynchronous nature of the pipeline. Call `Stop` in an async manner (see example above).
 
 
 ### Windows Service Hosting

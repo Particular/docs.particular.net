@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Mvc;
 using NServiceBus;
 
 #region Controller
@@ -17,10 +18,9 @@ public class DefaultController : Controller
     }
 
     [AllowAnonymous]
-    public ActionResult Send()
+    public async Task<ActionResult> Send()
     {
-        endpoint.CreateBusSession()
-            .Send("Samples.Mvc.Endpoint", new MyMessage());
+        await endpoint.Send("Samples.Mvc.Endpoint", new MyMessage());
         return RedirectToAction("Index", "Default");
     }
 }

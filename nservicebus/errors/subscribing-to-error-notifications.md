@@ -11,7 +11,7 @@ related:
 
 Error notifications are available for several events.
 
- * When a first level retie occurs.
+ * When a first level retry occurs.
  * When a second level retry occurs.
  * When a message fails all retries and is forwarded to the error queue.
 
