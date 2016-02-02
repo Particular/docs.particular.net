@@ -23,7 +23,7 @@ Since ServiceControl is intended to be a recent-history storage to support Servi
 
 ServiceControl is configured with a default expiration policy that deletes old messages after a predefined time. The expiration policy can be customized to decrease or increase the amount of time data is retained, which impacts the storage requirements of ServiceControl.
 
-To limit the rate at which the database grows the body of an audit messages can be truncated if it exceeds a configurable threshold. 
+To limit the rate at which the database grows the body of an audit messages can be truncated if it exceeds a configurable threshold.
 
 Refer to Data Retention section of [Customizing ServiceControl Configuration](creating-config-file.md) for details on these settings.
 
@@ -61,31 +61,31 @@ The transports supported by ServiceControl out-of-the-box (i.e. MSMQ, RabbitMQ, 
 
 Azure Queues and Service Bus throughput varies significantly based on deployment options and multiple related variables inherent to cloud deployment scenarios.
 
-It is recommended that you plan and perform realistic throughput tests on ServiceControl using the transport of your choice and deployment options that are as close as possible to your planned production deployment. For additional questions or information please [contact Particular Software](http://particular.net/contactus).
+We recommended that customers plan and perform realistic throughput tests on ServiceControl using the transport of your choice and deployment options that are as close as possible to your planned production deployment. For additional questions or information please [contact Particular Software](http://particular.net/contactus).
 
 #### ServiceControl in Practice
 
-Often customers don't need all the features available in ServiceControl in one single environment. Its a tool that can accommodate many situations and sometimes some features get used in situations where their value proposition is not particularly strong.
+Often customers don't need all the features available in ServiceControl in one single environment. ServiceControl is a tool that can accommodate many situations and sometimes certain features are used in situations where their value proposition is not particularly strong. Each feature comes with a cost and in some cases the cost of a feature is not worth the impact on the system.
 
-For example, in your development environment you probably want a lot of logging information to support problem analysis. For many users the [Debug Session](/servicecontrol/plugins/debug-session.md) plugin is really useful at this stage of the application life-cycle but you would never put that plugin into production. For the same reason, you would never use the [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin outside of development.
+For example, in your development environment you will want a lot of logging information to support problem analysis. For many users the [Debug Session](/servicecontrol/plugins/debug-session.md) plugin is really useful at this stage of the application life-cycle but you would never put that plugin into production. For the same reason, we advise that customers never use the [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin outside of development.
 
-Making decisions about the use of the other plugins and features requires a little more thought to balance the smooth running of your system with your actual requirements. The temptation to just use them all as a kind of insurance policy is not a good choice. The cost of having some of these features in play can actually cause issues down the track if you're not prepared.
- 
+Making decisions about the use of the other plugins and features requires a little more thought to balance the smooth running of a system with actual business requirements. The temptation to 'just use them all' as a catch-all insurance policy is not a good choice. The cost of having some of these features in play can actually cause issues later on if you are not prepared.
+
 [Auditing](/nservicebus/operations/auditing.md) is a good example of how the cost of having a record of everything may cause significant impact on the system. It might be worth considering turning audit off in some or all endpoints in production. Or if you absolutely need it move the auditing to another place like your Business Intelligence database or somewhere that has better resources dedicated to the problem.
 
 It is technically possible to run two instances of ServiceControl one for audits and one for active monitoring and retries. Whether this makes sense for your situation is another discussion entirely.
 
-[Heartbeats](/servicepulse/intro-endpoints-heartbeats.md) and [Custom Checks](/servicepulse/intro-endpoints-custom-checks.md) are great for knowing when an endpoint is up or down but they add extra noise to your system. Definitely think hard about what the business ramifications are of having each endpoint available. Often, not all endpoints are mission critical, the default heartbeat is forty seconds. Maybe ten second updates are right for some endpoints but two minute intervals could be better for others. Remember also that all communication from endpoints with ServiceControl is performed via messaging. Adding a message to the queue every second may have little impact on when the notification shows up in ServicePulse. Remember, the last heartbeat is really the only one you care about. If you stop ServiceControl those heartbeats are going to bank up in the queue. You might want to consider flushing the heartbeats from the queue before starting ServiceControl again. Having a lot of noisey messages that add no value may overwhelm ServiceControl and causing it fail. 
+[Heartbeats](/servicepulse/intro-endpoints-heartbeats.md) and [Custom Checks](/servicepulse/intro-endpoints-custom-checks.md) are great for knowing when an endpoint is up or down but they add extra noise to your system. Definitely think hard about what the business ramifications are of having each endpoint available. Often, not all endpoints are mission critical, the default heartbeat is forty seconds. Maybe ten second updates are right for some endpoints but two minute intervals could be better for others. Remember also that all communication from endpoints with ServiceControl is performed via messaging. Adding a message to the queue every second may have little impact on when the notification shows up in ServicePulse. Remember, the last heartbeat is really the only one you care about. If you stop ServiceControl those heartbeats are going to bank up in the queue. You might want to consider flushing the heartbeats from the queue before starting ServiceControl again. Having a lot of noisey messages that add no value may overwhelm ServiceControl and causing it fail.
 
 ##### Sometimes slower is better.
 
-Moving forward pace your adoption of plugins and features: 
+Moving forward, pace the adoption of plugins and features:
 
-- Turn off auditing on all endpoints as well as heartbeats and custom checks.
-- If you are using the NServiceBus.Host set the log levels to ['production'](/nservicebus/hosting/nservicebus-host/profiles.md#logging-behaviors)
-- Perform a load test to baseline your solution.
-- When you are comfortable with the performance of the system try adding Heartbeats. That will allow you to monitor your system
-- Try increasing the heartbeat interval to around a minute maybe even more. Ideally you will not want to have a heartbeat update more frequently than ServiceControl can process it or more that your Operations staff are prepared to look at ServicePulse.
-- With each additional change perform your load test again adjusting the heartbeat interval until you get a satisfactory result.
-- Do the same with Custom Checks if you have them.
-- After all that I would consider adding audit back into the mix if it is really required and then test again.
+- [Turn off auditing](http://docs.particular.net/nservicebus/operations/auditing#turning-off-auditing) on all endpoints as well as [heartbeats and custom checks](http://docs.particular.net/servicepulse/how-to-configure-endpoints-for-monitoring).
+- In production, when using the NServiceBus.Host, set the log levels to ['production'](/nservicebus/hosting/nservicebus-host/profiles.md#logging-behaviors)
+- Perform load tests to baseline the solution.
+- When comfortable with the performance of the system try adding [Heartbeats](http://docs.particular.net/servicepulse/intro-endpoints-heartbeats). That will allow you to monitor your system
+- Try increasing the [heartbeat interval](http://docs.particular.net/servicecontrol/plugins/heartbeat#configuration-heartbeat-interval). Ideally you will not want to have a heartbeat update more frequently than ServiceControl can process it or more than your Operations staff are prepared to look at ServicePulse.
+- With each additional change perform a load test again adjusting the heartbeat interval satisfied with the result.
+- Repeat the process of considering the business relevance, system impact and load testing with each [Custom Check](http://docs.particular.net/servicecontrol/plugins/custom-checks) in your system.
+- Repeat the process of considering the business relevance, system impact and load testing with each Endpoint [Audit](http://docs.particular.net/nservicebus/operations/auditing) in your system.
