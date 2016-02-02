@@ -211,6 +211,8 @@
     <Compile Include="Container\Custom\Usage.cs" />
     <Compile Include="Container\MyService.cs" />
     <Compile Include="CustomChecks.cs" />
+    <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
+    <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
     <Compile Include="Handlers\GenericHandler.cs" />

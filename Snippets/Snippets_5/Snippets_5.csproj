@@ -398,6 +398,8 @@
     <Compile Include="Container\Custom\MyObjectBuilder.cs" />
     <Compile Include="Container\MyService.cs" />
     <Compile Include="CustomChecks.cs" />
+    <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
+    <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
