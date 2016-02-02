@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <!--startcode OutboxSqlServerConnectionStrings-->
+  <connectionStrings>
+    <add name="NServiceBus/Persistence" 
+         connectionString="MY CONNECTION STRING" />
+    <add name="NServiceBus/Transport" 
+         connectionString="MY CONNECTION STRING" />
+    <add name="MyBusinessDataDatabase"
+         connectionString="MY CONNECTION STRING" />
+  </connectionStrings>
+  <!--endcode -->
+</configuration>

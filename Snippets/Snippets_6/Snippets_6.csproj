@@ -296,6 +296,8 @@
     <Compile Include="NonDurable\DisableDurable.cs" />
     <Compile Include="NonDurable\MessageWithExpress.cs" />
     <Compile Include="InstallSomething.cs" />
+    <Compile Include="Outbox\RavenDB\TimeToKeep.cs" />
+    <Compile Include="Outbox\Usage.cs" />
     <Compile Include="Persistence\InMemory\Usage.cs" />
     <Compile Include="Persistence\Msmq\Usage.cs" />
     <Compile Include="Persistence\NHibernate\AccessingData.cs" />
@@ -468,6 +470,15 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Logging\OverrideInAppConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Outbox\EnablingInConfig.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Outbox\NHibernate\TimeToKeep.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Outbox\SqlServer\ConnectionStrings.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Persistence\Msmq\msmq.config.xml">
