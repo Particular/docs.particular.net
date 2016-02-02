@@ -172,5 +172,3 @@ This article shows how to set up a Windows Failover Cluster and one or more work
  * Scaling out can be achieved by starting up another server to run another worker process connected to the clustered distributor.
  * For maintenance, the worker processes on either worker server can be stopped for server maintenance or application updates, while worker processes on the other server continue to process messages. All clustered resources can be failed over to one node without disrupting the system, allowing message processing to continue while the other clustered node is available for updates.
  * Reliability is achieved by never requiring that any one component be completely shut down.
-
-(This article has some minor updates to the originally written and published article by [David Boike](http://www.make-awesome.com/2010/10/deploying-nservicebus-in-a-windows-failover-cluster/).)
