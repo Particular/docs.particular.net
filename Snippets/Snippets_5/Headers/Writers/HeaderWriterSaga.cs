@@ -13,7 +13,7 @@
     [TestFixture]
     public class HeaderWriterSaga
     {
-        public static CountdownEvent CountdownEvent = new CountdownEvent(4);
+        static CountdownEvent CountdownEvent = new CountdownEvent(4);
         string endpointName = "HeaderWriterSagaV5";
 
         [SetUp]
@@ -113,21 +113,21 @@
                 if (transportMessage.IsMessageOfTye<SendFromSagaMessage>())
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Sending", version: "All");
+                    SnippetLogger.Write(text: headerText, suffix: "Sending", version: "5");
                     CountdownEvent.Signal();
                     return;
                 }
                 if (transportMessage.IsMessageOfTye<ReplyFromSagaMessage>())
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Replying", version: "All");
+                    SnippetLogger.Write(text: headerText, suffix: "Replying", version: "5");
                     CountdownEvent.Signal();
                     return;
                 }
                 if (transportMessage.IsMessageOfTye<ReplyToOriginatorFromSagaMessage>())
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "ReplyingToOriginator", version: "All");
+                    SnippetLogger.Write(text: headerText, suffix: "ReplyingToOriginator", version: "5");
                     CountdownEvent.Signal();
                     return;
                 }
@@ -135,7 +135,7 @@
                 if (transportMessage.IsMessageOfTye<TimeoutFromSaga>())
                 {
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSaga>(transportMessage.Headers);
-                    SnippetLogger.Write(text: headerText, suffix: "Timeout", version: "All");
+                    SnippetLogger.Write(text: headerText, suffix: "Timeout", version: "5");
                     CountdownEvent.Signal();
                     return;
                 }

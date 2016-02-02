@@ -13,7 +13,7 @@ class Program
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
         BusConfiguration busConfiguration = new BusConfiguration();
-
+        busConfiguration.EnableInstallers();
         Configuration hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {

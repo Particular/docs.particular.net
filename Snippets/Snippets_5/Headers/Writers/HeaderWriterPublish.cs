@@ -73,7 +73,7 @@
             public void MutateIncoming(TransportMessage transportMessage)
             {
                 string headerText = HeaderWriter.ToFriendlyString<HeaderWriterPublish>(transportMessage.Headers);
-                SnippetLogger.Write(headerText, version: "All");
+                SnippetLogger.Write(headerText, version: "5");
                 ManualResetEvent.Set();
             }
         }

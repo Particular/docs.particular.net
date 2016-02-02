@@ -28,10 +28,8 @@
         {
             BusConfiguration config = new BusConfiguration();
             config.EndpointName(endpointName);
-#pragma warning disable 618
-            config.RijndaelEncryptionService("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6", Encoding.ASCII.GetBytes("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"));
+            config.RijndaelEncryptionService("key1", Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
             config.Conventions().DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));
-#pragma warning restore 618
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>(typeof(ConfigErrorQueue));
             config.TypesToScan(typesToScan);
             config.EnableInstallers();
@@ -42,7 +40,7 @@
                 bus.SendLocal(new MessageToSend
                 {
                     EncryptedProperty1 = "String 1",
-                    EncryptedProperty2 = "String 2" 
+                    EncryptedProperty2 = "String 2"
                 });
                 ManualResetEvent.WaitOne();
             }
@@ -53,12 +51,11 @@
             public string EncryptedProperty1 { get; set; }
             public string EncryptedProperty2 { get; set; }
         }
-    
+
         class MessageHandler : IHandleMessages<MessageToSend>
         {
             public void Handle(MessageToSend message)
             {
-                throw new Exception("error");
             }
         }
 
@@ -66,9 +63,9 @@
         {
             public void MutateIncoming(TransportMessage transportMessage)
             {
-                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterSend>(transportMessage.Headers);
-                SnippetLogger.Write(headerText, version: "All");
-                //SnippetLogger.Write(Encoding.Default.GetString(transportMessage.Body), version: "All",suffix:"Body");
+                string headerText = HeaderWriter.ToFriendlyString<HeaderWriterEncryption>(transportMessage.Headers);
+                SnippetLogger.Write(headerText, version: "5");
+                SnippetLogger.Write(Encoding.Default.GetString(transportMessage.Body), version: "5", suffix: "Body");
                 ManualResetEvent.Set();
             }
         }
