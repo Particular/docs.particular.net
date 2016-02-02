@@ -46,7 +46,7 @@ A [Windows Service](https://msdn.microsoft.com/en-us/library/d56de412.aspx) is t
 
 **Stopping Windows Service**
 
-NServiceBus gracefully shuts down the Windows Service by default. During a reboot of the machine, Windows will terminate the process if it takes longer than 30 seconds. To prevent endpoints from hanging indefinitely, this feature was also added to the NServiceBus Host itself in version 6.0.1 and now terminates the process after waiting for 30 seconds. 
+NServiceBus gracefully shuts down the Windows Service by default. During a reboot of the machine, Windows will terminate the process if it takes longer than 30 seconds. To prevent endpoints from hanging indefinitely, this feature was also added to the NServiceBus Host itself in version 6.0.1 and now terminates the process after waiting for 30 seconds. This setting can be changed in the registry. More information [can be found here](https://msdn.microsoft.com/en-us/library/windows/desktop/ms685149(v=vs.85).aspx).
 
 Related:
 
