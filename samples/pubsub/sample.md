@@ -22,7 +22,7 @@ The "Shared" project contains the definition of the messages that are sent betwe
 
 ## Creating and publishing messages
 
-As the name implies, the "MyPublisher" project is a publisher of event messages. It uses the bus framework to send alternatively three different types of messages every time you click Enter in its console window. The created message is populated and [published](/nservicebus/messaging/publish-subscribe/) using `Bus.Publish`.
+As the name implies, the "MyPublisher" project is a publisher of event messages. It uses the bus framework to send alternatively three different types of messages every time you click Enter in its console window. The created message is populated and [published](/nservicebus/messaging/publish-subscribe/) using `Publish`.
 
 snippet:PublishLoop
 
