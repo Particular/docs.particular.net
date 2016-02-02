@@ -6,7 +6,7 @@ using Octokit;
 
 public class ThrottlingBehavior : Behavior<IInvokeHandlerContext>
 {
-    private static DateTime? nextRateLimitReset;
+    static DateTime? nextRateLimitReset;
 
     public override async Task Invoke(IInvokeHandlerContext context, Func<Task> next)
     {
@@ -30,7 +30,7 @@ public class ThrottlingBehavior : Behavior<IInvokeHandlerContext>
         }
     }
 
-    private static Task DelayMessage(IInvokeHandlerContext context, DateTime deliverAt)
+    static Task DelayMessage(IInvokeHandlerContext context, DateTime deliverAt)
     {
         SendOptions sendOptions = new SendOptions();
         sendOptions.RouteToLocalEndpointInstance();
