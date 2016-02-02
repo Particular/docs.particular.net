@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Transports.SQLServer;
 using NHibernate.Cfg;
@@ -8,12 +9,21 @@ using NServiceBus.Persistence;
 
 class Program
 {
+    const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+    static Random random;
+
     static void Main()
     {
-        const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-        Random random = new Random();
+        random = new Random();
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
+    {
         BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.SendFailedMessagesTo("error");
         busConfiguration.EnableInstallers();
+
         Configuration hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
@@ -26,17 +36,17 @@ class Program
 
         busConfiguration.UseTransport<SqlServerTransport>()
             .DefaultSchema("sender")
-            .UseSpecificConnectionInformation(
-                EndpointConnectionInfo.For("receiver")
-                    .UseSchema("receiver"));
+            .UseSpecificSchema(e => "receiver");
+
         busConfiguration.UsePersistence<NHibernatePersistence>()
             .UseConfiguration(hibernateConfig);
 
         #endregion
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
-
+            IBusSession busSession = endpoint.CreateBusSession();
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 
@@ -51,13 +61,16 @@ class Program
                 }
 
                 string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                bus.Publish(new OrderSubmitted
+                await busSession.Publish(new OrderSubmitted
                 {
                     OrderId = orderId,
                     Value = random.Next(100)
                 });
-
             }
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }

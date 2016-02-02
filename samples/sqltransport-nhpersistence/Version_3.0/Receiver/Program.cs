@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Mapping.ByCode;
@@ -10,6 +11,11 @@ using NServiceBus.Transports.SQLServer;
 class Program
 {
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         Configuration hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
@@ -33,31 +39,43 @@ class Program
         #region ReceiverConfiguration
 
         BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.SendFailedMessagesTo("error");
+        busConfiguration.AuditProcessedMessagesTo("audit");
         busConfiguration.EnableInstallers();
         busConfiguration.UseTransport<SqlServerTransport>()
             .DefaultSchema("receiver")
-            .UseSpecificConnectionInformation(endpoint =>
+            .UseSpecificSchema(e =>
             {
-                if (endpoint == "error")
+                switch (e)
                 {
-                    return ConnectionInfo.Create().UseSchema("dbo");
+                    case "error":
+                        return "dbo";
+                    case "audit":
+                        return "dbo";
+                    default:
+                        string schema = e.Split(new[]
+                        {
+                            '.'
+                        }, StringSplitOptions.RemoveEmptyEntries)[0].ToLowerInvariant();
+                        return schema;
                 }
-                if (endpoint == "audit")
-                {
-                    return ConnectionInfo.Create().UseSchema("dbo");
-                }
-                string schema = endpoint.Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries)[0].ToLowerInvariant();
-                return ConnectionInfo.Create().UseSchema(schema);
             });
+
         busConfiguration.UsePersistence<NHibernatePersistence>()
             .UseConfiguration(hibernateConfig)
             .RegisterManagedSessionInTheContainer();
+
         #endregion
 
-        using (Bus.Create(busConfiguration).Start())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }
