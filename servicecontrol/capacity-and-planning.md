@@ -79,7 +79,7 @@ It is technically possible to run two instances of ServiceControl one for audits
 
 ##### Sometimes slower is better.
 
-Moving forward, pace the adoption of plugins and features:
+Moving forward, take a thoughtful approach in the adoption of plugins and features:
 
 - [Turn off auditing](http://docs.particular.net/nservicebus/operations/auditing#turning-off-auditing) on all endpoints as well as [heartbeats and custom checks](http://docs.particular.net/servicepulse/how-to-configure-endpoints-for-monitoring).
 - In production, when using the NServiceBus.Host, set the log levels to ['production'](/nservicebus/hosting/nservicebus-host/profiles.md#logging-behaviors)
