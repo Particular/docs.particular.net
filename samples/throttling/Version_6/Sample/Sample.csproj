@@ -7,8 +7,8 @@
     <ProjectGuid>{1F1093D5-7007-4FC4-841A-478EF47A5F6B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ThroughputThrottlingDemo</RootNamespace>
-    <AssemblyName>ThroughputThrottlingDemo</AssemblyName>
+    <RootNamespace>Sample</RootNamespace>
+    <AssemblyName>Sample</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

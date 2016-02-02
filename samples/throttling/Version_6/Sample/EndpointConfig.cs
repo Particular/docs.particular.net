@@ -1,20 +1,17 @@
-namespace ThroughputThrottlingDemo
+using NServiceBus;
+
+public class EndpointConfig : IConfigureThisEndpoint
 {
-    using NServiceBus;
-
-    public class EndpointConfig : IConfigureThisEndpoint
+    public void Customize(BusConfiguration configuration)
     {
-        public void Customize(BusConfiguration configuration)
-        {
-            configuration.UsePersistence<InMemoryPersistence>();
-            configuration.SendFailedMessagesTo("errorq");
+        configuration.UsePersistence<InMemoryPersistence>();
+        configuration.SendFailedMessagesTo("errorq");
 
-            configuration.Pipeline.Register(
-                "GitHub API Throttling", 
-                typeof (ThrottlingBehavior),
-                "implements API throttling for GitHub APIs");
+        configuration.Pipeline.Register(
+            "GitHub API Throttling", 
+            typeof (ThrottlingBehavior),
+            "implements API throttling for GitHub APIs");
 
-            configuration.LimitMessageProcessingConcurrencyTo(1);
-        }
+        configuration.LimitMessageProcessingConcurrencyTo(1);
     }
 }
