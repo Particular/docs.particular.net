@@ -5,15 +5,9 @@
 
     class DeferForTimeSpan
     {
-        IBus bus;
-
-        public DeferForTimeSpan(IBus bus)
-        {
-            this.bus = bus;
-        }
-
         public void SendDelayedMessage()
         {
+            IBus bus = null;
             #region delayed-delivery-timespan
             bus.Defer(TimeSpan.FromMinutes(30), new MessageToBeSentLater());
             #endregion
