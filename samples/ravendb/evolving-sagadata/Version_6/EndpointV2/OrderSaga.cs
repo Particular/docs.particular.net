@@ -1,6 +1,6 @@
-﻿using NServiceBus;
+﻿using System.Threading.Tasks;
+using NServiceBus;
 using NServiceBus.Logging;
-using NServiceBus.Saga;
 
 public class OrderSaga : Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
@@ -16,19 +16,21 @@ public class OrderSaga : Saga<OrderSagaData>,
             .ToSaga(sagaData => sagaData.OrderId);
     }
 
-    public void Handle(StartOrder message)
+    public Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
         Data.NumberOfItems = message.ItemCount;
         logger.InfoFormat("Received StartOrder message with OrderId:{0}", Data.OrderId);
         logger.InfoFormat("Saga NumberOfItems is now {0}", Data.NumberOfItems);
+        return Task.FromResult(0);
     }
 
-    public void Handle(IncrementOrder message)
+    public Task Handle(IncrementOrder message, IMessageHandlerContext context)
     {
         logger.InfoFormat("Received IncrementOrder message with OrderId:{0}", Data.OrderId);
         Data.NumberOfItems += 1;
         logger.InfoFormat("NumberOfItems is now {0}", Data.NumberOfItems);
+        return Task.FromResult(0);
     }
-
+    
 }

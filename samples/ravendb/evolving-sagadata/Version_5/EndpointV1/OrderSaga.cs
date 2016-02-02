@@ -9,12 +9,6 @@ public class OrderSaga : Saga<OrderSagaData>,
     IHandleMessages<IncrementOrder>
 {
     static ILog logger = LogManager.GetLogger<OrderSaga>();
-    IBus bus;
-
-    public OrderSaga(IBus bus)
-    {
-        this.bus = bus;
-    }
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
