@@ -75,7 +75,7 @@ Making decisions about the use of the other plugins and features requires a litt
 
 [Heartbeats](/servicepulse/intro-endpoints-heartbeats.md) and [Custom Checks](/servicepulse/intro-endpoints-custom-checks.md) are great for knowing when an endpoint is up or down but they add extra noise to your system. Definitely think hard about what the business ramifications are of having each endpoint available. Often, not all endpoints are mission critical, the default heartbeat is forty seconds. Maybe ten second updates are right for some endpoints but two minute intervals could be better for others. Remember also that all communication from endpoints with ServiceControl is performed via messaging. Adding a message to the queue every second may have little impact on when the notification shows up in ServicePulse. Remember, the last heartbeat is really the only one you care about. If you stop ServiceControl those heartbeats are going to bank up in the queue. You might want to consider flushing the heartbeats from the queue before starting ServiceControl again. Having a lot of noisy messages that add no value may overwhelm ServiceControl and cause it fail.
 
-##### Sometimes slower is better.
+##### Sometimes less is more
 
 Moving forward, take a thoughtful approach in the adoption of plugins and features:
 
