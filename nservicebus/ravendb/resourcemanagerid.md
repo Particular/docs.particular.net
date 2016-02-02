@@ -27,4 +27,4 @@ It is possible to configure RavenDB to use a different resource manager identifi
 
 snippet:ChangeResourceManagerID
 
-NOTE: Be sure that the resource manager id is constant across process restarts otherwise it will be impossibile for the instance to re-enlist in an existing distributed transaction in case of a crash.
+NOTE: Be sure that the resource manager id is constant across process restarts otherwise it will be impossible for the instance to re-enlist in an existing distributed transaction in case of a crash.
