@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- startcode NHibernateAppConfig -->
 <configuration>
-  <!-- startcode NHibernateAppConfig -->
   <connectionStrings>
     <add name="NServiceBus/Persistence"
          connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus"/>
@@ -20,5 +20,5 @@
     <add key="NServiceBus/Persistence/NHibernate/connection.driver_class"
          value="NHibernate.Driver.Sql2008ClientDriver" />
   </appSettings>
-  <!--endcode -->
 </configuration>
+<!--endcode -->

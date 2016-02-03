@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode MessageQueueConfiguration-->
 <configuration>
-  <!--startcode MessageQueueConfiguration-->
   <connectionStrings>
     <add name="NServiceBus/Transport"
          connectionString="cacheSendConnection=true;journal=false;deadLetter=true;useTransactionalQueues=true"/>
   </connectionStrings>
-  <!--endcode -->
 </configuration>
+<!--endcode -->
