@@ -11,16 +11,20 @@ public class Program
 
     static async Task AsyncMain()
     {
+        #region Configuration
         BusConfiguration configuration = new BusConfiguration();
         configuration.EndpointName("Samples.Throttling");
+        configuration.LimitMessageProcessingConcurrencyTo(1);
+        #endregion
         configuration.UsePersistence<InMemoryPersistence>();
         configuration.SendFailedMessagesTo("error");
-        configuration.LimitMessageProcessingConcurrencyTo(1);
 
+        #region RegisterBehavior
         configuration.Pipeline.Register(
                    "GitHub API Throttling",
                    typeof(ThrottlingBehavior),
                    "implements API throttling for GitHub APIs");
+        #endregion
 
         IEndpointInstance endpoint = await Endpoint.Start(configuration);
         try

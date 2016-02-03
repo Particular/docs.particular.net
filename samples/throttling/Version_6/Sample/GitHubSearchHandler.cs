@@ -14,8 +14,8 @@ public class GitHubSearchHandler : IHandleMessages<SearchGitHub>
 
         SearchCodeResult result = await GitHubClient.Search.SearchCode(
             new SearchCodeRequest(
-                message.SearchFor, 
-                message.RepositoryOwner, 
+                message.SearchFor,
+                message.RepositoryOwner,
                 message.Repository));
 
         Console.WriteLine($"Found {result.TotalCount} results for {message.SearchFor}.");
