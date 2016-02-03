@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 using System.ServiceProcess;
 using NServiceBus;
 
@@ -42,6 +41,9 @@ class ProgramService : ServiceBase
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         bus = Bus.Create(busConfiguration).Start();
+
+        // run any startup actions on the bus
+        bus.SendLocal(new MyMessage());
     }
 
     #endregion

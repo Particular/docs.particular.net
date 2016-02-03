@@ -133,6 +133,9 @@ class ProgramService : ServiceBase
         busConfiguration.EnableInstallers();
         endpoint = await Endpoint.Start(busConfiguration);
         #endregion
+
+
+        await endpoint.SendLocal(new MyMessage());
     }
 
 

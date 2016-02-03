@@ -35,4 +35,35 @@
     }
 
     #endregion
+
+    [Explicit]
+    #region ConstructorInjectedBus
+    [TestFixture]
+    public class Tests2
+    {
+        [Test]
+        public void RunWithConstructorInjectedBus()
+        {
+            Test.Initialize();
+
+            MyService mockService = new MyService();
+            Test.Handler(bus => new WithConstructorInjectedBusHandler(bus));
+            //Rest of test
+        }
+    }
+
+    class WithConstructorInjectedBusHandler : IHandleMessages<MyMessage>
+    {
+        IBus bus;
+        
+        public WithConstructorInjectedBusHandler(IBus bus)
+        {
+            this.bus = bus;
+        }
+        public void Handle(MyMessage message)
+        {
+        }
+    }
+
+    #endregion
 }

@@ -51,6 +51,9 @@ class ProgramService : ServiceBase
         bus = configure.UnicastBus()
             .CreateBus()
             .Start(() => configure.ForInstallationOn<Windows>().Install());
+
+        // run any startup actions on the bus
+        bus.SendLocal(new MyMessage());
     }
 
     #endregion

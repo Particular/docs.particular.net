@@ -1,6 +1,6 @@
 ---
 title: Transactions in Azure
-summary: Understanding what kind of transactions are supported in Azure and how we deal with this in NServiceBus.
+summary: Understanding transactions in relation to Azure and NServiceBus.
 tags:
 - Azure
 - Cloud
@@ -28,8 +28,8 @@ This is the primary reason why many Azure hosted services do not support transac
 
 For example:
 
-* Azure storage services have no support for transactions. This is not explicitly documented but you can find enough [references on stackoverflow](http://stackoverflow.com/questions/18045517/do-azure-storage-related-apis-participate-in-system-transactions)
-* The Azure database supports local transactions, but only grants locks on resources, when required by a system task for 20 seconds, and 24 hours otherwise. See [this msdn article](https://msdn.microsoft.com/library/azure/dn338081.aspx#TransactionDurationLimit) for more details.
+ * Azure storage services have no support for transactions. This is not explicitly documented but you can find enough [references on StackOverflow](http://stackoverflow.com/questions/18045517/do-azure-storage-related-apis-participate-in-system-transactions)
+ * The Azure database supports local transactions, but only grants locks on resources, when required by a system task for 20 seconds, and 24 hours otherwise. See [Azure SQL Database resource limits](https://msdn.microsoft.com/library/azure/dn338081.aspx#TransactionDurationLimit) for more details.
 
 When both the database management system and client are under the same ownership, imagine you just deployed SQL Server to your own virtual machine, so locks are no longer an issue and you can control the lock duration. But even in this case, you need to be careful when it comes to distributed transactions.
 
@@ -60,22 +60,23 @@ There are quite a few options. The remainder of this article discusses each opti
 
 The options:
 
-* Share local transaction
-* Unit of work with batching and transport retries
-* Atomic operations with transport retries
-* Sagas and compensation logic
-* Routing slips and compensation logic
+ * Share local transaction
+ * Unit of work with batching and transport retries
+ * Atomic operations with transport retries
+ * Sagas and compensation logic
+ * Routing slips and compensation logic
 
 
 ### Share local transactions
 
 Prevent transaction promotion by reusing a single local transaction. The idea is to inject the outermost local transaction/unit of work, started by the receiving transport, into the rest of the application (like your orm, etc.) so that only a single transaction is used for both receiving and handling a message and its result.
 
-**Advantages**
+#### Advantages
 
 * By sharing a single local transaction by both your transport and business logic, you prevent the DTC from kicking in while preserving the simple programming that you are used to. Besides injecting the transport level in the rest of the application, nothing really changes.
 
-**Disadvantages**
+
+#### Disadvantages
 
 * You are limited to a single transactional resource for your entire system. The technique can only be applied if your application fits the limits of this transactional resource. As some Azure services throttle quite aggressively, sometimes on behavior of other tenants, capacity planning might become an issue.
 * Must be able and willing to inject the transaction, which may be a challenge when using third-party libraries, for example.
@@ -87,28 +88,32 @@ This technique is used when a resource does not support transactions at all. The
 
 However, regular transactions also imply 'rollback' semantics that will make the receive infrastructure retry the original message again later. You need to combine this technique with a transport that supports retry semantics.
 
-**Advantages**
 
-* You don't need transactions at all to provide consistency.
-* Get retry on transient exceptions for free.
+#### Advantages
 
-**Disadvantages**
+ * You don't need transactions at all to provide consistency.
+ * Get retry on transient exceptions for free.
 
-* You need to change the way you program your business logic to become atomic; just one insert, update, or delete at a time isn't always easy.
-* You need to change your business logic to become idempotent. As message retry is added to the equation, but outside of the scope of the atomic operation, you need to make sure that the same operation can be repeatedly executed without changing the end result. See 'the need for idempotency' on techniques to achieve this.
-* Retry behavior is typically combined with timeouts that will kick in not only if your operation failed, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel.
+
+#### Disadvantages
+
+ * You need to change the way you program your business logic to become atomic; just one insert, update, or delete at a time isn't always easy.
+ * You need to change your business logic to become idempotent. As message retry is added to the equation, but outside of the scope of the atomic operation, you need to make sure that the same operation can be repeatedly executed without changing the end result. See 'the need for idempotency' on techniques to achieve this.
+ * Retry behavior is typically combined with timeouts that will kick in not only if your operation failed, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel.
 
 
 ### Sagas and compensation logic
 
 Sagas in NServiceBus are a stateful set of message handlers that can be used to track and orchestrate the different parts of a transaction. They communicate with other handlers such that each performs part of the transaction and acknowledges when the work succeeds or fails. Depending on those results, they decide what needs to happen to the rest of the transaction, whether to continue or make things right again. The latter is often called compensation logic, as it tries to compensate at a business logic level to deal with failures. In essence you write a distributed transaction coordinator built with business logic, instead of the two-phase commit protocol, yourself.
 
-**Advantages**
+
+#### Advantages
 
  * You don't need transactions at all to provide consistency.
  * Extremely flexible and maps very well with the business domain.
 
-**Disadvantages**
+
+#### Disadvantages
 
  * To consider and implement all possible variations and error conditions in a transaction, involves quite a lot of work.
  * To implement effectively, requires a good understanding of the business.
@@ -119,13 +124,15 @@ Sagas in NServiceBus are a stateful set of message handlers that can be used to 
 
 Where the saga approach uses a central coordinator that orchestrates the work in a transaction, this approach uses a chain of independent handlers instead. You can think of it as a linked list of message handlers that can send messages back and forward in the list. The first handler composes a 'routing slip' that contains all the work that needs to be done in the transaction, and forwards that to the next handler in the chain. This handler executes its part and upon success forwards the message to the next one in the chain until all handlers have been invoked and the transaction complete. If at any point in time, a handler fails to complete its logic, it sends the message back in the chain to execute compensation logic to make things right again. The slip is continuously sent back until it reaches the original handler again and the transaction is considered rolled back.
 
-**Advantages**
+
+#### Advantages
 
  * You don't need transactions at all to provide consistency.
  * Is more 'linear' in its conceptual model than sagas, so may be easier to keep in your mind.
  * Does not require maintaining the state in a data store; it is implicit by the chaining of handlers and passing around the routing slip (to which the state can be added for the next handler in the list).
 
-**Disadvantages**
+
+#### Disadvantages
 
  * To consider and implement all possible variations and error conditions in a transaction, it involves quite a lot of work.
  * Less flexible than sagas, requires linear thinking, can't execute handlers in parallel, and therefore is often slower.
@@ -139,12 +146,12 @@ There are multiple ways to deal with idempotency though, some at the technical l
 
 Depending on your business needs you can go for one of these:
 
-* Message deduplication
-* Natural idempotency
-* Entities and messages with version information
-* Side effect checks
-* Partner state machines
-* Accept uncertainty
+ * Message deduplication
+ * Natural idempotency
+ * Entities and messages with version information
+ * Side effect checks
+ * Partner state machines
+ * Accept uncertainty
 
 
 ### Message deduplication

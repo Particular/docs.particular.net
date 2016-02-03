@@ -48,6 +48,8 @@ class ProgramService : ServiceBase
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         endpoint = await Endpoint.Start(busConfiguration);
+        // run any startup actions on the bus
+        await endpoint.SendLocal(new MyMessage());
     }
 
     #endregion
