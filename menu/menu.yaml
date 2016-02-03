@@ -36,6 +36,7 @@
         - "nservicebus/messaging/unobtrusive-mode"
         - "nservicebus/messaging/best-practice-enforcement"
         - "nservicebus/scheduling"
+        - "nservicebus/delayed-delivery"
         - Title: "Publish Subscribe"
           Url: "nservicebus/messaging/publish-subscribe"
           Articles:
