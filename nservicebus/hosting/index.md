@@ -44,10 +44,6 @@ NOTE: In Version 6, the endpoint instance is not disposable due to the asynchron
 
 A [Windows Service](https://msdn.microsoft.com/en-us/library/d56de412.aspx) is the most common way NServiceBus is hosted.
 
-**Stopping Windows Service**
-
-NServiceBus gracefully shuts down the Windows Service by default. During a shutdown of the machine, Windows will terminate the process if it takes longer than 30 seconds. From version 6.0.1 of the NServiceBus Host we also support this feature for manually stopping the service, to prevent it from shutting down indefinitely. This setting is in the `WaitToKillServiceTimeout` key in the registry and can be changed. More information on the location of the registry key and how Windows deals with shutting down Windows Services, can be found on MSDN in the [Service Control Handler Function](https://msdn.microsoft.com/en-us/library/windows/desktop/ms685149.aspx) documentation.
-
 Related:
 
  * [Hosting NServiceBus in Windows Service](windows-service.md)
