@@ -29,6 +29,7 @@ class Program
         try
         {
             Start(endpoint);
+            Console.WriteLine("Press Enter to publish the SomethingHappened Event");
         }
         finally
         {

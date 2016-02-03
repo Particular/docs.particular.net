@@ -1,14 +1,12 @@
-namespace SqlBridge
-{
-    using System;
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.Features;
-    using NServiceBus.Persistence;
+using System;
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Persistence;
 
+namespace MsmqToSqlBridge
+{
     class Program
     {
-
         static void Main()
         {
             AsyncMain().GetAwaiter().GetResult();
@@ -17,16 +15,15 @@ namespace SqlBridge
         static async Task AsyncMain()
         {
 
-            #region sqlsubscriber-config
+            #region bridge-config
+
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.SendFailedMessagesTo("error");
-            busConfiguration.EndpointName("SqlBridge");
+            busConfiguration.EndpointName("MsmqToSqlBridge");
             busConfiguration.EnableInstallers();
-            busConfiguration.DisableFeature<AutoSubscribe>();
             busConfiguration.UsePersistence<NHibernatePersistence>()
                 .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True");
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True");
+
             #endregion
 
 
@@ -44,7 +41,7 @@ namespace SqlBridge
 
         static void Start(IBusSession busSession)
         {
-            Console.WriteLine("\r\nSqlBridge is running - This endpoint will relay all events received to subscribers. Press any key to stop program\r\n");
+            Console.WriteLine("\r\nMssqToSql Bridge is now running -- Press any key to stop program\r\n");
             Console.ReadKey();
         }
 
