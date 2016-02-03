@@ -16,7 +16,7 @@ class Program
         configure.EnlistWithDistributor();
 #pragma warning restore 618
 
-        #region WorkerNameToUseWhileTestingCode
+        #region WorkerNameToUseWhileTesting
         //called after EnlistWithDistributor
         Address.InitializeLocalAddress("Samples.Scaleout.Worker2");
         #endregion

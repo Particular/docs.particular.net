@@ -12,7 +12,7 @@ class Program
         configure.DefaultBuilder();
         configure.EnlistWithDistributor();
         
-        #region WorkerNameToUseWhileTestingCode
+        #region WorkerNameToUseWhileTesting
         //called after EnlistWithDistributor
         Address.InitializeLocalAddress("Samples.Scaleout.Worker2");
         #endregion

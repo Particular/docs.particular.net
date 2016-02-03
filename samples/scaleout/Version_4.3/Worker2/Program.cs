@@ -12,7 +12,7 @@ class Program
         configure.DefineEndpointName("Samples.Scaleout.Worker2");
         configure.DefaultBuilder();
         configure.EnlistWithMSMQDistributor();
-         #region WorkerNameToUseWhileTestingCode
+         #region WorkerNameToUseWhileTesting
         //called after EnlistWithDistributor
         Address.InitializeLocalAddress("Samples.Scaleout.Worker2");
         #endregion
