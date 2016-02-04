@@ -6,6 +6,7 @@
     using System.Data.SqlClient;
     using System.Threading.Tasks;
     using System.Transactions;
+    using Newtonsoft.Json;
     using NServiceBus;
     using NServiceBus.Logging;
     using NServiceBus.Pipeline;
@@ -13,10 +14,14 @@
     class ForwardToSqlTransportBehavior : Behavior<ITransportReceiveContext>
     {
         static ILog logger = LogManager.GetLogger<ForwardToSqlTransportBehavior>();
+
         public async override Task Invoke(ITransportReceiveContext context, Func<Task> next)
         {
             var message = context.Message;
-            Type[] eventTypes = { Type.GetType(message.Headers["NServiceBus.EnclosedMessageTypes"]) };
+            Type[] eventTypes =
+            {
+                Type.GetType(message.Headers["NServiceBus.EnclosedMessageTypes"])
+            };
 
             var msmqId = message.Headers["NServiceBus.MessageId"];
 
@@ -29,7 +34,7 @@
             {
                 message.Headers["NServiceBus.MessageId"] = GuidBuilder.BuildDeterministicGuid(msmqId).ToString();
             }
-            logger.Info("Forwarding message to the SQL Bridge");
+            logger.Info("Forwarding message to the SQL Relay");
 
             var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True";
             await SendMessageToSql(connectionString, "SqlRelay", message.Body, message.Headers);
@@ -38,7 +43,7 @@
         public Task SendMessageToSql(string connectionString, string queue, byte[] messageBody, Dictionary<string, string> headers)
         {
             string insertSql = string.Format(
-              @"INSERT INTO [{0}] (
+                @"INSERT INTO [{0}] (
             [Id], 
             [Recoverable], 
             [Headers], 
@@ -58,7 +63,7 @@
                         SqlParameterCollection parameters = command.Parameters;
                         command.CommandType = CommandType.Text;
                         parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
-                        string serializeHeaders = Newtonsoft.Json.JsonConvert.SerializeObject(headers);
+                        string serializeHeaders = JsonConvert.SerializeObject(headers);
                         parameters.Add("Headers", SqlDbType.VarChar).Value = serializeHeaders;
                         parameters.Add("Body", SqlDbType.VarBinary).Value = messageBody;
                         parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
@@ -70,11 +75,11 @@
             return Task.FromResult(0);
         }
     }
-    
+
     class NewMessageProcessingPipelineStep : RegisterStep
     {
         public NewMessageProcessingPipelineStep()
-            : base("ForwardMessagesToSqlTransport", typeof(ForwardToSqlTransportBehavior), "Forwards MSMQ events received to SqlBridge")
+            : base("ForwardMessagesToSqlTransport", typeof(ForwardToSqlTransportBehavior), "Forwards MSMQ events received to SqlRelay")
         {
             InsertAfterIfExists("FirstLevelRetries");
             InsertAfterIfExists("SecondLevelRetries");
@@ -82,14 +87,11 @@
         }
     }
 
-    class RegisterSqlBridge : INeedInitialization
+    class RegisterSqlRelay : INeedInitialization
     {
         public void Customize(BusConfiguration configuration)
         {
             configuration.Pipeline.Register<NewMessageProcessingPipelineStep>();
         }
     }
-
-  
-
 }

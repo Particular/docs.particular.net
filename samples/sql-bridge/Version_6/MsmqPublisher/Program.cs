@@ -1,4 +1,3 @@
-
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
@@ -7,7 +6,6 @@ using Shared;
 
 class Program
 {
-
     static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
@@ -16,13 +14,14 @@ class Program
     static async Task AsyncMain()
     {
         #region msmqpublisher-config
-    
+
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.SendFailedMessagesTo("error");
         busConfiguration.EndpointName("MsmqPublisher");
         busConfiguration.EnableInstallers();
         busConfiguration.UsePersistence<NHibernatePersistence>()
             .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForMsmqTransport;Integrated Security=True");
+
         #endregion
 
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
@@ -37,11 +36,11 @@ class Program
         }
     }
 
-    
+
     static void Start(IBusSession busSession)
     {
-        
         #region PublishLoop
+
         while (true)
         {
             ConsoleKeyInfo key = Console.ReadKey();
@@ -54,12 +53,12 @@ class Program
                 case ConsoleKey.Enter:
                     busSession.Publish(new SomethingHappened());
                     Console.WriteLine("SomethingHappened Event published");
-                    continue;       
+                    continue;
                 default:
                     return;
             }
         }
+
         #endregion
     }
-
 }
