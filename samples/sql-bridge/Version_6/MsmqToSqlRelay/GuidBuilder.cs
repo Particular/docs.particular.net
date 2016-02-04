@@ -1,9 +1,9 @@
-using System;
-using System.Security.Cryptography;
-using System.Text;
-
-namespace MsmqToSqlBridge
+namespace MsmqToSqlRelay
 {
+    using System;
+    using System.Security.Cryptography;
+    using System.Text;
+
     static class GuidBuilder
     {
         public static Guid BuildDeterministicGuid(string msmqMessageId)

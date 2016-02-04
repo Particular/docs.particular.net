@@ -1,4 +1,4 @@
-﻿namespace MsmqToSqlBridge
+﻿namespace MsmqToSqlRelay
 {
     using System;
     using System.Collections.Generic;
@@ -32,7 +32,7 @@
             logger.Info("Forwarding message to the SQL Bridge");
 
             var connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True";
-            await SendMessageToSql(connectionString, "SqlBridge", message.Body, message.Headers);
+            await SendMessageToSql(connectionString, "SqlRelay", message.Body, message.Headers);
         }
 
         public Task SendMessageToSql(string connectionString, string queue, byte[] messageBody, Dictionary<string, string> headers)

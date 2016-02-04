@@ -1,7 +1,7 @@
 ﻿
 
 #region sqlsubscriber-handler
-namespace SqlSubscriber
+namespace SqlBridge
 {
     using System;
     using System.Threading.Tasks;

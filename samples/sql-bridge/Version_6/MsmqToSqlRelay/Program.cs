@@ -1,10 +1,10 @@
-using System;
-using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Persistence;
-
-namespace MsmqToSqlBridge
+namespace MsmqToSqlRelay
 {
+    using System;
+    using System.Threading.Tasks;
+    using NServiceBus;
+    using NServiceBus.Persistence;
+
     class Program
     {
         static void Main()
@@ -19,7 +19,7 @@ namespace MsmqToSqlBridge
 
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.SendFailedMessagesTo("error");
-            busConfiguration.EndpointName("MsmqToSqlBridge");
+            busConfiguration.EndpointName("MsmqToSqlRelay");
             busConfiguration.EnableInstallers();
             busConfiguration.UsePersistence<NHibernatePersistence>()
                 .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True");
