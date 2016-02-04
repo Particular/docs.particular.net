@@ -47,7 +47,7 @@ ServiceControl heartbeats are sent, by the plugin, at a predefined interval of 1
 
 snippet: heartbeatsIntervalConfig
 
-Where the value is convertible to a `TimeSpan` value. In the above sample you are setting the endpoint heartbeat interval to 40 seconds.
+Where the value is convertible to a `TimeSpan` value. In the above sample you are setting the endpoint heartbeat interval to 30 seconds.
 
 When configuring heartbeat interval, make sure Service Control setting [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#configuration-options-servicecontrol-heartbeatgraceperiod) is greater than the heartbeat interval.
 
