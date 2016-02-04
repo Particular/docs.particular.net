@@ -13,6 +13,7 @@
 
             #region delayed-delivery-timespan
             SendOptions options = new SendOptions();
+            
             options.DelayDeliveryWith(TimeSpan.FromMinutes(30));
 
             await handlerContext.Send(new MessageToBeSentLater(), options);
