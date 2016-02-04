@@ -13,7 +13,7 @@ related:
 - nservicebus/messaging/routing
 ---
 
-NServiceBus had the concept of an "Owning Endpoint" for any given message type. In V6 this has been replaced with the more flexible [routing model](/nservicebus/messaging/routing.md).
+NServiceBus had the concept of an "Owning Endpoint" for any given message type. In Version 6 this has been superseded by the more flexible [routing model](/nservicebus/messaging/routing.md). The previous configuration in the form of `MessageEndpointMappings` configuration section is still fully respected by the Version 6 endpoints in order to provide a smoother transition experience.
 
 Message mapping is a configurable convention that, based on some information about a message, that message can be routed to a specific endpoint without the sending code needing to be aware of the destination. A message mapping contains the following information.
 
@@ -115,7 +115,6 @@ Endpoint mapping can be configured in several ways
 You configure mapping in your app.config by adding `<UnicastBusConfig>` and `<MessageEndpointMappings>` nodes.
 
 snippet:endpoint-mapping-appconfig
-
 
 ### Using a ConfigurationSource
 
