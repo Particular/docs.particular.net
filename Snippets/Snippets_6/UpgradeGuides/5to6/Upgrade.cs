@@ -101,5 +101,20 @@
                 .WrapHandlersInATransactionScope();
             #endregion
         }
+        public async Task DelayedDelivery()
+        {
+            IMessageHandlerContext handlerContext = null;
+            object message = null;
+
+            #region 5to6delayed-delivery
+            SendOptions sendOptions = new SendOptions();
+            sendOptions.DelayDeliveryWith(TimeSpan.FromMinutes(30));
+            //OR
+            sendOptions.DoNotDeliverBefore(new DateTime(2016, 12, 25));
+
+            await handlerContext.Send(message, sendOptions);
+            #endregion
+        }
     }
+
 }

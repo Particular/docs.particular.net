@@ -76,5 +76,17 @@
                 .WrapHandlersExecutionInATransactionScope();
             #endregion
         }
+
+        public void DelayedDelivery()
+        {
+            IBus bus = null;
+            object message = null;
+
+            #region 5to6delayed-delivery
+            bus.Defer(TimeSpan.FromMinutes(30), message);
+            // OR
+            bus.Defer(new DateTime(2016, 12, 25), message);
+            #endregion
+        }
     }
 }
