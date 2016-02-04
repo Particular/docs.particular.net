@@ -16,7 +16,7 @@ Uses the [RavenDB document database](http://ravendb.net/) for storage.
 
 ## NServiceBus 5 and higher
 
-Starting with NServiceBus 5.0, RavenDB is no longer merged into the core. The RavenDB-backed persistence is available as a separate [nuget](https://www.nuget.org/packages/NServiceBus.RavenDB). This gives the ultimate freedom of evolution for both NServiceBus and RavenDB and allows users to upgrade both independently.
+Starting with NServiceBus 5.0, RavenDB is no longer merged into the core. The RavenDB-backed persistence is available as a separate [NuGet package](https://www.nuget.org/packages/NServiceBus.RavenDB). This gives the ultimate freedom of evolution for both NServiceBus and RavenDB and allows users to upgrade both independently.
 
 
 ### Connection options for RavenDB
@@ -93,7 +93,11 @@ DANGER: This is a potentially dangerous feature that can result in multiple inst
 
 #### Transaction recovery storage
 
-By default NServiceBus chooses `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage for RavenDB. However you may need to change this default if you are running into [this issue](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ), here is an example how to change the default:
+Prior to NServiceBus.RavenDB 3.1.0, NServiceBus chose  `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage for RavenDB, which is a setting necessary for RavenDB's implementation of distributed transactions. Later, RavenDB discovered that the use of Isolated Storage for this task was unstable in certain situations, resulting in users [receiving a TransactionAbortedException or IsolatedStorageException](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ).
+
+From NServiceBus.RavenDB 3.1.0 onwards, NServiceBus utilizes `LocalDirectoryTransactionRecoveryStorage` with a storage location inside `%LOCALAPPDATA%`.  It is strongly advised to upgrade to at least NServiceBus.RavenDB 3.1.0.
+
+If experiencing one of these issues and an upgrade to 3.1.0 is not possible, the default TransactionRecoveryStorage can be changed as shown in the following example. Note that a version for NServiceBus 6+ is not shown as versions of NServiceBus.RavenDB compatible with NServiceBus 6+ do not contain the issue.
 
 snippet:ConfiguringTransactionRecoveryStorage
 
