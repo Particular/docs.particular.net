@@ -61,6 +61,7 @@ The following settings are available for changing the behavior of timeout persis
 - `TimeoutDataTableName`: Allows you to set the name of the table where the timeouts themselves are stored, defaults to `TimeoutDataTableName`
 - `CatchUpInterval`: When a node hosting a timeout manager would go down, it needs to catch up with missed timeouts faster than it normally would (1 sec), this value allows you to set the catchup interval in seconds. Defaults to 3600, meaning it will process one hour at a time.
 - `PartitionKeyScope`: The time range used as partition key value for all timeouts. For optimal performance, this should be in line with the catchup interval so it should come to no surprise that the default value also represents an hour: `yyyyMMddHH`. When modifying `PartitionKeyScope`, you will need to migrate the data in the table defined by `TimeoutDataTableName`
+- `TimeoutStateContainerName`: Allows you to set the name of the container where the timeout state is stored, defaults to `timeoutstate` - **Added in v7.0**
 
 For more information see [Configuring Azure Connection Strings](https://msdn.microsoft.com/en-us/library/azure/ee758697.aspx)
 
