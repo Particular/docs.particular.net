@@ -163,7 +163,13 @@ In a real solution you would do the following
 
 Normally workers are deployed to different machines. When deployed to the same machine a GUID will be added to the end of the worker input queue name. This allows the distributor to properly route messages and prevents workers from competing on the same queue. Since, in this project, we are "faking different machines" by using different projects we can override the GUID behavior to prevent a proliferation of queue names.
 
-snippet:WorkerNameToUseWhileTesting
+Before V5 the only way to achieve this was the following address "hack"
+
+snippet:WorkerNameToUseWhileTestingCore
+
+In V5 there is a configuration setting that can be used
+
+snippet:WorkerNameToUseWhileTestingConfig
 
 #### Version 6
 
@@ -174,5 +180,3 @@ snippet:Distributor-InstanceId
 snippet:Distributor-InstanceId-Settings
 
 When deploying multiple workers to a single machine you need to make sure each worker is assigned a unique instance ID.
-
-#### Version 6
