@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Iesi.Collections">
       <HintPath>..\..\..\..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
