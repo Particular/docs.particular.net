@@ -48,14 +48,15 @@ class Program
             Console.WriteLine("Press Enter to publish the SomethingHappened Event");
 
             Guid eventId = Guid.NewGuid();
-            switch (key.Key)
+            if (key.Key == ConsoleKey.Enter)
             {
-                case ConsoleKey.Enter:
-                    busSession.Publish(new SomethingHappened());
-                    Console.WriteLine("SomethingHappened Event published");
-                    continue;
-                default:
-                    return;
+                busSession.Publish(new SomethingHappened());
+                Console.WriteLine("SomethingHappened Event published");
+                continue;
+            }
+            else
+            {
+                return;
             }
         }
 
