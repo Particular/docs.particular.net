@@ -541,6 +541,7 @@
     <None Include="Routing\RoutingFile.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="UpgradeGuides\5to6\Channel.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">

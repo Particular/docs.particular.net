@@ -369,6 +369,7 @@
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="UpgradeGuides\5to6\Channel.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Audit\ProvideConfiguration.cs" />
