@@ -1,6 +1,5 @@
 ---
 title: Scaling out NServiceBus endpoints
-
 summary: How to scale out NServiceBus endpoints
 tags:
 - Scale Out
@@ -9,23 +8,27 @@ tags:
 
 ## Version 5 and below
 
-In version 5 and below NServiceBus scale out capabilities were totally dependent on the transport being used.
+In Version 5 and below NServiceBus scale out capabilities are dependent on the transport being used.
+
 
 ### MSMQ
 
-Because of limitations of MSMQ related to remote receive, in order to scale out an MSMQ V5 (and below) endpoint users have to use the [distributor](/nservicebus/scalability-and-ha/distributor/). The role of the distributor is to forward incoming messages to a number of workers in order to balance the load. The workers are "invisible" to the outside world because all the outgoing messages contain the distributor's (not the worker's) address in the `reply-to` header. 
+Because of limitations of MSMQ related to remote receive, in order to scale out an MSMQ Version 5 (and below) endpoint users have to use the [distributor](/nservicebus/scalability-and-ha/distributor/). The role of the distributor is to forward incoming messages to a number of workers in order to balance the load. The workers are "invisible" to the outside world because all the outgoing messages contain the distributor's (not the worker's) address in the `reply-to` header. 
 
 The main issue with distributor is the throughput limitation due to the fact that, for each message forwarded to worker, there were additional two messages exchanged between the worker and the distributor.
 
+
 ### SQL Server and RabbitMQ
 
-Up to version 5 (inclusive) both SQL Server and RabbitMQ transports scale out by adding more receivers to the same queue, taking advantage of the competing consumers capability built into these transports. All the instances feeding off the queue have same *endpoint name* and *address* so they appear to the outside world as a single instance.
+Up to Version 5 (inclusive) both SQL Server and RabbitMQ transports scale out by adding more receivers to the same queue, taking advantage of the competing consumers capability built into these transports. All the instances feeding off the queue have same *endpoint name* and *address* so they appear to the outside world as a single instance.
 
-The benefit of this approach is zero configuration. New instances can be added just by `xcopy`-ing the deployment folder. The potential downside is the fact that total throughput of the endpoint is capped to the maximum throughput of a single queue in the underlying infrastructure. 
+The benefit of this approach is zero configuration. New instances can be added by `xcopy`-ing the deployment folder. The potential downside is that total throughput of the endpoint is capped to the maximum throughput of a single queue in the underlying infrastructure. 
+
 
 ### ASB and ASQ
 
 TODO
+
 
 ## Version 6
 
@@ -35,9 +38,10 @@ When instance ID is assigned, NServiceBus spins up an additional receiver for th
 
 It is up to the sender to choose if it is going to treat the endpoint as a whole (and send its messages to `Sales` queue) or address individual instances (e.g. `Sales-Red`, `Sales-Green`, `Sales-Blue`). In the latter case the sender will use round-robin algorithm for choosing destinations of outgoing messages.
 
+
 ### MSMQ
 
-When using MSMQ different instances are usually deployed to different (virtual) machines. Following routing file (see [file-based routing](/nservicebus/messaging/file-based-routing)) shows scaling out of the `Sales` endpoint.
+When using MSMQ different instances are usually deployed to different (virtual) machines. The following routing file (see [file-based routing](/nservicebus/messaging/file-based-routing.md)) shows scaling out of the `Sales` endpoint.
 
 snippet:Routing-FileBased-MSMQ
 
@@ -45,23 +49,23 @@ The corresponding logical routing is
 
 snippet:Routing-StaticRoutes-Endpoint
 
-NOTE: Operations are free to spin-up new instances of the endpoint should the load increase and the only requirement is adding an entry to the routing file. No changes in the source code are required.
+NOTE: System administrators are able to spin-up new instances of the endpoint should the load increase and the only requirement is adding an entry to the routing file. No changes in the source code are required.
+
 
 ### Broker transports
 
-The main difference when using broker transports is that queues are not attached to machines but are rather maintained by a central server (or cluster of servers). When running on a broker transport such as RabbitMQ or SQL Server, it is enough to specify the logical routing
+The main difference when using broker transports is that queues are not attached to machines but are rather maintained by a central server (or cluster of servers). When running on a broker transport such as RabbitMQ or SQL Server, it is enough to specify the logical routing:
 
 snippet:Routing-StaticRoutes-Endpoint
 
-Scaling out can be done, as in version 5, just by `xcopy`-ing the binaries. In this case all instances have empty IDs and there is only one queue in use.
+Scaling out can be done, as in Version 5, by `xcopy`-ing the binaries. In this case all instances have empty IDs and there is only one queue in use.
 
 Should you need to go past the throughput of a single infrastructure queue or have to address each instance separately, you can specify instance IDs for each deployment of the endpoint. In this case, in addition to the shared `Sales` queue, there will be two instance-specific queues used by the `Sales` endpoint.
 
-Some upstream endpoints might decide to still treat `Sales` as a single *thing* and depend on the logical routing only. These endpoints will continue to send their messages to the `Sales` queue. Others might include routing file like this
+Some upstream endpoints might decide to still treat `Sales` as a single *thing* and depend on the logical routing only. These endpoints will continue to send their messages to the `Sales` queue. Others might include routing file:
 
 snippet:Routing-FileBased-Broker
 
-In that case the sender will use round-robin distribution just like in the MSMQ case.
+In that case the sender will use round-robin distribution like in the MSMQ case.
 
-
-NOTE: Even when physical routing is specified (e.g. in form of the routing file) the transport is free to ignore it if it is not possible to implement a particular scenario. An example is RabbitMQ which delivers the events always to the shared queue. The reason for that is lack of built-in `round-robin` exchange type that could be used to bind event exchanges to individual queues.
+NOTE: Even when physical routing is specified (e.g. in form of the routing file) the transport is able to ignore it if it is not possible to implement a particular scenario. An example is RabbitMQ which delivers the events always to the shared queue. The reason for that is lack of built-in `round-robin` exchange type that could be used to bind event exchanges to individual queues.
