@@ -2,9 +2,9 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
-public class Program
+class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
         AsyncMain().GetAwaiter().GetResult();
     }
@@ -29,7 +29,7 @@ public class Program
         IEndpointInstance endpoint = await Endpoint.Start(configuration);
         try
         {
-            Console.WriteLine("\r\nBus created and configured; press any key to stop program\r\n");
+            Console.WriteLine("\r\nPress any key to stop program\r\n");
 
             Console.WriteLine("Sending messages...");
             for (int i = 0; i < 100; i++)
@@ -42,7 +42,8 @@ public class Program
                 });
             }
             Console.WriteLine("Messages sent.");
-            
+            Console.WriteLine("Press any key to exit");
+
             Console.ReadKey();
         }
         finally
