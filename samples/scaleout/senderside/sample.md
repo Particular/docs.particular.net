@@ -75,4 +75,4 @@ Go to the `UnawareClient` console an press enter a few times. `Message received.
 
 ### Round robin
 
-Now go to the `AwareClient` console and, again, press enter a few times. `Message received.` messages show up alternately in `Server1` and `Server2` windows. This is because the client is in charge of the distribution and sends his messages to instance-specific queues.
+Now go to the `AwareClient` console and, again, press enter a few times. `Message received.` messages show up alternately in `Server1` and `Server2` windows. This is because the client is in charge of the distribution and sends its messages to instance-specific queues.
