@@ -20,15 +20,18 @@ The main issue with distributor is the throughput limitation due to the fact tha
 
 ### SQL Server and RabbitMQ
 
-Up to Version 5 (inclusive) both SQL Server and RabbitMQ transports scale out by adding more receivers to the same queue, taking advantage of the competing consumers capability built into these transports. All the instances feeding off the queue have same *endpoint name* and *address* so they appear to the outside world as a single instance.
+Up to version 5 (inclusive) both SQL Server and RabbitMQ transports scale out by adding more receivers to the same queue, taking advantage of the competing consumers capability built into these transports. All the instances feeding off the queue have same *endpoint name* and *address* so they appear to the outside world as a single instance.
 
 The benefit of this approach is zero configuration. New instances can be added by `xcopy`-ing the deployment folder. The potential downside is that total throughput of the endpoint is capped to the maximum throughput of a single queue in the underlying infrastructure. 
 
 
-### ASB and ASQ
+### Azure Storage Queues and Azure Service Bus
 
-TODO
+Up to version 5 (inclusive) both Azure transports behave similarly to other broker transports (SQL Server and RabbitMQ): they scale out by adding receivers to a single queue. An additional feature of Azure transports is ability to use individualized queues (based on the *role instance ID*)
 
+snippet: UniqueQueuePerEndpointInstance
+
+This feature is, however, *not intended* for scaling out as there is no built-in distribution mechanism between that would route messages to the individualized queues.
 
 ## Version 6
 
