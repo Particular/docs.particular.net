@@ -147,17 +147,18 @@ Sent Order placed event for orderId [1320cfdc-f5cc-42a7-9157-251756694069].
 
 This sample has two workers which are hard coded as projects for the sake of keeping the sample easy to use. This manifests in several ways
 
-1. Both `Worker1` and `Worker2` are different projects so that the solution automatically starts with two workers.
-2. Both `Worker1` and `Worker2` have different endpoint names so they have distinct queue names when running in your development environment.
-3. Both `Worker1` and `Worker2` have hard coded settings in the app.config
+ 1. Both `Worker1` and `Worker2` are different projects so that the solution automatically starts with two workers.
+ 1. Both `Worker1` and `Worker2` have different endpoint names so they have distinct queue names when running in your development environment.
+ 1. Both `Worker1` and `Worker2` have hard coded settings in the app.config
 
 In a real solution you would do the following
 
-1. Have one Worker in the project (or even have the `Server` double up as a worker)
-2. In deployment the same `Worker` endpoint would be deployed to multiple machines and only differ by their app.config.
+ 1. Have one Worker in the project (or even have the `Server` double up as a worker)
+ 1. In deployment the same `Worker` endpoint would be deployed to multiple machines and only differ by their app.config.
 
 
 ### Worker Input queue
+
 
 #### Version 5 and lower
 
@@ -165,11 +166,12 @@ Normally workers are deployed to different machines. When deployed to the same m
 
 Before V5 the only way to achieve this was the following address "hack"
 
-snippet:WorkerNameToUseWhileTestingCore
+snippet:WorkerNameToUseWhileTestingCode
 
 In V5 there is a configuration setting that can be used
 
 snippet:WorkerNameToUseWhileTestingConfig
+
 
 #### Version 6
 
