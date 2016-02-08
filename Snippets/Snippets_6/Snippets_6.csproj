@@ -476,6 +476,8 @@
     <Compile Include="Transports\SqlServer\ConfigurationSettings.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="TransportTransactions.cs" />
+    <Compile Include="UpgradeGuides\Downstream\Raven\3to4\HandlerWithRavenSession.cs" />
+    <Compile Include="UpgradeGuides\Downstream\Raven\3to4\SharedSessionEndpointConfig.cs" />
     <Compile Include="UpgradeGuides\5to6\StartupInterface.cs" />
     <Compile Include="UpgradeGuides\5to6\MsmqSubscriptionAuthorization.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
@@ -579,5 +581,6 @@
       <Name>Operations</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

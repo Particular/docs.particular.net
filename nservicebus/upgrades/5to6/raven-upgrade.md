@@ -1,0 +1,31 @@
+---
+title: Upgrade NServiceBus.RavenDB from 3 to 4
+summary: Instructions on how to upgrade NServiceBus.RavenDB from NServiceBus Versions 5 to 6
+tags:
+ - upgrade
+ - migration
+ - raven
+related:
+- nservicebus/upgrades/5to6
+---
+
+## Namespace change
+
+The `RavenDBPersistence` has moved from `NServiceBus.Persistence` namespace to `NServiceBus`. There is no need to have an extra using statement if the NServiceBus.RavenDB NuGet package is installed. 
+
+## Configuring a shared session
+
+Configuring a shared raven session now requires a `Func<IAsyncDocumentSession>` instead of a `Func<IDocumentSession>`. 
+
+snippet:3to4-ravensharedsession
+
+## ISessionProvider is obsolete
+
+In version 3 of NServiceBus.RavenDB an `ISessionProvider` was available for dependency injection. The new method of accessing the raven session is the `SynchronizedStorageSession`.
+
+snippet:3to4-acccessingravenfromhandler
+
+### Session is available regardless of features enabled
+
+In version 3, the `RavenStorageSession` was only registered if at least one out of `Outbox` and `Sagas` were enabled. There are possible use cases for using the NServiceBus wrapped RavenDB session so we removed the prerequisites.
+

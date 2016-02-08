@@ -637,6 +637,8 @@
     <Compile Include="UnitTesting\Unobtrusive.cs" />
     <Compile Include="UpgradeGuides\4to5\Scheduler.cs" />
     <Compile Include="UpgradeGuides\4to5\Upgrade.cs" />
+    <Compile Include="UpgradeGuides\Downstream\Raven\3to4\HandlerWithRavenSession.cs" />
+    <Compile Include="UpgradeGuides\Downstream\Raven\3to4\SharedSessionEndpointConfig.cs" />
     <Compile Include="UpgradeGuides\5to6\Upgrade.cs" />
     <Compile Include="UpgradeGuides\5to6\UpgradeMessageHandler.cs" />
     <Compile Include="UpgradeGuides\5to6\OutgoingBehavior.cs" />
