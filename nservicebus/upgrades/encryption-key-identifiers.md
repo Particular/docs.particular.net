@@ -111,7 +111,7 @@ The following link contains samples for:
 
 - Powershell
 - LinqPad
-- OpenSLL
+- OpenSSL
 - CryptoKeyGenerator
 
 [Generating secure random strong encryption keys](/nservicebus/security/generating-encryption-keys.md)
