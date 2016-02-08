@@ -5,6 +5,7 @@ tags:
  - upgrade
 related:
  - nservicebus/security/encryption
+ - nservicebus/security/generating-encryption-keys
 ---
 
 ## Summary
@@ -20,18 +21,18 @@ This upgrade document explains what steps to take when upgrading NServiceBus end
 
 ## Upgrade Steps
 
-To deploy this fix throughout your system, you must first upgrade your endpoints with the latest versions of NServiceBus, then update endpoint configurations. Optionally, you may also want to generate new encryption keys.
+To deploy this fix throughout a system, first upgrade endpoints with the latest versions of NServiceBus, then update endpoint configurations. Optionally, also want to generate new encryption keys.
 
 
 ### Upgrade endpoints
 
 All endpoints using encryption need to be upgraded to the latest patch release.
 
-- Version 3.x.x requires at least v3.3.17
-- Version 4.x.x requires at least v4.7.8
-- Version 5.x.x requires at least v5.0.7, v5.1.5 or v5.2.9
+ * Version 3.x.x requires at least v3.3.17
+ * Version 4.x.x requires at least v4.7.8
+ * Version 5.x.x requires at least v5.0.7, v5.1.5 or v5.2.9
 
-For example, if currently using NServiceBus 4.7.x, you must update to the latest patch release 4.7.8.
+For example, if currently using NServiceBus 4.7.x, an update to the latest patch release 4.7.8 is required.
 
 
 ## Compatibility
@@ -43,10 +44,10 @@ It is not required to upgrade all endpoints simultaneously. There has not been a
 
 Steps:
 
-- Stop the endpoint
-- Deploy the new version
-- Edit the endpoint configuration, adding key identifiers to at least the current encryption key, if not the backup keys as well.
-- Start the endpoint
+ * Stop the endpoint
+ * Deploy the new version
+ * Edit the endpoint configuration, adding key identifiers to at least the current encryption key, if not the backup keys as well.
+ * Start the endpoint
 
 
 NOTE: If only the new version is deployed without updating the configuration, then the endpoint will start but will not be able to encrypt messages or decrypt messages that have a key identifier.
@@ -59,7 +60,7 @@ The following configuration examples demonstrate how to update existing endpoint
 
 #### XML Configuration
 
-You can choose to keep the current encryption key and will still be able to decrypt messages already in flight:
+It is possible to choose to keep the current encryption key and will still be able to decrypt messages already in flight:
 
 ```
 <RijndaelEncryptionServiceConfig Key="do-not-use-this-encryption-key!!" KeyIdentifier="2015-10" />
@@ -73,7 +74,7 @@ You can choose to keep the current encryption key and will still be able to decr
 
 #### Code API (v5+)
 
-When recompiling your project, you will get an obsolete warning. Change the current method to the new one that has new arguments that allow to pass a dictionary to lookup keys and an optional list of keys that will be used to decrypt messages that do not have a key identifier header.
+When recompiling an obsolete warning will occur. Change the current method to the new one that has new arguments that allow to pass a dictionary to lookup keys and an optional list of keys that will be used to decrypt messages that do not have a key identifier header.
 
 NOTE: Keys need to be available in the expired keys list to be backwards compatible.
 
@@ -101,20 +102,11 @@ busConfiguration.RijndaelEncryptionService(
 
 ## Generating new keys
 
-You should generate a new encryption key if you are using ASCII keys with a key length of 16 characters to overcome the 7-bit limit that weakens the encryption key.
+Generate a new encryption key if using ASCII keys with a key length of 16 characters to overcome the 7-bit limit that weakens the encryption key.
 
 Switch to Base64 256 bits keys if possible, or to at least ASCII 24 character keys to be backwards compatible with pre v5.x.x endpoints and have stronger encryption.
 
 NOTE: Base64 keys can only be configured for NServiceBus v5+ and are not compatible with earlier versions.
-
-The following link contains samples for:
-
-- Powershell
-- LinqPad
-- OpenSSL
-- CryptoKeyGenerator
-
-[Generating secure random strong encryption keys](/nservicebus/security/generating-encryption-keys.md)
 
 
 ## Locating possible corrupted data
@@ -137,4 +129,4 @@ Search in log files that indicate data validation issues. These could indicate t
 
 Recovering corrupted data is *only* possible when the original encrypted messages are moved to an audit queue.
 
-We do not have a tool that helps in recovering. Please contact support if you suspect possible data corruption.
+There is no tool that helps in recovery. Please contact support if you suspect possible data corruption.
