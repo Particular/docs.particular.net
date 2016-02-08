@@ -6,23 +6,23 @@ class Program
 {
     static void Main()
     {
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.UsePersistence<InMemoryPersistence>();
-        busConfig.SendFailedMessagesTo("error");
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
 
         #region Logical-Routing
 
-        busConfig.Routing().UnicastRoutingTable.RouteToEndpoint(typeof(DoSomething), "Server");
+        busConfiguration.Routing().UnicastRoutingTable.RouteToEndpoint(typeof(DoSomething), "Server");
 
         #endregion
 
         #region File-Based-Routing
 
-        busConfig.Routing().UseFileBasedEndpointInstanceMapping("routes.xml");
+        busConfiguration.Routing().UseFileBasedEndpointInstanceMapping("routes.xml");
 
         #endregion
 
-        Run(busConfig).GetAwaiter().GetResult();
+        Run(busConfiguration).GetAwaiter().GetResult();
     }
 
     static async Task Run(BusConfiguration busConfig)

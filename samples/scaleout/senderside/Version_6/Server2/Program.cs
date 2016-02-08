@@ -7,12 +7,12 @@ class Program
 {
     static void Main()
     {
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.EndpointName("Server");
-        busConfig.EndpointInstanceId(() => ConfigurationManager.AppSettings["InstanceId"]);
-        busConfig.UsePersistence<InMemoryPersistence>();
-        busConfig.SendFailedMessagesTo("error");
-        Run(busConfig).GetAwaiter().GetResult();
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.EndpointName("Server");
+        busConfiguration.EndpointInstanceId(() => ConfigurationManager.AppSettings["InstanceId"]);
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
+        Run(busConfiguration).GetAwaiter().GetResult();
     }
 
     static async Task Run(BusConfiguration busConfig)

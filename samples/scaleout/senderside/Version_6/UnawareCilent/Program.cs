@@ -6,13 +6,13 @@ class Program
 {
     static void Main()
     {
-        BusConfiguration busConfig = new BusConfiguration();
-        busConfig.UsePersistence<InMemoryPersistence>();
-        busConfig.SendFailedMessagesTo("error");
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UsePersistence<InMemoryPersistence>();
+        busConfiguration.SendFailedMessagesTo("error");
 
-        busConfig.Routing().UnicastRoutingTable.RouteToEndpoint(typeof(DoSomething), "Server");
+        busConfiguration.Routing().UnicastRoutingTable.RouteToEndpoint(typeof(DoSomething), "Server");
 
-        Run(busConfig).GetAwaiter().GetResult();
+        Run(busConfiguration).GetAwaiter().GetResult();
     }
 
     static async Task Run(BusConfiguration busConfig)
