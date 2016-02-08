@@ -13,6 +13,7 @@ class Program
     {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Mvc.Server");
+        busConfiguration.SendFailedMessagesTo("error");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();

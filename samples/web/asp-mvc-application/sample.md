@@ -20,6 +20,8 @@ The sample covers only the sending of the asynchronous message as the send and b
 
 NOTE: In `SendAndBlock`, the web page renders synchronously. From the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is messaging asynchronously.
 
+Warning: Version 6 and higher are natively async and as such there is no "SendAndBlock" option.
+
 ![AsyncPages Asp.Net Mvc sample running](async-pages-mvc-selecting-blocking-method.png "AsyncPages Asp.Net Mvc sample running")
 
 Choosing SendAsync results in the following page:
@@ -33,6 +35,7 @@ Now, look at the code. This sample has three projects:
 -   `AsyncPagesMvc`: ASP.NET MVC application that sends messages (found in `Messages` project)
 -   `Shared`: Common code including declaration of messages
 -   `Server`: Destination of messages sent from the MVC  project. Hosted in a console application
+
 
 ## Initializing the bus
 
@@ -50,13 +53,16 @@ The NServiceBus builder registers and instantiates `IControllerActivator` so tha
 
 Read [how the IBus is injected into the controllers](/samples/web/asp-mvc-injecting-bus/).
 
+
 ## Sending a message
+
 
 ### Asynchronous message sending: SendAsync controller
 
 Using `AsyncController`:
 
 snippet:AsyncController
+
 
 ### Synchronous message sending: SendAndBlockController controller
 
@@ -67,6 +73,7 @@ snippet:SendAndBlockController
 The controller is referencing its `IBus` (NServiceBus injected it when the controller was instantiated). The code calls the send method, passing in the newly created command object. The bus isn't anything special in the code; it's just an object for calling methods.
 
 The call registers a callback method that will be called (with this parameter) as soon as a response is received by the server.
+
 
 ## Handling the message
 

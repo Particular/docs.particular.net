@@ -9,7 +9,7 @@ public class MvcApplication : HttpApplication
 {
     IEndpointInstance endpoint;
 
-    public static void RegisterRoutes(RouteCollection routes)
+    static void RegisterRoutes(RouteCollection routes)
     {
         routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
@@ -27,10 +27,7 @@ public class MvcApplication : HttpApplication
 
     public override void Dispose()
     {
-        if (endpoint != null)
-        {
-            endpoint.Stop().GetAwaiter().GetResult();
-        }
+        endpoint?.Stop().GetAwaiter().GetResult();
         base.Dispose();
     }
 
@@ -50,6 +47,7 @@ public class MvcApplication : HttpApplication
 
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Mvc.WebApplication");
+        busConfiguration.SendFailedMessagesTo("error");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
         busConfiguration.UsePersistence<InMemoryPersistence>();
