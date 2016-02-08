@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 
-namespace Messages
+public class DoSomething : ICommand
 {
-    public class DoSomething : ICommand
-    {
-    }
 }

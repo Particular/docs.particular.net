@@ -1,47 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Messages;
 using NServiceBus;
+using System.Configuration;
 
-namespace Server1
+class Program
 {
-    class Program
+    static void Main()
     {
-        static void Main(string[] args)
-        {
-            BusConfiguration busConfig = new BusConfiguration();
-            busConfig.EndpointName("Server");
+        BusConfiguration busConfig = new BusConfiguration();
+        busConfig.EndpointName("Server");
 
-            #region Server-Set-InstanceId
-            busConfig.EndpointInstanceId(() => ConfigurationManager.AppSettings["InstanceId"]);
-            #endregion
+        #region Server-Set-InstanceId
 
-            busConfig.UsePersistence<InMemoryPersistence>();
-            busConfig.SendFailedMessagesTo("error");
-            Run(busConfig).GetAwaiter().GetResult();
-        }
+        busConfig.EndpointInstanceId(() => ConfigurationManager.AppSettings["InstanceId"]);
 
-        private static async Task Run(BusConfiguration busConfig)
-        {
-            IEndpointInstance endpoint = await Endpoint.Start(busConfig);
-            Console.WriteLine("Press <enter> to exit.");
-            Console.ReadLine();
-            await endpoint.Stop();
-        }
+        #endregion
+
+        busConfig.UsePersistence<InMemoryPersistence>();
+        busConfig.SendFailedMessagesTo("error");
+        Run(busConfig).GetAwaiter().GetResult();
     }
 
-    #region Server-Handler
-    public class DoSomethingHandler : IHandleMessages<DoSomething>
+    static async Task Run(BusConfiguration busConfig)
     {
-        public Task Handle(DoSomething message, IMessageHandlerContext context)
-        {
-            Console.WriteLine("Message received.");
-            return Task.FromResult(0);
-        }
+        IEndpointInstance endpoint = await Endpoint.Start(busConfig);
+        Console.WriteLine("Press <enter> to exit.");
+        Console.ReadLine();
+        await endpoint.Stop();
     }
-    #endregion
 }
