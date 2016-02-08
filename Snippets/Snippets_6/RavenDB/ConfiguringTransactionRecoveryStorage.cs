@@ -8,20 +8,8 @@
     {
         public void Foo()
         {
-            #region ConfiguringTransactionRecoveryStorage
-
-            string transactionRecoveryPath = "path to transaction recovery storage unique per endpoint";
-            DocumentStore myDocumentStore = new DocumentStore
-            {
-                TransactionRecoveryStorage = new LocalDirectoryTransactionRecoveryStorage(transactionRecoveryPath)
-            };
-            // configure document store properties here and initialize
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UsePersistence<RavenDBPersistence>()
-                .SetDefaultDocumentStore(myDocumentStore);
-
-            #endregion
+            // Do not include ConfiguringTransactionRecoveryStorage region. Core V6 must use 
+            // Raven V4 which will not include the issue that necessitates this workaround.
         }
     }
 }
