@@ -4,7 +4,7 @@ summary: NServiceBus SQL Server
 tags:
 - SQL Server
 redirects:
-- nservicebus/sqlserver/configuration
+- nservicebus/sqlserver/usage
 related:
 - samples/outbox/sqltransport-nhpersistence
 - samples/sqltransport-nhpersistence
@@ -17,9 +17,7 @@ The SQL Server transport implements a message queueing mechanism on top of a Mic
 
 The SQL Server transport is a hybrid queueing system which is neither store-and-forward (like MSMQ) nor a broker (like RabbitMQ). It treats the SQL Server only as a storage infrastructure for the queues. The queueing logic itself is implemented and executed as part of the transport code running in an NServiceBus endpoint.
 
-
 ## Pros & cons
-
 
 ### Pros
 

@@ -5,18 +5,16 @@ tags:
 - SQL Server
 ---
 
-
-
 ## Queues
 
 ### Primary queue
 
-For each endpoint there is a single primary queue table which name matches the name of the endpoint. This single queue is shared by all instances in case of a scale-out scenario.
+For each endpoint there is a single primary queue table which name matches the name of the endpoint. In scale-out scenario this single queue is shared by all instances.
 
 
 ### Secondary queues
 
-In order for [callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md) to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is necessary because callback handlers are stored in-memory in the node that did the send. The reply is sent via should be delivered to this special queue so that it is picked up by the same node that registered the callback.
+In order for [callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md) to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is necessary because callback handlers are stored in-memory in the node that did the send. The reply should be delivered to the dedicated queue, so the message can be picked up by the same node that registered the callback.
 
 Secondary queue tables have the name of the machine appended to the name of the primary queue table with `.` as separator e.g. `SomeEndpoint.MyMachine`.
 
