@@ -14,8 +14,8 @@ class Program
 
     static async Task AsyncMain()
     {
-        #region msmqpublisher-config
-    
+        #region publisher-config
+
         var endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EndpointName("MsmqPublisher");
@@ -41,7 +41,7 @@ class Program
     {
         Console.WriteLine("Press Enter to publish the SomethingHappened Event");
 
-        #region PublishLoop
+        #region publisher-loop
         while (Console.ReadLine() != null)
         {
             busSession.Publish(new SomethingHappened());

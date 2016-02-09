@@ -1,6 +1,6 @@
 ---
 title: SQL Bridge
-summary: This sample shows how to setup a sql subscriber so it can subscribe to events from a MSMQ publisher.
+summary: This sample shows how to setup a SQL subscriber so it can subscribe to events from a MSMQ publisher.
 related:
 - nservicebus/transports
 - nservicebus/msmq
@@ -8,6 +8,8 @@ related:
 ---
 
 ## Sql Bridge (Transport Integration)
+
+WARNING: This sample has been deprecated. Please refer to the [MsmqToSqlRelay Sample](/samples/msmqtosqlrelay/.) 
 
 This sample shows how to setup a sql subscriber so it can subscribe to events from a MSMQ publisher. The solution comprises of these 5 projects.
 

@@ -16,7 +16,7 @@ namespace SqlRelay
         static async Task AsyncMain()
         {
 
-            #region sqlsubscriber-config
+            #region sqlrelay-config
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EndpointName("SqlRelay");
