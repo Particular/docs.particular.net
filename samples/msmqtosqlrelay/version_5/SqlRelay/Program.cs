@@ -13,7 +13,7 @@ namespace SqlRelay
     {
         static void Main(string[] args)
         {
-            #region publisher-config
+            #region sqlrelay-config
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.EndpointName("SqlRelay");
             busConfiguration.UseTransport<SqlServerTransport>()

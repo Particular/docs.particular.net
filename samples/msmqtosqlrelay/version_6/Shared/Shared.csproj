@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SomethingHappenedEvent.cs" />
+    <Compile Include="SomethingHappened.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
