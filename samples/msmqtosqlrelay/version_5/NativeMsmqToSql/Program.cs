@@ -12,7 +12,7 @@ using System.Xml;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
         ManualResetEvent signal = new ManualResetEvent(false);
 

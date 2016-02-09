@@ -6,7 +6,7 @@ using Shared;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
         #region publisher-config
         BusConfiguration busConfiguration = new BusConfiguration();

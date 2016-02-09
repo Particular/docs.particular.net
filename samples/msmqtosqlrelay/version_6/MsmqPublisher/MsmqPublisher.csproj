@@ -73,6 +73,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CreateDatabase.sql" />
     <Content Include="AddSubscriber.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

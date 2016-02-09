@@ -65,5 +65,8 @@
       <Name>Shared</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="CreateDatabase.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

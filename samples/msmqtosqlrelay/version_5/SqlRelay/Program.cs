@@ -11,7 +11,7 @@ namespace SqlRelay
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             #region sqlrelay-config
             BusConfiguration busConfiguration = new BusConfiguration();
