@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode specific-document-store-via-connection-string -->
+<configuration>
+  <connectionStrings>
+    <add name="NServiceBus/Persistence/RavenDB/Subscription" 
+         connectionString="Url = http://localhost:9090"/>
+    <add name="NServiceBus/Persistence/RavenDB/Saga" 
+         connectionString="Url = http://localhost:9090"/>
+    <add name="NServiceBus/Persistence/RavenDB/Timeout" 
+         connectionString="Url = http://localhost:9090"/>
+    <add name="NServiceBus/Persistence/RavenDB/Outbox" 
+         connectionString="Url = http://localhost:9090"/>
+    <add name="NServiceBus/Persistence/RavenDB/GatewayDeduplication" 
+         connectionString="Url = http://localhost:9090"/>
+  </connectionStrings>
+</configuration>
+<!--endcode-->
