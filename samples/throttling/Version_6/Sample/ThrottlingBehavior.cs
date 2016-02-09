@@ -11,7 +11,6 @@ public class ThrottlingBehavior : Behavior<IInvokeHandlerContext>
 
     public override async Task Invoke(IInvokeHandlerContext context, Func<Task> next)
     {
-
         DateTime? rateLimitReset = nextRateLimitReset;
         if (rateLimitReset.HasValue && rateLimitReset >= DateTime.UtcNow)
         {
@@ -31,15 +30,13 @@ public class ThrottlingBehavior : Behavior<IInvokeHandlerContext>
             await DelayMessage(context, nextReset.Value).ConfigureAwait(false);
         }
     }
-#endregion
 
-    static Task DelayMessage(IInvokeHandlerContext context, DateTime deliverAt)
+    Task DelayMessage(IInvokeHandlerContext context, DateTime deliverAt)
     {
-        #region DelayMessage
         SendOptions sendOptions = new SendOptions();
         sendOptions.RouteToLocalEndpointInstance();
         sendOptions.DoNotDeliverBefore(deliverAt);
         return context.Send(context.MessageBeingHandled, sendOptions);
-        #endregion
     }
 }
+#endregion

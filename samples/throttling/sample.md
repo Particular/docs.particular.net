@@ -19,3 +19,8 @@ snippet:Configuration
 ### Registering the behavior in pipeline
 
 snippet:RegisterBehavior
+
+
+### The Behavior
+
+snippet: ThrottlingBehavior
