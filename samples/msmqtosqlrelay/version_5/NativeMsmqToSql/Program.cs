@@ -39,6 +39,7 @@ class Program
     private static void MsmqBridgeOnReceiveCompleted(object sender, ReceiveCompletedEventArgs receiveCompletedEventArgs)
     {
         var sqlConnectionStr = @"Data Source =.\SQLEXPRESS; Initial Catalog = PersistenceForSqlTransport; Integrated Security = True";
+        var sqlRelayEndpointName = "SqlRelay";
 
         using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
         {
@@ -65,7 +66,7 @@ class Program
 
                 // Have the necessary raw information from queue - Therefore write it to Sql.
                 Console.WriteLine("Forwarding message to SQLRelay endpoint");
-                SendMessageToSql(sqlConnectionStr, "SqlRelay", messageBody, headers);
+                SendMessageToSql(sqlConnectionStr, sqlRelayEndpointName, messageBody, headers);
                 #endregion
 
             }
