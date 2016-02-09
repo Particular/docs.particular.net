@@ -1,6 +1,6 @@
 ---
 title: Transactions and delivery guarantees
-summary: Transactions and delivery guarantees in SQLServer Transport.
+summary: Transactions and delivery guarantees in SQL Server Transport.
 tags:
 - SQL Server
 ---
