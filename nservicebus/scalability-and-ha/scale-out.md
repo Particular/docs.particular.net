@@ -33,7 +33,7 @@ snippet: UniqueQueuePerEndpointInstance
 
 This feature is, however, *not intended* for scaling out as there is no built-in distribution mechanism between that would route messages to the individualized queues.
 
-## Version 6
+## Version 6 and above
 
 Version 6 of NServiceBus comes with a unified scalability model which is based on the concept of endpoint instance ID. Each deployment of NServiceBus can (but does not have to) be assigned an *instance ID*. Instance IDs can be shared between several deployments. 
 
