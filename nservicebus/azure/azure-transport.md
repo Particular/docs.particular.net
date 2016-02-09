@@ -28,15 +28,6 @@ As part of the Azure support for NServiceBus, you can choose between two options
 Each of these two options has separate features, capabilities, and usage characteristics. A detailed comparison and discussion of when to select which is beyond the scope of this document. To help decide which option best suits your application's needs, review the Azure article "[Azure Queues and Azure Service Bus Queues - Compared and Contrasted](https://azure.microsoft.com/en-us/documentation/articles/service-bus-azure-and-service-bus-queues-compared-contrasted/)".
 
 
-## Prerequisites
-
-The Azure transport for NServiceBus and its samples require the following:
-
- * [NServiceBus Version 4.0 or later](http://particular.net/downloads)
-  * Note that Azure transport for NServiceBus is supported by NServiceBus Version 3 and later. It is, however, recommended that you use it with NServiceBus Version 4, and the samples require NServiceBus Version 4.
- * [Microsoft Azure SDK Version 2.0](https://azure.microsoft.com/en-us/downloads/)
-
-
 ## Configuring for cloud service hosting
 
 For a detailed description of the cloud service configuration in Azure, see "[Set Up a Cloud Service for Azure](https://msdn.microsoft.com/library/azure/hh124108.aspx#bk_Config)".
@@ -124,7 +115,7 @@ In your NServiceBus solution, specify the endpoint configuration to use AzureSer
 
 ## Configuring for on-premise hosting
 
-In the configuration file for the application (web.config or app.config), add an "NServiceBus\\Transport" element as follows:
+In the configuration file for the application (web.config or app.config), add an `NServiceBus\Transport` element as follows:
 
 ```
 <configuration> 
@@ -137,6 +128,6 @@ In the configuration file for the application (web.config or app.config), add an
 </configuration>
 ```
 
-The connection string value should be set according to the selected Azure options selected (either a Azure Queues connection string or a Azure Service Bus namspace).
+The connection string value should be set according to the selected Azure options selected (either a Azure Queues connection string or a Azure Service Bus namespace).
 
 NOTE: Setting the connection string in the application configuration files (web.config or app.config) is overridden by any settings placed in the service configuration file (ServiceConfiguration.cscfg) if one exists. This allows a cloud hosting scenario to override an on-premise deployment scenario, with minimal changes to the configuration, while allowing easy updates to the deployment configuration through the service configuration files only, with no need to update the applications configuration files.
