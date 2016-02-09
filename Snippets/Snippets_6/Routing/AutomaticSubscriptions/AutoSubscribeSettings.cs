@@ -9,9 +9,9 @@
         {
             #region DisableAutoSubscribe
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
-            busConfiguration.DisableFeature<AutoSubscribe>();
+            configuration.DisableFeature<AutoSubscribe>();
 
             #endregion
         }
@@ -20,9 +20,9 @@
         {
             #region DoNotAutoSubscribeSagas
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
-            busConfiguration.AutoSubscribe().DoNotAutoSubscribeSagas();
+            configuration.AutoSubscribe().DoNotAutoSubscribeSagas();
 
             #endregion
         }

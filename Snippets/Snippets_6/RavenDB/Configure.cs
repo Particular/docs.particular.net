@@ -15,8 +15,8 @@
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UsePersistence<RavenDBPersistence>().UseSharedAsyncSession(() =>
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UsePersistence<RavenDBPersistence>().UseSharedAsyncSession(() =>
             {
                 IAsyncDocumentSession session = myDocumentStore.OpenAsyncSession();
                 // customize the session properties here
@@ -55,8 +55,8 @@
             DocumentStore myDocumentStore = new DocumentStore();
             // configure document store properties here
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UsePersistence<RavenDBPersistence>()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UsePersistence<RavenDBPersistence>()
                 .UseDocumentStoreForSubscriptions(myDocumentStore)
                 .UseDocumentStoreForSagas(myDocumentStore)
                 .UseDocumentStoreForTimeouts(myDocumentStore);
@@ -77,8 +77,8 @@
             // configure document store properties here
 
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UsePersistence<RavenDBPersistence>()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UsePersistence<RavenDBPersistence>()
                 .SetDefaultDocumentStore(myDocumentStore);
 
             #endregion
@@ -91,8 +91,8 @@
             ConnectionParameters connectionParams = new ConnectionParameters();
             // configure connection params (ApiKey, DatabaseName, Url) here
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UsePersistence<RavenDBPersistence>()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UsePersistence<RavenDBPersistence>()
                 .SetDefaultDocumentStore(connectionParams);
 
             #endregion

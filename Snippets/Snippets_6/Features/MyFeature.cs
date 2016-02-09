@@ -25,12 +25,12 @@
     {
         ManualResetEventSlim resetEvent = new ManualResetEventSlim();
 
-        protected override async Task OnStart(IBusSession session)
+        protected override async Task OnStart(IMessageSession session)
         {
             resetEvent.Set();
         }
 
-        protected override async Task OnStop(IBusSession session)
+        protected override async Task OnStop(IMessageSession session)
         {
             resetEvent.Reset();
         }

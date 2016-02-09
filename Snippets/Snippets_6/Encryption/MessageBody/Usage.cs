@@ -8,8 +8,8 @@
         {
             #region UsingMessageBodyEncryptor
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent<MessageEncryptor>(DependencyLifecycle.InstancePerCall));
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.RegisterComponents(c => c.ConfigureComponent<MessageEncryptor>(DependencyLifecycle.InstancePerCall));
 
             #endregion
         }

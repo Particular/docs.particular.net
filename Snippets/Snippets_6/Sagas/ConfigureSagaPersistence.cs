@@ -8,11 +8,11 @@
 
         public async void Simple()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
             #region saga-configure
 
-            busConfiguration.UsePersistence<PersistenceToUseGoesHere>();
+            configuration.UsePersistence<PersistenceToUseGoesHere>();
 
             #endregion
         }

@@ -6,10 +6,10 @@
     {
         public Usage()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
             #region UseCustomConfigurationSourceForErrorQueueConfig
-            busConfiguration.CustomConfigurationSource(new ConfigurationSource());
+            configuration.CustomConfigurationSource(new ConfigurationSource());
             #endregion
         }
     }

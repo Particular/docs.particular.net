@@ -8,8 +8,8 @@ namespace Snippets6.PubSub.WithConvention
         {
             #region DefiningEventsAs
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            ConventionsBuilder conventions = busConfiguration.Conventions();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            ConventionsBuilder conventions = configuration.Conventions();
             conventions.DefiningEventsAs(t => t.Namespace != null && t.Namespace.StartsWith("Domain") && t.Name.EndsWith("Event"));
             #endregion
         }

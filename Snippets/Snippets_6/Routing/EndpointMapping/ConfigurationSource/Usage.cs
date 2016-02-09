@@ -6,9 +6,9 @@
     {
         public Usage()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
             #region inject-endpoint-mapping-configuration-source
-            busConfiguration.CustomConfigurationSource(new ConfigurationSource());
+            configuration.CustomConfigurationSource(new ConfigurationSource());
             #endregion
         }
     }

@@ -10,8 +10,8 @@
         {
             #region CastleWindsor
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseContainer<WindsorBuilder>();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseContainer<WindsorBuilder>();
 
             #endregion
         }
@@ -21,11 +21,11 @@
 
             #region CastleWindsor_Existing
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
             WindsorContainer container = new WindsorContainer();
             container.Register(Component.For<MyService>().Instance(new MyService()));
 
-            busConfiguration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
+            configuration.UseContainer<WindsorBuilder>(c => c.ExistingContainer(container));
             #endregion
         }
 

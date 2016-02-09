@@ -25,9 +25,9 @@
         void StaticHeaders()
         {
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
             #region 5to6header-static-endpoint
-            busConfiguration.AddHeaderToAllOutgoingMessages("MyGlobalHeader", "some static value");
+            configuration.AddHeaderToAllOutgoingMessages("MyGlobalHeader", "some static value");
             #endregion
         }
 
@@ -36,8 +36,8 @@
         {
             #region 5to6DoNotWrapHandlersInTransaction
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<MyTransport>()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.ReceiveOnly);
 
             #endregion
@@ -49,8 +49,8 @@
             // ReSharper disable RedundantDelegateCreation
             // ReSharper disable ConvertToLambdaExpression
             #region 5to6CriticalError
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.DefineCriticalErrorAction(
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.DefineCriticalErrorAction(
                 new Func<ICriticalErrorContext,Task>(context =>
                 {
                     // place you custom handling here 
@@ -86,8 +86,8 @@
         public void TransportTransactionIsolationLevelAndTimeout()
         {
             #region 5to6TransportTransactionScopeOptions
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<MyTransport>()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope)
                 .TransactionScopeOptions(isolationLevel: IsolationLevel.RepeatableRead, timeout: TimeSpan.FromSeconds(30));
             #endregion
@@ -96,8 +96,8 @@
         public void WrapHandlersExecutionInATransactionScope()
         {
             #region 5to6WrapHandlersExecutionInATransactionScope
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UnitOfWork()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UnitOfWork()
                 .WrapHandlersInATransactionScope();
             #endregion
         }

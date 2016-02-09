@@ -9,8 +9,8 @@ namespace Snippets6.Conventions
         {
             #region MessageConventions
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            ConventionsBuilder conventions = busConfiguration.Conventions();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            ConventionsBuilder conventions = configuration.Conventions();
             conventions.DefiningCommandsAs(t => t.Namespace == "MyNamespace.Messages.Commands");
             conventions.DefiningEventsAs(t => t.Namespace == "MyNamespace.Messages.Events");
             conventions.DefiningMessagesAs(t => t.Namespace == "MyNamespace.Messages");

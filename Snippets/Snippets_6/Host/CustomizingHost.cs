@@ -6,11 +6,11 @@
 
     class CustomizingHost : IConfigureThisEndpoint
     {
-        public void Customize(BusConfiguration busConfiguration)
+        public void Customize(EndpointConfiguration configuration)
         {
             // To customize, use the configuration parameter. 
             // For example, to customize the endpoint name:
-            busConfiguration.EndpointName("NewEndpointName");
+            configuration.EndpointName("NewEndpointName");
         }
     }
 

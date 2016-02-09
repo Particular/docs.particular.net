@@ -14,12 +14,12 @@ namespace Snippets6.UpgradeGuides._5to6
 
             #region SetDeliveryConstraintDiscardIfNotReceivedBefore
             TimeSpan timeToBeReceived = TimeSpan.FromSeconds(25);
-            context.AddDeliveryConstraint(new DiscardIfNotReceivedBefore(timeToBeReceived));
+            context.Extensions.AddDeliveryConstraint(new DiscardIfNotReceivedBefore(timeToBeReceived));
             #endregion
 
             #region ReadDeliveryConstraintDiscardIfNotReceivedBefore
             DiscardIfNotReceivedBefore constraint;
-            context.TryGetDeliveryConstraint(out constraint);
+            context.Extensions.TryGetDeliveryConstraint(out constraint);
             timeToBeReceived = constraint.MaxTime;
             #endregion
         }

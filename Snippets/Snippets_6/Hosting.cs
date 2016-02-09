@@ -11,9 +11,9 @@
         {
             #region Hosting-SendOnly
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.SendOnly();
-            IEndpointInstance endpointInstance = await Endpoint.Start(busConfiguration);
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.SendOnly();
+            IEndpointInstance endpointInstance = await Endpoint.Start(configuration);
 
             #endregion
         }
@@ -21,14 +21,14 @@
         public async Task Startup()
         {
             #region Hosting-Startup
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
             //Apply configuration
-            IInitializableEndpoint initializableEndpoint = Endpoint.Prepare(busConfiguration);
+            IInitializableEndpoint initializableEndpoint = Endpoint.Prepare(configuration);
             IStartableEndpoint startableEndpoint = await initializableEndpoint.Initialize();
             IEndpointInstance endpointInstance = await startableEndpoint.Start();
 
             //Shortcut
-            IEndpointInstance endpointInstance2 = await Endpoint.Start(busConfiguration);
+            IEndpointInstance endpointInstance2 = await Endpoint.Start(configuration);
             #endregion
         }
 
@@ -61,8 +61,8 @@
             #region Hosting-Inject
             ContainerBuilder containerBuilder = new ContainerBuilder();
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            IEndpointInstance endpointInstance = await Endpoint.Start(busConfiguration);
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            IEndpointInstance endpointInstance = await Endpoint.Start(configuration);
             containerBuilder.Register(_ => endpointInstance).InstancePerDependency();
 
             #endregion

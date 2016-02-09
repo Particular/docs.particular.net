@@ -7,11 +7,11 @@
         void RegisterSerializers()
         {
             #region AdditionalDeserializers
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
             // configures XML serialization as default
-            busConfiguration.UseSerialization<XmlSerializer>();
+            configuration.UseSerialization<XmlSerializer>();
             // configures additional deserialization
-            busConfiguration.AddDeserializer<JsonSerializer>();
+            configuration.AddDeserializer<JsonSerializer>();
             #endregion
         }
     }

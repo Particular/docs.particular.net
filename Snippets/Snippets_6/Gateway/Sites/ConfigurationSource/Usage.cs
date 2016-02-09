@@ -6,10 +6,10 @@ namespace Snippets5.Gateway.Sites.ConfigurationSource
     {
         public Usage()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
             #region UseCustomConfigurationSourceForGatewaySitesConfig
-            busConfiguration.CustomConfigurationSource(new ConfigurationSource());
+            configuration.CustomConfigurationSource(new ConfigurationSource());
             #endregion
         }
     }

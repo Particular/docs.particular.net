@@ -9,8 +9,8 @@
         {
             #region Unity
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseContainer<UnityBuilder>();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseContainer<UnityBuilder>();
 
             #endregion
         }
@@ -19,10 +19,10 @@
         {
             #region Unity_Existing
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
             UnityContainer container = new UnityContainer();
             container.RegisterInstance(new MyService());
-            busConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
+            configuration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
 
             #endregion
         }

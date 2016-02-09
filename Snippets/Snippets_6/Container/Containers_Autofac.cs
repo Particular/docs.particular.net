@@ -9,8 +9,8 @@
         {
             #region Autofac
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseContainer<AutofacBuilder>();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseContainer<AutofacBuilder>();
 
             #endregion
         }
@@ -19,11 +19,11 @@
         {
             #region Autofac_Existing
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterInstance(new MyService());
             IContainer container = builder.Build();
-            busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+            configuration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
 
             #endregion
         }

@@ -8,23 +8,23 @@
     {
         public async Task RequestImmediateDispatch()
         {
-            IBusContext busContext = null;
+            IPipelineContext context = null;
 
             #region RequestImmediateDispatch
             SendOptions options = new SendOptions();
             options.RequireImmediateDispatch();
-            await busContext.Send(new MyMessage(), options);
+            await context.Send(new MyMessage(), options);
             #endregion
         }
 
         public async Task RequestImmediateDispatchUsingScope()
         {
-            IBusContext busContext = null;
+            IPipelineContext context = null;
 
             #region RequestImmediateDispatchUsingScope
             using (new TransactionScope(TransactionScopeOption.Suppress, TransactionScopeAsyncFlowOption.Enabled))
             {
-                await busContext.SendLocal(new MyMessage());
+                await context.SendLocal(new MyMessage());
             }
             #endregion
         }

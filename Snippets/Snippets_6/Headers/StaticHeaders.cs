@@ -7,8 +7,8 @@
         public StaticHeaders()
         {
             #region header-static-endpoint
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.AddHeaderToAllOutgoingMessages("MyGlobalHeader", "some static value");
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.AddHeaderToAllOutgoingMessages("MyGlobalHeader", "some static value");
             #endregion
         }
     }

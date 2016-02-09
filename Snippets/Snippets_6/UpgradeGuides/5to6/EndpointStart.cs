@@ -8,11 +8,11 @@
         public async Task StartEndpoint()
         {
             #region 5to6-endpoint-start
-            BusConfiguration busConfiguration = new BusConfiguration();
-            //configure the bus
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            //configure the endpoint
 
             //Start the endpoint
-            IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+            IEndpointInstance endpoint = await Endpoint.Start(configuration);
 
             //Shut down the endpoint
             await endpoint.Stop();

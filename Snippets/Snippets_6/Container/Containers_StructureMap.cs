@@ -9,8 +9,8 @@
         {
             #region StructureMap
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseContainer<StructureMapBuilder>();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseContainer<StructureMapBuilder>();
 
             #endregion
         }
@@ -19,10 +19,10 @@
         {
             #region StructureMap_Existing
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
             Container container = new Container(x => x.For<MyService>().Use(new MyService()));
-            busConfiguration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
+            configuration.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(container));
 
             #endregion
         }
