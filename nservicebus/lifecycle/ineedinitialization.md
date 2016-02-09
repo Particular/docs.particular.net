@@ -13,17 +13,17 @@ NOTE: In Version 3 of NServiceBus, this interface is found in the `NServiceBus.C
 
 Instances are:
 
-* Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md).
-* Created as one of the very first steps when the bus is created.
-* Created on the same thread that is creating the bus.
-* Created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they
+ * Located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md).
+ * Created as one of the very first steps when the bus is created.
+ * Created on the same thread that is creating the bus.
+ * Created with [`Activator.CreateInstance(...)`](https://msdn.microsoft.com/en-us/library/system.activator.createinstance) which means they
   * Are not resolved out of an IoC container (even if they are registered there).
   * Will not have any dependencies injected.
   * Must have a default constructor.
 
-In Version 3 and Version 4, as instances are created `Init()` is called. In Version 5 this was changed to `Customize(BusConfiguration)`. All calls to either method are made in sequence on the thread that is creating the bus. The order of these calls is determined by the order of the scanned types list as a result of the assembly scan.
+All calls are made in sequence on the thread that is creating the bus. The order of these calls is determined by the order of the scanned types list as a result of the assembly scan.
 
-Exceptions thrown by instances of `INeedInitialization` are unhandled by NServiceBus. These will bubble up to the caller creating the bus.
+Exceptions thrown by instances of `INeedInitialization` are unhandled by NServiceBus. These will bubble up to the caller creating the endpoint.
 
 NOTE: Instances of `INeedInitialization` are created after type-scanning has occurred. You should not attempt to alter the types to be scanned from an instance of `INeedInitialization`.
 

@@ -33,13 +33,11 @@ NOTE: Extensions to NServiceBus (for example `NServiceBus.Distributor.MSMQ.dll` 
 
 ## Nested Directories
 
-BETA: In Version 6 default behavior for assembly scanning has changed not to scan nested folders for assemblies.
-
-For Version 5 and below assemblies in nested folders were automatically scanned by default.
-
-From Version 6, default behavior is not to scan nested folders for assemblies. You can enable nested folders assembly scanning using:
+In Version 6 and above the default behavior is **not** to scan nested folders for assemblies. You can enable nested folders assembly scanning using:
 
 snippet:ScanningNestedAssebliesEnabled
+
+In Version 5 and below assemblies in nested folders are scanned by default.
 
 
 ## Assemblies to scan
@@ -64,7 +62,7 @@ snippet:ScanningExcludeTypes
 
 ## Include a list approach
 
-Note: These options are deprecated from Version 6 and later.
+Note: These options are deprecated from Version 6 and above.
 
 
 ### Including assemblies:
@@ -94,5 +92,3 @@ snippet:ScanningMixingIncludeAndExclude
 ### Specifying the directory to scan:
 
 snippet:ScanningCustomDirectory
-
-NOTE: Assembly scanning options applied in `INeedInitialization` code will not be applied. Assembly scanning options need to be specified using `IConfigureThisEndpoint` when using NServiceBus.Host or when self hosting and creating `BusConfiguration` only.

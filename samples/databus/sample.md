@@ -59,15 +59,7 @@ Following is an example of the signaling message that is sent to the receiving e
 
 Both the `Sender` and `Receive` project need to share a common location to store large binary objects. This is done by calling `FileShareDataBus`. This code instructs NServiceBus to use the FileSharing transport mechanism for the attachment.
 
-```C#
-static string BasePath = "..\\..\\..\\storage";
-static void Main()
-{
-    ...
-    busConfiguration.UseDataBus<FileShareDataBus>().BasePath(BasePath);
-    ...
-}
-```
+snippet:ConfigureDataBus
 
 
 ### Sender project

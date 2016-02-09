@@ -3,14 +3,15 @@ using NServiceBus;
 
 class Program
 {
-    static string BasePath = "..\\..\\..\\storage";
-
     static void Main()
     {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.DataBus.Sender");
         busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UseDataBus<FileShareDataBus>().BasePath(BasePath);
+        #region ConfigureDataBus
+        busConfiguration.UseDataBus<FileShareDataBus>()
+            .BasePath("..\\..\\..\\storage");
+        #endregion
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
         using (IBus bus = Bus.Create(busConfiguration).Start())
@@ -52,7 +53,7 @@ class Program
         bus.Send("Samples.DataBus.Receiver",message);
 
         #endregion
-        Console.WriteLine("Message sent, the payload is stored in: " + BasePath);
+        Console.WriteLine("Message sent, the payload is stored in: ..\\..\\..\\storage");
     }
 
     static void SendMessageTooLargePayload(IBus bus)

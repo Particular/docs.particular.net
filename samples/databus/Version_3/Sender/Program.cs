@@ -4,7 +4,6 @@ using NServiceBus.Installation.Environments;
 
 class Program
 {
-    static string BasePath = "..\\..\\..\\storage";
 
     static void Main()
     {
@@ -17,7 +16,9 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
-        configure.FileShareDataBus(BasePath);
+        #region ConfigureDataBus
+        configure.FileShareDataBus("..\\..\\..\\storage");
+        #endregion
         using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
             IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());
@@ -58,7 +59,7 @@ class Program
         bus.Send("Samples.DataBus.Receiver", message);
 
         #endregion
-        Console.WriteLine("Message sent, the payload is stored in: " + BasePath);
+        Console.WriteLine("Message sent, the payload is stored in: ..\\..\\..\\storage");
     }
 
     static void SendMessageTooLargePayload(IBus bus)

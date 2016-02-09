@@ -29,7 +29,7 @@
             // number of blocks that may be simultaneously uploaded when uploading a blob that is greater than the value specified by the 
             int backOffIntervalBetweenRetriesInSecs = 1000;
 
-            #region AzureDataBusConfiguration
+            #region AzureDataBusSetup
 
             DataBusExtentions<AzureDataBus> dataBus = busConfiguration.UseDataBus<AzureDataBus>();
             dataBus.ConnectionString(azureStorageConnectionString);

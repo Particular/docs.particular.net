@@ -4,7 +4,6 @@ using NServiceBus.Installation.Environments;
 
 class Program
 {
-    static string BasePath = "..\\..\\..\\storage";
 
     static void Main()
     {
@@ -17,7 +16,7 @@ class Program
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
-        configure.FileShareDataBus(BasePath);
+        configure.FileShareDataBus("..\\..\\..\\storage");
         using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
             IBus bus = startableBus
