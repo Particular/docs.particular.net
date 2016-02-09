@@ -15,7 +15,9 @@ class Program
         configure.InMemorySagaPersister();
         configure.UseInMemoryTimeoutPersister();
         configure.InMemorySubscriptionStorage();
+        #region RegisterMessageEncryptor
         configure.RegisterMessageEncryptor();
+        #endregion
         using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
             IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());

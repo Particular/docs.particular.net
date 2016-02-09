@@ -8,7 +8,9 @@ class Program
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MessageBodyEncryption.Endpoint1");
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        #region RegisterMessageEncryptor
         busConfiguration.RegisterMessageEncryptor();
+        #endregion
         IStartableBus startableBus = Bus.Create(busConfiguration);
         using (IBus bus = startableBus.Start())
         {

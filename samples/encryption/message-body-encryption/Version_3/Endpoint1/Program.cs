@@ -16,7 +16,9 @@ class Program
         configure.RunTimeoutManagerWithInMemoryPersistence();
         configure.InMemorySubscriptionStorage();
         configure.JsonSerializer();
+        #region RegisterMessageEncryptor
         configure.RegisterMessageEncryptor();
+        #endregion
         using (IStartableBus startableBus = configure.UnicastBus().CreateBus())
         {
             IBus bus = startableBus.Start(() => configure.ForInstallationOn<Windows>().Install());

@@ -14,7 +14,9 @@ class Program
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.MessageBodyEncryption.Endpoint1");
         busConfiguration.UsePersistence<InMemoryPersistence>();
+        #region RegisterMessageEncryptor
         busConfiguration.RegisterMessageEncryptor();
+        #endregion
         busConfiguration.SendFailedMessagesTo("error");
         IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
         try
