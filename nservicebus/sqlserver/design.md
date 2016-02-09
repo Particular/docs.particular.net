@@ -1,6 +1,6 @@
 ---
 title: SQL Server Transport Design
-summary: The design of SQL Server transport
+summary: The design and implementation details of SQL Server Transport
 tags:
 - SQL Server
 ---
@@ -18,7 +18,7 @@ In order for [callbacks](/nservicebus/messaging/handling-responses-on-the-client
 
 Secondary queue tables have the name of the machine appended to the name of the primary queue table with `.` as separator e.g. `SomeEndpoint.MyMachine`.
 
-Secondary queues are enabled by default. In order to disable them, one must use the configuration API:
+Secondary queues are enabled by default. In order to disable them use the configuration API:
 
 snippet:sqlserver-config-disable-secondaries
 
@@ -47,7 +47,7 @@ CREATE CLUSTERED INDEX [Index_RowVersion] ON [schema].[queuename](
 
 The column are directly mapped to the properties of `NServiceBus.TransportMessage` class. Receiving messages is conducted via a `DELETE` statement from the top of the table (the oldest row according to `[RowVersion]` column).
 
-The tables are created during host install time by [installers](/nservicebus/operations/installers.md). It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
+The tables are created by [installers](/nservicebus/operations/installers.md) when the application is started for the first time. It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
 
 
 ## Concurrency
@@ -57,7 +57,7 @@ The SQL Server transport adapts the number of receiving threads (up to `MaximumC
 
 ### 3.0
 
-In version 3.0 and higher SqlTransport maintains a dedicated monitoring thread for each input queue. It is responsible for detecting the number of messages waiting for delivery and creating receive [tasks](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) - one for each pending message. 
+In version 3.0 and higher SQL Server transport maintains a dedicated monitoring thread for each input queue. It is responsible for detecting the number of messages waiting for delivery and creating receive [tasks](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) - one for each pending message. 
 
 The maximum number of concurrent tasks will never exceed `MaximumConcurrencyLevel`. The number of tasks does not translate to the number of running threads which is controlled by TPL scheduling mechanisms.
 
