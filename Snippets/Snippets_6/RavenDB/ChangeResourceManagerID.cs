@@ -1,9 +1,6 @@
-﻿namespace Snippets5.RavenDB
+﻿// ReSharper disable EmptyConstructor
+namespace Snippets5.RavenDB
 {
-    using System;
-    using NServiceBus;
-    using Raven.Client.Document;
-
     class ChangeResourceManagerID
     {
         public ChangeResourceManagerID()

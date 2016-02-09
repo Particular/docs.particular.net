@@ -1,9 +1,5 @@
 ﻿namespace Snippets5.RavenDB
 {
-    using NServiceBus;
-    using Raven.Client.Document;
-    using Raven.Client.Document.DTC;
-
     class ConfiguringTransactionRecoveryStorage
     {
         public void Foo()
