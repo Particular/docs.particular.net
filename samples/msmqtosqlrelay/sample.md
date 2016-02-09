@@ -38,22 +38,7 @@ Add a new entry in the Subscriptions table so that when an event is published th
 
 Run this script to add the new entry to the Subscriptions table:
 
-```
-Use PersistenceForMsmqTransport
-Go
-
-INSERT INTO [dbo].[Subscription] 
-	([SubscriberEndpoint] 
-	,[MessageType] 
-	,[LogicalEndpoint] 
-	,[Version] 
-	,[TypeName])
-    
- VALUES
-    ('MsmqToSqlRelay@localhost', 'SomethingHappened,0.0.0.0', 'MsmqToSqlRelay' ,'0.0.0.0', 'Shared.SomethingHappened')
-GO
-
-```
+snippet:AddSubscriber
  
 ## NativeMsmqToSql
 
