@@ -8,7 +8,9 @@ class Program
     {
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Encryption.Endpoint1");
+        #region enableEncryption
         busConfiguration.RijndaelEncryptionService();
+        #endregion
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.UseSerialization<JsonSerializer>();
         using (IBus bus = Bus.Create(busConfiguration).Start())

@@ -50,7 +50,7 @@ snippet:Message
 
 Open either one of the `Program.cs`. You will notice the line
 
-    busConfiguration.RijndaelEncryptionService();
+snippet:enableEncryption
 
 This code indicates that encryption should be enabled.
 

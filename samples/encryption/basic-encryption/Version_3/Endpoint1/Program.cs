@@ -11,7 +11,9 @@ class Program
         configure.Log4Net();
         configure.DefineEndpointName("Samples.Encryption.Endpoint1");
         configure.DefaultBuilder();
+        #region enableEncryption
         configure.RijndaelEncryptionService();
+        #endregion
         configure.MsmqTransport();
         configure.InMemorySagaPersister();
         configure.RunTimeoutManagerWithInMemoryPersistence();
