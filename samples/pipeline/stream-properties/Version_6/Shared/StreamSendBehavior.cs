@@ -22,7 +22,7 @@ class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
         TimeSpan timeToBeReceived = TimeSpan.MaxValue;
         DiscardIfNotReceivedBefore constraint;
 
-        if (context.TryGetDeliveryConstraint(out constraint))
+        if (context.Extensions.TryGetDeliveryConstraint(out constraint))
         {
             timeToBeReceived = constraint.MaxTime;
         }
@@ -62,6 +62,7 @@ class StreamSendBehavior : Behavior<IOutgoingLogicalMessageContext>
         await next().ConfigureAwait(false);
         #endregion
     }
+
     #region generate-key-for-stream
     string GenerateKey(TimeSpan timeToBeReceived)
     {
