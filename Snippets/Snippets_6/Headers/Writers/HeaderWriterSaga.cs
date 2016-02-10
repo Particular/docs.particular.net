@@ -25,7 +25,7 @@
         [Test]
         public async Task Write()
         {
-            BusConfiguration config = new BusConfiguration();
+            EndpointConfiguration config = new EndpointConfiguration();
             config.EndpointName(endpointName);
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterSaga>();
             config.SetTypesToScan(typesToScan);

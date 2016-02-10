@@ -8,8 +8,8 @@
         {
             #region PluginCustomDataBus
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseDataBus(typeof(CustomDataBus));
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseDataBus(typeof(CustomDataBus));
 
             #endregion
         }

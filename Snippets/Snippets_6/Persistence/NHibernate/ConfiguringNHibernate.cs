@@ -12,23 +12,23 @@
         {
             #region ConfiguringNHibernate
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
             //Use NHibernate for all persistence concerns
-            busConfiguration.UsePersistence<NHibernatePersistence>();
+            configuration.UsePersistence<NHibernatePersistence>();
 
             //or select specific concerns
-            busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Sagas>();
-            busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
-            busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();
-            busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
-            busConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
+            configuration.UsePersistence<NHibernatePersistence, StorageType.Sagas>();
+            configuration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>();
+            configuration.UsePersistence<NHibernatePersistence, StorageType.Timeouts>();
+            configuration.UsePersistence<NHibernatePersistence, StorageType.Outbox>();
+            configuration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>();
 
             #endregion
 
             #region NHibernateSubscriptionCaching
 
-            busConfiguration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>()
+            configuration.UsePersistence<NHibernatePersistence, StorageType.Subscriptions>()
                 .EnableCachingForSubscriptionStorage(TimeSpan.FromMinutes(1));
 
             #endregion
@@ -39,7 +39,7 @@
         {
             #region CommonNHibernateConfiguration
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
             Configuration nhConfiguration = new Configuration
             {
@@ -51,7 +51,7 @@
                 }
             };
 
-            busConfiguration.UsePersistence<NHibernatePersistence>()
+            configuration.UsePersistence<NHibernatePersistence>()
                 .UseConfiguration(nhConfiguration);
 
             #endregion
@@ -61,7 +61,7 @@
         {
             #region SpecificNHibernateConfiguration
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
             Configuration nhConfiguration = new Configuration
             {
@@ -71,11 +71,11 @@
                 }
             };
 
-            busConfiguration.UsePersistence<NHibernatePersistence>()
+            configuration.UsePersistence<NHibernatePersistence>()
                 .UseSubscriptionStorageConfiguration(nhConfiguration);
-            busConfiguration.UsePersistence<NHibernatePersistence>()
+            configuration.UsePersistence<NHibernatePersistence>()
                 .UseGatewayDeduplicationConfiguration(nhConfiguration);
-            busConfiguration.UsePersistence<NHibernatePersistence>()
+            configuration.UsePersistence<NHibernatePersistence>()
                 .UseTimeoutStorageConfiguration(nhConfiguration);
             #endregion
 
@@ -86,7 +86,7 @@
         {
             #region CustomCommonNhibernateConfigurationWarning
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
             Configuration nhConfiguration = new Configuration
             {
@@ -96,7 +96,7 @@
                 }
             };
 
-            busConfiguration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>()
+            configuration.UsePersistence<NHibernatePersistence, StorageType.GatewayDeduplication>()
                 .UseConfiguration(nhConfiguration);
             #endregion
         }

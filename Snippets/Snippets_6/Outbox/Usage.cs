@@ -8,9 +8,9 @@
         {
             #region OutboxEnablineInCode
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
-            busConfiguration.EnableOutbox();
+            configuration.EnableOutbox();
 
             #endregion
         }

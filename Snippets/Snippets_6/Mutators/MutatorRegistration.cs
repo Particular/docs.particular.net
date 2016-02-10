@@ -7,8 +7,8 @@
         public void Simple()
         {
             #region MutatorRegistration
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.RegisterComponents(c => c.ConfigureComponent<MyMutator>(DependencyLifecycle.InstancePerCall));
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.RegisterComponents(c => c.ConfigureComponent<MyMutator>(DependencyLifecycle.InstancePerCall));
             #endregion
         }
 

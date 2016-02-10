@@ -9,8 +9,8 @@
         {
             #region ConfiguringMsmqPersistence
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UsePersistence<MsmqPersistence>();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UsePersistence<MsmqPersistence>();
 
             #endregion
         }

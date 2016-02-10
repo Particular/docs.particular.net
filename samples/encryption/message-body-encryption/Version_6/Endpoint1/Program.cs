@@ -11,14 +11,14 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.MessageBodyEncryption.Endpoint1");
-        busConfiguration.UsePersistence<InMemoryPersistence>();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.MessageBodyEncryption.Endpoint1");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
         #region RegisterMessageEncryptor
-        busConfiguration.RegisterMessageEncryptor();
+        endpointConfiguration.RegisterMessageEncryptor();
         #endregion
-        busConfiguration.SendFailedMessagesTo("error");
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        endpointConfiguration.SendFailedMessagesTo("error");
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             CompleteOrder completeOrder = new CompleteOrder

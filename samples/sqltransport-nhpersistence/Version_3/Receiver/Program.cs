@@ -38,11 +38,11 @@ class Program
 
         #region ReceiverConfiguration
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.AuditProcessedMessagesTo("audit");
-        busConfiguration.EnableInstallers();
-        busConfiguration.UseTransport<SqlServerTransport>()
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseTransport<SqlServerTransport>()
             .DefaultSchema("receiver")
             .UseSpecificSchema(e =>
             {
@@ -61,13 +61,13 @@ class Program
                 }
             });
 
-        busConfiguration.UsePersistence<NHibernatePersistence>()
+        endpointConfiguration.UsePersistence<NHibernatePersistence>()
             .UseConfiguration(hibernateConfig)
             .RegisterManagedSessionInTheContainer();
 
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press any key to exit");

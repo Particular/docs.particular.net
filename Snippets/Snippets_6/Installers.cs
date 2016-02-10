@@ -9,11 +9,11 @@
         {
             #region Installers
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
-            busConfiguration.EnableInstallers();
+            configuration.EnableInstallers();
 
-            await Endpoint.Start(busConfiguration);//this will run the installers
+            await Endpoint.Start(configuration);//this will run the installers
 
             #endregion
         }

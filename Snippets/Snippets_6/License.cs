@@ -7,12 +7,12 @@
         public void Simple()
         {
             #region License
-     
-            BusConfiguration busConfiguration = new BusConfiguration();
 
-            busConfiguration.LicensePath("PathToLicense");
+            EndpointConfiguration configuration = new EndpointConfiguration();
+
+            configuration.LicensePath("PathToLicense");
             //or
-            busConfiguration.License("YourCustomLicenseText");
+            configuration.License("YourCustomLicenseText");
 
             #endregion
         }

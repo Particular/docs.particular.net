@@ -14,8 +14,8 @@ class Program
     static async Task AsyncMain()
     {
         #region registerConverter
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.RavenDB.Migration");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.RavenDB.Migration");
         DocumentStore documentStore = new DocumentStore
         {
             Url = "http://localhost:8083",
@@ -24,16 +24,16 @@ class Program
         documentStore.Listeners.RegisterListener(new CustomDocumentConverter());
         documentStore.Initialize();
 
-        busConfiguration.UsePersistence<RavenDBPersistence>()
+        endpointConfiguration.UsePersistence<RavenDBPersistence>()
             .DoNotSetupDatabasePermissions() //Only required to simplify the sample setup
             .SetDefaultDocumentStore(documentStore);
         #endregion
 
 
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press 'S' to start reset the saga");

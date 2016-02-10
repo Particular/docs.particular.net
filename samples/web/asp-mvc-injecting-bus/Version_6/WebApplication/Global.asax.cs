@@ -22,16 +22,16 @@ public class MvcApplication : HttpApplication
         // Set the dependency resolver to be Autofac.
         IContainer container = builder.Build();
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.MvcInjection.WebApplication");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.MvcInjection.WebApplication");
         // instruct NServiceBus to use a custom AutoFac configuration
-        busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        endpoint = Endpoint.Start(busConfiguration).GetAwaiter().GetResult();
+        endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 
         ContainerBuilder updater = new ContainerBuilder();
         updater.RegisterInstance(endpoint);

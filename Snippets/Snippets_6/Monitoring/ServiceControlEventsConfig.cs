@@ -6,14 +6,14 @@
     {
         public void Simple()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
             #region ServiceControlEventsConfig 
 
             // required to talk to ServiceControl
-            busConfiguration.UseLegacyMessageDrivenSubscriptionMode();
-            busConfiguration.UseSerialization<JsonSerializer>();
-            busConfiguration.Conventions()
+            configuration.UseLegacyMessageDrivenSubscriptionMode();
+            configuration.UseSerialization<JsonSerializer>();
+            configuration.Conventions()
                 .DefiningEventsAs(t => typeof(IEvent).IsAssignableFrom(t) ||
                                        //include ServiceControl events
                                        t.Namespace != null && t.Namespace.StartsWith("ServiceControl.Contracts"));

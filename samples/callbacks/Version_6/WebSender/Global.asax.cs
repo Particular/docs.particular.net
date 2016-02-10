@@ -26,14 +26,14 @@ public class MvcApplication : HttpApplication
 
     async Task StartBus()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Callbacks.WebSender");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.SendFailedMessagesTo("error");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Callbacks.WebSender");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        Endpoint = await NServiceBus.Endpoint.Start(busConfiguration);
+        Endpoint = await NServiceBus.Endpoint.Start(endpointConfiguration);
     }
 
 }

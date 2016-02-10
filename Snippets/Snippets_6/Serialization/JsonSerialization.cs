@@ -9,8 +9,8 @@
 
             #region JsonSerialization
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseSerialization<JsonSerializer>();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseSerialization<JsonSerializer>();
 
             #endregion
         }

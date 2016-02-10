@@ -10,8 +10,8 @@
         {
             #region enable-criticaltime
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.EnableCriticalTimePerformanceCounter();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.EnableCriticalTimePerformanceCounter();
 
             #endregion
         }
@@ -19,8 +19,8 @@
         {
             #region enable-sla
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.EnableSLAPerformanceCounter(TimeSpan.FromMinutes(3));
 
             #endregion
         }
@@ -32,7 +32,7 @@
         {
             #endregion
 
-            public void Customize(BusConfiguration busConfiguration)
+            public void Customize(EndpointConfiguration configuration)
             {
             }
         }

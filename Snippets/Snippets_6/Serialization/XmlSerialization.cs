@@ -8,8 +8,8 @@
         {
             #region XmlSerialization
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseSerialization<XmlSerializer>();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseSerialization<XmlSerializer>();
 
             #endregion
         }

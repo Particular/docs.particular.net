@@ -12,22 +12,22 @@ class Program
 
     static async Task MainAsync()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
         #region EndpointAndSingleQueue
 
-        busConfiguration.EndpointName("Samples.ASB.NativeIntegration");
+        endpointConfiguration.EndpointName("Samples.ASB.NativeIntegration");
 
         #endregion
 
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #region BrokeredMessageConvention
 
-        AzureServiceBusTopologySettings topologySettings = busConfiguration.UseTransport<AzureServiceBusTransport>()
+        AzureServiceBusTopologySettings topologySettings = endpointConfiguration.UseTransport<AzureServiceBusTransport>()
             .UseDefaultTopology();
         topologySettings.Serialization().BrokeredMessageBodyType(SupportedBrokeredMessageBodyTypes.Stream);
 
@@ -35,7 +35,7 @@ class Program
 
         topologySettings.ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press any key to exit");

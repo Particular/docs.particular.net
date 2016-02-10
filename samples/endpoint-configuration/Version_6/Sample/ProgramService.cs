@@ -64,13 +64,13 @@ class ProgramService : ServiceBase
 
         #region create-config
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
         #endregion
 
         #region endpoint-name
 
-        busConfiguration.EndpointName("Samples.FirstEndpoint");
+        endpointConfiguration.EndpointName("Samples.FirstEndpoint");
 
         #endregion
 
@@ -80,22 +80,22 @@ class ProgramService : ServiceBase
         //configure your custom services
         //builder.RegisterInstance(new MyService());
         IContainer container = builder.Build();
-        busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+        endpointConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
 
         #endregion
 
         #region serialization
 
-        busConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #endregion
         #region error
-        busConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.SendFailedMessagesTo("error");
         #endregion
 
         #region transport
 
-        busConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UseTransport<MsmqTransport>();
 
         #endregion
 
@@ -107,14 +107,14 @@ class ProgramService : ServiceBase
 
         #region persistence
 
-        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
-        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
-        busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
 
         #endregion
 
         #region critical-errors
-        busConfiguration.DefineCriticalErrorAction(async context =>
+        endpointConfiguration.DefineCriticalErrorAction(async context =>
         {
             // Log the critical error
             logger.Fatal($"CRITICAL: {context.Error}", context.Exception);
@@ -130,8 +130,8 @@ class ProgramService : ServiceBase
 
         #region start-bus
 
-        busConfiguration.EnableInstallers();
-        endpoint = await Endpoint.Start(busConfiguration);
+        endpointConfiguration.EnableInstallers();
+        endpoint = await Endpoint.Start(endpointConfiguration);
         #endregion
 
 

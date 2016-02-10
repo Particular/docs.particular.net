@@ -8,8 +8,8 @@
         {
             #region AuditWithCode
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.AuditProcessedMessagesTo("targetAuditQueue");
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.AuditProcessedMessagesTo("targetAuditQueue");
 
             #endregion
         }

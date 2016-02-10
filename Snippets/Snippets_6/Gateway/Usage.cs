@@ -9,16 +9,16 @@
         {
             #region GatewayConfiguration
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.EnableFeature<Gateway>();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.EnableFeature<Gateway>();
 
             #endregion
 
-            IBusSession busSession = null;
+            IEndpointInstance endpoint = null;
 
             #region SendToSites
 
-            busSession.SendToSites(new[] { "SiteA", "SiteB" }, new MyMessage());
+            endpoint.SendToSites(new[] { "SiteA", "SiteB" }, new MyMessage());
 
             #endregion
         }

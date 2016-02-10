@@ -8,11 +8,11 @@
     {
         public TimeToKeep()
         {
-            BusConfiguration busConfiguration = null;
+            EndpointConfiguration configuration = null;
 
             #region OutboxRavendBTimeToKeep
-            busConfiguration.SetTimeToKeepDeduplicationData(TimeSpan.FromDays(7));
-            busConfiguration.SetFrequencyToRunDeduplicationDataCleanup(TimeSpan.FromMinutes(1));
+            configuration.SetTimeToKeepDeduplicationData(TimeSpan.FromDays(7));
+            configuration.SetFrequencyToRunDeduplicationDataCleanup(TimeSpan.FromMinutes(1));
             #endregion
         }
     }

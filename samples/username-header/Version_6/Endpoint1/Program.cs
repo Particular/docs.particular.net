@@ -13,20 +13,20 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.UsernameHeader.Endpoint1");
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.SendFailedMessagesTo("error");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.UsernameHeader.Endpoint1");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.SendFailedMessagesTo("error");
         
         #region ComponentRegistartion
-        busConfiguration.RegisterComponents(components =>
+        endpointConfiguration.RegisterComponents(components =>
         {
             components.ConfigureComponent<UsernameMutator>(DependencyLifecycle.InstancePerCall);
         });
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             #region SendMessage

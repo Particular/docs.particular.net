@@ -18,7 +18,7 @@ namespace Snippets6.BusNotifications
             this.busNotifications = busNotifications;
         }
 
-        public Task Start(IBusSession session)
+        public Task Start(IMessageSession session)
         {
             ErrorsNotifications errors = busNotifications.Errors;
             errors.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => LogToConsole(retry);
@@ -42,11 +42,10 @@ namespace Snippets6.BusNotifications
             Console.WriteLine("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
         }
 
-        public Task Stop(IBusSession session)
+        public Task Stop(IMessageSession session)
         {
             return Task.FromResult(0);
         }
-
     }
 
     #endregion

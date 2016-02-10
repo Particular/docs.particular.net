@@ -11,16 +11,16 @@ class Program
 
     static async Task MainAsync()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Azure.ServiceBus.Endpoint2");
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.UseTransport<AzureServiceBusTransport>()
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Azure.ServiceBus.Endpoint2");
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseTransport<AzureServiceBusTransport>()
             .ConnectionString(Environment.GetEnvironmentVariable("SamplesAzureServiceBusConnection"));
-        busConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press any key to exit");

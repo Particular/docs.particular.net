@@ -27,7 +27,7 @@
         [Test]
         public async Task Write()
         {
-            BusConfiguration config = new BusConfiguration();
+            EndpointConfiguration config = new EndpointConfiguration();
             config.EndpointName(endpointName);
             config.RijndaelEncryptionService("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
             config.Conventions().DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));

@@ -61,32 +61,32 @@ class Program
     {
         #region multi-hosting-assembly-scan
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-        busConfiguration.EndpointName("Samples.MultiHosting.Instance1");
+        endpointConfiguration.EndpointName("Samples.MultiHosting.Instance1");
         //Exclude Instance2.dll and, by inference, include all other assemblies
-        busConfiguration.ExcludeAssemblies("Instance2");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.ExcludeAssemblies("Instance2");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        return await Endpoint.Start(busConfiguration);
+        return await Endpoint.Start(endpointConfiguration);
 
         #endregion
     }
 
     static async Task<IEndpointInstance> StartInstance2()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-        busConfiguration.EndpointName("Samples.MultiHosting.Instance2");
-        busConfiguration.ExcludeAssemblies("Instance1");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EndpointName("Samples.MultiHosting.Instance2");
+        endpointConfiguration.ExcludeAssemblies("Instance1");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        return await Endpoint.Start(busConfiguration);
+        return await Endpoint.Start(endpointConfiguration);
     }
 }

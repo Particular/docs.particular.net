@@ -9,29 +9,29 @@
         public void Usage()
         {
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
             #region DisableSchemaUpdate
 
-            busConfiguration.UsePersistence<NHibernatePersistence>()
+            configuration.UsePersistence<NHibernatePersistence>()
                 .DisableSchemaUpdate();
 
             #endregion
             #region DisableGatewaySchemaUpdate
 
-            busConfiguration.UsePersistence<NHibernatePersistence>()
+            configuration.UsePersistence<NHibernatePersistence>()
                 .DisableGatewayDeduplicationSchemaUpdate();
 
             #endregion
             #region DisableSubscriptionSchemaUpdate
 
-            busConfiguration.UsePersistence<NHibernatePersistence>()
+            configuration.UsePersistence<NHibernatePersistence>()
                 .DisableSubscriptionStorageSchemaUpdate();
 
             #endregion
             #region DisableTimeoutSchemaUpdate
 
-            busConfiguration.UsePersistence<NHibernatePersistence>()
+            configuration.UsePersistence<NHibernatePersistence>()
                 .DisableTimeoutStorageSchemaUpdate();
 
             #endregion

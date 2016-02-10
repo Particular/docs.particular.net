@@ -8,7 +8,7 @@ namespace Snippets6.DelayedDelivery
     {
         public async Task SendDelayedMessage()
         {
-            IBusSession busSession = null;
+            IEndpointInstance endpoint = null;
             IMessageHandlerContext handlerContext = null;
 
             #region delayed-delivery-datetime
@@ -17,7 +17,7 @@ namespace Snippets6.DelayedDelivery
 
             await handlerContext.Send(new MessageToBeSentLater(), options);
             // OR
-            await busSession.Send(new MessageToBeSentLater(), options);
+            await endpoint.Send(new MessageToBeSentLater(), options);
             #endregion
         }
 

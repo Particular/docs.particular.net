@@ -16,15 +16,15 @@ class Program
         LogManager.Use<DefaultFactory>().Level(LogLevel.Error);
         #region Program
         Logger.WriteLine("Starting configuration");
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.StartupShutdown");
-        busConfiguration.EnableInstallers();
-        busConfiguration.EnableFeature<MyFeature>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.SendFailedMessagesTo("error");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.StartupShutdown");
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.EnableFeature<MyFeature>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         Logger.WriteLine("Calling Bus.Create");
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             //simulate some bus activity

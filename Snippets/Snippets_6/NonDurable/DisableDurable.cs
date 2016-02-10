@@ -8,8 +8,8 @@
         {
             #region set-to-non-durable
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.DisableDurableMessages();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.DisableDurableMessages();
 
             #endregion
         }

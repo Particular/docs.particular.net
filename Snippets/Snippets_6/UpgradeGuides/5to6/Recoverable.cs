@@ -11,12 +11,12 @@
             IRoutingContext context = null;
 
             #region SetDeliveryConstraintNonDurable
-            context.AddDeliveryConstraint(new NonDurableDelivery());
+            context.Extensions.AddDeliveryConstraint(new NonDurableDelivery());
             #endregion
 
             #region ReadDeliveryConstraintNonDurable
             NonDurableDelivery constraint;
-            context.TryGetDeliveryConstraint(out constraint);
+            context.Extensions.TryGetDeliveryConstraint(out constraint);
             #endregion
         }
     }

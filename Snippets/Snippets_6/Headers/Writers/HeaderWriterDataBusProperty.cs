@@ -27,7 +27,7 @@
         [Test]
         public async Task Write()
         {
-            BusConfiguration config = new BusConfiguration();
+            EndpointConfiguration config = new EndpointConfiguration();
             config.EndpointName(endpointName);
             config.UseDataBus<FileShareDataBus>().BasePath(@"..\..\..\storage");
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusProperty>();

@@ -10,8 +10,8 @@
         public void SqlServerTransactionScopeIsolationLevel()
         {
             #region sqlserver-config-transactionscope-isolation-level 3
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<SqlServerTransport>()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseTransport<SqlServerTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope)
                 .TransactionScopeOptions(isolationLevel: IsolationLevel.RepeatableRead);
             #endregion
@@ -20,8 +20,8 @@
         public void SqlServerTransactionScopeTimeout()
         {
             #region sqlserver-config-transactionscope-timeout 3
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<SqlServerTransport>()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseTransport<SqlServerTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope)
                 .TransactionScopeOptions(timeout: TimeSpan.FromSeconds(30));
             #endregion

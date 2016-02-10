@@ -14,21 +14,21 @@ static class Program
     static async Task AsyncMain()
     {
         #region config
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Serialization.Xml");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Serialization.Xml");
         // this is optional since Xml is the default serializer
-        busConfiguration.UseSerialization<XmlSerializer>();
+        endpointConfiguration.UseSerialization<XmlSerializer>();
         // register the mutator so the the message on the wire is written
-        busConfiguration.RegisterComponents(components =>
+        endpointConfiguration.RegisterComponents(components =>
         {
             components.ConfigureComponent<MessageBodyWriter>(DependencyLifecycle.InstancePerCall);
         });
         #endregion
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             #region message

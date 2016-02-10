@@ -13,19 +13,19 @@ static class Program
     {
         #region non-transactional
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.UseTransport<MsmqTransport>()
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.UseTransport<MsmqTransport>()
             .Transactions(TransportTransactionMode.None);
 
         #endregion
 
-        busConfiguration.EndpointName("Samples.MessageDurability.Sender");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EndpointName("Samples.MessageDurability.Sender");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             await endpoint.Send("Samples.MessageDurability.Receiver", new MyMessage());

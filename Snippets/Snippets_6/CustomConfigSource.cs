@@ -12,9 +12,9 @@
 
             #region RegisterCustomConfigSource
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
-            busConfiguration.CustomConfigurationSource(new MyCustomConfigurationSource());
+            configuration.CustomConfigurationSource(new MyCustomConfigurationSource());
 
             #endregion
         }

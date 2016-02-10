@@ -19,7 +19,7 @@
             #endregion
         }
 
-        Task SomeCustomMethod(IBusContext busContext)
+        Task SomeCustomMethod(IPipelineContext context)
         {
             return Task.FromResult(0);
         }

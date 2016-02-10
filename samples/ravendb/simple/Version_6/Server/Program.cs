@@ -16,8 +16,8 @@ class Program
         {
             #region Config
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.EndpointName("Samples.RavenDB.Server");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.EndpointName("Samples.RavenDB.Server");
             DocumentStore documentStore = new DocumentStore
             {
                 Url = "http://localhost:32076",
@@ -25,16 +25,17 @@ class Program
             };
             documentStore.Initialize();
 
-            busConfiguration.UsePersistence<RavenDBPersistence>()
+            endpointConfiguration.UsePersistence<RavenDBPersistence>()
                 .DoNotSetupDatabasePermissions() //Only required to simplify the sample setup
                 .SetDefaultDocumentStore(documentStore);
 
             #endregion
 
-            busConfiguration.UseSerialization<JsonSerializer>();
-            busConfiguration.EnableInstallers();
+            endpointConfiguration.SendFailedMessagesTo("error");
+            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.EnableInstallers();
 
-            IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();

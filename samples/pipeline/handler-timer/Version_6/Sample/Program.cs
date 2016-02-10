@@ -12,14 +12,14 @@ class Program
 
     static async Task Start()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.PipelineHandlerTimer");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.SendFailedMessagesTo("error"); 
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.PipelineHandlerTimer");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error"); 
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             await Run(endpoint);
@@ -30,7 +30,7 @@ class Program
         }
     }
 
-    static async Task Run(IBusSession busSession)
+    static async Task Run(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Press 'Enter' to send a Message");
         Console.WriteLine("Press any key to exit");
@@ -40,17 +40,17 @@ class Program
             ConsoleKeyInfo key = Console.ReadKey();
             if (key.Key == ConsoleKey.Enter)
             {
-                await SendMessage(busSession);
+                await SendMessage(endpointInstance);
                 continue;
             }
             return;
         }
     }
 
-    static async Task SendMessage(IBusSession busSession)
+    static async Task SendMessage(IEndpointInstance endpointInstance)
     {
         Message message = new Message();
-        await busSession.SendLocal(message);
+        await endpointInstance.SendLocal(message);
 
         Console.WriteLine();
         Console.WriteLine("Message sent");

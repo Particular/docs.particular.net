@@ -36,8 +36,8 @@
             {
                 #region NHibernateAccessingDataDirectlyConfig
 
-                BusConfiguration busConfiguration = new BusConfiguration();
-                busConfiguration.UsePersistence<NHibernatePersistence>()
+                EndpointConfiguration configuration = new EndpointConfiguration();
+                configuration.UsePersistence<NHibernatePersistence>()
                     .RegisterManagedSessionInTheContainer();
 
                 #endregion
@@ -61,8 +61,8 @@
 
             public void Configure()
             {
-                BusConfiguration busConfiguration = new BusConfiguration();
-                busConfiguration.UsePersistence<NHibernatePersistence>()
+                EndpointConfiguration configuration = new EndpointConfiguration();
+                configuration.UsePersistence<NHibernatePersistence>()
                     .UseCustomSessionCreationMethod(CreateSession);
             }
 
@@ -72,6 +72,15 @@
             }
             #endregion
 
+        }
+    }
+
+    public static class FakeNHibernateSessionExtensions
+    {
+        // This is required because of ambiguous Session() extension method on NHibernate and RavenDB.
+        public static ISession Session(this SynchronizedStorageSession session)
+        {
+            return SynchronizedStorageSessionExtensions.Session(session);
         }
     }
 }

@@ -9,8 +9,8 @@
         {
             #region DisableSlrWithCode
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.DisableFeature<SecondLevelRetries>();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.DisableFeature<SecondLevelRetries>();
 
             #endregion
         }

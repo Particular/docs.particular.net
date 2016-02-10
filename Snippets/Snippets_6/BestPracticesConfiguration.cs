@@ -9,21 +9,21 @@
         void DisableFeature()
         {
             #region DisableBestPracticeEnforcementPerEndpoint
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.DisableFeature<BestPracticeEnforcement>();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.DisableFeature<BestPracticeEnforcement>();
             #endregion
         }
 
         async Task DisablePerMessage()
         {
-            IBusContext busContext = null;
+            IPipelineContext context = null;
 
             #region DisableBestPracticeEnforcementPerMessage
             SendOptions options = new SendOptions();
 
             options.DoNotEnforceBestPractices();
 
-            await busContext.Send(new MyEvent(), options);
+            await context.Send(new MyEvent(), options);
             #endregion
         }
 

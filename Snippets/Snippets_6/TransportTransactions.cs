@@ -13,8 +13,8 @@
         public void Unreliable()
         {
             #region TransactionsDisable
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<MyTransport>()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.None);
             #endregion
         }
@@ -22,8 +22,8 @@
         public void TransportTransactionReceiveOnly()
         {
             #region TransportTransactionReceiveOnly
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<MyTransport>()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.ReceiveOnly);
             #endregion
         }
@@ -31,8 +31,8 @@
         public void TransportTransactionAtomicSendsWithReceive()
         {
             #region TransportTransactionAtomicSendsWithReceive
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<MyTransport>()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.SendsAtomicWithReceive);
             #endregion
         }
@@ -40,8 +40,8 @@
         public void TransportTransactionScope()
         {
             #region TransportTransactionScope
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<MyTransport>()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope);
             #endregion
         }
@@ -49,8 +49,8 @@
         public void TransportTransactionsWithScope()
         {
             #region TransactionsWrapHandlersExecutionInATransactionScope
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UnitOfWork()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UnitOfWork()
                 .WrapHandlersInATransactionScope();
             #endregion
         }
@@ -58,8 +58,8 @@
         public void CustomTransactionIsolationLevel()
         {
             #region CustomTransactionIsolationLevel
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<MyTransport>()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope)
                 .TransactionScopeOptions(isolationLevel: IsolationLevel.RepeatableRead);
             #endregion
@@ -68,8 +68,8 @@
         public void CustomTransactionTimeout()
         {
             #region CustomTransactionTimeout
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<MyTransport>()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UseTransport<MyTransport>()
                 .Transactions(TransportTransactionMode.TransactionScope)
                 .TransactionScopeOptions(timeout: TimeSpan.FromSeconds(30));
             #endregion

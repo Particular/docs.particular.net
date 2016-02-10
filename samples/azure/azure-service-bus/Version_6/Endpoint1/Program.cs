@@ -13,19 +13,19 @@ class Program
     {
         #region config
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Azure.ServiceBus.Endpoint1");
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.UseTransport<AzureServiceBusTransport>()
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Azure.ServiceBus.Endpoint1");
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseTransport<AzureServiceBusTransport>()
             .ConnectionString(Environment.GetEnvironmentVariable("SamplesAzureServiceBusConnection"));
 
         #endregion
 
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press 'enter' to send a message");

@@ -7,30 +7,30 @@
     {
         public async Task ConcreteMessage()
         {
-            IBusContext busContext = null;
+            IPipelineContext context = null;
             #region InstancePublish
             MyEvent message = new MyEvent { SomeProperty = "Hello world" };
-            await busContext.Publish(message);
+            await context.Publish(message);
             #endregion
 
         }
 
         public async Task InterfaceMessage()
         {
-            IBusContext busContext = null;
+            IPipelineContext context = null;
             #region InterfacePublish
-            await busContext.Publish<IMyEvent>(m => { m.SomeProperty = "Hello world"; });
+            await context.Publish<IMyEvent>(m => { m.SomeProperty = "Hello world"; });
             #endregion
 
         }
 
         public async Task Subscribe()
         {
-            IBusContext busContext = null;
+            IEndpointInstance endpoint = null;
             #region ExplicitSubscribe
-            await busContext.Subscribe<MyEvent>();
+            await endpoint.Subscribe<MyEvent>();
 
-            await busContext.Unsubscribe<MyEvent>();
+            await endpoint.Unsubscribe<MyEvent>();
             #endregion
 
         }

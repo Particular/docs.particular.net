@@ -8,8 +8,8 @@
         {
             #region ErrorWithCode
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.SendFailedMessagesTo("targetErrorQueue");
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.SendFailedMessagesTo("targetErrorQueue");
 
             #endregion
         }

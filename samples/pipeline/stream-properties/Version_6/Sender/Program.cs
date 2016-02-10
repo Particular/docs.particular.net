@@ -14,20 +14,20 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.PipelineStream.Sender");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.SendFailedMessagesTo("error");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.PipelineStream.Sender");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         #region configure-stream-storage
 
-        busConfiguration.SetStreamStorageLocation("..\\..\\..\\storage");
+        endpointConfiguration.SetStreamStorageLocation("..\\..\\..\\storage");
 
         #endregion
 
-        busConfiguration.EnableInstallers();
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        endpointConfiguration.EnableInstallers();
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             await Run(endpoint);
@@ -39,7 +39,7 @@ class Program
     }
 
 
-    static async Task Run(IBusSession busSession)
+    static async Task Run(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Press 'F' to send a message with a file stream");
         Console.WriteLine("Press 'H' to send a message with a http stream");
@@ -51,19 +51,19 @@ class Program
 
             if (key.Key == ConsoleKey.F)
             {
-                await SendMessageWithFileStream(busSession);
+                await SendMessageWithFileStream(endpointInstance);
                 continue;
             }
             if (key.Key == ConsoleKey.H)
             {
-                await SendMessageWithHttpStream(busSession);
+                await SendMessageWithHttpStream(endpointInstance);
                 continue;
             }
             break;
         }
     }
 
-    static async Task SendMessageWithFileStream(IBusSession busSession)
+    static async Task SendMessageWithFileStream(IEndpointInstance endpointInstance)
     {
         #region send-message-with-file-stream
 
@@ -72,7 +72,7 @@ class Program
             SomeProperty = "This message contains a stream",
             StreamProperty = File.OpenRead("FileToSend.txt")
         };
-        await busSession.Send("Samples.PipelineStream.Receiver", message);
+        await endpointInstance.Send("Samples.PipelineStream.Receiver", message);
 
         #endregion
 
@@ -80,7 +80,7 @@ class Program
         Console.WriteLine("Message with file stream sent");
     }
 
-    static async Task SendMessageWithHttpStream(IBusSession busSession)
+    static async Task SendMessageWithHttpStream(IEndpointInstance endpointInstance)
     {
         #region send-message-with-http-stream
 
@@ -91,7 +91,7 @@ class Program
                 SomeProperty = "This message contains a stream",
                 StreamProperty = webClient.OpenRead("http://www.particular.net")
             };
-            await busSession.Send("Samples.PipelineStream.Receiver", message);
+            await endpointInstance.Send("Samples.PipelineStream.Receiver", message);
         }
 
         #endregion

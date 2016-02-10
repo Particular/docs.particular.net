@@ -4,9 +4,9 @@ using NServiceBus;
 public static class ConventionExtensions
 {
     #region CustomConvention
-    public static void ApplyCustomConventions(this BusConfiguration busConfiguration)
+    public static void ApplyCustomConventions(this EndpointConfiguration endpointConfiguration)
     {
-        ConventionsBuilder conventions = busConfiguration.Conventions();
+        ConventionsBuilder conventions = endpointConfiguration.Conventions();
         conventions.DefiningCommandsAs(t => t.Namespace != null && t.Namespace.EndsWith("Commands"));
         conventions.DefiningEventsAs(t => t.Namespace != null && t.Namespace.EndsWith("Events"));
         conventions.DefiningMessagesAs(t => t.Namespace == "Messages");

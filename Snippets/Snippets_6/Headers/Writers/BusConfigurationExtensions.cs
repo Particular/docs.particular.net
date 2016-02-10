@@ -7,9 +7,9 @@ namespace Snippets6.Headers.Writers
 
     public static class BusConfigurationExtensions
     {
-        public static void SetTypesToScan(this BusConfiguration busConfiguration, IEnumerable<Type> typesToScan)
+        public static void SetTypesToScan(this EndpointConfiguration busConfiguration, IEnumerable<Type> typesToScan)
         {
-            MethodInfo methodInfo = typeof(BusConfiguration).GetMethod("TypesToScanInternal",BindingFlags.NonPublic|BindingFlags.Instance);
+            MethodInfo methodInfo = typeof(EndpointConfiguration).GetMethod("TypesToScanInternal",BindingFlags.NonPublic|BindingFlags.Instance);
             methodInfo.Invoke(busConfiguration, new object[]
             {
                 typesToScan

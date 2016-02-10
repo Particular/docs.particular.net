@@ -11,17 +11,17 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         #region ConfigureRabbitQueueName
-        busConfiguration.EndpointName("Samples.RabbitMQ.NativeIntegration");
+        endpointConfiguration.EndpointName("Samples.RabbitMQ.NativeIntegration");
         #endregion
-        busConfiguration.UseTransport<RabbitMQTransport>()
+        endpointConfiguration.UseTransport<RabbitMQTransport>()
             .ConnectionString("host=localhost");
 
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         await endpoint.SendLocal(new MyMessage());
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();

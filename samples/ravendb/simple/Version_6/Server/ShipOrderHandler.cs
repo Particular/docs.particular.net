@@ -9,7 +9,7 @@ public class ShipOrderHandler : IHandleMessages<ShipOrder>
 {
     public Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
-        IAsyncDocumentSession session = context.SynchronizedStorageSession.Session();
+        IAsyncDocumentSession session = context.SynchronizedStorageSession.RavenSession();
         return session.StoreAsync(new OrderShipped
         {
             Id = message.OrderId,

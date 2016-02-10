@@ -10,21 +10,21 @@ class Program
     static void Main()
     {
         #region Workerstartup
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Scaleout.Worker");
-        busConfiguration.EndpointInstanceId(() => ConfigurationManager.AppSettings["InstanceId"]);
-        busConfiguration.EnlistWithLegacyMSMQDistributor(ConfigurationManager.AppSettings["MasterNodeAddress"], ConfigurationManager.AppSettings["MasterNodeControlAddress"], 10);
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Scaleout.Worker");
+        endpointConfiguration.EndpointInstanceId(() => ConfigurationManager.AppSettings["InstanceId"]);
+        endpointConfiguration.EnlistWithLegacyMSMQDistributor(ConfigurationManager.AppSettings["MasterNodeAddress"], ConfigurationManager.AppSettings["MasterNodeControlAddress"], 10);
         #endregion
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
 
-        Run(busConfiguration).GetAwaiter().GetResult();
+        Run(endpointConfiguration).GetAwaiter().GetResult();
     }
 
-    static async Task Run(BusConfiguration busConfiguration)
+    static async Task Run(EndpointConfiguration endpointConfiguration)
     {
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
         await endpoint.Stop();

@@ -25,8 +25,8 @@ namespace Snippets6.Features
 
         async Task EndpointConfiguration()
         {
-#region EnableDisableFeatures
-            BusConfiguration configuration = new BusConfiguration();
+            #region EnableDisableFeatures
+            EndpointConfiguration configuration = new EndpointConfiguration();
             
             // enable delayed delivery feature since SLR relies on it
             configuration.EnableFeature<DelayedDeliveryFeature>();

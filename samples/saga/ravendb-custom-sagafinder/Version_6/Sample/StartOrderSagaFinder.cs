@@ -12,7 +12,7 @@ class StartOrderSagaFinder : IFindSagas<OrderSagaData>.Using<StartOrder>
 {
     public Task<OrderSagaData> FindBy(StartOrder message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
     {
-        IAsyncDocumentSession session = storageSession.Session();
+        IAsyncDocumentSession session = storageSession.RavenSession();
         //if the instance is null a new saga will be automatically created if
         //the Saga handles the message as IAmStartedByMessages<StartOrder>; otherwise an exception is raised.
         return session.LoadByUniqueConstraintAsync<OrderSagaData>(d => d.OrderId, message.OrderId);

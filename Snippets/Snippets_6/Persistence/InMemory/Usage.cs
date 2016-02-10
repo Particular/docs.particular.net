@@ -9,13 +9,13 @@
         {
             #region ConfiguringInMemory
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration configuration = new EndpointConfiguration();
 
-            busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
-            busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
-            busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
-            busConfiguration.UsePersistence<InMemoryPersistence, StorageType.Outbox>();
-            busConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
+            configuration.UsePersistence<InMemoryPersistence, StorageType.Sagas>();
+            configuration.UsePersistence<InMemoryPersistence, StorageType.Subscriptions>();
+            configuration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
+            configuration.UsePersistence<InMemoryPersistence, StorageType.Outbox>();
+            configuration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
 
             #endregion
         }

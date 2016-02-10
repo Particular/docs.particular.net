@@ -15,17 +15,17 @@ class Program
     static async Task AsyncMain()
     {
         #region EndpointConfiguration
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.UseTransport<SqlServerTransport>()
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.UseTransport<SqlServerTransport>()
             .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=samples;Integrated Security=True");
-        busConfiguration.EndpointName("Samples.SqlServer.NativeIntegration");
-        busConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EndpointName("Samples.SqlServer.NativeIntegration");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
         #endregion
 
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press enter to send a message");

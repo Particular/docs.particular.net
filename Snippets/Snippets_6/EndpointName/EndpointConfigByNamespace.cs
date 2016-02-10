@@ -9,7 +9,7 @@
         {
             // ... your custom config
             // endcode
-            public void Customize(BusConfiguration busConfiguration)
+            public void Customize(EndpointConfiguration configuration)
             {
             }
         }

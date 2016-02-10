@@ -7,7 +7,7 @@ using NServiceBus;
 public class CommandSender
 {
 
-    public static async Task Start(IBusSession busSession)
+    public static async Task Start(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Press 'C' to send a command");
         Console.WriteLine("Press 'R' to send a request");
@@ -25,19 +25,19 @@ public class CommandSender
             switch (key.Key)
             {
                 case ConsoleKey.C:
-                    await SendCommand(busSession);
+                    await SendCommand(endpointInstance);
                     continue;
                 case ConsoleKey.R:
-                    await SendRequest(busSession);
+                    await SendRequest(endpointInstance);
                     continue;
                 case ConsoleKey.E:
-                    await Express(busSession);
+                    await Express(endpointInstance);
                     continue;
                 case ConsoleKey.D:
-                    await Data(busSession);
+                    await Data(endpointInstance);
                     continue;
                 case ConsoleKey.X:
-                    await Expiration(busSession);
+                    await Expiration(endpointInstance);
                     continue;
             }
             return;
@@ -47,20 +47,20 @@ public class CommandSender
 
 
     // Shut down server before sending this message, after 30 seconds, the message will be moved to Transactional dead-letter messages queue.
-    static async Task Expiration(IBusSession busSession)
+    static async Task Expiration(IEndpointInstance endpointInstance)
     {
-        await busSession.Send(new MessageThatExpires
+        await endpointInstance.Send(new MessageThatExpires
                  {
                      RequestId = new Guid()
                  });
         Console.WriteLine("message with expiration was sent");
     }
 
-    static async Task Data(IBusSession busSession)
+    static async Task Data(IEndpointInstance endpointInstance)
     {
         Guid requestId = Guid.NewGuid();
 
-        await busSession.Send(new LargeMessage
+        await endpointInstance.Send(new LargeMessage
         {
             RequestId = requestId,
             LargeDataBus = new byte[1024*1024*5]
@@ -69,11 +69,11 @@ public class CommandSender
         Console.WriteLine("Request sent id: " + requestId);
     }
 
-    static async Task Express(IBusSession busSession)
+    static async Task Express(IEndpointInstance endpointInstance)
     {
         Guid requestId = Guid.NewGuid();
 
-        await busSession.Send(new RequestExpress
+        await endpointInstance.Send(new RequestExpress
         {
             RequestId = requestId
         });
@@ -81,11 +81,11 @@ public class CommandSender
         Console.WriteLine("Request sent id: " + requestId);
     }
 
-    static async Task SendRequest(IBusSession busSession)
+    static async Task SendRequest(IEndpointInstance endpointInstance)
     {
         Guid requestId = Guid.NewGuid();
 
-        await busSession.Send(new Request
+        await endpointInstance.Send(new Request
         {
             RequestId = requestId
         });
@@ -93,11 +93,11 @@ public class CommandSender
         Console.WriteLine("Request sent id: " + requestId);
     }
 
-    static async Task SendCommand(IBusSession busSession)
+    static async Task SendCommand(IEndpointInstance endpointInstance)
     {
         Guid commandId = Guid.NewGuid();
 
-        await busSession.Send(new MyCommand
+        await endpointInstance.Send(new MyCommand
                  {
                      CommandId = commandId,
                      EncryptedString = "Some sensitive information"

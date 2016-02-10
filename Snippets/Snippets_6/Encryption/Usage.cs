@@ -8,8 +8,8 @@
         {
             #region EncryptionServiceSimple
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.RijndaelEncryptionService();
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.RijndaelEncryptionService();
 
             #endregion
         }

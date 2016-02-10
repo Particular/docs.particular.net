@@ -9,8 +9,8 @@
         public void UnitOfWorkWrapHandlersInATransactionScope()
         {
             #region UnitOfWorkWrapHandlersInATransactionScope
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UnitOfWork()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UnitOfWork()
                 .WrapHandlersInATransactionScope();
             #endregion
         }
@@ -18,8 +18,8 @@
         public void UnitOfWorkCustomTransactionIsolationLevel()
         {
             #region UnitOfWorkCustomTransactionIsolationLevel
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UnitOfWork()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UnitOfWork()
                 .WrapHandlersInATransactionScope(isolationLevel: IsolationLevel.RepeatableRead);
             #endregion
         }
@@ -27,8 +27,8 @@
         public void UnitOfWorkCustomTransactionTimeout()
         {
             #region UnitOfWorkCustomTransactionTimeout
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UnitOfWork()
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.UnitOfWork()
                 .WrapHandlersInATransactionScope(timeout: TimeSpan.FromSeconds(30));
             #endregion
         }

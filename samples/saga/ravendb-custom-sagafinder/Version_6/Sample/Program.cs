@@ -15,11 +15,11 @@ class Program
     {
         using (new RavenHost())
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.EndpointName("Samples.RavenDBCustomSagaFinder");
-            busConfiguration.UseSerialization<JsonSerializer>();
-            busConfiguration.EnableInstallers();
-            busConfiguration.SendFailedMessagesTo("error");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.EndpointName("Samples.RavenDBCustomSagaFinder");
+            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.EnableInstallers();
+            endpointConfiguration.SendFailedMessagesTo("error");
 
             DocumentStore documentStore = new DocumentStore
             {
@@ -29,11 +29,11 @@ class Program
             documentStore.RegisterListener(new UniqueConstraintsStoreListener());
             documentStore.Initialize();
 
-            busConfiguration.UsePersistence<RavenDBPersistence>()
+            endpointConfiguration.UsePersistence<RavenDBPersistence>()
                 .DoNotSetupDatabasePermissions() //Only required to simplify the sample setup
                 .SetDefaultDocumentStore(documentStore);
 
-            IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
             await endpoint.SendLocal(new StartOrder
             {
                 OrderId = "123"

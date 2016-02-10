@@ -21,14 +21,14 @@ public class MvcApplication : HttpApplication
 
     static async Task AsyncStart()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Store.ECommerce");
-        busConfiguration.PurgeOnStartup(true);
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Store.ECommerce");
+        endpointConfiguration.PurgeOnStartup(true);
 
-        busConfiguration.ApplyCommonConfiguration();
-        busConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.ApplyCommonConfiguration();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        Endpoint = await NServiceBus.Endpoint.Start(busConfiguration);
+        Endpoint = await NServiceBus.Endpoint.Start(endpointConfiguration);
 
         AreaRegistration.RegisterAllAreas();
         FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

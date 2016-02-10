@@ -34,10 +34,9 @@ namespace Snippets6.Host
 
         async Task AsyncOnStart()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
-            //other bus configuration. endpoint name, logging, transport, persistence etc
-            busConfiguration.EnableInstallers();
-            endpointInstance = await Endpoint.Start(busConfiguration);
+            EndpointConfiguration configuration = new EndpointConfiguration();
+            configuration.EnableInstallers();
+            endpointInstance = await Endpoint.Start(configuration);
         }
 
         protected override void OnStop()

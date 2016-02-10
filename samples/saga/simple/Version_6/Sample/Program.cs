@@ -12,7 +12,7 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        EndpointConfiguration busConfiguration = new EndpointConfiguration();
         busConfiguration.EndpointName("Samples.ComplexSagaFindingLogic");
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.EnableInstallers();
