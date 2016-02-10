@@ -2,7 +2,6 @@
 USE [master]
 GO
 
-/****** Object:  Database [PersistenceForMsmqTransport]    Script Date: 2/9/2016 10:20:43 AM ******/
 CREATE DATABASE [PersistenceForMsmqTransport]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -14,10 +13,10 @@ GO
 USE [PersistenceForMsmqTransport]
 GO
 
-
 CREATE TABLE [dbo].[Subscription](
 	[SubscriberEndpoint] [varchar](450) NOT NULL,
 	[MessageType] [varchar](450) NOT NULL,
+	[LogicalEndpoint] [varchar](450) NULL,
 	[Version] [varchar](450) NULL,
 	[TypeName] [varchar](450) NULL,
 PRIMARY KEY CLUSTERED 
@@ -26,7 +25,6 @@ PRIMARY KEY CLUSTERED
 	[MessageType] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
-
 
 CREATE TABLE [dbo].[TimeoutEntity](
 	[Id] [uniqueidentifier] NOT NULL,
@@ -43,5 +41,4 @@ PRIMARY KEY NONCLUSTERED
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-
 -- endcode

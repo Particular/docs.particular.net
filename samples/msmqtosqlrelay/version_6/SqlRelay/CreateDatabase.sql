@@ -1,9 +1,7 @@
-﻿
--- startcode CreateDatabaseForSqlPersistence
+﻿-- startcode CreateDatabaseForSqlPersistence
 USE [master]
 GO
 
-/****** Object:  Database [PersistenceForSqlTransport]    Script Date: 2/9/2016 11:57:44 AM ******/
 CREATE DATABASE [PersistenceForSqlTransport]
  CONTAINMENT = NONE
  ON  PRIMARY 

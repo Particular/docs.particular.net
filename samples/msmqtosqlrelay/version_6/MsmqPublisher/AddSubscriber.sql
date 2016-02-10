@@ -1,5 +1,4 @@
-﻿
--- startcode AddSubscriber 6
+﻿-- startcode AddSubscriber 6
 Use PersistenceForMsmqTransport
 Go
 

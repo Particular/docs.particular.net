@@ -28,7 +28,6 @@ class Program
         try
         {
             Start(endpoint);
-            Console.WriteLine("Press Enter to publish the SomethingHappened Event");
         }
         finally
         {
@@ -40,6 +39,7 @@ class Program
     static void Start(IEndpointInstance busSession)
     {
         Console.WriteLine("Press Enter to publish the SomethingHappened Event");
+        Console.WriteLine("Press Ctrl+C to exit");
 
         #region publisher-loop
         while (Console.ReadLine() != null)

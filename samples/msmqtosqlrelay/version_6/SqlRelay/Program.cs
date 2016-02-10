@@ -2,49 +2,48 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
+using NServiceBus.Persistence;
 
-namespace SqlRelay
+class Program
 {
-    class Program
+
+    static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
 
-        static void Main()
+        #region sqlrelay-config
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EndpointName("SqlRelay");
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.DisableFeature<AutoSubscribe>();
+        endpointConfiguration.UsePersistence<NHibernatePersistence>()
+            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True");
+        endpointConfiguration.UseTransport<SqlServerTransport>()
+            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True");
+        #endregion
+
+
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        try
         {
-            AsyncMain().GetAwaiter().GetResult();
+            Start(endpoint);
         }
-
-        static async Task AsyncMain()
+        finally
         {
-
-            #region sqlrelay-config
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-            endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.EndpointName("SqlRelay");
-            endpointConfiguration.EnableInstallers();
-            endpointConfiguration.DisableFeature<AutoSubscribe>();
-            endpointConfiguration.UsePersistence<InMemoryPersistence>();
-            endpointConfiguration.UseTransport<SqlServerTransport>()
-                .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=PersistenceForSqlTransport;Integrated Security=True");
-            #endregion
-
-
-            IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
-            try
-            {
-                Start(endpoint);
-            }
-            finally
-            {
-                await endpoint.Stop();
-            }
+            await endpoint.Stop();
         }
-
-
-        static void Start(IEndpointInstance busSession)
-        {
-            Console.WriteLine("\r\nSqlRelay is running - This endpoint will relay all events received to subscribers. Press any key to stop program\r\n");
-            Console.ReadKey();
-        }
-
     }
+
+
+    static void Start(IEndpointInstance busSession)
+    {
+        Console.WriteLine("\r\nSqlRelay is running - This endpoint will relay all events received to subscribers. Press any key to stop program\r\n");
+        Console.ReadKey();
+    }
+
 }

@@ -66,7 +66,6 @@ snippet:read-message-and-push-to-sql
 
 snippet:CreateDatabaseForSqlPersistence
 
-- Although this sample uses InMemory Persistence, since this endpoint will be publishing events for downstream SQL Susbcribers, for production scenarios it is advisable to use a durable persistence like NHibernate Persistence.
 - References the `Shared` message schema.
 - Messages to this endpoint are being written natively by the `NativeMsmqToSql` program. Since no SQL endpoint is publishing the events,  this endpoint is configured to have its auto subscription for events turned off.
 - Has a handler for the event that does a publish in the handler, so that downstream SQL subscribers can receive the event.   

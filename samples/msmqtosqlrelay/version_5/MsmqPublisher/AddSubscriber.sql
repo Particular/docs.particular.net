@@ -1,8 +1,6 @@
-﻿
--- startcode AddSubscriber 5
+﻿-- startcode AddSubscriber 5
 Use PersistenceForMsmqTransport
 Go
-
 
 INSERT INTO Subscription
        ([SubscriberEndpoint]
@@ -15,5 +13,4 @@ INSERT INTO Subscription
        '0.0.0.0',
        'Shared.SomethingHappened')
 GO
-
 -- endcode

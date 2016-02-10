@@ -18,7 +18,9 @@ class Program
 
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
-            Console.WriteLine("Press enter to publish an event.");
+            Console.WriteLine("Press enter to publish an event");
+            Console.WriteLine("Press Ctrl + C to exit.");
+           
             #region PublishLoop
             while (Console.ReadLine() != null)
             {

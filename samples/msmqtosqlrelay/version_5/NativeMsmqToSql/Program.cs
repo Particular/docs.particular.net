@@ -36,7 +36,7 @@ class Program
     }
 
 
-    private static void MsmqBridgeOnReceiveCompleted(object sender, ReceiveCompletedEventArgs receiveCompletedEventArgs)
+    static void MsmqBridgeOnReceiveCompleted(object sender, ReceiveCompletedEventArgs receiveCompletedEventArgs)
     {
         var sqlConnectionStr = @"Data Source =.\SQLEXPRESS; Initial Catalog = PersistenceForSqlTransport; Integrated Security = True";
         var sqlRelayEndpointName = "SqlRelay";
@@ -79,7 +79,7 @@ class Program
         }
     }
 
-    private static Dictionary<string, string> ExtractHeaders(string headerString)
+    static Dictionary<string, string> ExtractHeaders(string headerString)
     {
         // Deserialize the XML stream from the Extension property on the MSMQ to a dictionary of key-value pairs
         var headerSerializer = new System.Xml.Serialization.XmlSerializer(typeof(List<HeaderInfo>));
@@ -149,18 +149,3 @@ class Program
         }
     }
 }
-
-[Serializable]
-public class HeaderInfo
-{
-    /// <summary>
-    /// The key used to lookup the value in the header collection.
-    /// </summary>
-    public string Key { get; set; }
-
-    /// <summary>
-    /// The value stored under the key in the header collection.
-    /// </summary>
-    public string Value { get; set; }
-}
-
