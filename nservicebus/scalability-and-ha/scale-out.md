@@ -41,7 +41,7 @@ When instance ID is assigned, NServiceBus spins up an additional receiver for th
 
 It is up to the sender to choose if it is going to treat the endpoint as a whole (and send its messages to `Sales` queue) or address individual instances (e.g. `Sales-Red`, `Sales-Green`, `Sales-Blue`). 
 
-In the first case the the scaling out is done by means of competing consumers. In the second case it is realised by sender using a round-robin algorithm to balance the load on receiver instances. Both scale out approaches are supported by all transports, but some transports are better suited for one or the other.
+In the first case the the scaling out happens by means of competing consumers. In the second case it is realised by sender using a round-robin algorithm to balance the load on receiver instances. Both scale out approaches are supported by all transports, but some transports are better suited for one or the other.
 
 ### MSMQ
 
