@@ -14,7 +14,7 @@ NServiceBus transports can be devided into several categories.
 
 ### Bus transports
 
-Bus transports are inherently distributed. Each endpoint instance might potentially connect to a different node of the bus. Messages are routed transparently between the nodes but physical routing layer needs to contain information on which bus node particular endpoint is connected to.
+Bus transports are inherently distributed. Each endpoint instance might potentially connect to a different node of the bus. Messages are routed transparently between the nodes but physical routing layer needs to contain information to which bus node particular endpoint is connected to.
 
 Bus transports include:
  * [MSMQ](/nservicebus/msmq)
