@@ -39,11 +39,18 @@ class Program
     static void Start(IEndpointInstance busSession)
     {
         Console.WriteLine("Press Enter to publish the SomethingHappened Event");
-        Console.WriteLine("Press Ctrl+C to exit");
+        Console.WriteLine("Press any key to exit");
 
         #region publisher-loop
-        while (Console.ReadLine() != null)
+        while (true)
         {
+            ConsoleKeyInfo key = Console.ReadKey();
+            Console.WriteLine();
+
+            if (key.Key != ConsoleKey.Enter)
+            {
+                return;
+            }
             busSession.Publish(new SomethingHappened());
             Console.WriteLine("SomethingHappened Event published");
         }
