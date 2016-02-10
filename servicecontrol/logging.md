@@ -10,8 +10,12 @@ redirects:
 
 ### Logging
 
-Instances of the ServiceControl service write diagnostic information and failed message imports to the file system.
-
+Instances of the ServiceControl service write logging information and failed message imports to the file system.  
+Before v1.9 the logging level by default was set to `INFO`, however this level can be quite verbose, so from v1.9 the default logging level is now `WARN`, this level is also configurable by adding the following to the configuration file:
+```xml
+<!-- Log Level Options: Trace, Debug, Info, Warn, Error, Fatal, Off -->
+<add key="ServiceControl/LogLevel" value="Info" /> 
+```
 
 ### Location
 
