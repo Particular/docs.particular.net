@@ -19,11 +19,18 @@ class Program
         using (IBus bus = Bus.Create(busConfiguration).Start())
         {
             Console.WriteLine("Press enter to publish an event");
-            Console.WriteLine("Press Ctrl + C to exit.");
+            Console.WriteLine("Press any key to exit.");
            
             #region PublishLoop
-            while (Console.ReadLine() != null)
+            while (true)
             {
+                ConsoleKeyInfo key = Console.ReadKey();
+                Console.WriteLine();
+
+                if (key.Key != ConsoleKey.Enter)
+                {
+                    return;
+                }
                 bus.Publish(new SomethingHappened());
                 Console.WriteLine("SomethingHappened Event published");
             }
