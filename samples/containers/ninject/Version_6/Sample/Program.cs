@@ -7,14 +7,15 @@ public class Program
 {
     static void Main()
     {
-        new Program().Start().Wait();
+        Start().GetAwaiter().GetResult();
     }
 
-    async Task Start()
+    static async Task Start()
     {
         #region ContainerConfiguration
         BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.EndpointName("Samples.Ninject");
+        busConfiguration.SendFailedMessagesTo("error");
 
         StandardKernel kernel = new StandardKernel();
         kernel.Bind<MyService>().ToConstant(new MyService());
@@ -26,10 +27,17 @@ public class Program
 
 
         IEndpointInstance endpointInstance = await Endpoint.Start(busConfiguration);
-        await endpointInstance.SendLocal(new MyMessage());
 
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
+        try
+        {
+            await endpointInstance.SendLocal(new MyMessage());
+
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
+        }
+        finally 
+        {
+            await endpointInstance.Stop();
+        }
     }
 }
