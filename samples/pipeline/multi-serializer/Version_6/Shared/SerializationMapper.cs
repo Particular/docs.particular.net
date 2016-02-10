@@ -1,25 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using NServiceBus;
 using NServiceBus.MessageInterfaces;
 using NServiceBus.Serialization;
-using NServiceBus.Serializers.Json;
-using NServiceBus.Serializers.XML;
 using NServiceBus.Settings;
 
 #region serialization-mapper
 public class SerializationMapper
 {
-    JsonMessageSerializer jsonSerializer;
-    XmlMessageSerializer xmlSerializer;
+    IMessageSerializer jsonSerializer;
+    IMessageSerializer xmlSerializer;
 
-    public SerializationMapper(IMessageMapper mapper,Conventions conventions, ReadOnlySettings settings)
+    public SerializationMapper(IMessageMapper mapper, ReadOnlySettings settings)
     {
-        jsonSerializer = new JsonMessageSerializer(mapper);
-        xmlSerializer = new XmlMessageSerializer(mapper, conventions);
-        List<Type> messageTypes = settings.GetAvailableTypes().Where(conventions.IsMessageType).ToList();
-        xmlSerializer.Initialize(messageTypes);
+        xmlSerializer = new XmlSerializer().Configure(settings)(mapper);
+        jsonSerializer = new JsonSerializer().Configure(settings)(mapper);
     }
     
     public IMessageSerializer GetSerializer(Dictionary<string, string> headers)
