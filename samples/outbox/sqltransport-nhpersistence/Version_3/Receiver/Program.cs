@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Mapping.ByCode;
@@ -6,12 +7,16 @@ using NHibernate.Tool.hbm2ddl;
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Persistence;
-using NServiceBus.Transports.SQLServer;
 using Configuration = NHibernate.Cfg.Configuration;
 
 class Program
 {
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         #region NHibernate
 
@@ -43,10 +48,15 @@ class Program
 
         busConfiguration.DisableFeature<SecondLevelRetries>();
 
-        using (Bus.Create(busConfiguration).Start())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }

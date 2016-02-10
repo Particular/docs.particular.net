@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
 {
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
@@ -18,7 +24,8 @@ class Program
 
         #endregion
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        try
         {
             Console.WriteLine("Press enter to publish a message");
             Console.WriteLine("Press any key to exit");
@@ -31,12 +38,16 @@ class Program
                     return;
                 }
                 string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                bus.Publish(new OrderSubmitted
+                endpoint.Publish(new OrderSubmitted
                 {
                     OrderId = orderId,
                     Value = random.Next(100)
                 });
             }
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }

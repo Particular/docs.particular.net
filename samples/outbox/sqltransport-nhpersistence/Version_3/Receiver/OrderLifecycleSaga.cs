@@ -1,5 +1,6 @@
 ﻿using System;
-using NServiceBus.Saga;
+using System.Threading.Tasks;
+using NServiceBus;
 
 public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>,
     IAmStartedByMessages<OrderSubmitted>,
@@ -9,19 +10,21 @@ public class OrderLifecycleSaga : Saga<OrderLifecycleSagaData>,
     {
     }
 
-    public void Handle(OrderSubmitted message)
+    public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
 
         #region Timeout
 
-        RequestTimeout<OrderTimeout>(TimeSpan.FromSeconds(5));
+        await RequestTimeout(context, TimeSpan.FromSeconds(5), new OrderTimeout());
 
         #endregion
     }
 
-    public void Timeout(OrderTimeout state)
+    public Task Timeout(OrderTimeout state, IMessageHandlerContext context)
     {
         Console.WriteLine("Got timeout");
+
+        return Task.FromResult(0);
     }
 }

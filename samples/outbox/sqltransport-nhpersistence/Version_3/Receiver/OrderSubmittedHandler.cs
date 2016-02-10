@@ -1,15 +1,15 @@
 using System;
+using System.Threading.Tasks;
 using NServiceBus;
 using NHibernate;
 
 public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 {
     static readonly Random ChaosGenerator = new Random();
-
-    public IBus Bus { get; set; }
+    
     public ISession Session { get; set; }
 
-    public void Handle(OrderSubmitted message)
+    public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         Console.WriteLine("Order {0} worth {1} submitted", message.OrderId, message.Value);
 
@@ -25,7 +25,7 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
         #region Reply
 
-        Bus.Reply(new OrderAccepted
+        await context.Reply(new OrderAccepted
         {
             OrderId = message.OrderId,
         });
@@ -36,6 +36,5 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
         {
             throw new Exception("Boom!");
         }
-
     }
 }
