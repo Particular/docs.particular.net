@@ -90,13 +90,16 @@ DANGER: In this mode, when encountering a critical failure such as system or end
 
 snippet:TransactionsDisable
 
+
 #### Versions 6 and up
 
 In this mode the transport doesn't wrap the receive operation in any kind of transaction. Should the message fail to process it will be moved straight to the error queue.
 
+
 #### Versions 5 and below
 
 In Versions 5 and below, when transactions are disabled, no retries will be performed and messages **will not be forwarded** to the error queue in the event of any failure and the message will be permanently lost.
+
 
 ## Outbox
 
@@ -125,6 +128,7 @@ WARNING: This API must not be used in combination with transports running in *tr
 The following options for transaction scopes used during message processing can be configured.
 
 NOTE: Starting from version 6 isolation level and timeout for transaction scopes are also configured at the transport level.
+
 
 ### Isolation level
 
