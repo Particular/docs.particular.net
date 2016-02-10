@@ -21,63 +21,67 @@ Starting with NServiceBus 5.0, RavenDB is no longer merged into the core. The Ra
 
 ### Connection options for RavenDB
 
-Following list outlines various ways to telling how to connect to the RavenDB server ordered from the highest to the lowest priority
+The following sections outline various ways to connect to the RavenDB server, starting with the most basic.
 
 
-#### Shared session
+#### Default
 
-Shared session is only applicable to Saga and Outbox storage. It can be configured via
-
-snippet:ravendb-persistence-shared-session-for-sagas
-
-The session configured is then made available  user code via the `ISessionProvider` interface. e.g. in the handler:
-
-snippet:ravendb-persistence-shared-session-for-sagas-handler
+By default, a `DocumentStore` is created that connects to `http://localhost:8080` and uses the endpoint name as its database name. This default connection is used for all the persisters.
 
 
-#### External store for a specific persister
+#### Shared store for all persisters defined via connection string
 
-One can pass an externally created `DocumentStore` instance for usage in a specific persister (e.g. timeouts) by using following code:
+Instead of connecting to a database on the local server, a connection string can be provided via configuration. The runtime will look for a connection string named `NServiceBus/Persistence/RavenDB` or `NServiceBus/Persistence`.
 
-snippet:ravendb-persistence-specific-external-store
+snippet:shared-document-store-via-connection-string
+
+RavenDB connection strings can include the database name and other parameters as well. See [How to set up a connection string](https://ravendb.net/docs/article-page/3.0/csharp/client-api/setting-up-connection-string#Format) in the RavenDB documentation for more details. The runtime will use the the connection string to create a shared `DocumentStore` instance for all persisters.
+
+
+#### Shared store for all persisters defined via connection parameters
+
+Rather than specifying connection information in configuration, connection details can be established via an instance of `ConnectionParameters` that allows specifying Url, DatabaseName and the ApiKey for the RavenDB instance for usage in all the persisters. The runtime will use the parameters to create a shared `DocumentStore` instance for all persisters.
+
+snippet:ravendb-persistence-external-connection-params
+
+
+#### External shared store for all persisters
+
+If NServiceBus needs to use the same `DocumentStore` instance used elsewhere in an application, this instance can be provided directly to NServiceBus to use for all persisters.
+
+snippet:ravendb-persistence-external-store
 
 
 #### Store defined via a connection string for a specific persister
 
 One can configure a RavenDB connection string that is only applicable to a specific store:
 
-<!-- specific-document-store-via-connection-string -->
+snippet:specific-document-store-via-connection-string
 
 
-#### External shared store for all persisters
+#### External store for a specific persister
 
-If for a given persister no method listed above works, NServiceBus looks for a shared externally-provided store. One can provide such a store via:
+An externally created `DocumentStore` instance can be passed to NServiceBus for usage in a specific persister (e.g. timeouts) by using the following code:
 
-snippet:ravendb-persistence-external-store
-
-
-#### Shared store for all persisters defined via connection parameters
-
-One can pass an instance of `ConnectionParameters` that allows to specify Url, DatabaseName and the ApiKey of RavenDB instance for usage in all the persisters. The runtime will use the parameters to create a shared `DocumentStore`.
-
-snippet:ravendb-persistence-external-connection-params
-
-
-#### Shared store for all persisters defined via connection string
-
-If nothing above succeeded, the runtime looks for shared store connection strings in the order below:
-
-snippet:shared-document-store-via-connection-string
-
-If a connection string is found, a corresponding shared `DocumentStore` is created.
-
-
-#### Default
-
-As a last resort, a `DocumentStore` that connects to `http://localhost:8080` is created and used for all the persisters.
+snippet:ravendb-persistence-specific-external-store
 
 
 ### Other configuration options
+
+
+#### Shared session
+
+NServiceBus supports sharing the same RavenDB document session between Saga persistence, Outbox persistence, and business data, so that a single transaction can be used to persist the data for all three concerns atomically.
+
+Shared session is only applicable to Saga and Outbox storage. It can be configured via
+
+snippet:ravendb-persistence-shared-session-for-sagas
+
+This optionally allows customization of the document session that is created for Saga, Outbox, and handler logic to share.
+
+The session that is created is then made available to handler logic, although the method differs based on NServiceBus version:
+
+snippet:ravendb-persistence-shared-session-for-sagas-handler
 
 
 #### Saga correlation
@@ -93,28 +97,36 @@ DANGER: This is a potentially dangerous feature that can result in multiple inst
 
 #### Transaction recovery storage
 
-Prior to NServiceBus.RavenDB 3.1.0, NServiceBus chose  `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage for RavenDB, which is a setting necessary for RavenDB's implementation of distributed transactions. Later, RavenDB discovered that the use of Isolated Storage for this task was unstable in certain situations, resulting in users [receiving a TransactionAbortedException or IsolatedStorageException](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ).
+The RavenDB client requires a method of storing DTC transaction recovery information in the case of process faults. The handling of transaction recovery storage by NServiceBus.RavenDB differs by version.
 
-From NServiceBus.RavenDB 3.1.0 onwards, NServiceBus utilizes `LocalDirectoryTransactionRecoveryStorage` with a storage location inside `%LOCALAPPDATA%`.  It is strongly advised to upgrade to at least NServiceBus.RavenDB 3.1.0.
 
-If experiencing one of these issues and an upgrade to 3.1.0 is not possible, the default TransactionRecoveryStorage can be changed as shown in the following example. Note that a version for NServiceBus 6+ is not shown as versions of NServiceBus.RavenDB compatible with NServiceBus 6+ do not contain the issue.
+##### NServiceBus.RavenDB 3.1 and above
+
+As of 3.1.0, NServiceBus uses `LocalDirectoryTransactionRecoveryStorage` with a storage location inside `%LOCALAPPDATA%`. It is not necessary to modify this default value.
+
+
+##### NServiceBus.RavenDB 3.0.x and below
+
+In these versions of NServiceBus, NServiceBus uses `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage, which has been proven to be unstable in certain situations, sometimes resulting in a [TransactionAbortedException or IsolatedStorageException](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ).
+
+If experiencing one of these issues and an upgrade to 3.1.0 or later is not possible, the default `TransactionRecoveryStorage` can be changed as shown in the following example.
 
 snippet:ConfiguringTransactionRecoveryStorage
 
 
-## Previous releases
+## NServiceBus 3 and NServiceBus 4
 
-Beginning with NServiceBus 3.0, including all 3.x and 4.x versions, RavenDB is the default mechanisms for NServiceBus to persist its time-out, saga and subscription information.
+For all NServiceBus 3.x and 4.x versions, RavenDB is the default mechanism for NServiceBus to persist its timeout, saga and subscription data.
 
-To tell NServiceBus to use RavenDB for persistence is as easy as calling `Configure.RavenPersistence()`. This is the default configuration and it uses these conventions:
+Configuring NServiceBus to use RavenDB for persistence can be accomplished by calling `Configure.RavenPersistence()`, however as this is the default configuration this call is not required.
 
--   If no master node is configured it assumes that a RavenDB server is running at `http://localhost:8080`, the default URL for RavenDB.
--   If a master node is configured, the URL is: `http://{masternode}/:8080`.
--   If a connection string named "NServiceBus/Persistence" is found, the value of the `connectionString` attribute is used.
+RavenDB persistence for NServiceBus 3/4 uses these conventions:
 
-This gives you full control over which RavenDB server your endpoint uses.
+ * If no master node is configured it assumes that a RavenDB server is running at `http://localhost:8080`, the default URL for RavenDB.
+ * If a master node is configured, the URL is: `http://{masternode}/:8080`.
+ * If a connection string named "NServiceBus/Persistence" is found, the value of the `connectionString` attribute is used.
 
-If NServiceBus detects that any RavenDB related storage is used for sagas, subscriptions, timeouts, etc., if automatically configures it for you. So in essence there is no need for you to explicitly configure RavenDB unless you want to override the defaults.
+If NServiceBus detects that any RavenDB related storage is used for sagas, subscriptions, timeouts, etc., if automatically configures it for you. There is no need to explicitly configure RavenDB unless it is necessary to override the defaults.
 
 
 ### Overriding the defaults
@@ -125,7 +137,7 @@ In some situations the default behavior might not be right for you:
 -   You want to specify a explicit database name. To control the database name in code instead of via the configuration, use the `Configure.RavenPersistence(string connectionStringName, string databaseName)` signature. This can be useful in a multi-tenant scenario.
 
 
-### Can I use the IDocumentStore used by NServiceBus for my own data?
+### Can IDocumentStore used by NServiceBus for business data?
 
 No, the RavenDB client is merged and internalized into the NServiceBus assemblies, so to use Raven for your own purposes, reference the Raven client and set up your own document store.
 
