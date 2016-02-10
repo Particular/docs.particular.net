@@ -86,14 +86,17 @@ This mode has the same consistency guarantees as the *Receive Only* mode mention
 
 ### Unreliable (Transactions Disabled)
 
-In this mode the transport doesn't wrap the receive operation in any kind of transaction. Should the message fail to process it will be moved straight to the error queue. There will be no first level or second level retries since those features rely on transport level transactions.
-
-WARNING: If there is a critical failure, including system or endpoint crash, the message is **permanently lost** since it's received with no transaction.
-
-NOTE: In Version 5 and below, when transactions are disabled, no retries will be performed and messages **will not be forwarded** to the error queue in the event of any failure.
+DANGER: In this mode, when encountering a critical failure such as system or endpoint crash, the message is **permanently lost**.
 
 snippet:TransactionsDisable
 
+#### Versions 6 and up
+
+In this mode the transport doesn't wrap the receive operation in any kind of transaction. Should the message fail to process it will be moved straight to the error queue.
+
+#### Versions 5 and below
+
+In Versions 5 and below, when transactions are disabled, no retries will be performed and messages **will not be forwarded** to the error queue in the event of any failure and the message will be permanently lost.
 
 ## Outbox
 
