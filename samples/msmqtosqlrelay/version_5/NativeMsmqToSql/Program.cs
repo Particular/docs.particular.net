@@ -14,8 +14,6 @@ class Program
 {
     static void Main()
     {
-        ManualResetEvent signal = new ManualResetEvent(false);
-
         #region receive-from-msmq-using-native-messaging
         // The address of the queue that will be receiving messages from other MSMQ publishers
         var queuePath = @".\private$\MsmqToSqlRelay";
@@ -32,9 +30,8 @@ class Program
         #endregion
 
         Console.WriteLine("Watching MSMQ: {0} for messages. Received messages will be sent to the SqlRelay", queuePath);
-        Console.WriteLine("Press Ctrl+C to quit.");
-        Console.WriteLine();
-        signal.WaitOne();
+        Console.WriteLine("Press any key to quit.");
+        ConsoleKeyInfo key = Console.ReadKey();
     }
 
 
