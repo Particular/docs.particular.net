@@ -13,14 +13,14 @@ static class Program
     static async Task AsyncMain()
     {
         LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.PubSub.Subscriber1");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.EnableInstallers();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.PubSub.Subscriber1");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EnableInstallers();
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press any key to exit");

@@ -4,13 +4,13 @@ using NServiceBus;
 
 public class EndpointConfig : IConfigureThisEndpoint
 {
-    public void Customize(BusConfiguration busConfiguration)
+    public void Customize(EndpointConfiguration endpointConfiguration)
     {
-        busConfiguration.EndpointName("Samples.NServiceBus.Host");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EndpointName("Samples.NServiceBus.Host");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
     }
 }
 

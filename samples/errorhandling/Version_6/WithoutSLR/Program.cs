@@ -17,16 +17,16 @@ static class Program
             .Level(LogLevel.Warn);
 
         #region DisableSLR
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.ErrorHandling.WithoutSLR");
-        busConfiguration.DisableFeature<SecondLevelRetries>();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.ErrorHandling.WithoutSLR");
+        endpointConfiguration.DisableFeature<SecondLevelRetries>();
         #endregion
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press enter to send a message that will throw an exception.");

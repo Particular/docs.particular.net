@@ -10,18 +10,18 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Unobtrusive.Server");
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UseDataBus<FileShareDataBus>()
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Unobtrusive.Server");
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseDataBus<FileShareDataBus>()
             .BasePath(@"..\..\..\DataBusShare\");
-        busConfiguration.RijndaelEncryptionService("gdDbqRpqdRbTs3mhdZh8qCaDaxJXl+e7");
-        busConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.RijndaelEncryptionService("gdDbqRpqdRbTs3mhdZh8qCaDaxJXl+e7");
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        busConfiguration.ApplyCustomConventions();
+        endpointConfiguration.ApplyCustomConventions();
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             await CommandSender.Start(endpoint);

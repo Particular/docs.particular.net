@@ -20,13 +20,13 @@ public static class StreamStorageHelper
 
     #region stream-storage-helper
 
-    public static void SetStreamStorageLocation(this BusConfiguration configure, string location)
+    public static void SetStreamStorageLocation(this EndpointConfiguration endpointConfiguration, string location)
     {
         StreamStorageSettings settings = new StreamStorageSettings
                                          {
                                              Location = location,
                                          };
-        configure.RegisterComponents(x => x.RegisterSingleton(settings));
+        endpointConfiguration.RegisterComponents(x => x.RegisterSingleton(settings));
     }
 
     #endregion

@@ -12,21 +12,21 @@ class Program
     static async Task AsyncMain()
     {
         #region Configuration
-        BusConfiguration configuration = new BusConfiguration();
-        configuration.EndpointName("Samples.Throttling");
-        configuration.LimitMessageProcessingConcurrencyTo(1);
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Throttling");
+        endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
         #endregion
-        configuration.UsePersistence<InMemoryPersistence>();
-        configuration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         #region RegisterBehavior
-        configuration.Pipeline.Register(
+        endpointConfiguration.Pipeline.Register(
                    "GitHub API Throttling",
                    typeof(ThrottlingBehavior),
                    "implements API throttling for GitHub APIs");
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(configuration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("\r\nPress any key to stop program\r\n");

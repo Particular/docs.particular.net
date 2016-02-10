@@ -45,15 +45,15 @@ public class MvcApplication : HttpApplication
 
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Mvc.WebApplication");
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Mvc.WebApplication");
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
 
-        endpoint = Endpoint.Start(busConfiguration).GetAwaiter().GetResult();
+        endpoint = Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 
         ContainerBuilder updater = new ContainerBuilder();
         updater.RegisterInstance(endpoint);

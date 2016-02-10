@@ -40,14 +40,14 @@ class ProgramService : ServiceBase
 
     async Task AsyncOnStart()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-        busConfiguration.EndpointName("Samples.WindowsServiceAndConsole");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-        endpoint = await Endpoint.Start(busConfiguration);
+        endpointConfiguration.EndpointName("Samples.WindowsServiceAndConsole");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpoint = await Endpoint.Start(endpointConfiguration);
         // run any startup actions on the bus
         await endpoint.SendLocal(new MyMessage());
     }

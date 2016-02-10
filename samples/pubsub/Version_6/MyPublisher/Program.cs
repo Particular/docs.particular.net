@@ -14,14 +14,14 @@ static class Program
     static async Task AsyncMain()
     {
         LogManager.Use<DefaultFactory>().Level(LogLevel.Info);
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.PubSub.MyPublisher");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.EnableInstallers();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.PubSub.MyPublisher");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EnableInstallers();
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             await Start(endpoint);
@@ -32,7 +32,7 @@ static class Program
         }
     }
 
-    static async Task Start(IBusSession busSession)
+    static async Task Start(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Press '1' to publish IEvent");
         Console.WriteLine("Press '2' to publish EventMessage");
@@ -48,7 +48,7 @@ static class Program
             switch (key.Key)
             {
                 case ConsoleKey.D1:
-                    await busSession.Publish<IMyEvent>(m =>
+                    await endpointInstance.Publish<IMyEvent>(m =>
                     {
                         m.EventId = eventId;
                         m.Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null;
@@ -63,7 +63,7 @@ static class Program
                         Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null,
                         Duration = TimeSpan.FromSeconds(99999D)
                     };
-                    await busSession.Publish(eventMessage);
+                    await endpointInstance.Publish(eventMessage);
                     Console.WriteLine("Published EventMessage with Id {0}.", eventId);
                     continue;
                 case ConsoleKey.D3:
@@ -73,7 +73,7 @@ static class Program
                         Time = DateTime.Now.Second > 30 ? (DateTime?) DateTime.Now : null,
                         Duration = TimeSpan.FromSeconds(99999D)
                     };
-                    await busSession.Publish(anotherEventMessage);
+                    await endpointInstance.Publish(anotherEventMessage);
                     Console.WriteLine("Published AnotherEventMessage with Id {0}.", eventId);
                     continue;
                 default:

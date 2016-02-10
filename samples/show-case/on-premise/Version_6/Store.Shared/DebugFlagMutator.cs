@@ -13,9 +13,9 @@ public class DebugFlagMutator :
 
     static ThreadLocal<bool> debug = new ThreadLocal<bool>();
 
-    public void Customize(BusConfiguration configuration)
+    public void Customize(EndpointConfiguration endpointConfiguration)
     {
-        configuration.RegisterComponents(c => c.ConfigureComponent<DebugFlagMutator>(DependencyLifecycle.InstancePerCall));
+        endpointConfiguration.RegisterComponents(c => c.ConfigureComponent<DebugFlagMutator>(DependencyLifecycle.InstancePerCall));
     }
 
 

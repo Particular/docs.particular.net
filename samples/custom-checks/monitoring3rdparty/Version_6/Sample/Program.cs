@@ -5,15 +5,15 @@ class Program
 {
     static void Main()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.CustomChecks.Monitor3rdParty");
-        busConfiguration.AuditProcessedMessagesTo("audit");
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.CustomChecks.Monitor3rdParty");
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
-        Endpoint.Start(busConfiguration).GetAwaiter().GetResult();
+        Endpoint.Start(endpointConfiguration).GetAwaiter().GetResult();
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();

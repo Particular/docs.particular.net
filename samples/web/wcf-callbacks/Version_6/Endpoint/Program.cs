@@ -11,17 +11,17 @@ static class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.WcfCallbacks");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.SendFailedMessagesTo("error");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.WcfCallbacks");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         #region startbus
 
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             using (StartWcfHost(endpoint))
@@ -40,9 +40,9 @@ static class Program
 
     #region startwcf
 
-    static IDisposable StartWcfHost(IBusSession busSession)
+    static IDisposable StartWcfHost(IEndpointInstance endpointInstance)
     {
-        WcfMapper wcfMapper = new WcfMapper(busSession, "http://localhost:8080");
+        WcfMapper wcfMapper = new WcfMapper(endpointInstance, "http://localhost:8080");
         wcfMapper.StartListening<EnumMessage, Status>();
         wcfMapper.StartListening<ObjectMessage, ReplyMessage>();
         wcfMapper.StartListening<IntMessage, int>();

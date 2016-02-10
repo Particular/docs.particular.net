@@ -11,12 +11,12 @@ using AppFunc = System.Func<System.Collections.Generic.IDictionary<string, objec
 
 public class OwinToBus
 {
-    IBusSession busSession;
+    IEndpointInstance endpointInstance;
     Newtonsoft.Json.JsonSerializer serializer;
 
-    public OwinToBus(IBusSession busSession)
+    public OwinToBus(IEndpointInstance endpointInstance)
     {
-        this.busSession = busSession;
+        this.endpointInstance = endpointInstance;
         serializer = new Newtonsoft.Json.JsonSerializer();
     }
 
@@ -32,7 +32,7 @@ public class OwinToBus
         string typeName = requestHeaders["MessageType"].Single();
         Type objectType = Type.GetType(typeName);
         object deserialize = Deserialize(messageBody, objectType);
-        await busSession.SendLocal(deserialize).ConfigureAwait(false);
+        await endpointInstance.SendLocal(deserialize).ConfigureAwait(false);
     }
 
     object Deserialize(string messageBody, Type objectType)

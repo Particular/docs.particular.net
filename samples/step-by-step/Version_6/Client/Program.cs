@@ -12,14 +12,14 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.StepByStep.Client");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.SendFailedMessagesTo("error");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.StepByStep.Client");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             await SendOrder(endpoint);
@@ -32,7 +32,7 @@ class Program
 
 
     #region SendOrder
-    static async Task SendOrder(IBusSession busSession)
+    static async Task SendOrder(IEndpointInstance endpointInstance)
     {
 
         Console.WriteLine("Press enter to send a message");
@@ -54,7 +54,7 @@ class Program
                 Product = "New shoes",
                 Id = id
             };
-            await busSession.Send("Samples.StepByStep.Server", placeOrder);
+            await endpointInstance.Send("Samples.StepByStep.Server", placeOrder);
 
             Console.WriteLine("Sent a new PlaceOrder message with id: {0}", id.ToString("N"));
 

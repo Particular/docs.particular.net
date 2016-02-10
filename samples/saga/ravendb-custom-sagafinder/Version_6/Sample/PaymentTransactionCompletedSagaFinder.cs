@@ -10,7 +10,7 @@ class PaymentTransactionCompletedSagaFinder : IFindSagas<OrderSagaData>.Using<Pa
 {
     public Task<OrderSagaData> FindBy(PaymentTransactionCompleted message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
     {
-        IAsyncDocumentSession session = storageSession.Session();
+        IAsyncDocumentSession session = storageSession.RavenSession();
         return session.LoadByUniqueConstraintAsync<OrderSagaData>(d => d.PaymentTransactionId, message.PaymentTransactionId);
     }
 }

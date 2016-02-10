@@ -21,14 +21,14 @@ static class Program
 
         #region startbus
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.OwinPassThrough");
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.OwinPassThrough");
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             using (StartOwinHost(endpoint))
@@ -48,7 +48,7 @@ static class Program
 
     #region startowin
 
-    static IDisposable StartOwinHost(IBusSession busSession)
+    static IDisposable StartOwinHost(IEndpointInstance endpointInstance)
     {
         string baseUrl = "http://localhost:12345/";
         StartOptions startOptions = new StartOptions(baseUrl)
@@ -59,14 +59,14 @@ static class Program
         return WebApp.Start(startOptions, builder =>
         {
             builder.UseCors(CorsOptions.AllowAll);
-            MapToBus(builder, busSession);
+            MapToBus(builder, endpointInstance);
             MapToMsmq(builder);
         });
     }
 
-    static void MapToBus(IAppBuilder builder, IBusSession busSession)
+    static void MapToBus(IAppBuilder builder, IEndpointInstance endpointInstance)
     {
-        OwinToBus owinToBus = new OwinToBus(busSession);
+        OwinToBus owinToBus = new OwinToBus(endpointInstance);
         builder.Map("/to-bus", app => { app.Use(owinToBus.Middleware()); });
     }
 

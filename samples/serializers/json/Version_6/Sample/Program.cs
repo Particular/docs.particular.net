@@ -13,20 +13,20 @@ static class Program
     static async Task AsyncMain()
     {
         #region config
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Serialization.Json");
-        busConfiguration.UseSerialization<JsonSerializer>();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Serialization.Json");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
         // register the mutator so the the message on the wire is written
-        busConfiguration.RegisterComponents(components =>
+        endpointConfiguration.RegisterComponents(components =>
         {
             components.ConfigureComponent<MessageBodyWriter>(DependencyLifecycle.InstancePerCall);
         });
         #endregion
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             #region message

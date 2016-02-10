@@ -48,7 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusConfigExtensions.cs" />
+    <Compile Include="EndpointConfigurationExtensions.cs" />
     <Compile Include="CompleteOrder.cs" />
     <Compile Include="MessageEncryptor.cs" />
   </ItemGroup>

@@ -6,7 +6,7 @@ using NServiceBus;
 class CommandSender
 {
 
-    public static async Task Start(IBusSession busSession)
+    public static async Task Start(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Press 'E' to publish an event");
         Console.WriteLine("Press any key to exit");
@@ -19,18 +19,18 @@ class CommandSender
             switch (key.Key)
             {
                 case ConsoleKey.E:
-                    await PublishEvent(busSession);
+                    await PublishEvent(endpointInstance);
                     continue;
             }
             return;
         }
     }
 
-    static async Task PublishEvent(IBusSession busSession)
+    static async Task PublishEvent(IEndpointInstance endpointInstance)
     {
         Guid eventId = Guid.NewGuid();
 
-        await busSession.Publish<IMyEvent>(m =>
+        await endpointInstance.Publish<IMyEvent>(m =>
         {
             m.EventId = eventId;
         });

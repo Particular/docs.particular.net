@@ -11,15 +11,15 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.DataBus.Receiver");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UseDataBus<FileShareDataBus>()
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.DataBus.Receiver");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UseDataBus<FileShareDataBus>()
             .BasePath("..\\..\\..\\storage");
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.SendFailedMessagesTo("error");
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press any key to exit");

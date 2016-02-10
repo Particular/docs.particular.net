@@ -13,19 +13,19 @@ static class Program
     static async Task AsyncMain()
     {
         #region ContainerConfiguration
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Unity");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Unity");
 
         UnityContainer container = new UnityContainer();
         container.RegisterInstance(new MyService());
-        busConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
+        endpointConfiguration.UseContainer<UnityBuilder>(c => c.UseExistingContainer(container));
         #endregion
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             await endpoint.SendLocal(new MyMessage());

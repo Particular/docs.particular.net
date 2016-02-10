@@ -12,15 +12,15 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Encryption.Endpoint1");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Encryption.Endpoint1");
         #region enableEncryption
-        busConfiguration.RijndaelEncryptionService();
+        endpointConfiguration.RijndaelEncryptionService();
         #endregion
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.SendFailedMessagesTo("error");
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             MessageWithSecretData message = new MessageWithSecretData

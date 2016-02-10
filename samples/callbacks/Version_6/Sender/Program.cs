@@ -12,13 +12,13 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Callbacks.Sender");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.SendFailedMessagesTo("error");
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Callbacks.Sender");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press 'E' to send a message with an enum return");
@@ -56,7 +56,7 @@ class Program
     }
 
 
-    static async Task SendEnumMessage(IBusSession busSession)
+    static async Task SendEnumMessage(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Message sent");
         #region SendEnumMessage
@@ -64,12 +64,12 @@ class Program
         EnumMessage message = new EnumMessage();
         SendOptions sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        Status status = await busSession.Request<Status>(message, sendOptions);
+        Status status = await endpointInstance.Request<Status>(message, sendOptions);
         Console.WriteLine("Callback received with status:" + status);
         #endregion
     }
 
-    static async Task SendIntMessage(IBusSession busSession)
+    static async Task SendIntMessage(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Message sent");
         #region SendIntMessage
@@ -77,13 +77,13 @@ class Program
         IntMessage message = new IntMessage();
         SendOptions sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        int response = await busSession.Request<int>(message, sendOptions);
+        int response = await endpointInstance.Request<int>(message, sendOptions);
         Console.WriteLine("Callback received with response:" + response);
 
         #endregion
     }
 
-    static async Task SendObjectMessage(IBusSession busSession)
+    static async Task SendObjectMessage(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Message sent");
         #region SendObjectMessage
@@ -91,7 +91,7 @@ class Program
         ObjectMessage message = new ObjectMessage();
         SendOptions sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        ObjectResponseMessage response = await busSession.Request<ObjectResponseMessage>(message, sendOptions);
+        ObjectResponseMessage response = await endpointInstance.Request<ObjectResponseMessage>(message, sendOptions);
         Console.WriteLine("Callback received with response property value:" + response.Property);
 
         #endregion

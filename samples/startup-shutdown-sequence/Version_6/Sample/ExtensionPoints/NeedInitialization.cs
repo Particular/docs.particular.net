@@ -3,8 +3,9 @@
 public class NeedInitialization :
     INeedInitialization
 {
-    public void Customize(BusConfiguration configuration)
+    public void Customize(EndpointConfiguration endpointConfiguration)
     {
         Logger.WriteLine("Inside INeedInitialization.Customize");
     }
+
 }

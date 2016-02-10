@@ -14,17 +14,17 @@ class Program
 
         #region ConfigureRabbit
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.RabbitMQ.Simple");
-        busConfiguration.UseTransport<RabbitMQTransport>()
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.RabbitMQ.Simple");
+        endpointConfiguration.UseTransport<RabbitMQTransport>()
             .ConnectionString("host=localhost");
 
         #endregion
 
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         await endpoint.SendLocal(new MyMessage());
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();

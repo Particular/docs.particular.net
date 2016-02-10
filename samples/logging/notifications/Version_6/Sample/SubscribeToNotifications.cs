@@ -5,7 +5,8 @@ using NServiceBus.Faults;
 // ReSharper disable UnusedParameter.Local
 
 #region subscriptions
-public class SubscribeToNotifications : 
+
+public class SubscribeToNotifications :
     IWantToRunWhenBusStartsAndStops
 {
     BusNotifications busNotifications;
@@ -15,7 +16,7 @@ public class SubscribeToNotifications :
         this.busNotifications = busNotifications;
     }
 
-    public Task Start(IBusSession busSession)
+    public Task Start(IMessageSession session)
     {
         ErrorsNotifications errors = busNotifications.Errors;
         errors.MessageHasBeenSentToSecondLevelRetries += (sender, retry) => LogToConsole(retry);
@@ -39,10 +40,11 @@ public class SubscribeToNotifications :
         Console.WriteLine("Mesage sent to FLR. RetryAttempt:" + firstLevelRetry.RetryAttempt);
     }
 
-    public Task Stop(IBusSession busSession)
+    public Task Stop(IMessageSession session)
     {
         return Task.FromResult(0);
     }
 
 }
+
 #endregion

@@ -11,12 +11,12 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.MessageBodyEncryption.Endpoint2");
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.RegisterMessageEncryptor();
-        busConfiguration.SendFailedMessagesTo("error");
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.MessageBodyEncryption.Endpoint2");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.RegisterMessageEncryptor();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press any key to exit");

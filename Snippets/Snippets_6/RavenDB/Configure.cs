@@ -42,7 +42,8 @@
             {
                 MyDocument doc = new MyDocument();
 
-                return context.GetRavenSession().StoreAsync(doc);
+                IAsyncDocumentSession ravenSession = context.SynchronizedStorageSession.RavenSession();
+                return ravenSession.StoreAsync(doc);
             }
         }
 

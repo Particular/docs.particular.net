@@ -11,13 +11,13 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Encryption.Endpoint2");
-        busConfiguration.RijndaelEncryptionService();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.SendFailedMessagesTo("error");
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Encryption.Endpoint2");
+        endpointConfiguration.RijndaelEncryptionService();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press any key to exit");

@@ -10,21 +10,21 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.MessageMutators");
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.SendFailedMessagesTo("error");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.MessageMutators");
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         #region ComponentRegistartion
-        busConfiguration.RegisterComponents(components =>
+        endpointConfiguration.RegisterComponents(components =>
         {
             components.ConfigureComponent<ValidationMessageMutator>(DependencyLifecycle.InstancePerCall);
             components.ConfigureComponent<TransportMessageCompressionMutator>(DependencyLifecycle.InstancePerCall);
         });
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             await Runner.Run(endpoint);

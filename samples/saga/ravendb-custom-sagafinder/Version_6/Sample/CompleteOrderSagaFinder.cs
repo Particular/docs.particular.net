@@ -10,7 +10,7 @@ class CompleteOrderSagaFinder : IFindSagas<OrderSagaData>.Using<CompleteOrder>
 {
     public Task<OrderSagaData> FindBy(CompleteOrder message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
     {
-        IAsyncDocumentSession session = storageSession.Session();
+        IAsyncDocumentSession session = storageSession.RavenSession();
         return session.LoadByUniqueConstraintAsync<OrderSagaData>(d => d.OrderId, message.OrderId);
     }
 }

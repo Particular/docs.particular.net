@@ -140,7 +140,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.RavenDB">
-      <HintPath>..\..\packages\NServiceBus.RavenDB.4.0.0-unstable0079\lib\net452\NServiceBus.RavenDB.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.RavenDB.4.0.0-unstable0088\lib\net452\NServiceBus.RavenDB.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Transports.RabbitMQ, Version=4.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NServiceBus.RabbitMQ.4.0.0-pullrequest0124\lib\net452\NServiceBus.Transports.RabbitMQ.dll</HintPath>
