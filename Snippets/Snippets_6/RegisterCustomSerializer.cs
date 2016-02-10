@@ -4,20 +4,28 @@
     using System.Collections.Generic;
     using System.IO;
     using NServiceBus;
+    using NServiceBus.MessageInterfaces;
     using NServiceBus.Serialization;
+    using NServiceBus.Settings;
 
     public class RegisterCustomSerializer
     {
-        public void Customize()
+        #region RegisterCustomSerializer
+
+        public void ConfigureBus()
         {
             BusConfiguration busConfiguration = null;
-
-            #region RegisterCustomSerializer
-
-            busConfiguration.UseSerialization(typeof(MyCustomSerializer));
-
-            #endregion
+            busConfiguration.UseSerialization<MyCustomSerialization>();
         }
+
+        class MyCustomSerialization : SerializationDefinition
+        {
+            protected override Func<IMessageMapper, IMessageSerializer> Configure(ReadOnlySettings settings)
+            {
+                return mapper => new MyCustomSerializer();
+            }
+        }
+        #endregion
 
         #region CustomSerializer
 
