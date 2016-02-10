@@ -23,9 +23,11 @@ Starting with NServiceBus 5.0, RavenDB is no longer merged into the core. The Ra
 
 The following sections outline various ways to connect to the RavenDB server, starting with the most basic.
 
+
 #### Default
 
 By default, a `DocumentStore` is created that connects to `http://localhost:8080` and uses the endpoint name as its database name. This default connection is used for all the persisters.
+
 
 #### Shared store for all persisters defined via connection string
 
@@ -35,11 +37,13 @@ snippet:shared-document-store-via-connection-string
 
 RavenDB connection strings can include the database name and other parameters as well. See [How to set up a connection string](https://ravendb.net/docs/article-page/3.0/csharp/client-api/setting-up-connection-string#Format) in the RavenDB documentation for more details. The runtime will use the the connection string to create a shared `DocumentStore` instance for all persisters.
 
+
 #### Shared store for all persisters defined via connection parameters
 
 Rather than specifying connection information in configuration, connection details can be established via an instance of `ConnectionParameters` that allows specifying Url, DatabaseName and the ApiKey for the RavenDB instance for usage in all the persisters. The runtime will use the parameters to create a shared `DocumentStore` instance for all persisters.
 
 snippet:ravendb-persistence-external-connection-params
+
 
 #### External shared store for all persisters
 
@@ -47,11 +51,13 @@ If NServiceBus needs to use the same `DocumentStore` instance used elsewhere in 
 
 snippet:ravendb-persistence-external-store
 
+
 #### Store defined via a connection string for a specific persister
 
 One can configure a RavenDB connection string that is only applicable to a specific store:
 
 snippet:specific-document-store-via-connection-string
+
 
 #### External store for a specific persister
 
@@ -59,7 +65,9 @@ An externally created `DocumentStore` instance can be passed to NServiceBus for 
 
 snippet:ravendb-persistence-specific-external-store
 
+
 ### Other configuration options
+
 
 #### Shared session
 
@@ -75,6 +83,7 @@ The session that is created is then made available to handler logic, although th
 
 snippet:ravendb-persistence-shared-session-for-sagas-handler
 
+
 #### Saga correlation
 
 NOTE: As of Version 6 of NServiceBus, all correlated properties are unique by default so there is no longer a configuration setting. 
@@ -85,21 +94,25 @@ snippet:ravendb-persistence-stale-sagas
 
 DANGER: This is a potentially dangerous feature that can result in multiple instances of saga being created instead of one in cases of high contention.
 
+
 #### Transaction recovery storage
 
 The RavenDB client requires a method of storing DTC transaction recovery information in the case of process faults. The handling of transaction recovery storage by NServiceBus.RavenDB differs by version.
+
 
 ##### NServiceBus.RavenDB 3.1 and above
 
 As of 3.1.0, NServiceBus uses `LocalDirectoryTransactionRecoveryStorage` with a storage location inside `%LOCALAPPDATA%`. It is not necessary to modify this default value.
 
+
 ##### NServiceBus.RavenDB 3.0.x and below
 
-In these versions of NServiceBus, NServiceBus uses `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage, whish has been proven to be unstable in certain situations, sometimes resulting in a [TransactionAbortedException or IsolatedStorageException](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ).
+In these versions of NServiceBus, NServiceBus uses `IsolatedStorageTransactionRecoveryStorage` as its transaction recovery storage, which has been proven to be unstable in certain situations, sometimes resulting in a [TransactionAbortedException or IsolatedStorageException](https://groups.google.com/forum/#!msg/ravendb/4UHajkua5Q8/ZbsNYv6XkFoJ).
 
-If experiencing one of these issues and an upgrade to 3.1.0 or later is not possible, the default TransactionRecoveryStorage can be changed as shown in the following example.
+If experiencing one of these issues and an upgrade to 3.1.0 or later is not possible, the default `TransactionRecoveryStorage` can be changed as shown in the following example.
 
 snippet:ConfiguringTransactionRecoveryStorage
+
 
 ## NServiceBus 3 and NServiceBus 4
 
@@ -109,11 +122,12 @@ Configuring NServiceBus to use RavenDB for persistence can be accomplished by ca
 
 RavenDB persistence for NServiceBus 3/4 uses these conventions:
 
--   If no master node is configured it assumes that a RavenDB server is running at `http://localhost:8080`, the default URL for RavenDB.
--   If a master node is configured, the URL is: `http://{masternode}/:8080`.
--   If a connection string named "NServiceBus/Persistence" is found, the value of the `connectionString` attribute is used.
+ * If no master node is configured it assumes that a RavenDB server is running at `http://localhost:8080`, the default URL for RavenDB.
+ * If a master node is configured, the URL is: `http://{masternode}/:8080`.
+ * If a connection string named "NServiceBus/Persistence" is found, the value of the `connectionString` attribute is used.
 
 If NServiceBus detects that any RavenDB related storage is used for sagas, subscriptions, timeouts, etc., if automatically configures it for you. There is no need to explicitly configure RavenDB unless it is necessary to override the defaults.
+
 
 ### Overriding the defaults
 
@@ -123,7 +137,7 @@ In some situations the default behavior might not be right for you:
 -   You want to specify a explicit database name. To control the database name in code instead of via the configuration, use the `Configure.RavenPersistence(string connectionStringName, string databaseName)` signature. This can be useful in a multi-tenant scenario.
 
 
-### Can I use the IDocumentStore used by NServiceBus for my own data?
+### Can IDocumentStore used by NServiceBus for business data?
 
 No, the RavenDB client is merged and internalized into the NServiceBus assemblies, so to use Raven for your own purposes, reference the Raven client and set up your own document store.
 
