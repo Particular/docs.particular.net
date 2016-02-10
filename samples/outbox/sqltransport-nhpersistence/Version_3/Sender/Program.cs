@@ -14,17 +14,17 @@ class Program
     {
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
-        BusConfiguration busConfiguration = new BusConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
         #region SenderConfiguration
 
-        busConfiguration.UseTransport<SqlServerTransport>();
-        busConfiguration.UsePersistence<NHibernatePersistence>();
-        busConfiguration.EnableOutbox();
+        endpointConfiguration.UseTransport<SqlServerTransport>();
+        endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        endpointConfiguration.EnableOutbox();
 
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press enter to publish a message");
@@ -38,7 +38,7 @@ class Program
                     return;
                 }
                 string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                endpoint.Publish(new OrderSubmitted
+                await endpoint.Publish(new OrderSubmitted
                 {
                     OrderId = orderId,
                     Value = random.Next(100)

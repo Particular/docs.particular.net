@@ -15,7 +15,7 @@ redirects:
 
 ### Prerequisites
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. 
- 2. Create three databases: `sender`, `receiver` and `shared`.
+ 2. Create database called `nservicebus`.
  3. The Outbox feature is designed to provide *exactly once* delivery guarantees without the Distributed Transaction Coordinator (DTC) running. Disable the DTC service to avoid warning messages shown in console window. If the DTC service is running, you will see `DtcRunningWarning` message when the sample project is started. 
 
 ### Running the project
@@ -28,8 +28,8 @@ redirects:
  1. On the Receiver console you should see that order was submitted.
  2. On the Sender console you should see that the order was accepted.
  3. After a couple of seconds, on the Receiver console you should see that the timeout message has been received.
- 4. Open SQL Server Management Studio and go to the `receiver` database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`).
- 5. Go the the `shared` database. Verify that there are messages in the `dbo.audit` table and, if any message failed processing, messages in `dbo.error` table.
+ 4. Open SQL Server Management Studio and go to the `nservicebus` database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`).
+ 5. Verify that there are messages in the `dbo.audit` table and, if any message failed processing, messages in `dbo.error` table.
 
 NOTE: The handling code has built-in chaotic behavior. There is a 50% chance that a given message fails processing. This is to demonstrate that errors can be sent to a separate shared database. That behavior is essential to allow [ServiceControl](/platform/#servicecontrol-the-foundation) to pick them up.
 

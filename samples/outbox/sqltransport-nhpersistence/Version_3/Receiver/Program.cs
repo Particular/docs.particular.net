@@ -36,19 +36,21 @@ class Program
 
         #region ReceiverConfiguration
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.UseTransport<SqlServerTransport>();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.UseTransport<SqlServerTransport>();
 
-        busConfiguration.UsePersistence<NHibernatePersistence>()
+        endpointConfiguration.UsePersistence<NHibernatePersistence>()
             .RegisterManagedSessionInTheContainer()
             .UseConfiguration(hibernateConfig);
-        busConfiguration.EnableOutbox();
+        endpointConfiguration.EnableOutbox();
+
+        endpointConfiguration.SendFailedMessagesTo(@"Data Source=.\SQLEXPRESS;Initial Catalog=shared;Integrated Security=True");
 
         #endregion
 
-        busConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press any key to exit");
