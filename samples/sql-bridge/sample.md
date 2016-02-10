@@ -9,7 +9,7 @@ related:
 
 ## Sql Bridge (Transport Integration)
 
-WARNING: This sample has been deprecated. Please refer to the [MsmqToSqlRelay Sample](/samples/msmqtosqlrelay/.) 
+WARNING: This sample has been deprecated. Please refer to the [MsmqToSqlRelay Sample](/samples/msmqtosqlrelay/) 
 
 This sample shows how to setup a sql subscriber so it can subscribe to events from a MSMQ publisher. The solution comprises of these 5 projects.
 
