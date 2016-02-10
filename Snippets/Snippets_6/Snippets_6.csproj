@@ -101,9 +101,8 @@
     <Reference Include="NServiceBus.Core">
       <HintPath>..\..\packages\NServiceBus.6.0.0-unstable1509\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
-    <Reference Include="NServiceBus.Gateway, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.Gateway.1.1.0-unstable0045\lib\net452\NServiceBus.Gateway.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="NServiceBus.Gateway">
+      <HintPath>..\..\packages\NServiceBus.Gateway.1.1.0-unstable0065\lib\net452\NServiceBus.Gateway.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Host">
       <HintPath>..\..\packages\NServiceBus.Host.7.0.0-unstable0057\lib\net452\NServiceBus.Host.exe</HintPath>
