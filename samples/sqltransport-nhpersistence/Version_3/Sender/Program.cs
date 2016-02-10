@@ -20,9 +20,9 @@ class Program
 
     static async Task AsyncMain()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.EnableInstallers();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.EnableInstallers();
 
         Configuration hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
@@ -34,16 +34,16 @@ class Program
 
         #region SenderConfiguration
 
-        busConfiguration.UseTransport<SqlServerTransport>()
+        endpointConfiguration.UseTransport<SqlServerTransport>()
             .DefaultSchema("sender")
             .UseSpecificSchema(e => "receiver");
 
-        busConfiguration.UsePersistence<NHibernatePersistence>()
+        endpointConfiguration.UsePersistence<NHibernatePersistence>()
             .UseConfiguration(hibernateConfig);
 
         #endregion
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             Console.WriteLine("Press enter to send a message");
