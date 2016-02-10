@@ -10,7 +10,7 @@ NServiceBus is built on top of existing queuing technologies. In NServicebus the
 
 ## Types of transports
 
-There are two major types of transports
+NServiceBus transports can be devided into several categories.
 
 ### Bus transports
 
