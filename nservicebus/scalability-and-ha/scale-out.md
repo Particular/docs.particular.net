@@ -35,16 +35,17 @@ This feature is, however, *not intended* for scaling out as there is no built-in
 
 ## Version 6 and above
 
-Version 6 of NServiceBus comes with a unified scalability model which is based on the concept of endpoint instance ID. Each deployment of NServiceBus can (but does not have to) be assigned an *instance ID*. Instance IDs can be shared between several deployments. 
+Version 6 of NServiceBus comes with a unified scalability model which is based on the concept of endpoint instance ID. Each deployment of NServiceBus can (but does not have to) be assigned an *instance ID*.
 
 When instance ID is assigned, NServiceBus spins up an additional receiver for the queue which name is based on that ID, e.g. if the endpoint name is `Sales` and instance ID is `Green` that instance will try to receive from queues `Sales` and `Sales-Green` (actual queue names depend on the underlying transport).
 
-It is up to the sender to choose if it is going to treat the endpoint as a whole (and send its messages to `Sales` queue) or address individual instances (e.g. `Sales-Red`, `Sales-Green`, `Sales-Blue`). In the latter case the sender will use round-robin algorithm for choosing destinations of outgoing messages.
+It is up to the sender to choose if it is going to treat the endpoint as a whole (and send its messages to `Sales` queue) or address individual instances (e.g. `Sales-Red`, `Sales-Green`, `Sales-Blue`). 
 
+In the first case the the scaling out is done by means of competing consumers. In the second case it is realised by sender using a round-robin algorithm to balance the load on receiver instances. Both scale out approaches are supported by all transports, but some transports are better suited for one or the other.
 
 ### MSMQ
 
-When using MSMQ different instances are usually deployed to different (virtual) machines. The following routing file (see [file-based routing](/nservicebus/messaging/file-based-routing.md)) shows scaling out of the `Sales` endpoint.
+Because MSMQ does not allow performant remote receives in most cases scaling out requires sender-side round-robin distribution. When using MSMQ different instances are usually deployed to different (virtual) machines. The following routing file (see [file-based routing](/nservicebus/messaging/file-based-routing.md)) shows scaling out of the `Sales` endpoint.
 
 snippet:Routing-FileBased-MSMQ
 
@@ -53,7 +54,6 @@ The corresponding logical routing is
 snippet:Routing-StaticRoutes-Endpoint
 
 NOTE: System administrators are able to spin-up new instances of the endpoint should the load increase and the only requirement is adding an entry to the routing file. No changes in the source code are required.
-
 
 ### Broker transports
 
