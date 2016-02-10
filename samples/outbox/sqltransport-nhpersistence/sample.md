@@ -1,6 +1,6 @@
 ---
-title: Outbox - SQL Transport and NHibernate
-summary: 'How to integrate SQL Server transport with NHibernate persistence using outbox'
+title: Outbox - SQL Server Transport and NHibernate
+summary: How to integrate SQL Server Transport with NHibernate persistence using outbox
 tags:
 - SQL Server
 - NHibernate
@@ -13,51 +13,56 @@ redirects:
 - samples/sqltransport-nhpersistence-outbox
 ---
 
- 1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create three databases: `sender`, `receiver` and `shared`.
- 2. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
- 3. Start the Receiver project.
- 4. If you see `DtcRunningWarning` log message in the console, it means you have a Distributed Transaction Coordinator (DTC) service running. The Outbox feature is designed to provide *exactly once* delivery guarantees without DTC. We believe it is better to disable the DTC service to avoid confusion when you use Outbox.
- 5. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready.
- 6. Hit <enter>.
- 7. On the Receiver console you should see that order was submitted.
- 8. On the Sender console you should see that the order was accepted.
- 9. Finally, after a couple of seconds, on the Receiver console you should see that the timeout message has been received.
- 10. Open SQL Server Management Studio and go to the `receiver` database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`)
- 11. Go the the `shared` database. Verify that there are messages in the `dbo.audit` table and, if any message failed processing, messages in `dbo.error` table.
+### Prerequisites
+ 1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. 
+ 2. Create three databases: `sender`, `receiver` and `shared`.
+ 3. The Outbox feature is designed to provide *exactly once* delivery guarantees without the Distributed Transaction Coordinator (DTC) running. Disable the DTC service to avoid warning messages shown in console window. If the DTC service is running, you will see `DtcRunningWarning` message when the sample project is started. 
 
-NOTE: The handling code has built-in chaotic behavior. There is 50% chance that a given message fails processing. This is because we want to demonstrate that errors can be send to a separate shared database which is essential for ServiceControl to be able to pick them up.
+### Running the project
+ 1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
+ 2. Start the Receiver project.
+ 3. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready.
+ 4. Hit `<enter>`.
+
+### Verifying the sample works correctly
+ 1. On the Receiver console you should see that order was submitted.
+ 2. On the Sender console you should see that the order was accepted.
+ 3. After a couple of seconds, on the Receiver console you should see that the timeout message has been received.
+ 4. Open SQL Server Management Studio and go to the `receiver` database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`).
+ 5. Go the the `shared` database. Verify that there are messages in the `dbo.audit` table and, if any message failed processing, messages in `dbo.error` table.
+
+NOTE: The handling code has built-in chaotic behavior. There is a 50% chance that a given message fails processing. This is to demonstrate that errors can be sent to a separate shared database. That behavior is essential to allow [ServiceControl](/platform/#servicecontrol-the-foundation) to pick them up.
 
 
 ## Code walk-through
 
 This sample contains three projects:
 
- * Shared - A class library containing common code including the message definitions.
+ * Shared - A class library containing common code including messages definitions.
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
- * Receiver - A console application responsible for processing the order message.
+ * Receiver - A console application responsible for processing the `OrderSubmitted` message, sending `OrderAccepted` message and randomly generating exceptions.
 
-Sender and Receiver use different databases, just like in a production scenario where two systems are integrated using NServiceBus. Each database contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence.
+Sender and Receiver use different databases, just like in a production scenario where two systems are integrated using NServiceBus. Each database contains, apart from business data, queues for the NServiceBus endpoints and tables for NServiceBus persistence.
 
 
 ### Sender project
 
-The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQLServer transport with NHibernate persistence and Outbox.
+The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport with NHibernate persistence and Outbox.
 
 snippet:SenderConfiguration
 
-The Sender uses a configuration file to tell NServiceBus where the messages
-addressed to the Receiver should be sent
+The Sender uses a configuration file to tell NServiceBus where the messages addressed to the Receiver should be sent.
 
 snippet:SenderConnectionStrings
 
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence and Outbox but uses V2.1 code-based connection information API.
+The Receiver mimics a back-end system. It is also configured to use SQL Server transport with NHibernate persistence and Outbox but uses code configuration API.
 
 snippet:ReceiverConfiguration
 
-In order for the Outbox to work, the business data has to reuse the same connection string as NServiceBus' persistence
+In order for the Outbox to work, the business data has to reuse the same connection string as NServiceBus persistence:
 
 snippet:NHibernate
 
