@@ -27,7 +27,7 @@ The benefit of this approach is zero configuration. New instances can be added b
 
 ### Azure Storage Queues and Azure Service Bus
 
-Up to version 5 (inclusive) both Azure transports behave similarly to other broker transports (SQL Server and RabbitMQ): they scale out by adding receivers to a single queue. An additional feature of Azure transports is ability to use individualized queues (based on the *role instance ID*)
+Up to version 5 (inclusive) both Azure transports behave similarly to other broker transports (SQL Server and RabbitMQ): they scale out by adding competing consumers receiving from a single queue. An additional feature of Azure transports is ability to use individualized queues (based on the *role instance ID*)
 
 snippet: UniqueQueuePerEndpointInstance
 
