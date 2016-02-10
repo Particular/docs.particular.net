@@ -32,6 +32,8 @@ class Program
         #endregion
 
         Console.WriteLine("Watching MSMQ: {0} for messages. Received messages will be sent to the SqlRelay", queuePath);
+        Console.WriteLine("Press Ctrl+C to quit.");
+        Console.WriteLine();
         signal.WaitOne();
     }
 
