@@ -1,76 +1,84 @@
 ---
 title: SQL Server Transport Design
-summary: The design of SQL Server transport
+summary: The design and implementation details of SQL Server Transport
 tags:
 - SQL Server
 ---
 
-The SQL Server transport implements a message queueing mechanism on top of a Microsoft SQL Server database. It uses tables to model queues. It does not make any use of ServiceBroker, a messaging technology built into the SQL Server, mainly due to cumbersome API and difficult maintenance.
+## Queues
+
+### Primary queue
+
+For each endpoint there is a single primary queue table. The name of the primary queue matches the name of the endpoint. In scale-out scenario this single queue is shared by all instances.
 
 
-## How it works?
+### Secondary queues
 
-The SQL Server transport is a hybrid queueing system which is neither store-and-forward (like MSMQ) nor a broker (like RabbitMQ). It treats the SQL Server only as a storage infrastructure for the queues. The queueing logic itself is implemented and executed as part of the transport code running in an NServiceBus endpoint.
+In order for [callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md) to work in a scale-out scenario each endpoint instance has to have its own queue/table. This is necessary because callback handlers are stored in-memory in the node that did the send. The reply should be delivered to the dedicated queue, so the message can be picked up by the same node that registered the callback.
 
+Secondary queue tables have the name of the machine appended to the name of the primary queue table with `.` as separator e.g. `SomeEndpoint.MyMachine`.
 
-## Pros & cons
+Secondary queues are enabled by default. In order to disable them use the configuration API:
 
+snippet:sqlserver-config-disable-secondaries
 
-### Pros
+Secondary queues use same adaptive concurrency model to the primary queue. Secondary queues (and hence callbacks) are disabled for satellite receivers.
 
- * Nearly all Microsoft stack organizations already have SQL Server installed (no license cost) and have knowledge required to run it (no training cost)
- * Most developers are familiar with SQL Server
- * Tooling (SSMS) is great
- * Maximum throughput for any given endpoint is on par with MSMQ
- * Queues support competing consumers (multiple instances of same endpoint feeding off of same queue) so there is no need for distributor in order to scale out the processing
+### Queue table structure
 
+Following SQL DDL is used to create a table and its index for a queue:
 
-### Cons
+```SQL
+CREATE TABLE [schema].[queuename](
+	[Id] [uniqueidentifier] NOT NULL,
+	[CorrelationId] [varchar](255) NULL,
+	[ReplyToAddress] [varchar](255) NULL,
+	[Recoverable] [bit] NOT NULL,
+	[Expires] [datetime] NULL,
+	[Headers] [varchar](max) NOT NULL,
+	[Body] [varbinary](max) NULL,
+	[RowVersion] [bigint] IDENTITY(1,1) NOT NULL
+) ON [PRIMARY];
 
- * No local store-and-forward mechanism meaning if SQL Server instance is down, endpoint cannot send nor receive messages
- * In centralized deployment maximum throughput applies for whole system, not individual endpoints, so if SQL Server on a given hardware can handle 2000 msg/s, each one of 10 endpoints can only receive 200 msg/s (on average).
+CREATE CLUSTERED INDEX [Index_RowVersion] ON [schema].[queuename](
+	[RowVersion] ASC
+) WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, SORT_IN_TEMPDB = OFF, IGNORE_DUP_KEY = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+```
 
+The column are directly mapped to the properties of `NServiceBus.TransportMessage` class. Receiving messages is conducted via a `DELETE` statement from the top of the table (the oldest row according to `[RowVersion]` column).
 
-## Single database
-
-In the simplest form, SQL Server transport uses a single instance of the SQL Server to maintain all the queues for all endpoints of a system. In order to send a message, an endpoint needs to connect to the (usually remote) database server and execute a SQL command. The message is delivered directly to the destination queue without any store-and-forward mechanism. Such a simplistic approach can only be only used for small-to-medium size systems because of the need to store everything in a single database. Using schemas to distingiush logical data stores might be a good compromise for mid-size projects. The upside is it does not require Distributed Transaction Coordinator (MS DTC). Another advantage is the ability to take a snapshot of entire system state (all the queues) by backing up a database. This is even more useful if the business data are stored in the same database.
-
-
-## Database-per-endpoint
-
-In a more complex scenario endpoints use separate databases and DTC is involved. Due to lack of store-and-forward mechanism, if a remote endpoint's database or DTC infrastructure is down, our endpoint cannot send messages to it. This potentially renders our endpoint (and all endpoints transitively depending on it) unavailable.
-
-
-## Database-per-endpoint with store-and-forward
-
-In order to overcome this limitation a higher level store-and-forward mechanism needs to be used. The Outbox feature can be used to effectively implement a distributed decoupled architecture where:
- * Each endpoint has its own database where it stores both the queues and the user data
- * Messages are not sent immediately when calling `Bus.Send()` but are added to the *outbox* that is stored in the endpoint's own database. After completing the handling logic the messages in the *outbox* are forwarded to their destination databases
- * Should one of the forward operations fail, it will be retried by means of standard NServiceBus retry mechanism (both first-level and second-level). This might result in some messages being sent more than once but it is not a problem because the outbox automatically handles the deduplication of incoming messages based on their ID.
+The tables are created by [installers](/nservicebus/operations/installers.md) when the application is started for the first time. It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
 
 
-## Sql Server Transport, the Outbox and user data: disabling the DTC
+## Concurrency
 
-When dealing with database connections in an environment where we do not want to use DTC it is important to prevent a local transaction from escalating to a distributed one.
+The SQL Server transport adapts the number of receiving threads (up to `MaximumConcurrencyLevel` [set via `TransportConfig` section](/nservicebus/msmq/transportconfig.md)) to the amount of messages waiting for processing. When idle it maintains only one thread that continuously polls the table queue.
 
-The following are required:
 
-* the business specific data and the `Outbox` storage must be in the same database;
-* the user code accessing business related data must use the same `connection string` as the `Outbox` storage;
+### 3.0
 
-### [Entity Framework](https://msdn.microsoft.com/en-us/data/ef.aspx) caveats
+In version 3.0 and higher SQL Server transport maintains a dedicated monitoring thread for each input queue. It is responsible for detecting the number of messages waiting for delivery and creating receive [tasks](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx) - one for each pending message. 
 
-Sharing the same connection string is easy when you have full control over the creation of the underlying `SQL connection`, but it can be problematic when dealing with entities based on the [Entity Framework ADO.Net Data Model (EDMX)](https://msdn.microsoft.com/en-us/library/vstudio/cc716685.aspx).
+The maximum number of concurrent tasks will never exceed `MaximumConcurrencyLevel`. The number of tasks does not translate to the number of running threads which is controlled by the TPL scheduling mechanisms.
 
-The `DbContext` generated by Entity Framework does not expose a way to inject a simple database connection string; the underlying problem is that Entity Framework requires an `Entity Connection String` that has much more information than a simple connection string.
 
-It is possible to generate a custom a custom `EntityConnection` and inject it into the Entity Framework `DbContext` instance:
+### 2.1
 
-snippet:EntityConnectionCreationAndUsage
+Version 2.1 of SqlTransprot uses an adaptive concurrency model. The transport adapts the number of polling threads based on the rate of messages coming in. The key concept in this new model is the *ramp up controller* which controls the ramping up of new threads and decommissioning of unnecessary threads. It uses the following algorithm:
 
-In the above snippet you are using `EntityConnectionStringBuilder` class to create a valid `Entity Connection String`, once you have that you can create a new `EntityConnection` instance.
-The `DbContext` generated by default by Entity Framework does not have a constructor that accepts an `EntityConnection` as a parameter but since it is a partial class you can easily add one:
+ * if last receive operation yielded a message, it increments the *consecutive successes* counter and resets the *consecutive failures* counter
+ * if last receive operation yielded no message, it increments the *consecutive failures* counter and resets the *consecutive successes* counter
+ * if *consecutive successes* counter goes over a certain threshold and there is less polling threads than `MaximumConcurrencyLevel`, it starts a new polling thread and resets the *consecutive successes* counter
+ * if *consecutive failures* counter goes over a certain threshold and there is more than one polling thread it kills one of the polling threads
 
-snippet:DbContextPartialWithEntityConnection
 
-NOTE: The above snippets assumes that the created entity data model is named `MySample`, change all the reference to match your project conventions.
+### 2.0
+
+In 2.0 release support for callbacks has been added. Callbacks are implemented by each endpoint instance having a unique [secondary queue](./#secondary-queues). The receive for the secondary queue does not use the `MaximumConcurrencyLevel` and defaults to 1 thread. This value can be adjusted via the configuration API.
+
+
+### Prior to 2.0
+
+Prior to 2.0 each endpoint running SQLServer transport spins up a fixed number of threads (controlled by `MaximumConcurrencyLevel` property of `TransportConfig` section) both for input and satellite queues. Each thread runs in loop, polling the database for messages awaiting processing.
+
+The disadvantage of this simple model is the fact that satellites (e.g. Second-Level Retries, Timeout Manager) share the same concurrency settings but usually have much lower throughput requirements. If both SLR and TM are enabled, setting `MaximumConcurrencyLevel` to 10 results in 40 threads in total, each polling the database even if there are no messages to be processed.

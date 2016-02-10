@@ -97,9 +97,9 @@
         - Title: "Sql Server"
           Url: "nservicebus/sqlserver"
           Articles:
-            - "nservicebus/sqlserver/usage"
+            - "nservicebus/sqlserver/configuration"
             - "nservicebus/sqlserver/design"
-            - "nservicebus/sqlserver/concurrency"
+            - "nservicebus/sqlserver/transactions"
             - "nservicebus/sqlserver/multiple-databases"
             - "nservicebus/sqlserver/operations-scripting"
         - Title: "MSMQ"
