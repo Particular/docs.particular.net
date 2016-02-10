@@ -461,6 +461,7 @@
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="RavenDB\SpecificDocumentStoreViaConnectionString.config.xml" />
     <Content Include="Routing\EndpointMapping.config.xml" />
     <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
     <Content Include="Errors\FirstLevel\flr.config.xml" />

@@ -321,6 +321,7 @@
     <Content Include="Errors\SecondLevel\SecondLevelReties.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="RavenDB\SpecificDocumentStoreViaConnectionString.config.xml" />
     <Content Include="UpgradeGuides\5to6\null.xml" />
     <None Include="app.config" />
     <Content Include="EndpointMapping\EndpointMapping.config.xml" />
