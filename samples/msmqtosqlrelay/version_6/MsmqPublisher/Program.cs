@@ -16,7 +16,7 @@ class Program
     {
         #region publisher-config
 
-        var endpointConfiguration = new EndpointConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EndpointName("MsmqPublisher");
         endpointConfiguration.EnableInstallers();

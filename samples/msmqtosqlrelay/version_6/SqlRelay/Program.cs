@@ -31,19 +31,12 @@ class Program
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
-            Start(endpoint);
+            Console.WriteLine("\r\nSqlRelay is running - This endpoint will relay all events received to subscribers. Press any key to stop program\r\n");
+            Console.ReadKey();
         }
         finally
         {
             await endpoint.Stop();
         }
     }
-
-
-    static void Start(IEndpointInstance busSession)
-    {
-        Console.WriteLine("\r\nSqlRelay is running - This endpoint will relay all events received to subscribers. Press any key to stop program\r\n");
-        Console.ReadKey();
-    }
-
 }

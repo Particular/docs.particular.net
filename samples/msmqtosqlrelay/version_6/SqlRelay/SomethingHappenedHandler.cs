@@ -10,7 +10,7 @@ class SomethingHappenedHandler : IHandleMessages<SomethingHappened>
     {
         Console.WriteLine("Sql Relay has now received this event from the MSMQ. Publishing this event for downstream SQLSubscribers ");
 
-        // You can now relay this event to other interested SQL subscribers
+        // relay this event to other interested SQL subscribers
         await context.Publish(message);
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using System.Threading;
 using System.Data;
 using System.Data.SqlClient;
 using System;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Messaging;
 using System.Transactions;
 using System.Xml;
+using System.Xml.Serialization;
 
 class Program
 {
@@ -16,7 +16,7 @@ class Program
     {
         #region receive-from-msmq-using-native-messaging
         // The address of the queue that will be receiving messages from other MSMQ publishers
-        var queuePath = @".\private$\MsmqToSqlRelay";
+        string queuePath = @".\private$\MsmqToSqlRelay";
 
         //Create message queue object
         MessageQueue addressOfMsmqBridge = new MessageQueue(queuePath, QueueAccessMode.SendAndReceive);
@@ -36,8 +36,8 @@ class Program
     
     static void MsmqBridgeOnReceiveCompleted(object sender, ReceiveCompletedEventArgs receiveCompletedEventArgs)
     {
-        var sqlConnectionStr = @"Data Source =.\SQLEXPRESS; Initial Catalog = PersistenceForSqlTransport; Integrated Security = True";
-        var sqlRelayEndpointName = "SqlRelay";
+        string sqlConnectionStr = @"Data Source =.\SQLEXPRESS; Initial Catalog = PersistenceForSqlTransport; Integrated Security = True";
+        string sqlRelayEndpointName = "SqlRelay";
 
         using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required))
         {
@@ -53,10 +53,10 @@ class Program
             {
                 Console.WriteLine("Received a message in MSMQ -- Processing ...");
                 #region read-message-and-push-to-sql
-                var messageBody = ConvertStreamToByteArray(msg.BodyStream);
+                byte[] messageBody = ConvertStreamToByteArray(msg.BodyStream);
 
                 // Serialize to dictionary
-                var headers = ExtractHeaders(Encoding.UTF8.GetString(msg.Extension).TrimEnd('\0'));
+                Dictionary<string, string> headers = ExtractHeaders(Encoding.UTF8.GetString(msg.Extension).TrimEnd('\0'));
                     
                 // If this queue is going to be receiving messages from endpoints older than v4.0, then
                 // set the header["NServiceBus.MessageId"] to be a deterministic guid based on the Id
@@ -80,11 +80,11 @@ class Program
     static Dictionary<string,string> ExtractHeaders(string headerString)
     {
         // Deserialize the XML stream from the Extension property on the MSMQ to a dictionary of key-value pairs
-        var headerSerializer = new System.Xml.Serialization.XmlSerializer(typeof(List<HeaderInfo>));
+        XmlSerializer headerSerializer = new XmlSerializer(typeof(List<HeaderInfo>));
         object headers;
-        using (var stream = new StringReader(headerString))
+        using (StringReader stream = new StringReader(headerString))
         {
-            using (var reader = XmlReader.Create(stream, new XmlReaderSettings
+            using (XmlReader reader = XmlReader.Create(stream, new XmlReaderSettings
             {
                 CheckCharacters = false
             }))
@@ -130,20 +130,12 @@ class Program
            
     }
 
-    static byte[] ConvertStreamToByteArray(System.IO.Stream input)
+    static byte[] ConvertStreamToByteArray(Stream input)
     {
-        byte[] buffer = new byte[16 * 1024];
-
-        using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+        using (MemoryStream memoryStream = new MemoryStream())
         {
-            int chunk;
-
-            while ((chunk = input.Read(buffer, 0, buffer.Length)) > 0)
-            {
-                ms.Write(buffer, 0, chunk);
-            }
-
-            return ms.ToArray();
+            input.CopyTo(memoryStream);
+            return memoryStream.ToArray();
         }
     }
 }
