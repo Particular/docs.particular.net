@@ -13,7 +13,6 @@
     {
         public void Simple()
         {
-
             #region NewtonsoftSerialization 0.2
 
             BusConfiguration busConfiguration = new BusConfiguration();
