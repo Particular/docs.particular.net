@@ -31,8 +31,10 @@ redirects:
  4. Open SQL Server Management Studio and go to the `nservicebus` database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`).
  5. Verify that there are messages in the `dbo.audit` table and, if any message failed processing, messages in `dbo.error` table.
 
-NOTE: The handling code has built-in chaotic behavior. There is a 50% chance that a given message fails processing. This is to demonstrate that errors can be sent to a separate shared database. That behavior is essential to allow [ServiceControl](/platform/#servicecontrol-the-foundation) to pick them up.
+NOTE: The handling code has built-in chaotic behavior. There is a 50% chance that a given message fails processing. This is to demonstrate how error handling works. Since both First-Level Retries (FLR) and Second-Level Retires (SLR) are turned off, the message that couldn't be processed is immediately moved to the configured error queue.
 
+snippet:RetiresConfigurationXml
+snippet:RetriesConfiguration
 
 ## Code walk-through
 
@@ -42,23 +44,18 @@ This sample contains three projects:
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
  * Receiver - A console application responsible for processing the `OrderSubmitted` message, sending `OrderAccepted` message and randomly generating exceptions.
 
-Sender and Receiver use different databases, just like in a production scenario where two systems are integrated using NServiceBus. Each database contains, apart from business data, queues for the NServiceBus endpoints and tables for NServiceBus persistence.
-
-
 ### Sender project
 
 The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport with NHibernate persistence and Outbox.
 
-snippet:SenderConfiguration
-
-The Sender uses a configuration file to tell NServiceBus where the messages addressed to the Receiver should be sent.
+Connection strings in version 2.x are passed using app.config. The version 3.x sample demonstrates how to specify them using code API.
 
 snippet:SenderConnectionStrings
-
+snippet:SenderConfiguration
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use SQL Server transport with NHibernate persistence and Outbox but uses code configuration API.
+The Receiver mimics a back-end system. It is also configured to use SQL Server transport with NHibernate persistence and Outbox.
 
 snippet:ReceiverConfiguration
 

@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Features;
+using NServiceBus.Persistence;
 
 class Program
 {
@@ -18,11 +20,22 @@ class Program
 
         #region SenderConfiguration
 
-        endpointConfiguration.UseTransport<SqlServerTransport>();
-        endpointConfiguration.UsePersistence<NHibernatePersistence>();
+        endpointConfiguration
+            .UseTransport<SqlServerTransport>()
+            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True");
+
+        endpointConfiguration
+            .UsePersistence<NHibernatePersistence>()
+            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True");
+        
         endpointConfiguration.EnableOutbox();
 
         #endregion
+
+        endpointConfiguration.DisableFeature<FirstLevelRetries>();
+        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
 
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try

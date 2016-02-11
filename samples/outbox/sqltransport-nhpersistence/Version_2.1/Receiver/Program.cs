@@ -37,6 +37,7 @@ class Program
         busConfiguration.UsePersistence<NHibernatePersistence>()
             .RegisterManagedSessionInTheContainer()
             .UseConfiguration(hibernateConfig);
+
         busConfiguration.EnableOutbox();
 
         #endregion

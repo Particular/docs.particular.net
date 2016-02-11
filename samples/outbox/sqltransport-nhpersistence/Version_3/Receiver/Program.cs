@@ -23,7 +23,7 @@ class Program
         Configuration hibernateConfig = new Configuration();
         hibernateConfig.DataBaseIntegration(x =>
         {
-            x.ConnectionStringName = "NServiceBus/Persistence";
+            x.ConnectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True";
             x.Dialect<MsSql2012Dialect>();
         });
         ModelMapper mapper = new ModelMapper();
@@ -34,22 +34,32 @@ class Program
 
         new SchemaExport(hibernateConfig).Execute(false, true, false);
 
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+
         #region ReceiverConfiguration
 
-        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        endpointConfiguration.UseTransport<SqlServerTransport>();
+        endpointConfiguration
+            .UseTransport<SqlServerTransport>()
+            .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True");
 
         endpointConfiguration.UsePersistence<NHibernatePersistence>()
             .RegisterManagedSessionInTheContainer()
             .UseConfiguration(hibernateConfig);
-        endpointConfiguration.EnableOutbox();
 
-        endpointConfiguration.SendFailedMessagesTo(@"Data Source=.\SQLEXPRESS;Initial Catalog=shared;Integrated Security=True");
+        endpointConfiguration.EnableOutbox();
 
         #endregion
 
-        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        #region RetriesConfiguration
 
+        endpointConfiguration.DisableFeature<FirstLevelRetries>();
+        endpointConfiguration.DisableFeature<SecondLevelRetries>();
+        
+        #endregion
+
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
+        
         IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
