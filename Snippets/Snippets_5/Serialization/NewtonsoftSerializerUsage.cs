@@ -13,7 +13,7 @@
     {
         public void Simple()
         {
-            #region NewtonsoftSerialization 0.2
+            #region NewtonsoftSerialization [0.2,0.3)
 
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseSerialization<NewtonsoftSerializer>();
@@ -23,7 +23,7 @@
 
         public void CustomSettings()
         {
-            #region NewtonsoftCustomSettings 0.2
+            #region NewtonsoftCustomSettings [0.2,0.3)
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,
@@ -43,7 +43,7 @@
 
         public void CustomReader()
         {
-            #region NewtonsoftCustomReader 0.2
+            #region NewtonsoftCustomReader [0.2,0.3)
 
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseSerialization<NewtonsoftSerializer>()
@@ -57,7 +57,7 @@
         }
         public void CustomWriter()
         {
-            #region NewtonsoftCustomWriter 0.2
+            #region NewtonsoftCustomWriter [0.2,0.3)
 
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseSerialization<NewtonsoftSerializer>()
@@ -73,7 +73,7 @@
             #endregion
         }
 
-        #region NewtonsoftAttributes 0.2
+        #region NewtonsoftAttributes [0.2,0.3)
         [JsonObject(MemberSerialization.OptIn)]
         public class CreatePersonMessage : IMessage
         {
