@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
@@ -6,16 +7,20 @@ class Program
 
     static void Main()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        EndpointConfiguration busConfiguration = new EndpointConfiguration();
         busConfiguration.EndpointName("Samples.Scaleout.Master");
-        busConfiguration.RunMSMQDistributor(true);
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
-        using (IBus bus = Bus.Create(busConfiguration).Start())
-        {
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-        }
+
+        Run(busConfiguration).GetAwaiter().GetResult();
+    }
+
+    private static async Task Run(EndpointConfiguration busConfiguration)
+    {
+        var endpoint = await Endpoint.Start(busConfiguration);
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
+        await endpoint.Stop();
     }
 }
