@@ -1,6 +1,6 @@
 ---
 title: Outbox - SQL Server Transport and NHibernate
-summary: How to integrate SQL Server Transport with NHibernate persistence using outbox
+summary: How to integrate SQL Server Transport with NHibernate persistence using Outbox
 tags:
 - SQL Server
 - NHibernate
@@ -16,23 +16,25 @@ redirects:
 ### Prerequisites
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. 
  2. Create database called `nservicebus`.
- 3. The Outbox feature is designed to provide *exactly once* delivery guarantees without the Distributed Transaction Coordinator (DTC) running. Disable the DTC service to avoid warning messages shown in console window. If the DTC service is running, you will see `DtcRunningWarning` message when the sample project is started. 
+ 3. The [Outbox](/nservicebus/outbox) feature is designed to provide *exactly once* delivery guarantees without the Distributed Transaction Coordinator (DTC) running. Disable the DTC service to avoid seeing warning messages in the console window. If the DTC service is not disabled, you will see `DtcRunningWarning` message when the sample project is started. 
 
 ### Running the project
  1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
- 2. Start the Receiver project.
- 3. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready.
- 4. Hit `<enter>`.
+ 2. In the Sender's console window you should see `Press <enter> to send a message` text.
+ 3. Start the Receiver project (right-click on the project, select the `Debug > Start new instance` option).
+ 4. In the Sender's console window you should see subscription confirmation `Subscribe from Receiver on message type OrderSubmitted`. 
+ 5. Hit `<enter>` to send a new message.
 
-### Verifying the sample works correctly
- 1. On the Receiver console you should see that order was submitted.
- 2. On the Sender console you should see that the order was accepted.
- 3. After a couple of seconds, on the Receiver console you should see that the timeout message has been received.
+### Verifying that the sample works correctly
+ 1. On the Receiver console you should see information that an order was submitted.
+ 2. On the Sender console you should see information that the order was accepted.
+ 3. After a couple of seconds, on the Receiver console you should see information about receiving timeout message.
  4. Open SQL Server Management Studio and go to the `nservicebus` database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`).
  5. Verify that there are messages in the `dbo.audit` table and, if any message failed processing, messages in `dbo.error` table.
 
 NOTE: The handling code has built-in chaotic behavior. There is a 50% chance that a given message fails processing. This is to demonstrate how error handling works. Since both First-Level Retries (FLR) and Second-Level Retires (SLR) are turned off, the message that couldn't be processed is immediately moved to the configured error queue.
 
+To disable retries use the following snippets:
 snippet:RetiresConfigurationXml
 snippet:RetriesConfiguration
 
@@ -75,7 +77,7 @@ snippet:Reply
 
 snippet:Timeout
 
-Finally the messages in the outbox are pushed to their destinations. The timeout message gets stored in NServiceBus timeout store and is sent back to the saga after requested delay of five seconds.
+Finally the messages in the Outbox are pushed to their destinations. The timeout message gets stored in NServiceBus timeout store and is sent back to the saga after requested delay of 5 seconds.
 
 
 ## How it works
