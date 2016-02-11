@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Routing.Legacy;
 
 class Program
 {
@@ -8,7 +10,11 @@ class Program
     static void Main()
     {
         EndpointConfiguration busConfiguration = new EndpointConfiguration();
-        busConfiguration.EndpointName("Samples.Scaleout.Master");
+        busConfiguration.EndpointName("Samples.Scaleout.Worker");
+        busConfiguration.ScaleOut().InstanceDiscriminator(ConfigurationManager.AppSettings["InstanceId"]);
+        busConfiguration.EnlistWithLegacyMSMQDistributor(ConfigurationManager.AppSettings["DistributorAddress"],
+            ConfigurationManager.AppSettings["DistributorControlAddress"],
+            10);
         busConfiguration.UseSerialization<JsonSerializer>();
         busConfiguration.UsePersistence<InMemoryPersistence>();
         busConfiguration.EnableInstallers();
