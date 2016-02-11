@@ -39,7 +39,7 @@ class Program
         {
             OrderId = Guid.NewGuid()
         };
-        bus.Send("Samples.Scaleout.Master", placeOrder);
+        bus.Send("Samples.Scaleout.Distributor", placeOrder);
         Console.WriteLine("Sent PlacedOrder command with order id [{0}].", placeOrder.OrderId);
 
         #endregion
