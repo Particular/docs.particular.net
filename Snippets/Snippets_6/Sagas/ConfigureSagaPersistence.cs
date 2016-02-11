@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Sagas
+﻿namespace Snippets6.Sagas
 {
     using NServiceBus;
     using NServiceBus.Persistence;

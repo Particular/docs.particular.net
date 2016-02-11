@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Gateway
+﻿namespace Snippets6.Gateway
 {
     public class MyMessage
     {

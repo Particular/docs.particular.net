@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Encryption.Configuration
+﻿namespace Snippets6.Encryption.Configuration
 {
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;

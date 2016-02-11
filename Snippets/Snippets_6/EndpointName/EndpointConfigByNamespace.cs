@@ -1,4 +1,4 @@
-﻿namespace Snippets5.EndpointName
+﻿namespace Snippets6.EndpointName
 {
     // startcode EndpointNameByNamespace
     namespace MyServer

@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Transports.RabbitMQ
+﻿namespace Snippets6.Transports.RabbitMQ
 {
     using System;
     using global::RabbitMQ.Client;

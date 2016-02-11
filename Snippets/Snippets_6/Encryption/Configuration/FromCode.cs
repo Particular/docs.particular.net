@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Encryption.Configuration
+﻿namespace Snippets6.Encryption.Configuration
 {
     using System.Collections.Generic;
     using NServiceBus;

@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Outbox.RavenDB
+﻿namespace Snippets6.Outbox.RavenDB
 {
     using System;
     using NServiceBus;
