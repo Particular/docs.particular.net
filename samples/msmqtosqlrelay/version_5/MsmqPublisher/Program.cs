@@ -19,8 +19,8 @@ class Program
         {
             Console.WriteLine("Press enter to publish an event");
             Console.WriteLine("Press any key to exit.");
-           
-            #region PublishLoop
+
+            #region publisher-loop
             while (true)
             {
                 ConsoleKeyInfo key = Console.ReadKey();
