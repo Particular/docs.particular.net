@@ -1,4 +1,4 @@
-namespace Snippets5.Gateway.Sites.ConfigurationSource
+namespace Snippets6.Gateway.Sites.ConfigurationSource
 {
     using NServiceBus;
 

@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Encryption
+﻿namespace Snippets6.Encryption
 {
     using NServiceBus;
 

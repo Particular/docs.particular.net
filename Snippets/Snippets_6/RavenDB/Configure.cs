@@ -1,4 +1,4 @@
-﻿namespace Snippets5.RavenDB
+﻿namespace Snippets6.RavenDB
 {
     using System.Threading.Tasks;
     using NServiceBus;
