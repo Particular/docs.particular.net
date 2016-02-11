@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Worker2", "Worker2\Worker2.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Worker.Handlers", "Worker.Handlers\Worker.Handlers.csproj", "{3795C2B4-2A4C-41FF-A2BA-E62F96B63610}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Distributor", "Distributor\Distributor.csproj", "{312F45D2-6FB7-4212-BC0A-0D1B6C4B1E8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3795C2B4-2A4C-41FF-A2BA-E62F96B63610}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3795C2B4-2A4C-41FF-A2BA-E62F96B63610}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3795C2B4-2A4C-41FF-A2BA-E62F96B63610}.Release|Any CPU.Build.0 = Release|Any CPU
+		{312F45D2-6FB7-4212-BC0A-0D1B6C4B1E8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{312F45D2-6FB7-4212-BC0A-0D1B6C4B1E8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{312F45D2-6FB7-4212-BC0A-0D1B6C4B1E8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{312F45D2-6FB7-4212-BC0A-0D1B6C4B1E8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
