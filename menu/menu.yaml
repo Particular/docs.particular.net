@@ -131,6 +131,7 @@
       Articles:
         - "nservicebus/serialization/xml"
         - "nservicebus/serialization/json"
+        - "nservicebus/serialization/newtonsoft"
         - "nservicebus/serialization/binary"
         - "nservicebus/serialization/custom-serializer"
         - "nservicebus/serialization/type-was-not-registered"
