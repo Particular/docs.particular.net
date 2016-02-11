@@ -2,7 +2,7 @@
 {
     using NServiceBus;
 
-    public class JsonSerialization
+    public class JsonSerializerUsage
     {
         public void Simple()
         {

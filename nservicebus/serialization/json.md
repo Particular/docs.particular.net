@@ -19,9 +19,10 @@ Over time the version of ILMerged Json.NET has changed.
 
 | NServiceBus Version | Json.net Version |
 |---|---|
-| 3  | 4.0.8 |
+| 3.X  | 4.0.8 |
 | 4.0 | 4.5.11 |
 | 4.1-5.X | 5.0.6 |
+| 6.0-6.X | 8.0.2 |
 
 
 ## Customization

@@ -398,9 +398,9 @@
     <Compile Include="Sagas\Reply\MySaga.cs" />
     <Compile Include="Sagas\Reply\MySagaData.cs" />
     <Compile Include="Sagas\Reply\StartMessage.cs" />
-    <Compile Include="Serialization\BsonSerialization.cs" />
-    <Compile Include="Serialization\BinarySerialization.cs" />
-    <Compile Include="Serialization\JsonSerialization.cs" />
+    <Compile Include="Serialization\BsonSerializerUsage.cs" />
+    <Compile Include="Serialization\BinarySerializerUsage.cs" />
+    <Compile Include="Serialization\JsonSerializerUsage.cs" />
     <Compile Include="Transports\QueueCreation\QueueCreation.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\CompleteOrder.cs" />
     <Compile Include="UpgradeGuides\3to4\SimpleSaga\OrderSaga.cs" />
@@ -464,7 +464,7 @@
     <Compile Include="PerformanceMonitoring.cs" />
     <Compile Include="CriticalError.cs" />
     <Compile Include="Hosting.cs" />
-    <Compile Include="Serialization\XmlSerialization.cs" />
+    <Compile Include="Serialization\XmlSerializerUsage.cs" />
     <Compile Include="License.cs" />
     <Compile Include="DataBus\FileShare\DataBus.cs" />
     <Compile Include="RavenDB\CustomRavenConfig.cs" />

@@ -20,7 +20,7 @@ static class Program
         {
             Formatting = Formatting.Indented
         };
-        endpointConfiguration.UseSerialization<NewtonsoftSerialization>()
+        endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
             .Settings(settings);
         // register the mutator so the the message on the wire is written
         endpointConfiguration.RegisterComponents(components =>

@@ -2,17 +2,17 @@
 {
     using NServiceBus;
 
-    public class BinarySerialization
+    public class BsonSerializerUsage
     {
         public void Simple()
         {
 
-            #region BinarySerialization
+            #region BsonSerialization
 
-            Configure.Serialization.Binary();
+            Configure.Serialization.Bson();
 
             #endregion
-
         }
+
     }
 }

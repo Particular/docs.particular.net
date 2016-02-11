@@ -3,6 +3,8 @@ title: External Json Serializer
 summary: How to use the external Json serializer in an endpoint.
 related:
 - nservicebus/serialization
+redirects:
+- samples/serializers/json-external
 ---
 
 ## NServiceBus.Newtonsoft.Json

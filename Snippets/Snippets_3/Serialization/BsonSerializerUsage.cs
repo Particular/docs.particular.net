@@ -2,7 +2,7 @@
 {
     using NServiceBus;
 
-    public class BsonSerialization
+    public class BsonSerializerUsage
     {
         public void Simple()
         {

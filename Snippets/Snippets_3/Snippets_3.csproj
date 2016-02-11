@@ -329,10 +329,10 @@
     <Compile Include="Scheduling\Scheduling.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
     <Compile Include="Hosting.cs" />
-    <Compile Include="Serialization\BinarySerialization.cs" />
-    <Compile Include="Serialization\BsonSerialization.cs" />
-    <Compile Include="Serialization\JsonSerialization.cs" />
-    <Compile Include="Serialization\XmlSerialization.cs" />
+    <Compile Include="Serialization\BinarySerializerUsage.cs" />
+    <Compile Include="Serialization\BsonSerializerUsage.cs" />
+    <Compile Include="Serialization\JsonSerializerUsage.cs" />
+    <Compile Include="Serialization\XmlSerializerUsage.cs" />
     <Compile Include="Transactions.cs" />
     <Compile Include="Transports\Throughput\ProvideConfiguration.cs" />
     <Compile Include="UnitTesting\Unobtrusive.cs" />

@@ -2,18 +2,19 @@
 {
     using NServiceBus;
 
-    public class BinarySerialization
+    public class JsonSerializerUsage
     {
         public void Simple()
         {
 
-            #region BinarySerialization
+            #region JsonSerialization
 
             Configure configure = Configure.With();
-            configure.BinarySerializer();
-
+            configure.JsonSerializer();
+        
             #endregion
 
         }
+
     }
 }

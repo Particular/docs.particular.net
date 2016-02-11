@@ -2,14 +2,15 @@
 {
     using NServiceBus;
 
-    public class XmlSerialization
+    public class JsonSerializerUsage
     {
         public void Simple()
         {
-            #region XmlSerialization
+
+            #region JsonSerialization
 
             EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.UseSerialization<XmlSerializer>();
+            configuration.UseSerialization<JsonSerializer>();
 
             #endregion
         }

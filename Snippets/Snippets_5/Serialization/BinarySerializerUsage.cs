@@ -2,14 +2,15 @@
 {
     using NServiceBus;
 
-    public class XmlSerialization
+    public class BinarySerializerUsage
     {
         public void Simple()
         {
-            #region XmlSerialization
+
+            #region BinarySerialization
 
             BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseSerialization<XmlSerializer>();
+            busConfiguration.UseSerialization<BinarySerializer>();
 
             #endregion
         }

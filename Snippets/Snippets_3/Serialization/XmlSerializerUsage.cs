@@ -2,7 +2,7 @@
 {
     using NServiceBus;
 
-    public class XmlSerialization
+    public class XmlSerializerUsage
     {
         public void Simple()
         {
