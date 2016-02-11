@@ -237,7 +237,7 @@
       Title: "Scalability and HA"
       Url: "nservicebus/scalability-and-ha"
       Articles:
-    - "nservicebus/scalability-and-ha/scale-out"
+        - "nservicebus/scalability-and-ha/scale-out"
         - "nservicebus/scalability-and-ha/deploying-to-a-windows-failover-cluster"
         - "nservicebus/scalability-and-ha/individualizing-queues-when-scaling-out"
         - Title: "Distributor"
