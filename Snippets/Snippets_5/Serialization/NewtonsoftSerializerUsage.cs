@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Serialization
+﻿namespace Snippets5.Serialization
 {
     using System;
     using System.Globalization;
@@ -24,6 +24,7 @@
         public void CustomSettings()
         {
             #region NewtonsoftCustomSettings [0.2,0.3)
+
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,
@@ -38,6 +39,7 @@
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseSerialization<NewtonsoftSerializer>()
                 .Settings(settings);
+
             #endregion
         }
 
@@ -55,6 +57,7 @@
 
             #endregion
         }
+
         public void CustomWriter()
         {
             #region NewtonsoftCustomWriter [0.2,0.3)
@@ -74,6 +77,7 @@
         }
 
         #region NewtonsoftAttributes [0.2,0.3)
+
         [JsonObject(MemberSerialization.OptIn)]
         public class CreatePersonMessage : IMessage
         {
@@ -93,6 +97,7 @@
             // not serialized because mode is opt-in
             public string Department { get; set; }
         }
+
         #endregion
     }
 }

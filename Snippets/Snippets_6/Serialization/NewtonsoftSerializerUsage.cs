@@ -23,6 +23,7 @@
         public void CustomSettings()
         {
             #region NewtonsoftCustomSettings 0.3-pre
+
             JsonSerializerSettings settings = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,
@@ -37,6 +38,7 @@
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
                 .Settings(settings);
+
             #endregion
         }
 
@@ -54,6 +56,7 @@
 
             #endregion
         }
+
         public void CustomWriter()
         {
             #region NewtonsoftCustomWriter 0.3-pre
@@ -73,6 +76,7 @@
         }
 
         #region NewtonsoftAttributes 0.3-pre
+
         [JsonObject(MemberSerialization.OptIn)]
         public class CreatePersonMessage : IMessage
         {
@@ -92,6 +96,7 @@
             // not serialized because mode is opt-in
             public string Department { get; set; }
         }
+
         #endregion
     }
 }
