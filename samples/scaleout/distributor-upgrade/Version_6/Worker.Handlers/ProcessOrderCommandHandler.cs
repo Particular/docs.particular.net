@@ -1,19 +1,13 @@
 ﻿using NServiceBus;
 using System;
 using System.Reflection;
+using System.Threading.Tasks;
 
 #region WorkerHandler
 
 public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
 {
-    IBus bus;
-
-    public ProcessOrderCommandHandler(IBus bus)
-    {
-        this.bus = bus;
-    }
-
-    public void Handle(PlaceOrder placeOrder)
+    public Task Handle(PlaceOrder placeOrder, IMessageHandlerContext context)
     {
         // Process Order...
         Console.WriteLine("Processing received order....");
@@ -23,8 +17,8 @@ public class ProcessOrderCommandHandler : IHandleMessages<PlaceOrder>
             OrderId = placeOrder.OrderId,
             WorkerName = Assembly.GetEntryAssembly().GetName().Name
         };
-        bus.Reply(message);
         Console.WriteLine("Sent Order placed event for orderId [{0}].", placeOrder.OrderId);
+        return context.Reply(message);
     }
 }
 
