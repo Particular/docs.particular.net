@@ -8,7 +8,7 @@ related:
 Using [Json](https://en.wikipedia.org/wiki/Json) via a nuget dependency on [Json.NET](http://www.newtonsoft.com/json).
 
 
-## The nuget package  [![NuGet Status](http://img.shields.io/nuget/v/NServiceBus.Newtonsoft.Json.svg?style=flat)](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/)
+## The nuget package
 
 https://nuget.org/packages/NServiceBus.Newtonsoft.Json/
 
