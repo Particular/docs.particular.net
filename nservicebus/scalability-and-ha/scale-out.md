@@ -13,7 +13,7 @@ In Version 5 and below NServiceBus scale out capabilities are dependent on the t
 
 ### MSMQ
 
-Because of limitations of MSMQ related to remote receive, in order to scale out an MSMQ Version 5 (and below) endpoint users have to use the [distributor](/nservicebus/scalability-and-ha/distributor/). The role of the distributor is to forward incoming messages to a number of workers in order to balance the load. The workers are "invisible" to the outside world because all the outgoing messages contain the distributor's (not the worker's) address in the `reply-to` header. 
+Because of limitations of MSMQ related to remote receive, in order to scale out an MSMQ Version 5 (and below) endpoint have to use the [distributor](/nservicebus/scalability-and-ha/distributor/). The role of the distributor is to forward incoming messages to a number of workers in order to balance the load. The workers are "invisible" to the outside world because all the outgoing messages contain the distributor's (not the worker's) address in the `reply-to` header. 
 
 The main issue with distributor is the throughput limitation due to the fact that, for each message forwarded to worker, there were additional two messages exchanged between the worker and the distributor.
 
@@ -66,7 +66,7 @@ snippet:Routing-StaticRoutes-Endpoint
 
 Scaling out can be done, as in Version 5, by `xcopy`-ing the binaries. In this case all instances have empty IDs and there is only one queue in use.
 
-Should you need to go past the throughput of a single infrastructure queue or have to address each instance separately, you can specify instance IDs for each deployment of the endpoint. In this case, in addition to the shared `Sales` queue, there will be two instance-specific queues used by the `Sales` endpoint.
+Should the need to go past the throughput of a single infrastructure queue or have to address each instance separately, instance IDs can be specified for each deployment of the endpoint. In this case, in addition to the shared `Sales` queue, there will be two instance-specific queues used by the `Sales` endpoint.
 
 Some upstream endpoints might decide to still treat `Sales` as a single *thing* and depend on the logical routing only. These endpoints will continue to send their messages to the `Sales` queue. Others might include routing file:
 
