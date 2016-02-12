@@ -26,5 +26,15 @@
                 .TransactionScopeOptions(timeout: TimeSpan.FromSeconds(30));
             #endregion
         }
+        void TimeToWaitBeforeTriggeringCircuitBreaker()
+        {
+            #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker 3
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+            busConfiguration.UseTransport<SqlServerTransport>()
+                .TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(3));
+
+            #endregion
+        }
     }
 }
