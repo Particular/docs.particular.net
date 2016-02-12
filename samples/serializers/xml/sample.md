@@ -6,7 +6,7 @@ related:
 - nservicebus/serialization/xml
 ---
 
-This samples uses the default XML serializer in the core.
+This sample uses the default XML serializer in the core.
 
 ## Configuring to use XML
 

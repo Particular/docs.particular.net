@@ -8,7 +8,7 @@ related:
 
 ## NServiceBus.MessagePack
 
-This samples uses the community run serializer [NServiceBus.MessagePack](https://github.com/SimonCropp/NServiceBus.MessagePack) to serialize messages with the [MessagePack](http://msgpack.org/) binary format.
+This sample uses the community run serializer [NServiceBus.MessagePack](https://github.com/SimonCropp/NServiceBus.MessagePack) to serialize messages with the [MessagePack](http://msgpack.org/) binary format.
 
 
 ## Configuring to use MessagePack

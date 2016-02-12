@@ -15,7 +15,7 @@ This sample shows how to use the notification API to capture the SLR, FLR and er
 
 ## Custom Setting in this sample
 
-This samples uses several non-standard settings.
+This sample uses several non-standard settings.
 
 
 ### Logging

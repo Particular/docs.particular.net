@@ -67,7 +67,7 @@ The result will be
 
 ## Bson
 
-NOTE: In Version 6, the `BsonSerializer` was deprecated. Please use one of the [supported serializers](/nservicebus/serialization/#supported-serializers), or an [external serializer](/platform/extensions.md#serializers).
+WARNING: In Version 6 of NServiceBus the built in BSON serializer has been deprecated. The [Newtonsoft serializer](/nservicebus/serialization/newtonsoft.md) can be used as a replacement
 
 Using [Bson](https://en.wikipedia.org/wiki/BSON) via the same ILMerged copy of Json.NET as above.
 

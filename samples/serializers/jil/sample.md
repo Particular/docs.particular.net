@@ -7,7 +7,7 @@ related:
 
 ## NServiceBus.Jil
 
-This samples uses the community run serializer [NServiceBus.Jil](https://github.com/SimonCropp/NServiceBus.Jil).
+This sample uses the community run serializer [NServiceBus.Jil](https://github.com/SimonCropp/NServiceBus.Jil).
 
 
 ## Configuring to use Jil

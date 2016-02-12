@@ -3,6 +3,8 @@ title: Json.NET Serializer
 summary: A json serializer that uses Newtonsoft Json.NET.
 related:
  - samples/serializers/newtonsoft
+related:
+ - samples/serializers/newtonsoft-bson
 ---
 
 Using [Json](https://en.wikipedia.org/wiki/Json) via a nuget dependency on [Json.NET](http://www.newtonsoft.com/json).
@@ -17,11 +19,11 @@ https://nuget.org/packages/NServiceBus.Newtonsoft.Json/
 
 ## But doesn't the NServiceBus core use Json.net
 
-The core of [NServiceBus uses Json.net](json.md). However it is ILMerged where this library has a standard dll and nuget dependency. While ILMerging reduces versioning issues in the core it does cause several restrictions
+The core of [NServiceBus uses Json.net](json.md). However it is ILMerged where this library has a standard dll and nuget dependency. While ILMerging reduces versioning issues in the core it does cause several restrictions:
 
- * Cant use a different version of Json.net
- * Cant use Json.net attributes
- * Cant customize the Json.net serialization behaviors.
+ * Can't use a different version of Json.net
+ * Can't use Json.net attributes
+ * Can't customize the Json.net serialization behaviors.
 
 These restrictions do no apply to this serializer.
 
@@ -47,20 +49,28 @@ snippet:NewtonsoftAttributes
 
 ### Custom Settings
 
-Customizes the instance of `JsonSerializerSettings` used for serialization.
+Customizes the instance of [JsonSerializerSettings](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization.
 
 snippet: NewtonsoftCustomSettings
 
 
 ### Custom Reader
 
-Customize the creation of the `JsonReader`.
+Customize the creation of the [JsonReader](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonReader.htm).
 
 snippet:NewtonsoftCustomReader
 
 
 ### Custom Writer
 
-Customize the creation of the `JsonWriter`.
+Customize the creation of the [JsonWriter](http://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm).
 
 snippet:NewtonsoftCustomWriter
+
+
+## BSON
+
+Customize to use the [Newtonsoft Bson serialization](http://www.newtonsoft.com/json/help/html/SerializeToBson.htm).
+
+snippet: NewtonsoftBson
+

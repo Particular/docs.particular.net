@@ -5,8 +5,10 @@
     using System.IO;
     using System.Text;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Bson;
     using Newtonsoft.Json.Converters;
     using NServiceBus;
+    using NServiceBus.Serialization;
 
     public class NewtonsoftSerializerUsage
     {
@@ -71,6 +73,18 @@
                         Formatting = Formatting.None
                     };
                 });
+
+            #endregion
+        }
+        public void Bson()
+        {
+            #region NewtonsoftBson 0.3-pre
+
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            SerializationExtentions<NewtonsoftSerializer> serialization =
+                endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+            serialization.ReaderCreator(stream => new BsonReader(stream));
+            serialization.WriterCreator(stream => new BsonWriter(stream));
 
             #endregion
         }
