@@ -35,6 +35,116 @@
             #endregion
         }
 
+        async Task SetDestination()
+        {
+            IEndpointInstance endpoint = null;
+
+            #region BasicSendSetDestination
+            SendOptions options = new SendOptions();
+            options.SetDestination("MyDestination");
+            await endpoint.Send(new MyMessage(), options);
+            #endregion
+        }
+
+        async Task SpecificInstance()
+        {
+            IEndpointInstance endpoint = null;
+
+            #region BasicSendSpecificInstance
+            SendOptions options = new SendOptions();
+            options.RouteToSpecificInstance("MyInstance");
+            await endpoint.Send(new MyMessage(), options);
+            #endregion
+        }
+
+        async Task ThisEndpoint()
+        {
+            IEndpointInstance endpoint = null;
+
+            #region BasicSendToAnyInstance
+            SendOptions options = new SendOptions();
+            options.RouteToThisEndpoint();
+            await endpoint.Send(new MyMessage(), options);
+            #endregion
+        }
+
+        async Task ThisInstance()
+        {
+            IEndpointInstance endpoint = null;
+
+            #region BasicSendToThisInstance
+            SendOptions options = new SendOptions();
+            options.RouteToThisInstance();
+            await endpoint.Send(new MyMessage(), options);
+            #endregion
+        }
+
+        async Task SendReplyToThisInstance()
+        {
+            IEndpointInstance endpoint = null;
+
+            #region BasicSendReplyToThisInstance
+            SendOptions options = new SendOptions();
+            options.RouteReplyToThisInstance();
+            await endpoint.Send(new MyMessage(), options);
+            #endregion
+        }
+
+        async Task SendReplyToAnyInstance()
+        {
+            IEndpointInstance endpoint = null;
+
+            #region BasicSendReplyToAnyInstance
+            SendOptions options = new SendOptions();
+            options.RouteReplyToAnyInstance();
+            await endpoint.Send(new MyMessage(), options);
+            #endregion
+        }
+
+        async Task SendReplyTo()
+        {
+            IEndpointInstance endpoint = null;
+
+            #region BasicSendReplyToDestination
+            SendOptions options = new SendOptions();
+            options.RouteReplyTo("MyDestination");
+            await endpoint.Send(new MyMessage(), options);
+            #endregion
+        }
+
+        async Task ReplySendReplyToThisInstance()
+        {
+            IMessageHandlerContext context = null;
+
+            #region BasicReplyReplyToThisInstance
+            ReplyOptions options = new ReplyOptions();
+            options.RouteReplyToThisInstance();
+            await context.Reply(new MyMessage(), options);
+            #endregion
+        }
+
+        async Task ReplySendReplyToAnyInstance()
+        {
+            IMessageHandlerContext context = null;
+
+            #region BasicReplyReplyToAnyInstance
+            ReplyOptions options = new ReplyOptions();
+            options.RouteReplyToAnyInstance();
+            await context.Reply(new MyMessage(), options);
+            #endregion
+        }
+
+        async Task ReplySendReplyTo()
+        {
+            IMessageHandlerContext context = null;
+
+            #region BasicReplyReplyToDestination
+            ReplyOptions options = new ReplyOptions();
+            options.RouteReplyTo("MyDestination");
+            await context.Reply(new MyMessage(), options);
+            #endregion
+        }
+
         public class MyMessage
         {
         }
