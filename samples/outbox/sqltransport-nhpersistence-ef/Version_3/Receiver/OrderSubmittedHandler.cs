@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using NServiceBus;
 using System.Data.Common;
 using System.Threading.Tasks;
@@ -16,7 +17,9 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
         using (ReceiverDataContext ctx = new ReceiverDataContext(storageContext.Connection))
         {
-            ctx.Database.UseTransaction(storageContext.Transaction);
+            DbTransaction tx = ExtractTransactionFromSession(storageContext);
+
+            ctx.Database.UseTransaction(tx);
             ctx.Orders.Add(new Order
                             {
                                 OrderId = message.OrderId,
@@ -35,5 +38,16 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
                     });
 
         #endregion
+    }
+
+    static DbTransaction ExtractTransactionFromSession(ISession storageContext)
+    {
+        DbTransaction tx;
+        using (IDbCommand helper = storageContext.Connection.CreateCommand())
+        {
+            storageContext.Transaction.Enlist(helper);
+            tx = (DbTransaction) helper.Transaction;
+        }
+        return tx;
     }
 }

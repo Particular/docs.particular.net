@@ -34,7 +34,18 @@ class Program
         endpointConfiguration
             .UseTransport<SqlServerTransport>()
             .DefaultSchema("sender")
-            .UseSpecificSchema(e => "receiver");
+            .UseSpecificSchema(e =>
+            {
+                if ( ("error".Equals(e, StringComparison.OrdinalIgnoreCase)) || ("audit".Equals(e, StringComparison.OrdinalIgnoreCase)))
+                {
+                    return "dbo";
+                }
+                if ("receiver".Equals(e, StringComparison.OrdinalIgnoreCase))
+                {
+                    return "receiver";
+                }
+                return null;
+            });
 
         endpointConfiguration
             .UsePersistence<NHibernatePersistence>();
