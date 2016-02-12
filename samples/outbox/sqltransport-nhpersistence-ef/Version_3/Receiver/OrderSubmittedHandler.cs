@@ -1,28 +1,22 @@
 using System;
 using NServiceBus;
 using System.Data.Common;
-using NServiceBus.Persistence.NHibernate;
+using System.Threading.Tasks;
+using NHibernate;
 
 public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 {
-    IBus bus;
-    NHibernateStorageContext storageContext;
-
-    public OrderSubmittedHandler(IBus bus ,NHibernateStorageContext storageContext)
-    {
-        this.bus = bus;
-        this.storageContext = storageContext;
-    }
-
-    public void Handle(OrderSubmitted message)
+    public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         Console.WriteLine("Order {0} worth {1} submitted", message.OrderId, message.Value);
 
         #region StoreUserData
 
+        ISession storageContext = context.SynchronizedStorageSession.Session();
+
         using (ReceiverDataContext ctx = new ReceiverDataContext(storageContext.Connection))
         {
-            ctx.Database.UseTransaction((DbTransaction) storageContext.DatabaseTransaction);
+            ctx.Database.UseTransaction(storageContext.Transaction);
             ctx.Orders.Add(new Order
                             {
                                 OrderId = message.OrderId,
@@ -35,7 +29,7 @@ public class OrderSubmittedHandler : IHandleMessages<OrderSubmitted>
 
         #region Reply
 
-        bus.Reply(new OrderAccepted
+        await context.Reply(new OrderAccepted
                     {
                         OrderId = message.OrderId,
                     });

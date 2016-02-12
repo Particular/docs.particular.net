@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus;
@@ -8,6 +9,11 @@ using NServiceBus.Persistence;
 class Program
 {
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         using (ReceiverDataContext ctx = new ReceiverDataContext())
         {
@@ -23,28 +29,32 @@ class Program
 
         hibernateConfig.SetProperty("default_schema", "receiver");
 
-        BusConfiguration busConfiguration = new BusConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         
         #region ReceiverConfiguration
 
-        busConfiguration
+        endpointConfiguration
             .UseTransport<SqlServerTransport>()
-            .UseSpecificConnectionInformation(
-                EndpointConnectionInfo.For("sender").UseSchema("sender"))
             .DefaultSchema("receiver");
 
-        busConfiguration
+        endpointConfiguration
             .UsePersistence<NHibernatePersistence>()
             .RegisterManagedSessionInTheContainer();
 
-        busConfiguration.EnableOutbox();
+        endpointConfiguration.EnableOutbox();
 
         #endregion
 
-        using (Bus.Create(busConfiguration).Start())
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+
+        try
         {
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }
