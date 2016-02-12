@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Threading;
+using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Mapping.ByCode;
 using NServiceBus;
@@ -8,7 +8,13 @@ using Environment = NHibernate.Cfg.Environment;
 
 class Program
 {
+
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         Configuration nhConfiguration = new Configuration();
 
@@ -19,30 +25,36 @@ class Program
 
         nhConfiguration = AddLoquaciousMappings(nhConfiguration);
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.CustomNhMappings.Loquacious");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.CustomNhMappings.Loquacious");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        busConfiguration
+        endpointConfiguration
             .UsePersistence<NHibernatePersistence>()
             .UseConfiguration(nhConfiguration);
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        try
         {
-            bus.SendLocal(new StartOrder
+            await endpoint.SendLocal(new StartOrder
             {
                 OrderId = "123"
             });
+            await Task.Delay(2000);
 
-            Thread.Sleep(2000);
-            bus.SendLocal(new CompleteOrder
+            await endpoint.SendLocal(new CompleteOrder
             {
                 OrderId = "123"
             });
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 

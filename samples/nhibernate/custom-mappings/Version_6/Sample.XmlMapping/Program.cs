@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using System.Threading;
+using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NServiceBus;
 using NServiceBus.Persistence;
@@ -9,7 +9,13 @@ using Environment = NHibernate.Cfg.Environment;
 class Program
 {
 
+
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         Configuration nhConfiguration = new Configuration();
 
@@ -20,30 +26,36 @@ class Program
 
         AddMappingsFromFilesystem(nhConfiguration);
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.CustomNhMappings.XmlMapping");
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.CustomNhMappings.XmlMapping");
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-        busConfiguration
+        endpointConfiguration
             .UsePersistence<NHibernatePersistence>()
             .UseConfiguration(nhConfiguration);
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+        try
         {
-            bus.SendLocal(new StartOrder
+            await endpoint.SendLocal(new StartOrder
             {
                 OrderId = "123"
             });
 
-            Thread.Sleep(2000);
-            bus.SendLocal(new CompleteOrder
+            await Task.Delay(2000);
+            await endpoint.SendLocal(new CompleteOrder
             {
                 OrderId = "123"
             });
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 

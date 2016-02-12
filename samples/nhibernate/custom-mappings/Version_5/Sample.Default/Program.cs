@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using NHibernate.Cfg;
 using NServiceBus;
 using NServiceBus.Persistence;
@@ -31,6 +32,7 @@ class Program
                 OrderId = "123"
             });
 
+            Thread.Sleep(2000);
             bus.SendLocal(new CompleteOrder
             {
                 OrderId = "123"
