@@ -20,6 +20,7 @@ In both cases you can use an interface rather than a concrete class for a messag
 
 snippet:BasicSendInterface
 
+
 ## Overriding the default routing
 
 The `SendOptions` object can be used to override the default routing, either by specifying the raw destination address
@@ -30,6 +31,7 @@ or the ID of the target instance
 
 snippet:BasicSendSpecificInstance
 
+
 ## Sending to *self*
 
 Sending to *self* comes in two flavors. First, endpoint can send a message to any instance of the same endpoint
@@ -39,6 +41,7 @@ snippet:BasicSendToAnyInstance
 Second, it can request a message to be routed to itself (same instance). This option is only possible when endpoint instance ID has been specified
 
 snippet:BasicSendToThisInstance
+
 
 ## Influencing the reply behavior
 
@@ -53,6 +56,7 @@ snippet:BasicSendReplyToAnyInstance
 The sender can also request the reply to be routed to a specified raw address
 
 snippet:BasicSendReplyToDestination
+
 
 ## Immediate Dispatch
 
@@ -71,6 +75,6 @@ Version 6 and below allows you to suppress the ambient transaction in order to h
 
 snippet:RequestImmediateDispatchUsingScope
 
-The issue with this approach is that it only works for transports that enlists the receive operation in a transaction scope. Currently this would be MSMQ and SqlServer in DTC mode. Should you use any other transport or disable the DTC this no longer works and the outgoing message might be rolled back together with the incoming message.
+The issue with this approach is that it only works for transports that enlists the receive operation in a transaction scope. Currently this would be MSMQ and SqlServer in DTC mode. When using any other transport, or disable the DTC, this no longer works and the outgoing message might be rolled back together with the incoming message.
 
-For this reason we've decided to deprecate this method and recommend users switch to the explicit API mentioned above.
+For this reason this method has been deprecated. It is recommended to switch to the explicit API mentioned above.
