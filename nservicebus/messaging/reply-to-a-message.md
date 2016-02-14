@@ -14,6 +14,7 @@ You should only use a reply when you implement the Request-Response pattern (als
 
 When using the Publish-Subscribe pattern an endpoint handling an event shouldn't use `Reply`. This is because the publisher will not be expecting any reply and should not have a handler for it.
 
+
 ## Influencing the reply behavior
 
 A sender of a reply can influence how the requester will behave when continuing the conversation (replying to a reply). It can request a reply to go to itself (not any other instance of the same endpoint)
