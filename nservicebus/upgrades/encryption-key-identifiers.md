@@ -63,7 +63,7 @@ The following configuration examples demonstrate how to update existing endpoint
 It is possible to choose to keep the current encryption key and will still be able to decrypt messages already in flight:
 
 ```
-<RijndaelEncryptionServiceConfig Key="do-not-use-this-encryption-key!!" KeyIdentifier="2015-10" />
+<RijndaelEncryptionServiceConfig Key="do-not-use-this-encryption-key!!" KeyIdentifier="2015-10">
   <ExpiredKeys>
     <add Key="an-expired-encryption-key-here-!" />
     <add Key="another-expired-key-!-----------" />
