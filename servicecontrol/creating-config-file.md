@@ -67,8 +67,19 @@ Default: `%LOCALAPPDATA%\Particular\ServiceControl\logs`
 Note: %LOCALAPPDATA% is a user specific environment variable. 
 
 
-## Data Retention
+#### ServiceControl/LogLevel
 
+Controls the LogLevel of the ServiceControl logs.
+
+Type: string
+
+Default: `Warn`
+
+This setting was introduced in version 1.9.  Valid settings are:  `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.   
+This setting will default to `Warn` if an invalid value is assigned.  
+Prior to 1.9 the log level was `Info` and could not be changed
+
+## Data Retention
 
 #### ServiceControl/ExpirationProcessTimerInSeconds
 
