@@ -19,7 +19,7 @@ class CallbackService<TRequest, TResponse> : ICallbackService<TRequest, TRespons
     public async Task<TResponse> SendRequest(TRequest request)
     {
         SendOptions sendOptions = new SendOptions();
-        sendOptions.RouteToLocalEndpointInstance();
+        sendOptions.RouteToThisEndpoint();
         return await endpointInstance.Request<TResponse>(request, sendOptions);
     }
 

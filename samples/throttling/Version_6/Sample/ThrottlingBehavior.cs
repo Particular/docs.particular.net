@@ -34,7 +34,7 @@ public class ThrottlingBehavior : Behavior<IInvokeHandlerContext>
     Task DelayMessage(IInvokeHandlerContext context, DateTime deliverAt)
     {
         SendOptions sendOptions = new SendOptions();
-        sendOptions.RouteToLocalEndpointInstance();
+        sendOptions.RouteToThisEndpoint();
         sendOptions.DoNotDeliverBefore(deliverAt);
         return context.Send(context.MessageBeingHandled, sendOptions);
     }
