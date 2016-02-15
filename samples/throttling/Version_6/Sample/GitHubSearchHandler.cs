@@ -1,16 +1,18 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 using Octokit;
 
 public class GitHubSearchHandler : IHandleMessages<SearchGitHub>
 {
-    // use anonymous access which has very strict rate limitations
+    static ILog log = LogManager.GetLogger<GitHubSearchHandler> ();
+
+    // use anonymous access which has strict rate limitations
     GitHubClient GitHubClient = new GitHubClient(new ProductHeaderValue("ThroughputThrottlingSample"));
 
     public async Task Handle(SearchGitHub message, IMessageHandlerContext context)
     {
-        Console.WriteLine($"Received search request for \"{message.SearchFor}\" on {message.RepositoryOwner}/{message.Repository}...");
+        log.Info($"Received search request for \"{message.SearchFor}\" on {message.RepositoryOwner}/{message.Repository}...");
 
         SearchCodeRequest request = new SearchCodeRequest(
             message.SearchFor,
@@ -18,6 +20,6 @@ public class GitHubSearchHandler : IHandleMessages<SearchGitHub>
             message.Repository);
         SearchCodeResult result = await GitHubClient.Search.SearchCode(request);
 
-        Console.WriteLine($"Found {result.TotalCount} results for {message.SearchFor}.");
+        log.Info($"Found {result.TotalCount} results for {message.SearchFor}.");
     }
 }
