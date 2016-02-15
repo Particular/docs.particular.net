@@ -20,6 +20,7 @@ Before v1.9 the logging level by default was set to `Info`, however this level c
 
 NOTE: If ServiceControl experiences a critical exception when running as a service the exception information will be logged to the Windows EventLog rather than the log file.
 
+
 ### Location
 
 The location of the ServiceControl logs are controlled via the `ServiceControl/LogPath` configuration setting. Refer to [Customizing ServiceControl configuration](creating-config-file.md)) for more details.
@@ -38,7 +39,9 @@ as the default NTFS permissions on the systemprofile do not allow access. These 
 
 NOTE: If multiple Service Control instances are configured on the same machine ensure that the log locations for each instance are unique
 
+
 ### Custom logging location
+
 
 #### Changing logging location via the ServiceControl Management Utility
 
@@ -52,6 +55,7 @@ To change the location ServiceControl stores its logs:
  * Change the Log Path and click Save
 
 When Save is clicked the the service with be restarted to apply the change.
+
 
 #### Changing logging location by editing the configuration file
 
@@ -67,5 +71,3 @@ To change the location where ServiceControl stores its log:
  * Start the ServiceControl service.
 
 NOTE: Ensure the account ServiceControl, is running under, has write and modify permissions to that directory.
-
-
