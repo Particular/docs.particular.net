@@ -14,7 +14,7 @@ class Dispatcher : IDispatchMessages
         {
             string basePath = BaseDirectoryBuilder.BuildBasePath(transportOperation.Destination);
             string nativeMessageId = Guid.NewGuid().ToString();
-            string bodyPath = Path.Combine(basePath, ".bodies", nativeMessageId) + ".xml"; //TODO: pick the correct ending based on the serialized type
+            string bodyPath = Path.Combine(basePath, ".bodies", nativeMessageId) + ".xml"; 
 
             File.WriteAllBytes(bodyPath, transportOperation.Message.Body);
 

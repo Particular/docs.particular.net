@@ -38,20 +38,22 @@ class FileTransportMessagePump : IPushMessages
             Directory.CreateDirectory(path);
         }
 
-        messagePumpTask = Task.Factory.StartNew(ProcessMessages, CancellationToken.None, TaskCreationOptions.LongRunning, TaskScheduler.Default).Unwrap();
+        messagePumpTask = Task.Factory
+            .StartNew(ProcessMessages, CancellationToken.None, TaskCreationOptions.LongRunning, TaskScheduler.Default)
+            .Unwrap();
     }
 
     public async Task Stop()
     {
         cancellationTokenSource.Cancel();
 
-        // ReSharper disable once MethodSupportsCancellation
         Task timeoutTask = Task.Delay(TimeSpan.FromSeconds(30));
         IEnumerable<Task> allTasks = runningReceiveTasks.Values.Concat(new[]
         {
                 messagePumpTask
             });
-        Task finishedTask = await Task.WhenAny(Task.WhenAll(allTasks), timeoutTask).ConfigureAwait(false);
+        Task finishedTask = await Task.WhenAny(Task.WhenAll(allTasks), timeoutTask)
+            .ConfigureAwait(false);
 
         if (finishedTask.Equals(timeoutTask))
         {
@@ -76,7 +78,6 @@ class FileTransportMessagePump : IPushMessages
         catch (Exception ex)
         {
             Logger.Error("File Message pump failed", ex);
-            //await peekCircuitBreaker.Failure(ex).ConfigureAwait(false);
         }
 
         if (!cancellationToken.IsCancellationRequested)
@@ -140,14 +141,16 @@ class FileTransportMessagePump : IPushMessages
         {
             string[] message = File.ReadAllLines(transaction.FileToProcess);
             string bodyPath = message.First();
-            Dictionary<string, string> headers = HeaderSerializer.DeSerialize(string.Join("", message.Skip(1)));
+            string json = string.Join("", message.Skip(1));
+            Dictionary<string, string> headers = HeaderSerializer.DeSerialize(json);
 
             string ttbrString;
 
             if (headers.TryGetValue(Headers.TimeToBeReceived, out ttbrString))
             {
                 TimeSpan ttbr = TimeSpan.Parse(ttbrString);
-                DateTime sentTime = File.GetCreationTimeUtc(transaction.FileToProcess); //file.move preserves create time
+                //file.move preserves create time
+                DateTime sentTime = File.GetCreationTimeUtc(transaction.FileToProcess);
 
                 if (sentTime + ttbr < DateTime.UtcNow)
                 {
