@@ -36,11 +36,15 @@ class Program
         endpointConfiguration
             .UseTransport<SqlServerTransport>()
             .DefaultSchema("receiver")
-            .UseSpecificSchema(e =>
+            .UseSpecificSchema(queueName =>
             {
-                if (("error".Equals(e, StringComparison.OrdinalIgnoreCase)) || ("audit".Equals(e, StringComparison.OrdinalIgnoreCase)))
+                if (queueName.Equals("error", StringComparison.OrdinalIgnoreCase) || queueName.Equals("audit", StringComparison.OrdinalIgnoreCase))
                 {
                     return "dbo";
+                }
+                if (queueName.Equals("sender", StringComparison.OrdinalIgnoreCase))
+                {
+                    return "sender";
                 }
                 return null;
             });

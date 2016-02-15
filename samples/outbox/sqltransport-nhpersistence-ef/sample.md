@@ -17,7 +17,8 @@ redirects:
 ### Prerequisites
  1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. 
  2. Create database called `nservicebus`.
- 3. The [Outbox](/nservicebus/outbox) feature is designed to provide *exactly once* delivery guarantees without the Distributed Transaction Coordinator (DTC) running. Disable the DTC service to avoid seeing warning messages in the console window. If the DTC service is not disabled, you will see `DtcRunningWarning` message when the sample project is started. 
+ 3. In the database create schemas `sender` and `receiver`. 
+ 4. The [Outbox](/nservicebus/outbox) feature is designed to provide *exactly once* delivery guarantees without the Distributed Transaction Coordinator (DTC) running. Disable the DTC service to avoid seeing warning messages in the console window. If the DTC service is not disabled, you will see `DtcRunningWarning` message when the sample project is started. 
 
 
 ### Running the project
