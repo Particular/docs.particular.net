@@ -8,6 +8,8 @@ redirects:
  - nservicebus/property-injection-in-handlers
 ---
 
+WARNING: As of Version 6 property injection is no longer supported via the various NServiceBus configuration API's. Should you still need to use property injection we recommend that switch to one of our [supported containers](/nservicebus/containers) and configure property injection using the native configuration API of the selected container.
+
 When using the NServiceBus built-in container it is possible to control property injection.
 
 So given the following class that is constructed by the container.
