@@ -42,6 +42,90 @@
             #endregion
         }
 
+        void SetDestination()
+        {
+            IBus bus = null;
+
+            #region BasicSendSetDestination
+            bus.Send(Address.Parse("MyDestination"), new MyMessage());
+            #endregion
+        }
+
+        void ThisEndpoint()
+        {
+            IBus bus = null;
+
+            #region BasicSendToAnyInstance
+            bus.SendLocal(new MyMessage());
+            #endregion
+        }
+
+        void SendReplyToThisInstance()
+        {
+            IBus bus = null;
+
+            #region BasicSendReplyToThisInstance
+            MyMessage myMessage = new MyMessage();
+            bus.SetMessageHeader(myMessage, NServiceBus.Headers.ReplyToAddress, "MyInstanceAddress");
+            bus.Send(myMessage);
+            #endregion
+        }
+
+        void SendReplyToAnyInstance()
+        {
+            IBus bus = null;
+
+            #region BasicSendReplyToAnyInstance
+            MyMessage myMessage = new MyMessage();
+            bus.SetMessageHeader(myMessage, NServiceBus.Headers.ReplyToAddress, "MyEndpointAddress");
+            bus.Send(myMessage);
+            #endregion
+        }
+
+        void SendReplyTo()
+        {
+            IBus bus = null;
+
+            #region BasicSendReplyToDestination
+            MyMessage myMessage = new MyMessage();
+            bus.SetMessageHeader(myMessage, NServiceBus.Headers.ReplyToAddress, "MyReplyDestination");
+            bus.Send(myMessage);
+            #endregion
+        }
+
+        void ReplySendReplyToThisInstance()
+        {
+            IBus bus = null;
+
+            #region BasicReplyReplyToThisInstance
+            MyMessage myMessage = new MyMessage();
+            bus.SetMessageHeader(myMessage, NServiceBus.Headers.ReplyToAddress, "MyInstanceAddress");
+            bus.Reply(myMessage);
+            #endregion
+        }
+
+        void ReplySendReplyToAnyInstance()
+        {
+            IBus bus = null;
+
+            #region BasicReplyReplyToAnyInstance
+            MyMessage myMessage = new MyMessage();
+            bus.SetMessageHeader(myMessage, NServiceBus.Headers.ReplyToAddress, "MyEndpointAddress");
+            bus.Reply(myMessage);
+            #endregion
+        }
+
+        void ReplySendReplyTo()
+        {
+            IBus bus = null;
+
+            #region BasicReplyReplyToDestination
+            MyMessage myMessage = new MyMessage();
+            bus.SetMessageHeader(myMessage, NServiceBus.Headers.ReplyToAddress, "MyReplyDestination");
+            bus.Reply(myMessage);
+            #endregion
+        }
+
         public class MyMessage
         {
         }
