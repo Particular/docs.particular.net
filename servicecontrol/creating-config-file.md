@@ -79,9 +79,11 @@ Type: string
 
 Default: `Warn`
 
-This setting was introduced in Version 1.9.  Valid settings are:  `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.   
-This setting will default to `Warn` if an invalid value is assigned.  
-Prior to 1.9 the log level was `Info` and could not be changed
+This setting was introduced in Version 1.9.  Valid settings are:  `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
+
+This setting will default to `Warn` if an invalid value is assigned.
+
+Prior to Version 1.9 the log level was `Info` and could not be changed
 
 
 ## Data Retention
@@ -113,8 +115,9 @@ Type: int
 
 Default: `720` (30 days). 
 
-Prior to 1.8.3 the valid range for this setting was `24` (1 day) through to `1440` (60 days)
-From 1.8.3 the upper limit has been removed to allow for longer retention.  This was done to allow customers with low volumes of messages to retain them longer.  Setting this value too high can cause the embeddeded RavenDB to become large and unresponsive when indexing.  See [Capacity and Planning](capacity-and-planning.md)
+Prior to Version 1.8.3 the valid range for this setting was `24` (1 day) through to `1440` (60 days)
+
+From Version 1.8.3 the upper limit has been removed to allow for longer retention.  This was done to allow customers with low volumes of messages to retain them longer.  Setting this value too high can cause the embeddeded RavenDB to become large and unresponsive when indexing.  See [Capacity and Planning](capacity-and-planning.md)
 
 
 ## Performance Tuning
@@ -131,7 +134,7 @@ Default: `350`.
 
 #### ServiceControl/MaxBodySizeToStore
 
-Up until Cersion 1.6 ServiceControl only stores bodies of audit messages that are smaller than 100Kb.
+Up until Version 1.6 ServiceControl only stores bodies of audit messages that are smaller than 100Kb.
 
 Version 1.6 introduced this setting which allows the upper limit on body size to be configured. 
 
@@ -210,7 +213,8 @@ Use this setting to configure whether processed audit messages are forwarded to 
 
 Type: bool `true` or `false`
 
-Default: `false`. From v1.5 if this setting is not explicitly set to true or false a warning is shown in the logs at start up.
+Default: `false`. From Version 1.5 if this setting is not explicitly set to true or false a warning is shown in the logs at start up.
+
 See [Installation](installation.md) for details on how to set this at install time.
 
 
