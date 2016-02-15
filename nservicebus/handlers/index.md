@@ -12,7 +12,7 @@ snippet:CreatingMessageHandler
 
 To handle messages of all types:
 
- 1. Set up the [message convention](/nservicebus/messaging/messages-events-commands.md) to designate which classes are messages. This example uses a namespace match.
+ 1. Set up the [message convention](/nservicebus/messaging/conventions.md) to designate which classes are messages. This example uses a namespace match.
  1. Create a handler of type `Object`. This handler will be executed for all messages that are delivered to the queue for this endpoint.
 
 Since this class is setup to handle type `Object`, every message arriving in the queue will trigger it.

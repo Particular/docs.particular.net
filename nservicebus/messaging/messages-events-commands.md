@@ -2,18 +2,20 @@
 title: Messages, Events and Commands
 summary: What are Messages, Events and Commands and how to define them.
 tags:
-- Unobtrusive
+ - Unobtrusive
+ - Conventions
+related:
+ - nservicebus/messaging/conventions
+ - nservicebus/messaging/unobtrusive-mode
 redirects:
-- nservicebus/introducing-ievent-and-icommand
-- nservicebus/messaging/introducing-ievent-and-icommand
-- nservicebus/how-do-i-define-a-message
-- nservicebus/define-a-message
-- nservicebus/messaging/how-do-i-define-a-message
-- nservicebus/definingmessagesas-and-definingeventsas-when-starting-endpoint
-- nservicebus/messaging/definingmessagesas-and-definingeventsas
-- nservicebus/how-do-i-centralize-all-unobtrusive-declarations
-- nservicebus/invalidoperationexception-in-unobtrusive-mode
-- nservicebus/messaging/invalidoperationexception-in-unobtrusive-mode
+ - nservicebus/introducing-ievent-and-icommand
+ - nservicebus/messaging/introducing-ievent-and-icommand
+ - nservicebus/how-do-i-define-a-message
+ - nservicebus/define-a-message
+ - nservicebus/messaging/how-do-i-define-a-message
+ - nservicebus/definingmessagesas-and-definingeventsas-when-starting-endpoint
+ - nservicebus/messaging/definingmessagesas-and-definingeventsas
+ - nservicebus/messaging/invalidoperationexception-in-unobtrusive-mode
 ---
 
 A *Message* is the unit of communication for NServiceBus. There are two sub-types of messages that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default unless disabled in [configuration](best-practice-enforcement.md).
@@ -75,20 +77,3 @@ public class MyEvent : IEvent { }
 
 public interface MyEvent : IEvent { }
 ```
-
-
-### Conventions
-
-A *message convention* is a way of defining what a certain type is instead of using a marker interface or an attribute.
-
-We currently have conventions that can identity:
-
- * Commands
- * Events
- * Messages
- * [Encryption](/nservicebus/security/encryption.md)
- * [DataBus](/nservicebus/messaging/databus.md)
- * [Express messages](/nservicebus/messaging/non-durable-messaging.md)
- * [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md)
-
-When Message Conventions are combined with avoiding an reference to any NServiceBus assemblies this is referred to as [Unobtrusive Mode](unobtrusive-mode.md). This makes it also ideal to use in cross platform environments. Messages can be defined in a *Portable Class Library* (PCL) and shared across multiple platform even though not all platforms use NServiceBus for message processing.

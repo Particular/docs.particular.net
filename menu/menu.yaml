@@ -18,6 +18,7 @@
       Url: "nservicebus/messaging"
       Articles:
         - "nservicebus/messaging/messages-events-commands"
+        - "nservicebus/messaging/conventions"
         - "nservicebus/messaging/databus"
         - "nservicebus/messaging/custom-databus"
         - "nservicebus/messaging/discard-old-messages"
