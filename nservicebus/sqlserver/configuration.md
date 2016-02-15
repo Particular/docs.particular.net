@@ -66,62 +66,9 @@ The most popular persistance used with SQL Server transport is [NHibernate persi
 
 ## Transactions
 
-The SQL Server transport can work in three modes with regards to transactions. These modes are enabled based on the bus configurations:
+SQL Server transport supports all [transaction handling modes](/nservicebus/messaging/transactions.md) supported by NServiceBus, i.e. Transaction scope, Receive only, Sends atomic with Receive and No transactions.
 
-
-### Ambient transaction
-
-The ambient transaction mode is selected by default. It relies or `Transactions.Enabled` setting being set to `true` and `Transactions.SuppressDistributedTransactions` being set to false. One needs to only select the transport:
-
-snippet:sqlserver-config-transactionscope
-
-When in this mode, the receive operation is wrapped in a `TransactionScope` together with the message processing in the pipeline. This means that usage of any other persistent resource manager (e.g. RavenDB client, another `SqlConnection` with different connection string) will cause escalation of the transaction to full two-phase commit protocol handled via Distributed Transaction Coordinator (MS DTC).
-
-
-### Controlling transaction scope options
-
-The following transaction scope options can be configured when the SQL Server transport is working in the ambient transaction mode.
-
-
-### Isolation level
-
-NServiceBus will by default use the `ReadCommitted` [isolation level](https://msdn.microsoft.com/en-us/library/system.transactions.isolationlevel).
-
-Change the isolation level using
-
-snippet:sqlserver-config-transactionscope-isolation-level
-
-
-### Transaction timeout
-
-NServiceBus will use the [default transaction timeout](https://msdn.microsoft.com/en-us/library/system.transactions.transactionmanager.defaulttimeout) of the machine the endpoint is running on.
-
-Change the transaction timeout using
-
-snippet:sqlserver-config-transactionscope-timeout
-
-Or via .config file using a [example DefaultSettingsSection](https://msdn.microsoft.com/en-us/library/system.transactions.configuration.defaultsettingssection.aspx#Anchor_5).
-
-
-### Native transaction
-
-The native transaction mode requires both `Transactions.Enabled` and `Transactions.SuppressDistributedTransactions` to be set to `true`. It can be selected via
-
-snippet:sqlserver-config-native-transactions
-
-When in this mode, the receive operation is wrapped in a plain ADO.NET `SqlTransaction`. Both connection and the transaction instances are attached to the pipeline context under these keys `SqlConnection-{ConnectionString}` and `SqlTransaction-{ConnectionString}` and are available for user code so that the updates to user data can be done atomically with queue receive operation.
-
-
-### No transaction
-
-The no transaction mode requires `Transactions.Enabled` to be set to false which can be achieved via following API call:
-
-snippet:sqlserver-config-no-transactions
-
-When in this mode, the receive operation is not wrapped in any transaction so it is executed by the SQL Server in its own implicit transaction.
-
-WARNING: This means that as soon as the `DELETE` operation used for receiving completes, the message is gone and any exception that happens during processing of this message causes it to be permanently lost.
-
+Refer to [Transport Transactions](/nservicebus/messaging/transactions.md) for detailed explanation of the supported transaction handling modes and available configuration options. 
 
 ## Callbacks
 
