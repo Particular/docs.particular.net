@@ -8,7 +8,7 @@ related:
 This sample show how to build a Transport using the file system as a data store.
 
 
-ERROR: This is for learning purposes only and it NOT for use in production.
+DANGER: This is for learning purposes only and it NOT for use in production.
 
 
 ## Sample Structure
