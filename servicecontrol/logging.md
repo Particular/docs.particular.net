@@ -12,6 +12,12 @@ redirects:
 
 Instances of the ServiceControl service write diagnostic information and failed message imports to the file system.
 
+NOTE: When ServiceControl is running as a Windows Service critical unhandled exceptions are written to the Windows Event Log.
+
+### Customizing Log Levels
+
+ServiceControl V1.9 introduced a configuration setting to specify the logging level used when writing to the log file.
+Refer to [Customizing ServiceControl configuration](creating-config-file.md)) for more details. 
 
 ### Location
 
@@ -25,9 +31,8 @@ The `%LOCALAPPDATA%` defines a user-specific location on disk, so the logging lo
  * For LocalSystem it will evaluate to `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs`
  * For a user account it will be `%PROFILEPATH%\AppData\Local\Particular\ServiceControl\logs`
 
-Note: Browsing to  `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs` can be problematic
+Note: Browsing to `%WINDIR%\System32\config\systemprofile\AppData\Local\Particular\ServiceControl\logs` can be problematic
 as the default NTFS permissions on the systemprofile do not allow access. These permissions may need to be modified to gain access to the logs.
-
 
 NOTE: If multiple Service Control instances are configured on the same machine ensure that the log locations for each instance are unique
 
@@ -62,3 +67,4 @@ To change the location where ServiceControl stores its log:
 NOTE: Ensure the account ServiceControl, is running under, has write and modify permissions to that directory.
 
 
+    
