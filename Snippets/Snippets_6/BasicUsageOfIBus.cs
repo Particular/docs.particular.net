@@ -43,6 +43,8 @@
             SendOptions options = new SendOptions();
             options.SetDestination("MyDestination");
             await endpoint.Send(new MyMessage(), options);
+            //or
+            await endpoint.Send<MyMessage>("MyDestination", m => { });
             #endregion
         }
 
@@ -65,6 +67,8 @@
             SendOptions options = new SendOptions();
             options.RouteToThisEndpoint();
             await endpoint.Send(new MyMessage(), options);
+            //or
+            await endpoint.SendLocal(new MyMessage());
             #endregion
         }
 

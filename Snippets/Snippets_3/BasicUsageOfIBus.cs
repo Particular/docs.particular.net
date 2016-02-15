@@ -42,6 +42,24 @@
             #endregion
         }
 
+        void SetDestination()
+        {
+            IBus bus = null;
+
+            #region BasicSendSetDestination
+            bus.Send(Address.Parse("MyDestination"), new MyMessage());
+            #endregion
+        }
+
+        void ThisEndpoint()
+        {
+            IBus bus = null;
+
+            #region BasicSendToAnyInstance
+            bus.SendLocal(new MyMessage());
+            #endregion
+        }
+
         public class MyMessage
         {
         }
