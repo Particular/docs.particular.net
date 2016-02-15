@@ -342,7 +342,6 @@
     <Compile Include="Profiles\DependentProfile.cs" />
     <Compile Include="RavenDB\ChangeResourceManagerID.cs" />
     <Compile Include="RavenDB\Configure.cs" />
-    <Compile Include="RavenDB\ConfiguringTransactionRecoveryStorage.cs" />
     <Compile Include="Routing\RoutingAPIs.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
     <Compile Include="Serialization\NewtonsoftSerializerUsage.cs" />
