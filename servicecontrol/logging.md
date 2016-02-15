@@ -11,11 +11,15 @@ redirects:
 ### Logging
 
 Instances of the ServiceControl service write logging information and failed message imports to the file system.  
-Before v1.9 the logging level by default was set to `INFO`, however this level can be quite verbose, so from v1.9 the default logging level is now `WARN`, this level is also configurable by adding the following to the configuration file:
+Before v1.9 the logging level by default was set to `Info`, however this level can be quite verbose, so from v1.9 the default logging level is now `Warn`, this level is also configurable by adding the following to the configuration file:
+
 ```xml
 <!-- Log Level Options: Trace, Debug, Info, Warn, Error, Fatal, Off -->
 <add key="ServiceControl/LogLevel" value="Info" /> 
 ```
+
+NOTE: If ServiceControl experiences a critical exception when running as a service the exception information will be logged to the Windows EventLog rather than the log file.
+
 
 ### Location
 
@@ -35,7 +39,9 @@ as the default NTFS permissions on the systemprofile do not allow access. These 
 
 NOTE: If multiple Service Control instances are configured on the same machine ensure that the log locations for each instance are unique
 
+
 ### Custom logging location
+
 
 #### Changing logging location via the ServiceControl Management Utility
 
@@ -49,6 +55,7 @@ To change the location ServiceControl stores its logs:
  * Change the Log Path and click Save
 
 When Save is clicked the the service with be restarted to apply the change.
+
 
 #### Changing logging location by editing the configuration file
 
@@ -64,5 +71,3 @@ To change the location where ServiceControl stores its log:
  * Start the ServiceControl service.
 
 NOTE: Ensure the account ServiceControl, is running under, has write and modify permissions to that directory.
-
-
