@@ -295,7 +295,7 @@ snippet: HeaderWriterDataBusProperty_Body
 
 ### When using Convention
 
-When using a [Conventions](/nservicebus/messaging/messages-events-commands.md#defining-messages-conventions) there is no way to store a correlation value inside the serialized property. Instead each property has a matching header with the property name used as the header suffix. That header then provides the path suffix of where that binary data is stored on disk on the file system.
+When using a [Conventions](/nservicebus/messaging/conventions.md) there is no way to store a correlation value inside the serialized property. Instead each property has a matching header with the property name used as the header suffix. That header then provides the path suffix of where that binary data is stored on disk on the file system.
 
 
 #### Example Headers

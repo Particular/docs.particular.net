@@ -143,7 +143,7 @@ Examples:
 
 ## NServiceBus eventing style
 
-NServiceBus uses IoC heavily. When the endpoints start, NServiceBus scans the assemblies in the directory. It finds event, command, and message types, either the [marker interfaces or conventions](/nservicebus/messaging/messages-events-commands.md). It also scans the assemblies to identify the types that implement the handlers for event types that implement `IHandleMessages<T>`, and registers them in the container. Read more about [NServiceBus and its use of containers](/nservicebus/containers/).
+NServiceBus uses IoC heavily. When the endpoints start, NServiceBus scans the assemblies in the directory. It finds event, command, and message types, either the [marker interfaces](/nservicebus/messaging/messages-events-commands.md) or [conventions](/nservicebus/messaging/conventions.md). It also scans the assemblies to identify the types that implement the handlers for event types that implement `IHandleMessages<T>`, and registers them in the container. Read more about [NServiceBus and its use of containers](/nservicebus/containers/).
 
 When an event is raised, the bus invokes the `Handle` method on all the registered handlers for that event. For subscribers, this offers a consistent way of subscribing to the event, regardless of how these events are published (in-memory or durable).
 
