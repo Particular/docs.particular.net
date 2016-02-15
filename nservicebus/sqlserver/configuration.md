@@ -31,7 +31,7 @@ snippet:sqlserver-named-connection-string
 Combined with a named connection in the `connectionStrings` node of the `app.config` file.
 
 snippet:sqlserver-named-connection-string-xml
-
+per
 ## Sql Server Transport, the Outbox and user data: disabling the DTC
 
 In an environment where DTC is disabled and [Outbox](/nservicebus/outbox/) is enabled, it is important to prevent a local transaction from escalating to a distributed one.
@@ -61,7 +61,7 @@ NOTE: The snippet above assumes that the created entity data model is named `MyS
 
 ## Persistence
 
-The most popular persistance used with SQL Server transport is [NHibernate persistance](/nservicebus/nhibernate/). That combination allows for sharing database connections and optimizing transactions handling to avoid escalating to DTC. However, SQL Server Transport can be used with any other available persistance implementation.
+The most popular persistence used with SQL Server transport is [NHibernate persistence](/nservicebus/nhibernate/). That combination allows for sharing database connections and optimizing transactions handling to avoid escalating to DTC. However, SQL Server Transport can be used with any other available persistence implementation.
 
 
 ## Transactions
@@ -99,16 +99,14 @@ The Sql transport has a built in circuit breaker to handle intermittent SQL Serv
 
 Overrides the default time to wait before triggering a circuit breaker that initiates the endpoint shutdown procedure in case of [repeated critical errors](/nservicebus/hosting/critical-errors.md).
 
-The default is 2 minutes.
+The default value is 2 minutes.
 
 snippet:sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
 
 
 ### Pause Time
 
-Overrides the default time to pause after a failure while trying to receive a message. The setting has been made obsolete in version 3.
-
-The default is 10 seconds.
+Overrides the default time to pause after a failure while trying to receive a message. The setting is only available in version 2.x. The default value is 10 seconds.
 
 snippet: sqlserver-PauseAfterReceiveFailure
 

@@ -9,7 +9,7 @@ tags:
 
 ### Primary queue
 
-Each endpoint has a single table representing the primary queue. The name of the primary queue matches the endpoint's name. 
+Each endpoint has a single table representing the primary queue. The name of the primary queue matches the name of the endpoint. 
 
 In a scale-out scenario this single queue is shared by all instances.
 
@@ -56,14 +56,14 @@ The tables are created by [installers](/nservicebus/operations/installers.md) wh
 
 Because of the limitations of NHibernate connection management infrastructure, it is not possible to provide *exactly-once* message processing guarantees solely by means of sharing instances of `SqlConnection` and `SqlTransaction` between the transport and NHibernate. For that reason NServiceBus does not allow that configuration and throws an exception during at start-up.
 
-Fortunately the [Outbox](/nservicebus/outbox/) feature can be used to mitigate that problem. In such scenario the messages are stored in the same physical store as saga and user data and dispatched after the whole processing is finished. NHibernate persistence detects the status of Outbox and the presence of SQLServer transport and automatically stops reusing the transport connection and transaction. All the data access is done within the Outbox ambient transaction. From the perspective of a particular endpoint this is *exactly-once* processing because of the deduplication that happens on the incoming queue. From a global point of view this is *at-least-once* since on the wire messages can get duplicated.
+Fortunately the [Outbox](/nservicebus/outbox/) feature can be used to mitigate that problem. In such scenario the messages are stored in the same physical store as saga and user data and dispatched after the whole processing is finished. NHibernate persistence detects the status of Outbox and the presence of SQLServer transport and automatically stops reusing the transport connection and transaction. All the data access is done within the Outbox ambient transaction.
 
 A sample covering this mode of operation is available [here](/samples/outbox/sqltransport-nhpersistence/).
 
 
 ### Transaction scope
 
-In this mode the ambient transaction is started before receiving of the message and encompasses the whole processing process including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no Distributed Transaction Coordinator (DTC) escalation.
+In this mode the ambient transaction is started before receiving of the message and encompasses the all stages of processing including user data access and saga data access. If all the logical data stores (transport, user data, saga data) use the same physical store there is no Distributed Transaction Coordinator (DTC) escalation.
 
 snippet:OutboxSqlServerConnectionStrings
 
