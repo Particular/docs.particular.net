@@ -110,6 +110,7 @@
             - "nservicebus/msmq/viewing-message-content-in-msmq"
             - "nservicebus/msmq/transportconfig"
             - "nservicebus/msmq/troubleshooting"
+            - "nservicebus/msmq/subscription-authorisation"
             - "nservicebus/msmq/network-load-balancing"
             - "nservicebus/msmq/operations-scripting"
             - "nservicebus/msmq/uninstalling-msmq"
