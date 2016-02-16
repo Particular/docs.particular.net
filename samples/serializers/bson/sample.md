@@ -1,5 +1,5 @@
 ---
-title: JSON Serializer
+title: BSON Serializer
 summary: How to use the core BSON serializer.
 related:
 - nservicebus/serialization
