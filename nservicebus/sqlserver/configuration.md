@@ -14,6 +14,7 @@ Connection string can be configured in several ways:
 
 
 ### Via the configuration API
+
 By using the `ConnectionString` extension method.
 
 snippet:sqlserver-config-connectionstring

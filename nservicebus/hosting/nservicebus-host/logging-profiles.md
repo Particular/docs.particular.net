@@ -7,17 +7,22 @@ tags:
 - NServiceBus.Host
 redirects:
 - nservicebus/logging-profiles
+related:
+- nservicebus/hosting/nservicebus-host/profiles
 ---
 
 Logging can be configured via Profiles. However, unlike other profile behaviors, logging needs to be defined before you configure other components, even before the container. For that reason, logging configuration is kept separate from other profile behaviors.
 
 NServiceBus has three built-in profiles for logging `Lite`, `Integration`, and `Production`.
 
+
 ## Default profile behavior
+
 
 ### In Version 5 and above
 
 These profiles are only placeholders for logging customization. If no customization is done then the profiles have no impact on the logging defaults listed above.
+
 
 ### In Version 4 and below
 
@@ -42,7 +47,8 @@ For changes to the configuration to have an effect, the process must be restarte
 
 If you want different logging behaviors than these, see the next section.
 
-To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type. The implementation of this interface is similar to that described for `IWantCustomLogging` in the [host page](/nservicebus/hosting/nservicebus-host/).
+To specify logging for a given profile, write a class that implements `IConfigureLoggingForProfile<T>` where `T` is the profile type.
+
 
 ## Customized logging via a profile
 
@@ -53,5 +59,3 @@ snippet:LoggingConfigWithProfile
 Here, the host passes you the instance of the class that implements `IConfigureThisEndpoint` so you don't need to implement `IWantTheEndpointConfig`.
 
 WARNING: While you can have one class configure logging for multiple profile types, you can't have more than one class configure logging for the same profile. NServiceBus can allow only one of these classes for all profile types passed in the command-line.
-
-See the [profiles for NServiceBus host](/nservicebus/hosting/nservicebus-host/profiles.md) for more information.

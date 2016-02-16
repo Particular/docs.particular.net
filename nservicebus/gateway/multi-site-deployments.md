@@ -112,7 +112,7 @@ Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/
 
 ## Automatic de-duplication
 
-Going across alternate channels like HTTP means that you lose the MSMQ safety guarantee of exactly one message. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid burdening you with de-duplication, the NServiceBus gateway supports this out of the box. You just need to store the message IDs of all received messages so it can detect potential duplicates. Read more on persistence options and how to configure them [here](/nservicebus/persistence/)
+Going across alternate channels like HTTP means that you lose the MSMQ safety guarantee of exactly one message. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid burdening you with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured [Persistence](/nservicebus/persistence/) so potential duplicates can be detected.
 
 
 ### Version 5 and higher
@@ -129,11 +129,13 @@ By default, NServiceBus uses [RavenDB](/nservicebus/ravendb/) to store the IDs b
 
 When you enable the gateway, it automatically sets up an HTTP channel to listen to `http://localhost/{name of your endpoint}`. To change this URL or add more than one incoming channel, configure `app.config`, as shown:
 
+
 #### Using App.Config
 
 snippet:GatewayChannelsAppConfig
 
 If you prefer to specify this physical routing in code:
+
 
 #### Using a IConfigurationProvider
 

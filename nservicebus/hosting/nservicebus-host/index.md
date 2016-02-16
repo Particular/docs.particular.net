@@ -20,7 +20,7 @@ To use the host just create a new C# class library and reference the [NServiceBu
 
 ## Configuring your endpoint
 
-The `NServiceBus.Host.exe` scans the runtime directory for assemblies containing a class that implements the `IConfigureThisEndpoint` interface. This class will contain the configuration for this endpoint. You can read more on how NServiceBus does assembly scanning [here](/nservicebus/hosting/assembly-scanning.md)
+The `NServiceBus.Host.exe` scans the runtime directory for assemblies containing a class that implements the `IConfigureThisEndpoint` interface. This class will contain the configuration for this endpoint. You can read more on how NServiceBus does [assembly scanning](/nservicebus/hosting/assembly-scanning.md).
 
 If you want to avoid the scanning process you can explicitly configure the type of your endpoint configuration by adding the following to the `NServiceBus.Host.exe.config` file. The below example show the exact syntax:
 
@@ -60,7 +60,7 @@ Defer all startup behavior until all initialization has been completed. At this 
 
 ## Logging
 
-As of NServiceBus Version 5 logging for the host is controlled with the same API as the core. This is documented [here](/nservicebus/logging/).
+As of NServiceBus Version 5 [logging](/nservicebus/logging/) for the host is controlled with the same API as the core.
 
 You can add the logging API calls as mentioned in the above article directly in your implementation of `IConfigureThisEndoint.Customize` method.
 

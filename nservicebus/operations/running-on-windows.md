@@ -14,6 +14,7 @@ redirects:
 
 NServiceBus relies on a few key pieces of infrastructure in order to run properly. This page gives you an overview of the requirements for running NServiceBus on the windows platform.
 
+
 ## Queuing system
 
 NServiceBus works on top of existing queuing systems to provide the reliable communications that has become the trademark of NServiceBus. By default we use MSMQ which is the queuing system that comes with every installation of Windows. Configuring NServiceBus via the [PlatformInstaller](http://particular.net/downloads) will configure MSMQ automatically for you but if you need to do it manually just make sure **not** to enable the following components:
