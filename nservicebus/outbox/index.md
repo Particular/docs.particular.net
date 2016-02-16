@@ -43,7 +43,15 @@ Here is a diagram illustrating how it works:
 
 ### SQL Server Transport
 
-SQL Server transport supports *exactly-once* message delivery without Outbox solely by means of sharing the transport connection with persistence. This mode of operation is discussed in depth in this [sample](/samples/sqltransport-nhpersistence).
+SQL Server transport in combination with NHibernate persistence can support *exactly-once* message delivery in two ways:
+- by sharing the database connection, which is enlisted in TransactionScope;
+- by using Outbox.
+
+If Outbox is enabled the messages are stored in the same physical store as saga and user data. The messages are dispatched only after the processing is finished. When NHibernate persistence detects that Outbox is enabled and used together with SQLServer transport, then it automatically stops reusing the transport connection and transaction. All the data access is done within the Outbox ambient transaction. 
+
+From the perspective of a particular endpoint this is *exactly-once* processing because of the deduplication that happens on the incoming queue. From a global point of view this is *at-least-once* since on the wire messages can get duplicated.
+ 
+The latter is discussed in depth in the [Outbox - SQL Transport and NHibernate](/samples/sqltransport-nhpersistence) sample.
 
 ### What extra tables does NHibernate Outbox persistence create
 
