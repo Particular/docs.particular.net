@@ -5,38 +5,8 @@
 
     public class SqlServerConfigurationSettings
     {
-        void TransactionScope()
-        {
-            #region sqlserver-config-transactionscope 2
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<SqlServerTransport>();
-
-            #endregion
-        }
         
-        void NativeTransactions()
-        {
-            #region sqlserver-config-native-transactions 2
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<SqlServerTransport>();
-            busConfiguration.Transactions()
-                .DisableDistributedTransactions();
-
-            #endregion
-        }
-
-        void NoTransactions()
-        {
-            #region sqlserver-config-no-transactions 2
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<SqlServerTransport>();
-            busConfiguration.Transactions().Disable();
-
-            #endregion
-        }
         void CallbackReceiverMaxConcurrency()
         {
             #region sqlserver-CallbackReceiverMaxConcurrency 2
