@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using NServiceBus;
 
-#region subscriptionAuthorizaton
+#region SubscriptionAuthorizer
 class AuthorizeSubscriptions : IAuthorizeSubscriptions
 {
 
