@@ -2,13 +2,20 @@
 <!-- startcode SCClusterAppSettings 1.0 -->
 <configuration>
 	<appSettings>
-		<add key="ServiceControl/DbPath" value="drive:\SomeDir\" />
-		<add key="ServiceControl/Hostname" value="clusterName" />
-		<add key="ServiceControl/Port" value="33333" />
-		<add key="ServiceBus/AuditQueue" value="audit@clusterName" />
-		<add key="ServiceBus/ErrorQueue" value="error@clusterName" />
-		<add key="ServiceBus/ErrorLogQueue" value="error.log@clusterName" />
-		<add key="ServiceBus/AuditLogQueue" value="audit.log@clusterName" />
+		<add key="ServiceControl/DbPath" 
+         value="drive:\SomeDir\" />
+		<add key="ServiceControl/Hostname" 
+         value="clusterName" />
+		<add key="ServiceControl/Port" 
+         value="33333" />
+		<add key="ServiceBus/AuditQueue"
+         value="audit@clusterName" />
+		<add key="ServiceBus/ErrorQueue" 
+         value="error@clusterName" />
+		<add key="ServiceBus/ErrorLogQueue" 
+         value="error.log@clusterName" />
+		<add key="ServiceBus/AuditLogQueue" 
+         value="audit.log@clusterName" />
 	</appSettings>
 </configuration>
 <!--endcode -->

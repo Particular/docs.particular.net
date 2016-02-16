@@ -1,20 +1,25 @@
-﻿using System.Collections.Generic;
-using NServiceBus;
-
-#region 5to6-MsmqSubscriptionAuthorizer
-class MsmqAuthorizeSubscriptions : IAuthorizeSubscriptions
+﻿namespace Snippets5
 {
+    using System.Collections.Generic;
+    using NServiceBus;
 
-    public bool AuthorizeSubscribe(string messageType, string clientEndpoint, IDictionary<string, string> headers)
+    #region 5to6-MsmqSubscriptionAuthorizer
+
+    class MsmqAuthorizeSubscriptions : IAuthorizeSubscriptions
     {
-        string lowerEndpointName = clientEndpoint.ToLowerInvariant();
-        return lowerEndpointName.StartsWith("samples.pubsub.subscriber1") ||
-               lowerEndpointName.StartsWith("samples.pubsub.subscriber2");
+
+        public bool AuthorizeSubscribe(string messageType, string clientEndpoint, IDictionary<string, string> headers)
+        {
+            string lowerEndpointName = clientEndpoint.ToLowerInvariant();
+            return lowerEndpointName.StartsWith("samples.pubsub.subscriber1") ||
+                   lowerEndpointName.StartsWith("samples.pubsub.subscriber2");
+        }
+
+        public bool AuthorizeUnsubscribe(string messageType, string clientEndpoint, IDictionary<string, string> headers)
+        {
+            return true;
+        }
     }
 
-    public bool AuthorizeUnsubscribe(string messageType, string clientEndpoint, IDictionary<string, string> headers)
-    {
-        return true;
-    }
+    #endregion
 }
-#endregion

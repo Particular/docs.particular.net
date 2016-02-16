@@ -1,48 +1,52 @@
-using System;
-using System.ServiceProcess;
-using NServiceBus;
-
-#region windowsservicehosting
-class ProgramService : ServiceBase
+namespace Snippets5
 {
-    IBus bus;
+    using System;
+    using System.ServiceProcess;
+    using NServiceBus;
 
-    static void Main()
+    #region windowsservicehosting
+
+    class ProgramService : ServiceBase
     {
-        using (ProgramService service = new ProgramService())
+        IBus bus;
+
+        static void Main()
         {
-            if (Environment.UserInteractive)
+            using (ProgramService service = new ProgramService())
             {
-                service.OnStart(null);
+                if (Environment.UserInteractive)
+                {
+                    service.OnStart(null);
 
-                Console.WriteLine("Bus created and configured");
-                Console.WriteLine("Press any key to exit");
-                Console.ReadKey();
+                    Console.WriteLine("Bus created and configured");
+                    Console.WriteLine("Press any key to exit");
+                    Console.ReadKey();
 
-                service.OnStop();
+                    service.OnStop();
 
-                return;
+                    return;
+                }
+                Run(service);
             }
-            Run(service);
         }
-    }
 
-    protected override void OnStart(string[] args)
-    {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        //other bus configuration. endpoint name, logging, transport, persistence etc
-        busConfiguration.EnableInstallers();
-        bus = Bus.Create(busConfiguration).Start();
-    }
-
-    protected override void OnStop()
-    {
-        if (bus != null)
+        protected override void OnStart(string[] args)
         {
-            bus.Dispose();
+            BusConfiguration busConfiguration = new BusConfiguration();
+            //other bus configuration. endpoint name, logging, transport, persistence etc
+            busConfiguration.EnableInstallers();
+            bus = Bus.Create(busConfiguration).Start();
         }
+
+        protected override void OnStop()
+        {
+            if (bus != null)
+            {
+                bus.Dispose();
+            }
+        }
+
     }
 
+    #endregion
 }
-
-#endregion

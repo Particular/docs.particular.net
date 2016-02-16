@@ -9,8 +9,10 @@
         {
             #region PubSub-CodePublisherMapping
             EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.Publishers().AddStatic(new EndpointName("Sales"), typeof(MyEvent));
-            configuration.Publishers().AddStatic(new EndpointName("Sales"), typeof(OtherEvent).Assembly);
+            configuration.Publishers()
+                .AddStatic(new EndpointName("Sales"), typeof(MyEvent));
+            configuration.Publishers()
+                .AddStatic(new EndpointName("Sales"), typeof(OtherEvent).Assembly);
             #endregion
         }
     }
