@@ -1,4 +1,4 @@
-﻿namespace Snippets6.UpgradeGuides.Downstream.Raven._3to4
+﻿namespace Snippets5.RavenDB.UpgradeGuides._3to4
 {
     using System;
     using global::Raven.Client;
@@ -12,7 +12,8 @@
             #region 3to4-ravensharedsession
             Func<IDocumentSession> sessionFactory = () => someSession;
 
-            configuration.UsePersistence<RavenDBPersistence>().UseSharedSession(sessionFactory);
+            configuration.UsePersistence<RavenDBPersistence>()
+                .UseSharedSession(sessionFactory);
             #endregion
         }
     }

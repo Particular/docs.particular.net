@@ -1,4 +1,4 @@
-﻿namespace Snippets6.UpgradeGuides.Downstream.Raven._3to4
+﻿namespace Snippets5.RavenDB.UpgradeGuides._3to4
 {
     using global::Raven.Client;
     using NServiceBus;
