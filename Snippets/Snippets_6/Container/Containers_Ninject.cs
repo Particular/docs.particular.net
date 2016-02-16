@@ -10,8 +10,8 @@
         {
             #region Ninject
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseContainer<NinjectBuilder>();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseContainer<NinjectBuilder>();
 
             #endregion
         }
@@ -20,10 +20,10 @@
         {
             #region Ninject_Existing
 
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             StandardKernel kernel = new StandardKernel();
             kernel.Bind<MyService>().ToConstant(new MyService());
-            busConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
+            endpointConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
 
             #endregion
         }

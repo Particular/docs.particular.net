@@ -153,7 +153,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Ninject, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NServiceBus.Ninject.5.2.0-pullrequest0012\lib\net45\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
+      <HintPath>..\..\packages\NServiceBus.Ninject.5.2.0-unstable0005\lib\net45\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Spring, Version=7.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">

@@ -2,8 +2,7 @@
 {
     using Ninject;
     using NServiceBus;
-    using NServiceBus.ObjectBuilder.Ninject;
-
+    
     public class Containers_Ninject
     {
         public void Simple()
