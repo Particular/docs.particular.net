@@ -5,7 +5,9 @@ tags:
 - SQL Server
 ---
 
+
 ## Queues
+
 
 ### Primary queue
 
@@ -13,17 +15,20 @@ Each endpoint has a single table representing the primary queue. The name of the
 
 In a scale-out scenario this single queue is shared by all instances.
 
+
 ### Callback queues
 
 Each endpoint has one or more tables representing callback queues. Their names consist of the endpoint name with appropriate suffixes (machine name in version 2, user-specified or default suffixes in version 3).
 
-Since callback handlers are stored in-memory in the node that registers the callback, the same node should process the message representing reply. To guarantee it, in a scale-out scenario each endpoint instance needs a dedicated callback queue.
+Since callback handlers are stored in-memory in the node that registers the callback, the same node should process the message representing reply. To guarantee this, in a scale-out scenario, each endpoint instance needs a dedicated callback queue.
+
 
 ### Other queues
 
-Each endpoint has also queues required by timeouts (the exact names and number of queues created depends on the version of the transport). 
+Each endpoint also has queues required by timeouts (the exact names and number of queues created depends on the version of the transport). 
 
 Error and audit queues are usually shared among multiple endpoints.
+
 
 ### Queue table structure
 
@@ -50,13 +55,15 @@ In version 2 the columns are directly mapped to the properties of `NServiceBus.T
 
 The tables are created by [installers](/nservicebus/operations/installers.md) when the application is started for the first time. It is required that the user account under which the installation of the host is performed has `CREATE TABLE` as well as `VIEW DEFINITION` permissions on the database in which the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. being member of `db_datawriter` and `db_datareader` roles) are enough.
 
+
 ## Transactions and delivery guarantees
+
 
 ### Native transactions
 
 Because of the limitations of NHibernate connection management infrastructure, it is not possible to provide *exactly-once* message processing guarantees solely by means of sharing instances of `SqlConnection` and `SqlTransaction` between the transport and NHibernate. For that reason NServiceBus does not allow that configuration and throws an exception during at start-up.
 
-Fortunately the [Outbox](/nservicebus/outbox/) feature can be used to mitigate that problem. In such scenario the messages are stored in the same physical store as saga and user data and dispatched after the whole processing is finished. NHibernate persistence detects the status of Outbox and the presence of SQLServer transport and automatically stops reusing the transport connection and transaction. All the data access is done within the Outbox ambient transaction.
+The [Outbox](/nservicebus/outbox/) feature can be used to mitigate that problem. In such scenarios the messages are stored in the same physical store as saga and user data and dispatched after the whole processing is finished. NHibernate persistence detects the status of Outbox and the presence of SQLServer transport and automatically stops reusing the transport connection and transaction. All the data access is done within the Outbox ambient transaction.
 
 A sample covering this mode of operation is available [here](/samples/outbox/sqltransport-nhpersistence/).
 
@@ -68,6 +75,7 @@ In this mode the ambient transaction is started before receiving of the message 
 snippet:OutboxSqlServerConnectionStrings
 
 A sample covering this mode of operation is available [here](/samples/sqltransport-nhpersistence/).
+
 
 ## Concurrency
 

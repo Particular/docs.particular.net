@@ -30,8 +30,8 @@
         {
             #region sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker 3
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<SqlServerTransport>()
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseTransport<SqlServerTransport>()
                 .TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(3));
 
             #endregion

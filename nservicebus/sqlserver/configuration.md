@@ -7,20 +7,24 @@ redirects:
 - nservicebus/sqlserver/concurrency
 ---
 
+
 ## Connection strings
 
 Connection string can be configured in several ways:
+
 
 ### Via the configuration API
 By using the `ConnectionString` extension method.
 
 snippet:sqlserver-config-connectionstring
 
+
 ### Via the App.Config
 
 By adding a connection named `NServiceBus/Transport` in the `connectionStrings` node.
   
 snippet:sqlserver-connection-string-xml
+
 
 ### Via a named connection string
 
@@ -31,7 +35,8 @@ snippet:sqlserver-named-connection-string
 Combined with a named connection in the `connectionStrings` node of the `app.config` file.
 
 snippet:sqlserver-named-connection-string-xml
-per
+
+
 ## Sql Server Transport, the Outbox and user data: disabling the DTC
 
 In an environment where DTC is disabled and [Outbox](/nservicebus/outbox/) is enabled, it is important to prevent a local transaction from escalating to a distributed one.
@@ -40,6 +45,7 @@ The following conditions need to be met:
 
 * the business specific data and the `Outbox` storage must be in the same database;
 * the user code accessing business related data must use the same `connection string` as the `Outbox` storage.
+
 
 ### [Entity Framework](https://msdn.microsoft.com/en-us/data/ef.aspx) caveats
 
@@ -59,20 +65,23 @@ snippet:DbContextPartialWithEntityConnection
 
 NOTE: The snippet above assumes that the created entity data model is named `MySample`. The references should match the actual names used in the project.
 
+
 ## Persistence
 
-The most popular persistence used with SQL Server transport is [NHibernate persistence](/nservicebus/nhibernate/). That combination allows for sharing database connections and optimizing transactions handling to avoid escalating to DTC. However, SQL Server Transport can be used with any other available persistence implementation.
+When the SQL Server transport is used in combination [NHibernate persistence](/nservicebus/nhibernate/) it allows for sharing database connections and optimizing transactions handling to avoid escalating to DTC. However, SQL Server Transport can be used with any other available persistence implementation.
 
 
 ## Transactions
 
-SQL Server transport supports all [transaction handling modes](/nservicebus/messaging/transactions.md) supported by NServiceBus, i.e. Transaction scope, Receive only, Sends atomic with Receive and No transactions.
+SQL Server transport supports all [transaction handling modes](/nservicebus/messaging/transactions.md), i.e. Transaction scope, Receive only, Sends atomic with Receive and No transactions.
 
 Refer to [Transport Transactions](/nservicebus/messaging/transactions.md) for detailed explanation of the supported transaction handling modes and available configuration options. 
+
 
 ## Callbacks
 
 The settings mentioned below are available in version 2.x of the SQL Server transport. In version 3.x using callbacks requires the new `NServiceBus.Callbacks` NuGet package. Refer to [callbacks](/nservicebus/messaging/handling-responses-on-the-client-side.md) for more details.
+
 
 ### Disable callbacks
 
@@ -109,5 +118,3 @@ snippet:sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
 Overrides the default time to pause after a failure while trying to receive a message. The setting is only available in version 2.x. The default value is 10 seconds.
 
 snippet: sqlserver-PauseAfterReceiveFailure
-
-
