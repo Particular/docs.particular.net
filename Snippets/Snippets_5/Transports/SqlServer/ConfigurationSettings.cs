@@ -14,17 +14,7 @@
 
             #endregion
         }
-        void ConnectionString()
-        {
-            #region sqlserver-config-connectionstring 2
-
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<SqlServerTransport>()
-                .ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
-
-            #endregion
-        }
-
+        
         void NativeTransactions()
         {
             #region sqlserver-config-native-transactions 2
