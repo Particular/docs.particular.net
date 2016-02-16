@@ -1,4 +1,4 @@
-﻿namespace Snippets4
+﻿namespace Snippets5
 {
     using NServiceBus;
     using NServiceBus.Installation;

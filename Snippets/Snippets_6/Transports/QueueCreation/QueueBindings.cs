@@ -1,5 +1,4 @@
-﻿
-namespace Snippets6.Transports.QueueCreation
+﻿namespace Snippets6.Transports.QueueCreation
 {
     using NServiceBus.Features;
     using NServiceBus.Transports;

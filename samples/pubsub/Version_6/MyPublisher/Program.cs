@@ -18,6 +18,23 @@ static class Program
         endpointConfiguration.EndpointName("Samples.PubSub.MyPublisher");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        #region SubscriptionAuthorizer
+        endpointConfiguration.UseTransport<MsmqTransport>()
+            .SubscriptionAuthorizer(context =>
+            {
+                string subscriptionType = context.MessageHeaders[Headers.MessageIntent];
+                MessageIntentEnum messageIntentEnum = (MessageIntentEnum) Enum.Parse(typeof(MessageIntentEnum), subscriptionType, true);
+                if (messageIntentEnum == MessageIntentEnum.Unsubscribe)
+                {
+                    return true;
+                }
+
+                string lowerEndpointName = context.MessageHeaders[Headers.SubscriberEndpoint]
+                    .ToLowerInvariant();
+                return lowerEndpointName.StartsWith("samples.pubsub.subscriber1") ||
+                       lowerEndpointName.StartsWith("samples.pubsub.subscriber2");
+            });
+        #endregion
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
@@ -82,5 +99,5 @@ static class Program
         }
         #endregion
     }
-
 }
+

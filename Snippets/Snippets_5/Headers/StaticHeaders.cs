@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Headers
+﻿namespace Snippets5.Headers
 {
     using NServiceBus;
 

@@ -1,4 +1,4 @@
-﻿namespace Snippets4
+﻿namespace Snippets6
 {
     using System.Threading.Tasks;
     using NServiceBus.Installation;

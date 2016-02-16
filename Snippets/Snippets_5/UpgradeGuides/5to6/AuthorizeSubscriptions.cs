@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using NServiceBus;
 
-#region SubscriptionAuthorizer
-class AuthorizeSubscriptions : IAuthorizeSubscriptions
+#region 5to6-MsmqSubscriptionAuthorizer
+class MsmqAuthorizeSubscriptions : IAuthorizeSubscriptions
 {
 
     public bool AuthorizeSubscribe(string messageType, string clientEndpoint, IDictionary<string, string> headers)

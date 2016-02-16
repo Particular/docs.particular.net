@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using NServiceBus;
 
+#region SubscriptionAuthorizer
 class AuthorizeSubscriptions : IAuthorizeSubscriptions
 {
 
@@ -16,3 +17,4 @@ class AuthorizeSubscriptions : IAuthorizeSubscriptions
         return true;
     }
 }
+#endregion

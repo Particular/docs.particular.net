@@ -1,4 +1,4 @@
-﻿namespace Snippets4
+﻿namespace Snippets3
 {
     using System.Security.Principal;
     using NServiceBus.Installation;

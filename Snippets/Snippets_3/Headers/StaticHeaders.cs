@@ -1,4 +1,4 @@
-﻿namespace Snippets6.Headers
+﻿namespace Snippets3.Headers
 {
     using System.Collections.Generic;
     using NServiceBus;

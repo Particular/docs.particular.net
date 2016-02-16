@@ -1,4 +1,4 @@
-﻿namespace Snippets5.Logging
+﻿namespace Snippets3.Logging
 {
     using NServiceBus.Config;
     using NServiceBus.Config.ConfigurationSource;
