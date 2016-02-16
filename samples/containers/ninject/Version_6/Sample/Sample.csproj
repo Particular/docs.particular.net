@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +34,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ninject">
@@ -49,11 +51,11 @@
       <HintPath>..\..\..\..\..\packages\Ninject.Extensions.NamedScope.3.2.0.0\lib\net45-full\Ninject.Extensions.NamedScope.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1461\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1543\lib\net452\NServiceBus.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.ObjectBuilder.Ninject, Version=5.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.Ninject.5.2.0-pullrequest0012\lib\net45\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.Ninject.5.2.0-unstable0005\lib\net45\NServiceBus.ObjectBuilder.Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

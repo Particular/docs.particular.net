@@ -13,20 +13,20 @@ public class Program
     static async Task Start()
     {
         #region ContainerConfiguration
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.Ninject");
-        busConfiguration.SendFailedMessagesTo("error");
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.Ninject");
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         StandardKernel kernel = new StandardKernel();
         kernel.Bind<MyService>().ToConstant(new MyService());
-        busConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
+        endpointConfiguration.UseContainer<NinjectBuilder>(c => c.ExistingKernel(kernel));
         #endregion
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.EnableInstallers();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.EnableInstallers();
 
 
-        IEndpointInstance endpointInstance = await Endpoint.Start(busConfiguration);
+        IEndpointInstance endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         try
         {
