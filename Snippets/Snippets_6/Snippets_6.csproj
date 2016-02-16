@@ -379,6 +379,7 @@
     <Compile Include="HandlerOrdering.cs" />
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
     <Compile Include="Transports\RabbitMQ_4\Usage.cs" />
+    <Compile Include="Transports\SqlServer\ConnectionStrings.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
     <Compile Include="UpgradeGuides\5to6\MyEvent.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
@@ -564,6 +565,8 @@
     <None Include="Routing\RoutingFile.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Transports\SqlServer\ConnectionStringsNamed.config" />
+    <None Include="Transports\SqlServer\ConnectionStrings.config" />
     <None Include="UpgradeGuides\5to6\Channel.config" />
   </ItemGroup>
   <ItemGroup>

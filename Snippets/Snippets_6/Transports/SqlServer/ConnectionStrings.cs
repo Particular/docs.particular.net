@@ -8,8 +8,8 @@
         {
             #region sqlserver-config-connectionstring 3
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<SqlServerTransport>()
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseTransport<SqlServerTransport>()
                 .ConnectionString("Data Source=INSTANCE_NAME;Initial Catalog=some_database;Integrated Security=True");
 
             #endregion
@@ -19,8 +19,8 @@
         {
             #region sqlserver-named-connection-string 3
 
-            BusConfiguration busConfiguration = new BusConfiguration();
-            busConfiguration.UseTransport<SqlServerTransport>()
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseTransport<SqlServerTransport>()
                 .ConnectionStringName("MyConnectionString");
 
             #endregion
