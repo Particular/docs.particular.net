@@ -6,10 +6,11 @@ tags:
 redirects:
 ---
 
-## Configuring Message Forwarding
 
 Use this feature to forward successfully processed messages from an endpoint to a specified destination endpoint. If there is a need to collect all successfully processed messages from all endpoints, then use the [Auditing Feature](/nservicebus/operations/auditing.md) instead.
 
+
+## Configuring Message Forwarding
 
 ### Using Code
 
