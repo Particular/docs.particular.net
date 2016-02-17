@@ -8,7 +8,7 @@
     {
         public T GetConfiguration<T>() where T : class, new()
         {
-            //To Provide FLR Config
+            //To Provide UnicastBusConfig
             if (typeof(T) == typeof(UnicastBusConfig))
             {
                 UnicastBusConfig forwardingConfig = new UnicastBusConfig
