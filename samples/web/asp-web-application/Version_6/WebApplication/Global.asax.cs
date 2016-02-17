@@ -18,6 +18,8 @@ public class Global : HttpApplication
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.AsyncPages.WebApplication");
+        endpointConfiguration.ScaleOut()
+            .InstanceDiscriminator("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

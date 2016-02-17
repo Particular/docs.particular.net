@@ -13,6 +13,8 @@ class Program
     {
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.AsyncPages.Server");
+        endpointConfiguration.ScaleOut()
+            .InstanceDiscriminator("1");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();

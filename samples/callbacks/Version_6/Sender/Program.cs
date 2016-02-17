@@ -15,6 +15,8 @@ class Program
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.Callbacks.Sender");
         endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.ScaleOut()
+            .InstanceDiscriminator("1");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");

@@ -47,6 +47,8 @@ public class MvcApplication : HttpApplication
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
         endpointConfiguration.EndpointName("Samples.Mvc.WebApplication");
+        endpointConfiguration.ScaleOut()
+            .InstanceDiscriminator("1");
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<JsonSerializer>();
         endpointConfiguration.UseContainer<AutofacBuilder>(c => c.ExistingLifetimeScope(container));

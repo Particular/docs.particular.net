@@ -32,6 +32,8 @@ public class MvcApplication : HttpApplication
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.ScaleOut()
+            .InstanceDiscriminator("1");
 
         Endpoint = await NServiceBus.Endpoint.Start(endpointConfiguration);
     }
