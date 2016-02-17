@@ -5,9 +5,6 @@
     <section name="UnicastBusConfig"
              type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
   </configSections>
-  <UnicastBusConfig ForwardReceivedMessagesTo="destinationQueue@machine">
-    <MessageEndpointMappings>
-    </MessageEndpointMappings>
-  </UnicastBusConfig>
+  <UnicastBusConfig ForwardReceivedMessagesTo="destinationQueue@machine" />
 </configuration>
 <!--endcode-->
