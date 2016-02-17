@@ -6,8 +6,8 @@
         public Usage()
         {
             #region ForwardingWithCode
-            EndpointConfiguration configuration = new EndpointConfiguration();
-            configuration.ForwardReceivedMessagesTo("destinationQueue@machine");
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.ForwardReceivedMessagesTo("destinationQueue@machine");
             #endregion
         }
     }
