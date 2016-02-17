@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!--startcode configureForwardingUsingXml-->
+<configuration>
+  <configSections>
+    <section name="UnicastBusConfig"
+             type="NServiceBus.Config.UnicastBusConfig, NServiceBus.Core"/>
+  </configSections>
+  <UnicastBusConfig ForwardReceivedMessagesTo="destinationQueue@machine">
+    <MessageEndpointMappings>
+    </MessageEndpointMappings>
+  </UnicastBusConfig>
+</configuration>
+<!--endcode-->

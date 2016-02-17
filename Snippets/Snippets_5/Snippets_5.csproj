@@ -280,6 +280,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Errors\retriesLogging.txt" />
+    <Content Include="Forwarding\ForwardingConfig.xml" />
     <Content Include="Gateway\Channels\Channels.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -408,6 +409,7 @@
     <Compile Include="CustomChecks.cs" />
     <Compile Include="DelayedDelivery\DeferForDateTime.cs" />
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
+    <Compile Include="Forwarding\ProvideConfiguration.cs" />
     <Compile Include="Serialization\NewtonsoftSerializerUsage.cs" />
     <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
     <Compile Include="Transports\SqlServer\ConnectionStrings.cs" />
