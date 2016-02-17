@@ -211,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Errors\retriesLogging.txt" />
+    <Content Include="Forwarding\ForwardingConfig.xml" />
     <Content Include="Gateway\Channels\Channels.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -293,6 +294,9 @@
     <Compile Include="DelayedDelivery\DeferForTimeSpan.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\ErrorsHeadersHelper.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\ExceptionPolicy.cs" />
+    <Compile Include="Forwarding\ConfigurationSource.cs" />
+    <Compile Include="Forwarding\ConfigurationSourceUsage.cs" />
+    <Compile Include="Forwarding\ProvideConfiguration.cs" />
     <Compile Include="Gateway\Channels\ConfigurationSource\ConfigurationSource.cs" />
     <Compile Include="Gateway\Channels\ConfigurationSource\Usage.cs" />
     <Compile Include="Gateway\Channels\ProvideConfiguration.cs" />

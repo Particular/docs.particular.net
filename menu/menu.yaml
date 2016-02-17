@@ -30,6 +30,7 @@
         - "nservicebus/messaging/messages-as-interfaces"
         - "nservicebus/messaging/reply-to-a-message"
         - "nservicebus/messaging/send-a-message"
+        - "nservicebus/messaging/forwarding"
         - "nservicebus/messaging/batched-dispatch"
         - "nservicebus/messaging/specify-input-queue-name"
         - "nservicebus/messaging/routing"
