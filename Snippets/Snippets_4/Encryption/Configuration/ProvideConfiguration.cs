@@ -13,11 +13,13 @@
             return new RijndaelEncryptionServiceConfig
             {
                 Key = "gdDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6",
+                KeyIdentifier = "2015-10",
                 ExpiredKeys = new RijndaelExpiredKeyCollection
                 {
                     new RijndaelExpiredKey
                     {
-                        Key = "abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6"
+                        Key = "abDbqRpQdRbTs3mhdZh9qCaDaxJXl+e6",
+                        KeyIdentifier = "2015-09",
                     },
                     new RijndaelExpiredKey
                     {
