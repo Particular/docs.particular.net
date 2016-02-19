@@ -34,11 +34,11 @@ NOTE: For NServiceBus version-dependent requirements for each plugin, review the
 Once deployed on an active endpoint, the endpoint sends plugin-specific information to ServiceControl. Plugins send messages using the defined endpoint transport to the ServiceControl queue. Location of ServiceControl queue is determined by the following:
 
 1. **Endpoint`s configuration file** 
-Check for an `appSetting` named `ServiceControl/Queue` e.g. `<add key="ServiceControl/Queue" value="particular.servicecontrol@machine"/>`.
+Check for an `appSetting` named `ServiceControl/Queue` e.g. `<add key="ServiceControl/Queue" value="particular.servicecontrol"/>`.
 1. **Convention based on the configured Error Queue machine** 
-If an error queue is configured, for example `error@MachineName`, then the queue `Particular.ServiceControl@MachineName` will be used.
+If an error queue is configured, for example `error@MachineName` with MSMQ transport, then the queue `Particular.ServiceControl@MachineName` will be used.
 1. **Convention based on the configured Audit Queue machine** 
-If an audit queue is configured, for example `audit@MachineName`, then the queue `Particular.ServiceControl@MachineName` will be used.
+If an audit queue is configured, for example `audit@MachineName` with MSMQ transport, then the queue `Particular.ServiceControl@MachineName` will be used.
 
 WARNING: Endpoint with plugins installed that cannot communicate to ServiceControl will shut down.
 
