@@ -104,3 +104,21 @@ WARNING: Using callbacks in `IHandleMessages<T>` classes can cause deadlocks and
 Due to the fact that callbacks won't survive restarts, use callbacks when the data returned is **not business critical and data loss is acceptable**. Otherwise, use [request/response](/samples/fullduplex) with a message handler for the reply messages.
 
 When using callbacks in a ASP.NET Web/MVC/Web API, the NServiceBus callbacks can be used in combination with the async support in Asp.Net to avoid blocking the web server thread and allowing processing of other requests. When response is received, it is handled and returned to the client side. Web clients will still be blocked while waiting for response. This scenario is common when migrating from traditional blocking request/response to messaging.
+
+## Message routing
+
+### Version 5 and previous
+
+In version 5 and previous version callbacks are routed to queues based on the machine's hostname. On [broker transports](/nservicebus/transports/#types-of-transports-broker-transports) additional queues are created for each endpoint/hostname combination e.g. `Sales.MachineA`, `Sales.MachineB`. Callbacks do not require any specific configuration as requesters machine-specific queue is used for reply.
+
+WARNING: When more than one instance of a given endpoint is deployed to the same machine, the responses might be delivered to a wrong instance and callback never fires.
+
+### Version 6
+
+In version 6 callbacks are routed using general routing mechanism based on endpoint instance IDs. In order to use callbacks you need to specify the instance ID explicitly on the requester side
+
+snippet:Callbacks-InstanceId
+
+This approach has an advantage because users are now in control and are able to deploy multiple callback-enabled instances to same machines.
+
+NOTE: This ID needs to be stable and it should never be hardcoded. An example approach might be reading it from the configuration file or from the environment (e.g. role ID in Azure).

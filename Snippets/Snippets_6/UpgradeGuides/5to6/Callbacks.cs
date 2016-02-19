@@ -1,27 +1,35 @@
-﻿namespace Snippets6.Callback.Object
+﻿namespace Snippets5.UpgradeGuides._5to6
 {
-    using System;
+    using System.Threading.Tasks;
     using NServiceBus;
 
-    class Usage
+    class Callbacks
     {
-        async void Simple()
+        async Task Simple()
         {
-            #region Callbacks-InstanceId
+            #region 5to6-Callbacks-InstanceId
             EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.ScaleOut().InstanceDiscriminator("uniqueId");
             #endregion
 
             IEndpointInstance endpoint = null;
             SendOptions sendOptions = new SendOptions();
-            #region ObjectCallback
+            #region 5to6-Callbacks
 
-            Message message = new Message();
+            RequestMessage message = new RequestMessage();
             ResponseMessage response = await endpoint.Request<ResponseMessage>(message, sendOptions);
-            Console.WriteLine("Callback received with response:" + response.Property);
 
             #endregion
         }
 
+        class RequestMessage : IMessage
+        {
+            
+        }
+
+        class ResponseMessage : IMessage
+        {
+             
+        }
     }
 }

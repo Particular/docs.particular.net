@@ -416,6 +416,7 @@
     <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
     <Compile Include="Transports\SqlServer\ConnectionStrings.cs" />
     <Compile Include="UpgradeGuides\5to6\AuthorizeSubscriptions.cs" />
+    <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
     <Compile Include="UpgradeGuides\5to6\DelayedDelivery.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
     <Compile Include="Errors\SecondLevel\CustomPolicies\SimplePolicy.cs" />
