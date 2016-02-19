@@ -51,7 +51,7 @@ By default, all events handled in `Subscriber` will be auto subscribed. Default 
 
 Normally, this would be fine. Though not with ASB transport and polymorphic events. Each subscription is filtering messages based on `NServiceBus.EnclosedMessageTypes` header. When an event of `BaseType` is published, it's going only into `Samples.ASB.Polymorphic.Subscriber.BaseEvent` subscription as per image below.
 
-NOTE: from version 7 of Azure Service Bus, polymorphic events are supported with auto-subscription turned on when `ForwardingTopology` is used.
+NOTE: From version 7 of Azure Service Bus, polymorphic events are supported with auto-subscription turned on when `ForwardingTopology` is used.
 
 ![](images/baseevent.published.png)
 
