@@ -7,6 +7,8 @@ redirects:
  - nservicebus/individualizing-queues-when-scaling-out
 ---
 
+## Version 5
+
 INFO: This is relevant to versions 5.2 and above.
 
 Depending on the transport you use it can be beneficial to run with a unique input queue per endpoint instance when scaling out since this avoids being limited by the throughput of a single queue. You'd still want to have all those instances share the same storage for eg. sagas, timeouts etc. and that is achieved by keeping endpoint name the same since NServiceBus by default uses the endpoint name to select the database.
@@ -21,7 +23,18 @@ For broker transports that's no longer true, hence the need for a suffix. For on
 
  * RabbitMQ example: `sales-server1, sales-serverN`
  * Azure ServiceBus example: `sales-1, sales-N` where N is the role instance id
+ * SQL Server transport ignores this setting altogether
 
 If you need full control over the suffix or if the transport hasn't registered a default you can control it using:
 
-snippet: UniqueQueuePerEndpointInstanceWithSuffix 
+snippet: UniqueQueuePerEndpointInstanceWithSuffix
+
+NOTE: In version 5 there is no built-in mechanism of distributing the load between endpoints with individualized queue names. If you want to use this feature to overcome the throughput limitation of single queues by using this, you need to manage the distribution manually.
+
+## Version 6
+
+In version 6 the concept of unique queue suffix is extended and becomes the endpoint instance ID
+
+snippet:UniqueQueuePerEndpointInstanceDiscriminator
+
+and is consistent across all the transports, allowing round-robin sender-side distribution of messages between scaled-out endpoint instances.
