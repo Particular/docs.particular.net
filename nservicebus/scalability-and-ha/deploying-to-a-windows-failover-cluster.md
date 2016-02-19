@@ -1,5 +1,5 @@
 ---
-title: Deploying in a Windows Failover Cluster
+title: Deploying the distributor in a Windows Failover Cluster
 summary: This article describes the steps necessary to install NServiceBus Distributor endpoints in a windows failover cluster.
 tags:
 - Failover
@@ -11,6 +11,13 @@ redirects:
 ---
 
 NServiceBus is designed for scalability and reliability, but to take advantage of these features, you need to deploy it in a Windows Failover Cluster. Unfortunately, information on how to do this effectively is, as yet, incomplete and scattered. This article describes the process for deploying NServiceBus in a failover cluster. This article does not cover the generic setup of a failover cluster. There are other, better resources for that, such as [Creating a Cluster in Windows Server 2008](http://blogs.msdn.com/b/clustering/archive/2008/01/18/7151154.aspx) or [Server 2012](https://technet.microsoft.com/en-us/library/dn505754.aspx). The focus here is the setup related to NServiceBus.
+
+
+## Prerequisites
+
+Please make sure that you are familiar with all details provided in the following documentation:
+
+- [Load Balancing with the Distributor](/nservicebus/scalability-and-ha/distributor/)
 
 
 ## Planning your infrastructure
@@ -111,10 +118,11 @@ NServiceBus.Host.exe
 /password:thepassword
 NServiceBus.Production NServiceBus.MSMQDistributor
 ```
+NOTE: Please use profile **NServiceBus.Distributor** when using NServiceBus earlier then V4.3
 
 It's easier to set the service name, display name, and description to be the same. It helps when trying to start and stop things from a NET START/STOP command and when viewing them in the multiple graphical tools. Starting each one with Distributor puts them all together alphabetically in the Services MMC snap-in.
 
-Don't forget the `NServiceBus.Production` at the end, which sets the profile for the NServiceBus generic host, as described in the [Generic Host page](/nservicebus/hosting/nservicebus-host/) and the `NServiceBus.MSMQDistributor` which sets up the host in distributor mode.
+Don't forget the `NServiceBus.Production` at the end, which sets the profile for the NServiceBus generic host, as described in the [Generic Host page](/nservicebus/hosting/nservicebus-host/) and the `NServiceBus.MSMQDistributor` (`NServiceBus.Distributor` when using earlier than V4.3) which sets up the host in distributor mode.
 
 Do not try starting the services. If you do, they will run in the scope of the local server node, and will attempt to create their queues there.
 
@@ -136,6 +144,9 @@ Again, try swapping the cluster back and forth, to make sure it can move freely 
 The first thing you should do is to make sure that the worker servers have [unique QMIds](distributor/#worker-qmid-needs-to-be-unique).
 
 Set up your worker processes on all worker servers (not the cluster nodes!) as windows services, but instead of using `NServiceBus.MSMQDistributor`, use `NServiceBus.MSMQWorker` profile instead.
+
+NOTE: Please use profiles **NServiceBus.Distributor** and **NServiceBus.Worker** when using NServiceBus earlier then V4.3
+
 
 Configure the workers' `MasterNodeConfig` section to point to the machine running the distributor as described on the Distributor Page under [Routing with the Distributor](distributor).
 
