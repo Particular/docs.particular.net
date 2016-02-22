@@ -11,7 +11,7 @@ By default NServiceBus will make sure that you are following [messaging best pra
 
 You can bypass these enforcements by defining all your messages as plain messages.
 
-BETA: In Version 6 you can now override the default behavior
+NOTE: In Version 6 you can now override the default behavior
 
 You can now turn this feature on and off on the endpoint level using:
 

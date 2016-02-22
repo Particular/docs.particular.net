@@ -508,9 +508,6 @@ There are several keys each of which map to a different colored alert
 | `NOTE` or `INFO` | blue   |
 | `WARNING`        | yellow |
 | `DANGER`         | red    |
-| `BETA`           | yellow |
-
-`BETA` notes will also be prefixed with some text about it being a pre-release API.
 
 Keys can be used in two manners
 
