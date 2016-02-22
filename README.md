@@ -630,12 +630,16 @@ Sequence diagram images are generated using https://bramp.github.io/js-sequence-
  * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 
 
-# Language Preferences
+# Writing Style
+
+## Language Preferences
 
 For consistency, prefer American English.
 
+Avoid personal void. So no "we", "you", "your", "our" etc.
 
-# Version Language
+
+## Version Language
 
 Avoid ambiguity.
 
