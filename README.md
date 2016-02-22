@@ -607,7 +607,7 @@ With the minimal syntax being
 
     ![](/path/to/img.jpg "width=x")
 
-This will result in the image being resized with the following parameters
+This will result in the image being re-sized with the following parameters
 
     width="x" height="auto"
 
@@ -623,7 +623,7 @@ Sequence diagram images are generated using https://bramp.github.io/js-sequence-
 
  * Ticks are done with `&#10004;` &#10004;
  * Crosses are done with `&#10006;` &#10006;
- 
+
 
 ## More Information
 
@@ -635,11 +635,20 @@ Sequence diagram images are generated using https://bramp.github.io/js-sequence-
 For consistency, prefer American English.
 
 
+# Version Language
+
+Avoid ambiguity.
+
+**Version X and above** and **Version Y and below** and **Version X to Version Y**.
+
+**Version X** and NOT **VX** or **version X**.
+
+
 # Additional Resources
 
-* [GitHub Flow in the Browser](https://help.github.com/articles/github-flow-in-the-browser/)
-* [General GitHub documentation](https://help.github.com/)
-* [GitHub pull request documentation](https://help.github.com/send-pull-requests/)
-* [Forking a Repo](https://help.github.com/articles/fork-a-repo)
-* [Using Pull Requests](https://help.github.com/articles/using-pull-requests)
-* [Markdown Table generator](http://www.tablesgenerator.com/markdown_tables)
+ * [GitHub Flow in the Browser](https://help.github.com/articles/github-flow-in-the-browser/)
+ * [General GitHub documentation](https://help.github.com/)
+ * [GitHub pull request documentation](https://help.github.com/send-pull-requests/)
+ * [Forking a Repo](https://help.github.com/articles/fork-a-repo)
+ * [Using Pull Requests](https://help.github.com/articles/using-pull-requests)
+ * [Markdown Table generator](http://www.tablesgenerator.com/markdown_tables)
