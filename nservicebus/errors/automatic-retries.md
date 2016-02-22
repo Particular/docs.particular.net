@@ -98,13 +98,15 @@ snippet:DisableSlrWithCode
 
 ### Custom Retry Policy
 
-You can apply custom retry logic based on headers or timing in code.
+You can apply custom retry logic based on headers or timing in code. 
 
+In v5 and below this custom retry logic is called only once.
+
+In v6 and above this custom retry logic may be called by multiple times per second level retry.
 
 #### Applying a custom policy
 
 snippet:SecondLevelRetriesCustomPolicy
-
 
 #### Error Headers Helper
 
