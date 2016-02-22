@@ -34,7 +34,7 @@ This works predictably due to reliance on the underlying database providing opti
 
 When you use the RavenDB saga persister, you don't have to do anything since the NServiceBus framework (on RavenDB) turns on [UseOptimisticConcurrency](http://ravendb.net/docs/search/latest/csharp?searchTerm=how-to%20enable-optimistic-concurrency).
 
-When running using the NHibernate saga persister, the NServiceBus framework requires you to add a ["Version" property to your saga data](http://ayende.com/blog/3946/nhibernate-mapping-concurrency) so that NHibernate can work its magic.
+When running using the NHibernate saga persister, the NServiceBus framework requires you to add a ["Version" property to your saga data](https://ayende.com/blog/3946/nhibernate-mapping-concurrency) so that NHibernate can work its magic.
 
 NServiceBus Version 4 makes this even easier by enabling the optimistic-all option if no Version property is found.
 

@@ -23,7 +23,7 @@ NOTE: There are [two community run MongoDB persistences](/platform/extensions.md
 
 ### MongoDB Management UI
 
-To visualize the data in MongoDB it is useful to have install a [MongoDB administration tool](http://docs.mongodb.org/ecosystem/tools/administration-interfaces/). The screen shots shown in this sample use [Robomongo](http://www.robomongo.org/).
+To visualize the data in MongoDB it is useful to have install a [MongoDB administration tool](https://docs.mongodb.org/ecosystem/tools/administration-interfaces/). The screen shots shown in this sample use [Robomongo](https://robomongo.org/).
 
 
 ## Code walk-through

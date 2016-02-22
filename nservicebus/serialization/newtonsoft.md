@@ -12,7 +12,7 @@ Using [Json](https://en.wikipedia.org/wiki/Json) via a nuget dependency on [Json
 
 ## The nuget package
 
-https://nuget.org/packages/NServiceBus.Newtonsoft.Json/
+https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/
 
     PM> Install-Package NServiceBus.Newtonsoft.Json
 

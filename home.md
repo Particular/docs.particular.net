@@ -151,7 +151,7 @@ span.blue {
     </a>
   </div>
   <div class="ic">
-    <a href="http://particular.net/Videos-and-Presentations">
+    <a href="http://particular.net/videos-and-presentations">
       <img src="/home/intro-videos.png">
       <br> Intro Videos
     </a>
@@ -189,7 +189,7 @@ span.blue {
       <p>A short and high level overview of the Platform</p>
     </div>
     <div class="col-md-6">
-      <a href="http://www.pluralsight.com/courses/microservices-nservicebus-scaling-applications">
+      <a href="https://www.pluralsight.com/courses/microservices-nservicebus-scaling-applications">
         <img src="/home/pluralsight.png">
         <h3>Pluralsight: Scaling Applications with<br> Microservices and NServiceBus</h3>
       </a>

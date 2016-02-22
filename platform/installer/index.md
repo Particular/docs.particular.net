@@ -31,7 +31,7 @@ The Platform Installer is a Microsoft Click-Once application which means it has 
 
 ### Dependencies
 
-The Click-Once setup.exe will install [.Net 4.5](http://www.microsoft.com/en-au/download/details.aspx?id=40779) if required and with then bootstrap the Platform Installer Application
+The Click-Once setup.exe will install [.Net 4.5](https://www.microsoft.com/en-au/download/details.aspx?id=40779) if required and with then bootstrap the Platform Installer Application
 
 
 ### License Acceptance

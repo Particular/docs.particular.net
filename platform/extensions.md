@@ -96,7 +96,7 @@ The [Jil Project](https://github.com/kevin-montrose/Jil) is a fast JSON serializ
 
 <a href="https://www.nuget.org/packages/NServiceBus.ProtoBuf/"><img src="https://img.shields.io/nuget/v/NServiceBus.ProtoBuf.svg?" title="NuGet Status"></a>
 
-[ProtoBuf](https://code.google.com/p/protobuf-net/) is [Googles](https://developers.google.com/protocol-buffers/) binary serializer designed to be small, fast and simple.
+[ProtoBuf](https://github.com/mgravell/protobuf-net) is [Googles](https://developers.google.com/protocol-buffers/) binary serializer designed to be small, fast and simple.
 
 
 #### <img src="community-project.png" title="A Community run project"> [MessagePack](https://github.com/SimonCropp/NServiceBus.MessagePack)

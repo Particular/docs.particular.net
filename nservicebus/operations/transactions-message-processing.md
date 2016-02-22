@@ -27,7 +27,7 @@ To override the System.Transactions default timeout of 10 minutes, follow the st
 ## Distributed Transaction Coordinator
 
 In Windows, there is an OS-level service called the DTC that manages transactions needing to span multiple resources, like queues and databases. This service isn't always configured correctly and may require troubleshooting. Download a tool called
-[DTCPing](http://www.microsoft.com/en-us/download/details.aspx?id=2868) to help you discover if one machine can access a remote machine over the DTC. The tool looks like this.
+[DTCPing](https://www.microsoft.com/en-us/download/details.aspx?id=2868) to help you discover if one machine can access a remote machine over the DTC. The tool looks like this.
 
 ![this is what you the initial DTCPing window to look like.](dtcping.png "this is what you the initial DTCPing window to look like.")
 

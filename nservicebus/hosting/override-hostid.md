@@ -20,7 +20,7 @@ The host identifier is used by ServiceControl to map a running endpoint to the h
 
 As described above, there are scenarios where the default rules used to generate a `hostid` and `hostdisplayname` are not adequate and the user needs to take control. In an Azure deployment the NServiceBus framework takes care of updating these defaults for the user automatically, so in Azure the default are role name for `$.diagnostics.hostdisplayname` and for `$.diagnostics.hostid` is the role InstanceId.
 
-Another deployment where it is needed for the user to manage these settings is when using [Octopus Deploy](https://octopusdeploy.com/). Octopus Deploy creates a new folder for each deployment, these being upgrades or new deployments, because of that, the user needs to customize the `hostid` so that the id the same across endpoint restarts unless physical host has changed.
+Another deployment where it is needed for the user to manage these settings is when using [Octopus Deploy](https://octopus.com/). Octopus Deploy creates a new folder for each deployment, these being upgrades or new deployments, because of that, the user needs to customize the `hostid` so that the id the same across endpoint restarts unless physical host has changed.
 
 
 ## How do I override an endpoint host identifier
