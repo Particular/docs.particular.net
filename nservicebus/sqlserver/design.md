@@ -25,7 +25,7 @@ Since callback handlers are stored in-memory in the node that registers the call
 
 ### Other queues
 
-Each endpoint also has queues required by timeouts (the exact names and number of queues created depends on the version of the transport). 
+Each endpoint also has queues required by timeout (the exact names and number of queues created depends on the version of the transport) and retry mechanisms. 
 
 Error and audit queues are usually shared among multiple endpoints.
 
