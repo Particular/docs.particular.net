@@ -27,7 +27,7 @@ NOTE: Note the use of `Environment.UserInteractive` to provide a dual console/se
 
 ## Bootstrapping NuGet
 
-There is a [Bootstrapping starter package](http://www.nuget.org/packages/NServiceBus.Bootstrap.WindowsService) on NuGet that automates most of the above code.
+There is a [Bootstrapping starter package](https://www.nuget.org/packages/NServiceBus.Bootstrap.WindowsService) on NuGet that automates most of the above code.
 
 
 ### How to use

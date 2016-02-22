@@ -16,7 +16,7 @@ NServiceBus can be configured to use [CastleWindsor](https://github.com/castlepr
 
 ### Pull in the NuGets
 
-http://www.nuget.org/packages/NServiceBus.CastleWindsor/
+https://www.nuget.org/packages/NServiceBus.CastleWindsor/
 
     Install-Package NServiceBus.CastleWindsor
 

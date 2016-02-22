@@ -16,7 +16,7 @@ NServiceBus can be configured to use [Autofac](http://autofac.org/) as a depende
 
 ### Pull in the NuGets
 
-http://www.nuget.org/packages/NServiceBus.Autofac/
+https://www.nuget.org/packages/NServiceBus.Autofac/
 
     Install-Package NServiceBus.Autofac
 

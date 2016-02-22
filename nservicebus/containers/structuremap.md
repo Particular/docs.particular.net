@@ -14,9 +14,9 @@ NServiceBus can be configured to use [StructureMap](http://structuremap.github.i
 ## Usage
 
 
-### Pull in the NuGets
+### Pull in the NuGet packages
 
-http://www.nuget.org/packages/NServiceBus.StructureMap/
+https://www.nuget.org/packages/NServiceBus.StructureMap/
 
     Install-Package NServiceBus.StructureMap
 

@@ -14,9 +14,9 @@ NServiceBus can be configured to use [Unity](https://github.com/unitycontainer/u
 ## Usage
 
 
-### Pull in the NuGets
+### Pull in the NuGet packages
 
-http://www.nuget.org/packages/NServiceBus.Unity/
+https://www.nuget.org/packages/NServiceBus.Unity/
 
     Install-Package NServiceBus.Unity
 

@@ -142,6 +142,6 @@ An alternative to Distributed Transactions to provide exactly-once message proce
 A load balancing tool for message distribution.
 
 
-### [Idempotence](http://en.wikipedia.org/wiki/Idempotence)
+### [Idempotence](https://en.wikipedia.org/wiki/Idempotence)
 
 The ability to call the same message handler more than once without causing inconsistent business results.

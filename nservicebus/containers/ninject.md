@@ -16,7 +16,7 @@ NServiceBus can be configured to use [Ninject](http://www.ninject.org/) as a dep
 
 ### Pull in the NuGets
 
-http://www.nuget.org/packages/NServiceBus.Ninject/
+https://www.nuget.org/packages/NServiceBus.Ninject/
 
     Install-Package NServiceBus.Ninject
 
