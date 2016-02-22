@@ -14,7 +14,7 @@ Inherited from `NServiceBus.WcfService<TCommand, TErrorCode>`, as shown below. `
 
 snippet:ExposeWCFService
 
-NOTE: After Version 4 of NServiceBus `WcfService<TCommand, TErrorCode>` has been moved to [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host), so you need to reference this package.
+NOTE: Version 4 and above of NServiceBus `WcfService<TCommand, TErrorCode>` has been moved to [NServiceBus.Host NuGet package](https://www.nuget.org/packages/NServiceBus.Host), so you need to reference this package.
 
 And finally you need to expose the wcf service via the config file, for the example above the xml would look something like:
 
