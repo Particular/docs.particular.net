@@ -43,7 +43,7 @@ There are two ways to avoid the issue:
 1. Configuring IIS to avoid recycling
 2. Use a periodic warm-up HTTP GET to make sure the website is not brought down due to inactivity (the frequency needs to be less than 20 minutes, which is the default IIS recycle-on-idle time)
 
-Starting from IIS 7.5 and higher the above steps can be combined into one by following these steps:
+Starting from IIS 7.5 and above the above steps can be combined into one by following these steps:
 
 1. Enable `AlwaysRunning` mode for the application pool of the site. Go to the application pool management, open the Advanced Settings under General switch the `Start Mode` to `AlwaysRunning`
 1. Enabled Preload for the site itself. Right click on the site, then Manage Site under Advanced Settings in the General settings, switch `Enable Preload` to `true`

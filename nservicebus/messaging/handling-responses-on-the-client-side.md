@@ -23,9 +23,9 @@ DANGER: If the server process returns multiple responses, NServiceBus cannot kno
 
 ## Prerequisites for callback functionality
 
-In NServiceBus Version 5 and lower callbacks are built into the core NuGet.
+In NServiceBus Version 5 and below callbacks are built into the core NuGet.
 
-In NServiceBus Version 6 and higher callbacks are shipped as `NServiceBus.Callbacks` NuGet package.
+In NServiceBus Version 6 and above callbacks are shipped as `NServiceBus.Callbacks` NuGet package.
 
 
 ## Using Callbacks
@@ -36,6 +36,7 @@ The callback functionality can be split into three categories based on the type 
 ### Int
 
 The integer response scenario allows any integer value to be returned in a strong typed manner.
+
 
 #### Send and Callback
 

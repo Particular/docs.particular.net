@@ -33,7 +33,7 @@ WARNING: It is important to consider the effect these defaults will have on othe
 
 ### Logging of critical errors
 
-For Version 4 and up Critical Errors are logged inside the critical error action. This means that if you replace the Critical Error in these versions you should also write the log entry.
+For Version 4 and above Critical Errors are logged inside the critical error action. This means that if you replace the Critical Error in these versions you should also write the log entry.
 
 snippet:DefaultCriticalErrorActionLogging
 

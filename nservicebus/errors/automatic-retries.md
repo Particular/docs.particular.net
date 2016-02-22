@@ -33,7 +33,7 @@ Note: The configured value describes the minimum number of times a message will 
 
 In Version 3 this configuration was available via `MsmqTransportConfig`.
 
-In Version 4 and higher the configuration for this mechanism is implemented in the `TransportConfig` section.
+In Version 4 and above the configuration for this mechanism is implemented in the `TransportConfig` section.
 
 snippet:configureFlrViaXml
 

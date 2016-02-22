@@ -39,9 +39,9 @@ Note that while the phrasing is "forwarding a message" in the implementation it 
 
 If no OverrideTimeToBeReceived is defined then:
 
-**Version 5 and lower**: TimeToBeReceived of the original message will be used.
+**Version 5 and below**: TimeToBeReceived of the original message will be used.
 
-**Version 6 and higher**: No TimeToBeReceived will be set.
+**Version 6 and above**: No TimeToBeReceived will be set.
 
 
 ## Configuring auditing
@@ -70,7 +70,7 @@ snippet:AuditProvideConfiguration
 
 ## Machine level configuration
 
-Version 4 and higher support setting the error queue and the audit queue at the machine level in the registry. Use the [Set-NServiceBusLocalMachineSettings](management-using-powershell.md) PowerShell commandlet to set these values at a machine level. When set at machine level, the setting is not required in the endpoint configuration file for messages to be forwarded to the audit queue.
+Version 4 and above support setting the error queue and the audit queue at the machine level in the registry. Use the [Set-NServiceBusLocalMachineSettings](management-using-powershell.md) PowerShell commandlet to set these values at a machine level. When set at machine level, the setting is not required in the endpoint configuration file for messages to be forwarded to the audit queue.
 
 
 ## Turning off auditing

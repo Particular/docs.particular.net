@@ -6,7 +6,7 @@ redirects:
 ---
 
 
-### Behavior in Version 6 and higher
+### Behavior in Version 6 and above
 
 As of Version 6 NServiceBus will by default collect all outgoing operations, Send|Reply|Publish etc, that happens as part of processing a message and pass them on to the transport after message handling pipeline has completed. This has two main benefits:
 
@@ -14,7 +14,7 @@ As of Version 6 NServiceBus will by default collect all outgoing operations, Sen
  * Allows transports to improve performance by batching outgoing operations. Since transports now gets access to all outgoing messages in one go they can now optimize communication with the underlying queuing infrastructure to minimize round trips.
 
 
-### Behavior in Version 5 and lower
+### Behavior in Version 5 and below
 
 Since batched dispatch isn't available for Version 5 and below you need to pay more attention to the ordering of outgoing operations when using transports other than MSMQ and SQLServer since they lack support for cross queue transactions. For those transports messages will be dispatched immediately to the transport as soon as the call to `.Send` or `.Publish` completes. This means that there is a risk for "ghost" message to be emitted if you don't make sure to make all your database calls before performing the mentioned operations. One example would to do a `.Publish<OrderPlaced>()` event before calling `DB.Store(new Order())` since that would cause the `OrderPlaced` event to sent even if the order could not be stored in the database.
 

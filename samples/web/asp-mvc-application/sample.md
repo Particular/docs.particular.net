@@ -20,7 +20,7 @@ The sample covers only the sending of the asynchronous message as the send and b
 
 NOTE: In `SendAndBlock`, the web page renders synchronously. From the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is messaging asynchronously.
 
-Warning: Version 6 and higher are natively async and as such there is no "SendAndBlock" option.
+Warning: Version 6 and above are natively async and as such there is no "SendAndBlock" option.
 
 ![AsyncPages Asp.Net Mvc sample running](async-pages-mvc-selecting-blocking-method.png "AsyncPages Asp.Net Mvc sample running")
 

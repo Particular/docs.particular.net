@@ -24,7 +24,7 @@ In these versions default logging was only enabled in the NServiceBus Host. For 
 See [NServiceBus Host Profiles](/nservicebus/hosting/nservicebus-host/profiles.md) for the default logging in the NServiceBus Host.
 
 
-### Version 5 and Higher Defaults
+### Version 5 and above Defaults
 
 This is applicable to both self hosting and using the NServiceBus Host
 
@@ -56,7 +56,7 @@ The default file name will be `nsb_log_yyyy-MM-dd_N.txt`, where `N` is a sequenc
 
 The Logging level, or "Threshold", indicates the log levels that will be outputted. So for example a value of `Warn` would mean all `Warn`, `Error` and `Fatal` message would be outputted.
 
-In NServiceBus Version 5 and higher the supported logging levels are
+In NServiceBus Version 5 and above the supported logging levels are
 
  * Debug
  * Info
@@ -71,8 +71,8 @@ In NServiceBus Versions 3 and 4 the supported Levels are defined by the [Log4Net
 
 {{Note: When logging level is defined in both app.config and code:
 
- * In Version 4 and earlier the app.config wins.
- * In Version 5 and higher the code wins.
+ * In Version 4 and below the app.config wins.
+ * In Version 5 and above the code wins.
 
 }}
 
@@ -91,7 +91,7 @@ snippet:LoggingThresholdFromIProvideConfiguration
 
 snippet:OverrideLoggingLevelInCode
 
-The above API is only available in Version 5 and higher. In earlier versions you can achieve the same by taking full control over the [Log4Net integration](log4net.md).
+The above API is only available in Version 5 and above. In earlier versions you can achieve the same by taking full control over the [Log4Net integration](log4net.md).
 
 
 ## Changing the defaults

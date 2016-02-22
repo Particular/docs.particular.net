@@ -36,7 +36,7 @@ Unless otherwise specified (by an individual sample) the following are the defau
 
 ### C# Language Level
 
-All samples that target NServiceBus Version 6 and higher have the C# Language Level set to **6.0** to take advantage of the newer language features.
+All samples that target NServiceBus Version 6 and above have the C# Language Level set to **6.0** to take advantage of the newer language features.
 
 
 ### [Transport](/nservicebus/transports/)

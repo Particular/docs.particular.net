@@ -7,7 +7,7 @@ redirects:
 ---
 
 
-## NServiceBus Version 4.5 and up
+## NServiceBus Version 4.5 and above
 
 No limitations are enforced by NServiceBus if no license is found.
 

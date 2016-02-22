@@ -16,6 +16,7 @@ Messages matching the following criteria will be auto subscribed at startup.
  1. Defined as a event either using `IEvent` or by the `.DefiningEventsAs` convention.
  1. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given message
 
+
 ### Routing configuration needed
 
 If your selected transport doesn't natively supports publish-subscribe you need to specify the address of the publisher for each event. This is done by [specifying a message owner in the message endpoint mappings](/nservicebus/messaging/message-owner.md). For example:
@@ -26,22 +27,24 @@ Since Version 6 you can also specify the publishers in code
 
 snippet:PubSub-CodePublisherMapping
 
+
 ### Exclude sagas from auto subscribe
 
-In Version 3 and lower events that are only handled by sagas are not subscribed to by default. In Version 4 and higher sagas are treated the same as handlers and will cause an endpoint to subscribe to a given event. You can opt-in to the old exclude saga event handling behavior using:
+In Version 3 and below events that are only handled by sagas are not subscribed to by default. In Version 4 and above sagas are treated the same as handlers and will cause an endpoint to subscribe to a given event. You can opt-in to the old exclude saga event handling behavior using:
 
 snippet:DoNotAutoSubscribeSagas
 
 
 ### Auto subscribe to plain messages
 
-In Version 4 and lower all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention are automatically subscribed. In versions 4 and 5 you can opt-in to that legacy behavior using following code
+In Version 4 and below all messages not defined as a command using `ICommand` or the `.DefiningCommandsAs` convention are automatically subscribed. In versions 4 and 5 you can opt-in to that legacy behavior using following code
 
 snippet:AutoSubscribePlainMessages
 
 WARNING: This is a bad practice. Subscriptions should only be based on events.
 
 Since Version 6 the ability to auto subscribe to plain messages was removed. Although not recommended, this can be overridden by [manually subscribing](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#how-to-manually-subscribe-to-a-message) to other message types.
+
 
 ### When a subscriber stops or uninstalls
 

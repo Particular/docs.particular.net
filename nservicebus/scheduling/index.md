@@ -12,7 +12,7 @@ The NServiceBus Scheduler is a lightweight/non-durable API that helps schedule a
 
 ## How the scheduler works
 
-The scheduler holds a list of tasks scheduled in a non-durable in-memory dictionary. In Version 4 and lower tasks are scoped per `AppDomain`. In Version 5 and higher they are scoped per Bus instance.
+The scheduler holds a list of tasks scheduled in a non-durable in-memory dictionary. In Version 4 and below tasks are scoped per `AppDomain`. In Version 5 and above they are scoped per Bus instance.
 
 When a new scheduled task is created it is given a unique identifier and stored in the endpoint's in-memory dictionary. The identifier for the task is sent in a message to the Timeout Manager, setting the message to be deferred with the specified time interval. When the specified time has elapsed, the Timeouts dispatcher returns the message containing the identifier to the endpoint with the scheduled task identifier. The endpoint then uses that identifier to fetch and invoke the task from its internal list of tasks and executes it.
 

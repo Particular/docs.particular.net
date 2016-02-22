@@ -58,7 +58,7 @@ related:
 	     * `install-package ServiceControl.Plugin.Nsb3.Heartbeat`
 	     * `install-package ServiceControl.Plugin.Nsb3.CustomChecks`
 
-**NOTE**: Saga Visualization plugin is only available from Version 4 and higher.
+**NOTE**: Saga Visualization plugin is only available from Version 4 and above.
 	    
-1. For manual deployment, copy the endpoint plugin DLL files to each endpoint bin directory (and restart the endpoint to load the plugin).
-1. By default, the endpoint plugin sends a heartbeat indication to ServiceControl every 30 seconds. If a heartbeat indication is not received within 30 seconds, ServicePulse raises an event that indicates the issue.
+ 1. For manual deployment, copy the endpoint plugin DLL files to each endpoint bin directory (and restart the endpoint to load the plugin).
+ 1. By default, the endpoint plugin sends a heartbeat indication to ServiceControl every 30 seconds. If a heartbeat indication is not received within 30 seconds, ServicePulse raises an event that indicates the issue.

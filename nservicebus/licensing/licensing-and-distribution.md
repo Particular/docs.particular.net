@@ -8,7 +8,7 @@ redirects:
  - nservicebus/licensing-and-distribution
 ---
 
-**NServiceBus Version 4.5 and up**
+**NServiceBus Version 4.5 and above**
 
 No limitations is enforced by the distributor
 

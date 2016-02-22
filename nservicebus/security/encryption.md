@@ -136,7 +136,7 @@ For more info on `IProvideConfiguration` see [Customizing NServiceBus Configurat
 
 #### Configuration API
 
-NOTE: Defining encryption keys via the configuration API is only supported in Version 5 and up.
+NOTE: Defining encryption keys via the configuration API is only supported in Version 5 and above.
 
 snippet:EncryptionFromCode
 

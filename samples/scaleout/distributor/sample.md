@@ -160,22 +160,22 @@ In a real solution you would do the following
 ### Worker Input queue
 
 
-#### Version 5 and lower
+#### Version 5 and below
 
 Normally workers are deployed to different machines. When deployed to the same machine a GUID will be added to the end of the worker input queue name. This allows the distributor to properly route messages and prevents workers from competing on the same queue. Since, in this project, we are "faking different machines" by using different projects we can override the GUID behavior to prevent a proliferation of queue names.
 
-Before V5 the only way to achieve this was the following address "hack"
+The only way to achieve this was the following address "hack"
 
 snippet:WorkerNameToUseWhileTestingCode
 
-In V5 there is a configuration setting that can be used
+IThere is a configuration setting that can be used
 
 snippet:WorkerNameToUseWhileTestingConfig
 
 
 #### Version 6
 
-In version 6 the worker input queue is generated in the same way as for a non-scaled out endpoint -- based on the endpoint name and an optional instance ID.
+The worker input queue is generated in the same way as for a non-scaled out endpoint -- based on the endpoint name and an optional instance ID.
 
 snippet:Distributor-InstanceId
 

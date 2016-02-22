@@ -39,7 +39,7 @@ snippet:IMutateOutgoingMessages
 
 #### IMessageMutator
 
-`IMessageMutator` is an interface that combines both `IMutateIncomingMessages` and `IMutateOutgoingMessages`. It only exists in Version 5 and lower. In Version 6 and higher implement both `IMutateIncomingMessages` and `IMutateOutgoingMessages` instead.
+`IMessageMutator` is an interface that combines both `IMutateIncomingMessages` and `IMutateOutgoingMessages`. It only exists in Version 5 and below. In Version 6 and above implement both `IMutateIncomingMessages` and `IMutateOutgoingMessages` instead.
 
 
 ### Transport Messages Mutators
@@ -59,7 +59,7 @@ snippet:IMutateOutgoingTransportMessages
 
 #### IMutateTransportMessages
 
-`IMutateTransportMessages` is an interface that combines both `IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`. It only exists in Version 5 and lower. In Version 6 and higher implement both `IMutateTransportMessages` and `IMutateOutgoingTransportMessages` instead.
+`IMutateTransportMessages` is an interface that combines both `IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`. It only exists in Version 5 and below. In Version 6 and above implement both `IMutateTransportMessages` and `IMutateOutgoingTransportMessages` instead.
 
 
 ## Registering a Mutator

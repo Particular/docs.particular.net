@@ -54,7 +54,7 @@ snippet: TuningFromAppConfig
 
 ## Run time settings
 
-Version 5 and lower allowed both concurrency and throughput throttling to be changed and read at run time using the code below.
+Version 5 and below allowed both concurrency and throughput throttling to be changed and read at run time using the code below.
 
 
 ## Optimizing at run time

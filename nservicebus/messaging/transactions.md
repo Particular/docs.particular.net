@@ -91,7 +91,7 @@ DANGER: In this mode, when encountering a critical failure such as system or end
 snippet:TransactionsDisable
 
 
-#### Versions 6 and up
+#### Versions 6 and above
 
 In this mode the transport doesn't wrap the receive operation in any kind of transaction. Should the message fail to process it will be moved straight to the error queue.
 

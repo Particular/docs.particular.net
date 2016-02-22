@@ -7,17 +7,17 @@ related:
 - samples/logging/log4net-custom
 ---
 
-Support for routing log entries to [Log4Net](http://logging.apache.org/log4net/) is compatible with NServiceBus 3 and higher.
+Support for routing log entries to [Log4Net](http://logging.apache.org/log4net/) is compatible with NServiceBus Version 3 and above.
 
 
-### NServiceBus Version 3 and 4
+### NServiceBus Version 4 and below
 
-In Version 3 and 4 of NServiceBus Log4Net support was built in.
+NServiceBus Log4Net support was built in.
 
 
-### NServiceBus Version 5 and higher
+### NServiceBus Version 5 and above
 
-In NServiceBus Version 5 Log4Net was externalized to its own [nuget](https://www.nuget.org/packages/NServiceBus.Log4Net/) package available that allows for simple integration of NServiceBus.
+Log4Net was externalized to its own [nuget](https://www.nuget.org/packages/NServiceBus.Log4Net/) package available that allows for simple integration of NServiceBus.
 
 
 ## Usage

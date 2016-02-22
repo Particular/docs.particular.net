@@ -115,7 +115,7 @@ Follow the steps for [configuring SSL](https://msdn.microsoft.com/en-us/library/
 Going across alternate channels like HTTP means that you lose the MSMQ safety guarantee of exactly one message. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid burdening you with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured [Persistence](/nservicebus/persistence/) so potential duplicates can be detected.
 
 
-### Version 5 and higher
+### Version 5 and above
 
 The gateway will use the storage type you configure. At this stage [InMemory](/nservicebus/persistence/in-memory.md), [NHibernate](/nservicebus/nhibernate/) and [RavenDB](/nservicebus/ravendb/) is supported.
 

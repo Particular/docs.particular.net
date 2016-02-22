@@ -25,7 +25,7 @@ When a message fails processing it will be forwarded here.
 
 snippet:error
 
-Note that, in Version 5 and lower, this approach uses the [IProvideConfiguration](/nservicebus/hosting/custom-configuration-providers.md) approach to programmatically override the error queue. In Version 6 an explicit API was added.
+In Version 5 and below this approach uses the [IProvideConfiguration](/nservicebus/hosting/custom-configuration-providers.md) approach to programmatically override the error queue. In Version 6 an explicit API was added.
 
 
 ## Configure an [Audit](/nservicebus/operations/auditing.md) queue

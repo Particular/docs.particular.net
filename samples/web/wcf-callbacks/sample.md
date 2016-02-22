@@ -43,7 +43,7 @@ snippet:WcfMapper
 
 The server side implementation of `ICallbackService`. This class handles the actual correlation of Request to Response.
 
-Note: In Version 5 and lower the Callback APIs for Enums, Ints and message responses differ slightly hence some logic is required to call the correct API for each response type. In Version 6 and higher this API has been simplified and hence no logic is required.
+Note: In Version 5 and below the Callback APIs for Enums, Ints and message responses differ slightly hence some logic is required to call the correct API for each response type. In Version 6 and above this API has been simplified and hence no logic is required.
 
 snippet:CallbackService
 

@@ -86,7 +86,7 @@ Related:
 
 ### Multi-Hosting
 
-"Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .NET process. In Version 4 and earlier this could be achieved through multiple AppDomains. In Version 5 and higher multiple endpoints can share the same AppDomain or use the multiple AppDomains approach.
+"Multi-hosting" refers to hosing multiple NServiceBus endpoints in a single .NET process. In Version 4 and earlier this could be achieved through multiple AppDomains. In Version 5 and above multiple endpoints can share the same AppDomain or use the multiple AppDomains approach.
 
 Related:
 

@@ -42,7 +42,7 @@ snippet: handler-using-custom-header
 
 ## Manipulating the incoming Thread.CurrentPrincipal
 
-WARNING: This approach is only supported in Version 4 and lower. For Version 5 and higher use the above approach.
+WARNING: This approach is only supported in Version 4 and below. For Version 5 and above use the above approach.
 
 This approach uses the "Principal Manipulation" API that exists in both Versions 3 and 4. 
 
