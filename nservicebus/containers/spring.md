@@ -14,9 +14,9 @@ NServiceBus can be configured to use [Spring](http://www.springframework.net/) a
 ## Usage
 
 
-### Pull in the NuGets
+### Pull in the NuGet packages
 
-http://www.nuget.org/packages/NServiceBus.Spring/
+https://www.nuget.org/packages/NServiceBus.Spring/
 
     Install-Package NServiceBus.Spring
 

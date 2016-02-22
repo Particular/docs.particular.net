@@ -16,9 +16,10 @@ When the default Saga message mappings do not satisfy our needs custom logic can
 
 This sample shows how to perform custom saga finding logic based on custom query logic.
 
+
 ### NHibernate setup
 
-This sample requires [NHibernate persistence](http://www.nuget.org/packages/NServiceBus.NHibernate/) package and a running Microsoft Sql Server instance configured accordingly. The sample NHibernate setup can be configured according to your environment:
+This sample requires [NHibernate persistence](https://www.nuget.org/packages/NServiceBus.NHibernate/) package and a running Microsoft Sql Server instance configured accordingly. The sample NHibernate setup can be configured according to your environment:
 
 snippet: NHibernateSetup
 
