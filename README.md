@@ -557,9 +557,10 @@ Would be rendered as
 The first (and all top level) headers in a `.md` page should be a `h2` ie `##`. With sub-headers under it being `h2` are `h3` etc.
 
 
-## Space
+## Spaces
 
-* Add an empty after a heading
+* Two empty lines before a heading and any other text
+* Add an empty line after a heading
 * Add an empty line between paragraphs
 
 

@@ -281,7 +281,6 @@ span.blue {
     <ul>
       <li><a href="/servicepulse/intro-endpoints-heartbeats.md">Monitoring Endpoints</a></li>
       <li><a href="/servicepulse/intro-failed-messages.md">Handling Failed Messages</a></li>
-      <li><a href="/servicepulse/intro-endpoints-custom-checks.md">Introduction to Custom Checks</a></li>
     </ul>
     <a href="/servicepulse/"><h3>All ServicePulse articles</h3></a><br/>
     <div style="clear: both"></div>
