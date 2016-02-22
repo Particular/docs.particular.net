@@ -44,7 +44,7 @@ The SQL Server transport throughput is on par with the Microsoft Message Queuein
 
 ### Background worker replacement
 
-SQL Server transport works well for small web applications that require reliable background processing capabilities. Instead of firing a background thread or doing `asyc` processing the web application would send a message on the bus. The message would be picked up by the backend service, processed and the response returned. SQL Server transport will work out-of-the-box in that scenario without requiring DTC. 
+SQL Server transport works well for small web applications that require reliable background processing capabilities. Instead of firing a background thread or doing `async` processing the web application would send a message on the bus. The message would be picked up by the backend service, processed and the response returned. SQL Server transport will work out-of-the-box in that scenario without requiring DTC. 
 
 Using messaging in that scenario is more reliable than using additional threads. Even if the processing of the message fails, the message itself is not lost and it can be retired at a later time. 
 
