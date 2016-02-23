@@ -34,14 +34,14 @@ NOTE: For NServiceBus version-dependent requirements for each plugin, review the
 Once deployed on an active endpoint, the endpoint sends plugin-specific information to ServiceControl. Plugins send messages using the defined endpoint transport to the ServiceControl queue. Location of ServiceControl queue is determined by the following:
 
 1. **Endpoint`s configuration file** 
-Check for an `appSetting` named `ServiceControl/Queue` e.g. `<add key="ServiceControl/Queue" value="particular.servicecontrol@machine"/>`.
+Check for an `appSetting` named `ServiceControl/Queue` e.g. `<add key="ServiceControl/Queue" value="particular.servicecontrol"/>`.
 1. **Convention based on the configured Error Queue machine** 
-If an error queue is configured, for example `error@MachineName`, then the queue `Particular.ServiceControl@MachineName` will be used.
+If an error queue is configured, for example `error@MachineName` with MSMQ transport, then the queue `Particular.ServiceControl@MachineName` will be used.
 1. **Convention based on the configured Audit Queue machine** 
-If an audit queue is configured, for example `audit@MachineName`, then the queue `Particular.ServiceControl@MachineName` will be used.
+If an audit queue is configured, for example `audit@MachineName` with MSMQ transport, then the queue `Particular.ServiceControl@MachineName` will be used.
 
 WARNING: Endpoint with plugins installed that cannot communicate to ServiceControl will shut down.
 
-The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl. 
+The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl.  The  queue name is based on the Window Service name.  If ServiceControl is installed with a Windows Service name other than the default name then the convention based detection does not apply.  In this scenario the configuration setting `ServiceControl/Queue` must be set to the correct queue name.  
 
 NOTE: If you're using MSMQ and have configured ServiceControl to import audit and error queues those queues must be present on the same machine as ServiceControl is installed on.
