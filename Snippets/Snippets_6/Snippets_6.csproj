@@ -381,6 +381,7 @@
     <Compile Include="Handlers\GenericAsyncHandler.cs" />
     <Compile Include="Transports\RabbitMQ_4\Usage.cs" />
     <Compile Include="Transports\SqlServer\ConnectionStrings.cs" />
+    <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
     <Compile Include="UpgradeGuides\5to6\MyEvent.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
