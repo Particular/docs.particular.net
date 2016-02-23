@@ -79,7 +79,7 @@ Type: string
 
 Default: `Warn`
 
-This setting was introduced in Version 1.9.  Valid settings are:  `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
+In Version 1.9 and above  Valid settings are:  `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
 This setting will default to `Warn` if an invalid value is assigned.
 
@@ -95,7 +95,7 @@ The number of seconds to wait between checking for expired messages.
 
 Type: int
 
-Default: `600` (10 minutes). The default prior to Version 1.4 was `60` (1 minute), the new default is `600` (10 minutes). Settings the value to `0` will disable the expiration process, this is not recommended and it is only provided for fault finding. Valid Range is `0` through to `10800` (3 Hours)
+Default: `600` (10 minutes). The default for Versions below 1.4 is `60` (1 minute), In Version 1.4 and above the default is `600` (10 minutes). Settings the value to `0` will disable the expiration process, this is not recommended and it is only provided for fault finding. Valid Range is `0` through to `10800` (3 Hours)
 
 
 #### ServiceControl/ExpirationProcessBatchSize
@@ -115,9 +115,9 @@ Type: int
 
 Default: `720` (30 days). 
 
-Prior to Version 1.8.3 the valid range for this setting was `24` (1 day) through to `1440` (60 days)
+In Versions 1.8.2 and below the valid range for this setting was `24` (1 day) through to `1440` (60 days)
 
-From Version 1.8.3 the upper limit has been removed to allow for longer retention.  This was done to allow customers with low volumes of messages to retain them longer.  Setting this value too high can cause the embeddeded RavenDB to become large and unresponsive when indexing.  See [Capacity and Planning](capacity-and-planning.md)
+In Versions 1.8.3 and above the upper limit has been removed to allow for longer retention.  This was done to allow customers with low volumes of messages to retain them longer.  Setting this value too high can cause the embeddeded RavenDB to become large and unresponsive when indexing.  See [Capacity and Planning](capacity-and-planning.md)
 
 
 ## Performance Tuning
@@ -134,9 +134,9 @@ Default: `350`.
 
 #### ServiceControl/MaxBodySizeToStore
 
-Up until Version 1.6 ServiceControl only stores bodies of audit messages that are smaller than 100Kb.
+This setting exists in Version 1.6 and above. It allows the upper limit on body size to be configured. 
 
-Version 1.6 introduced this setting which allows the upper limit on body size to be configured. 
+In Version 1.5.x and below ServiceControl only stores bodies of audit messages that are smaller than 100Kb.
 
 Type: int
 
@@ -213,7 +213,7 @@ Use this setting to configure whether processed audit messages are forwarded to 
 
 Type: bool `true` or `false`
 
-Default: `false`. From Version 1.5 if this setting is not explicitly set to true or false a warning is shown in the logs at start up.
+Default: `false`. In Versions 1.5 and above if this setting is not explicitly set to true or false a warning is shown in the logs at start up.
 
 See [Installation](installation.md) for details on how to set this at install time.
 
