@@ -14,19 +14,43 @@ The SQL Server transport allows you to select, on per-endpoint basis, where the 
 
 The transport will route messages to destination endpoints based on the configuration. If no specific configuration has been provided for a particular destination endpoint, the transport assumes the destination has the same configuration (schema, database and instance name/address) as the sending endpoint. If this assumption turns out to be false (the transport cannot connect to destination queue), an exception is thrown immediately. There is no store-and-forward mechanism on the transport level (and hence -- no dead-letter queue).
 
-NOTE: If the destination endpoint uses different database or server instance, sending a message to it might cause the transaction to escalate to a distributed transaction. Usually it is not a desired effect and one can use NServiceBus Outbox to avoid it.
+NOTE: If the destination endpoint uses different database or server instance, sending a message to it might cause the transaction to escalate to a distributed transaction. Usually it is not a desired effect. Use NServiceBus [Outbox](/nservicebus/outbox/) to avoid it.
 
 ## Single database
 
-By default SQL Server transport uses a single instance of the SQL Server to maintain all the queues for all endpoints of a system. In order to send a message, an endpoint needs to connect to the (usually remote) database server and execute a SQL command. The message is delivered directly to the destination queue without any store-and-forward mechanism. Such a simplistic approach can only be only used for small-to-medium size systems because of the need to store everything in a single database. Using schemas to distingiush logical data stores might be a good compromise for mid-size projects. The upside is it does not require Distributed Transaction Coordinator (MS DTC). Another advantage is the ability to take a snapshot of entire system state (all the queues) by backing up a database. This is even more useful if the business data are stored in the same database.
+By default the SQL Server transport uses a single instance of the SQL Server to maintain queues for all endpoints in the system. In order to send a message, an endpoint needs to connect to the (usually remote) database server and execute a SQL command. The message is delivered directly to the destination queue without any store-and-forward mechanism. 
 
+Using a single database is that it doesn't require Distributed Transaction Coordinator (MS DTC). Another advantage is the ability to take a snapshot of entire system state (all the queues) by backing up a database. This is most useful when the business data is also stored in the same database.
 
-## Database-per-endpoint
+## Single database with multiple schemas
 
-In a more complex scenario endpoints use separate databases and DTC is involved. Due to lack of store-and-forward mechanism, if a remote endpoint's database or DTC infrastructure is down, the endpoint cannot send messages to it. This potentially renders the endpoint (and all endpoints transitively depending on it) unavailable.
+The default schema used by SQL Server transport is `dbo`. A different schema might be specified using API:
 
+snippet:sqlserver-singledb-multischema
 
-## Database-per-endpoint with store-and-forward
+or using a configuration file:
+
+snippet:sqlserver-singledb-multischema-config
+
+If two endpoints use different schemas then additional configuration is required. The sender needs to know the schema of the receiver, and subscriber needs the schema of the publisher. 
+
+The schema for another endpoint can be specified at compile time (push mode):
+
+snippet:sqlserver-singledb-multidb-push
+
+snippet:sqlserver-singledb-multischema-connString
+
+or at runtime (pull mode):
+
+snippet:sqlserver-singledb-multidb-pull
+
+NOTE: Even if two endpoints use different schemas the SQL Server transport will assume they use the same connection string. A different connection string must be specified explicitly, as described in the following section.
+
+## Multiple databases
+
+Endpoints can also use separate databases. That scenario requires DTC. Due to the lack of store-and-forward mechanism, if a remote endpoint's database or DTC infrastructure is down, the endpoint cannot send messages to it. This potentially renders the endpoint unavailable (and also all other endpoints depending on it directly or indirectly).
+
+## Multiple databases with store-and-forward
 
 In order to overcome this limitation a higher level store-and-forward mechanism needs to be used. The Outbox feature can be used to effectively implement a distributed decoupled architecture where:
  * Each endpoint has its own database where it stores both the queues and the user data
