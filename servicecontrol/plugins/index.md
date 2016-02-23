@@ -42,6 +42,6 @@ If an audit queue is configured, for example `audit@MachineName` with MSMQ trans
 
 WARNING: Endpoint with plugins installed that cannot communicate to ServiceControl will shut down.
 
-The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl. 
+The ServiceControl queue (and all other ServiceControl related sub-queues) are created during the installation phase of ServiceControl.   The ServiceControl queue name is based on the Window Service name. The examples above assume that ServiceControl is installed with the default Windows service name of `particular.servicecontrol`.  If the instance of ServiceControl is installed with a different Windows Service name then the endpoint configuration file must be set.
 
 NOTE: If you're using MSMQ and have configured ServiceControl to import audit and error queues those queues must be present on the same machine as ServiceControl is installed on.
