@@ -136,7 +136,7 @@ Default: `350`.
 
 This setting exists in Version 1.6 and above. It allows the upper limit on body size to be configured. 
 
-In Version 1.5.3 and below ServiceControl only stores bodies of audit messages that are smaller than 100Kb.
+In Version 1.5.x and below ServiceControl only stores bodies of audit messages that are smaller than 100Kb.
 
 Type: int
 
