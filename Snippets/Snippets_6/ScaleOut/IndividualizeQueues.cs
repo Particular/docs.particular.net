@@ -6,11 +6,11 @@
     {
         public void Simple()
         {
-            EndpointConfiguration busConfiguration = new EndpointConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             
             #region UniqueQueuePerEndpointInstanceDiscriminator
 
-            busConfiguration.ScaleOut()
+            endpointConfiguration.ScaleOut()
                 .InstanceDiscriminator("MyInstanceID");
 
             #endregion
