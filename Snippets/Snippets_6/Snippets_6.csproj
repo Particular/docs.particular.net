@@ -366,6 +366,7 @@
     <Compile Include="RavenDB\Configure.cs" />
     <Compile Include="Routing\RoutingAPIs.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
+    <Compile Include="ScaleOut\IndividualizeQueues.cs" />
     <Compile Include="Serialization\NewtonsoftSerializerUsage.cs" />
     <Compile Include="Serialization\JsonSerializerUsage.cs" />
     <Compile Include="Serialization\XmlSerializerUsage.cs" />
