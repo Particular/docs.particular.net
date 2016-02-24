@@ -1,6 +1,6 @@
 ---
-title: Outbox - SQL Transport and NHibernate
-summary: 'How to integrate SQL Server transport with NHibernate persistence using outbox'
+title: Outbox - SQL Server Transport and NHibernate
+summary: How to integrate SQL Server Transport with NHibernate persistence using Outbox
 tags:
 - SQL Server
 - NHibernate
@@ -13,69 +13,84 @@ redirects:
 - samples/sqltransport-nhpersistence-outbox
 ---
 
- 1. Make sure you have SQL Server Express installed and accessible as `.\SQLEXPRESS`. Create three databases: `sender`, `receiver` and `shared`.
- 2. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
- 3. Start the Receiver project.
- 4. If you see `DtcRunningWarning` log message in the console, it means you have a Distributed Transaction Coordinator (DTC) service running. The Outbox feature is designed to provide *exactly once* delivery guarantees without DTC. We believe it is better to disable the DTC service to avoid confusion when you use Outbox.
- 5. In the Sender's console you should see `Press <enter> to send a message` text when the app is ready.
- 6. Hit <enter>.
- 7. On the Receiver console you should see that order was submitted.
- 8. On the Sender console you should see that the order was accepted.
- 9. Finally, after a couple of seconds, on the Receiver console you should see that the timeout message has been received.
- 10. Open SQL Server Management Studio and go to the `receiver` database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`)
- 11. Go the the `shared` database. Verify that there are messages in the `dbo.audit` table and, if any message failed processing, messages in `dbo.error` table.
+## Prerequisites
 
-NOTE: The handling code has built-in chaotic behavior. There is 50% chance that a given message fails processing. This is because we want to demonstrate that errors can be send to a separate shared database which is essential for ServiceControl to be able to pick them up.
+ 1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`.
+ 1. Create database called `nservicebus`.
+ 1. The [Outbox](/nservicebus/outbox) feature is designed to provide *exactly once* delivery guarantees without the Distributed Transaction Coordinator (DTC) running. Disable the DTC service to avoid seeing warning messages in the console window. If the DTC service is not disabled, when the sample project is started it will display `DtcRunningWarning` message in the console window. 
+
+
+## Running the project
+
+ 1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
+ 1. The text `Press <enter> to send a message` should be displayed in the Sender's console window.
+ 1. Start the Receiver project (right-click on the project, select the `Debug > Start new instance` option).
+ 1. The Sender should display subscription confirmation `Subscribe from Receiver on message type OrderSubmitted`. 
+ 1. Hit `<enter>` to send a new message.
+
+
+## Verifying that the sample works correctly
+
+ 1. The Receiver displays information that an order was submitted.
+ 1. The Sender displays information that the order was accepted.
+ 1. Finally, after a couple of seconds, the Receiver displays confirmation that the timeout message has been received.
+ 1. Open SQL Server Management Studio and go to the `nservicebus` database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`).
+ 1. Verify that there are messages in the `dbo.audit` table and, if any message failed processing, messages in `dbo.error` table.
+
+NOTE: The handling code has built-in chaotic behavior. There is a 50% chance that a given message fails processing. This is to demonstrate how [error handling](/nservicebus//errors/automatic-retries.md) works. Since both First-Level Retries (FLR) and Second-Level Retires (SLR) are turned off, the message that couldn't be processed is immediately moved to the configured error queue.
+
+The retires are disabled using the following settings:
+
+snippet:RetiresConfigurationXml
+
+snippet:RetriesConfiguration
 
 
 ## Code walk-through
 
 This sample contains three projects:
 
- * Shared - A class library containing common code including the message definitions.
+ * Shared - A class library containing common code including messages definitions.
  * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
- * Receiver - A console application responsible for processing the order message.
-
-Sender and Receiver use different databases, just like in a production scenario where two systems are integrated using NServiceBus. Each database contains, apart from business data, queues for the NServiceBus endpoint and tables for NServiceBus persistence.
+ * Receiver - A console application responsible for processing the `OrderSubmitted` message, sending `OrderAccepted` message and randomly generating exceptions.
 
 
 ### Sender project
 
-The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQLServer transport with NHibernate persistence and Outbox.
+The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use SQL Server transport with NHibernate persistence and Outbox.
 
-snippet:SenderConfiguration
-
-The Sender uses a configuration file to tell NServiceBus where the messages
-addressed to the Receiver should be sent
+Connection strings in version 2.x are passed using app.config. The version 3.x sample demonstrates how to specify them using code API.
 
 snippet:SenderConnectionStrings
+
+snippet:SenderConfiguration
 
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use SQLServer transport with NHibernate persistence and Outbox but uses V2.1 code-based connection information API.
+The Receiver mimics a back-end system. It is also configured to use SQL Server transport with NHibernate persistence and Outbox.
 
 snippet:ReceiverConfiguration
 
-In order for the Outbox to work, the business data has to reuse the same connection string as NServiceBus' persistence
+In order for the Outbox to work, the business data has to reuse the same connection string as NServiceBus persistence:
 
 snippet:NHibernate
 
 When the message arrives at the Receiver, it is dequeued using a native SQL Server transaction. Then a `TransactionScope` is created that encompasses
- * persisting business data,
+ * persisting business data:
 
 snippet:StoreUserData
 
- * persisting saga data of `OrderLifecycleSaga` ,
- * storing the reply message and the timeout request in the outbox.
+ * persisting saga data of `OrderLifecycleSaga`,
+ * storing the reply message and the timeout request in the outbox:
 
 snippet:Reply
 
 snippet:Timeout
 
-Finally the messages in the outbox are pushed to their destinations. The timeout message gets stored in NServiceBus timeout store and is sent back to the saga after requested delay of five seconds.
+Finally the messages in the Outbox are pushed to their destinations. The timeout message gets stored in NServiceBus timeout store and is sent back to the saga after requested delay of 5 seconds.
 
 
 ## How it works
 
-All the data manipulations happen atomically because SQL Server 2008 and later allows multiple (but not overlapping) instances of `SqlConnection` to enlist in one `TransactionScope` without the need to escalate to DTC. The SQL Server manages these transactions like they were one `SqlTransaction`.
+All the data manipulations happen atomically because SQL Server 2008 and later allows multiple (but not overlapping) instances of `SqlConnection` to enlist in a single `TransactionScope` without the need to escalate to DTC. The SQL Server manages these transactions like they were just one `SqlTransaction`.

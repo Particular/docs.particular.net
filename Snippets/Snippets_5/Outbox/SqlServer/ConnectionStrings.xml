@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--startcode OutboxSqlServerConnectionStrings-->
 <configuration>
+  <configSections>
+    <section name="AuditConfig" type="NServiceBus.Config.AuditConfig, NServiceBus.Core"/>
+  </configSections>
   <connectionStrings>
     <add name="NServiceBus/Persistence" 
          connectionString="MY CONNECTION STRING" />
@@ -8,6 +11,11 @@
          connectionString="MY CONNECTION STRING" />
     <add name="MyBusinessDataDatabase"
          connectionString="MY CONNECTION STRING" />
+    <add name="NServiceBus/Transport/audit" 
+         onnectionString="MY CONNECTION STRING" />
+    <add name="NServiceBus/Transport/error" 
+         connectionString="MY CONNECTION STRING" />
   </connectionStrings>
+  <AuditConfig QueueName="audit" />
 </configuration>
 <!--endcode -->
