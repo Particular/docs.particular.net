@@ -325,12 +325,13 @@
     <Compile Include="Gateway\Sites\ProvideConfiguration.cs" />
     <Compile Include="Gateway\Usage.cs" />
     <Compile Include="Headers\Writers\BehaviorCleaner.cs" />
-    <Compile Include="Headers\Writers\BusConfigurationExtensions.cs" />
+    <Compile Include="Headers\Writers\EndpointConfigurationExtensions.cs" />
     <Compile Include="Headers\Writers\HeaderWriterAudit.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDataBusConvention.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDataBusProperty.cs" />
     <Compile Include="Headers\Writers\HeaderWriterDefer.cs" />
     <Compile Include="Headers\Writers\HeaderWriterEncryption.cs" />
+    <Compile Include="Headers\Writers\HeaderWriterError.cs" />
     <Compile Include="Headers\Writers\HeaderWriterPublish.cs" />
     <Compile Include="Headers\Writers\HeaderWriterReply.cs" />
     <Compile Include="Headers\Writers\HeaderWriterReturn.cs" />

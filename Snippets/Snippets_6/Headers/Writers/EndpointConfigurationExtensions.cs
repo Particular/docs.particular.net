@@ -5,7 +5,7 @@ namespace Snippets6.Headers.Writers
     using System.Reflection;
     using NServiceBus;
 
-    public static class BusConfigurationExtensions
+    public static class EndpointConfigurationExtensions
     {
         public static void SetTypesToScan(this EndpointConfiguration busConfiguration, IEnumerable<Type> typesToScan)
         {

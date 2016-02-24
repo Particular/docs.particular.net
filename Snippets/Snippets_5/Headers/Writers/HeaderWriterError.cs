@@ -74,9 +74,7 @@
             {
                 return new SecondLevelRetriesConfig
                 {
-                    Enabled = true,
-                    NumberOfRetries = 1,
-                    TimeIncrease = TimeSpan.FromMilliseconds(1)
+                    Enabled = false,
                 };
             }
         }

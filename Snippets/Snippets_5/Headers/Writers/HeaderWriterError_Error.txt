@@ -3,10 +3,10 @@ startcode HeaderWriterError_Error 5
 $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = 8cf0a8f78f9cd1885699777c83eb631e
 $.diagnostics.originating.hostid = 8cf0a8f78f9cd1885699777c83eb631e
-CorrId = aa79ca23-d33b-4a6a-9696-a59f00ec6bff\0
+CorrId = 4ba648d0-9ec7-42a0-96d5-a5b600e1adfc\0
 NServiceBus.ContentType = text/xml
-NServiceBus.ConversationId = 865c9edc-6e55-408f-b4cf-a59f00ec6c00
-NServiceBus.CorrelationId = aa79ca23-d33b-4a6a-9696-a59f00ec6bff
+NServiceBus.ConversationId = 80a655f4-5b5b-49d9-b3cb-a5b600e1ae00
+NServiceBus.CorrelationId = 4ba648d0-9ec7-42a0-96d5-a5b600e1adfc
 NServiceBus.EnclosedMessageTypes = Snippets5.Headers.Writers.MyNamespace.MessageToSend, MyAssembly, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 NServiceBus.ExceptionInfo.ExceptionType = System.Exception
 NServiceBus.ExceptionInfo.HelpLink = 
@@ -29,17 +29,13 @@ NServiceBus.ExceptionInfo.StackTrace = System.Exception: The exception message f
       at NServiceBus.Unicast.Transport.TransportReceiver.TryProcess(TransportMessage message)
       at NServiceBus.Transports.Msmq.MsmqDequeueStrategy.Action()
 NServiceBus.FailedQ = HeaderWriterErrorV5@MACHINENAME
-NServiceBus.MessageId = aa79ca23-d33b-4a6a-9696-a59f00ec6bff
+NServiceBus.MessageId = 4ba648d0-9ec7-42a0-96d5-a5b600e1adfc
 NServiceBus.MessageIntent = Send
 NServiceBus.OriginatingEndpoint = HeaderWriterErrorV5
 NServiceBus.OriginatingMachine = MACHINENAME
-NServiceBus.RelatedToTimeoutId = 
 NServiceBus.ReplyToAddress = HeaderWriterErrorV5@MACHINENAME
-NServiceBus.Retries.Timestamp = 2016-02-01 03:20:47:215042 Z
-NServiceBus.TimeOfFailure = 2016-02-01 03:20:47:247409 Z
-NServiceBus.Timeout.Expire = 2016-02-01 03:20:47:216042 Z
-NServiceBus.Timeout.RouteExpiredTimeoutTo = HeaderWriterErrorV5@MACHINENAME
-NServiceBus.TimeSent = 2016-02-01 03:20:47:225947 Z
+NServiceBus.TimeOfFailure = 2016-02-24 02:41:42:488125 Z
+NServiceBus.TimeSent = 2016-02-24 02:41:40:465032 Z
 NServiceBus.Version = 5.2.14
 WinIdName = USERNAME
 endcode
