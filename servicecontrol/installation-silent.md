@@ -20,7 +20,7 @@ The following command line will silently install the ServiceControl Management u
 Particular.ServiceControl.1.7.0.exe /quiet
 ``` 
 
-Instances of the ServiceControl service can n be deleted, added or upgraded via the Utility.
+Instances of the ServiceControl service can be deleted, added or upgraded via the Utility.
 
 
 #### Silently Add ServiceControl during installation 
