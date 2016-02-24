@@ -30,7 +30,8 @@ class Program
         hibernateConfig.SetProperty("default_schema", "receiver");
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-        
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+
         #region ReceiverConfiguration
 
         endpointConfiguration

@@ -14,24 +14,29 @@ redirects:
 - samples/sqltransport-nhpersistence-outbox-ef
 ---
 
-### Prerequisites
+## Prerequisites
+
  1. Make sure SQL Server Express is installed and accessible as `.\SQLEXPRESS`. 
- 2. Create database called `nservicebus`.
- 3. In the database create schemas `sender` and `receiver`. 
- 4. The [Outbox](/nservicebus/outbox) feature is designed to provide *exactly once* delivery guarantees without the Distributed Transaction Coordinator (DTC) running. Disable the DTC service to avoid seeing warning messages in the console window. If the DTC service is not disabled, when the sample project is started it will display `DtcRunningWarning` message in the console window. 
+ 1. Create database called `nservicebus`.
+ 1. In the database create schemas `sender` and `receiver`. 
+ 1. The [Outbox](/nservicebus/outbox) feature is designed to provide *exactly once* delivery guarantees without the Distributed Transaction Coordinator (DTC) running. Disable the DTC service to avoid seeing warning messages in the console window. If the DTC service is not disabled, when the sample project is started it will display `DtcRunningWarning` message in the console window. 
 
 
-### Running the project
+## Running the project
+
  1. Start the Sender project (right-click on the project, select the `Debug > Start new instance` option).
- 2. The text `Press <enter> to send a message` should be displayed in the Sender's console window.
- 3. Start the Receiver project (right-click on the project, select the `Debug > Start new instance` option).
- 4. Hit `<enter>` to send a new message.
+ 1. The text `Press <enter> to send a message` should be displayed in the Sender's console window.
+ 1. Start the Receiver project (right-click on the project, select the `Debug > Start new instance` option).
+ 1. Hit `<enter>` to send a new message.
+ 2. 
 
-### Verifying that the sample works correctly
+## Verifying that the sample works correctly
+
  1. The Receiver displays information that an order was submitted.
- 2. The Sender displays information that the order was accepted.
- 3. Finally, after a couple of seconds, the Receiver displays confirmation that the timeout message has been received.
- 5. Open SQL Server Management Studio and go to the receiver database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`)
+ 1. The Sender displays information that the order was accepted.
+ 1. Finally, after a couple of seconds, the Receiver displays confirmation that the timeout message has been received.
+ 1. Open SQL Server Management Studio and go to the receiver database. Verify that there is a row in saga state table (`dbo.OrderLifecycleSagaData`) and in the orders table (`dbo.Orders`)
+
 
 ## Code walk-through
 
@@ -42,6 +47,7 @@ This sample contains three projects:
  * Receiver - A console application responsible for processing the order message.
 
 Sender and Receiver use different schemas in the same database. Apart from business data the database also contains tables representing queues for the NServiceBus endpoint and tables for NServiceBus persistence.
+
 
 ### Sender project
 

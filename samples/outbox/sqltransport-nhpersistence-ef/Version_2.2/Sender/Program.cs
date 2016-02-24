@@ -22,6 +22,7 @@ class Program
         hibernateConfig.SetProperty("default_schema", "sender");
 
         BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UseSerialization<JsonSerializer>();
 
         #region SenderConfiguration
 
