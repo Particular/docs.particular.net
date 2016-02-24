@@ -9,6 +9,7 @@ class Program
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
         BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UseSerialization<JsonSerializer>();
 
         #region SenderConfiguration
 

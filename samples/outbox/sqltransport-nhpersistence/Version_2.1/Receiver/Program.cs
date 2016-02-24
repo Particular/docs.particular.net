@@ -6,7 +6,6 @@ using NHibernate.Tool.hbm2ddl;
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Persistence;
-using NServiceBus.Transports.SQLServer;
 using Configuration = NHibernate.Cfg.Configuration;
 
 class Program
@@ -29,9 +28,10 @@ class Program
 
         new SchemaExport(hibernateConfig).Execute(false, true, false);
 
+        BusConfiguration busConfiguration = new BusConfiguration();
+        busConfiguration.UseSerialization<JsonSerializer>();
         #region ReceiverConfiguration
 
-        BusConfiguration busConfiguration = new BusConfiguration();
         busConfiguration.UseTransport<SqlServerTransport>();
 
         busConfiguration.UsePersistence<NHibernatePersistence>()

@@ -17,6 +17,7 @@ class Program
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #region SenderConfiguration
 

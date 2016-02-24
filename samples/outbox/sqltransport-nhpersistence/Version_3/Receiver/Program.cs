@@ -35,6 +35,7 @@ class Program
         new SchemaExport(hibernateConfig).Execute(false, true, false);
 
         EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #region ReceiverConfiguration
 
@@ -43,7 +44,6 @@ class Program
             .ConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=nservicebus;Integrated Security=True");
 
         endpointConfiguration.UsePersistence<NHibernatePersistence>()
-            .RegisterManagedSessionInTheContainer()
             .UseConfiguration(hibernateConfig);
 
         endpointConfiguration.EnableOutbox();
