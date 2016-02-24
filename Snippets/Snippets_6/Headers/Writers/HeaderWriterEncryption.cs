@@ -29,7 +29,7 @@
         {
             EndpointConfiguration config = new EndpointConfiguration();
             config.EndpointName(endpointName);
-            config.RijndaelEncryptionService("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
+            config.RijndaelEncryptionService("2015-10", Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
             config.Conventions().DefiningEncryptedPropertiesAs(info => info.Name.StartsWith("EncryptedProperty"));
             IEnumerable<Type> typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>();
             config.SetTypesToScan(typesToScan);

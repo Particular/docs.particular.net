@@ -1,18 +1,19 @@
 namespace Snippets6.Encryption.EncryptionService
 {
     using NServiceBus;
-    using NServiceBus.Encryption;
+    using NServiceBus.Pipeline;
 
     public class EncryptionService : IEncryptionService
     {
-        public EncryptedValue Encrypt(string value)
+
+        public EncryptedValue Encrypt(string value, IOutgoingLogicalMessageContext context)
         {
-            return null;
+            throw new System.NotImplementedException();
         }
 
-        public string Decrypt(EncryptedValue encryptedValue)
+        public string Decrypt(EncryptedValue encryptedValue, IIncomingLogicalMessageContext context)
         {
-            return null;
+            throw new System.NotImplementedException();
         }
     }
 }
