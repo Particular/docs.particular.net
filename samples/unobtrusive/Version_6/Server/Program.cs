@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Text;
+using System.Threading.Tasks;
 using NServiceBus;
 
 class Program
@@ -16,7 +17,8 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.UseDataBus<FileShareDataBus>()
             .BasePath(@"..\..\..\DataBusShare\");
-        endpointConfiguration.RijndaelEncryptionService("gdDbqRpqdRbTs3mhdZh8qCaDaxJXl+e7");
+        byte[] encryptionKey = Encoding.ASCII.GetBytes("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6");
+        endpointConfiguration.RijndaelEncryptionService("2015-10", encryptionKey);
         endpointConfiguration.SendFailedMessagesTo("error");
 
         endpointConfiguration.ApplyCustomConventions();
