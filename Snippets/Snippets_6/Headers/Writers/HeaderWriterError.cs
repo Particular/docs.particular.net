@@ -73,17 +73,6 @@
 
         class MessageHandler : IHandleMessages<MessageToSend>
         {
-            public MessageHandler(BusNotifications busNotifications)
-            {
-                ErrorsNotifications errors = busNotifications.Errors;
-                errors.MessageSentToErrorQueue += (sender, retry) =>
-                {
-                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(retry.Headers);
-                    headerText = BehaviorCleaner.CleanStackTrace(headerText);
-                    headerText = StackTraceCleaner.CleanStackTrace(headerText);
-                    SnippetLogger.Write(text: headerText, suffix: "Error", version: "6");
-                };
-            }
 
             public Task Handle(MessageToSend message, IMessageHandlerContext context)
             {
@@ -93,6 +82,19 @@
 
         class Mutator : IMutateIncomingTransportMessages
         {
+            public Mutator(BusNotifications busNotifications)
+            {
+                ErrorsNotifications errors = busNotifications.Errors;
+                errors.MessageSentToErrorQueue += (sender, retry) =>
+                {
+                    string headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(retry.Headers);
+                    headerText = BehaviorCleaner.CleanStackTrace(headerText);
+                    headerText = StackTraceCleaner.CleanStackTrace(headerText);
+                    SnippetLogger.Write(text: headerText, suffix: "Error", version: "6");
+                    ManualResetEvent.Set();
+                };
+            }
+
             static bool hasCapturedMessage = false;
 
             public Task MutateIncoming(MutateIncomingTransportMessageContext context)
@@ -101,9 +103,8 @@
                 {
                     hasCapturedMessage = true;
                     string sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(context.Headers);
-                    SnippetLogger.Write(text: sendingText, suffix: "Sending", version: "5");
+                    SnippetLogger.Write(text: sendingText, suffix: "Sending", version: "6");
                 }
-                ManualResetEvent.Set();
                 return Task.FromResult(0);
             }
         }
