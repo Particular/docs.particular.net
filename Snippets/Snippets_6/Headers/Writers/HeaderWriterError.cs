@@ -81,7 +81,7 @@
                     string headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(retry.Headers);
                     headerText = BehaviorCleaner.CleanStackTrace(headerText);
                     headerText = StackTraceCleaner.CleanStackTrace(headerText);
-                    SnippetLogger.Write(text: headerText, suffix: "Error", version: "5");
+                    SnippetLogger.Write(text: headerText, suffix: "Error", version: "6");
                 };
             }
 

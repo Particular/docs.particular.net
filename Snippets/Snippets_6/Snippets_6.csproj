@@ -503,6 +503,7 @@
     <Content Include="Encryption\Configuration\encryption.config.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Headers\Writers\HeaderWriterError_Sending.txt" />
     <Content Include="RavenDB\SpecificDocumentStoreViaConnectionString.config.xml" />
     <Content Include="Routing\EndpointMapping.config.xml" />
     <Content Include="Errors\ErrorQueue\ErrorQueue.config.xml" />
