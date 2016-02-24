@@ -83,7 +83,7 @@ In Version 1.9 and above  Valid settings are:  `Trace`, `Debug`, `Info`, `Warn`,
 
 This setting will default to `Warn` if an invalid value is assigned.
 
-Prior to Version 1.9 the log level was `Info` and could not be changed
+Prior to Version 1.9 the log level was `Info` and could not be changed.
 
 
 ## Data Retention
@@ -95,12 +95,12 @@ The number of seconds to wait between checking for expired messages.
 
 Type: int
 
-Default: `600` (10 minutes). The default for Versions below 1.4 is `60` (1 minute), In Version 1.4 and above the default is `600` (10 minutes). Settings the value to `0` will disable the expiration process, this is not recommended and it is only provided for fault finding. Valid Range is `0` through to `10800` (3 Hours)
+Default: `600` (10 minutes). The default for Versions below 1.4 is `60` (1 minute), In Version 1.4 and above the default is `600` (10 minutes). Settings the value to `0` will disable the expiration process, this is not recommended and it is only provided for fault finding. Valid Range is `0` through to `10800` (3 Hours).
 
 
 #### ServiceControl/ExpirationProcessBatchSize
 
-This setting was introduced in Version 1.4. This minimum allowed value for this settings is `10240`, there is no hard coded maximum as this is heavily dependent on system performance. 
+This setting was introduced in Version 1.4. The minimum allowed value for this settings is `10240`, there is no hard coded maximum as this is heavily dependent on system performance. 
 
 Type: int
 
@@ -109,13 +109,13 @@ Default: `65512`.
 
 #### ServiceControl/HoursToKeepMessagesBeforeExpiring
 
-The number of hours to keep a message for before it is deleted,
+The number of hours to keep a message for before it is deleted.
 
 Type: int
 
 Default: `720` (30 days). 
 
-In Versions 1.8.2 and below the valid range for this setting was `24` (1 day) through to `1440` (60 days)
+In Versions 1.8.2 and below the valid range for this setting was `24` (1 day) through to `1440` (60 days).
 
 In Versions 1.8.3 and above the upper limit has been removed to allow for longer retention.  This was done to allow customers with low volumes of messages to retain them longer.  Setting this value too high can cause the embeddeded RavenDB to become large and unresponsive when indexing.  See [Capacity and Planning](capacity-and-planning.md)
 
