@@ -39,7 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1554\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1587\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="Raven.Abstractions">
       <HintPath>..\..\..\..\..\packages\RavenDB.Client.3.0.30037\lib\net45\Raven.Abstractions.dll</HintPath>

@@ -45,7 +45,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="NServiceBus.Core">
-      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1554\lib\net452\NServiceBus.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\packages\NServiceBus.6.0.0-unstable1587\lib\net452\NServiceBus.Core.dll</HintPath>
     </Reference>
     <Reference Include="NServiceBus.NHibernate, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9fc386479f8a226c, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\..\packages\NServiceBus.NHibernate.6.3.0-unstable0055\lib\net452\NServiceBus.NHibernate.dll</HintPath>
