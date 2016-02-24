@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NServiceBus;
@@ -8,6 +9,11 @@ using NServiceBus.Transports.SQLServer;
 class Program
 {
     static void Main()
+    {
+        AsyncMain().GetAwaiter().GetResult();
+    }
+
+    static async Task AsyncMain()
     {
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         Random random = new Random();
@@ -21,26 +27,38 @@ class Program
 
         hibernateConfig.SetProperty("default_schema", "sender");
 
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.UseSerialization<JsonSerializer>();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
 
         #region SenderConfiguration
 
-        busConfiguration
+        endpointConfiguration
             .UseTransport<SqlServerTransport>()
-            .UseSpecificConnectionInformation(
-                EndpointConnectionInfo.For("receiver").UseSchema("receiver"))
-            .DefaultSchema("sender");
+            .DefaultSchema("sender")
+            .UseSpecificSchema(queueName =>
+            {
+                if (queueName.Equals("error", StringComparison.OrdinalIgnoreCase) || queueName.Equals("audit", StringComparison.OrdinalIgnoreCase))
+                {
+                    return "dbo";
+                }
+                if (queueName.Equals("receiver", StringComparison.OrdinalIgnoreCase))
+                {
+                    return "receiver";
+                }
+                return null;
+            });
 
-        busConfiguration
+        endpointConfiguration
             .UsePersistence<NHibernatePersistence>();
 
-        busConfiguration.EnableOutbox();
+        endpointConfiguration.EnableOutbox();
 
         #endregion
 
-        using (IBus bus = Bus.Create(busConfiguration).Start())
-        {
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
+
+        try
+        { 
             Console.WriteLine("Press enter to send a message");
             Console.WriteLine("Press any key to exit");
 
@@ -54,13 +72,16 @@ class Program
                     return;
                 }
                 string orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                bus.Publish(new OrderSubmitted
+                await endpoint.Publish(new OrderSubmitted
                 {
                     OrderId = orderId,
                     Value = random.Next(100)
                 });
-
             }
+        }
+        finally
+        {
+            await endpoint.Stop();
         }
     }
 }

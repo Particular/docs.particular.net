@@ -1,4 +1,6 @@
 ﻿using System;
+using NHibernate.Cfg;
+using NHibernate.Dialect;
 using NServiceBus;
 using NServiceBus.Transports.SQLServer;
 using NServiceBus.Persistence;
@@ -12,14 +14,30 @@ class Program
             ctx.Database.Initialize(true);
         }
 
-        #region ReceiverConfiguration
+        Configuration hibernateConfig = new Configuration();
+        hibernateConfig.DataBaseIntegration(x =>
+        {
+            x.ConnectionStringName = "NServiceBus/Persistence";
+            x.Dialect<MsSql2012Dialect>();
+        });
+
+        hibernateConfig.SetProperty("default_schema", "receiver");
 
         BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.UseTransport<SqlServerTransport>().UseSpecificConnectionInformation(
-            EndpointConnectionInfo.For("sender")
-                .UseConnectionString(@"Data Source=.\SQLEXPRESS;Initial Catalog=sender;Integrated Security=True"));
+        busConfiguration.UseSerialization<JsonSerializer>();
 
-        busConfiguration.UsePersistence<NHibernatePersistence>().RegisterManagedSessionInTheContainer();
+        #region ReceiverConfiguration
+
+        busConfiguration
+            .UseTransport<SqlServerTransport>()
+            .UseSpecificConnectionInformation(
+                EndpointConnectionInfo.For("sender").UseSchema("sender"))
+            .DefaultSchema("receiver");
+
+        busConfiguration
+            .UsePersistence<NHibernatePersistence>()
+            .RegisterManagedSessionInTheContainer();
+
         busConfiguration.EnableOutbox();
 
         #endregion
