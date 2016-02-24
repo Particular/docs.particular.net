@@ -7,7 +7,7 @@
     {
         public UnicastBusConfig GetConfiguration()
         {
-            return new UnicastBusConfig()
+            return new UnicastBusConfig
             {
                 ForwardReceivedMessagesTo = "destinationQueue@machine"
             };

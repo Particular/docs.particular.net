@@ -9,53 +9,53 @@
     using NServiceBus.Transports;
 
     #region RegisteringTheQueueCreator
+
     class MyTransport : TransportDefinition
     {
-        protected override TransportReceivingConfigurationResult ConfigureForReceiving(TransportReceivingConfigurationContext context)
-        {
-            return new TransportReceivingConfigurationResult(
-                () => new YourMessagePump(),
-                () => new YourQueueCreator(),
-                () => Task.FromResult(StartupCheckResult.Success));
-        }
-        #endregion
 
-        protected override TransportSendingConfigurationResult ConfigureForSending(TransportSendingConfigurationContext context)
+        protected override TransportInfrastructure Initialize(SettingsHolder settings, string connectionString)
         {
-            return null;
+            return new MyTransportInfrastructure();
         }
 
-        public override IEnumerable<Type> GetSupportedDeliveryConstraints()
+        class MyTransportInfrastructure : TransportInfrastructure
         {
-            yield break;
+            public override TransportReceiveInfrastructure ConfigureReceiveInfrastructure()
+            {
+                return new TransportReceiveInfrastructure(
+                    () => new YourMessagePump(),
+                    () => new YourQueueCreator(),
+                    () => Task.FromResult(StartupCheckResult.Success));
+            }
+
+            #endregion
+
+            public override TransportSendInfrastructure ConfigureSendInfrastructure()
+            {
+                throw new NotImplementedException();
+            }
+
+            public override TransportSubscriptionInfrastructure ConfigureSubscriptionInfrastructure()
+            {
+                throw new NotImplementedException();
+            }
+
+            public override EndpointInstance BindToLocalEndpoint(EndpointInstance instance)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override string ToTransportAddress(LogicalAddress logicalAddress)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override IEnumerable<Type> DeliveryConstraints { get; }
+            public override TransportTransactionMode TransactionMode { get; }
+            public override OutboundRoutingPolicy OutboundRoutingPolicy { get; }
         }
 
-        public override TransportTransactionMode GetSupportedTransactionMode()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override IManageSubscriptions GetSubscriptionManager()
-        {
-            return null;
-        }
-
-        public override EndpointInstance BindToLocalEndpoint(EndpointInstance instance, ReadOnlySettings settings)
-        {
-            return instance;
-        }
-
-        public override string ToTransportAddress(LogicalAddress logicalAddress)
-        {
-            return null;
-        }
-
-        public override OutboundRoutingPolicy GetOutboundRoutingPolicy(ReadOnlySettings settings)
-        {
-            return null;
-        }
 
         public override string ExampleConnectionStringForErrorMessage { get; }
     }
-
 }
