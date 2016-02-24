@@ -20,7 +20,7 @@
                 messageBody: "{\"Property\":\"PropertyValue\"}",
                 headers: new Dictionary<string, string>
                 {
-                    {"NServiceBus.EnclosedMessageTypes", "MessageToSend"}
+                    {"NServiceBus.EnclosedMessageTypes", "MessageTypeToSend"}
                 }
                 );
 
