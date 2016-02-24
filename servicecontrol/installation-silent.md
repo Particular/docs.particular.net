@@ -12,7 +12,7 @@ tags:
 Note:  This documentation covers silent installation instructions for ServiceControl Version 1.7 or greater.
 
 
-#### Silently installation from the commandline
+#### Silent installation from the commandline
 
 The following command line will silently install the ServiceControl Management utility only.
 
@@ -25,7 +25,7 @@ Instances of the ServiceControl service can be deleted, added or upgraded via th
 
 #### Silently Add ServiceControl during installation 
 
-The following command line will silently install the ServiceControl Management and a ServiceControl instance
+The following command line will silently install the ServiceControl Management and a ServiceControl instance.
 
 ```bat
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UNATTENDEDFILE=unattendfile.xml
@@ -41,11 +41,11 @@ Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UNATTENDEDFILE=unatt
 
 #### Silently Upgrade ServiceControl during installation
 
-If an existing service matching the name specified in the unattended XML file already exists the unattended install options is ignored. 
-To update one or more instances of ServiceControl as part of the silence installation the command line switch `UPGRADEINSTANCES` command line argument can be used. 
+If an existing service matching the name specified in the unattended XML file already exists the unattended install option is ignored. 
+To update one or more instances of ServiceControl as part of the silent installation the command line switch `UPGRADEINSTANCES` command line argument can be used. 
  
 
-In this example we've chosen to silently install the ServiceControl Management utility and attempt to upgrade all the installed instances of the ServiceControl service. Either `*` or  `ALL` can be used to specify all instances should be upgraded
+In this example we've chosen to silently install the ServiceControl Management utility and attempt to upgrade all the installed instances of the ServiceControl service. Either `*` or  `ALL` can be used to specify all instances should be upgraded.
 
 
 ```bat
@@ -53,13 +53,13 @@ Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=ALL
 
 ``` 
 
-In this example we've chosen to silently install the ServiceControl Management utility and attempt to upgrade just one instance called `TestServiceControl`
+In this example we've chosen to silently install the ServiceControl Management utility and attempt to upgrade just one instance called `TestServiceControl`.
 
 ```bat
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl
 ``` 
 
-To specify multiple instances use a comma separated the list: 
+To specify multiple instances use a comma separated list: 
 
 ```bat
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=TestServiceControl,ProdServiceControl 
@@ -68,7 +68,7 @@ Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log UPGRADEINSTANCES=Tes
 
 #### Add the license file as part of the Silent installation
 
-In this example we've chosen to silently install the ServiceControl Management Utility and import the license file
+In this example we've chosen to silently install the ServiceControl Management Utility and import the license file.
 
 ```bat
 Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log LICENSEFILE=license.xml
@@ -77,7 +77,7 @@ Particular.ServiceControl.1.7.0.exe /quiet /LV* install.log LICENSEFILE=license.
 
 #### Combining command line options
 
-It is valid to combine the `LICENSEFILE`, `UNATTENDEDFILE`,`UPGRADEINSTANCES`,  `SERVICEACCOUNT` and `PASSWORD`options on the same command line.
+It is valid to combine the `LICENSEFILE`, `UNATTENDEDFILE`, `UPGRADEINSTANCES`,  `SERVICEACCOUNT` and `PASSWORD` options on the same command line.
 The `SERVICEACCOUNT` and `PASSWORD` only apply to a new instance, these values are not used on upgrades.
 
 
