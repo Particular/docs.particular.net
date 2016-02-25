@@ -1,35 +1,40 @@
 ---
 title: ServiceControl in Practice
-summary: Details how to think about the use of ServiceControl in production environments
+summary: Considerations for configuring ServiceControl for use in production environments
 tags:
 - ServiceControl
 ---
 
-ServiceControl is a tool that can accommodate many situations. Features can be enabled or disabled depending on the needs of the environment. Each feature is valuable in certain contexts but also comes with a cost in terms of resource usage and performance. This guidance is provided to provoke thought about why any given feature or plugin might be valuable in a system environment and to help decision makers make informed choices about how to get the best out of ServiceControl without providing solutions to specific scenarios that consider choices around hardware, transport or persistence.
 
-For example, in a development environment the [Debug Session](/servicecontrol/plugins/debug-session.md) and [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugins provide detailed information to support problem analysis. Particular advise that customers not use these plugins outside of a development environment.
+ServiceControl has many capabilities which can be extended by adding optional plugins into the endpoints of the system being monitored. Each capability and plugin can provide valuable information but also comes with a cost in terms of resource usage and performance. There are other factors that can influence the resource and performance profile of ServiceControl including hardware, message throughput, and number of endpoints. These factors can vary greatly between environments. Capabilities and plugins that provide value in one environment may have a negative impact if included in another environment.
 
-Making decisions about the use of the other plugins and features requires a little more thought. The temptation to 'just use them all' as a catch-all insurance policy is not a good choice. 
+For example, the [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugin provides additional information to support a development environment where message load is low. In a production environment, where are there are many more saga instances to audit, the increased overhead is magnified and can have a significant performance impact.  
 
-- The cost of having certain features in play can actually cause serious performance issues without proper [capacity planning](/servicecontrol/capacity-and-planning.md). The recommended approach is that in production environments there should only be one instance of ServiceControl per machine and that it should not share resources with other potentially resource hungry processes. For example, other NServiceBus Hosts, web services or SQL Server Instances. 
-- The [Auditing](/nservicebus/operations/auditing.md) feature will capture a record of everything that passes through an endpoint. It is worth considering turning audit off in some or all endpoints in production or directing the audit traffic to a null queue. If production audits are needed consider directing the traffic to a well resourced dedicated server. Audits in ServiceControl are primarily for performing system analysis using ServiceInsight. If ServiceInsight is not deployed in production then avoid using audits in production.
-- [Heartbeats](/servicepulse/intro-endpoints-heartbeats.md) and [Custom Checks](/servicepulse/intro-endpoints-custom-checks.md) can enhance a system's monitoring capability, but they add extra noise. Often, not all endpoints are mission critical. Therefore it is worth making sure that the risks to the system if an endpoint is not available are examined and understood. All communication from endpoints with ServiceControl is performed via messaging. Adding a message to the queue every second may have little impact on when the notification shows up in ServicePulse. If ServiceControl is shutdown without pausing system Endpoints, heartbeats will continue to be added to the queue. ServiceControl will attempt to process all the messages in the queue when it restarts.
+Each capability and plugin needs to be considered for each environment to determine if the value that it provides in that environment outweighs the costs that it imposes. 
 
-##### Less can be more
 
-Moving forward, take a thoughtful approach in the adoption of plugins and features:
+## General Approach
 
-- Read the [Capacity Planning Guide](/servicecontrol/capacity-and-planning.md) for ServiceControl.
-- Read the [Troubleshooting Guide](/servicecontrol/troubleshooting.md) before deployment in production.
-- [Turn off auditing](/nservicebus/operations/auditing.md) on all endpoints as well as [heartbeats and custom checks](/servicepulse/how-to-configure-endpoints-for-monitoring.md).
-- Perform load tests to baseline the solution.
-- When comfortable with the performance of the system try adding [Heartbeats](/servicepulse/intro-endpoints-heartbeats.md) to monitor the system again.
-- Try increasing the [heartbeat interval](/servicecontrol/plugins/heartbeat.md). Ideally heartbeat updates should not occur more frequently than ServiceControl can process them or more than Operations staff are prepared to monitor them with ServicePulse.
-- With each additional change perform a load test again adjusting the heartbeat interval satisfied with the result.
-- Repeat the process of considering the business relevance, system impact and load testing with each [Custom Check](/servicecontrol/plugins/custom-checks.md).
-- Repeat the process of considering the business relevance, system impact and load testing with each Endpoint [Audit](/nservicebus/operations/auditing.md).
+When configuring ServiceControl for a new environment follow these steps:
 
-##### Tips and Tricks
+- Read the [Capacity Planning](/servicecontrol/capacity-and-planning.md) and [Troubleshooting](/servicecontrol/troubleshooting.md) guides for ServiceControl.
+- Turn off Auditing and remove ServiceControl plugins from Endpoints in the new environment.
+- Run a performance test using the expected peak and average message throughput for the environment to baseline the system. This test suite should include simulating infrastructure outages that will cause large numbers of message processing failures. 
+- For each Endpoint, install and configure the Heartbeat plugin (if needed). Re-run the performance test suite and monitor ServiceControl to ensure that it is able to effectively monitor the system under load. This may require adjustments to the Heartbeat Interval. Re-run the performance tests after each adjustment.
+- For each endpoint, turn on Auditing (if needed) and re-run the performance tests to determine impact.
+- For each endpoint, turn on any required Custom Checks and re-run the performance tests to determine impact.
 
-- If running anti-virus software exclude the ServiceControl [database directory](/servicecontrol/configure-ravendb-location.md) from virus checks.
-- The recommended approach is that customers don't downgrade major and minor releases of ServiceControl. ServiceControl uses an embedded database and changes to the internal data structures can occur between releases. Rolling back may cause index corruption or data loss. The recommended approach is that customers perform testing in a lower environment before upgrading in production environments.
+NOTE: There are some factors that influence ServiceControl resource usage and performance that are less likely to change between environments but are specific to the system being monitored such as choice of transport and average message size. 
+
+
+## Specific Considerations
+
+- Each environment should have a dedicated ServiceControl instance.
+- In production, ServiceControl should run on a **dedicated machine**.
+- Turn off [Message Auditing](/nservicebus/operations/auditing.md) if it is not needed. The audit ingestion capability of ServiceControl is primarily to support system analysis with ServiceInsight. If ServiceInsight is not deployed in an environment then configure ServiceControl to read audit messages from an empty queue or turn off messaging auditing for each endpoint. Message auditing may be important for some endpoints but not other others. 
+- Turn off [Audit Forwarding](/servicecontrol/errorlog-auditlog-behavior.md) if it is not needed. ServiceControl sends a copy of each audited message to configured Audit Forwarding queue. If these messages are not being used, turn this feature off.
+- Plugins communicate between the Endpoint they installed in to ServiceControl using messaging and the configured transport of your system. Each instance of a plugin adds more messages to the ServiceControl queue which can delay the processing of each message and make ServiceControl less responsive.
+  - [Heartbeats](/servicepulse/intro-endpoints-heartbeats.md) - Not all endpoints are mission critical and need to be monitored with heartbeats. For Endpoints that do need to be monitored, adjust the Heartbeat Interval. Increasing the interval ensures that ServiceControl is able to process heartbeats in a timely manner but also increases the window that an Endpoint can be unavailable for before being detected by ServiceControl. Heartbeat messages tend to be frequent and a large backlog can occur if ServiceControl is offline for an extended period. When this happens, it can take ServiceControl some time to process old heartbeats when it restarts. 
+  - [Saga Audit](/servicecontrol/plugins/saga-audit.md) - the saga audit plugin produces a lot of data. It's use outside of a development environment is not recommended.
+- Exclude the ServiceControl [database directory](/servicecontrol/configure-ravendb-location.md) from anti-virus checks.
+- Do not downgrade releases of ServiceControl. ServiceControl uses an embedded database and changes to the internal data structures can occur between releases. Rolling back may cause index corruption or data loss. Perform testing in a lower environment before upgrading in production environments.
