@@ -86,6 +86,20 @@ This setting will default to `Warn` if an invalid value is assigned.
 Prior to Version 1.9 the log level was `Info` and could not be changed.
 
 
+#### ServiceControl/RavenDBLogLevel
+
+Controls the LogLevel of the RavenDB logs.
+This setting was introduced in Version 1.10. See [Logging](Logging.md)
+
+Type: string
+
+Default: `Warn`
+
+Valid settings are:  `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
+
+This setting will default to `Warn` if an invalid value is assigned.
+
+
 ## Data Retention
 
 

@@ -10,18 +10,52 @@ redirects:
 
 ### Logging
 
-Instances of the ServiceControl service write logging information and failed message imports to the file system.  
-Before v1.9 the logging level by default was set to `Info`, however this level can be quite verbose, so from v1.9 the default logging level is now `Warn`, this level is also configurable by adding the following to the configuration file:
+Instances of the ServiceControl service write logging information and failed message import stack traces to the file system.  
+
+Before v1.9 the default logging level was `Info`, however this level can be quite verbose, so from v1.9 the default logging level is now `Warn`, this level is also configurable by adding by adding the following to the `appSettings` section of the  configuration file:
 
 ```xml
 <!-- Log Level Options: Trace, Debug, Info, Warn, Error, Fatal, Off -->
 <add key="ServiceControl/LogLevel" value="Info" /> 
 ```
 
-NOTE: If ServiceControl experiences a critical exception when running as a service the exception information will be logged to the Windows EventLog rather than the log file.
+From Version 1.10 the RavenDB logging has been separated out into it's own log files.  These logs are located in the same directory as ServiceControl logs.  The default logging level for the RavenDB log is `Warn`.
+The log level for the RavenDB Logs can be set by adding the following to the `appSettings` section of the configuration file:
 
 
-### Location
+```xml
+<!-- Log Level Options: Trace, Debug, Info, Warn, Error, Fatal, Off -->
+<add key="ServiceControl/RavenDBLogLevel" value="Info" /> 
+```
+
+### Rolling Logs
+
+Before v1.10 The service control logs rolled based on date.  
+
+From v1.10 the logs roll based on date or if the log exceeds 30MB.  This applies to both the ServiceControl logs and the RavenDB logs.   
+
+### Log File Names
+
+
+Before v1.10 the current log file is named `logfile.txt`.  Rolled logfiles are named `log.<sequencenumber>.txt`  
+The sequence number starts at 0.  Lower numbers indicate more recent logfiles.
+
+
+From v1.10 the current log files are named `logfile.<data>.txt` and  `Ravenlog.<date>.txt`.  
+If the log rolled based on size the the rolled log will be contain a sequence number after the date.
+
+
+### Log Retention
+
+ServiceControl will retain 14 old logs files.
+
+NOTE: The change in log naming in V1.10 will result in logs produced prior to 1.10 being ignored by the log cleanup process.  These old logs can safely be removed manually.  
+
+### Critical Exception Logging
+
+If ServiceControl experiences a critical exception when running as a Windows Service the exception information will be logged to the Windows EventLog rather than the log file.
+
+### Logging Location
 
 The location of the ServiceControl logs are controlled via the `ServiceControl/LogPath` configuration setting. Refer to [Customizing ServiceControl configuration](creating-config-file.md)) for more details.
 
@@ -38,9 +72,6 @@ as the default NTFS permissions on the systemprofile do not allow access. These 
 
 
 NOTE: If multiple Service Control instances are configured on the same machine ensure that the log locations for each instance are unique
-
-
-### Custom logging location
 
 
 #### Changing logging location via the ServiceControl Management Utility
