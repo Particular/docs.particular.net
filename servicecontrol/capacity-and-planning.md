@@ -23,7 +23,7 @@ Since ServiceControl is intended to be a recent-history storage to support Servi
 
 ServiceControl is configured with a default expiration policy that deletes old messages after a predefined time. The expiration policy can be customized to decrease or increase the amount of time data is retained, which impacts the storage requirements of ServiceControl.
 
-To limit the rate at which the database grows the body of an audit messages can be truncated if it exceeds a configurable threshold.
+To limit the rate at which the database grows the body of an audit message can be truncated if it exceeds a configurable threshold.
 
 Refer to Data Retention section of [Customizing ServiceControl Configuration](creating-config-file.md) for details on these settings.
 
@@ -61,4 +61,4 @@ The transports supported by ServiceControl out-of-the-box (i.e. MSMQ, RabbitMQ, 
 
 Azure Queues and Service Bus throughput varies significantly based on deployment options and multiple related variables inherent to cloud deployment scenarios.
 
-The recommended approach is that customers plan and perform realistic throughput tests on ServiceControl using the transport of your choice and deployment options that are as close as possible to your planned production deployment. For additional questions or information please [contact Particular Software](http://particular.net/contactus).
+The recommended approach is that customers plan and perform realistic throughput tests on ServiceControl using the transport of their choice and select deployment options that are as close as possible to their production environment. For additional questions or information please  [contact Particular Software](http://particular.net/contactus).

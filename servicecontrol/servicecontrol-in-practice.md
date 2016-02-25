@@ -7,7 +7,7 @@ tags:
 
 ServiceControl is a tool that can accommodate many situations. Features can be enabled or disabled depending on the needs of the environment. Each feature is valuable in certain contexts but also comes with a cost in terms of resource usage and performance. This guidance is provided to provoke thought about why any given feature or plugin might be valuable in a system environment and to help decision makers make informed choices about how to get the best out of ServiceControl without providing solutions to specific scenarios that consider choices around hardware, transport or persistence.
 
-For example, in a development environment the [Debug Session](/servicecontrol/plugins/debug-session.md) and [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugins provide detailed information to support problem analysis. Particular advise that customers not use these  plugin outside of a development environment.
+For example, in a development environment the [Debug Session](/servicecontrol/plugins/debug-session.md) and [Saga Audit](/servicecontrol/plugins/saga-audit.md) plugins provide detailed information to support problem analysis. Particular advise that customers not use these plugins outside of a development environment.
 
 Making decisions about the use of the other plugins and features requires a little more thought. The temptation to 'just use them all' as a catch-all insurance policy is not a good choice. 
 
