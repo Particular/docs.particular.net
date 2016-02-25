@@ -38,7 +38,6 @@ The RavenDB logging has been separated out into it's own log files.  These logs 
 
 The log level for the RavenDB Logs can be set by adding the following to the `appSettings` section of the configuration file:
 
-
 ```xml
 <!-- Log Level Options: Trace, Debug, Info, Warn, Error, Fatal, Off -->
 <add key="ServiceControl/RavenDBLogLevel" value="Info" /> 
@@ -49,7 +48,7 @@ The log level for the RavenDB Logs can be set by adding the following to the `ap
 #### Version 1.9 and below 
 
 The current log file is named `logfile.txt`.  
-Rolled logfiles are named `log.<sequencenumber>.txt`
+Whwn rolled logfiles are named `log.<sequencenumber>.txt`
 The sequence number starts at 0.  Lower numbers indicate more recent logfiles.
 
 ServiceControl will retain 14 logs files, older logs are deleted automatically.
@@ -57,11 +56,12 @@ ServiceControl will retain 14 logs files, older logs are deleted automatically.
 #### Version 1.10 and above
 
 The current ServiceControl log file is named `logfile.<data>.txt`
-The current RavenDB embedded log file is named `Ravenlog.<date>.txt`.
+The current RavenDB embedded log file is named `ravenlog.<date>.txt`.
   
-If the log is rolled based on size the rolled log name will contain a sequence number after the date.
-The sequence number starts at 0.  Lower numbers indicate more recent log files.
 
+The date is written in the `yyyy-MM-dd` format.
+When the log is rolled based on size the file name will contain a sequence number after the date. e.g `logfile.2016-01-16-1.txt`
+The sequence number starts at 0.  Lower numbers indicate more recent log files. 
 ServiceControl will retain 14 logs files, older logs are deleted automatically.
 
 NOTE: The change in log naming will result in logs produced prior to Version 1.10 being ignored by the log cleanup process.  These old logs can safely be removed manually.  
