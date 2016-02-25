@@ -25,7 +25,7 @@
             #region sqlserver-singledb-multischema-connString 2.1
 
             busConfiguration.UseTransport<SqlServerTransport>()
-                .UseConnectionString("Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True; Queue Schema=nsb"");
+                .ConnectionString("Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True; Queue Schema=nsb");
 
             #endregion
         }

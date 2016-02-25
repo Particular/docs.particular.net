@@ -324,6 +324,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="RavenDB\SpecificDocumentStoreViaConnectionString.config.xml" />
+    <None Include="Transports\SqlServer\MultiSchema.config" />
     <Content Include="UpgradeGuides\5to6\null.xml" />
     <None Include="app.config" />
     <Content Include="EndpointMapping\EndpointMapping.config.xml" />
@@ -365,9 +366,9 @@
     <Content Include="SCPluginsConfig\heartbeatsIntervalConfig.xml" />
     <Content Include="Transports\Mqmq\MessageQueue.config.xml" />
     <Content Include="Transports\RabbitMQ_[2.0,3.0]\rabbitmqconnection.config.xml" />
-    <Content Include="Transports\SqlServer\MultiDb.config.xml">
+    <None Include="Transports\SqlServer\MultiDb.config">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -413,6 +414,7 @@
     <Compile Include="Serialization\NewtonsoftSerializerUsage.cs" />
     <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
     <Compile Include="Transports\SqlServer\ConnectionStrings.cs" />
+    <Compile Include="Transports\SqlServer\MultiSchema.cs" />
     <Compile Include="UpgradeGuides\5to6\AuthorizeSubscriptions.cs" />
     <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
     <Compile Include="UpgradeGuides\5to6\DelayedDelivery.cs" />

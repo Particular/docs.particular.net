@@ -261,9 +261,9 @@
     <Content Include="Transports\RabbitMQ_1\connection.config.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Transports\SqlServer\MultiDb.config.xml">
+    <None Include="Transports\SqlServer\MultiDb.config">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
     <Content Include="Transports\Throughput\InitialThroughput.config.xml">
       <SubType>Designer</SubType>
     </Content>
