@@ -12,14 +12,30 @@ redirects:
 
 Instances of the ServiceControl service write logging information and failed message import stack traces to the file system.  
 
-Before v1.9 the default logging level was `Info`, however this level can be quite verbose, so from v1.9 the default logging level is now `Warn`, this level is also configurable by adding by adding the following to the `appSettings` section of the  configuration file:
+
+#### Version 1.8.3 and below 
+
+The default logging level was `Info`, 
+
+#### Version 1.9 and above
+
+The default logging level is `Warn`, this level is now configurable by adding the following to the `appSettings` section of the  configuration file:
 
 ```xml
 <!-- Log Level Options: Trace, Debug, Info, Warn, Error, Fatal, Off -->
 <add key="ServiceControl/LogLevel" value="Info" /> 
 ```
 
-From Version 1.10 the RavenDB logging has been separated out into it's own log files.  These logs are located in the same directory as ServiceControl logs.  The default logging level for the RavenDB log is `Warn`.
+### RavenDB Logging 
+
+#### Version 1.9 and below
+
+RavenDB logging is included in the ServiceControl logs.  This logging is hard coded to `ERROR` and above and is not affected by the "ServiceControl/LogLevel" configuration setting.
+
+#### Version 1.10 and above
+
+The RavenDB logging has been separated out into it's own log files.  These logs are located in the same directory as ServiceControl logs.  The default logging level for the RavenDB log is `Warn`.
+
 The log level for the RavenDB Logs can be set by adding the following to the `appSettings` section of the configuration file:
 
 
@@ -28,32 +44,35 @@ The log level for the RavenDB Logs can be set by adding the following to the `ap
 <add key="ServiceControl/RavenDBLogLevel" value="Info" /> 
 ```
 
-### Rolling Logs
+### Log File Names and Retention
 
-Before v1.10 The ServiceControl logs rolled based on date.  
+#### Version 1.9 and below 
 
-From v1.10 the logs roll based on date or if the log exceeds 30MB.  This applies to both the ServiceControl logs and the RavenDB logs.   
-
-### Log File Names
-
-
-Before v1.10 the current log file is named `logfile.txt`.  Rolled logfiles are named `log.<sequencenumber>.txt`  
+The current log file is named `logfile.txt`.  
+Rolled logfiles are named `log.<sequencenumber>.txt`
 The sequence number starts at 0.  Lower numbers indicate more recent logfiles.
-
-
-From v1.10 the current log files are named `logfile.<data>.txt` and  `Ravenlog.<date>.txt`.  
-If the log rolled based on size the the rolled log will be contain a sequence number after the date.
-
-
-### Log Retention
 
 ServiceControl will retain 14 logs files, older logs are deleted automatically.
 
-NOTE: The change in log naming in V1.10 will result in logs produced prior to 1.10 being ignored by the log cleanup process.  These old logs can safely be removed manually.  
+#### Version 1.10 and above
+
+The current ServiceControl log file is named `logfile.<data>.txt`
+The current RavenDB embedded log file is named `Ravenlog.<date>.txt`.
+  
+If the log is rolled based on size the rolled log name will contain a sequence number after the date.
+The sequence number starts at 0.  Lower numbers indicate more recent log files.
+
+ServiceControl will retain 14 logs files, older logs are deleted automatically.
+
+NOTE: The change in log naming will result in logs produced prior to Version 1.10 being ignored by the log cleanup process.  These old logs can safely be removed manually.  
 
 ### Critical Exception Logging
 
-If ServiceControl experiences a critical exception when running as a Windows Service the exception information will be logged to the Windows EventLog rather than the log file.
+If ServiceControl experiences a critical exception when running as a Windows Service the exception information will be logged to the Windows EventLog.  
+
+If ServiceControl is running interactively, the error is shown on the console and not logged. 
+Typically ServiceControl is only run interactively to conduct database maintenance. See [Compacting the ServiceControl RavenDB database](db-compaction.md)
+
 
 ### Logging Location
 
