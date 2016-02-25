@@ -643,9 +643,9 @@ Avoid personal void. So no "we", "you", "your", "our" etc.
 
 Avoid ambiguity.
 
-**Version X and above** and **Version Y and below** and **Version X to Version Y**.
+**Versions X and above** and **Versions Y and below** and **Version X to Version Y**.
 
-**Version X** and NOT **VX** or **version X**.
+**Versions X** and NOT **VX** or **version X**.
 
 
 # Additional Resources
