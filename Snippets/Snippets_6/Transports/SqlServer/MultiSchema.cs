@@ -7,11 +7,11 @@
     {
         void CurrentEndpointSchema()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             #region sqlserver-singledb-multischema 3
 
-            busConfiguration.UseTransport<SqlServerTransport>()
+            endpointConfiguration.UseTransport<SqlServerTransport>()
                 .DefaultSchema("myschema");
 
             #endregion
@@ -20,12 +20,12 @@
 
         void OtherEndpointConnectionParamsPull()
         {
-            BusConfiguration busConfiguration = new BusConfiguration();
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
             #region sqlserver-singledb-multidb-pull 3
 
-            busConfiguration.UseTransport<SqlServerTransport>()
-							.UseSpecificSchema(tn => tn == EndpointNamingConvention(typeof(AnotherEndpoint)) ? "receiver1" : null);
+            endpointConfiguration.UseTransport<SqlServerTransport>()
+							.UseSpecificSchema(tn => tn == "AnotherEndpoint" ? "receiver1" : null);
 
             #endregion
         }
