@@ -37,6 +37,11 @@ Combined with a named connection in the `connectionStrings` node of the `app.con
 
 snippet:sqlserver-named-connection-string-xml
 
+### Via a custom connection factory
+
+It is also possible to pass to transport a custom factory method, which will provide connection strings at runtime:
+
+snippet:sqlserver-custom-connection-factory
 
 ## Sql Server Transport, the Outbox and user data: disabling the DTC
 
