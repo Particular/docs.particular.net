@@ -14,8 +14,11 @@ class Dispatcher : IDispatchMessages
         {
             string basePath = BaseDirectoryBuilder.BuildBasePath(transportOperation.Destination);
             string nativeMessageId = Guid.NewGuid().ToString();
-            string bodyPath = Path.Combine(basePath, ".bodies", nativeMessageId) + ".xml"; 
+            string bodyPath = Path.Combine(basePath, ".bodies", nativeMessageId) + ".xml";
 
+            var dir = Path.GetDirectoryName(bodyPath);
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
             File.WriteAllBytes(bodyPath, transportOperation.Message.Body);
 
             List<string> messageContents = new List<string>
