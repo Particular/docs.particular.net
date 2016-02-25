@@ -30,7 +30,7 @@ The log level for the RavenDB Logs can be set by adding the following to the `ap
 
 ### Rolling Logs
 
-Before v1.10 The service control logs rolled based on date.  
+Before v1.10 The ServiceControl logs rolled based on date.  
 
 From v1.10 the logs roll based on date or if the log exceeds 30MB.  This applies to both the ServiceControl logs and the RavenDB logs.   
 
@@ -47,7 +47,7 @@ If the log rolled based on size the the rolled log will be contain a sequence nu
 
 ### Log Retention
 
-ServiceControl will retain 14 old logs files.
+ServiceControl will retain 14 logs files, older logs are deleted automatically.
 
 NOTE: The change in log naming in V1.10 will result in logs produced prior to 1.10 being ignored by the log cleanup process.  These old logs can safely be removed manually.  
 
