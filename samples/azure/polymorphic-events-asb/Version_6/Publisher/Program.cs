@@ -14,19 +14,18 @@ class Program
 
     static async Task MainAsync()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
-        busConfiguration.EndpointName("Samples.ASB.Polymorphic.Publisher");
-        busConfiguration.UseTransport<AzureServiceBusTransport>()
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+        endpointConfiguration.EndpointName("Samples.ASB.Polymorphic.Publisher");
+        endpointConfiguration.UseTransport<AzureServiceBusTransport>()
             .UseTopology<StandardTopology>()
             .ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.SendFailedMessagesTo("error");
-        busConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
-        IBusSession bus = endpoint.CreateBusSession();
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
 
         try
         {
@@ -44,7 +43,7 @@ class Program
                 switch (key.Key)
                 {
                     case ConsoleKey.D1:
-                        await bus.Publish<BaseEvent>(e =>
+                        await endpoint.Publish<BaseEvent>(e =>
                         {
                             e.EventId = eventId;
                         });
@@ -52,7 +51,7 @@ class Program
                         break;
 
                     case ConsoleKey.D2:
-                        await bus.Publish<DerivedEvent>(e =>
+                        await endpoint.Publish<DerivedEvent>(e =>
                         {
                             e.EventId = eventId;
                             e.Data = "more data";

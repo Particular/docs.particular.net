@@ -14,34 +14,33 @@ class Program
 
     static async Task MainAsync()
     {
-        BusConfiguration busConfiguration = new BusConfiguration();
+        EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
 
-        busConfiguration.EndpointName("Samples.ASB.Polymorphic.Subscriber");
-        busConfiguration.UseTransport<AzureServiceBusTransport>()
+        endpointConfiguration.EndpointName("Samples.ASB.Polymorphic.Subscriber");
+        endpointConfiguration.UseTransport<AzureServiceBusTransport>()
             .UseTopology<StandardTopology>()
             .ConnectionString(Environment.GetEnvironmentVariable("AzureServiceBus.ConnectionString"));
-        busConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.SendFailedMessagesTo("error");
 
         #region DisableAutoSubscripton
 
-        busConfiguration.DisableFeature<AutoSubscribe>();
+        endpointConfiguration.DisableFeature<AutoSubscribe>();
 
         #endregion
 
 
-        busConfiguration.UseSerialization<JsonSerializer>();
-        busConfiguration.EnableInstallers();
-        busConfiguration.UsePersistence<InMemoryPersistence>();
-        busConfiguration.DisableFeature<SecondLevelRetries>();
+        endpointConfiguration.UseSerialization<JsonSerializer>();
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        endpointConfiguration.DisableFeature<SecondLevelRetries>();
 
 
-        IEndpointInstance endpoint = await Endpoint.Start(busConfiguration);
-        IBusSession bus = endpoint.CreateBusSession();
+        IEndpointInstance endpoint = await Endpoint.Start(endpointConfiguration);
         try
         {
             #region ControledSubscriptions
 
-            await bus.Subscribe<BaseEvent>();
+            await endpoint.Subscribe<BaseEvent>();
 
             #endregion
 

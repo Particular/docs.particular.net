@@ -84,8 +84,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\BaseEvent.cs" />
-    <Compile Include="Events\DerivedEvent.cs" />
+    <Compile Include="BaseEvent.cs" />
+    <Compile Include="DerivedEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
