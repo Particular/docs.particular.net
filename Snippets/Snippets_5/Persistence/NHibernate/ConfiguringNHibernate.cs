@@ -117,5 +117,19 @@
                 .UseConfiguration(nhConfiguration);
             #endregion
         }
+
+        public void TimeoutCleanupConfiguration()
+        {
+            //TODO: make sure proper patch version is specifed
+            //TODO: uncomment the configuration method when updated to proper version
+
+            BusConfiguration busConfiguration = new BusConfiguration();
+
+            #region TimeoutCleanupConfiguration 5.2.1
+
+            //busConfiguration.UsePersistence<NHibernatePersistence>.ConfigureTimeoutManagerCleanup(TimeSpan.FromMinutes(1), TimeSpan.FromMinutes(2));
+
+            #endregion
+        }
     }
 }
