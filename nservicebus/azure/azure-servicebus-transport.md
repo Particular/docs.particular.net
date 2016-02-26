@@ -18,10 +18,11 @@ In some environments such as very large cloud networks or hybrid network scenari
 
 Azure Service Bus is messaging infrastructure that sits between applications, allowing them to exchange messages in a loosely coupled way for improved scale and resiliency. Service Bus Queues offer simple first in, first out guaranteed message delivery and supports a range of standard protocols (REST, AMQP, WS*) and APIs to put/pull messages on/off a queue. Service Bus Topics deliver messages to multiple subscriptions and easily fan out message delivery at scale to downstream systems.
 
-- The main advantage of this service is that it offers a highly reliable and (relatively) low latency remote messaging infrastructure. A single queue message can be up to 256 KB in size, and a queue can contain many messages, up to 5GB in total. Furthermore it is capable of emulating local transactions using its queue peek-lock mechanism and has many built-in features that you (and NServiceBus) can take advantage of, such as message deduplication and deferred messages.
-- The main disadvantage of this service is its dependency on TCP (if you want low latency), which may require you to open some outbound ports on your firewall. Additionally, the price may be steep, depending on your scenario ($1 per million messages).
+ * The main advantage of this service is that it offers a highly reliable and (relatively) low latency remote messaging infrastructure. A single queue message can be up to 256 KB in size, and a queue can contain many messages, up to 5GB in total. Furthermore it is capable of emulating local transactions using its queue peek-lock mechanism and has many built-in features that you (and NServiceBus) can take advantage of, such as message deduplication and deferred messages.
+ * The main disadvantage of this service is its dependency on TCP (if you want low latency), which may require you to open some outbound ports on your firewall. Additionally, the price may be steep, depending on your scenario ($1 per million messages).
 
 Note: Publish/Subscribe and Timeouts (including message deferral) are supported natively by the transport and do not use persistence.
+
 
 ## Enabling the Transport
 
@@ -59,27 +60,28 @@ snippet:AzureServiceBusQueueConfig
 
 Using this configuration setting you can change the following values. NOTE: Most of these values are applied when a queue or topic is created and cannot be changed afterwards).
 
-- `ConnectionString`: Overrides the default "NServiceBus/Transport" connectionstring value.
-- `ConnectivityMode`: Allows you to switch between HTTP and TCP based communication. Defaults to TCP. Very useful when behind a firewall.
-- `ServerWaitTime`: The transport uses longpolling to communicate with the Azure Service Bus entities. This value specifies the amount of time, in seconds, the longpoll can take. Defaults to 300 seconds.
-- `BackoffTimeInSeconds`: The transport will back off linearly when no messages can be found on the queue to save some money on the transaction operations. This value specifies how fast it will back off. Defaults to 10 seconds.
-- `LockDuration`: The peek-lock system supported by Azure Service Bus relies on a period of time that a message becomes locked/invisible after being read. If the processing unit fails to delete the message by the specified time, it will reappear on the queue so that another process can retry. This value is defined in milliseconds and defaults to 30000 (30 seconds).
-- `EnableBatchedOperations`: Specifies whether batching is enabled. Defaults to true.
-- `BatchSize`: The number of messages that the transport tries to pull at once from the queue. Defaults to 1000.
-- `MaxDeliveryCount`: Specifies the number of times a message can be delivered before being put on the dead letter queue. Defaults to 6 (so the NServiceBus first and second level retry mechanism gets preference).
-- `MaxSizeInMegabytes`: Specifies the size in MB. Defaults to 1024 (1GB). Allowed values are 1024, 2048, 3072, 4096 5120.
-- `RequiresDuplicateDetection`: Specifies whether exactly once delivery is enabled. Defaults to false, meaning that the same message can arrive multiple times.
-- `DuplicateDetectionHistoryTimeWindow`: Specifies the amount of time in milliseconds that the queue should perform duplicate detection. Defaults to 60,000 ms (1 minute).
-- `RequiresSession`: Specifies whether sessions are required. Defaults to false (NServiceBus makes no use of this feature).
-- `DefaultMessageTimeToLive`: Specifies the time that a message can stay in the queue without being delivered. Defaults to int64.MaxValue, which is roughly 10,000 days.
-- `EnableDeadLetteringOnMessageExpiration`: Specifies whether messages should be moved to a dead letter queue upon expiration. Defaults to false (TTL is so large it wouldn't matter anyway). This assumes there have been no attempts to deliver. Errors on delivery will still put the message on the dead letter queue.
-- `EnableDeadLetteringOnFilterEvaluationExceptions`: Specifies whether messages should be moved to a dead letter queue upon filter evaluation exceptions. Defaults to false.
-- `EnablePartitioning`: Increase overall throughput by allowing to use multiple brokers/stores to handle queues and topics to overcome limitations of a single broker/store at increased cost. Partitioning does reduce number of queues or topics per namespace. Defaults to false.
-- `SupportOrdering`: Specifies whether queues and topics should enable support for message ordering. Defaults to true.
+ * `ConnectionString`: Overrides the default "NServiceBus/Transport" connectionstring value.
+ * `ConnectivityMode`: Allows you to switch between HTTP and TCP based communication. Defaults to TCP. Very useful when behind a firewall.
+ * `ServerWaitTime`: The transport uses longpolling to communicate with the Azure Service Bus entities. This value specifies the amount of time, in seconds, the longpoll can take. Defaults to 300 seconds.
+ * `BackoffTimeInSeconds`: The transport will back off linearly when no messages can be found on the queue to save some money on the transaction operations. This value specifies how fast it will back off. Defaults to 10 seconds.
+ * `LockDuration`: The peek-lock system supported by Azure Service Bus relies on a period of time that a message becomes locked/invisible after being read. If the processing unit fails to delete the message by the specified time, it will reappear on the queue so that another process can retry. This value is defined in milliseconds and defaults to 30000 (30 seconds).
+ * `EnableBatchedOperations`: Specifies whether batching is enabled. Defaults to true.
+ * `BatchSize`: The number of messages that the transport tries to pull at once from the queue. Defaults to 1000.
+ * `MaxDeliveryCount`: Specifies the number of times a message can be delivered before being put on the dead letter queue. Defaults to 6 (so the NServiceBus first and second level retry mechanism gets preference).
+ * `MaxSizeInMegabytes`: Specifies the size in MB. Defaults to 1024 (1GB). Allowed values are 1024, 2048, 3072, 4096 5120.
+ * `RequiresDuplicateDetection`: Specifies whether exactly once delivery is enabled. Defaults to false, meaning that the same message can arrive multiple times.
+ * `DuplicateDetectionHistoryTimeWindow`: Specifies the amount of time in milliseconds that the queue should perform duplicate detection. Defaults to 60,000 ms (1 minute).
+ * `RequiresSession`: Specifies whether sessions are required. Defaults to false (NServiceBus makes no use of this feature).
+ * `DefaultMessageTimeToLive`: Specifies the time that a message can stay in the queue without being delivered. Defaults to int64.MaxValue, which is roughly 10,000 days.
+ * `EnableDeadLetteringOnMessageExpiration`: Specifies whether messages should be moved to a dead letter queue upon expiration. Defaults to false (TTL is so large it wouldn't matter anyway). This assumes there have been no attempts to deliver. Errors on delivery will still put the message on the dead letter queue.
+ * `EnableDeadLetteringOnFilterEvaluationExceptions`: Specifies whether messages should be moved to a dead letter queue upon filter evaluation exceptions. Defaults to false.
+ * `EnablePartitioning`: Increase overall throughput by allowing to use multiple brokers/stores to handle queues and topics to overcome limitations of a single broker/store at increased cost. Partitioning does reduce number of queues or topics per namespace. Defaults to false.
+ * `SupportOrdering`: Specifies whether queues and topics should enable support for message ordering. Defaults to true.
 
 NOTE: `QueueName` and `QueuePerInstance` are obsoleted. Instead, use bus configuration object to specify endpoint name and scale-out option.
 
 Defaults are just starting values. You should always measure and test these values against your solution and adjust those accordingly.
+
 
 ### BrokeredMessage body conventions
 
@@ -92,6 +94,7 @@ snippet: ASB-outgoing-message-convention
 Incoming message:
 
 snippet: ASB-incoming-message-convention
+
 
 ### Naming Conventions
 
@@ -108,6 +111,7 @@ Entities creation:
 snippet: ASB-NamingConventions-entity-creation-conventions
 
 WARNING: This is an advanced topic and requires full understanding of the topology.
+
 
 ## Transactions
 
