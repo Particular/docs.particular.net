@@ -31,8 +31,6 @@ To support sending and receiving messages between endpoints using different seri
 
 snippet:AdditionalDeserializers
 
-To configure multiple deserializers in Version 5 of NServiceBus, check out [Taking control of serialization via the pipeline](/samples/pipeline/multi-serializer/).
-
 
 ### Community run serializers
 
