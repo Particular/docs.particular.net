@@ -20,7 +20,7 @@ NOTE: If the destination endpoint uses different database or server instance, se
 
 By default the SQL Server transport uses a single instance of the SQL Server to maintain queues for all endpoints in the system. In order to send a message, an endpoint needs to connect to the (usually remote) database server and execute a SQL command. The message is delivered directly to the destination queue without any store-and-forward mechanism. 
 
-Using a single database is that it doesn't require Distributed Transaction Coordinator (MS DTC). Another advantage is the ability to take a snapshot of entire system state (all the queues) by backing up a database. This is most useful when the business data is also stored in the same database.
+Using a single database doesn't require Distributed Transaction Coordinator (MS DTC). Another advantage is the ability to take a snapshot of entire system state (all the queues) by backing up a database. This is most useful when the business data is also stored in the same database.
 
 ## Single database with multiple schemas
 
@@ -34,28 +34,30 @@ snippet:sqlserver-singledb-multischema-config
 
 If two endpoints use different schemas then additional configuration is required. The sender needs to know the schema of the receiver, and subscriber needs the schema of the publisher. 
 
-The schema for another endpoint can be specified at compile time (push mode):
+The schema for another endpoint can be specified at compile time:
 
 snippet:sqlserver-singledb-multidb-push
 
 snippet:sqlserver-singledb-multischema-connString
 
-or at runtime (pull mode):
+or at runtime:
 
 snippet:sqlserver-singledb-multidb-pull
 
-NOTE: Even if two endpoints use different schemas the SQL Server transport will assume they use the same connection string. A different connection string must be specified explicitly, as described in the following section.
+NOTE: Even if two endpoints use different schemas the SQL Server transport will assume they use the same database. The different connection string must be passed explicitly, as described in the following section.
 
 ## Multiple databases
 
-Endpoints can also use separate databases. That scenario requires DTC. Due to the lack of store-and-forward mechanism, if a remote endpoint's database or DTC infrastructure is down, the endpoint cannot send messages to it. This potentially renders the endpoint unavailable (and also all other endpoints depending on it directly or indirectly).
+Endpoints can also use separate databases. That scenario requires DTC. 
+
+NOTE: Due to the lack of store-and-forward mechanism, if a remote endpoint's database or DTC infrastructure is down, the endpoint cannot send messages to it. This potentially renders the endpoint unavailable (and also all other endpoints depending on it directly or indirectly).
 
 ## Multiple databases with store-and-forward
 
 In order to overcome this limitation a higher level store-and-forward mechanism needs to be used. The Outbox feature can be used to effectively implement a distributed decoupled architecture where:
  * Each endpoint has its own database where it stores both the queues and the user data
  * Messages are not sent immediately when calling `Bus.Send()` but are added to the *outbox* that is stored in the endpoint's own database. After completing the handling logic the messages in the *outbox* are forwarded to their destination databases
- * Should one of the forward operations fail, it will be retried by means of [standard NServiceBus retry mechanism](/nservicebus/errors/automatic-retries.md). This might result in some messages being sent more than once but it is not a problem because the outbox automatically handles the deduplication of incoming messages based on their ID.
+ * Should one of the forward operations fail, it will be retried by means of [standard NServiceBus retry mechanism](/nservicebus/errors/automatic-retries.md). This might result in some messages being sent more than once but Outbox automatically handles the deduplication of incoming messages based on their ID, providing `exactly-once` message delivery guarantee.
 
 ## Current endpoint
 
