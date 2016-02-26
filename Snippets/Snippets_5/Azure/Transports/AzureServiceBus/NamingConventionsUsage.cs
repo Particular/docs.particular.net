@@ -10,7 +10,7 @@
     {
         public void Snippet()
         {
-            #region ASB-NamingConventions-entity-sanitization 6.4
+            #region ASB-NamingConventions-entity-sanitization [6.4,7)
 
             NamingConventions.EntitySanitizationConvention = (entityName, entityType) =>
             {
@@ -37,7 +37,7 @@
             Func<ReadOnlySettings, Address, bool, Address> DetermineQueueAddressUsingCustomLogic = (settings, address, doNotIndividualize) => new Address("queue", "machine");
             Func<ReadOnlySettings, Address, Address> DeterminePublisherAddressUsingCustomLogic = (settings, address) => new Address("queue", "machine");
 
-            #region ASB-NamingConventions-entity-creation-conventions 6.4
+            #region ASB-NamingConventions-entity-creation-conventions [6.4,7)
 
             NamingConventions.QueueNamingConvention = (settings, messageType, queue, doNotIndividualize) => DetermineQueueNameUsingCustomLogic(settings, messageType, queue, doNotIndividualize);
 
