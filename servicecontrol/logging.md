@@ -59,8 +59,8 @@ The current ServiceControl log file is named `logfile.<date>.txt`
 The current RavenDB embedded log file is named `ravenlog.<date>.txt`.
 The date is written in the `yyyy-MM-dd` format.
 
-The logs are rolled based on date and size.  Logs are rolled at 30MB.
-If the log is rolled because of a date change old log is named `<logname>.<date>.txt` where date is in the format `yyyyMMdd` and log name is either `ravenlog` or `logfile` 
+The logs are rolled based on date and size, any log exceeding 30MB will trigger the log to roll. 
+If the log is rolled because of a date change the old log is named `<logname>.<date>.txt` where date is in the format `yyyyMMdd` and log name is either `ravenlog` or `logfile` 
 If the log is rolled based on size a sequence number is added e.g `<logname>.<date>.<sequence>.txt`
 The sequence number starts at 0.  Higher numbers indicate more recent log files. 
 ServiceControl will retain 14 log files. Older logs are deleted automatically.
