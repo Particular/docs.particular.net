@@ -15,7 +15,7 @@ Instances of the ServiceControl service write logging information and failed mes
 
 #### Version 1.8.3 and below 
 
-The default logging level was `Info`, 
+The default logging level is `Info`, 
 
 #### Version 1.9 and above
 
