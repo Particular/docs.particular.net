@@ -89,7 +89,7 @@ Prior to Version 1.9 the log level was `Info` and could not be changed.
 #### ServiceControl/RavenDBLogLevel
 
 Controls the LogLevel of the RavenDB logs.
-This setting was introduced in Version 1.10. See [Logging](Logging.md)
+This setting was introduced in Version 1.10. See [Logging](logging.md)
 
 Type: string
 
