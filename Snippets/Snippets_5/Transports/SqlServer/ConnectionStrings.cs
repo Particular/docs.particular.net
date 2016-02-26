@@ -33,7 +33,7 @@
 
             BusConfiguration busConfiguration = new BusConfiguration();
             busConfiguration.UseTransport<SqlServerTransport>()
-                .UseCustomSqlConnectionFactory(connectionString => new SqlConnection(@"Server=localhost\sqlexpress;Database=nservicebus;Trusted_Connection=True;");
+                .UseCustomSqlConnectionFactory(connectionString => new SqlConnection(@"Server=localhost\sqlexpress;Database=nservicebus;Trusted_Connection=True;"));
 
             #endregion
         }

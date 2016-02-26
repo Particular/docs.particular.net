@@ -7,23 +7,31 @@
     {
         void CurrentEndpointSchema()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region sqlserver-singledb-multischema 3
-
+			
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<SqlServerTransport>()
                 .DefaultSchema("myschema");
 
             #endregion
         }
-		
+
+        void CurrentEndpointSchemaInConnString()
+        {
+            #region sqlserver-singledb-multischema-connString 3
+
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
+            endpointConfiguration.UseTransport<SqlServerTransport>()
+                .ConnectionString("Data Source=INSTANCE_NAME; Initial Catalog=some_database; Integrated Security=True; Queue Schema=nsb");
+
+            #endregion
+        }
 
         void OtherEndpointConnectionParamsPull()
         {
-            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
-
             #region sqlserver-singledb-multidb-pull 3
-
+			
+            EndpointConfiguration endpointConfiguration = new EndpointConfiguration();
             endpointConfiguration.UseTransport<SqlServerTransport>()
 							.UseSpecificSchema(tn => tn == "AnotherEndpoint" ? "receiver1" : null);
 

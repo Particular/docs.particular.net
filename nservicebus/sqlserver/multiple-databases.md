@@ -18,7 +18,7 @@ NOTE: If the destination endpoint uses different database or server instance, se
 
 ## Single database
 
-By default the SQL Server transport uses a single instance of the SQL Server to maintain queues for all endpoints in the system. In order to send a message, an endpoint needs to connect to the (usually remote) database server and execute a SQL command. The message is delivered directly to the destination queue without any store-and-forward mechanism. 
+By default the SQL Server transport uses a single instance of the SQL Server to maintain queues for all endpoints in the system. In order to send a message, an endpoint needs to connect to the (usually remote) database server and execute a SQL statement. The message is delivered directly to the destination queue without any store-and-forward mechanism. 
 
 Using a single database doesn't require Distributed Transaction Coordinator (MS DTC). Another advantage is the ability to take a snapshot of entire system state (all the queues) by backing up a database. This is most useful when the business data is also stored in the same database.
 
@@ -34,13 +34,11 @@ snippet:sqlserver-singledb-multischema-config
 
 If two endpoints use different schemas then additional configuration is required. The sender needs to know the schema of the receiver, and subscriber needs the schema of the publisher. 
 
-The schema for another endpoint can be specified at compile time:
+The schema for another endpoint can be specified in the following ways:
 
 snippet:sqlserver-singledb-multidb-push
 
-snippet:sqlserver-singledb-multischema-connString
-
-or at runtime:
+or:
 
 snippet:sqlserver-singledb-multidb-pull
 
