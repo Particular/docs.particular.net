@@ -409,6 +409,7 @@
     <Compile Include="Forwarding\ConfigurationSource.cs" />
     <Compile Include="Forwarding\ConfigurationSourceUsage.cs" />
     <Compile Include="Forwarding\ProvideConfiguration.cs" />
+    <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
     <Compile Include="Serialization\NewtonsoftSerializerUsage.cs" />
     <Compile Include="Transports\Mqmq\AuthorizeSubscriptions.cs" />
     <Compile Include="Transports\SqlServer\ConnectionStrings.cs" />
@@ -574,7 +575,7 @@
     <Compile Include="UpgradeGuides\4to5\BusInstance.cs" />
     <Compile Include="UpgradeGuides\4to5\SagaMappingForUpgrade.cs" />
     <Compile Include="Sagas\SagaNotFoundHandler.cs" />
-    <Compile Include="Sagas\FindSagas\SagaFinder.cs" />
+    <Compile Include="Sagas\FindSagas\NHibernateSagaFinder.cs" />
     <Compile Include="Sagas\SimpleSaga\OrderSagaData.cs" />
     <Compile Include="Sagas\SimpleSaga\CompleteOrder.cs" />
     <Compile Include="Sagas\SimpleSaga\OrderSaga.cs" />

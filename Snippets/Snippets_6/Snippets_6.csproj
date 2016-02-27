@@ -398,6 +398,8 @@
     <Compile Include="RavenDB\Configure.cs" />
     <Compile Include="Routing\RoutingAPIs.cs" />
     <Compile Include="Sagas\ConfigureSagaPersistence.cs" />
+    <Compile Include="Sagas\FindSagas\NHibernateSagaFinder.cs" />
+    <Compile Include="Sagas\FindSagas\RavenDBSagaFinder.cs" />
     <Compile Include="ScaleOut\IndividualizeQueues.cs" />
     <Compile Include="Serialization\NewtonsoftSerializerUsage.cs" />
     <Compile Include="Serialization\JsonSerializerUsage.cs" />
