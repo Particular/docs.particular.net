@@ -5,7 +5,7 @@
 
     public class NHibernateSagaFinder
     {
-        #region nhiebarenate-saga-finder
+        #region nhibernate-saga-finder
 
         public class MyNHibernateSagaFinder :
             IFindSagas<MySagaData>.Using<MyMessage>
