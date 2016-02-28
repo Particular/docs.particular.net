@@ -632,6 +632,7 @@ Sequence diagram images are generated using https://bramp.github.io/js-sequence-
 
 # Writing Style
 
+
 ## Language Preferences
 
 For consistency, prefer American English.
@@ -646,6 +647,26 @@ Avoid ambiguity.
 **Versions X and above** and **Versions Y and below** and **Version X to Version Y**.
 
 **Versions X** and NOT **VX** or **version X**.
+
+
+# Utilities
+
+Under https://github.com/Particular/docs.particular.net/tree/master/tools there are several utilities to help with the management of this repository. All are in the form of [LINQPad](https://www.linqpad.net/) scripts.
+
+
+## nugets.linq
+
+This uses nuget.exe to update all nuget pages in all solutions to the newest patch version. This script takes 10-20 minutes depending on bandwidth.
+
+
+## resharpersettings.linq
+
+Enforces the [Resharper](https://www.jetbrains.com/resharper/) settings to be correct for every solution. The standard is a placeholder .settings file that pull in the [Shared.DotSettings](https://github.com/Particular/docs.particular.net/blob/master/tools/Shared.DotSettings) file as a layer.
+
+
+## setStartup.linq
+
+Sets the correct startup projects for every solution. This is persisted in an .suo file for each solution. Since .suo are not committed to source control, if a re-clone is done this script will need to be re-run.
 
 
 # Additional Resources
