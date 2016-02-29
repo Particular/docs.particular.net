@@ -19,7 +19,9 @@ Here are some important considerations when installing and deploying ServiceCont
 
 - Read the [Capacity Planning](/servicecontrol/capacity-and-planning.md) and [Troubleshooting](/servicecontrol/troubleshooting.md) guides for ServiceControl.
 - Each environment should have a dedicated ServiceControl instance.
-- In production, ServiceControl should run on a dedicated machine.
+- Other applications or NServiceBus endpoints running on the same machine as ServiceControl can compete for hardware resources and therefore negatively impact ServiceControl's performance. For optimal performance run SC on a dedicated machine.
+- If ServiceControl is installed on a Virtual Machine, ensure the machine is capable of high levels of I/O traffic. The amount of I/O required depends on the system being monitored. Run performance 
+tests with realistic message loads to baseline hardware requirements.
 
 
 ## Message Throughput Considerations
@@ -60,7 +62,7 @@ Once this baseline has been established, follow these steps:
 
 ## Anti-Virus Checks
 
-Exclude the ServiceControl [database directory](/servicecontrol/configure-ravendb-location.md) from anti-virus checks. ServiceControl uses an embedded database and produces a lot of I/O traffic. Some anti-virus software can add overhead to I/O operations causing a significant performance impact.
+Exclude the ServiceControl [database directory](/servicecontrol/configure-ravendb-location.md) from anti-virus checks. ServiceControl uses an embedded database and produces a high level of I/O traffic. Some anti-virus software can add overhead to I/O operations causing a significant performance impact.
 
 
 ## Version Downgrades
