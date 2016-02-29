@@ -1,4 +1,5 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 using NServiceBus.Installation.Environments;
 
 class Program
