@@ -418,6 +418,7 @@
     <Compile Include="Transports\SqlServer\ConnectionStrings.cs" />
     <Compile Include="UpgradeGuides\5to6\Callbacks.cs" />
     <Compile Include="UpgradeGuides\5to6\EndpointStart.cs" />
+    <Compile Include="UpgradeGuides\5to6\MessageContext.cs" />
     <Compile Include="UpgradeGuides\5to6\MyEvent.cs" />
     <Compile Include="Handlers\MyHandler.cs" />
     <Compile Include="Handlers\MyMessage.cs" />
